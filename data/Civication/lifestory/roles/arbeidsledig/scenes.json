@@ -5790,12 +5790,12 @@
       "stedId": "hjem",
       "prioritet": 6,
       "tittel": "Et annet møtested",
-      "tekst": "Jonas svarer: «En tur passer. Skal vi starte utenfor kafeen klokka 18 i morgen? Vi trenger ikke gå inn.» Han har tatt imot forslaget ditt, men dere må fortsatt bekrefte avtalen.",
+      "tekst": "Jonas svarer mens du er i butikken. «Gåtur er perfekt. Skal vi møtes utenfor kafeen klokka seks i morgen? Så slipper vi å bruke penger på kaffen der.» Du kjenner deg lettet over at han ikke gjør økonomien til noe pinlig. Nå må du bare bestemme om du faktisk vil møtes.",
       "valg": [
         {
           "id": "bekreft",
-          "tekst": "Bekreft turen i morgen klokka 18",
-          "konsekvensTekst": "Du bekrefter møtested og tidspunkt. Jonas svarer «Da sees vi». Regningen står fortsatt til separat oppfølging.",
+          "tekst": "Bekreft at du møter Jonas utenfor kafeen klokka seks i morgen",
+          "konsekvensTekst": "Du bekrefter, og Jonas svarer «da sees vi». Nå har dere en avtale; strømregningen må du fortsatt håndtere for seg.",
           "effekter": {
             "flagg": {
               "wa_c01_tur_avtalt": true
@@ -5804,8 +5804,8 @@
         },
         {
           "id": "avsta",
-          "tekst": "Si at du likevel trenger kvelden for deg selv",
-          "konsekvensTekst": "Du trekker forslaget før dere har møttes. Jonas svarer at det er greit. Det finnes ingen gjennomført tur.",
+          "tekst": "Si at du likevel trenger morgendagens kveld for deg selv",
+          "konsekvensTekst": "Du sender beskjed før dere har møttes. Jonas svarer at han skjønner. Det blir ingen tur denne gangen.",
           "effekter": {
             "flagg": {
               "wa_c01_tur_avtalt": false
@@ -5870,12 +5870,12 @@
       "stedId": "hjem",
       "prioritet": 6,
       "tittel": "Utenfor kafeen",
-      "tekst": "Klokka nærmer seg 18. Den gratis turen med Jonas er avtalt, og han skriver at han er ved kafeen. Regningen er ikke blitt betalt av at dere fant et billigere møtested.",
+      "tekst": "Jonas står utenfor kafeen og vinker med en hånd dypt i jakkelomma. «Vi kan gå ned mot elva», skriver han. Du har sagt ja til turen, men kjenner plutselig hvor sliten du er. Du kan gå og dele en vanlig kveld med en venn, eller ringe før han blir stående lenge og vente.",
       "valg": [
         {
           "id": "gaa",
-          "tekst": "Gå til møtestedet og ta turen med Jonas",
-          "konsekvensTekst": "Du møter Jonas. Dere går langs elva og snakker om uka hans også. Når dere skilles, er turen gjennomført; strømregningen er fortsatt en egen oppgave.",
+          "tekst": "Møt Jonas og gå turen dere avtalte",
+          "konsekvensTekst": "Du møter ham, og dere går langs elva. Han forteller mer om sin egen uke enn han spør om din. Strømregningen blir liggende hjemme, men vennskapet fikk en kveld.",
           "effekter": {
             "flagg": {
               "wa_c01_tur_gjennomfort": true
@@ -5884,8 +5884,8 @@
         },
         {
           "id": "avlys",
-          "tekst": "Ring og avlys før Jonas venter lenger",
-          "konsekvensTekst": "Du ringer. Jonas hadde satt av tida og er skuffet over det sene varselet, men sier at han går turen alene. Dere har ikke møttes.",
+          "tekst": "Ring Jonas og avlys nå",
+          "konsekvensTekst": "Du ringer og sier at du ikke kommer. Jonas hadde allerede gått hjemmefra og høres skuffet ut. Han går turen alene.",
           "effekter": {
             "flagg": {
               "wa_c01_tur_avlyst": true
@@ -6148,7 +6148,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Et forslag som fikk et nei",
-      "tekst": "Du ser igjen forslaget ditt om en gratis tur og svaret der du likevel takket nei da Jonas sa ja. Du avlyste ikke et møte ute i gaten; du lot være å inngå avtalen. Samtalen har blitt liggende der, og du må selv velge om du vil åpne den igjen.",
+      "tekst": "Bildet av kafeen fra Jonas ligger fortsatt i samtalen. Du foreslo en gratis tur, men ombestemte deg før dere gjorde en avtale. Han svarte kort og lot det ligge. Nå ser du en hund med altfor stor pinne på vei gjennom parken og tenker at Jonas ville ha ledd av den.",
       "conditions": {
         "flagg": {
           "wa_c01_tur_avtalt": false
@@ -6157,8 +6157,8 @@
       "valg": [
         {
           "id": "aapne",
-          "tekst": "Send Jonas en hilsen uten å foreslå et møte.",
-          "konsekvensTekst": "Du spør hvordan dagen hans har vært. Meldingen er sendt; du har ikke fått svar eller etablert en ny avtale.",
+          "tekst": "Send Jonas en liten hilsen om noe som fikk deg til å le",
+          "konsekvensTekst": "Du skriver om hunden. Meldingen er sendt, men han har ennå ikke svart. Du har ikke bedt ham holde av en kveld.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "hilsen"
@@ -6167,8 +6167,8 @@
         },
         {
           "id": "la_hvile",
-          "tekst": "La samtalen hvile denne kvelden.",
-          "konsekvensTekst": "Du legger bort telefonen. Det kommer ingen ny beskjed om turen denne kvelden. Du har verken forklart mer eller lovet å komme senere.",
+          "tekst": "La telefonen ligge og nyt kvelden alene",
+          "konsekvensTekst": "Du setter deg på benken og ser hunden forsvinne rundt hjørnet. Ingen ny avtale blir inngått.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "hvile"
@@ -6187,7 +6187,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Et bilde uten forklaring",
-      "tekst": "Det opprinnelige avslaget ditt til Jonas står fortsatt uten noen økonomisk forklaring. Du ser et bilde på telefonen som du kunne sendt ham. Det ville være en liten kontakt, ikke et svar på alle spørsmålene om hvordan du har det.",
+      "tekst": "Du takket nei til Jonas uten å fortelle om regningen. Han godtok det, men du merker at du likevel har formulert tre lange forklaringer inni deg. På telefonen finner du et bilde han ville likt. Kanskje er det mulig å holde kontakten uten å forsvare hvorfor du ikke kunne møtes.",
       "conditions": {
         "flagg": {
           "wa_c01_svar": "nei"
@@ -6196,8 +6196,8 @@
       "valg": [
         {
           "id": "send_bilde",
-          "tekst": "Send bildet med en kort hilsen.",
-          "konsekvensTekst": "Du sender bildet og skriver «tenkte du ville le av denne». Du åpner for kontakt uten å dele regningen. Jonas har ennå ikke svart.",
+          "tekst": "Send bildet og en kort hilsen, uten økonomiforklaring",
+          "konsekvensTekst": "Du sender bildet. Det er en vennlig åpning, ikke en rapport om pengene dine. Jonas har ennå ikke svart.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "bilde"
@@ -6206,8 +6206,8 @@
         },
         {
           "id": "behold_ro",
-          "tekst": "Behold kvelden for deg selv.",
-          "konsekvensTekst": "Bildet blir på telefonen. Du har fortsatt lov til å holde grunnen til avslaget privat, og du har heller ikke gitt Jonas ny informasjon å svare på.",
+          "tekst": "Legg bort telefonen; et nei trenger ikke forklares mer",
+          "konsekvensTekst": "Du lar bildet være ditt og bruker kvelden på noe annet. Du har ikke lovet et nytt møte.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "ro"
@@ -6226,7 +6226,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "To forskjellige spørsmål",
-      "tekst": "Kvitteringen du arkiverte viser at arbeidstidsvedlegget kom inn. Når du åpner saksoversikten, står det fremdeles «under behandling». Dagens dokumentasjon kan svare på om filen kom frem. Den kan ikke svare på når du får penger.",
+      "tekst": "Du har lagt kvitteringen for arbeidstidsvedlegget i en mappe på datamaskinen. Når du åpner NAV-portalen, står søknaden fortsatt «under behandling». Du skulle egentlig gå på biblioteket, men blir sittende og se på de samme ordene. Du kan samle det du vet, eller sende ett konkret spørsmål før du går.",
       "conditions": {
         "flagg": {
           "wa_c05_avslutning": "mottak_dokumentert"
@@ -6235,8 +6235,8 @@
       "valg": [
         {
           "id": "lag_oversikt",
-          "tekst": "Samle kvitteringen og den åpne statusen i ett notat.",
-          "konsekvensTekst": "Du skriver datoen på kvitteringen og «behandling ikke avklart» på to separate linjer. Du avslutter dokumentarbeidet for i dag; utfallet er fortsatt åpent.",
+          "tekst": "Skriv ned mottaksdatoen og legg saken bort for i dag",
+          "konsekvensTekst": "Du skriver datoen på en lapp og lukker portalen. Pengene er fortsatt uavklart, men du kommer deg ut døra.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "ordnet"
@@ -6245,8 +6245,8 @@
         },
         {
           "id": "spor_lesbarhet",
-          "tekst": "Send ett spørsmål om vedlegget er lesbart og knyttet til saken.",
-          "konsekvensTekst": "Du sender spørsmålet med kvitteringsreferansen. Det er et nytt kontaktforsøk, ikke en bekreftelse på at en saksbehandler har kontrollert filen.",
+          "tekst": "Spør om filen er lesbar og koblet til riktig sak",
+          "konsekvensTekst": "Du sender ett spørsmål med kvitteringsnummeret. Du har bedt om kontroll, ikke fått en bekreftelse på at noen har utført den.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "spurt_lesbarhet"
@@ -6265,7 +6265,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Et svar med begrenset rekkevidde",
-      "tekst": "NAV-veilederen svarer på statusspørsmålet ditt: «Vedlegget er registrert på saken. Jeg kan ikke gi deg en dato for avgjørelsen nå.» Det er mer enn en automatisk kvittering, men fremdeles ikke et vedtak. På bordet ligger også andre ting du skulle ha gjort i dag.",
+      "tekst": "Et svar fra NAV ligger i portalen: «Vedlegget er registrert. Jeg kan ikke gi deg en dato for avgjørelsen.» Du leser siste setning en gang til. Det var godt å få svar, men vanskelig å legge fra seg saken når du fortsatt må planlegge regningene. På bordet ligger også handlelista og jakka du hadde tatt fram.",
       "conditions": {
         "flagg": {
           "wa_c05_avslutning": "venter_status"
@@ -6274,8 +6274,8 @@
       "valg": [
         {
           "id": "avslutt_dagen",
-          "tekst": "Noter svaret og bruk resten av ettermiddagen på andre ting.",
-          "konsekvensTekst": "Du lagrer meldingen som bekreftelse på registrering. Du har ingen avgjørelsesdato, men velger å stoppe oppfølgingen for i dag.",
+          "tekst": "Lagre svaret og gå ut for å gjøre det du hadde planlagt",
+          "konsekvensTekst": "Du tar vare på meldingen og går. Du har fått vite at vedlegget er registrert, ikke når saken blir avgjort.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "registrert"
@@ -6284,8 +6284,8 @@
         },
         {
           "id": "spor_neste",
-          "tekst": "Spør om det nå mangler noe mer fra deg.",
-          "konsekvensTekst": "Du sender et avgrenset spørsmål om dine neste oppgaver. Du har ikke fått svar på det ennå; du bestiller ikke en avgjørelse ved å spørre.",
+          "tekst": "Spør om det er mer du selv må levere",
+          "konsekvensTekst": "Du sender et kort spørsmål om egne oppgaver. Det har ikke kommet noe nytt svar eller vedtak.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "spurt_neste"
@@ -6305,7 +6305,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Mottatt etter fristen",
-      "tekst": "Den nye kvitteringen ligger på telefonen etter ettersendingen din i morges. Tidsstempelet er senere enn fristen i mangelmeldingen. Filen er mottatt, men skjermen sier ingenting om hvordan forsinkelsen blir vurdert. Du kan vise hva som faktisk hendte uten å gjøre kvitteringen om til en fristforlengelse.",
+      "tekst": "Kvitteringen fra i morges har et tidspunkt som er senere enn dokumentfristen. Du er lettet over at filen kom fram, og sint på deg selv fordi telefonen ikke kom gjennom i tide. Det står ingen vurdering av forsinkelsen i portalen. Du kan fortelle hva som skjedde, men ikke skrive deg fram til en unnskyldning fra systemet.",
       "conditions": {
         "flagg": {
           "wa_c05_avslutning": "sent_mottak"
@@ -6314,8 +6314,8 @@
       "valg": [
         {
           "id": "forklar",
-          "tekst": "Send en kort tidslinje for kontaktforsøk og innsending.",
-          "konsekvensTekst": "Du sender datoene du faktisk kan dokumentere, sammen med kvitteringsreferansen. Du har forklart forsinkelsen, ikke fått den godkjent.",
+          "tekst": "Send en kort forklaring med tidspunktene du kan dokumentere",
+          "konsekvensTekst": "Du sender datoene for telefonforsøket og innsendingen. Det er din forklaring, ikke en godkjenning av forsinkelsen.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "forklaring_sendt"
@@ -6324,8 +6324,8 @@
         },
         {
           "id": "behold_bevis",
-          "tekst": "Lagre kvitteringen og avvent behandling.",
-          "konsekvensTekst": "Du tar vare på beviset for den sene innsendingen. Ingen melding lover at forsinkelsen er uten betydning.",
+          "tekst": "Lagre kvitteringen og bruk resten av dagen på noe annet",
+          "konsekvensTekst": "Du legger kvitteringen sammen med de andre papirene. Den viser at filen kom inn, men ikke hvordan NAV vil vurdere tiden.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "sen_kvittering_lagret"
@@ -6344,7 +6344,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Riktig side, fortsatt ditt valg",
-      "tekst": "NAV-veilederen svarer på forespørselen om hjelp: «Det er siden med stillingsprosent og avtalt ukentlig arbeidstid vi trenger, ikke bare sluttdatoen.» Du finner den siden i arbeidsavtalen. Dette er første gang du har et konkret svar på presiseringsspørsmålet. Dokumentet er ikke sendt ennå.",
+      "tekst": "NAV-veilederen svarer at det er siden med avtalt arbeidstid og stillingsprosent som mangler, ikke siden med sluttdatoen. Du finner den etter litt leting i arbeidsavtalen. Du kjenner på irritasjonen over alle sidene du allerede har sett gjennom, men nå vet du i det minste hvilken fil du må sende.",
       "conditions": {
         "flagg": {
           "wa_c05_avslutning": "aapent"
@@ -6353,8 +6353,8 @@
       "valg": [
         {
           "id": "send_siden",
-          "tekst": "Send den identifiserte siden nå.",
-          "konsekvensTekst": "Du sender siden og får en ny mottakskvittering med dagens tidsstempel. Fristen er passert. Innholdet er ikke kontrollert og saken er ikke avgjort.",
+          "tekst": "Send arbeidstidssiden gjennom portalen nå",
+          "konsekvensTekst": "Du får mottakskvittering med dagens dato. Den opprinnelige fristen er passert, og noen har ennå ikke kontrollert innholdet.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "sendt_etter_hjelp",
@@ -6364,8 +6364,8 @@
         },
         {
           "id": "be_om_bistand",
-          "tekst": "Be om bistand til selve innsendingen før du går videre.",
-          "konsekvensTekst": "Du ber om hjelp og lar dokumentet ligge klart. Det er fortsatt ikke sendt, og du har ingen ny mottakskvittering.",
+          "tekst": "Be om praktisk hjelp til innsendingen før du trykker send",
+          "konsekvensTekst": "Du ber om hjelp og lar filen være klar. Siden er fortsatt ikke levert, og ingen ny kvittering har kommet.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "bistand_forespurt"
