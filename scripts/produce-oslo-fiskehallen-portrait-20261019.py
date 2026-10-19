@@ -49,6 +49,14 @@ def main():
         if isinstance(node,dict):
             for key,value in node.items():
                 k=str(key).lower()
+                # DigitaltMuseum detail API returns the image ID as
+                # media.pictures[].identifier, not mediaIdentifier.
+                if k == "pictures" and isinstance(value,list):
+                    for picture in value:
+                        if isinstance(picture,dict):
+                            identifier=picture.get("identifier")
+                            if isinstance(identifier,str) and re.fullmatch(r"[a-zA-Z0-9_-]{6,64}",identifier):
+                                found.append(identifier)
                 if any(token in k for token in ("mediaidentifier","mediaid","imageidentifier")) and isinstance(value,str) and re.fullmatch(r"[a-zA-Z0-9_-]{6,64}",value):
                     found.append(value)
                 if isinstance(value,str):
