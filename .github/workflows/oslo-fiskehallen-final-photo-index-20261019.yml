@@ -19,28 +19,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install Pillow==11.3.0
-      - name: Preserve documented source hold without redundant blocked downloads
-        run: |
-          mkdir -p reports/oslo-20-fiskehallen-photo-20261019
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          report={
-              "schema":"historygo_oslo_fiskehallen_photo_v1",
-              "place_id":"vippetangen_fisketorg",
-              "documented_museum_object":"Oslo Museum OB.Z18506",
-              "sourcePage":"https://digitaltmuseum.no/021015456022/fiskehallen-pa-vippetangen",
-              "license":"CC BY-SA (version unspecified)",
-              "creator":"Wilhelm Råger",
-              "photographed":1950,
-              "status":"held_external_only",
-              "attemptedByRun":"https://github.com/Paradispartiet/History-Go/actions/runs/39254447338",
-              "reason":"Both previously attempted museum-image mirrors were unavailable or too low-resolution in the GitHub runner; original remote reference retained without claiming local assets.",
-              "localAssetApproval":False,
-              "appVisualReview":"pending"
-          }
-          Path("reports/oslo-20-fiskehallen-photo-20261019/result.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
-          PY
+      - name: Retrieve only the documented museum original via DiMu API and produce real image assets
+        run: python scripts/produce-oslo-fiskehallen-portrait-20261019.py
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
