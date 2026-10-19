@@ -1,0 +1,26 @@
+name: Account cloud save regression
+on:
+  pull_request:
+    paths:
+      - "js/aha.js"
+      - "js/Civication/core/CivicationCloudSave.js"
+      - "js/Civication/core/CivicationStorageAdapter.js"
+      - "js/Civication/ui/CivicationLifestoryUI.js"
+      - "js/app.js"
+      - "tests/account-cloud-save.test.cjs"
+      - "tests/historygo-account-cloud-sync.test.cjs"
+      - ".github/workflows/account-cloud-save.yml"
+permissions:
+  contents: read
+concurrency:
+  group: account-cloud-save-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  account-cloud-save:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Node regression tests
+        run: node --test tests/account-cloud-save.test.cjs tests/historygo-account-cloud-sync.test.cjs
