@@ -1014,3 +1014,12 @@ C01/C05 kan fortsette på en senere **livsdag**, også om den aktive jobbrollen 
 `state.privatHistorie` inneholder kun C01/C05 sine delte valg, tidsankre, spilte scene-ID-er, faktisk arkiv og grunnrelasjonene til venn/familie; øvrige rollelagringer består urørt. Ved rollebytte rehydreres disse uten duplikater. Gamle lagringer gjenbruker kun faktiske Wave D-arkivlinjer som tidsankre, og manglende arkiv gir ikke fiktive senere episoder. Tidsankrene kommer fra `livsdag`, ikke PC-klokke, app-åpning eller et gjettet møtetidspunkt.
 
 Når en dokumentert senere privatscene gjenstår, er kapittelet ikke endelig avsluttet bare fordi den aktive rollen har nådd sin `symposium.sisteDag`. Spilleren kan fortsette til neste livsdag eller velge en separat allerede kvalifisert fortsettelse. Dette er ment som privat kontinuitet, ikke som omlegging av jobbrollen eller garanti for at saksbehandling, avtaler eller penger endrer seg automatisk.
+
+
+### Wave F – delt spillerhistorikk i åtte tematiske forløp
+
+Fra Wave F bruker C01/C02/C03/C05/C06/C07/C17/C23 samme kildeforankrede `privatHistorie` på tvers av aktive jobbroller. Hver rolle beholder sine egne snapshots, kalenderfase og arbeidstråder. Bare faktiske spillerhandlinger, tilhørende tidsankre og den avgrensede felles historikken tas med ved rollebytte. Eksisterende saves endres ikke bare fordi innholdspakken gjeninnlastes.
+
+Wave F-scener deklareres i felles `data/Civication/lifestory/life/scenes.json` med `threadId: wave_f_cXX`, `livsdagFra` og `etterValgDager`. En kildeverdi `wa_d_cXX_status` eller for C01/C05 `wa_e_cXX_etterspill` må være etablert av et faktisk tidligere valg med tilstrekkelig fortellingsdag. Spillerens globale `livsdag` og datert arkiv styrer åpningen. Aktive, egne role-continuation-pakker holdes fortsatt adskilt fra de senere delte episodene for å bevare gjennomspillingen og de tidligere avslutningene. Etter rollebytte får spilleren tilgang til private oppfølginger uten å omskrive tidligere arbeidshendelser.
+
+Forfatterregister: `data/Civication/lifestory/editorial/inspiration/waveASixthInstallmentsV1.json`. Målrettet kontroll: `tests/civication-source-grounded-wave-f.test.js`. Endringer i delte livsmanifest kan kreve synkronisering av de tre genererte career-/life-position-/role-world-oversiktene gjennom deres opprinnelige audit-skript.
