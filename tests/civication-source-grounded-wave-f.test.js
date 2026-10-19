@@ -130,3 +130,14 @@ test('Role-specific continuations keep exclusive current chapters without privat
   assert.equal(Runner.hasPendingPrivateScenes(from,withContinuation),false);
   assert.ok(options(from,base,'c01').length>0);
 });
+
+test('Calling NAV never silently sends missing employment documentation',()=>{
+  const unemployment=read(manifest.roles.arbeidsledig.scenes).scenes;
+  const initial=unemployment.find(s=>s.id==='meldekort_01_fristen');
+  const call=initial.valg.find(v=>v.id==='ring_veilederen');
+  assert.equal(call.effekter.flagg.sendte_meldekortet,true);
+  assert.equal(call.effekter.flagg.ryddet_dokumentasjon,undefined);
+  const documents=unemployment.find(s=>s.id==='d1_nav_dokumentene');
+  assert.deepEqual(documents.conditions.flagg.ryddet_dokumentasjon,{finnes:false});
+  assert.ok(documents.valg.some(v=>v.effekter?.flagg?.ryddet_dokumentasjon===true));
+});
