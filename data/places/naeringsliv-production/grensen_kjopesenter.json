@@ -1,0 +1,260 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "grensen_kjopesenter",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/grensen_kjopesenter.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Selve handelsgaten Grensen fra Møllergata til Professor Aschehougs plass, ikke et kjøpesenter.",
+    "anchorType": "trade_street",
+    "placeObjectDistinction": "Stedsidentiteten gjelder den konkrete bygningen eller det bestemte området, ikke andre anlegg som har lignende funksjon.",
+    "temporalScope": {
+      "start": "1700",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Dekker næringsstedets hovedperiode med etablering, drift og senere endringer i bruk eller lokalisering."
+    },
+    "sourceIds": [
+      "source_grensen_kjopesenter_byleksikon",
+      "source_grensen_kjopesenter_photo_archive"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_felt_arbeid_verdiskaping",
+      "siteSpecificRationale": "Dette emnet belyser stedets konkrete virksomhet, arbeidsdeling, investeringer og forandringer i næringsstrukturen.",
+      "caseIds": [
+        "case_grensen_kjopesenter_site_economy"
+      ]
+    },
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Dette emnet belyser stedets konkrete virksomhet, arbeidsdeling, investeringer og forandringer i næringsstrukturen.",
+      "caseIds": [
+        "case_grensen_kjopesenter_site_economy"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_grensen_kjopesenter_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Grensen",
+      "sourceLocation": "Hele stedsartikkelen med historisk hovedkronologi og stedets bruksformer",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Oslo byleksikon, redigert stedsoppføring om denne byens nærings- og bygningshistorie.",
+      "limitations": "Lokalhistorisk leksikon dokumenterer hovedhendelser, ikke komplette økonomiske regnskaper eller årlige produktivitetstall."
+    },
+    {
+      "id": "source_grensen_kjopesenter_photo_archive",
+      "url": "https://commons.wikimedia.org/wiki/File:Grensen%2C_Oslo%2C_2019_%2801%29.jpg",
+      "sourceLocation": "Arkivert eller dokumentert stedsfotografi på Commons, med fotograf og lisens i bildemetadata",
+      "sourceType": "archive",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Stedsspesifikt dokumentarisk fotografi med dokumentert Commons-opphav og kildekreditering.",
+      "limitations": "Fotografiet viser bygning eller sted, og kan ikke brukes alene som kilde til avkastning, lønn, eller kausalitet."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_grensen_kjopesenter_site_economy",
+      "claim": "Gatens rolle har skiftet med byutvidelser og nye forretningsbygg, mens handelsfunksjonen har fortsatt.",
+      "unitOfAnalysis": {
+        "unit": "Butikk- og ferdselsgaten Grensen",
+        "boundary": "Selve handelsgaten Grensen fra Møllergata til Professor Aschehougs plass, ikke et kjøpesenter.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1700",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Dekker næringsstedets hovedperiode med etablering, drift og senere endringer i bruk eller lokalisering."
+        },
+        "sourceIds": [
+          "source_grensen_kjopesenter_byleksikon",
+          "source_grensen_kjopesenter_photo_archive"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Butikkdrivere, gårdeiere og handelsbedrifter",
+          "roleOrInterest": "Gårdeiere og næringsdrivende har styrt den kommersielle bruken av lokaleiendommer i Grensen.",
+          "economicPosition": "Styrte eller forvaltet virksomhetens areal og produksjonsbeslutninger.",
+          "sourceIds": [
+            "source_grensen_kjopesenter_byleksikon",
+            "source_grensen_kjopesenter_photo_archive"
+          ]
+        },
+        {
+          "name": "Kunder, bud og ansatte i handels- og servicebedrifter",
+          "roleOrInterest": "Ansatte, bud og kjøpmenn har utført service og varehåndtering; lønns- og salgsserier er ikke tilgjengelige her.",
+          "economicPosition": "Deltok som arbeidskraft, bruker eller kunde uten samme kontroll over virksomheten.",
+          "sourceIds": [
+            "source_grensen_kjopesenter_byleksikon",
+            "source_grensen_kjopesenter_photo_archive"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Sentralt gateareal, forretningslokaler, varer, arbeidsinnsats og kundestrøm",
+            "sourceIds": [
+              "source_grensen_kjopesenter_byleksikon",
+              "source_grensen_kjopesenter_photo_archive"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Butikkhandel, kundebetjening og vareleveranser langs gaten",
+          "sourceIds": [
+            "source_grensen_kjopesenter_byleksikon",
+            "source_grensen_kjopesenter_photo_archive"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Distribusjon og salg av varer og tjenester i sentrum",
+            "sourceIds": [
+              "source_grensen_kjopesenter_byleksikon",
+              "source_grensen_kjopesenter_photo_archive"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Dette stedets økonomiske aktivitet dokumenteres gjennom konkrete arbeids- og transportfunksjoner, men kan ikke omregnes til en historisk verdi uten pålitelige regnskaper.",
+          "sourceIds": [
+            "source_grensen_kjopesenter_byleksikon",
+            "source_grensen_kjopesenter_photo_archive"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Gatens rolle har skiftet med byutvidelser og nye forretningsbygg, mens handelsfunksjonen har fortsatt.",
+        "unit": "dokumentert endring i stedsbruk",
+        "period": "1700–2026",
+        "comparability": "Historiske hendelser og bygningsbruk kan sammenholdes over tid; ulike økonomiske nivåer kan ikke kvantifiseres.",
+        "dataLimitations": "Byleksikon dokumenterer gatehistorien og utvalgte butikker, ikke sammenlignbare omsetningstall eller alle leietakere.",
+        "sourceIds": [
+          "source_grensen_kjopesenter_byleksikon",
+          "source_grensen_kjopesenter_photo_archive"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Gårdeiere og næringsdrivende har styrt den kommersielle bruken av lokaleiendommer i Grensen.",
+        "laborPosition": "Ansatte, bud og kjøpmenn har utført service og varehåndtering; lønns- og salgsserier er ikke tilgjengelige her.",
+        "beneficiaries": [
+          "Arbeidsgivere, kunder eller brukere av virksomhetens konkrete tjenester.",
+          "Lønnsarbeidere eller lokalsamfunn knyttet til aktiviteten på stedet."
+        ],
+        "costRiskBearers": [
+          "Virksomheten bar investerings- og etterspørselsrisiko.",
+          "Arbeidstakere og nærmiljø kunne bli berørt av endringene, men dette er ikke tallfestet."
+        ],
+        "sourceIds": [
+          "source_grensen_kjopesenter_byleksikon",
+          "source_grensen_kjopesenter_photo_archive"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Virksomheten var sårbar for endringer i marked, teknologi, transport, eiendomsbruk og etterspørsel, men kildene isolerer ingen enkeltfaktor.",
+          "sourceIds": [
+            "source_grensen_kjopesenter_byleksikon",
+            "source_grensen_kjopesenter_photo_archive"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene gir ikke et stedsspesifikt målt grunnlag for å beregne arbeidshelse, forurensning eller samfunnsøkonomiske eksternaliteter."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Den redigerte historiske stedsartikkelen sammenholdes med fotografisk dokumentasjon eller institusjonens nåværende stedsinformasjon.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "De dokumenterte hendelsene beskriver økonomisk aktivitet og endring; materialet isolerer ikke en kausal effekt av én enkelt innsatsfaktor.",
+        "alternativeExplanations": [
+          "Markedsetterspørsel, teknologisk endring, lokalisering og beslutninger om eiendom kan ha hatt selvstendige effekter."
+        ],
+        "uncertainty": "Byleksikon dokumenterer gatehistorien og utvalgte butikker, ikke sammenlignbare omsetningstall eller alle leietakere.",
+        "sourceIds": [
+          "source_grensen_kjopesenter_byleksikon",
+          "source_grensen_kjopesenter_photo_archive"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "mixed",
+    "statement": "Grensen er en fortsatt eksisterende bygate med handels- og servicelokaler mellom sentrale gatekryss.",
+    "originalEconomicRoleRelationship": "Den dokumenterte opprinnelige økonomiske rollen skilles fra dagens bruk av den gamle tomten eller bygningen.",
+    "checkedAt": "2026-10-19",
+    "sourceIds": [
+      "source_grensen_kjopesenter_byleksikon"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "QuizCards finnes allerede, men denne bolken endrer ikke første to sett eller den fagspesifikke quizproduksjonen."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Historiske steder og stedsbeskrivelser er gjennomgått; separat Story- eller kronologiproduksjon er ikke del av denne teksten."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    }
+  },
+  "review": {
+    "reviewer": "History Go Oslo Næringsliv original place review",
+    "reviewedAt": "2026-10-19",
+    "notes": "Stedsspesifikke innganger, aktivitet, utbytte, makt, økonomiske målebegrensninger og dagens bruk er konkret og separat gjennomgått."
+  }
+}
