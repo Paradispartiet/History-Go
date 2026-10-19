@@ -177,6 +177,24 @@ test("Fiskehallen's new building enters Oslo's dated timeline without claiming t
   assert.ok(production.every(m=>!m.title.includes("I 1905 flyttet")));
 });
 
+test("Fiskehallen's museum photograph has three distinct local WebP assets", () => {
+  const place=JSON.parse(fs.readFileSync("data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json", "utf8"));
+  const expected={
+    image: "vippetangen_fisketorg_hero.webp",
+    frontImage: "vippetangen_fisketorg_portrait.webp",
+    cardImage: "vippetangen_fisketorg_card.webp",
+  };
+  const paths=Object.entries(expected).map(([field, filename]) => {
+    const path=place[field];
+    assert.ok(path.startsWith("bilder/places/oslo-20-fiskehallen-20261019/") && path.endsWith(filename), `${field} must reference its own local museum crop`);
+    const header=fs.readFileSync(path).subarray(0, 12);
+    assert.equal(header.subarray(0, 4).toString("ascii"), "RIFF", `${field} must be a WebP file`);
+    assert.equal(header.subarray(8, 12).toString("ascii"), "WEBP", `${field} must be a WebP file`);
+    return path;
+  });
+  assert.equal(new Set(paths).size, 3, "the hero, portrait and card must be separate assets");
+});
+
 test("Oslo coverage classifies every canonical place exactly once without overstating completeness", () => {
   const index = buildEpokePlaceIndex();
   const coverage = index.domains.historie.oslo_coverage;
