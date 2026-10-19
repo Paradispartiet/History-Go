@@ -201,8 +201,9 @@ console.log(`Project continuation core: ${runs} complete chapter paths, ${seen.s
 // at the boundary, failed fetch preserves state, and restart returns to day 1.
 async function uiTest() {
   async function boot(saved, scope) {
-    const dom = new JSDOM('<!doctype html><body class="civi-app"><div id="civiLifestoryPanel"></div></body>', { url: 'http://localhost/Civication.html', runScripts: 'outside-only' });
+    const dom = new JSDOM('<!doctype html><body class="civi-app"><div id="civiLifestoryPanel"></div><div class="civi-footer"><button id="civiMoreMenuToggle" aria-expanded="false">Mer</button></div><div id="civiMoreMenu" hidden><button data-lifestory-restart>Start livet på nytt</button></div></body>', { url: 'http://localhost/Civication.html', runScripts: 'outside-only' });
     const w = dom.window; let role = scope, fail = false;
+    w.confirm = () => true; // Confirm footer-only destructive action.
     w.localStorage.setItem('civication_lifestory_v1', JSON.stringify(saved));
     w.console.error = () => {};
     w.fetch = async p => ({ ok: !(fail && String(p).includes('/continuations/')), json: async () => read(String(p)) });
@@ -235,7 +236,11 @@ async function uiTest() {
   const last = await boot(savedSecond, selected);
   assert.equal(last.w.localStorage.getItem('civication_lifestory_v1'),JSON.stringify(savedSecond));
   assert.equal(last.panel.querySelector('[data-lifestory-continue]'),null);
-  last.panel.querySelector('[data-lifestory-restart]').click();
+  assert.equal(last.panel.querySelector('[data-lifestory-restart]'), null, 'restart is not in the chapter-ending panel');
+  last.w.document.getElementById('civiMoreMenuToggle').click();
+  const footerRestart = last.w.document.querySelector('#civiMoreMenu [data-lifestory-restart]');
+  assert.ok(footerRestart, 'footer More retains a confirmed restart');
+  footerRestart.click();
   const fresh=JSON.parse(last.w.localStorage.getItem('civication_lifestory_v1'));
   assert.equal(fresh.dag,1); assert.equal(fresh.fortsettelseId,undefined); assert.equal(fresh.fortsettelser,undefined); assert.equal(fresh.kapittelArkiv,undefined);
   for (const u of [ui,reloaded,last]) u.dom.window.close();
