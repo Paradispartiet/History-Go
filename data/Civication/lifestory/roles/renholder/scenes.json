@@ -1463,12 +1463,12 @@
       "tilgjengelighet": "start",
       "prioritet": 4,
       "tittel": "Lageret står fortsatt urørt",
-      "tekst": "Neste arbeidsdag viser oversikten lageret som «venter på tilkomst». Kari spør om du kan ta en ekstra runde mens drift vurderer tiltak. Ingen har flyttet hyllen.",
+      "tekst": "Kari møter deg ved vasketralla. «Kan du ta en ekstra runde før lunsj? Drift har ikke fått løsnet hylla ennå.» Du kjenner det i skuldrene etter forrige vakt og titter mot lagerdøra. Det er fristende å få hele lista grønn, men du kommer fortsatt ikke trygt forbi hylla.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Tilby arbeid i tilgjengelige rom, ikke i lageret",
-          "konsekvensTekst": "Du avgrenser oppgaven til områder du faktisk kan nå. Lageret forblir uferdig.",
+          "tekst": "Ta en runde i de rommene du faktisk kommer til",
+          "konsekvensTekst": "Du går mot de tilgjengelige rommene med tralla. Lageret er fortsatt stengt av hylla, selv om du får gjort annet nyttig arbeid.",
           "effekter": {
             "flagg": {
               "wa_d_c17_status": "andre_rom_tilbudt"
@@ -1480,8 +1480,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Be om en dokumentert plan før nytt lagerforsøk",
-          "konsekvensTekst": "Du etterspør ansvar og tilkomst. Ingen fremtidig rengjøring bokføres som utført.",
+          "tekst": "Be Kari finne ut hvem som kan frigjøre lageret før du settes dit igjen",
+          "konsekvensTekst": "Du ber om en konkret plan for tilkomst. Kari har hørt spørsmålet, men ingen har lovet at hylla er flyttet til neste vakt.",
           "effekter": {
             "flagg": {
               "wa_d_c17_status": "plan_forespurt"
@@ -1556,12 +1556,12 @@
       "tilgjengelighet": "start",
       "prioritet": 4,
       "tittel": "To statuslinjer på morgentavla",
-      "tekst": "Neste arbeidsdag er inngangspartiet registrert som ferdig, mens lageret fremdeles står på vent. En kollega spør om én samlet grønn status hadde vært enklere.",
+      "tekst": "Amina ser på tavla etter morgenrunden. Inngangspartiet er grønt, lageret rødt. «Kan vi ikke bare skrive ferdig? Folk tror jo vi har glemt lageret.» Du vet hvorfor hun spør. En rød rute kan se ut som en jobb du har sluntret unna, men en grønn rute ville skjule hylla som fortsatt sperrer døra.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Behold separate linjer med hver sin begrunnelse",
-          "konsekvensTekst": "Du sørger for at utført arbeid og manglende tilkomst kan leses hver for seg.",
+          "tekst": "La begge rutene stå og skriv kort hvorfor lageret er blokkert",
+          "konsekvensTekst": "Du merker inngangspartiet ferdig og lageret utilgjengelig. Det som faktisk er vasket, forsvinner ikke bak det som venter.",
           "effekter": {
             "flagg": {
               "wa_d_c17_status": "status_adskilt"
@@ -1573,8 +1573,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Forklar forskjellen direkte til kollegaen",
-          "konsekvensTekst": "Kollegaen hører hvorfor én grønn linje ville gitt feil informasjon. Lageret er fortsatt ikke ferdig.",
+          "tekst": "Fortell Amina hvorfor dere ikke kan føre lageret som ferdig",
+          "konsekvensTekst": "Du viser Amina hvor hylla sperrer adkomsten. Hun nikker og lar den røde ruta stå. Ingen har ryddet lageret ennå.",
           "effekter": {
             "flagg": {
               "wa_d_c17_status": "status_forklart"
