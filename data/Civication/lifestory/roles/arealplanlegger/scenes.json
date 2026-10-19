@@ -1181,13 +1181,13 @@
       "visningstype": "melding",
       "stedId": "plankontor",
       "prioritet": 6,
-      "tittel": "Krysset Ragnhild ikke fikk telt",
-      "tekst": "Ragnhilds ark ligger på skjermen din. Hun har telt dem som bruker snarveien til skolen, men ingen har stått ved kryssingspunktet nær den foreslåtte nedkjørselen fra 07.45 til 08.15. Eirik stikker hodet inn: «Jeg trenger en anbefaling før dokumentlista lukkes i morgen.» Du ser for deg morgentrafikken og vet at et tomt felt ikke betyr null kryssinger.",
+      "tittel": "Den tomme prikken på kartet",
+      "tekst": "Ragnhild har markert snarveien barna bruker, men på kartet er kryssingspunktet ved den planlagte nedkjørselen fortsatt et tomt felt. Ingen har telt der mellom 07.45 og 08.15. Eirik stikker inn døra: «Jeg trenger din anbefaling før dokumentlista lukkes i morgen.» Det er fristende å fylle tomrommet med en vurdering. Du vet at det ville vært gjetting.",
       "valg": [
         {
           "id": "faglig_reservasjon",
-          "tekst": "Skriv et fagnotat som viser nøyaktig hva dere mangler",
-          "konsekvensTekst": "Du sender Eirik notatet med det udekkede kryssingspunktet og foreslår egen observasjon. Du har ikke sagt at veien er trygg eller utrygg.",
+          "tekst": "Send Eirik en faglig merknad om hva dere ikke har observert",
+          "konsekvensTekst": "Du beskriver det manglende kryssingspunktet og foreslår egen observasjon. Du har ikke kalt veien trygg eller utrygg.",
           "effekter": {
             "flagg": {
               "wa_c06_valg": "forbehold"
@@ -1196,8 +1196,8 @@
         },
         {
           "id": "foresla_utsettelse",
-          "tekst": "Be Eirik gi dere tid til å undersøke krysset før anbefalingen",
-          "konsekvensTekst": "Du forklarer hvorfor observasjonen mangler, og ber ham vurdere mer tid. Du har foreslått en pause i arbeidet, ikke bestemt saksgangen.",
+          "tekst": "Be Eirik om mer tid før du gir en faglig anbefaling",
+          "konsekvensTekst": "Du forklarer hva som mangler og ber om tid. Forsinkelsen er et forslag fra deg, ikke en beslutning om å stoppe saken.",
           "effekter": {
             "flagg": {
               "wa_c06_valg": "utsettelse"
@@ -1216,13 +1216,13 @@
       "visningstype": "melding",
       "stedId": "plankontor",
       "prioritet": 6,
-      "tittel": "To ord som skjuler et spørsmål",
-      "tekst": "Eirik har lagt fagnotatet ditt i vedleggslista. I sammendraget står bare «skolevei vurdert». Du leser de to ordene mens du venter på at skriveren skal bli ferdig. Ragnhilds telling fra snarveien er med, men spørsmålet om kryssingen ved nedkjørselen står fremdeles uten svar. Eirik sier at det ikke blir tid til en ny observasjon før dokumentet sendes.",
+      "tittel": "To ord som skjuler en skolevei",
+      "tekst": "Ved skriveren ser du sammendraget Eirik har tenkt å sende videre. «Skolevei vurdert», står det. Ragnhilds telling fra snarveien ligger i vedlegget, men ingen har undersøkt krysset ved den foreslåtte nedkjørselen. Du vet at en travel leser kan stoppe ved akkurat de to ordene. Eirik sier at det ikke er tid til flere målinger før utsending.",
       "valg": [
         {
           "id": "presiser",
-          "tekst": "Be Eirik få med det manglende kryssingspunktet i sammendraget",
-          "konsekvensTekst": "Du foreslår en setning som beskriver hullet ved nedkjørselen. Eirik bekrefter at den tas inn, slik at leseren også ser forbeholdet uten å lete i vedleggene.",
+          "tekst": "Be Eirik skrive den manglende observasjonen inn i sammendraget",
+          "konsekvensTekst": "Du foreslår en tydelig setning om kryssingspunktet. Eirik bekrefter at den tas inn, så leseren ikke må lete etter forbeholdet.",
           "effekter": {
             "flagg": {
               "wa_c06_oppfolging": "presisert"
@@ -1231,8 +1231,8 @@
         },
         {
           "id": "behold_vedlegg",
-          "tekst": "La notatet stå i vedlegget, men sørg for at det kan finnes igjen",
-          "konsekvensTekst": "Du noterer hvor fagnotatet ligger. Det manglende grunnlaget finnes skriftlig, men er fremdeles lite synlig for den som bare leser sammendraget.",
+          "tekst": "Behold merknaden i vedlegget og sikre at den kan finnes",
+          "konsekvensTekst": "Du registrerer hvor notatet ligger. Usikkerheten er dokumentert, men blir ikke synlig for dem som bare leser sammendraget.",
           "effekter": {
             "flagg": {
               "wa_c06_oppfolging": "vedlegg"
@@ -1256,13 +1256,13 @@
       "visningstype": "melding",
       "stedId": "plankontor",
       "prioritet": 6,
-      "tittel": "En halvtime på papiret",
-      "tekst": "Eirik har gitt rom for å vente med anbefalingen, men ikke stoppet resten av arbeidet. «Beskriv hva vi må undersøke, så får vi se hvem som kan gjøre det», sier han. På kartet setter du en prikk der nedkjørselen er planlagt. Det er en halvtime i morgenrushet dere mangler, og ingen har ennå stått der og telt.",
+      "tittel": "Et kvarter for lite på kalenderen",
+      "tekst": "Eirik har sagt at anbefalingen kan vente, men resten av saken går videre. «Beskriv hva du trenger, så ser vi på bemanningen», sier han. Du setter fingeren på krysset der nedkjørselen er planlagt. Dere mangler en halvtime med observasjon fra 07.45 til 08.15. Ingen har stått der ennå. Du kan gjøre behovet presist eller spørre hvem som faktisk skal gjennomføre det.",
       "valg": [
         {
           "id": "beskriv",
-          "tekst": "Lag en konkret plan for å observere fra 07.45 til 08.15",
-          "konsekvensTekst": "Du skriver opp sted, klokkeslett og hva som skal registreres, og sender opplegget til Eirik. Bemanning og gjennomføring er ennå ikke avklart.",
+          "tekst": "Skriv en plan for observasjon fra 07.45 til 08.15",
+          "konsekvensTekst": "Du angir sted, klokkeslett og hva som må registreres. Eirik har fått planen, men ingen har lovet folk eller gjennomført en telling.",
           "effekter": {
             "flagg": {
               "wa_c06_oppfolging": "observasjon_foreslaatt"
@@ -1271,8 +1271,8 @@
         },
         {
           "id": "avklar_ansvar",
-          "tekst": "Be Eirik finne en ansvarlig før du lover et ferdig målenotat",
-          "konsekvensTekst": "Eirik svarer at han ikke vet hvem han kan frigjøre ennå. Du beholder spørsmålet om bemanning åpent i stedet for å skrive inn et resultat som ikke finnes.",
+          "tekst": "Be Eirik avklare bemanningen før dere legger inn en måledato",
+          "konsekvensTekst": "Han svarer at han ikke vet hvem han kan frigjøre. Det er skuffende, men mer redelig enn å skrive inn en observasjon som aldri fant sted.",
           "effekter": {
             "flagg": {
               "wa_c06_oppfolging": "bemanning_uavklart"
@@ -1297,8 +1297,8 @@
       "stedId": "plankontor",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Femten minutter fra Eirik",
-      "tekst": "Du viser Eirik hvor nedkjørselen treffer skoleveien på kartet. Han peker på kalenderen: «Jeg kan frigjøre deg et kvarter fra kvart på åtte i morgen. Ikke mer.» Det er halvparten av tiden du ønsket. Du kan gå ut med notatblokka, men da må det være umulig å forveksle det du ser med hele morgenrushet.",
+      "tittel": "Femten minutter er ikke en hel morgen",
+      "tekst": "Eirik peker på kalenderen: «Du kan få kvart på åtte til åtte. Ikke mer.» Du hadde bedt om en halvtime ved nedkjørselen. Ragnhild har fortalt hvordan barna går om morgenen, men dere har fortsatt ikke målt akkurat dette krysset. Det er bedre med en begrenset observasjon enn ingen, tenker du. Bare den ikke blir solgt som hele bildet.",
       "conditions": {
         "flagg": {
           "wa_c06_oppfolging": "presisert"
@@ -1307,8 +1307,8 @@
       "valg": [
         {
           "id": "observer",
-          "tekst": "Ta de femten minuttene og før klokkeslettet sammen med hvert funn",
-          "konsekvensTekst": "Du avtaler 07.45–08.00 og markerer at 08.00–08.15 fortsatt mangler. Ingen har utført observasjonen ennå.",
+          "tekst": "Ta kvarteret, og skriv tidsrommet tydelig i opplegget",
+          "konsekvensTekst": "Du avtaler observasjon 07.45–08.00. Den er ennå ikke gjort, og kvarteret fra åtte til kvart over mangler fortsatt.",
           "effekter": {
             "flagg": {
               "wa_b_c06_spor": "observer"
@@ -1317,8 +1317,8 @@
         },
         {
           "id": "be_om_helhet",
-          "tekst": "Be Eirik finne tid til hele halvtimen før du begynner",
-          "konsekvensTekst": "Du etterspør en lengre registrering. Det er ikke satt av noen observasjon for deg, og det manglende tidsrommet er fortsatt åpent.",
+          "tekst": "Be Eirik om bemanning til hele tidsrommet før du starter",
+          "konsekvensTekst": "Du etterspør en full halvtime. Ingen observasjon er avtalt på denne grenen, og hullet i grunnlaget står.",
           "effekter": {
             "flagg": {
               "wa_b_c06_spor": "plan"
@@ -1337,8 +1337,8 @@
       "stedId": "plankontor",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Forbeholdet forsvant på veien",
-      "tekst": "Du legger vedlegget ved siden av sammendraget på skrivebordet. Vedlegget forklarer at tellingen ikke dekker nedkjørselen; sammendraget høres ut som alt er undersøkt. Eirik tilbyr et kvarter ved stedet i morgen. Du kjenner på den gamle irritasjonen over at tydelige forbehold blir borte når tekstene gjøres kortere.",
+      "tittel": "Det som forsvant mellom vedlegg og sammendrag",
+      "tekst": "Du legger fagnotatet ved siden av første side i sammendraget. På den ene står det at kryssingspunktet ikke er observert. Den andre får det til å høres ut som alt er undersøkt. Eirik kan gi deg et kvarter ved nedkjørselen i morgen. Du vet at et lite tall kan være nyttig, men også lett å misbruke hvis det blir stående uten tid og sted.",
       "conditions": {
         "flagg": {
           "wa_c06_oppfolging": "vedlegg"
@@ -1347,8 +1347,8 @@
       "valg": [
         {
           "id": "observer",
-          "tekst": "Ta imot kvarteret, men krev at tidsrommet skrives ved funnet",
-          "konsekvensTekst": "Du avtaler 07.45–08.00 og sier at også det udekkede kvarteret må vises. Registreringen skjer først i morgen.",
+          "tekst": "Ta kvarteret, men krev at observasjonen merkes med klokkeslett",
+          "konsekvensTekst": "Du avtaler 07.45–08.00 og gjør det tydelig at resten av den ønskede halvtimen mangler. Selve observasjonen skjer først i morgen.",
           "effekter": {
             "flagg": {
               "wa_b_c06_spor": "observer"
@@ -1357,8 +1357,8 @@
         },
         {
           "id": "be_om_helhet",
-          "tekst": "Be om en plan for hele den manglende halvtimen",
-          "konsekvensTekst": "Du forklarer at sammendraget trenger riktig omfang, ikke bare flere tall. Eirik har ennå ikke satt av en observasjon.",
+          "tekst": "Be om en plan for hele tidsrommet dere ikke har undersøkt",
+          "konsekvensTekst": "Du ber om full dekning av den manglende halvtimen. Eirik har ikke satt av noen ny observasjon på denne grenen.",
           "effekter": {
             "flagg": {
               "wa_b_c06_spor": "plan"
