@@ -447,6 +447,7 @@ dlog("loaded sets:", _byTargetSets.size);
           <button class="ghost" id="quizClose">${esc(tt("ui.attr.close", "Lukk"))}</button>
         </div>
         <div class="quiz-progress"><div class="bar"></div></div>
+        <div class="quiz-test-bar"><button type="button" id="quizTestComplete">${esc(tt("ui.quiz.testComplete", "Test: fullfør riktig"))}</button></div>
         <div class="sheet-body">
           <div id="quizQuestion" style="margin:6px 0 10px;font-weight:600"></div>
           <div id="quizChoices" class="quiz-choices"></div>
@@ -595,6 +596,7 @@ dlog("loaded sets:", _byTargetSets.size);
 // onEnd(correct, total, meta)
 // meta = { correctAnswers, conceptsCorrect, emnerTouched }
 // ============================================================
+
 function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "", autoClose = true }) {
   ensureQuizUI();
 
@@ -603,69 +605,39 @@ function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", prog
     q: document.getElementById("quizQuestion"),
     choices: document.getElementById("quizChoices"),
     progress: document.getElementById("quizProgress"),
-    feedback: document.getElementById("quizFeedback")
+    feedback: document.getElementById("quizFeedback"),
+    testComplete: document.getElementById("quizTestComplete")
   };
   qs.title.textContent = [title || tt("ui.quiz.title", "Quiz"), titleSuffix].filter(Boolean).join(" — ");
 
   let i = 0;
   let correct = 0;
-
-  const correctAnswers = [];   // [{question, answer, chosenAnswer}]
-  const conceptsCorrect = [];  // string[]
-  const emnerTouched = [];     // string[]
-  const answers = [];            // [{question_id, question, answer, chosenAnswer, correct}]
-
-  // ✅ categoryId beregnes ÉN gang per quiz-run (strict: ingen "by" fallback her)
+  let finished = false;
+  let advanceTimer = null;
+  const correctAnswers = [];
+  const conceptsCorrect = [];
+  const emnerTouched = [];
+  const answers = [];
   const categoryId = getQuizCategoryId(questions);
 
   if (!categoryId && window.DEBUG) {
-    console.warn("[quiz] missing categoryId on quiz questions", {
-      title,
-      targetId: s(targetId),
-      q0: questions?.[0]
-    });
+    console.warn("[quiz] missing categoryId on quiz questions", { title, targetId: s(targetId), q0: questions?.[0] });
   }
 
-  function step() {
-    const q = questions[i];
-
-    const presentation = window.HGQuizAnswerShuffle?.shuffleQuestion?.(q);
-    if (!presentation) throw new Error("HGQuizAnswerShuffle mangler");
-    const options = presentation.options;
-    const answerIndex = presentation.answerIndex;
-
-    qs.q.textContent = q.question || q.text || "";
-    qs.choices.innerHTML = options
-      .map((opt, idx) => `<button data-idx="${idx}">${opt}</button>`)
-      .join("");
-
-    qs.progress.textContent = progressPrefix
-      ? `${progressPrefix} • ${i + 1}/${questions.length}`
-      : `${i + 1}/${questions.length}`;
-    qs.feedback.textContent = "";
-
-    const bar = /** @type {HTMLElement} */ (document.querySelector(".quiz-progress .bar"));
-    if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
-
-    qs.choices.querySelectorAll("button").forEach((btn) => {
-      btn.onclick = () => {
-        const chosenIdx = Number(btn.dataset.idx);
-        const ok = chosenIdx === answerIndex;
-
-        btn.classList.add(ok ? "correct" : "wrong");
-        qs.feedback.textContent = ok ? tt("ui.quiz.correct", "Riktig ✅") : tt("ui.quiz.wrong", "Feil ❌");
-
-        const tid = s(targetId);
-        const qText = q.question || q.text || "";
-        const chosenAnswer = options[chosenIdx] ?? "";
-        const correctAnswer = options[answerIndex] ?? (q.answer ?? "");
-        answers.push({
-          question_id: s(q.quiz_id || q.quizId || q.id || tid),
-          question: qText,
-          answer: correctAnswer,
-          chosenAnswer,
-          correct: ok
-        });
+  // Shared answer path: test completion records the same hooks and progress as an ordinary correct click.
+  function recordAnswer(q, options, answerIndex, chosenIdx, answerPosition) {
+    const ok = chosenIdx === answerIndex;
+    const tid = s(targetId);
+    const qText = q.question || q.text || "";
+    const chosenAnswer = options[chosenIdx] ?? "";
+    const correctAnswer = options[answerIndex] ?? (q.answer ?? "");
+    answers[answerPosition] = {
+      question_id: s(q.quiz_id || q.quizId || q.id || tid),
+      question: qText,
+      answer: correctAnswer,
+      chosenAnswer,
+      correct: ok
+    };
 
         // --- KUN ved RIKTIG: registrer alt (meta + hooks) ---
         if (ok) {
@@ -803,23 +775,104 @@ if (canTag) {
           
 }
           
-        // disable
-        qs.choices.querySelectorAll("button").forEach((b) => (b.disabled = true));
 
-        setTimeout(() => {
+    return ok;
+  }
+
+  function finishQuiz() {
+    if (finished) return;
+    finished = true;
+    if (advanceTimer !== null) clearTimeout(advanceTimer);
+    advanceTimer = null;
+    if (qs.testComplete) {
+      qs.testComplete.disabled = true;
+      qs.testComplete.onclick = null;
+    }
+    if (autoClose) closeQuiz();
+    const meta = { correctAnswers, conceptsCorrect, emnerTouched, answers };
+    try { onEnd(correct, questions.length, meta); }
+    catch (error) { dwarn("onEnd crashed", error); }
+  }
+
+  function step() {
+    if (finished) return;
+    const q = questions[i];
+    const presentation = window.HGQuizAnswerShuffle?.shuffleQuestion?.(q);
+    if (!presentation) throw new Error("HGQuizAnswerShuffle mangler");
+    const options = presentation.options;
+    const answerIndex = presentation.answerIndex;
+
+    qs.q.textContent = q.question || q.text || "";
+    qs.choices.innerHTML = options.map((opt, idx) =>
+      '<button data-idx="' + idx + '">' + opt + '</button>'
+    ).join("");
+    qs.progress.textContent = progressPrefix
+      ? progressPrefix + " • " + (i + 1) + "/" + questions.length
+      : (i + 1) + "/" + questions.length;
+    qs.feedback.textContent = "";
+
+    const bar = document.querySelector(".quiz-progress .bar");
+    if (bar) bar.style.width = ((i + 1) / questions.length) * 100 + "%";
+
+    let answeredCurrent = false;
+    qs.choices.querySelectorAll("button").forEach((btn) => {
+      btn.onclick = () => {
+        if (finished || answeredCurrent) return;
+        answeredCurrent = true;
+        const chosenIdx = Number(btn.dataset.idx);
+        const ok = recordAnswer(q, options, answerIndex, chosenIdx, i);
+        btn.classList.add(ok ? "correct" : "wrong");
+        qs.feedback.textContent = ok ? tt("ui.quiz.correct", "Riktig ✅") : tt("ui.quiz.wrong", "Feil ❌");
+        qs.choices.querySelectorAll("button").forEach((b) => (b.disabled = true));
+        advanceTimer = setTimeout(() => {
+          advanceTimer = null;
+          if (finished) return;
           i++;
           if (i < questions.length) step();
-          else {
-            if (autoClose) closeQuiz();
-            const meta = { correctAnswers, conceptsCorrect, emnerTouched, answers };
-            try { onEnd(correct, questions.length, meta); }
-            catch (e) { dwarn("onEnd crashed", e); }
-          }
+          else finishQuiz();
         }, QUIZ_FEEDBACK_MS);
       };
     });
   }
 
+  // The user-requested testing shortcut is available in normal play as well.
+  qs.testComplete.disabled = false;
+  qs.testComplete.onclick = () => {
+    if (finished) return;
+
+    // Preflight all answers before applying any reward or completion.
+    const presentations = questions.map((q) =>
+      window.HGQuizAnswerShuffle?.shuffleQuestion?.(q)
+    );
+    if (presentations.some((item) =>
+      !item || !Array.isArray(item.options) ||
+      !Number.isInteger(item.answerIndex) ||
+      item.answerIndex < 0 || item.answerIndex >= item.options.length
+    )) {
+      API.showToast(tt("ui.quiz.testMissingAnswer", "Kan ikke testfullføre: et spørsmål mangler gyldig fasit."));
+      return;
+    }
+
+    qs.testComplete.disabled = true;
+    if (advanceTimer !== null) clearTimeout(advanceTimer);
+    advanceTimer = null;
+
+    // Correct earlier misses, answer remaining questions and avoid duplicate correct hooks.
+    questions.forEach((q, index) => {
+      if (answers[index]?.correct) return;
+      const presentation = presentations[index];
+      recordAnswer(q, presentation.options, presentation.answerIndex, presentation.answerIndex, index);
+    });
+    i = questions.length;
+    qs.feedback.textContent = tt("ui.quiz.testCompleted", "Testfullført: alle svar riktige.");
+    finishQuiz();
+  };
+
+  if (!questions.length) {
+    qs.testComplete.hidden = true;
+    finishQuiz();
+    return;
+  }
   step();
 }
 
