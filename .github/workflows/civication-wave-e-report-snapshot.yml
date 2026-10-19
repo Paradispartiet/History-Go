@@ -1,8 +1,8 @@
 name: Wave E generated audit snapshot
 on:
-  push:
+  pull_request:
     branches:
-      - civication/wave-e-private-timeline-20261018
+      - main
     paths:
       - .github/workflows/civication-wave-e-report-snapshot.yml
 permissions:
