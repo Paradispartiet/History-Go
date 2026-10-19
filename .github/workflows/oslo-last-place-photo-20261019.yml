@@ -1,0 +1,79 @@
+name: Oslo 20 final exact-source photo pass
+on:
+  push:
+    branches: [content/oslo-last-two-place-photos-20261019]
+    paths:
+      - scripts/produce-oslo-final-place-photo-20261019.py
+      - .github/workflows/oslo-last-place-photo-20261019.yml
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install Pillow==11.3.0
+      - name: Verify exact-source Commons license and materialize only suitable images
+        run: python scripts/produce-oslo-final-place-photo-20261019.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild changed Place media and image summary
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run place-open:check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Commit source-audited output and queue notes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/oslo-20-media-final-20261019 reports/oslo-20-media-final-20261019
+          git add data/places/naeringsliv/oslo/places_naeringsliv/tollbukaia.json
+          git add data/places/places_index.json data/places/place_image_backlog_summary.json
+          git add data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json
+          git add data/runtime/place-open
+          if git diff --cached --quiet; then
+            echo 'No eligible source changes'; exit 0
+          fi
+          git commit -m 'assets(oslo): document last-place candidates and publish rights-verified Tollbukaia image if approved'
+          git push origin HEAD:content/oslo-last-two-place-photos-20261019
+      - run: npx playwright install --with-deps chromium
+      - name: Verify native PlaceCard if published
+        env:
+          HG_VISUAL_OUT: .tmp/oslo-last-place-browser
+          HG_VISUAL_CAPTURES: .tmp/oslo-last-place-captures
+        run: |
+          mkdir -p .tmp
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("reports/oslo-20-media-final-20261019/result.json").read_text())
+          ids=[p["place_id"] for p in report["produced"]]
+          Path(".tmp/oslo-last-ids").write_text(",".join(ids))
+          source=Path("tests/oslo-v1-actual-runtime-visual-browser-audit.mjs").read_text()
+          source=source.replace("const allIds=[", "const allIds="+json.dumps(ids)+".concat([",1)
+          source=source.replace('"john_dee","sentrum_scene"];','"john_dee","sentrum_scene"]);',1)
+          Path(".tmp/oslo-last-place-browser.mjs").write_text(source)
+          PY
+          if [ -s .tmp/oslo-last-ids ]; then
+            HG_VISUAL_PLACES="$(cat .tmp/oslo-last-ids)" node .tmp/oslo-last-place-browser.mjs
+          else
+            echo "No photo accepted; no PlaceCard verification applicable"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-last-place-visual-and-provenance
+          include-hidden-files: true
+          path: |
+            reports/oslo-20-media-final-20261019
+            .tmp/oslo-last-place-browser
+            .tmp/oslo-last-place-captures
+          if-no-files-found: warn
