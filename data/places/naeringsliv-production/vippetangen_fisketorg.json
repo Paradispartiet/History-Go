@@ -1,0 +1,305 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "vippetangen_fisketorg",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Fiskehallen i Akershusstranda 23 er et fysisk mottaks-, grossist- og distribusjonsbygg for sjømat på Vippetangen.",
+    "anchorType": "market",
+    "placeObjectDistinction": "Stedet er bygningen åpnet i 1933, ikke den første hallen fra 1905 eller hele det historiske fiskehavnområdet.",
+    "temporalScope": {
+      "start": "1905",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Historien om fiskehandelen fra 1905 avgrenses fra Fiskehallens åpning i 1933 og dokumentert senere sjømatdrift."
+    },
+    "sourceIds": [
+      "source_fiskehallen_byplan",
+      "source_fiskehallen_bynye",
+      "source_fiskehallen_official"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Ved Fiskehallens kai kunne fiskevarer føres mellom båt, mottak og transport mot Oslo-regionen.",
+      "caseIds": [
+        "case_vippetangen_fisketorg_seafood_trade"
+      ]
+    },
+    {
+      "emneId": "em_naering_felt_arbeid_verdiskaping",
+      "siteSpecificRationale": "Mottak, behandling, engroshandel og videre distribusjon organiserer et konkret arbeidsmiljø i hallen.",
+      "caseIds": [
+        "case_vippetangen_fisketorg_seafood_trade"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_fiskehallen_byplan",
+      "url": "https://magasin.oslo.kommune.no/byplan/fiskehallen-et-sted-for-fisk-og-folk",
+      "sourceLocation": "Åpningen 1933, hallens areal og kailengde, arbeid og historisk grossistdrift",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo kommunes redigerte historiske byplanartikkel om Fiskehallen.",
+      "limitations": "Kronologi og bygningsmål er dokumentert, men ikke virksomhetenes samlede lønnsomhet eller årlige varevolumer."
+    },
+    {
+      "id": "source_fiskehallen_bynye",
+      "url": "https://magasin.oslo.kommune.no/byplan/gjenbruk-og-nytt-pa-vippetangen",
+      "sourceLocation": "Fiskehallens arkitektur og ferdigstillelse i 1934",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo kommunes artikkel om bruk og gjenbruk av bebyggelsen på Vippetangen.",
+      "limitations": "Byggeperiode og åpningsdato omtales i forskjellige kommunale kilder, og skal ikke blandes sammen."
+    },
+    {
+      "id": "source_fiskehallen_museum",
+      "url": "https://digitaltmuseum.no/021015456022/fiskehallen-pa-vippetangen",
+      "sourceLocation": "Oslo Museum OB.Z18506: Fiskehallens interiør i 1950, Wilhelm Råger",
+      "sourceType": "archive",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Museets registrering av bilde, fotograf, motiv og CC BY-SA-lisens.",
+      "limitations": "Fotografiet viser bygget innvendig, men kan ikke dokumentere total omsetning eller dagens fasade. Lisensversjon er ikke oppgitt."
+    },
+    {
+      "id": "source_fiskehallen_official",
+      "url": "https://fiskehallen.no/",
+      "sourceLocation": "Fiskehallens egen informasjon om moderne fiskemottak, grossister og vareflyt",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Nettsted for Fiskehallen på Vippetangen.",
+      "limitations": "Egen virksomhetsomtale er ikke en uavhengig kontroll av produksjonsvolum eller økonomiske virkninger."
+    },
+    {
+      "id": "source_fiskehallen_registry",
+      "url": "https://virksomhet.brreg.no/nb/oppslag/enheter/952752073",
+      "sourceLocation": "Oslo Fiskehall SA, registrert forretningsadresse Akershusstranda 23",
+      "sourceType": "registry",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Brønnøysundregistrenes offentlige virksomhetsregister.",
+      "limitations": "Juridisk identitet og adresse viser ikke individuelle bedrifters resultat, sysselsetting eller arbeidsvilkår."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_vippetangen_fisketorg_seafood_trade",
+      "claim": "Fiskehallens romlige organisering knytter mottak av sjømat til bearbeiding, grossistomsetning og videre transport, men kildene måler ikke den økonomiske gevinsten ved denne samlokaliseringen.",
+      "unitOfAnalysis": {
+        "unit": "Fiskehallen, Akershusstranda 23, Oslo",
+        "boundary": "Det konkrete mottaks- og engrosbygget fra 1933, ikke hele Vippetangen eller eldre fiskehall fra 1905.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1905",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Historien om fiskehandelen fra 1905 avgrenses fra Fiskehallens åpning i 1933 og dokumentert senere sjømatdrift."
+        },
+        "sourceIds": [
+          "source_fiskehallen_byplan",
+          "source_fiskehallen_official",
+          "source_fiskehallen_registry"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Fiskegrossister og sjømatbedrifter",
+          "roleOrInterest": "Mottar, bearbeider og omsetter sjømat som videreføres til kunder og handelsledd.",
+          "economicPosition": "Virksomheter som benytter hallens handels- og logistikkmiljø.",
+          "sourceIds": [
+            "source_fiskehallen_byplan",
+            "source_fiskehallen_official"
+          ]
+        },
+        {
+          "name": "Transportører og ansatte med varehåndtering",
+          "roleOrInterest": "Levering, lossing og fordeling av fisk og sjømat krever arbeid, utstyr og transportkapasitet.",
+          "economicPosition": "Utfører arbeids- og logistikkledd uten at kildene dokumenterer individuelle lønns- eller produktivitetstall.",
+          "sourceIds": [
+            "source_fiskehallen_museum",
+            "source_fiskehallen_official"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Fersk fisk og sjømat, transport, lagerrom, bygningsareal, utstyr og menneskelig arbeid er innsatsfaktorer i hallen.",
+            "sourceIds": [
+              "source_fiskehallen_byplan",
+              "source_fiskehallen_official"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Lossing, kontroll, behandling og handelsdistribusjon foregår i hallens lokaliteter og ved kaia.",
+          "sourceIds": [
+            "source_fiskehallen_byplan",
+            "source_fiskehallen_official"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Sjømat fordeles videre til grossister, næringskunder og andre mottakere.",
+            "sourceIds": [
+              "source_fiskehallen_byplan",
+              "source_fiskehallen_official"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer en samlet arbeids- og transportfunksjon, men ikke målt avkastning fra hallens arkitektoniske løsning.",
+          "sourceIds": [
+            "source_fiskehallen_byplan",
+            "source_fiskehallen_official"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_infrastrukturanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Omtrent 9700 kvadratmeter bygningsareal, 115 meter hovedkai og dokumenterte fiskemottaks-/transportfunksjoner.",
+        "unit": "bygg, kai og registrerte virksomhetsfunksjoner",
+        "period": "1933–2026",
+        "comparability": "Bygningsmål og historiske bilder kan sammenlignes med dagens funksjonsbeskrivelse, ikke som kvantitativ årlig serie.",
+        "dataLimitations": "Ingen kildekontrollert tidsserie for lønn, bruttofortjeneste, varepriser, produktivitet eller årsaksvirkninger.",
+        "sourceIds": [
+          "source_fiskehallen_byplan",
+          "source_fiskehallen_museum",
+          "source_fiskehallen_official"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Oslo Fiskehall SA er registrert på adressen, mens kildene ikke viser fordeling av investeringer og driftsbeslutninger per leietaker.",
+        "laborPosition": "Fiskehandlere, transportører og ansatte utfører fysisk håndtering og handel, men kildene avklarer ikke lønns- eller tariffvilkår.",
+        "beneficiaries": [
+          "Bedrifter og kjøpere som bruker mottaks- og engrosfunksjonene.",
+          "Forbrukere og andre ledd som mottar varer gjennom sjømatformidlingen."
+        ],
+        "costRiskBearers": [
+          "Sjømatvirksomhetene eksponeres for ferskvarers holdbarhets- og logistikkrisiko.",
+          "Arbeidsmiljøet har fysiske håndteringskrav, men stedsspesifikk skade- og kostnadsstatistikk er ikke dokumentert."
+        ],
+        "sourceIds": [
+          "source_fiskehallen_official",
+          "source_fiskehallen_registry"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Ferskvarer krever egnet transport og hygienisk håndtering; den konkrete økonomiske effekten kan ikke isoleres fra kildene.",
+          "sourceIds": [
+            "source_fiskehallen_official"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Stedsspesifikke utslipps-, helse-, støy- eller avfallsmålinger er ikke undersøkt i dette kildegrunnlaget."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Historisk havnebasert engroshandel sammenholdes med dokumentert nåværende fiskemottak og distribusjon.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Kildene viser kontinuitet i sjømatfunksjonen, ikke en kontrafaktisk gevinst av bygningen eller en målt moderniseringseffekt.",
+        "alternativeExplanations": [
+          "Kjøleteknologi, transport, hygieneregler og markedsorganisering har også endret driften over tid."
+        ],
+        "uncertainty": "Ingen komplett datarekke for omløp, arbeidsinnsats eller økonomisk resultat per epoke er etablert.",
+        "sourceIds": [
+          "source_fiskehallen_byplan",
+          "source_fiskehallen_official"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "active",
+    "statement": "Oslo Fiskehall SA er registrert på Akershusstranda 23, mens Fiskehallens nettsted beskriver pågående mottak, engroshandel og håndtering av sjømat.",
+    "originalEconomicRoleRelationship": "Samme sted brukes fortsatt til fiskehandel, men den faktiske teknikken og organiseringen er endret siden åpningen i 1933.",
+    "checkedAt": "2026-10-19",
+    "sourceIds": [
+      "source_fiskehallen_official",
+      "source_fiskehallen_registry"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Det eksisterende QuizCard-innholdet beholdes uendret; denne produksjonsbolken skriver bare stedsbeskrivelse og kildepakkene."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Kildene gir en historisk kronologi, men denne bolken legger ikke til et nytt Story-objekt."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/vippetangen_fisketorg.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json",
+        "source_fiskehallen_byplan"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/vippetangen_fisketorg.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json",
+        "source_fiskehallen_byplan"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/vippetangen_fisketorg.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json",
+        "source_fiskehallen_byplan"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/vippetangen_fisketorg.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json",
+        "source_fiskehallen_byplan"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/vippetangen_fisketorg.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json",
+        "source_fiskehallen_byplan"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/vippetangen_fisketorg.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json",
+        "source_fiskehallen_byplan"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Eksisterende QuizCards, historier og tilhørende produksjonsfiler videreføres uten endringer."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Eksisterende QuizCards, historier og tilhørende produksjonsfiler videreføres uten endringer."
+    }
+  },
+  "review": {
+    "reviewer": "History Go Oslo Fiskehallen Næringsliv source-based review",
+    "reviewedAt": "2026-10-19",
+    "notes": "1933-hallen skilt fra eldre 1905-hall. Åpning 9. desember 1933 og fullførelse 1934 er ulike hendelser. Ingen udokumenterte økonomiske resultattall hevdes."
+  }
+}
