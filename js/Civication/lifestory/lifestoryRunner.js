@@ -111,6 +111,7 @@
   }
   function hasPendingPrivateScenes(state, content) {
     return content.scenes.some(scene => Number.isInteger(scene.livsdagFra)
+      && !content.fortsettelse
       && !state.spilteScener.includes(scene.id)
       && (!scene.etterValgDager || Number.isInteger(state.privatHistorie?.flaggDager?.[scene.etterValgDager.flagg]))
       && Object.entries(scene.conditions?.flagg || {}).every(([key, value]) => state.tidligereValg[key] === value));
@@ -126,6 +127,7 @@
   function getCandidateScenes(state, content) {
     if (isContinuationPaused(state, content)) return [];
     return content.scenes.filter((scene) =>
+      (!content.fortsettelse || !Number.isInteger(scene.livsdagFra)) &&
       sceneDue(state, scene) &&
       scene.fase === state.fase &&
       isThreadPlayable(state, scene.threadId) &&
