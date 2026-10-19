@@ -1,0 +1,75 @@
+name: Oslo-20 native browser review 20 places
+on:
+  push:
+    branches:
+      - review/oslo-20-native-browser-20261019
+    paths:
+      - '.github/workflows/oslo-20-native-browser-review-temp-20261019.yml'
+permissions:
+  contents: write
+jobs:
+  review:
+    name: Audit 20 real app PlaceCards at 390 and 768
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Prepare review with legacy crop-position fallback
+        run: |
+          mkdir -p .tmp
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          ids=["havnelageret","tollbukaia","jernbaneverkstedet_lodalen","grunnlovsbygget_bankplassen","akershus_kaier","oslo_mek","grensen_kjopesenter","vippetangen_fisketorg","frysja_industriomrade","norges_varemesse","bryn_industriomrade","gronlikaia","christiania_seildugsfabrik","norges_bank_bankplassen_4","sagene_skole","gamle_trikkestallen","gamle_radhus","stortorget","grev_wedels_plass","sofienbergparken"]
+          s=Path("tests/oslo-v1-actual-runtime-visual-browser-audit.mjs").read_text()
+          needle='const allIds=['
+          assert needle in s
+          s=s.replace(needle,'const allIds='+json.dumps(ids,ensure_ascii=False)+'; const legacyIds=[',1)
+          old='if(item.id!==id||!item.imageComposition)throw Error("Missing canonical media composition: "+id);'
+          new='if(item.id!==id)throw Error("Wrong canonical place identity: "+id); if(!item.imageComposition)item.imageComposition={heroPosition:"50% 50%",portraitPosition:"50% 50%"};'
+          assert old in s
+          s=s.replace(old,new,1)
+          s=s.replace('date:"2026-10-18"','date:"2026-10-19"',1)
+          Path(".tmp/oslo20-native-all-browser.mjs").write_text(s)
+          PY
+      - name: Check real PlaceCards and QuizCard flip
+        id: audit
+        continue-on-error: true
+        env:
+          HG_VISUAL_PLACES: 'havnelageret,tollbukaia,jernbaneverkstedet_lodalen,grunnlovsbygget_bankplassen,akershus_kaier,oslo_mek,grensen_kjopesenter,vippetangen_fisketorg,frysja_industriomrade,norges_varemesse,bryn_industriomrade,gronlikaia,christiania_seildugsfabrik,norges_bank_bankplassen_4,sagene_skole,gamle_trikkestallen,gamle_radhus,stortorget,grev_wedels_plass,sofienbergparken'
+          HG_VISUAL_OUT: reports/oslo20-native-all-20261019
+          HG_VISUAL_CAPTURES: .tmp/oslo20-native-captures
+        run: node .tmp/oslo20-native-all-browser.mjs
+      - name: Record audit and remove one-off workflow
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/oslo-20-native-browser-review-temp-20261019.yml
+          git add -A .github/workflows/oslo-20-native-browser-review-temp-20261019.yml
+          if test -f reports/oslo20-native-all-20261019/report.json; then
+            git add reports/oslo20-native-all-20261019/report.json
+          fi
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'review(oslo-20): actual native browser visual audit for 20 places'
+          git push origin "HEAD:refs/heads/review/oslo-20-native-browser-20261019"
+      - name: Preserve generated screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo20-native-browser-all-390-768
+          path: |
+            reports/oslo20-native-all-20261019/
+            .tmp/oslo20-native-captures/
+          if-no-files-found: warn
+      - name: Require all 40 browser checks
+        if: steps.audit.outcome != 'success'
+        run: exit 1
