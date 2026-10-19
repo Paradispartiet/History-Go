@@ -4412,8 +4412,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Samtalen uten rapport",
-      "tekst": "Du har holdt kontakten med Jonas gjennom vanlige meldinger. Det har ikke blitt avtalt et møte, og du vil heller ikke måle vennskapet i hvor ofte dere svarer.",
+      "tittel": "Slik holder man kontakt",
+      "tekst": "Jonas' siste melding handler om en serie dere pleide å se sammen. Du ler av en gammel vits, men blir sittende med tommelen over tastaturet. Det er godt å snakke om noe annet enn jobb. Samtidig er du sliten av å være den som alltid må holde samtalen i gang.",
       "conditions": {
         "flagg": {
           "wa_e_c01_etterspill": "hverdagskontakt"
@@ -4422,21 +4422,27 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Fortsett å dele små ting når du har lyst",
-          "konsekvensTekst": "Du beholder kontakt uten å love tilgjengelighet hver kveld.",
+          "tekst": "Send ham en morsom detalj fra dagen din",
+          "konsekvensTekst": "Du deler noe lite og hyggelig, og vennskapet får plass i hverdagen.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "vennskap_pa_egne_vilkar"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Foreslå en prat om noe helt annet enn jobb",
-          "konsekvensTekst": "Forslaget er sendt, men ingen samtale regnes som avtalt ennå.",
+          "tekst": "Spør om han har lyst til å ringes en kveld",
+          "konsekvensTekst": "Du tar initiativ til en samtale, men venter på at dere finner et tidspunkt.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "nytt_samtaleforslag"
+            },
+            "relasjoner": {
+              "venn": 2
             }
           }
         }
@@ -4455,8 +4461,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En pause etter en hyggelig melding",
-      "tekst": "Du valgte en ny pause selv om kontakten var god. Nå har dagene gått, og du kan la en god melding være nok.",
+      "tittel": "Telefonen på kjøkkenbenken",
+      "tekst": "Da du ryddet kjøkkenet, så du den hyggelige meldingen fra Jonas igjen. Du hadde bestemt deg for en pause. Likevel kjenner du et lite stikk av dårlig samvittighet når telefonen ligger der. Du trenger ro, men savner også den enkle tonen dere hadde før.",
       "conditions": {
         "flagg": {
           "wa_e_c01_etterspill": "ny_pause"
@@ -4465,18 +4471,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La stillheten få vare",
-          "konsekvensTekst": "Du avslutter ikke vennskapet, men beskytter tiden din.",
+          "tekst": "La telefonen ligge og bruk kvelden på deg selv",
+          "konsekvensTekst": "Du får en kveld uten forventninger om svar.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "ro_bevart"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Gi et lite livstegn uten forklaring",
-          "konsekvensTekst": "Du sender et livstegn uten å åpne for spørsmål om økonomi eller søknader.",
+          "tekst": "Send et kort bilde fra turen din uten spørsmål",
+          "konsekvensTekst": "Du deler et øyeblikk med Jonas uten å invitere til en lang samtale.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "livstegn_sendt"
@@ -4498,8 +4507,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Grensen som ikke må forhandles hver gang",
-      "tekst": "Du har beholdt grensen mot spørsmål du ikke ønsker. Jonas har fått den beskjeden; du trenger ikke gjenta livshistorien din for at grensen skal gjelde.",
+      "tittel": "Hva kan dere snakke om?",
+      "tekst": "Du har sagt til Jonas at du blir sliten av spørsmål om søknader og penger. Nå vil du skrive om noe helt vanlig, men merker at du leter etter et ufarlig emne. Det er uvant at et vennskap skal kreve så mye planlegging.",
       "conditions": {
         "flagg": {
           "wa_e_c01_etterspill": "grense_bevart"
@@ -4508,18 +4517,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La grensen stå uten ny melding",
-          "konsekvensTekst": "Du gir ingen nye tillatelser gjennom stillhet.",
+          "tekst": "La meldingen ligge; grensen er allerede sagt",
+          "konsekvensTekst": "Du slipper å forklare deg en gang til.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "grense_staar"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Fortell hva du gjerne vil snakke om",
-          "konsekvensTekst": "Du foreslår et trygt samtaletema, ikke et unntak fra grensen.",
+          "tekst": "Spør hva han driver med i helgen",
+          "konsekvensTekst": "Du gir samtalen en ny retning uten å åpne økonomien din.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "samtaletema_valgt"
@@ -4541,8 +4553,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Vennskapet uten innsyn",
-      "tekst": "Du åpnet for kontakt om noe annet enn jobb. Det betyr fortsatt ikke at Jonas har fått adgang til opplysninger du valgte å holde private.",
+      "tittel": "En gammel intern spøk",
+      "tekst": "Du finner et bilde fra en tur dere tok før alt ble vanskelig. Jonas ser ut som om han forteller en elendig vits. Du får lyst til å sende det, men husker hvordan forrige prat dreide over på jobb. Du vet ikke om denne gangen blir annerledes.",
       "conditions": {
         "flagg": {
           "wa_e_c01_etterspill": "annen_kontakt"
@@ -4551,21 +4563,27 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Send ham et spørsmål om hans egen hverdag",
-          "konsekvensTekst": "Du tar kontakt uten å åpne din egen økonomi.",
+          "tekst": "Send bildet og spør hva han husker",
+          "konsekvensTekst": "Du tar et lite initiativ med noe dere faktisk deler.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "spurt_om_hans_dag"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Si fra at du ikke vil snakke om arbeid denne uka",
-          "konsekvensTekst": "Du velger en tydelig avgrensning før samtalen blir vanskelig.",
+          "tekst": "Skriv at du gjerne vil prate, men ikke om jobbsøking nå",
+          "konsekvensTekst": "Du inviterer til kontakt med en tydelig og ærlig grense.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "grense_for_uka"
+            },
+            "relasjoner": {
+              "venn": 2
             }
           }
         }
@@ -4584,8 +4602,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et initiativ kan få ligge hos den andre",
-      "tekst": "Du lot Jonas ta neste initiativ. Det står ingen bekreftet dato i tråden. Du trenger ikke fylle inn et møte som aldri er bestemt.",
+      "tittel": "Plass til andre planer",
+      "tekst": "Du lot Jonas ta neste initiativ. Nå spør en annen bekjent om du vil gå en tur i helgen, og du merker at du har holdt av tid i hodet til noe som aldri ble bestemt. Du må velge om du vil vente eller bruke helgen slik den faktisk ser ut.",
       "conditions": {
         "flagg": {
           "wa_e_c01_etterspill": "initiativ_hos_jonas"
@@ -4594,18 +4612,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold kalenderen fri",
-          "konsekvensTekst": "Ingen avtale føres som gjennomført eller avlyst.",
+          "tekst": "Legg egne planer uten å vente på Jonas",
+          "konsekvensTekst": "Du gir deg selv lov til å gjøre noe annet.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "kalender_fri"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Send én åpen hilsen uten å minne om avtalen",
-          "konsekvensTekst": "Du holder kontakten uten å purre på et tidspunkt.",
+          "tekst": "Send en hilsen om turen uten å purre",
+          "konsekvensTekst": "Du viser at kontakten betyr noe, uten å presse fram en avtale.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "hilsen_uten_purring"
@@ -4627,8 +4648,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et forslag er ikke en avtale",
-      "tekst": "Du foreslo en mulig dag, men det foreligger ingen bekreftelse fra Jonas i den lagrede historien. Det gjør kalenderen din fri til noe annet.",
+      "tittel": "Fredagen du holdt av i hodet",
+      "tekst": "Du foreslo en dag for å møtes, men kalenderen viser fortsatt bare et spørsmålstegn. En tidligere kollega har nevnt en gratis konsert samme kveld. Du kjenner på irritasjonen over å måtte gjette hva som blir noe av.",
       "conditions": {
         "flagg": {
           "wa_e_c01_etterspill": "nytt_forslag"
@@ -4637,18 +4658,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La forslaget stå ubesvart inntil videre",
-          "konsekvensTekst": "Du setter ikke av tid basert på et ubekreftet forslag.",
+          "tekst": "Bestem deg for konserten og la Jonas svare senere",
+          "konsekvensTekst": "Du bruker kvelden på noe som faktisk er mulig nå.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "forslag_aapent"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Skriv at dere kan finne en annen dag senere",
-          "konsekvensTekst": "Du gir en fleksibel mulighet, fortsatt uten avtalt tidspunkt.",
+          "tekst": "Send Jonas en åpen beskjed om at du kan en annen dag",
+          "konsekvensTekst": "Du rydder opp i din egen forventning uten å legge press på ham.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "annen_dag_mulig"
@@ -4670,8 +4694,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ingen plikt til å gjenoppta",
-      "tekst": "Pausen varer fortsatt fordi du ønsker det. Den er ikke et bevis på at vennen din har avvist deg, og den binder deg ikke til en bestemt sluttdato.",
+      "tittel": "Det blir stille rundt middagsbordet",
+      "tekst": "Du spiser middag alene mens det regner mot vinduet. Pausen fra Jonas var ditt eget valg, men ensomhet følger ikke alltid planen. Du savner å kunne sende en tullete melding uten at den blir starten på en forklaring om livet ditt.",
       "conditions": {
         "flagg": {
           "wa_e_c01_etterspill": "pause_videre"
@@ -4680,18 +4704,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Fortsett å la telefonen ligge",
-          "konsekvensTekst": "Du bevarer rommet for deg selv uten å love en oppfølging.",
+          "tekst": "Ring en annen venn du ikke har snakket med på lenge",
+          "konsekvensTekst": "Du søker selskap uten å bryte en grense du trenger.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "pause_holdt"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Skriv én vennlig setning når du er klar",
-          "konsekvensTekst": "Du gir et tegn på kontakt uten å binde deg til samtale.",
+          "tekst": "Skriv én enkel hilsen til Jonas",
+          "konsekvensTekst": "Du åpner en liten dør til Jonas uten å love mer.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "vennlig_setning"
@@ -4713,8 +4740,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Livstegnet uten en ny avtale",
-      "tekst": "Du sendte et livstegn til Jonas. Det er en faktisk handling, men ikke et løfte om tilgjengelighet for nye spørsmål.",
+      "tittel": "Et lite ord kan veie mye",
+      "tekst": "Du sendte Jonas en kort hilsen. Etterpå la du fra deg telefonen, men tok den opp igjen to ganger. Det er underlig hvor mye et lite livstegn kan bety når du ikke vet om dere finner tilbake til det gamle.",
       "conditions": {
         "flagg": {
           "wa_e_c01_etterspill": "livstegn"
@@ -4723,21 +4750,27 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La meldingen være avslutningen foreløpig",
-          "konsekvensTekst": "Du skaper ingen ny avtale gjennom meldingen.",
+          "tekst": "Gjør noe annet i kveld i stedet for å sjekke svar",
+          "konsekvensTekst": "Du lar ikke kvelden styres av telefonen.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "melding_nok"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Spør om dere kan snakke om noe hyggelig en annen gang",
-          "konsekvensTekst": "Du foreslår et tema, ikke et fast tidspunkt.",
+          "tekst": "Send en melding om noe dere pleide å le av",
+          "konsekvensTekst": "Du byr på en konkret felles erindring og tar et lite sosialt initiativ.",
           "effekter": {
             "flagg": {
               "wa_f_c01_status": "hyggelig_tema"
+            },
+            "relasjoner": {
+              "venn": 2
             }
           }
         }
@@ -4756,8 +4789,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Den daterte oversikten",
-      "tekst": "Du har beholdt en oversikt over det som er dokumentert. Den mangler fremdeles en bekreftet avgjørelse, og det er riktig å la feltet stå åpent.",
+      "tittel": "Papirene mellom brødsmulene",
+      "tekst": "På kjøkkenbordet ligger en bunke utskrifter ved siden av en handleliste. Du vet når du sendte det du skulle, men ikke når du kan regne med en avgjørelse. Du skulle egentlig ut og handle; nå har du brukt en halvtime på å lese samme side to ganger.",
       "conditions": {
         "flagg": {
           "wa_e_c05_etterspill": "oversikt_bevart"
@@ -4766,18 +4799,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Skill mellom datoer og antakelser i notatet",
-          "konsekvensTekst": "Du tydeliggjør hva hver opplysning faktisk dokumenterer.",
+          "tekst": "Legg papirene i en mappe og gå ut og handle",
+          "konsekvensTekst": "Du velger å få gjort noe nødvendig i hverdagen.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "skille_dokumentert"
+            },
+            "meters": {
+              "energi": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Legg oversikten klar til neste reelle henvendelse",
-          "konsekvensTekst": "Du forbereder deg uten å registrere at noe er sendt.",
+          "tekst": "Bruk ti minutter på å merke de viktigste datoene",
+          "konsekvensTekst": "Du lager oversikt, men bruker litt mer av dagen på saken.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "oversikt_klar"
@@ -4799,8 +4835,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Utkastet som ikke er sendt",
-      "tekst": "Et spørsmål ligger formulert som utkast. Det kan være nyttig, men ingen saksbehandler har mottatt det gjennom dette valget.",
+      "tittel": "Meldingen du aldri trykket send på",
+      "tekst": "Spørsmålet til veilederen står fremdeles i et utkast på telefonen. Du leser det mens bussen står i kø. Det høres nesten anklagende ut, selv om du egentlig bare vil vite hvilket dokument de trenger. Ved neste stopp må du bestemme deg.",
       "conditions": {
         "flagg": {
           "wa_e_c05_etterspill": "henvendelse_utkast"
@@ -4809,8 +4845,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Gjennomgå om spørsmålet viser til riktig dokument",
-          "konsekvensTekst": "Du forbedrer utkastet, uten å endre status i portalen.",
+          "tekst": "Skriv spørsmålet kort og konkret før du gjør noe mer",
+          "konsekvensTekst": "Du fjerner unødvendige formuleringer, men meldingen ligger fortsatt hos deg.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "utkast_forbedret"
@@ -4819,11 +4855,14 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Legg ved en liste over opplysninger du mangler",
-          "konsekvensTekst": "Listen er et privat arbeidsdokument, ikke en myndighetsuttalelse.",
+          "tekst": "Legg bort telefonen og finn dokumentene hjemme",
+          "konsekvensTekst": "Du velger å finne grunnlaget før du bestemmer deg for å sende.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "mangelliste_utkast"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }
@@ -4842,8 +4881,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Et ordentlig utkast, fortsatt bare et utkast",
-      "tekst": "Du har lagret et konkret spørsmål, men valgte ikke å sende det. Ingen svarfrist eller bekreftelse kan dermed oppstå.",
+      "tittel": "Den vanskelige første setningen",
+      "tekst": "Du åpner det lagrede utkastet på nytt. Ordene «jeg viser til tidligere henvendelse» får det til å høres ut som du er sint. Du er mest redd for å overse noe. Fra stua høres en vaskemaskin som er ferdig for lengst.",
       "conditions": {
         "flagg": {
           "wa_e_c05_etterspill": "utkast_lagret"
@@ -4852,8 +4891,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold utkastet til du faktisk vil bruke det",
-          "konsekvensTekst": "Spørsmålet forblir usendt og saken uavklart.",
+          "tekst": "Skriv hva du faktisk trenger svar på, med vanlige ord",
+          "konsekvensTekst": "Du gjør spørsmålet lettere å forstå når du en dag sender det.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "usendt_bevart"
@@ -4862,11 +4901,14 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Sammenlign utkastet med den siste kvitteringen",
-          "konsekvensTekst": "Du skiller spørsmålet fra det kvitteringen bekrefter.",
+          "tekst": "Lukk utkastet og ta resten av husarbeidet først",
+          "konsekvensTekst": "Du lar papirene vente en stund og får gjort noe annet.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "kvittering_kontrollert"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }
@@ -4885,8 +4927,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Vedleggene du faktisk har",
-      "tekst": "Bilagene ligger klare. Det gjør en mulig senere henvendelse enklere, men gir ikke etatens vurdering av innholdet.",
+      "tittel": "Bunken på gulvet",
+      "tekst": "Du finner kvitteringen du lette etter mellom gamle regninger. Vedleggene ligger endelig samlet, men i bunken dukker også en uåpnet strømregning opp. Den er mer presserende akkurat nå enn å sortere papirene enda en gang.",
       "conditions": {
         "flagg": {
           "wa_e_c05_etterspill": "bilag_klart"
@@ -4895,8 +4937,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Merk vedleggene med riktig dato og navn",
-          "konsekvensTekst": "Du gjør underlaget sporbar uten å hevde godkjenning.",
+          "tekst": "Sjekk forfallsdatoen på regningen først",
+          "konsekvensTekst": "Du prioriterer en konkret utgift i hverdagen.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "bilag_merket"
@@ -4905,11 +4947,14 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Noter hvilket vedlegg som fortsatt trenger avklaring",
-          "konsekvensTekst": "Du skriver en intern oppfølgingsliste; ingen kontroll er gjennomført.",
+          "tekst": "Sett ti minutter av til å merke vedleggene",
+          "konsekvensTekst": "Du gjør bunken lettere å finne fram i, men bruker mer tid på saken.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "avklaring_notert"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }
@@ -4928,8 +4973,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Mottatt er ikke det samme som kontrollert",
-      "tekst": "Du lagret skillet mellom registrering, kontroll og vedtak. Det er også viktig når du senere viser saken til en annen person.",
+      "tittel": "«Betyr det at alt er i orden?»",
+      "tekst": "En nær venn ser kvitteringen for innsendte dokumenter på bordet. «Så da ordner det seg?» spør vennen. Du vil gjerne si ja. Samtidig kjenner du at du ikke har lyst til å forklare hele prosessen enda en gang.",
       "conditions": {
         "flagg": {
           "wa_e_c05_etterspill": "skille_lagret"
@@ -4938,8 +4983,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold tre atskilte statusfelter",
-          "konsekvensTekst": "Du hindrer at mottak feilaktig fyller et vedtaksfelt.",
+          "tekst": "Si at du håper det, men fortsatt venter på svar",
+          "konsekvensTekst": "Du deler håpet ditt uten å gjøre det om til et løfte.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "status_adskilt"
@@ -4948,8 +4993,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Forklar kort hva en kvittering dokumenterer",
-          "konsekvensTekst": "Du beskriver mottaket uten å påstå et positivt utfall.",
+          "tekst": "Si at du heller vil snakke om noe annet i kveld",
+          "konsekvensTekst": "Du setter en grense for hvor mye av kvelden saken skal få.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "kvittering_forklart"
@@ -4971,8 +5016,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "De åpne spørsmålene består",
-      "tekst": "Du har skrevet ned det du ikke vet. Listen er ikke en bekreftelse på at alt manglende er ferdigbehandlet.",
+      "tittel": "Tre spørsmål og én ledig kveld",
+      "tekst": "Listen over åpne spørsmål blir lengre hver gang du ser på den. Du hadde tenkt å lage middag ordentlig i kveld, men vurderer å bruke tiden på enda en gjennomgang. Du merker hvor lett saken tar over små deler av livet.",
       "conditions": {
         "flagg": {
           "wa_e_c05_etterspill": "mangler_listet"
@@ -4981,18 +5026,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Prioriter ett konkret spørsmål for senere oppfølging",
-          "konsekvensTekst": "Du lager en rekkefølge i arbeidet, uten å finne på svar.",
+          "tekst": "Velg det ene spørsmålet som virkelig haster",
+          "konsekvensTekst": "Du prioriterer ett konkret behov framfor å forsøke alt.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "sporsmal_prioritert"
+            },
+            "meters": {
+              "energi": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "La listen forbli komplett med tomme svarfelt",
-          "konsekvensTekst": "Du bevarer synlige hull i dokumentasjonen.",
+          "tekst": "Legg listen i skuffen og lag middag",
+          "konsekvensTekst": "Du velger en vanlig kveld selv om saken ikke er avgjort.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "hull_synlige"
@@ -5014,8 +5062,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Saken er åpen i ditt eget arkiv",
-      "tekst": "Du valgte å la saken stå åpen. Ingen ny melding er dokumentert i historien, og tiden alene sier ingenting om vedtak eller utbetaling.",
+      "tittel": "Regninger lar seg ikke utsette med et notat",
+      "tekst": "På mobilen ligger en påminnelse om saken. På bordet ligger en regning med forfall snart. Du har ikke fått noen ny avklaring, men må likevel planlegge hva du skal gjøre med pengene du faktisk har.",
       "conditions": {
         "flagg": {
           "wa_e_c05_etterspill": "aapen_sak"
@@ -5024,8 +5072,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold status som uavklart",
-          "konsekvensTekst": "Du registrerer ingen konklusjon uten faktisk kildemelding.",
+          "tekst": "Gå gjennom regningene og lag en nøktern plan",
+          "konsekvensTekst": "Du tar tak i økonomien uten å basere deg på en mulig utbetaling.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "fortsatt_uavklart"
@@ -5034,8 +5082,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Planlegg en senere kontroll av faktisk portalstatus",
-          "konsekvensTekst": "Du setter en privat hensikt, ikke en offisiell frist.",
+          "tekst": "Bruk et kvarter på å finne fram riktig kontaktpunkt",
+          "konsekvensTekst": "Du forbereder en konkret oppfølging, men får ikke et vedtak av den grunn.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "kontroll_planlagt"
@@ -5057,8 +5105,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Påminnelsen når ikke etaten",
-      "tekst": "Du skrev en privat påminnelse. Den har ikke sendt noen melding eller endret behandlingstiden. Det som skjer senere må dokumenteres senere.",
+      "tittel": "Mandagen som forsvant",
+      "tekst": "Påminnelsen om å sjekke saken dukker opp mens du står i butikken. Det er fristende å gå hjem og stirre på portalen igjen. I handlekurven ligger melk, pasta og den billigste kaffen du fant. En hel dag trenger ikke gå med til å vente på svar.",
       "conditions": {
         "flagg": {
           "wa_e_c05_etterspill": "senere_kontroll"
@@ -5067,18 +5115,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Legg til hvilke dokumenter du må finne fram",
-          "konsekvensTekst": "Du bruker tiden til forberedelser, uten å opprette nye sakssteg.",
+          "tekst": "Handle ferdig og sett av et avgrenset tidspunkt senere",
+          "konsekvensTekst": "Du gjør det du kom for, og lar saken få en bestemt plass i dagen.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "forberedelse_notert"
+            },
+            "meters": {
+              "energi": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Flytt påminnelsen uten å endre forventet utfall",
-          "konsekvensTekst": "Du styrer din egen kalender; vedtaksfeltet står fremdeles tomt.",
+          "tekst": "Gå hjem og finn fram dokumentene du trenger ved neste kontakt",
+          "konsekvensTekst": "Du er forberedt på å følge opp, men avbryter resten av ærendet.",
           "effekter": {
             "flagg": {
               "wa_f_c05_status": "paminnelse_flyttet"
