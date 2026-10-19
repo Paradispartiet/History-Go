@@ -88,6 +88,14 @@ Alle de **36 gjenværende Wave F-scenene** er redaksjonelt omskrevet, med **72 v
 
 **Redaksjonelt gjenstående:** Ikke erklær 217 scener godkjent bare fordi Wave F er omskrevet. Les Wave A–E mot inngangene til F, sjekk at valgene føles forskjellige i faktisk UI, og rett resterende sjargong, repetisjon og ulogiske mellomledd. PR #6382 forblir draft; Wave G er fortsatt utsatt.
 
+## Sjette redaksjonelle pass – overganger fra Wave D/E til F (19. oktober 2026)
+
+**16 forløperscener** er omskrevet og **32 valg/konsekvenspar** er språklig bearbeidet: to per historieløp, med C01 og C05 fra Wave E og C02, C03, C06, C07, C17 og C23 fra Wave D. Gjennomgangen binder de tidligere beslutningene tettere til de nå reviderte Wave F-scenene. Særlig skal Jonas-relasjonen oppleves som et forhold mellom venner fremfor en kalenderstatus, NAV-saken som en byrde i hverdagsøkonomien fremfor en dokumentliste, og arbeidssituasjonene i skoleveien og renholdet ha merkbare menneskelige kostnader.
+
+Bevart i samtlige filer: scene- og valg-ID-er, betingelser, tidskrav, flagg, meter- og relasjonseffekter og oppfølgingsstatus. I hver fil ble original og ferdig JSON sammenlignet med de fire tillatte tekstfeltene utelatt. Det er **ikke** gjort full CI/regresjon eller nettlesergjennomspilling i denne runden. Ingen avtale, NAV-avgjørelse, politisk avgjørelse, gjennomført fagkontroll, samtykke, lagerutbedring eller forsoning oppstår gjennom omskriving.
+
+Samlet revidert i disse to siste produksjonsrundene: 36 Wave F-scener samt 16 direkte forgjengerscener i D/E, totalt 52 ytterligere reviderte scener. Hele Wave F har fått et helhetlig språkpass (68/68), men A–E er fortsatt **ikke** fullstendig kvalitetsgodkjent. PR forblir draft. Wave G holdes tilbake.
+
 ## Gjenstående før redaksjonell godkjenning
 
 Denne revisjonen er **ikke** en full litterær godkjenning av alle 217 scener i A–F. Flere tidligere scener, spesielt i C01–C07, trenger fortsatt sammenhengende gjennomspilling og selektiv omskriving. Forutgående scenevalg og deres konsekvenstekster må leses samlet mot nye Wave F-scener for å fange overgangsfeil. De faktiske meter-effektene må verifiseres i spillmotoren, og hele løpene bør spilles av mennesker på norsk. Ingen av de automatiske testene kan bevise naturlig dialog eller god dramatikk.
