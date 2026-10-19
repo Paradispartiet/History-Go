@@ -5869,13 +5869,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Han står allerede ved kafeen",
-      "tekst": "Jonas står utenfor kafeen med hendene i lommene. Han vinker da du nærmer deg. Du har sagt ja, men søvnen fra natta sitter i kroppen. Han skriver at dere kan gå ned til elva. Du kan fremdeles møte ham og la kvelden bli noe annet enn regninger, eller ringe straks og si at du ikke makter turen.",
+      "tittel": "Ved kafeen står Jonas og venter",
+      "tekst": "På den andre siden av gata får du øye på Jonas. Han står utenfor kafeen med hendene dypt i jakkelommene og ser etter deg. Dere hadde tenkt å gå langs elva, men etter en dårlig natt kjennes hvert skritt tungt. Du har lyst til å være sammen med ham. Samtidig vet du at du ikke orker å late som alt er fint hele kvelden. Han har allerede reist hit for å møte deg.",
       "valg": [
         {
           "id": "gaa",
-          "tekst": "Gå bort til Jonas og ta turen dere avtalte",
-          "konsekvensTekst": "Dere går langs elva. Han snakker om en merkelig kollega, og du ler for første gang den dagen. Strømregningen ligger hjemme, men det gjorde også bekymringen mens dere gikk.",
+          "tekst": "Gå bort og bli med Jonas langs elva",
+          "konsekvensTekst": "Dere går langs elva. Jonas forteller om en merkelig kollega, og du ler for første gang den dagen. Det er godt å være sammen uten å bruke penger.",
           "effekter": {
             "flagg": {
               "wa_c01_tur_gjennomfort": true
@@ -5884,8 +5884,8 @@
         },
         {
           "id": "avlys",
-          "tekst": "Ring ham med en gang og avlys",
-          "konsekvensTekst": "Du ringer før han rekker å vente lenge. Han høres skuffet ut: Han er allerede gått hjemmefra. Du får hvile i kveld, men kjenner kostnaden ved å avlyse så sent.",
+          "tekst": "Ring før du går bort og si at du ikke orker turen",
+          "konsekvensTekst": "Du ringer mens han står utenfor kafeen. Jonas høres skuffet ut, og med god grunn: Han har reist dit for å møte deg. Du får hvile, men vet at tidspunktet kostet ham noe.",
           "effekter": {
             "flagg": {
               "wa_c01_tur_avlyst": true
@@ -6186,8 +6186,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et bilde uten forklaring",
-      "tekst": "Du takket nei til Jonas uten å fortelle om regningen. Han godtok det, men du merker at du likevel har formulert tre lange forklaringer inni deg. På telefonen finner du et bilde han ville likt. Kanskje er det mulig å holde kontakten uten å forsvare hvorfor du ikke kunne møtes.",
+      "tittel": "Bildet du nesten sendte",
+      "tekst": "Du takket nei til Jonas uten å forklare strømregningen. Han lot det ligge. Senere finner du et bilde av en skjev parkbenk, akkurat den typen han alltid ler av. Du begynner å skrive en morsom tekst under bildet, men stopper. Det er rart at det å ville snakke med en venn kan føles som om du må forsvare hvorfor du sa nei.",
       "conditions": {
         "flagg": {
           "wa_c01_svar": "nei"
@@ -6196,8 +6196,8 @@
       "valg": [
         {
           "id": "send_bilde",
-          "tekst": "Send bildet og en kort hilsen, uten økonomiforklaring",
-          "konsekvensTekst": "Du sender bildet. Det er en vennlig åpning, ikke en rapport om pengene dine. Jonas har ennå ikke svart.",
+          "tekst": "Send ham bildet og en kort hilsen",
+          "konsekvensTekst": "Du sender bildet uten noen forklaring om penger. Jonas har ennå ikke svart, men du har valgt kontakt på dine egne premisser.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "bilde"
@@ -6206,8 +6206,8 @@
         },
         {
           "id": "behold_ro",
-          "tekst": "Legg bort telefonen; et nei trenger ikke forklares mer",
-          "konsekvensTekst": "Du lar bildet være ditt og bruker kvelden på noe annet. Du har ikke lovet et nytt møte.",
+          "tekst": "Legg telefonen bort og la avslaget stå",
+          "konsekvensTekst": "Du lar bildet bli på din egen skjerm. I kveld vil du slippe både forklaringer og forventninger om et nytt møte.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "ro"
@@ -6624,13 +6624,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Vennen som prøver på en ny måte",
-      "tekst": "Jonas svarer at han skal spørre mer om hvordan du har det og mindre om antall søknader. Han har hørt ønsket ditt, men du vet ikke om vanen vil endre seg med én gang.",
+      "tittel": "Han prøver å stille et annet spørsmål",
+      "tekst": "Du leser meldingen fra Jonas mens du henger fra deg jakka. Han skriver at han skal spørre mer om hvordan du har det og mindre om hvor mange søknader du har sendt. Det er et lite løfte, og du kjenner lettelse. Samtidig husker du hvor anspent du ble under de gamle spørsmålene. Du vil ikke gjøre ham til en fiende, men trenger at det han sier også merkes neste gang dere snakker.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Takk ham for at han forsøker",
-          "konsekvensTekst": "Du takker for forsøket og lar neste samtale vise hvordan det faktisk fungerer. Ingen unnskyldning garanterer endret atferd.",
+          "tekst": "Takk for at han prøver å lytte på en annen måte",
+          "konsekvensTekst": "Du takker Jonas. Neste samtale får vise om vanen hans faktisk endres; du trenger ikke avgjøre hele vennskapet i kveld.",
           "effekter": {
             "flagg": {
               "wa_d_c01_status": "ny_samtale_aapen"
@@ -6639,8 +6639,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Si at du trenger noen dager før neste prat",
-          "konsekvensTekst": "Jonas svarer kort at det er i orden. Du beholder retten til en pause uten å avslutte vennskapet.",
+          "tekst": "Si at du setter pris på det, men trenger noen dager",
+          "konsekvensTekst": "Jonas svarer at det er i orden. Du har fått ro uten å be om at dere slutter å være venner.",
           "effekter": {
             "flagg": {
               "wa_d_c01_status": "avstand_en_stund"
@@ -6664,13 +6664,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "En pause må ikke fylles",
-      "tekst": "Jonas skriver ikke mer etter at du ba om ro. Stillheten er verken et brudd eller et løfte om at han vil forstå alt. Du kan la grensen stå.",
+      "tittel": "Kvelden du fikk tilbake",
+      "tekst": "Du har bedt Jonas om ro, og det har vært stille fra ham siden. Telefonen ligger på stuebordet mens du forsøker å følge med på en film. Du tar den opp likevel, av gammel vane. Det er litt godt at han har respektert ønsket ditt, og litt vondt å savne noen du selv ba om avstand fra. Du kan la begge følelsene finnes.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Legg bort telefonen for resten av kvelden",
-          "konsekvensTekst": "Du bruker kvelden uten nye forklaringer. Ingen blir invitert eller avvist på dine vegne.",
+          "tekst": "Legg vekk mobilen og se filmen ferdig",
+          "konsekvensTekst": "Du lar pausen vare en kveld til. Du verken inviterer eller avviser Jonas på nytt.",
           "effekter": {
             "flagg": {
               "wa_d_c01_status": "pause_holdes"
@@ -6679,8 +6679,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Send en kort takk uten å starte ny diskusjon",
-          "konsekvensTekst": "Du takker for at han lyttet. Beskjeden oppretter ikke et nytt krav om å fortelle om jobbsøkingen.",
+          "tekst": "Send en enkel takk for at han ga deg rom",
+          "konsekvensTekst": "Du skriver noen få ord og lar det bli med dem. Meldingen åpner ikke en ny samtale om jobbsøkingen.",
           "effekter": {
             "flagg": {
               "wa_d_c01_status": "takk_uten_krav"

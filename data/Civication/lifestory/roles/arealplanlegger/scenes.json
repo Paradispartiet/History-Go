@@ -1216,13 +1216,13 @@
       "visningstype": "melding",
       "stedId": "plankontor",
       "prioritet": 6,
-      "tittel": "To ord som skjuler en skolevei",
-      "tekst": "Ved skriveren ser du sammendraget Eirik har tenkt å sende videre. «Skolevei vurdert», står det. Ragnhilds telling fra snarveien ligger i vedlegget, men ingen har undersøkt krysset ved den foreslåtte nedkjørselen. Du vet at en travel leser kan stoppe ved akkurat de to ordene. Eirik sier at det ikke er tid til flere målinger før utsending.",
+      "tittel": "Den setningen Eirik ville sende",
+      "tekst": "Ved skriveren ser du at Eirik har skrevet «Skolevei vurdert» i sammendraget. På Ragnhilds kart går snarveien rett forbi området der en nedkjørsel planlegges. Dere har ennå ikke observert selve kryssingen der. Eirik har dårlig tid og holder hånda på papirbunken. «Er dette godt nok?» spør han. Du må svare på hva teksten faktisk gir leseren grunn til å tro.",
       "valg": [
         {
           "id": "presiser",
-          "tekst": "Be Eirik skrive den manglende observasjonen inn i sammendraget",
-          "konsekvensTekst": "Du foreslår en tydelig setning om kryssingspunktet. Eirik bekrefter at den tas inn, så leseren ikke må lete etter forbeholdet.",
+          "tekst": "Be Eirik skrive på førstesiden at kryssingen ennå ikke er observert",
+          "konsekvensTekst": "Du foreslår en enkel presisering om kryssingspunktet. Eirik bekrefter at den skal inn. Ingen telling er gjennomført av den grunn.",
           "effekter": {
             "flagg": {
               "wa_c06_oppfolging": "presisert"
@@ -1231,8 +1231,8 @@
         },
         {
           "id": "behold_vedlegg",
-          "tekst": "Behold merknaden i vedlegget og sikre at den kan finnes",
-          "konsekvensTekst": "Du registrerer hvor notatet ligger. Usikkerheten er dokumentert, men blir ikke synlig for dem som bare leser sammendraget.",
+          "tekst": "Behold forbeholdet i vedlegget og gjør det lett å finne",
+          "konsekvensTekst": "Du registrerer hvor fagnotatet ligger. Forbeholdet er bevart, men er fortsatt mindre synlig for den som bare leser sammendraget.",
           "effekter": {
             "flagg": {
               "wa_c06_oppfolging": "vedlegg"
@@ -1337,8 +1337,8 @@
       "stedId": "plankontor",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Det som forsvant mellom vedlegg og sammendrag",
-      "tekst": "Du legger fagnotatet ved siden av første side i sammendraget. På den ene står det at kryssingspunktet ikke er observert. Den andre får det til å høres ut som alt er undersøkt. Eirik kan gi deg et kvarter ved nedkjørselen i morgen. Du vet at et lite tall kan være nyttig, men også lett å misbruke hvis det blir stående uten tid og sted.",
+      "tittel": "Det blanke feltet mellom to kart",
+      "tekst": "Du legger Ragnhilds skisse ved siden av Eiriks sammendrag. På den ene siden ser du snarveien hun har pekt ut. På den andre står det at skoleveien er vurdert, enda ingen har observert kryssingen ved den planlagte nedkjørselen. Eirik tilbyr et kvarter til å gå ut og se selv. Han vil gjerne ha et enkelt svar. Du vet at ett kvarter kan gi et funn, men ikke en hel morgen.",
       "conditions": {
         "flagg": {
           "wa_c06_oppfolging": "vedlegg"
@@ -1347,8 +1347,8 @@
       "valg": [
         {
           "id": "observer",
-          "tekst": "Ta kvarteret, men krev at observasjonen merkes med klokkeslett",
-          "konsekvensTekst": "Du avtaler 07.45–08.00 og gjør det tydelig at resten av den ønskede halvtimen mangler. Selve observasjonen skjer først i morgen.",
+          "tekst": "Ta kvarteret og krev at 07.45–08.00 står ved eventuelle tall",
+          "konsekvensTekst": "Du avtaler den avgrensede observasjonen. Den skjer først i morgen; resten av den ønskede halvtimen står udekket.",
           "effekter": {
             "flagg": {
               "wa_b_c06_spor": "observer"
@@ -1357,8 +1357,8 @@
         },
         {
           "id": "be_om_helhet",
-          "tekst": "Be om en plan for hele tidsrommet dere ikke har undersøkt",
-          "konsekvensTekst": "Du ber om full dekning av den manglende halvtimen. Eirik har ikke satt av noen ny observasjon på denne grenen.",
+          "tekst": "Be om bemanning for hele tidsrommet før tall kan trekkes inn",
+          "konsekvensTekst": "Du ber om en plan for mer kartlegging. Eirik har ennå ikke bekreftet noen ny observasjon på denne grenen.",
           "effekter": {
             "flagg": {
               "wa_b_c06_spor": "plan"
@@ -1756,13 +1756,13 @@
       "stedId": "plankontor",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Svaret som ikke har kommet",
-      "tekst": "En kollega spør om skoleveissaken blir utsatt. Du kjenner et øyeblikk av håp; mer tid ville gjort det mulig å undersøke morgenen bedre. Men Eirik har ennå ikke svart på forespørselen. Du står ved kartet med Ragnhilds snarvei markert og vil ikke gjøre ditt eget ønske til et løfte på ledelsens vegne.",
+      "tittel": "Ragnhilds strek på kartet",
+      "tekst": "En kollega spør om Eirik har bestemt seg for å utsette skoleveissaken. Du ser ned på streken Ragnhild tegnet der barna pleier å gå. Dere har fortsatt ingen telling ved kryssingen i denne grenen. Et par ekstra dager kunne gitt dere en bedre vurdering, men du har ikke fått svar fra Eirik. Kollegaen venter, og du kjenner hvor fristende det er å svare mer sikkert enn du vet.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Forklar hvorfor mer kartlegging trengs, og send vurderingen videre",
-          "konsekvensTekst": "Du beskriver den faglige usikkerheten uten å love at saken blir utsatt. Eirik må fortsatt ta stilling til prioriteringen.",
+          "tekst": "Forklar usikkerheten og send den faglige vurderingen videre",
+          "konsekvensTekst": "Du sier hva som mangler, og hvorfor det har betydning. Det er fortsatt Eirik som må ta stilling til videre behandling.",
           "effekter": {
             "flagg": {
               "wa_d_c06_status": "risiko_oversendt"
@@ -1775,8 +1775,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Be om at en eventuell avgjørelse begrunnes skriftlig",
-          "konsekvensTekst": "Du spør hva beslutningen bygger på. Du har ikke fått noe vedtak, men gjør det tydelig hva en beslutning bør kunne svare på.",
+          "tekst": "Be om en begrunnelse dersom saken likevel går videre",
+          "konsekvensTekst": "Du spør hvilke opplysninger en eventuell beslutning skal bygge på. Ingen avgjørelse har kommet ennå.",
           "effekter": {
             "flagg": {
               "wa_d_c06_status": "beslutning_etterspurt"

@@ -699,13 +699,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Kalenderen full av usynlige avtaler",
-      "tekst": "Arrangøren har fortsatt ingen dato. Mira spør om hun skal sende deg et tilbud dersom det noen gang kommer. Du blar i kalenderen og merker at du allerede har begynt å flytte andre planer i hodet. Ingen har bedt deg holde av en kveld, men håpet har nesten gjort det likevel.",
+      "tittel": "En lørdag du allerede hadde gitt bort i hodet",
+      "tekst": "Du har begynt å tenke på hva du skal ha på deg dersom spillejobben blir noe av. Så kommer meldingen fra Mira: Arrangøren har fremdeles ingen dato. «Vil du at jeg skal si fra hvis de noen gang kommer med et ordentlig tilbud?» spør hun. Det går opp for deg at du har latt være å svare på en annen invitasjon, enda ingen har bedt deg holde av kvelden.",
       "valg": [
         {
           "id": "konkret_tilbud",
-          "tekst": "Si at du kan vurdere et komplett tilbud senere",
-          "konsekvensTekst": "Du ber om de faktiske vilkårene hvis de kommer. Kalenderen forblir åpen, og du har ikke akseptert noe oppdrag.",
+          "tekst": "Be Mira sende dato og honorar hvis et konkret tilbud kommer",
+          "konsekvensTekst": "Du holder muligheten åpen, men legger ingen konsert i kalenderen. Du har ikke lovet å spille.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "informasjon"
@@ -714,8 +714,8 @@
         },
         {
           "id": "ingen_ny_kontakt",
-          "tekst": "Be Mira la være å sende flere meldinger om akkurat denne forespørselen",
-          "konsekvensTekst": "Hun sier at hun lar saken ligge for din del. Dere kan fortsatt spille sammen; du trekker deg bare fra denne ubestemte muligheten.",
+          "tekst": "Si at du ikke vil ha flere oppdateringer om akkurat denne jobben",
+          "konsekvensTekst": "Mira svarer at hun lar deg slippe denne forespørselen. Det betyr ikke at dere slutter å lage musikk sammen.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "trukket"
@@ -939,8 +939,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Åtte takter som fortsatt er hennes",
-      "tekst": "Mira sender åtte takter fra en låt. Den stopper brått akkurat der melodien burde falle til ro. «Vil du bare si hva du hører i overgangen?» spør hun. Du spiller den to ganger og får fem ideer. Men hun ba om ett råd, ikke en ny medprodusent eller en kveld i øvingsrommet.",
+      "tittel": "Da melodien stoppet",
+      "tekst": "Åtte takter fra Mira fyller rommet. Akkurat før refrenget stopper opptaket, som om noen drar ut kontakten. «Hva hører du her?» skriver hun. Du spiller det én gang til, trommer en mulig rytme mot bordkanten og får lyst til å sende en hel liste med forslag. Men hun har bedt om ett øre, ikke om at du skal overta låten hennes.",
       "conditions": {
         "flagg": {
           "wa_b_c02_utfall": "samtale_om_arbeid"
@@ -949,8 +949,8 @@
       "valg": [
         {
           "id": "ett_innspill",
-          "tekst": "Gi ett konkret råd om overgangen og la Mira velge selv",
-          "konsekvensTekst": "Du foreslår å holde en tone litt lenger. Mira takker og sier hun vil prøve på egen hånd. Det er fortsatt hennes låt.",
+          "tekst": "Foreslå én endring i overgangen og overlat resten til Mira",
+          "konsekvensTekst": "Du foreslår å holde én tone litt lenger. Mira takker og vil prøve selv. Sangen er fortsatt hennes.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "ett_rad"
@@ -959,8 +959,8 @@
         },
         {
           "id": "be_om_tid",
-          "tekst": "Si at du trenger mer tid før du kan lytte ordentlig",
-          "konsekvensTekst": "Du er ærlig om at du ikke rekker det nå. Mira sier hun ikke vil purre; ingen lyttefrist blir avtalt.",
+          "tekst": "Si at du trenger en annen dag til å lytte ordentlig",
+          "konsekvensTekst": "Du svarer før hun begynner å vente på rådet ditt. Mira sier at hun ikke vil purre, og dere setter ingen frist.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "lytting_utsatt"
