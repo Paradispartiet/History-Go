@@ -780,8 +780,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Informasjon uten at du stiller opp",
-      "tekst": "Mira sender det du ba om: Arrangøren har fortsatt ikke oppgitt dato eller betaling. «Jeg svarer selv. Du trenger ikke forberede noe for min skyld.» Du har ikke tilbudt å spille, men du kan påvirke om denne kontakten skal fortsette å ta oppmerksomhet fra ditt eget arbeid.",
+      "tittel": "Et avbrutt opptak for en jobb som ikke finnes",
+      "tekst": "Du er midt i et opptak hjemme da Mira sender en oppdatering. Arrangøren har fortsatt ingen dato eller honorar. «Jeg ordner dialogen selv», skriver hun. Du stirrer på opptaket du mistet flyten i. Det er rart hvor mye tid en mulighet kan ta uten at noen har bedt deg holde av ett eneste minutt.",
       "conditions": {
         "flagg": {
           "wa_c02_oppfolging": "informasjon"
@@ -790,8 +790,8 @@
       "valg": [
         {
           "id": "ett_svar",
-          "tekst": "Be om én beskjed hvis det kommer et fullstendig tilbud.",
-          "konsekvensTekst": "Du ber om dato, honorar og oppgave i samme beskjed før du vil vurdere noe. Ingen har dermed fått disponere tiden din.",
+          "tekst": "Be om én ny melding først dersom tilbudet får dato og betaling",
+          "konsekvensTekst": "Du svarer at du vil se komplette vilkår før du vurderer noe. Så legger du telefonen bort og fortsetter med musikken.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "ett_tilbud"
@@ -800,8 +800,8 @@
         },
         {
           "id": "stopp_oppdatering",
-          "tekst": "Be om å slippe flere oppdateringer om denne forespørselen.",
-          "konsekvensTekst": "Du takker for informasjonen og stopper oppdateringene om akkurat denne saken. Det sier ingenting om den andre kontakten deres rundt musikk.",
+          "tekst": "Si at du vil slippe flere oppdateringer om akkurat denne forespørselen",
+          "konsekvensTekst": "Du takker Mira og stanser denne strømmen av kanskje. Dere har ikke dermed sluttet å lage musikk sammen.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "ingen_oppdatering"
@@ -859,8 +859,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Det kom ikke et tilbud",
-      "tekst": "Fristen Mira satte i formiddag er ute. En ny beskjed fra arrangøren sier bare at de trenger flere dager. Mira viser deg svaret og frigjør kvelden som var under vurdering. «Litt surt. Men jeg får gjort den andre tingen.» Muligheten forsvant uten at noen konsert ble avlyst.",
+      "tittel": "Da fristen gikk, kom bare mer venting",
+      "tekst": "Arrangøren ber om flere dager, selv om fristen Mira satte, er passert. Mira frigjør kvelden i kalenderen. «Jeg hadde faktisk gledet meg», skriver hun. Det er lett å svare at det aldri var en spillejobb, men hun vet jo det. Hun trenger ikke en ny forklaring på forskjellen mellom et håp og en avtale.",
       "conditions": {
         "flagg": {
           "wa_b_c02_spor": "frist"
@@ -869,8 +869,8 @@
       "valg": [
         {
           "id": "snakk_skuffelse",
-          "tekst": "Gi plass til skuffelsen uten å foreslå mer oppfølging.",
-          "konsekvensTekst": "Du sier at det går an å være skuffet selv om det aldri var en avtale. Mira svarer at det hjelper at du skjønner forskjellen.",
+          "tekst": "Gi plass til at Mira er skuffet, uten å foreslå en ny purring",
+          "konsekvensTekst": "Mira sier det hjelper at du forstår følelsen. Ingen konsert ble avlyst, men dere håpet begge på noe som ikke skjedde.",
           "effekter": {
             "flagg": {
               "wa_b_c02_utfall": "skuffelse_delt"
@@ -879,8 +879,8 @@
         },
         {
           "id": "snakk_arbeid",
-          "tekst": "Spør hva Mira vil arbeide med videre.",
-          "konsekvensTekst": "Mira forteller om en låt som har stått stille. Dere snakker om den, uten å sette opp en ny arbeidsøkt eller gjøre tapet til en karrierelære.",
+          "tekst": "Spør om låten hun nevnte før arrangøren tok all oppmerksomheten",
+          "konsekvensTekst": "Mira forteller om melodien som står fast. Dere snakker om den uten å gjøre en ny arbeidsøkt til en avtale.",
           "effekter": {
             "flagg": {
               "wa_b_c02_utfall": "samtale_om_arbeid"
@@ -899,8 +899,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Skuffelsen uten en avlyst konsert",
-      "tekst": "Du har sagt til Mira at det er lov å være skuffet over en mulighet som aldri fikk dato. Mira sender en ny lydmelding: «Jeg tror jeg ventet for mye på den arrangøren. Men jeg vil fortsatt spille, bare ikke love bort hver kveld.» Du har ikke fått et oppdrag gjennom samtalen.",
+      "tittel": "Det hun savnet var ikke bare scenen",
+      "tekst": "Mira sender en lydmelding: «Jeg ventet visst mer på den jobben enn jeg skjønte.» Hun ler litt, så blir hun alvorlig. «Jeg vil fortsatt spille. Men jeg vil ikke sitte klar hver gang noen sier kanskje.» Du kjenner igjen skuffelsen. Det handler ikke bare om å miste en scene, men om timer man aldri fikk tilbake.",
       "conditions": {
         "flagg": {
           "wa_b_c02_utfall": "skuffelse_delt"
@@ -909,8 +909,8 @@
       "valg": [
         {
           "id": "del_egen_erfaring",
-          "tekst": "Fortell om en gang du også holdt av tid for lenge",
-          "konsekvensTekst": "Dere snakker om usikkerhet og arbeidstid. Mira sier det hjelper å dele erfaringen; ingen ny prøve er avtalt.",
+          "tekst": "Fortell om en gang du selv lot et kanskje styre kalenderen",
+          "konsekvensTekst": "Dere deler hver deres litt pinlige erfaring. Det gjør det lettere å snakke sammen, men dere avtaler ingen ny prøve.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "erfaring_delt"
@@ -919,8 +919,8 @@
         },
         {
           "id": "behold_grensen",
-          "tekst": "Si at du støtter grensen mot ubekreftede avtaler",
-          "konsekvensTekst": "Mira svarer at hun vil vente på konkrete vilkår neste gang. Du har støttet en grense, ikke inngått en musikkavtale.",
+          "tekst": "Si at Mira har rett til å kreve ordentlige vilkår neste gang",
+          "konsekvensTekst": "Du støtter grensen hennes. Mira vil vente på et faktisk tilbud før hun lover noe; du har ikke bundet dere til en jobb.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "grense_bekreftet"
@@ -939,8 +939,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Musikken etter henvendelsen",
-      "tekst": "Etter at dere snakket om arbeidet videre, sender Mira åtte takter fra en låt hun har stått fast med. «Det er ikke et bestillingsoppdrag», skriver hun. «Vil du si noe om overgangen?» Du får en konkret forespørsel om tilbakemelding, ikke om gratis produksjon.",
+      "tittel": "Åtte takter som fortsatt er hennes",
+      "tekst": "Mira sender åtte takter fra en låt. Den stopper brått akkurat der melodien burde falle til ro. «Vil du bare si hva du hører i overgangen?» spør hun. Du spiller den to ganger og får fem ideer. Men hun ba om ett råd, ikke en ny medprodusent eller en kveld i øvingsrommet.",
       "conditions": {
         "flagg": {
           "wa_b_c02_utfall": "samtale_om_arbeid"
@@ -949,8 +949,8 @@
       "valg": [
         {
           "id": "ett_innspill",
-          "tekst": "Gi ett avgrenset forslag til overgang og la henne eie låten",
-          "konsekvensTekst": "Du svarer med ett forslag. Mira takker og sier hun vil prøve det selv. Det er ikke en felles ferdiginnspilling.",
+          "tekst": "Gi ett konkret råd om overgangen og la Mira velge selv",
+          "konsekvensTekst": "Du foreslår å holde en tone litt lenger. Mira takker og sier hun vil prøve på egen hånd. Det er fortsatt hennes låt.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "ett_rad"
@@ -959,8 +959,8 @@
         },
         {
           "id": "be_om_tid",
-          "tekst": "Si at du vil lytte grundigere en annen dag, uten å love tidspunkt",
-          "konsekvensTekst": "Mira sier hun sender ingen påminnelse før du tar kontakt. Tilbakemeldingen er ikke gitt.",
+          "tekst": "Si at du trenger mer tid før du kan lytte ordentlig",
+          "konsekvensTekst": "Du er ærlig om at du ikke rekker det nå. Mira sier hun ikke vil purre; ingen lyttefrist blir avtalt.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "lytting_utsatt"
