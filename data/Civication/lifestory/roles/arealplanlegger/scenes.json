@@ -1664,13 +1664,13 @@
       "stedId": "plankontor",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Kollegaen har ikke svart ennå",
-      "tekst": "Kollegaens stol står tom; hun er opptatt i møter hele dagen. Eirik står med jakka over armen og spør om han kan sende skoleveisnotatet før lunsj. Du ba om en faglig gjennomlesing nettopp fordi observasjonen er så kort. På skjermen lyser sendeknappen.",
+      "tittel": "Eirik står med jakka på",
+      "tekst": "Eirik lener seg inn gjennom døra med jakka over armen. «Kan jeg få notatet før lunsj?» spør han. Kollegaen du ba om faglig gjennomlesning, sitter fortsatt i møter. På skjermen ligger tellingen fra 07.45 til 08.00: sju passeringer, tre med skolesekk. Du vet hva dere så. Du vet også hvor mye dere ikke så.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Si at notatet kan merkes som ukontrollert, men ikke som faglig gjennomgått",
-          "konsekvensTekst": "Du skriver tydelig at gjennomlesingen fortsatt mangler. Du har ikke stoppet hele saken eller gitt den en godkjenning den ikke har fått.",
+          "tekst": "La notatet stå som ukontrollert dersom det må gå videre nå",
+          "konsekvensTekst": "Du merker tydelig at faglig gjennomlesning ikke er utført. Du har ikke gitt fra deg den usikkerheten bare fordi Eirik har dårlig tid.",
           "effekter": {
             "flagg": {
               "wa_d_c06_status": "kontroll_ikke_ferdig"
@@ -1682,8 +1682,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Foreslå en kort avklaring av hvem som kan lese det før utsending",
-          "konsekvensTekst": "Du spør om Eirik kan samle dem som må avgjøre dette. Ingen har bekreftet tid, og notatet er fortsatt ikke kontrollert.",
+          "tekst": "Be Eirik avklare hvem som skal lese notatet før det sendes",
+          "konsekvensTekst": "Du foreslår en kort avklaring av ansvar. Ingen møtetid er bekreftet, og notatet har fortsatt ikke bestått noen ny fagkontroll.",
           "effekter": {
             "flagg": {
               "wa_d_c06_status": "mote_foreslaatt"
@@ -1756,13 +1756,13 @@
       "stedId": "plankontor",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Hvem kan bestemme at det får vente?",
-      "tekst": "Eirik har fått forespørselen din om mer tid, men svaret drøyer. En kollega spør om du tror saken blir utsatt. Du vil gjerne si ja, fordi det manglende kvarteret stadig plager deg. Men beslutningen er ikke din, og det hjelper ingen om du gir inntrykk av at den allerede er tatt.",
+      "tittel": "Svaret som ikke har kommet",
+      "tekst": "En kollega spør om skoleveissaken blir utsatt. Du kjenner et øyeblikk av håp; mer tid ville gjort det mulig å undersøke morgenen bedre. Men Eirik har ennå ikke svart på forespørselen. Du står ved kartet med Ragnhilds snarvei markert og vil ikke gjøre ditt eget ønske til et løfte på ledelsens vegne.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Forklar den faglige risikoen og la Eirik ta beslutningen",
-          "konsekvensTekst": "Du sender en avgrenset vurdering. Møtedato og eventuell utsettelse er fortsatt uavklart.",
+          "tekst": "Forklar hvorfor mer kartlegging trengs, og send vurderingen videre",
+          "konsekvensTekst": "Du beskriver den faglige usikkerheten uten å love at saken blir utsatt. Eirik må fortsatt ta stilling til prioriteringen.",
           "effekter": {
             "flagg": {
               "wa_d_c06_status": "risiko_oversendt"
@@ -1775,8 +1775,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Be om at Eiriks avgjørelse og begrunnelsen blir skrevet ned",
-          "konsekvensTekst": "Du ber om å få vite hva som faktisk blir bestemt. Du har ikke truffet avgjørelsen selv.",
+          "tekst": "Be om at en eventuell avgjørelse begrunnes skriftlig",
+          "konsekvensTekst": "Du spør hva beslutningen bygger på. Du har ikke fått noe vedtak, men gjør det tydelig hva en beslutning bør kunne svare på.",
           "effekter": {
             "flagg": {
               "wa_d_c06_status": "beslutning_etterspurt"
