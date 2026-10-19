@@ -6107,8 +6107,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En halvtime ved benken",
-      "tekst": "Jonas svarer kort på gårsdagens avlysning: «Jeg hadde allerede gått ut. Kunne du sagt fra før?» Han spør om tiden sin, ikke om regningen din. Du kan anerkjenne ventingen uten å love at du alltid vil orke å møtes.",
+      "tittel": "Jonas ventet ute i kulda",
+      "tekst": "«Kunne du sagt fra tidligere?» skriver Jonas dagen etter at du avlyste turen. Han var allerede på vei da du ringte. Du var virkelig utslitt, men han kastet også bort tid på å vente. Du stirrer på svaret og merker at begge ting kan være sanne uten at dere er uvenner.",
       "conditions": {
         "flagg": {
           "wa_c01_tur_avlyst": true
@@ -6117,8 +6117,8 @@
       "valg": [
         {
           "id": "ta_ansvar",
-          "tekst": "Beklag den sene beskjeden og foreslå å spørre samme dag neste gang.",
-          "konsekvensTekst": "Du beklager ventingen. Jonas svarer at en avtale samme dag kan passe bedre, men at han ikke alltid vil være ledig. Ingen ny tur er avtalt.",
+          "tekst": "Beklag ventingen, og foreslå å avtale turer samme dag senere",
+          "konsekvensTekst": "Du beklager at han gikk forgjeves. Jonas sier at en avtale samme dag kan passe, men at han ikke alltid vil være ledig. Ingen ny tur er avtalt.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "kort_varsel"
@@ -6127,8 +6127,8 @@
         },
         {
           "id": "be_om_pause",
-          "tekst": "Beklag ventingen og be om en pause fra avtaler.",
-          "konsekvensTekst": "Du beklager at han gikk forgjeves og sier at du trenger noen dager uten nye planer. Jonas skriver «greit». Skuffelsen er ikke dermed borte.",
+          "tekst": "Beklag og si at du trenger en pause fra planer",
+          "konsekvensTekst": "Du sier at han hadde grunn til å bli skuffet, men at du trenger noen dager uten avtaler. Jonas svarer kort at han forstår. Du har sagt sannheten uten å love mer enn du orker.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "pause"
@@ -6147,8 +6147,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et forslag som fikk et nei",
-      "tekst": "Bildet av kafeen fra Jonas ligger fortsatt i samtalen. Du foreslo en gratis tur, men ombestemte deg før dere gjorde en avtale. Han svarte kort og lot det ligge. Nå ser du en hund med altfor stor pinne på vei gjennom parken og tenker at Jonas ville ha ledd av den.",
+      "tittel": "Hunden med den altfor store pinnen",
+      "tekst": "En hund kommer gjennom parken med en pinne som er lengre enn kroppen. Den nekter å slippe taket. Jonas ville ha ledd høyt. Du foreslo en tur med ham, men trakk deg før dere avtalte noe. Nå savner du å fortelle ham akkurat slike små ting, mer enn du savner en kalenderavtale.",
       "conditions": {
         "flagg": {
           "wa_c01_tur_avtalt": false
@@ -6157,8 +6157,8 @@
       "valg": [
         {
           "id": "aapne",
-          "tekst": "Send Jonas en liten hilsen om noe som fikk deg til å le",
-          "konsekvensTekst": "Du skriver om hunden. Meldingen er sendt, men han har ennå ikke svart. Du har ikke bedt ham holde av en kveld.",
+          "tekst": "Send Jonas en melding om hunden",
+          "konsekvensTekst": "Du skriver om den håpløse pinnen og smiler av din egen beskjed. Han har ikke svart, men du har delt noe uten å love et møte.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "hilsen"
@@ -6167,8 +6167,8 @@
         },
         {
           "id": "la_hvile",
-          "tekst": "La telefonen ligge og nyt kvelden alene",
-          "konsekvensTekst": "Du setter deg på benken og ser hunden forsvinne rundt hjørnet. Ingen ny avtale blir inngått.",
+          "tekst": "Sett deg på benken og la kvelden være din",
+          "konsekvensTekst": "Du ser hunden forsvinne rundt hjørnet. Du velger ro, selv om det stikker litt å ikke dele øyeblikket.",
           "effekter": {
             "flagg": {
               "wa_b_c01_kontakt": "hvile"
@@ -6264,8 +6264,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et svar med begrenset rekkevidde",
-      "tekst": "Et svar fra NAV ligger i portalen: «Vedlegget er registrert. Jeg kan ikke gi deg en dato for avgjørelsen.» Du leser siste setning en gang til. Det var godt å få svar, men vanskelig å legge fra seg saken når du fortsatt må planlegge regningene. På bordet ligger også handlelista og jakka du hadde tatt fram.",
+      "tittel": "Et svar som ikke betaler strømregningen",
+      "tekst": "NAV svarer at vedlegget er registrert, men at de ikke kan gi noen dato for avgjørelsen. Du leser meldingen to ganger. Det er bedre enn stillhet, men strømregningen har ikke flyttet seg av den grunn. Jakka ligger klar ved døra. Du kan fortsette med dagen eller bruke mer av den på å spørre.",
       "conditions": {
         "flagg": {
           "wa_c05_avslutning": "venter_status"
@@ -6274,8 +6274,8 @@
       "valg": [
         {
           "id": "avslutt_dagen",
-          "tekst": "Lagre svaret og gå ut for å gjøre det du hadde planlagt",
-          "konsekvensTekst": "Du tar vare på meldingen og går. Du har fått vite at vedlegget er registrert, ikke når saken blir avgjort.",
+          "tekst": "Lagre svaret og gå ut som planlagt",
+          "konsekvensTekst": "Du tar vare på meldingen og går. Vedlegget er registrert, men det finnes fortsatt ingen avgjørelse eller utbetalingsdato.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "registrert"
@@ -6284,8 +6284,8 @@
         },
         {
           "id": "spor_neste",
-          "tekst": "Spør om det er mer du selv må levere",
-          "konsekvensTekst": "Du sender et kort spørsmål om egne oppgaver. Det har ikke kommet noe nytt svar eller vedtak.",
+          "tekst": "Spør om det er noe mer du selv må levere",
+          "konsekvensTekst": "Du sender ett konkret spørsmål om egne oppgaver. Svaret du har fått, sier fortsatt ikke når saken avgjøres.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "spurt_neste"
@@ -6304,8 +6304,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Mottatt etter fristen",
-      "tekst": "Kvitteringen fra i morges har et tidspunkt som er senere enn dokumentfristen. Du er lettet over at filen kom fram, og sint på deg selv fordi telefonen ikke kom gjennom i tide. Det står ingen vurdering av forsinkelsen i portalen. Du kan fortelle hva som skjedde, men ikke skrive deg fram til en unnskyldning fra systemet.",
+      "tittel": "Kvitteringen kom for sent",
+      "tekst": "Klokkeslettet på kvitteringen er senere enn fristen i NAV-meldingen. Du er lettet over at arbeidstidssiden kom fram, og irritert over at telefonforsøket ikke hjalp. Du vet at forsinkelsen kan bety noe, men portalen sier ingenting om konsekvensene. Det frister å skrive et langt forsvar; kanskje holder det med det som kan dokumenteres.",
       "conditions": {
         "flagg": {
           "wa_c05_avslutning": "sent_mottak"
@@ -6314,8 +6314,8 @@
       "valg": [
         {
           "id": "forklar",
-          "tekst": "Send en kort forklaring med tidspunktene du kan dokumentere",
-          "konsekvensTekst": "Du sender datoene for telefonforsøket og innsendingen. Det er din forklaring, ikke en godkjenning av forsinkelsen.",
+          "tekst": "Send tidspunktene for telefonforsøk og innsending",
+          "konsekvensTekst": "Du forklarer kort hva som skjedde. Meldingen er sendt, men NAV har ikke godtatt eller avvist forklaringen.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "forklaring_sendt"
@@ -6324,8 +6324,8 @@
         },
         {
           "id": "behold_bevis",
-          "tekst": "Lagre kvitteringen og bruk resten av dagen på noe annet",
-          "konsekvensTekst": "Du legger kvitteringen sammen med de andre papirene. Den viser at filen kom inn, men ikke hvordan NAV vil vurdere tiden.",
+          "tekst": "Legg kvitteringen i mappa, og bruk resten av dagen på noe annet",
+          "konsekvensTekst": "Du tar vare på beviset for mottak, uten å anta hva forsinkelsen betyr for avgjørelsen.",
           "effekter": {
             "flagg": {
               "wa_b_c05_status": "sen_kvittering_lagret"
@@ -6384,8 +6384,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Et besøk uten jobbråd",
-      "tekst": "Jonas svarer på ønsket ditt om selskap: «Vi kan ta en kopp te hos meg en dag. Du bestemmer selv om vi snakker om jobb.» Han foreslår ingen dato. Invitasjonen er vennlig, men et nytt besøk krever fortsatt at begge faktisk kan.",
+      "tittel": "Et tilbud om te, og alt det ikke sier",
+      "tekst": "Jonas skriver: «Du kan komme innom for en kopp te en dag. Vi trenger ikke snakke om jobb.» Du leser det mens du rydder middagstallerkenen. Etter mange spørsmål som føltes som en kontroll, er det vanskelig å ta imot omtanke uten å grue seg. Han foreslår ingen dato. Nå må du selv si hva slags kontakt du ønsker.",
       "conditions": {
         "flagg": {
           "wa_b_c01_kontakt": "selskap"
@@ -6394,8 +6394,8 @@
       "valg": [
         {
           "id": "avtal_grense",
-          "tekst": "Si at du gjerne vil møtes, men vil avtale dag senere",
-          "konsekvensTekst": "Jonas svarer at han skal spørre om en dato neste uke. Du har uttrykt ønske om kontakt, ikke takket ja til et bestemt besøk.",
+          "tekst": "Si at te høres hyggelig ut, og at dere kan finne en dag senere",
+          "konsekvensTekst": "Du takker ja til tanken, ikke til en bestemt kveld. Jonas sier han kan foreslå en dag neste uke. Det finnes fortsatt ingen avtale.",
           "effekter": {
             "flagg": {
               "wa_c_c01_etterspill": "dato_senere"
@@ -6404,8 +6404,8 @@
         },
         {
           "id": "behold_telefon",
-          "tekst": "Foreslå å snakke på telefon først",
-          "konsekvensTekst": "Jonas sier det passer å ringes en kveld. Ingen samtale er gjennomført og det er ikke avtalt klokkeslett.",
+          "tekst": "Foreslå å ringes en kort stund før dere avtaler besøk",
+          "konsekvensTekst": "Du skriver at en telefon kanskje er lettere. Jonas sier det kan passe en kveld, men ingen har ringt eller avtalt klokkeslett.",
           "effekter": {
             "flagg": {
               "wa_c_c01_etterspill": "telefon_foreslaatt"
@@ -6424,8 +6424,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Spørsmålet som lignet en vurdering",
-      "tekst": "Etter at du fortalte Jonas hvordan spørsmål om jobb kjennes, skriver han: «Jeg spurte fordi jeg bryr meg, men jeg skjønner at det ble feil.» Han ber deg si fra neste gang. Du kan forklare hva du trenger uten å måtte legge frem regnskap eller jobbsøknader.",
+      "tittel": "«Jeg visste ikke at det kjentes sånn»",
+      "tekst": "Jonas skriver at han stilte spørsmål om jobb fordi han bryr seg. «Jeg visste ikke at du hørte det som en vurdering.» Du blir glad for at han prøver, men vil heller ikke måtte lære ham en hel regelbok om vennskap. Kanskje holder det å fortelle hva du faktisk trenger når dere er sammen.",
       "conditions": {
         "flagg": {
           "wa_b_c01_kontakt": "fortalt"
@@ -6434,8 +6434,8 @@
       "valg": [
         {
           "id": "sett_ord",
-          "tekst": "Fortell at du heller vil få spørsmål om hvordan dagen var",
-          "konsekvensTekst": "Jonas sier han skal spørre om dagen din, ikke antall søknader. Dere har avklart en grense, ikke løst arbeidsledigheten.",
+          "tekst": "Si at du heller vil bli spurt om dagen enn om antall søknader",
+          "konsekvensTekst": "Jonas sier han skal prøve å spørre annerledes. Dere har forstått hverandre bedre uten at jobb- eller pengeproblemene er løst.",
           "effekter": {
             "flagg": {
               "wa_c_c01_etterspill": "grense_forklart"
@@ -6444,8 +6444,8 @@
         },
         {
           "id": "ta_tiden",
-          "tekst": "Takk for at han lyttet, men be om litt tid uten spørsmål",
-          "konsekvensTekst": "Jonas svarer at han respekterer pausen. Det er fortsatt rom for kontakt senere, uten en avtale nå.",
+          "tekst": "Takk for at han lytter, men be om noen rolige dager",
+          "konsekvensTekst": "Du sier at det betyr noe å bli hørt, men at du trenger en pause. Jonas respekterer den uten å gjøre pausen til et brudd.",
           "effekter": {
             "flagg": {
               "wa_c_c01_etterspill": "pause_respektert"
@@ -6464,8 +6464,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Kvitteringen er ikke et svar",
-      "tekst": "Du har samlet dokumentene og lagt kvitteringen på riktig sak. På oversikten står fremdeles «under behandling», uten dato for avgjørelse. En venn spør om alt er i orden. Du kjenner fristelsen til å svare ja, men vet bare at dokumentet er registrert.",
+      "tittel": "«Da er det vel ordnet?»",
+      "tekst": "En venn ser NAV-kvitteringen ligge på kjøkkenbordet. «Da er det vel ordnet?» spør hun. Du vil så gjerne si ja. På portalen står det fortsatt «under behandling». Du merker at vennen prøver å gi deg håp, mens du forsøker å planlegge regningene uten penger som ennå ikke har kommet.",
       "conditions": {
         "flagg": {
           "wa_b_c05_status": "ordnet"
@@ -6474,8 +6474,8 @@
       "valg": [
         {
           "id": "skill_mottak",
-          "tekst": "Fortell at vedlegget er mottatt, men saken ikke avgjort",
-          "konsekvensTekst": "Du skiller mottak fra beslutning. Vennen vet nå hva du faktisk har fått beskjed om, og du beholder kvitteringen.",
+          "tekst": "Si at dokumentet er mottatt, men at du fortsatt venter på avgjørelsen",
+          "konsekvensTekst": "Du forteller hva du vet og lar være å love at saken ordner seg. Vennen forstår litt bedre hvorfor du er sliten.",
           "effekter": {
             "flagg": {
               "wa_c_c05_saksstatus": "mottak_ikke_vedtak"
@@ -6484,8 +6484,8 @@
         },
         {
           "id": "sjekk_riktig_tid",
-          "tekst": "Legg inn et eget notat om å sjekke status senere",
-          "konsekvensTekst": "Du skriver et notat til deg selv om å kontrollere oversikten senere. Ingen ny kontakt med NAV eller beslutning er registrert.",
+          "tekst": "Lag en påminnelse til deg selv om å se etter faktisk ny status",
+          "konsekvensTekst": "Du legger inn et tidspunkt for egen kontroll. Ingen ny melding eller beslutning blir skapt av påminnelsen.",
           "effekter": {
             "flagg": {
               "wa_c_c05_saksstatus": "egen_paminnelse"
@@ -6504,8 +6504,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "En fil kan være mottatt og fortsatt uleselig",
-      "tekst": "Etter at du spurte om vedlegget er lesbart, kommer et kort svar i portalen: «Dokumentet er registrert. Saksbehandler har ikke kontrollert innholdet.» Filnavnet er synlig, men ingen har bekreftet at den aktuelle arbeidstidssiden kan brukes.",
+      "tittel": "Filnavnet som ikke forteller nok",
+      "tekst": "NAV svarer at vedlegget er registrert, men at saksbehandler ikke har kontrollert innholdet. Du åpner arbeidstidsavtalen igjen. Skriften er liten, og du blir usikker på om siden er lesbar på deres skjerm. Filnavnet står i portalen; det sier likevel ingenting om noen faktisk kan bruke dokumentet.",
       "conditions": {
         "flagg": {
           "wa_b_c05_status": "spurt_lesbarhet"
@@ -6515,7 +6515,7 @@
         {
           "id": "be_om_presist_svar",
           "tekst": "Be om beskjed dersom den konkrete siden ikke kan leses",
-          "konsekvensTekst": "Du sender et avgrenset spørsmål knyttet til siden. Det er ikke en ny innsending, og du har ikke fått svar på lesbarheten.",
+          "konsekvensTekst": "Du sender et kort spørsmål om arbeidstidssiden. Du har bedt om avklaring, ikke fått en bekreftet kvalitetskontroll.",
           "effekter": {
             "flagg": {
               "wa_c_c05_saksstatus": "lesbarhet_etterspurt"
@@ -6524,8 +6524,8 @@
         },
         {
           "id": "lagre_begrensning",
-          "tekst": "Lagre portalmeldingen uten å tolke den som kontroll",
-          "konsekvensTekst": "Du arkiverer svaret som en mottaksopplysning. Om dokumentet er godt nok, er fortsatt uavklart.",
+          "tekst": "Ta vare på svaret og la lesbarheten stå som uavklart",
+          "konsekvensTekst": "Du lagrer meldingen uten å tolke registrert mottak som faglig eller teknisk godkjenning.",
           "effekter": {
             "flagg": {
               "wa_c_c05_saksstatus": "kontroll_uavklart"
