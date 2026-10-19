@@ -99,7 +99,16 @@ jobs:
           HG_VISUAL_PLACES: vippetangen_fisketorg
           HG_VISUAL_OUT: .tmp/oslo-fiskehallen-native-review
           HG_VISUAL_CAPTURES: .tmp/oslo-fiskehallen-captures
-        run: node tests/oslo-v1-actual-runtime-visual-browser-audit.mjs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          source=Path("tests/oslo-v1-actual-runtime-visual-browser-audit.mjs").read_text()
+          key="const allIds=["
+          assert source.count(key)==1
+          source=source.replace(key,'const allIds=["vippetangen_fisketorg",',1)
+          Path(".tmp/oslo-fiskehallen-native-browser.mjs").write_text(source)
+          PY
+          node .tmp/oslo-fiskehallen-native-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
