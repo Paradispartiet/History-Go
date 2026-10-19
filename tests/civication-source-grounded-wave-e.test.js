@@ -80,7 +80,7 @@ test("all 16 Wave D outcomes reach exactly one later scene, never before day 9",
 test("cross-job history stays unique and a follow-up needs 3 further life-days",()=>{
   const unemployed=pack("arbeidsledig"),cleaner=pack("renholder"),planner=pack("arealplanlegger");
   let state=State.createInitialState(unemployed);
-  state.dag=7;restorePast(state,"c01","hilsen_uten_avtale");
+  state.dag=7;state.livsdag=7;restorePast(state,"c01","hilsen_uten_avtale");
   restorePast(state,"c05","kontrollkilde_notert");
   state=State.selectRole(state,cleaner);
   assert.equal(state.livsdag,7);
