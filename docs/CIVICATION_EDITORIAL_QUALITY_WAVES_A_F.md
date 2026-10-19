@@ -28,6 +28,27 @@ Sporbarhet, tidligere valg, dager mellom hendelser, rettigheter og kildegrenser 
 7. **Naturlig språk:** Les scenen og begge valgene høyt. Kutt forklaringer på registerstatus når innsatsen kan vises gjennom situasjonen.
 8. **Konsekvens:** Kontroller både de umiddelbare målerutslagene, den faktisk valgte handlingen og om senere oppfølging bygger på denne – uten å late som en etterfølgende scene er en bekreftelse fra tredjepart.
 
+## Andre redaksjonelle pass – kontinuitet gjennom åtte forløp
+
+Denne runden gjennomgikk Wave A–F som **betingede fortellingskjeder**, ikke bare løse scener. Følgende konkrete rettelser ble gjort på PR-grenen:
+
+| Historie | Kontroll av utvikling og rettelse |
+| --- | --- |
+| C01 – Jonas og økonomien | Tidlige invitasjoner bruker naturlige tidsuttrykk. Å bevare grenser og å kontakte Jonas gir forskjellige sosiale eller psykiske utslag som kan følge spilleren inn i Wave F. |
+| C02 – Mira og musikken | Konsert uten dato behandles ikke som oppdrag. Eldre prøvetekster fikk naturlige tidsuttrykk og musikervalg fikk virkninger på overskudd eller integritet. |
+| C03 – Lea og prototypen | Et visuelt overbevisende utkast må ikke bli til dokumentert effekt. Personvern, testing og fritid gir forskjellige konsekvenser. |
+| C05 – NAV og dokumentasjon | Telefonsamtalen sender ikke automatisk arbeidsdokumenter. Fristen omtales naturlig; papirarbeid og venting påvirker energi eller overskudd. |
+| C06 – Skoleveien | Fire nesten identiske kartleggingsscener er differensiert. Plansjefen Eirik og skolekontakten Ragnhild er navngitt. Det finnes bare en dokumentert 15-minutters observasjon, fra 07.45 til 08.00; senere scene er korrigert fra «tre morgener». |
+| C07 – Frivillighet og Arvid | Personnavnet står i rolledata uten å endre lagret person-ID; framdrift skiller fellesskap fra arbeid på andres vilkår. Varselro og avstand gir utslag på overskudd. |
+| C17 – Kari, Amina og renholdet | Fire tidligere, nesten identiske oppfølgingsscener har nå hver sin reelle arbeidssituasjon. Driftens faktiske besøk er skilt fra en utbedring. Arbeidspress, sikkerhet og planlegging påvirker spillverdier. |
+| C23 – Lea og feilinformasjonen | En skisse kan skape en misforståelse uten å være en avtale. Mottak, forståelse og forsoning er forskjellige hendelser, og valg om ansvar og videre oppfølging får beskjedne virkninger. |
+
+Alle **68 siste forgjengervalg** i Wave E (C01/C05) eller Wave D (seks andre historieløp) har nå en begrunnet umiddelbar måler- eller relasjonsvirkning. Wave F beholder de 38 tidligere tilleggsvirkningene fordelt på 35 scener. Effektene legges til eksisterende flagg; identifikatorene endres ikke.
+
+Målrettede Node-tester er utvidet for å simulere **136 Wave F-alternativer** og **68 forgjengervalg**, sjekke at flagg, arkiv, verdier og relasjoner består når livsdager går, og kontrollere den registrerte skoleveisobservasjonen. Dette er en maskinell simulering av grenpunktene i fortellingsmotoren, **ikke** det samme som en full menneskelig gjennomspilling av alle scener i den kjørende appen. Testene må først bestå på siste commit før dette kan regnes som teknisk verifisert.
+
+Fortsatt redaksjonelt arbeid: Sjekk komplette tidlige reiser i faktisk brukergrensesnitt, tonefall og om flere episoder over uker føles troverdige, ikke bare om korrekt gren åpnes. Unngå å skape flere oppfølgingskapitler bare for å dokumentere at noe fortsatt er uavklart.
+
 ## Gjenstående før redaksjonell godkjenning
 
 Denne revisjonen er **ikke** en full litterær godkjenning av alle 217 scener i A–F. Flere tidligere scener, spesielt i C01–C07, trenger fortsatt sammenhengende gjennomspilling og selektiv omskriving. Forutgående scenevalg og deres konsekvenstekster må leses samlet mot nye Wave F-scener for å fange overgangsfeil. De faktiske meter-effektene må verifiseres i spillmotoren, og hele løpene bør spilles av mennesker på norsk. Ingen av de automatiske testene kan bevise naturlig dialog eller god dramatikk.
