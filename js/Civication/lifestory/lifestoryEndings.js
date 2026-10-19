@@ -64,10 +64,9 @@
    * @returns {boolean}
    */
   function isFinalDay(state, content) {
-    const Runner = /** @type {any} */ (globalScope).CivicationLifestoryRunner
-      || (typeof require === "function" ? require("./lifestoryRunner.js") : null);
-    return !content.scenes.some((s) => !s.livsdagFra && s.dag > state.dag)
-      && !Runner?.hasPendingPrivateScenes?.(state, content);
+    // Local week/chapter endings stay authored and deterministic. A later
+    // personal episode is an optional continuation after this local ending.
+    return !content.scenes.some((s) => !s.livsdagFra && s.dag > state.dag);
   }
 
   /**
