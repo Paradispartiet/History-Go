@@ -5860,8 +5860,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et ord endrer ikke datagrunnlaget",
-      "tekst": "Du ba om å fjerne «representativt». Observasjonene dekker fortsatt bare en begrenset periode, selv om de kan være nyttige.",
+      "tittel": "Ordet i overskriften",
+      "tekst": "Du blar tilbake til utkastet om skoleveien. Ett ord skurrer fremdeles: «representativt». Det er nettopp det dere ikke har grunnlag for å si. Du ser for deg foreldrene som har beskrevet bilene ved snarveien, og lederen som vil ha notatet ferdig.",
       "conditions": {
         "flagg": {
           "wa_d_c06_status": "representativt_avvist"
@@ -5870,18 +5870,22 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold formuleringen om begrenset utvalg",
-          "konsekvensTekst": "Du markerer hva analysen ikke kan konkludere om.",
+          "tekst": "Skriv et kort alternativ som sier hva dere faktisk målte",
+          "konsekvensTekst": "Du gir leseren en forståelig setning som kan stå i notatet.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "utvalg_begrenset"
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Be om separat oversikt over manglende data",
-          "konsekvensTekst": "Du etterspør arbeid som ennå ikke er dokumentert gjennomført.",
+          "tekst": "Be om mer kartlegging før noen bruker ordet igjen",
+          "konsekvensTekst": "Du velger å ta den faglige diskusjonen, selv om det kan forsinke arbeidet.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "dataoversikt_etterspurt"
@@ -5903,8 +5907,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Tidsstempelet i sammendraget",
-      "tekst": "Du ville gjøre observasjonsperioden synlig. Datoer og tidsrom hjelper leseren, men gjør ikke et lite utvalg større.",
+      "tittel": "Tre morgener ved overgangen",
+      "tekst": "Observasjonene fra skoleveien dekker bare noen få morgener. Likevel har du hørt tallene omtalt som om de beskriver hele året. Du tenker på hvor forskjellig gaten ser ut i regn og på en solskinnsdag. Hva er det egentlig rimelig å hevde?",
       "conditions": {
         "flagg": {
           "wa_d_c06_status": "tidsrom_synlig"
@@ -5913,8 +5917,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Legg vekt på at tidsrommet er kort",
-          "konsekvensTekst": "Du styrker forbeholdet uten å endre tallene.",
+          "tekst": "Skriv tidsrommet inn i første setning",
+          "konsekvensTekst": "Du gjør den viktigste begrensningen lett å få øye på.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "kort_periode_tydelig"
@@ -5923,8 +5927,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Be om kontroll av påstanden før gjenbruk",
-          "konsekvensTekst": "Du etterspør en faglig vurdering, ikke en vedtatt konklusjon.",
+          "tekst": "Be om at noen kontrollerer hvordan tallene brukes",
+          "konsekvensTekst": "Du utfordrer en mulig overtolkning før den finner veien videre.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "ny_kontroll_foreslaatt"
@@ -5946,8 +5950,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Fagkontrollen står fremdeles åpen",
-      "tekst": "Du skrev at kontrollen var forespurt, ikke utført. Et jobbbytte eller flere livsdager gjør ikke kontrollen fullført.",
+      "tittel": "Notatet i den gamle mappen",
+      "tekst": "Du finner kopien av notatet du ba om fagkontroll på. Du vet fortsatt ikke om noen har gått gjennom det. Selv nå merker du at du blir irritert over at den enkleste kontrollen kan bli den som ingen får tid til.",
       "conditions": {
         "flagg": {
           "wa_d_c06_status": "kontroll_ikke_ferdig"
@@ -5956,8 +5960,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La forbeholdet stå som uavklart i historikken",
-          "konsekvensTekst": "Du lar ikke en forespørsel telle som kvalitetssikring.",
+          "tekst": "Skriv ned de to spørsmålene du selv ville stilt",
+          "konsekvensTekst": "Du konkretiserer faglig tvil uten å late som den er avklart.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "forbehold_uavklart"
@@ -5966,8 +5970,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Noter hvem som må bekrefte vurderingen",
-          "konsekvensTekst": "Du dokumenterer behovet, ikke et svar fra kollegaen.",
+          "tekst": "Send en høflig forespørsel om hvem som følger opp",
+          "konsekvensTekst": "Du tar initiativ til en avklaring, men får ikke et svar gjennom selve forespørselen.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "ansvar_identifisert"
@@ -5989,8 +5993,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et møte er ikke holdt fordi det ble foreslått",
-      "tekst": "Du foreslo et møte for å avklare kapasitet. Ingen gjennomføring er dokumentert, og saken trenger fortsatt faglig presisjon.",
+      "tittel": "Stolene som skulle vært fylt",
+      "tekst": "Du foreslo å samle dem som måtte prioritere kartleggingen. Kalenderen din har bare et ubesvart forslag. Problemet er ikke at dere mangler flere ord; noen må velge om tid skal settes av til å se på skoleveien ordentlig.",
       "conditions": {
         "flagg": {
           "wa_d_c06_status": "mote_foreslaatt"
@@ -5999,8 +6003,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold møtet som ubekreftet",
-          "konsekvensTekst": "Du rapporterer ikke et møte som aldri er bekreftet.",
+          "tekst": "Skriv hva som står på spill hvis saken skyves videre",
+          "konsekvensTekst": "Du gjør konflikten forståelig også for folk uten fagbakgrunn.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "mote_ikke_bekreftet"
@@ -6009,8 +6013,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Oppsummer hva møtet eventuelt må avklare",
-          "konsekvensTekst": "Du lager en agenda, ikke et referat.",
+          "tekst": "Foreslå én kort samtale med et tydelig spørsmål",
+          "konsekvensTekst": "Du forsøker å få en konkret prioritering, men regner ikke møtet som gjennomført.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "agenda_utkast"
@@ -6032,8 +6036,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Forbeholdet i hovedteksten",
-      "tekst": "Du insisterte på at manglende data skulle være synlige. Det er et faglig standpunkt, ikke en ny beslutning om saken.",
+      "tittel": "Setningen alle hopper over",
+      "tekst": "I et sammendrag finner du de manglende målingene gjemt langt nede i teksten. Du ser for deg en travel leser som bare får med seg den første siden. En kollega mente tidligere at forbeholdet var for tungt. Du mener det er selve poenget.",
       "conditions": {
         "flagg": {
           "wa_d_c06_status": "hovedtekst_forbehold"
@@ -6042,18 +6046,22 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Bevar begrunnelsen for reservasjonen",
-          "konsekvensTekst": "Du lagrer ditt eget faglige resonnement.",
+          "tekst": "Skriv forbeholdet inn i innledningen med vanlige ord",
+          "konsekvensTekst": "Du lar usikkerheten bli del av fortellingen om stedet.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "begrunnelse_lagret"
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Be om at eventuelle endringer spores",
-          "konsekvensTekst": "Du etterspør sporbarhet uten å hevde at det er innført.",
+          "tekst": "Be om at endringer i konklusjonen blir synlige",
+          "konsekvensTekst": "Du gjør det vanskeligere å endre faglig mening uten at det merkes.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "endringslogg_etterspurt"
@@ -6075,8 +6083,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Vedlegget må kunne finnes igjen",
-      "tekst": "Du godtok vedlegg bare med en tydelig henvisning. Det kan hjelpe senere lesere, men viser ikke at vedlegget er kontrollert.",
+      "tittel": "Kartet som mangler på første side",
+      "tekst": "Du holder kartvedlegget ved siden av notatet. På kartet går skoleveien et annet sted enn i den gamle skissen. Den forskjellen er enkel å forstå når man ser begge, men i teksten drukner henvisningen mellom fotnoter.",
       "conditions": {
         "flagg": {
           "wa_d_c06_status": "vedlegg_henvisning"
@@ -6085,8 +6093,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Skriv hva henvisningen må inneholde",
-          "konsekvensTekst": "Du tydeliggjør koblingen mellom hovedtekst og kilde.",
+          "tekst": "Foreslå en tydelig henvisning rett ved påstanden",
+          "konsekvensTekst": "Du hjelper leseren å finne kartet der det trengs.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "henvisningskrav"
@@ -6095,8 +6103,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Merk hva som fortsatt ikke er undersøkt",
-          "konsekvensTekst": "Du skiller kildemangel fra layout i dokumentet.",
+          "tekst": "Marker hvilke deler av skoleveien dere ennå ikke kjenner",
+          "konsekvensTekst": "Du viser hva som må undersøkes, ikke bare hva som allerede finnes på papir.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "kildemangel_merket"
@@ -6118,8 +6126,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Faglig risiko og formell beslutning",
-      "tekst": "Du sendte risikoen videre til ledelsen. Det innebærer ikke at du vet hvilken avgjørelse lederen tok.",
+      "tittel": "Et spørsmål som følger deg hjem",
+      "tekst": "Du har sendt den faglige bekymringen videre. På vei hjem tenker du på barna som krysser den trange veien ved parkeringskjelleren. Det er ledelsen som må bestemme veien videre, men du kjenner fortsatt ansvaret for det du faktisk har sett.",
       "conditions": {
         "flagg": {
           "wa_d_c06_status": "risiko_oversendt"
@@ -6128,18 +6136,22 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold dokumentasjon på hva du faktisk varslet",
-          "konsekvensTekst": "Du sikrer ditt eget varsel uten å registrere en beslutning.",
+          "tekst": "Behold en presis kopi av bekymringen du sendte",
+          "konsekvensTekst": "Du kan senere vise hva du gjorde og når.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "varsel_bevart"
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Be om at senere beslutninger knyttes til faktagrunnlaget",
-          "konsekvensTekst": "Du etterspør begrunnelser, men fastslår ingen konklusjon.",
+          "tekst": "Skriv et nytt spørsmål om hvordan risikoen skal vurderes",
+          "konsekvensTekst": "Du forsøker å få faglig risiko behandlet som et reelt valg, ikke en løs kommentar.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "begrunnelse_etterspurt"
@@ -6161,8 +6173,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Du ba om begrunnelsen",
-      "tekst": "Du etterspurte at lederen dokumenterte beslutningen. Uten et lagret svar kan du ikke beskrive vedtaket eller hvem som endelig samtykket.",
+      "tittel": "Siste linje før du lukker saken",
+      "tekst": "Du ba om en begrunnelse for avgjørelsen om skoleveien. Svaret ligger ikke i papirene du har. Du misliker tanken på at en konklusjon kan bli husket som tryggere enn grunnlaget var. Samtidig kan du ikke bestemme på andres vegne.",
       "conditions": {
         "flagg": {
           "wa_d_c06_status": "beslutning_etterspurt"
@@ -6171,8 +6183,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La beslutningsfeltet stå åpent",
-          "konsekvensTekst": "Du unngår å skrive et svar på lederens vegne.",
+          "tekst": "Lag en kort oppsummering av hva du selv sto inne for",
+          "konsekvensTekst": "Du avslutter din del med en tydelig faglig ryggdekning.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "beslutning_aapen"
@@ -6181,8 +6193,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Lag en oversikt over dine egne faglige forbehold",
-          "konsekvensTekst": "Du kan dokumentere eget bidrag selv når utfallet er ukjent.",
+          "tekst": "Be om at en eventuell avgjørelse viser til målingene",
+          "konsekvensTekst": "Du gjør det lettere å stille konkrete spørsmål dersom saken fortsetter.",
           "effekter": {
             "flagg": {
               "wa_f_c06_status": "forbehold_samlet"
@@ -6204,8 +6216,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Invitasjonen er fortsatt sosial",
-      "tekst": "Du forklarte at du ville komme som gjest, ikke frivillig. Det finnes ingen ny bekreftelse om oppgaver eller dato i historikken.",
+      "tittel": "Mellom musikken og oppgavene",
+      "tekst": "Du husker at du sa til miljøkontakten at du gjerne vil høre musikken og treffe folk, ikke bli satt til rigging. På veien hjem passerte du plakater som minnet deg om hvorfor du ville være med i utgangspunktet. Det er fellesskapet som frister, men du kjenner også presset.",
       "conditions": {
         "flagg": {
           "wa_d_c07_status": "gjesterolle_forklart"
@@ -6214,8 +6226,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold sosial kontakt uten å ta en vakt",
-          "konsekvensTekst": "Du melder deg ikke til arbeid gjennom vennlighet.",
+          "tekst": "Spør om det er mulig å møtes bare for å prate",
+          "konsekvensTekst": "Du ber om en sosial mulighet, ikke en vakt.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "bare_gjest"
@@ -6224,8 +6236,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Be om klare rammer før et mulig besøk",
-          "konsekvensTekst": "Du etterspør vilkår uten å love oppmøte.",
+          "tekst": "La invitasjonen ligge og finn på noe med en annen venn",
+          "konsekvensTekst": "Du velger kontakt utenfor miljøet for en stund.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "besoksramme"
@@ -6247,8 +6259,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ingen svarer for arrangøren her",
-      "tekst": "Du ventet på bekreftelse om et besøk uten oppgave. Den er ikke dokumentert, og du kan fortsatt velge å la invitasjonen ligge.",
+      "tittel": "Jakke i gangen, usikkert sted å gå",
+      "tekst": "Du hadde tenkt å besøke miljøet uten oppgaver. Nå står du med jakka i hånden og vet ikke om et slikt besøk er greit. Ingen har svart konkret på det du spurte om. Du er lei av å måtte forhandle for å få være gjest.",
       "conditions": {
         "flagg": {
           "wa_d_c07_status": "bekreftelse_avventes"
@@ -6257,8 +6269,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La invitasjonen forbli uavklart",
-          "konsekvensTekst": "Du fører ingen vakt eller besøk i arkivet.",
+          "tekst": "Legg jakka tilbake og ta en kveld for deg selv",
+          "konsekvensTekst": "Du velger bort uforutsigbarheten i kveld.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "fortsatt_uavklart"
@@ -6267,8 +6279,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Formuler ett konkret spørsmål om forventninger",
-          "konsekvensTekst": "Du lager en oppfølging uten å tillegge noen et svar.",
+          "tekst": "Spør én gang om du kan komme som vanlig gjest",
+          "konsekvensTekst": "Du sier tydelig hva slags besøk du ønsker, uten å anta et ja.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "sporsmal_om_forventning"
@@ -6290,8 +6302,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et oppdrag uten rammer er fortsatt ikke et oppdrag",
-      "tekst": "Du ba om sted, varighet og ansvarlig. Ingen slik plan er lagret, selv om kontakten fortsetter.",
+      "tittel": "«Bare litt hjelp»",
+      "tekst": "Du har tidligere bedt om sted, varighet og ansvar hvis noen vil ha hjelp. Likevel høres «bare litt» lett ut når du gjentar det for deg selv. Du har sagt ja til slike ting før og endt opp med å bli den siste som rydder.",
       "conditions": {
         "flagg": {
           "wa_d_c07_status": "rammer_etterspurt"
@@ -6300,8 +6312,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Si at du ikke kan holde av tid uten de opplysningene",
-          "konsekvensTekst": "Du forbeholder deg retten til å svare når et reelt forslag foreligger.",
+          "tekst": "Si at du ikke holder av tid uten et konkret forslag",
+          "konsekvensTekst": "Du gjør din egen tid til noe andre må ta hensyn til.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "tid_ikke_reservert"
@@ -6310,8 +6322,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Be om et skriftlig, konkret tilbud før du vurderer å bidra",
-          "konsekvensTekst": "Du etterspør et forslag, ikke en ny vakt.",
+          "tekst": "Tilby heller å vise en nykommer rundt som gjest hvis det passer",
+          "konsekvensTekst": "Du ønsker å bidra sosialt, men tar ikke ansvar for driften.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "skriftlig_rammesporsmal"
@@ -6333,8 +6345,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et tilbud med en tydelig utløpsgrense",
-      "tekst": "Du sa at et uavklart tilbud om hjelp kunne falle bort. Det er ikke et løfte om å stille dersom noen senere trenger folk.",
+      "tittel": "Den ledige ettermiddagen",
+      "tekst": "Du har hatt et åpent tilbud om å bidra én gang. Nå har du endelig en fri ettermiddag og merker at du vurderer å holde den av i tilfelle noen spør. Ingen har spurt. Du kunne like gjerne brukt tiden på noe du selv har lyst til.",
       "conditions": {
         "flagg": {
           "wa_d_c07_status": "ubundet_tilbud"
@@ -6343,18 +6355,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La tilbudet utløpe i dine egne notater",
-          "konsekvensTekst": "Du markerer at du ikke står i beredskap.",
+          "tekst": "Bruk ettermiddagen på dine egne planer",
+          "konsekvensTekst": "Du slutter å gå i beredskap.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "tilbud_lagt_bort"
+            },
+            "meters": {
+              "psyke": 2
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Skriv at ny hjelp krever en ny forespørsel",
-          "konsekvensTekst": "Du gjør det mulig å spørre senere uten forventning i mellomtiden.",
+          "tekst": "Skriv at du gjerne vurderer en konkret forespørsel en annen gang",
+          "konsekvensTekst": "Du lar døren stå på gløtt uten å love tid.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "ny_forespoersel_kreves"
@@ -6376,8 +6391,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Tilhørighet uten oppgaveliste",
-      "tekst": "Du takket for bekjentskapet, samtidig som du ikke ville stå på vaktlisten. En sosial relasjon trenger ikke arbeidsplikt.",
+      "tittel": "Når et hei nesten blir en oppgave",
+      "tekst": "Du satte pris på menneskene du møtte, men ville ikke stå på vaktliste. Når du tenker på neste samling, er det samtalene du savner, ikke timeplanen. Det er irriterende å føle at en hyggelig invitasjon alltid må ha en baktanke.",
       "conditions": {
         "flagg": {
           "wa_d_c07_status": "bekjentskap_beholdt"
@@ -6386,8 +6401,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold kontakten på dine egne premisser",
-          "konsekvensTekst": "Du gir ingen ny tillatelse til å føre navnet ditt på oppgaver.",
+          "tekst": "Inviter en av bekjentskapene på kaffe utenfor gruppa",
+          "konsekvensTekst": "Du gir vennskapet en sjanse uten organisasjonens forventninger.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "sosial_grense"
@@ -6396,8 +6411,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Spør om invitasjoner kan merkes som sosiale",
-          "konsekvensTekst": "Du etterspør klarhet uten å anta at rutinen er endret.",
+          "tekst": "Be om at sosiale invitasjoner skilles fra forespørsler om hjelp",
+          "konsekvensTekst": "Du tar den vanskelige praten om hva tilhørighet skal koste.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "sosial_merkeordning"
@@ -6419,8 +6434,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Å be om stillhet er ikke å få den",
-      "tekst": "Du ba om å bli fjernet fra praktiske meldinger. Uten bekreftelse kan du bare si at forespørselen ble sendt.",
+      "tittel": "Telefonen vibrerer under middagen",
+      "tekst": "Du har bedt om å slippe praktiske meldinger fra gruppa. Likevel er det mulig å kjenne uro hver gang telefonen vibrerer, før du engang har sett hvem det er fra. Du vil være fri fra forventninger uten å måtte krangle med noen.",
       "conditions": {
         "flagg": {
           "wa_d_c07_status": "vaktvarsler_stopp_forespurt"
@@ -6429,18 +6444,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Demp varslene på din egen telefon",
-          "konsekvensTekst": "Du tar kontroll over egne varsler uten å endre andres liste.",
+          "tekst": "Demp gruppesamtalen på din egen telefon",
+          "konsekvensTekst": "Du gjør kvelden stillere på en måte du selv styrer.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "varsler_dempet"
+            },
+            "meters": {
+              "psyke": 2
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "La forespørselen stå og unngå ny purring",
-          "konsekvensTekst": "Du venter uten å føre fjerningen som utført.",
+          "tekst": "Send én rolig påminnelse om at du ønsker en pause",
+          "konsekvensTekst": "Du uttrykker behovet ditt igjen uten å legge til nye beskyldninger.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "fjerning_ikke_bekreftet"
@@ -6462,8 +6480,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Grensen er sagt to ganger",
-      "tekst": "Du gjentok ønsket om gruppepause. Det gjør grensen tydelig, men lar ikke fortellingen påstå at alle gruppemedlemmer har lest den.",
+      "tittel": "To ganger er nok",
+      "tekst": "Du har sagt fra enda en gang at du trenger en pause fra gruppa. Det føltes mer dramatisk enn du hadde ønsket. Nå tenker du på folk du faktisk liker der, og lurer på om de vil tro at du tar avstand fra dem også.",
       "conditions": {
         "flagg": {
           "wa_d_c07_status": "gruppepause_gjentatt"
@@ -6472,8 +6490,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Hold pausen og ikke svar på nye invitasjoner",
-          "konsekvensTekst": "Du reserverer ikke tid eller samtykker til oppgaver.",
+          "tekst": "Hold pausen og kontakt en venn direkte i stedet",
+          "konsekvensTekst": "Du tar vare på en relasjon uten å vende tilbake til gruppas plikter.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "gruppepause_holdt"
@@ -6482,8 +6500,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Skriv tydelig at du ikke er tilgjengelig for vakter",
-          "konsekvensTekst": "Du gjentar den praktiske grensen uten å starte en ny konflikt.",
+          "tekst": "Skriv en kort beskjed om at pausen gjelder vakter, ikke folk",
+          "konsekvensTekst": "Du gjør grensen menneskelig, men risikerer flere spørsmål.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "vaktnei_gjentatt"
@@ -6505,8 +6523,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Stillheten er din egen innstilling",
-      "tekst": "Du slo av varsler lokalt. Ingen andre deltakere har dermed lovet å endre kommunikasjonen sin.",
+      "tittel": "Stillheten etter at du dempet chatten",
+      "tekst": "Du slo av varslene og hørte plutselig hvor stille leiligheten var. Du savner enkelte mennesker i gruppa, men ikke følelsen av å måtte svare med én gang. Kanskje finnes det en måte å beholde det ene uten det andre.",
       "conditions": {
         "flagg": {
           "wa_d_c07_status": "lokal_varselro"
@@ -6515,18 +6533,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Fortsett å la varsler være av",
-          "konsekvensTekst": "Du beholder roen uten å kreve endring hos andre.",
+          "tekst": "La chatten være dempet og finn på noe du liker",
+          "konsekvensTekst": "Du beholder den roen du har laget.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "lokal_ro_bevart"
+            },
+            "meters": {
+              "psyke": 2
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Ta en pause fra gruppesamtalen uten forklaring",
-          "konsekvensTekst": "Du setter en privat grense uten å fortelle at noen har utvist deg.",
+          "tekst": "Send en privat hilsen til én du savner",
+          "konsekvensTekst": "Du velger direkte kontakt framfor å gå tilbake til gruppepresset.",
           "effekter": {
             "flagg": {
               "wa_f_c07_status": "egen_pause"
