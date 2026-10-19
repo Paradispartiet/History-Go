@@ -51,9 +51,21 @@ try {
         const flip = page.locator("#pcFrontCardFlip");
         assert.equal(await flip.evaluate(el => el.classList.contains("is-flipped")), false);
         await flip.scrollIntoViewIfNeeded();
-        const bounds = await flip.boundingBox();
-        assert.ok(bounds && bounds.height>0, "PlaceCard has no visible quiz control");
-        await flip.click({position:{x:20,y:Math.max(20,bounds.height-24)}});
+        // A tall portrait can extend below the viewport. Select a visible point
+        // that actually belongs to the card, then retain normal pointer checks.
+        const point = await flip.evaluate(el => {
+          const rect = el.getBoundingClientRect();
+          for (const fraction of [.5,.75,.25,.9,.1]) {
+            const y = Math.max(rect.top,0) + (Math.min(rect.bottom,innerHeight)-Math.max(rect.top,0))*fraction;
+            for (const x of [rect.left+20,rect.left+rect.width/2]) {
+              const hit = document.elementFromPoint(x,y);
+              if (hit && el.contains(hit)) return {x:x-rect.left,y:y-rect.top};
+            }
+          }
+          return null;
+        });
+        assert.ok(point, "PlaceCard has no unobstructed pointer target");
+        await flip.click({position:point});
         assert.equal(await flip.evaluate(el => el.classList.contains("is-flipped")), true);
         await page.locator("#pcQuizExpandBtn").click();
         const expanded = page.locator("#pcQuizExpanded");

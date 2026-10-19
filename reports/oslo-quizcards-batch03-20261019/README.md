@@ -14,7 +14,7 @@ To direkte dateringskonflikter er holdt utenfor de nye kortene: Seildugsfabrikke
 
 ## Runtime
 
-Næringsliv-manifestet manglet både i den canonicale PlaceCard-loaderen og i kompatibilitetskontrolleren. Begge runtimebaner, samt TypeScript-kilden til kompatibilitetskontrolleren, registrerer nå manifestet. Øvrig runtimeatferd er bevart. Nye kort registreres i kategoriens eksisterende manifest; ingen konkurrerende target-ID-er eller bildebaserte kort lages.
+Næringsliv-manifestet manglet både i den canonicale PlaceCard-loaderen og i kompatibilitetskontrolleren. Begge runtimebaner, samt TypeScript-kilden til kompatibilitetskontrolleren, registrerer nå manifestet. De allerede publiserte vernene mot asynkrone stedsskifter er flyttet tilbake til TypeScript-kilden og beholdt i begge bygde utgaver. Øvrig runtimeatferd er bevart. Nye kort registreres i kategoriens eksisterende manifest; ingen konkurrerende target-ID-er eller bildebaserte kort lages.
 
 ## Målrettede kontroller
 
@@ -51,3 +51,5 @@ GitHub Actions: **Oslo twenty QuizCards / Verify twenty native PlaceCard QuizCar
 | Stortorget | by | 10 |
 | Grev Wedels plass | by | 10 |
 | Sofienbergparken | by | 10 |
+
+Den eldre generelle fliptesten er tilpasset den allerede publiserte containerbaserte typografien: den kontrollerer nå de responsive skriftgrensene og at hele tittelen faktisk passer, i tillegg til uendrede krav for stor visning. CSS er uendret. Den nye native testen velger et faktisk synlig treffpunkt på høye kort og bruker fortsatt vanlige pointerkontroller uten `force`.

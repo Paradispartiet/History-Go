@@ -165,9 +165,19 @@ try {
                 answer: parseFloat(getComputedStyle(el.querySelector(".pc-rendered-quiz-answer-key")).fontSize),
                 scrolls: el.querySelector(".pc-quiz-card-content").scrollHeight > el.querySelector(".pc-quiz-card-content").clientHeight
               }));
-              assert.ok(compactFont.heading >= 22 && compactFont.question >= 15 &&
+              // The compact reverse uses container-relative type so long titles
+              // fit; the expanded reader keeps the larger reading sizes below.
+              assert.ok(compactFont.heading >= 12 && compactFont.question >= 12 &&
                 compactFont.option >= 14 && compactFont.answer >= 12,
-                engine + " compact QuizCard has legible larger typography");
+                engine + " compact QuizCard retains its responsive type bounds");
+              const titleFits = await card.evaluate(el => {
+                const title = el.querySelector(".pc-rendered-quiz-head h3");
+                const parent = el.querySelector(".pc-quiz-card-content");
+                const a = title.getBoundingClientRect(), b = parent.getBoundingClientRect();
+                return a.width>0 && a.height>0 && a.left>=b.left-1 && a.right<=b.right+1 &&
+                  a.top>=b.top-1 && a.bottom<=b.bottom-1 && title.scrollWidth<=title.clientWidth+1;
+              });
+              assert.ok(titleFits, engine + " complete compact QuizCard title fits without clipping");
               assert.ok(compactFont.scrolls,
                 engine + " compact QuizCard retains its internal scroll with larger text");
             } else {

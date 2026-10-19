@@ -354,9 +354,10 @@
       (_b = (_a = runtime.HGQuizLoadAccelerator) == null ? void 0 : _a.prewarm) == null ? void 0 : _b.call(_a);
     };
     const applyForPlace = async (place) => {
+      var _a, _b;
       const cardData = await resolveQuizCard(place);
-      const showingId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || "").trim();
-      if (showingId && showingId !== String(place?.id || "").trim()) return false;
+      const showingId = String(((_b = (_a = document2.getElementById("placeCard")) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId) || "").trim();
+      if (showingId && showingId !== String((place == null ? void 0 : place.id) || "").trim()) return false;
       return cardData ? applyQuizCard(cardData) : false;
     };
     return { prewarm, applyForPlace };
@@ -423,7 +424,7 @@
         setButton(false, label);
       };
       button.onclick = () => {
-        var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k;
+        var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
         if ((_a2 = runtime.HGPhysicalVisits) == null ? void 0 : _a2.isVisited(placeId)) {
           (_b2 = runtime.showToast) == null ? void 0 : _b2.call(
             runtime,
@@ -440,11 +441,11 @@
             return;
           }
           if (reason === "no_anchor") {
-            (_c = runtime.showToast) == null ? void 0 : _c.call(runtime, tUI("ui.visit.locationMissing", "Stedet mangler kartkoordinater. Bes\xF8k kan ikke registreres enn\xE5."));
+            (_d = runtime.showToast) == null ? void 0 : _d.call(runtime, tUI("ui.visit.locationMissing", "Stedet mangler kartkoordinater. Bes\xF8k kan ikke registreres enn\xE5."));
             return;
           }
           const left = gate.d != null ? Math.max(0, Math.ceil(gate.d - gate.r)) : null;
-          (_d = runtime.showToast) == null ? void 0 : _d.call(
+          (_e = runtime.showToast) == null ? void 0 : _e.call(
             runtime,
             left != null ? tfUI("ui.unlock.goCloserMeters", "G\xE5 n\xE6rmere: {meters} m", {
               meters: left
@@ -452,22 +453,22 @@
           );
           return;
         }
-        const result = ((_e = runtime.HGPhysicalVisits) == null ? void 0 : _e.record(place)) || {
+        const result = ((_f = runtime.HGPhysicalVisits) == null ? void 0 : _f.record(place)) || {
           ok: false,
           reason: "persistence_unavailable"
         };
         if (!result.ok) {
-          (_f = runtime.showToast) == null ? void 0 : _f.call(
+          (_g = runtime.showToast) == null ? void 0 : _g.call(
             runtime,
             tUI("ui.visit.saveFailed", "Kunne ikke registrere bes\xF8ket")
           );
           return;
         }
-        (_h = runtime.pulseMarker) == null ? void 0 : _h.call(runtime, place.lat, (_g = place.lon) != null ? _g : place.lng);
-        (_k = runtime.showToast) == null ? void 0 : _k.call(
+        (_i = runtime.pulseMarker) == null ? void 0 : _i.call(runtime, place.lat, (_h = place.lon) != null ? _h : place.lng);
+        (_l = runtime.showToast) == null ? void 0 : _l.call(
           runtime,
           `${tUI("ui.visit.registered", "Bes\xF8k registrert")}: ${String(
-            (_j = (_i = place.name) != null ? _i : place.title) != null ? _j : placeId
+            (_k = (_j = place.name) != null ? _j : place.title) != null ? _k : placeId
           )} \u2705`
         );
         update();
@@ -518,19 +519,13 @@
     const originalOpenPlaceCard = runtime.openPlaceCard;
     if (typeof originalOpenPlaceCard !== "function") return;
     runtime.openPlaceCard = async function patchedOpenPlaceCard(place, ...args) {
+      var _a, _b, _c, _d;
       const result = await originalOpenPlaceCard.call(this, place, ...args);
-      // Two rapid place selections may resolve out of order. Never replace
-      // pcVisit with an onclick handler for a place that is no longer active,
-      // and never bind to an unhydrated index row when the full record exists.
       const cardNode = document.getElementById("placeCard");
-      const activeId = String(cardNode?.dataset?.currentPlaceId || "").trim();
-      // In production, the active card ID must match. Standalone QuizCard/visit
-      // consumers have no PlaceCard node, and must keep working independently.
-      if (result === false || (activeId && activeId !== String(place?.id || "").trim())) return result;
-      const resolvedId = activeId || String(place?.id || "").trim();
-      const activePlace = runtime.HGPlaceOpen?.getPlace?.(resolvedId)
-        || (String(runtime.__HG_LAST_FOOTER_PLACE?.id || "").trim() === resolvedId ? runtime.__HG_LAST_FOOTER_PLACE : null)
-        || place;
+      const activeId = String(((_a = cardNode == null ? void 0 : cardNode.dataset) == null ? void 0 : _a.currentPlaceId) || "").trim();
+      if (result === false || activeId && activeId !== String((place == null ? void 0 : place.id) || "").trim()) return result;
+      const resolvedId = activeId || String((place == null ? void 0 : place.id) || "").trim();
+      const activePlace = ((_c = (_b = runtime.HGPlaceOpen) == null ? void 0 : _b.getPlace) == null ? void 0 : _c.call(_b, resolvedId)) || (String(((_d = runtime.__HG_LAST_FOOTER_PLACE) == null ? void 0 : _d.id) || "").trim() === resolvedId ? runtime.__HG_LAST_FOOTER_PLACE : null) || place;
       quizCards.prewarm();
       visitButton.patch(activePlace);
       try {
