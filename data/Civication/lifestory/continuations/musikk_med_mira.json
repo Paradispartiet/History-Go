@@ -213,7 +213,7 @@
         {
           "id": "avlys",
           "tekst": "Send en melding og avlys prøven",
-          "konsekvensTekst": "Du avlyser før prøvedagen. Mira svarer at Mira har sett meldingen. Dere lager ingen ny avtale nå.",
+          "konsekvensTekst": "Du avlyser før prøvedagen. Mira svarer at hun har sett meldingen. Dere lager ingen ny avtale nå.",
           "effekter": {
             "flagg": {
               "mira_ny_prove_avbrutt": true
@@ -578,12 +578,12 @@
       "stedId": "hjem",
       "prioritet": 6,
       "tittel": "Før noe står i programmet",
-      "tekst": "Mira videresender et spørsmål fra en lokal arrangør: «Vi vurderer et kort innslag en kveld neste uke. Er dere interesserte hvis det blir plass?» Verken dato eller honorar står i meldingen. Dere har allerede avtalt en prøve på dag 10 klokka 14. Mira spør hva du selv har kapasitet til.",
+      "tekst": "Du og Mira har allerede avtalt en prøve om to dager. Nå sender hun et skjermbilde fra en arrangør: «Vi vurderer et kort innslag neste uke. Er dere interesserte?» Det står verken dato eller betaling. «Jeg vil gjerne spille», skriver hun, «men jeg vil ikke bruke prøven vår på å vente på dette.» Det vil ikke du heller.",
       "valg": [
         {
           "id": "avklar_vilkar",
-          "tekst": "Tilby å lese gjennom et spørsmål om dato, svarfrist og honorar",
-          "konsekvensTekst": "Du foreslår tre spørsmål. Mira svarer at Mira vil sende dem, og viser deg deretter den sendte meldingen. Du har ikke svart ja til en opptreden.",
+          "tekst": "Foreslå tre spørsmål Mira kan sende om dato, svarfrist og honorar",
+          "konsekvensTekst": "Du foreslår en kort melding. Mira sender spørsmålene og viser deg teksten etterpå. Prøven dere allerede har avtalt, er fortsatt noe annet enn en konsert.",
           "effekter": {
             "flagg": {
               "wa_c02_valg": "sporsmal",
@@ -593,8 +593,8 @@
         },
         {
           "id": "behold_egen_tid",
-          "tekst": "Si at du beholder egne planer til det finnes et konkret tilbud",
-          "konsekvensTekst": "Du sier at du ikke setter av mer tid nå. Mira svarer at Mira håndterer kontakten med arrangøren. Ingen avtale med deg er endret.",
+          "tekst": "Si at dere beholder den avtalte prøven, men ikke holder av flere kvelder",
+          "konsekvensTekst": "Mira svarer at hun tar dialogen med arrangøren selv. Du har ikke sagt ja til en spillejobb, og prøveavtalen deres står som før.",
           "effekter": {
             "flagg": {
               "wa_c02_valg": "egen_tid"
@@ -619,12 +619,12 @@
       "stedId": "hjem",
       "prioritet": 6,
       "tittel": "Før noe står i programmet",
-      "tekst": "Mira videresender et spørsmål fra en lokal arrangør: «Vi vurderer et kort innslag en kveld neste uke. Er dere interesserte hvis det blir plass?» Verken dato eller honorar står i meldingen. Du har valgt å arbeide hjemme. Dere har ikke avtalt en ny prøve. Mira spør hva du selv har kapasitet til.",
+      "tekst": "Du har valgt å bruke tid på musikken hjemme. Mira videresender likevel et spørsmål fra en arrangør som kanskje trenger et kort innslag neste uke. «Hadde vært gøy å gjøre noe sammen», skriver hun. Du lytter til det uferdige opptaket på telefonen. Det frister, men ingen har tilbudt dere en dato eller et honorar.",
       "valg": [
         {
           "id": "avklar_vilkar",
-          "tekst": "Tilby å lese gjennom et spørsmål om dato, svarfrist og honorar",
-          "konsekvensTekst": "Du foreslår tre spørsmål. Mira svarer at Mira vil sende dem, og viser deg deretter den sendte meldingen. Du har ikke svart ja til en opptreden.",
+          "tekst": "Hjelp Mira å formulere spørsmålene arrangøren må svare på",
+          "konsekvensTekst": "Du skriver tre korte spørsmål. Mira sender dem og viser deg meldingen. Dere har fått avklart hva dere spør om, ikke booket en konsert.",
           "effekter": {
             "flagg": {
               "wa_c02_valg": "sporsmal",
@@ -634,8 +634,8 @@
         },
         {
           "id": "behold_egen_tid",
-          "tekst": "Si at du beholder egne planer til det finnes et konkret tilbud",
-          "konsekvensTekst": "Du sier at du ikke setter av mer tid nå. Mira svarer at Mira håndterer kontakten med arrangøren. Ingen avtale med deg er endret.",
+          "tekst": "Si at du vil fortsette hjemme til det finnes et reelt tilbud",
+          "konsekvensTekst": "Mira svarer at hun kan undersøke muligheten uten å binde deg. Det er fortsatt ikke avtalt noen ny prøve.",
           "effekter": {
             "flagg": {
               "wa_c02_valg": "egen_tid"
@@ -660,12 +660,12 @@
       "stedId": "hjem",
       "prioritet": 6,
       "tittel": "Arrangøren vet heller ikke ennå",
-      "tekst": "Mira viser svaret på spørsmålene dere formulerte: «Programmet er ikke klart. Vi kan ikke bekrefte dato eller honorar nå.» Mira vil fortsette kontakten. Du må avgjøre om du vil bruke mer av din tid på muligheten.",
+      "tekst": "Mira viser deg svaret fra arrangøren: «Vi jobber fortsatt med programmet. Har dessverre ikke dato eller honorar ennå.» Hun sukker og legger telefonen på pianokrakken. «Jeg er lei av å planlegge rundt ting som kanskje skjer», sier hun. Du er enig, men ser også at hun gjerne vil stå på den scenen.",
       "valg": [
         {
           "id": "sett_grense",
-          "tekst": "Be om et konkret tilbud før dere snakker om din deltakelse",
-          "konsekvensTekst": "Du ber Mira ta kontakt hvis det kommer et konkret tilbud. Mira bekrefter at du ikke står som deltaker.",
+          "tekst": "Be Mira gi deg beskjed hvis det kommer et konkret tilbud",
+          "konsekvensTekst": "Du skriver at du trenger dato, spilletid og betaling før du kan ta stilling. Mira sier hun ikke setter deg på plakaten nå.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "avventer_tilbud"
@@ -675,7 +675,7 @@
         {
           "id": "trekk_interessen",
           "tekst": "Si at du ikke vil være aktuell denne gangen",
-          "konsekvensTekst": "Du trekker din interesse. Mira sier Mira vil vurdere opplegget på egen hånd. Du bestemmer ikke om Mira skal spille.",
+          "konsekvensTekst": "Du trekker deg fra den mulige jobben. Mira vil vurdere hva hun selv gjør; du bestemmer ikke over hennes tid.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "trukket"
@@ -700,12 +700,12 @@
       "stedId": "hjem",
       "prioritet": 6,
       "tittel": "Din tid er fortsatt din",
-      "tekst": "Mira sender en kort oppdatering: Arrangøren har fortsatt ikke satt dato. Du tilbød ingen hjelp med spørsmålene og har ikke satt av ny tid. Mira spør om hun kan sende et konkret tilbud senere, hvis det kommer et.",
+      "tekst": "Mira skriver igjen: Arrangøren har fortsatt ingen dato. Hun spør om du vil at hun skal sende et konkret tilbud videre dersom noe dukker opp. Kalenderen din er åpen, men du vil ikke fylle den med spørretegn som andre har satt der.",
       "valg": [
         {
           "id": "konkret_tilbud",
-          "tekst": "Si at du kan lese et konkret tilbud senere",
-          "konsekvensTekst": "Du sier ja til å motta informasjon. Det er ikke en aksept av en spillejobb eller et nytt tidspunkt.",
+          "tekst": "Be om ett fullstendig tilbud hvis arrangøren en gang sender det",
+          "konsekvensTekst": "Du sier at du gjerne kan lese vilkårene senere. Det er ingen aksept av en spillejobb, og du har ikke satt av en kveld.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "informasjon"
@@ -714,8 +714,8 @@
         },
         {
           "id": "ingen_ny_kontakt",
-          "tekst": "Be Mira la denne forespørselen ligge for din del",
-          "konsekvensTekst": "Mira svarer at Mira ikke følger opp denne muligheten med deg. Musikken ellers kan dere avtale separat.",
+          "tekst": "Be Mira slippe deg fra flere meldinger om denne forespørselen",
+          "konsekvensTekst": "Mira svarer at hun lar dette ligge for din del. Dere kan fortsatt spille sammen ved en annen anledning.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "trukket"
@@ -821,7 +821,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Arbeidet som ikke venter på en arrangør",
-      "tekst": "Du har trukket deg fra videre involvering i den ubekreftede forespørselen. På telefonen ligger din egen korte musikkskisse. Du kan bruke en halvtime på den nå, eller la også dette få hvile. Ingen av delene er et svar til arrangøren, og dagens eventuelle øvingsavtale står i sin egen samtale.",
+      "tekst": "Du har trukket deg fra den uavklarte spillejobben. På mobilen ligger en liten melodi du spilte inn for deg selv i går. En av tonene låter feil hver gang du hører den. Du har en halvtime før du skal ut; kanskje vil du prøve én ny avslutning, kanskje trenger du å la instrumentet stå.",
       "conditions": {
         "flagg": {
           "wa_c02_oppfolging": "trukket"
@@ -830,8 +830,8 @@
       "valg": [
         {
           "id": "lag_variant",
-          "tekst": "Bruk en halvtime på en annen avslutning i skissen.",
-          "konsekvensTekst": "Du lager en kort variant og lagrer begge avslutningene. Du har et konkret arbeidsresultat, uten publisering, betaling eller respons fra andre.",
+          "tekst": "Prøv én ny avslutning og lagre begge versjonene",
+          "konsekvensTekst": "Du spiller inn en kort variant og beholder den gamle ved siden av. Du har laget noe, uten at noen arrangør eller lytter har bedt om det.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "egen_variant"
@@ -840,8 +840,8 @@
         },
         {
           "id": "fri_formiddag",
-          "tekst": "Ta fri fra musikken denne formiddagen.",
-          "konsekvensTekst": "Du lukker skissen. Du har ikke mistet et bekreftet oppdrag, og du har heller ikke laget en ny versjon i dag.",
+          "tekst": "Ta en formiddag uten musikk og uten dårlig samvittighet",
+          "konsekvensTekst": "Du legger mobilen bort. Den ubekreftede jobben er avsluttet for deg, men du trenger ikke slutte å like musikk.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "fri"
