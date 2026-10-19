@@ -9,6 +9,9 @@ on:
       - .github/workflows/oslo-quizcards-batch03.yml
 permissions:
   contents: read
+concurrency:
+  group: oslo-quizcards-batch03-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   acceptance:
     name: Verify twenty native PlaceCard QuizCards
