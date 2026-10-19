@@ -1,0 +1,36 @@
+name: Sofienbergparken target-only quiz context sync
+on:
+  push:
+    branches: [content/oslo20-sofienbergparken-source-20261019]
+    paths: [.github/workflows/oslo20-sofienberg-context-oneoff-20261019.yml]
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate only derived Sofienbergparken quiz context
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from "node:fs";
+          import { buildQuizProductionContext } from "./scripts/quiz-production-lib.mjs";
+          const out="data/quiz/production_context/by/sofienbergparken.json";
+          const packet=await buildQuizProductionContext({root:process.cwd(),categoryId:"by",targetId:"sofienbergparken"});
+          if(packet.categoryId!=="by"||packet.targetId!=="sofienbergparken")throw Error("Wrong quiz context target");
+          fs.writeFileSync(out,JSON.stringify(packet,null,2)+"\n");
+          console.log("One derived quiz-context file regenerated:",out);
+          JS
+      - name: Save only derived context and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/oslo20-sofienberg-context-oneoff-20261019.yml
+          git add data/quiz/production_context/by/sofienbergparken.json
+          git add -A .github/workflows/oslo20-sofienberg-context-oneoff-20261019.yml
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'build(oslo20): sync Sofienbergparken deterministic quiz context after photo change'
+          git push origin HEAD:refs/heads/content/oslo20-sofienbergparken-source-20261019
