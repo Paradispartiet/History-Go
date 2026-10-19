@@ -19,8 +19,28 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install Pillow==11.3.0
-      - name: Fetch rights-documented Oslo Museum image or record exact hold
-        run: python scripts/produce-oslo-fiskehallen-portrait-20261019.py
+      - name: Preserve documented source hold without redundant blocked downloads
+        run: |
+          mkdir -p reports/oslo-20-fiskehallen-photo-20261019
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report={
+              "schema":"historygo_oslo_fiskehallen_photo_v1",
+              "place_id":"vippetangen_fisketorg",
+              "documented_museum_object":"Oslo Museum OB.Z18506",
+              "sourcePage":"https://digitaltmuseum.no/021015456022/fiskehallen-pa-vippetangen",
+              "license":"CC BY-SA (version unspecified)",
+              "creator":"Wilhelm Råger",
+              "photographed":1950,
+              "status":"held_external_only",
+              "attemptedByRun":"https://github.com/Paradispartiet/History-Go/actions/runs/39254447338",
+              "reason":"Both previously attempted museum-image mirrors were unavailable or too low-resolution in the GitHub runner; original remote reference retained without claiming local assets.",
+              "localAssetApproval":False,
+              "appVisualReview":"pending"
+          }
+          Path("reports/oslo-20-fiskehallen-photo-20261019/result.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
+          PY
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -62,7 +82,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add bilder/places/oslo-20-fiskehallen-20261019 reports/oslo-20-fiskehallen-photo-20261019
+          if test -d bilder/places/oslo-20-fiskehallen-20261019; then git add -A bilder/places/oslo-20-fiskehallen-20261019; fi
+          git add reports/oslo-20-fiskehallen-photo-20261019
           git add data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json
           git add data/places/places_index.json data/epoker/epoke-place-index.json
           git add data/places/place_image_backlog_summary.json
