@@ -941,13 +941,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "En oppgave uten tidspunkt",
-      "tekst": "Arvid spør om du kan bære utstyr «en gang neste uke». Det er ikke oppgitt sted, varighet eller ansvarlig person. Du har bare sagt at du kan vurdere noe avgrenset.",
+      "tittel": "«En gang neste uke»",
+      "tekst": "Arvid sender en melding mens du står med handleposene i oppgangen: «Kan du kanskje bære litt utstyr en gang neste uke?» Du har sagt at du kan vurdere å hjelpe én gang. Men ordene «en gang» minner deg om hvor lett små oppgaver pleide å spise opp en kveld. Du savner miljøet, ikke den dårlige samvittigheten.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Be om sted, varighet og ansvarlig før du svarer",
-          "konsekvensTekst": "Du stiller konkrete spørsmål uten å binde deg. En vakt er fortsatt ikke avtalt.",
+          "tekst": "Spør hva som skal bæres, hvor og hvor lenge",
+          "konsekvensTekst": "Du ber om rammene før du bestemmer deg. Ingen vakt er avtalt.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "rammer_etterspurt"
@@ -959,8 +959,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Si at tilbudet bortfaller uten en tydelig ramme",
-          "konsekvensTekst": "Du gjør det klart at åpne forespørsler ikke automatisk blir ditt ansvar.",
+          "tekst": "Si at du bare kan vurdere hjelp hvis oppgaven blir konkret",
+          "konsekvensTekst": "Du avgrenser tilbudet. En ubestemt forespørsel blir ikke automatisk ditt ansvar.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "ubundet_tilbud"
@@ -987,13 +987,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Bekjentskap uten innkalling",
-      "tekst": "Arvid svarer at han ikke skal føre deg på oppgavelister. Likevel ligger du fortsatt i gruppesamtalen, og invitasjoner kan dukke opp.",
+      "tittel": "Navnet ditt står fortsatt i gruppa",
+      "tekst": "Arvid har svart at han ikke vil sette deg på vaktliste. Likevel ser du gruppesamtalen mellom familiebildene og meldingene fra venner. Du vil gjerne kunne møte folk der igjen, men blir sliten bare av å tenke på varsler om rigging og opprydding. En del av deg vil slette alt. En annen vil beholde fellesskapet.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Takk for svaret og behold sosial kontakt",
-          "konsekvensTekst": "Du anerkjenner beskjeden. Du har ikke akseptert noen oppgave eller neste samling.",
+          "tekst": "Takk Arvid og si at du gjerne vil høre om sosiale treff",
+          "konsekvensTekst": "Du holder kontakten varm uten å takke ja til en ny oppgave.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "bekjentskap_beholdt"
@@ -1005,8 +1005,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Be om å bli fjernet fra praktiske vaktmeldinger",
-          "konsekvensTekst": "Du ber om færre oppgavevarsler. Selve fjerningen er ikke bekreftet.",
+          "tekst": "Be om å slippe praktiske vaktmeldinger framover",
+          "konsekvensTekst": "Du sier tydelig hva du trenger. Du har ikke fått bekreftet at varslene er stoppet.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "vaktvarsler_stopp_forespurt"

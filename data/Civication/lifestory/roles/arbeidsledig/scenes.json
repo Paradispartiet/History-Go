@@ -6704,13 +6704,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Et presist svar til en venn",
-      "tekst": "Vennen din kommer innom med boller og ser utskriften på kjøkkenbordet. «Så bra, er du ferdig med NAV nå?» spør hun. Hun mener det som en oppmuntring. Du kjenner både takknemlighet og en liten klump i magen; du har ventet lenge nok til å ønske at hun hadde rett.",
+      "tittel": "Bollene på bordet og det ene ordet",
+      "tekst": "Vennen som kom innom med boller, peker på NAV-brevet mens hun tar av seg jakka. «Da ordner det seg snart?» spør hun. Du ser hvor gjerne hun vil gi deg gode nyheter. Det er slitsomt å korrigere noen som mener det godt, men enda tyngre å la dem tro at pengene er på vei.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Forklar rolig at papirene er mottatt, men at du fortsatt venter på svar",
-          "konsekvensTekst": "Hun setter fra seg posen. «Skjønner. Skal vi spise før vi snakker mer om det?» Du får sagt sannheten uten å gjøre besøket til en saksoppdatering.",
+          "tekst": "Forklar forskjellen på mottatt og avgjort over kaffen",
+          "konsekvensTekst": "Du lar henne forstå hvorfor du fortsatt er spent. Svaret fra NAV har ikke forandret seg.",
           "effekter": {
             "flagg": {
               "wa_d_c05_status": "under_behandling_presisert"
@@ -6719,8 +6719,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Vis henne datoen på kvitteringen og si at resten fortsatt er uavklart",
-          "konsekvensTekst": "Du viser henne når du sendte vedlegget. «Da skjønner jeg forskjellen», sier hun. Dere lar den ubesvarte delen ligge mens kaffen blir klar.",
+          "tekst": "Vis datoen på kvitteringen og fortell hva du venter på",
+          "konsekvensTekst": "Du deler den delen av historien du vet noe om. En registrering blir ikke et løfte om utbetaling.",
           "effekter": {
             "flagg": {
               "wa_d_c05_status": "kvittering_delt"
@@ -6744,13 +6744,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "En påminnelse avgjør ingenting",
-      "tekst": "Du har lagt inn en påminnelse om å sjekke søknaden. Den dukker opp på telefonen mens du står og henger opp klær. For et øyeblikk strammer magen seg som om noen har sendt et nytt krav. Så ser du at det bare er din egen beskjed til deg selv.",
+      "tittel": "Varslet midt i klesvasken",
+      "tekst": "Du står med en våt genser i hånda når kalenderen minner deg om å sjekke NAV. Du laget varselet for å få ro, men kroppen reagerer som om et nytt krav har kommet. På skjermen står det bare navnet på en påminnelse. Du kan avgjøre hvor mye av denne ettermiddagen saken skal få.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "La påminnelsen stå som en privat huskelapp og heng opp resten av klærne",
-          "konsekvensTekst": "Du legger telefonen ned. Ingen har satt en ny frist; du har bare minnet deg selv på at du vil se etter svar senere.",
+          "tekst": "Heng opp klærne før du tar en avgrenset sjekk",
+          "konsekvensTekst": "Du lar ditt eget varsel vente noen minutter. Det er ikke en ny beskjed fra NAV.",
           "effekter": {
             "flagg": {
               "wa_d_c05_status": "privat_paminnelse"
@@ -6759,8 +6759,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Skriv inn hvor du skal sjekke, så du slipper å lete neste gang",
-          "konsekvensTekst": "Du legger inn navnet på portalen. Det gir litt orden i dagen, men sier ingenting om utfallet av saken.",
+          "tekst": "Skriv hvor du kan sjekke, og lukk kalenderen",
+          "konsekvensTekst": "Du slipper å lete neste gang. Du har ikke kontrollert eller endret saksstatusen nå.",
           "effekter": {
             "flagg": {
               "wa_d_c05_status": "kontrollkilde_notert"
@@ -6784,13 +6784,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Den konkrete siden mangler bekreftelse",
-      "tekst": "Du har bedt om en presis vurdering av arbeidstidssiden. Svaret i portalen er fortsatt bare «registrert». Du kan tydeliggjøre spørsmålet uten å late som dokumentet er sjekket.",
+      "tittel": "Du forstørrer siden enda en gang",
+      "tekst": "Det lille tallet for ukentlig arbeidstid blir uklart når du zoomer inn. Du har spurt om akkurat denne siden, men svaret fra NAV sier fremdeles bare «registrert». Du blir fristet til å sende samme spørsmål på nytt med store bokstaver. Det du trenger, er en vurdering av lesbarheten, ikke enda en kvittering.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Beskriv sidetallet og hvorfor det er viktig",
-          "konsekvensTekst": "Du sender en konkret presisering om siden som må kunne leses. Saksbehandler har ennå ikke bekreftet kontroll.",
+          "tekst": "Beskriv sidetallet og problemet rolig og presist",
+          "konsekvensTekst": "Du spisser spørsmålet. Du har fortsatt ikke fått bekreftet at noen har lest siden.",
           "effekter": {
             "flagg": {
               "wa_d_c05_status": "side_presisert"
@@ -6799,8 +6799,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Lagre spørsmålet og vent på faktisk tilbakemelding",
-          "konsekvensTekst": "Du dokumenterer hva du har spurt om. Lesbarheten er fremdeles uavklart.",
+          "tekst": "Lagre det konkrete spørsmålet og avvent svar",
+          "konsekvensTekst": "Du lar utkastet ligge. Stillheten er ubehagelig, men den er ikke en teknisk godkjenning.",
           "effekter": {
             "flagg": {
               "wa_d_c05_status": "svar_avventes"
@@ -6824,13 +6824,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Et arkiv med riktige ord",
-      "tekst": "Du lagret portalmeldingen uten å tolke den som kontroll. Du skal forklare saken for en veileder, men kan bare dokumentere at filen ble registrert.",
+      "tittel": "Det var vanskelig å si det enkelt",
+      "tekst": "Du skal forklare dokumentproblemet til en veileder. Ved kjøkkenbordet øver du på én setning, men havner i en lang forklaring om filer, datoer og portalmeldinger. Egentlig er saken enkel: NAV har registrert siden, og du vet ikke om den er lesbar. Du vil bli forstått uten å høres ut som om du skjuler noe.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Vis veilederen den faktiske portalmeldingen",
-          "konsekvensTekst": "Veilederen får se formuleringen. Vedkommende kan ikke utstede et vedtak på grunnlag av den.",
+          "tekst": "Vis den faktiske meldingen når du forklarer saken",
+          "konsekvensTekst": "Du holder deg til det du kan dokumentere. Veilederen får ikke et oppdiktet kontrollresultat.",
           "effekter": {
             "flagg": {
               "wa_d_c05_status": "melding_vist"
@@ -6839,8 +6839,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Oppsummer skriftlig hva du ennå ikke vet",
-          "konsekvensTekst": "Du lager en kort oversikt over manglende lesbarhetsbekreftelse. Den blir et notat, ikke et offentlig svar.",
+          "tekst": "Skriv en kort forklaring på det som ennå mangler svar",
+          "konsekvensTekst": "Du har ordene klare, men får ikke en bekreftelse bare fordi du formulerer deg tydelig.",
           "effekter": {
             "flagg": {
               "wa_d_c05_status": "mangel_oppsummert"

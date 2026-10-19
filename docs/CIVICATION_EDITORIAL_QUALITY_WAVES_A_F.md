@@ -139,3 +139,15 @@ Samlet revidert i disse to siste produksjonsrundene: 36 Wave F-scener samt 16 di
 Denne revisjonen er **ikke** en full litterær godkjenning av alle 217 scener i A–F. Flere tidligere scener, spesielt i C01–C07, trenger fortsatt sammenhengende gjennomspilling og selektiv omskriving. Forutgående scenevalg og deres konsekvenstekster må leses samlet mot nye Wave F-scener for å fange overgangsfeil. De faktiske meter-effektene må verifiseres i spillmotoren, og hele løpene bør spilles av mennesker på norsk. Ingen av de automatiske testene kan bevise naturlig dialog eller god dramatikk.
 
 **Publiseringskrav:** Én relevant teknisk kontroll på siste commit, samt en faktisk redaksjonell gjennomspilling av de åtte hele historieløpene. Ikke start Wave G før kvaliteten i A–F er tilfredsstillende. Ikke utvid administrative QA-systemer i stedet for å forbedre historiene.
+
+## Niende redaksjonelle pass – fra saksstatus til opplevd hverdag (19. oktober 2026)
+
+**30 eksisterende scener** i Wave D/E er skrevet om med **60 valgtekster og 60 konsekvenstekster**. Fordeling: C01 10, C05 12, C03 2, C07 2 og C23 4. Endringene ligger i fem eksisterende historiefiler. Ingen scener, valg eller tidsporter er lagt til.
+
+**Hovedfunn:** I de senere kapitlene kunne karakterene bli redusert til statusfelt og avventende dokumentasjon. Jonas-forløpet hadde særlig mange nesten identiske scener om ubestemt kontakt; NAV-løpet gjentok «mottatt, men ikke avgjort» uten nok hverdagslig bevegelse; C03 og C23 beskrev ofte rutiner og maler snarere enn menneskene som måtte leve med dem. Arvid-historien trengte tydeligere skille mellom savnet etter fellesskapet og press om å stille opp. Revisjonen bruker konkrete, beskjedne hendelser – kollektivtransport, kjøkken, butikker, en venns optimisme, prototypen ved bordet – uten å skape oppdiktede svar fra tredjepart.
+
+**Kontinuitet:** C01 innfører ingen bekreftet avtale eller ny respons fra Jonas. C05 lar mottak, lesbarhet, vurdering og vedtak forbli forskjellige forhold. C03 gjennomfører ingen ny test eller deling med personopplysninger. C07 oppretter ingen vakt eller bekreftet utmelding. C23 gjør ikke en sendt rettelse til forståelse eller forsoning. De godt differensierte C06- og C17-scenene er beholdt uten nye tekstendringer i denne bolken; C06 har fortsatt bare én faktisk telling fra 07.45 til 08.00 (sju personer, tre med skolesekk), og lagerhindringen i C17 står fast.
+
+**Kontroll før commit:** Maskinell sammenligning av hver endret scene mot originalen med bare `tittel`, `tekst`, `valg[].tekst` og `valg[].konsekvensTekst` utelatt. Antall scener, scene- og valg-ID-er, alle tekniske betingelser, effekter, flagg, målere, relasjoner, låser, tidsgrenser og øvrige felter skal være identiske. Dette er datakontroll av omskrivingen, **ikke** full Node-test eller norsk UI-gjennomspilling.
+
+**Videre port:** Les fortellingskjeder med varierende valgretning i Wave A–F, særlig dialogrytmen og konsekvenstekstene der samme situasjon gjentas. Kjør én målrettet teknisk test på endelig commit, og gjennomfør faktisk norsk gjennomspilling av alle åtte løp før PR #6382 vurderes for merge. PR beholdes som draft; Wave G avventes.
