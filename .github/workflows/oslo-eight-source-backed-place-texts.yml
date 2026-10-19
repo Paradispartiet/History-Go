@@ -1,0 +1,59 @@
+name: Oslo eight source-backed place texts
+on:
+  push:
+    branches: [content/oslo-eight-source-backed-place-texts-20261019]
+    paths:
+      - scripts/produce-oslo-source-backed-place-texts-20261019.mjs
+      - reports/oslo-twenty-place-text-revision-20261019/source-led-content.json
+      - .github/workflows/oslo-eight-source-backed-place-texts.yml
+permissions:
+  contents: write
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Materialize eight individually written texts and source packets
+        run: node scripts/produce-oslo-source-backed-place-texts-20261019.mjs
+      - name: Rebuild canonical place and relevant runtime data
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+          npm run place-open:check
+      - name: Commit actual content and validated source packets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/christiania_seildugsfabrik.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/grensen_kjopesenter.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/akershus_kaier.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/frysja_industriomrade.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/norges_varemesse.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/bryn_industriomrade.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/gronlikaia.json
+          for id in havnelageret christiania_seildugsfabrik grensen_kjopesenter akershus_kaier frysja_industriomrade norges_varemesse bryn_industriomrade gronlikaia; do
+            git add "data/places/production/${id}.json"
+            git add "data/runtime/place-open/${id}.json"
+          done
+          git add data/places/places_index.json
+          git add data/quiz/production_context/naeringsliv/havnelageret.json
+          git add data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json
+          git add reports/oslo-twenty-place-text-revision-20261019/result.json
+          git diff --cached --quiet && { echo 'Nothing to publish'; exit 1; }
+          git commit -m 'content(oslo): publish eight readable source-backed place stories and v4.2 claim packets'
+          git push origin HEAD:content/oslo-eight-source-backed-place-texts-20261019
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-eight-editorial-evidence
+          path: |
+            reports/oslo-twenty-place-text-revision-20261019
+          if-no-files-found: warn
