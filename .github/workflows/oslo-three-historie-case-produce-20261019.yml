@@ -1,0 +1,35 @@
+name: Oslo three genuine historical case source reviews
+on:
+  push:
+    branches: [content/oslo-eight-source-backed-place-texts-20261019]
+    paths:
+      - .github/workflows/oslo-three-historie-case-produce-20261019.yml
+permissions:
+  contents: write
+jobs:
+  write-cases:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize source-reviewed industrial history cases
+        run: node scripts/produce-oslo-three-historie-case-reports-20261019.mjs
+      - name: Validate only the three changed history-linked Place reports
+        run: |
+          git fetch origin main
+          node scripts/audit-historie-place-production.mjs --changed --base origin/main
+      - name: Save reports and remove production workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/historie-production/christiania_seildugsfabrik.json
+          git add data/places/historie-production/frysja_industriomrade.json
+          git add data/places/historie-production/bryn_industriomrade.json
+          git rm .github/workflows/oslo-three-historie-case-produce-20261019.yml
+          git commit -m 'content(oslo): document three real industrial history case reviews and source comparisons'
+          git push origin HEAD:content/oslo-eight-source-backed-place-texts-20261019
