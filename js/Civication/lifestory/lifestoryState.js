@@ -172,8 +172,11 @@
     saved.livsdag = Number.isInteger(saved.livsdag) && saved.livsdag > 0 ? saved.livsdag : saved.dag;
     saved.rolleTilstander ||= {};
     saved.rolleBytter ||= [];
-    const privateStory = capturePrivateStory(saved);
-    if (saved.rolle === roleId) return hydratePrivateStory(saved, privateStory);
+    const hasPrivateStory = !!saved.privatHistorie
+      || (saved.arkiv || []).some(e => PRIVATE_SCENE.test(e.sceneId || ""))
+      || Object.keys(saved.tidligereValg || {}).some(key => PRIVATE_FLAG.test(key));
+    const privateStory = hasPrivateStory ? capturePrivateStory(saved) : null;
+    if (saved.rolle === roleId) return privateStory ? hydratePrivateStory(saved, privateStory) : saved;
 
     const inactive = Object.assign({}, saved.rolleTilstander);
     const currentSnapshot = JSON.parse(JSON.stringify(saved));
@@ -190,7 +193,7 @@
     const selected = earlier || createInitialState(content);
     delete inactive[roleId];
     selected.rolleTilstander = inactive;
-    hydratePrivateStory(selected, privateStory);
+    if (privateStory) hydratePrivateStory(selected, privateStory);
     selected.livsdag = saved.livsdag;
     // Kalendertilknytningen tilhører spilleren, ikke jobbrollens arkiv.
     if (Number.isInteger(saved.kalenderDag) && saved.kalenderDag > 0) selected.kalenderDag = saved.kalenderDag;
@@ -318,7 +321,11 @@
         state.threadState[thread.id] = { status: "active", step: 0, lastSceneId: null };
       }
     }
-    hydratePrivateStory(state, capturePrivateStory(state));
+    if (state.privatHistorie
+      || (state.arkiv || []).some(e => PRIVATE_SCENE.test(e.sceneId || ""))
+      || Object.keys(state.tidligereValg || {}).some(key => PRIVATE_FLAG.test(key))) {
+      hydratePrivateStory(state, capturePrivateStory(state));
+    }
     return state;
   }
 
