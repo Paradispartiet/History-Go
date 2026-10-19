@@ -34,8 +34,12 @@ try {
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
     await page.goto("http://127.0.0.1:" + server.address().port + "/index.html", {waitUntil:"domcontentloaded"});
-    await page.waitForFunction(() => window.__HG_APP_READY__ === true, null, {timeout:30000});
-    await page.evaluate(() => window.HGOnboarding?.close?.());
+    // This is the app's actual welcome/readiness contract. The router may still
+    // perform its initial hide after appReady alone.
+    await page.waitForFunction(() => window.__HG_APP_READY__ === true && window.__HG_ROUTER_STARTED__ === true,
+      null, {timeout:30000});
+    await page.locator("#hgOnboardingModal .hg-onb-primary").click({timeout:2000})
+      .catch(() => page.evaluate(() => window.HGOnboarding?.close?.()));
     await page.waitForTimeout(850);
     for (const row of batch.places) {
       const entry = {id:row.place_id, width, pass:false};
@@ -43,12 +47,16 @@ try {
         const card = json(row.quizcard_file).cards.find(item => item.targetId===row.place_id);
         const place = json("data/runtime/place-open/" + row.place_id + ".json").place;
         assert.notEqual(await page.evaluate(async place => await window.openPlaceCard(place), place), false);
+        // Allow the existing progressive full-record/reading hydration to settle
+        // before exercising a ready card (same contract as the native photo audit).
+        await page.waitForTimeout(450);
         await page.evaluate(() => document.querySelector("#hgOnboardingModal .hg-onb-close")?.click());
         await page.waitForFunction(title => {
           const node = document.querySelector("#pcQuizCardContent");
           return !node?.hidden && node?.querySelector("h3")?.textContent === title &&
             node.querySelectorAll(".pc-rendered-quiz-list > li").length === 10;
         }, card.title, {timeout:12000});
+        await page.waitForTimeout(250);
         const flip = page.locator("#pcFrontCardFlip");
         assert.equal(await flip.evaluate(el => el.classList.contains("is-flipped")), false);
         await flip.scrollIntoViewIfNeeded();
