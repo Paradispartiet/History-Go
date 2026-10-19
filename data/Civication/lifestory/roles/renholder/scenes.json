@@ -1509,13 +1509,13 @@
       "stedId": "renholdssone",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Hvem eier det røde feltet?",
-      "tekst": "Kari har spurt drift hvem som skal frigjøre lageret, men ingen har gitt henne en dato. På din arbeidsliste står det fremdeles et rødt felt ved rommet. Amina ser at du stopper opp ved det: «Skal du bære den hylla nå?» spør hun. Du kjenner at du blir både oppgitt og litt redd for at det skal forventes.",
+      "tittel": "«Skal du flytte den selv?»",
+      "tekst": "Amina finner deg foran lagerdøra med arbeidslista i hånden. Den tunge hylla sperrer fortsatt tilkomsten. «Skal du flytte den selv?» spør hun. Du vet at du ikke skal. Likevel blir du stående og se på det røde feltet som om det er ditt ansvar å få det grønt. Kari har spurt drift, men ingen har sagt når noe blir gjort.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Be Kari vise at tilkomst venter på drift, ikke på deg",
-          "konsekvensTekst": "Du gjør det tydelig hvem som må avklare hindringen. Lageret føres fortsatt som ikke rengjort.",
+          "tekst": "Be Kari føre sperringen som en oppgave for drift",
+          "konsekvensTekst": "Du ber om at ansvaret kommer fram i statusen. Lageret er fortsatt ikke rengjort, men det er tydeligere hvorfor.",
           "effekter": {
             "flagg": {
               "wa_d_c17_status": "drift_status_synlig"
@@ -1527,8 +1527,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Skriv ned det du selv ser ved lagerdøra, uten å love en løsning",
-          "konsekvensTekst": "Du beskriver den blokkerte adkomsten og lar driftsvurderingen ligge hos dem som skal ta den.",
+          "tekst": "Beskriv tilkomsten du faktisk så, uten å love utbedring",
+          "konsekvensTekst": "Du skriver ned at hylla blokkerer lageret. Observasjonen er din; avgjørelsen om flytting er det ikke.",
           "effekter": {
             "flagg": {
               "wa_d_c17_status": "hindring_dokumentert"
@@ -1601,13 +1601,13 @@
       "stedId": "renholdssone",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Spørsmålet som treffer feil person",
-      "tekst": "En kontorbruker stanser deg i gangen: «Når blir lageret endelig klart?» Du skulle gjerne hatt et svar. Kari har sagt hun skal ta spørsmålet videre, men du har ikke fått beskjed fra drift om at hylla kan flyttes. Du står med tralla mellom dere og kjenner at irritasjonen bygger seg opp.",
+      "tittel": "Spørsmålet midt i gangen",
+      "tekst": "En kontorbruker stanser deg mens du triller vogna mot neste rom. «Når er lageret klart?» spør han. Du ser at han trenger et svar, men du vet bare at hylla fortsatt står der. Kari skal ta saken videre til drift. Du vil gjerne virke hjelpsom. Du vil ikke bli stående med ansvaret for et løfte du ikke kan holde.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Vis til Kari for spørsmål om tilkomst, uten å love en dato",
-          "konsekvensTekst": "Du forteller hvem som følger opp hindringen. Kontorbrukeren får riktig kontaktvei, men ingen oppdiktet ferdigfrist.",
+          "tekst": "Vis til Kari for avklaring av tilkomst, uten å oppgi dato",
+          "konsekvensTekst": "Du forklarer hvem som følger opp. Ingen ny tidsfrist eller flytting av hylla blir registrert.",
           "effekter": {
             "flagg": {
               "wa_d_c17_status": "ingen_dato_lovet"
@@ -1619,8 +1619,8 @@
         },
         {
           "id": "avgrense",
-          "tekst": "Noter spørsmålet og gi det videre i arbeidsloggen",
-          "konsekvensTekst": "Du registrerer at kontorbrukeren etterspør avklaring. Hylla står fremdeles, og renholdet er ikke utført.",
+          "tekst": "Skriv spørsmålet i arbeidsloggen og gi det videre",
+          "konsekvensTekst": "Du noterer hva kontorbrukeren spurte om. Lageret er fortsatt sperret, og loggen gjør ikke rommet rengjort.",
           "effekter": {
             "flagg": {
               "wa_d_c17_status": "sporsmal_loggfort"
