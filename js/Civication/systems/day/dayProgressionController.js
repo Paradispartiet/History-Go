@@ -87,7 +87,7 @@
     if (status !== "pending" && status !== "open") return false;
     // Dagsruntimen eier sannheten for dagens saker: er runtime-raden besvart,
     // skal en hengende innbokskopi ikke blokkere faseavansering.
-    if (answeredRuntimeIds && answeredRuntimeIds.has(norm(ev?.id))) return false;
+    if (isPreviouslyAnsweredInboxItem(item, answeredRuntimeIds)) return false;
     return Array.isArray(ev?.choices) && ev.choices.length > 0;
   }
 
@@ -119,14 +119,38 @@
     return phaseIsPrivate;
   }
 
+  // Innboksen og dagskøen kan beholde ulike statuser for samme mail. Bruk
+  // registrerte svar fra alle autoritative runtimer, ikke bare inbox.status.
+  function getAnsweredMailIds() {
+    const runtime = getBuilderInspect()?.runtime || {};
+    const state = window.CivicationState?.getState?.() || {};
+    const consumed = state.consumed && typeof state.consumed === "object" ? state.consumed : {};
+    const rows = Array.isArray(runtime.items) ? runtime.items : [];
+    return new Set(uniqueStrings([
+      ...rows
+        .filter(row => ["answered", "resolved"].includes(norm(row?.status).toLowerCase())
+          || row?.resolved === true || row?.answered_at || row?.answeredAt)
+        .flatMap(row => [row?.id, row?.event?.id]),
+      ...(Array.isArray(runtime.answered_ids) ? runtime.answered_ids : []),
+      ...Object.keys(consumed).filter(id => !!consumed[id]),
+      ...(Array.isArray(state.life_mail_runtime_v1?.consumed_ids) ? state.life_mail_runtime_v1.consumed_ids : []),
+      ...(Array.isArray(state.mail_runtime_v1?.consumed_ids) ? state.mail_runtime_v1.consumed_ids : []),
+      ...(Array.isArray(state.mail_system?.consumed_mail_ids) ? state.mail_system.consumed_mail_ids : []),
+      ...(Array.isArray(state.mail_director_v2?.answered_ids) ? state.mail_director_v2.answered_ids : [])
+    ]));
+  }
+
+  function isPreviouslyAnsweredInboxItem(item, answeredIds = getAnsweredMailIds()) {
+    const ev = inboxEventOf(item);
+    // New instances of explicitly repeatable content remain playable.
+    if (ev?.repeatable === true && norm(ev?.cycle_policy) !== "once") return false;
+    const id = norm(ev?.id || item?.id);
+    return !!id && answeredIds.has(id);
+  }
+
   function getOpenInboxActionItems(phase) {
-    const answeredRuntimeIds = new Set(
-      getRuntimeItems()
-        .filter((row) => norm(row?.status).toLowerCase() === "answered")
-        .map((row) => norm(row?.event?.id))
-        .filter(Boolean)
-    );
-    const openItems = getInboxItems().filter((item) => isOpenActionableInboxItem(item, answeredRuntimeIds));
+    const answeredIds = getAnsweredMailIds();
+    const openItems = getInboxItems().filter((item) => isOpenActionableInboxItem(item, answeredIds));
     if (!phase) return openItems;
     return openItems.filter((item) => inboxItemBlocksPhase(item, phase));
   }
@@ -225,11 +249,11 @@
   }
 
   function getQueuedItemsForPhase(phase) {
-    return getPhaseItems(phase).filter((row) => norm(row?.status).toLowerCase() === "queued");
+    return getPhaseItems(phase).filter((row) => norm(row?.status).toLowerCase() === "queued" && isOpenRow(row));
   }
 
   function getDeliveredItemsForPhase(phase) {
-    return getPhaseItems(phase).filter((row) => ["delivered", "pending", "open"].includes(norm(row?.status).toLowerCase()));
+    return getPhaseItems(phase).filter((row) => ["delivered", "pending", "open"].includes(norm(row?.status).toLowerCase()) && isOpenRow(row));
   }
 
   function getAnsweredItemsForPhase(phase) {
@@ -287,8 +311,8 @@
     /** @type {DayProgRuntimeItem[]} */
     const items = getRuntimeItems();
     const openRows = items.filter((row) => belongsToPhase(row, phase) && isOpenRow(row));
-    const queuedRows = items.filter((row) => belongsToPhase(row, phase) && norm(row?.status).toLowerCase() === "queued");
-    const deliveredRows = items.filter((row) => belongsToPhase(row, phase) && ["delivered", "pending", "open"].includes(norm(row?.status).toLowerCase()));
+    const queuedRows = getQueuedItemsForPhase(phase);
+    const deliveredRows = getDeliveredItemsForPhase(phase);
     const nextQueuedRow = queuedRows[0] || null;
     const pendingRow = deliveredRows[0] || null;
     // Kun inbox-mailer som hører til DENNE fasens rytme kan blokkere fasen.
@@ -461,6 +485,7 @@
     getDeliveredItemsForPhase: (phase) => getDeliveredItemsForPhase(phase).map(summarizeRow),
     getAnsweredItemsForPhase: (phase) => getAnsweredItemsForPhase(phase).map(summarizeRow),
     getPhaseCompletion,
-    getDayEndSummary
+    getDayEndSummary,
+    isPreviouslyAnsweredInboxItem
   };
 })();

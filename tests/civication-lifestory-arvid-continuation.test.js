@@ -157,8 +157,9 @@ console.log(`Arvid core: ${paths} complete chapter paths, ${seen.size} choices, 
 
 async function uiTest() {
   async function boot(saved, role) {
-    const dom = new JSDOM('<!doctype html><body class="civi-app"><div id="civiLifestoryPanel"></div></body>', { url: 'http://localhost/Civication.html', runScripts: 'outside-only' });
+    const dom = new JSDOM('<!doctype html><body class="civi-app"><div id="civiLifestoryPanel"></div><div class="civi-footer"><button id="civiMoreMenuToggle" aria-expanded="false">Mer</button></div><div id="civiMoreMenu" hidden><button data-lifestory-restart>Start livet på nytt</button></div></body>', { url: 'http://localhost/Civication.html', runScripts: 'outside-only' });
     const w = dom.window; let fail = false, selected = role;
+    w.confirm = () => true; // The test explicitly confirms the destructive footer action.
     w.localStorage.setItem('civication_lifestory_v1', JSON.stringify(saved));
     w.console.error = () => {};
     w.fetch = async p => ({ ok: !(fail && String(p).includes('/continuations/')), json: async () => read(String(p)) });
@@ -189,7 +190,11 @@ async function uiTest() {
   assert.equal(final.panel.querySelector('[data-lifestory-next-day]'), null);
   assert.ok(final.panel.querySelector('[data-lifestory-continue="miljo_etter_invitasjonen"]'), 'new chapter is available at the day-13 boundary');
   assert.ok(final.panel.textContent.includes(finalSave.kapittelArkiv[0].ending.navn));
-  final.panel.querySelector('[data-lifestory-restart]').click();
+  assert.equal(final.panel.querySelector('[data-lifestory-restart]'), null, 'restart is no longer offered at day end');
+  final.w.document.getElementById('civiMoreMenuToggle').click();
+  const footerRestart = final.w.document.querySelector('#civiMoreMenu [data-lifestory-restart]');
+  assert.ok(footerRestart, 'restart remains available in footer More');
+  footerRestart.click();
   const fresh = JSON.parse(final.w.localStorage.getItem('civication_lifestory_v1'));
   assert.equal(fresh.dag, 1); assert.equal(fresh.fortsettelser, undefined);
   for (const u of [ui, paused, final]) u.dom.window.close();

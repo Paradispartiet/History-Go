@@ -145,8 +145,9 @@ delete globalThis.CivicationLifePositions;
 // before shell boot pauses honestly, then identity resumes the same scene.
 async function uiTest() {
   async function boot(saved, initialPrimary = null) {
-    const dom = new JSDOM('<!doctype html><body class="civi-app"><div id="civiLifestoryPanel"></div></body>', { url: "http://localhost/Civication.html", runScripts: "outside-only" });
+    const dom = new JSDOM('<!doctype html><body class="civi-app"><div id="civiLifestoryPanel"></div><div class="civi-footer"><button id="civiMoreMenuToggle" aria-expanded="false">Mer</button></div><div id="civiMoreMenu" hidden><button data-lifestory-restart>Start livet på nytt</button></div></body>', { url: "http://localhost/Civication.html", runScripts: "outside-only" });
     const w = dom.window;
+    w.confirm = () => true; // The test explicitly confirms the destructive footer action.
     let role = initialPrimary, fail = false;
     const errors = [];
     w.console.error = (...args) => errors.push(args);
@@ -194,7 +195,11 @@ async function uiTest() {
     'pause resumes the newly authored scene instead of skipping to the day summary');
   reload.panel.querySelector('[data-lifestory-choice="behold_egen_tid"]').click();
   assert.ok(reload.w.CivicationLifestoryState.load().dagFerdig);
-  reload.panel.querySelector("[data-lifestory-restart]").click();
+  assert.equal(reload.panel.querySelector("[data-lifestory-restart]"), null, "restart is not a day-end action");
+  reload.w.document.getElementById("civiMoreMenuToggle").click();
+  const footerRestart = reload.w.document.querySelector('#civiMoreMenu [data-lifestory-restart]');
+  assert.ok(footerRestart, "restart is available in footer More");
+  footerRestart.click();
   const reset = reload.w.CivicationLifestoryState.load();
   assert.equal(reset.dag, 1); assert.equal(reset.fortsettelseId, undefined); assert.equal(reset.arkiv.length, 0);
   assert.equal(reload.w.CivicationLifestoryUI.getCurrentSceneInfo().sceneId, "privat_morgen_start");

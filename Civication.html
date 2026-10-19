@@ -236,6 +236,15 @@
     <button class="civi-btn civi-category-tab" type="button" data-category="fritid">Fritid</button>
     <button class="civi-btn civi-category-tab" type="button" data-category="kommers">Kommers</button>
     <button class="civi-btn civi-category-tab" type="button" data-category="kultur">Kultur</button>
+    <button id="civiMoreMenuToggle" class="civi-btn civi-footer-more-toggle" type="button"
+      aria-controls="civiMoreMenu" aria-expanded="false" aria-haspopup="true">Mer ⋯</button>
+  </div>
+  <!-- A separate fixed menu cannot be clipped by the footer's horizontal scrolling. -->
+  <div id="civiMoreMenu" class="civi-footer-more-menu" role="group"
+    aria-label="Flere spillvalg" hidden>
+    <div class="civi-footer-more-heading">Flere valg</div>
+    <button class="civi-btn civi-footer-restart" type="button"
+      data-lifestory-restart>Start livet på nytt</button>
   </div>
 
   <!-- ============ MIN DAG (Life Story) — primærpanelet, lastes først ============

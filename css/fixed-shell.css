@@ -255,3 +255,51 @@ body.civi-app .place-card{
     transition: none;
   }
 }
+
+/* Life reset is a secondary action in the footer's More menu.
+   The popover is outside the horizontally scrollable footer so it cannot be clipped. */
+body.civi-app .civi-footer-more-toggle[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.16) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.48) !important;
+}
+body.civi-app .civi-footer-more-menu {
+  position: fixed;
+  right: max(12px, var(--civi-safe-right, 0px));
+  bottom: calc(var(--civi-shell-footer-h, 58px) + var(--civi-safe-bottom, 0px) + 10px);
+  z-index: 110;
+  display: grid;
+  gap: 10px;
+  width: min(280px, calc(100vw - 24px));
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  background: #18191e;
+  color: #f4f4f6;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.48);
+}
+body.civi-app .civi-footer-more-menu[hidden] {
+  display: none;
+}
+body.civi-app .civi-footer-more-heading {
+  font-size: 13px;
+  font-weight: 750;
+  color: rgba(255, 255, 255, 0.7);
+}
+body.civi-app .civi-footer-more-menu .civi-footer-restart {
+  flex: none;
+  width: 100%;
+  max-width: none;
+  min-height: 44px;
+  padding: 10px 12px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.07);
+  color: #f4f4f6;
+  white-space: normal;
+}
+body.civi-app .civi-footer-more-menu .civi-footer-restart:focus-visible,
+body.civi-app .civi-footer-more-toggle:focus-visible {
+  outline: 2px solid var(--civi-accent, #d6aa3a);
+  outline-offset: 3px;
+}
