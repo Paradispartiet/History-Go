@@ -35,7 +35,44 @@ def main():
               "creator": "Wilhelm Råger", "license": "CC BY-SA (version unspecified in record)",
               "sourcePage": MUSEUM, "sourceImageAttempts": SOURCES,
               "localAssetApproval": False, "appVisualReview": "pending"}
-    for source in SOURCES:
+    # Locate the correct object via the public DigitaltMuseum API. We only
+    # accept media IDs returned for Oslo Museum's OB.Z18506 record.
+    discovered=[]
+    museum_uuid="465fb3d6-67e8-4c20-8be4-76ff6dda6cf9"
+    api_urls=[
+        "https://api.dimu.org/artifact/uuid/"+museum_uuid,
+        "https://store-search.dimu.org/api/artifact?unique_id="+museum_uuid+"&mapping=simple_json&api.key=demo",
+    ]
+    import re
+    def extract_media(node):
+        found=[]
+        if isinstance(node,dict):
+            for key,value in node.items():
+                k=str(key).lower()
+                if any(token in k for token in ("mediaidentifier","mediaid","imageidentifier")) and isinstance(value,str) and re.fullmatch(r"[a-zA-Z0-9_-]{6,64}",value):
+                    found.append(value)
+                if isinstance(value,str):
+                    found += re.findall(r"https?://(?:ems|dms-[^/]+)\\.dimu\\.org/image/([a-zA-Z0-9_-]{6,64})",value)
+                else: found += extract_media(value)
+        elif isinstance(node,list):
+            for value in node: found += extract_media(value)
+        return found
+    for url in api_urls:
+        try:
+            req=urllib.request.Request(url,headers={"User-Agent":"HistoryGoHistoricalPhotoReview/1.0","Accept":"application/json"})
+            with urllib.request.urlopen(req,timeout=12) as response:
+                raw=response.read(2_000_000)
+            data=json.loads(raw)
+            discovered+=extract_media(data)
+            result.setdefault("api",[]).append({"source":url,"status":"read","mediaIds":len(set(discovered))})
+        except Exception as exc:
+            result.setdefault("api",[]).append({"source":url,"status":"unavailable","reason":str(exc)[:180]})
+    source_candidates=[]
+    for mid in dict.fromkeys(discovered):
+        source_candidates.append("https://ems.dimu.org/image/"+mid+"?dimension=2800x2800")
+    source_candidates += SOURCES
+    result["sourceImageAttempts"]=source_candidates
+    for source in source_candidates:
         try:
             request = urllib.request.Request(source, headers={
                 "User-Agent": "HistoryGoHistoricalPhotoReview/1.0 (GitHub: Paradispartiet/History-Go)",
