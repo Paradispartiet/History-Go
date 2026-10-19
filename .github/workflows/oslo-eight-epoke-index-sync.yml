@@ -1,0 +1,31 @@
+name: Oslo eight generated epoke index sync
+on:
+  push:
+    branches: [content/oslo-eight-source-backed-place-texts-20261019]
+    paths:
+      - .github/workflows/oslo-eight-epoke-index-sync.yml
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate historical place timeline from edited canonical places
+        run: |
+          npm run epoker:places:build
+          npm run epoker:places:check
+      - name: Commit generated epoke index and remove one-shot job
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/epoker/epoke-place-index.json
+          git rm .github/workflows/oslo-eight-epoke-index-sync.yml
+          git commit -m 'data(oslo): synchronize epoch place index with eight source-backed site stories'
+          git push origin HEAD:content/oslo-eight-source-backed-place-texts-20261019
