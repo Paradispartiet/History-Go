@@ -190,3 +190,21 @@ Inngangene krever det dokumenterte Wave D-valget og minst to forløpte livsdager
 Rolleuavhengig historikk for C01/C05 synkroniseres ved jobbbytter: de aktuelle flaggene, gjennomførte scenene og faktiske arkivlinjene følger spilleren. Jobbspesifikke fortellingsflagg og rollearbeid blir i sine respektive pakker. Den eksisterende Min dag-runneren brukes fortsatt. Når et senere privat kapittel er åpent, kan spilleren gå videre i livsdager selv om den lokale jobbuka er ferdig, uten å måtte fullføre en urelatert Badge-gatet fortsettelse. Dersom en egen valgt fortsettelse også er tilgjengelig, beholdes den som alternativ.
 
 Kontrakt og kilder: `data/Civication/lifestory/editorial/inspiration/waveAFifthInstallmentsV1.json`, `data/Civication/lifestory/life/{threads,scenes}.json`, `tests/civication-source-grounded-wave-e.test.js`. Goodreads/IMDb/Film Producer-ID-ene videreføres fra Wave D uten å utgi verksreferansene for dokumentert nærlesning. Browser/mobilopplevelse er ikke kontrollert i denne innholdsbolken.
+
+
+## Wave F – åtte forløp etter dokumenterte valg (19. oktober 2026)
+
+Wave F er en større produksjonsbolk med **68 nye, individuelt forfattede scener / 136 valg**, fordelt på åtte historier. Wave A–F har dermed **217 scener / 434 valg** totalt som forfattet innhold. Dette er alternative forgreninger, ikke at alle scenene kan spilles i én gjennomgang. Wave F har 8 utfall hver i C01, C02, C03, C05, C06, C07 og C17, samt 12 utfall i C23.
+
+- **C01** følger Wave E-valg om kontakt, pause, tydelige grenser og fortsatt uavklarte invitasjoner.
+- **C05** følger Wave E-valg om saksmappen, usendte spørsmål, dokumenterte kvitteringer og fortsatt uavklarte vedtak.
+- **C02** fortsetter etter de åtte faktiske Wave D-valgene om en medmusikers tid, uforpliktende råd og ubekreftede oppdrag.
+- **C03** holder prototypen for Lea opp mot samtykke, testkriterier og påstander om nytte.
+- **C06** følger faglige forbehold og etterprøvbare dokumenter uten å finne på lederbeslutninger.
+- **C07** skiller sosial tilhørighet fra avtalt vaktarbeid og respekterer ønsket om pause.
+- **C17** skiller utført renholdsarbeid fra hindret tilkomst og tiltak som ennå ikke er bekreftet.
+- **C23** holder rettelse, mottakerreaksjon, spredning og utprøving av nye rutiner atskilt.
+
+**Tidskontrakten:** Nye scener er delt privat livshistorikk i `life/scenes.json`. De åpnes på `livsdagFra` (fra livsdag 12 til 22, avhengig av historien) og tidligst fire forløpte `livsdag` etter et faktisk lagret Wave D- eller Wave E-valg. En flaggverdi uten arkivert og tidsfestet hendelse er ikke tilstrekkelig. Ingen innkommende melding, beslutning, booking, befaring, gjennomført test eller vakt skal antas uten at det faktisk er forankret i spillerens valghistorikk. Privatlivets valghistorikk bevares ved jobbbytter, mens jobbspesifikk trådprogresjon forblir rollens egen.
+
+Kildelinjen videreføres fra de åtte eksplisitte Wave D-oppføringene (Goodreads, IMDb og Film Producer) i `data/Civication/lifestory/editorial/inspiration/waveASixthInstallmentsV1.json`. Referanse til verk er et spor for videre redaksjonelt arbeid, ikke bevis på at scenene er sitater eller nærlesninger. Det målrettede testtilfellet `tests/civication-source-grounded-wave-f.test.js` dekker innhold, hver enkelt forgreining, felles livsdager og lagringsgrenser. Full fysisk mobilverifisering er ikke gjort i denne bolken.
