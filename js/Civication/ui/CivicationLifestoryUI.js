@@ -476,7 +476,7 @@
   }
 
   function onRestart() {
-    if (shellStoryUnavailable()) return;
+    if (shellStoryUnavailable() || !content || !state) return;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
     content = baseContent;
     state = State.createInitialState(baseContent);
@@ -488,6 +488,45 @@
     refreshPersonTypes();
     window.dispatchEvent(new Event("civi:lifestoryChanged"));
     render();
+  }
+
+  // Keep this destructive action out of daily progression: it belongs in
+  // the footer More submenu, not beside Start neste dag.
+  function bindFooterRestart() {
+    const toggle = document.getElementById("civiMoreMenuToggle");
+    const menu = document.getElementById("civiMoreMenu");
+    if (!toggle || !menu || /** @type {any} */ (toggle)._civiMoreMenuBound) return;
+    /** @type {any} */ (toggle)._civiMoreMenuBound = true;
+
+    function closeMenu() {
+      menu.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    toggle.addEventListener("click", () => {
+      menu.hidden = !menu.hidden;
+      toggle.setAttribute("aria-expanded", String(!menu.hidden));
+    });
+    menu.addEventListener("click", (event) => {
+      const target = /** @type {HTMLElement} */ (event.target);
+      const restartButton = target?.closest?.("[data-lifestory-restart]");
+      if (!restartButton || !menu.contains(restartButton)) return;
+      closeMenu();
+      if (shellStoryUnavailable() || !content || !state) return;
+      if (typeof window.confirm !== "function"
+        || !window.confirm("Start livshistorien på nytt? Valgene og fremdriften i «Min dag» nullstilles. Dette kan ikke angres.")) return;
+      onRestart();
+    });
+    document.addEventListener("click", (event) => {
+      if (!menu.hidden && !menu.contains(/** @type {Node} */ (event.target))
+        && !toggle.contains(/** @type {Node} */ (event.target))) closeMenu();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !menu.hidden) {
+        closeMenu();
+        toggle.focus();
+      }
+    });
   }
 
   async function onContinue(id) {
@@ -667,10 +706,9 @@
       ? "<p class=\"civi-lifestory-stamp\">Valgene dine drar mot: <strong>"
         + escapeHtml((stamp.icon ? stamp.icon + " " : "") + stamp.name) + "</strong></p>"
       : "";
-    // Uka kåres en slutt på den siste dagen med innhold: da tolkes hele
-    // spillet til en ending, og «Start neste dag» erstattes av å begynne på
-    // nytt. Uten endings-modulen (ren Min dag-flate) faller vi tilbake til
-    // den vanlige dagsoppsummeringen.
+    // Uka kåres en slutt på den siste dagen med innhold. Da kan spilleren
+    // fortsette historien, mens omstart ligger under «Mer» i footeren.
+    // Uten endings-modulen vises den vanlige dagsoppsummeringen.
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
     const sisteDag = !!(Endings && Endings.isFinalDay(state, content));
     const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
@@ -699,13 +737,11 @@
         + continuationHtml
         + (Runner.hasPendingPrivateScenes?.(state, content) ? '<button class="civi-btn primary" type="button" data-lifestory-next-day>Fortsett privatlivet</button>' : "")
         + pendingDayActionHtml
-        + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-restart>Start et nytt liv</button>"
         + "</div>"
       : "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
         + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-next-day>Start neste dag</button>"
         + pendingDayActionHtml
-        + "<button class=\"civi-btn\" type=\"button\" data-lifestory-restart>Start livet på nytt</button>"
         + "</div>";
     return ""
       + "<section class=\"civi-lifestory-summary\" aria-label=\"Dagsoppsummering\">"
@@ -1079,8 +1115,7 @@
         /** @type {any} */ (window).CivicationLifestoryActions?.perform?.({ type: "aapne_livsposisjoner" });
         return;
       }
-      if (target.closest("[data-lifestory-restart]")) onRestart();
-    });
+     });
   }
 
   async function start() {
@@ -1088,6 +1123,7 @@
     if (!panel) return; // siden har ikke Min dag-seksjonen
     try {
       bindDelegation(panel);
+      bindFooterRestart();
       await ensureLoaded();
       await maybeAdoptShellRole();
       ensureCalendarCheckpoint();
