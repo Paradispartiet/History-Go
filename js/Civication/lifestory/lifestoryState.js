@@ -321,11 +321,10 @@
         state.threadState[thread.id] = { status: "active", step: 0, lastSceneId: null };
       }
     }
-    if (state.privatHistorie
-      || (state.arkiv || []).some(e => PRIVATE_SCENE.test(e.sceneId || ""))
-      || Object.keys(state.tidligereValg || {}).some(key => PRIVATE_FLAG.test(key))) {
-      hydratePrivateStory(state, capturePrivateStory(state));
-    }
+    // Reconciliation of an already selected role must never rewrite an
+    // established save, including the original Wave A–D timeline.
+    // Migration/rehydration happens at the explicit selectRole boundary,
+    // and choices update privatHistorie as they are actually played.
     return state;
   }
 
