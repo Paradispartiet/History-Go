@@ -49,6 +49,7 @@ def main():
     api = "https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode({
         "action": "query", "format": "json", "formatversion": "2",
         "prop": "imageinfo", "titles": "File:" + FILE, "iiprop": "url|extmetadata",
+        "iiurlwidth": "2560",
     })
     data = json.loads(fetch(api, "application/json"))
     page = data["query"]["pages"][0]
@@ -62,7 +63,10 @@ def main():
     found_artist = plain("Artist")
     if found_license != LICENSE or AUTHOR.casefold() not in found_artist.casefold():
         raise ValueError(f"Source creator/license mismatch: {found_artist!r}, {found_license!r}")
-    raw = fetch(info["url"], "image/jpeg,image/*")
+    # Prefer Wikimedia's official 2560px rendition over the rate-limited full original.
+    # Source identity and copyright metadata still come from exact Commons imageinfo.
+    download_url = info.get("thumburl") or info["url"]
+    raw = fetch(download_url, "image/jpeg,image/*")
     with Image.open(io.BytesIO(raw)) as src:
         image = ImageOps.exif_transpose(src).convert("RGB")
     if image.width < 2200 or image.height < 1400:
