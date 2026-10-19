@@ -52,7 +52,7 @@ def main():
                 if any(token in k for token in ("mediaidentifier","mediaid","imageidentifier")) and isinstance(value,str) and re.fullmatch(r"[a-zA-Z0-9_-]{6,64}",value):
                     found.append(value)
                 if isinstance(value,str):
-                    found += re.findall(r"https?://(?:ems|dms-[^/]+)\\.dimu\\.org/image/([a-zA-Z0-9_-]{6,64})",value)
+                    found += re.findall(r"https?://(?:ems|dms-[^/]+)\.dimu\.org/image/([a-zA-Z0-9_-]{6,64})",value)
                 else: found += extract_media(value)
         elif isinstance(node,list):
             for value in node: found += extract_media(value)
