@@ -1,0 +1,101 @@
+name: Oslo Fiskehallen final source and place-index pass
+on:
+  push:
+    branches: [content/oslo-fiskehallen-v1-source-photo-20261019]
+    paths:
+      - scripts/produce-oslo-fiskehallen-portrait-20261019.py
+      - .github/workflows/oslo-fiskehallen-final-photo-index-20261019.yml
+permissions:
+  contents: write
+jobs:
+  complete-place:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install Pillow==11.3.0
+      - name: Retrieve only the documented museum original via DiMu API and produce real image assets
+        run: python scripts/produce-oslo-fiskehallen-portrait-20261019.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild real place, epoch and display indexes
+        run: |
+          npm run places:index:build
+          npm run epoker:places:build
+          npm run place-open:build
+          npm run place-open:check
+          npm run epoker:places:check
+      - name: Refresh image backlog accounting without waiving image standards
+        run: |
+          mkdir -p .tmp
+          node scripts/audit-place-images.mjs --mode=all --report=.tmp/oslo-final-image-audit.json
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const audit=JSON.parse(fs.readFileSync('.tmp/oslo-final-image-audit.json','utf8'));
+          const filename='data/places/place_image_backlog_summary.json';
+          const summary=JSON.parse(fs.readFileSync(filename,'utf8'));
+          summary.generatedAt=new Date().toISOString().slice(0,10);
+          summary.generatedFromCommit='oslo-20-fiskehallen-photo-review-20261019';
+          summary.totalPlaces=audit.totalPlaces;
+          summary.summary={
+            validLocal:audit.summary.local,validRemote:audit.summary.remote,
+            optionalMissing:audit.summary.optional,missing:audit.summary.missing,
+            invalidLocalPath:audit.summary.invalid,
+            remaining:audit.summary.missing+audit.summary.invalid
+          };
+          summary.byCategory=Object.fromEntries(Object.entries(audit.byCategory).map(([id,row])=>[id,{
+            total:row.total,valid:row.local+row.remote,optional:row.optional,
+            missing:row.missing,invalid:row.invalid
+          }]));
+          fs.writeFileSync(filename,JSON.stringify(summary,null,2)+'\n');
+          JS
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Commit source-backed local image if obtained and regenerated indexes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if test -d bilder/places/oslo-20-fiskehallen-20261019; then git add -A bilder/places/oslo-20-fiskehallen-20261019; fi
+          git add reports/oslo-20-fiskehallen-photo-20261019
+          git add data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json
+          git add data/places/places_index.json data/epoker/epoke-place-index.json
+          git add data/places/place_image_backlog_summary.json
+          git add data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json
+          git add data/runtime/place-open
+          if git diff --cached --quiet; then echo 'Already synchronized'; exit 0; fi
+          git commit -m 'assets(oslo): materialize Fiskehallen photo if valid and regenerate source-backed place indexes'
+          git push origin HEAD:content/oslo-fiskehallen-v1-source-photo-20261019
+      - name: Prepare selected native app screenshots
+        run: npx playwright install --with-deps chromium
+      - name: Inspect Fiskehallen in actual PlaceCard view
+        env:
+          HG_VISUAL_PLACES: vippetangen_fisketorg
+          HG_VISUAL_OUT: .tmp/oslo-fiskehallen-native-review
+          HG_VISUAL_CAPTURES: .tmp/oslo-fiskehallen-captures
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          source=Path("tests/oslo-v1-actual-runtime-visual-browser-audit.mjs").read_text()
+          key="const allIds=["
+          assert source.count(key)==1
+          source=source.replace(key,'const allIds=["vippetangen_fisketorg",',1)
+          Path(".tmp/oslo-fiskehallen-native-browser.mjs").write_text(source)
+          PY
+          node .tmp/oslo-fiskehallen-native-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-fiskehallen-source-photo-and-native-view
+          include-hidden-files: true
+          path: |
+            reports/oslo-20-fiskehallen-photo-20261019/
+            .tmp/oslo-fiskehallen-native-review/
+            .tmp/oslo-fiskehallen-captures/
+          if-no-files-found: warn
