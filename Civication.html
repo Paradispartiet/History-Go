@@ -227,6 +227,7 @@
 
   </main>
 
+  <div id="civiCloudSaveStatus" role="status" aria-live="polite" style="font-size:12px;padding:3px 12px">Civication: sjekker skylagring …</div>
   <div class="civi-footer" aria-label="Civication-navigasjon">
     <button id="btnCiviMap" class="civi-btn civi-map-icon-btn" type="button" aria-label="Kart" title="Kart">🗺️</button>
     <button class="civi-btn civi-category-tab" type="button" data-category="minDag">Min dag</button>
@@ -240,6 +241,8 @@
   <!-- ============ MIN DAG (Life Story) — primærpanelet, lastes først ============
        config (canvas/3D-bryter) -> lagring/JSON -> Life Story System -> Min dag-UI.
        Disse rendrer Min dag raskt og uavhengig av resten av skallet. -->
+  <script src="js/aha.js"></script>
+  <script src="js/Civication/core/CivicationCloudSave.js"></script>
   <script src="js/Civication/civicationV2Config.js"></script>
   <script src="js/Civication/core/CivicationStorageAdapter.js"></script>
   <script src="js/Civication/core/civicationJsonStore.js"></script>

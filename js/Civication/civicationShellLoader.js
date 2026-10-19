@@ -405,6 +405,8 @@
   }
 
   async function load() {
+    // Hydrate account progress before shell systems read or create local state.
+    await (/** @type {any} */ (globalScope)).CivicationCloudSave?.ready;
     console.info("[CivicationShellLoader] laster Civication-skallet (kart, dashboard, paneler, Min dag-ramme).");
     revealLegacySections();
     const richMap = shouldLoadRichMap();

@@ -10,11 +10,13 @@ const HG_AHA_PROFILE_ID_KEY = "aha_profile_id";
 const HG_AHA_PROFILE_CACHE_KEY = "aha_profile_cache_v1";
 const HG_AHA_SYNC_STATUS_KEY = "historygo_aha_sync_status_v1";
 const HG_AHA_READBACK_STATUS_KEY = "historygo_aha_last_readback_v1";
+const HG_AHA_LOCAL_OWNER_KEY = "historygo_cloud_owner_v1";
 const HG_AHA_IMPORT_SCHEMA_VERSION = "aha_import_payload_v1";
 const HG_AHA_IMPORT_CONTRACT_VERSION = 1;
 
 let hgAhaSupabaseClient = null;
 let hgAhaSdkPromise = null;
+let hgAhaCanSync = false;
 
 function hgAhaReadJson(key, fallback) {
   try {
@@ -32,7 +34,17 @@ function hgAhaWriteJson(key, value) {
 }
 
 function hgAhaStatus(key, value) {
-  hgAhaWriteJson(key, { ...value, updated_at: new Date().toISOString() });
+  const now = new Date().toISOString();
+  hgAhaWriteJson(key, { ...value, updated_at: now });
+  if (key === HG_AHA_SYNC_STATUS_KEY) {
+    const node = document.getElementById("historygoCloudSaveStatus");
+    if (node) {
+      const savedAt = value.ok ? (value.saved_at || now) : null;
+      node.textContent = savedAt ? "Sky: " + new Date(savedAt).toLocaleString("no-NO") : "Kun lokalt";
+      node.title = savedAt ? "Siste bekreftede skylagring: " + savedAt :
+        "Fremgangen er ikke bekreftet lagret på kontoen";
+    }
+  }
 }
 
 function hgAhaHasObjectData(key) {
@@ -107,7 +119,19 @@ function getAhaProfileIdSync() {
   return String(localStorage.getItem(HG_AHA_PROFILE_ID_KEY) || "").trim() || null;
 }
 
+function hgAhaHasStoredAuthToken() {
+  try {
+    // supabase-js persistSession uses this project-scoped key by default.
+    // Merely having aha_profile_id / user_name is NOT authentication.
+    const projectId = new URL(HG_AHA_SUPABASE_URL).hostname.split(".")[0];
+    return Boolean(localStorage.getItem("sb-" + projectId + "-auth-token"));
+  } catch { return false; }
+}
+
 async function getAhaSession() {
+  // Offline / first-time visitors must boot without an unnecessary SDK
+  // download, and must never be classified as signed in from a cached name.
+  if (!hgAhaSupabaseClient && !hgAhaHasStoredAuthToken()) return null;
   const client = await hgAhaGetClient();
   if (!client) return null;
   const { data, error } = await client.auth.getSession();
@@ -165,18 +189,41 @@ async function ensureAhaProfile(user) {
   return loadAhaProfile(user);
 }
 
+// Merge additive achievements and collections. For non-monotonic state (wallets,
+// routes, profile fields) an existing local value wins rather than being clobbered.
+function hgAhaMerge(remote, local) {
+  if (Array.isArray(remote) && Array.isArray(local)) {
+    const seen = new Set();
+    return [...remote, ...local].filter(item => {
+      const signature = JSON.stringify(item);
+      if (seen.has(signature)) return false;
+      seen.add(signature);
+      return true;
+    });
+  }
+  if (remote && local && typeof remote === "object" && typeof local === "object" &&
+      !Array.isArray(remote) && !Array.isArray(local)) {
+    const merged = { ...remote };
+    for (const [key, value] of Object.entries(local)) {
+      merged[key] = key in remote ? hgAhaMerge(remote[key], value) : value;
+    }
+    return merged;
+  }
+  return local !== null && local !== undefined && local !== "" ? local : remote;
+}
+
 function applyHistoryGoPayloadFromAha(payload, options = {}) {
   if (!payload || typeof payload !== "object") return { ok: false, reason: "invalid_payload" };
 
   const applied = [];
   const writeObject = (key, value) => {
     if (!value || typeof value !== "object" || Array.isArray(value)) return;
-    hgAhaWriteJson(key, value);
+    hgAhaWriteJson(key, hgAhaMerge(value, hgAhaReadJson(key, {})));
     applied.push(key);
   };
   const writeArray = (key, value) => {
     if (!Array.isArray(value)) return;
-    hgAhaWriteJson(key, value);
+    hgAhaWriteJson(key, hgAhaMerge(value, hgAhaReadJson(key, [])));
     applied.push(key);
   };
 
@@ -210,7 +257,8 @@ function applyHistoryGoPayloadFromAha(payload, options = {}) {
     localStorage.setItem("hg_nextup_because", payload.hg_nextup_because);
     applied.push("hg_nextup_because");
   }
-  if (payload.profile_id) localStorage.setItem(HG_AHA_PROFILE_ID_KEY, String(payload.profile_id));
+  // Never trust the unverified profile_id inside a stored/exported payload.
+  // The caller established ownership from the authenticated Supabase session.
 
   try { localStorage.setItem("aha_import_payload_v1", JSON.stringify(payload, null, 2)); } catch {}
 
@@ -244,6 +292,12 @@ async function loadLatestHistoryGoFromAha(options = {}) {
   }
 
   localStorage.setItem(HG_AHA_PROFILE_ID_KEY, user.id);
+  const priorOwner = localStorage.getItem(HG_AHA_LOCAL_OWNER_KEY);
+  if (priorOwner && priorOwner !== user.id && hasMeaningfulHistoryGoLocalState()) {
+    const status = { ok: false, reason: "different_local_account", profile_id: user.id };
+    hgAhaStatus(HG_AHA_READBACK_STATUS_KEY, status);
+    return status;
+  }
   const client = await hgAhaGetClient();
   if (!client) return { ok: false, reason: "not_configured" };
 
@@ -260,6 +314,9 @@ async function loadLatestHistoryGoFromAha(options = {}) {
     return status;
   }
   if (!data?.payload) {
+    if (!priorOwner || priorOwner === user.id || !hasMeaningfulHistoryGoLocalState()) {
+      localStorage.setItem(HG_AHA_LOCAL_OWNER_KEY, user.id);
+    }
     const status = { ok: false, reason: "no_remote_historygo_payload", profile_id: user.id };
     hgAhaStatus(HG_AHA_READBACK_STATUS_KEY, status);
     return status;
@@ -269,7 +326,14 @@ async function loadLatestHistoryGoFromAha(options = {}) {
     hgAhaStatus(HG_AHA_READBACK_STATUS_KEY, { ...status, payload: undefined });
     return status;
   }
-  return applyHistoryGoPayloadFromAha(data.payload, { source: "supabase" });
+  const restored = applyHistoryGoPayloadFromAha(data.payload, { source: "supabase" });
+  if (restored.ok) {
+    localStorage.setItem(HG_AHA_LOCAL_OWNER_KEY, user.id);
+    hgAhaStatus(HG_AHA_SYNC_STATUS_KEY, {
+      ok: true, source_app: "historygo", saved_at: data.created_at
+    });
+  }
+  return restored;
 }
 
 async function refreshAhaAuthState() {
@@ -277,6 +341,7 @@ async function refreshAhaAuthState() {
     const session = await getAhaSession();
     const user = session?.user || null;
     if (!user?.id) {
+      hgAhaCanSync = false;
       localStorage.removeItem(HG_AHA_PROFILE_ID_KEY);
       cacheAhaProfile({});
       window.dispatchEvent(new CustomEvent("aha:auth-ready", { detail: { signed_in: false, profile_id: null, source_app: "historygo" } }));
@@ -286,10 +351,11 @@ async function refreshAhaAuthState() {
     localStorage.setItem(HG_AHA_PROFILE_ID_KEY, user.id);
     const ahaProfile = await loadAhaProfile(user);
 
-    let readback = null;
-    if (!hasMeaningfulHistoryGoLocalState()) {
-      readback = await loadLatestHistoryGoFromAha({ apply: true });
-    }
+    // Restore/merge before state.js snapshots its local globals.
+    // Do not assume any existing local save means the remote copy is obsolete.
+    const readback = await loadLatestHistoryGoFromAha({ apply: true });
+    // Never push local state when ownership/readback could not be verified.
+    hgAhaCanSync = Boolean(readback?.ok || readback?.reason === "no_remote_historygo_payload");
 
     const detail = {
       signed_in: true,
@@ -308,7 +374,19 @@ async function refreshAhaAuthState() {
   }
 }
 
-async function syncHistoryGoPayloadToAha(payloadInput) {
+/** @type {Promise<unknown>} */
+let hgAhaUploadQueue = Promise.resolve();
+function syncHistoryGoPayloadToAha(payloadInput) {
+  const next = () => syncHistoryGoPayloadToAhaInner(payloadInput);
+  hgAhaUploadQueue = hgAhaUploadQueue.then(next, next);
+  return hgAhaUploadQueue;
+}
+
+async function syncHistoryGoPayloadToAhaInner(payloadInput) {
+  // A manual export or early quiz callback must not race initial readback.
+  await window.HistoryGoAHAAuth?.ready;
+  if (!hasMeaningfulHistoryGoLocalState()) return { ok: false, reason: "empty_save" };
+  if (!hgAhaCanSync) return { ok: false, reason: "readback_not_verified" };
   const payload = typeof payloadInput === "string" ? JSON.parse(payloadInput) : (payloadInput && typeof payloadInput === "object" ? payloadInput : {});
   const session = await getAhaSession();
   const user = session?.user || null;
@@ -317,6 +395,11 @@ async function syncHistoryGoPayloadToAha(payloadInput) {
     return { ok: false, fallback: "localStorage", reason: "not_signed_in" };
   }
 
+  const owner = localStorage.getItem(HG_AHA_LOCAL_OWNER_KEY);
+  if (owner && owner !== user.id) {
+    hgAhaStatus(HG_AHA_SYNC_STATUS_KEY, { ok: false, reason: "different_local_account" });
+    return { ok: false, reason: "different_local_account" };
+  }
   localStorage.setItem(HG_AHA_PROFILE_ID_KEY, user.id);
   const ahaProfile = await loadAhaProfile(user);
   if (!ahaProfile?.ok) {
@@ -331,7 +414,16 @@ async function syncHistoryGoPayloadToAha(payloadInput) {
   }
 
   const localProfile = hgAhaReadJson("hg_user_profile_v1", {});
-  const enrichedPayload = {
+  // Re-read the current account backup before each upload. Merge collectible
+  // achievements rather than replacing newer remote progress with a stale tab.
+  const { data: remote, error: readError } = await client.from("aha_imports")
+    .select("payload").eq("id", `historygo_latest_${user.id}`)
+    .eq("profile_id", user.id).maybeSingle();
+  if (readError) {
+    hgAhaStatus(HG_AHA_SYNC_STATUS_KEY, { ok: false, reason: "remote_read_failed" });
+    return { ok: false, reason: "remote_read_failed" };
+  }
+  const enrichedPayload = hgAhaMerge(remote?.payload || {}, {
     ...payload,
     user_id: user.id,
     profile_id: user.id,
@@ -340,7 +432,7 @@ async function syncHistoryGoPayloadToAha(payloadInput) {
     source: "historygo",
     auth_source: "supabase",
     synced_from_historygo_at: new Date().toISOString()
-  };
+  });
 
   const record = {
     id: `historygo_latest_${user.id}`,
@@ -372,6 +464,7 @@ async function syncHistoryGoPayloadToAha(payloadInput) {
     return { ok: false, error, profile_id: user.id };
   }
 
+  localStorage.setItem(HG_AHA_LOCAL_OWNER_KEY, user.id);
   hgAhaStatus(HG_AHA_SYNC_STATUS_KEY, { ok: true, profile_id: user.id, source_app: "historygo" });
   return { ok: true, data, profile_id: user.id };
 }
@@ -389,7 +482,7 @@ function bindHistoryGoAhaButtons() {
 
 function initHistoryGoAhaAuthBridge() {
   bindHistoryGoAhaButtons();
-  refreshAhaAuthState();
+  window.HistoryGoAHAAuth.ready = refreshAhaAuthState();
 }
 
 window.HistoryGoAHAAuth = {
@@ -403,7 +496,9 @@ window.HistoryGoAHAAuth = {
   syncHistoryGoPayload: syncHistoryGoPayloadToAha,
   loadLatestHistoryGo: loadLatestHistoryGoFromAha,
   applyHistoryGoPayload: applyHistoryGoPayloadFromAha,
-  openAhaLogin
+  openAhaLogin,
+  startAutosave: startHistoryGoAutosave,
+  scheduleAutosave: scheduleHistoryGoAutosave
 };
 
 if (document.readyState === "loading") {
@@ -634,5 +729,40 @@ function syncHistoryGoToAHA() {
   }
 }
 
+// Debounced writes plus change detection cover save paths that use localStorage
+// directly. The interval runs only after the app has finished restoring.
+let hgAhaAutosaveTimer = null;
+let hgAhaAutosaveStarted = false;
+const HG_AHA_PROGRESS_KEYS = [
+  "visited_places", "people_collected", "merits_by_category", "quiz_progress",
+  "historygo_progress", "hg_unlocks_v1", "hg_groundhopper_stats_v1",
+  "hg_knowledge_entries_v2", "hg_knowledge_memory_v1", "hg_learning_log_v1",
+  "hg_insights_events_v1", "hg_pc_wallet_v1", "hg_user_notes_v1",
+  "hg_person_dialogs_v1", "hg_nextup_history_v1", "trivia_universe"
+];
+function hgAhaProgressFingerprint() {
+  return JSON.stringify(HG_AHA_PROGRESS_KEYS.map(key => localStorage.getItem(key)));
+}
+function scheduleHistoryGoAutosave() {
+  if (!hgAhaAutosaveStarted) return;
+  clearTimeout(hgAhaAutosaveTimer);
+  hgAhaAutosaveTimer = setTimeout(() => syncHistoryGoToAHA(), 1400);
+}
+function startHistoryGoAutosave() {
+  if (hgAhaAutosaveStarted) return;
+  hgAhaAutosaveStarted = true;
+  let previous = hgAhaProgressFingerprint();
+  scheduleHistoryGoAutosave(); // Initial backup after readback.
+  setInterval(() => {
+    const current = hgAhaProgressFingerprint();
+    if (current !== previous) {
+      previous = current;
+      scheduleHistoryGoAutosave();
+    }
+  }, 6000);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") scheduleHistoryGoAutosave();
+  });
+}
 window.exportHistoryGoData = exportHistoryGoData;
 window.syncHistoryGoToAHA = syncHistoryGoToAHA;

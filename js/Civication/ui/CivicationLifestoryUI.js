@@ -145,6 +145,7 @@
    * @param {string} roleId
    */
   async function loadRole(roleId, stillCurrent = () => true) {
+    await window.CivicationCloudSave?.ready;
     const Content = /** @type {any} */ (window).CivicationLifestoryContent;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
     const sequence = ++roleLoadSequence;
@@ -197,8 +198,10 @@
   }
 
   async function ensureLoaded() {
+    await window.CivicationCloudSave?.ready;
     if (content && state) return;
     if (!loading) {
+      if (!EXPLICIT_ROLE_ID) currentRoleId = window.CivicationLifestoryState?.load?.()?.rolle || currentRoleId;
       loading = loadRole(currentRoleId);
     }
     return loading;

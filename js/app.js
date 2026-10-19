@@ -46,6 +46,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadHGTodayHubPanel", () => loadScriptOnce("js/today/HGTodayHubPanel.js"));
     await safeRun("loadRuntimeHealthPanel", () => loadScriptOnce("js/debug/HGRuntimeHealthPanel.js"));
     await safeRun("renderRuntimeHealthPanel", () => window.HG_RuntimeHealthPanel?.render?.());
+    // Account readback MUST finish before state.js materializes visited/merit globals.
+    await safeRun("loadAhaBridge", () => loadScriptOnce("js/aha.js"));
+    await safeRun("restoreAccountProgress", () => window.HistoryGoAHAAuth?.ready);
     await safeRun("loadState", () => loadScriptOnce("js/state/state.js"));
 
     await safeRun("loadCategories", () => loadScriptOnce("js/core/categories.js"));
@@ -195,7 +198,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // bevisst: aha.js (AHA-bro) før profileIdentity.js, og profileIdentity.js før
     // mini-profile.js – fordi ProfileIdentity eier #miniName/profilnavnet, mens
     // mini-profile.js bare rendrer statistikk. i18n.js finnes allerede fra index.html.
-    await safeRun("loadAhaBridge", () => loadScriptOnce("js/aha.js"));
     await safeRun("loadProfileIdentity", () => loadScriptOnce("js/profileIdentity.js"));
     await safeRun("loadHGSocialMeetProfileBridge", () => loadScriptOnce("js/social/HGSocialMeetProfileBridge.js?v=20260913-place-status1"));
     await safeRun("loadMiniProfile", () => loadScriptOnce("js/ui/mini-profile.js"));
@@ -211,6 +213,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (runtimeError) throw runtimeError;
 
     markAppReady();
+    window.HistoryGoAHAAuth?.startAutosave?.();
     releaseQueuedToasts();
 
     // QuizEngine lastes fra app-entry (samme kanal som resten av index-runtime).

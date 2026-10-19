@@ -67,6 +67,7 @@
 
     try {
       storage.setItem(key, value);
+      root.CivicationCloudSave?.schedule?.();
       return true;
     } catch (error) {
       warn(`Failed to write raw key "${key}"`, error);
@@ -101,6 +102,7 @@
 
     try {
       storage.removeItem(key);
+      root.CivicationCloudSave?.schedule?.();
       return true;
     } catch (error) {
       warn(`Failed to remove key "${key}"`, error);
