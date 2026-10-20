@@ -11,6 +11,9 @@ on:
       - 'tests/det-norske-teatret-quizcard-house-dom.test.mjs'
       - 'tests/det-norske-teatret-production-venue.test.mjs'
       - 'tests/det-norske-teatret-objects-rights-c31.test.mjs'
+      - 'tests/det-norske-teatret-object-image-c32.test.mjs'
+      - 'scripts/place-production/stage-dnt-object-image-c32.mjs'
+      - 'reports/place-production/det-norske-teatret/20261020/object-image-intake-c32.json'
       - 'reports/place-production/det-norske-teatret/20261020/objects-c31-candidates.json'
       - 'reports/place-production/det-norske-teatret/20261020/portrait-rights-c31.json'
       - 'reports/place-production/det-norske-teatret/20261020/objects-and-portrait-rights-c31.md'
@@ -29,4 +32,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node-npm
       - name: Confirm venue/media guards and place-focused QuizCard source/DOM parity
-        run: node --test tests/det-norske-teatret-production-venue.test.mjs tests/det-norske-teatret-quizcard-house-dom.test.mjs tests/det-norske-teatret-objects-rights-c31.test.mjs
+        run: node --test tests/det-norske-teatret-production-venue.test.mjs tests/det-norske-teatret-quizcard-house-dom.test.mjs tests/det-norske-teatret-objects-rights-c31.test.mjs tests/det-norske-teatret-object-image-c32.test.mjs

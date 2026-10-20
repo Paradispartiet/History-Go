@@ -156,7 +156,7 @@
     "objects": {
       "status": "BLOCKED",
       "reason": "C31 har funnet tre kildeforankrede, distinkte fysiske kandidater: Madame de Sade-kostyme (1989, Oslo Museum TM.01641.A-C, to CC BY-SA 4.0-foto av samme gjenstand), Hulda Garborgs bunad i foajeen og Juleroser-kjolen laget ved teatrets kostymeavdeling. Kun ett kandidatobjekt har kildeklarerte foto; ingen har lokalt medlemspublisert bilde. Eldre kostymer fra 1971/1983 er holdt utenfor huset fra 1985.",
-      "plan": "Bruk reports/place-production/det-norske-teatret/20261020/objects-c31-candidates.json. Kontroller fysisk status/eiarskap og objektidentitet, last ned og krediter 1989-kostymet i eksisterende godkjent objektløp, finn eit uavhengig andre objekt med rettigheitsklarert bildefil, og hold samlingen BLOCKED til canonical medlemmer og preview faktisk finnes. Ingen forskyvning av 1971/1983-kostymer inn i 1985-huset."
+      "plan": "Bruk reports/place-production/det-norske-teatret/20261020/objects-c31-candidates.json. Kontroller fysisk status/eiarskap og objektidentitet, last ned og krediter 1989-kostymet i eksisterende godkjent objektløp, finn eit uavhengig andre objekt med rettigheitsklarert bildefil, og hold samlingen BLOCKED til canonical medlemmer og preview faktisk finnes. Ingen forskyvning av 1971/1983-kostymer inn i 1985-huset. C32: Et kildelåst foto av Madame de Sade-kostymet TM.01641.A-C er satt i separat, fail-closed bildepipeline. Ved merge av C32-forespørselen skal GitHub Actions hente originalen med live Commons-rettighetssjekk og åpne en draft-PR kun med lokal WebP og proveniensrapport. Ingen canonical medlemspublisering."
     },
     "brands": {
       "status": "BLOCKED",
@@ -355,6 +355,14 @@
         "reports/place-production/det-norske-teatret/20261020/portrait-rights-c31.json",
         "reports/place-production/det-norske-teatret/20261020/objects-and-portrait-rights-c31.md"
       ]
+    },
+    {
+      "id": "madame_de_sade_object_media_draft_c32",
+      "status": "EXACT_SOURCE_VERIFIED_AUTOMATED_DRAFT_STAGING_REQUESTED",
+      "scope": "Kildeklarert CC BY-SA 4.0/Oslo Museum TM.01641.A-C fotografering av Lone Lunde; script verifiserer metadata på nytt, produserer lokalt 800px bilde og separat draft PR. Objects forblir BLOCKED til full samling, bilde- og runtime-gate.",
+      "request": "reports/place-production/det-norske-teatret/20261020/object-image-intake-c32.json",
+      "script": "scripts/place-production/stage-dnt-object-image-c32.mjs",
+      "workflow": ".github/workflows/dnt-object-image-stage.yml"
     }
   ],
   "rule_preflight": {
