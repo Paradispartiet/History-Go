@@ -9,6 +9,9 @@ on:
       - 'tests/det-norske-teatret-portrait-inventory.test.mjs'
       - '.github/workflows/dnt-portrait-inventory.yml'
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:

@@ -1,0 +1,35 @@
+name: DNT C29 one-shot READ-FIRST evidence sync
+on:
+  push:
+    branches: [agent/dnt-portrait-inventory-c29-20261020]
+    paths:
+      - '.github/workflows/dnt-c29-readfirst-sync-20261020.yml'
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  refresh-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record reviewed current source rule hashes and contract
+        run: |
+          node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/det-norske-teatret-workcard-current.json --place-id det_norske_teatret --category scenekunst
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/det-norske-teatret-workcard-current.json
+          node --test tests/det-norske-teatret-portrait-inventory.test.mjs
+      - name: Enforce exact generated workcard-only change
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/place-production/det-norske-teatret-workcard-current.json
+          test "$(git diff --cached --name-only)" = 'reports/place-production/det-norske-teatret-workcard-current.json'
+          git commit -m 'chore(dnt): refresh reviewed READ-FIRST evidence on current canonical rule set'
+          git push origin HEAD:agent/dnt-portrait-inventory-c29-20261020
