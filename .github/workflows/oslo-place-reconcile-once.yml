@@ -1,0 +1,33 @@
+name: Oslo place indices reconcile (one-shot)
+on:
+  push:
+    branches:
+      - content/vulkan-blaa-v42-20261020
+    paths:
+      - .github/workflows/oslo-place-reconcile-once.yml
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run places:index:build
+      - run: npm run place-open:build
+      - run: npm run epoker:places:build
+      - name: Commit generated data and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/places_index.json data/runtime/place-open/vulkan_industriomrade.json data/runtime/place-open/blaa.json data/runtime/place-open/sentrum_scene.json data/epoker/epoke-place-index.json
+          git rm .github/workflows/oslo-place-reconcile-once.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(oslo): reconcile Vulkan Blå and Sentrum Scene indexes'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
