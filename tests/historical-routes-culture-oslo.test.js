@@ -1,0 +1,36 @@
+const assert=require("node:assert/strict");
+const fs=require("node:fs");
+const path=require("node:path");
+const vm=require("node:vm");
+const ROOT=path.resolve(__dirname,"..");
+const read=(p)=>JSON.parse(fs.readFileSync(path.join(ROOT,p),"utf8"));
+const route=read("data/routes/historical/routes_historical_culture_oslo.json")[0];
+const manifest=read("data/routes/historical/manifest.json");
+const placesManifest=read("data/places/manifest.json");
+const sources=read("data/routes/historical/sources_culture_oslo_20261020.json");
+assert.ok(manifest.files.includes("routes_historical_culture_oslo.json"));
+assert.equal(route.type,"historical_route");
+assert.equal(route.feature,"historiske_ruter");
+assert.equal(route.routeArchetype,"urban_time_route");
+assert.equal(route.chapters.length,6);
+assert.equal(sources.chapters.length,6);
+const ids=new Set();
+for(const [i,c] of route.chapters.entries()){
+ assert.equal(c.sequence,i+1);
+ assert.ok(!ids.has(c.id));
+ ids.add(c.id);
+ assert.ok(placesManifest.files.some(f=>f.endsWith("/"+c.placeId+".json")),c.placeId);
+ assert.equal(c.physical.enabled,true);
+ assert.equal(c.physical.placeId,c.placeId);
+ assert.equal(c.physical.physicalCollected,false);
+ assert.ok(c.physical.gpsRadius>0);
+ assert.ok(c.tasks[0]?.prompt);
+ assert.ok(c.narrativeText.length>250);
+ const source=sources.chapters.find(s=>s.chapterId===c.id);
+ assert.ok(source?.sources.length>=2,c.id);
+}
+const cache=new Map(),events=[];
+const context={console,Date,Promise,Set,JSON,localStorage:{getItem:(k)=>cache.get(k)??null,setItem:(k,v)=>cache.set(k,v)},Event:class Event{constructor(type){this.type=type}},CustomEvent:class CustomEvent{constructor(type,init={}){this.type=type;this.detail=init.detail}},document:{addEventListener(){},getElementById(){return null}},window:{DataHub:{loadHistoricalRoutes:async()=>[route]},dispatchEvent:(evt)=>events.push(evt),rerenderActiveLeftPanelMode(){}}};
+context.window.window=context.window;context.window.localStorage=context.localStorage;context.window.Event=context.Event;context.window.CustomEvent=context.CustomEvent;
+vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(ROOT,"js/historical-routes.js"),"utf8"),context);
+(async()=>{const player=context.window.HGHistoricalRoutes;await player.load();assert.ok(player.renderCards().includes(route.title));let progress=player.startRoute(route.id);assert.equal(progress.status,"started");for(let i=0;i<6;i++)progress=player.completeCurrentChapter(route.id);assert.equal(progress.status,"online_completed");assert.equal(progress.online.completedStopIds.length,6);assert.equal(progress.physical.completed,false);assert.ok(events.some(e=>e.type==="hg:routeCompleted"));console.log("historical-routes-culture-oslo.test.js: PASS");})().catch(err=>{console.error(err);process.exitCode=1});
