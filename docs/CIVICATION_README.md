@@ -142,6 +142,10 @@ En lokal `Re:`-thread i mailformatet er ikke det samme som en Role World-primary
 
 Levevei er allerede et eget implementert lag gjennom `CivicationLivelihoods` og opportunity-kjeden. Role World skal koble authored scener og konsekvenser til dette laget når relevant; det skal ikke bygges en ny livelihood-/økonomimotor.
 
+## Aktiv helhetsplan for spillerreisen (2026-10-20)
+
+[**CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md**](./CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md) er samlet operativ plan og kontrollregister for 14-dagers spillerreise, psyke/energi, relasjoner, økonomi, konsekvenser, lagring og sluttkontroll. Planen prioriterer fullføring av eksisterende utkast [PR #6437](https://github.com/Paradispartiet/History-Go/pull/6437) før nye produksjonsbolker. Den er ikke en ny runtime-kontrakt, og ingen test- eller dokumentasjonsstatus alene gir produktgodkjenning.
+
 ## Aktiv produksjonsrekkefølge
 
 Arbeid på Civication skal følge denne rekkefølgen med GitHub `main` som autoritativ baseline:
