@@ -691,7 +691,7 @@
   }
 
   function refresh() {
-    if (!modalEl || !modalEl.isConnected || !modalEl.classList) return false;
+    if (!modalEl || modalEl.isConnected === false || !modalEl.classList) return false;
     // The embedded answer card is permanently mounted inside the inbox, and
     // unlike the old modal it is not necessarily opened through open().
     // Keep it in sync after external answer, role and day-phase updates too.
