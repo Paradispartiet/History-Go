@@ -7,7 +7,7 @@ const personId = "hans_jacob_nilsen";
 const original = read("data/people/musikk/oslo/det_norske_teatret/hans_jacob_nilsen.json");
 
 function allRuntimePeople() {
-  return fs.readdirSync("data/runtime/people-all").filter((file) => /^part-\\d+\\.json$/.test(file))
+  return fs.readdirSync("data/runtime/people-all").filter((file) => /^part-\d+\.json$/.test(file))
     .flatMap((file) => read("data/runtime/people-all/" + file));
 }
 
@@ -18,8 +18,8 @@ test("1948 premiere uses theatre archive date without changing canonical identit
   assert.equal(p.year, 1933);
   assert.equal(p.image, "bilder/kort/people/hans_jacob_nilsen.jpg");
   assert.equal(p.cardImage,p.image);
-  assert.match(p.popupDesc,/2\\. mars 1948/u);
-  assert.doesNotMatch(p.popupDesc,/2\\. mai 1948/u);
+  assert.match(p.popupDesc,/2\. mars 1948/u);
+  assert.doesNotMatch(p.popupDesc,/2\. mai 1948/u);
   for (const url of ["https://arkiv.detnorsketeatret.no/produksjon/peer-gynt-19480302","https://sceneweb.no/nb/production/38041/Peer_Gynt"]) {
     assert.ok(p.source_urls.includes(url));
     assert.ok(p.externalLinks.some((row)=>row.url===url));
