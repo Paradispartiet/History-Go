@@ -1,0 +1,56 @@
+name: Oslo-20 Sagene targeted timeline materialization
+on:
+  push:
+    branches: [content/oslo20-sagene-v42-closeout-20261020]
+    paths: [.github/workflows/oslo20-sagene-epoke-oneoff-20261020.yml]
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Rebuild only source-dependent timeline index and assertions
+        run: |
+          cp data/epoker/epoke-place-index.json /tmp/oslo20-epoke-previous.json
+          npm run epoker:places:build
+          node --input-type=module - <<'JS'
+          import fs from "node:fs";
+          const old=JSON.parse(fs.readFileSync("/tmp/oslo20-epoke-previous.json","utf8")).domains.historie.oslo_coverage;
+          const fresh=JSON.parse(fs.readFileSync("data/epoker/epoke-place-index.json","utf8")).domains.historie.oslo_coverage;
+          const before=old.places.find(p=>p.place_id==="sagene_skole")?.status;
+          const after=fresh.places.find(p=>p.place_id==="sagene_skole")?.status;
+          if(before!=="awaiting_source_backed_history"||after!=="dated_evidence"||
+             fresh.canonical_place_count!==old.canonical_place_count||
+             fresh.dated_evidence_place_count!==old.dated_evidence_place_count+1||
+             fresh.awaiting_source_backed_history_count!==old.awaiting_source_backed_history_count-1||
+             fresh.documented_case_place_count!==old.documented_case_place_count){
+             throw Error("Unexpected timeline impact: "+JSON.stringify({before,after,old:{dated:old.dated_evidence_place_count,pending:old.awaiting_source_backed_history_count},fresh:{dated:fresh.dated_evidence_place_count,pending:fresh.awaiting_source_backed_history_count}}));
+          }
+          const path="tests/epoke-place-index.test.mjs";
+          let s=fs.readFileSync(path,"utf8");
+          const a="assert.equal(coverage.dated_evidence_place_count, "+old.dated_evidence_place_count+");";
+          const b="assert.equal(coverage.awaiting_source_backed_history_count, "+old.awaiting_source_backed_history_count+");";
+          if(!s.includes(a)||!s.includes(b))throw Error("Unexpected prior assertion baselines");
+          s=s.replace(a,"assert.equal(coverage.dated_evidence_place_count, "+fresh.dated_evidence_place_count+");");
+          s=s.replace(b,"assert.equal(coverage.awaiting_source_backed_history_count, "+fresh.awaiting_source_backed_history_count+");");
+          s=s.replace('"sagene", "torshov"', '"sagene", "sagene_skole", "torshov"');
+          fs.writeFileSync(path,s);
+          console.log("One documented Oslo school moved into dated-evidence coverage",before,"->",after);
+          JS
+          node --test tests/epoke-place-index.test.mjs
+      - name: Save generated index and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/oslo20-sagene-epoke-oneoff-20261020.yml
+          git add -A .github/workflows/oslo20-sagene-epoke-oneoff-20261020.yml
+          git add data/epoker/epoke-place-index.json tests/epoke-place-index.test.mjs
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'build(oslo20): materialize Sagene sourced History timeline'
+          git push origin HEAD:refs/heads/content/oslo20-sagene-v42-closeout-20261020
