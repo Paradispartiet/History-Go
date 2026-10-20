@@ -5,6 +5,7 @@ on:
     paths:
       - 'data/routes/historical/**'
       - 'tests/historical-routes-alna.test.js'
+      - 'tests/historical-routes-oslo-music.test.js'
       - 'js/historical-routes.js'
       - 'js/nextUpRuntime.js'
       - 'tools/audit-historical-routes.mts'
@@ -28,4 +29,6 @@ jobs:
       - name: Setup Node workspace
         uses: ./.github/actions/setup-node-npm
       - name: Validate new Alna route and online progression
-        run: node tests/historical-routes-alna.test.js
+        run: |
+          node tests/historical-routes-alna.test.js
+          node tests/historical-routes-oslo-music.test.js
