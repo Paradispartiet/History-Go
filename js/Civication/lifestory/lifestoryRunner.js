@@ -156,13 +156,20 @@
   // Ingen tilfeldige straffer, ingen oppdiktede diagnoser eller jobbutfall.
   function applyCapacityLoad(state, choice, before) {
     const effort = Number(choice?.effekter?.meters?.energi || 0);
-    if (effort > -2 || before.energi > 30) return null;
-    state.meters.psyke = Math.max(0, state.meters.psyke - 1);
-    if (before.psyke <= 30) {
-      state.meters.handlingsrom = Math.max(0, state.meters.handlingsrom - 1);
-      return "Lite energi og lavt psykisk overskudd gjorde det krevende valget tyngre (psyke −1, handlingsrom −1).";
+    const emotionalStrain = Number(choice?.effekter?.meters?.psyke || 0);
+    if (effort <= -2 && before.energi <= 30) {
+      state.meters.psyke = Math.max(0, state.meters.psyke - 1);
+      if (before.psyke <= 30) {
+        state.meters.handlingsrom = Math.max(0, state.meters.handlingsrom - 1);
+        return "Lite energi og lavt psykisk overskudd gjorde det krevende valget tyngre (psyke −1, handlingsrom −1).";
+      }
+      return "Lite energi gjorde det krevende valget tyngre (psyke −1).";
     }
-    return "Lite energi gjorde det krevende valget tyngre (psyke −1).";
+    if (emotionalStrain <= -2 && before.psyke <= 30) {
+      state.meters.energi = Math.max(0, state.meters.energi - 1);
+      return "Lavt psykisk overskudd gjorde den belastende situasjonen mer utmattende (energi −1).";
+    }
+    return null;
   }
 
   function capacityWarning(state) {
