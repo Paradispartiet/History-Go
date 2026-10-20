@@ -1173,4 +1173,10 @@
   ].forEach(function (eventName) {
     window.addEventListener(eventName, scheduleRefresh);
   });
+
+  // This module owns the top card. Mail and phase changes also need to
+  // refresh it; the inbox renderer intentionally no longer writes that card.
+  ["civi:inboxChanged", "civi:dayPhaseChanged"].forEach(function (eventName) {
+    window.addEventListener(eventName, refreshTopActionCard);
+  });
 })();
