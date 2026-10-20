@@ -75,6 +75,10 @@ async function run() {
     .find(section => section.querySelector("h3")?.textContent === "Personlige meldinger");
   assert.equal(privateSection?.querySelector("strong")?.textContent, "1 åpne",
     "the active message counts as open even when it has no duplicate archive card");
+  assert.match(privateSection.textContent, /aktive meldingen vises øverst/i,
+    "the channel explains where the counted current action is shown");
+  assert.doesNotMatch(privateSection.textContent, /Ingen personlige meldinger akkurat nå/,
+    "a channel with a current active message must not claim there is no mail");
 
   // A role/day change can arrive without the user clicking the inbox button.
   // The embedded answer area must refresh even though it is not a modal.
