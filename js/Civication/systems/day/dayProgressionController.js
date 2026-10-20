@@ -382,65 +382,74 @@
   /**
    * @returns {Promise<DayProgAdvanceResult>}
    */
+  // One canonical phase transition at a time. Async queue delivery leaves a
+  // window where another click could otherwise advance the following phase.
+  let phaseAdvanceInFlight = false;
   async function advancePhaseIfReady() {
-    const state = inspect();
-    const canAdvanceToNextPhase = state.canAdvance;
-    const canResetAtDayEnd = state.reason === "at_last_phase"
-      && state.phase === "day_end"
-      && Number(state.openItemsInPhase || 0) === 0
-      && Number(state.queuedItemsInPhase || 0) === 0
-      && Number(state.deliveredItemsInPhase || 0) === 0;
+    if (phaseAdvanceInFlight) return { advanced: false, reason: "advance_in_flight" };
+    phaseAdvanceInFlight = true;
+    try {
+      const state = inspect();
+      const canAdvanceToNextPhase = state.canAdvance;
+      const canResetAtDayEnd = state.reason === "at_last_phase"
+        && state.phase === "day_end"
+        && Number(state.openItemsInPhase || 0) === 0
+        && Number(state.queuedItemsInPhase || 0) === 0
+        && Number(state.deliveredItemsInPhase || 0) === 0;
 
-    if (!canAdvanceToNextPhase && !canResetAtDayEnd) {
-      return { advanced: false, reason: state.reason };
+      if (!canAdvanceToNextPhase && !canResetAtDayEnd) {
+        return { advanced: false, reason: state.reason };
+      }
+
+      const calendar = getCalendar();
+      const fromPhase = state.phase;
+
+      // Den kanoniske kalenderen kan ikke hoppe over uferdige Min dag-valg.
+      // Life Story gjør aldri kalender-, mail- eller ukes-tick selv.
+      // Null betyr at Min dag ikke finnes på siden, og beholder gammel flyt.
+      const lifeStory = window.CivicationLifestoryUI?.getDaySyncState?.() || null;
+      if (fromPhase === "day_end" && lifeStory && !lifeStory.dagFerdig) {
+        return { advanced: false, reason: "lifestory_day_incomplete" };
+      }
+
+      // PR F: dagsrullnings (day_end → ny dag) skal ferdigstille ukesoppsummeringen. For daily-events
+      // kjører ikke lenger dayPatches.answer sin day_end-gren (PR A), så `saveDailySummaryToWeek` +
+      // `finalizeWeekIfNeeded` var foreldreløse — uke-review ble aldri skrevet, og det inert-gjorde
+      // det ukentlige carryover-signalet (visibility/process/fatigue). Vi lagrer dagens summary til
+      // uken FØR rullnings, fordi `advancePhase()` ved day_end nullstiller dagen og fjerner
+      // dailySummary. Begge helperne er idempotente (dag-oppdatering by index + applied-flagg).
+      if (fromPhase === "day_end") {
+        try {
+          const summary = calendar?.getDailySummary?.();
+          if (summary && typeof window.saveDailySummaryToWeek === "function") {
+            window.saveDailySummaryToWeek(summary);
+          }
+          if (typeof window.finalizeWeekIfNeeded === "function") {
+            const activePosition = /** @type {{ career_id?: unknown } | null | undefined} */ (
+              window.CivicationState?.getActivePosition?.()
+            );
+            const careerId = activePosition?.career_id || "";
+            window.finalizeWeekIfNeeded(careerId);
+          }
+        } catch {}
+      }
+
+      calendar?.advancePhase?.();
+      const toPhase = getCurrentPhase();
+
+
+      try { window.dispatchEvent(new Event("civi:dayPhaseChanged")); } catch {}
+      try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
+      // Dagsrullnings (day_end → ny dag) gjenbruker IKKE gårsdagens (ferdigbesvarte) bunke:
+      // runtime er datokeyet (todayKey), så en ny in-game-dag i samme kalenderdøgn må tvinge en
+      // ny buildQueue. Uten forceNew finner enqueueNext ingen ubesvarte items → tom/fast ny dag.
+      try { await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false, forceNew: fromPhase === "day_end" }); } catch {}
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+
+      return { advanced: true, fromPhase, toPhase };
+    } finally {
+      phaseAdvanceInFlight = false;
     }
-
-    const calendar = getCalendar();
-    const fromPhase = state.phase;
-
-    // Den kanoniske kalenderen kan ikke hoppe over uferdige Min dag-valg.
-    // Life Story gjør aldri kalender-, mail- eller ukes-tick selv.
-    // Null betyr at Min dag ikke finnes på siden, og beholder gammel flyt.
-    const lifeStory = window.CivicationLifestoryUI?.getDaySyncState?.() || null;
-    if (fromPhase === "day_end" && lifeStory && !lifeStory.dagFerdig) {
-      return { advanced: false, reason: "lifestory_day_incomplete" };
-    }
-
-    // PR F: dagsrullnings (day_end → ny dag) skal ferdigstille ukesoppsummeringen. For daily-events
-    // kjører ikke lenger dayPatches.answer sin day_end-gren (PR A), så `saveDailySummaryToWeek` +
-    // `finalizeWeekIfNeeded` var foreldreløse — uke-review ble aldri skrevet, og det inert-gjorde
-    // det ukentlige carryover-signalet (visibility/process/fatigue). Vi lagrer dagens summary til
-    // uken FØR rullnings, fordi `advancePhase()` ved day_end nullstiller dagen og fjerner
-    // dailySummary. Begge helperne er idempotente (dag-oppdatering by index + applied-flagg).
-    if (fromPhase === "day_end") {
-      try {
-        const summary = calendar?.getDailySummary?.();
-        if (summary && typeof window.saveDailySummaryToWeek === "function") {
-          window.saveDailySummaryToWeek(summary);
-        }
-        if (typeof window.finalizeWeekIfNeeded === "function") {
-          const activePosition = /** @type {{ career_id?: unknown } | null | undefined} */ (
-            window.CivicationState?.getActivePosition?.()
-          );
-          const careerId = activePosition?.career_id || "";
-          window.finalizeWeekIfNeeded(careerId);
-        }
-      } catch {}
-    }
-
-    calendar?.advancePhase?.();
-    const toPhase = getCurrentPhase();
-
-
-    try { window.dispatchEvent(new Event("civi:dayPhaseChanged")); } catch {}
-    try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
-    // Dagsrullnings (day_end → ny dag) gjenbruker IKKE gårsdagens (ferdigbesvarte) bunke:
-    // runtime er datokeyet (todayKey), så en ny in-game-dag i samme kalenderdøgn må tvinge en
-    // ny buildQueue. Uten forceNew finner enqueueNext ingen ubesvarte items → tom/fast ny dag.
-    try { await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false, forceNew: fromPhase === "day_end" }); } catch {}
-    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
-
-    return { advanced: true, fromPhase, toPhase };
   }
 
   function getDayEndSummary() {
