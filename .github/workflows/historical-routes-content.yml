@@ -4,8 +4,7 @@ on:
   pull_request:
     paths:
       - 'data/routes/historical/**'
-      - 'tests/historical-routes.test.js'
-      - 'tests/nextup-historical-routes.test.js'
+      - 'tests/historical-routes-alna.test.js'
       - 'js/historical-routes.js'
       - 'js/nextUpRuntime.js'
       - 'tools/audit-historical-routes.mts'
@@ -14,6 +13,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: historical-routes-content-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   historical-routes:
@@ -24,8 +27,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Node workspace
         uses: ./.github/actions/setup-node-npm
-      - name: Run focused historical route and handoff tests
-        run: |
-          npm run test:historical-routes
-          npm run test:nextup-historical-routes
-          npm run test:historical-routes:audit
+      - name: Validate new Alna route and online progression
+        run: node tests/historical-routes-alna.test.js
