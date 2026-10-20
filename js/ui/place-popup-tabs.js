@@ -56,6 +56,12 @@
     }
   }
 
+  // Local source previews require a recorded license and a safe local image path.
+  function safeLocalSourcePhoto(value) {
+    const src = text(value);
+    return /^bilder\/objects\/[a-z0-9_/-]+\.webp$/i.test(src) && !src.includes("..") ? src : "";
+  }
+
   function section(title, body, extraClass = "") {
     if (!text(body)) return "";
     return `<section class="hg-section hg-place-section hg-place-tab-section ${esc(extraClass)}"><h3>${esc(title)}</h3>${body}</section>`;
@@ -295,7 +301,11 @@
     const configuredLinks = [place, ...list(articles)].flatMap(value => list(value?.externalLinks)).map(link => ({
       type: text(link?.type || "source"),
       label: text(link?.label || link?.title),
-      url: safeHttpsUrl(link?.url)
+      url: safeHttpsUrl(link?.url),
+      previewImage: safeLocalSourcePhoto(link?.previewImage),
+      previewAlt: text(link?.previewAlt),
+      credit: text(link?.credit),
+      license: text(link?.license)
     }));
     const beforeAfterLinks = [
       ...strings(place?.for_na?.sources || place?.for_na?.kilder || place?.for_na?.source),
@@ -303,7 +313,15 @@
       text(place?.for_na?.nowImageMeta?.sourcePage || place?.for_na?.now_image_meta?.sourcePage)
     ].map(url => ({ type: "image_source", label: "Bilde- og sammenligningskilde", url: safeHttpsUrl(url) }));
     const links = uniqueBy([...configuredLinks, ...beforeAfterLinks].filter(link => link.url), link => link.url);
-    return (labels.length ? section("Kilder i stedprofilen", `<ul>${labels.map(label => `<li>${esc(label)}</li>`).join("")}</ul>`) : "")
+    // A documentary source image is not a PlaceCard Objects collection.
+    // External publisher images remain links unless the asset is locally cleared.
+    const localPhotos = links.filter(link => link.type === "image_source" && link.previewImage && link.credit
+      && ["CC BY-SA 4.0", "CC BY-SA 3.0", "CC BY 4.0", "CC0 1.0"].includes(link.license));
+    const photoHtml = localPhotos.length ? section("Kildebilder",
+      `<p class="hg-place-source-photo-note">Dokumenterte fotografier – ikke en ferdig Objects-samling.</p><div class="hg-place-source-photo-grid">${localPhotos.map(link => `
+        <figure class="hg-place-source-photo"><img src="${esc(link.previewImage)}" alt="${esc(link.previewAlt || link.label)}" loading="lazy" decoding="async">
+        <figcaption><strong>${esc(link.label)}</strong><span>${esc(link.credit)} · ${esc(link.license)}</span><a href="${esc(link.url)}" target="_blank" rel="noopener noreferrer">Åpne originalkilde ↗</a></figcaption></figure>`).join("")}</div>`, "hg-place-source-photo-section") : "";
+    return photoHtml + (labels.length ? section("Kilder i stedprofilen", `<ul>${labels.map(label => `<li>${esc(label)}</li>`).join("")}</ul>`) : "")
       + (links.length ? section("Kilder og eksterne oppslag", `<div class="hg-place-source-link-list">${links.map(link => `<a href="${esc(link.url)}" target="_blank" rel="noopener noreferrer"><strong>${esc(link.label || link.url)}</strong><span>${esc(humanize(link.type))} ↗</span></a>`).join("")}</div>`) : "")
       || `<div class="hg-place-tab-empty">Ingen brukerrettede kilder er registrert for dette stedet ennå.</div>`;
   }

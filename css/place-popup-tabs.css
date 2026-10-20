@@ -298,3 +298,29 @@ body.hg-app #placeCard .pc-icons-quad[data-round-mode="visual-collections"]{
 .hg-place-tabs .hg-place-tab[data-place-tab="more"]{
   display:none !important;
 }
+
+/* Licensed documentary source photo, not a canonical Objects preview. */
+body.hg-app .hg-place-popup-v2[data-hg-place-tabs="1"] .hg-place-source-photo-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));
+  gap:12px;
+}
+body.hg-app .hg-place-popup-v2[data-hg-place-tabs="1"] .hg-place-source-photo-note{
+  margin:0 0 12px;font-size:12px;color:rgba(255,255,255,.72);
+}
+body.hg-app .hg-place-popup-v2[data-hg-place-tabs="1"] .hg-place-source-photo{
+  margin:0;overflow:hidden;border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;background:rgba(0,0,0,.18);
+}
+body.hg-app .hg-place-popup-v2[data-hg-place-tabs="1"] .hg-place-source-photo img{
+  display:block;width:100%;max-height:340px;object-fit:contain;background:rgba(0,0,0,.3);
+}
+body.hg-app .hg-place-popup-v2[data-hg-place-tabs="1"] .hg-place-source-photo figcaption{
+  display:grid;gap:6px;padding:12px;font-size:12px;overflow-wrap:anywhere;
+}
+body.hg-app .hg-place-popup-v2[data-hg-place-tabs="1"] .hg-place-source-photo figcaption span{
+  color:rgba(255,255,255,.75);font-size:11px;
+}
+body.hg-app .hg-place-popup-v2[data-hg-place-tabs="1"] .hg-place-source-photo figcaption a{
+  color:#ffe168;font-weight:750;
+}
