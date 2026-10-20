@@ -7,13 +7,20 @@ const q=read("reports/place-production/det-norske-teatret/20261020/object-image-
 const reg=read("reports/place-production/det-norske-teatret/20261020/objects-c31-candidates.json");
 const place=read("data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json");
 const card=read("reports/place-production/det-norske-teatret-workcard-current.json");
-test("C32 request only stages a local costume image in a draft PR",()=>{
+test("C32 asset must remain a noncanonical source draft even when staged",()=>{
  assert.doesNotThrow(()=>validateRequest(q,reg,place));
  assert.equal(reg.counts.published_objects,0);
  assert.equal(card.collections.objects.status,"BLOCKED");
  assert.equal(card.status,"in_progress");
  assert.equal(q.publication,"DRAFT_IMAGE_ONLY_CANONICAL_OBJECT_BLOCKED");
- assert.ok(!fs.existsSync(q.image_path),"Local media must not be part of the source request PR");
+ if (fs.existsSync(q.image_path)) {
+   const provenance=read("reports/place-production/det-norske-teatret/20261020/object-image-c32-generated.json");
+   assert.equal(reg.counts.local_rights_checked_assets_staged,1);
+   assert.equal(provenance.asset_path,q.image_path);
+   assert.equal(provenance.license,q.license);
+   assert.equal(provenance.candidate_id,q.candidate_id);
+   assert.equal(provenance.status,"LOCAL_IMAGE_IN_DRAFT_NOT_CANONICAL");
+ }
 });
 test("C32 image preflight rejects swapped content and rights",()=>{
  const page={title:q.file_title};
