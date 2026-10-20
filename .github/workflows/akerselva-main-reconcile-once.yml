@@ -1,0 +1,33 @@
+name: Reconcile Oslo two-place generated indexes (one-shot)
+on:
+  push:
+    branches:
+      - content/akerselva-voienfallene-myralokka-v42-20261020
+    paths:
+      - .github/workflows/akerselva-main-reconcile-once.yml
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run places:index:build
+      - run: npm run place-open:build
+      - run: npm run epoker:places:build
+      - name: Save generated canonical data and delete temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/places_index.json data/runtime/place-open/voienfossen.json data/runtime/place-open/myralokka.json data/runtime/place-open/alnaparken.json data/epoker/epoke-place-index.json
+          git rm .github/workflows/akerselva-main-reconcile-once.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(akerselva): sync canonical indexes with current main'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
