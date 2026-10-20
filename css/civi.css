@@ -678,7 +678,34 @@ body.civi-mapmode .civi-panels{
   gap:14px;
 }
 
-/* NextAction — den eneste aktive svarflaten (CivicationNextActionUI). */
+/* Den aktive dagsmeldingen vises sammen med resten av innboksen. */
+
+.civi-inbox-active-action{
+  display:block;
+  padding:14px 16px;
+  margin-bottom:16px;
+  border:1px solid rgba(216,169,55,.42);
+  border-radius:16px;
+  background:rgba(216,169,55,.065);
+}
+.civi-inbox-active-action[hidden]{display:none!important}
+.civi-inbox-active-heading{
+  margin:0 0 12px;
+  color:var(--ink);
+  font-size:15px;
+}
+.civi-inbox-active-body{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.civi-inbox-active-action .civi-next-action-choices .civi-btn{
+  min-height:44px;
+  flex:1 1 170px;
+  max-width:none;
+  white-space:normal;
+}
+
 .civi-next-action-card{
   display:flex;
   flex-direction:column;
@@ -708,7 +735,7 @@ body.civi-mapmode .civi-panels{
   margin:0;
 }
 
-/* Innboks: aktiv fasehandling håndteres i NextAction, ikke inline. */
+/* Innboksens meldingshistorikk beholder sine passive rader. */
 .civi-inbox-card-next-action{
   display:flex;
   align-items:center;
