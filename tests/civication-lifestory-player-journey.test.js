@@ -265,7 +265,8 @@ async function dayEventJourney() {
   w.document.querySelector("[data-civi-next-action-open-queued]").click();
   await waitFor(() => w.document.querySelector("[data-civi-next-action-answer]"), "delivered choice");
   assert.equal(deliveries, 1);
-  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Les og ta valg");
+  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Åpne i innboksen",
+    "both queued and delivered messages use the shared inbox entry point");
   const answer = w.document.querySelector("[data-civi-next-action-answer]");
   answer.click(); answer.click();
   await waitFor(() => !w.CivicationNextActionUI.isAnswerInFlight() && panel.querySelector("h3")?.textContent === "Kollegaen følger opp", "answer refreshes Min dag");
