@@ -255,7 +255,7 @@ async function dayEventJourney() {
   assert.match(panel.textContent, /Lager- og driftsmedarbeider/);
   assert.match(panel.textContent, /Aleneforelder/);
   assert.match(panel.textContent, /Du oppdager en skade/);
-  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Åpne hendelsen");
+  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Åpne i innboksen");
   assert.equal(w.CivicationMailEngine.getMail(row.id), null, "preview never delivers queued mail");
   assert.equal(deliveries + answers + advances, 0, "reading Min dag has no gameplay side effects");
   assert.equal(panel.querySelectorAll("[data-civi-next-action-answer], [data-lifestory-choice]").length, 0);
@@ -265,7 +265,8 @@ async function dayEventJourney() {
   w.document.querySelector("[data-civi-next-action-open-queued]").click();
   await waitFor(() => w.document.querySelector("[data-civi-next-action-answer]"), "delivered choice");
   assert.equal(deliveries, 1);
-  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Les og ta valg");
+  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Åpne i innboksen",
+    "both queued and delivered messages use the shared inbox entry point");
   const answer = w.document.querySelector("[data-civi-next-action-answer]");
   answer.click(); answer.click();
   await waitFor(() => !w.CivicationNextActionUI.isAnswerInFlight() && panel.querySelector("h3")?.textContent === "Kollegaen følger opp", "answer refreshes Min dag");

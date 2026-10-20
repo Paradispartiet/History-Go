@@ -119,7 +119,13 @@
   }
 
   function isOpenItem(item) {
-    return inboxFilters.isOpenInboxItem(item);
+    if (!inboxFilters.isOpenInboxItem(item)) return false;
+    return !window.CivicationDayProgression?.isPreviouslyAnsweredInboxItem?.(item);
+  }
+
+  function hasEmbeddedInboxActions() {
+    return !!document.getElementById("civiInboxSection") &&
+      typeof window.CivicationNextActionUI?.render === "function";
   }
 
   function hasChoices(item) {
@@ -214,8 +220,8 @@
   function buildNextActionLinkHtml() {
     return `
       <div class="civi-inbox-card-actions civi-inbox-card-next-action">
-        <span class="civi-inbox-handled-note muted">Håndteres i Neste handling</span>
-        <button class="civi-btn secondary" type="button" data-civi-open-next-action="1">Gå til Neste handling</button>
+        <span class="civi-inbox-handled-note muted">Åpne meldingen for å svare.</span>
+        <button class="civi-btn secondary" type="button" data-civi-open-next-action="1">Åpne innboksen</button>
       </div>
     `;
   }
@@ -258,6 +264,11 @@
   }
 
   function openInboxPopup() {
+    // One entry point for both delivered and queued day mail; no extra mail dialog.
+    if (typeof window.CivicationNextActionUI?.open === "function") {
+      window.CivicationNextActionUI.open();
+      return;
+    }
     const section = document.getElementById("civiInboxSection");
     if (!section || !window.CivicationMiniSectionsUI?.openPopup) return;
 
@@ -286,10 +297,6 @@
     if (btn) btn.textContent = model.action;
 
     const handler = function () {
-      if (model.openNextAction && typeof window.CivicationNextActionUI?.open === "function") {
-        window.CivicationNextActionUI.open();
-        return;
-      }
       if (model.openInbox) openInboxPopup();
     };
 
@@ -318,20 +325,19 @@
       };
     }
 
-    // The authoritative "next action" comes from CivicationNextActionSelector, not from
-    // pendingActionItems() — so the top card, Dagens fase and NextAction never point at
-    // different mails. The button opens the NextAction surface (the single answer surface).
+    // The phase selector identifies the active message. Its choices are shown
+    // in the same inbox as ordinary personal/job mail, not a second dialog.
     const current = window.CivicationNextActionSelector?.getCurrent?.();
     if (current && current.id) {
       const metaKind = String(current.mail_type || current.phaseLabel || "Melding").trim();
       const isAdvance = current.canAdvancePhase === true || current.source === "day_phase_advance";
       return {
         mode: "urgent",
-        title: isAdvance ? "Neste handling: gå videre" : "Neste handling: svar på melding",
+        title: isAdvance ? "Dagen er ferdig" : "Ubesvart melding",
         summary: metaKind ? `${current.subject} · ${metaKind}` : current.subject,
         chip: isAdvance ? "Fase klar" : "Krever svar",
-        action: isAdvance ? "Gå videre" : "Svar nå",
-        openNextAction: true
+        action: isAdvance ? "Se dagslutt" : "Åpne innboksen",
+        openInbox: true
       };
     }
 
@@ -387,6 +393,9 @@
   }
 
   function renderChoiceButtons(item, ownedIds) {
+    // In Civication the active message is answered once, in the embedded inbox
+    // action card. Never duplicate the same answer buttons in its archive row.
+    if (hasEmbeddedInboxActions()) return "";
     const mailId = mailIdOf(item);
     if (!isOpenItem(item) || !mailId) return "";
 
@@ -435,10 +444,18 @@
     const visible = (Array.isArray(items) ? items : [])
       .filter(function (item) { return item && item.deleted !== true && item.archived !== true; });
 
-    const openItems = visible.filter(isOpenItem);
+    const openItems = visible.filter(function (item) {
+      return isOpenItem(item) && !(hasEmbeddedInboxActions() && isCurrentNextActionItem(item));
+    });
 
     const resolvedItems = visible.filter(function (item) { return !isOpenItem(item) || isResolved(item); });
-    const pendingCount = openItems.length;
+    // Exclude the active message from the archive rows, but still count it as
+    // open in its channel. Otherwise the user sees "0 åpne" above a mail
+    // that is waiting for their answer in the same inbox.
+    const activeCount = hasEmbeddedInboxActions()
+      ? visible.filter(function (item) { return isOpenItem(item) && isCurrentNextActionItem(item); }).length
+      : 0;
+    const pendingCount = openItems.length + activeCount;
 
     return `
       <section class="civi-inbox-channel-section">
@@ -576,6 +593,9 @@
     `;
 
     host.innerHTML = markup;
+    // The current phase's action may be queued and not yet in MailEngine.getInbox.
+    // Render that same action above the message history, in the existing inbox.
+    window.CivicationNextActionUI?.render?.();
 
     wireInboxResponses(host);
     return true;

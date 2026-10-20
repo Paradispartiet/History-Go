@@ -212,7 +212,7 @@
   // spilleren Renholder-jobben, spiller Life Story renholder. Mappingen er
   // canonical resolver (CivicationCareerRoleResolver) + role_scope-binding i
   // lifestory-manifestet — se resolveRoleIdForActivePosition. Jobb uten
-  // Life Story-pakke vises med en tydelig vei til shellens neste handling.
+  // Uten egen Life Story-pakke ledes spilleren til den felles innboksen.
   // Den tidligere fortellingen beholdes i lagringen, men spilles ikke som
   // om spilleren fortsatt hadde den gamle jobben.
   /** Memo: siste sjekkede jobb, så updateProfile-burster ikke koster noe. */
@@ -730,7 +730,7 @@
     // there is no active job or visible top-action card.
     const pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.();
     const pendingDayActionHtml = pendingDayAction && !pendingDayAction.canStartNewDay
-      ? '<button class="civi-btn" type="button" data-lifestory-next-action>Gå til neste handling</button>'
+      ? '<button class="civi-btn" type="button" data-lifestory-next-action>Åpne innboksen</button>'
       : "";
     const handlingsHtml = sisteDag
       ? "<div class=\"civi-lifestory-actions\">"
@@ -1003,8 +1003,7 @@
     const situation = (Array.isArray(action.situation) && action.situation.length
       ? action.situation : [action.body || action.summary || ""])
       .map(line => String(line || "").trim()).filter(Boolean).slice(0, 6);
-    const label = action.canStartNewDay ? "Se dagslutt" : action.isQueued ? "Åpne hendelsen"
-      : action.isTaskGate ? "Åpne oppgaven" : action.isAnswerable && action.choices?.length ? "Les og ta valg" : "Les hendelsen";
+    const label = action.canStartNewDay ? "Se dagslutt" : "Åpne i innboksen";
     return '<div data-lifestory-day-event="' + escapeLiteral(action.id) + '">'
       + '<div class="civi-lifestory-kicker"><span>' + escapeLiteral(shellStory.title) + '</span>'
       + (action.phaseLabel ? '<span>' + escapeLiteral(action.phaseLabel) + '</span>' : "") + '</div>'
@@ -1025,7 +1024,7 @@
     return '<section class="civi-lifestory-scene" data-lifestory-role-status="' + escapeLiteral(status) + '" aria-live="polite">'
       + (dayEvent ? dayEvent + '<details><summary>Om fortellingen for denne jobben</summary><p>' + message + '</p></details>'
         : '<h3>' + escapeLiteral(shellStory.title) + '</h3><p>' + message + '</p>'
-          + (window.CivicationNextActionUI?.open ? '<button class="civi-btn primary" type="button" data-lifestory-next-action>Gå til dagens handlinger</button>' : ""))
+          + (window.CivicationNextActionUI?.open ? '<button class="civi-btn primary" type="button" data-lifestory-next-action>Åpne innboksen</button>' : ""))
       + (status === "error" ? '<button class="civi-btn" type="button" data-lifestory-retry>Prøv igjen</button>' : "")
       + '</section>';
   }

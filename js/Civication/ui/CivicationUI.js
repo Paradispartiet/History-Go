@@ -1338,7 +1338,7 @@ function buildPhaseBundleItemsHtml(items, options = {}) {
 }
 
 // WorkdayPanel viser bare en kompakt fase-HUD: fasechips, antall åpne og neste sak. Selve
-// svaralternativene eies av NextAction (CivicationNextActionUI) — derfor rendres ALDRI
+// svarkontrollene vises i den felles innboksen — derfor rendres ALDRI
 // bundlekort med data-civi-bundle-choice i normal runtime. Den fulle bunkelisten kan vises
 // bak en debug-flagg for feilsøking, men er skjult som standard.
 function isCiviPhaseDebugMode() {
@@ -1384,7 +1384,7 @@ function buildDayPhaseSectionHtml(dayPhase) {
   // Both "open the bundle" and "continue the bundle" now route to the NextAction surface,
   // so the workday panel never renders its own answer choices.
   const actionHtml = (action.kind === "open_bundle" || action.kind === "continue_bundle")
-    ? `<button class="civi-btn" type="button" data-civi-day-phase-next-action>Gå til neste handling</button>`
+    ? `<button class="civi-btn" type="button" data-civi-day-phase-next-action>Åpne innboksen</button>`
     : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
   const suggestionsHtml = Array.isArray(dayPhase.eveningSuggestions) && dayPhase.eveningSuggestions.length
     ? `<div class="civi-workday-evening-suggestions"><strong>Kveldsforslag:</strong> ${dayPhase.eveningSuggestions.join(" · ")}</div>`
@@ -2117,7 +2117,7 @@ function buildCiviEventViewModel(event, options) {
 
   const model = {
     kind: "fallback",
-    kicker: "Neste handling",
+    kicker: "Melding",
     title: normalizeDisplayText(ev.subject || ev.title, "Oppdatering"),
     metaLines: [],
     bodyText: situation || normalizeDisplayText(ev.message || ev.feedback, "Åpne meldingen for detaljer."),
@@ -2330,6 +2330,11 @@ function renderCivicationInbox() {
   // =========================
   const host = document.getElementById("civiInbox");
   if (!host) return;
+  // One canonical inbox renderer; the old parallel mail UI must not replace it.
+  if (window.CivicationInboxTopActionUI?.renderSections) {
+    window.CivicationInboxTopActionUI.renderSections();
+    return;
+  }
 
   const buckets = getChannelBuckets();
   const flow = window["CivicationIncomingFlow"];
@@ -2435,8 +2440,8 @@ function renderCivicationInbox() {
       <div class="civi-event-title">${model.title}</div>
       ${metaHtml ? `<div class="civi-event-meta">${metaHtml}</div>` : ""}
       <div class="civi-event-body">${model.bodyText}</div>
-      ${choices.length ? `<div class="civi-event-next">Svar håndteres i Neste handling.</div>` : ""}
-      <div id="civiInboxChoices" class="civi-event-choices"><button class="civi-btn" type="button" data-civi-day-phase-next-action>Gå til neste handling</button></div>
+      ${choices.length ? `<div class="civi-event-next">Svar i innboksen.</div>` : ""}
+      <div id="civiInboxChoices" class="civi-event-choices"><button class="civi-btn" type="button" data-civi-day-phase-next-action>Åpne innboksen</button></div>
       <div id="civiInboxFeedback" class="civi-event-feedback" style="display:none;"></div>
       <button class="civi-btn primary" id="civiInboxOK" style="display:none;margin-top:10px;">OK</button>
     </div>

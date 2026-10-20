@@ -175,13 +175,39 @@
     }
   }
 
+  // In Civication, the active day-mail is rendered inside the existing inbox.
+  // The historical standalone modal is only a compatibility fallback for pages
+  // that do not have the Civication inbox (e.g. profile/test harnesses).
   function ensureModal() {
-    if (modalEl) return modalEl;
+    if (modalEl && modalEl.isConnected !== false) return modalEl;
     const existing = document.getElementById(MODAL_ID);
     if (existing) {
       modalEl = existing;
       bodyEl = document.getElementById(BODY_ID) || existing;
       return modalEl;
+    }
+    const inboxSection = document.getElementById("civiInboxSection");
+    // The mini-section popup moves its body out of the original section;
+    // locate it through the inbox element when the popup is already open.
+    const inboxContainer = document.getElementById("civiInbox")?.closest?.(".civi-section-body")
+      || inboxSection?.querySelector?.(".civi-section-body") || inboxSection;
+    if (inboxContainer) {
+      const section = document.createElement("section");
+      section.id = MODAL_ID;
+      section.className = "civi-inbox-active-action";
+      section.setAttribute("aria-hidden", "true");
+      section.setAttribute("aria-label", "Aktuell melding");
+      section.hidden = true;
+      section.innerHTML = '<h3 class="civi-inbox-active-heading">Aktuell melding</h3>';
+      const body = document.createElement("div");
+      body.id = BODY_ID;
+      body.className = "civi-inbox-active-body";
+      section.appendChild(body);
+      inboxContainer.insertBefore(section, inboxContainer.firstChild);
+      modalEl = section;
+      bodyEl = body;
+      bindDelegation(section);
+      return section;
     }
     if (!document.body) return null;
 
@@ -201,8 +227,8 @@
     card.innerHTML = ""
       + "<div class=\"civi-modal-head\">"
       + "<div>"
-      + "<div class=\"civi-task-kicker\">Neste handling</div>"
-      + "<h2 id=\"civiNextActionModalTitle\">Neste handling</h2>"
+      + "<div class=\"civi-task-kicker\">Melding</div>"
+      + "<h2 id=\"civiNextActionModalTitle\">Melding</h2>"
       + "</div>"
       + "<button class=\"civi-modal-close\" type=\"button\" data-civi-next-action-close=\"1\" aria-label=\"Lukk\">×</button>"
       + "</div>";
@@ -656,12 +682,21 @@
     const modal = ensureModal();
     if (!modal || !bodyEl) return false;
     if (answerDebugContext) answerDebugContext.renderCount += 1;
-    renderInto(bodyEl);
+    const active = renderInto(bodyEl);
+    if (modal.classList.contains("civi-inbox-active-action")) {
+      modal.hidden = !active && !lastNoActionDebug;
+      modal.setAttribute("aria-hidden", String(modal.hidden));
+    }
     return true;
   }
 
   function refresh() {
-    if (!modalEl || !modalEl.classList || !modalEl.classList.contains("is-open")) return false;
+    if (!modalEl || modalEl.isConnected === false || !modalEl.classList) return false;
+    // The embedded answer card is permanently mounted inside the inbox, and
+    // unlike the old modal it is not necessarily opened through open().
+    // Keep it in sync after external answer, role and day-phase updates too.
+    const embedded = modalEl.classList.contains("civi-inbox-active-action");
+    if (!embedded && !modalEl.classList.contains("is-open")) return false;
     if (answerInFlight) {
       pendingRefresh = true;
       return false;
@@ -672,6 +707,15 @@
   function open() {
     const modal = ensureModal();
     if (!modal) return false;
+    // Open the existing inbox rather than a second mail-style dialog.
+    if (modal.classList.contains("civi-inbox-active-action")) {
+      const section = document.getElementById("civiInboxSection");
+      if (section && window.CivicationMiniSectionsUI?.openPopup) {
+        window.CivicationMiniSectionsUI.openPopup(section, { label: "Innkommende", accent: "📨", category: "personlig" });
+      } else {
+        section?.scrollIntoView?.({ block: "start", behavior: "smooth" });
+      }
+    }
     // Varm alle svaralternativenes datagrunnlag i bakgrunnen mens spilleren
     // leser — svaret skal aldri vente på nettverket.
     try { window.CivicationAnswerPrewarm?.prewarm?.(); } catch {}
@@ -691,6 +735,11 @@
 
   function close() {
     if (!modalEl) return false;
+    if (modalEl.classList.contains("civi-inbox-active-action")) {
+      // Do not close the whole inbox after answering the last mail.
+      render();
+      return true;
+    }
     modalEl.classList.remove("is-open");
     modalEl.setAttribute("aria-hidden", "true");
     return true;

@@ -152,7 +152,13 @@
     const answeredIds = getAnsweredMailIds();
     const openItems = getInboxItems().filter((item) => isOpenActionableInboxItem(item, answeredIds));
     if (!phase) return openItems;
-    return openItems.filter((item) => inboxItemBlocksPhase(item, phase));
+    // A delivered daily mail is also mirrored into MailEngine.getInbox.
+    // It is one pending decision, not two separate items blocking this phase.
+    const phaseRuntimeIds = new Set(getPhaseItems(phase)
+      .filter(isOpenRow)
+      .flatMap((row) => [row?.event?.id, row?.id].map(norm).filter(Boolean)));
+    return openItems.filter((item) => inboxItemBlocksPhase(item, phase)
+      && !phaseRuntimeIds.has(norm(inboxEventOf(item)?.id || item?.id)));
   }
 
   function getCurrentPhase() {
