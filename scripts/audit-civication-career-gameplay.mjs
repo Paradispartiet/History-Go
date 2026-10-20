@@ -228,7 +228,9 @@ const testFiles = walk('tests').filter((rel) =>
   !/^tests\/civication-wave-a-(inbox-integration|transition-safety)\.test\.js$/.test(rel) &&
   // Life Story UI recovery exercises narrative saves and job selection,
   // not the role's workday/competency engine. Keep that boundary explicit.
-  rel !== 'tests/civication-lifestory-player-journey.test.js'
+  rel !== 'tests/civication-lifestory-player-journey.test.js' &&
+  // Vitality narrative tests are not proof of independent career workday gameplay.
+  !/^tests\/civication-lifestory-vitality-/.test(rel)
 );
 const testTexts = testFiles.map((rel) => ({ rel, text: fs.readFileSync(abs(rel), 'utf8') }));
 const globalRuntimeTests = [
