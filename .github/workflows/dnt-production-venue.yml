@@ -9,6 +9,9 @@ on:
       - 'tests/det-norske-teatret-production-venue.test.mjs'
       - '.github/workflows/dnt-production-venue.yml'
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
