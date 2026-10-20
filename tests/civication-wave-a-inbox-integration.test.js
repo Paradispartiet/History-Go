@@ -164,21 +164,24 @@ test('pause and return preserve a private wave-A agreement and pending envelope'
 test('an eligible private scene survives role change and answers into the inactive snapshot only', async () => {
   const h = await harness('arbeidsledig', 'c01');
   try {
-    const { window } = h;
+    const { window, panel } = h;
     const State = window.CivicationLifestoryState;
     const roleContent = await window.CivicationLifestoryContent.loadContent('arealplanlegger');
     const before = State.selectRole(State.load(), roleContent);
     before.livsdag += 4; // Time has passed since the inactive job was held.
-    const activeArchive = clone(before.arkiv);
-    const inactiveArchive = clone(before.rolleTilstander.arbeidsledig.arkiv);
     State.save(before);
     const ui = window.CivicationLifestoryUI;
-    const original = ui.getPendingWaveAEvent;
-    // UI role adoption is asynchronous; simulate the moment it has adopted
-    // the new active role, so the old role is only represented by its save.
-    ui.getPendingWaveAEvent = () => null;
+    // Adopt the new job in the actual mounted UI, not only in storage.
+    window.CivicationState.getActivePosition = () => ({
+      career_id: 'by', role_key: 'by_radgiver_plan', title: 'Arealplanlegger'
+    });
+    window.dispatchEvent(new window.Event('updateProfile'));
+    await waitFor(() => ui.getDaySyncState()?.rolle === 'arealplanlegger'
+      && ui.getCurrentSceneInfo()?.sceneId, 'mounted new-job scene');
+    const activeArchive = clone(State.load().arkiv);
+    const inactiveArchive = clone(State.load().rolleTilstander.arbeidsledig.arkiv);
+    await window.CivicationWaveAPrivateRoleBridge.refresh();
     try {
-      await window.CivicationWaveAPrivateRoleBridge.refresh();
       await waitFor(() => window.CivicationWaveAPrivateRoleBridge.getPendingEvent(), 'inactive private story');
       const privateEvent = window.CivicationWaveAPrivateRoleBridge.getPendingEvent();
       assert.ok(privateEvent, 'qualifying personal scene from inactive role is still playable');
@@ -212,7 +215,28 @@ test('an eligible private scene survives role change and answers into the inacti
       assert.equal(window.CivicationMailEngine.getMail(privateEvent.id).resolved, true);
       assert.equal((await window.CivicationMailEngine.answerMail(
         privateEvent.id, privateEvent.choices[0].id)).ok, false, 'cannot answer inactive scene twice');
-    } finally { ui.getPendingWaveAEvent = original; }
+
+      // Continue the ordinary job story without remounting the UI. Previously
+      // this next save overwrote the private answer with cached top-level data.
+      const jobChoice = panel.querySelector('[data-lifestory-scene][data-lifestory-choice]');
+      assert.ok(jobChoice, 'the current job scene is playable in Min dag');
+      const jobSceneId = jobChoice.getAttribute('data-lifestory-scene');
+      assert.notEqual(jobSceneId, privateEvent.lifestory_scene_id, 'a job scene is not a former-role private scene');
+      jobChoice.click();
+      const continued = State.load();
+      assert.ok(continued.spilteScener.includes(jobSceneId), 'ordinary job-day choice was saved');
+      assert.notEqual(ui.getCurrentSceneInfo()?.sceneId, jobSceneId, 'the next story event can be reached');
+      assert.equal(continued.rolle, 'arealplanlegger');
+      for (const [key, value] of sharedFlags) {
+        assert.equal(continued.tidligereValg[key], value, 'the private flag survives normal work');
+        assert.equal(continued.privatHistorie.flagg[key], value, 'shared memory survives normal work');
+        assert.equal(continued.privatHistorie.flaggDager[key], before.livsdag, 'private choice keeps its life-day anchor');
+      }
+      assert.ok(continued.privatHistorie.arkiv.some(entry => entry.sceneId === privateEvent.lifestory_scene_id),
+        'the private event remains available to later stories');
+      assert.equal(continued.rolleTilstander.arbeidsledig.arkiv.at(-1).sceneId,
+        privateEvent.lifestory_scene_id, 'the inactive-role archive remains intact');
+    } finally { /* No test-only UI override to restore. */ }
   } finally { h.dom.window.close(); }
 });
 
