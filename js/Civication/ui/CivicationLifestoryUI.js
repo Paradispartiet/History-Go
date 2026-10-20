@@ -1247,9 +1247,14 @@
   // DayProgression leser denne for å hindre at maildagen ruller forbi
   // fortellingens uferdige valg. Ingen kalender-/jobbstate skrives her.
   function getDaySyncState() {
-    if (shellStory?.status === "unavailable") return null;
-    if (shellStoryUnavailable()) return { dagFerdig: false, rolle: state?.rolle || null, kalenderDag: state?.kalenderDag || null };
-    return state && getPanel() ? { dagFerdig: !!state.dagFerdig, rolle: state.rolle, kalenderDag: state.kalenderDag || null } : null;
+    // With Min dag mounted, loading its state must not be mistaken for an
+    // absent story. Otherwise day_end can roll past unanswered scenes on slow
+    // starts/reloads. Only an explicitly unsupported job has no story gate.
+    if (!getPanel() || shellStory?.status === "unavailable") return null;
+    if (shellStoryUnavailable() || !state || !content) {
+      return { dagFerdig: false, rolle: state?.rolle || null, kalenderDag: state?.kalenderDag || null };
+    }
+    return { dagFerdig: !!state.dagFerdig, rolle: state.rolle, kalenderDag: state.kalenderDag || null };
   }
 
   window.CivicationLifestoryUI = {
