@@ -236,6 +236,42 @@ test('an eligible private scene survives role change and answers into the inacti
         'the private event remains available to later stories');
       assert.equal(continued.rolleTilstander.arbeidsledig.arkiv.at(-1).sceneId,
         privateEvent.lifestory_scene_id, 'the inactive-role archive remains intact');
+
+      // Follow the player through two further *mounted* job transitions. The
+      // first return must not replay the private answer, and the second must
+      // retain both the new job's own progress and the shared private memory.
+      const playedWorkId = jobSceneId;
+      window.CivicationState.getActivePosition = () => null;
+      window.dispatchEvent(new window.Event('updateProfile'));
+      await waitFor(() => ui.getDaySyncState()?.rolle === 'arbeidsledig'
+        && State.load()?.rolle === 'arbeidsledig', 'return to former job');
+      const returned = State.load();
+      assert.equal(returned.livsdag, before.livsdag, 'changing jobs does not create a life day');
+      assert.equal(returned.arkiv.filter(entry =>
+        entry.sceneId === privateEvent.lifestory_scene_id).length, 1,
+        'returning to the original role does not replay or duplicate a private scene');
+      assert.ok(returned.rolleTilstander.arealplanlegger.spilteScener.includes(playedWorkId),
+        'the planning job retains its actual completed work');
+      for (const [key, value] of sharedFlags) {
+        assert.equal(returned.tidligereValg[key], value, 'private choice survives return to former job');
+        assert.equal(returned.privatHistorie.flaggDager[key], before.livsdag,
+          'the life-day anchor survives a second role adoption');
+      }
+
+      window.CivicationState.getActivePosition = () => ({
+        career_id: 'by', role_key: 'by_radgiver_plan', title: 'Arealplanlegger'
+      });
+      window.dispatchEvent(new window.Event('updateProfile'));
+      await waitFor(() => ui.getDaySyncState()?.rolle === 'arealplanlegger'
+        && State.load()?.rolle === 'arealplanlegger', 'return to planning job');
+      const resumed = State.load();
+      assert.ok(resumed.spilteScener.includes(playedWorkId),
+        'the original job choice remains completed after the round trip');
+      assert.equal(resumed.livsdag, before.livsdag);
+      for (const [key, value] of sharedFlags) {
+        assert.equal(resumed.tidligereValg[key], value, 'private choice survives a third active job');
+        assert.equal(resumed.privatHistorie.flaggDager[key], before.livsdag);
+      }
     } finally { /* No test-only UI override to restore. */ }
   } finally { h.dom.window.close(); }
 });
@@ -262,3 +298,65 @@ test('all eight wave-A stories retain their canonical scene and source bindings'
   assert.equal(choices, 148);
 });
 
+
+test('a witnessed Wave D private choice reaches its exact Wave E follow-up after a job change', () => {
+  // Play the published unemployment story, including actual Wave A-D choices,
+  // instead of seeding fictional flags or a fabricated earlier encounter.
+  const oldContent = makeContent('arbeidsledig');
+  const nextContent = makeContent('arealplanlegger');
+  let state = S.createInitialState(oldContent);
+  let steps = 0;
+  while (state.dag <= 7) {
+    while (!state.dagFerdig) {
+      const scene = R.selectNextScene(state, oldContent);
+      if (scene) R.applyChoice(state, oldContent, scene.id, scene.valg[0].id);
+      else R.advance(state, oldContent);
+      assert.ok(++steps < 900, 'the authored seven-day player journey terminates');
+    }
+    if (state.dag === 7) break;
+    R.startNextDay(state, oldContent);
+  }
+
+  const witnessed = state.arkiv.find(entry => /^wave_d_c01_/.test(entry.sceneId));
+  assert.ok(witnessed, 'the Wave D relationship choice actually happened');
+  const status = state.tidligereValg.wa_d_c01_status;
+  assert.ok(status, 'the witnessed event recorded a concrete relationship outcome');
+  const anchor = state.privatHistorie?.flaggDager?.wa_d_c01_status;
+  assert.equal(anchor, 7, 'the Wave D follow-up starts from the witnessed life day');
+
+  const planning = S.selectRole(clone(state), nextContent);
+  assert.equal(planning.rolle, 'arealplanlegger');
+  assert.equal(planning.tidligereValg.wa_d_c01_status, status);
+  const eligibleBranches = nextContent.scenes.filter(scene =>
+    /^wave_e_c01_dag9_/.test(scene.id) && R.conditionsMet(planning, scene));
+  assert.equal(eligibleBranches.length, 1,
+    'earlier relationship outcome selects exactly one authored follow-up');
+  const followup = eligibleBranches[0];
+  assert.equal(followup.livsdagFra, 9);
+  planning.fase = followup.fase;
+
+  // A job has its own local chapter day; the shared life clock must still
+  // release this scene only after two *elapsed* days from the prior choice.
+  planning.livsdag = 8;
+  assert.ok(!R.getCandidateScenes(planning, nextContent).some(s => s.id === followup.id),
+    'the private continuation cannot appear a day too early');
+  planning.livsdag = 9;
+  assert.ok(R.getCandidateScenes(planning, nextContent).some(s => s.id === followup.id),
+    'the later private event appears while working at a different job');
+
+  R.applyChoice(planning, nextContent, followup.id, followup.valg[0].id);
+  assert.equal(planning.arkiv.filter(e => e.sceneId === followup.id).length, 1);
+  assert.equal(planning.arkiv.find(e => e.sceneId === followup.id)?.livsdag, 9);
+  assert.equal(planning.privatHistorie.arkiv.filter(e => e.sceneId === followup.id).length, 1,
+    'the witnessed later consequence belongs to the shared private archive');
+
+  const returned = S.selectRole(clone(planning), oldContent);
+  assert.equal(returned.tidligereValg.wa_d_c01_status, status);
+  assert.equal(returned.privatHistorie.flaggDager.wa_d_c01_status, anchor);
+  assert.equal(returned.arkiv.filter(e => e.sceneId === followup.id).length, 1,
+    'the follow-up is preserved exactly once on returning to the old job');
+  const resumed = S.selectRole(returned, nextContent);
+  assert.ok(resumed.spilteScener.includes(followup.id));
+  assert.equal(resumed.privatHistorie.arkiv.filter(e => e.sceneId === followup.id).length, 1,
+    'later choices survive a full round trip without duplicate history');
+});
