@@ -1,0 +1,49 @@
+name: Alnaparken generated synchronization
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/alnaparken-only-sync-20261020.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: alnaparken-sync-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  synchronize:
+    name: Sync Alnaparken and timeline only
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'content/alna-two-final-historical-places-20261020'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Generate canonical runtime and timeline outputs
+        run: |
+          set -euo pipefail
+          npm run place-open:build
+          npm run epoker:places:build
+      - name: Commit only Alnaparken outputs and self-remove
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/place-open/alnaparken.json data/epoker/epoke-place-index.json
+          git rm .github/workflows/alnaparken-only-sync-20261020.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "build(alnaparken): synchronize single Place and epoch index"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
