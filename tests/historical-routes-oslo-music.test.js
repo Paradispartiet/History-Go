@@ -40,6 +40,7 @@ const salt = r.chapters.find(c => c.placeId === "salt");
 assert.equal(readJson("data/places/musikk/oslo/places_musikk/sentrum_scene.json").year, 2005);
 assert.equal(readJson("data/places/musikk/oslo/places_musikk/salt.json").year, 2016);
 assert.match(sentrum.narrativeText, /1945/);
+assert.match(sentrum.year, /1940 \/ 1945 \/ 1992–1997 \/ 2005–2006/);
 for (const year of ["1992", "1997", "2005", "2006"]) assert.ok(sentrum.narrativeText.includes(year));
 assert.match(sentrum.narrativeText, /Sceneweb/);
 assert.match(sentrum.narrativeText, /Dagsavisen/);
