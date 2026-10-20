@@ -499,6 +499,74 @@
       ]
     },
     {
+      "id": "d2_morgen_vaktpress_etter_stenging",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 12,
+      "stedId": "butikk",
+      "tittel": "Etter en tung vakt",
+      "tekst": "Du kjenner gårsdagens kø og stengearbeid i kroppen. Lene trenger deg på gulvet om få minutter. Du har ennå tid til å si fra om at tempoet i dag må være forsvarlig.",
+      "conditions": {
+        "meters": {
+          "energi": {
+            "max": 60
+          }
+        }
+      },
+      "valg": [
+        {
+          "id": "kort_pause",
+          "tekst": "Si fra og ta en kort pause før du går på gulvet",
+          "konsekvensTekst": "Lene flytter et lite gjøremål til senere. Du får vann, ro og et par minutters oversikt. Oppgavene er der fortsatt, men du møter dem mer samlet.",
+          "effekter": {
+            "meters": {
+              "energi": 4,
+              "psyke": 2,
+              "handlingsrom": 1
+            },
+            "flagg": {
+              "ekspeditor_tok_pause_d2": true
+            }
+          }
+        },
+        {
+          "id": "be_om_stotte",
+          "tekst": "Be Amir dele de tyngste oppgavene den første timen",
+          "konsekvensTekst": "Amir hjelper deg gjennom den første rushen. Det er ikke en fridag, men du slipper å løse alt alene.",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": 1
+            },
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "ekspeditor_ba_om_stotte_d2": true
+            }
+          }
+        },
+        {
+          "id": "press_videre",
+          "tekst": "Ikke si noe og ta hele åpningen alene",
+          "konsekvensTekst": "Du kommer i gang, men merker at du reagerer tregere når køen bygger seg opp. Resten av dagen starter med mindre overskudd.",
+          "effekter": {
+            "meters": {
+              "energi": -4,
+              "psyke": -2
+            },
+            "flagg": {
+              "ekspeditor_presset_videre_d2": true
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "d2_morgen_lukkingen_synes",
       "threadId": "lukkingen",
       "fase": "morgen",
