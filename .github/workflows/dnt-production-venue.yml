@@ -1,0 +1,24 @@
+name: DNT production venue guard
+on:
+  pull_request:
+    paths:
+      - 'reports/place-production/det-norske-teatret/20261013/productions-c10.json'
+      - 'reports/place-production/det-norske-teatret/20261020/productions-c30-venue-and-image-rights.md'
+      - 'reports/place-production/det-norske-teatret-workcard-current.json'
+      - 'data/quizcards/scenekunst/**'
+      - 'tests/det-norske-teatret-production-venue.test.mjs'
+      - '.github/workflows/dnt-production-venue.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  source-venue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm eight venue identities, unlicensed media guards, and QuizCard candidate
+        run: node --test tests/det-norske-teatret-production-venue.test.mjs
