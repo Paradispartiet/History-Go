@@ -27,7 +27,7 @@ for (const [i, c] of r.chapters.entries()) {
   assert.equal(c.physical.enabled, true);
   assert.equal(c.physical.physicalCollected, false);
   assert.ok(c.physical.gpsRadius > 0);
-  assert.ok(c.narrativeText.trim().split(/\\s+/).length > 90);
+  assert.ok(c.narrativeText.trim().split(/\s+/).length > 90);
   assert.ok(c.tasks.length > 0 && c.tasks.every(t => t.prompt));
   const s = evidence.chapters.find(x => x.chapterId === c.id);
   assert.ok(s && s.placeId === c.placeId && s.sources.length >= 2 && s.sources.every(x => x.startsWith("https://")));
