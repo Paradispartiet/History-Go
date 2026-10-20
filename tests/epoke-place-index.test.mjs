@@ -21,6 +21,23 @@ test("generated epoch-place index is deterministic and current", () => {
 });
 
 
+test("Sentrum Scene distinguishes conference and concert milestones", () => {
+  const place = JSON.parse(fs.readFileSync("data/places/musikk/oslo/places_musikk/sentrum_scene.json", "utf8"));
+  const pack = JSON.parse(fs.readFileSync("data/places/production/sentrum_scene.json", "utf8"));
+  const index = buildEpokePlaceIndex();
+  assert.equal(place.year, 2005, "canonical year is the opening of the concert venue, not the conference centre");
+  assert.equal(pack.metadataSnapshot.year, 2005);
+  assert.equal(pack.status, "ready_v4_2");
+  assert.match(place.popupDesc, /1992 åpnet lokalene igjen som konferansesenter/u);
+  assert.match(place.popupDesc, /konsertscene til 2005/u);
+  const milestones = Object.values(index.domains.historie.epochs)
+    .flatMap((epoch) => epoch.places || [])
+    .filter((row) => row.place_id === "sentrum_scene")
+    .flatMap((row) => row.milestones || [])
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.ok(milestones.some((milestone) => milestone.year === 2005), "concert opening must have a dated source-backed milestone");
+});
+
 test("VG-huset contributes eight source-backed, site-scoped chronology anchors", () => {
   const index = buildEpokePlaceIndex();
   const milestones = Object.values(index.domains.historie.epochs)
