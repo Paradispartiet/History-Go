@@ -2,7 +2,7 @@
 // Skall-jobb -> Life Story-rolle: tar spilleren en jobb i skallet, spiller
 // Min dag rollen som matcher — via canonical CivicationCareerRoleResolver
 // (role_scope) + role_scope-binding i lifestory-manifestet.
-// Eksplisitt rollevalg (?lifestoryRole=/localStorage) vinner alltid.
+// Kun URL-parameteren ?lifestoryRole= overstyrer jobbrollen ved denne lasting.
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
@@ -67,6 +67,8 @@ async function jsdomAdoption() {
     <section id="civiLifestorySection"><h2>Min dag</h2><div id="civiLifestoryPanel"></div></section>
   </body></html>`, { url: "http://localhost/Civication.html", runScripts: "outside-only" });
   const { window } = dom;
+  // A debug override from an earlier visit must not pin the actual job role.
+  window.localStorage.setItem("civication_lifestory_role_v1", "arealplanlegger");
   window.fetch = async (p) => {
     const abs = path.join(ROOT, String(p).replace(/^\.?\//, ""));
     if (!fs.existsSync(abs)) return { ok: false, status: 404, json: async () => null, text: async () => "" };
@@ -123,6 +125,8 @@ async function jsdomAdoption() {
   const stored2 = JSON.parse(w2.localStorage.getItem("civication_lifestory_v1"));
   assert.strictEqual(stored2.rolle, "arealplanlegger",
     "eksplisitt ?lifestoryRole= vinner over skall-jobben");
+  assert.strictEqual(w2.localStorage.getItem("civication_lifestory_role_v1"), null,
+    "test-URL må ikke lagre varig overstyring av spillerrollen");
 }
 
 jsdomAdoption().then(() => {
