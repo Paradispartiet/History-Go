@@ -191,6 +191,13 @@
       throw new Error("[LifestoryState] ugyldig lagret rolle: " + roleId);
     }
     const selected = earlier || createInitialState(content);
+    // Energi, psykisk overskudd og personlig integritet tilhører spilleren,
+    // ikke arbeidsplassen. Et jobbskifte er ingen gratis helbredelse.
+    // Arbeidsspesifikk synlighet og handlingsrom forblir rollens egne data.
+    selected.meters ||= {};
+    for (const meter of ["energi", "psyke", "integritet"]) {
+      if (Number.isFinite(saved.meters?.[meter])) selected.meters[meter] = clamp(saved.meters[meter]);
+    }
     delete inactive[roleId];
     selected.rolleTilstander = inactive;
     if (privateStory) hydratePrivateStory(selected, privateStory);
