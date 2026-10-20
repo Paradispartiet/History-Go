@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'reports/place-production/det-norske-teatret/20261020/object-image-intake-c32.json'
+      - 'scripts/place-production/stage-dnt-object-image-c32.mjs'
 concurrency:
   group: dnt-object-media-${{ github.ref }}
   cancel-in-progress: true
