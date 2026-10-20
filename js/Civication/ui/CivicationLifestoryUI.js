@@ -32,22 +32,19 @@
    * DEV-/TESTVERKTØY — ikke produktflate. Roller velges aldri av spilleren;
    * de fortjenes gjennom quiz (se startkontrakten i civication-life-story-
    * system.md). ?lifestoryRole=<id> tvinger en rolle for utvikling/innholds-
-   * arbeid/tester og persisteres; ellers localStorage. Null i normal drift —
-   * da følger Min dag skall-jobben (se maybeAdoptShellRole).
+   * arbeid/tester kun for gjeldende URL/lasting. En testrolle må aldri
+   * bli en permanent overstyring av spillerens ekte jobb ved senere besøk.
    * @returns {string|null}
    */
   function resolveExplicitRoleId() {
+    let fromUrl = null;
     try {
-      const fromUrl = new URLSearchParams(window.location.search || "").get("lifestoryRole");
-      if (fromUrl && fromUrl.trim()) {
-        const roleId = fromUrl.trim();
-        try { window.localStorage?.setItem(ROLE_STORAGE_KEY, roleId); } catch { /* uten lagring gjelder valget bare denne lasten */ }
-        return roleId;
-      }
-      const stored = window.localStorage?.getItem(ROLE_STORAGE_KEY);
-      if (stored && stored.trim()) return stored.trim();
-    } catch { /* blokkert lagring/URL => ingen eksplisitt rolle */ }
-    return null;
+      fromUrl = new URLSearchParams(window.location.search || "").get("lifestoryRole");
+    } catch { /* blokkert URL => følg skall-jobben */ }
+    // Tidligere testlenker skrev et permanent override. Fjern bare den
+    // utdaterte testnøkkelen; selve Life Story-lagringen forblir urørt.
+    try { window.localStorage?.removeItem(ROLE_STORAGE_KEY); } catch { /* blokkert lagring */ }
+    return fromUrl && fromUrl.trim() ? fromUrl.trim() : null;
   }
 
   const EXPLICIT_ROLE_ID = resolveExplicitRoleId();
