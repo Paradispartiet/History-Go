@@ -123,6 +123,23 @@ test('low energy triggers a real, authored shop-floor follow-up with a choice', 
   assert.throws(() => R.applyChoice(state, content, name, 'kort_pause'), /allerede spilt/);
 });
 
+test('prolonged emotional strain has a small energy cost that the player can see', () => {
+  const content = pack('ekspeditor');
+  const scene = content.scenes.find(s => s.id === 'retur_01_uten_kvittering');
+  const state = S.createInitialState(content);
+  state.fase = scene.fase;
+  state.meters.energi = 65;
+  state.meters.psyke = 24;
+  assert.ok(R.getCandidateScenes(state, content).some(s => s.id === scene.id));
+  const choice = scene.valg.find(c => c.id === 'hold_regelen');
+  const result = R.applyChoice(state, content, scene.id, choice.id);
+  assert.equal(state.meters.psyke, 24 + choice.effekter.meters.psyke);
+  assert.equal(state.meters.energi, 64,
+    'when already stressed, this authored stressful situation costs one extra energy');
+  assert.match(result.konsekvensTekst, /Lavt psykisk overskudd/);
+  assert.equal(state.arkiv.at(-1).konsekvensTekst, result.konsekvensTekst);
+});
+
 test('unseeded 14-day target reports the actual progression gate, not fake achievements', () => {
   // Run the real day-1 to day-7 story without a fabricated History Go badge
   // or forced life-position. Any later Wave E scenes must be earned from
