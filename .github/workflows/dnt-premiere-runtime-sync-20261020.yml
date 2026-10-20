@@ -1,0 +1,46 @@
+name: DNT Peer Gynt 1948 one-shot runtime sync
+on:
+  push:
+    branches: [agent/dnt-peer-gynt-premiere-date-20261020]
+    paths:
+      - data/people/musikk/oslo/det_norske_teatret/hans_jacob_nilsen.json
+      - .github/workflows/dnt-premiere-runtime-sync-20261020.yml
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build and test canonical People runtime
+        run: |
+          npm run place-open:build
+          npm run place-open:check
+          node --test tests/det-norske-teatret-peer-gynt-date.test.mjs
+      - name: Enforce derived-file scope and commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          changed="$(git diff --name-only -- data/runtime)"
+          printf '%s\\n' "$changed"
+          test -n "$changed"
+          printf '%s\\n' "$changed" | grep -qx 'data/runtime/place-open/det_norske_teatret.json'
+          printf '%s\\n' "$changed" | grep -Eq '^data/runtime/people-all/part-[0-9]+[.]json$'
+          while IFS= read -r path; do
+            case "$path" in
+              data/runtime/place-open/det_norske_teatret.json|data/runtime/people-all/part-*.json) ;;
+              *) echo "UNEXPECTED DERIVED OUTPUT: $path" >&2; exit 1 ;;
+            esac
+          done <<< "$changed"
+          git add -A data/runtime/people-all data/runtime/place-open
+          test "$(git diff --cached --name-only)" = "$changed"
+          git commit -m 'build(dnt): synchronize verified 1948 premiere across People runtime'
+          git push origin HEAD:agent/dnt-peer-gynt-premiere-date-20261020
