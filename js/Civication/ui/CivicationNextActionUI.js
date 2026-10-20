@@ -691,7 +691,12 @@
   }
 
   function refresh() {
-    if (!modalEl || !modalEl.classList || !modalEl.classList.contains("is-open")) return false;
+    if (!modalEl || !modalEl.isConnected || !modalEl.classList) return false;
+    // The embedded answer card is permanently mounted inside the inbox, and
+    // unlike the old modal it is not necessarily opened through open().
+    // Keep it in sync after external answer, role and day-phase updates too.
+    const embedded = modalEl.classList.contains("civi-inbox-active-action");
+    if (!embedded && !modalEl.classList.contains("is-open")) return false;
     if (answerInFlight) {
       pendingRefresh = true;
       return false;
