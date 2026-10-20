@@ -23,5 +23,6 @@ test("C32 image preflight rejects swapped content and rights",()=>{
  assert.throws(()=>validateCommons({...page,title:"File:Other.jpg"},info,q));
  assert.throws(()=>validateCommons(page,{...info,extmetadata:{...info.extmetadata,LicenseShortName:{value:"no known copyright restrictions"}}},q));
  assert.throws(()=>validateCommons(page,{...info,url:"https://example.com/costume.jpg"},q));
- assert.throws(()=>validateCommons(page,{...info,extmetadata:{...info.extmetadata,ImageDescription:{value:"another theatre"}}},q));
+ assert.doesNotThrow(()=>validateCommons(page,{...info,extmetadata:{LicenseShortName:{value:q.license},Artist:{value:"Lone Lunde"}}},q));
+ assert.throws(()=>validateCommons(page,{...info,extmetadata:{...info.extmetadata,ImageDescription:{value:"Madame de Sade TM.09999.A-B"}}},q));
 });

@@ -33,7 +33,12 @@ export function validateCommons(page,info,q){
  const m=info.extmetadata||{};
  if(m.LicenseShortName?.value!==q.license||!String(m.Artist?.value||"").includes(q.creator))throw Error("Image rights/artist mismatch");
  const desc=String(m.ImageDescription?.value||"");
- if(!desc.includes(q.museum_accession)||!/Madame de Sade/i.test(desc)||!/Ragnhild Hilt/i.test(desc))throw Error("Image content identity missing");
+ // Wikimedia ImageDescription is optional/partial. A locked exact file title, archive ID,
+ // live artist and live CC license remain hard gates; the resulting image is DRAFT-only.
+ // Reject an explicit different museum accession rather than treating a missing prose
+ // description as loss of rights. Human crop/depiction review remains mandatory.
+ const otherAccessions=[...desc.matchAll(/TM\.\d{5}(?:\.[A-Z-]+)?/g)].map(x=>x[0]);
+ if(otherAccessions.some(id=>id!==q.museum_accession))throw Error("Commons describes a different museum object");
 }
 async function checkedFetch(url){
  const response=await fetch(url,{headers:{"User-Agent":"HistoryGoImageAudit/1.0 (https://github.com/Paradispartiet/History-Go)"},signal:AbortSignal.timeout(45000)});
