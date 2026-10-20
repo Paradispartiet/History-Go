@@ -71,9 +71,14 @@ test("a night's recovery is gradual, idempotent and can be saved", () => {
 test("low-capacity work creates authored, delayed consequences on day three", () => {
   const content = pack("ekspeditor");
   const state = S.createInitialState(content);
-  finishDay(state, content);
+  // Earn low capacity through actual authored decisions: skip breakfast and
+  // the lunch break during a full shift, rather than injecting a meter value.
+  finishDay(state, content, scene =>
+    ["privat_morgen_start", "lunsj_01_pausen"].includes(scene.id)
+      ? scene.valg.at(-1).id : scene.valg[0].id);
   R.startNextDay(state, content);
-  assert.ok(state.meters.energi <= 60, "the first full shift caused realistic fatigue");
+  assert.ok(state.meters.energi <= 60,
+    "skipping meals and rest during a complete shift led to meaningful fatigue");
   const fatigue = R.selectNextScene(state, content);
   assert.equal(fatigue?.id, "d2_morgen_vaktpress_etter_stenging");
   R.applyChoice(state, content, fatigue.id, "press_videre");
