@@ -51,8 +51,8 @@ assert.equal(title(), "Melding som krever svar",
   "the inbox renderer must not overwrite the home/section owner's top card");
 action = { id: "queued-nav", subject: "Les kveldsmeldingen", phaseLabel: "Kveld",
   isAnswerable: false, isQueued: true };
-w.CivicationMiniSectionsUI.refresh();
-assert.equal(title(), "Ny hendelse", "queued mail must not be mislabeled as unanswered");
+w.dispatchEvent(new w.Event("civi:dayPhaseChanged"));
+assert.equal(title(), "Ny hendelse", "phase change must refresh the single top card without manual polling");
 assert.equal(card.querySelector(".civi-top-action-chip").textContent, "Ny sak");
 action = { id: "start_new_day:day_end", subject: "Start ny dag",
   canStartNewDay: true, isAnswerable: false };
@@ -60,7 +60,7 @@ w.CivicationMiniSectionsUI.refresh();
 assert.equal(title(), "Dagen er ferdig");
 assert.equal(button.textContent, "Se dagslutt");
 action = null;
-w.CivicationMiniSectionsUI.refresh();
+w.dispatchEvent(new w.Event("civi:inboxChanged"));
 assert.equal(title(), "Ingen handling krever svar nå",
   "a stale answered inbox copy must not become an urgent task");
 assert.equal(button.disabled, true, "there must not be an enabled button without an action");
