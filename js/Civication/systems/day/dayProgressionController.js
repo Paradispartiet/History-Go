@@ -379,13 +379,13 @@
     return !!inspect().canAdvance;
   }
 
-  /**
-   * @returns {Promise<DayProgAdvanceResult>}
-   */
   // Only one transition may own the calendar while the next mail queue is
   // being delivered. The async wrapper also unlocks on early return/failure.
   let phaseAdvanceInFlight = false;
 
+  /**
+   * @returns {Promise<DayProgAdvanceResult>}
+   */
   async function advancePhaseIfReady() {
     if (phaseAdvanceInFlight) return { advanced: false, reason: "advance_in_flight" };
     phaseAdvanceInFlight = true;
