@@ -269,7 +269,7 @@ test("Rockefeller, John Dee and SALT add only their verified local history ancho
   for (const [placeId, expectedCount] of [["rockefeller", 11], ["john_dee", 5], ["salt", 7]]) {
     const milestones = milestonesFor(placeId);
     assert.equal(milestones.length, expectedCount, `${placeId} needs exactly its reviewed dated claims`);
-    assert.ok(milestones.every((milestone) => milestone.claim_id && milestone.sources.some((source) => /^https?:\\/\\//.test(source.url))));
+    assert.ok(milestones.every((milestone) => milestone.claim_id && milestone.sources.some((source) => source.url.startsWith("https://") || source.url.startsWith("http://"))));
   }
   const salt = milestonesFor("salt");
   assert.ok(salt.some((milestone) => milestone.year === 2016), "SALT arrived in Oslo in 2016");
