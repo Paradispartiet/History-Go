@@ -214,7 +214,7 @@
     "reading_trails": "PRODUSER fordypningsspor fra tilgjengelige institusjonsartikler/arkiv med riktig leseeier; avklar rettigheter før tekst vises.",
     "quiz": "SEPARAT QUIZLØP: 5 eksisterende sett med 6 spørsmål og etablerte Knowledge-ID-er. Svaralternativene stokkes i runtime; answerIndex=0 i kildefilen krever ingen omorganisering. Konsentrer senere revisjon om kildefakta, scenekunstfaglig innhold og QuizCard, ikke svarrekkefølge.",
     "quizcard": "KANDIDAT PRODUSERT, BINDING IKKE VERIFISERT: PR #6357 (merget 18. oktober 2026) registrerte 10 kildeavledede spørsmål for det_norske_teatret i data/quizcards/scenekunst/scenekunst_oslo_v1_batch1.json. Quizkilden er i musikk-kategorien, mens QuizCard ligger under scenekunst; live PlaceCard, kategori/target-binding, fasit og mobilvisning må kontrolleres. Baseline 13. oktober viste at Quizkort manglet; dette er historisk UI-observasjon, ikke en ny live-verifikasjon.",
-    "images": "HOVEDFOTO PRODUSERT: uendret fasadefoto fra 2006 med CC BY-SA 3.0-kreditering. Separat stående frontImage gjenstår.",
+    "images": "2006-fasadefoto beholdt som Place.image. C36: særskilt lisensiert 2013-foto visuelt kontrollert og koblet som ekte stående Place.frontImage med kildeproveniens; runtime bildeinnlasting og mobil/desktop-slutt-QA gjenstår.",
     "relations": "REVIEW canonical eldre spillesteder og Rommen. Bruk relasjoner, ikke lånt samlingsinnhold.",
     "translations": "PRODUSERT en/es/pt med seksavsnittsartikkel og aktuell _sourceHash.",
     "player_status": "REVIEW besøk, favoritt, quiz og profillesing ved integrasjon. Ingen ny state-eier."
@@ -388,6 +388,14 @@
       "source_draft_pr": 6442,
       "asset": "bilder/places/det_norske_teatret_front_bjoertvedt_2013.webp",
       "provenance": "reports/place-production/det-norske-teatret/20261020/front-image-c34-generated.json"
+    },
+    {
+      "id": "front_facade_visual_qa_and_binding_c36",
+      "status": "PHOTO_REVIEW_PASSED_CANONICAL_FRONTIMAGE_BOUND_UI_CLOSEOUT_PENDING",
+      "scope": "Faktisk WebP visuelt inspisert: teglfasade, inngang og 100-årsbanner; liten teaterskilttekst i utsnittet. Separat fotograf fra 2006-foto. Canonical frontImage, indeks og place-open synkroniseres; ingen statusendring for Objects/Brands/Productions eller ferdigmelding.",
+      "asset": "bilder/places/det_norske_teatret_front_bjoertvedt_2013.webp",
+      "visual_report": "reports/place-production/det-norske-teatret/20261020/front-image-c36-visual-review.json",
+      "test": "tests/det-norske-teatret-front-activation-c36.test.mjs"
     }
   ],
   "rule_preflight": {
