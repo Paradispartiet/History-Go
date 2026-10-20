@@ -6,6 +6,9 @@ on:
       - 'reports/place-production/det-norske-teatret/20261020/productions-c30-venue-and-image-rights.md'
       - 'reports/place-production/det-norske-teatret-workcard-current.json'
       - 'data/quizcards/scenekunst/**'
+      - 'data/quiz/musikk/det_norske_teatret_sets_merged.json'
+      - 'js/ui/place-card-quizcards-patch.js'
+      - 'tests/det-norske-teatret-quizcard-house-dom.test.mjs'
       - 'tests/det-norske-teatret-production-venue.test.mjs'
       - '.github/workflows/dnt-production-venue.yml'
   workflow_dispatch:
@@ -20,5 +23,6 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Confirm eight venue identities, unlicensed media guards, and QuizCard candidate
-        run: node --test tests/det-norske-teatret-production-venue.test.mjs
+      - uses: ./.github/actions/setup-node-npm
+      - name: Confirm venue/media guards and place-focused QuizCard source/DOM parity
+        run: node --test tests/det-norske-teatret-production-venue.test.mjs tests/det-norske-teatret-quizcard-house-dom.test.mjs
