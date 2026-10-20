@@ -1,0 +1,24 @@
+name: DNT portrait inventory accuracy
+on:
+  pull_request:
+    paths:
+      - 'data/people/**'
+      - 'data/runtime/place-open/det_norske_teatret.json'
+      - 'data/runtime/people-all/**'
+      - 'reports/place-production/det-norske-teatret-workcard-current.json'
+      - 'tests/det-norske-teatret-portrait-inventory.test.mjs'
+      - '.github/workflows/dnt-portrait-inventory.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  portrait-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate current DNT portrait bindings against workcard
+        run: node --test tests/det-norske-teatret-portrait-inventory.test.mjs
