@@ -19,7 +19,7 @@ const sourcePaths = {
   'adv01-cultural-capital': '/Bourdieu-The-Forms-of-Capital.pdf',
   'adv01-classificatory-struggle': '/BourdieuPower.pdf',
 };
-const countWords = (text) => text.trim().split(/\\s+/u).length;
+const countWords = (text) => text.trim().split(/\s+/u).length;
 
 test('Bourdieu explanations are substantive, distinguish source works and guard against class stereotypes', () => {
   const work = canon.works.find((w) => w.id === 'adv01-bourdieu-distinction');
