@@ -1,0 +1,31 @@
+name: Historical routes content
+
+on:
+  pull_request:
+    paths:
+      - 'data/routes/historical/**'
+      - 'tests/historical-routes.test.js'
+      - 'tests/nextup-historical-routes.test.js'
+      - 'js/historical-routes.js'
+      - 'js/nextUpRuntime.js'
+      - 'tools/audit-historical-routes.mts'
+      - '.github/workflows/historical-routes-content.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historical-routes:
+    name: Historical route content integrity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Setup Node workspace
+        uses: ./.github/actions/setup-node-npm
+      - name: Run focused historical route and handoff tests
+        run: |
+          npm run test:historical-routes
+          npm run test:nextup-historical-routes
+          npm run test:historical-routes:audit
