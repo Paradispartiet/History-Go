@@ -106,9 +106,19 @@ test('low energy triggers a real, authored shop-floor follow-up with a choice', 
   const content = pack('ekspeditor');
   const name = 'd2_morgen_vaktpress_etter_stenging';
   const state = S.createInitialState(content);
-  state.dag = 2;
-  state.livsdag = 2;
-  state.fase = 'morgen';
+  // Use a real completed first day: changing the day number alone leaves
+  // the newly authored day-two work thread dormant and hides its scene.
+  let steps = 0;
+  while (!state.dagFerdig) {
+    const scene = R.selectNextScene(state, content);
+    if (scene) R.applyChoice(state, content, scene.id, scene.valg[0].id);
+    else R.advance(state, content);
+    assert.ok(++steps < 100, 'day one terminates before boundary testing');
+  }
+  R.startNextDay(state, content);
+  assert.equal(state.dag, 2);
+  assert.equal(state.threadState.arbeidsrytme_og_overskudd.status, 'active');
+  // Boundary values below exercise the scene condition, not fake a journey.
   state.meters.energi = 62;
   assert.equal(R.getCandidateScenes(state, content).some(s => s.id === name), false);
   state.meters.energi = 55;
