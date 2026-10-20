@@ -29,9 +29,10 @@ test("DNT C35 licensed frontImage candidate has correct actual bytes, orientatio
  assert.notEqual(asset,p.image);
  assert.notEqual(asset,p.cardImage);
 });
-test("C35 source asset does not silently mark PlaceCard complete or synthesize a frontImage field",()=>{
+test("C35 original photo now has an explicit, reviewed C36 canonical binding without full Place closeout",()=>{
  const w=read(card),p=read(place);
- assert.equal(p.frontImage,undefined);
+ assert.equal(p.frontImage,asset);
+ assert.equal(read("reports/place-production/det-norske-teatret/20261020/front-image-c36-visual-review.json").decision,"APPROVE_PHOTO_FOR_CANONICAL_FRONTIMAGE_BINDING");
  assert.equal(w.status,"in_progress");
  assert.equal(w.collections.objects.status,"BLOCKED");
  assert.deepEqual(w.placecard_collections_publishable_now,[]);
