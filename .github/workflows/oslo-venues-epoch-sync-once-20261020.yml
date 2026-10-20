@@ -1,0 +1,50 @@
+name: Oslo venues source-backed epoch sync (one-shot)
+on:
+  push:
+    branches:
+      - content/oslo-scener-rockefeller-johndee-salt-20261020
+    paths:
+      - .github/workflows/oslo-venues-epoch-sync-once-20261020.yml
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate only source-backed timeline index
+        run: |
+          set -euo pipefail
+          npm run epoker:places:build
+          npm run epoker:places:check
+          npm run place-open:check
+          CHANGED="$(git diff --name-only)"
+          if test -n "$CHANGED" && test "$CHANGED" != "data/epoker/epoke-place-index.json"; then
+            echo "Unexpected generated file changes:"
+            echo "$CHANGED"
+            exit 1
+          fi
+          git diff --check
+      - name: Commit regenerated index to existing PR branch
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- data/epoker/epoke-place-index.json; then
+            echo "Timeline already synchronized"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/epoker/epoke-place-index.json
+          git commit -m 'fix(history-go): regenerate source-backed Oslo music venue timeline'
+          git push origin HEAD:content/oslo-scener-rockefeller-johndee-salt-20261020
