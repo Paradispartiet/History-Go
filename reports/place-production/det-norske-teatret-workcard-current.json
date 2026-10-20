@@ -187,7 +187,7 @@
     "productions": {
       "status": "BLOCKED",
       "label": "Forestillinger",
-      "reason": "C10 har eit arkivforankra register over åtte produksjonar: sju med identifisert scene i dagens hus og éin som treng sceneavklaring. Ingen har lisensklarerte medlemsbilde; publisering er blokkert.",
+      "reason": "C30 har kildeverifisert fysisk scene i dagens hus for alle åtte produksjonene, inkludert Prøvesalen for KLAAR....EN...TOO....KJØØØØR (1989). Ingen har lisensklarerte produksjonsbilder, derfor er runtime-/PlaceCard-publisering fortsatt blokkert.",
       "candidates": [
         "Romeo og Julie (1985)",
         "Cats (1985)",
@@ -198,7 +198,7 @@
         "Sterk vind (2021)",
         "Tid for glede (2022)"
       ],
-      "plan": "Bruk C10-registeret som konkret produksjonskø. Kvar oppsetning må få eit ekte rettigheitsklarert produksjonsbilde før samlingsmedlemskap blir materialisert; ikkje bruk fasadefoto eller eldre spelestad som erstatning.",
+      "plan": "Bevar de åtte oppsetningene i C10-registeret (C30: 8/8 stedfestet i Kristian IVs gate 8). Undersøk konkrete forestillingsbilder og avklar fotograf/opphavsrett, identitet, kilde og bruksrett før materialisering. Sceneweb-bilder av Sterk vind og Tid for glede er eksplisitt merket opphavsrett, og kan ikke behandles som åpne bilder.",
       "candidate_register": "reports/place-production/det-norske-teatret/20261013/productions-c10.json"
     }
   },
@@ -213,7 +213,7 @@
     "news": "RESEARCH ferske, daterte institusjonsnotiser; aktivt teater skal ikke få N/A ut fra tomt datasett.",
     "reading_trails": "PRODUSER fordypningsspor fra tilgjengelige institusjonsartikler/arkiv med riktig leseeier; avklar rettigheter før tekst vises.",
     "quiz": "SEPARAT QUIZLØP: 5 eksisterende sett med 6 spørsmål og etablerte Knowledge-ID-er. Svaralternativene stokkes i runtime; answerIndex=0 i kildefilen krever ingen omorganisering. Konsentrer senere revisjon om kildefakta, scenekunstfaglig innhold og QuizCard, ikke svarrekkefølge.",
-    "quizcard": "BLOCKED: faktisk live PlaceCard sier Quizkort mangler. Produser og bind kortet etter quiz-audit.",
+    "quizcard": "KANDIDAT PRODUSERT, BINDING IKKE VERIFISERT: PR #6357 (merget 18. oktober 2026) registrerte 10 kildeavledede spørsmål for det_norske_teatret i data/quizcards/scenekunst/scenekunst_oslo_v1_batch1.json. Quizkilden er i musikk-kategorien, mens QuizCard ligger under scenekunst; live PlaceCard, kategori/target-binding, fasit og mobilvisning må kontrolleres. Baseline 13. oktober viste at Quizkort manglet; dette er historisk UI-observasjon, ikke en ny live-verifikasjon.",
     "images": "HOVEDFOTO PRODUSERT: uendret fasadefoto fra 2006 med CC BY-SA 3.0-kreditering. Separat stående frontImage gjenstår.",
     "relations": "REVIEW canonical eldre spillesteder og Rommen. Bruk relasjoner, ikke lånt samlingsinnhold.",
     "translations": "PRODUSERT en/es/pt med seksavsnittsartikkel og aktuell _sourceHash.",
@@ -269,8 +269,8 @@
     },
     {
       "id": "quiz_revision",
-      "status": "NOT_STARTED",
-      "scope": "Separat kildeledet quizproduksjon, Knowledge-paritet og QuizCard."
+      "status": "QUIZCARD_CANDIDATE_REGISTERED_AUDIT_PENDING",
+      "scope": "Ti kildeavledede quizkortspørsmål for det_norske_teatret finnes etter PR #6357, men quizkategori musikk vs QuizCard-kategori scenekunst, Knowledge-paritet og faktisk PlaceCard-visning står uverifisert. Ingen quiz-closeout."
     },
     {
       "id": "integration_closeout",
@@ -279,8 +279,8 @@
     },
     {
       "id": "productions_source_register_c10",
-      "status": "SOURCE_REGISTER_PREPARED_MEDIA_BLOCKED",
-      "scope": "Åtte dokumenterte oppsetningar med premieredato, scene/eigaravgrensing, kjeldeadresser og People-ID-koplingar. Ingen bilde eller runtime-/PlaceCard-samling publisert.",
+      "status": "EIGHT_VENUES_CONFIRMED_MEDIA_BLOCKED",
+      "scope": "Alle åtte arkivbaserte oppsetninger er stedfestet til huset i Kristian IVs gate 8 etter at FOREST og Sceneweb identifiserte Prøvesalen (senere Scene 3) for 1989-oppsetningen. 0/8 lisensklarerte produksjonsbilder; ingen Forestillinger-samling publisert.",
       "report": "reports/place-production/det-norske-teatret/20261013/productions-c10.json"
     },
     {
@@ -339,6 +339,12 @@
       "status": "RUNTIME_AND_LOCAL_MEDIA_VERIFIED",
       "scope": "57 av 87 canonical People har hver lokale image/cardImage-filer, manuelt godkjent imageMeta med lisens og kildekreditering og samsvarende Place-open-payload. 30 personer har ikke bilde. Eldre C21: 40/87 er historisk checkpoint, ikke gjeldende status. Ingen ny bildefil eller publisering i denne kontrollen.",
       "report": "reports/place-production/det-norske-teatret/20261020/portrait-inventory-c29.md"
+    },
+    {
+      "id": "productions_venue_and_media_c30",
+      "status": "VENUES_8_OF_8_VERIFIED_IMAGES_0_OF_8_CLEARED",
+      "scope": "1989-Prøvesalen dokumentert som scene i 1985-huset; fotografier fra Sterk vind og Tid for glede er identifisert som copyright-beskyttet, ikke fri gjenbruk. Separat scenekunst-QuizCard fra #6357 finnes som kandidat, ikke live-verifisert.",
+      "report": "reports/place-production/det-norske-teatret/20261020/productions-c30-venue-and-image-rights.md"
     }
   ],
   "rule_preflight": {
