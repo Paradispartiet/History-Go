@@ -187,7 +187,10 @@
       return modalEl;
     }
     const inboxSection = document.getElementById("civiInboxSection");
-    const inboxContainer = inboxSection?.querySelector?.(".civi-section-body") || inboxSection;
+    // The mini-section popup moves its body out of the original section;
+    // locate it through the inbox element when the popup is already open.
+    const inboxContainer = document.getElementById("civiInbox")?.closest?.(".civi-section-body")
+      || inboxSection?.querySelector?.(".civi-section-body") || inboxSection;
     if (inboxContainer) {
       const section = document.createElement("section");
       section.id = MODAL_ID;
@@ -682,6 +685,7 @@
     const active = renderInto(bodyEl);
     if (modal.classList.contains("civi-inbox-active-action")) {
       modal.hidden = !active && !lastNoActionDebug;
+      modal.setAttribute("aria-hidden", String(modal.hidden));
     }
     return true;
   }
