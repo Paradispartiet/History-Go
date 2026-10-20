@@ -35,6 +35,20 @@ for (const [i, c] of r.chapters.entries()) {
   assert.ok(match, "Place in manifest: " + c.placeId);
   assert.equal(readJson("data/" + match).id, c.placeId);
 }
+const sentrum = r.chapters.find(c => c.placeId === "sentrum_scene");
+const salt = r.chapters.find(c => c.placeId === "salt");
+assert.equal(readJson("data/places/musikk/oslo/places_musikk/sentrum_scene.json").year, 2005);
+assert.equal(readJson("data/places/musikk/oslo/places_musikk/salt.json").year, 2016);
+assert.match(sentrum.narrativeText, /1945/);
+for (const year of ["1992", "1997", "2005", "2006"]) assert.ok(sentrum.narrativeText.includes(year));
+assert.match(sentrum.narrativeText, /Sceneweb/);
+assert.match(sentrum.narrativeText, /Dagsavisen/);
+for (const year of ["2014", "2016", "2017"]) assert.ok(salt.narrativeText.includes(year));
+assert.match(salt.narrativeText, /Langkaia/);
+assert.ok(!/ankomsten til Langkaia i 2017/i.test(salt.narrativeText), "2017 documents activity, not a contradictory Oslo relocation year");
+assert.ok(evidence.chapters.find(c => c.placeId === "sentrum_scene").sources.some(url => url.includes("dagsavisen.no")));
+assert.ok(evidence.chapters.find(c => c.placeId === "salt").sources.some(url => url.includes("aftenposten.no")));
+
 const storage = new Map(), events = [];
 const context = {
   console, Date, Promise, Set, JSON,
