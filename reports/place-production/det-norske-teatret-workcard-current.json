@@ -40,7 +40,7 @@
     "people": {
       "status": "BLOCKED",
       "reason": "C9 har kildegjennomgått alle 87 teaterkoblingene. C29-audit 20. oktober 2026 fant 57 canonical People med manuelt godkjente, lokalt registrerte portretter, kilde-/lisensmetadata og genererte Place-open-visningsdata. 30 av 87 mangler fortsatt portrett. Dette er ikke full Place-closeout.",
-      "plan": "Fortsett bildeklarering kun for de 30 dokumentert manglende personene. Bevar 57 eksisterende lokale bilder og provenance ved ny publisering. Kontroller hvert konkret bilde for personidentitet, fotograf, kilde, lisens og faktisk fil før People/Place-open-runtime oppdateres; oppdater denne inventarlisten fra canonical runtime i samme produksjon.",
+      "plan": "Fortsett bildeklarering kun for de 30 dokumentert manglende personene. Bevar 57 eksisterende lokale bilder og provenance ved ny publisering. Kontroller hvert konkret bilde for personidentitet, fotograf, kilde, lisens og faktisk fil før People/Place-open-runtime oppdateres; oppdater denne inventarlisten fra canonical runtime i samme produksjon. C31 dokumenterer to bestemte nye vurderingsspor uten publisering: Rolf Just Nilsen har Commons NKNCR mot SNL/Digitalarkivet CC BY-SA 4.0 og krever originalkildekontroll; Ola B. Johannessens kjente CC BY-SA 4.0-to-personersbilde er 252×408 og krever identitet/utsnitt- og kvalitetsvurdering. Se reports/place-production/det-norske-teatret/20261020/portrait-rights-c31.json.",
       "portrait_review_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json",
       "portrait_batch_request": "data/people/portrait_image_batch_request.json",
       "portraits_published_count": 57,
@@ -155,8 +155,8 @@
     },
     "objects": {
       "status": "BLOCKED",
-      "reason": "Juleroser-kjolen er en konkret scenekostymekandidat. Datering, fysisk status, medlemsbilde og naturlig gjenstandsgruppe mangler.",
-      "plan": "Research rekvisitter, kostymer, scenemodeller, teatermaskineri og fysiske program-/billett-eksemplarer. Hulda-drakten er sekundært kulturspor. Groths verk blir ikke automatisk et Object."
+      "reason": "C31 har funnet tre kildeforankrede, distinkte fysiske kandidater: Madame de Sade-kostyme (1989, Oslo Museum TM.01641.A-C, to CC BY-SA 4.0-foto av samme gjenstand), Hulda Garborgs bunad i foajeen og Juleroser-kjolen laget ved teatrets kostymeavdeling. Kun ett kandidatobjekt har kildeklarerte foto; ingen har lokalt medlemspublisert bilde. Eldre kostymer fra 1971/1983 er holdt utenfor huset fra 1985.",
+      "plan": "Bruk reports/place-production/det-norske-teatret/20261020/objects-c31-candidates.json. Kontroller fysisk status/eiarskap og objektidentitet, last ned og krediter 1989-kostymet i eksisterende godkjent objektløp, finn eit uavhengig andre objekt med rettigheitsklarert bildefil, og hold samlingen BLOCKED til canonical medlemmer og preview faktisk finnes. Ingen forskyvning av 1971/1983-kostymer inn i 1985-huset."
     },
     "brands": {
       "status": "BLOCKED",
@@ -345,6 +345,16 @@
       "status": "VENUES_8_OF_8_VERIFIED_IMAGES_0_OF_8_CLEARED",
       "scope": "1989-Prøvesalen dokumentert som scene i 1985-huset; fotografier fra Sterk vind og Tid for glede er identifisert som copyright-beskyttet, ikke fri gjenbruk. Separat scenekunst-QuizCard fra #6357 finnes som kandidat, ikke live-verifisert.",
       "report": "reports/place-production/det-norske-teatret/20261020/productions-c30-venue-and-image-rights.md"
+    },
+    {
+      "id": "objects_and_portraits_source_rights_c31",
+      "status": "THREE_OBJECT_CANDIDATES_ONE_CC_PHOTO_SOURCE_NO_PUBLICATION",
+      "scope": "Tre konkrete fysiske Objects-kandidater; to Commons-foto av samme 1989-kostyme teller som ett objekt. Historisk spillested for 1971/1983 holdes avgrenset. To portrettsporer dokumenterer NKNCR/CC-uenighet og lavoppløst gruppemotiv, uten bildepåføring.",
+      "reports": [
+        "reports/place-production/det-norske-teatret/20261020/objects-c31-candidates.json",
+        "reports/place-production/det-norske-teatret/20261020/portrait-rights-c31.json",
+        "reports/place-production/det-norske-teatret/20261020/objects-and-portrait-rights-c31.md"
+      ]
     }
   ],
   "rule_preflight": {
