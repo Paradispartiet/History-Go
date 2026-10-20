@@ -212,8 +212,8 @@
     "before_after": "RESEARCH sammenlignbart historisk og senere bilde av dagens hus; Commons-kandidat fra 2006 er ikke dagens foto og er ikke hele sammenligningen.",
     "news": "RESEARCH ferske, daterte institusjonsnotiser; aktivt teater skal ikke få N/A ut fra tomt datasett.",
     "reading_trails": "PRODUSER fordypningsspor fra tilgjengelige institusjonsartikler/arkiv med riktig leseeier; avklar rettigheter før tekst vises.",
-    "quiz": "SEPARAT QUIZLØP: 5 eksisterende sett med 6 spørsmål og etablerte Knowledge-ID-er. Svaralternativene stokkes i runtime; answerIndex=0 i kildefilen krever ingen omorganisering. Konsentrer senere revisjon om kildefakta, scenekunstfaglig innhold og QuizCard, ikke svarrekkefølge.",
-    "quizcard": "BLOCKED: faktisk live PlaceCard sier Quizkort mangler. Produser og bind kortet etter quiz-audit.",
+    "quiz": "V1_PRESENT_FULL_REVIEW_PENDING: 5 eksisterande sett à 6 spørsmål med Knowledge-ID-ar ligg i data/quiz/musikk/det_norske_teatret_sets_merged.json; 10 av dei er allereie publiserte gjennom eitt canonicalt Scenekunst-QuizCard. Svaralternativa stokkes i runtime og kjeldefilene skal ikkje omorganiserast etter answerIndex=0. Full Scenekunst-fagleg/kjeldeleidd revisjon, Knowledge-paritet og slutt-QA står framleis att.",
+    "quizcard": "V1_PUBLISHED: Eitt canonicalt QuizCard med 10 kjeldekopla historiske spørsmål finst i data/quizcards/scenekunst/scenekunst_oslo_v1_batch1.json, er registrert i data/quizcards/scenekunst/manifest.json og har targetId det_norske_teatret. Kortet gjenbrukar data/quiz/musikk/det_norske_teatret_sets_merged.json utan nye spørsmål eller endra fasitar. Canonical PlaceCard lastar Scenekunst-manifestet. Dette korrigerer den eldre observasjonen frå 13. oktober om manglande kort; faktisk live nettlesar-/mobilakseptanse og full vFerdig quiz-audit er framleis PENDING.",
     "images": "HOVEDFOTO PRODUSERT: uendret fasadefoto fra 2006 med CC BY-SA 3.0-kreditering. Separat stående frontImage gjenstår.",
     "relations": "REVIEW canonical eldre spillesteder og Rommen. Bruk relasjoner, ikke lånt samlingsinnhold.",
     "translations": "PRODUSERT en/es/pt med seksavsnittsartikkel og aktuell _sourceHash.",
@@ -269,8 +269,8 @@
     },
     {
       "id": "quiz_revision",
-      "status": "NOT_STARTED",
-      "scope": "Separat kildeledet quizproduksjon, Knowledge-paritet og QuizCard."
+      "status": "V1_QUIZCARD_PRESENT_FULL_AUDIT_PENDING",
+      "scope": "Eksisterande 5×6 canonical Musikk-quiz er bevart, medan Scenekunst-manifestet allereie publiserer eit 10-spørsmåls quizkort med same spørsmål, alternativ, fasit og kjelder. tests/det-norske-teatret-quizcard-v1.test.mjs låser parity og kronologigrensa 1912/1913/1985. Seinare full kvalitetsrevisjon og faktisk PlaceCard-/mobilakseptanse gjenstår."
     },
     {
       "id": "integration_closeout",
