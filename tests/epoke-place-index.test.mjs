@@ -21,6 +21,23 @@ test("generated epoch-place index is deterministic and current", () => {
 });
 
 
+test("Sentrum Scene distinguishes conference and concert milestones", () => {
+  const place = JSON.parse(fs.readFileSync("data/places/musikk/oslo/places_musikk/sentrum_scene.json", "utf8"));
+  const pack = JSON.parse(fs.readFileSync("data/places/production/sentrum_scene.json", "utf8"));
+  const index = buildEpokePlaceIndex();
+  assert.equal(place.year, 2005, "canonical year is the opening of the concert venue, not the conference centre");
+  assert.equal(pack.metadataSnapshot.year, 2005);
+  assert.equal(pack.status, "ready_v4_2");
+  assert.match(place.popupDesc, /1992 åpnet lokalene igjen som konferansesenter/u);
+  assert.match(place.popupDesc, /konsertscene til 2005/u);
+  const milestones = Object.values(index.domains.historie.epochs)
+    .flatMap((epoch) => epoch.places || [])
+    .filter((row) => row.place_id === "sentrum_scene")
+    .flatMap((row) => row.milestones || [])
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.ok(milestones.some((milestone) => milestone.year === 2005), "concert opening must have a dated source-backed milestone");
+});
+
 test("VG-huset contributes eight source-backed, site-scoped chronology anchors", () => {
   const index = buildEpokePlaceIndex();
   const milestones = Object.values(index.domains.historie.epochs)
@@ -204,12 +221,12 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .map(([placeId]) => placeId)
     .sort();
 
-  // Reviewed Oslo places, including three new Oslo-20 packets with dated evidence, carry historical source backing.
+  // Source-backed Oslo places include Sentrum Scene's corrected concert-era package (2005).
   assert.equal(coverage.canonical_place_count, 587);
-  assert.equal(coverage.dated_evidence_place_count, 259);
+  assert.equal(coverage.dated_evidence_place_count, 260);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 326);
-  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "dramatikkens_hus", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset", "museumsleiligheten_grabein", "teater_manu", "black_box_teater", "vippetangen_fisketorg"]) {
+  assert.equal(coverage.awaiting_source_backed_history_count, 325);
+  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "dramatikkens_hus", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset", "museumsleiligheten_grabein", "teater_manu", "black_box_teater", "vippetangen_fisketorg", "sentrum_scene"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,
       "dated_evidence",
