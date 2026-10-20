@@ -449,7 +449,13 @@
     });
 
     const resolvedItems = visible.filter(function (item) { return !isOpenItem(item) || isResolved(item); });
-    const pendingCount = openItems.length;
+    // Exclude the active message from the archive rows, but still count it as
+    // open in its channel. Otherwise the user sees "0 åpne" above a mail
+    // that is waiting for their answer in the same inbox.
+    const activeCount = hasEmbeddedInboxActions()
+      ? visible.filter(function (item) { return isOpenItem(item) && isCurrentNextActionItem(item); }).length
+      : 0;
+    const pendingCount = openItems.length + activeCount;
 
     return `
       <section class="civi-inbox-channel-section">
