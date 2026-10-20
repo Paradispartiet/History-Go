@@ -71,6 +71,19 @@ async function run() {
     "the message history does not duplicate answer buttons");
   assert.equal(doc.querySelector("#civiInbox .civi-inbox-card.is-pending"), null,
     "the active message is not repeated in the history list");
+  const privateSection = Array.from(doc.querySelectorAll(".civi-inbox-channel-section"))
+    .find(section => section.querySelector("h3")?.textContent === "Personlige meldinger");
+  assert.equal(privateSection?.querySelector("strong")?.textContent, "1 åpne",
+    "the active message counts as open even when it has no duplicate archive card");
+
+  // A role/day change can arrive without the user clicking the inbox button.
+  // The embedded answer area must refresh even though it is not a modal.
+  active = false;
+  w.dispatchEvent(new w.Event("civi:dayPhaseChanged"));
+  assert.equal(inline.hidden, true, "external phase updates hide obsolete actions");
+  active = true;
+  w.dispatchEvent(new w.Event("updateProfile"));
+  assert.equal(inline.hidden, false, "returning to a playable role restores its current action");
   assert.ok(w.CivicationNextActionUI.open());
   assert.equal(popupCalls, 1, "the existing inbox popup is opened");
   inline.querySelector('[data-choice-id="send"]').click();
