@@ -206,20 +206,6 @@
     delete inactive[roleId];
     selected.rolleTilstander = inactive;
     if (privateStory) hydratePrivateStory(selected, privateStory);
-    // Psyke og energi beskriver spilleren, ikke arbeidsgiveren. Et jobbbytte
-    // skal aldri kurere utmattelse eller tilbakestille en vanskelig livsdag.
-    // Integritet følger også personen; synlighet og handlingsrom er
-    // rolleavhengige og beholdes i de uavhengige jobb-snapshotene.
-    for (const meter of ["psyke", "energi", "integritet"]) {
-      const current = Number(saved.meters?.[meter]);
-      if (!Number.isFinite(current) || !(meter in selected.meters)) continue;
-      selected.meters[meter] = clamp(current);
-      // Et gammelt jobb-snapshot kan ha sitt eget dagsutgangspunkt. Når
-      // man returnerer, må belastning fra en annen jobb ikke telles som
-      // en ny hendelse i denne rollens dagsoppsummering.
-      selected.dagStartMeters ||= {};
-      selected.dagStartMeters[meter] = selected.meters[meter];
-    }
     selected.livsdag = saved.livsdag;
     // Kalendertilknytningen tilhører spilleren, ikke jobbrollens arkiv.
     if (Number.isInteger(saved.kalenderDag) && saved.kalenderDag > 0) selected.kalenderDag = saved.kalenderDag;
