@@ -572,10 +572,13 @@
     }
 
     if (!isAnswerableAction(action)) {
-      return ""
-        + "<p class=\"civi-next-action-sub muted\">Dette er en beskjed eller statusmelding.</p>"
-        + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Lukk melding\">"
-        + "<button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">OK</button>"
+      const info = '<p class="civi-next-action-sub muted">Dette er en beskjed eller statusmelding som ikke krever svar.</p>';
+      // Closing an embedded card would not dismiss its source event. Avoid
+      // a misleading OK button that leaves the same message on screen.
+      if (document.getElementById(MODAL_ID)?.classList?.contains("civi-inbox-active-action")) return info;
+      return info
+        + '<div class="civi-next-action-choices" role="group" aria-label="Lukk melding">'
+        + '<button class="civi-btn secondary" type="button" data-civi-next-action-close="1">OK</button>'
         + "</div>";
     }
 
