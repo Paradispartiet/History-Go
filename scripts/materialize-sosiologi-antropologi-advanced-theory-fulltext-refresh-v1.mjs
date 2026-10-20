@@ -207,22 +207,29 @@ export function buildDomainPackages(overlays, production, evidenceGate = null) {
       canonical_subcategory_id: overlay.canonical_subcategory_id,
       chapter_id: target.chapter_id,
       status: runtimeReleased ? 'runtime_ready' : 'claim_verification_pending',
-      questions: overlay.works.flatMap((work) => work.theory_units.map((unit) => ({
-        id: questionId(unit.id),
-        type: 'multiple_choice',
-        question: `Hvilket analysespørsmål er mest i tråd med «${unit.name}»?`,
-        options: [
-          unit.analytic_question,
-          'Hvilken personlighetstype har aktøren?',
-          'Hvilken teori gjelder alltid uavhengig av kontekst?',
-        ],
-        answerIndex: 0,
-        answer: unit.analytic_question,
-        claim_id: claimId(unit.id),
-        source: [work.id],
-        guardrail: unit.misuse_guardrail,
-        learner_typing: false,
-      }))),
+      questions: overlay.works.flatMap((work, workIndex) => {
+        const prompts = work.theory_units.map((unit) => unit.analytic_question);
+        if (prompts.length !== 3 || !uniq(prompts)) {
+          throw new Error(`Advanced theory assessment requires three distinct analytic questions in ${work.id}`);
+        }
+        return work.theory_units.map((unit, unitIndex) => {
+          const answerIndex = (workIndex + unitIndex) % 3;
+          const options = prompts.filter((_, index) => index !== unitIndex);
+          options.splice(answerIndex, 0, unit.analytic_question);
+          return {
+            id: questionId(unit.id),
+            type: 'multiple_choice',
+            question: `Hvilket analysespørsmål hører direkte til «${unit.name}» i denne framstillingen?`,
+            options,
+            answerIndex,
+            answer: unit.analytic_question,
+            claim_id: claimId(unit.id),
+            source: [work.id],
+            guardrail: unit.misuse_guardrail,
+            learner_typing: false,
+          };
+        });
+      }),
       caseTasks: [],
     };
     return {
