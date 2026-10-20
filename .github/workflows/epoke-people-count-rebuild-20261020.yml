@@ -1,0 +1,40 @@
+name: One-shot Blå chronology quantity correction
+on:
+  push:
+    branches: [content/vulkan-blaa-v42-20261020]
+    paths:
+      - scripts/build-epoke-place-index.mjs
+      - tests/epoke-place-index.test.mjs
+      - .github/workflows/epoke-people-count-rebuild-20261020.yml
+permissions:
+  contents: write
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild and verify generated epoch index
+        run: |
+          npm run epoker:places:build
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs
+      - name: Commit only canonical derived epoch index
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/epoker/epoke-place-index.json
+          if git diff --cached --quiet; then
+            echo 'ERROR: index did not change; no proven correction' >&2
+            exit 1
+          fi
+          test "$(git diff --cached --name-only)" = "data/epoker/epoke-place-index.json"
+          git commit -m 'build(epoker): drop false medieval milestone from Blå visitors'
+          git push origin HEAD:content/vulkan-blaa-v42-20261020

@@ -359,6 +359,21 @@ test("production year extraction rejects commercial names and Oslo postal codes"
   assert.deepEqual(exactProductionClaimYears("Produktsiden oppgir 110 bidragsytere og 1500 nummererte eksemplarer."), []);
   assert.deepEqual(exactProductionClaimYears("Stedet ligger i Sørliveien 1, 1279 Oslo."), []);
   assert.deepEqual(exactProductionClaimYears("Tandbergs Radiofabrikk startet her i 1933."), [1933]);
+  assert.deepEqual(exactProductionClaimYears("Mer enn 1200 mennesker besøkte Blå på åpningskvelden."), []);
+  assert.deepEqual(exactProductionClaimYears("Blå åpnet i 1998 med mer enn 1200 besøkende."), [1998]);
+  assert.deepEqual(exactProductionClaimYears("Et historisk dokument er datert til 1200."), [1200]);
+
+});
+
+test("Blå visitor count must not create a medieval timeline milestone", () => {
+  const milestones = Object.values(buildEpokePlaceIndex().domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === "blaa")
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.ok(milestones.some((milestone) => milestone.claim_id === "claim_blaa_05" && milestone.year === 1998));
+  assert.ok(!milestones.some((milestone) => milestone.claim_id === "claim_blaa_13"));
+  assert.ok(!milestones.some((milestone) => milestone.year === 1200));
 });
 
 test("explicit timeline anchors materialize reviewed multi-year historical claims", () => {
