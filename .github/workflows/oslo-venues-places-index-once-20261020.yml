@@ -1,0 +1,50 @@
+name: Oslo venues canonical places index sync (one-shot)
+on:
+  push:
+    branches:
+      - fix/oslo-scener-places-index-sync-20261020
+    paths:
+      - .github/workflows/oslo-venues-places-index-once-20261020.yml
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact fix branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install repository dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate and validate canonical indexes
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          npm run places:index:check
+          npm run epoker:places:check
+          npm run place-open:check
+          CHANGED="$(git diff --name-only)"
+          if test "$CHANGED" != "data/places/places_index.json"; then
+            echo "Unexpected changes; only canonical places index may change:"
+            echo "$CHANGED"
+            exit 1
+          fi
+          git diff --check
+      - name: Commit the single generated index on fix branch
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/places_index.json
+          git commit -m 'fix(history-go): sync canonical place index for three Oslo venues'
+          git push origin HEAD:fix/oslo-scener-places-index-sync-20261020
