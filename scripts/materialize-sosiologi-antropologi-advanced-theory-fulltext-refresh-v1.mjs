@@ -109,6 +109,7 @@ export function buildOverlays(canon, contract) {
           summary: unit.summary,
           analytic_question: unit.analytic_question,
           misuse_guardrail: unit.misuse_guardrail,
+          ...(unit.expanded_prose ? { expanded_prose: unit.expanded_prose } : {}),
         };
       }),
     });
@@ -161,7 +162,7 @@ export function buildDomainPackages(overlays, production, evidenceGate = null) {
         boundary: runtimeReleased
           ? 'Teorien er materialisert for læring og analyse, og runtime-claimet er frigitt etter dokumentert 60/60 fulltekstverifisering.'
           : 'Teorien er materialisert for læring og analyse, men runtime-claimet forblir sperret til fulltekstverifisering er dokumentert.',
-        paragraphs: work.theory_units.map((unit) => `${unit.name} behandles her som en analyseenhet fra ${work.author}, ${work.title}. ${unit.summary} Analyseinngang: ${unit.analytic_question} Avgrensning: ${unit.misuse_guardrail}`),
+        paragraphs: work.theory_units.map((unit) => unit.expanded_prose ?? `${unit.name} behandles her som en analyseenhet fra ${work.author}, ${work.title}. ${unit.summary} Analyseinngang: ${unit.analytic_question} Avgrensning: ${unit.misuse_guardrail}`),
         paragraphClaimIds: work.theory_units.map((unit) => [claimId(unit.id)]),
       })),
     };
