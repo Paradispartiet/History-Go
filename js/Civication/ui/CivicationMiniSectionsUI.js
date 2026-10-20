@@ -656,7 +656,7 @@
     if (home?.status !== "settled") {
       return {
         mode: "urgent",
-        title: "Neste handling",
+        title: "Oppgave venter",
         summary: "Du må velge nabolag før hverdagen stabiliseres.",
         action: "Velg nabolag",
         sectionKey: "civiHomeStatus"
@@ -666,7 +666,7 @@
     if (hasBodyAction("civiWorkdaySection")) {
       return {
         mode: "urgent",
-        title: "Neste handling",
+        title: "Oppgave venter",
         summary: "Arbeidsdagen inneholder en oppgave som venter på deg.",
         action: "Åpne oppgave",
         sectionKey: "civiWorkdaySection"
@@ -676,7 +676,7 @@
     if (hasBodyAction("civiDebateSection")) {
       return {
         mode: "urgent",
-        title: "Neste handling",
+        title: "Oppgave venter",
         summary: "Debatten trenger svar for å holde momentum.",
         action: "Åpne hendelse",
         sectionKey: "civiDebateSection"
@@ -686,7 +686,7 @@
     if (hasBodyAction("civiPeopleSection")) {
       return {
         mode: "urgent",
-        title: "Neste handling",
+        title: "Oppgave venter",
         summary: "En relasjon venter på et valg fra deg.",
         action: "Åpne hendelse",
         sectionKey: "civiPeopleSection"
