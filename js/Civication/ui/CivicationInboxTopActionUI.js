@@ -360,8 +360,8 @@
       title: "Ingen handling krever svar nå",
       summary: "Innboksen er ajour. Du kan utforske valgt livsområde i roligere tempo.",
       chip: "Stabilt",
-      action: "Se dashboard",
-      openInbox: false
+      action: "Åpne innboksen",
+      openInbox: true
     };
   }
 
@@ -393,9 +393,13 @@
   }
 
   function renderChoiceButtons(item, ownedIds) {
-    // In Civication the active message is answered once, in the embedded inbox
-    // action card. Never duplicate the same answer buttons in its archive row.
-    if (hasEmbeddedInboxActions()) return "";
+    // Choices belong to the one currently active action above the history.
+    // Earlier/later pending messages are read-only until their turn arrives.
+    if (hasEmbeddedInboxActions()) {
+      return isOpenItem(item) && (hasChoices(item) || ownedIds?.has?.(mailIdOf(item)))
+        ? '<p class="civi-inbox-handled-note muted">Venter på tur i dagsforløpet. Svar på den aktive meldingen øverst først.</p>'
+        : "";
+    }
     const mailId = mailIdOf(item);
     if (!isOpenItem(item) || !mailId) return "";
 
@@ -469,7 +473,9 @@
         <div class="civi-inbox-channel-list">
           ${openItems.length
             ? openItems.map(function (item) { return renderInboxCard(item, label, ownedIds); }).join("")
-            : `<div class="civi-inbox-empty muted">${escapeHtml(emptyText)}</div>`
+            : `<div class="civi-inbox-empty muted">${activeCount
+              ? "Den aktive meldingen vises øverst i innboksen."
+              : escapeHtml(emptyText)}</div>`
           }
           ${resolvedItems.length
             ? `
@@ -602,7 +608,11 @@
   }
 
   function refreshTopAction() {
-    setTopCard(buildTopModel());
+    // The home/section controller also accounts for housing, workday,
+    // relationships and debates. It is the sole owner of the top card.
+    // InboxTopActionUI owns the inbox rows, not competing action priorities.
+    if (window.CivicationMiniSectionsUI?.ownsTopAction) return false;
+    return setTopCard(buildTopModel());
   }
 
   function scheduleRefresh() {
