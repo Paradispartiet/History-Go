@@ -168,6 +168,7 @@ test('an eligible private scene survives role change and answers into the inacti
     const State = window.CivicationLifestoryState;
     const roleContent = await window.CivicationLifestoryContent.loadContent('arealplanlegger');
     const before = State.selectRole(State.load(), roleContent);
+    before.livsdag += 4; // Time has passed since the inactive job was held.
     const activeArchive = clone(before.arkiv);
     const inactiveArchive = clone(before.rolleTilstander.arbeidsledig.arkiv);
     State.save(before);
@@ -193,6 +194,21 @@ test('an eligible private scene survives role change and answers into the inacti
       assert.deepEqual(clone(after.arkiv), activeArchive, 'job-role archive is unchanged');
       assert.equal(after.rolleTilstander.arbeidsledig.arkiv.length, inactiveArchive.length + 1);
       assert.equal(after.rolleTilstander.arbeidsledig.arkiv.at(-1).sceneId, privateEvent.lifestory_scene_id);
+      assert.equal(after.rolleTilstander.arbeidsledig.arkiv.at(-1).livsdag, before.livsdag,
+        'a private event in an inactive role uses the current shared life day');
+      const inactiveContent = await window.CivicationLifestoryContent.loadContent('arbeidsledig');
+      const authored = inactiveContent.scenes.find(scene => scene.id === privateEvent.lifestory_scene_id)
+        .valg.find(choice => choice.id === privateEvent.choices[0].id);
+      const sharedFlags = Object.entries(authored.effekter?.flagg || {})
+        .filter(([key]) => /^wa_(?:[bcde]_)?c0[15]_/.test(key));
+      assert.ok(sharedFlags.length, 'the real C01 choice contains a private consequence');
+      for (const [key, value] of sharedFlags) {
+        assert.equal(after.tidligereValg[key], value, 'the active role knows about the actual private choice');
+        assert.equal(after.privatHistorie.flagg[key], value, 'shared private memory retains the choice');
+        assert.equal(after.privatHistorie.flaggDager[key], before.livsdag, 'private time anchor follows the player');
+      }
+      assert.ok(after.privatHistorie.arkiv.some(entry => entry.sceneId === privateEvent.lifestory_scene_id),
+        'the private event enters shared history without copying into the new job archive');
       assert.equal(window.CivicationMailEngine.getMail(privateEvent.id).resolved, true);
       assert.equal((await window.CivicationMailEngine.answerMail(
         privateEvent.id, privateEvent.choices[0].id)).ok, false, 'cannot answer inactive scene twice');
