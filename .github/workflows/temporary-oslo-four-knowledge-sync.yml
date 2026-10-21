@@ -28,7 +28,7 @@ jobs:
       - name: Commit only generated Knowledge artifacts
         shell: bash
         run: |
-          git add -- data/quiz/kunst/munch_museet_sets.json data/quiz/kunst/nasjonalmuseet_sets.json data/quiz/naeringsliv/oslo_gassverk_sets_merged.json data/quiz/subkultur/brugata_storgata_rusmiljo_sets.json data/knowledge/knowledge_units.generated.json data/knowledge/knowledge_emne_review_queue.generated.json reports/knowledge-id-backfill.json
+          git add -- data/quiz/kunst/munch_museet_sets.json data/quiz/kunst/nasjonalmuseet_sets.json data/quiz/naeringsliv/oslo_gassverk_sets_merged.json data/quiz/subkultur/brugata_storgata_rusmiljo_sets.json data/knowledge/knowledge_units.generated.json data/knowledge/knowledge_emne_review_queue.generated.json data/knowledge/concepts.generated.json data/knowledge/subjects/subkultur/knowledge_units.generated.json reports/knowledge-id-backfill.json
           if git diff --cached --quiet; then
             echo 'Canonical Knowledge artifacts already in sync'
             exit 0
@@ -36,4 +36,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'chore(knowledge): synchronize four reviewed Oslo full quizzes'
+          git fetch origin content/oslo-four-fullquiz-qc-20261021
+          git rebase origin/content/oslo-four-fullquiz-qc-20261021
           git push origin HEAD:refs/heads/content/oslo-four-fullquiz-qc-20261021
