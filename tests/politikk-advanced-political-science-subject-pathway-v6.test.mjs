@@ -73,7 +73,7 @@ test('Statsvitenskap v6: alle 5 spørsmål er komplette og faglig begrunnet', ()
     assert.equal(q.feedback_basis,'source_trace_and_explanation');
     assert.equal(q.source_origin,'external');
     assert.equal(q.knowledge_contract_version,1);
-    assert.equal(q.knowledge_link_status,'staged_unregistered');
+    assert.equal(q.knowledge_link_status,'linked');
     assert.equal(q.primary_knowledge_unit_id,'ku_politikk_pl2023_'+String(index+1).padStart(2,'0'));
     assert.deepEqual(q.knowledge_unit_ids,[q.primary_knowledge_unit_id]);
     assert.match(q.primary_knowledge_unit_id,/^ku_[a-z0-9_]+$/);
@@ -150,16 +150,18 @@ test('Statsvitenskap v6: bevarer tidligere empirisk oppgave og avgrenser slutnin
   assert.match(pathway.production_context.scope_limit,/ikke uttømmende fulltekstgjennomgang/i);
 });
 
-test('Statsvitenskap v6: ingen uverifisert runtime- eller Knowledge-aktivering', () => {
-  assert.equal(pathway.status,'editorial_ready_unregistered');
-  assert.equal(pathway.production_context.runtime_activation,false);
-  assert.equal(pathway.production_context.knowledge_registry_materialized,false);
-  assert.equal(pathway.production_context.quiz_manifest_registered,false);
-  assert.equal(pathway.production_context.knowledge_manifest_registered,false);
-  assert.equal(pathway.production_context.fag_manifest_registered,false);
-  assert.equal(evidence.published_quiz_claims,0);
-  assert.ok(!qManifest.subjectPackages?.some(x=>x.subjectId==='politikk'));
-  assert.ok(!knowledgeManifest.runtime.subjectPathwaySources?.politikk);
-  assert.ok(!fagManifest.politikk?.subjectPathwayPackage);
-  assert.match(pathway.production_context.release_gate,/canonical knowledge-data --write/);
+test('Statsvitenskap v7: Polen-forløpet er registrert i eksisterende fag- og Knowledge-manifester', () => {
+  assert.equal(pathway.status,'pilot_active');
+  assert.equal(pathway.production_context.runtime_activation,true);
+  assert.equal(pathway.production_context.knowledge_registry_materialized,true);
+  assert.equal(pathway.production_context.quiz_manifest_registered,true);
+  assert.equal(pathway.production_context.knowledge_manifest_registered,true);
+  assert.equal(pathway.production_context.fag_manifest_registered,true);
+  assert.equal(evidence.published_quiz_claims,5);
+  assert.ok(qManifest.subjectPackages?.some(x=>x.subjectId==='politikk' && x.status==='active' && x.file==='data/quiz/politikk/politikk_subject_pathways_v1.json'));
+  assert.equal(knowledgeManifest.runtime.subjectPathwaySources?.politikk,'../quiz/politikk/politikk_subject_pathways_v1.json');
+  assert.equal(fagManifest.politikk?.subjectPathwayPackage,'../quiz/politikk/politikk_subject_pathways_v1.json');
+  assert.match(pathway.production_context.release_gate,/Knowledge canonical --write\/--check/);
+  assert.ok(allQuestions.every(q=>q.knowledge_link_status==='linked'));
+  assert.ok(!qManifest.subjectPackages.filter(x=>x.subjectId==='politikk').slice(1).length);
 });
