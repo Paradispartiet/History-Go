@@ -48,7 +48,7 @@ test('Statsvitenskap bølge 8: to daterte case, kilder og fem avgrensede, sporba
     assert.ok(source.url.startsWith('https://odihr.osce.org/'), source.id);
     assert.ok(source.reviewed_sections.length >= 2, source.id);
     assert.match(source.kind, /^official_/);
-    assert.match(source.published, /^20\\d{2}-\\d{2}-\\d{2}$/);
+    assert.match(source.published, /^20\d{2}-\d{2}-\d{2}$/);
   }
   for (const claim of wave8.claim_bank) {
     assert.ok(claim.statement.length > 100, claim.id);
