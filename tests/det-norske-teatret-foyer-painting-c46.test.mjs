@@ -19,7 +19,7 @@ test("C46 identifies a new licensed photo candidate but publishes zero Objects",
  assert.equal(research.canonical_objects_published,0);
  assert.equal(card.collections.objects.status,"PASS");
  assert.equal(card.status,"in_progress");
- assert.throws(()=>validateRequest(q,research,preC50Place,preC50Card),/Canonical object gate changed/);
+ assert.throws(()=>validateRequest(q,research,place,card),/Canonical object gate changed/);
  assert.equal(q.publication,"DRAFT_MEDIA_ONLY_OBJECTS_BLOCKED");
  const lead=research.evidence.find(x=>x.id==="dnt_aksel_waldemar_johannessen_kortspillere_foyer");
  assert.equal(lead.decision,"SOURCE_LEAD_ONLY_DO_NOT_COUNT_AS_CONFIRMED_FIFTH_OR_SIXTH_MEMBER");
