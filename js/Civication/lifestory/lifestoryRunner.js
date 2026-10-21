@@ -261,7 +261,7 @@
     if (Object.keys(people).length) entry.personRepresentanter = people;
     if (consequenceText) entry.konsekvensTekst = consequenceText;
     state.arkiv.push(entry);
-    if (/^wave_[abcde]_c0[15]_/.test(scene.id)) State.capturePrivateStory(state);
+    if (/^wave_(?:[abcde]_c0[15]|e_c21)_/.test(scene.id)) State.capturePrivateStory(state);
 
     const progress = advance(state, content);
     return {
