@@ -57,7 +57,7 @@ test('Scott generator parity retains all identities, claims and assessments in t
     work.theory_units.map((row) => row.expanded_prose));
   assert.equal(canonical.works.length, 20);
   assert.equal(canonical.works.reduce((sum, row) => sum + row.theory_units.length, 0), 60);
-  assert.equal(canonical.works.flatMap((row) => row.theory_units).filter((row) => row.expanded_prose).length, 57);
+  assert.equal(canonical.works.flatMap((row) => row.theory_units).filter((row) => row.expanded_prose).length, 60);
   assert.equal(packages.reduce((sum, pkg) => sum + pkg.claims.claims.length, 0), 60);
   assert.equal(packages.reduce((sum, pkg) => sum + pkg.assessment.questions.length, 0), 60);
   assert.deepEqual(section.paragraphClaimIds, SCOTT.map((id) => ['advclaim-' + id]));
