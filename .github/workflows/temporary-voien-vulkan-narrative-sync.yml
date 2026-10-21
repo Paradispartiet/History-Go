@@ -1,0 +1,65 @@
+name: Temporary Vøyen Vulkan narrative synchronization
+on:
+  push:
+    branches:
+      - content/akerselva-voien-vulkan-historieprosa-20261021
+    paths:
+      - .github/workflows/temporary-voien-vulkan-narrative-sync.yml
+permissions:
+  contents: write
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/akerselva-voien-vulkan-historieprosa-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Recalculate SHA-256 and verify source claim sentence parity
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { sha256Text, splitSentences } from './scripts/validate-place-description-production-v4_2.mjs';
+          for (const id of ['voienfossen','vulkan_industriomrade']) {
+            const placeFile='data/places/natur/oslo/places_oslo_natur_akerselvarute/'+id+'.json';
+            const packetFile='data/places/production/'+id+'.json';
+            const place=JSON.parse(fs.readFileSync(placeFile,'utf8'));
+            const packet=JSON.parse(fs.readFileSync(packetFile,'utf8'));
+            for (const field of ['desc','popupDesc']) {
+              const parts=splitSentences(place[field]);
+              const coverage=packet.sentenceCoverage[field];
+              if (parts.length!==coverage.length) throw new Error(id+': '+field+' sentence-count mismatch '+parts.length+' vs '+coverage.length);
+              for (const row of coverage) {
+                const available=packet.claims.filter(c=>row.claimIds.includes(c.id)&&c.status==='verified');
+                if (!available.length || available.length!==row.claimIds.length) throw new Error(id+': claim mismatch at sentence '+row.sentence);
+              }
+              packet.textHashes[field]=sha256Text(place[field]);
+            }
+            fs.writeFileSync(packetFile,JSON.stringify(packet,null,2)+'\n');
+            console.log('SHA and claim parity verified:',id);
+          }
+          NODE
+      - name: Generate runtime and run focused checks
+        run: |
+          npm ci --no-audit --no-fund
+          npm run place-open:build
+          npm run place-open:check
+          node scripts/validate-place-description-production-v4_2.mjs
+      - name: Commit synchronized canonical text hashes and runtime outputs
+        shell: bash
+        run: |
+          git add -u -- \
+            data/places/production/voienfossen.json \
+            data/places/production/vulkan_industriomrade.json \
+            data/runtime/place-open
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(place): verify and synchronize Vøyen/Vulkan text hashes and runtime'
+          git pull --rebase origin content/akerselva-voien-vulkan-historieprosa-20261021
+          git push origin HEAD:refs/heads/content/akerselva-voien-vulkan-historieprosa-20261021
