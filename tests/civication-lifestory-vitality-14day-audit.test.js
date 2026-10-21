@@ -190,3 +190,101 @@ test('unseeded 14-day target reports the actual progression gate, not fake achie
     + '; badge-free='+true
     + '; full shell / economy / real account acceptance still unverified');
 });
+
+
+test('organic 21-day private arcs: first, last and career-interest routes all stay playable', () => {
+  const content = pack('arbeidsledig');
+  for (const strategy of ['first', 'last', 'career']) {
+    const state = S.createInitialState(content);
+    const counts = [];
+    for (let day = 1; day <= 21; day++) {
+      let choices = 0;
+      while (!state.dagFerdig) {
+        const scene = R.selectNextScene(state, content);
+        if (scene) {
+          const available = scene.valg.filter(choice => !choice.skills_requirement);
+          const choice = strategy === 'last' ? available.at(-1)
+            : strategy === 'career' && [
+                'wave_e_life21_d8_foerste_spor',
+                'wave_e_life21_d15_tredje_uke'
+              ].includes(scene.id)
+              ? available.find(value => value.handling?.type === 'aapne_karriere')
+              : available[0];
+          assert.ok(choice, 'a real choice exists, no seeded Skills');
+          R.applyChoice(state, content, scene.id, choice.id);
+          choices++;
+        } else R.advance(state, content);
+        assert.ok(choices < 180, 'no duplicate/infinite scenes');
+      }
+      counts.push(choices);
+      assert.equal(state.livsdag, day, 'day advances with no invented calendar skip');
+      if (day < 21) R.startNextDay(state, content);
+    }
+    assert.equal(counts.length, 21);
+    assert.ok(counts.every(value => value > 0), strategy + ': no empty day through three weeks');
+    assert.equal(state.rolle, 'arbeidsledig', 'looking for work never awards a job');
+    assert.deepEqual(state.rolleBytter, [], 'work interests do not invent job changes');
+    assert.ok(['skaper', 'narmiljobygger', 'relasjonsbygger', 'hverdagsbygger', 'utforsker']
+      .includes(state.tidligereValg.life21_direction));
+    assert.ok(state.arkiv.some(row => row.sceneId.startsWith('wave_e_life21_d21_') && row.livsdag === 21));
+    if (strategy === 'career') {
+      assert.equal(state.tidligereValg.life21_initial_focus, 'jobb');
+      assert.equal(state.tidligereValg.life21_week3_focus, 'jobb');
+    }
+  }
+});
+
+test('day-21 life direction is earned from a saved choice; career remains independent', () => {
+  const vm = require('node:vm');
+  const content = pack('arbeidsledig');
+  const clerk = pack('ekspeditor');
+  const state = S.createInitialState(content);
+  const saved = { raw: JSON.stringify(state),
+    getItem(key) { return key === S.STORAGE_KEY ? this.raw : null; },
+    setItem(key, value) { if (key === S.STORAGE_KEY) this.raw = value; }
+  };
+  const app = { localStorage: saved, dispatchEvent() {},
+    CivicationState: { getActivePosition: () => null } };
+  const sandbox = { window: app, localStorage: saved, Event: class Event { constructor(type) { this.type = type; } }, console };
+  vm.createContext(sandbox);
+  vm.runInContext(fs.readFileSync(path.join(root,
+    'js/Civication/systems/civicationLifePositionRuntime.js'), 'utf8'), sandbox);
+  const positions = app.CivicationLifePositions;
+  assert.equal(positions.getUnlockedPositions('liv_treuker').length, 0);
+  const forged = copy(state);
+  forged.tidligereValg.life21_direction = 'skaper';
+  saved.raw = JSON.stringify(forged);
+  assert.equal(positions.getUnlockedPositions('liv_treuker').length, 0,
+    'a fabricated flag is not proof of a played personal chapter');
+  saved.raw = JSON.stringify(state);
+  for (let day = 1; day <= 21; day++) {
+    while (!state.dagFerdig) {
+      const scene = R.selectNextScene(state, content);
+      if (scene) R.applyChoice(state, content, scene.id, scene.valg[0].id);
+      else R.advance(state, content);
+    }
+    saved.raw = JSON.stringify(state);
+    if (day < 21) {
+      assert.equal(positions.getUnlockedPositions('liv_treuker').length, 0,
+        'no early unlock before completing a real three-week path');
+      R.startNextDay(state, content);
+    }
+  }
+  assert.equal(positions.getUnlockedPositions('liv_treuker')[0].label, 'Skaper');
+  assert.equal(positions.getLifeContext().primary_life_position, null,
+    'life direction is never auto-selected');
+  const atWork = S.selectRole(state, clerk);
+  assert.equal(atWork.privatHistorie?.flagg?.life21_direction, 'skaper',
+    'private choices follow the person, not the former job');
+  assert.ok(atWork.privatHistorie?.arkiv?.some(x => x.sceneId === 'wave_e_life21_d21_skape_veien'));
+  saved.raw = JSON.stringify(atWork);
+  app.CivicationState.getActivePosition = () => ({ career_id: 'naeringsliv', title: 'Ekspeditør' });
+  assert.equal(positions.getUnlockedPositions('liv_treuker')[0].label, 'Skaper',
+    'earned direction is still available after an actual job change');
+  assert.equal(positions.activate('liv_treuker', 'Skaper').ok, true);
+  assert.equal(positions.getLifeContext().primary_life_position.label, 'Skaper');
+  assert.equal(positions.getFormalEmploymentStatus().is_employed, true,
+    'existing job is independent of selected personal life direction');
+  assert.equal(saved.getItem('merits_by_category'), null,
+    'neither a job interest nor life direction grants History Go merits');
+});
