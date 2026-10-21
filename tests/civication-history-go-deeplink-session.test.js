@@ -56,4 +56,20 @@ assert.strictEqual(stored.emne_id, "kildekritikk");
 const link = DL.resolve(task.task_payload);
 assert.strictEqual(link.href, "index.html#/quiz/quiz_press");
 
+const guided = DL.startLifePositionGuidance({
+  badge_id: "naeringsliv", navn: "Sideprosjektbygger", threshold: 10
+});
+assert(guided, "week seven can start a guided learning session");
+assert.strictEqual(guided.completion_mode, "badge_points");
+assert.strictEqual(guided.required_points, 10);
+assert.strictEqual(guided.target_type, "knowledge");
+assert.strictEqual(guided.category_id, "naeringsliv");
+assert.strictEqual(guided.return_href, "Civication.html#inbox");
+assert.strictEqual(JSON.parse(global.localStorage.getItem(DL.SESSION_KEY)).payload.required_points, 10);
+assert.strictEqual(DL.startLifePositionGuidance({
+  badge_id: "naeringsliv", navn: "Ukjent", threshold: 0
+}), null, "without a real threshold, no misleading completion mission is created");
+assert.strictEqual(JSON.parse(global.localStorage.getItem(DL.SESSION_KEY)).title,
+  "Bygg kunnskap for Sideprosjektbygger", "invalid attempt keeps the previous session intact");
+
 console.log("civication history-go deeplink session ok");
