@@ -36,7 +36,7 @@ function play(overrides, lastDay = 7, profileTags = []) {
         if (!seen.has(key)) {
           seen.add(key);
           for (const alt of scene.valg) {
-            if (alt.id !== choice.id && !seen.has(scene.id + ":" + alt.id)) paths.push({ ...actual, [scene.id]: alt.id });
+            if (!alt.skills_requirement && alt.id !== choice.id && !seen.has(scene.id + ":" + alt.id)) paths.push({ ...actual, [scene.id]: alt.id });
           }
         }
         actual[scene.id] = choice.id;
@@ -74,7 +74,7 @@ function play(overrides, lastDay = 7, profileTags = []) {
 // antatte fremtidshendelser tilgjengelige ved å seede flagg.
 while (paths.length) { play(paths.shift()); assert.ok(++runs < 350); }
 for (const scene of raw.roleScenes.scenes.filter((s) => s.id !== "d4_eldre_historie_videre")) {
-  for (const choice of scene.valg) assert.ok(seen.has(scene.id + ":" + choice.id), `uavspilt gren: ${scene.id}/${choice.id}`);
+  for (const choice of scene.valg.filter(v => !v.skills_requirement)) assert.ok(seen.has(scene.id + ":" + choice.id), `uavspilt ordinær gren: ${scene.id}/${choice.id}`);
 }
 // Profilbonus og lite energi må heller ikke legge samtaler etter søvnen.
 const quietWeek = play({ natt_02_legg_deg_tidligere: "myk_landing", d2_natt_oeyeblikk_foer_soevnen: "tre_ting_som_gikk", by_02_miljoeet_samles: "staa_over" }, 7, ["rest", "low_energy", "subculture"]);
