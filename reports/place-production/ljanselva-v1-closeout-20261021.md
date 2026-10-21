@@ -20,3 +20,10 @@ Artefakt: ljanselva-v1-actual-app-qa i ovennevnte Actions-kjøring, med skjermbi
 
 ## Mergeport
 Bekreft grønn GitHub CI på seneste PR-head etter synkronisering av bildestatus, places_index.json og place-open/ljanselva.json; ingen bypass. Merk Ready, squash-merge main, kontroller merge-commit. Ingen parallell gren.
+
+## Sporbar godkjenningsrekke
+
+- Funksjonell mobil- og desktopaksept og fullquiz: kjøring `39640866096` (bestått).
+- Bilde- og runtime-synkronisering: GitHub Actions `39641694719` (bestått), med ny kanonisk bildeaksept, regenerert stedsindeks og place-open.
+- Alle 17 relevante PR-arbeidsflytene bestod på `4289ae532c5ec41ddad807805e79da35533413cf`. Disse må kjøres på nytt på siste endringscommit; eldre resultater regnes ikke som ny godkjenning.
+- Endelig v1-merge forutsetter at **nyeste** testsett også er grønt.
