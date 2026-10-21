@@ -804,7 +804,7 @@
     const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
     const authoredEnding = ending && (content.role.endings || []).find(e => e.id === ending.id);
     const endingHtml = ending
-      ? "<section class=\"civi-lifestory-ending\" aria-label=\"Ukas slutt\">"
+      ? "<section class=\"civi-lifestory-ending\" aria-label=\"" + (Number(state.livsdag || state.dag) >= 21 ? "Tre uker" : "Ukas slutt") + "\">"
         + "<div class=\"civi-lifestory-section-label\">" + (content.fortsettelse ? "Kapittelet er avsluttet" : "Slutten på uka") + "</div>"
         + "<h3>" + escapeHtml(ending.navn) + "</h3>"
         + (ending.tekst ? "<p>" + escapeHtml(ending.tekst) + "</p>" : "")
@@ -821,11 +821,29 @@
     // Private Life Stories remain playable without a badge. The History Go
     // guide is optional and must also appear when private stories continue.
     const offerExploration = sisteDag && !next;
+    const finishedThreeWeeks = offerExploration && state.rolle === "arbeidsledig"
+      && Number(state.livsdag || state.dag) >= 21
+      && (state.spilteScener || []).some(id => /^privat_21d_d21_/.test(id));
+    const earnedLifePaths = finishedThreeWeeks
+      ? (/** @type {any} */ (window).CivicationLifePositions?.getAllUnlockedPositions?.() || [])
+        .filter(position => position.source === "authored_life_story_21d")
+      : [];
+    const threeWeekHint = earnedLifePaths.length
+      ? '<section class="civi-lifestory-next-chapter" role="status" aria-label="Tre uker – din livsretning">'
+        + '<h4>Tre uker – din livsretning</h4>'
+        + '<p>Valgene dine viser konkret erfaring, ikke bare en telling av dager. Du har åpnet '
+        + '<strong>' + earnedLifePaths.map(position => escapeHtml(position.label)).join(" og ") + '</strong>. '
+        + 'Du kan nå velge en livsposisjon selv. Den gir ingen automatisk jobb, lønn eller History Go-meritter.</p>'
+        + '<div class="civi-lifestory-actions">'
+        + '<button class="civi-btn primary" type="button" data-lifestory-life-profile>Velg livsposisjon</button>'
+        + '<button class="civi-btn" type="button" data-lifestory-study>Utforsk History Go</button>'
+        + '</div></section>'
+      : "";
     const required = Number(chosenLifePosition?.threshold);
     const hasPointGate = Number.isFinite(required) && required > 0 && !!chosenLifePosition?.badge_id;
     const earned = hasPointGate ? chapterBadgePoints(chosenLifePosition.badge_id) : 0;
     const needsMerits = hasPointGate && earned < required;
-    const nextChapterHint = !offerExploration ? "" :
+    const nextChapterHint = !offerExploration ? "" : threeWeekHint ||
       '<section class="civi-lifestory-next-chapter" role="status" aria-label="Veien videre">'
       + '<h4>Veien videre</h4>'
       + (chosenLifePosition
