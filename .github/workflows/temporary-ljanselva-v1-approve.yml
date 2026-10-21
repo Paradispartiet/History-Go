@@ -1,0 +1,44 @@
+name: Temporary Ljanselva v1 media approval sync
+on:
+  push:
+    branches:
+      - content/oslo-ljanselva-v1-20261021
+    paths:
+      - '.github/workflows/temporary-ljanselva-v1-approve.yml'
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ljanselva-v1-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Approve and synchronize generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          node scripts/oneoff-ljanselva-v1-approve.mjs
+          npm run places:index:build
+          npm run place-open:build
+          npm run places:index:check
+          npm run place-open:check
+      - name: Commit approved image evidence and remove one-off tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm -- scripts/oneoff-ljanselva-v1-approve.mjs .github/workflows/temporary-ljanselva-v1-approve.yml
+          git add -u -- data/places data/runtime reports
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --cached --quiet && exit 0
+          git commit -m 'qa(ljanselva): approve mobile and desktop source photos and regenerate runtime'
+          git pull --rebase origin content/oslo-ljanselva-v1-20261021
+          git push origin HEAD:refs/heads/content/oslo-ljanselva-v1-20261021
