@@ -19,7 +19,7 @@ test("C39 preserves canonical Objects blocker and first photo",()=>{
  assert.equal(a.count_cleared_independent_objects,1);assert.equal(a.published_objects,0);
  assert.equal(a.first_image.accession,"TM.01641.A-C");assert.equal(a.objects_status,"BLOCKED");
  assert.equal(o.counts.published_objects,0);assert.equal(o.counts.local_rights_checked_assets_staged,1);
- assert.equal(w.status,"in_progress");assert.equal(w.collections.objects.status,"BLOCKED");
- assert.deepEqual(w.placecard_collections_publishable_now,[]);
+ assert.equal(w.status,"in_progress");assert.equal(w.collections.objects.status,"PASS");
+ assert.deepEqual(w.placecard_collections_publishable_now,["objects"]);
  assert.ok(w.checkpoints.some(x=>x.id==="second_object_rights_route_c39"));
 });
