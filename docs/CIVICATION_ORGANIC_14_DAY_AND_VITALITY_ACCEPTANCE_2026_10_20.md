@@ -14,6 +14,12 @@ Dette er én samlet arbeidsbolk, slik at arbeidet med spillerreise ikke mister p
 
 Terskler og tall er første **spillbalansehypoteser**, ikke medisinske normalverdier. De skal senere kalibreres med utfallet av organisk spillerreise, og må aldri tolkes som klinisk diagnose. Tidligere valg, konkrete historier og persistens skal bevares.
 
+## Videreført fra 14 til 21 dager (produktbeslutning 21.10.2026)
+
+Dag 14 beholdes som mellomkontroll. Første organisk sammenhengende livsreise må nå nå **dag 21**, der et reelt forløp fra dag 1 dokumenterer varierte private handlinger, minst to ulike valgruter og konkrete senere følger. Spillerens dokumenterte deltakelse på dag 20, sammen med fullført authored dag 21, kan åpne en **frivillig**, ikke-karrierebasert livsposisjon via `CivicationLifePositions`. En dato, en mail, et History Go-besøk eller arbeidssøkerstatus er ikke opptjeningsbevis.
+
+Etter dag 21 må spilleren kunne velge eller avstå fra den foreslåtte livsposisjonen. Ordinært arbeid, finans, sosial status, ekte quizmeritter og senere rolleverden-opplåsinger holdes adskilt. Full browser-/kontoakseptanse for 21 dager er fremdeles åpen til den faktisk er kjørt.
+
 ## Ærlig akseptansegate – 14 dager, fersk profil
 
 Følgende må bevises sammenhengende i ekte UI, **uten** kunstig `merits_by_category`, injisert `CivicationLifePositions`, utviklerroller eller konstruerte tilbud:
