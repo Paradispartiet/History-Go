@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditPsykologiMentalHealthTopicArticles, clinicalSafetyReviewApproved, clinicalTextHasNoDirectives } from '../scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs';
+import { auditPsykologiMentalHealthTopicArticles, clinicalSafetyReviewApproved, clinicalTextHasNoDirectives, isAhaArticleRuntimeReference } from '../scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs';
 
 test('Psykologi materialiserer eksakt 12/12 selvstendige emneartikler for første canonicale domene', () => {
   const { report } = auditPsykologiMentalHealthTopicArticles({ checkReport: false });
@@ -30,4 +30,12 @@ test('Første artikkelbatch er emnespesifikk og låst mot klinisk overreach og A
 test('klinisk sikkerhetsport avviser direkte diagnose/tvang og krever eksplisitt redaksjonell review', () => {
   assert.equal(clinicalTextHasNoDirectives({ text: 'Pasienten er schizofren og må tvangsinnlegges.' }), false);
   assert.equal(clinicalSafetyReviewApproved({ editorial_review: { status: 'approved_non_clinical_educational_use' } }), false);
+});
+
+test('AHA/runtime gate distinguishes a declarative theory inventory from executable article activation', () => {
+  const articleRef = 'data/fagverk/psykologi/emneartikler/em_psy_psykisk_helse.json';
+  assert.equal(isAhaArticleRuntimeReference('data/psychology/psychology_theory_coverage_v1.json', articleRef), false);
+  assert.equal(isAhaArticleRuntimeReference('js/runtime.js', articleRef), true);
+  assert.equal(isAhaArticleRuntimeReference('data/psychology/active_bindings.json', articleRef), true);
+  assert.equal(isAhaArticleRuntimeReference('js/runtime.js', 'unrelated content'), false);
 });
