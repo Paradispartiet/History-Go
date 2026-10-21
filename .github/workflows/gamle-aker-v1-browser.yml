@@ -44,7 +44,7 @@ jobs:
           set -euo pipefail
           CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
           test -n "$CHROME_BIN"
-          CHROME_BIN="$CHROME_BIN" node scripts/verify-ljanselva-fullquiz-browser.mjs gamle_aker_kirke
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-ljanselva-fullquiz-browser.mjs gamle_aker_kirke 1
       - name: Upload app evidence
         if: always()
         uses: actions/upload-artifact@v4
