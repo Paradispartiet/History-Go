@@ -6,8 +6,31 @@
   "site": {
     "url": "https://paradispartiet.github.io/History-Go/",
     "check": "tests/det-norske-teatret-live-browser-c43.mjs",
-    "result": "PENDING_CI_AS_OF_REPORT_AUTHORING",
-    "limits": "Live browser check invokes actual shipped popup with deployed Place JSON; not a user gesture through map or physical phone."
+    "result": "PASS_GITHUB_PAGES_LIVE_CHROMIUM_MOBILE_390_AND_DESKTOP_1280_NOT_PHYSICAL_DEVICE",
+    "limits": "Live browser check invokes actual shipped popup with deployed Place JSON; not a user gesture through map or physical phone.",
+    "github_actions_run": 39564326678,
+    "github_actions_artifact": "dnt-c43-public-browser-evidence",
+    "test_evidence": {
+      "origin": "https://paradispartiet.github.io/History-Go/",
+      "assets_http_200": true,
+      "deployed_costume_sha256": "a4c04b491558f65551385f3e98651e599319e5e6a576f80ae33c105bef57c31f",
+      "deployed_facade_sha256": "14a88af025f76ba368fffe89f348e6bf8eb9fcc56cda067aeb1e0df5fb1e46f2",
+      "checks": [
+        "deployed JS and CSS present",
+        "canonical Place data present",
+        "source tab opened via deployed showPlacePopup",
+        "licensed source photo loaded and decoded",
+        "credit and Commons link visible",
+        "original Juleroser source link present",
+        "responsive image contained at 390 and 1280 pixels",
+        "no page JavaScript exceptions recorded"
+      ],
+      "limits": [
+        "The popup is launched programmatically with deployed Place data, not selected by tapping a map marker.",
+        "Automated Chromium viewports do not substitute for physical Android or iOS testing.",
+        "A first-run welcome overlay may remain behind the programmatically opened popup. Check the normal user path separately."
+      ]
+    }
   },
   "objects_canonical_status": "BLOCKED",
   "published_objects": 0,
@@ -58,5 +81,11 @@
     "Never represent the portrait as a photograph of an independently identified foyer exhibit.",
     "Keep historical 1985-house boundary: exclude costumes predating the building without concrete site linkage.",
     "Do not publish Objects, member images, or claim Place complete until canonical Object contract is satisfied."
-  ]
+  ],
+  "source_research_extension": {
+    "image": "https://commons.wikimedia.org/wiki/File:BUNADER_Hulda_Garborg-drakten_(etter_h%C3%B8ytidsdrakt_fra_Gol)_ca_1950_kvinnebunad_barnebunad_lue_(privateid)_Norwegian_national_woman%27s_costume_%22Hulda_costume%22._Slottsfjellsmuseet_Regional_Museum_T%C3%B8nsberg,_Norway_2021-11-10_05.jpg",
+    "classification": "NOT_IDENTIFIED_FOYER_BUNAD",
+    "reason": "Wikimedia Commons explicitly describes a later Hulda-inspired outfit from circa 1950 photographed at Slottsfjellsmuseet in Tønsberg, not the original exhibited in Det Norske Teatrets foyer.",
+    "decision": "Do not use as canonical DNT foyer Object preview."
+  }
 }
