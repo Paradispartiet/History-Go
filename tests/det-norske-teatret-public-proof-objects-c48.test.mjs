@@ -53,10 +53,8 @@ test("C48 is a source-only checkpoint; no canonical Objects or collection previe
   assert.equal(c48.publication_boundary.canonical_object_members, 0);
   assert.equal(c48.publication_boundary.ready_to_publish_objects_collection, false);
   const cp47 = work.checkpoints.find(x => x.id === "foyer_painting_kilder_c47");
-  const cp48 = work.checkpoints.find(x => x.id === "stagecraft_object_leads_and_public_proof_c48");
-  assert.ok(cp47 && cp48);
-  assert.equal(cp47.public_qa_run_id, 39587062392);
-  assert.equal(cp48.report, "reports/place-production/det-norske-teatret/20261021/objects-c48-public-proof-and-stagecraft-leads.json");
-  assert.equal(work.checkpoints.filter(x => x.id === cp48.id).length, 1);
+  assert.ok(cp47);
+  assert.equal(cp47.report, "reports/place-production/det-norske-teatret/20261021/foyer-painting-kilder-c47.json");
+  assert.equal(c48.status, "PUBLIC_C47_CONFIRMED_STAGECRAFT_RESEARCH_NO_OBJECTS_PUBLICATION");
   assert.equal(place.externalLinks.filter(x => x.type === "image_source" && x.previewImage).length, 2);
 });
