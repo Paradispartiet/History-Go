@@ -1,0 +1,67 @@
+name: Temporary Glads Vaterland narrative synchronization
+on:
+  push:
+    branches:
+      - content/akerselva-glads-vaterland-historieprosa-20261021
+    paths:
+      - .github/workflows/temporary-glads-vaterland-narrative-sync.yml
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/akerselva-glads-vaterland-historieprosa-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Verify source claims and write SHA-256
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { sha256Text, splitSentences } from './scripts/validate-place-description-production-v4_2.mjs';
+          for (const id of ['glads_molle','vaterland_historisk_elvelop']) {
+            const p='data/places/natur/oslo/places_oslo_natur_akerselvarute/'+id+'.json';
+            const f='data/places/production/'+id+'.json';
+            const place=JSON.parse(fs.readFileSync(p,'utf8'));
+            const packet=JSON.parse(fs.readFileSync(f,'utf8'));
+            const claims=new Map(packet.claims.map(c=>[c.id,c]));
+            for (const field of ['desc','popupDesc']) {
+              const lines=splitSentences(place[field]), coverage=packet.sentenceCoverage[field];
+              if(lines.length!==coverage.length) throw Error(id+': missing coverage '+field+' '+lines.length+'/'+coverage.length);
+              for(const [i,row] of coverage.entries()){
+                if(row.sentence!==i+1||!row.claimIds.length)throw Error(id+': bad sentence '+field+' '+i);
+                for(const claimId of row.claimIds){
+                  const claim=claims.get(claimId);
+                  if(!claim||claim.status!=='verified')throw Error(id+': nonverified source claim '+claimId);
+                }
+              }
+              packet.textHashes[field]=sha256Text(place[field]);
+            }
+            fs.writeFileSync(f,JSON.stringify(packet,null,2)+'\n');
+            console.log('Verified source claim parity:',id);
+          }
+          NODE
+      - name: Materialize Place-open and check
+        run: |
+          npm ci --no-audit --no-fund
+          npm run place-open:build
+          npm run place-open:check
+      - name: Commit deterministic outputs
+        shell: bash
+        run: |
+          git add -u -- \
+            data/places/production/glads_molle.json \
+            data/places/production/vaterland_historisk_elvelop.json \
+            data/runtime/place-open
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(place): synchronize Glads and Vaterland claim hashes and runtime'
+          git pull --rebase origin content/akerselva-glads-vaterland-historieprosa-20261021
+          git push origin HEAD:refs/heads/content/akerselva-glads-vaterland-historieprosa-20261021
