@@ -10,6 +10,7 @@ import { chromium } from "playwright";
 const root = process.cwd();
 const place = JSON.parse(fs.readFileSync("data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json", "utf8"));
 const report = JSON.parse(fs.readFileSync("reports/place-production/det-norske-teatret/20261020/object-photo-inline-source-c41.json", "utf8"));
+const c47 = JSON.parse(fs.readFileSync("reports/place-production/det-norske-teatret/20261021/foyer-painting-kilder-c47.json","utf8"));
 const stagedImage = place.externalLinks.find(link => link.previewImage);
 assert.equal(stagedImage?.previewImage, report.museum_image.file);
 assert.ok(place.frontImage?.endsWith(".webp"));
@@ -93,9 +94,9 @@ try {
       const panel = page.locator('[data-place-panel="sources"]');
       assert.equal(await panel.isVisible(), true, "Kilder must open at " + width);
       const photo = panel.locator(".hg-place-source-photo img");
-      assert.equal(await photo.count(), 1, "only the licensed museum image may be embedded");
-      assert.equal(await photo.getAttribute("src"), report.museum_image.file);
-      await photo.scrollIntoViewIfNeeded();
+      assert.equal(await photo.count(), 2, "C47 includes two documentary source photos, no canonical Objects");
+      assert.equal(await photo.first().getAttribute("src"), report.museum_image.file);
+      await photo.first().scrollIntoViewIfNeeded();
       await page.waitForFunction(() => {
         const img = document.querySelector('.hg-place-source-photo img');
         return img?.complete && img.naturalWidth === 800 && img.naturalHeight === 800;
@@ -107,8 +108,25 @@ try {
       assert.match(await panel.innerText(), /Lone Lunde.*Oslo Museum/);
       assert.match(await panel.innerText(), /CC BY-SA 4\.0/);
       assert.match(await panel.innerText(), /ikke en ferdig Objects-samling/);
-      assert.match(await photo.getAttribute("alt"), /Madame de Sade/);
-      const sourceLink = panel.locator('.hg-place-source-photo a');
+      assert.match(await photo.first().getAttribute("alt"), /Madame de Sade/);
+      const painting=photo.nth(1);
+      await painting.scrollIntoViewIfNeeded();
+      await page.waitForFunction(asset=>{
+        const img=document.querySelectorAll(".hg-place-source-photo img")[1];
+        return img?.getAttribute("src")===asset && img.complete &&
+          img.naturalWidth===800 && img.naturalHeight===800;
+      },c47.new_photo.asset,{timeout:15000});
+      assert.equal(await painting.getAttribute("src"),c47.new_photo.asset);
+      assert.match(await painting.getAttribute("alt"),/Johannessen/);
+      assert.equal(await painting.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+      const paintingBox=await painting.boundingBox();
+      assert.ok(paintingBox && paintingBox.x>=-1 && paintingBox.x+paintingBox.width<=width+1,
+        "C47 painting should fit mobile/desktop width");
+      const paintingCaption=panel.locator(".hg-place-source-photo figcaption").nth(1);
+      assert.match(await paintingCaption.innerText(),/Wolfmann.*Wikimedia Commons/);
+      assert.match(await paintingCaption.innerText(),/CC BY-SA 4\.0/);
+      assert.equal(await paintingCaption.locator("a").getAttribute("href"),c47.new_photo.source);
+      const sourceLink = panel.locator('.hg-place-source-photo a').first();
       assert.equal(await sourceLink.getAttribute("href"), report.museum_image.source);
       assert.equal(await sourceLink.getAttribute("target"), "_blank");
       assert.match(await sourceLink.getAttribute("rel"), /noopener noreferrer/);
@@ -134,7 +152,7 @@ try {
       // Keep screenshots both above and below the scroll fold. A DOM-only
       // assertion on the credit would miss an unreachable/cut-off caption.
       await page.screenshot({ path: path.join(outputDir, device + "-photo.png"), fullPage: true });
-      const caption = panel.locator(".hg-place-source-photo figcaption");
+      const caption = panel.locator(".hg-place-source-photo figcaption").first();
       await caption.scrollIntoViewIfNeeded();
       assert.equal(await caption.isVisible(), true, "source caption must be visible after scroll");
       const captionBox = await caption.boundingBox();

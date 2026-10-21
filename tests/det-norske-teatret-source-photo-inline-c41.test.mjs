@@ -32,7 +32,7 @@ test("C41 preview matches source-verified 800x800 CC costume, and all Place mirr
  assert.deepEqual(place.externalLinks,prod.metadataSnapshot.externalLinks);
  assert.deepEqual(place.externalLinks,runtime.place.externalLinks);
 });
-test("C41 real Kilder DOM shows exactly one licensed photo; Juleroser stays a link",async()=>{
+test("C41/C47 real Kilder DOM shows two licensed documentary photos; Juleroser stays a link",async()=>{
  const dom=setup(place);
  try{
   await new Promise(done=>setTimeout(done,25));
@@ -41,9 +41,15 @@ test("C41 real Kilder DOM shows exactly one licensed photo; Juleroser stays a li
   const panel=d.querySelector('[data-place-panel="sources"]');
   assert.equal(panel.hidden,false);
   const images=panel.querySelectorAll(".hg-place-source-photo img");
-  assert.equal(images.length,1);
+  assert.equal(images.length,2);
   assert.equal(images[0].getAttribute("src"),report.museum_image.file);
   assert.match(images[0].getAttribute("alt"),/Madame de Sade/);
+  const c46=read("reports/place-production/det-norske-teatret/20261021/painting-photo-c46-generated.json");
+  assert.equal(images[1].getAttribute("src"),c46.asset_path);
+  assert.match(images[1].getAttribute("alt"),/Johannessen/);
+  assert.match(panel.textContent,/Wolfmann/);
+  assert.match(panel.textContent,/Kirkegårdsgraveren/);
+  assert.ok([...panel.querySelectorAll("a")].some(x=>x.href===c46.source_page));
   assert.match(panel.textContent,/Lone Lunde/);
   assert.match(panel.textContent,/CC BY-SA 4\.0/);
   assert.match(panel.textContent,/ikke en ferdig Objects-samling/);
