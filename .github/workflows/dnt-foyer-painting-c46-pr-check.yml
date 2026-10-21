@@ -9,6 +9,8 @@ on:
       - 'tests/det-norske-teatret-foyer-painting-c46.test.mjs'
       - '.github/workflows/dnt-foyer-painting-c46.yml'
       - '.github/workflows/dnt-foyer-painting-c46-pr-check.yml'
+      - 'tests/det-norske-teatret-foyer-asset-c46.test.mjs'
+      - 'reports/place-production/det-norske-teatret/20261021/painting-photo-c46-visual-qa.json'
 permissions:
   contents: read
 concurrency:
@@ -24,8 +26,9 @@ jobs:
       - name: Check exact source and asset-lock syntax
         run: |
           node --check scripts/place-production/stage-dnt-foyer-painting-c46.mjs
-          node --test tests/det-norske-teatret-foyer-painting-c46.test.mjs
-      - name: Validate live Commons Artwork author, CC license and exact JPEG on PR
+          node --test tests/det-norske-teatret-foyer-painting-c46.test.mjs tests/det-norske-teatret-foyer-asset-c46.test.mjs
+      - name: Validate live Commons Artwork author and CC license on pre-staging PR only
+        if: ${{ hashFiles('bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp') == '' }}
         run: node scripts/place-production/stage-dnt-foyer-painting-c46.mjs
       - name: Save unpublished test render for visual review
         if: success()
