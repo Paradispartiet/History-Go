@@ -1,3 +1,9 @@
+import assert from "node:assert/strict";
+import crypto from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
+import { chromium, request } from "playwright";
+
 const base="https://paradispartiet.github.io/History-Go/";
 const placeId="det_norske_teatret";
 const sourceFile="data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json";
