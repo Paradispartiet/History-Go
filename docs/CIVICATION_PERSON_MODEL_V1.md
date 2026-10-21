@@ -66,13 +66,7 @@ History Go-samlingen gir bakgrunn for *mulige* historier og beslutninger: opplev
 
 
 
-## Skille mellom psyke, ferdigheter, kapital og omdømme (planlagt utvidelse)
-
-Spillerens **psyke/energi** beskriver øyeblikkelig tilstand; **ferdigheter** beskriver mer langsomt tilegnet og observert mestring; **kapital** beskriver tilgang til ressurser og sosial posisjon; **streetkred** beskriver anerkjennelse i et bestemt miljø; **History Go-samlingen** dokumenterer faktisk interesse, besøk, kunnskap og kontakt. Ingen av disse følger automatisk av en stillingstittel eller arbeidsledighet.
-
-En samordnet seksdimensjonal ferdighetsmodell (visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling, handlekraft) er produktmål, ikke implementert NPC-personlighetssystem eller nytt ferdighetslager. Kompetanse må dokumenteres av handling med rett proveniens; ett besøk, én quiz eller én forfatterbeskrivelse beviser ingen universell ferdighet. Spillerens historie, interesser og ferdigheter kan følge ved jobbskifte uten å gi NPC-er ubegrenset kjennskap til dem.
-
-Detaljer og akseptanse: [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md).
+Detaljert kilde-, spillerutviklings- og akseptansekontrakt: [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md).
 
 ## Hva rollen sier om personen
 
