@@ -281,7 +281,7 @@ test('day-21 life direction is earned from a saved choice; career remains indepe
         .filter(entry => entry.sceneId !== missing);
     }
     saved.raw = JSON.stringify(altered);
-    assert.deepEqual(positions.getUnlockedPositions('liv_treuker'), [],
+    assert.equal(positions.getUnlockedPositions('liv_treuker').length, 0,
       'a declared life direction must have archived development: ' + missing);
   }
   saved.raw = JSON.stringify(state);
