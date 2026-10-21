@@ -1213,8 +1213,8 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 
 
 /* C44: A visible, keyboard-accessible path to the actual Place Kilder tab.
-   The pre-existing #pcInfo click handler in place-card.js owns navigation. */
-#placeCard .pc-text > #pcInfo{
+   The dedicated #pcSources click handler in place-card.js owns navigation. */
+#placeCard .pc-text > #pcSources{
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1236,11 +1236,11 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   border: 1px solid rgba(255,255,255,.23);
   color: #fff;
 }
-#placeCard .pc-text > #pcInfo:focus-visible{
+#placeCard .pc-text > #pcSources:focus-visible{
   outline: 3px solid #ffe168;
   outline-offset: 3px;
 }
-#placeCard .pc-text > #pcInfo:hover{
+#placeCard .pc-text > #pcSources:hover{
   background: rgba(246,200,0,.18);
   border-color: rgba(246,200,0,.6);
 }
