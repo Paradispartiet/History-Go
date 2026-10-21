@@ -625,11 +625,18 @@ if (write) {
         function showDiff(before, after, prefix) {
           if (changes.length >= 70 || JSON.stringify(before) === JSON.stringify(after)) return;
           if (Array.isArray(before) && Array.isArray(after)) {
-            changes.push({
-              path: prefix, from: before.length, to: after.length,
-              removed: before.filter((item) => !after.includes(item)).slice(0, 6),
-              added: after.filter((item) => !before.includes(item)).slice(0, 6)
-            });
+            if (before.every((x) => x === null || typeof x !== 'object') &&
+                after.every((x) => x === null || typeof x !== 'object')) {
+              changes.push({
+                path: prefix, from: before.length, to: after.length,
+                removed: before.filter((item) => !after.includes(item)).slice(0, 6),
+                added: after.filter((item) => !before.includes(item)).slice(0, 6)
+              });
+            } else {
+              if (before.length !== after.length) changes.push({ path: prefix + '.length', from: before.length, to: after.length });
+              for (let i = 0; i < Math.max(before.length, after.length); i++)
+                showDiff(before[i], after[i], prefix + '[' + i + ']');
+            }
           } else if (before && after && typeof before === 'object' && typeof after === 'object') {
             for (const key of new Set([...Object.keys(before), ...Object.keys(after)])) {
               showDiff(before[key], after[key], prefix ? prefix + '.' + key : key);
