@@ -709,10 +709,6 @@
     return thread ? thread.tittel : threadId;
   }
 
-  /**
-   * @param {any} view
-   * @returns {string}
-   */
   // A chapter can only open through the current Life Story gates. Read the
   // real History Go merit counter; do not award points or choose a life role.
   function chapterBadgePoints(badgeId) {
@@ -723,6 +719,10 @@
     } catch { return 0; }
   }
 
+  /**
+   * @param {any} view
+   * @returns {string}
+   */
   function renderSummaryHtml(view) {
     const summary = view.oppsummering;
     const valgHtml = summary.valg.map((entry) =>
