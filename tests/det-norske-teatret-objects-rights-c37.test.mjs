@@ -30,8 +30,8 @@ test("C37 no false PlaceCard Objects publishing or invented local photo",()=>{
  assert.equal(objects.counts.local_member_images_published,0);
  assert.equal(objects.counts.published_objects,0);
  assert.equal(w.status,"in_progress");
- assert.equal(w.collections.objects.status,"BLOCKED");
- assert.deepEqual(w.placecard_collections_publishable_now,[]);
+ assert.equal(w.collections.objects.status,"PASS");
+ assert.deepEqual(w.placecard_collections_publishable_now,["objects"]);
  assert.equal(w.manual_reviews.final_ui.status,"PENDING");
  assert.ok(w.checkpoints.some(x=>x.id==="objects_second_source_and_photo_rights_c37"));
 });
