@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Civication: vitality calibration and an honest, unseeded 14-day journey audit.
+// Civication: vitality calibration and a genuine, unseeded 21-day private-life journey.
 // This is NOT a full shell/browser acceptance: jobs, economy, people and cloud
 // still require an integrated, real-user playthrough.
 'use strict';
@@ -150,43 +150,101 @@ test('prolonged emotional strain has a small energy cost that the player can see
   assert.equal(state.arkiv.at(-1).konsekvensTekst, result.konsekvensTekst);
 });
 
-test('unseeded 14-day target reports the actual progression gate, not fake achievements', () => {
-  // Run the real day-1 to day-7 story without a fabricated History Go badge
-  // or forced life-position. Any later Wave E scenes must be earned from
-  // decisions actually made during the first seven days.
+// A canonical, badge-free three-week playthrough with real authored choices;
+// unlike the old 14-day audit, it fails rather than accepting an early stop.
+function playThreeWeeks(focusChoice, opts = {}) {
   const content = pack('arbeidsledig');
   let state = S.createInitialState(content);
-  assert.equal(state.arkiv.length, 0);
-  assert.deepEqual(state.rolleBytter, []);
-  const targetDays = 14;
-  const achievedDays = [];
   let steps = 0;
-  let blockedByChapter = false;
-  while (state.dag <= targetDays) {
+  const daily = [];
+  for (let day = 1; day <= 21; day++) {
+    let scenes = 0;
     while (!state.dagFerdig) {
       const scene = R.selectNextScene(state, content);
-      if (scene) R.applyChoice(state, content, scene.id, scene.valg[0].id);
-      else R.advance(state, content);
-      assert.ok(++steps < 1500, 'the true player journey must terminate');
+      if (scene) {
+        let choice = scene.valg.find(v => !v.skills_requirement);
+        if (scene.id === 'wave_e_c21_d8_et_eget_spor') choice = scene.valg.find(v => v.id === focusChoice);
+        if (opts.skipFollowThrough && /^wave_e_c21_d16_/.test(scene.id)) choice = scene.valg.find(v => v.id === 'vent');
+        if (opts.keepOpen && scene.id === 'wave_e_c21_d21_tre_ukers_valg') choice = scene.valg.find(v => v.id === 'fortsett_aapent');
+        assert.ok(choice, 'every day has a playable ordinary choice');
+        R.applyChoice(state, content, scene.id, choice.id);
+        scenes++;
+      } else R.advance(state, content);
+      assert.ok(++steps < 2000, 'the whole three-week journey terminates');
     }
-    achievedDays.push(state.dag);
-    if (state.dag >= targetDays) break;
-    try { R.startNextDay(state, content); }
-    catch (error) {
-      assert.match(String(error), /neste kapittel må åpnes/);
-      blockedByChapter = true;
-      break;
-    }
+    daily.push({ day, scenes, livsdag: state.livsdag,
+      privateChoices: state.arkiv.filter(e => e.livsdag === day && e.sceneId.startsWith('wave_e_c21_')).length });
+    assert.equal(state.livsdag, day, 'story and life day stay aligned without role switching');
+    if (day < 21) R.startNextDay(state, content);
   }
-  assert.deepEqual(achievedDays.slice(0, 7), [1,2,3,4,5,6,7],
-    'the first seven days must be playable without injected role state');
-  assert.ok(state.spilteScener.length > 7);
-  assert.ok(state.arkiv.every(entry => entry.sceneId && Number.isInteger(entry.livsdag)));
-  assert.equal(state.rolle, 'arbeidsledig', 'do not fabricate a new job');
-  assert.equal(state.rolleBytter.length, 0);
-  assert.ok(state.livsdag >= 7 && state.livsdag <= 14);
-  console.log('14-day organic acceptance: days completed=' + achievedDays.length
-    + '/14; chapter gate=' + blockedByChapter
-    + '; badge-free='+true
-    + '; full shell / economy / real account acceptance still unverified');
+  return { state, daily, content };
+}
+test('a genuine unemployed player can play 21 days on three different private-life routes', () => {
+  for (const focus of ['mennesker','skape','laere']) {
+    const { state, daily } = playThreeWeeks(focus);
+    assert.deepEqual(daily.map(x => x.day), Array.from({ length:21 }, (_, i) => i + 1));
+    assert.ok(daily.slice(7).every(x => x.privateChoices > 0),
+      'each day 8–21 has a real private scene, not an empty calendar advancement');
+    assert.equal(state.rolle, 'arbeidsledig', 'life direction must never silently replace unemployment');
+    assert.deepEqual(state.rolleBytter, [], 'no fabricated job or position');
+    assert.equal(state.tidligereValg.wa_e_c21_reflection, 'gjennomfort');
+    assert.equal(state.tidligereValg.wa_e_c21_practice, state.tidligereValg.wa_e_c21_focus);
+    assert.equal(state.tidligereValg.wa_e_c21_followthrough, state.tidligereValg.wa_e_c21_focus);
+    assert.ok(state.privatHistorie?.arkiv.some(e => e.sceneId === 'wave_e_c21_d21_tre_ukers_valg'),
+      'private three-week decisions are retained for later job changes');
+    assert.throws(() => R.startNextDay(state, pack('arbeidsledig')), /neste kapittel må åpnes/,
+      'after day 21 no unearned extra chapter is silently given');
+  }
+});
+
+test('earned 21-day life orientation is player-selected and requires repeated real action', () => {
+  const savedLoad = S.load;
+  const originalStorage = globalThis.localStorage;
+  const originalCatalog = globalThis.CIVI_LIFE_POSITION_CATALOG;
+  const originalPositions = globalThis.CivicationLifePositions;
+  const store = new Map();
+  globalThis.localStorage = {
+    getItem: k => store.has(k) ? store.get(k) : null,
+    setItem: (k,v) => store.set(k,String(v)),
+    removeItem: k => store.delete(k)
+  };
+  globalThis.CIVI_LIFE_POSITION_CATALOG = { badges: [] };
+  const Positions = require('../js/Civication/systems/civicationLifePositionRuntime');
+  try {
+    for (const [focus, name] of [
+      ['mennesker','Lokal bidragsyter'],
+      ['skape','Praktisk skaper'],
+      ['laere','Aktiv kunnskapsutforsker']
+    ]) {
+      store.clear();
+      const { state } = playThreeWeeks(focus);
+      S.load = () => state;
+      const available = Positions.getEarnedPracticePositions();
+      assert.equal(available.length,1, 'exactly one relevant earned life path');
+      assert.equal(available[0].label,name);
+      assert.equal(Positions.getLifeContext().primary_life_position,null,
+        'earned path is not activated without the player');
+      assert.ok(Positions.getAllUnlockedPositions().some(p => p.label === name));
+      const chosen = Positions.activate('liv_egen_praksis',name);
+      assert.equal(chosen.ok,true, 'player can explicitly select the earned direction');
+      assert.equal(Positions.getLifeContext().primary_life_position.label,name);
+      assert.equal(Positions.getFormalEmploymentStatus().is_employed,false);
+      assert.equal(store.get('merits_by_category'),undefined,'no invented History Go merits');
+      // Changing job retains the actual private action chain and earned option.
+      const switched = S.selectRole(state,pack('ekspeditor'));
+      S.load = () => switched;
+      assert.equal(Positions.getEarnedPracticePositions()[0].label,name);
+    }
+    const incomplete = playThreeWeeks('mennesker', { skipFollowThrough:true }).state;
+    S.load = () => incomplete;
+    assert.deepEqual(Positions.getEarnedPracticePositions(),[], 'planning plus one action is not enough');
+    const open = playThreeWeeks('laere', { keepOpen:true }).state;
+    S.load = () => open;
+    assert.deepEqual(Positions.getEarnedPracticePositions(),[], 'player may keep identity open');
+  } finally {
+    S.load = savedLoad;
+    globalThis.localStorage = originalStorage;
+    globalThis.CIVI_LIFE_POSITION_CATALOG = originalCatalog;
+    globalThis.CivicationLifePositions = originalPositions;
+  }
 });
