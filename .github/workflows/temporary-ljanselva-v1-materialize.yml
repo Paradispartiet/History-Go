@@ -1,0 +1,118 @@
+name: Temporary Ljanselva v1 data and image materialization
+on:
+  push:
+    branches:
+      - content/oslo-ljanselva-v1-20261021
+    paths:
+      - '.github/workflows/temporary-ljanselva-v1-materialize.yml'
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ljanselva-v1-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Download two precisely identified CC photographs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,time,urllib.parse,urllib.request
+          files=[
+            ("Ljanselva - 2014-04-28 at 19-07-23.jpg","/tmp/ljanselva-ljabru.jpg"),
+            ("Ljanselva - 2014-05-29 at 13-46-29.jpg","/tmp/ljanselva-rustadsaga.jpg"),
+          ]
+          for name,dest in files:
+            params=urllib.parse.urlencode({"action":"query","format":"json","prop":"imageinfo","iiprop":"url","iiurlwidth":1920,"titles":"File:"+name})
+            endpoint="https://commons.wikimedia.org/w/api.php?"+params
+            last=None
+            for attempt in range(4):
+              try:
+                req=urllib.request.Request(endpoint,headers={"User-Agent":"HistoryGoMuseumEdu/1.0 (source photo reuse; contact via repository)"})
+                with urllib.request.urlopen(req,timeout=45) as response:
+                  info=json.load(response)
+                rows=list(info["query"]["pages"].values())
+                if len(rows)!=1 or "imageinfo" not in rows[0]: raise RuntimeError("Commons exact file not found: "+name)
+                image=rows[0]["imageinfo"][0]
+                image_url=image.get("thumburl") or image["url"]
+                req=urllib.request.Request(image_url,headers={"User-Agent":"HistoryGoMuseumEdu/1.0"})
+                with urllib.request.urlopen(req,timeout=60) as response: data=response.read()
+                if len(data)<35000 or data[:3]!=bytes.fromhex("ffd8ff"):raise RuntimeError("Download did not return a substantial JPEG: "+name)
+                open(dest,"wb").write(data)
+                print(name,"->",len(data),"bytes",image_url);break
+              except Exception as error:
+                last=error
+                if attempt==3:raise
+                time.sleep((attempt+1)*4)
+          PY
+      - name: Convert verified photographs to two independent WebP sizes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -c 'import PIL' || python3 -m pip install --user Pillow
+          mkdir -p bilder/places
+          python3 - <<'PY'
+          from PIL import Image,ImageOps
+          specs=[
+            ("/tmp/ljanselva-ljabru.jpg","bilder/places/ljanselva_front_portrait.webp",(600,800)),
+            ("/tmp/ljanselva-rustadsaga.jpg","bilder/places/ljanselva_landscape.webp",(1400,900)),
+          ]
+          for source,dest,size in specs:
+            with Image.open(source) as im:
+              im=ImageOps.exif_transpose(im).convert("RGB")
+              cropped=ImageOps.fit(im,size,method=Image.Resampling.LANCZOS,centering=(0.5,0.5))
+              cropped.save(dest,"WEBP",quality=86,method=6)
+              print(dest,cropped.size)
+          PY
+      - name: Build all derived data and canonical Knowledge
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          node scripts/oneoff-ljanselva-v1-materialize.mjs
+          npm run places:index:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
+          npm run place-open:build
+          npm run knowledge:canonical:write
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p='data/places/place_image_backlog_summary.json';
+          const old=JSON.parse(fs.readFileSync(p,'utf8'));
+          const audit=JSON.parse(fs.readFileSync('reports/place-image-audit.json','utf8'));
+          const s=audit.summary;
+          old.generatedAt='2026-10-21';
+          old.totalPlaces=audit.totalPlaces;
+          old.summary={validLocal:s.local,validRemote:s.remote,optionalMissing:s.optional,missing:s.missing,invalidLocalPath:s.invalid,remaining:s.missing+s.invalid};
+          for(const [key,row] of Object.entries(audit.byCategory)){
+            old.byCategory[key]={total:row.total,valid:row.local+row.remote,optional:row.optional,missing:row.missing,invalid:row.invalid};
+          }
+          fs.writeFileSync(p,JSON.stringify(old,null,2)+'\n');
+          NODE
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all
+          npm run place-open:check
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit only generated data, images and provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm -- .github/workflows/temporary-ljanselva-v1-materialize.yml scripts/oneoff-ljanselva-v1-materialize.mjs
+          git add -u -- data/places data/fagverk data/knowledge data/quiz data/epoker data/runtime reports
+          git add -- bilder/places/ljanselva_front_portrait.webp bilder/places/ljanselva_landscape.webp reports/place-production/ljanselva-v1-images-20261021.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --cached --quiet && exit 0
+          git commit -m 'build(ljanselva): provenance-checked CC photos, Knowledge and runtime parity'
+          git pull --rebase origin content/oslo-ljanselva-v1-20261021
+          git push origin HEAD:refs/heads/content/oslo-ljanselva-v1-20261021
