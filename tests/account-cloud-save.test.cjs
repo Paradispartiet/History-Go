@@ -374,6 +374,7 @@ test("21-day earned museum career restores qualifications, week settlements and 
   const progress = {
     merits_by_category: JSON.stringify({ kunst: { points: 5 } }),
     hg_quiz_sets_v1: JSON.stringify(earnedSets),
+    hg_badge_tiers_v1: JSON.stringify({ kunst: 0 }),
     hg_active_position_v1: JSON.stringify({
       career_id: "kunst", role_key: "kunst_publikum_og_formidling",
       title: "Vertskap (museum/galleri)"
@@ -427,12 +428,14 @@ test("History Go backup includes only explicitly allowed qualifications", async 
   const device = await runtime({ db, initial: {
     merits_by_category: '{"kunst":{"points":5}}',
     hg_quiz_sets_v1: '{"set_1":{"completed":true}}',
+    hg_badge_tiers_v1: '{"kunst":0}',
     hg_quiz_debug_answers_v1: '{"allCorrect":true}',
     hg_temporary_merits_v1: '{"kunst":500}'
   } });
   const snapshot = device.save.snapshot();
   assert.ok(snapshot.merits_by_category);
   assert.ok(snapshot.hg_quiz_sets_v1);
+  assert.ok(snapshot.hg_badge_tiers_v1);
   assert.equal(snapshot.hg_quiz_debug_answers_v1, undefined);
   assert.equal(snapshot.hg_temporary_merits_v1, undefined);
 });
