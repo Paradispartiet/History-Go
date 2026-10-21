@@ -8,6 +8,7 @@ on:
       - 'data/knowledge/knowledge_manifest.json'
       - 'js/quizzes.js'
       - 'js/fagverk.js'
+      - 'js/fagverk-ia-v3.js'
       - 'fagverk.html'
       - 'tests/politikk-poland-pathway-browser.test.mjs'
       - '.github/workflows/politikk-poland-pathway-browser.yml'
@@ -33,6 +34,7 @@ jobs:
         run: |
           node --check js/quizzes.js
           node --check js/fagverk.js
+          node --check js/fagverk-ia-v3.js
       - name: Verify five-stage Politics package
         run: node --test tests/politikk-advanced-political-science-subject-pathway-v6.test.mjs
       - name: Install Chromium
