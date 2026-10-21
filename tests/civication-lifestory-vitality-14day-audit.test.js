@@ -190,3 +190,88 @@ test('unseeded 14-day target reports the actual progression gate, not fake achie
     + '; badge-free='+true
     + '; full shell / economy / real account acceptance still unverified');
 });
+
+
+test('three organic 21-day paths retain daily private choices and never mint work or History Go merits', () => {
+  const content = pack('arbeidsledig');
+  const week3 = new Set(['jobb', 'by', 'folk']);
+  for (const selection of [0, 1, 2]) {
+    let state = S.createInitialState(content);
+    const daily = [];
+    for (let day = 1; day <= 21; day++) {
+      let count = 0;
+      while (!state.dagFerdig) {
+        const scene = R.selectNextScene(state, content);
+        if (scene) {
+          const ordinary = scene.valg.filter(choice => !choice.skills_requirement);
+          const choice = ordinary[Math.min(selection, ordinary.length - 1)];
+          assert.ok(choice, scene.id + ' retains an ordinary alternative');
+          R.applyChoice(state, content, scene.id, choice.id);
+          count++;
+        } else R.advance(state, content);
+        assert.ok(count < 130, 'authored day must terminate');
+      }
+      assert.equal(state.livsdag, day);
+      assert.ok(count > 0, 'day ' + day + ' has a concrete private event on route ' + selection);
+      daily.push(count);
+      if (day < 21) R.startNextDay(state, content);
+    }
+    assert.equal(daily.length, 21);
+    assert.equal(state.spilteScener.includes('wave_e_liv_d21_hovedkapittel'), true);
+    assert.equal(week3.has(state.tidligereValg.wa_f_uke3_retning), true);
+    assert.equal(state.rolle, 'arbeidsledig');
+    assert.equal(state.rolleBytter.length, 0, 'no job is granted by time alone');
+    assert.ok(!state.tidligereValg.merits_by_category, 'choices do not forge History Go merits');
+    assert.ok(state.arkiv.every(entry => entry.sceneId && Number.isInteger(entry.livsdag)));
+    assert.equal(state.arkiv.filter(entry => entry.sceneId === 'wave_e_liv_d21_hovedkapittel').length, 1,
+      'week-three reflection is recorded exactly once');
+    assert.throws(() => R.startNextDay(state, content), /neste kapittel må åpnes/,
+      'the first 21-day chapter ends with authentic career/life-position actions, not a fake 22nd day');
+  }
+});
+
+test('day 14 accepted job handoff preserves private history and reaches life day 21', () => {
+  // In this unit test selectRole represents the consequence of a legitimate
+  // offer already accepted elsewhere. It never creates an offer or pays a wage.
+  let content = pack('arbeidsledig');
+  let state = S.createInitialState(content);
+  let savedArchive, savedDirection;
+  for (let day = 1; day <= 21; day++) {
+    let count = 0;
+    while (!state.dagFerdig) {
+      const scene = R.selectNextScene(state, content);
+      if (scene) {
+        const choice = scene.valg.find(item => !item.skills_requirement);
+        R.applyChoice(state, content, scene.id, choice.id);
+        count++;
+      } else R.advance(state, content);
+      assert.ok(count < 140);
+    }
+    if (day === 14) {
+      savedArchive = copy(state.arkiv.filter(entry => entry.sceneId.startsWith('wave_e_liv_')));
+      savedDirection = state.tidligereValg.wa_f_uke3_retning;
+      content = pack('ekspeditor');
+      state = S.selectRole(state, content);
+      assert.equal(state.livsdag, 14, 'job transition cannot reset calendar or life day');
+      assert.equal(state.rolle, 'ekspeditor');
+      assert.equal(state.tidligereValg.wa_f_uke3_retning, savedDirection,
+        'personal choices remain with the person across employment');
+      // Completing the new role's first workday uses normal playable scenes.
+      let jobSteps = 0;
+      while (!state.dagFerdig) {
+        const scene = R.selectNextScene(state, content);
+        if (scene) R.applyChoice(state, content, scene.id, scene.valg.find(choice => !choice.skills_requirement).id);
+        else R.advance(state, content);
+        assert.ok(++jobSteps < 140);
+      }
+    }
+    if (day < 21) R.startNextDay(state, content);
+  }
+  assert.equal(state.rolle, 'ekspeditor');
+  assert.equal(state.livsdag, 21);
+  assert.ok(state.rolleBytter.length === 1);
+  assert.ok(savedArchive.every(entry => state.arkiv.some(saved => saved.sceneId === entry.sceneId)),
+    'early personal history is retained after the job change');
+  assert.ok(state.spilteScener.includes('wave_e_liv_d21_hovedkapittel'),
+    'private life reaches the same three-week finale during paid employment');
+});
