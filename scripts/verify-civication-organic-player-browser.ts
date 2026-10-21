@@ -107,6 +107,41 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     assert.match(String(pending.title), /Vertskap|museum|galleri/i);
     assert.equal((await page.evaluate(() => JSON.parse(localStorage.getItem('merits_by_category') || '{}').kunst?.points)), 5);
 
+    // A real Min dag choice must survive an earned job offer: private history
+    // belongs to the person, even when the new job has no Life Story package.
+    await page.waitForFunction(() =>
+      !!(globalThis as any).CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,
+    null, { timeout: 30000 });
+    const privateSceneId: string = await page.evaluate(() =>
+      (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId);
+    const privateBefore = await page.evaluate(() => {
+      const state = (globalThis as any).CivicationLifestoryState.load();
+      return { day: state.livsdag, entries: state.arkiv.length, role: state.rolle };
+    });
+    assert.equal(privateBefore.role, 'arbeidsledig', 'earned merits alone do not create employment');
+    const openPopup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]');
+    if (await openPopup.count()) await openPopup.click();
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    const privateChoices = page.locator('[data-lifestory-scene="' + privateSceneId + '"][data-lifestory-choice]:not([disabled])');
+    await privateChoices.first().waitFor({ state: 'visible', timeout: 30000 });
+    const privateChoiceId = await privateChoices.first().getAttribute('data-lifestory-choice');
+    assert.ok(privateChoiceId);
+    await privateChoices.first().click({ timeout: 20000 });
+    const playedPrivate = await page.evaluate(() => {
+      const state = (globalThis as any).CivicationLifestoryState.load();
+      return { day: state.livsdag, role: state.rolle, archive: state.arkiv };
+    });
+    assert.equal(playedPrivate.day, privateBefore.day, 'private choice cannot skip a life day');
+    assert.equal(playedPrivate.archive.length, privateBefore.entries + 1, 'exactly one ordinary private choice is archived');
+    assert.equal(playedPrivate.archive.at(-1).sceneId, privateSceneId);
+    assert.equal(playedPrivate.archive.at(-1).valgId, privateChoiceId);
+    const hasPlayedPrivateChoice = () => page.evaluate(({ sceneId, choiceId }) => {
+      const state = (globalThis as any).CivicationLifestoryState.load();
+      const sources = [state, ...Object.values(state?.rolleTilstander || {})] as any[];
+      return sources.some(source => source?.arkiv?.some((entry: any) =>
+        entry.sceneId === sceneId && entry.valgId === choiceId));
+    }, { sceneId: privateSceneId, choiceId: privateChoiceId });
+
     await page.locator('.civi-footer button[data-category="karriere"]').click();
     // Civication uses mini cards; offer actions live in the role popup, not
     // directly in the career category grid.
@@ -126,12 +161,18 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     assert.match(String(accepted.active.title), /Vertskap|museum|galleri/i);
     assert.equal(accepted.merit, 5);
     assert.equal(accepted.people, null);
+    assert.equal(await hasPlayedPrivateChoice(), true,
+      'accepting earned art job cannot erase a previously played personal scene');
+    assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifestoryState.load().livsdag),
+      privateBefore.day, 'taking a formal job cannot advance or reset the private life clock');
 
     await page.reload({ waitUntil: 'load' });
     await page.waitForFunction(() => (globalThis as any).CivicationState?.getActivePosition?.()?.career_id === 'kunst', null, { timeout: 90000 });
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('merits_by_category') || '{}').kunst?.points), 5);
+    assert.equal(await hasPlayedPrivateChoice(), true,
+      'full reload after a job offer retains the previously played private life scene');
     assert.deepEqual(errors, [], 'No browser runtime errors during organic player journey');
-    console.log('PASS: organic History Go -> Civication: 5 quiz sets -> 5 earned art merits -> real job-offer acceptance -> reload; no seeded merits or People.');
+    console.log('PASS: five real History Go quiz sets -> earned offer -> played private Min dag choice -> job acceptance -> reload, with personal history and merits intact.');
     return { passed: true, quizSets: 5, earnedMerits: 5, career: accepted.active.title, browserErrors: errors.length };
   } finally {
     await context.close();
