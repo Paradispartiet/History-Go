@@ -5131,6 +5131,124 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_e_c21_d12_jobbsok",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 12,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ledig stilling ved butikken",
+      "tekst": "Du ser en konkret utlysning til en inngangsstilling i en fiktiv nærbutikk. Du trenger ikke velge mellom hele livet ditt og én søknad. Arbeid er en mulig vei videre, men ikke en plikt eller automatisk belønning.",
+      "valg": [
+        {
+          "id": "send_soknad",
+          "tekst": "Skriv og send en kort, konkret søknad",
+          "konsekvensTekst": "Du sender en søknad med hva du faktisk kan bidra med. Du har søkt, men fått verken intervju eller jobb ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_job_application": "sent"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "ikke_naa",
+          "tekst": "La stillingen ligge og fortsett ditt eget spor",
+          "konsekvensTekst": "Du velger å bruke kreftene dine på det andre du allerede har satt i gang. Ingen jobbtilbud oppstår av dette valget.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_job_application": "declined"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d17_intervju",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 17,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Butikken inviterer til samtale",
+      "tekst": "Nærbutikken svarer på søknaden du sendte. En medarbeider vil høre om du kan møte opp til et kort intervju om arbeidsoppgaver, vakter og opplæring. Invitasjonen er ikke en ansettelse.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c21_job_application": "sent"
+        }
+      },
+      "valg": [
+        {
+          "id": "mot_opp",
+          "tekst": "Møt til intervju og svar på spørsmålene om arbeidsoppgavene",
+          "konsekvensTekst": "Du møter opp, forklarer en konkret erfaring og spør hvilke vakter som faktisk inngår. Det er en gjennomført samtale, ikke en signert kontrakt.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_job_interview": "completed"
+            }
+          }
+        },
+        {
+          "id": "trekk_meg",
+          "tekst": "Takk høflig nei til intervjuet",
+          "konsekvensTekst": "Du trekker søknaden tilbake. Butikken går videre; ditt private liv og dine tidligere valg forblir intakte.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_job_interview": "withdrawn"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d20_jobbtilbud",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 20,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du får et konkret svar på søknaden",
+      "tekst": "Etter intervjuet tilbyr den fiktive nærbutikken en inngangsstilling som butikkmedarbeider. Du kan be om at tilbudet registreres i Karriere-panelet, der du selv kan akseptere eller avslå. Det er først ved aksept at du blir ansatt.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c21_job_interview": "completed"
+        }
+      },
+      "valg": [
+        {
+          "id": "registrer_tilbud",
+          "tekst": "Be om det skriftlige tilbudet og åpne Karriere",
+          "konsekvensTekst": "Du ber om vilkårene. Tilbudet skal behandles av spillets ordinære jobbtilbudssystem; ingen jobb, lønn eller startdato opprettes før du aksepterer der.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_job_offer": "requested"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "avslaa_tilbud",
+          "tekst": "Takk nei og fortsett med dine andre planer",
+          "konsekvensTekst": "Du avslår tilbudet. Arbeidsledighet er fortsatt en arbeidssituasjon, og du kan utvikle dine egne interesser videre uten denne jobben.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_job_offer": "declined"
+            }
+          }
+        }
+      ]
     }
   ]
 }
