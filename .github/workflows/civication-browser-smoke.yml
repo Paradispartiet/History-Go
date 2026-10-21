@@ -53,11 +53,28 @@ jobs:
         run: npm run audit:civication-city-map-entries
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
+      - name: Select PR browser acceptance depth
+        id: coverage
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" != "pull_request" ]]; then
+            echo "depth=full" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          changed="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files?per_page=100" --jq '.[].filename')"
+          if grep -Fxq 'scripts/verify-civication-organic-player-browser.ts' <<< "$changed"; then
+            echo "depth=organic" >> "$GITHUB_OUTPUT"
+          else
+            echo "depth=smoke" >> "$GITHUB_OUTPUT"
+          fi
       - name: Run Civication browser boot smoke
         env:
-          # PRs verify boot, People UI and map. Nightly/manual also exercise all 20
-          # multi-day Arbeidsledig scenarios; no scenario is deleted.
-          CIVICATION_BROWSER_DEPTH: ${{ github.event_name == 'pull_request' && 'smoke' || 'full' }}
+          # Run the real quiz -> job acceptance journey on PRs touching its
+          # implementation; keep unrelated PR smoke focused and nightly full.
+          CIVICATION_BROWSER_DEPTH: ${{ steps.coverage.outputs.depth }}
         run: npm run civication:boot-smoke
       - name: Upload browser diagnostics
         if: always()
