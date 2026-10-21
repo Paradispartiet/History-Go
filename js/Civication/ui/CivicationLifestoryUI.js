@@ -336,9 +336,18 @@
     if (!state || !content || day === null || day <= state.kalenderDag || !state.dagFerdig) return false;
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
-    // Ved kapittelslutt åpnes neste kapittel gjennom sin eksisterende port.
-    // Å hoppe rett videre her ville omgått merker/livsposisjoner.
-    if (Endings?.isFinalDay?.(state, content) && !Runner.hasPendingPrivateScenes?.(state, content)) return false;
+    // A fully authored three-week chapter can end while Civication's work
+    // calendar must still close the 21st played day and settle week three.
+    // Keep the completed narrative/identity at day 21: advancing the shell
+    // clock is NOT permission to create a fictitious new Life Story scene.
+    if (Endings?.isFinalDay?.(state, content) && !Runner.hasPendingPrivateScenes?.(state, content)) {
+      if (state.livsdag < 21) return false; // earlier chapter gates remain intact
+      state.kalenderDag = day;
+      /** @type {any} */ (window).CivicationLifestoryState.save(state);
+      window.dispatchEvent(new Event("civi:lifestoryChanged"));
+      render();
+      return true;
+    }
     try {
       syncSharedPrivateState(window.CivicationLifestoryState?.load?.());
       Runner.startNextDay(state, content);
@@ -892,11 +901,19 @@
       ? '<p class="muted" role="status">Du har fortsatt en melding eller oppgave i dag. Åpne innboksen og fullfør den før du starter neste dag.</p>'
       : "";
     const nextDayDisabled = needsInboxFirst ? ' disabled title="Fullfør dagens meldinger først"' : '';
+    const chapterReadyToSettle = sisteDag && !pendingPrivate && state.livsdag >= 21
+      && getShellDay() === state.livsdag && state.kalenderDag === state.livsdag;
+    const completedChapterNotice = sisteDag && !pendingPrivate && state.livsdag >= 21
+      && !chapterReadyToSettle
+      ? '<p class="muted" role="status">Dette Life Story-kapitlet er ferdig. Arbeid, privatliv og økonomi fortsetter i Civication mens nye kapitler blir tilgjengelige.</p>'
+      : '';
     const handlingsHtml = sisteDag
       ? "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
         + nextChapterHint
-        + (Runner.hasPendingPrivateScenes?.(state, content) ? '<button class="civi-btn primary" type="button" data-lifestory-next-day' + nextDayDisabled + '>Fortsett privatlivet</button>' : "")
+        + (pendingPrivate ? '<button class="civi-btn primary" type="button" data-lifestory-next-day' + nextDayDisabled + '>Fortsett privatlivet</button>' : "")
+        + (chapterReadyToSettle ? '<button class="civi-btn primary" type="button" data-lifestory-next-day' + nextDayDisabled + '>Avslutt dag 21 og gjør opp uken</button>' : "")
+        + completedChapterNotice
         + blockedDayNote
         + pendingDayActionHtml
         + "</div>"
