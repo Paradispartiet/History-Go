@@ -80,3 +80,17 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 ## Neste spesifikke 14-dagers lagringskontroll (2026-10-21)
 
 `civi.playerPhaseSnapshots.v1` er spillerens sist lagrede aktivitet og tilgjengelighet i hver sosial fase. Den bruker en egen prikk-notasjon og falt utenfor skybackup selv etter at NPC-samtaler ble rettet i #6500. En avgrenset oppfølging inkluderer nøyaktig denne kanoniske nøkkelen, uten å åpne for vilkårlige `civi.*`-nøkler. Ny regresjon kontrollerer samtidig `hg_civi_calendar_v1`, `hg_civi_livelihood_v1`, Life Story og wallet ved simulert kontogjenoppretting etter spilldag 14. Dette er **ikke** en ekte fjorten dagers nettleserreise og godkjenner ikke C8–C10 alene.
+
+
+## Dag 7 → History Go → kapittel 2: veiledning (2026-10-21)
+
+Problem: Ved slutten av første arbeidsledig-kapittel vises ingen videre knapp dersom ingen kvalifiserende livsposisjon er aktivert. Dette skal aldri løses ved å tildele meritter, jobb, penger, quizresultater eller et gratis kapittel.
+
+Løsning i eksisterende systemer:
+- «Min dag» viser **Veien videre** når siste dag er avsluttet, intet videre kapittel er tilgjengelig og ingen private scener venter. Valgt retning og dokumentert poengkrav vises fra eksisterende `rollebroer` og `merits_by_category`.
+- Knappen **Utforsk History Go** bruker eksisterende `CivicationLifestoryActions` til kartet og gjenbruker `CivicationHistoryGoDeepLink.startLifePositionGuidance` for en eksplisitt læringssesjon.
+- History Go sitt eksisterende permanente **Civication-modus-kort** i `js/ui/toast.js` viser mål og relevante steder, følger faktisk poengprogresjon til livsposisjonens fullstendige terskel og har **Tilbake til Civication**.
+- Ved retur velger spilleren selv en opptjent livsposisjon; først ordinær `Runner.canStartContinuation` kan åpne kapittelet. Quiz eller velkomsttoast er ikke et automatisk jobbtilbud. Ubesvart inbox og dagsporter beholdes.
+- Uten valgt/gyldig poengkrav vises bare utforskingsveien og livsprofilen, uten en falsk «oppdrag fullført»-indikator.
+- Testdekning: `civication-lifestory-week7-guidance.test.js` (ekte syv forfattede dager), `civication-history-go-deeplink-session.test.js` (sesjonsdata) og `civication-history-go-mission-badge-points.test.js` (opptjente meritter). Alle skal kjøres i eksisterende Civication-regresjon.
+- **Avgrensning:** Dette er gjenfunnet veiledning og reelle gating-regler, ikke dokumentasjon på at en fersk spiller faktisk har opptjent poengene eller gjennomført 14 dager og kontogjenoppretting i en nettleser.
