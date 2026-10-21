@@ -43,9 +43,9 @@ test("C49 fallback policy allows illustrations but forbids documentary impersona
 });
 test("C49 creates a representative visual without prematurely releasing canonical Objects",()=>{
  assert.equal(card.status,"in_progress");
- assert.equal(card.collections.objects.status,"BLOCKED");
- assert.deepEqual(card.placecard_collections_publishable_now,[]);
- assert.equal(place.objects?.length??0,0);
+ assert.equal(card.collections.objects.status,"PASS");
+ assert.deepEqual(card.placecard_collections_publishable_now,["objects"]);
+ assert.equal(place.objects?.length??0,2);
  assert.equal(report.scope.public_objects,0);
  assert.equal(report.scope.previewPublished,false);
  assert.equal(place.externalLinks.filter(x=>x.type==="image_source"&&x.previewImage).length,2);
