@@ -128,3 +128,11 @@ Dette er en **planlagt leveranse**, ikke godkjent produksjon:
 - **G – sluttgodkjenning:** faktisk brukerreise i nettleseren og kilde-/forfatterkontroll; skillet `planned` / `implemented` / `CI` / `end-to-end accepted` beholdes.
 
 Se også [Life Story-kontrakten](civication-life-story-system.md), [ikke-karriere-taksonomien](CIVICATION_NONCAREER_ROLE_TAXONOMY.md), [samlingskontrakten](PERSONAL_COLLECTION_V1.md), [progresjonsmodellen](PROGRESSION_MODEL.md), [History Go-returbroen](CIVICATION_HISTORY_GO_COMPLETION_BRIDGE.md) og [14-dagers-akseptansen](CIVICATION_ORGANIC_14_DAY_AND_VITALITY_ACCEPTANCE_2026_10_20.md).
+
+## 21-dagerskapittel og valgfri jobb (beslutning 21.10.2026)
+
+De første tre ukene skal kjennes som utviklingen av et liv, ikke en 14-dagers tvangstrakt fra arbeidsledighet til Badge. Dag 8–21 har forfattede aktiviteter i skaping, lokalt engasjement, relasjoner, praktisk hverdagsmestring **og et frivillig jobbspor**. De valgte aktivitetene fører til konkrete påfølgende scener. Jobbsporet navigerer til eksisterende Karriere-tilbud; det gir aldri en jobb eller inntekt direkte.
+
+Etter en dokumentert dag-21-hendelse kan en tilsvarende **selvvalgt** livsretning bli tilgjengelig i eksisterende \`CivicationLifePositions\`, uten en ny valuta eller parallell motor. Livsposisjon og faktisk ansettelse er uavhengige; begge kan eksistere samtidig. De ordinære History Go-Badge-stigene beholder sine egne opptjeningskrav, og kan ikke forbigås med dag-21-valget. Ingen retning blir automatisk aktivert. En fortsatt arbeidsledig spiller kan fortsette å søke jobb senere.
+
+Nødvendig oppfølging etter publisering: 21-dagers nettleserreise med reell jobbtilbudsaksept og jobbbytte, kontogjenoppretting, økonomiavregning etter uke 1/2/3, sosialt etterspill og History Go-samling. En grønn node-/CI-regresjon er ikke slik ende-til-ende-akseptanse.

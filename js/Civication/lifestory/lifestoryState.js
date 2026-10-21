@@ -72,8 +72,10 @@
   // C01 og C05 er privatliv, ikke eiendeler til den siste arbeidsgiveren.
   // Hele rolletilstanden forblir separat; bare disse to historienes konkrete
   // fakta, scenevalg og arkiv følger spilleren ved jobbbytte.
-  const PRIVATE_FLAG = /^wa_(?:[bcde]_)?c0[15]_/;
-  const PRIVATE_SCENE = /^wave_[abcde]_c0[15]_/;
+  // Shared personal trajectories survive employment changes in the existing
+  // private-history snapshot; neither job role owns these actions.
+  const PRIVATE_FLAG = /^(?:wa_(?:[bcde]_)?c0[15]_|life21_)/;
+  const PRIVATE_SCENE = /^(?:wave_[abcde]_c0[15]_|wave_e_life21_)/;
   function emptyPrivateStory() { return { flagg: {}, flaggDager: {}, spilteScener: [], arkiv: [], relasjoner: {} }; }
   function capturePrivateStory(state) {
     const story = emptyPrivateStory();

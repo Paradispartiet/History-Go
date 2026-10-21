@@ -147,3 +147,17 @@ Løsning i eksisterende systemer:
 - Uten valgt/gyldig poengkrav vises bare utforskingsveien og livsprofilen, uten en falsk «oppdrag fullført»-indikator.
 - Testdekning: `civication-lifestory-week7-guidance.test.js` (syv forfattede dager; både privatlivet og valgfri oppdragsveiledning synlig), `civication-history-go-deeplink-session.test.js` (sesjonsdata) og `civication-history-go-mission-badge-points.test.js` (opptjente meritter). Alle skal kjøres i eksisterende Civication-regresjon.
 - **Avgrensning:** Dette er gjenfunnet veiledning og reelle gating-regler, ikke dokumentasjon på at en fersk spiller faktisk har opptjent poengene eller gjennomført 14 dager og kontogjenoppretting i en nettleser.
+
+## Ny kontrollport: dag 1–21 og valgfri jobb (21.10.2026)
+
+Oppdatert produktmål: **21 sammenhengende spilldager** som første hovedkapittel. Dag 14 er en milepæl, ikke slutten. Et valg om jobb skal kunne tas når spilleren har et faktisk tilbud, enten før eller etter dag 21. Spillerens interesser, private historikk og frivillige livsposisjon skal ikke slettes eller erstattes av jobb.
+
+| Kontroll | Implementasjon på 21-dagersgren | Gjenstående akseptanse |
+| --- | --- | --- |
+| Tre uker privatliv | Forfattede scener dag 8–21, fem spor og dag-21-profil | Reell skjerm- og dagsynk, arbeids-/privatinnboks |
+| Frivillig arbeid | Karriere-handling i konkrete scener; eksisterende tilbudssystem eier jobben | Ekte tilbud, aksept, lønn og videre jobbspill |
+| Livsposisjon etter handling | Dag-21-arkiv gir én mulig egenvalgt retning i eksisterende livsprofil | Kontogjenoppretting, endring og reell bruk av retningen |
+| Jobbbytte | Personlige \`life21_\`-flagger og \`wave_e_life21_\`-valg følger spilleren i \`privatHistorie\` | 21-dagers nettleserløp med overgang og retur |
+| Idempotens | Eksisterende Life Story-scene-ID og kanonisk lagring, ingen ny valuta | Full belastnings-/konto-/NPC-test |
+
+Ikke erklær dette som godkjent 21-dagers ende-til-ende-test før alle åpne porter består. Den gamle 14-dagers akseptansetabellen er nå et delkrav under 21-dagersløpet, ikke produktets endelige mål.

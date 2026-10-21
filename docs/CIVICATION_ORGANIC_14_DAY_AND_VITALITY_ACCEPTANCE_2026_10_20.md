@@ -59,4 +59,16 @@ Eiergrenser, seks foreslåtte ferdigheter og kildebasert utvikling er samlet i [
 - Bind faktiske Life Story-relasjoner til eksisterende NPC-motor, med idempotens og personidentitet.
 - Kjør virkelig 14-dagers browser playthrough og verifiser alle akseptansekriterier ovenfor.
 
-Behold dette dokumentet som PR-spor; oppdater status når hver del er testet i faktisk spill. 
+Behold dette dokumentet som PR-spor; oppdater status når hver del er testet i faktisk spill.
+
+## Tre uker som oppdatert første hovedkapittel (21.10.2026)
+
+**Produktbeslutning:** Første naturlige spillerkapittel er **21 faktiske spilldager**, ikke 14. Dag 14 er en mellomvurdering. Etter dag 21 skal spilleren kunne kjenne igjen et spor i det vedkommende faktisk har gjort. Dette overstyrer ikke kravene til ordinær dagport, reell økonomi, lagring eller History Go-verifisering.
+
+**Implementert på utviklingsgren:** Én delt privat tråd, \`wave_e_life21\`, med 30 forfattede scener dag 8–21. Dag 8 velger en retning (skape, nærmiljø, relasjoner, rytme eller undersøke jobb), dag 9/13/16 følger opp den valgte retningen, og dag 21 gir en foreløpig, frivillig livsretning basert på valgene. Dag 15 kan spilleren bytte spor. Andre dager handler om faktisk innsats, restitusjon, grensesetting og menneskelige konsekvenser, ikke repeterte NAV-meldinger.
+
+**Jobb er fortsatt mulig og frivillig:** Dag 8, 15 og 19, samt jobbrettede oppfølginger, kan åpne det **eksisterende** karrierepanelet gjennom \`aapne_karriere\`. Bare karrieresystemets reelle tilbud og eksplisitt aksept kan føre til jobb. Spilleren beholder privat historie, Skills og livsposisjon ved jobbbytte. Ingen søknad, intervju, inntekt, ansettelse eller badge gis av et fortellingsvalg.
+
+**Livsposisjon kan velges etter dokumentert handling:** Dag 21 åpner eksisterende livsprofil. \`CivicationLifePositions\` viser kun retningen når en gyldig dag-21-arkivhendelse bekrefter spillerens valg; tid alene eller et innlimt flagg er utilstrekkelig. Mulige retninger er Skaper, Nærmiljøbygger, Relasjonsbygger, Hverdagsbygger og Utforsker. Spilleren velger eventuelt selv å aktivere. Dette er ikke en sertifisering, en jobb eller et History Go-merke.
+
+**Testgrense:** Den utvidede Node-regresjonen spiller 21 dager på tre ulike valgruter med en hendelse hver dag, uten forhåndstildelt jobb, Skills eller meritter, og verifiserer arkivbevis, ingen automatisk jobb, ingen for tidlig livsposisjon og bevaring ved rollebytte. Dette **er ikke** endelig 21-dagers akseptanse for nettleser, NPC-er, økonomi, konto eller en virkelig akseptert jobbovergang. Disse portene forblir åpne.

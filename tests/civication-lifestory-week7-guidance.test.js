@@ -83,7 +83,25 @@ async function main() {
     "learning navigation never alters story progress");
   panel.querySelector("[data-lifestory-life-profile]").click();
   assert.equal(actions[1]?.type, "aapne_livsposisjoner");
+  // The original ending and discovery prompt should not repeat on day eight.
+  panel.querySelector("[data-lifestory-next-day]").click();
+  for (let i = 0; i < 200 && JSON.parse(w.localStorage.getItem(S.STORAGE_KEY) || "{}").dag !== 8; i++) {
+    await new Promise(resolve => setTimeout(resolve, 10));
+  }
+  const nextScene = '[data-lifestory-scene="wave_e_life21_d8_foerste_spor"][data-lifestory-choice="skape"]';
+  for (let i = 0; i < 200 && !panel.querySelector(nextScene); i++) {
+    await new Promise(resolve => setTimeout(resolve, 10));
+  }
+  assert(panel.querySelector(nextScene), "day eight has authored private options");
+  panel.querySelector(nextScene).click();
+  assert.equal(panel.querySelector(".civi-lifestory-ending"), null,
+    "do not repeat the week-one ending during new private life");
+  assert.equal(panel.querySelector("[data-lifestory-study]"), null,
+    "History Go milestone guidance should not repeat each day");
+  assert(panel.querySelector("[data-lifestory-next-day]"),
+    "day nine remains playable without job or Life Position");
+  assert.equal(w.localStorage.getItem("merits_by_category"), null);
   dom.window.close();
-  console.log("Civication day seven continues private Life Stories and offers optional History Go learning");
+  console.log("Civication day seven and eight: new private choices without repeated endings");
 }
 main().catch(e => { console.error(e); process.exitCode = 1; });
