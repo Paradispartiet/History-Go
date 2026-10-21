@@ -183,7 +183,7 @@ function tickPCIncomeWeekly() {
   if (!Number.isSafeInteger(lastDay) || lastDay < 1 || lastDay > dayIndex) {
     wallet.last_tick_day_index = dayIndex;
     window.CivicationState.updateWallet(wallet);
-    if (!active?.career_id && !Number.isSafeInteger(Number(stateView.unemployed_since_day_index))) {
+    if (!active?.career_id && (!Number.isSafeInteger(Number(stateView.unemployed_since_day_index)) || Number(stateView.unemployed_since_day_index) < 1)) {
       window.CivicationState.setState({ unemployed_since_day_index: dayIndex });
     }
     return;
