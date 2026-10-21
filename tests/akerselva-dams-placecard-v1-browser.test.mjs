@@ -30,8 +30,16 @@ for (const place of places) {
   assert.equal(place.frontImageMeta.licenseUrl, place.imageMeta.licenseUrl);
   assert.equal(place.imageComposition.portraitFit, "cover");
   assert.match(place.imageComposition.portraitPosition, /^\d+% \d+%$/);
+  const activeQuiz = JSON.parse(read("data/quiz/natur/" + place.id + "_sets.json"));
+  const questionById = new Map(activeQuiz.sets.flatMap(set => set.questions).map(q => [q.id, q]));
   for (const question of card.questions) {
     assert.ok(question.sourceQuizId && question.claim_id && question.source_urls?.length);
+    const sourceQuestion = questionById.get(question.sourceQuestionId);
+    assert.ok(sourceQuestion, "QuizCard question missing in active quiz");
+    assert.equal(question.question, sourceQuestion.question);
+    assert.equal(question.answer, sourceQuestion.answer);
+    assert.equal(question.answerIndex, sourceQuestion.answerIndex);
+    assert.deepEqual(question.options, sourceQuestion.options);
   }
 }
 for (const id of ["pcFrontCardFlip", "pcQuizCardContent", "pcQuizExpandBtn", "pcQuizExpandedClose"]) {
@@ -136,6 +144,8 @@ try {
         await flip.focus();
         await page.keyboard.press("Enter");
         assert.equal(await flip.evaluate(el=>el.classList.contains("is-flipped")), false);
+        await page.keyboard.press("Space");
+        assert.equal(await flip.evaluate(el=>el.classList.contains("is-flipped")), true);
         console.log(place.id + " QuizCard flip/expand/keyboard OK at " + width + "px");
       }
       assert.deepEqual(errors, [], "JS console errors at " + width + "px");
