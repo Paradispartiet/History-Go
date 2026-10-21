@@ -133,11 +133,26 @@ for (const bad of [
 }
 
 async function main() {
+  // A real runner path establishes the current scene before mounting the UI.
+  // Otherwise the default scene ranking may show an unrelated private scene.
+  const StoryState = require("../js/Civication/lifestory/lifestoryState");
+  const StoryRunner = require("../js/Civication/lifestory/lifestoryRunner");
+  const seededStory = StoryState.createInitialState(unemployedContent);
+  const targetScene = "meldekort_01_fristen";
+  let reached = false;
+  for (let step = 0; step < 80 && !seededStory.dagFerdig; step++) {
+    const current = StoryRunner.selectNextScene(seededStory, unemployedContent);
+    if (current?.id === targetScene) { reached = true; break; }
+    if (current) StoryRunner.applyChoice(seededStory, unemployedContent, current.id, current.valg[0].id);
+    else StoryRunner.advance(seededStory, unemployedContent);
+  }
+  assert(reached, "NAV scene is reached by a playable day-one Life Story path");
   const dom = new JSDOM(
     '<!doctype html><body><header id="civiLifestoryHeaderStatus"></header><section id="civiLifestoryPanel"></section></body>',
     { url: "https://example.test/Civication.html", runScripts: "outside-only" }
   );
   const w = dom.window;
+  w.localStorage.setItem(StoryState.STORAGE_KEY, JSON.stringify(seededStory));
   let civiState = { social_standing: { by_audience: {} }, job_learning_progress: { stable: { steps: 3 } } };
   w.CivicationState = {
     getActivePosition: () => null,
@@ -166,7 +181,7 @@ async function main() {
     if (button) break;
     await new Promise(resolve => setTimeout(resolve, 10));
   }
-  assert(button, "actual UI presents the authored NAV choice");
+  assert(button, "actual UI presents the authored NAV choice (current: " + JSON.stringify(w.CivicationLifestoryUI?.getCurrentSceneInfo?.() || null) + "; panel: " + w.document.getElementById("civiLifestoryPanel").textContent.slice(0, 250) + ")");
   button.click();
   const story = w.CivicationLifestoryState.load();
   assert(story.spilteScener.includes("meldekort_01_fristen"), "choice actually played");
