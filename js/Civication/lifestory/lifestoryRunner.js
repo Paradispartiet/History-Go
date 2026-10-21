@@ -261,7 +261,9 @@
     if (Object.keys(people).length) entry.personRepresentanter = people;
     if (consequenceText) entry.konsekvensTekst = consequenceText;
     state.arkiv.push(entry);
-    if (/^wave_[abcde]_c0[15]_/.test(scene.id)) State.capturePrivateStory(state);
+    // Keep the cross-role private archive current at the moment a personal
+    // event is played, not only when the next job switch rehydrates the story.
+    if (/^(?:wave_[abcde]_c0[15]_|wave_e_life21_)/.test(scene.id)) State.capturePrivateStory(state);
 
     const progress = advance(state, content);
     return {

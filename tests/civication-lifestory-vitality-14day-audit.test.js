@@ -303,3 +303,65 @@ test('day-21 life direction is earned from a saved choice; career remains indepe
   assert.equal(saved.getItem('merits_by_category'), null,
     'neither a job interest nor life direction grants History Go merits');
 });
+
+
+test('21-day Life Story retains personal evidence and relationships through two real role transitions', () => {
+  const unemployed = pack('arbeidsledig');
+  const clerk = pack('ekspeditor');
+  const cleaner = pack('renholder');
+  let state = S.createInitialState(unemployed);
+  let switches = 0;
+  let played = 0;
+  for (let day = 1; day <= 21; day++) {
+    assert.equal(state.livsdag, day, 'true player age continues across role changes');
+    while (!state.dagFerdig) {
+      const scene = R.selectNextScene(state, unemployed);
+      if (scene) {
+        const available = scene.valg.filter(choice => !choice.skills_requirement);
+        assert.ok(available.length, 'every personal day has an ordinary choice');
+        R.applyChoice(state, unemployed, scene.id, available[0].id);
+        played++;
+      } else R.advance(state, unemployed);
+      assert.ok(played < 950, 'no loops through the real story');
+    }
+    if ([8, 15].includes(day)) {
+      const storyProof = state.arkiv.filter(entry => /^wave_e_life21_/.test(entry.sceneId));
+      assert.ok(storyProof.length, 'authored personal practice exists before switching roles');
+      const family = state.relasjoner.familie;
+      const friend = state.relasjoner.venn;
+      const focus = state.tidligereValg.life21_initial_focus;
+      const newWork = day === 8 ? clerk : cleaner;
+      const atWork = S.selectRole(state, newWork);
+      switches++;
+      assert.equal(atWork.livsdag, day, 'switching jobs never skips a life day');
+      assert.equal(atWork.relasjoner.familie, family, 'family follows the person');
+      assert.equal(atWork.relasjoner.venn, friend, 'friendships follow the person');
+      assert.equal(atWork.tidligereValg.life21_initial_focus, focus);
+      assert.ok(storyProof.every(entry => atWork.arkiv.some(row =>
+        row.sceneId === entry.sceneId && row.valgId === entry.valgId)),
+        'the new job carries actual played private history, not a generic reset');
+      state = S.selectRole(atWork, unemployed);
+      switches++;
+      assert.equal(state.dag, day, 'the previous story resumes on the original day');
+      assert.equal(state.livsdag, day);
+      assert.equal(state.relasjoner.familie, family);
+      assert.equal(state.relasjoner.venn, friend);
+      assert.ok(storyProof.every(entry => state.arkiv.some(row =>
+        row.sceneId === entry.sceneId && row.valgId === entry.valgId)));
+      assert.equal(new Set(state.arkiv.map(row => row.sceneId)).size, state.arkiv.length,
+        'round-trip role changes cannot duplicate archived private events');
+    }
+    if (day < 21) R.startNextDay(state, unemployed);
+  }
+  assert.equal(switches, 4);
+  assert.equal(state.rolleBytter.length, 4, 'both job and return transitions are recorded');
+  assert.equal(state.rolle, 'arbeidsledig');
+  assert.equal(state.livsdag, 21);
+  assert.equal(state.tidligereValg.life21_direction, 'skaper');
+  assert.ok(state.privatHistorie?.arkiv?.some(row =>
+    row.sceneId === 'wave_e_life21_d16_arbeidsro' && row.livsdag === 16),
+    'week-three practice is carried into the final personal state');
+  assert.ok(state.arkiv.some(row =>
+    row.sceneId === 'wave_e_life21_d21_skape_veien' && row.livsdag === 21),
+    'day-21 personal decision remains playable after real role swaps');
+});
