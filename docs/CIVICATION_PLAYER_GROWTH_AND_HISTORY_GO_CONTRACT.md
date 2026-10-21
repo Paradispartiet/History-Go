@@ -2,6 +2,14 @@
 
 Status: **besluttet produkt- og designkontrakt, 21. oktober 2026**. Ikke en erklæring om ferdig runtime, migrert state eller bestått 14-dagers spillerreise. Denne filen definerer ønsket samspill og eiergrenser; konkrete feltnavn, numerisk balanse og lagring må implementeres og testes i eksisterende motorer. Kanonisk inngang: [CIVICATION_README.md](CIVICATION_README.md).
 
+## Treukersreisen: livsposisjon som dokumentert resultat (21.10.2026)
+
+Den første hele livsreisen sikter nå mot **21 gjennomførte spilldager**. Første uke bygger handling og grunnlag, andre uke gir sosialt etterspill, og tredje uke lar spilleren delta, prøve, lære, inngå avtaler og oppleve uenighet uten å gjenta NAV- og søknadspost som hovedinnhold.
+
+Etter en **faktisk spilt dag 21** åpner eksisterende `CivicationLifePositions` en av to valgbare posisjoner på grunnlag av verifisert Life Story-arkiv og utført handling: **Nærmiljøbidragsyter** (fullført konkret bidrag) eller **Nærmiljøutforsker** (undersøkt et miljø gjennom reell deltakelse). Kalenderdag eller NAV-status alene er utilstrekkelig. Ingen meritter, autorisasjon, jobb, ytelse eller penger opprettes automatisk; spilleren velger posisjonen frivillig i samme livsprofil som før.
+
+Dag 8→13 og dag 15→20/21 har forfattede forgreninger med særskilte konsekvenser. Delte scener, flagg og arkiv er en del av den eksisterende private hukommelsen og følger jobbbytte. «Utforsk History Go» forblir frivillig og tierbaserte særkapitler beholder sine egne merittvilkår. Dags- og livsposisjonssimuleringer er ikke alene full nettleser-, økonomi-, NPC- eller skylagringsakseptanse.
+
 ## 1. Grunnregel: spilleren lever et liv – med eller uten jobb
 
 **Arbeidsledig er en arbeids-/aktivitetssituasjon, ikke en livsposisjon og ikke en karakterklasse.** En spiller uten jobb skal kunne fortsette Life Stories: relasjoner, kjærlighet, familie, vennskap, fritid, hobbyer, læring, økonomi, bolig, byliv, konflikter og nye muligheter. Historiene skal være drevet av spillerens faktiske valg, opplevde hendelser og livskontekst – ikke av at en jobbrolles postboks er fylt.
