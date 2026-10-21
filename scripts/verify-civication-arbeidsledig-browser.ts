@@ -5,7 +5,7 @@ import { join } from 'node:path';
 
 // One browser day through real controls. No direct writes to the game clock
 // and no test invocation of the phase-advance API.
-async function nextDayViaUi(page: any, scenarioId: string, day: number) {
+export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
   for (let step = 0; step < 55; step++) {
     const before = await page.evaluate(() => {
       const app = globalThis as any;
@@ -44,8 +44,26 @@ async function nextDayViaUi(page: any, scenarioId: string, day: number) {
     }
 
     const close = page.locator('#civiNextActionModal.is-open button[data-civi-next-action-close]').first();
-    if (await close.count()) await close.click();
-    await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
+    // The next-action modal can disappear during an asynchronous re-render
+    // between DOM lookup and click. An already-dismissed modal is not a gate.
+    if (await close.isVisible().catch(() => false)) {
+      try {
+        await close.click({ timeout: 2000 });
+      } catch (error) {
+        if (await close.isVisible().catch(() => false)) throw error;
+      }
+    }
+    // Next-action resolution can leave the Personlig/Innboks popup over Min dag.
+    // Use its real day-advance action when visible; otherwise close the popup
+    // before clicking the regular day button. Never force-click through overlays.
+    const popupAdvance = page.locator('#civiSectionPopup.is-open [data-civi-next-action-advance]').first();
+    if (await popupAdvance.isVisible().catch(() => false)) {
+      await popupAdvance.click({ timeout: 12000 });
+    } else {
+      const popupClose = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popupClose.isVisible().catch(() => false)) await popupClose.click({ timeout: 12000 });
+      await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
+    }
     await page.waitForTimeout(180);
     const after = await page.evaluate(() => ({
       day: Number((globalThis as any).CivicationCalendar?.getClock?.().dayIndex),

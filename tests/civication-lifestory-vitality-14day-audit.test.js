@@ -271,6 +271,21 @@ test('day-21 life direction is earned from a saved choice; career remains indepe
     }
   }
   assert.equal(positions.getUnlockedPositions('liv_treuker')[0].label, 'Skaper');
+  // Day 21's declared identity is not sufficient without a witnessed
+  // first step and an archived, focus-relevant practice on day 16.
+  for (const missing of ['wave_e_life21_d8_foerste_spor', 'wave_e_life21_d16_arbeidsro']) {
+    const altered = copy(state);
+    altered.arkiv = altered.arkiv.filter(entry => entry.sceneId !== missing);
+    if (altered.privatHistorie?.arkiv) {
+      altered.privatHistorie.arkiv = altered.privatHistorie.arkiv
+        .filter(entry => entry.sceneId !== missing);
+    }
+    saved.raw = JSON.stringify(altered);
+    assert.equal(positions.getUnlockedPositions('liv_treuker').length, 0,
+      'a declared life direction must have archived development: ' + missing);
+  }
+  saved.raw = JSON.stringify(state);
+  assert.equal(positions.getUnlockedPositions('liv_treuker')[0].label, 'Skaper');
   assert.equal(positions.getLifeContext().primary_life_position, null,
     'life direction is never auto-selected');
   const atWork = S.selectRole(state, clerk);
