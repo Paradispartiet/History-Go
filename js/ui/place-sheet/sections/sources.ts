@@ -2,6 +2,7 @@ import { resolvePlaceKnowledgeContext } from "../place-section-context";
 
 type SourceLike = Record<string, any>;
 type PlaceLike = Record<string, any>;
+type SourceLink = { type: string; label: string; url: string; previewImage?: string; previewAlt?: string; credit?: string; license?: string };
 
 type PlaceSheetSourcesApi = {
   renderHtml: (place: PlaceLike, articles?: SourceLike[]) => string;
@@ -78,7 +79,7 @@ export function renderCanonicalSourcesHtml(place: PlaceLike, articles: SourceLik
     ? place.source_summary
     : (place?.sourceSummary || {});
   const labels = uniqueBy(strings(sourceProfile?.safe_sources || sourceProfile?.sources), value => value);
-  const configuredLinks = [place, ...list(articles)].flatMap(value => list(value?.externalLinks)).map(link => ({
+  const configuredLinks: SourceLink[] = [place, ...list(articles)].flatMap(value => list(value?.externalLinks)).map(link => ({
     type: text(link?.type || "source"),
     label: text(link?.label || link?.title),
     url: safeHttpsUrl(link?.url),
@@ -87,12 +88,12 @@ export function renderCanonicalSourcesHtml(place: PlaceLike, articles: SourceLik
     credit: text(link?.credit),
     license: text(link?.license)
   }));
-  const beforeAfterLinks = [
+  const beforeAfterLinks: SourceLink[] = [
     ...strings(place?.for_na?.sources || place?.for_na?.kilder || place?.for_na?.source),
     text(place?.for_na?.beforeImageMeta?.sourcePage || place?.for_na?.before_image_meta?.sourcePage),
     text(place?.for_na?.nowImageMeta?.sourcePage || place?.for_na?.now_image_meta?.sourcePage)
   ].map(url => ({ type: "image_source", label: "Bilde- og sammenligningskilde", url: safeHttpsUrl(url) }));
-  const links = uniqueBy([...configuredLinks, ...beforeAfterLinks].filter(link => link.url), link => link.url);
+  const links: SourceLink[] = uniqueBy([...configuredLinks, ...beforeAfterLinks].filter(link => link.url), link => link.url);
   const photos = links.filter(link =>
     link.type === "image_source" && link.previewImage && link.credit && sourcePhotoLicenses.has(link.license));
 
