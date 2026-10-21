@@ -169,6 +169,21 @@ function setup({ activeCareer = 'handel', startDay = 1, oldWallet = null, withCl
 }
 
 {
+  const s = setup();
+  s.tick();
+  for (let day = 1; day <= 7; day++) {
+    s.recordDay(day);
+    s.day(day + 1);
+  }
+  s.career('unknown-category');
+  s.tick();
+  assert.equal(s.wallet().balance, 80, 'saved earned wages survive unavailable current career data');
+  const restored = setup({ startDay: 8, oldWallet: JSON.parse(JSON.stringify(s.wallet())) });
+  restored.tick();
+  assert.equal(restored.wallet().balance, 80, 'wallet rehydrate cannot pay an already settled week twice');
+}
+
+{
   const s = setup({ startDay: 4, oldWallet: { balance: 60, last_tick_iso: '2026-10-01T10:00:00.000Z' } });
   s.tick();
   assert.equal(s.wallet().balance, 60, 'migrating an old wallet must not mint back pay');
