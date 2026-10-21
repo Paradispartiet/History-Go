@@ -27,3 +27,7 @@ Etter at denne sluttrapporten og varig test-workflow er lagt inn, må alle **rel
 ## Andre sluttkontroll etter samordning med main
 
 GitHub Actions https://github.com/Paradispartiet/History-Go/actions/runs/39648898507 er **bestått**, inkludert regenerering av globale Knowledge-/Fagverkdata fra oppdatert `main`, og ny faktisk History Go-gjennomspilling på 390 og 1440 px med 21/21 fullquizspørsmål. Nye Poland-fagpakker fra main er bevart. Den midlertidige synkroniserings-workflowen fjernes; varig Skraperudtjern-browserworkflow beholdes.
+
+## Kanoniske Knowledge-koblinger
+
+Alle **21/21** fullquiz-spørsmål har nå generatorproduserte `primary_knowledge_unit_id` / `knowledge_unit_ids` og `knowledge_link_status=linked`. Egen genereringsjobb https://github.com/Paradispartiet/History-Go/actions/runs/39650487505 bestod `knowledge:canonical:check` og skrev det kildeforankrede resultatet tilbake til samme PR. Den midlertidige engangs-workflowen er fjernet før slutt-CI.
