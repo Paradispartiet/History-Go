@@ -116,3 +116,29 @@ test("Oslo batch04: no new player-facing quiz question exposes internal model te
   }
   assert.deepEqual(offenders, [], "No fullquiz may ask about internal History Go or canonical target data");
 });
+
+
+test("Oslo batch04: the two formerly internal questions now teach place history with consistent Knowledge", () => {
+  const unitRows = read("data/knowledge/knowledge_units.generated.json").units;
+  const byKnowledgeId = new Map(unitRows.map(unit => [unit.knowledge_unit_id, unit]));
+  const checks = [
+    ["oslo_mek", "oslo_mek_quiz_1", "Hvilket skipsverft preget området som senere ble Aker Brygge?"],
+    ["grev_wedels_plass", "grev_wedels_plass_quiz_7", "Hvilket byrom betegner navnet Grev Wedels plass?"]
+  ];
+  for (const [id, questionId, expectedText] of checks) {
+    const q = quizFor.get(id).questions.find(item => item.id === questionId);
+    assert.ok(q, questionId + ": canonical question missing");
+    assert.equal(q.question, expectedText, questionId + ": editorial correction regressed");
+    assert.ok(!forbidden.test(q.knowledge), questionId + ": internal terminology persists in Knowledge");
+    assert.ok(!forbidden.test(q.claim_basis), questionId + ": internal terminology persists in source claim");
+    assert.equal(q.knowledge_unit_ids[0], q.primary_knowledge_unit_id);
+    const unit = byKnowledgeId.get(q.primary_knowledge_unit_id);
+    assert.ok(unit, questionId + ": linked canonical Knowledge is missing");
+    assert.equal(unit.canonical_claim, q.knowledge, questionId + ": derived Knowledge claim is out of sync");
+    assert.equal(unit.summary, q.knowledge, questionId + ": derived Knowledge summary is stale");
+    assert.ok(unit.quiz_refs.includes(q.quiz_id), questionId + ": Knowledge lost its source quiz reference");
+  }
+  const aker = quizFor.get("oslo_mek").questions.find(q => q.id === "oslo_mek_quiz_1");
+  assert.ok(!forbidden.test(aker.topic), "Aker place topic must not reference the data model");
+  assert.ok(!aker.core_concepts.some(concept => /target-avklaring|canonical/i.test(concept)), "Internal target concept must not be part of learning");
+});
