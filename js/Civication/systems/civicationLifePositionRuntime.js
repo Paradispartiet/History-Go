@@ -284,7 +284,7 @@
     hverdagsbygger: { label: "Hverdagsbygger", description: "Du arbeider for en holdbar rytme i eget liv.", hooks: ["hverdag", "rytme", "mestring"] },
     utforsker: { label: "Utforsker", description: "Du vil undersøke flere mulige retninger før du velger én.", hooks: ["nysgjerrighet", "utforskning", "valgfrihet"] }
   });
-  const THREE_WEEK_SCENE = /^wave_e_life21_d21_(skape_veien|narmiljo_veien|relasjon_veien|rytme_veien)$/;
+  const THREE_WEEK_SCENE = /^wave_e_life21_d21_(skape_veien|narmiljo_veien|relasjon_veien|rytme_veien|jobb_veien)$/;
 
   function getThreeWeekPosition() {
     const saved = safeParse(localStorage.getItem("civication_lifestory_v1"), null);
@@ -302,7 +302,7 @@
       Number(entry.livsdag) >= 21 && entry.valgId === result &&
       (result === "utforsker" || ({
         skape_veien: "skaper", narmiljo_veien: "narmiljobygger",
-        relasjon_veien: "relasjonsbygger", rytme_veien: "hverdagsbygger"
+        relasjon_veien: "relasjonsbygger", rytme_veien: "hverdagsbygger", jobb_veien: "hverdagsbygger"
       })[entry.sceneId.replace("wave_e_life21_d21_", "")] === result)
     );
     if (!def || !approved) return [];
