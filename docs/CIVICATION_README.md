@@ -56,6 +56,8 @@ Arbeidsledig er **arbeidsstatus/livsomstendighet**, ikke en livsposisjon spiller
 
 Dag-7-veiledning og History Go-oppdragstoast er **frivillige**. `Fortsett privatlivet` skal fortsatt være tilgjengelig når private scener venter. Badges og eksplisitt aktivering kan kreves for **bestemte valgfrie kapitler**, aldri for en ordinær ny spilldag. Ikke forveksle dag-7-kapittelporten med 14-dagers end-to-end-godkjenning.
 
+Detaljert normativt produktmål, eiergrenser og akseptansekriterier er samlet i [**CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md**](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md); de seks ferdighetsskalaene er fortsatt planlagt funksjonalitet.
+
 ## History Go som Civication-modus
 
 Når Civication sender spilleren til History Go, skal History Go opptre som et lett companion-modus for den aktive oppgaven, ikke som en egen Civication-runtime.
@@ -70,16 +72,6 @@ Aktiv kontrakt:
 - retur til Civication reconciler åpne tasks mot persistert History Go-state.
 
 Normative detaljer ligger i [`CIVICATION_HISTORY_GO_TASK_SCHEMA.md`](./CIVICATION_HISTORY_GO_TASK_SCHEMA.md) og [`CIVICATION_HISTORY_GO_COMPLETION_BRIDGE.md`](./CIVICATION_HISTORY_GO_COMPLETION_BRIDGE.md). Runtime-regresjon for companion-moduset ligger blant annet i `tests/civication-history-go-mode.test.js`.
-
-## Arbeidsledighet, ferdigheter og samlingen i livsverdenen (21. oktober 2026)
-
-**Arbeidsledig er jobb-/livsomstendighet, ikke valgt livsidentitet.** Vanlige private Life Stories (vennskap, kjærlighet, fritid, konflikter, læring, økonomi, bolig og byliv) skal fortsette etter dag 7 uten krav om nytt jobbtilbud, Badge eller bestemt livsposisjon. Frivillige livsposisjoner kan åpne *ekstra* historiekapitler. «Fortsett privatlivet» og «Utforsk History Go» skal kunne eksistere samtidig; companion-toasten veileder og tildeler ikke noe gratis.
-
-Dagens separate målelag er Life Story-tilstand/psyke, syv kapitaldimensjoner, situert sosial tillit, fagmeritter og samling, samt selvvalgte livsposisjoner. **Målmodellen** legger til seks tverrgående ferdigheter (foreløpig 0–100): visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling og handlekraft. De er **ikke** implementert som seks nye scorefelter. Eksisterende psykologikompetanse og jobblæring beholdes. Streetkred er troverdighet i konkrete miljøer, avledet fra subkulturell kapital og målgruppebasert omdømme – ikke generell popularitet eller automatisk følge av besøk.
-
-History Go-evidens (besøk, kunnskap, quiz, People, merker og samling) skal bidra til samtaler, interesser, Life Stories, utvikling og mulige nye livsroller. Et stedbesøk gir ikke automatisk visdom, streetkred, jobb eller autorisasjon. Gjenbruk `civicationProfileSignalBridge.js` for interessesignaler, `civicationHistoryGoTaskBridge.js` for faktisk oppgaveevidens, og eksisterende eiere for sosial posisjon og kompetanse.
-
-Den detaljerte og statusmerkede produktkontrakten er [spillerutvikling og History Go](./CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md). Se [14-dagers-akseptansen](./CIVICATION_ORGANIC_14_DAY_AND_VITALITY_ACCEPTANCE_2026_10_20.md) for kravet om faktisk arbeidledig dag 8–14 uten Badge. Ingen ny parallell spiller-/skill-motor.
 
 ## People i scenarioer
 
