@@ -54,6 +54,10 @@ Krav til opptjening: definert handling, dokumentert kilde/event, idempotent bel�
 
 ### Skills i forfattede Life Stories (implementert v1-eksempel)
 
+**Utvideleg praksisdekning (21.10.2026):** De seks første forfattede valgene er utvidet med 23 flere, til **29 dokumenterte Skills-valg** i arbeidsledighets-, Ekspeditør- og privatlivsfortellingene. Eksempler: faktisk sendt søknad eller NAV-dokumentasjon gir Handlekraft; kontrollert lagerstatus, kassapris og lukkeskift gir Praktisk mestring; gjennomført musikkprøve og kreativ tilbakemeldingsrunde gir Kreativitet; undervisning og forklaring til andre gir Formidling. Hver kildeoppføring må ha et spesifikt, sannhetssatt effektflagg; handlinger som bare er ønsker eller plan om å lære i History Go gir ikke gratispoeng. Verdiene er fortsatt forsiktige 1–2 poeng per dokumentert scenevalg, deduplisert på scene-ID. Denne bolken øker authored dekning uten å endre motor, verdifordeling på 0–100, psyke eller Streetkred.
+
+
+
 Seks konkrete valg i eksisterende pakker (`arbeidsledig`, `ekspeditor` og felles privatliv) er nå koblet til én Skill hver: `agency` (ryddet dokumentasjon via telefonsamtale), `creativity` (laget noe i eget prosjekt), `wisdom_judgement` (analysert jobbtilbakemelding og laget læringsplan), `social_awareness` (ærlig og krevende svar i en vennskapsrelasjon), `practical_mastery` (kontrollert og korrigert prisplakater) og `communication` (lært bort arbeidsmetode). Dette er **seks forfattede, valgfrie hendelser**, ikke en garanti for at én spiller tjener alle Skills automatisk.
 
 `lifestoryContent` validerer nå `valg.skills_practice = { skill_id, activity_type, evidence_flag, delta }`, inkludert at `evidence_flag` er en faktisk `true`-effekt av akkurat det valget. `CivicationLifestoryUI.onChoose` registrerer øvingen **etter** vellykket `Runner.applyChoice` og `State.save`, og bruker stabil `lifestory:<sceneId>` som dedupliseringsnøkkel. Ingen poeng ved å åpne en scene, lese fortellingstekst, velge feil eller være på History Go. Testmodus skal ikke kreditere Skills. På denne måten fortsetter `job_learning_progress`, psyke, kapital og relasjoner å ha sine egne eiere.

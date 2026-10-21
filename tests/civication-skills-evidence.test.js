@@ -124,7 +124,30 @@ const authored = [
   ["arbeidsledig", "d3_soknad_svar", "les_hva_de_saa_etter", "wisdom_judgement"],
   ["life", "privat_kveld_svar", "svar_aerlig", "social_awareness"],
   ["ekspeditor", "apning_01_forste_okt", "sjekk_plakatene", "practical_mastery"],
-  ["ekspeditor", "d2_formiddag_vikaren_kommer_til_deg", "laer_bort_metoden", "communication"]
+  ["ekspeditor", "d2_formiddag_vikaren_kommer_til_deg", "laer_bort_metoden", "communication"],
+  ["arbeidsledig","soknad_01_hullet","aerlig","communication"],
+  ["arbeidsledig","soknad_01_hullet","referanse","social_awareness"],
+  ["arbeidsledig","rytme_01_dagen_flyter","bygg_ramme","agency"],
+  ["arbeidsledig","d2_frist_stress","send_foer_frokost","agency"],
+  ["arbeidsledig","d2_meldekort_ok","svar_takk","social_awareness"],
+  ["arbeidsledig","d2_veien_videre","soek_bredt","agency"],
+  ["arbeidsledig","d2_nav_dokumenter_venter","send_videre","agency"],
+  ["arbeidsledig","d5_booker","skriftlig","wisdom_judgement"],
+  ["arbeidsledig","d6_sen_prove","prove","creativity"],
+  ["arbeidsledig","d4_skape_moetet","proev","creativity"],
+  ["ekspeditor","prisfeil_02_koen","rett_synlig","practical_mastery"],
+  ["ekspeditor","ny_kollega_01_midt_i_koen","hjelp_kort","communication"],
+  ["ekspeditor","varen_01_som_ikke_finnes","aerlig_om_lageret","social_awareness"],
+  ["ekspeditor","varen_01_som_ikke_finnes","sjekk_selv","practical_mastery"],
+  ["ekspeditor","retur_01_uten_kvittering","hold_regelen","communication"],
+  ["ekspeditor","retur_01_uten_kvittering","hent_lene","wisdom_judgement"],
+  ["ekspeditor","lukking_01_fem_minutter","full_lukking","agency"],
+  ["ekspeditor","lukking_01_fem_minutter","laas_presis","practical_mastery"],
+  ["life","d2_laere_02_bygg_videre","del_det","communication"],
+  ["life","familie_01_hilsen_hjemmefra","ta_praten","social_awareness"],
+  ["life","d2_ettermiddag_rommet_som_forsvant","sette_gjerde_naa","agency"],
+  ["life","dag_01_oppsummering","endre_maaten","agency"],
+  ["life","dag2_kveld_oekonomi_tung","legg_en_plan","wisdom_judgement"]
 ];
 
 function build(roleId) {
@@ -149,6 +172,7 @@ for (const [role, sceneId, choiceId, skillId] of authored) {
     "practice is backed by a real changed story flag");
   ids.add(skillId);
 }
+assert.equal(authored.length, 29, "six original and 23 additional real practice choices");
 assert.equal(ids.size, 6, "all six Skills are reachable in authored story content");
 
 // Metadata cannot award for missing evidence or arbitrary point grants.
