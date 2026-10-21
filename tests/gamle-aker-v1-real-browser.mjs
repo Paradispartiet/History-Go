@@ -14,7 +14,7 @@ const cards=data('data/quizcards/historie/topp10_historie_sted_kort_batch1.json'
 assert.equal(place.id,id);
 assert.equal(cards.filter(c=>c.targetId===id).length,1);
 assert.equal(cards.find(c=>c.targetId===id).questions.length,10);
-assert.ok(fs.statSync(place.image).size>12000&&fs.statSync(place.cardImage).size>12000);
+assert.ok(fs.statSync(place.image).size>12000&&fs.statSync(place.cardImage).size>12000&&fs.statSync(place.frontImage).size>12000);
 const folder='artifacts/gamle_aker_kirke-browser';
 fs.mkdirSync(folder,{recursive:true});
 const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml','.woff2':'font/woff2'};
@@ -45,7 +45,7 @@ try{
    const description=await page.locator('#placeCard').innerText();
    assert.ok(/Gamle Aker kirke/i.test(description)&&/fossil|kalkstein|middelalder/i.test(description),name+': Gamle Aker history missing from actual app');
    const image=await page.locator('#pcFrontImage').evaluate(el=>({src:el.currentSrc||el.src,width:el.naturalWidth,height:el.naturalHeight}));
-   assert.ok(/gamle_aker_kirke__sorsiden/.test(image.src)&&image.width>0,name+': local documentary portrait not decoded');
+   assert.ok(image.src.includes('gamle_aker_kirke_front_portrait.webp')&&image.width===600&&image.height===800,name+': actual local 600 × 800 portrait not decoded');
    await page.screenshot({path:folder+'/'+name+'-front.png',fullPage:true});
    const front=page.locator('#pcFrontCardFlip');
    await front.click({position:{x:22,y:Math.max(24,(await front.boundingBox()).height-25)},timeout:8000});
