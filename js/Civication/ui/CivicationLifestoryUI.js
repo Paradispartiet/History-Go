@@ -791,7 +791,7 @@
         : '<p>Første kapittel er ferdig. Utforsk History Go for å bygge kunnskap, og gå tilbake til livsposisjonene i Civication når du har låst opp en retning.</p>')
       + '<div class="civi-lifestory-actions">'
       + '<button class="civi-btn primary" type="button" data-lifestory-study>Utforsk History Go</button>'
-      + (chosenLifePosition ? '<button class="civi-btn" type="button" data-lifestory-life-profile>Se livsposisjoner</button>' : '')
+      + '<button class="civi-btn" type="button" data-lifestory-life-profile>Se livsposisjoner</button>'
       + '</div></section>';
     // A pending mail needs a reachable player action in Min dag, even when
     // there is no active job or visible top-action card.
@@ -1185,11 +1185,10 @@
       }
       if (target.closest("[data-lifestory-study]")) {
         const suggestion = getRoleSuggestion();
-        if (suggestion?.badge_id && Number(suggestion.threshold) > chapterBadgePoints(suggestion.badge_id)) {
-          // Same persistent mission toast that already follows Civication tasks
-          // into History Go; no fabricated job, badge or finished task.
-          window.CivicationHistoryGoDeepLink?.startLifePositionGuidance?.(suggestion);
-        }
+        // A chosen profile without an explicit point threshold and the
+        // open exploratory route both carry a valid guidance card. Completion
+        // is never faked: the History Go toast only marks numeric goals done.
+        window.CivicationHistoryGoDeepLink?.startLifePositionGuidance?.(suggestion);
         window.CivicationLifestoryActions?.perform?.({ type: "gaa_til_byen" });
         return;
       }
