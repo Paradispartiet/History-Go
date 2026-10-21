@@ -193,6 +193,66 @@ for (const bad of [
   assert.throws(() => Content.buildContent(broken), /skills_practice/);
 }
 
+// Prove that earned, persistent Skills change *available actions*, not just UI bars.
+// Each gate is optional: the original scene always retains ordinary choices.
+const GateState = require("../js/Civication/lifestory/lifestoryState");
+const GateRunner = require("../js/Civication/lifestory/lifestoryRunner");
+for (const [role, sceneId, bonusId, skillId, minScore] of [
+  ["arbeidsledig", "d3_det_du_kan", "skriv_kompetanseeksempel", "communication", 1],
+  ["ekspeditor", "prisfeil_02_koen", "rett_og_logg_avvik", "practical_mastery", 2]
+]) {
+  const pack = role === "ekspeditor" ? expeditorContent : unemployedContent;
+  const scene = pack.scenes.find(row => row.id === sceneId);
+  const bonus = scene.valg.find(row => row.id === bonusId);
+  assert.deepEqual(bonus.skills_requirement, { skill_id: skillId, min_score: minScore });
+  assert(scene.valg.filter(choice => !choice.skills_requirement).length >= 2,
+    "an unskilled player always has multiple viable choices");
+  const story = GateState.createInitialState(pack);
+  story.dag = scene.dag;
+  story.fase = scene.fase;
+  story.opplaasteScener.push(sceneId);
+  const existingApi = global.CivicationState;
+  let skillsState = {};
+  global.CivicationState = {
+    getState: () => skillsState,
+    setState(patch) { skillsState = { ...skillsState, ...patch }; return skillsState; }
+  };
+  try {
+    assert.equal(GateRunner.getChoiceAvailability(bonus).available, false,
+      "unknown Skill never creates permission");
+    const before = JSON.stringify(story);
+    assert.throws(() => GateRunner.applyChoice(story, pack, sceneId, bonusId),
+      /dokumentert Skills-praksis/, "direct runner calls also enforce the gate");
+    assert.equal(JSON.stringify(story), before, "rejected choice changes no story state");
+    assert.equal(GateRunner.getChoiceAvailability(scene.valg.find(x => !x.skills_requirement)).available, true,
+      "ungated choice remains enabled");
+    skillsState = { skills_v1: { scores: { [skillId]: minScore - 1 } } };
+    assert.equal(GateRunner.getChoiceAvailability(bonus).available, false, "insufficient practice is locked");
+    skillsState = { skills_v1: { scores: { [skillId]: minScore } } };
+    assert.equal(GateRunner.getChoiceAvailability(bonus).available, true, "earned practice opens bonus");
+    GateRunner.applyChoice(story, pack, sceneId, bonusId);
+    assert(story.spilteScener.includes(sceneId), "bonus action is played and archived");
+    assert.equal(story.arkiv.find(x => x.sceneId === sceneId).valgId, bonusId);
+  } finally { global.CivicationState = existingApi; }
+}
+// Never publish content whose whole choice set needs Skills.
+for (const invalid of [
+  { skill_id: "not_a_skill", min_score: 2 },
+  { skill_id: "communication", min_score: 0 },
+  { skill_id: "communication", min_score: 101 }
+]) {
+  const broken = JSON.parse(JSON.stringify(packageForValidation));
+  broken.roleScenes.scenes.find(x => x.id === "d3_det_du_kan")
+    .valg[0].skills_requirement = invalid;
+  assert.throws(() => Content.buildContent(broken), /skills_requirement/);
+}
+const allLocked = JSON.parse(JSON.stringify(packageForValidation));
+const gatedScene = allLocked.roleScenes.scenes.find(x => x.id === "d3_det_du_kan");
+for (const choice of gatedScene.valg) choice.skills_requirement = { skill_id: "communication", min_score: 1 };
+assert.throws(() => Content.buildContent(allLocked), /minst ett valg/);
+const liveStoryHtml = fs.readFileSync(path.join(ROOT, "js/Civication/ui/CivicationLifestoryUI.js"), "utf8");
+assert(liveStoryHtml.includes("civi-lifestory-skill-hint") && liveStoryHtml.includes('disabled aria-disabled='),
+  "locked choices are visibly explained and disabled, not hidden");
 async function main() {
   // A real runner path establishes the current scene before mounting the UI.
   // Otherwise the default scene ranking may show an unrelated private scene.
