@@ -12,7 +12,7 @@ Canonical place: `data/places/natur/oslo/places_oslo_natur_hovedsteder/ostensjov
 - 2. oktober 1992: naturreservat opprettet, 539 dekar – historisk verneforskrift og Byleksikon.
 - 2002: Østensjøområdet miljøpark vedtatt av Oslo bystyre – Østensjøvannets Venner.
 
-Viktig kildegrense: Lovdata-forskriften fra 1992 er **historisk**; den ble erstattet av ny forskrift i 2026. Unngå å fremstille eldre ferdselsregler som dagens. Fugletall og vannkvalitetsmål kan endre seg og oppgis ikke som aktuelle tall uten egne oppdaterte målinger.
+Viktig kildegrense: Forskriften fra 2. oktober 1992 dokumenterer det historiske vernevedtaket. Statsforvalteren sendte forslag til utvidelse og ny forskrift på høring i 2026 (høringsfrist 1. august). Forskriftsteksten fra 2026 er et **forslag**, og dens klausul om å oppheve 1992-forskriften dokumenterer ikke i seg selv at nytt vedtak er fattet. Ikke beskriv høringsforslaget som gjeldende rett eller påstå at 1992-forskriften er opphevet uten etterfølgende offentlig kunngjøring. Henvisning: https://www.statsforvalteren.no/ostfold-buskerud-oslo-og-akershus/miljo-og-klima/nyttvern/forslag-til-vern-av-nye-naturreservater-sendes-na-pa-hoering/ Fugletall og vannkvalitetsmål kan endre seg og oppgis ikke som aktuelle tall uten egne oppdaterte målinger.
 
 ## V1-steg
 Stedstekst og stedseiet kuratert Fagverk er lagt i canonical fil. Gjenstår: komplett v4.2-pakke med hash og setningsdekning, 21 kildebaserte fullquizspørsmål, ti QuizCard-spørsmål, lokale lisensierte stedbilder, alle generatorer, i18n og faktisk Chromium-kontroll. Alt skal avsluttes på **én** PR-gren, ikke parallelt. Bogstadvannet starter først etter merge.
