@@ -20,7 +20,7 @@
 - `tests/gamle-aker-v1-real-browser.mjs`: ekte History Go-app i 390 og 1440 px, lokal fotodekoding, QuizCard-flipp etter animasjon, quiz-navigasjon og Fagverk.
 - `.github/workflows/gamle-aker-v1-browser.yml`: kjører begge testene og full 21/21-quiz på mobil og desktop, med skjermbildebevis.
 - PR #6549 (fortelling, kildebelagt QuizCard og 21/21 fullquiz) er merget til `main`, merge SHA `4d7686514a8311777b752e1bd1a7fe6289f202b6`; 13/13 arbeidsflyter bestått.
-- Bilderunden er en separat oppfølging som ikke endrer fullquiz, tekst, Fagverk, stedets identitet eller koordinater. Sluttvurdering av 600 × 800 portrettet krever grønn browser-QA på dette PR-headet. Fram til da: **v1-bildekandidat, ikke endelig QA-godkjent**.
+- Bilderunden er en separat oppfølging som ikke endrer fullquiz, tekst, Fagverk, stedets identitet eller koordinater. Sluttvurdering av 600 × 800 portrettet: **faktisk browser-QA PASS** i History Go på 390 og 1440 px (GitHub Actions #39679504749); korrekt dekodet bilde, QuizCard-flipp, Fagverk og alle 21 fullquizspørsmål på begge skjermstørrelser. **Endelig merge krever grønn CI på siste dokumentasjons-/metadatacommit.**
 
 ## Kilder
 - https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/sthans/forsideoppslag/gamle-aker/
