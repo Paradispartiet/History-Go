@@ -1,11 +1,127 @@
 // Real 21-day Civication UI regression. No injected Life Story days,
 // Skills, job offers, Badge points or precompleted chapters.
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { nextDayViaUi } from './verify-civication-arbeidsledig-browser.js';
 
-export default async function verifyThreeWeekLife(browser: any, origin: string, outputDir: string) {
+
+async function earnMuseumJobThroughHistoryGo(page: any, origin: string) {
+  const appState = () => page.evaluate(() => {
+    const app = globalThis as any;
+    return {
+      story: app.CivicationLifestoryState.load(),
+      clock: app.CivicationCalendar.getClock(),
+      wallet: app.CivicationState.getWallet(),
+      active: app.CivicationState.getActivePosition()
+    };
+  });
+  const before = await appState();
+  assert.equal(before.story.livsdag, 8);
+  assert.equal(before.clock.dayIndex, 8);
+  assert.equal(before.active, null, 'museum employment must be earned during the player journey');
+  const actualChoices = before.story.arkiv.map((entry: any) => [entry.sceneId, entry.valgId, entry.livsdag]);
+
+  const quiz = JSON.parse(readFileSync(join(process.cwd(), 'data/quiz/kunst/munch_museet_sets.json'), 'utf8'));
+  assert.equal(quiz.targetId, 'munch_museet');
+  assert.equal(quiz.categoryId, 'kunst');
+  assert.ok(quiz.sets.length >= 5);
+  await page.goto(origin + '/index.html?hgTest=1#/place/munch_museet', {
+    waitUntil: 'domcontentloaded', timeout: 90000
+  });
+  await page.waitForFunction(() => {
+    const app = globalThis as any;
+    return app.__HG_APP_READY__ === true && app.__HG_ROUTER_STARTED__ === true &&
+      app.document.querySelector('#placeCard')?.dataset.currentPlaceId === 'munch_museet' &&
+      typeof app.QuizEngine?.getTargetSummary === 'function';
+  }, null, { timeout: 90000 });
+  await page.evaluate(() => {
+    const app = globalThis as any;
+    app.TEST_MODE = false;
+    app.QuizEngine.init({ quizFeedbackMs: 120 });
+  });
+  await page.locator('#pcQuiz').click({ timeout: 20000 });
+  await page.waitForFunction(() => (globalThis as any).location.hash.startsWith('#/quiz/munch_museet'), null, { timeout: 20000 });
+  for (const [index, set] of quiz.sets.slice(0, 5).entries()) {
+    for (const question of set.questions) {
+      await page.waitForFunction((expected: string) =>
+        (globalThis as any).document.querySelector('#quizQuestion')?.textContent?.trim() === expected,
+      question.question, { timeout: 25000 });
+      await page.locator('#quizChoices').getByRole('button', {
+        name: question.answer, exact: true
+      }).click({ timeout: 20000 });
+    }
+    await page.waitForFunction((setId: string) =>
+      JSON.parse(localStorage.getItem('hg_quiz_sets_v1') || '{}')[setId]?.completed === true,
+    set.set_id, { timeout: 25000 });
+    assert.equal(await page.evaluate(() =>
+      Number(JSON.parse(localStorage.getItem('merits_by_category') || '{}').kunst?.points || 0)),
+      index + 1, 'each actually played quiz set earns exactly one art merit');
+    if (index < 4) {
+      await page.locator('#quizSummaryPrimary').waitFor({ state: 'visible', timeout: 20000 });
+      await page.locator('#quizSummaryPrimary').click({ timeout: 20000 });
+    }
+  }
+  await page.goto(origin + '/Civication.html', { waitUntil: 'load', timeout: 90000 });
+  await page.waitForFunction(() => {
+    const app = globalThis as any;
+    return !!app.CivicationJobs?.getLatestPendingOffer &&
+      !!app.CivicationLifestoryUI?.getCurrentSceneInfo?.() &&
+      !!app.CivicationState?.getActivePosition;
+  }, null, { timeout: 90000 });
+  await page.waitForFunction(() => {
+    const offer = (globalThis as any).CivicationJobs?.getLatestPendingOffer?.();
+    return offer?.career_id === 'kunst' && Number(offer.threshold) === 5;
+  }, null, { timeout: 30000 });
+  const afterQuiz = await appState();
+  assert.equal(afterQuiz.story.livsdag, 8, 'real History Go learning must not advance private Life Story');
+  assert.equal(afterQuiz.clock.dayIndex, 8, 'real History Go quiz cannot skip Civication day');
+  assert.equal(afterQuiz.wallet.balance, before.wallet.balance, 'merits never directly mint weekly wages');
+  assert.deepEqual(afterQuiz.story.arkiv.map((e: any) => [e.sceneId, e.valgId, e.livsdag]),
+    actualChoices, 'History Go quiz does not replace past private choices');
+  assert.equal(afterQuiz.active, null, 'offer alone is not employment');
+
+  const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]');
+  if (await popup.count()) await popup.click();
+  await page.locator('.civi-footer button[data-category="karriere"]').click({ timeout: 20000 });
+  await page.locator('#activeJobSection .civi-mini-card [data-civi-mini-open]').waitFor({ state: 'visible', timeout: 30000 });
+  await page.locator('#activeJobSection .civi-mini-card [data-civi-mini-open]').click({ timeout: 20000 });
+  await page.locator('#civiSectionPopup.is-open #civiOfferAccept').waitFor({ state: 'visible', timeout: 30000 });
+  await page.locator('#civiSectionPopup.is-open #civiOfferAccept').click({ timeout: 20000 });
+  await page.waitForFunction(() =>
+    (globalThis as any).CivicationState?.getActivePosition?.()?.career_id === 'kunst',
+    null, { timeout: 30000 });
+  const popupAfter = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]');
+  if (await popupAfter.count()) await popupAfter.click();
+  await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+  await page.locator('[data-lifestory-personal-only]').waitFor({ state: 'visible', timeout: 30000 });
+  const afterHire = await appState();
+  assert.match(String(afterHire.active.title), /Vertskap|museum|galleri/i);
+  assert.equal(afterHire.story.livsdag, 8);
+  assert.equal(afterHire.clock.dayIndex, 8);
+  assert.equal(afterHire.wallet.balance, before.wallet.balance, 'accepting paid work cannot back-pay the unemployed week');
+  assert.deepEqual(afterHire.story.arkiv.map((e: any) => [e.sceneId, e.valgId, e.livsdag]),
+    actualChoices, 'private archive survives authentic museum hiring');
+  assert.equal(await page.locator('[data-lifestory-role-status="unavailable"]').count(), 0);
+  assert.equal(await page.locator('[data-lifestory-choice]:not([disabled])').count() > 0, true);
+  assert.doesNotMatch(await page.locator('#civiLifestoryPanel').innerText(), /Meldekort må sendes/);
+  await page.reload({ waitUntil: 'load', timeout: 90000 });
+  await page.waitForFunction(() =>
+    (globalThis as any).CivicationState?.getActivePosition?.()?.career_id === 'kunst'
+      && !!(globalThis as any).CivicationLifestoryUI?.getCurrentSceneInfo?.(),
+    null, { timeout: 90000 });
+  assert.deepEqual((await appState()).story.arkiv.map((e: any) => [e.sceneId, e.valgId, e.livsdag]),
+    actualChoices, 'browser restart preserves pre-employment private archive');
+  await page.locator('[data-lifestory-personal-only]').waitFor({ state: 'visible', timeout: 30000 });
+  return { completedQuizSets: 5, earnedMerits: 5, acceptedCareer: afterHire.active.title };
+}
+
+export default async function verifyThreeWeekLife(browser: any, origin: string, outputDir: string, museumJourney = false) {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  if (museumJourney) await context.addInitScript(() => {
+    localStorage.setItem('hg_onboarding_shown_v1', '1');
+    localStorage.setItem('HG_TEST_MODE', '1');
+  });
   const page = await context.newPage();
   const pageErrors: string[] = [];
   const dayCounts: number[] = [];
@@ -54,6 +170,11 @@ export default async function verifyThreeWeekLife(browser: any, origin: string, 
     };
     let totalSteps = 0;
     for (let day = 1; day <= 21; day++) {
+      if (museumJourney && day === 8) {
+        const offer = await earnMuseumJobThroughHistoryGo(page, origin);
+        assert.equal(offer.completedQuizSets, 5);
+        assert.equal(offer.earnedMerits, 5);
+      }
       let scenesPlayedToday = 0;
       while (true) {
         const before = await readState();
@@ -128,8 +249,15 @@ export default async function verifyThreeWeekLife(browser: any, origin: string, 
           lastSettledDay: economy.lastSettledDay });
         assert.equal(new Set(economy.completedDays.map(r => r.day)).size, economy.completedDays.length,
           'one economic record per played day, including after reload');
-        assert.ok(economy.completedDays.every(r => !r.career && r.net === 0),
-          'no fabricated salary while unemployed');
+        if (museumJourney && day >= 15) {
+          assert.ok(economy.completedDays.every(r => r.career === 'kunst' && Number.isFinite(r.net)),
+            'daily museum wages must come from the actual employment and wage engine');
+          assert.ok(economy.balance > weeklyBalances[0].balance,
+            'earned museum employment must pay after the first complete working week');
+        } else {
+          assert.ok(economy.completedDays.every(r => !r.career && r.net === 0),
+            'no fabricated salary while unemployed');
+        }
         assert.ok(economy.completedDays.every(r => r.day >= expectedCheckpoint),
           'settled days cannot remain payable for a second time');
         assert.equal(economy.nextSettlement, false, 'no duplicate week settlement available');
@@ -155,20 +283,45 @@ export default async function verifyThreeWeekLife(browser: any, origin: string, 
     assert.equal(unlocked.paths.length, 1, 'one optional documented 21-day life path available');
     assert.equal(unlocked.paths[0].label, 'Skaper');
     assert.equal(unlocked.primary, null, 'life path is offered, never activated automatically');
-    assert.equal(unlocked.job, null, 'no job assigned for Life Story progress');
-    assert.equal(unlocked.merits, null, 'ordinary private days do not award History Go merit points');
+    if (museumJourney) {
+      assert.equal(unlocked.job?.career_id, 'kunst', 'formal museum role remains real through day 21');
+      assert.equal(JSON.parse(unlocked.merits || '{}').kunst?.points, 5,
+        'earned History Go merits persist through the final Life Story day');
+    } else {
+      assert.equal(unlocked.job, null, 'no job assigned for Life Story progress');
+      assert.equal(unlocked.merits, null, 'ordinary private days do not award History Go merit points');
+    }
     assert.equal(weeklyBalances.length, 3, 'three game-week checkpoints audited');
     assert.equal(weeklyBalances[0].lastSettledDay, 8);
     assert.equal(weeklyBalances[1].lastSettledDay, 15);
     assert.equal(weeklyBalances[2].lastSettledDay, 15,
       'do not settle a third week early at the end of day 21');
+    if (museumJourney) {
+      assert.ok(weeklyBalances[1].balance > weeklyBalances[0].balance,
+        'week two includes actual earned museum wages after day 8');
+      await nextDayViaUi(page, 'organic-21-day-museum', 21);
+      const afterThirdWeek = await readEconomy();
+      assert.equal(afterThirdWeek.day, 22);
+      assert.equal(afterThirdWeek.lastSettledDay, 22, 'third full economic week closes after day 21');
+      assert.ok(afterThirdWeek.balance > weeklyBalances[1].balance,
+        'third week is paid once based on actually worked days');
+      assert.ok(afterThirdWeek.completedDays.every(r => r.day >= 22),
+        'settled workdays cannot be eligible for duplicate salary');
+      await page.reload({ waitUntil: 'load', timeout: 90000 });
+      await page.waitForFunction(() => !!(globalThis as any).CivicationEconomyEngine, null, { timeout: 90000 });
+      const reloaded = await readEconomy();
+      assert.equal(reloaded.balance, afterThirdWeek.balance,
+        'reload after third payroll never duplicates earned pay');
+      assert.equal(reloaded.lastSettledDay, 22);
+      assert.equal((await readState()).livsdag, 22);
+    }
     assert.deepEqual(pageErrors, [], 'no browser JavaScript errors');
-    await page.screenshot({ path: join(outputDir, 'civication-organic-21-day.png'), fullPage: true });
-    console.log('PASS: 21 actual browser days, no empty days, saved/reloaded private actions, optional documented Skaper, no synthetic job or merits.');
+    await page.screenshot({ path: join(outputDir, museumJourney ? 'civication-organic-museum-21-day.png' : 'civication-organic-21-day.png'), fullPage: true });
+    console.log(museumJourney ? 'PASS: 21 real browser days including five completed Munch quizzes, earned museum employment, private Life Story and three game-week settlements.' : 'PASS: 21 actual browser days, no empty days, saved/reloaded private actions, optional documented Skaper, no synthetic job or merits.');
     return { passed: true, completedDays: dayCounts.length, totalScenes: totalSteps,
-      weeklyBalances, dayCounts, trace: trace.slice(-30) };
+      museumJourney, weeklyBalances, dayCounts, trace: trace.slice(-30) };
   } catch (error) {
-    await page.screenshot({ path: join(outputDir, 'civication-organic-21-day-failure.png'), fullPage: true }).catch(() => {});
+    await page.screenshot({ path: join(outputDir, museumJourney ? 'civication-organic-museum-21-day-failure.png' : 'civication-organic-21-day-failure.png'), fullPage: true }).catch(() => {});
     console.error('Civication 21-day browser failure, recent trace:', JSON.stringify(trace.slice(-20)));
     throw error;
   } finally {
