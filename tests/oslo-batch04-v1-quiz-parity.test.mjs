@@ -23,9 +23,10 @@ const quizFor = new Map();
 const cardFor = new Map();
 const knownDebts = new Map([
   ["oslo_mek_quiz_1", "Hvilket historisk verksted er riktig hovedanker for `oslo_mek`-targetet?"],
-  ["grev_wedels_plass_quiz_7", "Hva er canonical sted i History Go?"]
+  ["grev_wedels_plass_quiz_7", "Hva er canonical sted i History Go?"],
+  ["grev_wedels_plass_quiz_34", "Hvorfor holdes Brands-feltet uten oppdiktet innhold?"]
 ]);
-const forbidden = /History Go|canonical|targetId|targetet|quizkort|intern(?:e)? spill|spillterminologi/i;
+const forbidden = /History Go|PlaceCard|QuizCard|Objects|Brands|canonical|targetId|targetet|quizkort|intern(?:e)? spill|spillterminologi/i;
 
 test("Oslo batch04: each of 17 places has a unique fullquiz file, valid manifest entries and 21+ questions", () => {
   assert.equal(ids.length, 17);
@@ -121,6 +122,9 @@ test("Oslo batch04: no new player-facing quiz question exposes internal model te
   for (const item of offenders) {
     assert.equal(item.question, knownDebts.get(item.qid), item.qid + ": newly introduced internal/game-facing language");
   }
-  // The two pre-existing editorial defects must be rewritten before final v1.
+  // Three pre-existing editorial defects remain blockers for editorial v1 acceptance.
+  const revised = quizFor.get("grev_wedels_plass").questions.find(q => q.id === "grev_wedels_plass_quiz_22");
+  assert.match(revised.question, /Kvinnetorso.*Hanne på stranden.*fontenen/, "The park-art question must remain grounded in actual artworks");
+  assert.equal(revised.answer, "De er fysiske spor i selve parkrommet");
   console.log("EDITORIAL_DEBT", JSON.stringify(offenders));
 });
