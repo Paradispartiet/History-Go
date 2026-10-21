@@ -2,7 +2,7 @@
   "schema": "history_go_dnt_c47_foyer_painting_documentary_kilder_v1",
   "place_id": "det_norske_teatret",
   "prepared_at": "2026-10-21",
-  "status": "LOCAL_NATIVE_PLACECARD_MOBILE_DESKTOP_PASS_PUBLIC_DEPLOY_PENDING",
+  "status": "PASS_PUBLIC_KILDER_TWO_DOCUMENTARY_IMAGES_MOBILE_DESKTOP",
   "purpose": "Expose a verified already locally staged Commons photo as a credited documentary image in the existing unified PlaceCard Kilder section, without canonical Objects collection publication.",
   "new_photo": {
     "name": "Foajémaleri av Aksel Waldemar Johannessen",
@@ -50,7 +50,6 @@
     "canonical_placecard_objects_preview": false
   },
   "pending": [
-    "Public GitHub Pages deployment must be separately checked before marking live production pass",
     "Do not change source-image item into canonical Object",
     "Do not copy Jan Groth's externally published curtain photograph without appropriate rights",
     "Retain both varying source titles and document perspective distortion"
@@ -82,9 +81,27 @@
     "remaining_scope": "No production Pages verification, no physical device and no literal map marker tap."
   },
   "public_deployment_verification": {
-    "status": "SCHEDULED_AFTER_MAIN_PUSH_NOT_YET_RUN",
+    "status": "PASS",
     "script": "tests/det-norske-teatret-public-unified-c47.mjs",
     "workflow": ".github/workflows/det-norske-teatret-public-c47.yml",
-    "behavior": "On main push, poll actual GitHub Pages source JSON for the new painting image, compare both public image files to C41/C46 SHA256, and run real unified Kilder navigation on 390 and 1280 Chromium with screenshot archive. Fail closed if deployment or rendering unverified."
+    "behavior": "On main push, poll actual GitHub Pages source JSON for the new painting image, compare both public image files to C41/C46 SHA256, and run real unified Kilder navigation on 390 and 1280 Chromium with screenshot archive. Fail closed if deployment or rendering unverified.",
+    "workflow_run_id": 39587062392,
+    "artifact": "dnt-c47-public-evidence",
+    "artifact_id": 12340127164,
+    "proof": "reports/place-production/det-norske-teatret/20261021/c47-public-github-pages-qa.json",
+    "viewports": [
+      {
+        "name": "mobile",
+        "width": 390,
+        "height": 844,
+        "status": "PASS"
+      },
+      {
+        "name": "desktop",
+        "width": 1280,
+        "height": 900,
+        "status": "PASS"
+      }
+    ]
   }
 }
