@@ -59,4 +59,12 @@ Eiergrenser, seks foreslåtte ferdigheter og kildebasert utvikling er samlet i [
 - Bind faktiske Life Story-relasjoner til eksisterende NPC-motor, med idempotens og personidentitet.
 - Kjør virkelig 14-dagers browser playthrough og verifiser alle akseptansekriterier ovenfor.
 
-Behold dette dokumentet som PR-spor; oppdater status når hver del er testet i faktisk spill. 
+Behold dette dokumentet som PR-spor; oppdater status når hver del er testet i faktisk spill.
+
+## Utvidet produktmål: dag 1–21 (beslutning 21.10.2026)
+
+Spillerreisens hovedmål er nå **21 dager**. Den eksisterende 14-dagersakseptansen ovenfor blir delakseptanse, ikke et tilstrekkelig lanseringsbevis. Ingen påstander om at ekte nettleser-/kontogjennomspilling er bestått før den er utført.
+
+Hovedkapitlet skal tilby ikke-repeterende private historier, valg med konsekvenser og tilgjengelige karriere-/livsprofilhandlinger gjennom hele perioden. Den som vil ha arbeid, kan når som helst undersøke og akseptere et **faktisk** opptjent jobbtilbud via eksisterende jobbmaskineri. Den som ikke vil, kan leve videre med interesse-, vennskaps-, lærings- og prosjektvalg. Livsposisjon ved dag 21 er en frivillig mulighet med de ordinære merittkravene; det er ingen automatisk status eller utbetaling.
+
+Nye wave_e_livsretning-scener dekker dag 8–21 med egen aktivitet også på tidligere tomme dager. Kontroll mot 21 dager skal kreve: minst ett spillbart privat valg per livsdag på tre valgruter, ingen dobbel opptjening, bevarte valg ved jobbbytte midtveis, reelt jobbtilbud i den separate jobb- og History Go-integrasjonstesten, og synlig avslutning med karriere-/livsprofilknapper. Komplett økonomi-, sosial- og skylagringsakseptanse er fortsatt separat og åpen.
