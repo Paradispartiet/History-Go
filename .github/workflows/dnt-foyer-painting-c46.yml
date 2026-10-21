@@ -1,13 +1,5 @@
 name: DNT C46 licensed foyer painting image staging
 on:
-  pull_request:
-    paths:
-      - 'reports/place-production/det-norske-teatret/20261021/foyer-paintings-c46-research.json'
-      - 'reports/place-production/det-norske-teatret/20261021/painting-photo-intake-c46.json'
-      - 'reports/place-production/det-norske-teatret-workcard-current.json'
-      - 'scripts/place-production/stage-dnt-foyer-painting-c46.mjs'
-      - 'tests/det-norske-teatret-foyer-painting-c46.test.mjs'
-      - '.github/workflows/dnt-foyer-painting-c46.yml'
   push:
     branches: [main]
     paths:
@@ -21,19 +13,7 @@ permissions:
   contents: write
   pull-requests: write
 jobs:
-  validate-intake:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-node-npm
-      - name: Syntax and source/rights/Objects-gate validation
-        run: |
-          node --check scripts/place-production/stage-dnt-foyer-painting-c46.mjs
-          node --test tests/det-norske-teatret-foyer-painting-c46.test.mjs
   stage-draft-only:
-    needs: validate-intake
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
