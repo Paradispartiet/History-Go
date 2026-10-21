@@ -11,6 +11,7 @@ on:
       - 'docs/CIVICATION_FWG_GOVERNANCE.md'
       - 'js/Civication/**'
       - 'tests/civication-*.test.js'
+      - 'tests/acceptance-civication-*.test.js'
       # Pure theory/read-only coverage has its own focused workflow.
       - '!tests/civication-psychology-room-theory.test.js'
       - '!tests/civication-psychology-room-coverage.test.js'
@@ -74,7 +75,7 @@ jobs:
         run: node tests/civication-livelihood-opportunity-bridge.test.js
 
       - name: Verify continuous 21-day private life across work changes
-        run: node tests/civication-lifestory-three-week-private-employment.test.js
+        run: node tests/acceptance-civication-three-week-private-employment.test.js
 
       - name: Run complete Civication suite
         run: npm run test:civication
