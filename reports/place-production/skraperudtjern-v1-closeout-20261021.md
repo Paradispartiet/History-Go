@@ -23,3 +23,7 @@ GitHub Actions: https://github.com/Paradispartiet/History-Go/actions/runs/396475
 
 ## Endelig mergeport
 Etter at denne sluttrapporten og varig test-workflow er lagt inn, må alle **relevante CI-kontroller på nyeste PR-head** være reelt grønne. Bare da settes PR Ready og merges til \`main\`; merge-SHA og main verifiseres. Ikke bypass av CI og ikke ny parallell stedgren.
+
+## Andre sluttkontroll etter samordning med main
+
+GitHub Actions https://github.com/Paradispartiet/History-Go/actions/runs/39648898507 er **bestått**, inkludert regenerering av globale Knowledge-/Fagverkdata fra oppdatert `main`, og ny faktisk History Go-gjennomspilling på 390 og 1440 px med 21/21 fullquizspørsmål. Nye Poland-fagpakker fra main er bevart. Den midlertidige synkroniserings-workflowen fjernes; varig Skraperudtjern-browserworkflow beholdes.
