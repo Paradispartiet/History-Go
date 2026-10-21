@@ -11,6 +11,9 @@ on:
       - 'bilder/places/maridalsvannet_front_portrait.webp'
       - 'bilder/places/maridalsvannet_landscape.webp'
   workflow_dispatch:
+concurrency:
+  group: maridalsvannet-v1-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
