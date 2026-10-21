@@ -1,0 +1,41 @@
+name: Sync Gamle Aker quiz production context
+on:
+  push:
+    branches:
+      - history-go/gamle-aker-quizcard-v1-20261021
+    paths:
+      - .github/workflows/gamle-aker-quiz-context-sync.yml
+permissions:
+  contents: write
+concurrency:
+  group: gamle-aker-context-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild only Gamle Aker context and check determinism
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-quiz-production-context.mjs --category historie --target gamle_aker_kirke --output data/quiz/production_context/historie/gamle_aker_kirke.json
+          node scripts/build-quiz-production-context.mjs --category historie --target gamle_aker_kirke --output data/quiz/production_context/historie/gamle_aker_kirke.json --check
+      - name: Commit regenerated context
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/historie/gamle_aker_kirke.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "build(history): sync Gamle Aker quiz context after portrait materialization"
+          git push origin "HEAD:history-go/gamle-aker-quizcard-v1-20261021"
