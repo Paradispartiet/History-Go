@@ -22,13 +22,25 @@ Følgende må bevises sammenhengende i ekte UI, **uten** kunstig `merits_by_cate
 | --- | --- |
 | 1–3 | Frisk profil, arbeidsledig. Meldekort, arbeidssøknad, økonomi og bolig blir relevante. Alle valg lagres og blir synlige. |
 | 4–7 | Møter, vennskap, konflikter og private valg. Tidligere valg styrer senere scene og reelt sosialt etterspill. Ingen duplikatmail eller dobbel dagsrullning. |
-| 8–10 | Eksisterende fortelling videreføres bare når reell History Go-opptjening gir riktig livsposisjon; ekte jobb aksepteres bare via jobbtilbud. Private C01/C05-hendelser overlever jobbbytte. |
-| 11–14 | 14 kalenderdager med jobb eller reell alternativ levevei. Gjennomfør jobbdag, privatliv, ukentlig inntekt/utgifter og senere effekter; prøv også avslag, slitenhet og gjenoppretting. |
+| 8–10 | **Arbeidsledig fortsetter private Life Stories også helt uten History Go-meritter, livsposisjon eller jobbtilbud.** Separat valgfritt kapittel åpnes kun med faktisk dokumentert History Go-opptjening og frivillig livsposisjon; ekte jobb aksepteres bare via jobbtilbud. Private C01/C05-hendelser overlever jobbbytte. |
+| 11–14 | Fullfør 14 spilldager **også som fortsatt arbeidsledig**, med private hendelser, økonomisk utvikling, mulige ytelser, utgifter, relasjoner og etterspill. Test i tillegg jobb eller faktisk alternativ levevei; ingen tvangsaktivering av livsposisjon og ingen fiktiv inntekt. |
 | Konto | Lagre, oppdater, logg ut/inn og gjenopprett på nytt lagringsmiljø uten å miste historie, relasjoner, penger eller jobbstatus. |
 | Sosialt | Samme NPC husker spillerens tidligere valg på tvers av fortelling, innboks og fysiske møter; sammenlign reell kanonisk relasjonstilstand. |
 | Økonomi | Én spilluke utløser nøyaktig én riktig økonomisk avregning. Fortellingsøkonomi og kanonisk PC-wallet skal ikke forveksles. |
 
 **Akseptanse krever alle punktene.** Den nye automatiske Node-testen starter med tom state og ingen testmerker, dokumenterer hvor langt authored historie kan spilles og rapporterer kapittelporten. Den **erstatter ikke** ekte nettleser-/konto- og History Go-tverrsystemtest. Et grønt testresultat betyr derfor ikke at hele tabellen er godkjent.
+
+## Akseptanse: History Go og skill scores som del av livet (21.10.2026)
+
+**Eksisterende funksjon vs. planlagt funksjon må skilles i testresultatene.** Profilbroen leser allerede `visited_places`, `people_collected`, `merits_by_category` og læringsloggen og vekter private sceneemner. Det er ikke bevis for at seks varige ferdighetsskalaer eller full miljøspesifikk streetkred finnes. Følgende er akseptansekriterier for neste implementeringsbolk, ikke passerende tester:
+
+1. En fersk arbeidsledig profil skal kunne gjennomføre dag 1–14 og senere dager med relevante privatlivshistorier **uten** Badge-poeng, livsposisjon eller jobb. Dag 7 skal vise `Fortsett privatlivet` ved ventende scener og valgfri History Go-veiledning samtidig.
+2. Et dokumentert besøk i History Go gir korrekt registrert sted og kan påvirke stedlig samtalekontekst, men **ikke** automatisk korrekt quiz, visdomspoeng, relasjon, jobb eller lønn. Quizpoeng må komme fra reelt lagret quizresultat.
+3. Historisk kunnskap eller observasjon skal endre et relevant fremtidig scenetilbud eller beslutningsgrunnlag **bare når domenet matcher**. Utforskning kan gi samtaler og interessebaserte invitasjoner uten å gjøre fiktive kontakter til venner.
+4. Seks skill scores (visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling, handlekraft) skal, når implementert, ha konkret score-/hendelseseier, 0–100-balansetest, unike kildehendelser, idempotent XP, reell virkning på minst én scenetype per ferdighet og pålitelig save/restore. Ingen skills tildeles automatisk for UI-klikk eller gjentatt identisk aktivitet.
+5. Streetkred skal kontrolleres per faktisk miljø/aktør, med både positive og negative følger. Subkulturell kapital og generelt omdømme skal ikke endres som et globalt speil av streetkred; kvalifikasjoner, ansettelse og myndighet er egne porter.
+6. Samlingen skal vises likt etter ny innlogging og på tvers av `index.html` / `Civication.html`. Companion-toast og navigasjon må aldri fullføre oppdrag eller utstede badge/skills alene. Sjekk ingen doble poeng etter reload, retry eller retur.
+7. Én spillfigur bør prøves gjennom minst 30 dager som arbeidsledig, med vedvarende privatliv og økonomiske realiteter. Dette er et *framtidig* langløpskrav og ikke et påstått nåværende testresultat.
 
 ## Åpne risikoer som ikke skjules
 
