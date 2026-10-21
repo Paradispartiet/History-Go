@@ -49,7 +49,7 @@ test('Zuboff generator parity retains all 60 theory IDs, claims and assessments'
     work.theory_units.map((u) => u.expanded_prose));
   assert.equal(canon.works.length, 20);
   assert.equal(canon.works.reduce((n, w) => n + w.theory_units.length, 0), 60);
-  assert.equal(canon.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 48);
+  assert.equal(canon.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 51);
   assert.equal(packages.reduce((n, p) => n + p.claims.claims.length, 0), 60);
   assert.equal(packages.reduce((n, p) => n + p.assessment.questions.length, 0), 60);
   assert.deepEqual(target.assessment.questions.filter((q) => IDS.includes(q.id.replace(/^advq-/, ''))).map((q) => q.id),
