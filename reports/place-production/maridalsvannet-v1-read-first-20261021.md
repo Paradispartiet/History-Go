@@ -20,13 +20,13 @@
 - Bred WebP: `bilder/places/maridalsvannet_landscape.webp`, **1400 × 900**. Dokumentarfoto av Geir Hval (2022), CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Maridalsvannet_i_Maridalen,_Oslo,_Norway_(2022.11.12).jpg.
 - Fotografier, kilde-URL, lisens, bearbeiding, bildehash og separat `image`/`frontImage` er registrert i canonical place og i `maridalsvannet-v1-image-qa-20261021.json`. Begge utsnitt er visuelt gjennomgått.
 - **Reell appkontroll bestått 390 og 1440 px.** PlaceCard viste lokalt bilde med faktisk størrelse 600 × 800, QuizCard flippet med innhold, quizknappen åpnet riktig mål og Fagverk-siden lastet flere tusen tegn. Begge bredder hadde 0 px horisontal overflyt og 0 JavaScript-feil.
-- Dokumentasjon: `maridalsvannet-v1-browser-qa-20261021.json` og seks `maridalsvannet-{mobile,desktop}-{placecard,quizcard,fagverk}.png` under `reports/place-production/`.
+- Dokumentasjon: `maridalsvannet-v1-browser-qa-20261021.json` er versjonert. Seks fullstørrelse-skjermbilder fra den opprinnelige mobil-/desktop-kontrollen ligger i tilhørende GitHub Actions-artifakt, ikke som store PNG-filer i repoet. Den vedvarende `Maridalsvannet v1 real browser acceptance`-testen tar nye skjermbilder som Actions-artifakt, og kontrollerer også oversatt historisk tekst og synlig QuizCard etter flip-animasjon.
 
 ## Quiz, Knowledge og språk
 
 - Fullquiz: **3 sett × 7 = 21** kildebelagte spørsmål, bevart i `data/quiz/natur/maridalsvannet_sets.json`, med korrekte fasiter og Knowledge-ID-er som er generert gjennom den kanoniske kunnskapsgeneratoren.
 - QuizCard: 10 av de samme spørsmålene, med identisk fasit og kildekobling; både fullquiz og QuizCard er registrert i manifestene.
-- Oversettelser til engelsk, spansk og portugisisk er oppdatert i de eksisterende i18n-filene med ny `_sourceHash`. De er fortsatt merket `machine_translated`, da ekstern morsmålsvurdering ikke er utført. Denne språkoppdateringen er senere enn de dokumenterte appskjermbildene.
+- Oversettelser til engelsk, spansk og portugisisk er oppdatert i de eksisterende i18n-filene med ny `_sourceHash`. De er fortsatt merket `machine_translated`, da ekstern morsmålsvurdering ikke er utført. Den første skjermbildefangsten kom før språkoppdateringen; den påfølgende automatiserte nettlesertesten kontrollerer også den nye engelske fortellingen.
 
 ## V1-avslutning og gjenstående port
 
