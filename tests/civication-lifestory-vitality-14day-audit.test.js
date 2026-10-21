@@ -274,7 +274,13 @@ test('optional work: real application/interview generates an offer, only Career 
     dispatchEvent: event => {
       for (const fn of listeners.get(event.type) || []) fn();
     },
-    addEventListener: (name,fn) => listeners.set(name,(listeners.get(name)||[]).concat(fn))
+    addEventListener: (name,fn) => listeners.set(name,(listeners.get(name)||[]).concat(fn)),
+    document: {
+      querySelector(selector) {
+        return selector === '.civi-footer button[data-category="karriere"]'
+          ? { click: () => seen.push('career_opened') } : null;
+      }
+    }
   };
   const context = vm.createContext({
     window: W,
