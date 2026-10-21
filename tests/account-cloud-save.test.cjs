@@ -43,7 +43,7 @@ async function runtime({ uid = "account-one", initial = {}, db = { record: null,
     clearTimeout() {}, setTimeout() {}, Date };
   vm.runInNewContext(source, context, { filename: "CivicationCloudSave.js" });
   await window.CivicationCloudSave.ready;
-  return { save: window.CivicationCloudSave, localStorage, element, db };
+  return { save: window.CivicationCloudSave, localStorage, element, db, window };
 }
 test("new account uploads existing local Life Story and career data", async () => {
   const db = { record: null, writes: [] };
@@ -204,4 +204,108 @@ test("an existing cloud backup without job history accepts added local history",
   assert.equal(db.writes.length, 1);
   assert.equal(db.record.payload.state.hg_job_history_v1, history);
   assert.equal(db.record.payload.state.civication_lifestory_v1, '{"dag":7}');
+});
+
+test("NPC social memory survives cloud backup and an empty new device", async () => {
+  const db = { record: null, writes: [] };
+  const relationships = JSON.stringify({
+    npc_sara: {
+      friendId: "npc_sara", relationshipLevel: 3, trust: 2,
+      socialHistory: [{ messageId: "encounter-7", responseId: "reply", phase: "leisure" }]
+    }
+  });
+  const responses = JSON.stringify({
+    "encounter-7": {
+      messageId: "encounter-7", responseId: "reply", status: "replied", friendId: "npc_sara"
+    }
+  });
+  const conversations = JSON.stringify({
+    conv_npc_sara_leisure_001: {
+      conversationId: "conv_npc_sara_leisure_001", friendId: "npc_sara",
+      turns: [{ messageId: "encounter-7", responseId: "reply", text: "Hei, Sara." }]
+    }
+  });
+  const first = await runtime({ db, initial: {
+    "civi.socialConversations.v1": conversations,
+    "civi.socialRelationships.v1": relationships,
+    "civi.socialResponses.v1": responses,
+    "civi.socialRelationships.debug": '{"dev":true}',
+    civication_lifestory_v1: '{"dag":7,"rolle":"arbeidsledig"}',
+    hg_pc_wallet_v1: '{"balance":131}'
+  } });
+  assert.equal(first.save.snapshot()["civi.socialConversations.v1"], conversations);
+  assert.equal(first.save.snapshot()["civi.socialRelationships.v1"], relationships);
+  assert.equal(first.save.snapshot()["civi.socialResponses.v1"], responses);
+  assert.equal(first.save.snapshot()["civi.socialRelationships.debug"], undefined,
+    "do not upload unrecognized dotted civi keys");
+  await first.save.flush();
+  assert.equal(db.writes.length, 1);
+  const second = await runtime({ db });
+  assert.equal(second.localStorage.getItem("civi.socialConversations.v1"), conversations,
+    "an ongoing NPC conversation must survive a fresh device");
+  assert.equal(second.localStorage.getItem("civi.socialRelationships.v1"), relationships);
+  assert.equal(second.localStorage.getItem("civi.socialResponses.v1"), responses,
+    "already answered NPC encounters must not become new unanswered messages");
+  assert.equal(second.localStorage.getItem("hg_pc_wallet_v1"), '{"balance":131}');
+  assert.equal(second.localStorage.getItem("civication_lifestory_v1"),
+    '{"dag":7,"rolle":"arbeidsledig"}');
+  // Reload the actual NPC store consumers, not just the raw JSON snapshot.
+  const friendSource = fs.readFileSync("js/Civication/systems/civicationFriendMessages.js", "utf8");
+  const conversationSource = fs.readFileSync("js/Civication/systems/CivicationSocialConversationEngine.js", "utf8");
+  vm.runInNewContext(friendSource, { window: second.window, console }, {
+    filename: "civicationFriendMessages.js"
+  });
+  vm.runInNewContext(conversationSource, { window: second.window, console }, {
+    filename: "CivicationSocialConversationEngine.js"
+  });
+  assert.equal(second.window.CivicationFriendMessages.getSocialRelationship("npc_sara").relationshipLevel, 3);
+  assert.equal(second.window.CivicationFriendMessages.getSocialResponseRecord("encounter-7").responseId, "reply");
+  assert.equal(second.window.CivicationSocialConversationEngine
+    .getConversationById("conv_npc_sara_leisure_001").friendId, "npc_sara");
+  await second.save.flush();
+  assert.equal(db.writes.length, 1, "read-only restore must not rewrite the backup");
+});
+
+test("divergent NPC memories are preserved and block cloud overwrite", async () => {
+  const cloudMemory = '{"npc_sara":{"relationshipLevel":3}}';
+  const localMemory = '{"npc_sara":{"relationshipLevel":1}}';
+  const db = { record: {
+    payload: { state: { "civi.socialRelationships.v1": cloudMemory } },
+    created_at: "2026-10-21T10:00:00Z"
+  }, writes: [] };
+  const game = await runtime({ db, initial: { "civi.socialRelationships.v1": localMemory } });
+  assert.match(game.element.textContent, /ulike/);
+  assert.equal(game.localStorage.getItem("civi.socialRelationships.v1"), localMemory);
+  await game.save.flush();
+  assert.equal(db.writes.length, 0);
+  assert.equal(db.record.payload.state["civi.socialRelationships.v1"], cloudMemory);
+});
+
+test("older cloud snapshots accept new local NPC memory without deleting story state", async () => {
+  const responses = '{"encounter-7":{"friendId":"npc_sara","responseId":"reply"}}';
+  const db = { record: {
+    payload: { state: { civication_lifestory_v1: '{"dag":8}' } },
+    created_at: "2026-10-20T12:00:00Z"
+  }, writes: [] };
+  const game = await runtime({ db, initial: { "civi.socialResponses.v1": responses } });
+  assert.doesNotMatch(game.element.textContent, /ulike/);
+  await game.save.flush();
+  assert.equal(db.writes.length, 1);
+  assert.equal(db.record.payload.state["civi.socialResponses.v1"], responses);
+  assert.equal(db.record.payload.state.civication_lifestory_v1, '{"dag":8}');
+});
+
+test("different NPC conversation histories block destructive cloud overwrite", async () => {
+  const cloud = '{"conv_npc_sara_leisure_001":{"conversationId":"conv_npc_sara_leisure_001","turns":[{"text":"Svar fra Sara"}]}}';
+  const local = '{"conv_npc_sara_leisure_001":{"conversationId":"conv_npc_sara_leisure_001","turns":[]}}';
+  const db = { record: {
+    payload: { state: { "civi.socialConversations.v1": cloud } },
+    created_at: "2026-10-21T10:00:00Z"
+  }, writes: [] };
+  const game = await runtime({ db, initial: { "civi.socialConversations.v1": local } });
+  assert.match(game.element.textContent, /ulike/);
+  assert.equal(game.localStorage.getItem("civi.socialConversations.v1"), local);
+  await game.save.flush();
+  assert.equal(db.writes.length, 0);
+  assert.equal(db.record.payload.state["civi.socialConversations.v1"], cloud);
 });
