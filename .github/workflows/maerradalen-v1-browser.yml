@@ -1,0 +1,61 @@
+name: Mærradalen v1 real browser acceptance
+# Permanent acceptance: 21/21 canonical Knowledge links and real mobile/desktop quiz playback
+on:
+  pull_request:
+    paths:
+      - 'tests/maerradalen-v1-real-browser.mjs'
+      - 'data/places/natur/oslo/places_oslo_natur_hovedsteder/maerradalen.json'
+      - 'data/quiz/natur/maerradalen_sets.json'
+      - 'data/quizcards/natur/topp10_natur_maerradalen_20261021.json'
+      - 'data/runtime/place-open/maerradalen.json'
+      - 'data/places/production/maerradalen.json'
+      - 'tests/epoke-place-index.test.mjs'
+      - 'reports/place-production/maerradalen-v1-closeout-20261021.md'
+      - 'data/i18n/content/places/en.json'
+      - 'data/i18n/content/places/es.json'
+      - 'data/i18n/content/places/pt.json'
+      - 'bilder/places/maerradalen_front_portrait.webp'
+      - 'bilder/places/maerradalen_landscape.webp'
+      - '.github/workflows/maerradalen-v1-browser.yml'
+  workflow_dispatch:
+concurrency:
+  group: maerradalen-v1-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install project dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Check actual app at 390 and 1440 px, including QuizCard after animation
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node tests/maerradalen-v1-real-browser.mjs
+      - name: Complete all 21 questions on desktop and mobile without a false physical visit
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-ljanselva-fullquiz-browser.mjs maerradalen
+      - name: Upload actual app evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maerradalen-v1-permanent-browser-evidence
+          path: |
+            artifacts/maerradalen-browser/**
+            artifacts/place-quiz/maerradalen/**
+          if-no-files-found: ignore
+          retention-days: 14
