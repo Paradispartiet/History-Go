@@ -220,6 +220,14 @@ Runneren gjør bare dette:
 
 Ikke mer.
 
+### Privatliv, arbeidsledighet og frivillige livsposisjoner etter dag 7
+
+**Normativ retning (21. oktober 2026):** `arbeidsledig` angir arbeidsstatus/livsomstendighet, ikke personens samlede identitet. Private Life Stories skal kunne fortsette uansett ansettelse, og fortsetter gjennom venner, familie, romantikk, fritid, kunnskap, konflikter, økonomi og egne prosjekter. Et særskilt symposium-`fortsettelser`-kapittel kan ha Badge-krav til *en frivillig valgt livsposisjon*, men det er aldri en inngangsport til å leve videre i vanlige private scener.
+
+På dag 7 skal valget om å utforske History Go være frivillig og sideordnet `Fortsett privatlivet`. Valg av interesse via `rollevalgFlagg` er ikke aktivering. Virkelig quiz, samling og besøk kan gi evidens; de kan aldri konstruere jobb, livsposisjon eller meritter. Mangler forfattede dag-8–14-scener, er det et produksjons-/akseptansegap som skal løses i samme Life Story Runner, ikke ved å tvinge spilleren inn i en jobb.
+
+Historiene må også kunne lese allerede eide signaler om psyke, energi, syv kapitaltyper, relasjoner, interessedomener og History Go-samlingen. Målmodellen for seks personlige ferdigheter (visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling, handlekraft) og miljøspesifikk streetkred er dokumentert i [spillerutviklingskontrakten](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md); dette er ennå ikke seks ferdig implementerte skalaer.
+
 ## 5b. Day progression: neste dag
 
 Når siste fase er tom, avslutter runneren dagen (`completeDay`) og
