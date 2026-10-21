@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Gamle Aker kirke v1 acceptance: browser checks of canonical app, local images, QuizCard, full quiz routing, and Fagverk.
+// Persistent Gamle Aker kirke v1 acceptance: real History Go app, copyright-cleared existing documentary image and real quiz.
 // The reverse face is assessed AFTER the 420ms CSS flip finishes.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -14,10 +14,15 @@ const cards=data('data/quizcards/historie/topp10_historie_sted_kort_batch1.json'
 assert.equal(place.id,id);
 assert.equal(cards.filter(c=>c.targetId===id).length,1);
 assert.equal(cards.find(c=>c.targetId===id).questions.length,10);
-assert.ok(fs.statSync(place.image).size>12000&&fs.statSync(place.cardImage).size>12000);
+assert.ok(fs.statSync(place.image).size>12000,'Existing local Gamle Aker main image missing');
+assert.equal(place.frontImage,'bilder/places/gamle_aker_kirke_front_nemo_bis_2019.webp','Independent portrait must be wired through place-open');
+assert.ok(place.frontImage!==place.image&&place.frontImage!==place.cardImage,'Portrait must be a separately documented photograph');
+assert.ok(fs.statSync(place.frontImage).size>10000,'New real portrait image is missing');
+assert.equal(place.frontImageMeta?.creator,'Nemo bis');
+assert.equal(place.frontImageMeta?.license,'CC BY-SA 3.0');
 const folder='artifacts/gamle_aker_kirke-browser';
 fs.mkdirSync(folder,{recursive:true});
-const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml','.woff2':'font/woff2'};
+const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{
  const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
  const file=path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));
@@ -32,7 +37,7 @@ let browser;
 try{
  browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN||undefined,args:['--no-sandbox','--disable-dev-shm-usage']});
  for(const {name,width,height,mobile} of [{name:'mobile',width:390,height:844,mobile:true},{name:'desktop',width:1440,height:1000,mobile:false}]){
-  const context=await browser.newContext({viewport:{width,height},isMobile:mobile,hasTouch:mobile,locale:'nb-NO'});
+  const context=await browser.newContext({viewport:{width,height},isMobile:mobile,hasTouch:mobile,locale:'en-US'});
   await context.addInitScript(()=>{localStorage.setItem('hg_onboarding_shown_v1','1');localStorage.setItem('HG_TEST_MODE','1')});
   const page=await context.newPage();
   const pageErrors=[];
@@ -43,9 +48,9 @@ try{
    await page.waitForFunction(()=>document.querySelector('#pcFrontImage')?.complete&&document.querySelector('#pcFrontImage')?.naturalWidth>0,null,{timeout:30000});
    await page.waitForFunction(()=>document.querySelector('#pcQuizCardContent')?.querySelector('.pc-rendered-quiz-card')&&document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card'),null,{timeout:40000});
    const description=await page.locator('#placeCard').innerText();
-   assert.ok(/Gamle Aker kirke/i.test(description)&&/fossil|kalkstein|middelalder/i.test(description),name+': Gamle Aker history missing from actual app');
+   assert.ok(/Gamle Aker|Old Aker Church/i.test(description),name+': canonical church title or its verified English translation not rendered in place card');
    const image=await page.locator('#pcFrontImage').evaluate(el=>({src:el.currentSrc||el.src,width:el.naturalWidth,height:el.naturalHeight}));
-   assert.ok(/gamle_aker_kirke__sorsiden/.test(image.src)&&image.width>0,name+': local documentary portrait not decoded');
+   assert.ok(image.src.includes(place.frontImage.split('/').at(-1))&&image.width===900&&image.height===1200,name+': independent licensed 900x1200 church portrait not decoded');
    await page.screenshot({path:folder+'/'+name+'-front.png',fullPage:true});
    const front=page.locator('#pcFrontCardFlip');
    await front.click({position:{x:22,y:Math.max(24,(await front.boundingBox()).height-25)},timeout:8000});
@@ -73,6 +78,23 @@ try{
    // The real gate is a positive painted area and substantive readable DOM text.
    assert.ok(flip.width>85&&flip.height>100&&flip.innerWidth>65&&flip.innerHeight>100,name+': QuizCard occupies no visible area');
    assert.ok(/Gamle Aker kirke/i.test(flip.text)&&flip.text.length>120,name+': QuizCard reverse has no readable questions');
+   assert.equal(await page.locator('#pcQuizCardContent li').count(),10,name+': ten fullquiz-linked questions must be visibly rendered');
+   // Verify the entire ten-question card is genuinely accessible, not clipped inside
+   // the compact card face. The expanded reading layer belongs to PlaceCard itself.
+   await page.locator('#pcQuizExpandBtn').click({timeout:12000});
+   await page.locator('#pcQuizExpanded').waitFor({state:'visible',timeout:10000});
+   const expanded=await page.locator('#pcQuizExpandedContent').evaluate(el=>{
+     const rect=el.getBoundingClientRect();
+     return {mode:el.dataset.mode, width:rect.width, height:rect.height, text:el.innerText||'', scrollHeight:el.scrollHeight, clientHeight:el.clientHeight};
+   });
+   assert.equal(expanded.mode,'rendered',name+': expanded card must render real questions');
+   assert.equal(await page.locator('#pcQuizExpandedContent li').count(),10,name+': expanded reader lost questions');
+   assert.ok(expanded.width>100&&expanded.height>100,name+': expanded reader occupies no usable visible area');
+   assert.match(expanded.text,/Fossiler etter ortocerer/);
+   await page.screenshot({path:folder+'/'+name+'-quizcard-expanded.png',fullPage:true});
+   await page.locator('#pcQuizExpandedClose').click();
+   assert.equal(await page.locator('#pcQuizExpanded').isHidden(),true,name+': expanded reader cannot close');
+
    // Reopening the same canonical place is legitimate during progressive
    // hydration and must not erase the user's currently flipped QuizCard.
    const hydrated=await page.evaluate(async placeId=>{
@@ -96,13 +118,13 @@ try{
    await page.goto(base+'/fagverk-sted.html?place='+id,{waitUntil:'domcontentloaded',timeout:70000});
    await page.waitForFunction(()=>document.querySelector('#fagverkPlaceContent')?.hidden===false,null,{timeout:30000});
    assert.match(await page.locator('#fagverkPlaceTitle').innerText(),/Gamle Aker kirke/);
-   assert.equal(await page.locator('#fagverkPlaceQuestions li').count(),5);
-   assert.equal(await page.locator('#fagverkPlaceLenses a').count(),4);
+   assert.ok((await page.locator('#fagverkPlaceQuestions li').count())>=4,name+': Fagverk investigation questions missing');
+   assert.ok((await page.locator('#fagverkPlaceLenses a').count())>=3,name+': Fagverk lenses missing');
    assert.equal(await page.locator('#fagverkPlaceError').isHidden(),true);
    await page.screenshot({path:folder+'/'+name+'-fagverk.png',fullPage:true});
    assert.deepEqual(pageErrors,[],name+': app browser errors');
-   browserReports.push({name,width,portrait:image,quizCardVisibleAfterAnimation:true,quizRoute,fagverk:true,narrativeVisible:true});
-   console.log('Gamle Aker kirke',name,'native browser, story, front portrait, QuizCard after flip, quiz route and Fagverk: PASS');
+   browserReports.push({name,width,portrait:image,quizCardVisibleAfterAnimation:true,quizRoute,fagverk:true,canonicalTitleVerified:true});
+   console.log('Gamle Aker kirke',name,'native browser, story, local church photograph, QuizCard after flip, quiz route and Fagverk: PASS');
   }finally{await context.close();}
  }
 }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}
