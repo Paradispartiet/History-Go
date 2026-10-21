@@ -6,7 +6,8 @@
     "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
     "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json",
     "data/stories/stories_nydalsdammen.json",
-    "data/quiz/regler/SET_MAL_README_v3.md"
+    "data/quiz/regler/SET_MAL_README_v3.md",
+    "data/places/production/nydalsdammen.json"
   ],
   "manual_production_notes": {
     "quality_direction": "sted → observasjon → emne → forståelse",
@@ -15,7 +16,8 @@
       "Ingen tekniske konstruksjonsdetaljer uten kilde.",
       "Ingen detaljerte artsfunn uten kilde.",
       "Ingen dagsaktuelle virksomheter eller arrangementer."
-    ]
+    ],
+    "source_refresh_20261021": "Første 14 spørsmål erstattet med direkte dokumenterte historiske fakta fra stedets v4.2-claimregister. Resten av legacy-quizens fire sett er ikke faglig oppgradert her."
   },
   "sets": [
     {
@@ -23,7 +25,7 @@
       "level": 1,
       "order": 1,
       "xp": 50,
-      "mode": "place_intro_story",
+      "mode": "source_verified_place_history",
       "questions": [
         {
           "id": "nydalsdammen_s1_q1",
@@ -32,53 +34,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva gjør Nydalsdammen til mer enn bare en dam?",
+          "question": "Hvilken bedrift brukte Nydalsdammen som øvre vanninntak?",
           "options": [
-            "Den viser hvordan Akerselva kan reguleres, roe seg og bli bynatur",
-            "Den ligger uten kontakt med Akerselva",
-            "Den er bare en innendørs hall"
+            "Nydalens Compagnie",
+            "Christiania Spigerverk",
+            "Brekke bruk"
           ],
-          "answer": "Den viser hvordan Akerselva kan reguleres, roe seg og bli bynatur",
+          "answer": "Nydalens Compagnie",
           "answerIndex": 0,
-          "knowledge": "Nydalsdammen er et sted der vannets form, tempo og bruk kan leses som del av Akerselva-korridoren.",
+          "knowledge": "Nydalsdammen var Nydalens Compagnies øvre vanninntak.",
           "difficulty": 1,
-          "question_type": "scene",
-          "question_layer": "intro_story",
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
+            "natur",
             "nydalsdammen",
             "akerselva",
-            "dam"
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://oslobyleksikon.no/side/Nydalsdammen"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_natur_nydalsdammen_er_et_sted__7e2067f8db",
+          "claim_id": "claim_nydalsdammen_identity",
+          "source_origin": "external",
+          "claim_basis": "Nydalsdammen var gammel badedam og Nydalens Compagnies øvre vanninntak.",
+          "primary_knowledge_unit_id": "ku_natur_nydalsdammen_var_nydalen_8f42362f48",
           "knowledge_unit_ids": [
-            "ku_natur_nydalsdammen_er_et_sted__7e2067f8db"
+            "ku_natur_nydalsdammen_var_nydalen_8f42362f48"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_natur_bekkeapning_overvann",
-                "score": 6
-              },
-              {
-                "emne_id": "em_natur_elver_bekker_vassdrag",
-                "score": 6
-              },
-              {
-                "emne_id": "em_natur_gronnstruktur_korridorer",
-                "score": 6
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "nydalsdammen_s1_q2",
@@ -87,42 +74,33 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva bør spilleren se etter først ved Nydalsdammen?",
+          "question": "Hvilken elv ligger Nydalsdammen i?",
           "options": [
-            "Vannflate, kantsoner, regulering og hvordan byen møter vannet",
-            "Bare reklameskilt",
-            "Kun biltrafikk"
+            "Alnaelva",
+            "Lysakerelva",
+            "Akerselva"
           ],
-          "answer": "Vannflate, kantsoner, regulering og hvordan byen møter vannet",
-          "answerIndex": 0,
-          "knowledge": "Dammen gjør vannet roligere og mer lesbart som rom, ikke bare som strøm.",
+          "answer": "Akerselva",
+          "answerIndex": 2,
+          "knowledge": "Dammen ligger i Akerselva gjennom Nydalen.",
           "difficulty": 1,
-          "question_type": "visuell_hook",
-          "question_layer": "intro_story",
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "observasjon",
-            "vannflate"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://oslobyleksikon.no/side/Nydalsdammen"
           ],
-          "claim_basis": "safe_internal_data",
-          "emne_ids": [
-            "em_natur_natur_som_aktor"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "art",
-              "vann",
-              "som"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_natur_dammen_gj_r_vannet_rolig_61a5ea1892",
+          "claim_id": "claim_nydalsdammen_identity",
+          "source_origin": "external",
+          "claim_basis": "Nydalsdammen var gammel badedam og Nydalens Compagnies øvre vanninntak.",
+          "primary_knowledge_unit_id": "ku_natur_dammen_ligger_i_akerselv_98d62c445c",
           "knowledge_unit_ids": [
-            "ku_natur_dammen_gj_r_vannet_rolig_61a5ea1892"
+            "ku_natur_dammen_ligger_i_akerselv_98d62c445c"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -136,53 +114,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hvorfor passer Nydalsdammen i Akerselva-ruta?",
+          "question": "På hvilken side av dammen lå Nygaards sag?",
           "options": [
-            "Den viser hvordan vann kan være både natur, regulert system og byrom",
-            "Den bryter all sammenheng med elva",
-            "Den handler bare om et veikryss"
+            "Nordsiden",
+            "Vestsiden",
+            "Østsiden"
           ],
-          "answer": "Den viser hvordan vann kan være både natur, regulert system og byrom",
-          "answerIndex": 0,
-          "knowledge": "Et rutestopp bør åpne en ny side av elva. Nydalsdammen viser regulert og roligere vann.",
+          "answer": "Vestsiden",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon plasserer Nygaards sag på vestsiden av dammen.",
           "difficulty": 1,
-          "question_type": "rutekobling",
-          "question_layer": "intro_story",
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "rute",
-            "elvekorridor"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://oslobyleksikon.no/side/Nydalsdammen"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_natur_et_rutestopp_b_r_apne_en_d40c96c9a8",
+          "claim_id": "claim_nydalsdammen_saw",
+          "source_origin": "external",
+          "claim_basis": "Nygaards sag lå på vestsiden; driften varte til Nydalens Compagnie tok vannkraften i bruk i 1845.",
+          "primary_knowledge_unit_id": "ku_natur_oslo_byleksikon_plassere_6563448d8a",
           "knowledge_unit_ids": [
-            "ku_natur_et_rutestopp_b_r_apne_en_d40c96c9a8",
-            "ku_natur_nydalsdammen_viser_regul_c02d54a8cf"
+            "ku_natur_oslo_byleksikon_plassere_6563448d8a"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_natur_bekkeapning_overvann",
-                "score": 6
-              },
-              {
-                "emne_id": "em_natur_elver_bekker_vassdrag",
-                "score": 6
-              },
-              {
-                "emne_id": "em_natur_gronnstruktur_korridorer",
-                "score": 6
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "nydalsdammen_s1_q4",
@@ -191,51 +154,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva er den beste korte forklaringen på Nydalsdammen?",
+          "question": "Når tok Nydalens Compagnie vannkraften i bruk her?",
           "options": [
-            "Et regulert vannrom der Akerselva, bynatur og Nydalen møtes",
-            "En fjelltopp uten vann",
-            "Et sted uten bykontakt"
+            "1845",
+            "1745",
+            "1945"
           ],
-          "answer": "Et regulert vannrom der Akerselva, bynatur og Nydalen møtes",
+          "answer": "1845",
           "answerIndex": 0,
-          "knowledge": "Nydalsdammen er viktig fordi den viser vannet som formet byrom i et omformet område.",
+          "knowledge": "1845 markerer bedriftens bruk av vannkraft, ikke et dokumentert byggeår for dammen.",
           "difficulty": 1,
-          "question_type": "saertrekk",
-          "question_layer": "intro_story",
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "stedskarakter"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://oslobyleksikon.no/side/Nydalsdammen"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_natur_nydalsdammen_er_viktig_f_24e2e2fe5f",
+          "claim_id": "claim_nydalsdammen_saw",
+          "source_origin": "external",
+          "claim_basis": "Nygaards sag lå på vestsiden; driften varte til Nydalens Compagnie tok vannkraften i bruk i 1845.",
+          "primary_knowledge_unit_id": "ku_natur_1845_markerer_bedriftens_119c4994eb",
           "knowledge_unit_ids": [
-            "ku_natur_nydalsdammen_er_viktig_f_24e2e2fe5f"
+            "ku_natur_1845_markerer_bedriftens_119c4994eb"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_natur_urban_okologi_byrom",
-                "score": 7
-              },
-              {
-                "emne_id": "em_natur_natur_som_aktor",
-                "score": 6
-              },
-              {
-                "emne_id": "em_natur_arter_habitat_mangfold",
-                "score": 3
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "nydalsdammen_s1_q5",
@@ -244,40 +194,33 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva viser at Nydalsdammen er del av blågrønn struktur?",
+          "question": "Hva het tømmerhuset ved dammen som senere ble tatt av et ras?",
           "options": [
-            "Vann, kanter, vegetasjon, ganglinjer og tett by virker sammen",
-            "Stedet mangler vann",
-            "Alt er innendørs"
+            "Sagstua ved Brekke",
+            "Hjula",
+            "Dalstuen"
           ],
-          "answer": "Vann, kanter, vegetasjon, ganglinjer og tett by virker sammen",
-          "answerIndex": 0,
-          "knowledge": "Blågrønn struktur handler om samspillet mellom vann, grønt og byrom.",
+          "answer": "Dalstuen",
+          "answerIndex": 2,
+          "knowledge": "Dalstuen lå ved dammen og var knyttet til Nydalens Compagnie.",
           "difficulty": 1,
-          "question_type": "gjenkjenning",
-          "question_layer": "intro_story",
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "blågrønn_struktur"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://ntu-historielag.no/for-og-na/dalstuen-og-jordraset-i-nydalen/"
           ],
-          "claim_basis": "safe_internal_data",
-          "emne_ids": [
-            "em_natur_urban_okologi_byrom"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.8200000000000001,
-            "score": 7,
-            "matched": [
-              "vann",
-              "byrom"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_natur_blagr_nn_struktur_handle_09d57d9d70",
+          "claim_id": "claim_nydalsdammen_house",
+          "source_origin": "external",
+          "claim_basis": "Dalstuen lå ved dammen og gikk over til Compagniet; beboere arbeidet ved fargeriet.",
+          "primary_knowledge_unit_id": "ku_natur_dalstuen_la_ved_dammen_o_08fc01bb08",
           "knowledge_unit_ids": [
-            "ku_natur_blagr_nn_struktur_handle_09d57d9d70"
+            "ku_natur_dalstuen_la_ved_dammen_o_08fc01bb08"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -291,52 +234,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva binder Nydalsdammen til Stilla i Nydalen?",
+          "question": "I hvilken del av tekstilvirksomheten arbeidet noen av Dalstuens beboere?",
           "options": [
-            "Begge viser roligere vannrom i Akerselva-systemet",
-            "Begge er kongelige parker",
-            "Begge handler bare om fjell"
+            "Teglverket",
+            "Fargeriet",
+            "Sagbruket"
           ],
-          "answer": "Begge viser roligere vannrom i Akerselva-systemet",
-          "answerIndex": 0,
-          "knowledge": "Stilla og Nydalsdammen hjelper spilleren å se at Akerselva ikke bare er foss og industri, men også roligere vannrom.",
+          "answer": "Fargeriet",
+          "answerIndex": 1,
+          "knowledge": "Historielaget omtaler Dalstuens beboere med arbeid ved fargeriet.",
           "difficulty": 1,
-          "question_type": "rutekobling",
-          "question_layer": "intro_story",
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "stilla_nydalen",
-            "rute"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://ntu-historielag.no/for-og-na/dalstuen-og-jordraset-i-nydalen/"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_natur_stilla_og_nydalsdammen_h_5e69c89408",
+          "claim_id": "claim_nydalsdammen_house",
+          "source_origin": "external",
+          "claim_basis": "Dalstuen lå ved dammen og gikk over til Compagniet; beboere arbeidet ved fargeriet.",
+          "primary_knowledge_unit_id": "ku_natur_historielaget_omtaler_da_5c0e0d2f3c",
           "knowledge_unit_ids": [
-            "ku_natur_stilla_og_nydalsdammen_h_5e69c89408"
+            "ku_natur_historielaget_omtaler_da_5c0e0d2f3c"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_natur_bekkeapning_overvann",
-                "score": 6
-              },
-              {
-                "emne_id": "em_natur_elver_bekker_vassdrag",
-                "score": 6
-              },
-              {
-                "emne_id": "em_natur_kjemiske_balanser",
-                "score": 6
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "nydalsdammen_s1_q7",
@@ -345,37 +274,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva er et godt første observasjonsspørsmål her?",
+          "question": "Hva skjedde med Dalstuen 12. desember 1934?",
           "options": [
-            "Hvordan gjør dammen vannet til et annet slags byrom?",
-            "Hvorfor finnes det ingen elv her?",
-            "Hvilket arrangement skjer akkurat i kveld?"
+            "Huset fulgte et jordras ut i Akerselva",
+            "Huset ble flyttet til Norsk Folkemuseum",
+            "Huset ble ombygd til fabrikk"
           ],
-          "answer": "Hvordan gjør dammen vannet til et annet slags byrom?",
+          "answer": "Huset fulgte et jordras ut i Akerselva",
           "answerIndex": 0,
-          "knowledge": "Spørsmålet trener stedlesning og unngår dagsaktuelle detaljer.",
+          "knowledge": "Raset tok med seg deler av Maridalsveien og dalsiden ned mot elven.",
           "difficulty": 1,
-          "question_type": "observasjon",
-          "question_layer": "intro_story",
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "stedlesning"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "https://ntu-historielag.no/for-og-na/dalstuen-og-jordraset-i-nydalen/"
           ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_natur_sp_rsmalet_trener_stedle_483c3bb1a3",
+          "claim_id": "claim_nydalsdammen_slide",
+          "source_origin": "external",
+          "claim_basis": "12. desember 1934 raste Maridalsveien og dalsiden ned mot Akerselva; Dalstuen fulgte med ut i elven.",
+          "primary_knowledge_unit_id": "ku_natur_raset_tok_med_seg_deler__b7990c7f01",
           "knowledge_unit_ids": [
-            "ku_natur_sp_rsmalet_trener_stedle_483c3bb1a3"
+            "ku_natur_raset_tok_med_seg_deler__b7990c7f01"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0
-          }
+          "knowledge_link_status": "linked"
         }
       ]
     },
@@ -384,7 +314,7 @@
       "level": 2,
       "order": 2,
       "xp": 60,
-      "mode": "place_life_people_events",
+      "mode": "source_verified_industry_and_renewal",
       "questions": [
         {
           "id": "nydalsdammen_s2_q1",
@@ -393,52 +323,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva slags stedsliv kan leses ved Nydalsdammen?",
+          "question": "Når ble Nydalsdammen gjenåpnet etter opprensing?",
           "options": [
-            "Opphold, passasje, vannkontakt og orientering i byrommet",
-            "Kun lukket produksjon uten mennesker",
-            "Bare motorvei"
+            "1971",
+            "2011",
+            "1991"
           ],
-          "answer": "Opphold, passasje, vannkontakt og orientering i byrommet",
-          "answerIndex": 0,
-          "knowledge": "Dammen kan fungere som et rom man går forbi, stopper ved og bruker til å orientere seg i Nydalen.",
-          "difficulty": 1,
-          "question_type": "bruk",
-          "question_layer": "place_life",
+          "answer": "1991",
+          "answerIndex": 2,
+          "knowledge": "Oslo byleksikon daterer opprensingen og gjenåpningen til 1991.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "stedsliv",
-            "opphold"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://oslobyleksikon.no/side/Nydalsdammen"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_natur_dammen_kan_fungere_som_e_62f9f8d975",
+          "claim_id": "claim_nydalsdammen_clean",
+          "source_origin": "external",
+          "claim_basis": "Dammen ble gjenåpnet etter opprensing i 1991.",
+          "primary_knowledge_unit_id": "ku_natur_oslo_byleksikon_daterer__6908527d7f",
           "knowledge_unit_ids": [
-            "ku_natur_dammen_kan_fungere_som_e_62f9f8d975"
+            "ku_natur_oslo_byleksikon_daterer__6908527d7f"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_natur_friluftsliv_helse",
-                "score": 3
-              },
-              {
-                "emne_id": "em_natur_kyst_okosystemer",
-                "score": 3
-              },
-              {
-                "emne_id": "em_natur_natur_som_aktor",
-                "score": 3
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "nydalsdammen_s2_q2",
@@ -447,51 +363,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva kan kantene rundt dammen fortelle?",
+          "question": "Hva kom til langs dammen i 1992?",
           "options": [
-            "Hvordan vann, vegetasjon, ganglinjer og bystruktur møtes",
-            "At natur aldri finnes i byen",
-            "At vannet ikke påvirker rommet"
+            "Nygaards sag",
+            "Plener og beplantning",
+            "Ny tekstilfabrikk"
           ],
-          "answer": "Hvordan vann, vegetasjon, ganglinjer og bystruktur møtes",
-          "answerIndex": 0,
-          "knowledge": "Kantsoner er viktige fordi de samler økologi, ferdsel og opplevelse i overgangen mellom vann og land.",
-          "difficulty": 1,
-          "question_type": "fysisk_trekk",
-          "question_layer": "place_life",
+          "answer": "Plener og beplantning",
+          "answerIndex": 1,
+          "knowledge": "Året etter gjenåpningen ble det anlagt plener og beplantning.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "kantsone"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://oslobyleksikon.no/side/Nydalsdammen"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_natur_kantsoner_er_viktige_for_10ddd6d8ce",
+          "claim_id": "claim_nydalsdammen_planting",
+          "source_origin": "external",
+          "claim_basis": "Plener og beplantning kom i 1992.",
+          "primary_knowledge_unit_id": "ku_natur_aret_etter_gjenapningen__9528acbf0b",
           "knowledge_unit_ids": [
-            "ku_natur_kantsoner_er_viktige_for_10ddd6d8ce"
+            "ku_natur_aret_etter_gjenapningen__9528acbf0b"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_natur_urban_okologi_byrom",
-                "score": 8
-              },
-              {
-                "emne_id": "em_natur_gronnstruktur_korridorer",
-                "score": 7
-              },
-              {
-                "emne_id": "em_natur_marka_skog_bygrense",
-                "score": 4
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "nydalsdammen_s2_q3",
@@ -500,52 +403,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva er en trygg måte å omtale naturen her uten artsliste?",
+          "question": "Hvilke to forhold oppgir Oslo kommune at den ikke måler her?",
           "options": [
-            "Som vannflate, kantvegetasjon og byøkologisk overgangsrom",
-            "Som konkret sjelden art uten kilde",
-            "Som helt naturtomt område"
+            "Badevannskvalitet og temperatur",
+            "Vannstand og vannføring",
+            "Lufttemperatur og vindstyrke"
           ],
-          "answer": "Som vannflate, kantvegetasjon og byøkologisk overgangsrom",
+          "answer": "Badevannskvalitet og temperatur",
           "answerIndex": 0,
-          "knowledge": "Uten sikre artsfunn bør quizzen bruke observerbare trekk heller enn å gjette arter.",
-          "difficulty": 1,
-          "question_type": "kildekritikk",
-          "question_layer": "place_life",
+          "knowledge": "Kommunens badeplassinformasjon opplyser at verken badevannskvalitet eller temperatur måles på stedet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "holdback",
-            "byøkologi"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "manual_production_notes"
+            "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser/nydalsdammen/"
           ],
-          "claim_basis": "holdback_rule",
-          "primary_knowledge_unit_id": "ku_natur_uten_sikre_artsfunn_b_r__fc286adfc9",
+          "claim_id": "claim_nydalsdammen_monitor",
+          "source_origin": "external",
+          "claim_basis": "Kommunens side opplyser at kvalitet og temperatur ikke måles her.",
+          "primary_knowledge_unit_id": "ku_natur_kommunens_badeplassinfor_ee7f532d96",
           "knowledge_unit_ids": [
-            "ku_natur_uten_sikre_artsfunn_b_r__fc286adfc9"
+            "ku_natur_kommunens_badeplassinfor_ee7f532d96"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_natur_kyst_okosystemer",
-                "score": 10
-              },
-              {
-                "emne_id": "em_natur_natur_som_aktor",
-                "score": 10
-              },
-              {
-                "emne_id": "em_natur_arter_habitat_mangfold",
-                "score": 8
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "nydalsdammen_s2_q4",
@@ -554,52 +443,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva kan dammen fortelle om kontrollert vann?",
+          "question": "Hva var Nydalsdammens viktigste funksjon for Nydalens Compagnie?",
           "options": [
-            "At elva også kan formes og reguleres som del av byens struktur",
-            "At vann aldri kan påvirkes",
-            "At dammer ikke har byhistorie"
+            "Jernbanestasjon",
+            "Teglproduksjon",
+            "Øvre vanninntak"
           ],
-          "answer": "At elva også kan formes og reguleres som del av byens struktur",
-          "answerIndex": 0,
-          "knowledge": "Dammer og regulerte vannrom viser at elva er både natur og infrastruktur.",
-          "difficulty": 1,
-          "question_type": "stedskobling",
-          "question_layer": "place_life",
+          "answer": "Øvre vanninntak",
+          "answerIndex": 2,
+          "knowledge": "Dammen inngikk i bedriftens vannkraftsystem som øvre vanninntak.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "regulert_vann",
-            "infrastruktur"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://oslobyleksikon.no/side/Nydalsdammen"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_natur_dammer_og_regulerte_vann_b6b6d96026",
+          "claim_id": "claim_nydalsdammen_identity",
+          "source_origin": "external",
+          "claim_basis": "Nydalsdammen var gammel badedam og Nydalens Compagnies øvre vanninntak.",
+          "primary_knowledge_unit_id": "ku_natur_dammen_inngikk_i_bedrift_3265b58bcd",
           "knowledge_unit_ids": [
-            "ku_natur_dammer_og_regulerte_vann_b6b6d96026"
+            "ku_natur_dammen_inngikk_i_bedrift_3265b58bcd"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_natur_natur_som_aktor",
-                "score": 7
-              },
-              {
-                "emne_id": "em_natur_bekkeapning_overvann",
-                "score": 6
-              },
-              {
-                "emne_id": "em_natur_elver_bekker_vassdrag",
-                "score": 6
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "nydalsdammen_s2_q5",
@@ -608,52 +483,38 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva viser Nydalsdammen om byomforming?",
+          "question": "Hvilken sag lå ved dammen før Nydalens Compagnie tok vannkraften i bruk?",
           "options": [
-            "Elvenære tekniske og industrielle rom kan få nye roller som bynatur og opphold",
-            "Elverom kan aldri endre bruk",
-            "Bynatur har ingen byhistorie"
+            "Bjølsensaga",
+            "Nygaards sag",
+            "Brekkesaga"
           ],
-          "answer": "Elvenære tekniske og industrielle rom kan få nye roller som bynatur og opphold",
-          "answerIndex": 0,
-          "knowledge": "Nydalen kan leses som transformasjon der Akerselva fortsatt er en hovedstruktur.",
-          "difficulty": 1,
-          "question_type": "hendelse",
-          "question_layer": "place_life",
+          "answer": "Nygaards sag",
+          "answerIndex": 1,
+          "knowledge": "Nygaards sag lå vest for Nydalsdammen før tekstilindustriens utbygging.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "byomforming",
-            "nydalen"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://oslobyleksikon.no/side/Nydalsdammen"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_natur_nydalen_kan_leses_som_tr_61d384849b",
+          "claim_id": "claim_nydalsdammen_saw",
+          "source_origin": "external",
+          "claim_basis": "Nygaards sag lå på vestsiden; driften varte til Nydalens Compagnie tok vannkraften i bruk i 1845.",
+          "primary_knowledge_unit_id": "ku_natur_nygaards_sag_la_vest_for_f64e6eb6ef",
           "knowledge_unit_ids": [
-            "ku_natur_nydalen_kan_leses_som_tr_61d384849b"
+            "ku_natur_nygaards_sag_la_vest_for_f64e6eb6ef"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_natur_bekkeapning_overvann",
-                "score": 3
-              },
-              {
-                "emne_id": "em_natur_elver_bekker_vassdrag",
-                "score": 3
-              },
-              {
-                "emne_id": "em_natur_kjemiske_balanser",
-                "score": 3
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "nydalsdammen_s2_q6",
@@ -662,42 +523,33 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva kan roligere vannflate bidra med i opplevelsen?",
+          "question": "Hvilken dato ble Dalstuen rammet av det store raset?",
           "options": [
-            "Speil, pause, oversikt og annen sansning enn stryk og foss",
-            "At stedet blir historieløst",
-            "At observasjon er unødvendig"
+            "12. desember 1934",
+            "12. desember 1845",
+            "12. desember 1991"
           ],
-          "answer": "Speil, pause, oversikt og annen sansning enn stryk og foss",
+          "answer": "12. desember 1934",
           "answerIndex": 0,
-          "knowledge": "Vannets tempo og form påvirker hvordan et elverom oppleves.",
-          "difficulty": 1,
-          "question_type": "sansning",
-          "question_layer": "place_life",
+          "knowledge": "Historielaget oppgir 12. desember 1934 for jordraset som tok med Dalstuen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "sansning",
-            "vann"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://ntu-historielag.no/for-og-na/dalstuen-og-jordraset-i-nydalen/"
           ],
-          "claim_basis": "safe_internal_data",
-          "emne_ids": [
-            "em_natur_elver_bekker_vassdrag"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.85,
-            "score": 10,
-            "matched": [
-              "vann",
-              "elver",
-              "elv"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_natur_vannets_tempo_og_form_pa_2adcbe70cb",
+          "claim_id": "claim_nydalsdammen_slide",
+          "source_origin": "external",
+          "claim_basis": "12. desember 1934 raste Maridalsveien og dalsiden ned mot Akerselva; Dalstuen fulgte med ut i elven.",
+          "primary_knowledge_unit_id": "ku_natur_historielaget_oppgir_12__493277945a",
           "knowledge_unit_ids": [
-            "ku_natur_vannets_tempo_og_form_pa_2adcbe70cb"
+            "ku_natur_historielaget_oppgir_12__493277945a"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -711,40 +563,33 @@
           "placeId": "nydalsdammen",
           "targetId": "nydalsdammen",
           "question_scope": "place",
-          "question": "Hva gir Nydalsdammen sin History Go-stemning?",
+          "question": "Hva ble Nydalsdammen brukt til etter opprensingen og parkopparbeidelsen?",
           "options": [
-            "Møtet mellom regulert vann, bynatur, Nydalen og historiske elvelag",
-            "At stedet mangler alle forbindelser",
-            "At vannet ikke kan oppleves"
+            "Lukket tømmervelte",
+            "Malmhavn",
+            "Offentlig badedam og parkrom"
           ],
-          "answer": "Møtet mellom regulert vann, bynatur, Nydalen og historiske elvelag",
-          "answerIndex": 0,
-          "knowledge": "Stedet fungerer fordi vannrommet er både natur, infrastruktur og byopplevelse.",
-          "difficulty": 1,
-          "question_type": "bruk_stemning",
-          "question_layer": "place_life",
+          "answer": "Offentlig badedam og parkrom",
+          "answerIndex": 2,
+          "knowledge": "Et tidligere industrielt vanninntak ble tilgjengelig som del av det offentlige elverommet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_natur_elver_bekker_vassdrag",
           "tags": [
-            "historiske_lag"
+            "natur",
+            "nydalsdammen",
+            "akerselva",
+            "source_verified"
           ],
           "source": [
-            "History Go stories/leksikon: nydalsdammen"
+            "https://oslobyleksikon.no/side/Nydalsdammen"
           ],
-          "claim_basis": "safe_internal_data",
-          "emne_ids": [
-            "em_natur_natur_som_aktor"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.8200000000000001,
-            "score": 7,
-            "matched": [
-              "vann",
-              "natur"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_natur_stedet_fungerer_fordi_va_0935b5df32",
+          "claim_id": "claim_nydalsdammen_clean",
+          "source_origin": "external",
+          "claim_basis": "Dammen ble gjenåpnet etter opprensing i 1991.",
+          "primary_knowledge_unit_id": "ku_natur_et_tidligere_industrielt_95dfa1e3e1",
           "knowledge_unit_ids": [
-            "ku_natur_stedet_fungerer_fordi_va_0935b5df32"
+            "ku_natur_et_tidligere_industrielt_95dfa1e3e1"
           ],
           "concept_ids": [],
           "term_ids": [],
