@@ -449,6 +449,9 @@
     // settlement. Boot can also retry safely; the wallet checkpoint prevents
     // duplicate pay or expenses on reload.
     if (fromPhase === "day_end" && getDayIndex() > previousDay) {
+      // Lock yesterday's actual career before settling a seven-day period.
+      // Both operations are idempotent on reload and duplicate phase calls.
+      window.CivicationEconomyEngine?.recordCompletedDay?.(previousDay);
       window.CivicationEconomyEngine?.tickWeekly?.();
     }
 
