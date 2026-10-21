@@ -51,7 +51,7 @@ test('Arendt generator parity retains 20 works, 60 theory IDs, claims and assess
   assert.deepEqual(overlay.works.find((w) => w.id === work.id).theory_units.map((u) => u.expanded_prose), work.theory_units.map((u) => u.expanded_prose));
   assert.equal(canonical.works.length, 20);
   assert.equal(canonical.works.reduce((n, w) => n + w.theory_units.length, 0), 60);
-  assert.equal(canonical.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 57);
+  assert.equal(canonical.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 60);
   assert.equal(packages.reduce((n, p) => n + p.claims.claims.length, 0), 60);
   assert.equal(packages.reduce((n, p) => n + p.assessment.questions.length, 0), 60);
   assert.deepEqual(target.assessment.questions.filter((q) => ARENDT.includes(q.id.replace(/^advq-/, ''))).map((q) => q.id), ARENDT.map((id) => 'advq-' + id));
