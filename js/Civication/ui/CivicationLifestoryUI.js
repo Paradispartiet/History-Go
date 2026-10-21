@@ -713,6 +713,16 @@
    * @param {any} view
    * @returns {string}
    */
+  // A chapter can only open through the current Life Story gates. Read the
+  // real History Go merit counter; do not award points or choose a life role.
+  function chapterBadgePoints(badgeId) {
+    try {
+      const merits = JSON.parse(window.localStorage?.getItem("merits_by_category") || "{}");
+      const points = Number(merits?.[badgeId]?.points || 0);
+      return Number.isFinite(points) ? Math.max(0, points) : 0;
+    } catch { return 0; }
+  }
+
   function renderSummaryHtml(view) {
     const summary = view.oppsummering;
     const valgHtml = summary.valg.map((entry) =>
@@ -759,6 +769,26 @@
     const continuationHtml = next
       ? '<button class="civi-btn primary" type="button" data-lifestory-continue="' + escapeHtml(next.id) + '"' + (continuing ? ' disabled' : '') + '>' + (continuing ? "Åpner fortsettelsen …" : escapeHtml(next.navn)) + '</button>'
       : "";
+    const chosenLifePosition = sisteDag && !next ? getRoleSuggestion() : null;
+    const pendingPrivate = !!Runner.hasPendingPrivateScenes?.(state, content);
+    const blockedChapter = sisteDag && !next && !pendingPrivate;
+    const required = Number(chosenLifePosition?.threshold);
+    const hasPointGate = Number.isFinite(required) && required > 0 && !!chosenLifePosition?.badge_id;
+    const earned = hasPointGate ? chapterBadgePoints(chosenLifePosition.badge_id) : 0;
+    const needsMerits = hasPointGate && earned < required;
+    const nextChapterHint = !blockedChapter ? "" :
+      '<section class="civi-lifestory-next-chapter" role="status" aria-label="Veien videre">'
+      + '<h4>Veien videre</h4>'
+      + (chosenLifePosition
+        ? '<p>Du har valgt retningen <strong>' + escapeHtml(chosenLifePosition.navn) + '</strong>. Neste kapittel åpnes først når du har opptjent og aktivert riktig livsposisjon.</p>'
+          + (needsMerits ? '<p>Du har ' + escapeHtml(earned) + ' av ' + escapeHtml(required) + ' poeng i ' + escapeHtml(chosenLifePosition.badge_id) + '. Ta quizer i History Go for å bygge kunnskap.</p>'
+            : hasPointGate ? '<p>Du har nok poeng. Åpne livsposisjonene og velg ' + escapeHtml(chosenLifePosition.navn) + ' for å låse opp neste kapittel.</p>'
+              : '<p>Undersøk hvilke krav som gjelder for livsposisjonen før du fortsetter.</p>')
+        : '<p>Første kapittel er ferdig. Utforsk History Go for å bygge kunnskap, og gå tilbake til livsposisjonene i Civication når du har låst opp en retning.</p>')
+      + '<div class="civi-lifestory-actions">'
+      + '<button class="civi-btn primary" type="button" data-lifestory-study>Utforsk History Go</button>'
+      + (chosenLifePosition ? '<button class="civi-btn" type="button" data-lifestory-life-profile>Se livsposisjoner</button>' : '')
+      + '</div></section>';
     // A pending mail needs a reachable player action in Min dag, even when
     // there is no active job or visible top-action card.
     const pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.();
@@ -773,6 +803,7 @@
     const handlingsHtml = sisteDag
       ? "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
+        + nextChapterHint
         + (Runner.hasPendingPrivateScenes?.(state, content) ? '<button class="civi-btn primary" type="button" data-lifestory-next-day' + nextDayDisabled + '>Fortsett privatlivet</button>' : "")
         + blockedDayNote
         + pendingDayActionHtml
@@ -1146,6 +1177,16 @@
           window.dispatchEvent(new Event("civi:lifestoryChanged"));
           render();
         }
+        return;
+      }
+      if (target.closest("[data-lifestory-study]")) {
+        const suggestion = getRoleSuggestion();
+        if (suggestion?.badge_id && Number(suggestion.threshold) > chapterBadgePoints(suggestion.badge_id)) {
+          // Same persistent mission toast that already follows Civication tasks
+          // into History Go; no fabricated job, badge or finished task.
+          window.CivicationHistoryGoDeepLink?.startLifePositionGuidance?.(suggestion);
+        }
+        window.CivicationLifestoryActions?.perform?.({ type: "gaa_til_byen" });
         return;
       }
       if (target.closest("[data-lifestory-next-day]")) { onNextDay(); return; }
