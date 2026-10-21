@@ -1,0 +1,85 @@
+name: Sognsvann v1 translation and canonical data sync
+on:
+  push:
+    branches:
+      - history-go/sognsvann-v1-20261021
+    paths:
+      - '.github/workflows/sognsvann-v1-data-sync.yml'
+permissions:
+  contents: write
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install project dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Translate historical Sognsvann entry preserving real source hash
+        shell: bash
+        run: |
+          node --input-type=module <<'SOGNSVANN_TRANSLATIONS'
+          
+          import fs from 'node:fs';
+          import crypto from 'node:crypto';
+          const place=JSON.parse(fs.readFileSync('data/places/natur/oslo/sognsvann.json','utf8'));
+          const norm=v=>String(v||'').replace(/\r\n/g,'\n').replace(/[ \t]+/g,' ').trim();
+          const sourceHash=crypto.createHash('sha256').update(JSON.stringify({name:norm(place.name),desc:norm(place.desc),popupDesc:norm(place.popupDesc||place.popupdesc)})).digest('hex').slice(0,16);
+          const translations={"en":{"desc":"Sognsvann is more than a popular swimming lake in Oslo: iron mines on both sides recall ore extraction from the sixteenth century. From 1876 to 1967, the lake was part of the city's drinking-water supply, before its shores opened for swimming in 1976. Around the lake, traces of old smallholdings, waterworks and wartime history meet an accessible path into Nordmarka.","popupDesc":"Before swimmers and hikers arrived, the woodland around Sognsvann was a place of work. Iron ore was extracted from mines on both sides of the lake as early as the sixteenth century. The operation was known as Sogneberg Jernbrug, associated with the Sogn and Gaustad mines. The chancellor Morten Krabbe applied to the king for permission to mine here in 1538. Attempts to reopen the workings in 1906–1909 did not establish lasting production. North of the lake, remains of the Nordre Skjeggerud, Søndre Skjeggerud and Seteren smallholdings tell another story of daily life.\n\nIn the nineteenth century, the lake took on a role that changed the relationship between the city and the forest. Christiania purchased the Sognsvann waterworks in 1876, making the lake part of the municipal drinking-water supply. After a typhoid outbreak, the intake was moved upstream to the lake itself in 1881. Chlorine disinfection was introduced at Sognsvann in 1929. The dam, intake and other waterworks traces belong to this phase. The lake supplied drinking water until 1967.\n\nMeanwhile, Sognsvann became easier to reach from the city. Most of the land around the lake came under municipal ownership in 1908, and the Sognsvann railway opened in 1934. During the German occupation, a barracks camp stood south of the water. A small red building dating from 1943 at Sognsveien 230 remains as a trace of the Sognsvann camp. The lake was not opened as a public swimming area until 1976, after its drinking-water role had ended. Today swimmers, runners, hikers and people with different mobility needs share the lakeside. Its circuit path is adapted for accessibility, while the southern shore provides public bathing facilities. Looking across the water, imagine three different landscapes: the ironworks, the restricted drinking-water reservoir and the open swimming beach."},"es":{"desc":"Sognsvann es mucho más que un popular lago de baño de Oslo: las minas situadas a ambos lados recuerdan la extracción de hierro desde el siglo XVI. Entre 1876 y 1967 el lago formó parte del abastecimiento de agua potable de la ciudad, y sus orillas se abrieron al baño en 1976. Alrededor del agua, las huellas de antiguas viviendas rurales, de las instalaciones hidráulicas y de la guerra conviven con un sendero accesible hacia Nordmarka.","popupDesc":"Antes de los bañistas y excursionistas, el bosque alrededor de Sognsvann era un lugar de trabajo. Desde el siglo XVI se extraía mineral de hierro de minas situadas a ambos lados del lago. La actividad se conocía como Sogneberg Jernbrug, vinculada a las minas de Sogn y Gaustad. El canciller Morten Krabbe solicitó al rey permiso para explotar estas minas en 1538. Los intentos de reabrirlas entre 1906 y 1909 no dieron lugar a una explotación duradera. Al norte del lago quedan vestigios de las antiguas viviendas rurales de Nordre Skjeggerud, Søndre Skjeggerud y Seteren.\n\nEn el siglo XIX, el lago asumió una función que cambió la relación entre la ciudad y el bosque. Christiania compró el sistema de abastecimiento de Sognsvann en 1876 e incorporó el lago al suministro municipal de agua potable. Tras una epidemia de fiebre tifoidea, la toma de agua se trasladó hasta el propio lago en 1881. En 1929 se introdujo la desinfección con cloro en Sognsvann. La presa, la toma y los restos del sistema hidráulico pertenecen a esa etapa. El lago suministró agua potable hasta 1967.\n\nMientras tanto, llegar a Sognsvann se volvió más fácil. La mayor parte del terreno que rodea el lago pasó a manos municipales en 1908, y la línea ferroviaria de Sognsvann abrió en 1934. Durante la ocupación alemana hubo un campamento de barracones al sur del lago. Una pequeña casa roja de 1943 situada en Sognsveien 230 permanece como testimonio del campamento de Sognsvann. El lago no se abrió como zona de baño hasta 1976, después de terminar su función como fuente de agua potable. Hoy comparte este paisaje gente que nada, corre o pasea, incluidas personas con distintas necesidades de movilidad. El sendero alrededor del lago está adaptado y la orilla sur cuenta con instalaciones públicas de baño. Al mirar el agua se pueden imaginar tres paisajes: el trabajo minero, el embalse protegido y la playa abierta al público."},"pt":{"desc":"Sognsvann é mais do que um lago popular para banhos em Oslo: minas nas duas margens recordam a extração de ferro desde o século XVI. Entre 1876 e 1967, o lago fez parte do abastecimento de água potável da cidade, e as margens abriram aos banhos em 1976. Em torno do lago, vestígios de antigas pequenas propriedades, infraestruturas de água e episódios da guerra convivem com um percurso acessível de entrada em Nordmarka.","popupDesc":"Antes de chegarem banhistas e caminhantes, a floresta de Sognsvann era um lugar de trabalho. Desde o século XVI, extraía-se minério de ferro em minas nas duas margens do lago. A atividade era conhecida como Sogneberg Jernbrug, associada às minas de Sogn e Gaustad. Em 1538, o chanceler Morten Krabbe pediu ao rei autorização para explorar minas na região. As tentativas de reabrir a exploração entre 1906 e 1909 não tiveram continuidade. A norte do lago ainda existem vestígios das antigas pequenas propriedades de Nordre Skjeggerud, Søndre Skjeggerud e Seteren.\n\nNo século XIX, o lago adquiriu uma função que transformou a relação entre a cidade e a floresta. Christiania comprou o sistema de abastecimento de Sognsvann em 1876 e integrou o lago na rede municipal de água potável. Após uma epidemia de febre tifoide, a captação foi transferida para o próprio lago em 1881. A desinfeção com cloro foi introduzida em Sognsvann em 1929. A barragem, a captação e os vestígios da rede de água pertencem a essa fase. O lago abasteceu a cidade até 1967.\n\nEntretanto, tornou-se mais fácil chegar a Sognsvann. A maior parte do terreno em volta do lago passou para propriedade municipal em 1908, e a linha ferroviária de Sognsvann abriu em 1934. Durante a ocupação alemã, havia um acampamento de barracões a sul do lago. Uma pequena casa vermelha de 1943, em Sognsveien 230, continua a testemunhar a existência do acampamento de Sognsvann. O lago só abriu como zona pública de banhos em 1976, depois de terminar a sua função no abastecimento de água potável. Hoje, banhistas, corredores, caminhantes e pessoas com diferentes necessidades de mobilidade partilham as margens. O percurso à volta do lago é acessível e a margem sul oferece estruturas públicas para banhos. Ao olhar para a água, imagine três paisagens: o trabalho mineiro, a albufeira protegida e a praia aberta ao público."}};
+          for(const [language,translation] of Object.entries(translations)){
+            const filename='data/i18n/content/places/'+language+'.json';
+            const data=JSON.parse(fs.readFileSync(filename,'utf8'));
+            data.sognsvann={_sourceHash:sourceHash,_status:'machine_translated',name:'Sognsvann',...translation};
+            fs.writeFileSync(filename,JSON.stringify(data,null,2)+'\n');
+            console.log('Updated',filename,'sourceHash='+sourceHash);
+          }
+          SOGNSVANN_TRANSLATIONS
+          node scripts/check-place-i18n-freshness.mjs sognsvann
+      - name: Generate and link canonical Knowledge records
+        run: npm run knowledge:canonical:write
+      - name: Regenerate Fagverk release from canonical sources
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Regenerate Place-open runtime
+        run: node scripts/build-place-open-payloads.mjs
+      - name: Regenerate epoch place index
+        run: node scripts/build-epoke-place-index.mjs
+      - name: Regenerate place catalog
+        run: npm run places:index:build
+      - name: Confirm translations and canonical quiz links
+        shell: bash
+        run: |
+          node scripts/check-place-i18n-freshness.mjs sognsvann
+          node --input-type=module <<'SOGNSVANN_ASSERT'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const q=JSON.parse(fs.readFileSync('data/quiz/natur/sognsvann_sets.json','utf8'));
+          const questions=q.sets.flatMap(s=>s.questions);
+          assert.equal(questions.length,21);
+          for(const x of questions){
+            assert.equal(x.knowledge_link_status,'linked',x.id);
+            assert.ok(x.primary_knowledge_unit_id,x.id);
+            assert.equal(x.answer,x.options[x.answerIndex],x.id);
+          }
+          const p=JSON.parse(fs.readFileSync('data/runtime/place-open/sognsvann.json','utf8')).place;
+          assert.equal(p.id,'sognsvann');
+          assert.ok(p.frontImage&&p.image);
+          console.log('Sognsvann 21/21 Knowledge links and Place-open runtime verified');
+          SOGNSVANN_ASSERT
+      - name: Commit only generated Sognsvann and shared canonical data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/i18n/content/places/en.json data/i18n/content/places/es.json data/i18n/content/places/pt.json
+          git add data/quiz/natur/sognsvann_sets.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/fagverk/fagverk_release.json data/runtime data/epoker/epoke-place-index.json data/places/places_index.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(history-go): synchronize Sognsvann translations Knowledge and runtime'
+            git pull --rebase origin history-go/sognsvann-v1-20261021
+            git push origin HEAD:history-go/sognsvann-v1-20261021
+          fi
