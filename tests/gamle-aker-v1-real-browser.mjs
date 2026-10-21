@@ -74,6 +74,22 @@ try{
    assert.ok(flip.width>85&&flip.height>100&&flip.innerWidth>65&&flip.innerHeight>100,name+': QuizCard occupies no visible area');
    assert.ok(/Gamle Aker kirke/i.test(flip.text)&&flip.text.length>120,name+': QuizCard reverse has no readable questions');
    assert.equal(await page.locator('#pcQuizCardContent li').count(),10,name+': ten fullquiz-linked questions must be visibly rendered');
+   // Verify the entire ten-question card is genuinely accessible, not clipped inside
+   // the compact card face. The expanded reading layer belongs to PlaceCard itself.
+   await page.locator('#pcQuizExpandBtn').click({timeout:12000});
+   await page.locator('#pcQuizExpanded').waitFor({state:'visible',timeout:10000});
+   const expanded=await page.locator('#pcQuizExpandedContent').evaluate(el=>{
+     const rect=el.getBoundingClientRect();
+     return {mode:el.dataset.mode, width:rect.width, height:rect.height, text:el.innerText||'', scrollHeight:el.scrollHeight, clientHeight:el.clientHeight};
+   });
+   assert.equal(expanded.mode,'rendered',name+': expanded card must render real questions');
+   assert.equal(await page.locator('#pcQuizExpandedContent li').count(),10,name+': expanded reader lost questions');
+   assert.ok(expanded.width>100&&expanded.height>100,name+': expanded reader occupies no usable visible area');
+   assert.match(expanded.text,/Fossiler etter ortocerer/);
+   await page.screenshot({path:folder+'/'+name+'-quizcard-expanded.png',fullPage:true});
+   await page.locator('#pcQuizExpandedClose').click();
+   assert.equal(await page.locator('#pcQuizExpanded').isHidden(),true,name+': expanded reader cannot close');
+
    // Reopening the same canonical place is legitimate during progressive
    // hydration and must not erase the user's currently flipped QuizCard.
    const hydrated=await page.evaluate(async placeId=>{
