@@ -2,6 +2,12 @@
 
 Opprettet: 2026-10-20. Eier: Civication. Status: **aktiv plan; ikke godkjent som ferdig spillerreise**.
 
+## Oppdatert produktmål – tre uker (21.10.2026)
+
+Første organiske Civication-kapittel utvides til **21 spilldager**. Dag 8–21 skal drives av private Life Stories, gjennomført livspraksis, relasjoner og handlinger, ikke repeterte jobbsøker-/NAV-mailer. Spillerens konkrete forsøk og oppfølging kan ved dag 21 gjøre én relevant, frivillig livsposisjon tilgjengelig gjennom eksisterende `CivicationLifePositions`. Jobbstatus og formell Badge-basert spesialisering er fortsatt uavhengige.
+
+På utviklingsgrenen `feat/civication-21day-life-direction-20261021` ligger én delt, privat treukerstråd, dokumenterte dagvalg og en ny, streng 21-dagers simulasjon. **Ikke merk 21-dagers browser/kontoakseptanse som godkjent før faktisk gjennomspilling.** Tidligere omtale av 14 dager nedenfor dokumenterer historiske delmål, ikke lenger hele produktmålet.
+
 ## Formål og fasit
 Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, økonomi, psyke, energi og integritet henger sammen. Et valg fra dag 2 må kunne få observerbare, kausalt begrunnede følger på dag 14. En grønn unit-test alene beviser ikke at dette skjer i nettleseren.
 
