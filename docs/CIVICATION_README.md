@@ -18,7 +18,7 @@ Denne filen eier i tillegg **gjeldende produksjonsretning og rekkefølge** for C
 7. [`CIVICATION_HISTORY_GO_TASK_SCHEMA.md`](./CIVICATION_HISTORY_GO_TASK_SCHEMA.md) — canonical payloadgrense fra Civication til History Go.
 8. [`CIVICATION_HISTORY_GO_COMPLETION_BRIDGE.md`](./CIVICATION_HISTORY_GO_COMPLETION_BRIDGE.md) — evidensbasert retur fra History Go til Civication.
 9. [`CIVICATION_SCENARIO_PEOPLE.md`](./CIVICATION_SCENARIO_PEOPLE.md) — canonical People↔scenario-katalog, fit-semantikk og factuality/NPC-grense.
-10. [`CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md`](./CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md) — besluttet produktretning for ferdigheter, arbeidsledige Life Stories, streetkred og samlingens betydning i livsverdenen (planlagt ferdighetssystem, ikke ferdig runtime).
+10. [`CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md`](./CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md) — besluttet produktretning for Skills, arbeidsledige Life Stories, streetkred og samlingens betydning i livsverdenen (planlagt ferdighetssystem, ikke ferdig runtime).
 
 ## Gjeldende produktretning
 
@@ -50,13 +50,13 @@ Arbeidsledig er **arbeidsstatus/livsomstendighet**, ikke en livsposisjon spiller
 
 **History Go skal endre det som er mulig i Civications livsverden.** Faktiske besøk, samlet kunnskap, dokumentert quizmestring, møter med People, observasjoner og egne bidrag gir varierte signaler til eksisterende profil-, kunnskaps-, livsposisjons- og scenemotorer. De kan åpne samtaleemner, alternative løsninger, sosiale miljøer, relasjoner, frivillige livsposisjoner og nye fortellinger. Ferdigheter og sosial anseelse opptjenes bare når en definert handling gir relevant evidens og konsekvens; et registrert stedsbesøk er ikke automatisk visdom, vennskap, streetkred eller jobb.
 
-**Følgende lag må skilles:** (1) jobb og livsomstendigheter; (2) svingende livsmålere (psyke/energi); (3) seks planlagte stabile, erfaringsbaserte ferdigheter (visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling, handlekraft); (4) syv eksisterende kapitaldimensjoner; (5) relasjoner og miljøspesifikk anseelse/streetkred; (6) dokumentert History Go-samling og fagmeritter; (7) selvvalgte livsposisjoner. Skalaer er ikke valuta, myndighet, kvalifikasjon eller en annen fortellingsmotor. De seks ferdighetsskalaene er **besluttet produktretning, ennå ikke implementert som felles runtime**.
+**Følgende lag må skilles:** (1) jobb og livsomstendigheter; (2) svingende livsmålere (psyke/energi); (3) seks Skills-skalaer med dokumentert praksis (visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling, handlekraft); (4) syv eksisterende kapitaldimensjoner; (5) relasjoner og miljøspesifikk anseelse/streetkred; (6) dokumentert History Go-samling og fagmeritter; (7) selvvalgte livsposisjoner. Skalaer er ikke valuta, myndighet, kvalifikasjon eller en annen fortellingsmotor. De seks ferdighetsskalaene er **besluttet produktretning, ennå ikke implementert som felles runtime**.
 
 **Eiere:** `civication-life-story-system.md` eier dag-/fortellingsreglene; `CIVICATION_NONCAREER_ROLE_TAXONOMY.md` eier skillet jobb/livsposisjon/omstendighet; `CIVICATION_PERSON_MODEL_V1.md` eier kompetanse som påvisbar erfaring; `CIVICATION_DATA_LAYERS.md` eier lagrings- og adaptergrensene; `docs/PERSONAL_COLLECTION_V1.md` og `docs/PROGRESSION_MODEL.md` eier History Go-kildene. Implementerings- og akseptansekriterier finnes i `CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md` og `CIVICATION_ORGANIC_14_DAY_AND_VITALITY_ACCEPTANCE_2026_10_20.md`.
 
 Dag-7-veiledning og History Go-oppdragstoast er **frivillige**. `Fortsett privatlivet` skal fortsatt være tilgjengelig når private scener venter. Badges og eksplisitt aktivering kan kreves for **bestemte valgfrie kapitler**, aldri for en ordinær ny spilldag. Ikke forveksle dag-7-kapittelporten med 14-dagers end-to-end-godkjenning.
 
-Detaljert normativt produktmål, eiergrenser og akseptansekriterier er samlet i [**CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md**](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md); de seks ferdighetsskalaene er fortsatt planlagt funksjonalitet.
+Detaljert normativt produktmål, eiergrenser og akseptansekriterier er samlet i [**CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md**](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md); de seks Skills-skalaene er delvis implementert som et kildeavgrenset v1-grunnlag og er fortsatt planlagt funksjonalitet.
 
 ## History Go som Civication-modus
 
