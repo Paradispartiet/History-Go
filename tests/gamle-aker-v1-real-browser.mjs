@@ -45,7 +45,7 @@ try{
    const description=await page.locator('#placeCard').innerText();
    assert.ok(/Gamle Aker/i.test(description),name+': canonical church title not rendered in place card');
    const image=await page.locator('#pcFrontImage').evaluate(el=>({src:el.currentSrc||el.src,width:el.naturalWidth,height:el.naturalHeight}));
-   assert.ok(image.src.includes((place.frontImage||place.image).split('/').at(-1))&&image.width>0&&image.height>0,name+': available local church image not decoded');
+   assert.ok(image.src.includes((place.frontImage||place.cardImage||place.image).split('/').at(-1))&&image.width>0&&image.height>0,name+': available local church image not decoded');
    await page.screenshot({path:folder+'/'+name+'-front.png',fullPage:true});
    const front=page.locator('#pcFrontCardFlip');
    await front.click({position:{x:22,y:Math.max(24,(await front.boundingBox()).height-25)},timeout:8000});
