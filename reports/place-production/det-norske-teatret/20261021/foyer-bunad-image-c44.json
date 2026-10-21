@@ -29,12 +29,14 @@
   ],
   "conclusion": "NO_OBJECT_IDENTIFIED_PUBLISHABLE_FOYER_EXHIBIT_PHOTO_FOUND_IN_REVIEWED_PUBLIC_SOURCES",
   "state": "OBJECTS_BLOCKED_ZERO_CANONICAL_MEMBERS",
-  "c44_ui_fix": "Adds a dedicated visible #pcSources action to canonical index.html, opening the shipped Place popup with Sources selected, without restoring the deliberately removed generic #pcInfo control; real-browser route test gates the feature.",
+  "c44_ui_fix": "Fixed canonical TypeScript js/ui/place-sheet/sections/sources.ts plus its built dist/web/place-unified-surface.js and responsive css/place-sheet-sources.css. The real inline Kilder section on unified PlaceCard now displays locally licensed Madame de Sade image, credit and original source while Juleroser remains an external link. No new button; retired #pcInfo and #pcSources remain absent.",
   "restrictions": [
     "No canonical Objects or collection previews may be published based on lookalike/reconstruction images.",
     "Public source links may be shown without copying images into the app.",
     "No new requests for permission or contacts may be sent.",
     "Do not treat absence in this bounded search as proof that no suitable photograph exists anywhere."
   ],
-  "rejected_reintroduction_note": "Existing Social Meet governance test intentionally asserts absence of #pcInfo. C44 preserves that contract."
+  "rejected_reintroduction_note": "C44 first attempts to restore old pcInfo or add pcSources were deliberately reversed after confirming existing unified PlaceCard Kilder navigation; canonical app render is TypeScript owned.",
+  "actual_browser_test": "tests/det-norske-teatret-real-placecard-sources-c44.mjs (normal app route and the existing inline Kilder jump; 390 and 1280 viewport)",
+  "publish_status": "SOURCE_PHOTO_ONLY_NO_CANONICAL_OBJECTS"
 }
