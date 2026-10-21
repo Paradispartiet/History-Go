@@ -166,13 +166,58 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifestoryState.load().livsdag),
       privateBefore.day, 'taking a formal job cannot advance or reset the private life clock');
 
+    // The art job has no authored work-role pack. It must keep the normal
+    // private life playable rather than replacing Min dag with an inbox-only
+    // dead end or showing unemployment as the person's life identity.
+    await page.waitForFunction(() => {
+      const app = globalThis as any;
+      const info = app.CivicationLifestoryUI?.getCurrentSceneInfo?.();
+      return info?.threadType === 'privatliv' && info?.rolleNavn === 'Privatliv'
+        && !!info.sceneId;
+    }, null, { timeout: 30000 });
+    const currentPrivate = await page.evaluate(() =>
+      (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo());
+    assert.notEqual(currentPrivate.sceneId, privateSceneId,
+      'a different private scene follows the already played choice');
+    const privateArchiveBefore = await page.evaluate(() =>
+      (globalThis as any).CivicationLifestoryState.load().arkiv.length);
+    const closeAfterOffer = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]');
+    if (await closeAfterOffer.count()) await closeAfterOffer.click();
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    const nextPrivateChoice = page.locator('[data-lifestory-scene="' + currentPrivate.sceneId + '"][data-lifestory-choice]:not([disabled])').first();
+    await nextPrivateChoice.waitFor({ state: 'visible', timeout: 30000 });
+    await nextPrivateChoice.click({ timeout: 20000 });
+    const continued = await page.evaluate(() => {
+      const app = globalThis as any;
+      const state = app.CivicationLifestoryState.load();
+      return {
+        archived: state.arkiv.length,
+        latest: state.arkiv.at(-1)?.sceneId,
+        day: state.livsdag,
+        job: app.CivicationState.getActivePosition()?.career_id,
+        navInArchive: state.arkiv.some((entry: any) =>
+          /^(meldekort_|soknad_|d1_nav_)/.test(entry.sceneId))
+      };
+    });
+    assert.equal(continued.archived, privateArchiveBefore + 1,
+      'one additional real private scene remains playable while employed');
+    assert.equal(continued.latest, currentPrivate.sceneId);
+    assert.equal(continued.day, privateBefore.day);
+    assert.equal(continued.job, 'kunst', 'private choices cannot remove formal employment');
+    assert.equal(continued.navInArchive, false, 'paid work cannot generate unemployment job mail');
+
+
     await page.reload({ waitUntil: 'load' });
     await page.waitForFunction(() => (globalThis as any).CivicationState?.getActivePosition?.()?.career_id === 'kunst', null, { timeout: 90000 });
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('merits_by_category') || '{}').kunst?.points), 5);
     assert.equal(await hasPlayedPrivateChoice(), true,
       'full reload after a job offer retains the previously played private life scene');
+    assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifestoryState.load().arkiv.at(-1)?.sceneId),
+      currentPrivate.sceneId, 'the private scene played while employed survives reload');
+    assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo()?.rolleNavn),
+      'Privatliv', 'an unmapped job reopens the private-only story after reload');
     assert.deepEqual(errors, [], 'No browser runtime errors during organic player journey');
-    console.log('PASS: five real History Go quiz sets -> earned offer -> played private Min dag choice -> job acceptance -> reload, with personal history and merits intact.');
+    console.log('PASS: five real History Go quiz sets -> earned offer -> played private Min dag choice -> job acceptance -> reload, with a continuing private Life Story, no fabricated unemployment and merits intact.');
     return { passed: true, quizSets: 5, earnedMerits: 5, career: accepted.active.title, browserErrors: errors.length };
   } finally {
     await context.close();
