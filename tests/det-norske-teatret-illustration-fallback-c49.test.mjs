@@ -18,7 +18,7 @@ test("C49 illustration is a locally present, visibly labeled, script-free SVG",(
  assert.match(asset,/ILLUSTRASJON – IKKE FOTOGRAFI/);
  assert.match(asset,/Jan Groths sceneteppe/);
  assert.match(asset,/skjematisk|ikke målfast/i);
- assert.doesNotMatch(asset,/<script\b|<foreignObject\b|\bonload\s*=|\bonerror\s*=|https?:\/\//i);
+ assert.doesNotMatch(asset.replace('xmlns="http://www.w3.org/2000/svg"',''),/<script\b|<foreignObject\b|\bonload\s*=|\bonerror\s*=|https?:\/\//i);
  assert.equal(report.candidate.image.externalPhotoCopied,false);
  assert.equal(report.candidate.image.fidelity,"CONCEPTUAL_NOT_PHOTO_NOT_MEASUREMENT");
 });
