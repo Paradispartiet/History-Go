@@ -144,7 +144,10 @@
         return copy;
       });
 
-    const content = { role, faser, threads, scenes };
+    // Preserve authorship: role-specific unemployment scenes can also be
+    // labelled "privatliv", so the type alone cannot identify shared life.
+    const sharedLifeThreadIds = (raw.lifeThreads?.threads || []).map(t => t.id);
+    const content = { role, faser, threads, scenes, sharedLifeThreadIds };
     validateContent(content);
     return /** @type {LifestoryContent} */ (content);
   }
@@ -620,13 +623,20 @@
     if (original?.role?.id !== "arbeidsledig") {
       throw new Error("[LifestoryContent] privatliv trenger felles grunnpakke");
     }
-    const threads = (original.threads || []).filter(t => t.type === "privatliv");
-    const ids = new Set(threads.map(t => t.id));
+    // The unemployment role's NAV and job-application threads are also
+    // marked "privatliv" in legacy content. Never use type alone here.
+    // Keep canonical shared life plus the day-two personal-direction choice.
+    const ids = new Set([...(original.sharedLifeThreadIds || []), "ugens_retning"]);
+    const threads = (original.threads || []).filter(t => ids.has(t.id));
+    const scenes = (original.scenes || []).filter(scene =>
+      ids.has(scene.threadId) &&
+      (scene.threadId !== "ugens_retning" ||
+       !/(?:^|_)(?:nav|meldekort|soknad|arbeidsledig|frist)(?:_|$)/.test(scene.id)));
     return {
       ...original,
       role: { ...original.role, navn: "Privatliv", dagsplan: {} },
       threads,
-      scenes: (original.scenes || []).filter(s => ids.has(s.threadId))
+      scenes
     };
   }
 
