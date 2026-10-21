@@ -139,10 +139,20 @@ const fileRecords = governedFiles.map((rel) => {
   const text = readText(rel);
   let json = null;
   try { json = JSON.parse(text); } catch {}
+  // A shared personal 21-day episode is not governed proof for a specific
+  // Badge's Role World. Exclude only these *generic* additions from thematic
+  // readiness, while retaining the original Wave E C01/C05 source evidence.
+  if (rel === 'data/Civication/lifestory/life/scenes.json' && Array.isArray(json?.scenes)) {
+    json = { ...json, scenes: json.scenes.filter((scene) => !String(scene.id || '').startsWith('wave_e_life21_')) };
+  } else if (rel === 'data/Civication/lifestory/life/threads.json' && Array.isArray(json?.threads)) {
+    json = { ...json, threads: json.threads.filter((thread) => thread.id !== 'wave_e_life21') };
+  }
+  const evidenceText = json && rel.startsWith('data/Civication/lifestory/life/')
+    ? JSON.stringify(json) : text;
   return {
     rel,
     text,
-    normalized: normalizeText(text),
+    normalized: normalizeText(evidenceText),
     json,
     strings: json ? collectStrings(json).map(normalizeText) : []
   };
