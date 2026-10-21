@@ -61,10 +61,15 @@ export function clinicalTextHasNoDirectives(article) {
   const text = JSON.stringify(article);
   return CLINICAL_DIRECTIVE_PATTERNS.every((pattern) => !pattern.test(text));
 }
+export function isAhaArticleRuntimeReference(file, content) {
+  // An inventory describing the canonical Fagverk article files is not a
+  // runtime import. Any other scanned file still fails closed on a reference.
+  if (NON_RUNTIME_REFERENCE_DOCUMENTS.has(file)) return false;
+  return /data\/fagverk\/psykologi\/emneartikler|history_go_psykologi_topic_article_v1|psykologi[\/_-]emneartikler/i.test(content);
+}
 function ahaRuntimeActivationEvidence() {
   const scannedFiles = AHA_RUNTIME_ROOTS.flatMap(walkFiles).sort();
-  const activationPattern = /data\/fagverk\/psykologi\/emneartikler|history_go_psykologi_topic_article_v1|psykologi[\/_-]emneartikler/i;
-  const referencingFiles = scannedFiles.filter((file) => !NON_RUNTIME_REFERENCE_DOCUMENTS.has(file) && activationPattern.test(fs.readFileSync(abs(file), 'utf8')));
+  const referencingFiles = scannedFiles.filter((file) => isAhaArticleRuntimeReference(file, fs.readFileSync(abs(file), 'utf8')));
   return { scannedRoots: AHA_RUNTIME_ROOTS, referencingFiles };
 }
 const projection = (report) => ({
