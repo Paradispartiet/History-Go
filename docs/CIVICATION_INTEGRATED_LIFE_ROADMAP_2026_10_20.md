@@ -84,13 +84,13 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 
 ## Dag 7 → History Go → kapittel 2: veiledning (2026-10-21)
 
-Problem: Ved slutten av første arbeidsledig-kapittel vises ingen videre knapp dersom ingen kvalifiserende livsposisjon er aktivert. Dette skal aldri løses ved å tildele meritter, jobb, penger, quizresultater eller et gratis kapittel.
+Problem: Etter dag 7 kan private Life Stories fortsatt følges gjennom «Fortsett privatlivet» selv om ingen livsposisjon er aktivert. Den valgfrie History Go-veiledningen må derfor aldri skjules eller feilaktig framstilles som en nødvendighet for å leve videre. Ingen meritter, jobb, penger eller kapittel tildeles automatisk.
 
 Løsning i eksisterende systemer:
-- «Min dag» viser **Veien videre** når siste dag er avsluttet, intet videre kapittel er tilgjengelig og ingen private scener venter. Valgt retning og dokumentert poengkrav vises fra eksisterende `rollebroer` og `merits_by_category`.
+- «Min dag» viser **Veien videre** når siste dag er avsluttet og intet ekstra kapittel er tilgjengelig, også når private scener venter. «Fortsett privatlivet» beholdes samtidig. Arbeidsledighet er en jobbstatus, ikke et krav om en ny livsidentitet etter syv dager. Valgt *valgfri* retning og dokumenterte poengkrav vises fra eksisterende `rollebroer` og `merits_by_category`.
 - Knappen **Utforsk History Go** bruker eksisterende `CivicationLifestoryActions` til kartet og gjenbruker `CivicationHistoryGoDeepLink.startLifePositionGuidance` for en eksplisitt læringssesjon.
 - History Go sitt eksisterende permanente **Civication-modus-kort** i `js/ui/toast.js` viser mål og relevante steder, følger faktisk poengprogresjon til livsposisjonens fullstendige terskel og har **Tilbake til Civication**.
-- Ved retur velger spilleren selv en opptjent livsposisjon; først ordinær `Runner.canStartContinuation` kan åpne kapittelet. Quiz eller velkomsttoast er ikke et automatisk jobbtilbud. Ubesvart inbox og dagsporter beholdes.
+- Ved retur velger spilleren selv om vedkommende vil aktivere en opptjent livsposisjon for et ekstra kapittel; ordinære private Life Stories fortsetter uavhengig. Først ordinær `Runner.canStartContinuation` kan åpne det betingede kapitlet. Quiz eller velkomsttoast er ikke et automatisk jobbtilbud. Ubesvart inbox og dagsporter beholdes.
 - Uten valgt/gyldig poengkrav vises bare utforskingsveien og livsprofilen, uten en falsk «oppdrag fullført»-indikator.
-- Testdekning: `civication-lifestory-week7-guidance.test.js` (ekte syv forfattede dager), `civication-history-go-deeplink-session.test.js` (sesjonsdata) og `civication-history-go-mission-badge-points.test.js` (opptjente meritter). Alle skal kjøres i eksisterende Civication-regresjon.
+- Testdekning: `civication-lifestory-week7-guidance.test.js` (syv forfattede dager; både privatlivet og valgfri oppdragsveiledning synlig), `civication-history-go-deeplink-session.test.js` (sesjonsdata) og `civication-history-go-mission-badge-points.test.js` (opptjente meritter). Alle skal kjøres i eksisterende Civication-regresjon.
 - **Avgrensning:** Dette er gjenfunnet veiledning og reelle gating-regler, ikke dokumentasjon på at en fersk spiller faktisk har opptjent poengene eller gjennomført 14 dager og kontogjenoppretting i en nettleser.
