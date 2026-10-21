@@ -16,7 +16,8 @@ const c41 = JSON.parse(fs.readFileSync(
 assert.equal(place.id, placeId);
 const markup = fs.readFileSync("index.html", "utf8");
 const placeCard = fs.readFileSync("js/ui/place-card.js", "utf8");
-assert.match(markup, /id="pcInfo"[^>]+type="button"/);
+assert.match(markup, /id="pcSources"[^>]+type="button"/);
+assert.doesNotMatch(markup, /id="pcInfo"/, "retired More info entry must stay absent");
 assert.match(placeCard, /if \(btnSources\) btnSources\.onclick = async/);
 const mime = {".html":"text/html", ".js":"text/javascript", ".mjs":"text/javascript",
   ".css":"text/css", ".json":"application/json", ".webp":"image/webp",
