@@ -15,9 +15,6 @@ on:
 concurrency:
   group: ljanselva-v1-browser-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-concurrency:
-  group: ljanselva-v1-browser-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
