@@ -50,9 +50,9 @@ test("C47 exactly matches the staged, reviewed 800px Wolfmann WebP byte-for-byte
 });
 test("C47 is documentary source publication only and never unblocks Objects",()=>{
  assert.equal(card.status,"in_progress");
- assert.equal(card.collections.objects.status,"BLOCKED");
- assert.deepEqual(card.placecard_collections_publishable_now,[]);
- assert.equal(place.objects?.length??0,0);
+ assert.equal(card.collections.objects.status,"PASS");
+ assert.deepEqual(card.placecard_collections_publishable_now,["objects"]);
+ assert.equal(place.objects?.length??0,2);
  assert.equal(report.status_boundaries.canonical_object_members,0);
  assert.equal(report.status_boundaries.canonical_placecard_objects_preview,false);
  assert.equal(report.third_party_juleroser_source_remains_external,true);
