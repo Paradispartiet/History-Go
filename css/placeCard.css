@@ -147,10 +147,14 @@
   cursor: pointer;
 }
 
+/* The parent uses aspect-ratio with an auto height. Position the flip layer
+   against that containing block: percentage height on a relative child can
+   otherwise collapse to zero and leave the quiz's reverse face invisible. */
 .pc-card-flip-inner{
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  position: relative;
   transform-style: preserve-3d;
   transition: transform .42s ease;
 }
