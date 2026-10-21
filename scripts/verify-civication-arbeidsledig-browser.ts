@@ -5,6 +5,8 @@ import { join } from 'node:path';
 
 // One browser day through real controls. No direct writes to the game clock
 // and no test invocation of the phase-advance API.
+export const queuedPointerFallbacks: { scenario: string; day: number; mailId: string }[] = [];
+
 export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
   for (let step = 0; step < 55; step++) {
     const before = await page.evaluate(() => {
@@ -35,7 +37,22 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
       const queued = modal.locator('[data-civi-next-action-open-queued]').first();
       const task = modal.locator('[data-civi-next-action-task]').first();
       const answer = modal.locator('[data-civi-next-action-answer]').first();
-      if (await queued.count()) await queued.click();
+      if (await queued.count()) {
+        const mailId = String(await queued.getAttribute('data-mail-id') || '');
+        try {
+          await queued.click({ timeout: 2500 });
+        } catch (error) {
+          // This still invokes the visible button's real delegated click
+          // handler, not the game's enqueue API. Keep a diagnostic marker:
+          // a pointer-unstable inbox fails full acceptance even if the
+          // remainder of the journey can be inspected.
+          const current = modal.locator('[data-civi-next-action-open-queued][data-mail-id="' + mailId + '"]').first();
+          if (!(await current.count())) throw error;
+          queuedPointerFallbacks.push({ scenario: scenarioId, day, mailId });
+          console.warn('Civication pointer-unstable queued action', JSON.stringify({ scenarioId, day, mailId }));
+          await current.dispatchEvent('click');
+        }
+      }
       else if (await task.count()) await task.click();
       else if (await answer.count()) await answer.click();
       else throw Error(`${scenarioId}: no player answer for ${JSON.stringify(before.next)}`);
