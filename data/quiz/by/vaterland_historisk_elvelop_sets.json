@@ -24,7 +24,10 @@
       "sourcePackets": [
         "data/places/production/vaterland_historisk_elvelop.json"
       ],
-      "quizCardsPreserved": true
+      "quizCardsPreserved": true,
+      "furtherReviewedAt": "2026-10-21",
+      "additionalSourceRewrites": 3,
+      "notes": "Erstattet interne stedsankre og vurderingsspørsmål med lokalhistoriske faktaspørsmål; eksisterende QuizCard-ID-er urørt."
     }
   },
   "sets": [
@@ -70,25 +73,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_bydelsforskjeller_segregering",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_byidealer_og_plantradisjoner",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_flaskehalser_kryss_friksjon",
-                "score": 3
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q2",
@@ -97,7 +89,7 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hvilket fysisk punkt brukes som startanker for den historiske linjen?",
+          "question": "Hvilken bru krysser Akerselva mellom Brugata og Grønland?",
           "options": [
             "Vaterlands bru",
             "Nybrua",
@@ -105,44 +97,38 @@
           ],
           "answer": "Vaterlands bru",
           "answerIndex": 0,
-          "knowledge": "Vaterlands bru er det kildebelagte startankeret, ikke et påstått sentrum for hele den gamle elvestrekningen.",
+          "knowledge": "Vaterlands bru forbinder Brugata og Grønland. Herfra fortsatte Akerselva tidligere i et åpent elveløp mot Bjørvika.",
           "difficulty": 1,
-          "question_type": "anchor",
+          "question_type": "stedskonkret",
           "tags": [
             "Vaterlands bru",
             "historical_anchor"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://www.openstreetmap.org/way/381749953"
+            "https://oslobyleksikon.no/side/Vaterlands_bru"
           ],
-          "claim_basis": "source_backed_anchor",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_by_vaterlands_bru_er_det_ki_be425db4aa",
           "knowledge_unit_ids": [
-            "ku_by_vaterlands_bru_er_det_ki_be425db4aa"
+            "ku_by_vaterlands_bru_er_det_ki_be425db4aa",
+            "ku_by_herfra_fortsatte_akersel_ca98711887"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_bygningstyper_og_typologier",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_dodt_vs_aktivt_gateniva",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_estetikk_vs_funksjon",
-                "score": 3
-              }
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.8200000000000001,
+            "score": 7,
+            "matched": [
+              "tid",
+              "kryss"
             ]
-          }
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q3",
@@ -179,21 +165,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_bygningstyper_og_typologier",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_planjuss_styringsverktoy",
-                "score": 1
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q4",
@@ -229,25 +208,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_sosiale_knutepunkt",
-                "score": 2
-              },
-              {
-                "emne_id": "em_by_mikroklima_og_var",
-                "score": 1
-              },
-              {
-                "emne_id": "em_by_prisniva_kjededominans_tomme_lokaler",
-                "score": 1
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q5",
@@ -256,26 +224,25 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva er den viktigste forskjellen mellom dette stedet og Vaterlandsparken?",
+          "question": "Hva het de sju små smugene fra Elvegata ned til elva og sjøbuene?",
           "options": [
-            "Dette er en historisk elvelinje; parken er et eget grøntområde",
-            "De er samme fysiske objekt",
-            "Elvelinjen ligger nord for Nydalen"
+            "Elvegangene",
+            "Fossesmuget",
+            "Sagstiene"
           ],
-          "answer": "Dette er en historisk elvelinje; parken er et eget grøntområde",
+          "answer": "Elvegangene",
           "answerIndex": 0,
-          "knowledge": "Historisk elveløp og park er separate steder med ulike koordinater, historier og fysiske roller.",
+          "knowledge": "Elvegangene var sju små forbindelser mellom Elvegata og vannet, med sjøbuer ved den gamle elvefronten.",
           "difficulty": 1,
-          "question_type": "contrast",
+          "question_type": "stedskonkret",
           "tags": [
             "Vaterlandsparken",
             "modellering"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://oslobyleksikon.no/side/Vaterland"
+            "https://oslobyleksikon.no/side/Elvegata"
           ],
-          "claim_basis": "canonical_place_split",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_by_historisk_elvel_p_og_par_d8f8b66aa6",
           "knowledge_unit_ids": [
             "ku_by_historisk_elvel_p_og_par_d8f8b66aa6"
@@ -283,25 +250,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_navneskilt_plaketter_minner",
-                "score": 5
-              },
-              {
-                "emne_id": "em_by_offentlige_rom_motesteder",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_parker_som_sosial_infrastruktur",
-                "score": 3
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q6",
@@ -310,26 +266,25 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva kan du faktisk observere fra ankerpunktet i dag?",
+          "question": "Hvilken gate fulgte den gamle elvekanten ved Vaterland?",
           "options": [
-            "Overgangen mellom synlig elverom og retningen vannet fortsetter under byen",
-            "Hele tunnelens innside",
-            "Et urørt naturlandskap"
+            "Elvegata",
+            "Sagveien",
+            "Akersgata"
           ],
-          "answer": "Overgangen mellom synlig elverom og retningen vannet fortsetter under byen",
+          "answer": "Elvegata",
           "answerIndex": 0,
-          "knowledge": "Stedet kan leses gjennom bro, terreng, vannretning og overflaten over den skjulte infrastrukturen.",
+          "knowledge": "Elvegata gikk langs den gamle elvestrekningen mellom området ved Schweigaards bru og Lilletorget.",
           "difficulty": 1,
-          "question_type": "observation",
+          "question_type": "stedskonkret",
           "tags": [
             "synlig_vann",
             "skjult_vann"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
+            "https://oslobyleksikon.no/side/Elvegata"
           ],
-          "claim_basis": "observable_and_source_backed",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_by_stedet_kan_leses_gjennom_64c023304c",
           "knowledge_unit_ids": [
             "ku_by_stedet_kan_leses_gjennom_64c023304c"
@@ -337,25 +292,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_barrierer_forbindelser",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_urban_metabolisme_vann_energi_avfall_mat",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_klima_blagronn_klimatilpasning",
-                "score": 5
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q7",
@@ -390,25 +334,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_gangstrommer_snarveier",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_infrastruktur_mobilitet",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_lek_trening_uformell_aktivitet",
-                "score": 3
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         }
       ]
     },
