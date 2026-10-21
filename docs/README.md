@@ -131,6 +131,8 @@ DesignCodes er metadata, ikke geometri eller bilder. Registeret eier gyldige kod
 8. lokale README-filer ved datasettet
 9. relevante audits og CI-gates
 
+**Stedstekster og historiefortelling:** [`../data/places/regler/PLACE_DESCRIPTION_CANONICAL.md`](../data/places/regler/PLACE_DESCRIPTION_CANONICAL.md) er eneste bindende tekstkontrakt (inkludert fortellerkrav §9A, kilde/claim og sluttstatus). [`PLACE_PRODUCTION_CHECKLIST.md`](./PLACE_PRODUCTION_CHECKLIST.md) er produksjons- og reviewporten, [`PLACE_PRODUCTION_MINIMUM_V1.md`](./PLACE_PRODUCTION_MINIMUM_V1.md) er v1-kravene, og [`PLACE_DESCRIPTION_INGRESS_GUIDE.md`](./PLACE_DESCRIPTION_INGRESS_GUIDE.md) er støtte for ingressen. Quiz-, bilde-, place- og subsystemkrav beholdes i sine egne eierkontrakter; ikke opprett parallelt redaksjonelt regelverk.
+
 `npm run audit:categories` håndhever samsvar mellom maskinkontrakten, fagmanifestet, quizprofilregisteret, badgeindeksen, DomainRegistry, kategori-UI og place-policyen.
 
 Aktive domenebeslutninger:
