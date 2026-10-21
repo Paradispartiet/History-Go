@@ -164,7 +164,13 @@ De ligger bevisst i samme Life Position-runtime, ikke i en ny «fri rolle»-moto
 
 Der en åpen livsbane påvirker housing-context, skjer det gjennom de eksisterende circumstance-feltene.
 
-## 8. Hva kan få en Role World?
+### Arbeidsledig og private historier: ikke konverter til identitet
+
+`arbeidsledig` er en aktivitet-/arbeidsstatus, ikke en selvvalgt `life_position`. En arbeidsledig spiller kan utvikle ferdigheter, kapital, relasjoner, History Go-interesser og privatlivshistorier uten å få jobb eller aktivere en ny livsposisjon. Et tilbud om `sideprosjektbygger`, `historievandrer` eller lignende er **en frivillig mulighet** med sine reelle krav, ikke et påbud etter dag 7. Selv de alltid åpne livsbanene skal aldri tildeles som standardidentitet på grunn av manglende jobb.
+
+Streetkred er miljøspesifikk sosial anerkjennelse, ikke synonym for livsposisjon, jobb, sosial ferdighet eller formell autoritet. Bruk eksisterende subkulturell kapital og situert omdømme fremfor automatisk ny karakterklasse. Se [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md).
+
+## 8. Hva kan få en Role World
 
 Role World-standarden gjelder både **jobb og livsposisjon**.
 
