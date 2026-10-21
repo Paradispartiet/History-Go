@@ -149,7 +149,7 @@ try {
       assert.deepEqual(svgDims,[1200,760]);
       assert.match(await rows.first().innerText(),/Madame de Sade/);
       assert.match(await rows.first().innerText(),/Lone Lunde.*Oslo Museum/s);
-      assert.match(await rows.first().innerText(),/CC BY-SA 4\\.0/);
+      assert.match(await rows.first().innerText(),/CC BY-SA 4\.0/);
       assert.match(await rows.nth(1).innerText(),/Jan Groth/);
       assert.match(await rows.nth(1).innerText(),/Illustrasjon – ikke fotografi/);
       assert.equal(await rows.first().locator("a.pc-object-source").getAttribute("href"),place.objects[0].imageMeta.sourceUrl);
