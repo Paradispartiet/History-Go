@@ -51,6 +51,9 @@ try {
       }, question.primary_knowledge_unit_id);
       assert.ok(present, `${viewport.width}: canonical Knowledge unit missing ${question.primary_knowledge_unit_id}`);
     }
+    const storedPoliticalUnits = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('hg_knowledge_entries_v2') || '[]').filter((item) => item.subject_id === 'politikk'));
+    assert.equal(storedPoliticalUnits.length, 5, 'one canonical Knowledge entry per source-bound question, no duplicate captures');
     const quizProgress = await page.evaluate(() => JSON.parse(localStorage.getItem('quiz_progress') || '{}'));
     assert.ok(!quizProgress.politikk?.completed?.length, 'subject practice must not award geographic quiz mastery');
     const reviewText = await page.locator('#politikkPolandPathwayReview').textContent();
