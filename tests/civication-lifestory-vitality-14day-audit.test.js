@@ -342,3 +342,83 @@ test('three-week closeout presents real career and voluntary life-position actio
   assert.equal(w.localStorage.getItem('merits_by_category'), null, 'the closeout grants no unearned History Go points');
   dom.window.close();
 });
+
+
+test('symposium does not reveal life-day episodes as appointments on local day one', () => {
+  const content = pack('arbeidsledig');
+  const state = S.createInitialState(content);
+  const first = R.getSymposium(state, content);
+  assert(first, 'unemployed has an authored symposium');
+  assert.ok(!first.avtaler.some(item => item.id.startsWith('wave_e_liv_')),
+    'later week-three scenes are neither announced nor mislabeled Dag 1');
+  for (let day = 1; day <= 7; day++) {
+    let guard = 0;
+    while (!state.dagFerdig) {
+      const scene = R.selectNextScene(state, content);
+      if (scene) R.applyChoice(state, content, scene.id, scene.valg.find(x => !x.skills_requirement).id);
+      else R.advance(state, content);
+      assert.ok(++guard < 130);
+    }
+    R.startNextDay(state, content);
+  }
+  assert.equal(state.livsdag, 8);
+  const due = R.getSymposium(state, content);
+  assert.ok(due.avtaler.some(item => item.id === 'wave_e_liv_d8_retning' && item.dag === 8),
+    'day-eight personal episode becomes visible with correct real life-day label');
+  assert.ok(!due.avtaler.some(item => item.id === 'wave_e_liv_d21_hovedkapittel'),
+    'day 21 remains private until legitimately due');
+});
+
+test('ordinary job roles do not repeat their old week ending on later life days', async () => {
+  const { JSDOM } = require('jsdom');
+  const content = pack('ekspeditor');
+  const story = S.createInitialState(content);
+  const localLast = Math.max(...content.scenes.filter(scene => !Number.isInteger(scene.livsdagFra)).map(scene => scene.dag));
+  for (let day = 1; day <= localLast + 1; day++) {
+    let count = 0;
+    while (!story.dagFerdig) {
+      const scene = R.selectNextScene(story, content);
+      if (scene) R.applyChoice(story, content, scene.id, scene.valg.find(choice => !choice.skills_requirement).id);
+      else R.advance(story, content);
+      assert.ok(++count < 140);
+    }
+    if (day <= localLast) R.startNextDay(story, content);
+  }
+  assert.equal(story.dag, localLast + 1, 'simulate the first private-only day after the normal role week');
+  const dom = new JSDOM(
+    '<!doctype html><body><header id="civiLifestoryHeaderStatus"></header><section id="civiLifestoryPanel"></section></body>',
+    { url: 'https://example.test/Civication.html?lifestoryRole=ekspeditor', runScripts: 'outside-only' }
+  );
+  const w = dom.window;
+  w.localStorage.setItem(S.STORAGE_KEY, JSON.stringify(story));
+  let canonical = {};
+  w.CivicationState = {
+    getActivePosition: () => null, getState: () => canonical,
+    setState(patch) { canonical = { ...canonical, ...patch }; return canonical; }
+  };
+  w.fetch = async (resource) => {
+    const file = path.join(root, String(resource));
+    return fs.existsSync(file) ? { ok: true, json: async () => read(String(resource)) } : { ok: false };
+  };
+  for (const script of [
+    'js/Civication/lifestory/lifestoryContent.js',
+    'js/Civication/lifestory/lifestoryState.js',
+    'js/Civication/lifestory/lifestoryRunner.js',
+    'js/Civication/lifestory/lifestoryEndings.js',
+    'js/Civication/systems/civicationSkills.js',
+    'js/Civication/ui/CivicationLifestoryUI.js'
+  ]) w.eval(fs.readFileSync(path.join(root, script), 'utf8'));
+  const panel = w.document.getElementById('civiLifestoryPanel');
+  let summary = null;
+  for (let i = 0; i < 150; i++) {
+    summary = panel.querySelector('.civi-lifestory-summary');
+    if (summary) break;
+    await new Promise(resolve => setTimeout(resolve, 10));
+  }
+  assert(summary, 'existing job history renders its later day');
+  assert.equal(summary.querySelector('.civi-lifestory-ending'), null,
+    'week-ending scene is shown once, not repeatedly after the role week');
+  assert.ok(summary.querySelector('[data-lifestory-next-day]'),
+    'normal private progress can proceed after the ordinary job chapter');
+  dom.window.close();
+});
