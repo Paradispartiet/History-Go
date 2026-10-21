@@ -110,7 +110,7 @@ try {
       assert.equal(await memberImages.count(),2,"the same canonical member data must drive collection rows");
       phase="popup-member-images-decoded";
       await page.waitForFunction(()=>{
-        const images=[...document.querySelectorAll("#pcObjectsList .pc-object-member img")];
+        const images=[...document.querySelectorAll(".pc-round-popup-objects .pc-object-member img")];
         return images.length===2 && images.every(el=>el.complete && el.naturalWidth>0 && el.naturalHeight>0);
       },null,{timeout:15000});
       const visibleRows=page.locator(".pc-object-member:visible");
@@ -133,9 +133,9 @@ try {
       assert.match(await rows.nth(1).innerText(),/Illustrasjon – ikke fotografi/);
       assert.equal(await rows.nth(0).locator("a.pc-object-source").getAttribute("href"),place.objects[0].imageMeta.sourceUrl);
       assert.equal(await rows.nth(1).locator("a.pc-object-source").getAttribute("href"),place.objects[1].imageMeta.sourceUrl);
-      const photoDimensions=await memberImages.first().evaluate(el=>[el.naturalWidth,el.naturalHeight]);
+      const photoDimensions=await visibleMemberImages.first().evaluate(el=>[el.naturalWidth,el.naturalHeight]);
       assert.deepEqual(photoDimensions,[800,800]);
-      const illustrationDimensions=await memberImages.nth(1).evaluate(el=>[el.naturalWidth,el.naturalHeight]);
+      const illustrationDimensions=await visibleMemberImages.nth(1).evaluate(el=>[el.naturalWidth,el.naturalHeight]);
       assert.deepEqual(illustrationDimensions,[1200,760]);
       assert.ok((await page.locator("#pcObjectsList").innerText()).includes("Scene 2"));
       assert.equal(errors.length,0,"unexpected JavaScript page error during Object render");
