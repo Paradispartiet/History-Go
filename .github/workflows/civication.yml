@@ -70,5 +70,8 @@ jobs:
       - name: Verify livelihood game-week settlement
         run: node tests/civication-livelihood-engine.test.js
 
+      - name: Verify network offers follow game weeks
+        run: node tests/civication-livelihood-opportunity-bridge.test.js
+
       - name: Run complete Civication suite
         run: npm run test:civication
