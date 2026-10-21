@@ -166,3 +166,68 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   grid-template-rows:none !important;
   align-content:start;
 }
+
+/* Canonical Objects: photo or clearly disclosed editorial illustration, at any Place. */
+#placeCard .pc-icons-quad .pc-collection[data-collection-id="objects"]{
+  position:relative;
+  overflow:hidden;
+}
+#placeCard .pc-icons-quad .pc-collection[data-collection-id="objects"] > img.pc-person-img{
+  object-fit:contain;
+  background:#141619;
+}
+#placeCard .pc-object-preview-disclosure{
+  position:absolute;
+  left:6px;
+  right:6px;
+  bottom:6px;
+  box-sizing:border-box;
+  border-radius:6px;
+  padding:5px 7px;
+  color:#fff;
+  background:rgba(12,17,22,.92);
+  font-size:11px;
+  line-height:1.3;
+  font-weight:700;
+  text-align:center;
+  pointer-events:none;
+}
+.pc-object-member{
+  display:grid;
+  grid-template-columns:minmax(88px,125px) minmax(0,1fr);
+  gap:12px;
+  align-items:start;
+  padding:12px;
+  border-bottom:1px solid rgba(128,128,128,.35);
+}
+.pc-object-member > img.pc-person-img.pc-object-member-image{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  height:auto !important;
+  max-height:none !important;
+  aspect-ratio:1 / 1;
+  justify-self:stretch;
+  object-fit:contain !important;
+  background:#16191e;
+  border-radius:8px;
+}
+.pc-object-member-copy{min-width:0;}
+.pc-object-member-copy .pc-person-name{display:block;line-height:1.4;}
+.pc-object-disclosure{
+  display:inline-block;
+  font-size:12px;
+  font-weight:700;
+  margin:5px 0;
+}
+.pc-object-member-copy .pc-person-desc,
+.pc-object-context,
+.pc-object-credit{display:block;white-space:normal;line-height:1.5;margin:7px 0;font-size:13px;}
+.pc-object-credit{font-size:12px;opacity:.82;}
+.pc-object-source{display:inline-block;margin-top:4px;text-decoration:underline;font-size:13px;}
+@media (max-width:520px){
+  .pc-object-member{grid-template-columns:minmax(65px,90px) minmax(0,1fr);padding:9px;gap:9px;}
+  .pc-object-member > img.pc-person-img.pc-object-member-image{max-width:100% !important;}
+  #placeCard .pc-object-preview-disclosure{font-size:10px;padding:4px;}
+}

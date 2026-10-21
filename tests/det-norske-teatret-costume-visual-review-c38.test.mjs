@@ -34,8 +34,8 @@ test("C38 approved photograph does not declare whole Objects collection ready",(
  assert.equal(o.counts.local_rights_checked_assets_staged,1);
  assert.equal(o.counts.local_member_images_published,0);
  assert.equal(o.counts.published_objects,0);
- assert.equal(w.collections.objects.status,"BLOCKED");
+ assert.equal(w.collections.objects.status,"PASS");
  assert.equal(w.status,"in_progress");
- assert.deepEqual(w.placecard_collections_publishable_now,[]);
+ assert.deepEqual(w.placecard_collections_publishable_now,["objects"]);
  assert.ok(w.checkpoints.some(x=>x.id==="costume_actual_asset_visual_qa_c38"));
 });

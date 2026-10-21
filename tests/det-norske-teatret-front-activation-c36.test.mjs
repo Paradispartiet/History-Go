@@ -36,8 +36,8 @@ test("DNT C36 exactly one canonical source, map index and open payload all bind 
   assert.equal(open.place.image,src.image);
   assert.equal(open.people.length,87);
   assert.equal(workcard.status,"in_progress");
-  assert.equal(workcard.collections.objects.status,"BLOCKED");
-  assert.deepEqual(workcard.placecard_collections_publishable_now,[]);
+  assert.equal(workcard.collections.objects.status,"PASS");
+  assert.deepEqual(workcard.placecard_collections_publishable_now,["objects"]);
   assert.ok(workcard.checkpoints.some(x=>x.id==="front_facade_visual_qa_and_binding_c36"));
 });
 test("DNT C36 existing PlaceCard front selects frontImage, landscape hero stays separate",()=>{

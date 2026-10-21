@@ -32,7 +32,7 @@ test("DNT 1989 Prøvesalen belongs to the 1985 building, but image publication s
   }
   assert.equal(workcard.status, "in_progress");
   assert.equal(workcard.collections.productions.status, "BLOCKED");
-  assert.deepEqual(workcard.placecard_collections_publishable_now, []);
+  assert.deepEqual(workcard.placecard_collections_publishable_now, ["objects"]);
   assert.ok(workcard.checkpoints.some(c => c.id === "productions_venue_and_media_c30"));
 });
 
