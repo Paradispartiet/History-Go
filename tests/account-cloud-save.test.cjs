@@ -309,3 +309,59 @@ test("different NPC conversation histories block destructive cloud overwrite", a
   assert.equal(db.writes.length, 0);
   assert.equal(db.record.payload.state["civi.socialConversations.v1"], cloud);
 });
+
+
+test("day fourteen restores calendar, livelihood and the player's social phase memory", async () => {
+  const db = { record: null, writes: [] };
+  const snapshots = JSON.stringify({
+    morning: { phase: "morning", state: "at_home", locationId: "player_home", socialAvailability: "private", visibleOnMap: true },
+    leisure: { phase: "leisure", state: "in_event", locationId: "social_place_7", activity: "Møtte en venn", socialAvailability: "open_to_contact", visibleOnMap: true }
+  });
+  const calendar = JSON.stringify({ dayIndex: 15, currentMinutes: 480, isLoggedIn: true });
+  const livelihood = JSON.stringify({ ledger: [{ week: "game-week-000001" }, { week: "game-week-000002" }] });
+  const story = JSON.stringify({ version: 2, livsdag: 14, rolle: "arbeidsledig", privatHistorie: { flagg: { wa_c01_husket: true } } });
+  const initial = {
+    "civi.playerPhaseSnapshots.v1": snapshots,
+    hg_civi_calendar_v1: calendar,
+    hg_civi_livelihood_v1: livelihood,
+    civication_lifestory_v1: story,
+    hg_civi_wallet_v1: '{"balance":140}',
+    "civi.playerPhaseSnapshots.debug": '{"fake":true}'
+  };
+  const first = await runtime({ db, initial });
+  assert.equal(first.save.snapshot()["civi.playerPhaseSnapshots.v1"], snapshots,
+    "the canonical phase-memory key is included with the game clock and livelihood");
+  assert.equal(first.save.snapshot()["civi.playerPhaseSnapshots.debug"], undefined,
+    "unrecognized dotted keys are never captured");
+  await first.save.flush();
+  assert.equal(db.writes.length, 1);
+  const second = await runtime({ db });
+  for (const key of ["civi.playerPhaseSnapshots.v1", "hg_civi_calendar_v1",
+    "hg_civi_livelihood_v1", "civication_lifestory_v1", "hg_civi_wallet_v1"]) {
+    assert.equal(second.localStorage.getItem(key), initial[key],
+      key + " must survive an empty-device account restore");
+  }
+  const friendsSource = fs.readFileSync("js/Civication/systems/civicationFriendsEngine.js", "utf8");
+  vm.runInNewContext(friendsSource, { window: second.window, console }, { filename: "civicationFriendsEngine.js" });
+  const remembered = second.window.CivicationFriendsEngine.getPlayerSnapshotForPhase("leisure");
+  assert.equal(remembered.locationId, "social_place_7",
+    "the real social phase consumer sees the remembered location after restore");
+  assert.equal(remembered.socialAvailability, "open_to_contact");
+  await second.save.flush();
+  assert.equal(db.writes.length, 1, "restore itself must never cause another backup write");
+});
+
+test("conflicting local and cloud phase memories remain separate", async () => {
+  const cloud = '{"leisure":{"phase":"leisure","locationId":"social_place_7"}}';
+  const local = '{"leisure":{"phase":"leisure","locationId":"social_place_8"}}';
+  const db = { record: {
+    payload: { state: { "civi.playerPhaseSnapshots.v1": cloud } },
+    created_at: "2026-10-21T11:00:00Z"
+  }, writes: [] };
+  const player = await runtime({ db, initial: { "civi.playerPhaseSnapshots.v1": local } });
+  assert.match(player.element.textContent, /ulike/);
+  assert.equal(player.localStorage.getItem("civi.playerPhaseSnapshots.v1"), local);
+  await player.save.flush();
+  assert.equal(db.writes.length, 0, "a different device must not overwrite the saved phase history");
+  assert.equal(db.record.payload.state["civi.playerPhaseSnapshots.v1"], cloud);
+});

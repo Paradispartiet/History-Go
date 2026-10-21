@@ -18,7 +18,7 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 - Dette er **ikke** en gjennomført 14-dagers nettlesertest; fysisk kontogjenoppretting, NPC-etterspill og reelle History Go-opplåsinger er fortsatt åpne porter.
 
 ## Én prioritert leveranse
-**PR #6437** (`fa223ed75547212edbc33792d705e79287527d2c`) er merget til `main` med seks beståtte CI-arbeidsflyter. Vitalitets-/Life Story-koden og regressjonene er publisert; dette er **ikke** full 14-dagers browser-/kontoakseptanse. PR #6415 og #6427 er også merget. Ukeavregningen etter **syv faktiske spilldager** er merget i PR #6481 (`dacbd7270bbf41f7bfb90ac1996f1d92a95d7ed8`). Denne feilen ved jobbbytte er lukket i #6490. Ekte 14-dagers gjennomspilling gjenstår.
+**PR #6437** (`fa223ed75547212edbc33792d705e79287527d2c`) er merget til `main` med seks beståtte CI-arbeidsflyter. Vitalitets-/Life Story-koden og regressjonene er publisert; dette er **ikke** full 14-dagers browser-/kontoakseptanse. PR #6415 og #6427 er også merget. Ukeavregningen etter **syv faktiske spilldager** er merget i PR #6481 (`dacbd7270bbf41f7bfb90ac1996f1d92a95d7ed8`). Denne feilen ved jobbbytte er lukket i #6490. Leveveiavregning og nye nettverkstilbud følger spilluker gjennom #6498 og #6504 (begge merget). NPC-relasjoner, svar og samtaler sikkerhetskopieres gjennom #6500 (merget). Full 14-dagers gjennomspilling gjenstår.
 
 ### Fase 1: verifiser publisert PR #6437
 - [ ] Les fersk CI for nøyaktig siste head-commit; rett feil i samme PR, ikke ved å ignorere tester.
@@ -65,9 +65,9 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 | C4 | Jobbbytte | Personlige målere bevares; rollespesifikke verdier isoleres | Merget i #6437; komplett spillreise må regresjonstestes |
 | C5 | Etterspill | Dag 2-valg endrer dag 3-hendelse | Oppfølgingsscene merget; full nettlesergjennomspilling mangler |
 | C6 | Økonomi | Fortellingstransaksjoner og faktisk lommebok samstemmer | Åpent |
-| C7 | Kalender | Livsdager og økonomiuker gir forventet progresjon | #6481 og #6490 merget; kalender/lønn korrigert, full E2E ikke godkjent |
-| C8 | Relasjoner | Personer reagerer senere på tidligere valg | Delvis; vedvarende NPC-minne sikres i PR #6500 (CI påkrevd), senere sosialt etterspill ikke bevist |
-| C9 | Skylagring | Samme progresjon etter reload/ny enhet | #6395/#6496 merget og #6500 under CI; mock restore testet, fysisk konto-/enhetsbytte ikke godkjent |
+| C7 | Kalender | Livsdager og økonomiuker gir forventet progresjon | #6481, #6490, #6498 og #6504 merget; lønn og tilbud følger spilluker, full E2E ikke godkjent |
+| C8 | Relasjoner | Personer reagerer senere på tidligere valg | NPC-relasjoner, sosiale svar og samtaler sikkerhetskopieres gjennom #6500 (merget); faktisk senere sosialt etterspill ikke bevist |
+| C9 | Skylagring | Samme progresjon etter reload/ny enhet | #6395/#6496/#6500 merget; mock restore av Life Story, jobb og NPC-minne testet. Spillerens egne fasesnapshots undersøkes separat; fysisk konto-/enhetsbytte ikke godkjent |
 | C10 | 14 dager | Autentisk brukerreise med kausale konsekvenser | Ikke godkjent |
 | C11 | UI | Én tydelig innboks, naturlig dagflyt og tilbakemelding | Dagsplan #6400 og toppkort/innboks #6408 merget; integrert nettleserkontroll gjenstår |
 
@@ -76,3 +76,7 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 2. Én arbeidsbolk om gangen. Prioriter feil som bryter spillerreisen før nye historier eller bred innholdsproduksjon.
 3. Hold `docs/CIVICATION_README.md` som kanonisk inngang; denne planen er operativt sporingsdokument, ikke alternativ fasit.
 4. Bruk eksakte GitHub-lenker: [aktiv PR #6437](https://github.com/Paradispartiet/History-Go/pull/6437), [PR #6415](https://github.com/Paradispartiet/History-Go/pull/6415), [PR #6427](https://github.com/Paradispartiet/History-Go/pull/6427).
+
+## Neste spesifikke 14-dagers lagringskontroll (2026-10-21)
+
+`civi.playerPhaseSnapshots.v1` er spillerens sist lagrede aktivitet og tilgjengelighet i hver sosial fase. Den bruker en egen prikk-notasjon og falt utenfor skybackup selv etter at NPC-samtaler ble rettet i #6500. En avgrenset oppfølging inkluderer nøyaktig denne kanoniske nøkkelen, uten å åpne for vilkårlige `civi.*`-nøkler. Ny regresjon kontrollerer samtidig `hg_civi_calendar_v1`, `hg_civi_livelihood_v1`, Life Story og wallet ved simulert kontogjenoppretting etter spilldag 14. Dette er **ikke** en ekte fjorten dagers nettleserreise og godkjenner ikke C8–C10 alene.
