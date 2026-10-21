@@ -6,7 +6,7 @@
   "categoryId": "politikk",
   "subject_id": "politikk",
   "targetId": "subject_politikk",
-  "title": "Statsvitenskap – demokratisk tilbakegang og valgintegritet (Polen 2023)",
+  "title": "Statsvitenskap – demokratisk tilbakegang og valgintegritet (Polen 2023 / Ungarn 2022)",
   "sources": [
     {
       "id": "odihr_final_2024",
@@ -47,10 +47,50 @@
       "url": "https://www.cambridge.org/core/books/entrenchment-of-democracy/constitutions-and-abusive-electoral-regulation/ADE7BE2B536CAF2D3C37B985126AC5D7",
       "status": "reviewed_official_html_or_prior_scholarly_chapter",
       "role": "method_background_only_not_poland_evidence"
+    },
+    {
+      "id": "hu_odihr_final_summary_2022",
+      "type": "official_final_report_html_summary",
+      "title": "Hungary parliamentary elections and referendum 2022: ODIHR election observation mission final report",
+      "publisher_or_author": "OSCE/ODIHR",
+      "date_or_version": "2022-07-29",
+      "url": "https://odihr.osce.org/odihr/elections/523565",
+      "status": "reviewed_official_html_not_pdf_fulltext",
+      "role": "primary_empirical_evidence"
+    },
+    {
+      "id": "hu_joint_observers_2022",
+      "type": "official_joint_observation_press_release",
+      "title": "Hungary's parliamentary elections well-run and offered distinct alternatives but undermined by absence of level playing field",
+      "publisher_or_author": "OSCE/ODIHR and OSCE PA",
+      "date_or_version": "2022-04-04",
+      "url": "https://odihr.osce.org/odihr/elections/hungary/515135",
+      "status": "reviewed_official_html_not_pdf_fulltext",
+      "role": "primary_empirical_evidence"
+    },
+    {
+      "id": "pl_odihr_final_summary_2024",
+      "type": "official_final_report_html_summary",
+      "title": "Poland parliamentary elections 2023: ODIHR limited election observation mission final report",
+      "publisher_or_author": "OSCE/ODIHR",
+      "date_or_version": "2024-03-27",
+      "url": "https://odihr.osce.org/odihr/elections/poland/565426",
+      "status": "reviewed_official_html_not_pdf_fulltext",
+      "role": "comparative_empirical_evidence"
+    },
+    {
+      "id": "pl_joint_observers_2023",
+      "type": "official_joint_observation_press_release",
+      "title": "Poland's parliamentary elections were competitive but marked by misuse of public resources and public media bias",
+      "publisher_or_author": "OSCE/ODIHR, OSCE PA and PACE",
+      "date_or_version": "2023-10-17",
+      "url": "https://odihr.osce.org/odihr/elections/poland/555072",
+      "status": "reviewed_official_html_not_pdf_fulltext",
+      "role": "comparative_empirical_evidence"
     }
   ],
   "production_context": {
-    "profile": "subject_pathway_single_case_1x5",
+    "profile": "subject_pathway_two_case_comparison_2x5",
     "manifest_category": "politikk",
     "standard_version": "QUIZ_PRODUCTION_CANONICAL_3.4+SUBJECT_PATHWAY_V1",
     "source_brief": "data/fag/politikk/advanced_political_science_wave6_poland_case_evidence_v1.json",
@@ -63,14 +103,24 @@
       "claim_pol_pl2023_02_resources_media",
       "claim_pol_pl2023_03_competition_vs_administration",
       "claim_pol_pl2023_04_evidence_limit",
-      "claim_pol_pl2023_05_recommendations"
+      "claim_pol_pl2023_05_recommendations",
+      "claim_pol_hupl_wave8_01_election_vs_level_field",
+      "claim_pol_hupl_wave8_02_party_state_media",
+      "claim_pol_hupl_wave8_03_finance_remedy",
+      "claim_pol_hupl_wave8_04_compare_without_equivalence",
+      "claim_pol_hupl_wave8_05_recommendations_not_effects"
     ],
     "learning_objective_ids": [
       "lo_politikk_pl2023_observe",
       "lo_politikk_pl2023_explain",
       "lo_politikk_pl2023_evaluate_evidence",
       "lo_politikk_pl2023_diagnose_failure",
-      "lo_politikk_pl2023_decide_and_justify"
+      "lo_politikk_pl2023_decide_and_justify",
+      "lo_politikk_hupl_wave8_observe",
+      "lo_politikk_hupl_wave8_explain",
+      "lo_politikk_hupl_wave8_evaluate_evidence",
+      "lo_politikk_hupl_wave8_diagnose_failure",
+      "lo_politikk_hupl_wave8_decide_and_justify"
     ],
     "sources_reviewed_for_claims": [
       "odihr_final_2024",
@@ -87,7 +137,10 @@
     "knowledge_manifest_registered": true,
     "fag_manifest_registered": true,
     "runtime_activation": true,
-    "release_gate": "v7 activation candidate: pilot_active is gated by the deterministic Knowledge canonical --write/--check output, quiz/Knowledge/Fagverk contracts, full CI, and an actual browser smoke test prior to merge."
+    "release_gate": "Wave 9: Knowledge canonical --write/--check, ten Knowledge units and mobile/desktop Chromium validation must pass before merge.",
+    "comparative_source_brief": "data/fag/politikk/advanced_political_science_wave8_hungary_poland_comparison_v1.json",
+    "active_set_count": 2,
+    "active_question_count": 10
   },
   "sets": [
     {
@@ -582,6 +635,505 @@
           "knowledge_link_status": "linked"
         }
       ]
+    },
+    {
+      "set_id": "pathway_politikk_valgintegritet_ungarn_2022_polen_2023",
+      "title": "Valgintegritet – sammenlign Ungarn 2022 og Polen 2023",
+      "level": 5,
+      "order": 2,
+      "phase": "subject_pathway",
+      "target_kind": "subject_area",
+      "targetId": "subject_politikk_valgintegritet_ungarn_2022_polen_2023",
+      "area_id": "komparativ_politikk_regimer_institusjoner",
+      "emne_id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "question_ready_claim_ids": [
+        "claim_pol_hupl_wave8_01_election_vs_level_field",
+        "claim_pol_hupl_wave8_02_party_state_media",
+        "claim_pol_hupl_wave8_03_finance_remedy",
+        "claim_pol_hupl_wave8_04_compare_without_equivalence",
+        "claim_pol_hupl_wave8_05_recommendations_not_effects"
+      ],
+      "questions": [
+        {
+          "id": "quiz_politikk_hupl_wave9_pathway_q1",
+          "quiz_id": "politikk_hupl_wave9_pathway_q1",
+          "categoryId": "politikk",
+          "targetId": "subject_politikk_valgintegritet_ungarn_2022_polen_2023",
+          "question_scope": "subject_area",
+          "pathway_stage": "observe",
+          "question": "Hva er den mest presise beskrivelsen av ODIHRs observasjoner ved Ungarns parlamentsvalg i 2022, og hvorfor må valgavviklingen skilles fra valgkampen?",
+          "options": [
+            "Alle partier hadde fullt like vilkår fordi valgadministrasjonen fungerte.",
+            "Valgobservatørene konkluderte med at stemmeopptellingen over hele landet var manipulert.",
+            "Valget var godt organisert og ga valgalternativer, men konkurransevilkårene var skjeve.",
+            "Ingen opposisjonspartier fikk delta i valget."
+          ],
+          "answer": "Valget var godt organisert og ga valgalternativer, men konkurransevilkårene var skjeve.",
+          "answerIndex": 2,
+          "knowledge": "ODIHR beskrev Ungarns valg 3. april 2022 som godt organisert med distinkte valgalternativer, samtidig som konkurransevilkårene var skjeve. Beskriver observerte valg- og kampanjeforhold, ikke bekreftet manipulering av opptellingen eller et mål på opposisjonens stemmetap. Valgdagen og konkurransen i valgkampen er ulike analyseenheter.",
+          "difficulty": 2,
+          "question_type": "observation",
+          "emne_id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+          "method_id": "met_pol_institusjonell_tilbakegangsanalyse",
+          "core_concepts": [
+            "demokratisk tilbakegang"
+          ],
+          "canonical_politikk_concept_ids": [
+            "pol_concept_demokratisk_tilbakegang"
+          ],
+          "concept_ids": [
+            "co_politikk_demokratisk_tilbakegang"
+          ],
+          "terms": [
+            "valgadministrasjon",
+            "valgkonkurranse"
+          ],
+          "term_ids": [
+            "term_politikk_valgadministrasjon",
+            "term_politikk_valgkonkurranse"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_hupl_wave9_01",
+          "knowledge_unit_ids": [
+            "ku_politikk_hupl_wave9_01"
+          ],
+          "learning_objective_id": "lo_politikk_hupl_wave8_observe",
+          "evidence_type": "official_election_observation_comparative_analysis",
+          "knowledge_payload": {
+            "summary": "ODIHR beskrev Ungarns valg 3. april 2022 som godt organisert med distinkte valgalternativer, samtidig som konkurransevilkårene var skjeve.",
+            "explanation": "ODIHR beskrev Ungarns valg 3. april 2022 som godt organisert med distinkte valgalternativer, samtidig som konkurransevilkårene var skjeve. Beskriver observerte valg- og kampanjeforhold, ikke bekreftet manipulering av opptellingen eller et mål på opposisjonens stemmetap. Valgdagen og konkurransen i valgkampen er ulike analyseenheter.",
+            "why_it_matters": "Trinnet trener eleven i å skille kvaliteten på valgavviklingen fra kvaliteten på konkurransevilkårene. Et organisert valg er ikke automatisk et valg med like muligheter."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "feedback_by_option": [
+            "Feil: Administrasjon alene sier ikke om valgkampen var rettferdig.",
+            "Feil: Denne slutningen finnes ikke i det kontrollerte nettsammendraget.",
+            "Riktig: Observasjonen skiller velorganisert valgavvikling fra skjev konkurranse.",
+            "Feil: ODIHR beskrev inkluderende kandidatregistrering og distinkte valgalternativer."
+          ],
+          "source": [
+            {
+              "source_id": "hu_odihr_final_summary_2022",
+              "source_type": "official_final_report_html_summary",
+              "title": "Hungary parliamentary elections and referendum 2022: ODIHR election observation mission final report",
+              "publisher_or_author": "OSCE/ODIHR",
+              "date_or_version": "2022-07-29",
+              "url": "https://odihr.osce.org/odihr/elections/523565",
+              "locator": "Sluttrapportens nettsammendrag, hovedkonklusjoner; felles uttalelse 4. april 2022, innledning og avsnitt om valgdagen.",
+              "claim_basis": "ODIHR beskrev Ungarns valg 3. april 2022 som godt organisert med distinkte valgalternativer, samtidig som konkurransevilkårene var skjeve.",
+              "source_role": "primary_empirical_evidence",
+              "inference_boundary": "Beskriver observerte valg- og kampanjeforhold, ikke bekreftet manipulering av opptellingen eller et mål på opposisjonens stemmetap."
+            },
+            {
+              "source_id": "hu_joint_observers_2022",
+              "source_type": "official_joint_observation_press_release",
+              "title": "Hungary's parliamentary elections well-run and offered distinct alternatives but undermined by absence of level playing field",
+              "publisher_or_author": "OSCE/ODIHR and OSCE PA",
+              "date_or_version": "2022-04-04",
+              "url": "https://odihr.osce.org/odihr/elections/hungary/515135",
+              "locator": "Sluttrapportens nettsammendrag, hovedkonklusjoner; felles uttalelse 4. april 2022, innledning og avsnitt om valgdagen.",
+              "claim_basis": "ODIHR beskrev Ungarns valg 3. april 2022 som godt organisert med distinkte valgalternativer, samtidig som konkurransevilkårene var skjeve.",
+              "source_role": "primary_empirical_evidence",
+              "inference_boundary": "Beskriver observerte valg- og kampanjeforhold, ikke bekreftet manipulering av opptellingen eller et mål på opposisjonens stemmetap."
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "ODIHR beskrev Ungarns valg 3. april 2022 som godt organisert med distinkte valgalternativer, samtidig som konkurransevilkårene var skjeve.",
+          "guidance_basis": [
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_pol_hupl_wave8_01_election_vs_level_field",
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "canonical_claim": "ODIHR beskrev parlamentsvalget i Ungarn i april 2022 som godt organisert med reelle valgalternativer, samtidig som konkurransevilkårene var skjeve."
+        },
+        {
+          "id": "quiz_politikk_hupl_wave9_pathway_q2",
+          "quiz_id": "politikk_hupl_wave9_pathway_q2",
+          "categoryId": "politikk",
+          "targetId": "subject_politikk_valgintegritet_ungarn_2022_polen_2023",
+          "question_scope": "subject_area",
+          "pathway_stage": "explain",
+          "question": "Hvordan kunne sammenfallet mellom statlig kommunikasjon og regjeringskoalisjonens valgkamp svekke like konkurransevilkår i Ungarn i 2022?",
+          "options": [
+            "Det demonstrerte med sikkerhet hvor mange ekstra mandater regjeringspartiet fikk.",
+            "Statlig finansiert kommunikasjon kunne forsterke regjeringspartiets budskap og gi konkurransefordel uten å hindre all opposisjonsaktivitet.",
+            "Det beviste at alle velgere fulgte regjeringens budskap og stemte likt.",
+            "Det fjernet enhver forskjell mellom offentlige og private medier."
+          ],
+          "answer": "Statlig finansiert kommunikasjon kunne forsterke regjeringspartiets budskap og gi konkurransefordel uten å hindre all opposisjonsaktivitet.",
+          "answerIndex": 1,
+          "knowledge": "Den felles observasjonen av Ungarn 2022 beskrev gjennomgripende sammenfall mellom regjeringskommunikasjon og regjeringskoalisjonens valgkamp, statsfinansierte annonser med partipolitisk fordel og partisk mediedekning. Dokumenterer observert fordel og svakere informerte valgmuligheter, ikke hvor mange stemmer eller mandater som kan tilskrives hver mekanisme. Statsbetalt kommunikasjon er en mulig mekanisme for konkurransefordel, men ingen kausal stemmeberegning.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+          "method_id": "met_pol_institusjonell_tilbakegangsanalyse",
+          "core_concepts": [
+            "institusjonell kapring",
+            "mediekontroll"
+          ],
+          "canonical_politikk_concept_ids": [
+            "pol_concept_institusjonell_kapring",
+            "pol_concept_mediekontroll"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjonell_kapring",
+            "co_politikk_mediekontroll"
+          ],
+          "terms": [
+            "statsressurser",
+            "offentlig kringkasting"
+          ],
+          "term_ids": [
+            "term_politikk_statsressurser",
+            "term_politikk_offentlig_kringkasting"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_hupl_wave9_02",
+          "knowledge_unit_ids": [
+            "ku_politikk_hupl_wave9_02"
+          ],
+          "learning_objective_id": "lo_politikk_hupl_wave8_explain",
+          "evidence_type": "official_election_observation_comparative_analysis",
+          "knowledge_payload": {
+            "summary": "Den felles observasjonen av Ungarn 2022 beskrev gjennomgripende sammenfall mellom regjeringskommunikasjon og regjeringskoalisjonens valgkamp, statsfinansierte annonser med partipolitisk fordel og partisk mediedekning.",
+            "explanation": "Den felles observasjonen av Ungarn 2022 beskrev gjennomgripende sammenfall mellom regjeringskommunikasjon og regjeringskoalisjonens valgkamp, statsfinansierte annonser med partipolitisk fordel og partisk mediedekning. Dokumenterer observert fordel og svakere informerte valgmuligheter, ikke hvor mange stemmer eller mandater som kan tilskrives hver mekanisme. Statsbetalt kommunikasjon er en mulig mekanisme for konkurransefordel, men ingen kausal stemmeberegning.",
+            "why_it_matters": "Trinnet undersøker en mulig institusjonell mekanisme uten å forveksle en dokumentert fordel med en beregnet virkning på stemmer eller mandater."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "feedback_by_option": [
+            "Feil: Rapporteringen er ikke en kausal mandatberegning.",
+            "Riktig: Observatørene rapporterte overlapp i budskap, statsbetalt annonsering og medieskjevhet.",
+            "Feil: Dokumentert kommunikasjonsfordel beviser ikke alle velgeres atferd.",
+            "Feil: Kildene skiller mellom offentlig og privat mediedekning."
+          ],
+          "source": [
+            {
+              "source_id": "hu_joint_observers_2022",
+              "source_type": "official_joint_observation_press_release",
+              "title": "Hungary's parliamentary elections well-run and offered distinct alternatives but undermined by absence of level playing field",
+              "publisher_or_author": "OSCE/ODIHR and OSCE PA",
+              "date_or_version": "2022-04-04",
+              "url": "https://odihr.osce.org/odihr/elections/hungary/515135",
+              "locator": "Felles uttalelse 4. april 2022, avsnittene om kampanje, valgkampfinansiering og mediedekning; ODIHRs nettsammendrag om skjev konkurranse.",
+              "claim_basis": "Den felles observasjonen av Ungarn 2022 beskrev gjennomgripende sammenfall mellom regjeringskommunikasjon og regjeringskoalisjonens valgkamp, statsfinansierte annonser med partipolitisk fordel og partisk mediedekning.",
+              "source_role": "primary_empirical_evidence",
+              "inference_boundary": "Dokumenterer observert fordel og svakere informerte valgmuligheter, ikke hvor mange stemmer eller mandater som kan tilskrives hver mekanisme."
+            },
+            {
+              "source_id": "hu_odihr_final_summary_2022",
+              "source_type": "official_final_report_html_summary",
+              "title": "Hungary parliamentary elections and referendum 2022: ODIHR election observation mission final report",
+              "publisher_or_author": "OSCE/ODIHR",
+              "date_or_version": "2022-07-29",
+              "url": "https://odihr.osce.org/odihr/elections/523565",
+              "locator": "Felles uttalelse 4. april 2022, avsnittene om kampanje, valgkampfinansiering og mediedekning; ODIHRs nettsammendrag om skjev konkurranse.",
+              "claim_basis": "Den felles observasjonen av Ungarn 2022 beskrev gjennomgripende sammenfall mellom regjeringskommunikasjon og regjeringskoalisjonens valgkamp, statsfinansierte annonser med partipolitisk fordel og partisk mediedekning.",
+              "source_role": "primary_empirical_evidence",
+              "inference_boundary": "Dokumenterer observert fordel og svakere informerte valgmuligheter, ikke hvor mange stemmer eller mandater som kan tilskrives hver mekanisme."
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den felles observasjonen av Ungarn 2022 beskrev gjennomgripende sammenfall mellom regjeringskommunikasjon og regjeringskoalisjonens valgkamp, statsfinansierte annonser med partipolitisk fordel og partisk mediedekning.",
+          "guidance_basis": [
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_pol_hupl_wave8_02_party_state_media",
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "canonical_claim": "Observatørene beskrev sammenfall mellom statlig kommunikasjon og regjeringens valgkamp, statlig finansiert annonsering med partipolitisk fordel og partisk mediedekning."
+        },
+        {
+          "id": "quiz_politikk_hupl_wave9_pathway_q3",
+          "quiz_id": "politikk_hupl_wave9_pathway_q3",
+          "categoryId": "politikk",
+          "targetId": "subject_politikk_valgintegritet_ungarn_2022_polen_2023",
+          "question_scope": "subject_area",
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hvilket kildegrunnlag støtter best vurderingen av svakheter i Ungarns valgkampfinansiering og klagemuligheter i 2022?",
+          "options": [
+            "En udokumentert påstand om at alle utgifter var ulovlige og alle klager ble avvist.",
+            "Et antatt matematisk estimat på hvor mange stemmer tredjepartsutgifter kostet opposisjonen.",
+            "At valgresultatet alene viser kvaliteten på klageadgangen.",
+            "OSSE-observatørenes omtale av manglende innsyn, tredjepartsutgifter og saker uten effektiv klageadgang."
+          ],
+          "answer": "OSSE-observatørenes omtale av manglende innsyn, tredjepartsutgifter og saker uten effektiv klageadgang.",
+          "answerIndex": 3,
+          "knowledge": "ODIHR og OSSEs parlamentarikerobservatører rapporterte i 2022 om mangelfull åpenhet rundt valgkampfinansiering, uregulert tredjepartsbruk av midler og tilfeller uten effektiv rettslig klageadgang. Dette er observatørenes vurdering av rammeverk og praksis; opplysningene beviser ikke bestemt straffbart forhold eller individuell hensikt. Rapportert innsynssvikt og svak klageadgang er observasjoner, ikke avgjørelser om straffeansvar.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+          "method_id": "met_pol_institusjonell_tilbakegangsanalyse",
+          "core_concepts": [
+            "demokratisk tilbakegang",
+            "institusjonell kapring"
+          ],
+          "canonical_politikk_concept_ids": [
+            "pol_concept_demokratisk_tilbakegang",
+            "pol_concept_institusjonell_kapring"
+          ],
+          "concept_ids": [
+            "co_politikk_demokratisk_tilbakegang",
+            "co_politikk_institusjonell_kapring"
+          ],
+          "terms": [
+            "konkurransevilkår",
+            "valgavvikling"
+          ],
+          "term_ids": [
+            "term_politikk_konkurransevilkar",
+            "term_politikk_valgavvikling"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_hupl_wave9_03",
+          "knowledge_unit_ids": [
+            "ku_politikk_hupl_wave9_03"
+          ],
+          "learning_objective_id": "lo_politikk_hupl_wave8_evaluate_evidence",
+          "evidence_type": "official_election_observation_comparative_analysis",
+          "knowledge_payload": {
+            "summary": "ODIHR og OSSEs parlamentarikerobservatører rapporterte i 2022 om mangelfull åpenhet rundt valgkampfinansiering, uregulert tredjepartsbruk av midler og tilfeller uten effektiv rettslig klageadgang.",
+            "explanation": "ODIHR og OSSEs parlamentarikerobservatører rapporterte i 2022 om mangelfull åpenhet rundt valgkampfinansiering, uregulert tredjepartsbruk av midler og tilfeller uten effektiv rettslig klageadgang. Dette er observatørenes vurdering av rammeverk og praksis; opplysningene beviser ikke bestemt straffbart forhold eller individuell hensikt. Rapportert innsynssvikt og svak klageadgang er observasjoner, ikke avgjørelser om straffeansvar.",
+            "why_it_matters": "Trinnet krever presise kildebelegg for å vurdere finansiering og klageadgang, uten å trekke ubegrunnede rettslige konklusjoner om enkelte aktører."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "feedback_by_option": [
+            "Feil: En slik universell og rettslig konklusjon støttes ikke.",
+            "Feil: Kilden gir ikke en identifisert stemmeeffekt.",
+            "Feil: Utfallet alene beskriver ikke klageprosesser og finansregler.",
+            "Riktig: Det er disse konkrete observasjonene som finnes i den offisielle fellesuttalelsen."
+          ],
+          "source": [
+            {
+              "source_id": "hu_joint_observers_2022",
+              "source_type": "official_joint_observation_press_release",
+              "title": "Hungary's parliamentary elections well-run and offered distinct alternatives but undermined by absence of level playing field",
+              "publisher_or_author": "OSCE/ODIHR and OSCE PA",
+              "date_or_version": "2022-04-04",
+              "url": "https://odihr.osce.org/odihr/elections/hungary/515135",
+              "locator": "Felles uttalelse 4. april 2022, avsnittene om campaign finance og election disputes.",
+              "claim_basis": "ODIHR og OSSEs parlamentarikerobservatører rapporterte i 2022 om mangelfull åpenhet rundt valgkampfinansiering, uregulert tredjepartsbruk av midler og tilfeller uten effektiv rettslig klageadgang.",
+              "source_role": "primary_empirical_evidence",
+              "inference_boundary": "Dette er observatørenes vurdering av rammeverk og praksis; opplysningene beviser ikke bestemt straffbart forhold eller individuell hensikt."
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "ODIHR og OSSEs parlamentarikerobservatører rapporterte i 2022 om mangelfull åpenhet rundt valgkampfinansiering, uregulert tredjepartsbruk av midler og tilfeller uten effektiv rettslig klageadgang.",
+          "guidance_basis": [
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_pol_hupl_wave8_03_finance_remedy",
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "canonical_claim": "ODIHR og OSSEs parlamentarikerobservatører rapporterte om svak åpenhet rundt valgkampfinansieringen, uregulert tredjepartsbruk og enkelte saker uten effektiv klageadgang."
+        },
+        {
+          "id": "quiz_politikk_hupl_wave9_pathway_q4",
+          "quiz_id": "politikk_hupl_wave9_pathway_q4",
+          "categoryId": "politikk",
+          "targetId": "subject_politikk_valgintegritet_ungarn_2022_polen_2023",
+          "question_scope": "subject_area",
+          "pathway_stage": "diagnose_failure",
+          "question": "En elev sier at liknende valgkamp-skjevheter i Ungarn 2022 og Polen 2023 beviser at begge land hadde identisk valgfusk og samme regimetype. Hva er hovedfeilen?",
+          "options": [
+            "Observasjoner om kampanjevilkår dokumenterer ikke i seg selv manipulert opptelling, identisk årsaksmekanisme eller samme regimetype.",
+            "Like omtaler i to ODIHR-rapporter betyr at alle institusjonelle forhold var like.",
+            "En effektiv valgadministrasjon innebærer alltid fullstendig like konkurransevilkår.",
+            "To observasjoner er nok til å måle nøyaktig hvor mange mandater som ble påvirket."
+          ],
+          "answer": "Observasjoner om kampanjevilkår dokumenterer ikke i seg selv manipulert opptelling, identisk årsaksmekanisme eller samme regimetype.",
+          "answerIndex": 0,
+          "knowledge": "ODIHR fant både politisk konkurranse og skjeve konkurransevilkår ved Ungarns valg i 2022 og Polens valg i 2023. Kildene beskriver ulike valg, observatørmandater og institusjonelle detaljer. Liknende observasjoner gir grunnlag for avgrenset sammenligning, ikke bevis for identisk årsakskjede, regimetype, samme effekt på valgresultat eller samme etterfølgende utvikling. Sammenligning av Ungarn og Polen krever oppmerksomhet om ulike observatørmandater, tidspunkter og institusjoner.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+          "method_id": "met_pol_institusjonell_tilbakegangsanalyse",
+          "core_concepts": [
+            "demokratisk tilbakegang"
+          ],
+          "canonical_politikk_concept_ids": [
+            "pol_concept_demokratisk_tilbakegang"
+          ],
+          "concept_ids": [
+            "co_politikk_demokratisk_tilbakegang"
+          ],
+          "terms": [
+            "beviskrav",
+            "valgobservasjon"
+          ],
+          "term_ids": [
+            "term_politikk_beviskrav",
+            "term_politikk_valgobservasjon"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_hupl_wave9_04",
+          "knowledge_unit_ids": [
+            "ku_politikk_hupl_wave9_04"
+          ],
+          "learning_objective_id": "lo_politikk_hupl_wave8_diagnose_failure",
+          "evidence_type": "official_election_observation_comparative_analysis",
+          "knowledge_payload": {
+            "summary": "ODIHR fant både politisk konkurranse og skjeve konkurransevilkår ved Ungarns valg i 2022 og Polens valg i 2023. Kildene beskriver ulike valg, observatørmandater og institusjonelle detaljer.",
+            "explanation": "ODIHR fant både politisk konkurranse og skjeve konkurransevilkår ved Ungarns valg i 2022 og Polens valg i 2023. Kildene beskriver ulike valg, observatørmandater og institusjonelle detaljer. Liknende observasjoner gir grunnlag for avgrenset sammenligning, ikke bevis for identisk årsakskjede, regimetype, samme effekt på valgresultat eller samme etterfølgende utvikling. Sammenligning av Ungarn og Polen krever oppmerksomhet om ulike observatørmandater, tidspunkter og institusjoner.",
+            "why_it_matters": "Trinnet øver komparativ analyse med ulike observatørmandater og hindrer at liknende observasjoner blir til en påstand om identisk årsak eller regime."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "feedback_by_option": [
+            "Riktig: Kildene tillater sammenligning, men ikke disse sterkere slutningene.",
+            "Feil: Ulike kontekster og observatørmandater må vurderes.",
+            "Feil: Nettopp skillet mellom administrasjon og konkurranse er sentralt.",
+            "Feil: Dette krever mer spesifikk kausal identifikasjon."
+          ],
+          "source": [
+            {
+              "source_id": "hu_odihr_final_summary_2022",
+              "source_type": "official_final_report_html_summary",
+              "title": "Hungary parliamentary elections and referendum 2022: ODIHR election observation mission final report",
+              "publisher_or_author": "OSCE/ODIHR",
+              "date_or_version": "2022-07-29",
+              "url": "https://odihr.osce.org/odihr/elections/523565",
+              "locator": "Begge offisielle nettsammendrag: hovedkonklusjoner; Ungarn: Election Observation Mission; Polen: Limited Election Observation Mission.",
+              "claim_basis": "ODIHR fant både politisk konkurranse og skjeve konkurransevilkår ved Ungarns valg i 2022 og Polens valg i 2023. Kildene beskriver ulike valg, observatørmandater og institusjonelle detaljer.",
+              "source_role": "primary_empirical_evidence",
+              "inference_boundary": "Liknende observasjoner gir grunnlag for avgrenset sammenligning, ikke bevis for identisk årsakskjede, regimetype, samme effekt på valgresultat eller samme etterfølgende utvikling."
+            },
+            {
+              "source_id": "pl_odihr_final_summary_2024",
+              "source_type": "official_final_report_html_summary",
+              "title": "Poland parliamentary elections 2023: ODIHR limited election observation mission final report",
+              "publisher_or_author": "OSCE/ODIHR",
+              "date_or_version": "2024-03-27",
+              "url": "https://odihr.osce.org/odihr/elections/poland/565426",
+              "locator": "Begge offisielle nettsammendrag: hovedkonklusjoner; Ungarn: Election Observation Mission; Polen: Limited Election Observation Mission.",
+              "claim_basis": "ODIHR fant både politisk konkurranse og skjeve konkurransevilkår ved Ungarns valg i 2022 og Polens valg i 2023. Kildene beskriver ulike valg, observatørmandater og institusjonelle detaljer.",
+              "source_role": "comparative_empirical_evidence",
+              "inference_boundary": "Liknende observasjoner gir grunnlag for avgrenset sammenligning, ikke bevis for identisk årsakskjede, regimetype, samme effekt på valgresultat eller samme etterfølgende utvikling."
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "ODIHR fant både politisk konkurranse og skjeve konkurransevilkår ved Ungarns valg i 2022 og Polens valg i 2023. Kildene beskriver ulike valg, observatørmandater og institusjonelle detaljer.",
+          "guidance_basis": [
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_pol_hupl_wave8_04_compare_without_equivalence",
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "canonical_claim": "ODIHR fant politisk konkurranse og skjeve konkurransevilkår i begge valgene, men rapportene beskriver ulike valg, observatørmandater og institusjonelle forhold."
+        },
+        {
+          "id": "quiz_politikk_hupl_wave9_pathway_q5",
+          "quiz_id": "politikk_hupl_wave9_pathway_q5",
+          "categoryId": "politikk",
+          "targetId": "subject_politikk_valgintegritet_ungarn_2022_polen_2023",
+          "question_scope": "subject_area",
+          "pathway_stage": "decide_and_justify",
+          "question": "Hvilken reformvurdering bygger mest presist på ODIHRs anbefalinger for Ungarn 2022 og Polen 2023?",
+          "options": [
+            "Konkluder med at velorganisert valgdag gjør reformer av valgkampen overflødige.",
+            "Slå fast at alle ODIHR-anbefalingene allerede er innført og dokumentert virksomme.",
+            "Undersøk vern mot misbruk av statsressurser og upartisk mediedekning i begge land, men følg også opp landspesifikke tiltak og mål faktisk gjennomføring.",
+            "Bruk én identisk reformpakke uten å undersøke forskjeller i klageadgang og valgadministrasjon."
+          ],
+          "answer": "Undersøk vern mot misbruk av statsressurser og upartisk mediedekning i begge land, men følg også opp landspesifikke tiltak og mål faktisk gjennomføring.",
+          "answerIndex": 2,
+          "knowledge": "ODIHR anbefalte for Ungarn tydeligere vern mot misbruk av administrative ressurser, mer upartisk kringkastingsdekning og mulighet for innbyggerobservasjon. For Polen anbefalte ODIHR blant annet åpne valgkommisjonsmøter og mer åpen kringkastingsledelse. Anbefalinger er ikke dokumentasjon på at reformene senere er gjennomført eller at de har hatt ønsket virkning. Anbefalte reformer kan ikke behandles som dokumentert gjennomført eller virksomme.",
+          "difficulty": 5,
+          "question_type": "analysis",
+          "emne_id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+          "method_id": "met_pol_institusjonell_tilbakegangsanalyse",
+          "core_concepts": [
+            "demokratisk tilbakegang",
+            "selektiv håndheving"
+          ],
+          "canonical_politikk_concept_ids": [
+            "pol_concept_demokratisk_tilbakegang",
+            "pol_concept_selektiv_handheving"
+          ],
+          "concept_ids": [
+            "co_politikk_demokratisk_tilbakegang",
+            "co_politikk_selektiv_handheving"
+          ],
+          "terms": [
+            "valgreform",
+            "kampanjefinansiering"
+          ],
+          "term_ids": [
+            "term_politikk_valgreform",
+            "term_politikk_kampanjefinansiering"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_hupl_wave9_05",
+          "knowledge_unit_ids": [
+            "ku_politikk_hupl_wave9_05"
+          ],
+          "learning_objective_id": "lo_politikk_hupl_wave8_decide_and_justify",
+          "evidence_type": "official_election_observation_comparative_analysis",
+          "knowledge_payload": {
+            "summary": "ODIHR anbefalte for Ungarn tydeligere vern mot misbruk av administrative ressurser, mer upartisk kringkastingsdekning og mulighet for innbyggerobservasjon. For Polen anbefalte ODIHR blant annet åpne valgkommisjonsmøter og mer åpen kringkastingsledelse.",
+            "explanation": "ODIHR anbefalte for Ungarn tydeligere vern mot misbruk av administrative ressurser, mer upartisk kringkastingsdekning og mulighet for innbyggerobservasjon. For Polen anbefalte ODIHR blant annet åpne valgkommisjonsmøter og mer åpen kringkastingsledelse. Anbefalinger er ikke dokumentasjon på at reformene senere er gjennomført eller at de har hatt ønsket virkning. Anbefalte reformer kan ikke behandles som dokumentert gjennomført eller virksomme.",
+            "why_it_matters": "Trinnet kobler ODIHRs anbefalinger til relevante institusjonelle tiltak og krever egen evaluering av om tiltakene blir gjennomført og virker."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "feedback_by_option": [
+            "Feil: Like konkurransevilkår gjelder mer enn valgdagen.",
+            "Feil: Anbefaling er ikke bevis på implementering eller effekt.",
+            "Riktig: Tiltak må knyttes til konkrete funn, og anbefaling må skilles fra dokumentert reformeffekt.",
+            "Feil: Sammenligning må bevare forskjeller mellom de to casene."
+          ],
+          "source": [
+            {
+              "source_id": "hu_odihr_final_summary_2022",
+              "source_type": "official_final_report_html_summary",
+              "title": "Hungary parliamentary elections and referendum 2022: ODIHR election observation mission final report",
+              "publisher_or_author": "OSCE/ODIHR",
+              "date_or_version": "2022-07-29",
+              "url": "https://odihr.osce.org/odihr/elections/523565",
+              "locator": "Ungarn-sammendraget fra 29. juli 2022, listen Key recommendations; Polen-sammendraget fra 27. mars 2024, listen Key recommendations.",
+              "claim_basis": "ODIHR anbefalte for Ungarn tydeligere vern mot misbruk av administrative ressurser, mer upartisk kringkastingsdekning og mulighet for innbyggerobservasjon. For Polen anbefalte ODIHR blant annet åpne valgkommisjonsmøter og mer åpen kringkastingsledelse.",
+              "source_role": "primary_empirical_evidence",
+              "inference_boundary": "Anbefalinger er ikke dokumentasjon på at reformene senere er gjennomført eller at de har hatt ønsket virkning."
+            },
+            {
+              "source_id": "pl_odihr_final_summary_2024",
+              "source_type": "official_final_report_html_summary",
+              "title": "Poland parliamentary elections 2023: ODIHR limited election observation mission final report",
+              "publisher_or_author": "OSCE/ODIHR",
+              "date_or_version": "2024-03-27",
+              "url": "https://odihr.osce.org/odihr/elections/poland/565426",
+              "locator": "Ungarn-sammendraget fra 29. juli 2022, listen Key recommendations; Polen-sammendraget fra 27. mars 2024, listen Key recommendations.",
+              "claim_basis": "ODIHR anbefalte for Ungarn tydeligere vern mot misbruk av administrative ressurser, mer upartisk kringkastingsdekning og mulighet for innbyggerobservasjon. For Polen anbefalte ODIHR blant annet åpne valgkommisjonsmøter og mer åpen kringkastingsledelse.",
+              "source_role": "comparative_empirical_evidence",
+              "inference_boundary": "Anbefalinger er ikke dokumentasjon på at reformene senere er gjennomført eller at de har hatt ønsket virkning."
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "ODIHR anbefalte for Ungarn tydeligere vern mot misbruk av administrative ressurser, mer upartisk kringkastingsdekning og mulighet for innbyggerobservasjon. For Polen anbefalte ODIHR blant annet åpne valgkommisjonsmøter og mer åpen kringkastingsledelse.",
+          "guidance_basis": [
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_pol_hupl_wave8_05_recommendations_not_effects",
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "canonical_claim": "ODIHR anbefalte tiltak mot misbruk av statsressurser og partisk kringkasting i Ungarn samt innbyggerobservasjon, mens de for Polen blant annet anbefalte åpne valgkommisjonsmøter og mer transparent kringkastingsledelse."
+        }
+      ],
+      "review_element_id": "politikkHungaryPolandPathwayReview"
     }
   ]
 }

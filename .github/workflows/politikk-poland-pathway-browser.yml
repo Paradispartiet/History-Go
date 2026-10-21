@@ -11,6 +11,7 @@ on:
       - 'js/fagverk-ia-v3.js'
       - 'fagverk.html'
       - 'tests/politikk-poland-pathway-browser.test.mjs'
+      - 'tests/politikk-hungary-poland-pathway-browser.test.mjs'
       - '.github/workflows/politikk-poland-pathway-browser.yml'
 
 permissions:
@@ -40,4 +41,6 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Test actual Fagverk quiz and Knowledge on mobile and desktop
-        run: node tests/politikk-poland-pathway-browser.test.mjs
+        run: |
+          node tests/politikk-poland-pathway-browser.test.mjs
+          node tests/politikk-hungary-poland-pathway-browser.test.mjs

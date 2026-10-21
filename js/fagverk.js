@@ -422,6 +422,11 @@
         <button type="button" id="politikkPolandPathwayStart">Start femtrinnsforløpet</button>
         <p id="politikkPolandPathwayError" role="alert" hidden></p>
         <div id="politikkPolandPathwayReview" hidden aria-live="polite"></div>
+        <h4>Ungarn 2022 og Polen 2023 – komparativ øvelse</h4>
+        <p>Sammenlign valgadministrasjon, statsressurser, mediedekning, finansiering og kildebelegg i begge land.</p>
+        <button type="button" id="politikkHungaryPolandPathwayStart">Start sammenligningen</button>
+        <p id="politikkHungaryPolandPathwayError" role="alert" hidden></p>
+        <div id="politikkHungaryPolandPathwayReview" hidden aria-live="polite"></div>
       </section>
       <div class="fagverk-general-summary" aria-label="Politikkfagets oppbygning">
         <div><strong>${model.summary.domainCount}</strong><span>fagområder</span></div>
@@ -456,6 +461,19 @@
           errorBox.hidden = false;
         }
       } finally { pathwayStart.disabled = false; }
+    });
+    const compareStart = document.getElementById('politikkHungaryPolandPathwayStart');
+    compareStart?.addEventListener('click', async () => {
+      const errorBox = document.getElementById('politikkHungaryPolandPathwayError');
+      if (errorBox) { errorBox.hidden = true; errorBox.textContent = ''; }
+      compareStart.disabled = true;
+      try {
+        const started = await global.QuizEngine?.startSubjectPathway?.('politikk', 'pathway_politikk_valgintegritet_ungarn_2022_polen_2023');
+        if (!started && errorBox) {
+          errorBox.textContent = 'Sammenligningen kunne ikke åpnes. Prøv igjen senere.';
+          errorBox.hidden = false;
+        }
+      } finally { compareStart.disabled = false; }
     });
     const search = document.getElementById('politikkConceptSearch');
     const domainFilter = document.getElementById('politikkConceptDomain');

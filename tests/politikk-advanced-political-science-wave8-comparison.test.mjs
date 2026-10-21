@@ -16,10 +16,10 @@ const claimById = new Map(wave8.claim_bank.map(claim => [claim.id, claim]));
 test('Statsvitenskap bølge 8: beholder Polen-piloten og alle kanoniske Politikk-bindinger', () => {
   assert.equal(wave8.schema, 'history_go_politikk_comparative_election_evidence_v1');
   assert.equal(wave8.subject_id, 'politikk');
-  assert.equal(wave8.status, 'editorial_draft_not_published');
+  assert.equal(wave8.status, 'materialized_as_wave9_subject_pathway');
   assert.equal(wave8.wave, 8);
   assert.equal(pathway.status, 'pilot_active');
-  assert.equal(pathway.sets.length, 1);
+  assert.equal(pathway.sets.length, 2);
   assert.equal(wave6.published_quiz_claims, 5);
   assert.equal(wave8.canonical_links.prior_evidence_path, 'data/fag/politikk/advanced_political_science_wave6_poland_case_evidence_v1.json');
   assert.equal(wave8.canonical_links.method_id, wave6.method_guard);
@@ -32,7 +32,7 @@ test('Statsvitenskap bølge 8: beholder Polen-piloten og alle kanoniske Politikk
   for (const id of wave8.canonical_links.concept_ids) {
     assert.ok(concepts.some(concept => concept.concept_id === id && concept.source_emne_ids.includes(emne.emne_id)), id);
   }
-  for (const key of ['new_curricular_units','new_domain_ids','new_method_ids','new_concept_ids','published_quiz_items']) {
+  for (const key of ['new_curricular_units','new_domain_ids','new_method_ids','new_concept_ids']) {
     assert.equal(wave8[key], 0, key);
   }
 });
@@ -71,7 +71,7 @@ test('Statsvitenskap bølge 8: fem faglig begrunnede svarutkast i riktig sekvens
   for (const q of wave8.question_drafts) {
     const claim = claimById.get(q.claim_id);
     assert.ok(claim);
-    assert.equal(q.status, 'not_published');
+    assert.equal(q.status, 'materialized_wave9');
     assert.ok(q.question.length > 95, q.id);
     assert.equal(q.options.length, 4);
     assert.equal(new Set(q.options).size, 4);
@@ -81,9 +81,11 @@ test('Statsvitenskap bølge 8: fem faglig begrunnede svarutkast i riktig sekvens
     assert.equal(q.correct_answer, q.options[q.answerIndex]);
     assert.deepEqual(q.source_ids, claim.source_ids);
   }
-  assert.equal(wave8.publication_gate.quiz_runtime_active, false);
-  assert.equal(wave8.publication_gate.knowledge_registry_materialized, false);
-  assert.equal(wave8.publication_gate.manifest_changes_required_before_activation, true);
+  assert.equal(wave8.publication_gate.quiz_runtime_active, true);
+  assert.equal(wave8.publication_gate.knowledge_registry_materialized, true);
+  assert.equal(wave8.publication_gate.manifest_changes_required_before_activation, false);
+  assert.equal(wave8.published_quiz_items, 5);
+  assert.equal(pathway.sets[1].questions.length, 5);
   assert.ok(wave8.publication_gate.steps.length >= 4);
   assert.ok(wave8.methodological_guards.length >= 4);
 });
