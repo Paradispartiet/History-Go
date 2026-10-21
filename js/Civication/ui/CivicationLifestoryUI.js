@@ -801,7 +801,8 @@
     // Uten endings-modulen vises den vanlige dagsoppsummeringen.
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
     const sisteDag = !!(Endings && Endings.isFinalDay(state, content));
-    const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
+    const chapterEnding = sisteDag && (content.fortsettelse || state.dag === content.role.symposium?.sisteDag);
+    const ending = chapterEnding ? Endings.resolveEnding(state, content) : null;
     const authoredEnding = ending && (content.role.endings || []).find(e => e.id === ending.id);
     const endingHtml = ending
       ? "<section class=\"civi-lifestory-ending\" aria-label=\"" + (Number(state.livsdag || state.dag) >= 21 ? "Tre uker" : "Ukas slutt") + "\">"
@@ -820,7 +821,9 @@
     const pendingPrivate = !!Runner.hasPendingPrivateScenes?.(state, content);
     // Private Life Stories remain playable without a badge. The History Go
     // guide is optional and must also appear when private stories continue.
-    const offerExploration = sisteDag && !next;
+    // Milestone guidance belongs to day 7 and day 21, not every day between.
+    const currentLifeDay = Number(state.livsdag || state.dag);
+    const offerExploration = sisteDag && !next && (currentLifeDay === 7 || currentLifeDay >= 21);
     const finishedThreeWeeks = offerExploration && state.rolle === "arbeidsledig"
       && Number(state.livsdag || state.dag) >= 21
       && (state.spilteScener || []).some(id => /^privat_21d_d21_/.test(id));
@@ -871,7 +874,8 @@
       ? "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
         + nextChapterHint
-        + (Runner.hasPendingPrivateScenes?.(state, content) ? '<button class="civi-btn primary" type="button" data-lifestory-next-day' + nextDayDisabled + '>Fortsett privatlivet</button>' : "")
+        + (pendingPrivate ? '<button class="civi-btn primary" type="button" data-lifestory-next-day' + nextDayDisabled + '>'
+          + (currentLifeDay > 7 && currentLifeDay < 21 ? "Start neste dag" : "Fortsett privatlivet") + '</button>' : "")
         + blockedDayNote
         + pendingDayActionHtml
         + "</div>"
