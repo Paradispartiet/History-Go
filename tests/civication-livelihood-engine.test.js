@@ -253,6 +253,32 @@ assert.deepStrictEqual(env.api.getState().ledger.map(row => row.week),
   ['game-week-000002', 'game-week-000001']);
 assert.strictEqual(env.api.getSnapshot().week, 'game-week-000003');
 
+// A new one-time gig accepted after day 7 belongs to the second game
+// week, even if the first week's payroll was not processed until day 8.
+env = setup();
+env.setDay(8);
+assert.strictEqual(env.api.createOpportunity({
+  id: 'late_gig',
+  kind_id: 'gig_honorarium',
+  source: { type: 'booking', id: 'late_booking', label: 'Konsert dag åtte' },
+  income: { model: 'fixed', amount: 9 }
+}).ok, true);
+assert.strictEqual(env.api.acceptOpportunity('late_gig').ok, true);
+assert.strictEqual(env.api.getState().streams[0].accepted_game_week, 'game-week-000002');
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 100,
+  'day eight acceptance cannot be back-paid for days one to seven');
+assert.strictEqual(env.api.getState().ledger[0].items[0].reason, 'outside_schedule');
+assert.strictEqual(env.api.getState().streams[0].status, 'active',
+  'a not-yet-earned one-time gig must remain active');
+env.setDay(15);
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 109,
+  'the gig is paid once at the end of its actual game week');
+assert.strictEqual(env.api.getState().streams[0].status, 'closed');
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 109, 'same day reload cannot duplicate late gig');
+
 // Old wallet migration / incomplete calendar: no retroactive livelihood pay.
 env = setup();
 assert.strictEqual(env.api.createOpportunity({
