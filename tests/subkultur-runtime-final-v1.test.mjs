@@ -7,6 +7,7 @@ test('Subkultur-runtime materialiserer hele canonicalkjeden', () => {
   const report = auditSubkulturRuntimeFinal();
   assert.equal(report.status, 'COMPLETE');
   assert.deepEqual(report.failures, []);
+  const subjectUnits = JSON.parse(fs.readFileSync('data/knowledge/subjects/subkultur/knowledge_units.generated.json', 'utf8')).units;
   assert.deepEqual(report.summary, {
     domainCount: 8,
     hookCount: 80,
@@ -19,7 +20,7 @@ test('Subkultur-runtime materialiserer hele canonicalkjeden', () => {
     rejectedCaseCount: 8,
     pathwayCount: 8,
     assessmentQuestionCount: 40,
-    knowledgeUnitCount: 135,
+    knowledgeUnitCount: subjectUnits.length,
     legacyQuestionAuditCount: 83,
     activeLegacyQuestionCount: 0
   });

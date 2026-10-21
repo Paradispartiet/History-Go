@@ -1,0 +1,110 @@
+{
+  "schema": "history_go_quiz_editorial_quality_review_v1",
+  "createdAt": "2026-10-21",
+  "scope": "Quality-review the canonical full quizzes of four Oslo V1 sites after PR #6465; no image, source place, or QuizCard content changes.",
+  "standard": "Retain documented local facts, avoid internal production jargon, generic dictionary-only sets and repeated definitions, and preserve exact canonical QuizCard source question parity.",
+  "places": [
+    {
+      "id": "munch_museet",
+      "before": {
+        "sets": 6,
+        "questions": 42
+      },
+      "after": {
+        "sets": 5,
+        "questions": 35
+      },
+      "retired": "set_6 (7 generic dictionary-definition questions without MUNCH-specific facts)",
+      "rewritten": [
+        "munch_museet_quiz_3_1",
+        "munch_museet_quiz_3_2"
+      ],
+      "sources": [
+        "https://oslobyleksikon.no/side/Munchmuseet",
+        "https://www.mynewsdesk.com/munchmuseet/pressreleases/new-munch-officially-opens-3137912",
+        "https://www.lpo.no/nyheter/2021-10-22-apning-av-nye-munch"
+      ],
+      "followup": "Further editorial pass on generic art theory across remaining sets is recommended; no complete certification yet."
+    },
+    {
+      "id": "nasjonalmuseet",
+      "before": {
+        "sets": 6,
+        "questions": 42
+      },
+      "after": {
+        "sets": 5,
+        "questions": 35
+      },
+      "retired": "set_6 (7 generic glossary questions not anchored to the museum)",
+      "rewritten": [
+        "nasjonalmuseet_quiz_3_1",
+        "nasjonalmuseet_quiz_3_2"
+      ],
+      "sources": [
+        "https://www.mynewsdesk.com/no/nasjonalmuseet/pressreleases/det-nye-nasjonalmuseet-aapner-11-juni-2022-3108206"
+      ],
+      "followup": "Further editorial pass on remaining abstract art theory is recommended; no complete certification yet."
+    },
+    {
+      "id": "oslo_gassverk",
+      "before": {
+        "sets": 5,
+        "questions": 30
+      },
+      "after": {
+        "sets": 5,
+        "questions": 30
+      },
+      "rewritten": [
+        "oslo_gassverk_quiz_2",
+        "oslo_gassverk_quiz_6",
+        "oslo_gassverk_quiz_30"
+      ],
+      "reason": "Replace production-process metadata questions with the preserved 1883 office, coal-to-light-petrol feedstock shift and economic pressures before 1978 closure.",
+      "sources": [
+        "https://oslobyleksikon.no/side/Gassverket.",
+        "https://lokalhistoriewiki.no/wiki/Christiania_Gasv%C3%A6rk",
+        "https://riksantikvaren.no/content/uploads/2019/10/10.storgata36c.pdf"
+      ]
+    },
+    {
+      "id": "brugata_storgata_rusmiljo",
+      "before": {
+        "sets": 5,
+        "questions": 35
+      },
+      "after": {
+        "sets": 5,
+        "questions": 35
+      },
+      "rewritten": [
+        "brugata_storgata_quiz_1",
+        "brugata_storgata_quiz_4",
+        "brugata_storgata_quiz_22"
+      ],
+      "reason": "Replace developer-language about canonical place boundaries with accessible geographic distinctions. Preserve source-backed social, historical and non-stigmatizing safety content.",
+      "sources": [
+        "https://magasin.oslo.kommune.no/byplan/trygghet-og-kriminalitetsforebygging-m%C3%A5-v%C3%A6re-f%C3%B8rende-i-byutviklingen",
+        "https://humanruspolitikk.no/vil-gi-rusavhengige-et-sted-a-vaere/",
+        "https://filer.korus.no/publications/HKH-rapport-web.pdf"
+      ],
+      "sourceNote": "The quiz retains its existing internal source mapping for the three revised questions; no new independent Brugata source assertion added."
+    }
+  ],
+  "summary": {
+    "reviewedFullQuizzes": 4,
+    "questionsBefore": 149,
+    "questionsAfter": 135,
+    "weakGenericQuestionsRetired": 14,
+    "placeSpecificReplacements": 10,
+    "existingQuizCardQuestionsPreserved": 40
+  },
+  "checks": {
+    "quizcardSourceIdPresence": "passed in GitHub read-back before commit",
+    "quizcardQuestionOptionAnswerParity": "passed for all 40 existing QuizCard questions before commit",
+    "knowledgeGeneratedData": "pending generator",
+    "githubCI": "pending"
+  },
+  "limitations": "A targeted editorial improvement pass, not a complete content-source audit for each remaining question or end-to-end UI v1 certification."
+}

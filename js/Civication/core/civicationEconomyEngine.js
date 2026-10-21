@@ -175,14 +175,28 @@ function tickPCIncomeWeekly() {
 
   const now = new Date();
 
-  const lastIso = wallet.last_tick_iso;
-  const lastWeek = lastIso
-    ? weekKey(new Date(lastIso))
-    : null;
+  // Weekly wallet settlement follows Civication's actual days, not Mondays.
+  // Migrate existing wallets without granting retroactive earnings.
+  const dayIndex = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+  if (!Number.isSafeInteger(dayIndex) || dayIndex < 1) return;
+  const lastDay = Number(wallet.last_tick_day_index);
+  if (!Number.isSafeInteger(lastDay) || lastDay < 1 || lastDay > dayIndex) {
+    wallet.last_tick_day_index = dayIndex;
+    window.CivicationState.updateWallet(wallet);
+    if (!active?.career_id && (!Number.isSafeInteger(Number(stateView.unemployed_since_day_index)) || Number(stateView.unemployed_since_day_index) < 1)) {
+      window.CivicationState.setState({ unemployed_since_day_index: dayIndex });
+    }
+    return;
+  }
+  if (dayIndex - lastDay < 7) return;
 
-  const thisWeek = weekKey(now);
-
-  if (lastWeek === thisWeek) return;
+  const settlementDay = lastDay + 7;
+  const thisWeek = typeof weekKey === "function" ? weekKey(now) : null;
+  const stampSettledWeek = () => {
+    wallet.last_tick_day_index = settlementDay;
+    wallet.last_tick_iso = now.toISOString(); // diagnostic timestamp, not the game clock
+    window.CivicationState.updateWallet(wallet);
+  };
 
   // =========================================================
   // GLOBAL RULES (hent fra CIVI_CAREER_RULES hvis tilgjengelig)
@@ -205,28 +219,23 @@ function tickPCIncomeWeekly() {
 
   if (!active?.career_id) {
 
-    const sinceW = stateView.unemployed_since_week;
-
-    if (!sinceW) {
-
+    const sinceDay = Number(stateView.unemployed_since_day_index);
+    if (!Number.isSafeInteger(sinceDay) || sinceDay < 1 || sinceDay > settlementDay) {
       window.CivicationState.setState({
+        unemployed_since_day_index: settlementDay,
         unemployed_since_week: thisWeek
       });
-
-      wallet.last_tick_iso = now.toISOString();
-      window.CivicationState.updateWallet(wallet);
+      stampSettledWeek();
       return;
     }
 
-    const weeksPassed =
-      weeksPassedBetweenWeekKeys(sinceW, thisWeek);
+    const weeksPassed = Math.floor((settlementDay - sinceDay) / 7);
 
     if (weeksPassed >= navAfterWeeks && navWeeklyPc > 0) {
       wallet.balance += Math.floor(navWeeklyPc);
     }
 
-    wallet.last_tick_iso = now.toISOString();
-    window.CivicationState.updateWallet(wallet);
+    stampSettledWeek();
     return;
   }
 
@@ -244,8 +253,7 @@ function tickPCIncomeWeekly() {
       : null;
 
   if (!career) {
-    wallet.last_tick_iso = now.toISOString();
-    window.CivicationState.updateWallet(wallet);
+    stampSettledWeek();
     return;
   }
 
@@ -264,8 +272,7 @@ function tickPCIncomeWeekly() {
     ));
 
   if (!badge) {
-    wallet.last_tick_iso = now.toISOString();
-    window.CivicationState.updateWallet(wallet);
+    stampSettledWeek();
     return;
   }
 
@@ -336,7 +343,8 @@ function tickPCIncomeWeekly() {
     window.CivicationState.setActivePosition(null);
 
     window.CivicationState.setState({
-      unemployed_since_week: thisWeek
+      unemployed_since_week: thisWeek,
+      unemployed_since_day_index: settlementDay
     });
 
     try {
@@ -346,8 +354,7 @@ function tickPCIncomeWeekly() {
       );
     } catch (e) {}
 
-    wallet.last_tick_iso = now.toISOString();
-    window.CivicationState.updateWallet(wallet);
+    stampSettledWeek();
     return;
   }
 
@@ -371,11 +378,11 @@ function tickPCIncomeWeekly() {
   }
 
   window.CivicationState.setState({
-    unemployed_since_week: null
+    unemployed_since_week: null,
+    unemployed_since_day_index: null
   });
 
-  wallet.last_tick_iso = now.toISOString();
-  window.CivicationState.updateWallet(wallet);
+  stampSettledWeek();
 }
   
 
@@ -708,8 +715,16 @@ function getEconomySnapshot() {
   const homeRent = getHomeRent(home);
   const estimatedNetAfterHome = weeklySalary - weeklyJobExpenses - homeRent;
   const lastTickIso = wallet.last_tick_iso || null;
-  const currentWeekKey = currentEconomyWeekKey();
-  const alreadyTickedThisWeek = economyWeekKeyFromIso(lastTickIso) === currentWeekKey;
+  const gameDay = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+  const lastSettledDay = Number(wallet.last_tick_day_index);
+  const hasGameWeek = Number.isSafeInteger(gameDay) && gameDay >= 1
+    && Number.isSafeInteger(lastSettledDay) && lastSettledDay >= 1
+    && lastSettledDay <= gameDay;
+  const currentWeekKey = Number.isSafeInteger(gameDay) && gameDay >= 1
+    ? "game-week-" + String(Math.floor((gameDay - 1) / 7) + 1)
+    : null;
+  const alreadyTickedThisWeek = hasGameWeek && gameDay - lastSettledDay < 7;
+  const canTickNow = hasGameWeek && gameDay - lastSettledDay >= 7;
   if (alreadyTickedThisWeek) warnings.push("already_ticked_this_week");
   if (estimatedNetAfterHome < 0) warnings.push("negative_estimated_net");
   if (["pressure", "crisis"].includes(String(home?.housingPressure || home?.state?.home?.housingPressure || ""))) warnings.push("rent_pressure");
@@ -730,7 +745,7 @@ function getEconomySnapshot() {
     estimatedNetAfterHome,
     balance,
     lastTickIso,
-    tickStatus: { lastTickIso, currentWeekKey, alreadyTickedThisWeek, canTickNow: !alreadyTickedThisWeek },
+    tickStatus: { lastTickIso, currentWeekKey, dayIndex: gameDay, lastSettledDay, alreadyTickedThisWeek, canTickNow },
     affordability: getAffordabilitySnapshot(balance),
     warnings
   };
