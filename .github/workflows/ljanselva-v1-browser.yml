@@ -11,6 +11,9 @@ on:
       - 'bilder/places/ljanselva_landscape.webp'
       - '.github/workflows/ljanselva-v1-browser.yml'
   workflow_dispatch:
+concurrency:
+  group: ljanselva-v1-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
