@@ -147,7 +147,13 @@ const authored = [
   ["life","familie_01_hilsen_hjemmefra","ta_praten","social_awareness"],
   ["life","d2_ettermiddag_rommet_som_forsvant","sette_gjerde_naa","agency"],
   ["life","dag_01_oppsummering","endre_maaten","agency"],
-  ["life","dag2_kveld_oekonomi_tung","legg_en_plan","wisdom_judgement"]
+  ["life","dag2_kveld_oekonomi_tung","legg_en_plan","wisdom_judgement"],
+  ["life","wave_e_c21_d9_fellesskap","gjennomfor","social_awareness"],
+  ["life","wave_e_c21_d9_skape","gjennomfor","creativity"],
+  ["life","wave_e_c21_d9_laere","gjennomfor","wisdom_judgement"],
+  ["life","wave_e_c21_d16_fellesskap","gjennomfor","agency"],
+  ["life","wave_e_c21_d16_skape","gjennomfor","creativity"],
+  ["life","wave_e_c21_d16_laere","gjennomfor","communication"]
 ];
 
 function build(roleId) {
@@ -172,7 +178,7 @@ for (const [role, sceneId, choiceId, skillId] of authored) {
     "practice is backed by a real changed story flag");
   ids.add(skillId);
 }
-assert.equal(authored.length, 29, "six original and 23 additional real practice choices");
+assert.equal(authored.length, 35, "29 earlier plus six fully evidenced three-week practices");
 assert.equal(ids.size, 6, "all six Skills are reachable in authored story content");
 
 // Metadata cannot award for missing evidence or arbitrary point grants.
