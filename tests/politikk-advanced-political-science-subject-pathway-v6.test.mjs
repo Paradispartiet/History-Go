@@ -73,7 +73,7 @@ test('Statsvitenskap v6: alle 5 spørsmål er komplette og faglig begrunnet', ()
     assert.equal(q.feedback_basis,'source_trace_and_explanation');
     assert.equal(q.source_origin,'external');
     assert.equal(q.knowledge_contract_version,1);
-    assert.equal(q.knowledge_link_status,'staged_unregistered');
+    assert.equal(q.knowledge_link_status,'linked');
     assert.equal(q.primary_knowledge_unit_id,'ku_politikk_pl2023_'+String(index+1).padStart(2,'0'));
     assert.deepEqual(q.knowledge_unit_ids,[q.primary_knowledge_unit_id]);
     assert.match(q.primary_knowledge_unit_id,/^ku_[a-z0-9_]+$/);
