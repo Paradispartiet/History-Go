@@ -381,3 +381,32 @@
     padding: .8rem;
   }
 }
+
+/* Komparativt bevisverksted: lesbare kildekort og tastaturvennlige begrunnelsesvalg. */
+.politikk-evidence-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+  margin: 1rem 0;
+}
+.politikk-evidence-case, .politikk-evidence-step, .politikk-evidence-assembly {
+  border: 1px solid rgba(161, 202, 241, .26);
+  border-radius: .8rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: rgba(255, 255, 255, .035);
+}
+.politikk-evidence-case { margin: 0; min-width: 0; }
+.politikk-evidence-case h6, .politikk-evidence-step h6,
+.politikk-evidence-assembly h6 { margin: 0 0 .7rem; font-size: 1rem; }
+.politikk-evidence-sources, .politikk-evidence-progress,
+.politikk-evidence-excerpt { line-height: 1.6; }
+.politikk-evidence-sources { font-size: .9rem; overflow-wrap: anywhere; }
+.politikk-evidence-options { display: grid; gap: .55rem; margin-top: .85rem; }
+.politikk-evidence-options button { text-align: left; white-space: normal; }
+.politikk-evidence-options button[aria-pressed="true"] { outline: 2px solid #8ccaff; outline-offset: 2px; }
+.politikk-evidence-feedback { min-height: 1.5em; margin: .75rem 0 0; }
+.politikk-evidence-note-label { display: block; margin-bottom: .5rem; font-weight: 700; }
+.politikk-evidence-note { display: block; box-sizing: border-box; width: 100%; max-width: 100%; margin-bottom: .8rem; padding: .75rem; font: inherit; }
+.politikk-evidence-report { border-top: 1px solid rgba(161, 202, 241, .26); padding-top: .8rem; margin-top: 1rem; }
+@media (max-width: 640px) { .politikk-evidence-matrix { grid-template-columns: 1fr; } }
