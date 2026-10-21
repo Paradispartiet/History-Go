@@ -107,7 +107,12 @@
           "id": "rett_synlig",
           "tekst": "Stopp kort, sjekk plakaten, og rett feilen synlig — butikken har gjort feil",
           "tone": "faglig",
-          "skills_practice": {"skill_id":"practical_mastery","activity_type":"correct_till_price","evidence_flag":"rettet_feilen_synlig","delta":2},
+          "skills_practice": {
+            "skill_id": "practical_mastery",
+            "activity_type": "correct_till_price",
+            "evidence_flag": "rettet_feilen_synlig",
+            "delta": 2
+          },
           "effekter": {
             "relasjoner": {
               "stamkunde": 5,
@@ -170,6 +175,34 @@
             }
           },
           "konsekvensTekst": "Amir er tilbake på tjue sekunder med plakaten i hånda. Køen merket knapt noe. Du merket at du trengte ham."
+        },
+        {
+          "id": "rett_og_logg_avvik",
+          "tekst": "Rett kundens pris og meld det konkrete avviket til Lene, så feilen ikke gjentas",
+          "tone": "grundig oppfølging",
+          "skills_requirement": {
+            "skill_id": "practical_mastery",
+            "min_score": 2
+          },
+          "effekter": {
+            "relasjoner": {
+              "stamkunde": 6,
+              "butikksjef": 4
+            },
+            "meters": {
+              "integritet": 5,
+              "energi": -3
+            },
+            "flagg": {
+              "meldte_prisavvik_til_lene": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du gir kunden kampanjeprisen 39, kontrollerer plakaten og sender Lene et presist avviksnotat. Hun tar ansvaret for å rette systemet. Kunden slipper å forklare feilen på nytt."
         }
       ]
     },

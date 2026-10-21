@@ -15,6 +15,9 @@ const P = Object.freeze({
   report: 'reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json'
 });
 const AHA_RUNTIME_ROOTS = Object.freeze(['js', 'data/integrations', 'data/historygo', 'data/psychology']);
+// Source-of-truth coverage inventory contains textual article_path references, not
+// executable AHA/runtime wiring. Keep scanning every other runtime candidate.
+const NON_RUNTIME_REFERENCE_DOCUMENTS = new Set(['data/psychology/psychology_theory_coverage_v1.json']);
 const CLINICAL_DIRECTIVE_PATTERNS = Object.freeze([
   /du har diagnosen/i,
   /denne personen har/i,
@@ -58,10 +61,15 @@ export function clinicalTextHasNoDirectives(article) {
   const text = JSON.stringify(article);
   return CLINICAL_DIRECTIVE_PATTERNS.every((pattern) => !pattern.test(text));
 }
+export function isAhaArticleRuntimeReference(file, content) {
+  // An inventory describing the canonical Fagverk article files is not a
+  // runtime import. Any other scanned file still fails closed on a reference.
+  if (NON_RUNTIME_REFERENCE_DOCUMENTS.has(file)) return false;
+  return /data\/fagverk\/psykologi\/emneartikler|history_go_psykologi_topic_article_v1|psykologi[\/_-]emneartikler/i.test(content);
+}
 function ahaRuntimeActivationEvidence() {
   const scannedFiles = AHA_RUNTIME_ROOTS.flatMap(walkFiles).sort();
-  const activationPattern = /data\/fagverk\/psykologi\/emneartikler|history_go_psykologi_topic_article_v1|psykologi[\/_-]emneartikler/i;
-  const referencingFiles = scannedFiles.filter((file) => activationPattern.test(fs.readFileSync(abs(file), 'utf8')));
+  const referencingFiles = scannedFiles.filter((file) => isAhaArticleRuntimeReference(file, fs.readFileSync(abs(file), 'utf8')));
   return { scannedRoots: AHA_RUNTIME_ROOTS, referencingFiles };
 }
 const projection = (report) => ({

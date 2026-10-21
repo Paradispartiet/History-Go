@@ -415,6 +415,14 @@
         ${curriculum.editorial_introduction.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}
         <p class="fagverk-curriculum-reading-guide"><strong>Leseguide:</strong> ${escapeHtml(curriculum.editorial_introduction.reading_guide)}</p>
       </section>
+      <section id="politikk-polen-2023" class="fagverk-curriculum-introduction" aria-labelledby="politikk-polen-title">
+        <p class="fagverk-kicker">Kildebasert øvelse · fem trinn</p>
+        <h3 id="politikk-polen-title">Valgintegritet og demokratisk tilbakegang: Polen 2023</h3>
+        <p>Undersøk hva valgobservatørene fant, hvilke konklusjoner kildene støtter, og hvilke reformer som kan begrunnes. Etter oppgavene får du forklaringer og lenker til originalkildene.</p>
+        <button type="button" id="politikkPolandPathwayStart">Start femtrinnsforløpet</button>
+        <p id="politikkPolandPathwayError" role="alert" hidden></p>
+        <div id="politikkPolandPathwayReview" hidden aria-live="polite"></div>
+      </section>
       <div class="fagverk-general-summary" aria-label="Politikkfagets oppbygning">
         <div><strong>${model.summary.domainCount}</strong><span>fagområder</span></div>
         <div><strong>${model.summary.emneCount}</strong><span>emner</span></div>
@@ -436,6 +444,19 @@
       </section>
       <section><details class="fagverk-method-registry"><summary>Åpne komplett canonicalt fagregister</summary><p class="fagverk-section-intro">Registeret inneholder alle ${model.summary.domainCount} tekniske fagområder, ${model.summary.emneCount} emner og ${model.summary.methodCount} metoder. Det bevares for quizer, evidens og stedskoblinger, men styrer ikke lenger hovedoversikten.</p><div class="fagverk-general-domain-grid">${model.domains.map((domain) => domainCard(model, domain, new Map(progress.domainProgress.map((row) => [row.domainId, row])), placeId)).join('')}</div></details></section>
     `;
+    const pathwayStart = document.getElementById('politikkPolandPathwayStart');
+    pathwayStart?.addEventListener('click', async () => {
+      const errorBox = document.getElementById('politikkPolandPathwayError');
+      if (errorBox) { errorBox.hidden = true; errorBox.textContent = ''; }
+      pathwayStart.disabled = true;
+      try {
+        const started = await global.QuizEngine?.startSubjectPathway?.('politikk');
+        if (!started && errorBox) {
+          errorBox.textContent = 'Fagområdeforløpet kunne ikke åpnes. Prøv igjen senere.';
+          errorBox.hidden = false;
+        }
+      } finally { pathwayStart.disabled = false; }
+    });
     const search = document.getElementById('politikkConceptSearch');
     const domainFilter = document.getElementById('politikkConceptDomain');
     const count = document.getElementById('politikkConceptCount');

@@ -1,0 +1,71 @@
+name: Skraperudtjern v1 resync merged generated sources once
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/skraperudtjern-v1-resync.yml'
+permissions:
+  contents: write
+jobs:
+  resync:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'content/oslo-skraperudtjern-v1-20261021'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild generated files from merged canonical source, not stale PR artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run knowledge:canonical:write
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run places:index:build
+          npm run epoker:places:build
+          npm run place-open:build
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run epoker:places:check
+          npm run place-open:check
+      - name: Check actual Skraperudtjern app after main integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node tests/skraperudtjern-v1-real-browser.mjs
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-ljanselva-fullquiz-browser.mjs skraperudtjern
+      - name: Commit synchronized generated files to the same PR
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A \
+            data/fagverk/fagverk_release.json \
+            data/knowledge/ \
+            data/places/places_index.json \
+            data/epoker/epoke-place-index.json \
+            data/runtime/place-open/ \
+            reports/knowledge-id-backfill.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Regenerate Skraperudtjern and Poland Knowledge from merged main'
+            git push origin HEAD:content/oslo-skraperudtjern-v1-20261021
+          fi
+      - name: Save second-round browser QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: skraperudtjern-v1-main-sync-app-qa
+          path: |
+            artifacts/skraperudtjern-browser/**
+            artifacts/place-quiz/skraperudtjern/**
+          if-no-files-found: ignore
+          retention-days: 14
