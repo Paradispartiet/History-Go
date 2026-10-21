@@ -148,6 +148,15 @@ const content = Content.buildContent(raw);
   s.meters.energi = 80;
   Runner.applyChoice(s, content, "privat_morgen_start", "rolig_start");
   Runner.applyChoice(s, content, "skolevei_01_melding", "utbygger_kommentar"); // låser skolevei_02_utbygger
+  // Spill nå faktisk frem til opplåst scene: runneren avviser med vilje
+  // direkte valg på fremtidige faser, også når scene-ID er kjent på forhånd.
+  let reachGuard = 0;
+  while (!Runner.getCandidateScenes(s, content).some(scene => scene.id === "skolevei_02_utbygger")) {
+    assert.ok(!s.dagFerdig && ++reachGuard < 40, "utbygger-scenen må nås via ordinær dagsflyt");
+    const next = Runner.selectNextScene(s, content);
+    if (next) Runner.applyChoice(s, content, next.id, next.valg[0].id);
+    else Runner.advance(s, content);
+  }
   Runner.applyChoice(s, content, "skolevei_02_utbygger", "krev_dokumentasjon"); // status -> escalated
   assert.strictEqual(s.threadState.skolevei_parkeringskjeller.status, "escalated");
   // Spol frem til kveld og sjekk at kveldsscenen er kandidat
