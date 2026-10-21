@@ -16,6 +16,8 @@ on:
       - 'tests/det-norske-teatret-rights-routing-c39.test.mjs'
       - 'tests/det-norske-teatret-source-image-links-c40.test.mjs'
       - 'tests/det-norske-teatret-source-photo-inline-c41.test.mjs'
+      - 'tests/det-norske-teatret-foyer-sources-c47.test.mjs'
+      - 'reports/place-production/det-norske-teatret/20261021/foyer-painting-kilder-c47.json'
       - 'reports/place-production/det-norske-teatret/20261020/object-photo-inline-source-c41.json'
       - 'js/ui/place-popup-tabs.js'
       - 'css/place-popup-tabs.css'
@@ -59,4 +61,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node-npm
       - name: Confirm venue/media guards and place-focused QuizCard source/DOM parity
-        run: node --test tests/det-norske-teatret-production-venue.test.mjs tests/det-norske-teatret-quizcard-house-dom.test.mjs tests/det-norske-teatret-objects-rights-c31.test.mjs tests/det-norske-teatret-objects-rights-c37.test.mjs tests/det-norske-teatret-costume-visual-review-c38.test.mjs tests/det-norske-teatret-rights-routing-c39.test.mjs tests/det-norske-teatret-source-image-links-c40.test.mjs tests/det-norske-teatret-source-photo-inline-c41.test.mjs tests/det-norske-teatret-object-image-c32.test.mjs tests/det-norske-teatret-costume-asset-c33.test.mjs tests/det-norske-teatret-front-image-c34.test.mjs tests/det-norske-teatret-front-asset-c35.test.mjs tests/det-norske-teatret-front-activation-c36.test.mjs
+        run: node --test tests/det-norske-teatret-production-venue.test.mjs tests/det-norske-teatret-quizcard-house-dom.test.mjs tests/det-norske-teatret-objects-rights-c31.test.mjs tests/det-norske-teatret-objects-rights-c37.test.mjs tests/det-norske-teatret-costume-visual-review-c38.test.mjs tests/det-norske-teatret-rights-routing-c39.test.mjs tests/det-norske-teatret-source-image-links-c40.test.mjs tests/det-norske-teatret-source-photo-inline-c41.test.mjs tests/det-norske-teatret-foyer-sources-c47.test.mjs tests/det-norske-teatret-object-image-c32.test.mjs tests/det-norske-teatret-costume-asset-c33.test.mjs tests/det-norske-teatret-front-image-c34.test.mjs tests/det-norske-teatret-front-asset-c35.test.mjs tests/det-norske-teatret-front-activation-c36.test.mjs
