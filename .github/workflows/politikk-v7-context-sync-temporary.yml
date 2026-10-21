@@ -61,7 +61,7 @@ jobs:
                   data/quiz/production_context/politikk/22_juli_senteret.json) ;;
                   *) echo "Unexpected Politics context: $file" >&2; exit 1 ;;
                 esac
-                ;; ;;
+                ;;
               *) echo "Unexpected build output: $file" >&2; exit 1 ;;
             esac
           done < <(git status --porcelain)
