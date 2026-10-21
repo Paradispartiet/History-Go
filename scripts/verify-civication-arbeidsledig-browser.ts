@@ -53,7 +53,17 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
         if (await close.isVisible().catch(() => false)) throw error;
       }
     }
-    await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
+    // Next-action resolution can leave the Personlig/Innboks popup over Min dag.
+    // Use its real day-advance action when visible; otherwise close the popup
+    // before clicking the regular day button. Never force-click through overlays.
+    const popupAdvance = page.locator('#civiSectionPopup.is-open [data-civi-next-action-advance]').first();
+    if (await popupAdvance.isVisible().catch(() => false)) {
+      await popupAdvance.click({ timeout: 12000 });
+    } else {
+      const popupClose = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popupClose.isVisible().catch(() => false)) await popupClose.click({ timeout: 12000 });
+      await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
+    }
     await page.waitForTimeout(180);
     const after = await page.evaluate(() => ({
       day: Number((globalThis as any).CivicationCalendar?.getClock?.().dayIndex),
