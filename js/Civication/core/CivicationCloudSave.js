@@ -5,8 +5,8 @@
   const OWNER_KEY = "civication_cloud_owner_v1";
   const STATUS_KEY = "civication_cloud_status_v1";
   const PREFIX = "civication_latest_";
-  const EXTRA_KEYS = new Set(["hg_active_position_v1", "hg_capital_v1",
-    "hg_pc_wallet_v1", "hg_civi_wallet_v1"]);
+  const EXTRA_KEYS = new Set(["hg_active_position_v1", "hg_job_history_v1",
+    "hg_capital_v1", "hg_pc_wallet_v1", "hg_civi_wallet_v1"]);
   // Legacy debug URL overrides are not player progress. Older backups may
   // still contain this key, but it must never be restored or re-uploaded.
   const RETIRED_KEYS = new Set(["civication_lifestory_role_v1"]);
