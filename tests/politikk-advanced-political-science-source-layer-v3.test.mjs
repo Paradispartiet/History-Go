@@ -24,8 +24,8 @@ test('Politikk bølge 3: kapitler tilhører eksisterende verifiserte verk og kan
     assert.ok(wave2IDs.has(item.work_id), item.id);
     assert.ok(methodIDs.has(item.method_id), item.id);
     assert.ok(domainIDs.has(item.domain_id), item.id);
-    assert.match(item.doi, /^10\\.1017\\//);
-    assert.match(item.source_url, /^https:\/\/www\\.cambridge\\.org\/core\/books\//);
+    assert.ok(item.doi.startsWith('10.1017/'), item.id);
+    assert.ok(item.source_url.startsWith('https://www.cambridge.org/core/books/'), item.id);
     assert.equal(item.source_access, 'open_access_html');
     assert.ok(item.sections_read.length >= 1);
     assert.ok(item.chapter_authors.length >= 1);
