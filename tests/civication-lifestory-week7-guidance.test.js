@@ -65,6 +65,10 @@ async function main() {
   assert.match(panel.textContent, /Veien videre/);
   assert.match(panel.textContent, /Sideprosjektbygger/);
   assert.match(panel.textContent, /0 av 10 poeng/);
+  assert.match(panel.textContent, /Privatlivet kan fortsette uansett jobbstatus/,
+    "employment status never prevents private Life Story progress");
+  assert(panel.querySelector("[data-lifestory-next-day]"),
+    "private Life Stories remain playable without a new badge or job");
   assert.equal(panel.querySelector("[data-lifestory-continue]"), null,
     "locked story never exposes an unauthorized continuation");
   const before = w.localStorage.getItem(S.STORAGE_KEY);
@@ -80,6 +84,6 @@ async function main() {
   panel.querySelector("[data-lifestory-life-profile]").click();
   assert.equal(actions[1]?.type, "aapne_livsposisjoner");
   dom.window.close();
-  console.log("Civication day-seven chapter gate shows a genuine cross-app learning path");
+  console.log("Civication day seven continues private Life Stories and offers optional History Go learning");
 }
 main().catch(e => { console.error(e); process.exitCode = 1; });
