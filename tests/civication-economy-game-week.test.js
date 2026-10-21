@@ -10,6 +10,7 @@ const enginePath = path.resolve(__dirname, '../js/Civication/core/civicationEcon
 
 function setup({ activeCareer = 'handel', startDay = 1, oldWallet = null, withClock = true } = {}) {
   let dayIndex = startDay;
+  let careerId = activeCareer;
   let wallet = oldWallet || { balance: 0, last_tick_iso: null };
   let state = {};
   let writes = 0;
@@ -31,14 +32,22 @@ function setup({ activeCareer = 'handel', startDay = 1, oldWallet = null, withCl
       salary_by_tier: { '1': 100 }, weekly_expenses: { base: 20, risk_modifier: 1 },
       risk: { layoff_chance_per_week: 0 }
     }, world_logic: { maintenance: { min_quiz_per_weeks: 0 } }
+  }, {
+    career_id: 'service', economy: {
+      salary_by_tier: { '1': 200 }, weekly_expenses: { base: 30, risk_modifier: 1 },
+      risk: { layoff_chance_per_week: 0 }
+    }, world_logic: { maintenance: { min_quiz_per_weeks: 0 } }
   }];
-  global.BADGES = [{ id: 'handel', tiers: [{ threshold: 0, label: 'Start' }] }];
+  global.BADGES = [
+    { id: 'handel', tiers: [{ threshold: 0, label: 'Start' }] },
+    { id: 'service', tiers: [{ threshold: 0, label: 'Start' }] }
+  ];
   global.CivicationState = {
     getState: () => state,
     setState: patch => { state = { ...state, ...patch }; return state; },
     getWallet: () => wallet,
     updateWallet: next => { wallet = { ...next }; writes++; },
-    getActivePosition: () => activeCareer ? { career_id: activeCareer } : null,
+    getActivePosition: () => careerId ? { career_id: careerId } : null,
     setActivePosition: () => {}
   };
   if (withClock) global.CivicationCalendar = { getClock: () => ({ dayIndex }) };
@@ -47,6 +56,8 @@ function setup({ activeCareer = 'handel', startDay = 1, oldWallet = null, withCl
   vm.runInThisContext(fs.readFileSync(enginePath, 'utf8'), { filename: enginePath });
   return {
     tick: () => global.CivicationEconomyEngine.tickWeekly(),
+    recordDay: value => global.CivicationEconomyEngine.recordCompletedDay(value),
+    career: value => { careerId = value; },
     day: value => { dayIndex = value; },
     wallet: () => wallet,
     state: () => state,
@@ -103,6 +114,73 @@ function setup({ activeCareer = 'handel', startDay = 1, oldWallet = null, withCl
   s.day(8);
   s.tick();
   assert.equal(s.wallet().balance, 50, 'benefits must not be delayed by a null checkpoint');
+}
+
+{
+  const s = setup();
+  s.tick();
+  // Three earned days in Handel, then four in Service (a higher salary).
+  // The active job on payout day must not replace earlier earned wages.
+  for (let day = 1; day <= 7; day++) {
+    if (day === 4) s.career('service');
+    s.recordDay(day);
+    s.recordDay(day); // Same-day retry cannot record twice.
+    s.day(day + 1);
+    s.tick();
+  }
+  assert.equal(s.wallet().balance, 131, 'mixed week must prorate 3/7 of 80 plus 4/7 of 170');
+  assert.equal(s.wallet().last_tick_day_index, 8);
+  assert.deepEqual(s.wallet().completed_game_days_v1, [], 'settled days cannot be paid again');
+  s.tick();
+  assert.equal(s.wallet().balance, 131, 'reload cannot double-pay mixed week');
+  for (let day = 8; day <= 14; day++) {
+    s.recordDay(day);
+    s.day(day + 1);
+    s.tick();
+  }
+  assert.equal(s.wallet().balance, 301, 'second complete week uses only the service wage');
+}
+
+{
+  const s = setup();
+  s.tick();
+  // Starting a new job halfway through a week must not grant seven wages.
+  s.career(null);
+  for (let day = 1; day <= 7; day++) {
+    if (day === 5) s.career('handel');
+    s.recordDay(day);
+    s.day(day + 1);
+    s.tick();
+  }
+  assert.equal(s.wallet().balance, 34, 'three days of employment earn only 3/7 of weekly net 80');
+}
+
+{
+  const s = setup();
+  s.tick();
+  for (let day = 1; day <= 7; day++) {
+    if (day === 4) s.career(null);
+    s.recordDay(day);
+    s.day(day + 1);
+    s.tick();
+  }
+  assert.equal(s.wallet().balance, 34, 'job loss must retain wages earned before layoff');
+  assert.equal(s.state().unemployed_since_day_index, 4, 'unemployment begins on the first jobless day');
+}
+
+{
+  const s = setup();
+  s.tick();
+  for (let day = 1; day <= 7; day++) {
+    s.recordDay(day);
+    s.day(day + 1);
+  }
+  s.career('unknown-category');
+  s.tick();
+  assert.equal(s.wallet().balance, 80, 'saved earned wages survive unavailable current career data');
+  const restored = setup({ startDay: 8, oldWallet: JSON.parse(JSON.stringify(s.wallet())) });
+  restored.tick();
+  assert.equal(restored.wallet().balance, 80, 'wallet rehydrate cannot pay an already settled week twice');
 }
 
 {

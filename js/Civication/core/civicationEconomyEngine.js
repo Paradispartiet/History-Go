@@ -159,6 +159,62 @@ window.checkTierUpgrades = checkTierUpgrades;
 
 (function () {
 
+// Freeze employment and the applicable wage at the end of each *played* day.
+// This prevents a job selected on payout day from being credited for the entire
+// preceding week. The canonical wallet persists these checkpoints for reloads.
+function recordCompletedGameDay(rawDay) {
+  const day = Number(rawDay);
+  if (!Number.isSafeInteger(day) || day < 1) return;
+  const state = window.CivicationState;
+  if (!state?.getWallet || !state?.updateWallet) return;
+  const wallet = normalizeWallet(state.getWallet());
+  let start = Number(wallet.last_tick_day_index);
+  if (!Number.isSafeInteger(start) || start < 1 || start > day) {
+    // Old saves start here without creating back-pay for earlier days.
+    wallet.last_tick_day_index = day;
+    start = day;
+  }
+  if (day < start) return;
+  const previous = Array.isArray(wallet.completed_game_days_v1)
+    ? wallet.completed_game_days_v1.filter((r) => Number.isSafeInteger(r?.dayIndex) && r.dayIndex >= start)
+    : [];
+  if (previous.some((r) => r.dayIndex === day)) return;
+  const careerId = String(state.getActivePosition?.()?.career_id || "").trim();
+  /** @type {CiviEconomyCareer | null} */
+  const career = Array.isArray(window.HG_CAREERS)
+    ? /** @type {CiviEconomyCareer | null} */ (window.HG_CAREERS.find(
+        /** @param {CiviEconomyCareer} c */
+        (c) => String(c?.career_id || "") === careerId
+      ) || null)
+    : null;
+  const badge = Array.isArray(window.BADGES)
+    ? window.BADGES.find((b) => String(b?.id || "") === careerId)
+    : null;
+  let weeklyNet = 0;
+  if (career && badge) {
+    const merits = readMeritsByCategorySafe();
+    const points = Number(merits?.[careerId]?.points || 0);
+    let tier = 0;
+    try { tier = Number(deriveTierFromPoints(badge, points)?.tierIndex || 0); } catch {}
+    const weeklySalary = Math.floor(calculateWeeklySalary(career, tier));
+    const expense = Math.floor(Number(career.economy?.weekly_expenses?.base || 0)
+      * Number(career.economy?.weekly_expenses?.risk_modifier || 1));
+    weeklyNet = weeklySalary - (Number.isFinite(expense) ? expense : 0);
+  }
+  // Eligibility is based on the first completed day without work; returning
+  // to a job cancels the unemployment streak, including across job changes.
+  const currentState = state.getState?.() || {};
+  const sinceDay = Number(currentState.unemployed_since_day_index);
+  if (!careerId && (!Number.isSafeInteger(sinceDay) || sinceDay < 1)) {
+    state.setState?.({ unemployed_since_day_index: day });
+  } else if (careerId && currentState.unemployed_since_day_index != null) {
+    state.setState?.({ unemployed_since_day_index: null, unemployed_since_week: null });
+  }
+  // One record per completed day; same-day retries never accrue twice.
+  wallet.completed_game_days_v1 = previous.concat({ dayIndex: day, careerId, weeklyNet });
+  state.updateWallet(wallet);
+}
+
 /** @returns {void | CiviEconomyTickResult} */
 function tickPCIncomeWeekly() {
 
@@ -191,9 +247,23 @@ function tickPCIncomeWeekly() {
   if (dayIndex - lastDay < 7) return;
 
   const settlementDay = lastDay + 7;
+  const records = Array.isArray(wallet.completed_game_days_v1)
+    ? wallet.completed_game_days_v1.filter((r) => Number.isSafeInteger(r?.dayIndex)
+      && r.dayIndex >= lastDay && r.dayIndex < settlementDay)
+    : [];
+  // Daily snapshots are authoritative when available; old saves with none
+  // retain the legacy whole-week calculation until their first full week.
+  // Sum integer weekly-net shares before dividing, so floating-point
+  // rounding cannot turn seven 170-PC days into 169 PC at settlement.
+  const recordedNet = records.length
+    ? Math.floor(records.reduce((sum, r) => sum + (Number.isFinite(Number(r.weeklyNet)) ? Number(r.weeklyNet) : 0), 0) / 7)
+    : null;
   const thisWeek = typeof weekKey === "function" ? weekKey(now) : null;
   const stampSettledWeek = () => {
     wallet.last_tick_day_index = settlementDay;
+    if (Array.isArray(wallet.completed_game_days_v1)) {
+      wallet.completed_game_days_v1 = wallet.completed_game_days_v1.filter((r) => Number(r?.dayIndex) >= settlementDay);
+    }
     wallet.last_tick_iso = now.toISOString(); // diagnostic timestamp, not the game clock
     window.CivicationState.updateWallet(wallet);
   };
@@ -219,6 +289,8 @@ function tickPCIncomeWeekly() {
 
   if (!active?.career_id) {
 
+    // Retain wages earned earlier this week before losing the job.
+    if (recordedNet !== null) wallet.balance += recordedNet;
     const sinceDay = Number(stateView.unemployed_since_day_index);
     if (!Number.isSafeInteger(sinceDay) || sinceDay < 1 || sinceDay > settlementDay) {
       window.CivicationState.setState({
@@ -253,6 +325,8 @@ function tickPCIncomeWeekly() {
       : null;
 
   if (!career) {
+    // An unavailable current job must not erase wages from recorded days.
+    if (recordedNet !== null) wallet.balance += recordedNet;
     stampSettledWeek();
     return;
   }
@@ -272,6 +346,7 @@ function tickPCIncomeWeekly() {
     ));
 
   if (!badge) {
+    if (recordedNet !== null) wallet.balance += recordedNet;
     stampSettledWeek();
     return;
   }
@@ -284,7 +359,8 @@ function tickPCIncomeWeekly() {
   const weeklyIncome =
     calculateWeeklySalary(career, tierIndex);
 
-  wallet.balance += Math.floor(weeklyIncome);
+  if (recordedNet === null) wallet.balance += Math.floor(weeklyIncome);
+  else wallet.balance += recordedNet;
 
   // 2️⃣ Utgifter
 
@@ -294,7 +370,7 @@ function tickPCIncomeWeekly() {
   const riskMod =
     Number(career?.economy?.weekly_expenses?.risk_modifier || 1);
 
-  wallet.balance -= Math.floor(baseExpense * riskMod);
+  if (recordedNet === null) wallet.balance -= Math.floor(baseExpense * riskMod);
 
   // 3️⃣ Maintenance
 
@@ -755,6 +831,7 @@ function getEconomySnapshot() {
   
 window.CivicationEconomyEngine = {
   tickWeekly: tickPCIncomeWeekly,
+  recordCompletedDay: recordCompletedGameDay,
   getEconomySnapshot
 };
 
