@@ -1,0 +1,134 @@
+name: Temporary Bogstadvannet v1 source sync and real browser QA
+on:
+  push:
+    branches:
+      - content/oslo-bogstadvannet-v1-20261021
+    paths:
+      - .github/workflows/temporary-bogstadvannet-v1-sync.yml
+permissions:
+  contents: write
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-bogstadvannet-v1-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Download two independently licensed Commons originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --retry 4 --retry-delay 2 -fLsS -A 'HistoryGo/1.0 educational Commons use' -o /tmp/bogstadvannet-front.jpg 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Bogstadvannet-20060527.jpg/1280px-Bogstadvannet-20060527.jpg'
+          curl --retry 4 --retry-delay 2 -fLsS -A 'HistoryGo/1.0 educational Commons use' -o /tmp/bogstadvannet-landscape.jpg 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Tur_til_Oslo_og_Bogstad_sommeren_2022_-_Bogstadvannet_-_2.jpg/1280px-Tur_til_Oslo_og_Bogstad_sommeren_2022_-_Bogstadvannet_-_2.jpg'
+          file /tmp/bogstadvannet-{front,landscape}.jpg
+          test "$(wc -c </tmp/bogstadvannet-front.jpg)" -gt 100000
+          test "$(wc -c </tmp/bogstadvannet-landscape.jpg)" -gt 100000
+      - name: Encode distinct local documentary WebP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -c 'import PIL' || python3 -m pip install --user --break-system-packages Pillow
+          mkdir -p bilder/places
+          python3 - <<'PY'
+          from PIL import Image,ImageOps
+          pairs=[
+            ('/tmp/bogstadvannet-front.jpg','bilder/places/bogstadvannet_front_portrait.webp',(600,800)),
+            ('/tmp/bogstadvannet-landscape.jpg','bilder/places/bogstadvannet_landscape.webp',(1400,900))]
+          for original,target,size in pairs:
+            with Image.open(original) as im:
+              image=ImageOps.exif_transpose(im).convert('RGB')
+              crop=ImageOps.fit(image,size,method=Image.Resampling.LANCZOS,centering=(0.5,0.5))
+              crop.save(target,'WEBP',quality=86,method=6)
+              print(target,crop.size)
+          PY
+      - name: Materialize editorial attribution and current translations
+        run: |
+          npm ci --no-audit --no-fund
+          node scripts/oneoff-bogstadvannet-v1-sync.mjs
+      - name: Generate and check app materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
+          npm run place-open:build
+          npm run knowledge:canonical:write
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='data/places/place_image_backlog_summary.json';
+          const previous=JSON.parse(fs.readFileSync(file,'utf8'));
+          const report=JSON.parse(fs.readFileSync('reports/place-image-audit.json','utf8'));
+          previous.generatedAt='2026-10-21';
+          previous.totalPlaces=report.totalPlaces;
+          previous.summary={validLocal:report.summary.local,validRemote:report.summary.remote,optionalMissing:report.summary.optional,missing:report.summary.missing,invalidLocalPath:report.summary.invalid,remaining:report.summary.missing+report.summary.invalid};
+          for(const [category,counts] of Object.entries(report.byCategory)){
+            previous.byCategory[category]={total:counts.total,valid:counts.local+counts.remote,optional:counts.optional,missing:counts.missing,invalid:counts.invalid};
+          }
+          fs.writeFileSync(file,JSON.stringify(previous,null,2)+'\n');
+          NODE
+          node scripts/check-place-i18n-freshness.mjs bogstadvannet
+          npm run place-open:check
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Verify true app at 390 and 1440px and complete 21 quiz items
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          export CHROME_BIN
+          node tests/bogstadvannet-v1-real-browser.mjs
+          node scripts/verify-bogstadvannet-fullquiz-browser.mjs bogstadvannet
+      - name: Mark image acceptance only after browser success
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='data/places/natur/oslo/places_oslo_natur_hovedsteder/bogstadvannet.json';
+          const place=JSON.parse(fs.readFileSync(file,'utf8'));
+          place.frontImageMeta.visualReview='approved_2026-10-21_actual_390px_1440px_browser';
+          place.imageMeta.visualReview='approved_2026-10-21_actual_390px_1440px_browser';
+          fs.writeFileSync(file,JSON.stringify(place,null,2)+'\n');
+          const reportFile='reports/place-production/bogstadvannet-v1-images-20261021.json';
+          const report=JSON.parse(fs.readFileSync(reportFile,'utf8'));
+          report.status='approved_actual_browser_390px_1440px';
+          for(const item of report.assets)item.appReview=true;
+          fs.writeFileSync(reportFile,JSON.stringify(report,null,2)+'\n');
+          NODE
+          npm run places:index:build
+          npm run place-open:build
+          npm run place-open:check
+      - name: Save evidence screenshots and quiz progress
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bogstadvannet-v1-browser-evidence
+          path: |
+            artifacts/bogstadvannet-browser/
+            artifacts/place-quiz/bogstadvannet/
+            reports/place-production/bogstadvannet-v1-images-20261021.json
+          if-no-files-found: ignore
+      - name: Commit sources and remove temporary automation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm -- .github/workflows/temporary-bogstadvannet-v1-sync.yml scripts/oneoff-bogstadvannet-v1-sync.mjs
+          git add -u -- data/places data/fagverk data/runtime data/knowledge data/quiz data/epoker data/i18n reports
+          git add -- bilder/places/bogstadvannet_front_portrait.webp bilder/places/bogstadvannet_landscape.webp reports/place-production/bogstadvannet-v1-images-20261021.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --cached --quiet && exit 0
+          git commit -m 'build(bogstadvannet): source photos, translations, Knowledge, Fagverk and native browser QA'
+          git pull --rebase origin content/oslo-bogstadvannet-v1-20261021
+          git push origin HEAD:refs/heads/content/oslo-bogstadvannet-v1-20261021
