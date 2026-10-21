@@ -108,6 +108,30 @@
     state.privatHistorie = story;
     return story;
   }
+  // One newly played Wave E private action is already canonical in state.arkiv.
+  // Append that action incrementally rather than re-scanning every historical
+  // role snapshot on every scene (a quadratic cost in long playthroughs).
+  function recordPrivateScene(state, entry) {
+    if (!PRIVATE_SCENE.test(entry?.sceneId || "")) return;
+    const story = state.privatHistorie ||= emptyPrivateStory();
+    story.flagg ||= {};
+    story.flaggDager ||= {};
+    story.spilteScener ||= [];
+    story.arkiv ||= [];
+    story.relasjoner ||= {};
+    for (const [key, value] of Object.entries(state.tidligereValg || {})) {
+      if (PRIVATE_FLAG.test(key)) story.flagg[key] = value;
+    }
+    if (!story.spilteScener.includes(entry.sceneId)) story.spilteScener.push(entry.sceneId);
+    if (!story.arkiv.some(row => row.sceneId === entry.sceneId)) {
+      story.arkiv.push(JSON.parse(JSON.stringify(entry)));
+    }
+    for (const key of ["venn", "familie"]) {
+      if (typeof state.relasjoner?.[key] === "number") story.relasjoner[key] = state.relasjoner[key];
+    }
+    return story;
+  }
+
   function hydratePrivateStory(state, story) {
     state.privatHistorie = JSON.parse(JSON.stringify(story));
     state.tidligereValg ||= {};
@@ -422,7 +446,7 @@
     return text;
   }
 
-  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, selectRole, reconcileContent, applyEffects, capturePrivateStory, hydratePrivateStory, snapshotThreadStatus, save, load, reset, bindPersonTypes, lockScenePeople, presentText, sceneMentionsPerson };
+  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, selectRole, reconcileContent, applyEffects, capturePrivateStory, recordPrivateScene, hydratePrivateStory, snapshotThreadStatus, save, load, reset, bindPersonTypes, lockScenePeople, presentText, sceneMentionsPerson };
   /** @type {any} */ (globalScope).CivicationLifestoryState = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
