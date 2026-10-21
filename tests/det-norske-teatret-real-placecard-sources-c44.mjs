@@ -14,6 +14,8 @@ const sourceFile = "data/places/scenekunst/oslo/places_scenekunst/det_norske_tea
 const place = JSON.parse(fs.readFileSync(sourceFile, "utf8"));
 const c41 = JSON.parse(fs.readFileSync(
   "reports/place-production/det-norske-teatret/20261020/object-photo-inline-source-c41.json", "utf8"));
+const c47 = JSON.parse(fs.readFileSync(
+  "reports/place-production/det-norske-teatret/20261021/foyer-painting-kilder-c47.json", "utf8"));
 assert.equal(place.id, placeId);
 const markup = fs.readFileSync("index.html", "utf8");
 const placeCard = fs.readFileSync("js/ui/place-card.js", "utf8");
@@ -81,7 +83,7 @@ try {
       await panel.waitFor({state:"visible",timeout:15000});
       assert.match(await panel.innerText(),/Kilder/);
       const image = panel.locator(".hg-place-source-photo img");
-      assert.equal(await image.count(),1,"documentary image must not create a second canonical Object");
+      assert.equal(await image.count(),2,"two documented images must not create a canonical Object");
       await image.scrollIntoViewIfNeeded();
       await page.waitForFunction(() => {
         const img = document.querySelector('#placeCard [data-hg-place-sheet-section="sources"] .hg-place-source-photo img');
@@ -95,9 +97,33 @@ try {
         "museum image must fit mobile/desktop viewport");
       const caption = panel.locator(".hg-place-source-photo figcaption");
       await caption.scrollIntoViewIfNeeded();
-      assert.match(await caption.innerText(),/Lone Lunde.*Oslo Museum/);
-      assert.match(await caption.innerText(),/CC BY-SA 4\.0/);
-      assert.equal(await caption.locator("a").getAttribute("href"),c41.museum_image.source);
+      assert.match(await caption.first().innerText(),/Lone Lunde.*Oslo Museum/);
+      assert.match(await caption.first().innerText(),/CC BY-SA 4\.0/);
+      assert.equal(await caption.first().locator("a").getAttribute("href"),c41.museum_image.source);
+      // C47 new licensed photo; both remain documentary sources, not Objects.
+      const painting = image.nth(1);
+      await painting.scrollIntoViewIfNeeded();
+      await page.waitForFunction(src => {
+        const imgs = [...document.querySelectorAll('#placeCard [data-hg-place-sheet-section="sources"] .hg-place-source-photo img')];
+        const target = imgs[1];
+        return target?.getAttribute("src") === src && target.complete &&
+          target.naturalWidth === 800 && target.naturalHeight === 800;
+      }, c47.new_photo.asset,{timeout:15000});
+      assert.equal(await painting.getAttribute("src"),c47.new_photo.asset);
+      assert.match(await painting.getAttribute("alt"),/Johannessen/);
+      assert.equal(await painting.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+      const paintingBox = await painting.boundingBox();
+      assert.ok(paintingBox && paintingBox.x>=-2 && paintingBox.x+paintingBox.width<=width+2,
+        "painting image horizontally clipped");
+      const caption2 = caption.nth(1);
+      await caption2.scrollIntoViewIfNeeded();
+      const captionText = await caption2.innerText();
+      assert.match(captionText,/Wolfmann.*Wikimedia Commons/);
+      assert.match(captionText,/CC BY-SA 4\.0/);
+      assert.match(captionText,/Kirkegårdsgravere/);
+      assert.match(captionText,/Kirkegårdsgraveren/);
+      assert.equal(await caption2.locator("a").getAttribute("href"),c47.new_photo.source);
+      assert.equal(await panel.locator('a[href*="utstillingsopning-aksel-waldemar-johannessen"]').count(),1);
       assert.equal(await panel.locator('a[href*="Hulda-bunaden_OHA-9.jpg"]').count(),1);
       assert.equal(await panel.locator('img[src*="detnorsketeatret.imgix.net"]').count(),0);
       const overlayIsOpen = await page.locator("#hgOnboardingModal").evaluate(
