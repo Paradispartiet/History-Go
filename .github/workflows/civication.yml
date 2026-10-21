@@ -67,5 +67,8 @@ jobs:
       - name: Verify legacy cloud role migration
         run: node tests/civication-lifestory-shell-role-bridge.test.js
 
+      - name: Verify livelihood game-week settlement
+        run: node tests/civication-livelihood-engine.test.js
+
       - name: Run complete Civication suite
         run: npm run test:civication
