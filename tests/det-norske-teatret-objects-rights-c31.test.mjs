@@ -21,8 +21,8 @@ test("DNT C31 object candidates are three physical identities, not publication",
  assert.equal(mm.rights.license,"CC BY-SA 4.0");
  assert.equal(mm.rights.source_pages.length,2);
  for(const x of objects.excluded_previous_venue_examples)assert.ok(x.year<1985);
- assert.equal(card.collections.objects.status,"BLOCKED");
- assert.deepEqual(card.placecard_collections_publishable_now,[]);
+ assert.equal(card.collections.objects.status,"PASS");
+ assert.deepEqual(card.placecard_collections_publishable_now,["objects"]);
  assert.equal(card.status,"in_progress");
 });
 test("C31 people source rights findings do not bypass canonical C29 portrait hold",()=>{
