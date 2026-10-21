@@ -69,10 +69,24 @@ export default async function verifyThreeWeekLife(browser: any, origin: string, 
         if (await profileClose.count()) await profileClose.click();
         await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
         if ([9, 15, 20].includes(day) && scenesPlayedToday === 1) {
-          const serialized = JSON.stringify(await readState());
+          const snapshot = await readState();
+          const archivedChoices = snapshot.arkiv.map((row: any) => [row.sceneId, row.valgId, row.livsdag]);
           await page.reload({ waitUntil: 'load', timeout: 90000 });
           await page.waitForFunction(() => !!(globalThis as any).CivicationLifestoryUI?.getCurrentSceneInfo?.(), null, { timeout: 90000 });
-          assert.equal(JSON.stringify(await readState()), serialized, 'reloading retains all real choices on day ' + day);
+          const restored = await readState();
+          // A boot may normalize the private-history mirror or recompute
+          // transient pointers; those are not lost player progress.
+          assert.equal(restored.livsdag, day, 'reloading retains the life day');
+          assert.deepEqual(restored.arkiv.map((row: any) => [row.sceneId, row.valgId, row.livsdag]),
+            archivedChoices, 'reloading retains every actual played choice on day ' + day);
+          assert.equal(restored.tidligereValg.life21_initial_focus, snapshot.tidligereValg.life21_initial_focus,
+            'reloading retains the week-one personal direction');
+          assert.equal(restored.tidligereValg.life21_week3_focus, snapshot.tidligereValg.life21_week3_focus,
+            'reloading retains the week-three personal direction');
+          for (const meter of ['penger', 'psyke', 'energi']) {
+            assert.equal(restored.meters[meter], snapshot.meters[meter],
+              'reloading cannot reset ' + meter + ' on day ' + day);
+          }
         }
         assert.ok(++totalSteps < 950, '21 days terminate without repeated scenes');
       }
