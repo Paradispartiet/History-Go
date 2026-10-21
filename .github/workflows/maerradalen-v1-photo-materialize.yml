@@ -1,0 +1,81 @@
+name: Mærradalen v1 licensed WebP materialization
+on:
+  push:
+    branches: [history-go/maerradalen-v1-20261021]
+    paths:
+      - '.github/workflows/maerradalen-v1-photo-materialize.yml'
+permissions:
+  contents: write
+jobs:
+  licensed-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - run: python3 -m pip install --quiet Pillow requests
+      - name: Query Commons rights, download and crop both site photos
+        shell: bash
+        run: |
+          python3 - <<'MAERRADALEN_IMAGES'
+          
+          import hashlib, html, io, json, pathlib, re, requests
+          from PIL import Image, ImageOps
+          agent={"User-Agent":"HistoryGoMaerradalenV1/1.0 (https://github.com/Paradispartiet/History-Go)"}
+          files=[
+          ("Mærradalen (31. mai 2020, bilde01).jpg","bilder/places/maerradalen_front_portrait.webp",(600,800),"portrait"),
+          ("Mærradalen (31. mai 2020, bilde02).jpg","bilder/places/maerradalen_landscape.webp",(1400,900),"landscape"),
+          ]
+          placefile=pathlib.Path("data/places/natur/oslo/places_oslo_natur_hovedsteder/maerradalen.json")
+          place=json.loads(placefile.read_text())
+          report=[]
+          for title,output,dims,orientation in files:
+            api=requests.get("https://commons.wikimedia.org/w/api.php",params={"action":"query","prop":"imageinfo","iiprop":"url|size|extmetadata","titles":"File:"+title,"format":"json"},headers=agent,timeout=60)
+            api.raise_for_status()
+            data=next(iter(api.json()["query"]["pages"].values()))
+            if "imageinfo" not in data: raise RuntimeError("Missing original Commons photo "+title)
+            info=data["imageinfo"][0]
+            meta=info["extmetadata"]
+            licence=meta.get("LicenseShortName",{}).get("value","")
+            link=meta.get("LicenseUrl",{}).get("value","")
+            artist_html=meta.get("Artist",{}).get("value","")
+            artist=html.unescape(re.sub("<[^>]*>","",artist_html)).strip()
+            if not re.search(r"CC BY(?:-SA)? [234]",licence) or not artist or not link.startswith("https://creativecommons.org/licenses/"):
+              raise RuntimeError("Source not approved for licensed reuse: "+str((title,licence,artist,link)))
+            full=requests.get(info["url"],headers=agent,timeout=120)
+            full.raise_for_status()
+            im=Image.open(io.BytesIO(full.content))
+            im.load()
+            if im.width < dims[0] or im.height < dims[1]: raise RuntimeError("Source too small "+title)
+            cropped=ImageOps.fit(im.convert("RGB"),dims,method=Image.Resampling.LANCZOS,centering=(0.5,0.5))
+            dest=pathlib.Path(output)
+            dest.parent.mkdir(parents=True,exist_ok=True)
+            cropped.save(dest,"WEBP",quality=86,method=6)
+            if Image.open(dest).size != dims: raise RuntimeError("Bad output dimensions")
+            pageurl="https://commons.wikimedia.org/wiki/File:"+requests.utils.quote(title.replace(" ","_"),safe="/:_(),-.")
+            obj={"source":"wikimedia_commons","sourcePage":pageurl,"creator":artist,"credit":artist+" / Wikimedia Commons","license":licence,"licenseUrl":link,"capturedAt":"2020-05-31","orientation":orientation,"sourceImageDimensions":[im.width,im.height],"outputDimensions":list(dims),"transformation":"Centre crop of freely licensed documentary photograph, no subject added; WebP quality 86","sourceSha256":hashlib.sha256(full.content).hexdigest(),"outputSha256":hashlib.sha256(dest.read_bytes()).hexdigest(),"verifiedAt":"2026-10-21","visualReview":"pending_real_390_1440_app_control"}
+            k="frontImage" if orientation=="portrait" else "image"
+            place[k]=output
+            place[k+"Meta"]=obj
+            if not any(x.get("url")==pageurl for x in place.get("externalLinks",[])):
+              place.setdefault("externalLinks",[]).append({"label":"Mærradalen foto – "+artist+" ("+orientation+")","url":pageurl,"type":"reference","verifiedAt":"2026-10-21"})
+            report.append({"photo":title,"sourcePage":pageurl,"file":output,"meta":obj})
+          placefile.write_text(json.dumps(place,ensure_ascii=False,indent=2)+"\n")
+          out=pathlib.Path("reports/place-production/maerradalen-v1-images-20261021.json")
+          out.parent.mkdir(parents=True,exist_ok=True)
+          out.write_text(json.dumps({"placeId":"maerradalen","status":"licensed_local_webp_pending_browser_qa","images":report},ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps([{"file":x["file"],"creator":x["meta"]["creator"],"license":x["meta"]["license"],"pixels":x["meta"]["outputDimensions"]} for x in report],ensure_ascii=False))
+          MAERRADALEN_IMAGES
+      - name: Commit verified photographs to same PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/natur/oslo/places_oslo_natur_hovedsteder/maerradalen.json bilder/places/maerradalen_front_portrait.webp bilder/places/maerradalen_landscape.webp reports/place-production/maerradalen-v1-images-20261021.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'assets(history-go): source-verified Mærradalen photographs and WebP crops'
+            git pull --rebase origin history-go/maerradalen-v1-20261021
+            git push origin HEAD:history-go/maerradalen-v1-20261021
+          fi
