@@ -48,7 +48,7 @@ test('Geertz generator parity preserves 20 works and all 60 theory IDs, claims a
   assert.deepEqual(overlay.works.find((w) => w.id === work.id).theory_units.map((u) => u.expanded_prose), work.theory_units.map((u) => u.expanded_prose));
   assert.equal(canonical.works.length, 20);
   assert.equal(canonical.works.reduce((n, w) => n + w.theory_units.length, 0), 60);
-  assert.equal(canonical.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 54);
+  assert.equal(canonical.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 57);
   assert.equal(packages.reduce((n, p) => n + p.claims.claims.length, 0), 60);
   assert.equal(packages.reduce((n, p) => n + p.assessment.questions.length, 0), 60);
   assert.deepEqual(target.assessment.questions.filter((q) => GEERTZ.includes(q.id.replace(/^advq-/, ''))).map((q) => q.id), GEERTZ.map((id) => 'advq-' + id));
