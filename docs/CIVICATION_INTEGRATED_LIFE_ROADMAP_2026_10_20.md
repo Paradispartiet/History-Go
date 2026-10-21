@@ -147,3 +147,17 @@ Løsning i eksisterende systemer:
 - Uten valgt/gyldig poengkrav vises bare utforskingsveien og livsprofilen, uten en falsk «oppdrag fullført»-indikator.
 - Testdekning: `civication-lifestory-week7-guidance.test.js` (syv forfattede dager; både privatlivet og valgfri oppdragsveiledning synlig), `civication-history-go-deeplink-session.test.js` (sesjonsdata) og `civication-history-go-mission-badge-points.test.js` (opptjente meritter). Alle skal kjøres i eksisterende Civication-regresjon.
 - **Avgrensning:** Dette er gjenfunnet veiledning og reelle gating-regler, ikke dokumentasjon på at en fersk spiller faktisk har opptjent poengene eller gjennomført 14 dager og kontogjenoppretting i en nettleser.
+
+## Ny hovedmilepæl – 21 spilldager og frivillig jobb (21.10.2026)
+
+**Beslutning:** Den første organiske spillerreisen skal dekke **21 sammenhengende livsdager**, ikke stoppe ved 14. Dette endrer milepælen, ikke grunnprinsippet om at jobb, livsposisjon og History Go-meritter krever virkelige hendelser. De tidligere 14-dagerskontrollene beholdes som deltester, ikke som sluttgodkjenning.
+
+- **Dag 1–7:** Et faktisk privatliv og jobbsøkersituasjon; tidligere valg lagres.
+- **Dag 8–14:** Nye private aktiviteter, besøk/kunnskap som frivillig mulighet, arbeidsmuligheter og oppfølging av C01/C05. Ingen tomme dager eller dupliserte NAV-meldinger som standardprogresjon.
+- **Dag 15–21:** Eget initiativ, praktiske oppgaver, sosiale møter med reelle valg, konsekvenser, og veier inn i både jobb og livsposisjoner.
+- **Jobb:** Åpne karrierepanelet fra naturlige scenevalg dag 8, 10, 13, 14, 17, 20 og 21. Spilleren kan takke ja til **et faktisk opptjent og tilbudt arbeid** gjennom eksisterende CivicationJobs. Ingen ny jobb tildeles av Life Story, ingen krav om å forbli arbeidsledig i tre uker. Tidligere privatliv skal følge etter akseptert jobb.
+- **Livsposisjon:** Ved dag 21 skal spilleren kunne se sine faktiske valg og åpne eksisterende livsprofil. Frivillige posisjoner kan velges, fag-/badgeposisjoner beholder reelle poengkrav. Verken jobb eller posisjon oppstår automatisk ved tidsgrensen.
+- **Spillbarhet:** Den eksisterende Life Story Runner bruker private livsdagFra-scener og bevarer en samlet livsdag ved rollebytte. Nye scener er i den delte private pakken wave_e_livsretning, ikke i et separat løpssystem.
+- **Etter 21 dager:** Avslutt dette første hovedkapitlet med tydelige knapper til karriere, livsprofil og History Go. Ingen falsk dag 22 skal loves før oppfølgingskapitlet har faktiske scener.
+
+**Kontroller på utviklingsgrenen:** Tre valgruter (arbeid/by/mennesker) er simulert til 21 dager uten tomme dager, og et jobbbytte på livsdag 14 når privatlivsavslutningen på dag 21. Dette er *Node-baserte innholdssimuleringer*, ikke en godkjent ekte konto-/nettløpsgjennomspilling. Økonomi, sosiale personminner, autentiske History Go-meritter og kontoakseptanse må fortsatt testes samlet.
