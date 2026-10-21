@@ -248,3 +248,104 @@ test('earned 21-day life orientation is player-selected and requires repeated re
     globalThis.CivicationLifePositions = originalPositions;
   }
 });
+
+
+test('optional work: real application/interview generates an offer, only Career acceptance starts the job', () => {
+  const vm = require('node:vm');
+  const offered = playThreeWeeks('mennesker').state;
+  assert.equal(offered.tidligereValg.wa_e_c21_job_offer, 'requested');
+  const ls = new Map();
+  let activeJob = null;
+  const seen = [];
+  const listeners = new Map();
+  const W = {
+    CivicationLifestoryState: { load: () => offered },
+    CivicationState: {
+      getState: () => ({}),
+      getActivePosition: () => activeJob,
+      setActivePosition: value => { activeJob = value; },
+      setState: () => ({}),
+      markJobOfferUnread: key => seen.push('unread:'+key),
+      markJobOffersRead: keys => seen.push('read:'+keys.join(',')),
+      ensureOnboardingState: () => {},
+      setOnboardingState: () => {},
+      getInbox: () => [], setInbox: () => {}
+    },
+    dispatchEvent: event => {
+      for (const fn of listeners.get(event.type) || []) fn();
+    },
+    addEventListener: (name,fn) => listeners.set(name,(listeners.get(name)||[]).concat(fn))
+  };
+  const context = vm.createContext({
+    window: W,
+    console, Date, setTimeout: () => 0,
+    Event: class Event { constructor(type) { this.type = type; } },
+    localStorage: {
+      getItem: key => ls.get(key) || null,
+      setItem: (key,value) => ls.set(key,String(value)),
+      removeItem: key => ls.delete(key)
+    },
+    document: {
+      querySelector(selector) {
+        return selector === '.civi-footer button[data-category="karriere"]'
+          ? { click: () => seen.push('career_opened') } : null;
+      }
+    }
+  });
+  for (const filename of [
+    'js/Civication/core/civicationJobs.js',
+    'js/Civication/ui/CivicationLifestoryActions.js',
+    'js/Civication/systems/civicationCareerRoleResolver.js'
+  ]) {
+    vm.runInContext(fs.readFileSync(path.join(root,filename),'utf8'),context,{ filename });
+  }
+  const jobs = W.CivicationJobs;
+  const actions = W.CivicationLifestoryActions;
+  assert.equal(jobs.getOffers().length,0,'no automatic job or offer just from 21 days passing');
+  const out = actions.perform({ type:'aapne_karriere', id:'three_week_local_shop_offer' });
+  assert.equal(out.utfoert,true);
+  assert.equal(jobs.getOffers().length,1,'validated story creates one offer through canonical Jobs');
+  assert.equal(jobs.getOffers()[0].status,'pending');
+  assert.equal(activeJob,null,'requesting an offer cannot automatically start employment');
+  assert.equal(jobs.getOffers()[0].career_id,'naeringsliv');
+  assert.equal(jobs.getOffers()[0].threshold,0);
+  W.dispatchEvent({type:'civi:booted'});
+  W.dispatchEvent({type:'civi:lifestoryChanged'});
+  assert.equal(jobs.getOffers().length,1,'repeated app boot/reload does not duplicate offer');
+  assert.equal(jobs.acceptOffer('naeringsliv:0').ok,true,'player accepts through the actual Career API');
+  assert.equal(activeJob.title,'Butikkmedarbeider');
+  assert.equal(W.CivicationCareerRoleResolver.resolveCareerRoleScope(activeJob),'ekspeditor',
+    'job opens existing shop role, not a new parallel employment model');
+  assert.equal(jobs.getOffers()[0].status,'accepted');
+  assert.equal(offered.tidligereValg.wa_e_c21_focus,'fellesskap','employment leaves private life intact');
+  assert.equal(ls.get('merits_by_category'),undefined,'employment does not mint badge points');
+});
+
+test('optional work: no application, withdrawn interview or declined offer never creates a job', () => {
+  const vm = require('node:vm');
+  const base = pack('arbeidsledig');
+  for (const stage of ['application','interview','offer']) {
+    const life = S.createInitialState(base);
+    for (let day=1;day<=21;day++) {
+      let cap=0;
+      while (!life.dagFerdig) {
+        const scene=R.selectNextScene(life,base);
+        if (scene) {
+          let choice=scene.valg.find(v=>!v.skills_requirement);
+          if (stage==='application' && scene.id==='wave_e_c21_d12_jobbsok') choice=scene.valg[1];
+          if (stage==='interview' && scene.id==='wave_e_c21_d17_intervju') choice=scene.valg[1];
+          if (stage==='offer' && scene.id==='wave_e_c21_d20_jobbtilbud') choice=scene.valg[1];
+          R.applyChoice(life,base,scene.id,choice.id);
+        } else R.advance(life,base);
+        assert.ok(++cap<80);
+      }
+      if(day<21) R.startNextDay(life,base);
+    }
+    const jobs={ getOffers:()=>[],pushOffer:()=>{ throw new Error('must not issue offer'); }};
+    const W={ CivicationLifestoryState:{load:()=>life},CivicationState:{getActivePosition:()=>null},CivicationJobs:jobs };
+    const ctx=vm.createContext({window:W,console});
+    vm.runInContext(fs.readFileSync(path.join(root,'js/Civication/ui/CivicationLifestoryActions.js'),'utf8'),ctx);
+    assert.equal(W.CivicationLifestoryActions.materializeEarnedJobOffer().reason,'unearned_offer',
+      'player who opts out at '+stage+' gets no job offer');
+  }
+});
