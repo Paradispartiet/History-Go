@@ -1,6 +1,14 @@
 # Civication – Skills, spillerutvikling og History Go i livsverdenen
 
-Status: **besluttet produkt- og designkontrakt, 21. oktober 2026**. Ikke en erklæring om ferdig runtime, migrert state eller bestått 14-dagers spillerreise. Denne filen definerer ønsket samspill og eiergrenser; konkrete feltnavn, numerisk balanse og lagring må implementeres og testes i eksisterende motorer. Kanonisk inngang: [CIVICATION_README.md](CIVICATION_README.md).
+Status: **besluttet produkt- og designkontrakt, 21. oktober 2026**. Ikke en erklæring om ferdig runtime, migrert state eller bestått 21-dagers spillerreise. Denne filen definerer ønsket samspill og eiergrenser; konkrete feltnavn, numerisk balanse og lagring må implementeres og testes i eksisterende motorer. Kanonisk inngang: [CIVICATION_README.md](CIVICATION_README.md).
+
+## Treukers livsretning – nytt hovedmål 21.10.2026
+
+Første hovedkapittel varer **21 spilldager**. Dag 8–21 har konkrete, private valg som gir rom for aktivitet, sosiale relasjoner, motstand og refleksjon. Spilleren kan forbli arbeidsledig uten at dagene fylles med like NAV-beskjeder.
+
+På dag 9 og 16 kan spilleren **gjennomføre** og **følge opp** én av tre egne aktiviteter: nærmiljø, skaping eller kunnskapsarbeid. Først etter reelle handlinger og eget valg på dag 21 gjøres en praksisbasert livsposisjon tilgjengelig i eksisterende `CivicationLifePositions`: **Lokal bidragsyter**, **Praktisk skaper** eller **Aktiv kunnskapsutforsker**. Identiteten aktiveres aldri automatisk. Hvis spilleren velger å observere, utsette eller la identiteten være åpen, har spillet ikke bevis for å gi posisjonen.
+
+Praksisposisjonene gir ingen ekstra History Go-quizpoeng, formell jobb, inntekt, juridisk status eller spesialiserte Badge-rettigheter. Evidens eies av eksisterende Life Story-arkiv og overlever ordinært rollebytte. Grønn Node-simulasjon av 21 dager er ikke full nettleser-/kontoakseptanse; faktisk UI, konto, økonomi, NPC-etterspill og History Go gjenstår å bevise.
 
 ## 1. Grunnregel: spilleren lever et liv – med eller uten jobb
 
