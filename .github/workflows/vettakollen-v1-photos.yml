@@ -1,0 +1,81 @@
+name: Vettakollen v1 historic documentary photo materialization
+on:
+  push:
+    branches: [history-go/vettakollen-v1-20261021]
+    paths:
+      - '.github/workflows/vettakollen-v1-photos.yml'
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pillow and Requests
+        run: python3 -m pip install --quiet Pillow requests
+      - name: Build two correctly attributed local WebP photographs
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, io, json, pathlib, re, requests
+          from PIL import Image, ImageOps
+          UA={"User-Agent":"HistoryGoVettakollenV1/1.0 (https://github.com/Paradispartiet/History-Go)"}
+          photos=[
+           ("Vettakollen fra Holmendammen.jpg","bilder/places/vettakollen_front_portrait.webp",(600,800),"portrait","Anders Beer Wilse","CC BY-SA 3.0","1929-06-01"),
+           ("621 Utsikt fra Vettakollen - no-nb digifoto 20150909 00126 bldsa PK09235.jpg","bilder/places/vettakollen_landscape.webp",(1400,900),"landscape","Unknown photographer / National Library of Norway","Public domain (PD-Norway)","1920s")
+          ]
+          placepath=pathlib.Path("data/places/natur/oslo/places_natur/vettakollen.json")
+          place=json.loads(placepath.read_text())
+          records=[]
+          for name,output,size,orientation,creator,expected_license,captured in photos:
+            title="File:"+name
+            response=requests.get("https://commons.wikimedia.org/w/api.php",params={"action":"query","prop":"imageinfo","iiprop":"url|size|extmetadata","titles":title,"format":"json"},headers=UA,timeout=60)
+            response.raise_for_status()
+            entry=next(iter(response.json()["query"]["pages"].values()))
+            if "imageinfo" not in entry:raise ValueError("No Commons imageinfo: "+name)
+            info=entry["imageinfo"][0]
+            license=str(info.get("extmetadata",{}).get("LicenseShortName",{}).get("value",""))
+            if expected_license.startswith("CC BY-SA") and "BY-SA" not in license:raise ValueError("Unexpected CC license: "+name+" "+license)
+            if expected_license.startswith("Public domain") and not ("PD" in license or "public" in license.lower() or "domain" in license.lower()):
+              raise ValueError("Unexpected PD license: "+name+" "+license)
+            raw=requests.get(info["url"],headers=UA,timeout=120)
+            raw.raise_for_status()
+            im=Image.open(io.BytesIO(raw.content));im.load()
+            if im.width<size[0] or im.height<size[1]:raise ValueError("Image too small: "+name)
+            cropped=ImageOps.fit(im.convert("RGB"),size,method=Image.Resampling.LANCZOS,centering=(0.5,0.5))
+            target=pathlib.Path(output);target.parent.mkdir(parents=True,exist_ok=True)
+            cropped.save(target,"WEBP",quality=86,method=6)
+            verified=Image.open(target)
+            if verified.size!=size:raise ValueError("Dimension error: "+output)
+            source_page="https://commons.wikimedia.org/wiki/"+requests.utils.quote(title.replace(" ","_"),safe=":(),-_.")
+            license_url="https://creativecommons.org/licenses/by-sa/3.0/" if expected_license.startswith("CC") else source_page
+            meta={"source":"wikimedia_commons","sourcePage":source_page,"creator":creator,"credit":creator+" / Wikimedia Commons",
+              "license":expected_license,"licenseUrl":license_url,"capturedAt":captured,
+              "orientation":orientation,"sourceImageDimensions":[im.width,im.height],"outputDimensions":list(size),
+              "transformation":"Editorial crop from historic documentary photograph of Vettakollen; WebP quality 86; no content added",
+              "sourceSha256":hashlib.sha256(raw.content).hexdigest(),"outputSha256":hashlib.sha256(target.read_bytes()).hexdigest(),
+              "verifiedAt":"2026-10-21","visualReview":"pending_actual_390_1440_browser"}
+            key="frontImage" if orientation=="portrait" else "image"
+            place[key]=output;place[key+"Meta"]=meta
+            if not any(x.get("url")==source_page for x in place.get("externalLinks",[])):
+              place.setdefault("externalLinks",[]).append({"label":"Vettakollen fotografi – "+creator+" ("+captured+")","url":source_page,"type":"reference","verifiedAt":"2026-10-21"})
+            records.append({"sourceTitle":name,"file":output,"metadata":meta})
+          placepath.write_text(json.dumps(place,ensure_ascii=False,indent=2)+"\n")
+          report=pathlib.Path("reports/place-production/vettakollen-v1-images-20261021.json")
+          report.parent.mkdir(parents=True,exist_ok=True)
+          report.write_text(json.dumps({"placeId":"vettakollen","status":"local_webp_materialized_browser_qa_pending","images":records},ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps([{"path":r["file"],"size":r["metadata"]["outputDimensions"],"license":r["metadata"]["license"],"sha":r["metadata"]["outputSha256"]} for r in records]))
+          PY
+      - name: Commit images and provenance to the SAME PR
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/natur/oslo/places_natur/vettakollen.json bilder/places/vettakollen_front_portrait.webp bilder/places/vettakollen_landscape.webp reports/place-production/vettakollen-v1-images-20261021.json
+          if ! git diff --cached --quiet; then
+            git commit -m "assets(history-go): Vettakollen local licensed documentary WebP"
+            git pull --rebase origin history-go/vettakollen-v1-20261021
+            git push origin HEAD:history-go/vettakollen-v1-20261021
+          fi
