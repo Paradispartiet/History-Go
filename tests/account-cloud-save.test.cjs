@@ -98,3 +98,49 @@ test("simultaneous account update triggers non-destructive conflict", async () =
   assert.equal(db.writes.length, 0);
   assert.match(game.element.textContent, /annen enhet/);
 });
+
+test("legacy test-role override is not restored and is pruned from the next cloud save", async () => {
+  const db = { record: { payload: { state: {
+    civication_lifestory_role_v1: "arealplanlegger",
+    civication_lifestory_v1: '{"dag":9,"rolle":"renholder"}'
+  } }, created_at: "2026-10-20T12:00:00Z" }, writes: [] };
+  const game = await runtime({ db });
+  assert.equal(game.localStorage.getItem("civication_lifestory_role_v1"), null,
+    "a retired debug override must never be rehydrated from the account");
+  assert.equal(game.localStorage.getItem("civication_lifestory_v1"),
+    '{"dag":9,"rolle":"renholder"}', "actual job and progress remain intact");
+  assert.equal(game.save.snapshot().civication_lifestory_role_v1, undefined);
+  await game.save.flush();
+  assert.equal(db.writes.length, 1, "safe cleanup happens after reading the original backup");
+  assert.equal(db.record.payload.state.civication_lifestory_role_v1, undefined);
+  assert.equal(db.record.payload.state.civication_lifestory_v1,
+    '{"dag":9,"rolle":"renholder"}');
+  const secondDevice = await runtime({ db });
+  assert.equal(secondDevice.localStorage.getItem("civication_lifestory_role_v1"), null);
+  assert.equal(secondDevice.localStorage.getItem("civication_lifestory_v1"),
+    '{"dag":9,"rolle":"renholder"}');
+});
+
+test("a local-only obsolete role override cannot become a cloud save", async () => {
+  const db = { record: null, writes: [] };
+  const game = await runtime({ db, initial: {
+    civication_lifestory_role_v1: "arealplanlegger"
+  } });
+  assert.equal(game.save.snapshot().civication_lifestory_role_v1, undefined);
+  await game.save.flush();
+  assert.equal(db.writes.length, 0, "do not upload retired test settings as progress");
+});
+
+test("obsolete local override does not conflict with valid restored cloud role", async () => {
+  const db = { record: { payload: { state: {
+    civication_lifestory_v1: '{"dag":6,"rolle":"renholder"}'
+  } }, created_at: "2026-10-20T12:00:00Z" }, writes: [] };
+  const game = await runtime({ db, initial: {
+    civication_lifestory_role_v1: "arealplanlegger"
+  } });
+  assert.equal(game.localStorage.getItem("civication_lifestory_v1"),
+    '{"dag":6,"rolle":"renholder"}');
+  assert.doesNotMatch(game.element.textContent, /ulike/);
+  await game.save.flush();
+  assert.equal(db.writes.length, 0, "no unwarranted backup rewrite");
+});
