@@ -49,3 +49,10 @@ I den **allerede eksisterende** manifestregistrerte QuizCard-samlingen `data/qui
 | **Sum** | **28/30 betinget** | Ingen fullført v1-erklæring før faktisk grønn siste-head QA |
 
 QA begrenses til v1-minimum, ikke at all mulig full `vFerdig`-produksjon er utført. Alle fotoer og fullquizspørsmål skal forbli sporbart eid av canonical Place og den eksisterende quizmotoren.
+
+## CI-observasjon etter bildepåføring og kontekstgenerering
+
+- Den separate WebP-filen er produsert og bundet til canonical Place, kartindeks og Place-open. Canonical historietekst, claim-dekning og oversettelser fra hovedgrenen er bevart.
+- PR-kjøringen på commit `93a98ab6` fant at mobiltesten besto, men desktoptesten forkastet den korrekte engelske tittelen **«Old Aker Church»**. Den aktuelle testen er tilpasset norsk og engelsk tittel, uten å tillate feil place-ID eller feil bilde.
+- GitHub Actions-botens genereringscommit `789a900436b2f1628029ce337ab5bc601df35d34` resulterte i status `action_required` uten reell testkjøring. Det teller **ikke** som grønn CI. Det kreves faktisk fullført målrettet Chromium-test på etterfølgende ordinær PR-commit.
+- Den permanent lagrede nettleserkontrollen skal fremdeles kontrollere 390/1440 px, 900×1200-bildet, flipp, utvidet lesepanel, Fagverk og 21/21 spørsmål på begge skjermbredder.
