@@ -1,0 +1,50 @@
+name: DNT C46 licensed foyer painting image staging
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'reports/place-production/det-norske-teatret/20261021/painting-photo-intake-c46.json'
+      - 'scripts/place-production/stage-dnt-foyer-painting-c46.mjs'
+      - '.github/workflows/dnt-foyer-painting-c46.yml'
+concurrency:
+  group: dnt-c46-foyer-media-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  stage-draft-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node-npm
+      - name: Assert canonical Object remains blocked and verify candidate identity
+        run: node --test tests/det-norske-teatret-foyer-painting-c46.test.mjs
+      - name: Check live Commons photographer and CC BY-SA 4.0 and create WebP
+        run: node scripts/place-production/stage-dnt-foyer-painting-c46.mjs
+      - name: Ensure only asset plus audit report changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp
+          test -s reports/place-production/det-norske-teatret/20261021/painting-photo-c46-generated.json
+          test "$(git status --porcelain | wc -l)" -eq 2
+          test -z "$(git status --porcelain -- data/places data/people data/quiz)"
+      - name: Open draft with provenance and actual media, not a live Object
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="automation/dnt-c46-foyer-painting-${{ github.run_id }}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$branch"
+          git add bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp
+          git add reports/place-production/det-norske-teatret/20261021/painting-photo-c46-generated.json
+          git commit -m 'DNT C46: stage licensed foyer-painting image for review'
+          git push origin "HEAD:$branch"
+          gh pr create --draft --head "$branch" --base main \
+            --title 'DNT C46: kirkegårdsmaleriet — lokal CC-foto til manuell QA' \
+            --body 'Kildekontrollert Commons-foto fra 2017 (Wolfmann, CC BY-SA 4.0), ekte 800×800 WebP og SHA-256-proveniens. Vennligst kontroller den konkrete skråvinkelen og tittelen Kirkegårdsgravere/Kirkegårdsgraveren. Ingen canonical Object, preview eller statusendring før egen review.'
