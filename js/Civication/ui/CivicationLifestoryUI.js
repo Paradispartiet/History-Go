@@ -711,6 +711,10 @@
 
   // A chapter can only open through the current Life Story gates. Read the
   // real History Go merit counter; do not award points or choose a life role.
+  /**
+   * @param {string} badgeId
+   * @returns {number}
+   */
   function chapterBadgePoints(badgeId) {
     try {
       const merits = JSON.parse(window.localStorage?.getItem("merits_by_category") || "{}");
