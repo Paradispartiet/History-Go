@@ -1,0 +1,46 @@
+name: One-off Akerselva Place index sync
+on:
+  push:
+    branches:
+      - fix/akerselva-dams-places-index-20261021
+    paths:
+      - .github/workflows/temporary-akerselva-dams-index-20261021.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-dams-index-20261021
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/akerselva-dams-places-index-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Rebuild the canonical places index
+        run: |
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          npm run places:index:check
+      - name: Commit only synchronized index
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- data/places/places_index.json
+          if git diff --cached --quiet; then
+            echo "No change needed"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "chore(places): sync Brekkedammen and Nydalsdammen portrait pointers in index"
+          git push origin HEAD:refs/heads/fix/akerselva-dams-places-index-20261021
