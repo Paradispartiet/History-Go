@@ -39,7 +39,9 @@ test("C48 distinct Object leads preserve original source distinctions and noncom
   assert.equal(programme.source_license, "© Den Nationale Scene");
   assert.equal(programme.licensed_local_member_image, false);
   assert.equal(programme.physical_exemplar_accession, "NOT_VERIFIED");
-  assert.equal(c48.previously_verified_candidates.foyer_painting.photo, c46.evidence[0].expected_staging_request ? "bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp" : "");
+  assert.equal(c48.previously_verified_candidates.foyer_painting.photo, "bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp");
+  assert.equal(c46.evidence[0].photo_license, c48.previously_verified_candidates.foyer_painting.license);
+  assert.equal(c48.previously_verified_candidates.foyer_painting.state, "DOCUMENTARY_KILDER_PHOTO_ONLY_NOT_CANONICAL_OBJECT");
 });
 
 test("C48 is a source-only checkpoint; no canonical Objects or collection preview", () => {
