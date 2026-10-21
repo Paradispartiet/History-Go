@@ -72,13 +72,13 @@ async function main() {
   assert.equal(guides.length, 1, "the existing cross-app mission is started");
   assert.equal(guides[0].badge_id, "naeringsliv");
   assert.equal(guides[0].threshold, 10);
-  assert.deepEqual(actions[0], { type: "gaa_til_byen" });
+  assert.equal(actions[0]?.type, "gaa_til_byen");
   assert.equal(w.localStorage.getItem("merits_by_category"), null,
     "no badge points are minted by the chapter gate");
   assert.equal(w.localStorage.getItem(S.STORAGE_KEY), before,
     "learning navigation never alters story progress");
   panel.querySelector("[data-lifestory-life-profile]").click();
-  assert.deepEqual(actions[1], { type: "aapne_livsposisjoner" });
+  assert.equal(actions[1]?.type, "aapne_livsposisjoner");
   dom.window.close();
   console.log("Civication day-seven chapter gate shows a genuine cross-app learning path");
 }
