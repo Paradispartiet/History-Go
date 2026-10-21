@@ -13,7 +13,7 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 - [#6408](https://github.com/Paradispartiet/History-Go/pull/6408) er merget: én eier av toppkort, tydelige innboksstatuser og sikker dagslutt.
 - [#6481](https://github.com/Paradispartiet/History-Go/pull/6481) og [#6490](https://github.com/Paradispartiet/History-Go/pull/6490) er merget: syv spilldager per uke og lønn etter faktisk jobb hver spilldag.
 - [#6496](https://github.com/Paradispartiet/History-Go/pull/6496) er merget: jobbhistorikk følger kontosikkerhetskopi.
-- [#6500](https://github.com/Paradispartiet/History-Go/pull/6500) korrigerer at NPC-relasjonene `civi.socialRelationships.v1` og tidligere svar `civi.socialResponses.v1` falt utenfor kontoens nøkkelutvalg. Tre mock-baserte regresjoner følger PR-en; merge krever grønn CI.
+- [#6500](https://github.com/Paradispartiet/History-Go/pull/6500) korrigerer at NPC-relasjonene `civi.socialRelationships.v1`, tidligere svar `civi.socialResponses.v1` og samtaletråder `civi.socialConversations.v1` falt utenfor kontoens nøkkelutvalg. Fire mock-baserte regresjoner følger PR-en; merge krever grønn CI.
 - [#6382](https://github.com/Paradispartiet/History-Go/pull/6382) er fremdeles et **utkast**: røde tester og gjeninnføring av faste Mira/Lea/Arvid-navn i brukerrettet tekst er ikke godkjent. De skal være fiktive typer med kanonisk intern-ID, ikke faste personer eller virkelige History Go-personer.
 - Dette er **ikke** en gjennomført 14-dagers nettlesertest; fysisk kontogjenoppretting, NPC-etterspill og reelle History Go-opplåsinger er fortsatt åpne porter.
 
