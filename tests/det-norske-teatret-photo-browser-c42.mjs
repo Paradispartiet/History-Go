@@ -131,6 +131,18 @@ try {
       assert.ok(geometry.imageWidth > 0 && geometry.imageWidth <= geometry.cardWidth + 1);
       assert.ok(geometry.cardLeft >= -1 && geometry.cardRight <= width + 1,
         "source photo must fit viewport at " + width + ": " + JSON.stringify(geometry));
+      // Keep screenshots both above and below the scroll fold. A DOM-only
+      // assertion on the credit would miss an unreachable/cut-off caption.
+      await page.screenshot({ path: path.join(outputDir, device + "-photo.png"), fullPage: true });
+      const caption = panel.locator(".hg-place-source-photo figcaption");
+      await caption.scrollIntoViewIfNeeded();
+      assert.equal(await caption.isVisible(), true, "source caption must be visible after scroll");
+      const captionBox = await caption.boundingBox();
+      assert.ok(captionBox && captionBox.y >= -1 && captionBox.y + captionBox.height <= height + 1,
+        "source credit/citation must be in the visible viewport at " + width);
+      assert.equal(await sourceLink.isVisible(), true, "original-source link must be reachable");
+      assert.match(await caption.innerText(), /Lone Lunde.*Oslo Museum/);
+      await page.screenshot({ path: path.join(outputDir, device + "-credit.png"), fullPage: true });
       assert.deepEqual(assetFailures, [], "asset HTTP failures at " + width);
       assert.deepEqual(errors, [], "browser JS errors at " + width);
       console.log("C42 " + device + " " + width + "px: museum and facade WebP decoded, Sources usable, attribution and geometry OK");
