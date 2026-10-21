@@ -238,7 +238,54 @@ async function main() {
   assert.equal(w.CivicationSkills.getViewModel(roundTrip).skills.find(s => s.id === "agency").score, 2,
     "Skills survive serialization for canonical storage");
   dom.window.close();
-  console.log("Civication authored Life Story Skills: six practices, UI click, replay guard OK");
+
+  // End-to-end: Min dag accepts an authored choice before shell-state boot.
+  // The pending event is durable and gets replayed into canonical Skills.
+  const slowDom = new JSDOM(
+    '<!doctype html><body><header id="civiLifestoryHeaderStatus"></header><section id="civiLifestoryPanel"></section></body>',
+    { url: "https://example.test/Civication.html", runScripts: "outside-only" }
+  );
+  const slow = slowDom.window;
+  slow.localStorage.setItem(StoryState.STORAGE_KEY, JSON.stringify(seededStory));
+  slow.fetch = async url => {
+    const name = String(url);
+    return fs.existsSync(path.join(ROOT, name))
+      ? { ok: true, json: async () => read(name) } : { ok: false };
+  };
+  for (const script of [
+    "js/Civication/lifestory/lifestoryContent.js",
+    "js/Civication/lifestory/lifestoryState.js",
+    "js/Civication/lifestory/lifestoryRunner.js",
+    "js/Civication/lifestory/lifestoryEndings.js",
+    SkillsPath,
+    "js/Civication/ui/CivicationLifestoryUI.js"
+  ]) slow.eval(js(script));
+  let delayedButton = null;
+  for (let i = 0; i < 150; i++) {
+    delayedButton = slow.document.querySelector(buttonSelector);
+    if (delayedButton) break;
+    await new Promise(resolve => setTimeout(resolve, 10));
+  }
+  assert(delayedButton, "Life Story remains usable before CivicationState boots");
+  delayedButton.click();
+  assert.equal(slow.CivicationLifestoryState.load().pendingSkillsPracticesV1?.length, 1,
+    "authored practice is queued in the existing Life Story save");
+  let readyState = { job_learning_progress: { stable: { steps: 3 } } };
+  slow.CivicationState = {
+    getActivePosition: () => null,
+    getState: () => readyState,
+    setState(patch) { readyState = { ...readyState, ...patch }; return readyState; }
+  };
+  slow.dispatchEvent(new slow.Event("civi:booted"));
+  assert.equal(slow.CivicationSkills.getViewModel(readyState).skills.find(s => s.id === "agency").score, 2,
+    "deferred practice is credited when the canonical shell arrives");
+  assert.equal(slow.CivicationLifestoryState.load().pendingSkillsPracticesV1.length, 0,
+    "queued entry cleared after successful replay");
+  slow.dispatchEvent(new slow.Event("civi:booted"));
+  assert.equal(slow.CivicationSkills.getViewModel(readyState).skills.find(s => s.id === "agency").score, 2,
+    "repeated boot events cannot award Skills twice");
+  slowDom.window.close();
+  console.log("Civication authored Life Story Skills: six practices, UI click, replay guard and delayed boot OK");
 }
 
 await main();
