@@ -73,6 +73,22 @@ try{
    // The real gate is a positive painted area and substantive readable DOM text.
    assert.ok(flip.width>85&&flip.height>100&&flip.innerWidth>65&&flip.innerHeight>100,name+': QuizCard occupies no visible area');
    assert.ok(/Maridalsvannet/i.test(flip.text)&&flip.text.length>120,name+': QuizCard reverse has no readable questions');
+   // Reopening the same canonical place is legitimate during progressive
+   // hydration and must not erase the user's currently flipped QuizCard.
+   const hydrated=await page.evaluate(async placeId=>{
+    const place=window.HGPlaceOpen?.getPlace?.(placeId);
+    if(!place||typeof window.openPlaceCard!=='function')return false;
+    await window.openPlaceCard(place);
+    return true;
+   },id);
+   assert.equal(hydrated,true,name+': cannot re-open hydrated canonical place');
+   await page.waitForTimeout(500);
+   const afterReopen=await page.locator('#pcFrontCardFlip').evaluate(el=>({
+    flipped:el.classList.contains('is-flipped'),
+    reverseVisible:getComputedStyle(el.querySelector('.pc-card-face-back')).visibility,
+    renderedText:el.querySelector('.pc-rendered-quiz-card')?.innerText||''
+   }));
+   assert.ok(afterReopen.flipped&&afterReopen.reverseVisible==='visible'&&afterReopen.renderedText.length>120,name+': same-place hydration erased QuizCard reverse');
    await front.click({position:{x:22,y:Math.max(24,(await front.boundingBox()).height-25)},timeout:8000});
    await page.locator('#pcQuiz').click({timeout:18000});
    await page.waitForFunction(id=>location.hash.startsWith('#/quiz/'+id),id,{timeout:18000});
