@@ -678,6 +678,14 @@
       expandedTaskGateId = "";
     }
 
+    // An unchanged queued mail must retain its live pointer target even if
+    // asynchronous profile metadata refreshes in the surrounding inbox.
+    const queuedButton = body.querySelector("[data-civi-next-action-open-queued]");
+    if (isQueuedAction(action) && queuedButton
+        && queuedButton.getAttribute("data-mail-id") === String(action.id || "")) {
+      return action;
+    }
+
     const lines = bodyLines(action);
     setActionBodyMarkup(body, ""
       + "<article class=\"civi-next-action-card\" data-mail-id=\"" + escapeHtml(action.id) + "\">"
