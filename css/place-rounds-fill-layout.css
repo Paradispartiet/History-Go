@@ -200,13 +200,16 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   padding:12px;
   border-bottom:1px solid rgba(128,128,128,.35);
 }
-.pc-object-member-image{
-  display:block;
-  width:100%;
-  max-width:125px;
-  height:auto;
-  aspect-ratio:1/1;
-  object-fit:contain;
+.pc-object-member > img.pc-person-img.pc-object-member-image{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  height:auto !important;
+  max-height:none !important;
+  aspect-ratio:1 / 1;
+  justify-self:stretch;
+  object-fit:contain !important;
   background:#16191e;
   border-radius:8px;
 }
@@ -225,6 +228,6 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
 .pc-object-source{display:inline-block;margin-top:4px;text-decoration:underline;font-size:13px;}
 @media (max-width:520px){
   .pc-object-member{grid-template-columns:minmax(65px,90px) minmax(0,1fr);padding:9px;gap:9px;}
-  .pc-object-member-image{max-width:90px;}
+  .pc-object-member > img.pc-person-img.pc-object-member-image{max-width:100% !important;}
   #placeCard .pc-object-preview-disclosure{font-size:10px;padding:4px;}
 }
