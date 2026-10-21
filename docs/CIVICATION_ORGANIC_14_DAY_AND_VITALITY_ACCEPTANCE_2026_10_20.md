@@ -1,6 +1,6 @@
-# Civication – 14-dagers organisk spillerreise og balansering
+# Civication – 21-dagers organisk spillerreise og balansering
 
-Dato: 20. oktober 2026. Status: **pågående akseptanse**, ikke godkjent full gjennomspilling.
+Dato: 20. oktober 2026. Status: **21-dagers mål vedtatt 21.10.2026; under utvikling**, ikke godkjent full nettleser-/kontoakseptanse.
 
 Dette er én samlet arbeidsbolk, slik at arbeidet med spillerreise ikke mister prioritet når psyke/energi balanseres. Ingen ny spillmotor, lagringsnøkkel, valuta eller gratis jobb/badge.
 
@@ -14,7 +14,20 @@ Dette er én samlet arbeidsbolk, slik at arbeidet med spillerreise ikke mister p
 
 Terskler og tall er første **spillbalansehypoteser**, ikke medisinske normalverdier. De skal senere kalibreres med utfallet av organisk spillerreise, og må aldri tolkes som klinisk diagnose. Tidligere valg, konkrete historier og persistens skal bevares.
 
-## Ærlig akseptansegate – 14 dager, fersk profil
+## Ny hovedakseptanse – 21 dager (vedtatt 21.10.2026)
+
+Spilleren skal kunne leve **tre uker**, ikke bare 14 dager, og utvikle en faktisk livsretning gjennom handlinger. Arbeidsledighet forblir arbeidssituasjon, ikke en påtvunget identitet. Dagene må ha særskilte valg og konsekvenser; ikke 21 identiske meldekort. **Dag 8–21** har nå egne, forfattede private scener i `wave_e_c21_livsretning`, med tre spor: nærmiljø, skaping og læring. Dag 9 og 16 krever gjennomførte aktiviteter for å kunne erverve en praksisbasert livsposisjon. Ved dag 21 må spilleren selv velge om identiteten skal aktiveres i eksisterende Livsprofil. Denne praksisbaserte livsposisjonen kan ikke tildele arbeidsforhold, Badge, inntekt eller kompetanse den ikke har bevis for.
+
+**21-dagers Node-akseptanse på PR-gren:** 3 spor med alle dager 1–21, private scener på hver dag 8–21, ingen merittinjeksjon, og korrekt bevaring av privat historie ved jobbbytte. Dette er bare én del av akseptansen; faktisk nettleserspill, ekte konto-gjenoppretting, relasjoner, økonomi og History Go skal fortsatt godkjennes separat.
+
+| Periode | Akseptanse |
+| --- | --- |
+| Dag 1–7 | Ordinært liv, økonomi, NAV og de første sosiale valgene. Ingen identitetssperre for dag 8. |
+| Dag 8–14 | Første egen aktivitet, små møter, hverdagsplikt og etterspill uten repeterte arbeidsledighetsmailer. |
+| Dag 15–21 | En ny faktisk aktivitet, personlig grensesetting, økonomibalanse, dokumentasjon og frivillig livsposisjonsvalg. |
+| Etter dag 21 | Ingen oppdiktet ny jobb eller særkapittel. Nye livsverdener må bygge på faktisk valgt posisjon/meritter, eller videre ordinær privatlivsproduksjon. |
+
+## Tidligere akseptansegate – 14 dager (historisk delmål)
 
 Følgende må bevises sammenhengende i ekte UI, **uten** kunstig `merits_by_category`, injisert `CivicationLifePositions`, utviklerroller eller konstruerte tilbud:
 
