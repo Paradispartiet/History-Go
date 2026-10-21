@@ -137,6 +137,7 @@ async function run() {
           ['munch_museet-set-' + (i + 1), { completed: true }]));
         originalStore.setItem('merits_by_category', JSON.stringify({ kunst: { points: 5 } }));
         originalStore.setItem('hg_quiz_sets_v1', JSON.stringify(sets));
+        originalStore.setItem('hg_badge_tiers_v1', JSON.stringify({ kunst: 0 }));
         game.window.CivicationState.setActivePosition({
           career_id: 'kunst', role_key: 'kunst_publikum_og_formidling', title: museum.title
         });
@@ -196,7 +197,7 @@ async function run() {
     await cloud.ready;
     await cloud.flush();
     assert.equal(db.writes, 1);
-    for (const key of ['merits_by_category', 'hg_quiz_sets_v1', 'hg_active_position_v1',
+    for (const key of ['merits_by_category', 'hg_quiz_sets_v1', 'hg_badge_tiers_v1', 'hg_active_position_v1',
       'hg_job_history_v1', 'hg_civi_calendar_v1', 'hg_civi_wallet_v1',
       'civication_lifestory_v1']) {
       assert.equal(db.record.payload.state[key], originalStore.getItem(key),
@@ -211,6 +212,7 @@ async function run() {
     assert.equal(json(secondStore, 'hg_active_position_v1', {}).career_id, 'kunst');
     assert.equal(json(secondStore, 'merits_by_category', {}).kunst.points, 5);
     assert.equal(Object.keys(json(secondStore, 'hg_quiz_sets_v1', {})).length, 5);
+    assert.equal(json(secondStore, 'hg_badge_tiers_v1', {}).kunst, 0);
     assert.equal(json(secondStore, 'hg_job_history_v1', []).length, 1);
     assert.equal(restored.window.CivicationEconomyEngine.getEconomySnapshot().balance,
       economy[2].balance);
