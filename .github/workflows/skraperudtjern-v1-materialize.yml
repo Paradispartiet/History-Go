@@ -1,0 +1,131 @@
+name: Skraperudtjern v1 materialize generated data once
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/skraperudtjern-v1-materialize.yml'
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'content/oslo-skraperudtjern-v1-20261021'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout the existing PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install project dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Source two freely licensed photos and build local WebP
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/skraperudtjern-sources
+          curl --fail --location --silent --show-error --retry 4 --retry-delay 3 \
+            --user-agent 'HistoryGo/1.0 (https://github.com/Paradispartiet/History-Go)' \
+            'https://upload.wikimedia.org/wikipedia/commons/a/a0/Skraperudtjern_%286._januar_2021%29.jpg' \
+            --output /tmp/skraperudtjern-sources/winter-2021.jpg
+          curl --fail --location --silent --show-error --retry 4 --retry-delay 3 \
+            --user-agent 'HistoryGo/1.0 (https://github.com/Paradispartiet/History-Go)' \
+            'https://upload.wikimedia.org/wikipedia/commons/0/06/Skraperudtjern.jpg' \
+            --output /tmp/skraperudtjern-sources/summer-2008.jpg
+          node scripts/materialize-skraperudtjern-v1.mjs
+      - name: Regenerate canonical dependent data (never hand-edit derived output)
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run knowledge:canonical:write
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run places:index:build
+          npm run epoker:places:build
+          npm run place-open:build
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='data/places/place_image_backlog_summary.json';
+          const saved=JSON.parse(fs.readFileSync(file,'utf8'));
+          const report=JSON.parse(fs.readFileSync('reports/place-image-audit.json','utf8'));
+          saved.totalPlaces=report.totalPlaces;
+          saved.summary={
+            validLocal:report.summary.local,validRemote:report.summary.remote,
+            optionalMissing:report.summary.optional,missing:report.summary.missing,
+            invalidLocalPath:report.summary.invalid,
+            remaining:report.summary.missing+report.summary.invalid
+          };
+          for(const [cat,summary] of Object.entries(report.byCategory)){
+            if(!saved.byCategory[cat])continue;
+            saved.byCategory[cat]={
+              total:summary.total,valid:summary.local+summary.remote,optional:summary.optional,
+              missing:summary.missing,invalid:summary.invalid
+            };
+          }
+          fs.writeFileSync(file,JSON.stringify(saved,null,2)+'\n');
+          NODE
+      - name: Check exact source and generated dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run place-open:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run knowledge:canonical:check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Actual 390 and 1440 px app acceptance and complete fullquiz
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node tests/skraperudtjern-v1-real-browser.mjs
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-ljanselva-fullquiz-browser.mjs skraperudtjern
+      - name: Mark approved photos only after actual browser pass
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/materialize-skraperudtjern-v1.mjs --approve
+          npm run places:index:build
+          npm run place-open:build
+      - name: Commit source photos and generated dependencies to this same PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            bilder/places/skraperudtjern_front_portrait.webp \
+            bilder/places/skraperudtjern_landscape.webp \
+            data/places/natur/oslo/places_oslo_natur_ljanselva_rute/skraperudtjern.json \
+            data/places/place_image_backlog_summary.json \
+            data/places/places_index.json \
+            data/epoker/epoke-place-index.json \
+            data/fagverk/fagverk_release.json \
+            data/knowledge/knowledge_units.generated.json \
+            data/runtime/place-open/skraperudtjern.json \
+            reports/place-image-audit.json \
+            reports/place-production/skraperudtjern-v1-images-20261021.json
+          for f in reports/knowledge-id-backfill.json reports/fagverk/fagverk-place-page-coverage-v2.json; do
+            if test -f "$f"; then git add "$f"; fi
+          done
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit'
+          else
+            git commit -m 'Materialize Skraperudtjern local photos and synchronized v1 release data'
+            git push origin HEAD:content/oslo-skraperudtjern-v1-20261021
+          fi
+      - name: Store actual app screenshots and quiz evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: skraperudtjern-v1-actual-app-qa
+          path: |
+            artifacts/skraperudtjern-browser/**
+            artifacts/place-quiz/skraperudtjern/**
+          if-no-files-found: ignore
+          retention-days: 14
