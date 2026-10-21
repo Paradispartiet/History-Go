@@ -11,7 +11,7 @@ assert.match(placeId || '', /^[a-z0-9_]+$/, 'Require a canonical place ID');
 const root = process.cwd();
 const manifest = JSON.parse(fs.readFileSync('data/quiz/manifest.json', 'utf8'));
 const entries = manifest.sets.filter(entry => entry.targetId === placeId);
-assert.equal(entries.length, 3, 'Exactly three active quiz manifest set references for Ljanselva');
+assert.ok(entries.length === 1 || entries.length === 3, 'Require one place-level or three set-level quiz manifest references');
 const quiz = JSON.parse(fs.readFileSync(entries[0].file, 'utf8'));
 assert.equal(quiz.targetId, placeId);
 const questions = quiz.sets.flatMap(set => set.questions);
