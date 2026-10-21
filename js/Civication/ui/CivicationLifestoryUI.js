@@ -803,7 +803,8 @@
     const sisteDag = !!(Endings && Endings.isFinalDay(state, content));
     const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
     const authoredEnding = ending && (content.role.endings || []).find(e => e.id === ending.id);
-    const endingHtml = ending
+    const onOriginalFinalDay = !content.role.symposium || state.dag === content.role.symposium.sisteDag;
+    const endingHtml = ending && onOriginalFinalDay
       ? "<section class=\"civi-lifestory-ending\" aria-label=\"Ukas slutt\">"
         + "<div class=\"civi-lifestory-section-label\">" + (content.fortsettelse ? "Kapittelet er avsluttet" : "Slutten på uka") + "</div>"
         + "<h3>" + escapeHtml(ending.navn) + "</h3>"
@@ -820,7 +821,19 @@
     const pendingPrivate = !!Runner.hasPendingPrivateScenes?.(state, content);
     // Private Life Stories remain playable without a badge. The History Go
     // guide is optional and must also appear when private stories continue.
-    const offerExploration = sisteDag && !next;
+    // Show the first-week invitation once, then save the next milestone for
+    // the real final private day. Repeating week-one endings on days 8–20
+    // made the player's growing life feel like the same mail every morning.
+    const offerExploration = sisteDag && !next && (!pendingPrivate || onOriginalFinalDay);
+    const threeWeekDirection = state.livsdag >= 21 &&
+      state.arkiv?.some(entry => /^wave_e_life21_d21_/.test(entry.sceneId) && entry.livsdag >= 21)
+      ? state.tidligereValg?.life21_direction || state.privatHistorie?.flagg?.life21_direction
+      : null;
+    const threeWeekLabels = {
+      skaper: "Skaper", narmiljobygger: "Nærmiljøbygger",
+      relasjonsbygger: "Relasjonsbygger", hverdagsbygger: "Hverdagsbygger",
+      utforsker: "Utforsker"
+    };
     const required = Number(chosenLifePosition?.threshold);
     const hasPointGate = Number.isFinite(required) && required > 0 && !!chosenLifePosition?.badge_id;
     const earned = hasPointGate ? chapterBadgePoints(chosenLifePosition.badge_id) : 0;
@@ -828,7 +841,11 @@
     const nextChapterHint = !offerExploration ? "" :
       '<section class="civi-lifestory-next-chapter" role="status" aria-label="Veien videre">'
       + '<h4>Veien videre</h4>'
-      + (chosenLifePosition
+      + (threeWeekDirection && threeWeekLabels[threeWeekDirection]
+        ? '<p>Tre uker med konkrete valg har gjort <strong>' + escapeHtml(threeWeekLabels[threeWeekDirection])
+          + '</strong> til en mulig livsretning. Du velger selv om den skal være aktiv i livsprofilen. '
+          + 'Du kan samtidig søke jobb og takke ja til et reelt jobbtilbud.</p>'
+        : chosenLifePosition
         ? '<p>Privatlivet kan fortsette uansett jobbstatus. Du har vist interesse for <strong>' + escapeHtml(chosenLifePosition.navn) + '</strong>. Vil du åpne dette ekstra historiekapittelet, kreves riktig opptjening og et frivillig valg av livsposisjon.</p>'
           + (needsMerits ? '<p>Du har ' + escapeHtml(earned) + ' av ' + escapeHtml(required) + ' poeng i ' + escapeHtml(chosenLifePosition.badge_id) + '. Ta quizer i History Go for å bygge kunnskap.</p>'
             : hasPointGate ? '<p>Du har nok poeng. Åpne livsposisjonene og velg ' + escapeHtml(chosenLifePosition.navn) + ' for å låse opp neste kapittel.</p>'
