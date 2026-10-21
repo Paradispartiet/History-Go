@@ -10,6 +10,7 @@ on:
       - 'data/runtime/place-open/gamle_aker_kirke.json'
       - 'data/places/production/gamle_aker_kirke.json'
       - 'tests/gamle-aker-v1-quizcard.test.mjs'
+      - 'scripts/verify-gamle-aker-fullquiz-browser.mjs'
       - 'bilder/places/auto/gamle_aker_kirke__sorsiden.jpg'
       - 'bilder/places/auto/gamle_aker_kirke__sorsiden_card.jpg'
       - '.github/workflows/gamle-aker-v1-browser.yml'
@@ -46,7 +47,7 @@ jobs:
           set -euo pipefail
           CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
           test -n "$CHROME_BIN"
-          CHROME_BIN="$CHROME_BIN" node scripts/verify-ljanselva-fullquiz-browser.mjs gamle_aker_kirke
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-gamle-aker-fullquiz-browser.mjs
       - name: Upload actual app evidence
         if: always()
         uses: actions/upload-artifact@v4
