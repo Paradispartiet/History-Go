@@ -23,7 +23,7 @@ test("Oslo-bolk 04: 17 separate curated Fagverk Place pages, canonical/runtime/s
   assert.ok(p.image&&p.frontImage,id+" photos");
   assert.equal(live.image,p.image);
   assert.equal(live.frontImage,p.frontImage);
-  assert.ok(f.article.join(" ").split(/\\s+/).length>=70,id+" article depth");
+  assert.ok(f.article.join(" ").trim().split(" ").length>=70,id+" article depth");
   assert.ok(f.lenses.length>=3&&f.guiding_questions.length>=4,id+" pedagogical content");
   assert.ok(f.source_urls.length>=2,id+" sources");
   for(const u of f.source_urls)assert.ok(p.externalLinks?.some(x=>x.url===u&&x.label),id+" operative source "+u);
