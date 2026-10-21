@@ -74,6 +74,49 @@
     }
   ];
 
+  // Life Story is the evidence owner. These are ordinary, voluntarily chosen
+  // life orientations earned through repeated actions, never Badge points,
+  // formal credentials, membership, employment, benefits or a new currency.
+  const PRACTICE_POSITIONS = Object.freeze({
+    fellesskap: { id:"lokal_bidragsyter", label:"Lokal bidragsyter",
+      description:"Du har bidratt til en konkret aktivitet i nærmiljøet og fulgt opp en senere gang.",
+      hooks:["fellesskap","nabolag","samarbeid"] },
+    skape: { id:"praktisk_skaper", label:"Praktisk skaper",
+      description:"Du har laget noe, prøvd det ut og gjennomført en ny versjon.",
+      hooks:["kreativitet","prosjekter","utproeving"] },
+    laere: { id:"aktiv_kunnskapsutforsker", label:"Aktiv kunnskapsutforsker",
+      description:"Du har undersøkt kilder og brukt innsikten til en etterprøvbar forklaring.",
+      hooks:["kunnskap","kildekritikk","samtale"] }
+  });
+
+  function getEarnedPracticePositions(scopeId) {
+    if (scopeId && scopeId !== "liv_egen_praksis") return [];
+    const saved = window.CivicationLifestoryState?.load?.();
+    if (!saved) return [];
+    const own = saved.privatHistorie || {};
+    const flags = { ...(saved.tidligereValg || {}), ...(own.flagg || {}) };
+    const focus = flags.wa_e_c21_focus;
+    const template = PRACTICE_POSITIONS[focus];
+    if (!template || flags.wa_e_c21_practice !== focus ||
+        flags.wa_e_c21_followthrough !== focus ||
+        flags.wa_e_c21_reflection !== "gjennomfort") return [];
+    const entries = [...(own.arkiv || []), ...(saved.arkiv || [])];
+    function played(sceneId, choiceId) {
+      return entries.some(entry => entry.sceneId === sceneId && entry.valgId === choiceId);
+    }
+    // Trust the recorded Life Story action chain, never a claimed score, read
+    // preference, calendar tick or one-time plan.
+    if (!played("wave_e_c21_d8_et_eget_spor", focus === "fellesskap" ? "mennesker" : focus) ||
+        !played("wave_e_c21_d9_" + focus, "gjennomfor") ||
+        !played("wave_e_c21_d16_" + focus, "gjennomfor") ||
+        !played("wave_e_c21_d21_tre_ukers_valg", "anerkjenn")) return [];
+    return [{
+      ...template, badge_id:"liv_egen_praksis", badge_name:"Egen livspraksis",
+      threshold:0, kind:"earned_life_path", source:"life_story_practice",
+      employment_independent:true
+    }];
+  }
+
   const CIRCUMSTANCE_OPTIONS = Object.freeze({
     activity_status: [
       { id: "none", label: "Ingen særstatus" },
@@ -277,7 +320,8 @@
   function getUnlockedPositions(badgeId) {
     const id = String(badgeId || "").trim();
     const open = getOpenPositions(id);
-    if (open.length) return open;
+    const earned = getEarnedPracticePositions(id);
+    if (open.length || earned.length) return dedupePositions([...open, ...earned]);
 
     const badge = getBadge(id);
     if (!badge || !Array.isArray(badge.tiers)) return [];
@@ -294,6 +338,7 @@
       : [];
     return dedupePositions([
       ...getOpenPositions(),
+      ...getEarnedPracticePositions(),
       ...badgePositions
     ]);
   }
@@ -480,6 +525,7 @@
     getUnlockedPositions,
     getAllUnlockedPositions,
     getOpenPositions,
+    getEarnedPracticePositions,
     activate,
     clearBadge,
     setPrimary,
