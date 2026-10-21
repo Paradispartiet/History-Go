@@ -8,7 +8,7 @@ Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, 
 Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. Følg `CIVICATION_README.md`, `CIVICATION_PATCH_ORDER.md`, Scene Pipeline, Life Story og eksisterende økonomi-/relasjonskontrakter. Opprett ingen parallelle motorer.
 
 ## Én prioritert leveranse
-**PR #6437** (`fix/civication-vitality-long-journey-20261020`) er aktivt utkast. Ikke opprett ny PR for samme bolk. Arbeidet omfatter moderat nattlig energi-restitusjon, terskelbasert og synlig belastning for krevende valg, personlige målere på tvers av jobbbytte, samt dag 2–3-ekspeditørscener og regresjonstester. Alt er **under CI-/spillbarhetskontroll**, ikke merget ved planoppdateringen. PR #6415 og #6427 er tidligere merget og skal ikke produseres om igjen.
+**PR #6437** (`fa223ed75547212edbc33792d705e79287527d2c`) er merget til `main` med seks beståtte CI-arbeidsflyter. Vitalitets-/Life Story-koden og regressjonene er publisert; dette er **ikke** full 14-dagers browser-/kontoakseptanse. PR #6415 og #6427 er også merget. Neste avgrensede arbeidsbolk er ukentlig wallet-avregning etter **syv faktiske spilldager** (egen PR, `fix/civication-game-week-economy-20261021`) med idempotens og migreringsbeskyttelse. Ekte 14-dagers gjennomspilling gjenstår.
 
 ### Fase 1: fullfør PR #6437
 - [ ] Les fersk CI for nøyaktig siste head-commit; rett feil i samme PR, ikke ved å ignorere tester.
@@ -49,7 +49,7 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 ## Kontrollregister – oppdater etter hvert arbeid
 | ID | Område | Akseptansekriterium | Status per 2026-10-20 |
 | --- | --- | --- | --- |
-| C1 | PR #6437 | Grønn CI og reell spillflyt før merge | Pågår, utkast |
+| C1 | PR #6437 | Grønn CI og reell spillflyt før merge | Merget, 6/6 CI; full E2E-spillflyt ikke godkjent |
 | C2 | Energi | Gradvis restitusjon uten dobbeltelling | Implementert på gren, ikke godkjent |
 | C3 | Psyke | Små, forutsigbare utslag med synlige følger | Implementert på gren, ikke kalibrert bredt |
 | C4 | Jobbbytte | Personlige målere bevares; rollespesifikke verdier isoleres | Endret på gren, må regresjonstestes |
