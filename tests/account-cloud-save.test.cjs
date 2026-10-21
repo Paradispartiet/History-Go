@@ -43,7 +43,7 @@ async function runtime({ uid = "account-one", initial = {}, db = { record: null,
     clearTimeout() {}, setTimeout() {}, Date };
   vm.runInNewContext(source, context, { filename: "CivicationCloudSave.js" });
   await window.CivicationCloudSave.ready;
-  return { save: window.CivicationCloudSave, localStorage, element, db };
+  return { save: window.CivicationCloudSave, localStorage, element, db, window };
 }
 test("new account uploads existing local Life Story and career data", async () => {
   const db = { record: null, writes: [] };
@@ -249,6 +249,19 @@ test("NPC social memory survives cloud backup and an empty new device", async ()
   assert.equal(second.localStorage.getItem("hg_pc_wallet_v1"), '{"balance":131}');
   assert.equal(second.localStorage.getItem("civication_lifestory_v1"),
     '{"dag":7,"rolle":"arbeidsledig"}');
+  // Reload the actual NPC store consumers, not just the raw JSON snapshot.
+  const friendSource = fs.readFileSync("js/Civication/systems/civicationFriendMessages.js", "utf8");
+  const conversationSource = fs.readFileSync("js/Civication/systems/CivicationSocialConversationEngine.js", "utf8");
+  vm.runInNewContext(friendSource, { window: second.window, console }, {
+    filename: "civicationFriendMessages.js"
+  });
+  vm.runInNewContext(conversationSource, { window: second.window, console }, {
+    filename: "CivicationSocialConversationEngine.js"
+  });
+  assert.equal(second.window.CivicationFriendMessages.getSocialRelationship("npc_sara").relationshipLevel, 3);
+  assert.equal(second.window.CivicationFriendMessages.getSocialResponseRecord("encounter-7").responseId, "reply");
+  assert.equal(second.window.CivicationSocialConversationEngine
+    .getConversationById("conv_npc_sara_leisure_001").friendId, "npc_sara");
   await second.save.flush();
   assert.equal(db.writes.length, 1, "read-only restore must not rewrite the backup");
 });
