@@ -608,6 +608,29 @@
   }
 
   /**
+   * A formal job without an authored work-role pack cannot replace the
+   * player's private life with an unemployment workday. Keep the canonical
+   * shared life scenes/threads, omit all role-specific work scenes, and
+   * label the view as private life. This is only a content projection:
+   * the saved story role and the actual shell employment remain unchanged.
+   * @param {any} original
+   * @returns {any}
+   */
+  function privateLifeOnly(original) {
+    if (original?.role?.id !== "arbeidsledig") {
+      throw new Error("[LifestoryContent] privatliv trenger felles grunnpakke");
+    }
+    const threads = (original.threads || []).filter(t => t.type === "privatliv");
+    const ids = new Set(threads.map(t => t.id));
+    return {
+      ...original,
+      role: { ...original.role, navn: "Privatliv", dagsplan: {} },
+      threads,
+      scenes: (original.scenes || []).filter(s => ids.has(s.threadId))
+    };
+  }
+
+  /**
    * Nettleser: last manifest + alle filer for en rolle og bygg validert pakke.
    * Bruker CivicationJsonStore når den finnes (dedupet fetch), ellers fetch.
    * @param {string} roleId
@@ -723,7 +746,7 @@
     return appendContinuation(content, await fetchJson(next.path));
   }
 
-  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, SHELL_CONDITION_KEYS, HANDLING_TYPES, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, appendContinuation, loadContinuation, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
+  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, SHELL_CONDITION_KEYS, HANDLING_TYPES, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, privateLifeOnly, validateContent, loadContent, appendContinuation, loadContinuation, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
   /** @type {any} */ (globalScope).CivicationLifestoryContent = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
