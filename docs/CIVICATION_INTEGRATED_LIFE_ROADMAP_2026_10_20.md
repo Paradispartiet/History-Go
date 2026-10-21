@@ -8,9 +8,9 @@ Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, 
 Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. Følg `CIVICATION_README.md`, `CIVICATION_PATCH_ORDER.md`, Scene Pipeline, Life Story og eksisterende økonomi-/relasjonskontrakter. Opprett ingen parallelle motorer.
 
 ## Én prioritert leveranse
-**PR #6437** (`fa223ed75547212edbc33792d705e79287527d2c`) er merget til `main` med seks beståtte CI-arbeidsflyter. Vitalitets-/Life Story-koden og regressjonene er publisert; dette er **ikke** full 14-dagers browser-/kontoakseptanse. PR #6415 og #6427 er også merget. Neste avgrensede arbeidsbolk er ukentlig wallet-avregning etter **syv faktiske spilldager** (egen PR, `fix/civication-game-week-economy-20261021`) med idempotens og migreringsbeskyttelse. Ekte 14-dagers gjennomspilling gjenstår.
+**PR #6437** (`fa223ed75547212edbc33792d705e79287527d2c`) er merget til `main` med seks beståtte CI-arbeidsflyter. Vitalitets-/Life Story-koden og regressjonene er publisert; dette er **ikke** full 14-dagers browser-/kontoakseptanse. PR #6415 og #6427 er også merget. Ukeavregningen etter **syv faktiske spilldager** er merget i PR #6481 (`dacbd7270bbf41f7bfb90ac1996f1d92a95d7ed8`). Neste avgrensede bolk registrerer faktisk jobb og lønnsgrunnlag ved dagslutt, slik at jobbbytter ikke etterbetales som en hel uke i den siste jobben. Ekte 14-dagers gjennomspilling gjenstår.
 
-### Fase 1: fullfør PR #6437
+### Fase 1: verifiser publisert PR #6437
 - [ ] Les fersk CI for nøyaktig siste head-commit; rett feil i samme PR, ikke ved å ignorere tester.
 - [ ] Kontroller at restitusjon skjer nøyaktig én gang ved gyldig dagbytte, og at lav psyke/energi ikke fører til utilsiktede eller dobbelte effekter.
 - [ ] Kontroller at psyke, energi, integritet, relasjoner, private valg og tidsankre følger spilleren gjennom jobbbytte; rollespesifikke verdier beholdes separat.
@@ -55,7 +55,7 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 | C4 | Jobbbytte | Personlige målere bevares; rollespesifikke verdier isoleres | Endret på gren, må regresjonstestes |
 | C5 | Etterspill | Dag 2-valg endrer dag 3-hendelse | Innhold lagt på gren, må gjennomspilles |
 | C6 | Økonomi | Fortellingstransaksjoner og faktisk lommebok samstemmer | Åpent |
-| C7 | Kalender | Livsdager og økonomiuker gir forventet progresjon | Åpent |
+| C7 | Kalender | Livsdager og økonomiuker gir forventet progresjon | Syv spilldager/idempotens merget i #6481; lønn ved jobbbytte under ny CI; full E2E ikke godkjent |
 | C8 | Relasjoner | Personer reagerer senere på tidligere valg | Delvis, ende-til-ende ikke bevist |
 | C9 | Skylagring | Samme progresjon etter reload/ny enhet | Åpent som full akseptanse |
 | C10 | 14 dager | Autentisk brukerreise med kausale konsekvenser | Ikke godkjent |
