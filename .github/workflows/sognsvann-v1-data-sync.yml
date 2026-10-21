@@ -17,6 +17,11 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - name: Start from latest Sognsvann PR commit
+        shell: bash
+        run: |
+          git fetch origin history-go/sognsvann-v1-20261021
+          git checkout -B history-go/sognsvann-v1-20261021 origin/history-go/sognsvann-v1-20261021
       - name: Install project dependencies
         run: npm ci --no-audit --no-fund
       - name: Translate historical Sognsvann entry preserving real source hash
@@ -80,6 +85,5 @@ jobs:
           git add data/fagverk/fagverk_release.json data/runtime data/epoker/epoke-place-index.json data/places/places_index.json
           if ! git diff --cached --quiet; then
             git commit -m 'build(history-go): synchronize Sognsvann translations Knowledge and runtime'
-            git pull --rebase origin history-go/sognsvann-v1-20261021
             git push origin HEAD:history-go/sognsvann-v1-20261021
           fi
