@@ -14,10 +14,22 @@
 
 Årstallene 1867, 1888, 1971 og 2008 brukes fordi de er historiske vendepunkter, ikke for å fylle en kronologi. Menneskene som ble syke omtales uten dramatiserende enkelthistorier som kildene ikke dokumenterer. Vannbehandling og kildebeskyttelse skilles fra påstander om dagens kvalitet.
 
-## Bildefunn – ikke ferdiggodkjent
-- Eget stående dokumentarfoto 1024×1369: Grzegorz Wysocki (2007), CC BY 3.0, https://commons.wikimedia.org/wiki/File:Maridalsvannet,_Oslo.jpg.
-- Separat bredt dokumentarfoto: Geir Hval (2022), CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Maridalsvannet_i_Maridalen,_Oslo,_Norway_(2022.11.12).jpg.
-- Begge kildene er åpnet og rettighetene kontrollert, men filene er foreløpig eksterne referanser. Lokal WebP-materialisering, lenketest og visning i faktisk app er ikke dokumentert. **V1-status er kandidat, ikke godkjent**, inntil dette er løst.
+## Bildeleveranse og faktisk app-QA
 
-## Scope og videre porter
-Egen Fagverk-blokk er produsert og registrert. Kildebasert fullquiz (minimum 3×7) og QuizCard (10 spørsmål) skal være fra samme faktabank, uten repetisjon og med eksplisitt fasit, kilder og Knowledge-kobling. Materialisering av runtime, Fagverk release, place-index, eventuelle beskrivelses-/oversettelsespakker, relevante tester og mobil/desktop-QA gjenstår. Ingen V3/vFerdig-status settes. Ikke start neste sted parallelt.
+- Stående WebP: `bilder/places/maridalsvannet_front_portrait.webp`, **600 × 800**. Dokumentarfoto av Grzegorz Wysocki (2007), CC BY 3.0, https://commons.wikimedia.org/wiki/File:Maridalsvannet,_Oslo.jpg.
+- Bred WebP: `bilder/places/maridalsvannet_landscape.webp`, **1400 × 900**. Dokumentarfoto av Geir Hval (2022), CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Maridalsvannet_i_Maridalen,_Oslo,_Norway_(2022.11.12).jpg.
+- Fotografier, kilde-URL, lisens, bearbeiding, bildehash og separat `image`/`frontImage` er registrert i canonical place og i `maridalsvannet-v1-image-qa-20261021.json`. Begge utsnitt er visuelt gjennomgått.
+- **Reell appkontroll bestått 390 og 1440 px.** PlaceCard viste lokalt bilde med faktisk størrelse 600 × 800, QuizCard flippet med innhold, quizknappen åpnet riktig mål og Fagverk-siden lastet flere tusen tegn. Begge bredder hadde 0 px horisontal overflyt og 0 JavaScript-feil.
+- Dokumentasjon: `maridalsvannet-v1-browser-qa-20261021.json` og seks `maridalsvannet-{mobile,desktop}-{placecard,quizcard,fagverk}.png` under `reports/place-production/`.
+
+## Quiz, Knowledge og språk
+
+- Fullquiz: **3 sett × 7 = 21** kildebelagte spørsmål, bevart i `data/quiz/natur/maridalsvannet_sets.json`, med korrekte fasiter og Knowledge-ID-er som er generert gjennom den kanoniske kunnskapsgeneratoren.
+- QuizCard: 10 av de samme spørsmålene, med identisk fasit og kildekobling; både fullquiz og QuizCard er registrert i manifestene.
+- Oversettelser til engelsk, spansk og portugisisk er oppdatert i de eksisterende i18n-filene med ny `_sourceHash`. De er fortsatt merket `machine_translated`, da ekstern morsmålsvurdering ikke er utført. Denne språkoppdateringen er senere enn de dokumenterte appskjermbildene.
+
+## V1-avslutning og gjenstående port
+
+Kanonisk stedstekst, kilde-/claim-pakke v4.2, Fagverk-side, fullquiz, QuizCard, Knowledge, to lisensierte WebP-bilder, place-index, Fagverk-release og place-open er integrert i den samme produksjonsgrenen. Ferdselsreglene og drikkevannshensynene er kontrollert mot Oslo kommune, uten badevannsgaranti eller foreslått bading ved vannkilden.
+
+**Siste gjenstående beslutning:** ordinær GitHub CI må være grønn på seneste PR-head, deretter merge #6519 til `main`. Ingen V3/`vFerdig`-status settes: natur-samlinger, videre objekter og den fulle stedssjekklisten hører til en senere produksjonsfase. Nøklevann starter først etter fullført merge.
