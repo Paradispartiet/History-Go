@@ -1,0 +1,50 @@
+name: DNT C44 one-shot TypeScript bundle synchronization
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/dnt-c44-bundle-sync.yml'
+      - 'js/ui/place-sheet/sections/sources.ts'
+permissions:
+  contents: write
+concurrency:
+  group: dnt-c44-bundle-sync-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  bundle-source:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'agent/dnt-c44-real-placecard-kilder-entry-20261021'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build web artifacts from checked-in TypeScript
+        run: npm run build:web
+      - name: Commit only the two required generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git branch --show-current)" = "agent/dnt-c44-real-placecard-kilder-entry-20261021"
+          git diff --name-only -- dist/web | while IFS= read -r file; do
+            case "$file" in
+              dist/web/place-unified-surface.js|dist/web/place-unified-surface.js.map) ;;
+              *) echo "Unexpected generated change: $file"; exit 4 ;;
+            esac
+          done
+          test -s dist/web/place-unified-surface.js
+          test -s dist/web/place-unified-surface.js.map
+          grep -q hg-place-source-photo-grid dist/web/place-unified-surface.js
+          git add dist/web/place-unified-surface.js dist/web/place-unified-surface.js.map
+          if git diff --cached --quiet; then
+            echo "No generated changes"; exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'build(dnt): sync canonical unified Sources web bundle for C44'
+          git push origin HEAD:agent/dnt-c44-real-placecard-kilder-entry-20261021
