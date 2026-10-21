@@ -51,27 +51,36 @@ try {
     });
     const page = await context.newPage();
     const errors = [], caseResult = {name,width,height,outcome:"PENDING"};
+    let phase = "launch";
     page.on("pageerror",error=>errors.push(error.message));
     try {
+      phase="load-app";
       const res = await page.goto(base+"index.html#/map",{waitUntil:"domcontentloaded",timeout:40000});
       assert.equal(res?.status(),200);
+      phase="app-ready";
       await page.waitForFunction(() =>
         window.__HG_APP_READY__===true && window.__HG_ROUTER_STARTED__===true &&
         window.HG_PLACES_READY===true, null,{timeout:45000});
+      phase="onboarding-visible";
       await page.locator("#hgOnboardingModal .hg-onb-primary").waitFor({state:"visible",timeout:10000});
+      phase="onboarding-click";
       await page.locator("#hgOnboardingModal .hg-onb-primary").click({timeout:10000});
+      phase="onboarding-dismissed";
       await page.waitForFunction(() => {
         const el = document.querySelector("#hgOnboardingModal");
         return el && el.getAttribute("aria-hidden")==="true" && getComputedStyle(el).display==="none";
       },null,{timeout:10000});
       assert.equal(await page.evaluate(()=>localStorage.getItem("hg_onboarding_shown_v1")),"1");
       // The normal app route, shared by marker click, Nearby and search.
+      phase="route-to-place";
       await page.evaluate(id=>window.HGAppRouter.toPlace(id),placeId);
+      phase="wait-place-card";
       await page.waitForFunction(id =>
         document.querySelector("#placeCard")?.dataset?.currentPlaceId === id &&
         document.querySelector("#placeCard")?.classList.contains("is-open"),placeId,{timeout:35000});
       assert.equal(await page.locator("#pcTitle").innerText(),"Det Norske Teatret");
       // C50: the ACTUAL adaptive Objects collection, not the separate Kilder photo grid.
+      phase="objects-icon-preview";
       await page.waitForFunction(() => {
         const icon=document.querySelector("#pcObjectsIcon");
         return icon && !icon.hidden && icon.dataset.collectionItemCount==="2"
@@ -80,21 +89,26 @@ try {
       const objectIcon=page.locator("#pcObjectsIcon");
       assert.equal(await objectIcon.getAttribute("data-collection-id"),"objects");
       const cardPreview=objectIcon.locator("img.pc-person-img");
+      phase="preview-visible";
       await cardPreview.waitFor({state:"visible",timeout:15000});
       const previewSrc=await cardPreview.getAttribute("src");
       assert.equal(previewSrc,place.objects[0].image);
+      phase="preview-decoded";
       await page.waitForFunction(src=>{
         const img=document.querySelector('#pcObjectsIcon img.pc-person-img');
         return img?.getAttribute("src")===src && img.complete && img.naturalWidth===800;
       },place.objects[0].image,{timeout:15000});
       await objectIcon.screenshot({path:artifactPath+"/"+name+"-objects-preview.png"});
+      phase="objects-click";
       await objectIcon.click({timeout:15000});
+      phase="popup-member-rows";
       await page.waitForFunction(()=>{
         const rows=[...document.querySelectorAll(".pc-object-member")];
         return rows.length>=2 && rows.some(x=>/Illustrasjon – ikke fotografi/.test(x.textContent));
       },null,{timeout:15000});
       const memberImages=page.locator("#pcObjectsList .pc-object-member img");
       assert.equal(await memberImages.count(),2,"the same canonical member data must drive collection rows");
+      phase="popup-member-images-decoded";
       await page.waitForFunction(()=>{
         const images=[...document.querySelectorAll("#pcObjectsList .pc-object-member img")];
         return images.length===2 && images.every(el=>el.complete && el.naturalWidth>0 && el.naturalHeight>0);
@@ -117,6 +131,7 @@ try {
       await page.screenshot({path:shot,fullPage:true});
       caseResult.screenshot=shot;
       caseResult.outcome="PASS";
+      caseResult.phase="all-done";
       caseResult.welcome_dismissed=true;
       caseResult.app_route="#/place/"+placeId;
       caseResult.objects_preview_loaded=true;
@@ -125,11 +140,20 @@ try {
       console.log("C50 "+name+" native router -> unified PlaceCard -> Objects PASS");
     }catch(error){
       caseResult.outcome="BLOCKED";
+      caseResult.phase=phase;
       caseResult.error=String(error);
+      caseResult.dom=await page.evaluate(() => ({
+        url:location.href, route:window.location.hash,
+        ready:{app:window.__HG_APP_READY__,router:window.__HG_ROUTER_STARTED__,places:window.HG_PLACES_READY},
+        onboarding:{hidden:document.querySelector('#hgOnboardingModal')?.getAttribute('aria-hidden'),display:document.querySelector('#hgOnboardingModal') && getComputedStyle(document.querySelector('#hgOnboardingModal')).display},
+        place:{id:document.querySelector('#placeCard')?.dataset?.currentPlaceId,open:document.querySelector('#placeCard')?.classList.contains('is-open')},
+        objects:{iconHidden:document.querySelector('#pcObjectsIcon')?.hidden,count:document.querySelector('#pcObjectsIcon')?.dataset?.collectionItemCount,preview:document.querySelector('#pcObjectsIcon')?.dataset?.previewStatus,rows:document.querySelectorAll('#pcObjectsList .pc-object-member').length,allRows:document.querySelectorAll('.pc-object-member').length},
+        overlay:document.querySelector('.pc-round-popup')?.outerHTML.slice(0,400)
+      })).catch(e=>({error:String(e)}));
       const shot=artifactPath+"/"+name+"-failure.png";
       await page.screenshot({path:shot,fullPage:true,timeout:7000}).catch(()=>{});
       caseResult.screenshot=shot;
-      console.error("C50 "+name+" "+caseResult.error);
+      console.error("C50 "+name+" phase="+phase+" "+caseResult.error+" DOM="+JSON.stringify(caseResult.dom));
       process.exitCode=1;
     }finally{
       caseResult.page_errors=errors.slice(0,8);
