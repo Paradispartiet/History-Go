@@ -3,7 +3,7 @@ name: Gamle Aker kirke v1 real browser acceptance
 on:
   pull_request:
     paths:
-      - 'tests/gamle_aker_kirke-v1-real-browser.mjs'
+      - 'tests/gamle-aker-v1-real-browser.mjs'
       - 'data/places/historie/oslo/places_historie/gamle_aker_kirke.json'
       - 'data/quiz/historie/gamle_aker_kirke_sets.json'
       - 'data/quizcards/historie/topp10_historie_sted_kort_batch1.json'
@@ -12,7 +12,7 @@ on:
       - 'tests/gamle-aker-v1-quizcard.test.mjs'
       - 'bilder/places/auto/gamle_aker_kirke__sorsiden.jpg'
       - 'bilder/places/auto/gamle_aker_kirke__sorsiden_card.jpg'
-      - '.github/workflows/gamle_aker_kirke-v1-browser.yml'
+      - '.github/workflows/gamle-aker-v1-browser.yml'
   workflow_dispatch:
 concurrency:
   group: gamle_aker_kirke-v1-browser-${{ github.event.pull_request.number || github.ref }}
@@ -39,7 +39,7 @@ jobs:
           set -euo pipefail
           CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
           test -n "$CHROME_BIN"
-          CHROME_BIN="$CHROME_BIN" node tests/gamle_aker_kirke-v1-real-browser.mjs
+          CHROME_BIN="$CHROME_BIN" node tests/gamle-aker-v1-real-browser.mjs
       - name: Complete all 21 questions on desktop and mobile without a false physical visit
         shell: bash
         run: |
