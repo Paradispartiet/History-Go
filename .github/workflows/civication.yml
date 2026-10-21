@@ -61,5 +61,8 @@ jobs:
       - name: Validate career matrix before full suite
         run: node scripts/audit-civication-career-gameplay.mjs --check
 
+      - name: Validate Role World readiness before full suite
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+
       - name: Run complete Civication suite
         run: npm run test:civication
