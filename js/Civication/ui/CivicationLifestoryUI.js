@@ -387,7 +387,19 @@
   window.addEventListener("civi:lifePositionChanged", refreshDayEvent);
 
   function refreshDayEvent() {
-    if (shellStory?.status === "unavailable") render();
+    if (shellStory?.status === "unavailable") { render(); return; }
+    // A day-end inbox action can become pending after Min dag was first
+    // rendered. Refresh only the finished-day summary so the real "Åpne
+    // innboksen" button and next-day disabled state stay synchronized, without
+    // re-running the Wave A inbox projection or replacing an active story.
+    if (!state?.dagFerdig || !content) return;
+    const summary = getPanel()?.querySelector(".civi-lifestory-summary");
+    const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
+    if (!summary || !Runner?.getView) return;
+    const view = Runner.getView(state, content);
+    if (!view?.dagFerdig) return;
+    const html = renderSummaryHtml(view);
+    if (summary.outerHTML !== html) summary.outerHTML = html;
   }
   // updateProfile: jobbtilbud kan ha endret rollen, og HG_Lifestyle kan ha
   // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
