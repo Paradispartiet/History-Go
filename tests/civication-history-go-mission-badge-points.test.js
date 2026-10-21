@@ -39,4 +39,13 @@ assert.equal(earned.source, "merits");
 assert.equal(api.getSession().required_points, 10);
 assert.equal(storage.has("civication_lifestory_v1"), false,
   "a completed toast must not advance Life Story or activate a role");
+const openGoal = { ...mission, completion_mode: "explore_category", required_points: null,
+  category_id: "musikk", payload: { completion_mode: "explore_category", required_points: null } };
+storage.set("merits_by_category", JSON.stringify({ musikk: { points: 100 } }));
+assert.equal(api.evaluateCompletion(openGoal).completed, false,
+  "unknown merit threshold cannot be declared reached simply because points exist");
+const noCategory = { ...openGoal, category_id: null };
+assert.equal(api.evaluateCompletion(noCategory).completed, false,
+  "an unselected path is an exploration guide, not an unlock");
+
 console.log("History Go Civication mission toast follows genuine badge threshold");
