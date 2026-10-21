@@ -4505,7 +4505,8 @@
           "konsekvensTekst": "Du åpner karrierepanelet. Du kan undersøke reelle tilbud og krav; dette er ikke en ansettelse eller lovnad om jobb.",
           "effekter": {
             "flagg": {
-              "life21_career_interest": true
+              "life21_career_interest": true,
+              "life21_initial_focus": "jobb"
             }
           },
           "handling": {
@@ -5146,7 +5147,8 @@
           "konsekvensTekst": "Du åpner karrierepanelet for å sjekke eksisterende tilbud og hva du eventuelt må dokumentere. Du beholder alle private spor. En søknad og et tilbud er ikke det samme.",
           "effekter": {
             "flagg": {
-              "life21_career_interest": true
+              "life21_career_interest": true,
+              "life21_week3_focus": "jobb"
             }
           },
           "handling": {
@@ -5744,6 +5746,177 @@
             },
             "meters": {
               "psyke": 1
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d9_realistisk_krav",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En jobb er mer enn en overskrift",
+      "tekst": "Et tilbud må eksistere før du kan takke ja. Du bestemmer om du vil forberede deg eller undersøke faktiske muligheter.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "krav",
+          "tekst": "Undersøk et kvalifikasjonskrav",
+          "konsekvensTekst": "Du noterer hva du faktisk kan dokumentere og hva du mangler.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "krav"
+            }
+          }
+        },
+        {
+          "id": "se_tilbud",
+          "tekst": "Se etter reelle jobbtilbud",
+          "konsekvensTekst": "Du åpner karrierepanelet. Ingen ansettelse oppstår av å se.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "se_tilbud"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d13_folgebrev",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Det du kan vise fram",
+      "tekst": "Du trenger ett konkret eksempel på erfaringen din, ikke en lang liste med udokumenterte egenskaper.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "konkret",
+          "tekst": "Beskriv én handling og resultatet",
+          "konsekvensTekst": "Du noterer en faktisk erfaring uten å finne opp attester.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "konkret"
+            }
+          }
+        },
+        {
+          "id": "tilbud",
+          "tekst": "Undersøk om et nytt tilbud finnes",
+          "konsekvensTekst": "Du ser etter reelle tilbud. Søknad er ikke det samme som ansettelse.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "tilbud"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d16_kompetanse_eller_jobb",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Neste steg krever en faktisk mulighet",
+      "tekst": "Vil du arbeide, må du enten vurdere et reelt tilbud eller arbeide videre med relevante ferdigheter. Ingen automatisk jobb venter.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Forbered ett eksempel til en samtale",
+          "konsekvensTekst": "Du lager et ærlig eksempel. Ingen innkalling er opprettet.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "forbered"
+            }
+          }
+        },
+        {
+          "id": "se_karriere",
+          "tekst": "Åpne Karriere og vurder reelle tilbud",
+          "konsekvensTekst": "Karrierepanelet viser eksisterende tilbud og krav. Bare jobbens akseptregler kan ansette deg.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "se_karriere"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d21_jobb_veien",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tre uker: Jobb kan være en vei videre",
+      "tekst": "Du har undersøkt jobbmuligheter uten å gi opp privatlivet. Et jobbtilbud og en livsposisjon er forskjellige ting.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "utforsker",
+          "tekst": "Undersøk jobbmuligheter og interesser videre",
+          "konsekvensTekst": "Du fortsetter å utforske. Ingen jobb blir opprettet.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "utforsker"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "hverdagsbygger",
+          "tekst": "Velg en bærekraftig retning med eller uten jobb",
+          "konsekvensTekst": "Du velger en mulig livsretning som kan kombineres med arbeid.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "hverdagsbygger"
             }
           },
           "handling": {
