@@ -958,6 +958,11 @@
       return "";
     }
   }
+  function safeLocalSourcePhoto(value) {
+    const src = text10(value);
+    return /^bilder\/objects\/[a-z0-9_/-]+\.webp$/i.test(src) && !src.includes("..") ? src : "";
+  }
+  var sourcePhotoLicenses = /* @__PURE__ */ new Set(["CC BY-SA 4.0", "CC BY-SA 3.0", "CC BY 4.0", "CC0 1.0"]);
   function uniqueBy2(values, key) {
     const seen = /* @__PURE__ */ new Set();
     return values.filter((value) => {
@@ -978,7 +983,11 @@
     const configuredLinks = [place, ...list3(articles)].flatMap((value) => list3(value == null ? void 0 : value.externalLinks)).map((link) => ({
       type: text10((link == null ? void 0 : link.type) || "source"),
       label: text10((link == null ? void 0 : link.label) || (link == null ? void 0 : link.title)),
-      url: safeHttpsUrl4(link == null ? void 0 : link.url)
+      url: safeHttpsUrl4(link == null ? void 0 : link.url),
+      previewImage: safeLocalSourcePhoto(link == null ? void 0 : link.previewImage),
+      previewAlt: text10(link == null ? void 0 : link.previewAlt),
+      credit: text10(link == null ? void 0 : link.credit),
+      license: text10(link == null ? void 0 : link.license)
     }));
     const beforeAfterLinks = [
       ...strings3(((_a = place == null ? void 0 : place.for_na) == null ? void 0 : _a.sources) || ((_b = place == null ? void 0 : place.for_na) == null ? void 0 : _b.kilder) || ((_c = place == null ? void 0 : place.for_na) == null ? void 0 : _c.source)),
@@ -986,9 +995,23 @@
       text10(((_i = (_h = place == null ? void 0 : place.for_na) == null ? void 0 : _h.nowImageMeta) == null ? void 0 : _i.sourcePage) || ((_k = (_j = place == null ? void 0 : place.for_na) == null ? void 0 : _j.now_image_meta) == null ? void 0 : _k.sourcePage))
     ].map((url) => ({ type: "image_source", label: "Bilde- og sammenligningskilde", url: safeHttpsUrl4(url) }));
     const links = uniqueBy2([...configuredLinks, ...beforeAfterLinks].filter((link) => link.url), (link) => link.url);
+    const photos = links.filter((link) => link.type === "image_source" && link.previewImage && link.credit && sourcePhotoLicenses.has(link.license));
     return `
     <section class="hg-section hg-place-sources-section pc-sheet-canonical-sources" data-hg-place-sheet-owner="sources">
       <h3>Kilder</h3>
+      ${photos.length ? `<section class="hg-section hg-place-section hg-place-tab-section pc-sheet-documentary-photos">
+        <h4>Dokumenterte kildebilder</h4>
+        <p class="hg-place-source-photo-note">Dokumentarfoto \u2013 ikke en ferdig Objects-samling.</p>
+        <div class="hg-place-source-photo-grid">${photos.map((photo) => `
+          <figure class="hg-place-source-photo">
+            <img src="${escapeHtml8(photo.previewImage)}" alt="${escapeHtml8(photo.previewAlt || photo.label)}" loading="lazy" decoding="async">
+            <figcaption>
+              <strong>${escapeHtml8(photo.label)}</strong>
+              <span>${escapeHtml8(photo.credit)} \xB7 ${escapeHtml8(photo.license)}</span>
+              <a href="${escapeHtml8(photo.url)}" target="_blank" rel="noopener noreferrer">\xC5pne originalkilde \u2197</a>
+            </figcaption>
+          </figure>`).join("")}</div>
+      </section>` : ""}
       ${labels.length ? `<section class="hg-section hg-place-section hg-place-tab-section"><h4>Kilder i stedprofilen</h4><ul class="hg-place-source-list">${labels.map((label) => `<li>${escapeHtml8(label)}</li>`).join("")}</ul></section>` : ""}
       ${links.length ? `<section class="hg-section hg-place-section hg-place-tab-section"><h4>Kilder og eksterne oppslag</h4><div class="hg-place-source-link-list">${links.map((link) => `<a href="${escapeHtml8(link.url)}" target="_blank" rel="noopener noreferrer"><strong>${escapeHtml8(link.label || link.url)}</strong><span>${escapeHtml8(humanize(link.type))} \u2197</span></a>`).join("")}</div></section>` : ""}
       ${!labels.length && !links.length ? '<div class="hg-place-tab-empty">Ingen brukerrettede kilder er registrert for dette stedet enn\xE5.</div>' : ""}

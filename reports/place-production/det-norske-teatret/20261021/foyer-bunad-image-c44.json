@@ -1,0 +1,42 @@
+{
+  "schema": "history_go_dnt_c44_foyer_bunad_image_assessment_v1",
+  "place_id": "det_norske_teatret",
+  "date": "2026-10-21",
+  "scope": "Public sources and images reviewed for an object-level picture of Hulda Garborg's exact personal bunad reportedly on display in the theatre foyer. No permission requests and no copies.",
+  "verified_identity": [
+    {
+      "url": "https://www.detnorsketeatret.no/bakgrunnsartiklar/fra-hulda-og-halldis-til-herborg",
+      "supports": "Theatre explicitly states that Hulda Garborg's own bunad is exhibited in its foyer; its shown Anno Domkirkeodden photo depicts Hulda Garborg wearing a bunad, not a separately identified object photograph of the foyer exhibit."
+    },
+    {
+      "url": "https://www.huldabunader.no/pages/hulda-garborg",
+      "supports": "Reconstruction studio states it visited and studied Hulda Garborg's original bunad exhibited at Det Norske Teatret. Its commercial photographs represent modern reconstructed versions."
+    }
+  ],
+  "reviewed_image_nearmisses": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Hulda_Garborg-bunad.jpg",
+      "exclusion": "Portrait of Hulda Garborg, not independently evidenced to show the exact physical object exhibited in the current foyer. 200x256 resolution. Do not label an artifact photograph."
+    },
+    {
+      "url": "https://lokalhistoriewiki.no/wiki/Hulda_Garborg",
+      "exclusion": "Caption describes 'Bunad etter Hulda Garborg på Labråten i Asker', a bunad after Hulda at a different location; not documentation of this particular theatre foyer exhibit."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:BUNADER_Hulda_Garborg-drakten_(etter_h%C3%B8ytidsdrakt_fra_Gol)_ca_1950_kvinnebunad_barnebunad_lue_(privateid)_Norwegian_national_woman%27s_costume_%22Hulda_costume%22._Slottsfjellsmuseet_Regional_Museum_T%C3%B8nsberg,_Norway_2021-11-10_05.jpg",
+      "exclusion": "Modern documented Hulda-style costumes on mannequins at Slottsfjellsmuseet, Tønsberg, identified circa 1950; neither Hulda's personally worn bunad nor the separate foyer display at Det Norske Teatret."
+    }
+  ],
+  "conclusion": "NO_OBJECT_IDENTIFIED_PUBLISHABLE_FOYER_EXHIBIT_PHOTO_FOUND_IN_REVIEWED_PUBLIC_SOURCES",
+  "state": "OBJECTS_BLOCKED_ZERO_CANONICAL_MEMBERS",
+  "c44_ui_fix": "Fixed canonical TypeScript js/ui/place-sheet/sections/sources.ts plus its built dist/web/place-unified-surface.js and responsive css/place-sheet-sources.css. The real inline Kilder section on unified PlaceCard now displays locally licensed Madame de Sade image, credit and original source while Juleroser remains an external link. No new button; retired #pcInfo and #pcSources remain absent.",
+  "restrictions": [
+    "No canonical Objects or collection previews may be published based on lookalike/reconstruction images.",
+    "Public source links may be shown without copying images into the app.",
+    "No new requests for permission or contacts may be sent.",
+    "Do not treat absence in this bounded search as proof that no suitable photograph exists anywhere."
+  ],
+  "rejected_reintroduction_note": "C44 first attempts to restore old pcInfo or add pcSources were deliberately reversed after confirming existing unified PlaceCard Kilder navigation; canonical app render is TypeScript owned.",
+  "actual_browser_test": "tests/det-norske-teatret-real-placecard-sources-c44.mjs (normal app route and the existing inline Kilder jump; 390 and 1280 viewport)",
+  "publish_status": "SOURCE_PHOTO_ONLY_NO_CANONICAL_OBJECTS"
+}

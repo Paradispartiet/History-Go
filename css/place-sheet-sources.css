@@ -69,3 +69,46 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-sources 
 @media (max-width:720px){
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-sources .hg-place-source-link-list{grid-template-columns:1fr;}
 }
+
+/* C44: licensed documentary photos in the canonical unified PlaceCard Kilder
+   section. Neither external original links nor canonical Objects previews. */
+body.hg-app #placeCard.is-unified-place .pc-sheet-sources .hg-place-source-photo-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));
+  gap:12px;
+}
+body.hg-app #placeCard.is-unified-place .pc-sheet-sources .hg-place-source-photo-note{
+  margin:0 0 12px;
+  color:rgba(255,255,255,.72);
+  font-size:12px;
+}
+body.hg-app #placeCard.is-unified-place .pc-sheet-sources .hg-place-source-photo{
+  min-width:0;
+  margin:0;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:15px;
+  background:rgba(0,0,0,.16);
+}
+body.hg-app #placeCard.is-unified-place .pc-sheet-sources .hg-place-source-photo img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:340px;
+  object-fit:contain;
+  background:rgba(0,0,0,.28);
+}
+body.hg-app #placeCard.is-unified-place .pc-sheet-sources .hg-place-source-photo figcaption{
+  display:grid;
+  gap:6px;
+  padding:12px;
+  font-size:12px;
+  overflow-wrap:anywhere;
+}
+body.hg-app #placeCard.is-unified-place .pc-sheet-sources .hg-place-source-photo figcaption span{
+  color:rgba(255,255,255,.78);
+}
+body.hg-app #placeCard.is-unified-place .pc-sheet-sources .hg-place-source-photo figcaption a{
+  color:#ffe168;
+  font-weight:750;
+}

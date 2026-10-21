@@ -1,0 +1,48 @@
+name: Det Norske Teatret C44 unified PlaceCard Sources QA
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/det-norske-teatret-real-route-c44.yml'
+      - 'tests/det-norske-teatret-real-placecard-sources-c44.mjs'
+      - 'js/ui/place-sheet/sections/sources.ts'
+      - 'css/place-sheet-sources.css'
+      - 'dist/web/place-unified-surface.js'
+      - 'dist/web/place-unified-surface.js.map'
+      - 'js/router/AppRouter.js'
+      - 'js/views/MapView.js'
+      - 'js/ui/onboarding-welcome.js'
+      - 'data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dnt-c44-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native-placecard-sources-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify native unified PlaceCard route and licensed Kilder photo
+        run: node tests/det-norske-teatret-real-placecard-sources-c44.mjs
+      - name: Preserve QA report and screenshots even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dnt-c44-real-route-evidence
+          path: artifacts/dnt-c44/*
+          if-no-files-found: warn
+          retention-days: 7
