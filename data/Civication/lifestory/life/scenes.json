@@ -93,7 +93,12 @@
           "id": "svar_aerlig",
           "tekst": "Svare ærlig, selv om det koster krefter",
           "tone": "ærlig",
-          "skills_practice": {"skill_id":"social_awareness","activity_type":"honest_relationship_communication","evidence_flag":"svarte_aerlig_privat","delta":1},
+          "skills_practice": {
+            "skill_id": "social_awareness",
+            "activity_type": "honest_relationship_communication",
+            "evidence_flag": "svarte_aerlig_privat",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 5,
@@ -209,7 +214,12 @@
           "id": "endre_maaten",
           "tekst": "Endre noe konkret i morgen",
           "tone": "reflektert",
-          "skills_practice": {"skill_id":"agency","activity_type":"prepare_new_daily_routine","evidence_flag":"vil_endre_arbeidsmaate","delta":1},
+          "skills_practice": {
+            "skill_id": "agency",
+            "activity_type": "prepare_new_daily_routine",
+            "evidence_flag": "vil_endre_arbeidsmaate",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -466,7 +476,12 @@
           "id": "legg_en_plan",
           "tekst": "Legge en enkel plan for uka og sove på det",
           "tone": "ansvarlig",
-          "skills_practice": {"skill_id":"wisdom_judgement","activity_type":"build_weekly_budget_plan","evidence_flag":"dag2_la_oekonomiplan","delta":1},
+          "skills_practice": {
+            "skill_id": "wisdom_judgement",
+            "activity_type": "build_weekly_budget_plan",
+            "evidence_flag": "dag2_la_oekonomiplan",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 4,
@@ -1219,7 +1234,12 @@
           "id": "del_det",
           "tekst": "Dele det du lærte med noen som vil like det",
           "tone": "raus",
-          "skills_practice": {"skill_id":"communication","activity_type":"explain_lesson_to_friend","evidence_flag":"delte_det_du_laerte","delta":2},
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "explain_lesson_to_friend",
+            "evidence_flag": "delte_det_du_laerte",
+            "delta": 2
+          },
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -1658,7 +1678,12 @@
           "id": "ta_praten",
           "tekst": "Ta praten ordentlig — hverdagslige ting er aldri bare hverdagslige",
           "tone": "nær",
-          "skills_practice": {"skill_id":"social_awareness","activity_type":"hold_family_conversation","evidence_flag":"tok_familiepraten","delta":1},
+          "skills_practice": {
+            "skill_id": "social_awareness",
+            "activity_type": "hold_family_conversation",
+            "evidence_flag": "tok_familiepraten",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
               "familie": 6
@@ -2324,7 +2349,12 @@
           "id": "sette_gjerde_naa",
           "tekst": "Gjøre én konkret ting nå: en tur ut, en økt, et kvarter med noe du liker",
           "tone": "bevisst",
-          "skills_practice": {"skill_id":"agency","activity_type":"take_deliberate_break","evidence_flag":"satte_gjerde","delta":1},
+          "skills_practice": {
+            "skill_id": "agency",
+            "activity_type": "take_deliberate_break",
+            "evidence_flag": "satte_gjerde",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -4400,6 +4430,703 @@
           "effekter": {
             "flagg": {
               "wa_e_c05_etterspill": "senere_kontroll"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d8_et_eget_spor",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 8,
+      "fase": "morgen",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Du har mer enn en jobbsøknad",
+      "tekst": "En ny uke begynner. Du har fulgt opp det du måtte, men de ledige timene blir fremdeles formet av beskjeder utenfra. Du kan bestemme hva du faktisk vil gjøre denne uka — uten å erklære deg som noe bestemt ennå.",
+      "valg": [
+        {
+          "id": "mennesker",
+          "tekst": "Oppsøk en konkret aktivitet sammen med andre",
+          "konsekvensTekst": "Du finner tidspunktet for et åpent treff i nærmiljøet. Dette er en plan, ikke en ny vennekrets.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_focus": "fellesskap",
+              "wa_e_c21_plan": true
+            }
+          }
+        },
+        {
+          "id": "skape",
+          "tekst": "Sett av plass til et lite prosjekt",
+          "konsekvensTekst": "Du rydder plass ved bordet og velger ett prosjekt som kan bli ferdig. Det finnes foreløpig bare som en avtale med deg selv.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_focus": "skape",
+              "wa_e_c21_plan": true
+            }
+          }
+        },
+        {
+          "id": "laere",
+          "tekst": "Velg et spørsmål du vil undersøke ordentlig",
+          "konsekvensTekst": "Du skriver ned et konkret spørsmål og finner hvor du kan undersøke det. Å stille spørsmålet er ikke det samme som å ha svaret.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_focus": "laere",
+              "wa_e_c21_plan": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d9_fellesskap",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Et åpent bord i bydelen",
+      "tekst": "Du kommer til et lavterskel treff med flere bord. Det er lov å delta uten å presentere en bestemt rolle eller å love noe for neste uke.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c21_focus": "fellesskap"
+        }
+      },
+      "valg": [
+        {
+          "id": "gjennomfor",
+          "tekst": "Bli igjen og hjelp til med den konkrete oppgaven",
+          "konsekvensTekst": "Du blir igjen og hjelper til med å sette bordene på plass. Arrangøren takker for innsatsen, men du har ikke meldt deg inn i noe.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_practice": "fellesskap",
+              "wa_e_c21_did_day9": true
+            }
+          },
+          "skills_practice": {
+            "skill_id": "social_awareness",
+            "activity_type": "gjennomfor_life21",
+            "evidence_flag": "wa_e_c21_did_day9",
+            "delta": 1
+          }
+        },
+        {
+          "id": "observer",
+          "tekst": "Se hvordan de organiserer seg først",
+          "konsekvensTekst": "Du spør hvem som koordinerer oppgavene og tar med deg tidspunktet for neste treff. Ingen antar at du allerede tilhører miljøet.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_practice": "forberedelse"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d9_skape",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Prosjektet får en første form",
+      "tekst": "Du tar fram materialene til det lille prosjektet. Det frister å bruke tiden på å planlegge noe stort, men det er den første utførte delen som teller.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c21_focus": "skape"
+        }
+      },
+      "valg": [
+        {
+          "id": "gjennomfor",
+          "tekst": "Lag en første utprøving du kan vise fram",
+          "konsekvensTekst": "Du gjør ferdig en enkel prøveversjon, skriver ned hva som fungerte og hva som må endres. Det er arbeid, ikke en jobb eller et salg.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_practice": "skape",
+              "wa_e_c21_did_day9": true
+            }
+          },
+          "skills_practice": {
+            "skill_id": "creativity",
+            "activity_type": "gjennomfor_life21",
+            "evidence_flag": "wa_e_c21_did_day9",
+            "delta": 1
+          }
+        },
+        {
+          "id": "observer",
+          "tekst": "Begynn med å sortere ideene",
+          "konsekvensTekst": "Du prioriterer ideene og noterer hva du trenger før du kan produsere noe. Et notat er ikke en ferdig prototype.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_practice": "forberedelse"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d9_laere",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Spørsmålet møter en kilde",
+      "tekst": "Du finner både en kort forklaring og en mer utfyllende kilde. De er ikke helt enige, så du må velge hvordan du går videre.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c21_focus": "laere"
+        }
+      },
+      "valg": [
+        {
+          "id": "gjennomfor",
+          "tekst": "Sammenlign kildene og skriv hva som faktisk støttes",
+          "konsekvensTekst": "Du noterer hvor de to kildene er enige og uenige, og lar et ubesvart spørsmål stå åpent. Det er gjennomført kildearbeid, ikke en fasit på History Go.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_practice": "laere",
+              "wa_e_c21_did_day9": true
+            }
+          },
+          "skills_practice": {
+            "skill_id": "wisdom_judgement",
+            "activity_type": "gjennomfor_life21",
+            "evidence_flag": "wa_e_c21_did_day9",
+            "delta": 1
+          }
+        },
+        {
+          "id": "observer",
+          "tekst": "Les innledningen og behold spørsmålet",
+          "konsekvensTekst": "Du leser innledningen og noterer at du må undersøke mer. Du later ikke som om arbeidet er ferdig.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_practice": "forberedelse"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d10_virkeligheten_koster_tid",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 10,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "En time er ikke gratis",
+      "tekst": "Du har sendt søknader og besvart praktiske beskjeder. Tiden du satte av til deg selv, konkurrerer nå med en oppgave som ikke kan utsettes. Du må prioritere uten å gjøre økonomien eller ansvaret usynlig.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Gjennomfør den nødvendige oppgaven og bevar en halvtime",
+          "konsekvensTekst": "Du følger opp det som haster, og beholder en kort økt til den valgte retningen. Begge deler får plass, men i mindre omfang.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_time_choice": "avgrenset"
+            }
+          }
+        },
+        {
+          "id": "ta_regningen",
+          "tekst": "Bruk hele økten på dagens nødvendigheter",
+          "konsekvensTekst": "Du prioriterer dagens forpliktelser. Din egen plan må flyttes; du har ikke sviktet en annen person.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_time_choice": "utsatt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d11_en_andre_stemme",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 11,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Et råd som ikke er en ordre",
+      "tekst": "En bekjent spør hvordan det går. Når du forteller hva du forsøker, gir vedkommende et råd du ikke hadde bedt om. Dere trenger ikke være enige for å fortsette samtalen.",
+      "valg": [
+        {
+          "id": "forklar",
+          "tekst": "Forklar hva du prøver å få til, og hva som ennå er usikkert",
+          "konsekvensTekst": "Du beskriver forsøket uten å kalle det en ny identitet. Bekjenten skjønner bedre hvorfor dette er viktig, men lover ingen hjelp.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_feedback": "forklart"
+            }
+          }
+        },
+        {
+          "id": "lytt",
+          "tekst": "Spør hva vedkommende selv har erfart",
+          "konsekvensTekst": "Du lytter til et konkret eksempel. Du får et annet perspektiv, men ingen løfter om kontakt eller arbeid.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_feedback": "lyttet"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d12_det_som_blir_liggende",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 12,
+      "fase": "morgen",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Den lille bunken på kjøkkenbordet",
+      "tekst": "Et brev, noen kvitteringer og en ubetalt utgift ligger fremme. Ingen avgjørelse kommer av seg selv, selv om du har begynt å finne en egen rytme.",
+      "valg": [
+        {
+          "id": "sorter",
+          "tekst": "Sorter bilagene og lag en realistisk oversikt",
+          "konsekvensTekst": "Du noterer utgiftene og skiller de kjente datoene fra det du ennå må undersøke. Oversikten utbetaler ingen penger.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_economy_check": "gjennomfort"
+            }
+          }
+        },
+        {
+          "id": "be_om_tid",
+          "tekst": "Be om tid til å gjennomgå det uten å late som alt er løst",
+          "konsekvensTekst": "Du bestemmer en konkret tid for gjennomgangen. Brevet er fortsatt uavklart, og ingen fiktiv betaling registreres.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_economy_check": "utsatt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d13_et_aerlig_spoersmaal",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Hva har du faktisk gjort?",
+      "tekst": "En uke etter at du valgte et spor, ser du på det du har skrevet og opplevd. Noe er gjennomført. Noe har bare vært en plan. Forskjellen er viktigere enn å virke imponerende.",
+      "valg": [
+        {
+          "id": "gjennomgang",
+          "tekst": "Skille mellom gjennomførte aktiviteter og planer",
+          "konsekvensTekst": "Du skriver en nøktern liste over hva som skjedde og hva du fortsatt ønsker å prøve. Den gir deg et bedre grunnlag for neste uke.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_review": "noektern"
+            }
+          }
+        },
+        {
+          "id": "snakke",
+          "tekst": "Drøft erfaringen med en person uten å be om vurdering",
+          "konsekvensTekst": "Du forteller hva som fungerte og hvor du nølte. Samtalen gjør ikke en hobby til en formell kompetanse.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_review": "samtale"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d14_to_uker",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 14,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "To uker er gått",
+      "tekst": "Du er fremdeles i samme liv, men ikke på samme sted som da uka begynte. Noen avtaler er blitt holdt, andre utsatt. Du må velge hvordan du tar fatt på en siste prøveuke.",
+      "valg": [
+        {
+          "id": "proev_igjen",
+          "tekst": "Gi det valgte sporet én ny konkret sjanse",
+          "konsekvensTekst": "Du setter av tid til en gjennomførbar aktivitet neste uke. To uker med planer alene gir deg ikke noen livsposisjon.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_week3": "foelg_opp"
+            }
+          }
+        },
+        {
+          "id": "endre_rammen",
+          "tekst": "Juster ambisjonen slik at den passer med de faktiske pliktene",
+          "konsekvensTekst": "Du gjør prosjektet mindre. Det blir lettere å utføre, uten at det du allerede har gjort blir visket ut.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_week3": "mindre_omfang"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d15_noen_mangler_noe",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 15,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "En annen person har et problem",
+      "tekst": "Du blir kontaktet om en liten praktisk utfordring. Det er mulig å hjelpe, men ingen har rett til hele dagen din. Hvordan du avgrenser hjelpen, vil prege kontakten videre.",
+      "valg": [
+        {
+          "id": "konkret",
+          "tekst": "Tilby en avgrenset ting du faktisk kan utføre",
+          "konsekvensTekst": "Du hjelper til med akkurat den avtalte delen. Den andre personen får hjelp, og du beholder tid til egne oppgaver.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_boundary": "konkret"
+            }
+          }
+        },
+        {
+          "id": "aerlig_nei",
+          "tekst": "Si tydelig at du ikke har kapasitet denne gangen",
+          "konsekvensTekst": "Du avslår rolig og forklarer grensen. Den andre kan bli skuffet, men du har ikke brutt et løfte du aldri ga.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_boundary": "avslag"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d16_fellesskap",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Den andre gangen teller",
+      "tekst": "Treffet i bydelen er tilbake. Nå kjenner du veien inn og ser en oppgave som faktisk mangler en hjelper. Du er fortsatt fri til å gå.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c21_focus": "fellesskap"
+        }
+      },
+      "valg": [
+        {
+          "id": "gjennomfor",
+          "tekst": "Møt opp og fullfør den avtalte oppgaven",
+          "konsekvensTekst": "Du møter opp og hjelper med rigging og rydding. Andre kan nå vise til en konkret innsats, ikke en tittel eller et medlemskap.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_followthrough": "fellesskap",
+              "wa_e_c21_did_day16": true
+            }
+          },
+          "skills_practice": {
+            "skill_id": "agency",
+            "activity_type": "gjennomfor_life21",
+            "evidence_flag": "wa_e_c21_did_day16",
+            "delta": 1
+          }
+        },
+        {
+          "id": "vent",
+          "tekst": "Stikk innom uten å påta deg ansvar",
+          "konsekvensTekst": "Du hilser og får med deg hva som foregår. Kontakt er mulig, men du har ikke tatt en ny oppgave.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_followthrough": "utsatt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d16_skape",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Noe må gjøres ferdig",
+      "tekst": "Den første prøveversjonen viste en svakhet. Du kan arbeide med den eller la prosjektet ligge til du faktisk har tid.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c21_focus": "skape"
+        }
+      },
+      "valg": [
+        {
+          "id": "gjennomfor",
+          "tekst": "Endre arbeidet og fullfør en ny, avgrenset versjon",
+          "konsekvensTekst": "Du lager en forbedret versjon og skriver hva du gjorde annerledes. Ingen kaller det et profesjonelt oppdrag.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_followthrough": "skape",
+              "wa_e_c21_did_day16": true
+            }
+          },
+          "skills_practice": {
+            "skill_id": "creativity",
+            "activity_type": "gjennomfor_life21",
+            "evidence_flag": "wa_e_c21_did_day16",
+            "delta": 1
+          }
+        },
+        {
+          "id": "vent",
+          "tekst": "Legg det bort med en tydelig neste oppgave",
+          "konsekvensTekst": "Du rydder materialene og noterer neste skritt. Fremdriften står stille inntil du gjør det.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_followthrough": "utsatt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d16_laere",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Fra kilde til forklaring",
+      "tekst": "Du møter en påstand som ligner på det du undersøkte sist. Du har fortsatt notatene, men må kontrollere dem før du bruker dem.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c21_focus": "laere"
+        }
+      },
+      "valg": [
+        {
+          "id": "gjennomfor",
+          "tekst": "Kontroller påstanden og forklar begrensningen til den som spurte",
+          "konsekvensTekst": "Du sjekker notatene mot kilden og forklarer hva som er sikkert, og hva som fremdeles er åpent.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_followthrough": "laere",
+              "wa_e_c21_did_day16": true
+            }
+          },
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "gjennomfor_life21",
+            "evidence_flag": "wa_e_c21_did_day16",
+            "delta": 1
+          }
+        },
+        {
+          "id": "vent",
+          "tekst": "Si at du må undersøke påstanden nærmere",
+          "konsekvensTekst": "Du nekter å gjøre deg sikker uten grunnlag. Du noterer en konkret kontrolloppgave.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_followthrough": "utsatt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d17_en_motstand",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 17,
+      "fase": "morgen",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Den dagen det ikke passer",
+      "tekst": "Du kjenner igjen følelsen av at alt annet krever noe av deg. Samtidig ser du at denne aktiviteten bare kan få en plass i livet hvis den tåler vanlige vanskeligheter.",
+      "valg": [
+        {
+          "id": "kort_oekt",
+          "tekst": "Gjør en kort, realistisk del av det du hadde planlagt",
+          "konsekvensTekst": "Du gjennomfører en begrenset økt og aksepterer at det ikke alltid kan være mer. Det er en ny konkret erfaring.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_rhythm": "kort_oekt"
+            }
+          }
+        },
+        {
+          "id": "restitusjon",
+          "tekst": "Velg hvile og avtal en ny mulighet med deg selv",
+          "konsekvensTekst": "Du hviler fordi du trenger det. Du lover ikke andre at noe er gjort, og den planlagte aktiviteten ligger fortsatt foran deg.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_rhythm": "hvile"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d18_hverdagsgrense",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 18,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Du kan ikke være alt på én gang",
+      "tekst": "Nok en praktisk plikt kommer opp. Du kjenner både lysten til å fortsette det du har funnet og behovet for å ha orden på dagliglivet.",
+      "valg": [
+        {
+          "id": "prioriter",
+          "tekst": "Velg én forpliktelse og én meningsfull aktivitet",
+          "konsekvensTekst": "Du skriver ned begge og fullfører den nødvendige forpliktelsen først. Aktiviteten får et mindre, men faktisk tidsrom.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_balance": "to_spor"
+            }
+          }
+        },
+        {
+          "id": "gi_rom",
+          "tekst": "La den nødvendige oppgaven være dagens hovedsak",
+          "konsekvensTekst": "Du bruker overskuddet på det som må gjøres. Ingen straffer deg for at en interesse ikke ble en prestasjon.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_balance": "noedvendig"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d19_det_noen_ser",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 19,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Hva ser de andre i deg?",
+      "tekst": "En person har lagt merke til noe av det du prøver. Det er fristende å ta ros eller kritikk som en ferdig beskrivelse av hvem du er.",
+      "valg": [
+        {
+          "id": "be_om_konkret",
+          "tekst": "Spør hvilken handling de faktisk la merke til",
+          "konsekvensTekst": "Du får ett konkret eksempel. Du vet mer om hvilken virkning handlingen hadde, uten å få en formell rolle.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_response": "konkret"
+            }
+          }
+        },
+        {
+          "id": "ta_med",
+          "tekst": "Ta reaksjonen med som én del av bildet",
+          "konsekvensTekst": "Du noterer reaksjonen, men lar den ikke alene bestemme din identitet.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_response": "nyansert"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d20_sporene_paa_bordet",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 20,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Tre uker med spor",
+      "tekst": "Du legger fram notater fra de siste ukene. De viser planer, noen faktiske handlinger, en vanskelighet og et forsøk på å følge opp. Det er mer nyttig å se dette ærlig enn å kreve en prestasjon av deg selv.",
+      "valg": [
+        {
+          "id": "dokumenter",
+          "tekst": "Beskriv de konkrete handlingene og hvem de berørte",
+          "konsekvensTekst": "Du lager en oversikt med dato, aktivitet og begrensninger. Den viser erfaring, men er verken et vitnemål eller en jobbkontrakt.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_evidence": "dokumentert"
+            }
+          }
+        },
+        {
+          "id": "se_aapent",
+          "tekst": "Noter hva som ennå ikke er gjennomført",
+          "konsekvensTekst": "Du markerer det åpne og tar vare på erfaringene uten å overdrive dem. Det er rom for å finne retningen senere.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_evidence": "ufullstendig"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c21_d21_tre_ukers_valg",
+      "threadId": "wave_e_c21_livsretning",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Hva slags liv er det du begynner å forme?",
+      "tekst": "Tjueen dager er gått. Du er ikke automatisk ansatt, og det finnes ingen snarvei til merker eller kunnskapspoeng. Men noen gjentatte handlinger kan være starten på en livsposisjon. Det er du som må avgjøre om dette sporet kjennes riktig.",
+      "valg": [
+        {
+          "id": "anerkjenn",
+          "tekst": "Se om det du faktisk har gjort gir grunnlag for å velge en livsposisjon",
+          "konsekvensTekst": "Du tar stilling til den dokumenterte erfaringen. Hvis du både prøvde aktiviteten og fulgte den opp, kan en frivillig livsposisjon være tilgjengelig i Livsprofilen. Ellers kan du fortsette å utforske.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_reflection": "gjennomfort"
+            }
+          }
+        },
+        {
+          "id": "fortsett_aapent",
+          "tekst": "La identiteten være åpen og fortsett med nye forsøk",
+          "konsekvensTekst": "Du velger å ikke feste en merkelapp på livet ditt ennå. Ingen progresjon eller relasjoner slettes, og du står ikke i gjeld til noen livsposisjon.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c21_reflection": "aapen"
             }
           }
         }
