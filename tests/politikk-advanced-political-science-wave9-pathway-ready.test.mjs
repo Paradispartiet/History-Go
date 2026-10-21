@@ -38,7 +38,7 @@ test('Bølge 9: kandidat oppfyller femtrinns- og Knowledge-kontrakten', () => {
     assert.match(q.primary_knowledge_unit_id, /^ku_politikk_hupl_wave9_0[1-5]$/);
     assert.equal(q.knowledge_contract_version, 1);
     assert.equal(q.knowledge_link_status, 'linked');
-    assert.equal(q.canonical_claim.split(/(?<=[.!?])\\s+|;\\s+(?=[A-ZÆØÅ0-9])/u).filter(Boolean).length, 1, q.id + ': precisely one capturable claim');
+    assert.equal(q.canonical_claim.split(/(?<=[.!?])\s+|;\s+(?=[A-ZÆØÅ0-9])/u).filter(Boolean).length, 1, q.id + ': precisely one capturable claim');
     assert.equal(q.emne_id, evidence.canonical_links.emne_id);
     assert.equal(q.method_id, evidence.canonical_links.method_id);
     assert.equal(q.concept_ids.length, q.core_concepts.length);
