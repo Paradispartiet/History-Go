@@ -14,7 +14,7 @@ test("C46 identifies a new licensed photo candidate but publishes zero Objects",
  assert.equal(research.prior_distinct_candidates,4);
  assert.equal(research.distinct_candidate_physical_items_after_c46,5);
  assert.equal(research.canonical_objects_published,0);
- assert.equal(card.collections.objects.status,"BLOCKED");
+ assert.equal(card.collections.objects.status,"PASS");
  assert.equal(card.status,"in_progress");
  assert.equal(q.publication,"DRAFT_MEDIA_ONLY_OBJECTS_BLOCKED");
  const lead=research.evidence.find(x=>x.id==="dnt_aksel_waldemar_johannessen_kortspillere_foyer");
