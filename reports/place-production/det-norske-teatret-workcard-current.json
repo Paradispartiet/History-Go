@@ -156,7 +156,7 @@
     "objects": {
       "status": "PASS",
       "reason": "C50: To ulike fysiske gjenstander er registrert i canonical Place og synkronisert til Place-open: Oslo Museums bevarte 1989-kostyme fra Madame de Sade (foto Lone Lunde, CC BY-SA 4.0) og Jan Groths sceneteppe til 1985-huset (original, eksplisitt merket skjematisk illustrasjon). Begge har historisk forklaring, uavhengig kilde, stedstilknytning og lokalt medlemsbilde. C50-kontrollene dekker medlemsdata og PlaceCard-renderer; C51 bekrefter dessuten offentlig distribuert Objects-popup på Chromium mobil 390×844 og PC 1280×900, korrekt fotografikreditering, skjematisk illustrasjonsmerking og originale kildelenker.",
-      "plan": "Objects-samlingen er faktisk materialisert på C50-grenen, uten bilde-foto-deadlock og uten tillatelseshendvendelse. Etter C50-kontroll/merge: fortsett med flere fysisk dokumenterte teatergjenstander, gjenbruk foto med lisens eller produser synlig merket originalillustrasjon; skill alltid Objects fra Forestillinger, Kunstverk som abstrakt verk og personportretter.",
+      "plan": "FERDIG OG FROSSET 21.10.2026: To publiserte, offentlig mobil-/PC-verifiserte Objects er tilstrekkelig. Ingen C52-gjenstandsjakt, ingen nye illustrasjoner, ingen nye Objects-PR-er eller ytterligere objektresearch nå. Gjenåpning kun ved konkret feil i eksisterende publisert innhold, aldri som forsinkende port for andre steder.",
       "published_member_ids": [
         "dnt_costume_madame_de_sade_1989_tm01641",
         "dnt_jan_groth_strekkomposisjon_sceneteppe_1985"
@@ -543,6 +543,12 @@
       "test": "tests/det-norske-teatret-public-objects-c51.mjs",
       "github_actions_run": 39604980279,
       "evidence_artifact_id": 12347682520
+    },
+    {
+      "id": "c52_objects_closed_throughput_pivot",
+      "status": "OBJECTS_FROZEN_TAKE_NEXT_20_PLACE_BATCH",
+      "scope": "Redaksjonell beslutning 21.10.2026: Objects er tilstrekkelig, to publiserte og bekreftet i realt GitHub Pages. Ingen C52-objektutvidelse eller mer bildeleting. Neste produksjon skal flytte 20-steds Oslo-bolken videre gjennom eksisterende stedsproduksjonsporter, og ikke starte flere ene-steds-/ene-objekt-PRer.",
+      "next_batch": "data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json"
     }
   ],
   "rule_preflight": {
@@ -628,5 +634,22 @@
     ],
     "total": 27,
     "report": "reports/place-production/det-norske-teatret/20261013/content-checkpoint.md"
+  },
+  "production_throughput_handoff": {
+    "decision_date": "2026-10-21",
+    "editorial_instruction": "Stopp Objects-sporet ved Det Norske Teatret etter C51. Stedsproduksjon går videre i 20–50-stedsbolker. Ikke bygg én ny PR per objekt/foto; gjenbruk eksisterende bildeklarerte stedspakker, tekst, quiz, QuizCard og Fagverk.",
+    "objects_frozen": true,
+    "objects_status": "PASS_AND_PUBLIC_MOBILE_DESKTOP_VERIFIED",
+    "theater_state": "in_progress_until_independent_remaining_gates_are_met",
+    "no_more_theater_objects_tasks": true,
+    "no_research_for_perfect_photo": true,
+    "next_actual_batch": "data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json",
+    "batch_size": 20,
+    "priority": "Fagverk/quiz/QuizCard/runtime/QA for the five venues with already authored Fagverk; prepare remaining fifteen in parallel instead of serial micro-PRs",
+    "truthfulness": "Do not mark v1 or vFerdig without passing existing canonical QA; do not mislabel People, Productions or Brands PASS.",
+    "source_docs": [
+      "docs/PLACE_PRODUCTION_MINIMUM_V1.md",
+      "docs/PLACE_PRODUCTION_V3.md"
+    ]
   }
 }
