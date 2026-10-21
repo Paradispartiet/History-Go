@@ -47,6 +47,27 @@
     };
   }
 
+  // Skills unlock better *optional* decisions. They never grant job authority,
+  // a Life Position, or an inferred score for a player with no practice.
+  function checkRequirement(requirement, canonicalState) {
+    if (!requirement) return { available: true, required: 0, score: null, measured: false, label: "" };
+    const req = record(requirement);
+    const definition = DEFINITIONS.find(function (skill) { return skill.id === req.skill_id; });
+    const required = Number(req.min_score);
+    const model = getViewModel(canonicalState === undefined
+      ? (root?.CivicationState?.getState?.() || {}) : canonicalState);
+    const skill = model.skills.find(function (entry) { return entry.id === req.skill_id; });
+    const valid = !!definition && Number.isInteger(required) && required >= 1 && required <= 100;
+    const available = valid && !!skill?.measured && skill.score >= required;
+    return {
+      available: available,
+      measured: !!skill?.measured,
+      score: skill?.measured ? skill.score : null,
+      required: valid ? required : 0,
+      label: definition?.label || "Ukjent Skill"
+    };
+  }
+
   function practicePatch(state, practice) {
     const data = record(practice);
     const eventId = String(data.event_id || "").trim();
@@ -243,5 +264,5 @@
     return true;
   }
 
-    root.CivicationSkills = { STATE_FIELD, VERSION, DEFINITIONS, PENDING_FIELD, getViewModel, practicePatch, applyPractice, applyOrQueue, flushQueued, render };
+    root.CivicationSkills = { STATE_FIELD, VERSION, DEFINITIONS, PENDING_FIELD, getViewModel, checkRequirement, practicePatch, applyPractice, applyOrQueue, flushQueued, render };
 })(typeof window === "object" ? window : null);
