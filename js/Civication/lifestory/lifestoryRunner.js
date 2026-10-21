@@ -442,11 +442,29 @@
       const person = authoredPerson ? Object.assign({}, authoredPerson, { navn: cast?.navn || authoredPerson.navn }) : null;
       return Object.assign({}, entry, { sted, person });
     });
+    // Role-local chapters and shared life-day episodes follow different clocks.
+    // Do not leak day 8–21 personal titles as "Dag 1" appointments on opening.
+    // Only show private episodes when their real life-day and relative prerequisites
+    // have actually become due. Ordinary role events retain their forward look.
+    const phaseIndex = content.faser.findIndex((f) => f.id === state.fase);
     const avtaler = content.scenes.filter((s) =>
-      s.dag >= state.dag && state.spilteScener.indexOf(s.id) === -1 &&
+      (Number.isInteger(s.livsdagFra) ? sceneDue(state, s) : s.dag >= state.dag) &&
+      state.spilteScener.indexOf(s.id) === -1 &&
       isThreadPlayable(state, s.threadId) && conditionsMet(state, s)
-    ).filter((s) => s.dag > state.dag || content.faser.findIndex((f) => f.id === s.fase) >= content.faser.findIndex((f) => f.id === state.fase))
-      .map((s) => ({ id: s.id, dag: s.dag, fase: s.fase, tittel: s.tittel, sted: steder.find((p) => p.id === s.stedId) || null }));
+    ).filter((s) =>
+      Number.isInteger(s.livsdagFra) || s.dag > state.dag ||
+      content.faser.findIndex((f) => f.id === s.fase) >= phaseIndex
+    ).filter((s) =>
+      // Current-day shared scenes should obey the phase just like role scenes.
+      !Number.isInteger(s.livsdagFra) ||
+      content.faser.findIndex((f) => f.id === s.fase) >= phaseIndex
+    ).map((s) => ({
+      id: s.id,
+      dag: Number.isInteger(s.livsdagFra)
+        ? Math.max(Number(state.livsdag || state.dag), s.livsdagFra) : s.dag,
+      fase: s.fase, tittel: s.tittel,
+      sted: steder.find((p) => p.id === s.stedId) || null
+    }));
     return {
       tittel: book.tittel,
       kapitler: (state.kapittelArkiv || []).slice(),
