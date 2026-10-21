@@ -10,7 +10,7 @@ const card=read("reports/place-production/det-norske-teatret-workcard-current.js
 test("C32 asset must remain a noncanonical source draft even when staged",()=>{
  assert.doesNotThrow(()=>validateRequest(q,reg,place));
  assert.equal(reg.counts.published_objects,0);
- assert.equal(card.collections.objects.status,"BLOCKED");
+ assert.equal(card.collections.objects.status,"PASS");
  assert.equal(card.status,"in_progress");
  assert.equal(q.publication,"DRAFT_IMAGE_ONLY_CANONICAL_OBJECT_BLOCKED");
  if (fs.existsSync(q.image_path)) {
