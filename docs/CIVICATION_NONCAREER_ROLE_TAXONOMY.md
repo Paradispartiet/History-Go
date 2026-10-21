@@ -43,6 +43,8 @@ Det betyr blant annet:
 - Etter dag 7 kan en bestemt betinget fortsettelse være låst uten at privatlivet låses: behold `Fortsett privatlivet`, og vis samtidig frivillig History Go-veiledning. Hvis ordinært privatliv heller ikke kan fortsette, er dette en spillbarhetsmangel som skal testes, ikke et påskudd for å tvinge fram en identitet.
 - Samling, visdom/ferdigheter og miljøstatus er **uavhengige progresjonsdimensjoner**: quizpoeng er ikke en jobb, besøk er ikke en ferdighet, og streetkred er ikke en generell egenskap ved en arbeidsledig person.
 
+For grenser mellom arbeidsstatus, ferdigheter, kapital og situert streetkred, se [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md).
+
 ## 2. Canonical runtime-eiere
 
 ### Formell jobb
@@ -163,12 +165,6 @@ Følgende er alltid åpne og krever ikke Badge-poeng:
 De ligger bevisst i samme Life Position-runtime, ikke i en ny «fri rolle»-motor.
 
 Der en åpen livsbane påvirker housing-context, skjer det gjennom de eksisterende circumstance-feltene.
-
-### Arbeidsledig og private historier: ikke konverter til identitet
-
-`arbeidsledig` er en aktivitet-/arbeidsstatus, ikke en selvvalgt `life_position`. En arbeidsledig spiller kan utvikle ferdigheter, kapital, relasjoner, History Go-interesser og privatlivshistorier uten å få jobb eller aktivere en ny livsposisjon. Et tilbud om `sideprosjektbygger`, `historievandrer` eller lignende er **en frivillig mulighet** med sine reelle krav, ikke et påbud etter dag 7. Selv de alltid åpne livsbanene skal aldri tildeles som standardidentitet på grunn av manglende jobb.
-
-Streetkred er miljøspesifikk sosial anerkjennelse, ikke synonym for livsposisjon, jobb, sosial ferdighet eller formell autoritet. Bruk eksisterende subkulturell kapital og situert omdømme fremfor automatisk ny karakterklasse. Se [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md).
 
 ## 8. Hva kan få en Role World
 
