@@ -165,7 +165,7 @@ async function jsdomCloudRestoredLegacyRole() {
   };
   window.CivicationState = { getActivePosition: () => renholderPos };
   window.fetch = async p => {
-    const file = path.join(ROOT, String(p).replace(/^\\.?\\//, ""));
+    const file = path.join(ROOT, String(p).replace(/^\.?\//, ""));
     if (!fs.existsSync(file)) return { ok: false, status: 404, json: async () => null, text: async () => "" };
     const text = fs.readFileSync(file, "utf8");
     return { ok: true, status: 200, json: async () => JSON.parse(text), text: async () => text };
