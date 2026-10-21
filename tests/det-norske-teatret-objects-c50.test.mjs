@@ -90,7 +90,7 @@ test("C50 canonical renderer shows both evidence cards, licensed source and visi
     w.document.dispatchEvent(new w.Event("DOMContentLoaded"));
     const normalized=w.HGVisualPlaceRounds.getItems(place,"objects");
     assert.equal(normalized.length,2);
-    assert.deepEqual(normalized.map(item=>item.imageKind),["photo","illustration"]);
+    assert.deepEqual(Array.from(normalized, item=>item.imageKind),["photo","illustration"]);
     assert.ok(normalized[0].imageCredit.includes("Lone Lunde"));
     assert.ok(normalized[1].imageDisclosure.includes("skjematisk"));
     await w.HGVisualPlaceRounds.apply(place);
