@@ -54,8 +54,10 @@
     const activityType = String(data.activity_type || "").trim();
     const skillId = String(data.skill_id || "").trim();
     const source = String(data.source || "").trim();
+    const evidenceFlag = String(data.evidence_flag || "").trim();
     const delta = Number(data.delta);
     if (!ALLOWED_SOURCES.has(source) || !eventId || !choiceId || !activityType ||
+        (source === "life_story_choice" && !/^[a-z][a-z0-9_]{1,99}$/.test(evidenceFlag)) ||
         !SKILL_IDS.has(skillId) || !Number.isInteger(delta) || delta < 1 || delta > 3 ||
         eventId.length > 240 || choiceId.length > 240 || activityType.length > 100) {
       return { applied: false, reason: "unverified_practice" };
@@ -83,7 +85,7 @@
       scores: scores,
       applied_event_ids: {
         ...processed,
-        [eventId]: { skill_id: skillId, choice_id: choiceId, source: source, activity_type: activityType }
+        [eventId]: { skill_id: skillId, choice_id: choiceId, source: source, activity_type: activityType, evidence_flag: evidenceFlag || null }
       },
       last_practice_by_skill: {
         ...record(original.last_practice_by_skill),
