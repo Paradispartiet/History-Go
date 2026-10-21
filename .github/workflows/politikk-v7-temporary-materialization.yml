@@ -1,0 +1,32 @@
+name: Politikk v7 temporary canonical regeneration
+on:
+  push:
+    branches:
+      - feature/politikk-poland-pathway-clean-rebuild-20261021
+permissions:
+  contents: write
+concurrency:
+  group: politikk-v7-temporary-materialize
+  cancel-in-progress: false
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run knowledge:canonical:write
+      - run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Commit deterministic Politics canonical outputs
+        run: |
+          git add data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json data/knowledge/terms.generated.json reports/knowledge-id-backfill.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Build canonical Politics Knowledge and Fagverk release on current main'
+            git push origin HEAD:feature/politikk-poland-pathway-clean-rebuild-20261021
+          fi

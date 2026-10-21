@@ -597,7 +597,7 @@ dlog("loaded sets:", _byTargetSets.size);
 // meta = { correctAnswers, conceptsCorrect, emnerTouched }
 // ============================================================
 
-function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "", autoClose = true }) {
+function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "", autoClose = true, captureCanonicalOnly = false }) {
   ensureQuizUI();
 
   const qs = {
@@ -731,7 +731,7 @@ if (canTag) {
         ? window.saveKnowledgeFromQuiz
         : null;
 
-  if (saveKnowledge && q.knowledge) {
+  if (saveKnowledge && q.knowledge && !captureCanonicalOnly) {
     try {
       saveKnowledge(
         {
@@ -879,6 +879,103 @@ if (canTag) {
   // ============================================================
   // PUBLIC: start(targetId)
   // ============================================================
+  // A fagområdeforløp is a subject exercise, not a Place/Person target.
+  // Keep its existing five questions, scoring and Knowledge capture in the
+  // shared quiz flow; do not grant geographic achievements or mastery here.
+  QuizEngine.startSubjectPathway = async function (requestedSubject) {
+    const subject = s(requestedSubject);
+    try {
+      const manifest = await fetchJson(QUIZ_MANIFEST_PATH);
+      const entry = (Array.isArray(manifest.subjectPackages) ? manifest.subjectPackages : [])
+        .find((item) => item?.subjectId === subject && item?.packageKind === "subject_pathway" && item?.status === "active");
+      if (!entry || !entry.file) throw new Error("Fagområdeforløpet er ikke registrert som aktivt.");
+      const packageData = await fetchJson(entry.file);
+      if (packageData?.subject_id !== subject || packageData?.package_kind !== "subject_pathway" ||
+          packageData?.status !== "pilot_active") throw new Error("Fagområdeforløpet er ikke aktivert i fagpakken.");
+      const set = packageData?.sets?.[0];
+      const stages = ["observe", "explain", "evaluate_evidence", "diagnose_failure", "decide_and_justify"];
+      if (!set || set.phase !== "subject_pathway" || set.target_kind !== "subject_area" ||
+          !Array.isArray(set.questions) || set.questions.length !== 5 ||
+          !stages.every((stage, index) => set.questions[index]?.pathway_stage === stage) ||
+          !set.questions.every((question) => question.categoryId === subject &&
+            question.targetId === set.targetId && question.knowledge_link_status === "linked")) {
+        throw new Error("Fagområdeforløpet oppfyller ikke femtrinnskontrakten.");
+      }
+      const review = document.getElementById("politikkPolandPathwayReview");
+      if (review) { review.hidden = true; review.replaceChildren(); }
+      openQuiz();
+      runQuizFlow({
+        title: set.title || packageData.title,
+        targetId: set.targetId,
+        questions: set.questions,
+        progressPrefix: "Fagområdeforløp",
+        autoClose: false,
+        captureCanonicalOnly: true,
+        onEnd: (correct, total, result) => {
+          // Capture *full* source-bound question records, retaining their
+          // canonical ku_*, co_*, term_* and emne IDs for Knowledge V2.
+          const answers = Array.isArray(result?.answers) ? result.answers : [];
+          set.questions.forEach((question, index) => {
+            if (!answers[index]?.correct) return;
+            try {
+              window.HGKnowledgeV2?.captureQuizKnowledgeClaims?.(question, {
+                categoryId: subject, targetId: set.targetId, sourceFile: entry.file
+              });
+            } catch (error) { dwarn("subject pathway Knowledge capture failed", error); }
+          });
+          if (review) {
+            const heading = document.createElement("h4");
+            heading.textContent = "Kildebelegg og begrunnelser – Polen 2023";
+            review.appendChild(heading);
+            set.questions.forEach((question, index) => {
+              const article = document.createElement("article");
+              const title = document.createElement("h5");
+              title.textContent = `${index + 1}. ${question.question}`;
+              const explanation = document.createElement("p");
+              explanation.textContent = question.knowledge_payload?.explanation || question.knowledge;
+              const sources = document.createElement("p");
+              sources.textContent = "Kilder: ";
+              (Array.isArray(question.source) ? question.source : []).forEach((source, sourceIndex) => {
+                if (sourceIndex) sources.append(" · ");
+                const link = document.createElement("a");
+                link.href = source.url;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.textContent = source.title || source.source_id || source.publisher_or_author || "Kilde";
+                sources.appendChild(link);
+              });
+              article.append(title, explanation, sources);
+              review.appendChild(article);
+            });
+            const limitation = document.createElement("p");
+            limitation.textContent = "Resultatet viser svar på fem spørsmål. Faglig mestring krever også egen begrunnelse og etterprøvbar kildevurdering.";
+            review.appendChild(limitation);
+            review.hidden = false;
+          }
+          const passedQuestions = correct >= Number(set.completion_rule?.minimum_correct || 5);
+          closeQuiz();
+          setTimeout(() => openQuizSummary({
+            title: set.title || packageData.title,
+            lead: `${correct} av ${total} riktige svar`,
+            meta: passedQuestions
+              ? "Faktadelen er bestått. Undersøk nå kildene og begrunn vurderingene; full mestring er ikke registrert."
+              : "Gjennomgå kildene og forsøk oppgavene på nytt.",
+            primaryText: "Se kildebelegg",
+            onPrimary: () => review?.scrollIntoView?.({ behavior: "auto", block: "start" })
+          }), 180);
+          window.dispatchEvent(new CustomEvent("hg:subjectPathwayPracticed", {
+            detail: { subjectId: subject, setId: set.set_id, correct, total, masteryRecorded: false }
+          }));
+        }
+      });
+      return true;
+    } catch (error) {
+      dwarn("subject pathway unavailable", error);
+      API.showToast(error?.message || "Kunne ikke starte fagområdeforløpet.");
+      return false;
+    }
+  };
+
   QuizEngine.start = async function (targetId) {
     try {
       await ensureLoaded();
