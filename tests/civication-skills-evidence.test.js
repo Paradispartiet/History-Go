@@ -53,7 +53,7 @@ assert.strictEqual(skills.getViewModel(state).skills.find(x => x.id === "social_
 assert.strictEqual(bridge(context).reason, "already_counted", "replaying the same choice is idempotent");
 assert.strictEqual(bridge({ ...context, choiceId: "different" }).reason, "already_counted", "same event cannot earn again");
 assert.strictEqual(state.job_learning_progress.role_a.steps, 3, "existing job learning untouched");
-assert.deepStrictEqual(state.social_standing, { by_audience: {} }, "situated reputation untouched");
+assert.deepStrictEqual(state.social_standing, { by_audience: {} }, "separate social standing remains unchanged");
 
 // Persisted JSON is sufficient to retain skills and dedup on a new page load.
 const restored = JSON.parse(JSON.stringify(state));
