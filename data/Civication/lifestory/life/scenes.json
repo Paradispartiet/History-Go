@@ -4404,6 +4404,682 @@
           }
         }
       ]
+    },
+    {
+      "id": "privat_21d_d8_invitasjonen",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 8,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En melding du må svare på",
+      "tekst": "En gammel bekjent har funnet et bilde fra en tur dere gikk sammen. Hun foreslår en kopp kaffe i helgen. Det er lenge siden sist dere møttes.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Foreslå lørdag klokken to",
+          "konsekvensTekst": "Du foreslår tid og sted. Hun svarer ja, og dere har en virkelig avtale å følge opp.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_avtale_inngatt": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Takk for invitasjonen, men si at du trenger tid alene",
+          "konsekvensTekst": "Hun svarer at det er greit. Du er tydelig uten å gi et løfte du ikke kan holde.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_grense_satt": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d9_budsjettet",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tallene på kvitteringen",
+      "tekst": "En kvittering viser at de faste matvarene har blitt dyrere. Du har ikke råd til å late som du ikke så det.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Sammenlign de siste kvitteringene og velg ett realistisk bytte",
+          "konsekvensTekst": "Du finner én utgift du kan justere. Du har ikke fått penger, men du vet mer om hvor de går.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_utgift_gjennomgaatt": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Spør en venn hvor de handler rimelig, uten å be om penger",
+          "konsekvensTekst": "Vennen sender et konkret tips om rimeligere varer. Ingen overføring eller gjeld oppstår.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_spurte_om_rad": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d10_biblioteket",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 10,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En forespørsel på biblioteket",
+      "tekst": "En frivillig på biblioteket spør om noen kan hjelpe med å sortere en kasse brukte bøker. Arbeidet tar en time og er ikke betalt.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Hjelp med å sortere kassene og lever en ferdig liste",
+          "konsekvensTekst": "Du gjør oppgaven ferdig. Den frivillige takker deg, men lover verken jobb eller noen stilling.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_bokliste_levert": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Spør hva som faktisk trengs før du lover noe",
+          "konsekvensTekst": "Dere går gjennom arbeidet. Du kan ta en mindre oppgave i stedet for å påta deg mer enn du rekker.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_oppgave_avklart": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d11_misforstaelsen",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 11,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Meldingen som ble for kort",
+      "tekst": "En bekjent skriver «er du sur?». Du leser gårsdagens korte svar på nytt og ser hvordan tonen kunne misforstås.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Forklar hva du mente og spør hva den andre oppfattet",
+          "konsekvensTekst": "Du får høre hva som virket avvisende. Dere blir enige om å spørre neste gang i stedet for å gjette.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_samtale_reparert": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Si at du trenger litt ro og kommer tilbake til praten",
+          "konsekvensTekst": "Du sier det uten å legge skylden på den andre. Svaret blir kort, men tydelig.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_samtale_utsatt": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d12_prosjektet",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 12,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Et halvgjort prosjekt",
+      "tekst": "Et notat med en gammel idé dukker opp. Du kan gjøre ideen liten nok til å teste, eller undersøke hvorfor den stoppet sist.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Lag én enkel skisse og prøv den i kveld",
+          "konsekvensTekst": "Du lager en utprøvbar versjon, oppdager en svakhet og skriver ned hva som må forbedres.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_prosjekt_provd": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Finn én person som kan gi konkret kritikk",
+          "konsekvensTekst": "Du får tilbakemelding på et problem du ikke hadde sett. Ideen er ikke fullført, men neste forsøk blir bedre.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_prosjekt_vurdert": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d13_kaffemoetet",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Avtalen du faktisk gjorde",
+      "tekst": "Bekjenten står utenfor kafeen til avtalt tid. Hun nevner turbildet og spør hvordan de siste dagene har vært.",
+      "conditions": {
+        "flagg": {
+          "privat21_avtale_inngatt": true
+        }
+      },
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Møt opp og lytt også til hva hun har opplevd",
+          "konsekvensTekst": "Dere tar kaffen dere avtalte. Hun forteller om en vanskelig uke, og du følger opp med et spørsmål.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_avtale_holdt": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Fortell at du ikke rekker det og foreslå en ny konkret tid",
+          "konsekvensTekst": "Du gir beskjed før hun drar hjemmefra. Hun er skuffet, men setter pris på at du sa fra.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_avtale_flyttet": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d13_respekt_for_grensen",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Invitasjonen ble ikke et krav",
+      "tekst": "Bekjenten skriver igjen, denne gangen uten å foreslå en ny dag: «Håper du har det bra». Hun respekterte ønsket om ro.",
+      "conditions": {
+        "flagg": {
+          "privat21_grense_satt": true
+        }
+      },
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Takk for omtanken og spør hvordan hun har det",
+          "konsekvensTekst": "Samtalen får et nytt innhold som ikke handler om avtalen. Dere holder kontakten på egne premisser.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_grense_respektert": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Svar at du fortsatt trenger noen rolige dager",
+          "konsekvensTekst": "Hun svarer forståelsesfullt. Du har vært konsekvent, uten å kreve at andre gjetter hva du trenger.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_pausen_fortsatt": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d14_uke_to",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 14,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Den andre søndagen",
+      "tekst": "Du legger to ukers små notater ved siden av hverandre. Noe ble gjennomført, annet ble liggende. Du må avgjøre hva du tar videre.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Velg én handling som kan gjentas neste uke",
+          "konsekvensTekst": "Du setter av en konkret time og skriver hva du vil gjøre. Det er en plan, ikke en ny identitet.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_uke_to_planlagt": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Velg ett løfte du bør avslutte ærlig",
+          "konsekvensTekst": "Du sender beskjed om det du ikke kan fullføre. Det frigjør tid og gjør forventningene tydeligere.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_uke_to_avklart": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d15_lokalmiljo",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 15,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Plakaten ved inngangen",
+      "tekst": "På bibliotekets oppslagstavle inviterer en lokal gruppe folk til å bidra på en åpen kveld. Ingen tittel eller særstatus trengs for å komme.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Tilby å hjelpe med et konkret bidrag til kvelden",
+          "konsekvensTekst": "Arrangøren gir deg ansvaret for en avgrenset oppgave. Du må fortsatt møte opp og utføre den.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_bidrag_avtalt": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Møt som deltaker og finn ut om dette miljøet passer",
+          "konsekvensTekst": "Du melder at du kommer for å bli kjent. Ingen forventer at du arbeider gratis eller melder deg inn.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_deltakelse_avtalt": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d16_forberedelsen",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Det som må være klart",
+      "tekst": "Arrangøren sender praktisk informasjon om kvelden: hvem åpner døren, hva må tas med, og når begynner det.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Skriv ned tidspunkt og hva du faktisk kan bidra med",
+          "konsekvensTekst": "Du lager en enkel liste som gjør avtalen gjennomførbar, uten å ta ansvar for hele arrangementet.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_forberedelse_gjort": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Spør om tilrettelegging og hvilke oppgaver som er frivillige",
+          "konsekvensTekst": "Du får klarhet i rammene. Du deltar på en måte som er mulig for deg.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_rammesatt": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d17_konflikten",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 17,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Hvem hadde egentlig ansvaret?",
+      "tekst": "I gruppechatten oppstår en diskusjon: To personer tror de skal gjøre den samme oppgaven, mens en tredje mangler hjelp.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Foreslå en konkret fordeling og be de involverte svare",
+          "konsekvensTekst": "Dere fordeler oppgavene skriftlig. Det blir mindre irritasjon fordi ingen må gjette.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_konflikt_avklart": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Si hva du selv kan gjøre, og la arrangøren fordele resten",
+          "konsekvensTekst": "Du setter en realistisk grense. Arrangøren takker for tydeligheten og ordner resten.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_konflikt_avgrenset": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d18_hjemme",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 18,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En oppgave som ikke forsvinner",
+      "tekst": "En lyspære slukner på kjøkkenet. Samtidig har du lovet å svare på en melding. Begge deler er små, men reelle.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Ordne lyset og send så det lovede svaret",
+          "konsekvensTekst": "Du gjør de to tingene ferdig i stedet for å la dem vokse. Ingen gir deg poeng for å ha åpnet en skjerm.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_hjemme_ordentlig": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Avklar meldingen først og be om riktig hjelp til lyset",
+          "konsekvensTekst": "Du sender beskjed og finner ut hva som faktisk trengs for en trygg løsning.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_hjemme_avklart": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d19_kildebildet",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 19,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Et bilde uten årstall",
+      "tekst": "På biblioteket viser noen et gammelt fotografi fra gaten uten kilde eller dato. En annen vil legge det ut med et bestemt årstall.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Si at datoen må undersøkes før bildet blir brukt som fakta",
+          "konsekvensTekst": "Dere lar årstallet stå åpent og noterer hvor originalen kan spores. Du har ikke fått quizpoeng.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_kilde_sjekkes": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Foreslå en bildetekst som sier hva dere faktisk vet",
+          "konsekvensTekst": "Bildet får en forsiktig tekst som skiller mellom det synlige og det dere ennå ikke vet.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_usikkerhet_merket": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d20_kvelden",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 20,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Kvelden i lokalet",
+      "tekst": "Folk kommer inn døren. Noen kjenner hverandre godt, andre står litt på siden. Kvelden vil skje uansett om du får en rolle i miljøet.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Gjør oppgaven du lovet, og spør etterpå om den fungerte",
+          "konsekvensTekst": "Du fullfører bidraget og får et konkret svar på hva som fungerte. Det er erfaring, ikke automatisk medlemskap.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_bidrag_fullfort": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Delta i samtalen og spør hvordan gruppen arbeider videre",
+          "konsekvensTekst": "Du lærer hvem som møtes og hva de lager sammen. Du lover ikke å bli med før du vet hva det innebærer.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_miljo_undersokt": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d21_retning_med_bidrag",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tre uker – hva vil du bidra med?",
+      "tekst": "Den lokale gruppen spør om du vil komme tilbake. Du har faktisk avtalt et bidrag, møtt opp eller forsøkt å følge det opp. Nå må du velge hva erfaringen betyr videre.",
+      "conditions": {
+        "flagg": {
+          "privat21_bidrag_avtalt": true
+        }
+      },
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Be om en konkret neste oppgave og åpne livsprofilen for å se mulige retninger",
+          "konsekvensTekst": "Du sier hva du kan bidra med. Spillet kan foreslå en livsposisjon ut fra det du har gjort, men du velger den selv og må oppfylle eventuelle krav.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_vil_fordype_seg": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Takk for kvelden og behold miljøet som en interesse ved siden av resten av livet",
+          "konsekvensTekst": "Du sier at du gjerne kommer igjen, men uten å binde deg til en identitet. Erfaringene dine blir ikke borte.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_vil_utforske_videre": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "privat_21d_d21_retning_som_deltaker",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tre uker – hva betyr dette for deg?",
+      "tekst": "Du kom for å se hvordan folk arbeider sammen. Du har sett oppgaver, konflikter og en kveld som ikke ble perfekt. Det er også erfaring.",
+      "conditions": {
+        "flagg": {
+          "privat21_deltakelse_avtalt": true
+        }
+      },
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Be om å få prøve et lite bidrag neste gang, og vurder livsposisjonene",
+          "konsekvensTekst": "Du avtaler ett forsøk i stedet for en stor tittel. Livsprofilen kan vise mulige retninger; den velges aldri automatisk.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_vil_prove_bidrag": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Fortsett å delta uten å velge noen livsposisjon ennå",
+          "konsekvensTekst": "Du vet mer om miljøet og dine egne grenser. Du trenger ingen ny status for at de tre ukene skal ha betydd noe.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_velger_apen_retning": true
+            }
+          }
+        }
+      ]
     }
   ]
 }
