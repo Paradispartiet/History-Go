@@ -83,6 +83,9 @@
   // Jobbresolver og oppstart kan laste innhold samtidig. Siste rolle vinner.
   let roleLoadSequence = 0;
   let dayAdvancePending = false;
+  // True only for a player who has a real job with no authored work-role pack.
+  // The state remains canonical; the view exposes only shared private scenes.
+  let privateLifeOnly = false;
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
   /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }>, dramatisert: boolean }|null} */ let sisteKonsekvens = null;
 
@@ -179,6 +182,7 @@
     State.save(state);
     syncQueuedSkills();
     currentRoleId = roleId;
+    privateLifeOnly = false;
     sisteKonsekvens = null;
     continuationError = "";
     // The selected role is already persisted here; the asynchronous shell
@@ -225,9 +229,9 @@
   // spilleren Renholder-jobben, spiller Life Story renholder. Mappingen er
   // canonical resolver (CivicationCareerRoleResolver) + role_scope-binding i
   // lifestory-manifestet — se resolveRoleIdForActivePosition. Jobb uten
-  // Uten egen Life Story-pakke ledes spilleren til den felles innboksen.
-  // Den tidligere fortellingen beholdes i lagringen, men spilles ikke som
-  // om spilleren fortsatt hadde den gamle jobben.
+  // Uten egen jobbpakke fortsetter spillerens delte privatlivshistorie
+  // uten arbeidsledighets-meldinger. Formell jobb håndteres fortsatt av
+  // det kanoniske skallet, og tidligere arbeidsfortellinger bevares.
   /** Memo: siste sjekkede jobb, så updateProfile-burster ikke koster noe. */
   let lastAdoptKey = null;
   let adopting = false;
@@ -240,7 +244,7 @@
   }
 
   function shellStoryUnavailable() {
-    return !!shellStory && shellStory.status !== "ready";
+    return !!shellStory && !["ready", "private"].includes(shellStory.status);
   }
 
   async function maybeAdoptShellRole() {
@@ -251,7 +255,7 @@
     // og en tidlig updateProfile skal ikke låse sjekken for godt.
     const active = /** @type {any} */ (window).CivicationState?.getActivePosition?.();
     const adoptKey = activePositionKey();
-    if (adoptKey === lastAdoptKey && ["ready", "unavailable"].includes(shellStory?.status)) return;
+    if (adoptKey === lastAdoptKey && ["ready", "private", "unavailable"].includes(shellStory?.status)) return;
     const title = String(active?.title || "jobben din");
     shellStory = { status: "loading", title };
     render();
@@ -264,11 +268,22 @@
     try {
       const Content = /** @type {any} */ (window).CivicationLifestoryContent;
       const mapped = active ? await Content.resolveRoleIdForActivePosition(active) : DEFAULT_ROLE_ID;
+      const usePrivateLife = !!active && !mapped;
+      const targetRole = usePrivateLife ? DEFAULT_ROLE_ID : mapped;
       const stillCurrent = () => activePositionKey() === adoptKey;
       if (!stillCurrent()) { adoptAgain = true; return; }
-      if (mapped && (mapped !== currentRoleId || !state || !content)) await loadRole(mapped, stillCurrent);
+      if (targetRole && (targetRole !== currentRoleId || !state || !content ||
+          (privateLifeOnly && !usePrivateLife))) {
+        await loadRole(targetRole, stillCurrent);
+      }
       if (!stillCurrent()) { adoptAgain = true; return; }
-      shellStory = { status: mapped ? "ready" : "unavailable", title };
+      if (usePrivateLife && !privateLifeOnly) {
+        content = Content.privateLifeOnly(content);
+        privateLifeOnly = true;
+        prepareStoryDay();
+        window.CivicationLifestoryState.save(state);
+      }
+      shellStory = { status: usePrivateLife ? "private" : mapped ? "ready" : "unavailable", title };
       lastAdoptKey = adoptKey;
       syncToShellCalendar();
       window.dispatchEvent(new Event("civi:lifestoryChanged"));
@@ -1203,7 +1218,12 @@
     const continuationRole = content.role.symposium?.rollebroer?.find((b) => b.role_scope === content.fortsettelse?.role_scope)?.navn || "kapittelets rolle";
 
     renderHeaderStatus(view);
-    panel.innerHTML = renderStatusHtml(view)
+    const privateNote = shellStory?.status === "private"
+      ? '<section class="civi-lifestory-kicker" data-lifestory-private-job>'
+        + 'Du har jobb som ' + escapeLiteral(shellStory.title)
+        + '. Her fortsetter privatlivet ditt uavhengig av arbeidsrollen.</section>'
+      : "";
+    panel.innerHTML = privateNote + renderStatusHtml(view)
       + renderKonsekvensHtml()
       + (Runner.isContinuationPaused?.(state, content)
         ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
