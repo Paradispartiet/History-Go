@@ -456,6 +456,8 @@
       // mint more Skills even if the same private scene reappears.
       const practice = valg?.skills_practice;
       if (practice && valg?.effekter?.flagg?.[practice.evidence_flag] === true &&
+          !(/** @type {any} */ (window).CIVICATION_TEST_MODE) &&
+          !(/** @type {any} */ (window).OPEN_MODE) &&
           !window.CivicationState?.isTestMode?.()) {
         /** @type {any} */ (window).CivicationSkills?.applyPractice?.({
           source: "life_story_choice",
@@ -463,6 +465,7 @@
           choice_id: choiceId,
           skill_id: practice.skill_id,
           activity_type: practice.activity_type,
+          evidence_flag: practice.evidence_flag,
           delta: practice.delta
         });
       }
