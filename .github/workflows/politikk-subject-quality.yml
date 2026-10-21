@@ -8,6 +8,7 @@ on:
       - 'tests/politikk-advanced-political-science-source-layer-v1.test.mjs'
       - 'tests/politikk-advanced-political-science-source-layer-v3.test.mjs'
       - 'tests/politikk-advanced-political-science-canonical-enrichment-v4.test.mjs'
+      - 'tests/politikk-advanced-political-science-wave8-comparison.test.mjs'
       - 'tools/materialize-politikk-curriculum.mjs'
       - 'tools/build-politikk-concept-editorial-reviews.mjs'
       - 'tools/validate-politikk-curriculum-architecture.mjs'
@@ -141,6 +142,7 @@ jobs:
           node --test tests/politikk-advanced-political-science-canonical-enrichment-v4.test.mjs
           node --test tests/politikk-advanced-political-science-case-assessment-v5.test.mjs
           node --test tests/politikk-advanced-political-science-subject-pathway-v6.test.mjs
+          node --test tests/politikk-advanced-political-science-wave8-comparison.test.mjs
           node --test tests/politikk-theory-integrity.test.mjs
           node --test tests/politikk-curriculum-architecture.test.mjs tests/politikk-fag-integration.test.mjs tests/fagverk-politikk-runtime-equivalence.test.mjs
           node scripts/audit-fagverk-general-engine.mjs
