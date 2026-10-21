@@ -16,6 +16,11 @@ Terskler og tall er første **spillbalansehypoteser**, ikke medisinske normalver
 
 ## Ny hovedakseptanse – 21 dager (vedtatt 21.10.2026)
 
+
+**Frivillig jobb innen tre uker:** Dag 12 kan spilleren søke butikkjobb, dag 17 kan vedkommende delta på intervju, og dag 20 kan et skriftlig tilbud registreres i spillets kanoniske Karriere-løsning. Tilbudet må aksepteres av spilleren separat. Alle tre tidligere spillvalg valideres mot Life Story-arkivet før tilbudet opprettes. Ingen jobb oppstår ved å bare gå 21 dager. Å avslå underveis bevarer privatlivet og valgte livsretning.
+
+
+
 Spilleren skal kunne leve **tre uker**, ikke bare 14 dager, og utvikle en faktisk livsretning gjennom handlinger. Arbeidsledighet forblir arbeidssituasjon, ikke en påtvunget identitet. Dagene må ha særskilte valg og konsekvenser; ikke 21 identiske meldekort. **Dag 8–21** har nå egne, forfattede private scener i `wave_e_c21_livsretning`, med tre spor: nærmiljø, skaping og læring. Dag 9 og 16 krever gjennomførte aktiviteter for å kunne erverve en praksisbasert livsposisjon. Ved dag 21 må spilleren selv velge om identiteten skal aktiveres i eksisterende Livsprofil. Denne praksisbaserte livsposisjonen kan ikke tildele arbeidsforhold, Badge, inntekt eller kompetanse den ikke har bevis for.
 
 **21-dagers Node-akseptanse på PR-gren:** 3 spor med alle dager 1–21, private scener på hver dag 8–21, ingen merittinjeksjon, og korrekt bevaring av privat historie ved jobbbytte. Dette er bare én del av akseptansen; faktisk nettleserspill, ekte konto-gjenoppretting, relasjoner, økonomi og History Go skal fortsatt godkjennes separat.
