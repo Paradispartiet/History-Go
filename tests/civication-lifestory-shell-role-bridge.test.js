@@ -127,6 +127,49 @@ async function jsdomAdoption() {
     "eksplisitt ?lifestoryRole= vinner over skall-jobben");
   assert.strictEqual(w2.localStorage.getItem("civication_lifestory_role_v1"), null,
     "test-URL må ikke lagre varig overstyring av spillerrollen");
+
+  // --- 6. Real job without a dedicated author pack must not stop private life ---
+  const dom3 = new JSDOM(`<!doctype html><html><body class="civi-app">
+    <section id="civiLifestorySection"><div id="civiLifestoryPanel"></div></section>
+  </body></html>`, { url: "http://localhost/Civication.html", runScripts: "outside-only" });
+  const w3 = dom3.window;
+  w3.fetch = window.fetch;
+  let job = { career_id: "kunst", role_key: "kunst_publikum_og_formidling", title: "Museumsvert" };
+  w3.CivicationState = { getActivePosition: () => job };
+  for (const file of CHAIN) w3.eval(fs.readFileSync(path.join(ROOT, file), "utf8"));
+  await new Promise(resolve => setTimeout(resolve, 400));
+  w3.dispatchEvent(new w3.Event("civi:booted"));
+  await new Promise(resolve => setTimeout(resolve, 550));
+  const privatePanel = w3.document.getElementById("civiLifestoryPanel");
+  assert.ok(privatePanel.querySelector("[data-lifestory-personal-only]"),
+    "an earned art job without a dedicated work story still shows private life");
+  assert.ok(!privatePanel.textContent.includes("Meldekort må sendes"),
+    "working at the museum must never produce stale NAV unemployment mail");
+  const info = w3.CivicationLifestoryUI.getCurrentSceneInfo();
+  assert.ok(info?.sceneId, "personal story remains playable with unmapped formal work");
+  const sharedLife = JSON.parse(fs.readFileSync(
+    path.join(ROOT, "data/Civication/lifestory/life/scenes.json"), "utf8"));
+  assert.ok(sharedLife.scenes.some(scene => scene.id === info.sceneId),
+    "the playable event comes from real shared private authorship");
+  const choice = privatePanel.querySelector("[data-lifestory-choice]:not([disabled])");
+  assert.ok(choice, "a real choice is accessible in personal-only mode");
+  choice.click();
+  await new Promise(resolve => setTimeout(resolve, 120));
+  let personalSave = JSON.parse(w3.localStorage.getItem("civication_lifestory_v1"));
+  assert.ok(personalSave.arkiv.some(entry => entry.sceneId === info.sceneId),
+    "personal choice is played and archived even with art employment");
+  assert.ok(personalSave.privatHistorie?.arkiv?.some(entry => entry.sceneId === info.sceneId),
+    "the shared personal archive receives the played event");
+  job = renholderPos;
+  w3.dispatchEvent(new w3.Event("updateProfile"));
+  await new Promise(resolve => setTimeout(resolve, 700));
+  personalSave = JSON.parse(w3.localStorage.getItem("civication_lifestory_v1"));
+  assert.strictEqual(personalSave.rolle, "renholder", "mapped job role can resume from private mode");
+  assert.ok(personalSave.arkiv.some(entry => entry.sceneId === info.sceneId),
+    "shared personal choice and history survive a subsequent mapped job");
+  assert.strictEqual(privatePanel.querySelector("[data-lifestory-personal-only]"), null,
+    "mapped work pack restores its own authored story");
+  dom3.window.close();
 }
 
 // --- 6. Konto-backup med gammel testrolle må migreres, også i skyen ---

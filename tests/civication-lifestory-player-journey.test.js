@@ -60,17 +60,22 @@ async function main() {
   const beforeUnsupported = app.current();
 
   app.setJob(warehouse);
-  await waitFor(() => app.panel.querySelector('[data-lifestory-role-status="unavailable"]'), "unmapped job explanation");
-  assert.ok(!app.panel.querySelector("[data-lifestory-choice]"), "former job cannot keep playing");
-  assert.equal(app.w.CivicationLifestoryUI.getPendingWaveAEvent(), null);
-  assert.equal(app.w.CivicationLifestoryUI.getCurrentSceneInfo(), null);
-  assert.equal(app.w.CivicationLifestoryUI.getDaySyncState(), null, "inactive former story cannot block the shell day");
-  assert.deepEqual(app.current(), beforeUnsupported, "unsupported job does not replace or fabricate a story save");
-  app.panel.querySelector("[data-lifestory-next-action]").click();
-  assert.equal(app.opened(), 1, "player reaches the existing NextAction UI");
+  await waitFor(() => app.panel.querySelector("[data-lifestory-personal-only]"), "unmapped job keeps private life");
+  assert.equal(app.panel.querySelector('[data-lifestory-role-status="unavailable"]'), null,
+    "a formal job without a work pack no longer disables the entire Life Story");
+  assert.ok(app.panel.querySelector("[data-lifestory-choice]"),
+    "private choices remain available without pretending the former job is current");
+  assert.ok(app.w.CivicationLifestoryUI.getCurrentSceneInfo()?.sceneId,
+    "the current private scene comes from the authored story");
+  assert.equal(app.w.CivicationLifestoryUI.getDaySyncState()?.dagFerdig, false,
+    "an unfinished private day still gates canonical calendar rollover");
+  assert.doesNotMatch(app.panel.textContent, /Meldekort må sendes/,
+    "former NAV unemployment work is not replayed as private life");
+  assert.deepEqual(app.current(), beforeUnsupported,
+    "entering private-only presentation does not fabricate a new role or choice");
 
   const reload = await boot({ position: warehouse, save: app.current() });
-  assert.ok(reload.panel.querySelector('[data-lifestory-role-status="unavailable"]'));
+  assert.ok(reload.panel.querySelector('[data-lifestory-personal-only]'), "reload restores private mode");
   assert.deepEqual(reload.current().arkiv, beforeUnsupported.arkiv);
   reload.close();
   app.setJob(cleaner);
@@ -98,7 +103,7 @@ async function main() {
   await waitFor(() => resolving, "second delayed mapping");
   app.setJob(warehouse);
   release();
-  await waitFor(() => app.panel.querySelector('[data-lifestory-role-status="unavailable"]'), "latest job wins");
+  await waitFor(() => app.panel.querySelector('[data-lifestory-personal-only]'), "latest job wins");
   assert.equal(app.current().rolle, "renholder", "stale clerk mapping was never committed");
 
   // A failed lookup can actually be retried; failure is not memoized.
@@ -251,25 +256,26 @@ async function dayEventJourney() {
   } });
   const { w, panel } = app;
   const savedStory = w.localStorage.getItem(KEY);
-  assert.equal(panel.querySelector("h3").textContent, "En skadet pall");
+  await waitFor(() => panel.querySelector("[data-lifestory-personal-only]"), "job does not suppress private scene");
   assert.match(panel.textContent, /Lager- og driftsmedarbeider/);
-  assert.match(panel.textContent, /Aleneforelder/);
-  assert.match(panel.textContent, /Du oppdager en skade/);
-  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Åpne i innboksen");
-  assert.equal(w.CivicationMailEngine.getMail(row.id), null, "preview never delivers queued mail");
+  assert.ok(panel.querySelector("[data-lifestory-choice]"), "private play remains in Min dag");
+  assert.doesNotMatch(panel.textContent, /En skadet pall|Du oppdager en skade/,
+    "work inbox preview no longer displaces private story in Min dag");
+  assert.equal(w.CivicationMailEngine.getMail(row.id), null, "reading private story never delivers queued mail");
   assert.equal(deliveries + answers + advances, 0, "reading Min dag has no gameplay side effects");
-  assert.equal(panel.querySelectorAll("[data-civi-next-action-answer], [data-lifestory-choice]").length, 0);
-  panel.querySelector("[data-lifestory-next-action]").click();
+  w.CivicationNextActionUI.open();
   await waitFor(() => w.document.querySelector("[data-civi-next-action-open-queued]"), "canonical queued surface");
   assert.equal(w.document.querySelectorAll("[data-civi-next-action-answer]").length, 0);
   w.document.querySelector("[data-civi-next-action-open-queued]").click();
   await waitFor(() => w.document.querySelector("[data-civi-next-action-answer]"), "delivered choice");
   assert.equal(deliveries, 1);
-  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Åpne i innboksen",
-    "both queued and delivered messages use the shared inbox entry point");
+  assert.ok(panel.querySelector("[data-lifestory-personal-only]"),
+    "opening the work inbox does not replace the personal narrative");
   const answer = w.document.querySelector("[data-civi-next-action-answer]");
   answer.click(); answer.click();
-  await waitFor(() => !w.CivicationNextActionUI.isAnswerInFlight() && panel.querySelector("h3")?.textContent === "Kollegaen følger opp", "answer refreshes Min dag");
+  await waitFor(() => !w.CivicationNextActionUI.isAnswerInFlight() &&
+    w.CivicationMailEngine.getMail("journey_delivery")?.resolved === true,
+  "work answer is committed without overwriting Min dag");
   assert.equal(answers, 1, "double click routes one consequence through the real mail writer");
   assert.equal(w.CivicationMailEngine.getMail("journey_delivery").resolved, true);
   assert.equal(w.CivicationMailEngine.getMail("journey_followup").resolved, false);
@@ -277,7 +283,8 @@ async function dayEventJourney() {
 
   lifeLabel = "Student";
   w.dispatchEvent(new w.Event("civi:lifePositionChanged"));
-  assert.match(panel.textContent, /Livsrolle: Student/);
+  assert.ok(panel.querySelector("[data-lifestory-personal-only]"),
+    "a changed private life position does not switch back to a former job story");
   // An inbox event from a former job is hidden even if a legacy selector can
   // still see it during the handover. The recovery button remains available.
   const formerChoice = w.document.querySelector("[data-civi-next-action-answer]");
@@ -288,7 +295,7 @@ async function dayEventJourney() {
   assert.equal(panel.querySelector("[data-lifestory-day-event]"), null);
   assert.equal(w.document.querySelector("[data-civi-next-action-answer]"), null, "already open modal removes former job choices");
   formerChoice.click();
-  panel.querySelector("[data-lifestory-next-action]").click();
+  w.CivicationNextActionUI.open();
   await waitFor(() => releaseJobDay, "new job day is loading");
   assert.equal(w.document.querySelector("[data-civi-next-action-answer]"), null, "loading cannot expose stale inbox choices");
   releaseJobDay({ ok: false });
@@ -296,18 +303,19 @@ async function dayEventJourney() {
   assert.equal(w.document.querySelector("[data-civi-next-action-answer]"), null);
   assert.equal(answers, 1, "former job cannot receive another consequence during handover");
   app.setJob(warehouse);
-  await waitFor(() => panel.querySelector("[data-lifestory-day-event]"), "return to daily event");
+  await waitFor(() => panel.querySelector("[data-lifestory-personal-only]"), "return to private life with an active job");
   w.CivicationMailEngine.archiveMail("journey_followup");
   phase = "day_end";
   w.dispatchEvent(new w.Event("civi:dayPhaseChanged"));
-  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Se dagslutt");
-  assert.equal(advances, 0, "preview never rolls the calendar");
+  assert.ok(panel.querySelector("[data-lifestory-personal-only]"),
+    "end-of-day inbox remains separate from the private scene");
+  assert.equal(advances, 0, "private-story rendering never rolls the calendar");
   app.close();
 
   const recovery = await boot({ position: warehouse, configure(w) {
     for (const file of scripts) w.eval(fs.readFileSync(path.join(ROOT, file), "utf8"));
   } });
-  recovery.panel.querySelector("[data-lifestory-next-action]").click();
+  recovery.w.CivicationNextActionUI.open();
   const doc = recovery.w.document;
   await waitFor(() => doc.querySelector("[data-civi-next-action-retry]"), "recoverable missing daily builder");
   assert.match(doc.getElementById("civiNextActionModalBody").textContent, /Dagens hendelser kunne ikke hentes/);
@@ -326,10 +334,11 @@ async function dayEventJourney() {
     }
   };
   doc.querySelector("[data-civi-next-action-retry]").click();
-  await waitFor(() => doc.querySelector("[data-civi-next-action-answer]") && recovery.panel.querySelector("[data-lifestory-day-event]"), "retry recovers real event");
+  await waitFor(() => doc.querySelector("[data-civi-next-action-answer]"), "retry recovers work event in inbox");
   assert.equal(starts, 1);
   assert.equal(doc.querySelector("[data-civi-next-action-retry]"), null);
-  assert.equal(recovery.panel.querySelector("h3").textContent, "Hendelsen er tilbake");
+  assert.ok(recovery.panel.querySelector("[data-lifestory-personal-only]"),
+    "recovered work inbox does not replace personal story");
   recovery.close();
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });
