@@ -4,6 +4,13 @@ on:
     paths:
       - '.github/workflows/oslo-fagverk-rapid-batch.yml'
       - 'tests/oslo-three-places-fagverk-batch-20261021.test.mjs'
+      - 'tests/oslo-batch04-fagverk-20261021.test.mjs'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv/*.json'
+      - 'data/places/historie/oslo/places_historie/sagene_skole.json'
+      - 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json'
+      - 'data/runtime/place-open/*.json'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/fagverk_release.json'
       - 'reports/place-production/det-norske-teatret-workcard-current.json'
       - 'data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json'
       - 'data/runtime/place-open/havnelageret.json'
@@ -32,6 +39,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Check three real Fagverk Places, registry, release and Objects freeze
         run: node --test tests/oslo-three-places-fagverk-batch-20261021.test.mjs
+      - name: Check 17 Oslo batch 04 canonical Fagverk Places
+        run: node --test tests/oslo-batch04-fagverk-20261021.test.mjs
       - name: Canonical Fagverk release sync
         run: node scripts/build-fagverk-release-manifest.mjs --check
       - name: Place-open runtime sync
