@@ -54,6 +54,7 @@ Lisenssidene er åpnet og lest, og originalfilene er lastet og visuelt kontrolle
 - JSDOM med faktisk `js/i18n.js`: begge steder følger en → es → pt → nb; norsk original gjenopprettes, seks kildehash stemmer og alle andre oversettelsesoppføringer er uendret.
 - Samme kontroll sammenligner kilde og place-open for begge steder og bekrefter uendret geometri, kategori og øvrige profiler. De fem stedshendelsene finnes i epokeindeksen, mens Gjøvikbanens institusjonsår utelates.
 - Etter bildereparasjonen er begge bildepekere, krediteringsfelt og lisensfelter kontrollert i source og place-open; `node scripts/audit-place-images.mjs --mode=changed` består for de endrede stedene. Den bredere bildebacklogen er ikke del av leveransen.
+- Den materialiserte bildeoversikten er synkronisert mot CI-auditens eksakte totaler: 153 lokale, 59 eksterne, 79 valgfrie Micro-bilder, 1234 manglende og 9 ugyldige stier. Endringen er to nye eksterne naturfoto og to færre manglende bilder; øvrig backlog beholdes.
 - Place-indeksen er bygget fra kildefilene med repoets TypeScript-builder; place-open og epokeindeks er generert med sine eierskript.
 - Ved oppdatering mot ny `main` ble Smalvolls nylig publiserte beskrivelse/bilde også synkronisert til place-indeksen av generatoren. Smalvolls kildefil og innhold er ikke endret i denne bolken.
 - `node scripts/build-place-open-payloads.mjs --check` og `node scripts/build-epoke-place-index.mjs --check`: synkronisert.
