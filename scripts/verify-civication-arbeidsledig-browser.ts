@@ -44,7 +44,15 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
     }
 
     const close = page.locator('#civiNextActionModal.is-open button[data-civi-next-action-close]').first();
-    if (await close.count()) await close.click();
+    // The next-action modal can disappear during an asynchronous re-render
+    // between DOM lookup and click. An already-dismissed modal is not a gate.
+    if (await close.isVisible().catch(() => false)) {
+      try {
+        await close.click({ timeout: 2000 });
+      } catch (error) {
+        if (await close.isVisible().catch(() => false)) throw error;
+      }
+    }
     await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
     await page.waitForTimeout(180);
     const after = await page.evaluate(() => ({
