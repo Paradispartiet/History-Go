@@ -22,14 +22,20 @@ test("C46 identifies a new licensed photo candidate but publishes zero Objects",
 });
 test("C46 rejects swapped Commons title, rights, author and publication status",()=>{
  const page={title:q.title};
+ const validWikitext="== Summary == {{Artwork |artist = {{Creator:Aksel Waldemar Johannessen}} |author = [[User:Wolfmann|Wolfmann]] }} {{self|cc-by-sa-4.0}}";
  const info={mime:"image/jpeg",width:2476,height:3635,size:1983705,url:"https://upload.wikimedia.org/wikipedia/commons/8/81/painting.jpg",
   extmetadata:{LicenseShortName:{value:"CC BY-SA 4.0"},Artist:{value:"<a>Wolfmann</a>"}}};
- assert.doesNotThrow(()=>validateCommons(page,info,q));
+ assert.doesNotThrow(()=>validateCommons(page,info,q,validWikitext));
  assert.throws(()=>validateRequest({...q,photographer:"Unknown"},research,place,card));
  assert.throws(()=>validateRequest({...q,publication:"CANONICAL_OBJECT"},research,place,card));
- assert.throws(()=>validateCommons({...page,title:"File:Other.jpeg"},info,q));
- assert.throws(()=>validateCommons(page,{...info,size:1983704},q));
- assert.throws(()=>validateCommons(page,{...info,url:"https://images.example.org/x.jpg"},q));
- assert.throws(()=>validateCommons(page,{...info,extmetadata:{...info.extmetadata,LicenseShortName:{value:"All rights reserved"}}},q));
- assert.throws(()=>validateCommons(page,{...info,extmetadata:{...info.extmetadata,Artist:{value:"Unknown"}}},q));
+ assert.throws(()=>validateCommons({...page,title:"File:Other.jpeg"},info,q,validWikitext));
+ assert.throws(()=>validateCommons(page,{...info,size:1983704},q,validWikitext));
+ assert.throws(()=>validateCommons(page,{...info,url:"https://images.example.org/x.jpg"},q,validWikitext));
+ assert.throws(()=>validateCommons(page,{...info,extmetadata:{...info.extmetadata,LicenseShortName:{value:"All rights reserved"}}},q,validWikitext));
+ // Artist is the painter, not the photographer; an Artist field containing Aksel must still pass.
+ assert.doesNotThrow(()=>validateCommons(page,{...info,extmetadata:{...info.extmetadata,Artist:{value:"Aksel Waldemar Johannessen"}}},q,validWikitext));
+ assert.throws(()=>validateCommons(page,info,q,validWikitext.replace("Wolfmann","WrongPhotographer")));
+ assert.throws(()=>validateCommons(page,info,q,validWikitext.replace("cc-by-sa-4.0","cc-by-sa-3.0")));
+ assert.throws(()=>validateCommons(page,info,q,validWikitext.replace("Creator:Aksel Waldemar Johannessen","Creator:Other Artist")));
+ assert.throws(()=>validateCommons(page,info,q,undefined));
 });

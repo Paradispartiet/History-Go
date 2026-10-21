@@ -30,13 +30,19 @@ export function validateRequest(q, research, place, workcard){
  if(item.length!==1||item[0].photo_title!==q.title||item[0].photo_author!==q.photographer||item[0].photo_license!==q.license)throw Error("Research object mismatch");
  if(place.id!==q.place_id||place.objects?.length||workcard.status!=="in_progress"||workcard.collections?.objects?.status!=="BLOCKED")throw Error("Canonical object gate changed");
 }
-export function validateCommons(page,info,q){
+export function validateCommons(page,info,q,sourceWikitext){
  if(!page||page.missing!==undefined||normal(page.title)!==normal(q.title))throw Error("Wikimedia Commons title mismatch");
  if(!info||info.mime!==q.expected_mime||info.width<q.min_width||info.height<q.min_height||info.size!==q.expected_source_size_bytes)throw Error("Unexpected original image properties");
  const u=new URL(info.url);
  if(u.protocol!=="https:"||u.hostname!=="upload.wikimedia.org")throw Error("Untrusted image host");
  const ext=info.extmetadata||{};
- if(ext.LicenseShortName?.value!==q.license||!String(ext.Artist?.value||"").includes(q.photographer))throw Error("Photographer/license unverified");
+ if(ext.LicenseShortName?.value!==q.license)throw Error("Live Commons license unverified");
+ // In the Artwork template, 'artist' identifies the painter and 'author' the photographer.
+ // The rendered imageinfo Artist field must NOT be mistaken for photographer attribution.
+ const text=String(sourceWikitext||"");
+ if(!/\|\s*author\s*=\s*\[\[\s*User:Wolfmann\s*\|\s*Wolfmann\s*\]\]/i.test(text))throw Error("Live Commons photographer attribution unverified");
+ if(!/\|\s*artist\s*=\s*\{\{\s*Creator:Aksel Waldemar Johannessen\s*\}\}/i.test(text))throw Error("Live Commons artwork author unverified");
+ if(!/\{\{\s*self\s*\|\s*cc-by-sa-4\.0\s*\}\}/i.test(text))throw Error("Live Commons self-licensed photo declaration unverified");
 }
 async function checkedFetch(url){
  const res=await fetch(url,{headers:{"User-Agent":"HistoryGoImageAudit/1.0 (https://github.com/Paradispartiet/History-Go)"},signal:AbortSignal.timeout(45000)});
@@ -48,12 +54,12 @@ export async function stage(){
  validateRequest(q,research,place,workcard);
  if(fs.existsSync(q.image_path)||fs.existsSync(q.report_path))throw Error("C46 refuses to overwrite staged media");
  const api=new URL("https://commons.wikimedia.org/w/api.php");
- for(const [k,v] of Object.entries({action:"query",format:"json",prop:"imageinfo",iiprop:"url|size|mime|extmetadata",titles:q.title}))api.searchParams.set(k,v);
+ for(const [k,v] of Object.entries({action:"query",format:"json",prop:"imageinfo|revisions",iiprop:"url|size|mime|extmetadata",rvprop:"content",rvslots:"main",titles:q.title}))api.searchParams.set(k,v);
  const result=await (await checkedFetch(api.href)).json();
  const pages=Object.values(result.query?.pages||{});
  if(pages.length!==1)throw Error("Ambiguous Commons file");
  const page=pages[0],info=page.imageinfo?.[0];
- validateCommons(page,info,q);
+ validateCommons(page,info,q,page.revisions?.[0]?.slots?.main?.["*"]);
  const response=await checkedFetch(info.url);
  if(new URL(response.url).hostname!=="upload.wikimedia.org"||!String(response.headers.get("content-type")||"").startsWith("image/jpeg"))throw Error("Unexpected downloaded source");
  const bytes=Buffer.from(await response.arrayBuffer());
