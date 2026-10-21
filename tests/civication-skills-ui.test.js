@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, "..");
 const repoFile = file => fs.readFileSync(path.join(root, file), "utf8");
 
 function element() {
-  return {
+  const el = {
     children: [],
     dataset: {},
     attributes: {},
@@ -19,8 +19,9 @@ function element() {
     setAttribute(k, v) { this.attributes[k] = v; },
     appendChild(c) { this.children.push(c); },
     replaceChildren(...children) { this.children = children; },
-    classList: { add(name) { this.classes.add(name); } }
   };
+  el.classList = { add(name) { el.classes.add(name); } };
+  return el;
 }
 const panel = element();
 const summary = element();
