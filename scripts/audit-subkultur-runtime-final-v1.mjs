@@ -96,7 +96,7 @@ export function buildSubkulturRuntimeFinalReport() {
     rejectedCaseCount: 8,
     pathwayCount: 8,
     assessmentQuestionCount: 40,
-    knowledgeUnitCount: 135,
+    knowledgeUnitCount: list(readJson(`data/knowledge/${knowledgeRegistries.knowledge_units}`).units).length,
     legacyQuestionAuditCount: 83,
     activeLegacyQuestionCount: 0
   };
