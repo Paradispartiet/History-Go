@@ -5,7 +5,7 @@ import fs from 'node:fs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const id='gamle_aker_kirke';
 const manifest=read('data/quizcards/historie/manifest.json');
-const cards=manifest.collections.flatMap(file=>read('data/quizcards/historie/'+file).cards||[]);
+const cards=manifest.collections.filter(file=>fs.existsSync('data/quizcards/historie/'+file)).flatMap(file=>read('data/quizcards/historie/'+file).cards||[]);
 const card=cards.filter(row=>row.targetId===id);
 const quiz=read('data/quiz/historie/gamle_aker_kirke_sets.json');
 const full=quiz.sets.flatMap(set=>set.questions);
