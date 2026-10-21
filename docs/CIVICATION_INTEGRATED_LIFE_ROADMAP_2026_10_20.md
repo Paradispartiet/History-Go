@@ -2,6 +2,12 @@
 
 Opprettet: 2026-10-20. Eier: Civication. Status: **aktiv plan; ikke godkjent som ferdig spillerreise**.
 
+## Oppdatert mål: 21 dagers organisk inngang til livsposisjon
+
+Den tidligere 14-dagers akseptansen beholdes som delmilepæl, men **første fulle spillerreise er nå 21 dager**. Dag 1–7 etablerer relasjoner, økonomi og konflikter; dag 8–14 gir flere ulike privathendelser og etterspill; dag 15–21 lar faktiske lokale bidrag, samtaler og avslutninger gjøre en frivillig livsposisjon tilgjengelig. Arbeidsledighet i seg selv låser ingenting opp og er ikke en identitet.
+
+**Implementert på egen PR-gren:** 17 private authored-scener for dag 8–21 med to forgreninger, en dokumentert dag-21-posisjon via kanonisk Life Position-runtime, private valg over jobbbytte og en utvidet 21-dagers test med to valgruter. **Ikke erklært godkjent:** reell 21-dagers browser playthrough, konto-/sky-gjenoppretting på ny enhet, ukentlig økonomi, faktisk NPC-etterspill eller History Go-tilbud uten mock. Dette er fortsatt separate porter før produktet er ferdig.
+
 ## Formål og fasit
 Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, økonomi, psyke, energi og integritet henger sammen. Et valg fra dag 2 må kunne få observerbare, kausalt begrunnede følger på dag 14. En grønn unit-test alene beviser ikke at dette skjer i nettleseren.
 
