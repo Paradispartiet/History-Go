@@ -161,6 +161,20 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     assert.match(String(accepted.active.title), /Vertskap|museum|galleri/i);
     assert.equal(accepted.merit, 5);
     assert.equal(accepted.people, null);
+    // Formal work is real, but no work pack exists for the museum position.
+    // The private-day panel must remain accessible without replaying NAV.
+    const afterOfferPopup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]');
+    if (await afterOfferPopup.count()) await afterOfferPopup.click();
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    await page.locator('[data-lifestory-personal-only]').waitFor({ state: 'visible', timeout: 30000 });
+    assert.equal(await page.locator('[data-lifestory-role-status="unavailable"]').count(), 0,
+      'unmapped paid work must not hide the whole private story');
+    const playable = await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo());
+    assert.ok(playable, 'private day remains navigable after earning and accepting the museum job');
+    const privateAction = page.locator('[data-lifestory-choice]:not([disabled]), [data-lifestory-advance], [data-lifestory-next-day]');
+    assert.ok(await privateAction.count(), 'at least one private story/advance action remains visible');
+    assert.equal(await page.evaluate(() => (globalThis as any).CivicationState.getActivePosition()?.career_id),
+      'kunst', 'private narrative mode does not change the earned formal position');
     assert.equal(await hasPlayedPrivateChoice(), true,
       'accepting earned art job cannot erase a previously played personal scene');
     assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifestoryState.load().livsdag),
