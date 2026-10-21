@@ -800,11 +800,14 @@
     // fortsette historien, mens omstart ligger under «Mer» i footeren.
     // Uten endings-modulen vises den vanlige dagsoppsummeringen.
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
-    // A role-week ending belongs to the authored local week, not every later
-    // private day. Otherwise days 8–21 repeat the same ending screen.
-    const authoredWeekEnd = content.role.symposium?.sisteDag;
+    // Every role, including those without symposium metadata, has an authored
+    // terminal day in its local scenes. Later private life-day episodes must
+    // not repeat that role's ending in every daily summary.
+    const authoredWeekEnd = (content.scenes || []).reduce((latest, scene) =>
+      Number.isInteger(scene.livsdagFra) ? latest
+        : Number.isInteger(scene.dag) ? Math.max(latest, scene.dag) : latest, 0);
     const sisteDag = !!(Endings && Endings.isFinalDay(state, content))
-      && (!Number.isInteger(authoredWeekEnd) || state.dag <= authoredWeekEnd);
+      && state.dag === authoredWeekEnd;
     const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
     const authoredEnding = ending && (content.role.endings || []).find(e => e.id === ending.id);
     const endingHtml = ending
