@@ -816,19 +816,20 @@
     const continuationHtml = next
       ? '<button class="civi-btn primary" type="button" data-lifestory-continue="' + escapeHtml(next.id) + '"' + (continuing ? ' disabled' : '') + '>' + (continuing ? "Åpner fortsettelsen …" : escapeHtml(next.navn)) + '</button>'
       : "";
-    const chosenLifePosition = sisteDag && !next ? getRoleSuggestion() : null;
     const pendingPrivate = !!Runner.hasPendingPrivateScenes?.(state, content);
+    const threeWeekFinish = !content.fortsettelse && (state.livsdag || state.dag) >= 21 && !pendingPrivate;
+    const chosenLifePosition = (sisteDag || threeWeekFinish) && !next ? getRoleSuggestion() : null;
     // Private Life Stories remain playable without a badge. The History Go
     // guide is optional and must also appear when private stories continue.
-    const offerExploration = sisteDag && !next;
+    const offerExploration = (sisteDag || threeWeekFinish) && !next;
     const required = Number(chosenLifePosition?.threshold);
     const hasPointGate = Number.isFinite(required) && required > 0 && !!chosenLifePosition?.badge_id;
     const earned = hasPointGate ? chapterBadgePoints(chosenLifePosition.badge_id) : 0;
     const needsMerits = hasPointGate && earned < required;
     const nextChapterHint = !offerExploration ? "" :
       '<section class="civi-lifestory-next-chapter" role="status" aria-label="Veien videre">'
-      + '<h4>Veien videre</h4>'
-      + (chosenLifePosition
+      + (threeWeekFinish ? '<h4>Tre uker – nye veier</h4><p>Valgene dine er bevart. Du kan velge en tilgjengelig livsposisjon, undersøke faktiske jobbtilbud eller fortsette å utforske History Go. Arbeid krever et virkelig tilbud som du selv aksepterer; livsposisjon er frivillig og eventuelle merittkrav gjelder fortsatt. Ingen automatisk jobb, identitet eller belønning.</p>' : '<h4>Veien videre</h4>')
+      + (threeWeekFinish ? '' : chosenLifePosition
         ? '<p>Privatlivet kan fortsette uansett jobbstatus. Du har vist interesse for <strong>' + escapeHtml(chosenLifePosition.navn) + '</strong>. Vil du åpne dette ekstra historiekapittelet, kreves riktig opptjening og et frivillig valg av livsposisjon.</p>'
           + (needsMerits ? '<p>Du har ' + escapeHtml(earned) + ' av ' + escapeHtml(required) + ' poeng i ' + escapeHtml(chosenLifePosition.badge_id) + '. Ta quizer i History Go for å bygge kunnskap.</p>'
             : hasPointGate ? '<p>Du har nok poeng. Åpne livsposisjonene og velg ' + escapeHtml(chosenLifePosition.navn) + ' for å låse opp neste kapittel.</p>'
@@ -837,6 +838,7 @@
       + '<div class="civi-lifestory-actions">'
       + '<button class="civi-btn primary" type="button" data-lifestory-study>Utforsk History Go</button>'
       + '<button class="civi-btn" type="button" data-lifestory-life-profile>Se livsposisjoner</button>'
+      + '<button class="civi-btn" type="button" data-lifestory-career-options>Se jobbmuligheter</button>'
       + '</div></section>';
     // A pending mail needs a reachable player action in Min dag, even when
     // there is no active job or visible top-action card.
@@ -849,7 +851,7 @@
       ? '<p class="muted" role="status">Du har fortsatt en melding eller oppgave i dag. Åpne innboksen og fullfør den før du starter neste dag.</p>'
       : "";
     const nextDayDisabled = needsInboxFirst ? ' disabled title="Fullfør dagens meldinger først"' : '';
-    const handlingsHtml = sisteDag
+    const handlingsHtml = (sisteDag || threeWeekFinish)
       ? "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
         + nextChapterHint
@@ -1240,6 +1242,10 @@
       if (target.closest("[data-lifestory-next-day]")) { onNextDay(); return; }
       const continueBtn = target.closest("[data-lifestory-continue]");
       if (continueBtn) { onContinue(continueBtn.getAttribute("data-lifestory-continue") || ""); return; }
+      if (target.closest("[data-lifestory-career-options]")) {
+        /** @type {any} */ (window).CivicationLifestoryActions?.perform?.({ type: "aapne_karriere" });
+        return;
+      }
       if (target.closest("[data-lifestory-life-profile]")) {
         /** @type {any} */ (window).CivicationLifestoryActions?.perform?.({ type: "aapne_livsposisjoner" });
         return;
