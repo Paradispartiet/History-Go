@@ -15,6 +15,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: akerselva-dams-placecard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   dams-placecard:
     name: Brekkedammen and Nydalsdammen QuizCard flip
