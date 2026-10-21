@@ -34,8 +34,8 @@
   },
   "textHashes": {
     "algorithm": "sha256",
-    "desc": "01467428107cad750d2c9ad140fec96c3a7b3ce9ec46ca77c808c529addac8a9",
-    "popupDesc": "e37da334dd1858dc89de68fa26f69d93c72ed87db1067bd77aed576df0eb47db"
+    "desc": "06a84e749c62e5b565420c3f5906d78f3f3dbb4e16975f94e12a64a8c0c41e07",
+    "popupDesc": "8c185a4eca3637d92b7ad60e8b868894e0efdb870ddc73c13334e2924724840c"
   },
   "claims": [
     {
@@ -232,6 +232,30 @@
       "evidenceMode": "explicit",
       "temporalStatus": "planned",
       "notes": "Planopplysningen må verifiseres på nytt dersom prosjektets tidsplan endres."
+    },
+    {
+      "id": "claim_gak_fossils",
+      "claim": "Kalksteinen i Gamle Aker kirke har synlige fossiler av blekkspruter.",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/sthans/forsideoppslag/gamle-aker/",
+      "sourceLocation": "Arkitektur og historie: kalkstein, fossiler og Midgardsormen ved nordkapellet",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-21",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "explicit",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "claim_gak_midgardsormen",
+      "claim": "Utenpå nordkapellets apsis finnes et uthugget motiv av Midgardsormen som biter seg i halen.",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/sthans/forsideoppslag/gamle-aker/",
+      "sourceLocation": "Arkitektur og historie: kalkstein, fossiler og Midgardsormen ved nordkapellet",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-21",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "explicit",
+      "temporalStatus": "historical"
     }
   ],
   "sentenceCoverage": {
@@ -248,6 +272,8 @@
         "sentence": 2,
         "claimIds": [
           "claim_gak_architecture",
+          "claim_gak_fossils",
+          "claim_gak_midgardsormen",
           "claim_gak_plan_layers",
           "claim_gak_fires",
           "claim_gak_restoration_19c",
@@ -257,51 +283,179 @@
       {
         "sentence": 3,
         "claimIds": [
-          "claim_gak_nonneseter",
-          "claim_gak_ownership",
+          "claim_gak_demolition_purchase",
           "claim_gak_current_use",
-          "claim_gak_rehab_2023_2024"
+          "claim_gak_ownership"
         ]
       }
     ],
     "popupDesc": [
-      { "sentence": 1, "claimIds": ["claim_gak_identity", "claim_gak_oldest_standing"] },
-      { "sentence": 2, "claimIds": ["claim_gak_dating_uncertain"] },
-      { "sentence": 3, "claimIds": ["claim_gak_dating_uncertain"] },
-      { "sentence": 4, "claimIds": ["claim_gak_dating_uncertain"] },
-      { "sentence": 5, "claimIds": ["claim_gak_architecture"] },
-      { "sentence": 6, "claimIds": ["claim_gak_architecture"] },
-      { "sentence": 7, "claimIds": ["claim_gak_plan_layers"] },
-      { "sentence": 8, "claimIds": ["claim_gak_plan_layers", "claim_gak_restoration_19c"] },
-      { "sentence": 9, "claimIds": ["claim_gak_nonneseter"] },
-      { "sentence": 10, "claimIds": ["claim_gak_ownership"] },
-      { "sentence": 11, "claimIds": ["claim_gak_ownership"] },
-      { "sentence": 12, "claimIds": ["claim_gak_nonneseter", "claim_gak_ownership"] },
-      { "sentence": 13, "claimIds": ["claim_gak_fires"] },
-      { "sentence": 14, "claimIds": ["claim_gak_demolition_purchase"] },
-      { "sentence": 15, "claimIds": ["claim_gak_restoration_19c"] },
-      { "sentence": 16, "claimIds": ["claim_gak_restoration_19c"] },
-      { "sentence": 17, "claimIds": ["claim_gak_restoration_1950s"] },
-      { "sentence": 18, "claimIds": ["claim_gak_restoration_1950s"] },
-      { "sentence": 19, "claimIds": ["claim_gak_moseid_windows"] },
-      { "sentence": 20, "claimIds": ["claim_gak_plan_layers", "claim_gak_restoration_1950s", "claim_gak_moseid_windows"] },
-      { "sentence": 21, "claimIds": ["claim_gak_current_use"] },
-      { "sentence": 22, "claimIds": ["claim_gak_rehab_2023_2024"] },
-      { "sentence": 23, "claimIds": ["claim_gak_rehab_current_plan"] },
-      { "sentence": 24, "claimIds": ["claim_gak_plan_layers", "claim_gak_current_use", "claim_gak_rehab_current_plan"] }
+      {
+        "sentence": 1,
+        "claimIds": [
+          "claim_gak_identity",
+          "claim_gak_oldest_standing"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claimIds": [
+          "claim_gak_dating_uncertain"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claimIds": [
+          "claim_gak_dating_uncertain"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claimIds": [
+          "claim_gak_dating_uncertain"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claimIds": [
+          "claim_gak_architecture",
+          "claim_gak_fossils"
+        ]
+      },
+      {
+        "sentence": 6,
+        "claimIds": [
+          "claim_gak_architecture",
+          "claim_gak_midgardsormen"
+        ]
+      },
+      {
+        "sentence": 7,
+        "claimIds": [
+          "claim_gak_plan_layers"
+        ]
+      },
+      {
+        "sentence": 8,
+        "claimIds": [
+          "claim_gak_plan_layers",
+          "claim_gak_restoration_19c"
+        ]
+      },
+      {
+        "sentence": 9,
+        "claimIds": [
+          "claim_gak_nonneseter"
+        ]
+      },
+      {
+        "sentence": 10,
+        "claimIds": [
+          "claim_gak_ownership"
+        ]
+      },
+      {
+        "sentence": 11,
+        "claimIds": [
+          "claim_gak_ownership"
+        ]
+      },
+      {
+        "sentence": 12,
+        "claimIds": [
+          "claim_gak_nonneseter",
+          "claim_gak_ownership"
+        ]
+      },
+      {
+        "sentence": 13,
+        "claimIds": [
+          "claim_gak_fires"
+        ]
+      },
+      {
+        "sentence": 14,
+        "claimIds": [
+          "claim_gak_demolition_purchase"
+        ]
+      },
+      {
+        "sentence": 15,
+        "claimIds": [
+          "claim_gak_restoration_19c"
+        ]
+      },
+      {
+        "sentence": 16,
+        "claimIds": [
+          "claim_gak_restoration_19c"
+        ]
+      },
+      {
+        "sentence": 17,
+        "claimIds": [
+          "claim_gak_restoration_1950s"
+        ]
+      },
+      {
+        "sentence": 18,
+        "claimIds": [
+          "claim_gak_restoration_1950s"
+        ]
+      },
+      {
+        "sentence": 19,
+        "claimIds": [
+          "claim_gak_moseid_windows"
+        ]
+      },
+      {
+        "sentence": 20,
+        "claimIds": [
+          "claim_gak_plan_layers",
+          "claim_gak_restoration_1950s",
+          "claim_gak_moseid_windows"
+        ]
+      },
+      {
+        "sentence": 21,
+        "claimIds": [
+          "claim_gak_current_use"
+        ]
+      },
+      {
+        "sentence": 22,
+        "claimIds": [
+          "claim_gak_rehab_2023_2024"
+        ]
+      },
+      {
+        "sentence": 23,
+        "claimIds": [
+          "claim_gak_rehab_current_plan"
+        ]
+      },
+      {
+        "sentence": 24,
+        "claimIds": [
+          "claim_gak_plan_layers",
+          "claim_gak_current_use",
+          "claim_gak_rehab_current_plan"
+        ]
+      }
     ]
   },
   "reviews": {
     "factual": {
       "status": "passed",
-      "reviewedAt": "2026-08-02",
+      "reviewedAt": "2026-10-21",
       "reviewer": "OpenAI Codex",
       "datingConflictReviewed": true,
       "presentTraceReviewed": true
     },
     "editorial": {
       "status": "passed",
-      "reviewedAt": "2026-08-02",
+      "reviewedAt": "2026-10-21",
       "reviewer": "OpenAI Codex",
       "introducedNewFacts": false,
       "ingressReview": {
@@ -320,56 +474,72 @@
         "answer": "I Akersbakken 26 i Oslo.",
         "type": "hvor",
         "normalKnowledgeQuestion": true,
-        "claimIds": ["claim_gak_identity"]
+        "claimIds": [
+          "claim_gak_identity"
+        ]
       },
       {
         "question": "Hva er Gamle Aker kirke kjent som i Oslos bygningshistorie?",
         "answer": "Oslos eldste stående bygning.",
         "type": "hva",
         "normalKnowledgeQuestion": true,
-        "claimIds": ["claim_gak_oldest_standing"]
+        "claimIds": [
+          "claim_gak_oldest_standing"
+        ]
       },
       {
         "question": "Hvorfor oppgis ikke ett sikkert byggeår for Gamle Aker kirke?",
         "answer": "Fordi kildene gir ulike dateringsforslag fra omkring 1080 til midten av 1100-tallet.",
         "type": "hva",
         "normalKnowledgeQuestion": true,
-        "claimIds": ["claim_gak_dating_uncertain"]
+        "claimIds": [
+          "claim_gak_dating_uncertain"
+        ]
       },
       {
         "question": "Hvilket kloster overtok Gamle Aker kirke i 1186?",
         "answer": "Nonneseter kloster.",
         "type": "hva",
         "normalKnowledgeQuestion": true,
-        "claimIds": ["claim_gak_nonneseter"]
+        "claimIds": [
+          "claim_gak_nonneseter"
+        ]
       },
       {
         "question": "Hva skjedde med kirken etter rivningsvedtaket i 1852?",
         "answer": "Christiania kommune kjøpte den samme år.",
         "type": "hva_skjedde",
         "normalKnowledgeQuestion": true,
-        "claimIds": ["claim_gak_demolition_purchase"]
+        "claimIds": [
+          "claim_gak_demolition_purchase"
+        ]
       },
       {
         "question": "Hvem ledet restaureringen i 1858–1861?",
         "answer": "Heinrich Ernst Schirmer og Wilhelm von Hanno.",
         "type": "hvem",
         "normalKnowledgeQuestion": true,
-        "claimIds": ["claim_gak_restoration_19c"]
+        "claimIds": [
+          "claim_gak_restoration_19c"
+        ]
       },
       {
         "question": "Hva ble endret i kirkerommet under restaureringen i 1950–1955?",
         "answer": "Den innvendige pussen ble fjernet, og kirkerommet fikk et bart steinpreg.",
         "type": "hva_ble_bygget_produsert_eller_endret",
         "normalKnowledgeQuestion": true,
-        "claimIds": ["claim_gak_restoration_1950s"]
+        "claimIds": [
+          "claim_gak_restoration_1950s"
+        ]
       },
       {
         "question": "Hvilket verk fra 1955 finnes i kirken?",
         "answer": "Torvald Moseids glassmalerier.",
         "type": "hvilket_verk_eller_objekt",
         "normalKnowledgeQuestion": true,
-        "claimIds": ["claim_gak_moseid_windows"]
+        "claimIds": [
+          "claim_gak_moseid_windows"
+        ]
       }
     ]
   },
@@ -419,8 +589,8 @@
     "currentStatus": "current",
     "sourceVerifiedAt": "2026-08-02",
     "claimsVerified": {
-      "verified": 15,
-      "total": 15
+      "verified": 17,
+      "total": 17
     },
     "factualReview": "passed",
     "editorialReview": "passed",
