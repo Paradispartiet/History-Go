@@ -1,0 +1,93 @@
+name: Sognsvann v1 licensed photo materialization
+on:
+  push:
+    branches:
+      - history-go/sognsvann-v1-20261021
+    paths:
+      - '.github/workflows/sognsvann-v1-photo-materialize.yml'
+permissions:
+  contents: write
+jobs:
+  licensed-photos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout same PR branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Pillow and requests
+        run: python3 -m pip install --quiet Pillow requests
+      - name: Download verified CC BY-SA photos and crop to local WebP
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, io, json, pathlib, requests
+          from PIL import Image, ImageOps
+          ua = {"User-Agent": "HistoryGoSognsvannPhotoV1/1.0 (https://github.com/Paradispartiet/History-Go)"}
+          items = [
+              ("Sognsvann - Oslo, Norway 2020-09-25 (01).jpg", "bilder/places/sognsvann_front_portrait.webp", (600, 800), "portrait", "2020-09-25"),
+              ("Sognsvann - Oslo, Norway 2020-09-13 (03).jpg", "bilder/places/sognsvann_landscape.webp", (1400, 900), "landscape", "2020-09-13"),
+          ]
+          p = pathlib.Path("data/places/natur/oslo/sognsvann.json")
+          place = json.loads(p.read_text())
+          entries = []
+          for title, output, shape, orientation, date in items:
+              page = "File:" + title
+              resp = requests.get("https://commons.wikimedia.org/w/api.php", params={
+                  "action": "query", "prop": "imageinfo", "iiprop": "url|size|extmetadata",
+                  "titles": page, "format": "json"}, headers=ua, timeout=50)
+              resp.raise_for_status()
+              info = next(iter(resp.json()["query"]["pages"].values()))["imageinfo"][0]
+              md = info["extmetadata"]
+              lic = md["LicenseShortName"]["value"]
+              artist = md.get("Artist", {}).get("value", "")
+              if "BY-SA" not in lic or "4.0" not in lic or "Ryan Hodnett" not in artist:
+                  raise RuntimeError("Unexpected image rights/photographer: " + title + " " + str((lic, artist)))
+              raw = requests.get(info["url"], headers=ua, timeout=120)
+              raw.raise_for_status()
+              image = Image.open(io.BytesIO(raw.content))
+              image.load()
+              if image.width < shape[0] or image.height < shape[1]: raise RuntimeError("Too small: " + title)
+              cropped = ImageOps.fit(image.convert("RGB"), shape, method=Image.Resampling.LANCZOS, centering=(0.5, 0.5))
+              dest = pathlib.Path(output)
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              cropped.save(dest, "WEBP", quality=86, method=6)
+              if Image.open(dest).size != shape: raise RuntimeError("Wrong crop: " + output)
+              page_url = "https://commons.wikimedia.org/wiki/" + requests.utils.quote(page.replace(" ", "_"), safe="/:_(),-")
+              meta = {
+                  "source": "wikimedia_commons", "sourcePage": page_url,
+                  "creator": "Ryan Hodnett", "credit": "Ryan Hodnett / Wikimedia Commons",
+                  "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+                  "capturedAt": date, "orientation": orientation,
+                  "sourceImageDimensions": [image.width, image.height],
+                  "outputDimensions": list(shape),
+                  "transformation": "Editorial center crop from documentary Sognsvann photo; content not changed; WebP quality 86",
+                  "sourceSha256": hashlib.sha256(raw.content).hexdigest(),
+                  "outputSha256": hashlib.sha256(dest.read_bytes()).hexdigest(),
+                  "verifiedAt": "2026-10-21", "visualReview": "pending_actual_390_1440_browser",
+              }
+              key = "frontImage" if orientation == "portrait" else "image"
+              place[key] = output
+              place[key+"Meta"] = meta
+              link = {"label": "Sognsvann foto – Ryan Hodnett, CC BY-SA 4.0 ("+orientation+")", "url": page_url, "type": "reference", "verifiedAt": "2026-10-21"}
+              if not any(q.get("url")==page_url for q in place.get("externalLinks", [])):
+                  place.setdefault("externalLinks", []).append(link)
+              entries.append({"sourceTitle":title,"sourcePage":page_url,"file":output,"meta":meta})
+          p.write_text(json.dumps(place,ensure_ascii=False,indent=2)+"\n")
+          report = pathlib.Path("reports/place-production/sognsvann-v1-images-20261021.json")
+          report.parent.mkdir(parents=True, exist_ok=True)
+          report.write_text(json.dumps({"placeId":"sognsvann","status":"local_webp_materialized_browser_qa_pending","images":entries},ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps([{"output":x["file"],"dimensions":x["meta"]["outputDimensions"],"license":x["meta"]["license"],"sha256":x["meta"]["outputSha256"]} for x in entries]))
+          
+          PY
+      - name: Commit verified photos and report to same PR
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/natur/oslo/sognsvann.json bilder/places/sognsvann_front_portrait.webp bilder/places/sognsvann_landscape.webp reports/place-production/sognsvann-v1-images-20261021.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'assets(history-go): materialize licensed Sognsvann WebP photographs'
+            git pull --rebase origin history-go/sognsvann-v1-20261021
+            git push origin HEAD:history-go/sognsvann-v1-20261021
+          fi
