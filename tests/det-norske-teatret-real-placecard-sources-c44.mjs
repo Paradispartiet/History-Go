@@ -84,19 +84,19 @@ try {
       assert.match(await panel.innerText(),/Kilder/);
       const image = panel.locator(".hg-place-source-photo img");
       assert.equal(await image.count(),2,"two documented images must not create a canonical Object");
-      await image.scrollIntoViewIfNeeded();
+      await image.first().scrollIntoViewIfNeeded();
       await page.waitForFunction(() => {
         const img = document.querySelector('#placeCard [data-hg-place-sheet-section="sources"] .hg-place-source-photo img');
         return img?.complete && img.naturalWidth === 800 && img.naturalHeight === 800;
       },null,{timeout:15000});
-      assert.equal(await image.getAttribute("src"),c41.museum_image.file);
-      const fit = await image.evaluate(el=>getComputedStyle(el).objectFit);
+      assert.equal(await image.first().getAttribute("src"),c41.museum_image.file);
+      const fit = await image.first().evaluate(el=>getComputedStyle(el).objectFit);
       assert.equal(fit,"contain","physical costume may not be cropped");
-      const box = await image.boundingBox();
+      const box = await image.first().boundingBox();
       assert.ok(box && box.x >= -1 && box.x+box.width <= width+1,
         "museum image must fit mobile/desktop viewport");
       const caption = panel.locator(".hg-place-source-photo figcaption");
-      await caption.scrollIntoViewIfNeeded();
+      await caption.first().scrollIntoViewIfNeeded();
       assert.match(await caption.first().innerText(),/Lone Lunde.*Oslo Museum/);
       assert.match(await caption.first().innerText(),/CC BY-SA 4\.0/);
       assert.equal(await caption.first().locator("a").getAttribute("href"),c41.museum_image.source);
