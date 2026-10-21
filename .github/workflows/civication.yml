@@ -64,5 +64,8 @@ jobs:
       - name: Validate Role World readiness before full suite
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --check
 
+      - name: Verify legacy cloud role migration
+        run: node tests/civication-lifestory-shell-role-bridge.test.js
+
       - name: Run complete Civication suite
         run: npm run test:civication
