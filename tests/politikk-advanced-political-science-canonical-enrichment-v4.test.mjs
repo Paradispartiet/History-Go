@@ -53,6 +53,6 @@ test('Statsvitenskap v4: alle kildespor er attribuert til kontrollerte kapitler,
     assert.equal(ch.fulltext_audited, false);
     assert.equal(ch.promotion_allowed, false);
   }
-  assert.ok(audit.concept_catalog_audit_note.includes('ikke'));
+  assert.match(audit.concept_catalog_audit_note, /begrenset til kontrollert pensum/);
   assert.ok(audit.deferred.length >= 2);
 });
