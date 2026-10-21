@@ -138,10 +138,10 @@ async function run() {
         originalStore.setItem('merits_by_category', JSON.stringify({ kunst: { points: 5 } }));
         originalStore.setItem('hg_quiz_sets_v1', JSON.stringify(sets));
         game.window.CivicationState.setActivePosition({
-          career_id: 'kunst', role_key: museum.id, title: museum.title
+          career_id: 'kunst', role_key: 'kunst_publikum_og_formidling', title: museum.title
         });
         originalStore.setItem('hg_job_history_v1', JSON.stringify([
-          { career_id: 'kunst', role_key: museum.id, started_day_index: day }
+          { career_id: 'kunst', role_key: 'kunst_publikum_og_formidling', started_day_index: day }
         ]));
         const before = JSON.stringify(state);
         content = await Content.makePersonalOnlyContent(content);
