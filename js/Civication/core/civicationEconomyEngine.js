@@ -253,8 +253,10 @@ function tickPCIncomeWeekly() {
     : [];
   // Daily snapshots are authoritative when available; old saves with none
   // retain the legacy whole-week calculation until their first full week.
+  // Sum integer weekly-net shares before dividing, so floating-point
+  // rounding cannot turn seven 170-PC days into 169 PC at settlement.
   const recordedNet = records.length
-    ? Math.floor(records.reduce((sum, r) => sum + (Number.isFinite(Number(r.weeklyNet)) ? Number(r.weeklyNet) : 0) / 7, 0))
+    ? Math.floor(records.reduce((sum, r) => sum + (Number.isFinite(Number(r.weeklyNet)) ? Number(r.weeklyNet) : 0), 0) / 7)
     : null;
   const thisWeek = typeof weekKey === "function" ? weekKey(now) : null;
   const stampSettledWeek = () => {
