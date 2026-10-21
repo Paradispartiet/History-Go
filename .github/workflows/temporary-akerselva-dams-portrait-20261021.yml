@@ -1,0 +1,52 @@
+name: One-off Akerselva dam portrait materialization
+on:
+  push:
+    branches:
+      - media/akerselva-dams-local-portrait-20261021
+    paths:
+      - .github/workflows/temporary-akerselva-dams-portrait-20261021.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temporary-akerselva-dams-portrait-20261021
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: media/akerselva-dams-local-portrait-20261021
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+      - name: Produce both CC-licensed local portrait WebPs
+        run: python scripts/produce-akerselva-dams-portraits-20261021.py
+      - name: Regenerate place-open payloads
+        run: |
+          node scripts/build-place-open-payloads.mjs
+          node scripts/build-place-open-payloads.mjs --check
+      - name: Commit only images, canonical places, runtime data and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- \
+            bilder/places/brekkedammen_front_portrait.webp \
+            bilder/places/nydalsdammen_front_portrait.webp \
+            data/places/natur/oslo/brekkedammen.json \
+            data/places/natur/oslo/places_oslo_natur_akerselvarute/nydalsdammen.json \
+            data/runtime/place-open/brekkedammen.json \
+            data/runtime/place-open/nydalsdammen.json \
+            reports/place-production/akerselva-dams-portraits-20261021.json
+          test "$(git diff --cached --name-only | wc -l)" -eq 7
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "media: add local CC-licensed 3:4 Brekkedammen and Nydalsdammen fronts"
+          git push origin HEAD:refs/heads/media/akerselva-dams-local-portrait-20261021
