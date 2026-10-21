@@ -73,6 +73,8 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 
 ## Helhetlig progresjon: Life Stories × History Go × skills (beslutning 21.10.2026)
 
+Dette er det operative implementeringssporet for den besluttede [Civication-spillerutviklingskontrakten](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md). Ved tvil om skillet mellom eksisterende state, nye ferdigheter og samlingens evidens: følg kontrakten og dagens faktiske runtime, ikke anta at roadmap-punkter er levert.
+
 Dette er **produktkrav og prioritert implementeringsplan**, ikke bevis på at systemene allerede fungerer fra ende til ende. Arbeidsledig skal være en faktisk arbeids- og inntektssituasjon som kan vare utover både dag 7, dag 14 og dag 30. Den skal korrespondere med **rolleuavhengige Life Stories**, ikke først og fremst med jobbrettede rollehistorier. Nye jobber er muligheter, ikke obligatorisk progresjon. Eksisterende `Runner.canStartContinuation` kan bevare gater for *spesialkapitler*, men må ikke brukes som global dag-8-/livsport.
 
 ### Hvilke skalaer har vi, og hva mangler?
