@@ -46,8 +46,8 @@ test("DNT C40 links do not license redistribution or declare a complete Objects 
  assert.equal(report.boundary.third_party_images_stored_in_repository,false);
  assert.equal(report.boundary.published_canonical_objects,0);
  assert.equal(workcard.status,"in_progress");
- assert.equal(workcard.collections.objects.status,"BLOCKED");
- assert.deepEqual(workcard.placecard_collections_publishable_now,[]);
+ assert.equal(workcard.collections.objects.status,"PASS");
+ assert.deepEqual(workcard.placecard_collections_publishable_now,["objects"]);
  assert.equal(place.frontImage,"bilder/places/det_norske_teatret_front_bjoertvedt_2013.webp");
  assert.ok(workcard.checkpoints.some(x=>x.id==="original_publisher_photo_links_c40"));
 });
