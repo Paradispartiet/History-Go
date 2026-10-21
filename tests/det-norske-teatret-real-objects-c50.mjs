@@ -113,6 +113,18 @@ try {
         const images=[...document.querySelectorAll("#pcObjectsList .pc-object-member img")];
         return images.length===2 && images.every(el=>el.complete && el.naturalWidth>0 && el.naturalHeight>0);
       },null,{timeout:15000});
+      const visibleRows=page.locator(".pc-object-member:visible");
+      assert.equal(await visibleRows.count(),2,"both Object rows must actually be visible in the live popup");
+      const visibleMemberImages=visibleRows.locator("img.pc-object-member-image");
+      assert.equal(await visibleMemberImages.count(),2);
+      const minimumMemberImageWidth=width<=520 ? 72 : 90;
+      for(let i=0;i<2;i++){
+        const box=await visibleMemberImages.nth(i).boundingBox();
+        assert.ok(box && box.width>=minimumMemberImageWidth && box.height>=minimumMemberImageWidth,
+          "Object member media is rendered too small for "+name+": "+JSON.stringify(box));
+      }
+      await visibleRows.nth(1).scrollIntoViewIfNeeded();
+      await page.screenshot({path:artifactPath+"/"+name+"-illustration-member.png"});
       const rows=page.locator("#pcObjectsList .pc-object-member");
       assert.match(await rows.nth(0).innerText(),/Madame de Sade/);
       assert.match(await rows.nth(0).innerText(),/Lone Lunde/);
