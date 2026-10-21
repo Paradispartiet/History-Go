@@ -57,10 +57,17 @@ try{
     const inner=card?.getBoundingClientRect();
     return{hidden:el.hidden,visibility:style.visibility,opacity:style.opacity,text:el.innerText||'',width:rect.width,height:rect.height,innerWidth:inner?.width||0,innerHeight:inner?.height||0};
    });
-   assert.equal(flip.hidden,false,name+': QuizCard content still hidden');
-   assert.equal(flip.visibility,'visible',name+': QuizCard face not visually exposed');
-   console.log(name+' QuizCard measured geometry after animation:',JSON.stringify({contentWidth:flip.width,contentHeight:flip.height,innerWidth:flip.innerWidth,innerHeight:flip.innerHeight,visible:flip.visibility,chars:flip.text.length}));
+   const flipFrame=await page.locator('#pcFrontCardFlip').evaluate(el=>({
+    className:el.className,
+    innerTransform:getComputedStyle(el.querySelector('.pc-card-flip-inner')).transform,
+    reverseVisibility:getComputedStyle(el.querySelector('.pc-card-face-back')).visibility,
+    frontVisibility:getComputedStyle(el.querySelector('.pc-card-face-front')).visibility
+   }));
+   console.log(name+' post-animation QuizCard diagnostic:',JSON.stringify({frame:flipFrame,hidden:flip.hidden,visibility:flip.visibility,contentWidth:flip.width,contentHeight:flip.height,innerWidth:flip.innerWidth,innerHeight:flip.innerHeight,chars:flip.text.length}));
    await page.screenshot({path:folder+'/'+name+'-reverse-after-animation.png',fullPage:true});
+   assert.equal(flip.hidden,false,name+': QuizCard content still hidden');
+   assert.ok(flipFrame.className.includes('is-flipped'),name+': flip reset before animation finished');
+   assert.equal(flip.visibility,'visible',name+': QuizCard face not visually exposed');
    // The compact portrait shares a 390px mobile grid with other content.
    // It cannot legitimately supply 140px of *inner* width after padding.
    // The real gate is a positive painted area and substantive readable DOM text.
