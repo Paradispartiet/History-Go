@@ -1,0 +1,48 @@
+name: Temporary Vøyen Vulkan Fagverk integration
+on:
+  push:
+    branches:
+      - content/akerselva-voien-vulkan-fagverk-20261021
+    paths:
+      - .github/workflows/temporary-voien-vulkan-fagverk-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/akerselva-voien-vulkan-fagverk-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Rebuild deterministic Fagverk coverage release and place-open data
+        run: |
+          npm ci --no-audit --no-fund
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run place-open:build
+          node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+      - name: Commit generated artifacts to PR branch
+        shell: bash
+        run: |
+          git add -u -- \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json \
+            data/runtime/place-open
+          if git diff --cached --quiet; then
+            echo 'Generated artifacts already synchronized'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(fagverk): regenerate curated page coverage release and place-open outputs'
+          git pull --rebase origin content/akerselva-voien-vulkan-fagverk-20261021
+          git push origin HEAD:refs/heads/content/akerselva-voien-vulkan-fagverk-20261021
