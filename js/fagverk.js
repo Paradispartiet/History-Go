@@ -422,11 +422,8 @@
         <button type="button" id="politikkPolandPathwayStart">Start femtrinnsforløpet</button>
         <p id="politikkPolandPathwayError" role="alert" hidden></p>
         <div id="politikkPolandPathwayReview" hidden aria-live="polite"></div>
-      </section>
-      <section id="politikk-ungarn-polen" class="fagverk-curriculum-introduction" aria-labelledby="politikk-ungarn-polen-title">
-        <p class="fagverk-kicker">Komparativ kildeøvelse · fem trinn</p>
-        <h3 id="politikk-ungarn-polen-title">Valgintegritet: sammenlign Ungarn 2022 og Polen 2023</h3>
-        <p>Undersøk valgadministrasjon, statsressurser, mediedekning, finansiering og kildebelegg på tvers av de to landene.</p>
+        <h4>Ungarn 2022 og Polen 2023 – komparativ øvelse</h4>
+        <p>Sammenlign valgadministrasjon, statsressurser, mediedekning, finansiering og kildebelegg i begge land.</p>
         <button type="button" id="politikkHungaryPolandPathwayStart">Start sammenligningen</button>
         <p id="politikkHungaryPolandPathwayError" role="alert" hidden></p>
         <div id="politikkHungaryPolandPathwayReview" hidden aria-live="polite"></div>
