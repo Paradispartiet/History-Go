@@ -1,0 +1,72 @@
+name: Politikk Poland v7 Knowledge materialization (temporary)
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'data/quiz/manifest.json'
+      - 'data/knowledge/knowledge_manifest.json'
+      - 'data/fag/fag_manifest.json'
+      - 'data/quiz/politikk/politikk_subject_pathways_v1.json'
+      - 'tests/politikk-advanced-political-science-subject-pathway-v6.test.mjs'
+      - '.github/workflows/politikk-poland-v7-materialize.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: politkk-poland-v7-materialize-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feature/politikk-poland-pathway-activation-v7-20261021'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical Knowledge from registered manifests
+        run: |
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+          node --test tests/politikk-advanced-political-science-subject-pathway-v6.test.mjs
+      - name: Guard regenerated scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          while IFS= read -r change; do
+            file="${change:3}"
+            case "$file" in
+              data/quiz/politikk/politikk_subject_pathways_v1.json|data/knowledge/knowledge_units.generated.json|data/knowledge/concepts.generated.json|data/knowledge/terms.generated.json|data/knowledge/stories.generated.json|data/knowledge/knowledge_emne_review_queue.generated.json|reports/knowledge-id-backfill.json|reports/knowledge-contract-audit.json|reports/knowledge-universe-readers.json) ;;
+              *) echo "Unexpected Knowledge generator change: $file" >&2; exit 1 ;;
+            esac
+          done < <(git status --porcelain)
+      - name: Commit regenerated registers to PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- data/quiz/politikk/politikk_subject_pathways_v1.json \
+            data/knowledge/knowledge_units.generated.json \
+            data/knowledge/concepts.generated.json \
+            data/knowledge/terms.generated.json \
+            data/knowledge/stories.generated.json \
+            data/knowledge/knowledge_emne_review_queue.generated.json \
+            reports/knowledge-id-backfill.json \
+            reports/knowledge-contract-audit.json \
+            reports/knowledge-universe-readers.json
+          if git diff --cached --quiet; then
+            echo 'Canonical generated data already synchronized'
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'chore(knowledge): regenerate Politikks Poland 2023 pathway IDs'
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
