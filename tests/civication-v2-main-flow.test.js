@@ -23,6 +23,7 @@ const STATIC_SCRIPTS = [
   "js/Civication/core/CivicationStorageAdapter.js",
   "js/Civication/core/civicationJsonStore.js",
   "js/Civication/lifestory/lifestoryContent.js",
+  "js/Civication/systems/civicationSkills.js",
   "js/Civication/lifestory/lifestoryState.js",
   "js/Civication/lifestory/lifestoryRunner.js",
   "js/Civication/lifestory/lifestoryEndings.js",
