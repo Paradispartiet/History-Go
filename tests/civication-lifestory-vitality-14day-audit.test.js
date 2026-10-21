@@ -190,3 +190,83 @@ test('unseeded 14-day target reports the actual progression gate, not fake achie
     + '; badge-free='+true
     + '; full shell / economy / real account acceptance still unverified');
 });
+
+
+// Acceptance extension: three playable weeks, not fourteen calendar ticks.
+// No fabricated Badge, job, Life Position or scene condition is seeded.
+test('unseeded 21-day private life has distinct daily play and earned alternatives', () => {
+  const vm = require('node:vm');
+  const lifeCode = fs.readFileSync(path.join(root,
+    'js/Civication/systems/civicationLifePositionRuntime.js'), 'utf8');
+  const content = pack('arbeidsledig');
+  for (const route of ['first', 'last']) {
+    const store = new Map();
+    const localStorage = {
+      getItem: key => store.has(key) ? store.get(key) : null,
+      setItem: (key, value) => { store.set(key, String(value)); },
+      removeItem: key => store.delete(key)
+    };
+    const win = { localStorage, BADGES: [], dispatchEvent: () => {} };
+    const ctx = { window: win, localStorage, console };
+    vm.runInNewContext(lifeCode, ctx);
+    const positions = win.CivicationLifePositions;
+    let story = S.createInitialState(content);
+    const playedByDay = {};
+    assert.equal(positions.getAllUnlockedPositions().filter(p =>
+      p.source === 'authored_life_story_21d').length, 0);
+    for (let day = 1; day <= 21; day++) {
+      let count = 0;
+      let steps = 0;
+      while (!story.dagFerdig) {
+        const scene = R.selectNextScene(story, content);
+        if (scene) {
+          const available = scene.valg.filter(x => !x.skills_requirement);
+          assert(available.length, 'never force a Skills bonus');
+          const choice = route === 'first' ? available[0] : available.at(-1);
+          R.applyChoice(story, content, scene.id, choice.id);
+          (playedByDay[day] ||= []).push(scene.id);
+          count++;
+        } else R.advance(story, content);
+        assert(++steps < 125, 'day ' + day + ' terminates');
+      }
+      assert(count >= 1, 'day ' + day + ' contains an actual played choice');
+      if (day >= 8) assert((playedByDay[day] || []).some(id => id.startsWith('privat_21d_d' + day + '_')),
+        'day ' + day + ' has new varied private-life content');
+      assert.equal(story.livsdag, day, 'day and life day agree through 21');
+      assert.equal(story.rolleBytter.length, 0, 'no fake job');
+      localStorage.setItem(S.STORAGE_KEY, JSON.stringify(story));
+      const earned = positions.getAllUnlockedPositions().filter(p =>
+        p.source === 'authored_life_story_21d');
+      assert.equal(earned.length, day === 21 ? 1 : 0, 'position eligibility only after final real choice');
+      if (day < 21) R.startNextDay(story, content);
+    }
+    const end = playedByDay[21][0];
+    assert.equal(end.includes(route === 'first' ? 'retning_med_bidrag' : 'retning_som_deltaker'), true);
+    assert.equal(playedByDay[13][0].includes(route === 'first' ? 'kaffemoetet' : 'respekt_for_grensen'), true,
+      'day-8 choice shapes day-13 contact');
+    const unlocked = positions.getAllUnlockedPositions().filter(p =>
+      p.source === 'authored_life_story_21d');
+    assert.equal(unlocked[0].label, route === 'first' ? 'Nærmiljøbidragsyter' : 'Nærmiljøutforsker');
+    assert.equal(positions.getState().primary, null, 'earned means eligible, never auto-activated');
+    assert.equal(localStorage.getItem('merits_by_category'), null, 'no quiz merit invention');
+    assert.equal(localStorage.getItem('hg_active_position_v1'), null, 'no job invention');
+    const chosen = positions.activate(unlocked[0].badge_id, unlocked[0].label);
+    assert.equal(chosen.ok, true, 'player can voluntarily activate earned life position');
+    assert.equal(positions.getState().primary.label, unlocked[0].label);
+    assert.equal(positions.getLifeContext().employment.is_employed, false,
+      'life identity does not turn an unemployed person into an employee');
+    const clerk = pack('ekspeditor');
+    const afterJobChange = S.selectRole(story, clerk);
+    assert.equal(afterJobChange.rolle, 'ekspeditor');
+    assert(afterJobChange.spilteScener.includes(end), 'shared day-21 memory crosses role switch');
+    localStorage.setItem(S.STORAGE_KEY, JSON.stringify(afterJobChange));
+    assert.equal(positions.getAllUnlockedPositions().filter(p =>
+      p.source === 'authored_life_story_21d')[0].label, unlocked[0].label,
+      'earned role remains available after a real job-role change');
+    const afterReload = JSON.parse(localStorage.getItem(S.STORAGE_KEY));
+    assert.equal(positions.getState().primary.label, unlocked[0].label);
+    assert(afterReload.privatHistorie.arkiv.some(entry => entry.sceneId === end),
+      'archived choice survives serialization');
+    assert.equal(afterReload.rolleBytter.length, 1);
+  }
+});
