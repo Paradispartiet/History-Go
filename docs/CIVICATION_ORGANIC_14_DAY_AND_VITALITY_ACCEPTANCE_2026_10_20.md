@@ -32,6 +32,8 @@ Følgende må bevises sammenhengende i ekte UI, **uten** kunstig `merits_by_cate
 
 ## Akseptanse: History Go og skill scores som del av livet (21.10.2026)
 
+Eiergrenser, seks foreslåtte ferdigheter og kildebasert utvikling er samlet i [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md). Denne akseptansen må ikke rapporteres som bestått på grunnlag av dokumentasjon alene.
+
 **Eksisterende funksjon vs. planlagt funksjon må skilles i testresultatene.** Profilbroen leser allerede `visited_places`, `people_collected`, `merits_by_category` og læringsloggen og vekter private sceneemner. Det er ikke bevis for at seks varige ferdighetsskalaer eller full miljøspesifikk streetkred finnes. Følgende er akseptansekriterier for neste implementeringsbolk, ikke passerende tester:
 
 1. En fersk arbeidsledig profil skal kunne gjennomføre dag 1–14 og senere dager med relevante privatlivshistorier **uten** Badge-poeng, livsposisjon eller jobb. Dag 7 skal vise `Fortsett privatlivet` ved ventende scener og valgfri History Go-veiledning samtidig.
@@ -47,7 +49,7 @@ Følgende må bevises sammenhengende i ekte UI, **uten** kunstig `merits_by_cate
 1. `civicationEconomyEngine.js` beregner ukentlig lønn ut fra faktisk kalenderdato, mens CivicationCalendar har `dayIndex`. Det er ikke bevist at 7 spilldager alltid utløser riktig én økonomisk uke. Må måles og rettes uten utbetaling av to lønninger.
 2. Life Story har egen relasjonstilstand, og `civicationRelationshipEngine.js` har egen sosial relasjon. Full kobling til NPC-samtale, etterspill og minne er ennå ikke bevist.
 3. 34-dagerskapitler er ofte historietekst med meterdeltaer, ikke nødvendigvis konkrete handlinger. Flere scener skal ikke produseres før handlingskjeden er testet.
-4. Rolle-/livsposisjonskrav og ekte History Go-badges må testes uten test-injeksjon; 14 dager skal ikke «oppnås» ved å hoppe over en blokkering.
+4. Badge-/livsposisjonskrav må testes på *valgfrie særkapitler*, ikke som vilkår for vanlige private Life Stories. 14 dager skal ikke «oppnås» ved å hoppe over faktiske dagsporter, ved test-injeksjon eller ved å låse opp et særkapittel gratis.
 5. Skylagring finnes i `CivicationCloudSave.js`, men skal kontrolleres med en reell ny innlogging og konflikt-/gjenopprettingsscenario.
 
 ## Neste smale tekniske prioritet
