@@ -92,12 +92,19 @@ try {
       assert.equal(res?.status(),200);
       phase="app-ready";
       await page.waitForFunction(()=>window.__HG_APP_READY__===true && window.__HG_ROUTER_STARTED__===true && window.HG_PLACES_READY===true,null,{timeout:60000});
+      // On a fresh public browser profile onboarding appears asynchronously;
+      // an immediate isVisible() check can race the overlay and invalidate mobile QA.
+      phase="onboarding-visible";
       const onboarding=page.locator("#hgOnboardingModal");
-      if(await onboarding.locator(".hg-onb-primary").isVisible()){
-        phase="dismiss-onboarding";
-        await onboarding.locator(".hg-onb-primary").click({timeout:15000});
-        await page.waitForFunction(()=>document.querySelector("#hgOnboardingModal")?.getAttribute("aria-hidden")==="true",null,{timeout:15000});
-      }
+      const intro=onboarding.locator(".hg-onb-primary");
+      await intro.waitFor({state:"visible",timeout:18000});
+      phase="dismiss-onboarding";
+      await intro.click({timeout:15000});
+      await page.waitForFunction(()=>{
+        const modal=document.querySelector("#hgOnboardingModal");
+        return modal?.getAttribute("aria-hidden")==="true" && getComputedStyle(modal).display==="none";
+      },null,{timeout:15000});
+      assert.equal(await page.evaluate(()=>localStorage.getItem("hg_onboarding_shown_v1")),"1");
       phase="route-to-place";
       await page.evaluate(id=>window.HGAppRouter.toPlace(id),placeId);
       phase="wait-for-place";
