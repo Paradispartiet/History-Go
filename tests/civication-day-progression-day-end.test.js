@@ -51,7 +51,8 @@ function setup() {
   };
 
   // Spioner på ukesavslutningen.
-  global.__weekly = { savedSummaries: [], finalizeCareerIds: [] };
+  global.__weekly = { savedSummaries: [], finalizeCareerIds: [], economyTickDays: [] };
+  global.CivicationEconomyEngine = { tickWeekly: () => { global.__weekly.economyTickDays.push(dayIndex); } };
   global.saveDailySummaryToWeek = (summary) => { global.__weekly.savedSummaries.push(summary); return summary; };
   global.finalizeWeekIfNeeded = (careerId) => { global.__weekly.finalizeCareerIds.push(careerId); return null; };
 
@@ -80,6 +81,7 @@ async function run() {
   assert.strictEqual(global.__weekly.savedSummaries[0]?.dayIndex, 7, 'the captured summary should be the day_end day (before reset)');
   assert.strictEqual(global.__weekly.savedSummaries[0]?.quality, 'sterk', 'the full summary should be passed to the week');
   assert.deepStrictEqual(global.__weekly.finalizeCareerIds, ['naeringsliv'], 'day_end rollover should finalize the week for the active career');
+  assert.deepStrictEqual(global.__weekly.economyTickDays, [8], 'real day-end rollover calls the wallet engine after the calendar advances');
 
   console.log('civication day progression day_end rollover ok');
 }
