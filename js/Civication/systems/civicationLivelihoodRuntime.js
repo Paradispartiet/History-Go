@@ -237,6 +237,9 @@
       ...opportunity,
       status: "active",
       accepted_at: acceptedAt,
+      // A gig accepted on game day 8 cannot be paid retroactively as part
+      // of days 1–7 when that earlier week's wallet tick runs later.
+      accepted_game_week: currentWeekKey(),
       stream_id: `stream_${opportunity.id}`
     };
     const opportunities = state.opportunities.map((entry) => entry.id === id
@@ -286,14 +289,22 @@
     return (hash >>> 0) / 4294967295;
   }
 
+  // The canonical calendar advances only when the player finishes game days.
+  // Never use wall-clock ISO weeks for livelihood income; the formal wage
+  // engine already uses this same game-day index.
+  function gameWeekKey(dayIndex) {
+    const day = Number(dayIndex);
+    if (!Number.isSafeInteger(day) || day < 1) return null;
+    return "game-week-" + String(Math.floor((day - 1) / 7) + 1).padStart(6, "0");
+  }
+
   function currentWeekKey() {
-    try {
-      if (typeof window.weekKey === "function") return String(window.weekKey(new Date()));
-    } catch {}
-    return new Date().toISOString().slice(0, 10);
+    return gameWeekKey(window.CivicationCalendar?.getClock?.()?.dayIndex);
   }
 
   function isStreamScheduled(stream, weekKeyValue) {
+    if (String(weekKeyValue).startsWith("game-week-") && stream.accepted_game_week
+      && String(weekKeyValue) < String(stream.accepted_game_week)) return false;
     if (stream.starts_week && String(weekKeyValue) < String(stream.starts_week)) return false;
     if (stream.ends_week && String(weekKeyValue) > String(stream.ends_week)) return false;
     return true;
@@ -347,7 +358,8 @@
   }
 
   function prepareWeekSettlement(weekKeyValue) {
-    const week = String(weekKeyValue || currentWeekKey());
+    const week = weekKeyValue ? String(weekKeyValue) : currentWeekKey();
+    if (!week) return { week: null, employment: getFormalEmployment(), items: [], gross: 0, costs: 0, net: 0, reason: "game_clock_unavailable" };
     const state = getState();
     const employment = getFormalEmployment();
     const items = state.streams
@@ -379,7 +391,8 @@
     if (!window.CivicationState?.getWallet || !window.CivicationState?.updateWallet) {
       return { ok: false, reason: "wallet_api_missing" };
     }
-    const week = String(weekKeyValue || currentWeekKey());
+    const week = weekKeyValue ? String(weekKeyValue) : currentWeekKey();
+    if (!week) return { ok: false, reason: "game_clock_unavailable" };
     const wallet = window.CivicationState.getWallet() || { balance: 0, last_tick_iso: null };
     const settledWeeks = getWalletSettlementWeeks(wallet);
     if (settledWeeks.includes(week)) {
@@ -447,10 +460,21 @@
 
     engine.tickWeekly = function tickWeeklyWithLivelihood() {
       const walletBefore = window.CivicationState?.getWallet?.() || {};
-      const week = currentWeekKey();
-      const alreadySettled = getWalletSettlementWeeks(walletBefore).includes(week);
+      const lastDay = Number(walletBefore.last_tick_day_index);
+      const gameDay = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+      // A migrated wallet with no checkpoint, a normal refresh and a day
+      // before the seventh completed one must never mint livelihood income.
+      const eligible = Number.isSafeInteger(lastDay) && lastDay >= 1
+        && Number.isSafeInteger(gameDay) && gameDay >= lastDay + 7;
       const result = baseTickWeekly();
-      if (!alreadySettled) settleWeekToWallet(week);
+      if (eligible) {
+        const settledDay = Number(window.CivicationState?.getWallet?.()?.last_tick_day_index);
+        // Require proof that the canonical wage engine actually completed
+        // a settlement. This also handles a missing wallet or disabled engine.
+        if (Number.isSafeInteger(settledDay) && settledDay >= lastDay + 7) {
+          settleWeekToWallet(gameWeekKey(lastDay));
+        }
+      }
       return result;
     };
 
