@@ -118,22 +118,60 @@
     const panel = doc && doc.getElementById("civiSkillsPanel");
     if (!panel || !doc.createElement) return false;
     const model = getViewModel(root.CivicationState?.getState?.() || {});
+    // Static labels and numbers only; never interpret game data as HTML.
     panel.replaceChildren();
+    panel.setAttribute("aria-label", "Skills – seks egenskaper og dokumentert progresjon");
+
     model.skills.forEach(function (skill) {
       const item = doc.createElement("div");
-      item.className = "capital-item";
+      item.className = "civi-skill-card";
+      item.dataset.skillId = skill.id;
+      if (!skill.measured) item.classList.add("is-unmeasured");
+
+      const head = doc.createElement("div");
+      head.className = "civi-skill-head";
       const label = doc.createElement("div");
-      label.className = "capital-label";
+      label.className = "civi-skill-label";
       label.textContent = skill.label;
       const value = doc.createElement("div");
-      value.className = "capital-value";
+      value.className = "civi-skill-value";
       value.textContent = skill.measured ? String(skill.score) + " / 100" : "Ikke målt";
-      item.appendChild(label);
-      item.appendChild(value);
+      head.appendChild(label);
+      head.appendChild(value);
+
+      const track = doc.createElement("div");
+      track.className = "civi-skill-meter";
+      // Unknown value is not a zero score and must not appear as an ARIA progressbar.
+      if (skill.measured) {
+        track.setAttribute("role", "progressbar");
+        track.setAttribute("aria-label", skill.label);
+        track.setAttribute("aria-valuemin", "0");
+        track.setAttribute("aria-valuemax", "100");
+        track.setAttribute("aria-valuenow", String(skill.score));
+      } else {
+        track.setAttribute("role", "img");
+        track.setAttribute("aria-label", skill.label + ": ikke målt");
+      }
+      const fill = doc.createElement("div");
+      fill.className = "civi-skill-meter-fill";
+      fill.style.width = skill.measured ? String(skill.score) + "%" : "0%";
+      track.appendChild(fill);
+
+      const footer = doc.createElement("div");
+      footer.className = "civi-skill-footer";
+      footer.textContent = skill.measured
+        ? "Dokumentert gjennom spillvalg"
+        : "Ingen kvalifiserende handling registrert";
+
+      item.appendChild(head);
+      item.appendChild(track);
+      item.appendChild(footer);
       panel.appendChild(item);
     });
+    const summary = doc.getElementById("civiSkillsSummary");
+    if (summary) summary.textContent = model.documented_count + " av 6 Skills med dokumentert praksis";
     return true;
   }
 
-  root.CivicationSkills = { STATE_FIELD, VERSION, DEFINITIONS, getViewModel, practicePatch, applyPractice, render };
+    root.CivicationSkills = { STATE_FIELD, VERSION, DEFINITIONS, getViewModel, practicePatch, applyPractice, render };
 })(typeof window === "object" ? window : null);
