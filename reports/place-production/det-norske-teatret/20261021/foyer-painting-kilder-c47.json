@@ -80,5 +80,11 @@
     "method": "Actual index.html local PR app with onboarding dismissed, HGAppRouter.toPlace and unified Kilder navigation; Playwright asserts two 800x800 images decode, credits and licensing, side bounds and original URLs.",
     "screenshot_review": "Both exact PNG screenshots from Actions artifact manually opened; mobile painting photographed in Kilder card, desktop costume and painting cards display side by side with credits; no obvious image crop or clipping.",
     "remaining_scope": "No production Pages verification, no physical device and no literal map marker tap."
+  },
+  "public_deployment_verification": {
+    "status": "SCHEDULED_AFTER_MAIN_PUSH_NOT_YET_RUN",
+    "script": "tests/det-norske-teatret-public-unified-c47.mjs",
+    "workflow": ".github/workflows/det-norske-teatret-public-c47.yml",
+    "behavior": "On main push, poll actual GitHub Pages source JSON for the new painting image, compare both public image files to C41/C46 SHA256, and run real unified Kilder navigation on 390 and 1280 Chromium with screenshot archive. Fail closed if deployment or rendering unverified."
   }
 }
