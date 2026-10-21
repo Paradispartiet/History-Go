@@ -79,6 +79,10 @@ Dette er **ikke** automatisk lønn fra livsposisjonen. Forløpet er:
 
 Samme template + uke har deterministisk ID og deterministisk sjanse. Reload kan derfor verken rerolle eller spamme tilbud.
 
+**Uke betyr her Civications spilluke, ikke systemklokkens ISO-uke.** Nettverksprodusenten leser uke-ID fra den eksisterende `CivicationLivelihoods.getSnapshot().week` (for eksempel `game-week-000001`), som er forankret i `CivicationCalendar.dayIndex`. Oppstart, ny livsposisjon og `civi:dayPhaseChanged` etter gyldig dagskifte kan utløse kontroll. Nye tilbud vurderes når spilleren går inn i spilluke 2 (dag 8), spilluke 3 (dag 15) osv., selv om disse dagene spilles samme virkelige dato. Faseendringer innen samme spilluke eller reload gir ingen ekstra tilbud. Mangler spillklokken, opprettes ingen tidsstyrt mulighet.
+
+Som før betyr et tilbud **ikke** betaling eller jobb. Først spillerens uttrykkelige aksept gir en stream som senere kan inngå i den kanoniske spillukeavregningen.
+
 ## Startersett
 
 Første sett dekker ulike måter et levd fag-/interesseliv kan gi små, realistiske økonomiske muligheter:
