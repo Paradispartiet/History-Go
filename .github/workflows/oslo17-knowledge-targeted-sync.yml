@@ -1,0 +1,55 @@
+name: Rebuild Oslo17 Knowledge for editorial quiz fixes
+on:
+  push:
+    branches:
+      - history-go/oslo17-editorial-quiz-fixes-20261022
+    paths:
+      - '.github/workflows/oslo17-knowledge-targeted-sync.yml'
+permissions:
+  contents: write
+concurrency:
+  group: oslo17-knowledge-sync-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical Knowledge without unrelated changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          BRANCH=history-go/oslo17-editorial-quiz-fixes-20261022
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin "$BRANCH"
+            git reset --hard FETCH_HEAD
+            npm run knowledge:canonical:write
+            npm run knowledge:canonical:check
+            node --test tests/oslo-batch04-v1-quiz-parity.test.mjs
+            git diff --name-only > /tmp/oslo17-knowledge-changed-files.txt
+            echo 'Knowledge generator changed:'
+            cat /tmp/oslo17-knowledge-changed-files.txt
+            while IFS= read -r file; do
+              case "$file" in
+                data/knowledge/*|reports/knowledge-*|reports/knowledge/*|data/quiz/naeringsliv/oslo_mek_sets_merged.json|data/quiz/by/grev_wedels_plass_sets.json) ;;
+                *) echo "Unexpected generator mutation: $file" >&2; exit 1 ;;
+              esac
+            done < /tmp/oslo17-knowledge-changed-files.txt
+            git add data/knowledge/ reports/knowledge-* data/quiz/naeringsliv/oslo_mek_sets_merged.json data/quiz/by/grev_wedels_plass_sets.json
+            if git diff --cached --quiet; then echo 'Knowledge already synchronized'; exit 0; fi
+            git commit -m "build(history): synchronize canonical Knowledge after two quiz editorial fixes"
+            if git push origin "HEAD:$BRANCH"; then echo 'Knowledge committed'; exit 0; fi
+          done
+          echo 'Concurrent commits prevented safe synchronization' >&2
+          exit 1
