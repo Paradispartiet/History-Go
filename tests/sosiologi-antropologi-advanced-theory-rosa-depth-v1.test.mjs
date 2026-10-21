@@ -51,7 +51,7 @@ test('Rosa generator parity preserves all 60 identity, claim and assessment bind
     work.theory_units.map((row) => row.expanded_prose));
   assert.equal(canonical.works.length, 20);
   assert.equal(canonical.works.reduce((n, w) => n + w.theory_units.length, 0), 60);
-  assert.equal(canonical.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 54);
+  assert.equal(canonical.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 57);
   assert.equal(packages.reduce((n, pkg) => n + pkg.claims.claims.length, 0), 60);
   assert.equal(packages.reduce((n, pkg) => n + pkg.assessment.questions.length, 0), 60);
   assert.deepEqual(target.assessment.questions.filter((q) => ROSA.includes(q.id.replace(/^advq-/, ''))).map((q) => q.id),
