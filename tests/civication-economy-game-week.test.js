@@ -94,6 +94,18 @@ function setup({ activeCareer = 'handel', startDay = 1, oldWallet = null, withCl
 }
 
 {
+  // Existing players may have null after previously working. Treat null as
+  // no recorded unemployment start, not as a valid day-zero checkpoint.
+  const s = setup({ activeCareer: null });
+  s.state().unemployed_since_day_index = null;
+  s.tick();
+  assert.equal(s.state().unemployed_since_day_index, 1, 'null unemployment start must initialize on day one');
+  s.day(8);
+  s.tick();
+  assert.equal(s.wallet().balance, 50, 'benefits must not be delayed by a null checkpoint');
+}
+
+{
   const s = setup({ startDay: 4, oldWallet: { balance: 60, last_tick_iso: '2026-10-01T10:00:00.000Z' } });
   s.tick();
   assert.equal(s.wallet().balance, 60, 'migrating an old wallet must not mint back pay');
