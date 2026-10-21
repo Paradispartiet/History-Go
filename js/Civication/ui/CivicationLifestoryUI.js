@@ -41,13 +41,27 @@
     try {
       fromUrl = new URLSearchParams(window.location.search || "").get("lifestoryRole");
     } catch { /* blokkert URL => følg skall-jobben */ }
-    // Tidligere testlenker skrev et permanent override. Fjern bare den
-    // utdaterte testnøkkelen; selve Life Story-lagringen forblir urørt.
-    try { window.localStorage?.removeItem(ROLE_STORAGE_KEY); } catch { /* blokkert lagring */ }
     return fromUrl && fromUrl.trim() ? fromUrl.trim() : null;
   }
 
   const EXPLICIT_ROLE_ID = resolveExplicitRoleId();
+
+  // Den gamle testrollen var en lokal nøkkel som også ble kopiert til
+  // kontoens skylagring. Fjern den ETTER at sky-backupen er gjenopprettet,
+  // ellers kan bootstrap legge nøkkelen tilbake ved neste innlogging.
+  // Dette berører aldri faktisk jobb eller lagret Life Story-progresjon.
+  let legacyRoleRetirement = null;
+  function retireLegacyRoleOverride() {
+    if (!legacyRoleRetirement) legacyRoleRetirement = (async () => {
+      await window.CivicationCloudSave?.ready;
+      try {
+        if (window.localStorage?.getItem(ROLE_STORAGE_KEY) === null) return;
+        window.localStorage.removeItem(ROLE_STORAGE_KEY);
+        window.CivicationCloudSave?.schedule?.();
+      } catch { /* blokkert lagring: la øvrig spillstart fortsette */ }
+    })();
+    return legacyRoleRetirement;
+  }
 
   /**
    * Rollen Min dag spiller akkurat nå. Starter som eksplisitt valg eller
@@ -142,7 +156,7 @@
    * @param {string} roleId
    */
   async function loadRole(roleId, stillCurrent = () => true) {
-    await window.CivicationCloudSave?.ready;
+    await retireLegacyRoleOverride();
     const Content = /** @type {any} */ (window).CivicationLifestoryContent;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
     const sequence = ++roleLoadSequence;
@@ -196,7 +210,7 @@
   }
 
   async function ensureLoaded() {
-    await window.CivicationCloudSave?.ready;
+    await retireLegacyRoleOverride();
     if (content && state) return;
     if (!loading) {
       if (!EXPLICIT_ROLE_ID) currentRoleId = window.CivicationLifestoryState?.load?.()?.rolle || currentRoleId;
