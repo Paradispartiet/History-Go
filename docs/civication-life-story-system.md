@@ -696,6 +696,19 @@ ble en kassadifferanse. Dag 3+ er uskrevet; en tom dag avsluttes trygt.
 
 ## 10. Regelen for Civication
 
+### Uavhengig Life Story-progresjon etter dag 7 (produktkrav 21.10.2026)
+
+**Arbeidsledig er arbeidsstatus, ikke et kapittel som må erstattes av en valgt livsposisjon.** Den delte Life Story-runneren må fortsette ordinære private historier uavhengig av karriere, inntekt og Badge-tier. Daglige scener kan handle om venner, dating, relasjoner, familie, helse, fritid, interesser, utgifter, lokalmiljø, valg og konsekvenser. Jobbstatus styrer jobbdelen, ikke om livet fortsetter.
+
+Et forfattet videreføringskapittel kan legitimt kreve et bestemt Badge-tier og frivillig `CivicationLifePositions.activate()`; `Runner.canStartContinuation` eier denne begrensningen. Men et slikt kapittellås er **ikke** en begrensning på hele livet: `Fortsett privatlivet` må vises når private scener venter, også etter dag 7 og uten aktivert livsposisjon. Ingen gratis meritter, jobb eller historiske handlinger skal konstrueres for å omgå porten. Dersom innholdet tar slutt før dag 14 uten valgfrie livsposisjoner, er det et dokumentert innholdshull som må fylles med ekte Life Stories – ikke en tvungen karrieresti.
+
+History Go-veien skal vises som **frivillig parallell progresjon**: `Utforsk History Go` starter eksisterende companion-toast, viser korrekt kategoripoeng/terskel når den finnes, og tilbyr retur til Civication. `Se livsposisjoner` lar spilleren vurdere nye identiteter. Oppdragstoasten eier ingen fullføring; faktisk `visited_places`, kunnskaps-/quiz-state, `merits_by_category` og andre kanoniske bevis avgjør hvilken progresjon som kan utledes. Privatspilleren kan fortsette selv om oppdraget er uferdig.
+
+**Samlingen må brukes narrativt:** besøkte steder gir steder å ha vært og samtaleemner; faktisk læring kan gi flere informerte valg; People og møter kan sette opp *muligheter* til relasjoner; fagmeritter kan åpne livsposisjoner; handlinger i sosiale miljøer kan gi situert rykte/streetkred. Fortellinger må lese kanoniske signaler gjennom `civicationProfileSignalBridge` og eksisterende rolle-/scene-/kunnskapsbroer og la tidligere valg få kausale etterspill. Et besøk alene gir ikke automatisk visdom, vennskap, adgang til miljø, jobb eller lovpålagt kvalifikasjon.
+
+Planlagt ferdighetsmodell (ikke implementert som samlet state ennå): visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling og handlekraft, hver balansert 0–100. De er **langsiktige evner**, ikke dagens psyke, energi, kapital, fagmeritter eller omdømme. En konkret scene/aktivitet må erklære hvilken faktisk prestasjon som endrer en ferdighet, med idempotent hendelses-ID, rimelig øvre grense og sporbar opprinnelse. UI kan ikke gi skjult XP bare fordi en spiller trykker «besøk». Se planen i `CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md` og eiergrensene i `CIVICATION_DATA_LAYERS.md`.
+
+
 ### Arbeidsledig: flere innganger til selvvalgte livsroller
 
 Den første uka har ni kontaktretninger. Musikk, Miljøkontaktens miljø og læring/jobbsøk
