@@ -2,7 +2,7 @@
   "schema": "history_go_dnt_c47_foyer_painting_documentary_kilder_v1",
   "place_id": "det_norske_teatret",
   "prepared_at": "2026-10-21",
-  "status": "LOCAL_NATIVE_PLACECARD_MOBILE_DESKTOP_PASS_PUBLIC_DEPLOY_PENDING",
+  "status": "PUBLIC_GITHUB_PAGES_KILDER_MOBILE_DESKTOP_PASS_OBJECTS_BLOCKED",
   "purpose": "Expose a verified already locally staged Commons photo as a credited documentary image in the existing unified PlaceCard Kilder section, without canonical Objects collection publication.",
   "new_photo": {
     "name": "Foajémaleri av Aksel Waldemar Johannessen",
@@ -50,10 +50,10 @@
     "canonical_placecard_objects_preview": false
   },
   "pending": [
-    "Public GitHub Pages deployment must be separately checked before marking live production pass",
     "Do not change source-image item into canonical Object",
     "Do not copy Jan Groth's externally published curtain photograph without appropriate rights",
-    "Retain both varying source titles and document perspective distortion"
+    "Retain both varying source titles and document perspective distortion",
+    "Physical phone and literal map-marker tap not covered by C47 Chromium QA."
   ],
   "native_browser_verification": {
     "workflow_run_id": 39585544001,
@@ -82,9 +82,31 @@
     "remaining_scope": "No production Pages verification, no physical device and no literal map marker tap."
   },
   "public_deployment_verification": {
-    "status": "SCHEDULED_AFTER_MAIN_PUSH_NOT_YET_RUN",
-    "script": "tests/det-norske-teatret-public-unified-c47.mjs",
-    "workflow": ".github/workflows/det-norske-teatret-public-c47.yml",
-    "behavior": "On main push, poll actual GitHub Pages source JSON for the new painting image, compare both public image files to C41/C46 SHA256, and run real unified Kilder navigation on 390 and 1280 Chromium with screenshot archive. Fail closed if deployment or rendering unverified."
+    "status": "PUBLIC_KILDER_TWO_DOCUMENTARY_IMAGES_MOBILE_DESKTOP_PASS",
+    "workflow_run_id": 39587062392,
+    "workflow_url": "https://github.com/Paradispartiet/History-Go/actions/runs/39587062392",
+    "workflow_conclusion": "success",
+    "pages_workflow_run_id": 39587061080,
+    "pages_workflow_conclusion": "success",
+    "merge_commit": "0225c68358ffd5360b12de93c44c015d15b903b7",
+    "attempts_to_find_deployed_source": 8,
+    "photo_and_place_json_sha_verified": true,
+    "artifact_id": 12340127164,
+    "artifact_name": "dnt-c47-public-evidence",
+    "cases": [
+      {
+        "name": "mobile",
+        "width": 390,
+        "height": 844,
+        "outcome": "PASS"
+      },
+      {
+        "name": "desktop",
+        "width": 1280,
+        "height": 900,
+        "outcome": "PASS"
+      }
+    ],
+    "scope": "Public GitHub Pages/Chromium unified Kilder, verified two photographs, source credits and links; not a physical phone or literal map marker tap."
   }
 }
