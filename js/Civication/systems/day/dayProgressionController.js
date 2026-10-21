@@ -442,8 +442,15 @@
       } catch {}
     }
 
+    const previousDay = getDayIndex();
     calendar?.advancePhase?.();
     const toPhase = getCurrentPhase();
+    // The actual day_end transition is the sole owner of weekly wallet
+    // settlement. Boot can also retry safely; the wallet checkpoint prevents
+    // duplicate pay or expenses on reload.
+    if (fromPhase === "day_end" && getDayIndex() > previousDay) {
+      window.CivicationEconomyEngine?.tickWeekly?.();
+    }
 
 
     try { window.dispatchEvent(new Event("civi:dayPhaseChanged")); } catch {}
