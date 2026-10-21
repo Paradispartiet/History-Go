@@ -175,36 +175,6 @@ for (const [role, sceneId, choiceId, skillId] of authored) {
 assert.equal(authored.length, 29, "six original and 23 additional real practice choices");
 assert.equal(ids.size, 6, "all six Skills are reachable in authored story content");
 
-// Skills requirements grant situational alternatives; authored scenes must always
-// retain ordinary, playable choices. A score must never be inferred from a quiz.
-const gated = [
-  { pack: expeditorContent, scene: "prisfeil_02_koen", choice: "rett_og_logg_avvik", skill: "practical_mastery", min: 2 },
-  { pack: unemployedContent, scene: "d3_det_du_kan", choice: "skriv_kompetanseeksempel", skill: "communication", min: 1 }
-];
-for (const item of gated) {
-  const scene = item.pack.scenes.find(s => s.id === item.scene);
-  const choice = scene?.valg.find(c => c.id === item.choice);
-  assert(choice, `bonus choice exists in ${item.scene}`);
-  assert.deepEqual(choice.skills_requirement, { skill_id: item.skill, min_score: item.min });
-  assert(scene.valg.some(c => !c.skills_requirement), "normal alternatives are always available");
-  assert.notEqual(scene.valg[0].id, item.choice, "the original first choice stays first");
-}
-for (const bad of [
-  { skill_id: "unknown_skill", min_score: 1 },
-  { skill_id: "communication", min_score: 0 },
-  { skill_id: "communication", min_score: 101 },
-  { skill_id: "communication", min_score: "2" }
-]) {
-  const broken = JSON.parse(JSON.stringify(packageForValidation));
-  broken.roleScenes.scenes.find(s => s.id === "d3_det_du_kan")
-    .valg.find(c => c.id === "skriv_kompetanseeksempel").skills_requirement = bad;
-  assert.throws(() => Content.buildContent(broken), /skills_requirement/, "invalid or fabricated gate is rejected");
-}
-const allLocked = JSON.parse(JSON.stringify(packageForValidation));
-allLocked.roleScenes.scenes.find(s => s.id === "d3_det_du_kan").valg
-  .forEach(choice => { choice.skills_requirement = { skill_id: "communication", min_score: 1 }; });
-assert.throws(() => Content.buildContent(allLocked), /minst ett valg/, "no scene can depend exclusively on Skills");
-
 // Metadata cannot award for missing evidence or arbitrary point grants.
 const raw = manifest.roles.arbeidsledig;
 const packageForValidation = {
@@ -237,6 +207,7 @@ for (const [role, sceneId, bonusId, skillId, minScore] of [
   assert.deepEqual(bonus.skills_requirement, { skill_id: skillId, min_score: minScore });
   assert(scene.valg.filter(choice => !choice.skills_requirement).length >= 2,
     "an unskilled player always has multiple viable choices");
+  assert.notEqual(scene.valg[0].id, bonusId, "existing first choice remains ungated");
   const story = GateState.createInitialState(pack);
   story.dag = scene.dag;
   story.fase = scene.fase;
