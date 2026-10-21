@@ -177,6 +177,7 @@
     prepareStoryDay();
     State.bindPersonTypes?.(state, content, null);
     State.save(state);
+    syncQueuedSkills();
     currentRoleId = roleId;
     sisteKonsekvens = null;
     continuationError = "";
@@ -378,7 +379,7 @@
 
   // Skallet booter etter Min dag (shell-loaderen injiserer resolver +
   // CivicationState); jobbaksept dispatcher updateProfile.
-  window.addEventListener("civi:booted", () => { ensureCalendarCheckpoint(); syncToShellCalendar(); maybeAdoptShellRole(); refreshPersonTypes(); render(); });
+  window.addEventListener("civi:booted", () => { syncQueuedSkills(); ensureCalendarCheckpoint(); syncToShellCalendar(); maybeAdoptShellRole(); refreshPersonTypes(); render(); });
   window.addEventListener("civi:dayPhaseChanged", () => { syncToShellCalendar(); refreshDayEvent(); });
   // A role without a Life Story package still lives in the canonical day
   // program. Its preview follows that program; it never answers or advances it.
@@ -407,6 +408,20 @@
     state.relasjoner ||= {};
     for (const key of ["venn", "familie"]) {
       if (typeof stored.relasjoner?.[key] === "number") state.relasjoner[key] = stored.relasjoner[key];
+    }
+  }
+
+  function syncQueuedSkills() {
+    const State = /** @type {any} */ (window).CivicationLifestoryState;
+    const Skills = /** @type {any} */ (window).CivicationSkills;
+    if (!State?.load || !State?.save || !Skills?.flushQueued) return;
+    const persisted = State.load();
+    if (!persisted) return;
+    const result = Skills.flushQueued(persisted, (updated) => State.save(updated));
+    if (result.cleared && state?.rolle === persisted.rolle) {
+      // Keep the UI's next choice save from restoring already-flushed entries.
+      state.pendingSkillsPracticesV1 = persisted.pendingSkillsPracticesV1 || [];
+      state.rolleTilstander = persisted.rolleTilstander || {};
     }
   }
 
@@ -459,7 +474,7 @@
           !(/** @type {any} */ (window).CIVICATION_TEST_MODE) &&
           !(/** @type {any} */ (window).OPEN_MODE) &&
           !window.CivicationState?.isTestMode?.()) {
-        /** @type {any} */ (window).CivicationSkills?.applyPractice?.({
+        /** @type {any} */ (window).CivicationSkills?.applyOrQueue?.({
           source: "life_story_choice",
           event_id: "lifestory:" + sceneId,
           choice_id: choiceId,
@@ -467,7 +482,7 @@
           activity_type: practice.activity_type,
           evidence_flag: practice.evidence_flag,
           delta: practice.delta
-        });
+        }, state, (updated) => State.save(updated));
       }
       if (WAVE_A_SCENE_ID.test(sceneId)) {
         window.CivicationWaveAInboxBridge?.afterChoice?.(state.rolle, sceneId, choiceId);
