@@ -102,7 +102,7 @@ try {
       const rows=page.locator("#pcObjectsList .pc-object-member");
       assert.match(await rows.nth(0).innerText(),/Madame de Sade/);
       assert.match(await rows.nth(0).innerText(),/Lone Lunde/);
-      assert.match(await rows.nth(0).innerText(),/CC BY-SA 4\\.0/);
+      assert.match(await rows.nth(0).innerText(),/CC BY-SA 4.0/);
       assert.match(await rows.nth(1).innerText(),/Jan Groth/);
       assert.match(await rows.nth(1).innerText(),/Illustrasjon – ikke fotografi/);
       assert.equal(await rows.nth(0).locator("a.pc-object-source").getAttribute("href"),place.objects[0].imageMeta.sourceUrl);
@@ -122,7 +122,7 @@ try {
       caseResult.objects_preview_loaded=true;
       caseResult.object_members=2;
       caseResult.photo_and_svg_decoded=true;
-      console.log("C50 "+name+" native router -> unified PlaceCard -> Kilder PASS");
+      console.log("C50 "+name+" native router -> unified PlaceCard -> Objects PASS");
     }catch(error){
       caseResult.outcome="BLOCKED";
       caseResult.error=String(error);
