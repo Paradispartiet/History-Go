@@ -103,6 +103,19 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
       acceptanceFailures.push('threeWeekLife');
       console.error('Civication 21-day browser journey failed:', report.threeWeekLifeError);
     }
+    if (depth !== 'smoke') {
+      try {
+        report.threeWeekEarnedMuseum = await verifyThreeWeekLife(browser, origin, outputDir, true);
+        console.log('Civication organic 21-day museum player journey ok', JSON.stringify({
+          completedDays: report.threeWeekEarnedMuseum.completedDays,
+          totalScenes: report.threeWeekEarnedMuseum.totalScenes
+        }));
+      } catch (error) {
+        report.threeWeekEarnedMuseumError = String((error as Error)?.message || error);
+        acceptanceFailures.push('threeWeekEarnedMuseum');
+        console.error('Civication organic 21-day museum player journey failed:', report.threeWeekEarnedMuseumError);
+      }
+    }
     if (depth === 'full') {
       try {
         report.arbeidsledig = await verifyArbeidsledig(browser, origin, outputDir);
