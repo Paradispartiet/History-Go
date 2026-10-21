@@ -4,6 +4,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import verifyArbeidsledig from './verify-civication-arbeidsledig-browser.js';
 import verifyOrganicPlayer from './verify-civication-organic-player-browser.js';
+import verifyThreeWeekLife from './verify-civication-21-day-browser.js';
 
 let playwright: any;
 try { playwright = require('playwright'); } catch { console.error('Playwright not installed'); process.exit(2); }
@@ -89,6 +90,19 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     const acceptanceFailures: string[] = [];
     // These are independent gates. The organic job-offer test must not prevent
     // collecting the results of all 20 multi-day scenarios, or vice versa.
+    // Every PR must now prove the complete unseeded 21-day Min dag journey
+    // via browser controls, not just a Node runner with synthetic day gates.
+    try {
+      report.threeWeekLife = await verifyThreeWeekLife(browser, origin, outputDir);
+      console.log('Civication 21-day browser journey ok', JSON.stringify({
+        completedDays: report.threeWeekLife.completedDays,
+        totalScenes: report.threeWeekLife.totalScenes
+      }));
+    } catch (error) {
+      report.threeWeekLifeError = String((error as Error)?.message || error);
+      acceptanceFailures.push('threeWeekLife');
+      console.error('Civication 21-day browser journey failed:', report.threeWeekLifeError);
+    }
     if (depth === 'full') {
       try {
         report.arbeidsledig = await verifyArbeidsledig(browser, origin, outputDir);
