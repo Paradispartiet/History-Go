@@ -275,3 +275,70 @@ test('day 14 accepted job handoff preserves private history and reaches life day
   assert.ok(state.spilteScener.includes('wave_e_liv_d21_hovedkapittel'),
     'private life reaches the same three-week finale during paid employment');
 });
+
+
+test('three-week closeout presents real career and voluntary life-position actions in mounted Min dag', async () => {
+  const { JSDOM } = require('jsdom');
+  const content = pack('arbeidsledig');
+  const story = S.createInitialState(content);
+  for (let day = 1; day <= 21; day++) {
+    let steps = 0;
+    while (!story.dagFerdig) {
+      const scene = R.selectNextScene(story, content);
+      if (scene) R.applyChoice(story, content, scene.id, scene.valg.find(choice => !choice.skills_requirement).id);
+      else R.advance(story, content);
+      assert.ok(++steps < 130);
+    }
+    if (day < 21) R.startNextDay(story, content);
+  }
+  const dom = new JSDOM(
+    '<!doctype html><body><header id="civiLifestoryHeaderStatus"></header>' +
+    '<section id="civiLifestoryPanel"></section>' +
+    '<footer class="civi-footer"><button data-category="karriere">Karriere</button></footer></body>',
+    { url: 'https://example.test/Civication.html', runScripts: 'outside-only' }
+  );
+  const w = dom.window;
+  w.localStorage.setItem(S.STORAGE_KEY, JSON.stringify(story));
+  let careerOpened = 0;
+  w.document.querySelector('.civi-footer [data-category="karriere"]')
+    .addEventListener('click', () => careerOpened++);
+  let canonical = {};
+  w.CivicationState = {
+    getActivePosition: () => null,
+    getState: () => canonical,
+    setState(patch) { canonical = { ...canonical, ...patch }; return canonical; }
+  };
+  w.fetch = async (resource) => {
+    const file = path.join(root, String(resource));
+    return fs.existsSync(file)
+      ? { ok: true, json: async () => read(String(resource)) } : { ok: false };
+  };
+  for (const script of [
+    'js/Civication/lifestory/lifestoryContent.js',
+    'js/Civication/lifestory/lifestoryState.js',
+    'js/Civication/lifestory/lifestoryRunner.js',
+    'js/Civication/lifestory/lifestoryEndings.js',
+    'js/Civication/systems/civicationSkills.js',
+    'js/Civication/ui/CivicationLifestoryActions.js',
+    'js/Civication/ui/CivicationLifestoryUI.js'
+  ]) w.eval(fs.readFileSync(path.join(root, script), 'utf8'));
+  const panel = w.document.getElementById('civiLifestoryPanel');
+  let summary;
+  for (let i = 0; i < 150; i++) {
+    summary = panel.querySelector('.civi-lifestory-summary');
+    if (summary?.querySelector('[data-lifestory-career-options]')) break;
+    await new Promise(resolve => setTimeout(resolve, 10));
+  }
+  assert(summary?.querySelector('[data-lifestory-career-options]'), 'completed week three offers the actual career panel');
+  assert(summary.querySelector('[data-lifestory-life-profile]'), 'voluntary life profile remains accessible');
+  assert(summary.querySelector('[data-lifestory-study]'), 'History Go is a separate, voluntary option');
+  assert.match(summary.textContent, /Tre uker/);
+  assert.equal(summary.querySelector('[data-lifestory-next-day]'), null,
+    'no unsupported day 22 action is shown after the authored chapter');
+  summary.querySelector('[data-lifestory-career-options]').click();
+  assert.equal(careerOpened, 1, 'career action uses the real existing footer navigation');
+  assert.equal(w.CivicationLifestoryState.load().rolle, 'arbeidsledig',
+    'opening career does not change employment without a real accepted offer');
+  assert.equal(w.localStorage.getItem('merits_by_category'), null, 'the closeout grants no unearned History Go points');
+  dom.window.close();
+});
