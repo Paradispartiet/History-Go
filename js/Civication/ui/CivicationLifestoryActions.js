@@ -59,6 +59,61 @@
     return true;
   }
 
+  // The Life Story records the full application/interview/offer chain.
+  // Only the existing CivicationJobs service may turn it into an actual offer;
+  // accepting employment remains the player's separate Career-panel action.
+  const THREE_WEEK_OFFER_ID = "three_week_local_shop_offer";
+  const THREE_WEEK_OFFER_KEY = "naeringsliv:0";
+
+  function materializeEarnedJobOffer() {
+    const story = globalScope.CivicationLifestoryState?.load?.();
+    const state = globalScope.CivicationState;
+    const jobs = globalScope.CivicationJobs;
+    if (!story) return { ok: false, reason: "story_unavailable" };
+    const flags = { ...(story.tidligereValg || {}), ...(story.privatHistorie?.flagg || {}) };
+    const played = (sceneId, choiceId) =>
+      [...(story.privatHistorie?.arkiv || []), ...(story.arkiv || [])]
+        .some(entry => entry.sceneId === sceneId && entry.valgId === choiceId);
+    if (flags.wa_e_c21_job_application !== "sent" ||
+        flags.wa_e_c21_job_interview !== "completed" ||
+        flags.wa_e_c21_job_offer !== "requested" ||
+        !played("wave_e_c21_d12_jobbsok", "send_soknad") ||
+        !played("wave_e_c21_d17_intervju", "mot_opp") ||
+        !played("wave_e_c21_d20_jobbtilbud", "registrer_tilbud")) {
+      return { ok: false, reason: "unearned_offer" };
+    }
+    if (!state?.getActivePosition || !jobs?.getOffers || !jobs?.pushOffer) {
+      return { ok: false, reason: "career_runtime_unavailable" };
+    }
+    const offers = jobs.getOffers() || [];
+    if (offers.some(offer => offer?.offer_key === THREE_WEEK_OFFER_KEY)) {
+      return { ok: true, reason: "already_issued" };
+    }
+    if (state.getActivePosition() || jobs.canReceiveNewOffers?.() === false) {
+      return { ok: false, reason: "already_employed" };
+    }
+    const offer = {
+      career_id: "naeringsliv", career_name: "Økonomi og næringsliv",
+      title: "Butikkmedarbeider", threshold: 0, points_at_offer: 0,
+      employer_context: {
+        type: "fictional_lifestory_employer",
+        source: "wave_e_c21_d20_jobbtilbud",
+        location: "fiktiv nærbutikk"
+      }
+    };
+    const guard = globalScope.CivicationJobEligibilityRuntime?.getJobOfferEligibility?.(
+      state.getState?.() || {}, offer, { active: null }
+    );
+    if (guard?.eligible === false) return { ok: false, reason: "career_eligibility", blockers: guard.blockers };
+    // The existing Jobs gate performs all further checks and deduplicates.
+    return jobs.pushOffer(offer);
+  }
+
+  // If Min dag loaded ahead of the shell, the persisted story archive is the
+  // durable recovery source. No shadow employment or pending-offer currency.
+  globalScope.addEventListener?.("civi:booted", () => { materializeEarnedJobOffer(); });
+  globalScope.addEventListener?.("civi:lifestoryChanged", () => { materializeEarnedJobOffer(); });
+
   /**
    * Utfør en handling fra et Min dag-valg.
    * @param {{ type?: string, id?: string }|null|undefined} handling
@@ -79,6 +134,11 @@
       if (!btn || typeof btn.click !== "function") return { utfoert: false, type };
       btn.click();
       return { utfoert: true, type };
+    }
+
+    if (type === "aapne_karriere" && handling?.id === THREE_WEEK_OFFER_ID) {
+      materializeEarnedJobOffer();
+      return { utfoert: openCategory("karriere"), type };
     }
 
     if (HANDLING_TO_CATEGORY[type]) {
@@ -108,7 +168,7 @@
     return { utfoert: false, type };
   }
 
-  const api = { HANDLING_LABELS, HANDLING_TO_CATEGORY, openCategory, perform };
+  const api = { HANDLING_LABELS, HANDLING_TO_CATEGORY, openCategory, materializeEarnedJobOffer, perform };
   /** @type {any} */ (globalScope).CivicationLifestoryActions = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
