@@ -25,6 +25,27 @@ test("Gamle Aker has one manifest-linked QuizCard, preserving the 21-question fu
   assert.equal(cards[0].answerKey.length, 10);
 });
 
+test("All 21 canonical fullquiz questions have unambiguous answers, sources and Knowledge links", () => {
+  const ids = new Set();
+  for (const question of allQuestions) {
+    assert.ok(question.id && !ids.has(question.id), "Missing or duplicate fullquiz question ID");
+    ids.add(question.id);
+    assert.ok(question.question?.trim());
+    assert.ok(question.knowledge?.trim());
+    assert.ok(question.claim_id?.trim(), "Missing claim: " + question.id);
+    assert.ok(question.quiz_id?.trim(), "Missing quiz ID: " + question.id);
+    assert.ok(question.options.length >= 3, "Too few options: " + question.id);
+    assert.equal(new Set(question.options).size, question.options.length, "Repeated options: " + question.id);
+    assert.equal(question.options[question.answerIndex], question.answer, "Bad answerIndex: " + question.id);
+    assert.ok(question.source.length > 0, "No source: " + question.id);
+    assert.ok(question.source.every(ref => /^https:\/\//.test(quiz.sources[ref])), "Unresolved source: " + question.id);
+    assert.ok(question.primary_knowledge_unit_id?.trim(), "Missing Knowledge ID: " + question.id);
+    assert.ok(question.knowledge_unit_ids.includes(question.primary_knowledge_unit_id), "Broken Knowledge parity: " + question.id);
+    assert.doesNotMatch(question.question, /History Go|quizkort|hovedtema|hva bør.*kort formidle/i);
+  }
+  assert.equal(ids.size, 21);
+});
+
 test("All ten Gamle Aker card prompts, answers and citations match the canonical quiz", () => {
   const questionsById = new Map(allQuestions.map(question => [question.id, question]));
   const card = cards[0];
