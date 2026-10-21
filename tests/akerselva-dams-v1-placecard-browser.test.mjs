@@ -18,10 +18,10 @@ const ts = read("js/ui/placeQuizCards.ts");
 const style = read("css/placeCard.css");
 
 assert.ok(manifest.collections.includes("topp10_natur_akerselva_dams_20261021.json"));
-assert.match(ts, /"natur\\/manifest\\.json"/);
-assert.match(patch, /"natur\\/manifest\\.json"/);
-assert.match(source, /frontImgEl\\.style\\.objectFit = imageComposition\\.portraitFit === "cover"/);
-assert.match(style, /\\.pc-frontcard\\s*\\{[^}]*aspect-ratio:\\s*3\\s*\\/\\s*4/s);
+assert.ok(ts.includes('"natur/manifest.json"'));
+assert.ok(patch.includes('"natur/manifest.json"'));
+assert.ok(source.includes('frontImgEl.style.objectFit = imageComposition.portraitFit === "cover"'));
+assert.ok(style.includes("aspect-ratio: 3 / 4;"));
 assert.equal(collection.cards.length, 2);
 for (const place of places) {
   const card = collection.cards.find(x => x.targetId === place.id);
@@ -138,7 +138,7 @@ try {
         });
         const card = page.locator("#pcFrontCardFlip");
         const content = await page.locator("#pcQuizCardContent").textContent();
-        assert.match(content, new RegExp(place.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+        assert.ok(content.includes(place.name), "QuizCard content missing title: " + place.name);
         assert.equal(await page.locator("#pcFrontImage").evaluate(el => getComputedStyle(el).objectFit), "cover");
         assert.equal(await card.getAttribute("aria-label"), "Vis quizkort");
         await card.click();
