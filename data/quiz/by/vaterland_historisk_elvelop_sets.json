@@ -24,7 +24,9 @@
       "sourcePackets": [
         "data/places/production/vaterland_historisk_elvelop.json"
       ],
-      "quizCardsPreserved": true
+      "quizCardsPreserved": true,
+      "additionalChanges": 3,
+      "reason": "Replace generic/internal/meta phrasing with direct local fact questions; preserve every QuizCard question ID and existing narrow_3x7 profile"
     }
   },
   "sets": [
@@ -97,26 +99,25 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hvilket fysisk punkt brukes som startanker for den historiske linjen?",
+          "question": "Hvilke to bygater forbindes av Vaterlands bru?",
           "options": [
-            "Vaterlands bru",
-            "Nybrua",
-            "Ankerbrua"
+            "Brugata og Grønland",
+            "Storgata og Karl Johans gate",
+            "Sandakerveien og Sagveien"
           ],
-          "answer": "Vaterlands bru",
+          "answer": "Brugata og Grønland",
           "answerIndex": 0,
-          "knowledge": "Vaterlands bru er det kildebelagte startankeret, ikke et påstått sentrum for hele den gamle elvestrekningen.",
+          "knowledge": "Vaterlands bru forbinder Brugata med Grønland der de krysser Akerselva.",
           "difficulty": 1,
-          "question_type": "anchor",
+          "question_type": "stedskonkret",
           "tags": [
             "Vaterlands bru",
             "historical_anchor"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://www.openstreetmap.org/way/381749953"
+            "https://oslobyleksikon.no/side/Vaterlands_bru"
           ],
-          "claim_basis": "source_backed_anchor",
+          "claim_basis": "source_backed",
           "primary_knowledge_unit_id": "ku_by_vaterlands_bru_er_det_ki_be425db4aa",
           "knowledge_unit_ids": [
             "ku_by_vaterlands_bru_er_det_ki_be425db4aa"
@@ -256,26 +257,25 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva er den viktigste forskjellen mellom dette stedet og Vaterlandsparken?",
+          "question": "Hva het gata som fulgte det åpne elveløpet ved Vaterland?",
           "options": [
-            "Dette er en historisk elvelinje; parken er et eget grøntområde",
-            "De er samme fysiske objekt",
-            "Elvelinjen ligger nord for Nydalen"
+            "Elvegata",
+            "Kongens gate",
+            "Pilestredet"
           ],
-          "answer": "Dette er en historisk elvelinje; parken er et eget grøntområde",
+          "answer": "Elvegata",
           "answerIndex": 0,
-          "knowledge": "Historisk elveløp og park er separate steder med ulike koordinater, historier og fysiske roller.",
+          "knowledge": "Elvegata gikk langs den nedre Akerselva fra den daværende Schweigaards bru mot Lilletorget.",
           "difficulty": 1,
-          "question_type": "contrast",
+          "question_type": "stedskonkret",
           "tags": [
             "Vaterlandsparken",
             "modellering"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://oslobyleksikon.no/side/Vaterland"
+            "https://oslobyleksikon.no/side/Elvegata"
           ],
-          "claim_basis": "canonical_place_split",
+          "claim_basis": "source_backed",
           "primary_knowledge_unit_id": "ku_by_historisk_elvel_p_og_par_d8f8b66aa6",
           "knowledge_unit_ids": [
             "ku_by_historisk_elvel_p_og_par_d8f8b66aa6"
@@ -310,26 +310,25 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva kan du faktisk observere fra ankerpunktet i dag?",
+          "question": "Hvor førte de sju små Elvegangene fra Elvegata?",
           "options": [
-            "Overgangen mellom synlig elverom og retningen vannet fortsetter under byen",
-            "Hele tunnelens innside",
-            "Et urørt naturlandskap"
+            "Ned til elva og sjøbuene",
+            "Opp mot St. Hanshaugen",
+            "Til Akershus festnings porter"
           ],
-          "answer": "Overgangen mellom synlig elverom og retningen vannet fortsetter under byen",
+          "answer": "Ned til elva og sjøbuene",
           "answerIndex": 0,
-          "knowledge": "Stedet kan leses gjennom bro, terreng, vannretning og overflaten over den skjulte infrastrukturen.",
+          "knowledge": "Elvegangene var sju små smug mellom Elvegata og elva med sjøbuene, før gateløpet forsvant i byomformingen.",
           "difficulty": 1,
-          "question_type": "observation",
+          "question_type": "stedskonkret",
           "tags": [
             "synlig_vann",
             "skjult_vann"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
+            "https://oslobyleksikon.no/side/Elvegata"
           ],
-          "claim_basis": "observable_and_source_backed",
+          "claim_basis": "source_backed",
           "primary_knowledge_unit_id": "ku_by_stedet_kan_leses_gjennom_64c023304c",
           "knowledge_unit_ids": [
             "ku_by_stedet_kan_leses_gjennom_64c023304c"
