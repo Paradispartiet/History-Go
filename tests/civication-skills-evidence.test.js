@@ -386,7 +386,7 @@ async function main() {
     .valg.find(c => c.id === "rett_og_logg_avvik");
   const shopDom = new JSDOM(
     '<html><body><header id="civiLifestoryHeaderStatus"></header><section id="civiLifestoryPanel"></section></body></html>',
-    { url: "https://example.test/Civication.html", runScripts: "outside-only" }
+    { url: "https://example.test/Civication.html?lifestoryRole=ekspeditor", runScripts: "outside-only" }
   );
   const shopWin = shopDom.window;
   shopWin.localStorage.setItem(StoryState.STORAGE_KEY, JSON.stringify(shop));
