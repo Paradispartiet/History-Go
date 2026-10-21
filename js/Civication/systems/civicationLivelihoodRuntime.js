@@ -237,6 +237,9 @@
       ...opportunity,
       status: "active",
       accepted_at: acceptedAt,
+      // A gig accepted on game day 8 cannot be paid retroactively as part
+      // of days 1–7 when that earlier week's wallet tick runs later.
+      accepted_game_week: currentWeekKey(),
       stream_id: `stream_${opportunity.id}`
     };
     const opportunities = state.opportunities.map((entry) => entry.id === id
@@ -300,6 +303,8 @@
   }
 
   function isStreamScheduled(stream, weekKeyValue) {
+    if (String(weekKeyValue).startsWith("game-week-") && stream.accepted_game_week
+      && String(weekKeyValue) < String(stream.accepted_game_week)) return false;
     if (stream.starts_week && String(weekKeyValue) < String(stream.starts_week)) return false;
     if (stream.ends_week && String(weekKeyValue) > String(stream.ends_week)) return false;
     return true;
