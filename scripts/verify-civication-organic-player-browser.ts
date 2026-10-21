@@ -317,7 +317,8 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     assert.deepEqual(weekSettlements.map(r => [r.completedDay, r.lastSettledDay]),
       [[7, 8], [14, 15], [21, 22]]);
     const ending = await readStory();
-    assert.equal(ending.livsdag, 22, '21 completed days roll the calendar to day 22');
+    assert.equal(ending.livsdag, 21, 'the final authored Life Story day stays completed, without a fabricated chapter');
+    assert.equal(ending.kalenderDag, 22, '21 completed shell days roll the economic clock to day 22');
     assert.ok(ending.arkiv.some((row: any) => row.sceneId === 'wave_e_life21_d21_skape_veien'
       && row.valgId === 'skaper' && row.livsdag === 21),
       'the day-21 direction is earned from an authored choice');
