@@ -1,0 +1,44 @@
+name: Temporary Vøyen Vulkan canonical Knowledge sync
+on:
+  push:
+    branches:
+      - content/akerselva-voien-vulkan-fullquiz-qa-20261021
+    paths:
+      - .github/workflows/temporary-voien-vulkan-quiz-knowledge-sync.yml
+permissions:
+  contents: write
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/akerselva-voien-vulkan-fullquiz-qa-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Build exact canonical Knowledge and check quiz continuity
+        run: |
+          npm ci --no-audit --no-fund
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+          node --test tests/akerselva-voien-vulkan-normal-quiz.test.mjs
+      - name: Commit generated canonical Knowledge data
+        shell: bash
+        run: |
+          git add -u -- \
+            data/quiz/historie/voienfossen_sets.json \
+            data/quiz/historie/vulkan_industriomrade_sets.json \
+            data/knowledge \
+            reports/knowledge-id-backfill.json
+          if git diff --cached --quiet; then
+            echo 'Knowledge already in sync'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(knowledge): synchronize 4x7 Vøyen/Vulkan quiz links'
+          git pull --rebase origin content/akerselva-voien-vulkan-fullquiz-qa-20261021
+          git push origin HEAD:refs/heads/content/akerselva-voien-vulkan-fullquiz-qa-20261021
