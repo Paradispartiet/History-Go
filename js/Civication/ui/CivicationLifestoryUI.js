@@ -353,7 +353,7 @@
     // Without an active job there is no workday queue to drive the calendar.
     // Only skip genuinely empty phases: pending private messages, queued mail
     // and other phase blockers are still owned by DayProgression.inspect().
-    // The player must answer those in the normal Next Action UI first.
+    // The player must answer those in the unified inbox first.
     if (!window.CivicationState?.getActivePosition?.() && Progression?.inspect && Progression?.advancePhaseIfReady) {
       const maxEmptyPhases = Array.isArray(Calendar?.DAY_PHASES) ? Calendar.DAY_PHASES.length : 8;
       for (let i = 0; i < maxEmptyPhases && Calendar?.getPhase?.() !== "day_end"; i++) {
@@ -762,18 +762,25 @@
     // A pending mail needs a reachable player action in Min dag, even when
     // there is no active job or visible top-action card.
     const pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.();
-    const pendingDayActionHtml = pendingDayAction && !pendingDayAction.canStartNewDay
+    const needsInboxFirst = !!pendingDayAction && !pendingDayAction.canStartNewDay;
+    const pendingDayActionHtml = needsInboxFirst
       ? '<button class="civi-btn" type="button" data-lifestory-next-action>Åpne innboksen</button>'
       : "";
+    const blockedDayNote = needsInboxFirst
+      ? '<p class="muted" role="status">Du har fortsatt en melding eller oppgave i dag. Åpne innboksen og fullfør den før du starter neste dag.</p>'
+      : "";
+    const nextDayDisabled = needsInboxFirst ? ' disabled title="Fullfør dagens meldinger først"' : '';
     const handlingsHtml = sisteDag
       ? "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
-        + (Runner.hasPendingPrivateScenes?.(state, content) ? '<button class="civi-btn primary" type="button" data-lifestory-next-day>Fortsett privatlivet</button>' : "")
+        + (Runner.hasPendingPrivateScenes?.(state, content) ? '<button class="civi-btn primary" type="button" data-lifestory-next-day' + nextDayDisabled + '>Fortsett privatlivet</button>' : "")
+        + blockedDayNote
         + pendingDayActionHtml
         + "</div>"
       : "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
-        + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-next-day>Start neste dag</button>"
+        + '<button class="civi-btn primary" type="button" data-lifestory-next-day' + nextDayDisabled + '>Start neste dag</button>'
+        + blockedDayNote
         + pendingDayActionHtml
         + "</div>";
     return ""
