@@ -1,0 +1,70 @@
+name: Temporary Maridalsvannet v1 browser acceptance
+on:
+  push:
+    branches:
+      - content/oslo-maridalsvannet-v1-20261021
+    paths:
+      - .github/workflows/temporary-maridalsvannet-v1-browser.yml
+permissions:
+  contents: write
+jobs:
+  actual-browser-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-maridalsvannet-v1-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Test real PlaceCard, images, Fagverk, quiz and QuizCard at 390 and 1440 px
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          export CHROME_BIN
+          node scripts/oneoff-maridalsvannet-v1-browser.mjs
+      - name: Upload screenshots and machine-readable app evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maridalsvannet-v1-actual-browser-qa
+          path: |
+            reports/place-production/maridalsvannet-mobile-*.png
+            reports/place-production/maridalsvannet-desktop-*.png
+            reports/place-production/maridalsvannet-v1-browser-qa-20261021.json
+          if-no-files-found: ignore
+      - name: Preserve screenshots, remove one-off automation, refresh runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='data/places/natur/oslo/places_oslo_natur_hovedsteder/maridalsvannet.json';
+          const o=JSON.parse(fs.readFileSync(file,'utf8'));
+          o.frontImageMeta.visualReview='approved_2026-10-21_actual_390px_1440px_browser';
+          o.imageMeta.visualReview='approved_2026-10-21_photo_crop_and_fagverk_browser';
+          fs.writeFileSync(file,JSON.stringify(o,null,2)+'\n');
+          const qa='reports/place-production/maridalsvannet-v1-image-qa-20261021.json';
+          const data=JSON.parse(fs.readFileSync(qa,'utf8'));
+          data.status='approved_actual_browser_390px_1440px';
+          data.assets.forEach(a=>a.visualAppApproval=true);
+          fs.writeFileSync(qa,JSON.stringify(data,null,2)+'\n');
+          NODE
+          npm run places:index:build
+          npm run place-open:build
+          npm run place-open:check
+          git rm -- scripts/oneoff-maridalsvannet-v1-browser.mjs .github/workflows/temporary-maridalsvannet-v1-browser.yml
+          git add -u -- data/places data/runtime reports
+          git add -f -- reports/place-production/maridalsvannet-v1-browser-qa-20261021.json reports/place-production/maridalsvannet-*-placecard.png reports/place-production/maridalsvannet-*-quizcard.png reports/place-production/maridalsvannet-*-fagverk.png
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'qa(maridalsvannet): actual mobile and desktop app acceptance and image approval'
+          git pull --rebase origin content/oslo-maridalsvannet-v1-20261021
+          git push origin HEAD:refs/heads/content/oslo-maridalsvannet-v1-20261021
