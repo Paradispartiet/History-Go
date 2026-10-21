@@ -427,6 +427,10 @@
         <button type="button" id="politikkHungaryPolandPathwayStart">Start sammenligningen</button>
         <p id="politikkHungaryPolandPathwayError" role="alert" hidden></p>
         <div id="politikkHungaryPolandPathwayReview" hidden aria-live="polite"></div>
+        <h4>Bevisverksted: bygg din egen sammenligning</h4>
+        <p>Bruk to observatørrapporter som belegg, skill mekanisme fra årsaksbevis og skriv en begrunnet vurdering uten automatisk mestringspoeng.</p>
+        <button type="button" id="politikkEvidenceWorkshopStart">Åpne bevisverkstedet</button>
+        <div id="politikkEvidenceWorkshop" hidden aria-live="polite"></div>
       </section>
       <div class="fagverk-general-summary" aria-label="Politikkfagets oppbygning">
         <div><strong>${model.summary.domainCount}</strong><span>fagområder</span></div>
@@ -474,6 +478,13 @@
           errorBox.hidden = false;
         }
       } finally { compareStart.disabled = false; }
+    });
+    const workshopStart = document.getElementById('politikkEvidenceWorkshopStart');
+    workshopStart?.addEventListener('click', async () => {
+      const workshop = document.getElementById('politikkEvidenceWorkshop');
+      workshopStart.disabled = true;
+      try { await global.HGPolitikkEvidenceWorkshop?.start?.(workshop); }
+      finally { workshopStart.disabled = false; }
     });
     const search = document.getElementById('politikkConceptSearch');
     const domainFilter = document.getElementById('politikkConceptDomain');
