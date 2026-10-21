@@ -19,6 +19,8 @@ const P = Object.freeze({
   report: 'reports/fagverk/psykologi-university-completion-v1-audit.json'
 });
 const AHA_RUNTIME_ROOTS = Object.freeze(['js', 'data/integrations', 'data/historygo', 'data/psychology']);
+// Canonical theory coverage is an editorial inventory, not an active AHA loader.
+const NON_RUNTIME_REFERENCE_DOCUMENTS = new Set(['data/psychology/psychology_theory_coverage_v1.json']);
 const REQUIRED_APPLIED_FIELDS = Object.freeze(['clinical_health','work_organizational','educational_school','culture','environment_community','quantitative_psychometrics']);
 const REQUIRED_CONCEPT_FIELDS = Object.freeze(['concept_id','label','definition','explanation','not_meaning','related_concept_ids','empirical_status','example','source_ids']);
 const abs = (file) => path.join(ROOT, file);
@@ -58,7 +60,7 @@ function evidenceIndex(registry) {
 function ahaRuntimeEvidence() {
   const files = AHA_RUNTIME_ROOTS.flatMap(walkFiles).sort();
   const pattern = /data\/fagverk\/psykologi\/emneartikler|history_go_psykologi_topic_article_v1|psykologi[\/_-]emneartikler|begreper_psykologi_canonical_v1|anvendte_fagfelt_psykologi_university_v1/i;
-  return { scannedRoots: AHA_RUNTIME_ROOTS, referencingFiles: files.filter((file) => pattern.test(fs.readFileSync(abs(file), 'utf8'))) };
+  return { scannedRoots: AHA_RUNTIME_ROOTS, referencingFiles: files.filter((file) => !NON_RUNTIME_REFERENCE_DOCUMENTS.has(file) && pattern.test(fs.readFileSync(abs(file), 'utf8'))) };
 }
 
 const projection = (report) => ({
