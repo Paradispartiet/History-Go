@@ -48,7 +48,7 @@ try{
    await page.waitForFunction(()=>document.querySelector('#pcFrontImage')?.complete&&document.querySelector('#pcFrontImage')?.naturalWidth>0,null,{timeout:30000});
    await page.waitForFunction(()=>document.querySelector('#pcQuizCardContent')?.querySelector('.pc-rendered-quiz-card')&&document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card'),null,{timeout:40000});
    const description=await page.locator('#placeCard').innerText();
-   assert.ok(/Gamle Aker/i.test(description),name+': canonical church title not rendered in place card');
+   assert.ok(/Gamle Aker|Old Aker Church/i.test(description),name+': canonical church title or its verified English translation not rendered in place card');
    const image=await page.locator('#pcFrontImage').evaluate(el=>({src:el.currentSrc||el.src,width:el.naturalWidth,height:el.naturalHeight}));
    assert.ok(image.src.includes(place.frontImage.split('/').at(-1))&&image.width===900&&image.height===1200,name+': independent licensed 900x1200 church portrait not decoded');
    await page.screenshot({path:folder+'/'+name+'-front.png',fullPage:true});
