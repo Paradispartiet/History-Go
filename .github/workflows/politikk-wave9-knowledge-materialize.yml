@@ -1,0 +1,53 @@
+name: Politikk wave 9 Knowledge materialization
+
+on:
+  push:
+    branches:
+      - 'feature/politikk-hungary-comparison-wave9-ready-20261021'
+    paths:
+      - 'data/quiz/politikk/politikk_subject_pathways_v1.json'
+      - '.github/workflows/politikk-wave9-knowledge-materialize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/politikk-hungary-comparison-wave9-ready-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate canonical Knowledge registries
+        run: |
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --check
+          node --test tests/politikk-advanced-political-science-subject-pathway-v6.test.mjs tests/politikk-advanced-political-science-wave8-comparison.test.mjs tests/politikk-advanced-political-science-wave9-pathway-ready.test.mjs
+      - name: Reject unrelated generated changes
+        run: |
+          git diff --name-only | while IFS= read -r file; do
+            case "$file" in
+              data/knowledge/*.generated.json|data/knowledge/subjects/*.generated.json|data/knowledge/subjects/*/*.generated.json|data/quiz/politikk/politikk_subject_pathways_v1.json|reports/knowledge-id-backfill.json) ;;
+              *) echo "Unexpected Knowledge generator change: $file"; exit 1 ;;
+            esac
+          done
+          git diff --check
+      - name: Commit generated artifacts on review branch only
+        run: |
+          if git diff --quiet; then
+            echo "Canonical artifacts already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/knowledge reports/knowledge-id-backfill.json data/quiz/politikk/politikk_subject_pathways_v1.json
+          git diff --cached --check
+          git commit -m "build(politikk): materialize wave 9 Knowledge registries"
+          git push origin HEAD:feature/politikk-hungary-comparison-wave9-ready-20261021
