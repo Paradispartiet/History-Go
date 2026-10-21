@@ -9,7 +9,7 @@ const contract = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_f
 const evidence = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_source_evidence_v1.json');
 const production = read('data/fag/politikk/sosiologi_antropologi/production_registry_v1.json');
 const ROSA = ['adv11-technological-acceleration', 'adv11-social-change', 'adv11-pace-of-life'];
-const wordCount = (text) => text.trim().split(/\\s+/u).length;
+const wordCount = (text) => text.trim().split(/\s+/u).length;
 
 test('Rosa distinguishes technology, changing institutions and measured versus felt pace', () => {
   const work = canonical.works.find((row) => row.id === 'adv11-rosa-social-acceleration');
