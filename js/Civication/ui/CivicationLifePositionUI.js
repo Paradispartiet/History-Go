@@ -183,6 +183,7 @@
     initialized = true;
     window.addEventListener("updateProfile", queueRender);
     window.addEventListener("civi:lifePositionChanged", queueRender);
+    window.addEventListener("civi:lifestoryChanged", queueRender);
     window.addEventListener("civi:lifePositionCatalogLoaded", queueRender);
     window.addEventListener("civi:dataReady", queueRender);
     queueRender();
