@@ -151,6 +151,37 @@
     return candidates.slice().sort((a, b) => Number(closers.includes(a.id)) - Number(closers.includes(b.id)) || (b.prioritet || 0) - (a.prioritet || 0))[0];
   }
 
+  // Forutsigbar hverdagsbelastning. De forfattede effektene er fasit;
+  // lavt overskudd kan i tillegg gjøre et allerede krevende valg tyngre.
+  // Ingen tilfeldige straffer, ingen oppdiktede diagnoser eller jobbutfall.
+  function applyCapacityLoad(state, choice, before) {
+    const effort = Number(choice?.effekter?.meters?.energi || 0);
+    const emotionalStrain = Number(choice?.effekter?.meters?.psyke || 0);
+    if (effort <= -2 && before.energi <= 30) {
+      state.meters.psyke = Math.max(0, state.meters.psyke - 1);
+      if (before.psyke <= 30) {
+        state.meters.handlingsrom = Math.max(0, state.meters.handlingsrom - 1);
+        return "Lite energi og lavt psykisk overskudd gjorde det krevende valget tyngre (psyke −1, handlingsrom −1).";
+      }
+      return "Lite energi gjorde det krevende valget tyngre (psyke −1).";
+    }
+    if (emotionalStrain <= -2 && before.psyke <= 30) {
+      state.meters.energi = Math.max(0, state.meters.energi - 1);
+      return "Lavt psykisk overskudd gjorde den belastende situasjonen mer utmattende (energi −1).";
+    }
+    return null;
+  }
+
+  function capacityWarning(state) {
+    const energy = Number(state?.meters?.energi);
+    const psyche = Number(state?.meters?.psyke);
+    if (!Number.isFinite(energy) || !Number.isFinite(psyche)) return "";
+    if (energy <= 30 && psyche <= 30) return "Lav energi og lite psykisk overskudd: krevende valg kan også svekke handlingsrommet.";
+    if (energy <= 30) return "Lite energi: fysisk krevende valg kan tære ekstra på psyken.";
+    if (psyche <= 30) return "Lavt psykisk overskudd: prioriter støtte og restitusjon når du har mulighet.";
+    return "";
+  }
+
   /**
    * Spilleren tar et valg: effekter skrives til Player State, valget
    * arkiveres, nye scener låses opp, scenen markeres spilt, og dagen
@@ -178,7 +209,12 @@
     }
 
     const people = State.lockScenePeople(state, content, scene, choice);
+    const capacityBefore = { energi: state.meters.energi, psyke: state.meters.psyke };
     State.applyEffects(state, choice.effekter);
+    const capacityNote = applyCapacityLoad(state, choice, capacityBefore);
+    const consequenceText = [choice.konsekvensTekst
+      ? State.presentText(state, content, choice.konsekvensTekst) : null, capacityNote]
+      .filter(Boolean).join(" ") || null;
 
     // Runneren fører trådens spor: siste scene. Steg (step) endres kun
     // eksplisitt via effekter.threads.stepDelta — ingen gjetting.
@@ -207,7 +243,7 @@
       valgTekst: State.presentText(state, content, choice.tekst)
     };
     if (Object.keys(people).length) entry.personRepresentanter = people;
-    if (choice.konsekvensTekst) entry.konsekvensTekst = State.presentText(state, content, choice.konsekvensTekst);
+    if (consequenceText) entry.konsekvensTekst = consequenceText;
     state.arkiv.push(entry);
     if (/^wave_[abcde]_c0[15]_/.test(scene.id)) State.capturePrivateStory(state);
 
@@ -217,7 +253,7 @@
       laasteOpp,
       faseSkifte: progress.faseSkifte,
       dagFerdig: state.dagFerdig,
-      konsekvensTekst: choice.konsekvensTekst ? State.presentText(state, content, choice.konsekvensTekst) : null
+      konsekvensTekst: consequenceText
     };
   }
 
@@ -274,6 +310,13 @@
     state.dag += 1;
     state.fase = content.faser[0].id;
     state.dagFerdig = false;
+    // Søvn gir moderat restitusjon, men visker ikke ut flere krevende
+    // dager. Verdier over 85 senkes aldri; direkte valg kan gi mer hvile.
+    const eveningEnergy = Number(state.meters.energi);
+    if (Number.isFinite(eveningEnergy)) {
+      state.meters.energi = Math.max(eveningEnergy, Math.min(85, eveningEnergy + 8));
+      if (eveningEnergy <= 20) state.meters.psyke = Math.max(0, state.meters.psyke - 1);
+    }
     for (const thread of content.threads) {
       const startDag = typeof thread.startDag === "number" ? thread.startDag : 1;
       if (startDag <= state.dag && thread.startVedValg !== true && !state.threadState[thread.id]) {
@@ -452,6 +495,7 @@
   }
 
   const api = {
+    capacityWarning,
     sceneDue,
     hasPendingPrivateScenes,
     getContinuationIds,

@@ -499,6 +499,74 @@
       ]
     },
     {
+      "id": "d2_morgen_vaktpress_etter_stenging",
+      "threadId": "arbeidsrytme_og_overskudd",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 12,
+      "stedId": "butikk",
+      "tittel": "Etter en tung vakt",
+      "tekst": "Du kjenner gårsdagens kø og stengearbeid i kroppen. Lene trenger deg på gulvet om få minutter. Du har ennå tid til å si fra om at tempoet i dag må være forsvarlig.",
+      "conditions": {
+        "meters": {
+          "energi": {
+            "max": 60
+          }
+        }
+      },
+      "valg": [
+        {
+          "id": "kort_pause",
+          "tekst": "Si fra og ta en kort pause før du går på gulvet",
+          "konsekvensTekst": "Lene flytter et lite gjøremål til senere. Du får vann, ro og et par minutters oversikt. Oppgavene er der fortsatt, men du møter dem mer samlet.",
+          "effekter": {
+            "meters": {
+              "energi": 4,
+              "psyke": 2,
+              "handlingsrom": 1
+            },
+            "flagg": {
+              "ekspeditor_tok_pause_d2": true
+            }
+          }
+        },
+        {
+          "id": "be_om_stotte",
+          "tekst": "Be Amir dele de tyngste oppgavene den første timen",
+          "konsekvensTekst": "Amir hjelper deg gjennom den første rushen. Det er ikke en fridag, men du slipper å løse alt alene.",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": 1
+            },
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "ekspeditor_ba_om_stotte_d2": true
+            }
+          }
+        },
+        {
+          "id": "press_videre",
+          "tekst": "Ikke si noe og ta hele åpningen alene",
+          "konsekvensTekst": "Du kommer i gang, men merker at du reagerer tregere når køen bygger seg opp. Resten av dagen starter med mindre overskudd.",
+          "effekter": {
+            "meters": {
+              "energi": -4,
+              "psyke": -2
+            },
+            "flagg": {
+              "ekspeditor_presset_videre_d2": true
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "d2_morgen_lukkingen_synes",
       "threadId": "lukkingen",
       "fase": "morgen",
@@ -997,6 +1065,191 @@
           "konsekvensTekst": "Hun fikk avslaget. Nå VET hun at du bestemmer — og neste gang står hun der med noe dyrere."
         }
       ]
+    },
+    {
+      "id": "d3_ettermiddag_pause_virket",
+      "conditions": {
+        "flagg": {
+          "ekspeditor_tok_pause_d2": true
+        }
+      },
+      "tittel": "Pausen som ga rom",
+      "tekst": "Lene ser at du holdt oversikten bedre etter den korte pausen i går. Hun vil vite hvordan dere skal få dette til når det blir travelt igjen.",
+      "valg": [
+        {
+          "id": "foresla_felles_pauser",
+          "tekst": "Foreslå korte, planlagte pauser gjennom vakten",
+          "konsekvensTekst": "Lene prøver en enklere fordeling gjennom neste rush. Du har funnet en måte å ta ansvar uten å ignorere kapasiteten din.",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "handlingsrom": 2
+            },
+            "relasjoner": {
+              "butikksjef": 2
+            },
+            "flagg": {
+              "ekspeditor_pauser_avtalt": true
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "behold_egen_rutine",
+          "tekst": "Fortsett med å varsle når belastningen blir for høy",
+          "konsekvensTekst": "Lene godtar at du sier fra tidlig. Du har fortsatt ansvaret for arbeidet ditt, men ikke for å tåle alt i stillhet.",
+          "effekter": {
+            "meters": {
+              "integritet": 2
+            },
+            "flagg": {
+              "ekspeditor_varsler_tidlig": true
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ],
+      "threadId": "arbeidsrytme_og_overskudd",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9
+    },
+    {
+      "id": "d3_ettermiddag_kollegastotten",
+      "conditions": {
+        "flagg": {
+          "ekspeditor_ba_om_stotte_d2": true
+        }
+      },
+      "tittel": "Et ansvar dere deler",
+      "tekst": "Amir fulgte opp støtten du ba om i går. Nå spør han om du kan gjøre det samme for vikaren før ettermiddagsrushet.",
+      "valg": [
+        {
+          "id": "hjelp_vikaren",
+          "tekst": "Del et konkret grep med vikaren",
+          "konsekvensTekst": "Vikaren løser neste oppgave selv. Den hjelpen du fikk i går blir til noe flere kan bruke.",
+          "effekter": {
+            "meters": {
+              "energi": -2,
+              "psyke": 2
+            },
+            "relasjoner": {
+              "ny_kollega": 4,
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "ekspeditor_stotte_gitt_videre": true
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "del_med_amir",
+          "tekst": "Be Amir organisere opplæringen mens du holder kassen",
+          "konsekvensTekst": "Amir tar opplæringen. Du setter en grense for egen kapasitet uten å overlate vikaren til seg selv.",
+          "effekter": {
+            "meters": {
+              "handlingsrom": 1,
+              "energi": 1
+            },
+            "relasjoner": {
+              "erfaren_kollega": 1
+            },
+            "flagg": {
+              "ekspeditor_opplaering_fordelt": true
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ],
+      "threadId": "arbeidsrytme_og_overskudd",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9
+    },
+    {
+      "id": "d3_ettermiddag_presset_sitter",
+      "conditions": {
+        "flagg": {
+          "ekspeditor_presset_videre_d2": true
+        }
+      },
+      "tittel": "Presset fra dagen før",
+      "tekst": "Etter å ha holdt tempoet oppe uten å be om hjelp i går, kjenner du at konsentrasjonen svikter i dagens kø. Amir merker at du mister oversikten et øyeblikk.",
+      "valg": [
+        {
+          "id": "si_fra_nu",
+          "tekst": "Si fra og be om avlastning før du gjør en feil",
+          "konsekvensTekst": "Amir tar over kassen noen minutter. Du mister litt ansikt der og da, men unngår å love noe du ikke kan holde.",
+          "effekter": {
+            "meters": {
+              "energi": 3,
+              "psyke": 2,
+              "integritet": 2
+            },
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "ekspeditor_brøt_pressmønster": true
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "press_igjen",
+          "tekst": "Fortsett uten pause selv om du mister oversikten",
+          "konsekvensTekst": "Du kommer gjennom vakten, men feilrisikoen og utmattelsen blir større. Det er ikke en varig løsning å presse videre hver dag.",
+          "effekter": {
+            "meters": {
+              "energi": -4,
+              "psyke": -3,
+              "handlingsrom": -2
+            },
+            "flagg": {
+              "ekspeditor_oversaa_slitasje": true
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ],
+      "threadId": "arbeidsrytme_og_overskudd",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9
     }
   ]
 }
