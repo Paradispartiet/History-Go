@@ -10,7 +10,7 @@
     // Legacy NPC memory uses dotted civi.* keys, not the civi_ prefix.
     // Include only these canonical keys, never a blanket civi.* wildcard.
     "civi.socialRelationships.v1", "civi.socialResponses.v1",
-    "civi.socialConversations.v1"]);
+    "civi.socialConversations.v1", "civi.playerPhaseSnapshots.v1"]);
   // Legacy debug URL overrides are not player progress. Older backups may
   // still contain this key, but it must never be restored or re-uploaded.
   const RETIRED_KEYS = new Set(["civication_lifestory_role_v1"]);
