@@ -438,7 +438,7 @@
       const result = Runner.applyChoice(state, content, sceneId, choiceId);
       const deltas = diffMetersAndRelations(before);
       sisteKonsekvens = result.konsekvensTekst || deltas.length
-        ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas, dramatisert: sceneHasRepresentative(scene, valg) }
+        ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? State.presentText(state, content, valg.tekst) : "", deltas, dramatisert: sceneHasRepresentative(scene, valg) }
         : null;
       // A private scene may have been answered from the inactive role's
       // inbox while this job scene was open. Preserve those snapshots
@@ -631,13 +631,14 @@
    * @returns {string}
    */
   function renderSceneHtml(scene) {
+    const present = (value) => window.CivicationLifestoryState?.presentText?.(state, content, value) ?? value;
     const thread = content.threads.find((t) => t.id === scene.threadId);
     const ts = state.threadState[scene.threadId];
     const representative = state.personRepresentanter?.[scene.avsender];
     const valgHtml = (scene.valg || []).map((valg) =>
       "<button class=\"civi-lifestory-choice\" type=\"button\" data-lifestory-scene=\"" + escapeHtml(scene.id) + "\""
       + " data-lifestory-choice=\"" + escapeHtml(valg.id) + "\">"
-      + "<span>" + escapeHtml(valg.tekst) + "</span>"
+      + "<span>" + escapeHtml(present(valg.tekst)) + "</span>"
       + (valg.tone ? "<small>" + escapeHtml(valg.tone) + "</small>" : "")
       + (/** @type {any} */ (valg).handling ? "<small class=\"civi-lifestory-action-hint\">→ "
         + escapeHtml(/** @type {any} */ (window).CivicationLifestoryActions?.HANDLING_LABELS?.[/** @type {any} */ (valg).handling.type] || "utfører handlingen")
@@ -647,8 +648,8 @@
     return ""
       + "<article class=\"civi-lifestory-scene\" aria-label=\"Nå-scene\">"
       + "<div class=\"civi-lifestory-kicker\"><span>NÅ</span><span>" + escapeHtml(viewPhaseName(scene.fase)) + "</span><span>" + escapeHtml(scene.visningstype) + "</span>" + (scene.avsender ? "<span>Fra " + escapeHtml(personNavn(scene.avsender)) + "</span>" : "") + "</div>"
-      + "<h3>" + escapeHtml(scene.tittel) + "</h3>"
-      + "<p>" + escapeHtml(scene.tekst) + "</p>"
+      + "<h3>" + escapeHtml(present(scene.tittel)) + "</h3>"
+      + "<p>" + escapeHtml(present(scene.tekst)) + "</p>"
       + (representative?.personId && representative.beskrivelse
         ? '<p class="muted"><strong>Fra History Go:</strong> ' + escapeLiteral(representative.beskrivelse) + '</p>' : "")
       + dramatizationNote(sceneHasRepresentative(scene))
@@ -678,7 +679,8 @@
 
   function personNavn(personId) {
     const person = (content.role.personer || []).find((p) => p.id === personId);
-    return person ? person.navn : personId;
+    return state.personRepresentanter?.[personId]?.personId
+      ? state.personRepresentanter[personId].navn : (person ? person.navn : personId);
   }
 
   /**

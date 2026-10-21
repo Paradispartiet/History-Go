@@ -112,6 +112,12 @@ function play(type, id, b) {
   assert.equal(S.presentText(blank, base, 'Prosjektbyggerens skisse; medmusikeren; miljøkontakten.'),
     'Jens Jacob Jensens skisse; Bugge Wesseltoft; Attila Horvath.');
   assert.equal(S.presentText(blank, base, 'prosjektet_og_lea'), 'prosjektet_og_lea', 'technical IDs remain untouched');
+  assert.equal(S.presentText(blank, base, 'Si til Mira at Lea har lest teksten.'),
+    'Si til Mari Boine at Peter Emil Steen har lest teksten.', 'first-name aliases resolve to actual representatives');
+  assert.equal(S.presentText(blank, base, 'Leas notat og Miras konsert'),
+    'Peter Emil Steens notat og Mari Boines konsert', 'possessive aliases resolve');
+  assert.ok(S.sceneMentionsPerson({ avsender: null, tittel: 'Å tåle at Mira bestemmer' },
+    base.role.personer.find(p => p.id === 'mira')), 'first-name scenes must lock the real representative');
   for (const mutate of [p => p.representanter.push(p.representanter[0]), p => p.representanter = [], p => p.id = 'invalid type']) {
     const bad = clone(raw); mutate(bad.role.personer.find(p => p.id === 'lea').persontype);
     assert.throws(() => C.buildContent(bad), /persontype/);

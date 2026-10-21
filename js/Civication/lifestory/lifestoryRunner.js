@@ -202,9 +202,9 @@
     const choice = (scene.valg || []).find((c) => c.id === choiceId);
     if (!choice) throw new Error(`[LifestoryRunner] ukjent valg "${choiceId}" i scenen "${sceneId}"`);
 
-    // Symposium-pakken tillater aldri at en fremtidig eller avvist scene
-    // skriver et møte/valg inn i historien (inkludert gamle DOM-knapper).
-    if (content.role.symposium && (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId))) {
+    // Alle roller krever riktig dag, fase, aktiv tråd og oppfylte vilkår.
+    // Gamle DOM-knapper må aldri registrere en fremtidig scene.
+    if (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId)) {
       throw new Error(`[LifestoryRunner] scenen "${sceneId}" er ikke tilgjengelig nå`);
     }
 
@@ -245,7 +245,7 @@
     if (Object.keys(people).length) entry.personRepresentanter = people;
     if (consequenceText) entry.konsekvensTekst = consequenceText;
     state.arkiv.push(entry);
-    if (/^wave_[abcde]_c0[15]_/.test(scene.id)) State.capturePrivateStory(state);
+    if (/^wave_[abcdef]_c(?:01|02|03|05|06|07|17|23)_/.test(scene.id)) State.capturePrivateStory(state);
 
     const progress = advance(state, content);
     return {

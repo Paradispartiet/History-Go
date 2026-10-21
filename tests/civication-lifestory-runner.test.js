@@ -75,6 +75,16 @@ const dag1Traader = content.threads.filter((t) => (typeof t.startDag === "number
 assert.strictEqual(Object.keys(state.threadState).length, dag1Traader.length, "alle dag-1-tråder har threadState");
 assert.ok(Object.values(state.threadState).every((ts) => ts.status === "active"), "alle starter aktive");
 
+// Ulike roller må aldri kunne registrere framtidige eller låste hendelser.
+const futureScene = content.scenes.find(s => s.dag > state.dag && s.valg?.length);
+const lockedScene = content.scenes.find(s => s.tilgjengelighet === "laast" && s.valg?.length);
+assert.ok(futureScene && lockedScene, "må ha begge scenetypene");
+const snapshot = JSON.stringify(state);
+assert.throws(() => Runner.applyChoice(state, content, futureScene.id, futureScene.valg[0].id), /ikke tilgjengelig nå/);
+assert.throws(() => Runner.applyChoice(state, content, lockedScene.id, lockedScene.valg[0].id), /ikke tilgjengelig nå/);
+assert.equal(JSON.stringify(state), snapshot, "avviste valg skal ikke påvirke lagret historie");
+
+
 // --- Morgen: privat start har høyest prioritet, så skoleveimeldingen ---
 let view = Runner.getView(state, content);
 assert.strictEqual(view.scene.id, "privat_morgen_start", "dagen starter privat");
