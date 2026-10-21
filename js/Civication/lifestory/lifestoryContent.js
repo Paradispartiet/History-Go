@@ -630,6 +630,25 @@
     return buildContent({ role, phaseDefinitions, roleThreads, roleScenes, lifeThreads, lifeScenes });
   }
 
+  // For a real shell job without its own Life Story role, keep the player's
+  // personal narrative playable. The published pack is validated BEFORE the
+  // view is filtered; this projection cannot add fictional work events.
+  // The canonical role, current story state and saved role snapshots are not
+  // modified by this read-only content projection.
+  async function makePersonalOnlyContent(fullContent) {
+    const manifest = await fetchJson(MANIFEST_PATH);
+    const life = await fetchJson(manifest.life.scenes);
+    const sharedIds = new Set((life?.scenes || []).map(scene => scene.id));
+    const privateRoleScene = /^wave_[abcd]_c0[15]_/;
+    return {
+      ...fullContent,
+      role: { ...fullContent.role, navn: "Privatlivet ditt" },
+      scenes: (fullContent.scenes || []).filter(scene =>
+        sharedIds.has(scene.id) || privateRoleScene.test(scene.id)),
+      personalOnly: true
+    };
+  }
+
   /**
    * @param {string} path
    * @returns {Promise<any>}
@@ -723,7 +742,7 @@
     return appendContinuation(content, await fetchJson(next.path));
   }
 
-  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, SHELL_CONDITION_KEYS, HANDLING_TYPES, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, appendContinuation, loadContinuation, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
+  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, SHELL_CONDITION_KEYS, HANDLING_TYPES, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, makePersonalOnlyContent, appendContinuation, loadContinuation, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
   /** @type {any} */ (globalScope).CivicationLifestoryContent = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

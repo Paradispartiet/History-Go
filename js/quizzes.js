@@ -882,7 +882,7 @@ if (canTag) {
   // A fagområdeforløp is a subject exercise, not a Place/Person target.
   // Keep its existing five questions, scoring and Knowledge capture in the
   // shared quiz flow; do not grant geographic achievements or mastery here.
-  QuizEngine.startSubjectPathway = async function (requestedSubject) {
+  QuizEngine.startSubjectPathway = async function (requestedSubject, requestedSetId) {
     const subject = s(requestedSubject);
     try {
       const manifest = await fetchJson(QUIZ_MANIFEST_PATH);
@@ -892,7 +892,9 @@ if (canTag) {
       const packageData = await fetchJson(entry.file);
       if (packageData?.subject_id !== subject || packageData?.package_kind !== "subject_pathway" ||
           packageData?.status !== "pilot_active") throw new Error("Fagområdeforløpet er ikke aktivert i fagpakken.");
-      const set = packageData?.sets?.[0];
+      const set = requestedSetId
+        ? packageData?.sets?.find((item) => item?.set_id === s(requestedSetId))
+        : packageData?.sets?.[0];
       const stages = ["observe", "explain", "evaluate_evidence", "diagnose_failure", "decide_and_justify"];
       if (!set || set.phase !== "subject_pathway" || set.target_kind !== "subject_area" ||
           !Array.isArray(set.questions) || set.questions.length !== 5 ||
@@ -901,7 +903,7 @@ if (canTag) {
             question.targetId === set.targetId && question.knowledge_link_status === "linked")) {
         throw new Error("Fagområdeforløpet oppfyller ikke femtrinnskontrakten.");
       }
-      const review = document.getElementById("politikkPolandPathwayReview");
+      const review = document.getElementById(set.review_element_id || "politikkPolandPathwayReview");
       if (review) { review.hidden = true; review.replaceChildren(); }
       openQuiz();
       runQuizFlow({
@@ -925,7 +927,7 @@ if (canTag) {
           });
           if (review) {
             const heading = document.createElement("h4");
-            heading.textContent = "Kildebelegg og begrunnelser – Polen 2023";
+            heading.textContent = `Kildebelegg og begrunnelser – ${set.title || packageData.title}`;
             review.appendChild(heading);
             set.questions.forEach((question, index) => {
               const article = document.createElement("article");
