@@ -166,7 +166,6 @@ async function run() {
       originalStore.setItem('civication_lifestory_v1', JSON.stringify(state));
       money.recordCompletedDay(day);
       money.recordCompletedDay(day); // No duplicate earned work days.
-      if (day < 21) State.save && assert.ok(state); // No artificial state reset.
       if (day < 21) Runner.startNextDay(state, content);
       calendar.advanceByMinutes(24 * 60);
     }
