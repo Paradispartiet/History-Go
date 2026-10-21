@@ -129,9 +129,87 @@ async function jsdomAdoption() {
     "test-URL må ikke lagre varig overstyring av spillerrollen");
 }
 
-jsdomAdoption().then(() => {
-  console.log("civication lifestory shell role bridge ok (jobb->rolle, eksplisitt valg vinner)");
-}).catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+// --- 6. Konto-backup med gammel testrolle må migreres, også i skyen ---
+// Dette reproduserer rekkefølgen som tidligere var feil:
+// UI starter, kontoskyen gjenoppretter legacy-nøkkelen ASYNKRONT,
+// og neste innlogging må ikke gjenopprette den på nytt.
+async function jsdomCloudRestoredLegacyRole() {
+  const dom = new JSDOM(`<!doctype html><html><body class="civi-app">
+    <section id="civiLifestorySection"><div id="civiLifestoryPanel"></div></section>
+  </body></html>`, { url: "http://localhost/Civication.html", runScripts: "outside-only" });
+  const { window } = dom;
+  let remote = {
+    payload: { state: { civication_lifestory_role_v1: "arealplanlegger" } },
+    created_at: "2026-10-20T10:00:00Z"
+  };
+  let writes = 0;
+  let releaseAuth;
+  const authGate = new Promise(resolve => { releaseAuth = resolve; });
+  const supabase = {
+    from(table) {
+      assert.strictEqual(table, "aha_imports");
+      return {
+        select() { return this; },
+        eq() { return this; },
+        async maybeSingle() { return { data: remote, error: null }; },
+        async upsert(record) { writes++; remote = record; return { error: null }; }
+      };
+    }
+  };
+  window.HistoryGoAHAAuth = {
+    async getSession() {
+      await authGate;
+      return { user: { id: "legacy-account" } };
+    },
+    async getClient() { return supabase; }
+  };
+  window.CivicationState = { getActivePosition: () => renholderPos };
+  window.fetch = async p => {
+    const file = path.join(ROOT, String(p).replace(/^\\.?\\//, ""));
+    if (!fs.existsSync(file)) return { ok: false, status: 404, json: async () => null, text: async () => "" };
+    const text = fs.readFileSync(file, "utf8");
+    return { ok: true, status: 200, json: async () => JSON.parse(text), text: async () => text };
+  };
+  try {
+    window.eval(fs.readFileSync(path.join(ROOT, "js/Civication/core/CivicationCloudSave.js"), "utf8"));
+    for (const file of [
+      "js/Civication/systems/civicationCareerRoleResolver.js",
+      "js/Civication/core/CivicationStorageAdapter.js",
+      "js/Civication/core/civicationJsonStore.js",
+      "js/Civication/lifestory/lifestoryContent.js",
+      "js/Civication/lifestory/lifestoryState.js",
+      "js/Civication/lifestory/lifestoryRunner.js",
+      "js/Civication/ui/CivicationLifestoryUI.js"
+    ]) window.eval(fs.readFileSync(path.join(ROOT, file), "utf8"));
+
+    assert.strictEqual(window.localStorage.getItem("civication_lifestory_role_v1"), null,
+      "ingen lokal nøkkel før den forsinkede sky-gjenopprettingen");
+    releaseAuth();
+    await window.CivicationCloudSave.ready;
+    window.dispatchEvent(new window.Event("civi:booted"));
+    await new Promise(resolve => setTimeout(resolve, 750));
+
+    const saved = JSON.parse(window.localStorage.getItem("civication_lifestory_v1"));
+    assert.strictEqual(saved.rolle, "renholder", "skallets reelle jobb vinner over testrollen");
+    assert.strictEqual(window.localStorage.getItem("civication_lifestory_role_v1"), null,
+      "testnøkkelen fjernes ETTER sky-gjenoppretting");
+
+    await window.CivicationCloudSave.flush();
+    assert.ok(writes >= 1, "migreringen blir sendt til kontoskyen");
+    assert.strictEqual(remote.payload.state.civication_lifestory_role_v1, undefined,
+      "sky-backupen må heller ikke inneholde gammel testrolle");
+    assert.ok(remote.payload.state.civication_lifestory_v1,
+      "ekte Life Story-progresjon bevares i skyen");
+  } finally {
+    dom.window.close();
+  }
+}
+
+jsdomAdoption()
+  .then(() => jsdomCloudRestoredLegacyRole())
+  .then(() => {
+    console.log("civication lifestory shell role bridge ok (jobb->rolle, gammel sky-testrolle ryddet)");
+  }).catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
