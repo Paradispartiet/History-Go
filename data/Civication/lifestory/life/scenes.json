@@ -4949,7 +4949,7 @@
       ]
     },
     {
-      "id": "privat_21d_d20_kvelden",
+      "id": "privat_21d_d20_kvelden_med_bidrag",
       "threadId": "wave_e_c01",
       "dag": 1,
       "livsdagFra": 20,
@@ -4987,7 +4987,58 @@
             }
           }
         }
-      ]
+      ],
+      "conditions": {
+        "flagg": {
+          "privat21_bidrag_avtalt": true
+        }
+      }
+    },
+    {
+      "id": "privat_21d_d20_kvelden_som_deltaker",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 20,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Kvelden i lokalet",
+      "tekst": "Den åpne kvelden er i gang. Du kom for å bli kjent og har ikke lovet å utføre noen oppgave. En arrangør spør om du vil hjelpe et øyeblikk.",
+      "valg": [
+        {
+          "id": "foerste",
+          "tekst": "Si ja til den konkrete oppgaven og gjør den ferdig",
+          "konsekvensTekst": "Du hjelper til med det du ble spurt om, og spør om oppgaven er løst. En konkret innsats er gjort, uten at du har fått jobb eller en posisjon.",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "privat21_bidrag_fullfort": true
+            }
+          }
+        },
+        {
+          "id": "alternativ",
+          "tekst": "Takk nei til oppgaven og bli i samtalen",
+          "konsekvensTekst": "Du fortsetter som deltaker, spør hva gruppen arbeider med, og finner ut om du ønsker å komme tilbake.",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "privat21_miljo_undersokt": true
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "privat21_deltakelse_avtalt": true
+        }
+      }
     },
     {
       "id": "privat_21d_d21_retning_med_bidrag",
