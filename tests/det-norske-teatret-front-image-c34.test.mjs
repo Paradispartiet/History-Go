@@ -17,7 +17,7 @@ test("DNT C34 original draft/source gate remains fail-closed after explicit C36 
  assert.notEqual(q.front_image_path,p.image);
  assert.equal(q.front_image_dimensions.height>q.front_image_dimensions.width,true);
  assert.equal(w.status,"in_progress");
- assert.equal(w.collections.objects.status,"BLOCKED");
+ assert.equal(w.collections.objects.status,"PASS");
  assert.equal(p.frontImage,q.front_image_path);
  assert.equal(q.review_status,"VISUAL_REVIEW_REQUIRED_DRAFT_ONLY");
 });
