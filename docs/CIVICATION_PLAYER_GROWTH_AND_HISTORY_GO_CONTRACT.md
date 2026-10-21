@@ -4,7 +4,11 @@ Status: **besluttet produkt- og designkontrakt, 21. oktober 2026**. Ikke en erkl
 
 ## Treukers livsretning – nytt hovedmål 21.10.2026
 
-Første hovedkapittel varer **21 spilldager**. Dag 8–21 har konkrete, private valg som gir rom for aktivitet, sosiale relasjoner, motstand og refleksjon. Spilleren kan forbli arbeidsledig uten at dagene fylles med like NAV-beskjeder.
+Første hovedkapittel varer **21 spilldager**.
+
+**Frivillig arbeid underveis:** Spillerens arbeidsledighet skal ikke være en tvungen livsform. Et separat, dokumentert løp fra dag 12 (søknad) via dag 17 (intervju) til dag 20 (be om tilbud) kan utløse ett *fiktivt* tilbud om jobb som Butikkmedarbeider. Tilbudet materialiseres av eksisterende `CivicationJobs.pushOffer` først etter at alle tre valgene finnes i arkivet; opptak til jobb skjer **kun** når spilleren eksplisitt aksepterer gjennom `CivicationJobs.acceptOffer` i Karriere. Jobben følger eksisterende kvalifikasjonsregler, kalender, jobbstart, postboks og rollemapping til Ekspeditør. Spilleren kan la være å søke, trekke seg fra intervjuet eller avslå tilbudet uten å miste den private treukershistorien eller sine Skills. Ingen automatisk jobb, Badge, quizpoeng eller inntekt ved valgene alene.
+
+ Dag 8–21 har konkrete, private valg som gir rom for aktivitet, sosiale relasjoner, motstand og refleksjon. Spilleren kan forbli arbeidsledig uten at dagene fylles med like NAV-beskjeder.
 
 På dag 9 og 16 kan spilleren **gjennomføre** og **følge opp** én av tre egne aktiviteter: nærmiljø, skaping eller kunnskapsarbeid. Først etter reelle handlinger og eget valg på dag 21 gjøres en praksisbasert livsposisjon tilgjengelig i eksisterende `CivicationLifePositions`: **Lokal bidragsyter**, **Praktisk skaper** eller **Aktiv kunnskapsutforsker**. Identiteten aktiveres aldri automatisk. Hvis spilleren velger å observere, utsette eller la identiteten være åpen, har spillet ikke bevis for å gi posisjonen.
 
