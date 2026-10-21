@@ -1482,7 +1482,7 @@ const setRoundPreview = (el, src, alt, fallbackEmoji, count) => {
 };
 
 if (isNarrow) {
-  setPcIcon(btnInfo,  "ℹ️", tt("ui.place.moreInfo", "Mer info"));
+  setPcText(btnInfo,  tt("ui.place.moreInfo", "Mer info"));
   setPcText(btnQuiz,  tt("ui.place.takeQuiz", "Ta quiz"));
   setPcText(btnRoute, tt("ui.place.route", "Rute"));
   setPcIcon(btnObs,   "👁️", tt("ui.place.observe", "Observer"));
