@@ -1,0 +1,62 @@
+{
+  "schema": "history_go_dnt_c47_public_pages_qa_v1",
+  "place_id": "det_norske_teatret",
+  "verified_at": "2026-10-21",
+  "status": "PASS_PUBLIC_TWO_DOCUMENTARY_SOURCE_PHOTOS_MOBILE_DESKTOP",
+  "website": "https://paradispartiet.github.io/History-Go/",
+  "workflow_run": "https://github.com/Paradispartiet/History-Go/actions/runs/39587062392",
+  "workflow_run_id": 39587062392,
+  "workflow_outcome": "success",
+  "screenshot_artifact": "dnt-c47-public-evidence",
+  "screenshot_artifact_id": 12340127164,
+  "execution": "GitHub Actions Playwright Chromium against actual published HTTPS site after detecting C47 photo in deployed Place JSON",
+  "public_deploy_wait_checks": 8,
+  "http_verified": {
+    "canonical_place_json_sha256": "b6c56cb51606bc68a05b4f604d0a59cee2bb147e8b3880626a0d2212ac4a99d5",
+    "costumed_photo_sha256": "a4c04b491558f65551385f3e98651e599319e5e6a576f80ae33c105bef57c31f",
+    "foyer_painting_photo_sha256": "8066f849c6bc4c1b244bcc3c67dda94e25d05a25c29833dafd9e64abe276a141",
+    "unified_js_sha256": "dafafe4d56860659bb25d7f6735310e2621e9fad95fb0e2e679a4025791176ec",
+    "image_dimensions": [
+      800,
+      800
+    ],
+    "source_license": "CC BY-SA 4.0",
+    "painting_photo_credit": "Wolfmann / Wikimedia Commons",
+    "costume_photo_credit": "Lone Lunde / Oslo Museum / Wikimedia Commons"
+  },
+  "browser_cases": [
+    {
+      "view": "mobile",
+      "width": 390,
+      "height": 844,
+      "outcome": "PASS",
+      "page_errors": [],
+      "screenshot": "mobile-public-kilder.png"
+    },
+    {
+      "view": "desktop",
+      "width": 1280,
+      "height": 900,
+      "outcome": "PASS",
+      "page_errors": [],
+      "screenshot": "desktop-public-kilder.png"
+    }
+  ],
+  "manual_screenshot_review": "Downloaded actual Actions artifact and manually inspected public screenshots: desktop shows costume and painting in separate side-by-side documentary cards, original/source links and attribution are visible, no obvious crop; mobile stacks cards in one column and neither source image breaks the viewport.",
+  "verification_path": "public index.html, first-run modal dismissed, existing app HGAppRouter.toPlace(det_norske_teatret), unified Kilder jump, both source photos decoded and links/attribution checked.",
+  "redaction_boundaries": [
+    "Browser automation is Chromium at mobile and desktop viewport sizes, not physical Android/iOS hardware",
+    "Ordinary app route confirmed; a literal map-marker click was not exercised",
+    "Documentary Sources images are not canonical Objects members or Places Objects preview",
+    "Title mismatch Kirkegårdsgravere/Kirkegårdsgraveren and precise museum inventory of painting remain open",
+    "Jan Groth stage curtain only has original publisher link, not a locally cleared photo"
+  ],
+  "canonical_object_count": 0,
+  "objects_status": "BLOCKED",
+  "place_status": "in_progress",
+  "linked_prs": [
+    6491,
+    6485,
+    6488
+  ]
+}
