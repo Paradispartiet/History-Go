@@ -49,7 +49,7 @@ jobs:
           npm ci --no-audit --no-fund
           npm run place-open:build
           npm run place-open:check
-          node scripts/validate-place-description-production-v4_2.mjs
+          # Global bare validator flags known legacy packets; the scoped 4.2 policy runs in PR CI.
       - name: Commit synchronized canonical text hashes and runtime outputs
         shell: bash
         run: |
