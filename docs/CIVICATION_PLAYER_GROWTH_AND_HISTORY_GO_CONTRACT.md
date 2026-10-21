@@ -1,4 +1,4 @@
-# Civication – spillerutvikling, ferdigheter og History Go i livsverdenen
+# Civication – Skills, spillerutvikling og History Go i livsverdenen
 
 Status: **besluttet produkt- og designkontrakt, 21. oktober 2026**. Ikke en erklæring om ferdig runtime, migrert state eller bestått 14-dagers spillerreise. Denne filen definerer ønsket samspill og eiergrenser; konkrete feltnavn, numerisk balanse og lagring må implementeres og testes i eksisterende motorer. Kanonisk inngang: [CIVICATION_README.md](CIVICATION_README.md).
 
@@ -19,18 +19,18 @@ På dag 7 skal «Fortsett privatlivet» og frivillig «Utforsk History Go» kunn
 | Domene | Hva det er | Eksisterende eier og evidens | Skal ikke forveksles med |
 | --- | --- | --- | --- |
 | **Livstilstand** | Variabel situasjon her og nå: psyke, energi, integritet, synlighet, handlingsrom, penger | `lifestoryState` meters; `CivicationPsyche`, kalender/økonomi | Varig ferdighet, diagnose, sosial klasse |
-| **Ferdigheter** | Relativt varig, dokumentert personlig mestring gjennom øvelse, valg, refleksjon og handling | **Planlagt samordnet read-/growth-model**; eksisterende `player.competence.psychology` og `job_learning_progress` beholdes i sine eiere | Meritpoeng, formelle kvalifikasjoner, psyke |
+| **Skills** | Relativt varig, dokumentert personlig mestring gjennom øvelse, valg, refleksjon og handling | **Planlagt samordnet read-/growth-model**; eksisterende `player.competence.psychology` og `job_learning_progress` beholdes i sine eiere | Meritpoeng, formelle kvalifikasjoner, psyke |
 | **Kapital og omdømme** | Ressurser og posisjon i ulike sosiale felt, ikke universell personlig evne | `capitalEngine`: økonomisk, kulturell, sosial, symbolsk, politisk, institusjonell og subkulturell kapital; `civicationSocialStanding` for situert omdømme | At spilleren er god til alt eller har tillit hos alle |
 | **History Go-samling og kunnskap** | Evidens for besøk, quiz, kunnskap, merker, People og bidrag | `visited_places`, `merits_by_category`, `hg_knowledge_entries_v2`, `people_collected`, `hg_learning_log_v1`, notater | Frie autorisasjoner eller automatisk skill-mastery |
 | **Livsposisjoner og erfaring** | Selvvalgte identiteter, scenemuligheter, relasjoner og opplevd historie | `CivicationLifePositions`, `hg_civi_life_positions_v1`, `CivicationLifestoryState` | Jobbansettelse eller handling som ikke er spilt |
 
 Disse dimensjonene påvirker hverandre, men har forskjellige eiere. **Ingen ny parallell spillmotor, samlingsstore eller valuta.** Psyke og livsstil finnes allerede og må ikke kopieres som «skill»-poeng.
 
-## 3. Seks tverrgående ferdighetsskalaer – målmodell
+## 3. Seks Skills-skalaer – målmodell
 
-Ferdigheter skal være gjennomgående, overførbare *spillegenskaper*, foreløpig **0–100**. Dette er beslutning om ønsket design, **ikke** seks implementerte og lagrede skalaer. Nøyaktige deltakrav, vekter, startverdier, tak og en framtidig teknisk lagringskontrakt krever egen implementerings- og balanseringskontroll.
+**Skills** er gjennomgående, overførbare *spillegenskaper* (0–100). Seks identiteter, en additiv state-slice og verifiserbar, begrenset praksisregistrering er introdusert i `CivicationSkills`; full aktivitetstilordning, balanse og end-to-end-spillbarhet er **ikke** ferdig. Ukjent Skills-score vises som «Ikke målt», ikke som en oppdiktet startverdi.
 
-| Ferdighet | Hva øvelse kan dokumentere | Eksempel på Life Story-effekt |
+| Skill | Hva øvelse kan dokumentere | Eksempel på Life Story-effekt |
 | --- | --- | --- |
 | **Visdom / dømmekraft** | Forstår kontekst, belegg, usikkerhet og mulige følger | Ser et mindre risikabelt handlingsalternativ, får bedre begrunnelse i en konflikt |
 | **Sosial teft** | Leser signaler, lytter, forhandler og tilpasser kommunikasjon | Forstår en NPCs situasjon bedre; tillit må fortsatt bygges med faktisk handling |
@@ -42,6 +42,13 @@ Ferdigheter skal være gjennomgående, overførbare *spillegenskaper*, foreløpi
 `CivicationPsyche` har allerede **psykologikompetanse** (`player.competence.psychology`) med aktivitetsspesifikk opptjening og deduplisering. Den skal beholdes som eksisterende domeneferdighet og inngå i en eventuell samordnet oversikt – ikke nullstilles, kopieres eller byttes ut. Tilsvarende er jobbspesifikke `job_learning_progress` og History Go-meritter fortsatt separate evidenskilder.
 
 Krav til opptjening: definert handling, dokumentert kilde/event, idempotent belønning, ingen gratis poeng ved ren visning/oppfriskning, ingen ubegrenset repetisjon, balanserte langsomme kurver og mulighet for å feile/lære. Ett besøk alene kan bygge kjennskap til et sted, men gir ikke automatisk visdom, sosial teft, streetkred eller alle seks ferdigheter. Kompetanse skal ikke forveksles med faktisk fagautorisasjon eller yrkeskvalifikasjon.
+
+### Teknisk Skills-grense (første implementeringsbolk)
+
+- `js/Civication/systems/civicationSkills.js` eier seks Skills-definisjoner, `getViewModel`, en testbar `practicePatch` og additiv praksisskriving gjennom **eksisterende** `CivicationState.setState` (`hg_civi_state_v1.skills_v1`). Ikke egen localStorage- eller sky-nøkkel.
+- `js/Civication/systems/civicationSkillsPracticeBridge.js` kobler kun eksplisitte authored valg med `choice.skills_practice = {skill_id, activity_type, delta}` til `CivicationChoiceDirector` **etter vellykket svar**. Delta må være et heltall 1–3. Én `event_id` kan krediteres én gang, også ved replay/reload. Forfattere må kildekontrollere aktivitetstypen før feltet tas i bruk.
+- Den synlige «Skills»-flaten under Personlig viser seks skalaer uten å fabrikere startskårer. Eksisterende `job_learning_progress`, `player.competence.psychology`, relasjoner og kapital forblir hos sine respektive eiere; de er ennå ikke oversatt automatisk til generelle Skills-poeng.
+- Implementasjonen gir **ingen** automatisk poeng ved besøk, quiz, åpning av mail, rollebytte eller History Go-retur. Ferdig authored øvingskatalog, langsiktig balanse, konsekvensdrevne Skills-porter og full 14-dagers brukerreise står fortsatt åpne.
 
 ## 4. Streetkred er kontekstuell, ikke én allmenn popularitetsscore
 
@@ -94,7 +101,7 @@ Dette er en **planlagt leveranse**, ikke godkjent produksjon:
 
 - **A – bevar dag 7:** både «Fortsett privatlivet» og valgfri History Go-veiledning; ingen Badge-/rollekrav for ordinære scener.
 - **B – organisk 14-dagersløp:** fersk arbeidsledig spiller fortsetter dag 8–14 med relasjon, hobby, fritid, økonomi og etterspill, også uten kvalifiserende Badge; alternative valg og jobbskifte testes separat. Tomme eller blokkerte dager skal rapporteres, ikke fiktivt fylles.
-- **C – evidenskartlegging:** dokumenter for hver ny ferdighet *hvilke eksisterende* source-eventer som kan gi øvelse, hvem som eier dem, deduplisering og migrering. Innfør først en ikke-skrivende read-model; ingen ad hoc-poeng fra UI.
+- **C – Skills/evidens:** seks Skills og en read-model finnes; en minimal skriver under `hg_civi_state_v1.skills_v1` tar kun eksplisitt `skills_practice` fra vellykket canonical ChoiceDirector-valg (med `event_id`, `choice_id`, aktivitetstype, Skill og 1–3 poeng), er deduplisert per hendelse og eksponerer aldri gratispoeng fra UI. Dette er et *første teknisk grunnlag*. Kvalifiserende forfattede aktiviteter, erfaring fra jobb og psykologi, reell balansering og konto-gjenoppretting er ennå ikke ferdig godkjent.
 - **D – motor og balanse:** implementer kun nødvendig write-/calculate-lag i eksisterende eierskap, med progresjon 0–100, invarianter, myk progresjonskurve og forklaring i UI. Gjenbruk psykologikompetanse og jobblæring.
 - **E – History Go-livseffekter:** integrasjonstester for visit → quiz/Knowledge → relevant scene → faktisk valg → korrekt ferdighet/kapital/relasjon, og for kulturmiljø → situert streetkred, uten automatisk belønning ved visning.
 - **F – persistens/feilgrenser:** normal flyt, reload, jobbytte, dag-7/14, skyrestore, dobbeltinnlesing, manglende nett/data, frivillig retur fra toast.
