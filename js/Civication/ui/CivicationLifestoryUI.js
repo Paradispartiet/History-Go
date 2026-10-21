@@ -450,6 +450,25 @@
       }
       State.save(state);
       accepted = true;
+      // Skills are credited only for a successfully played and saved authored
+      // Life Story choice, with the concrete effect flag as evidence.
+      // The scene ID is stable across reloads and role changes: a replay cannot
+      // mint more Skills even if the same private scene reappears.
+      const practice = valg?.skills_practice;
+      if (practice && valg?.effekter?.flagg?.[practice.evidence_flag] === true &&
+          !(/** @type {any} */ (window).CIVICATION_TEST_MODE) &&
+          !(/** @type {any} */ (window).OPEN_MODE) &&
+          !window.CivicationState?.isTestMode?.()) {
+        /** @type {any} */ (window).CivicationSkills?.applyPractice?.({
+          source: "life_story_choice",
+          event_id: "lifestory:" + sceneId,
+          choice_id: choiceId,
+          skill_id: practice.skill_id,
+          activity_type: practice.activity_type,
+          evidence_flag: practice.evidence_flag,
+          delta: practice.delta
+        });
+      }
       if (WAVE_A_SCENE_ID.test(sceneId)) {
         window.CivicationWaveAInboxBridge?.afterChoice?.(state.rolle, sceneId, choiceId);
       }

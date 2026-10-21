@@ -61,6 +61,12 @@
    * Ukjent tag => FAIL FAST (ingen gjetting). Holdes i sync av
    * civication-lifestory-lifestyle-bridge.test.js.
    */
+  // Skills are authored practices, not automatic tags/quiz/visit rewards.
+  const SKILL_IDS = new Set([
+    "wisdom_judgement", "social_awareness", "creativity",
+    "practical_mastery", "communication", "agency"
+  ]);
+
   const LIVSSTIL_TAGS = [
     "avoidance", "budget", "craft", "culture", "debt", "family", "fitness",
     "heritage", "hipster", "legitimacy", "luxury", "maximalist", "minimalist",
@@ -77,6 +83,7 @@
    * @property {string} [konsekvensTekst]
    * @property {string[]} [laaserOpp]
    * @property {string[]} [livsstil] Livsstilstags (se LIVSSTIL_TAGS) — mates til skallets HG_Lifestyle ved valg.
+   * @property {{skill_id:string,activity_type:string,evidence_flag:string,delta:number}} [skills_practice] Dokumentert handling for Skills.
    *
    * @typedef {Object} LifestoryScene
    * @property {string} id
@@ -222,6 +229,21 @@
           push(`scene ${sid}/${cid}: konsekvensTekst må være en ikke-tom streng`);
         }
         errorsForEffects(scene, choice, startRelasjoner, threadIds, push);
+        // Fail closed: Skills require an authored action with a specific true effect flag.
+        if (choice.skills_practice !== undefined) {
+          const practice = choice.skills_practice;
+          const valid = practice && typeof practice === "object" && !Array.isArray(practice);
+          const keys = valid ? Object.keys(practice) : [];
+          const allowed = ["skill_id", "activity_type", "evidence_flag", "delta"];
+          const isToken = value => typeof value === "string" && /^[a-z][a-z0-9_]{1,99}$/.test(value);
+          if (!valid || keys.length !== 4 || keys.some(key => !allowed.includes(key)) ||
+              !SKILL_IDS.has(practice.skill_id) || !isToken(practice.activity_type) ||
+              !isToken(practice.evidence_flag) || !Number.isInteger(practice.delta) ||
+              practice.delta < 1 || practice.delta > 3 ||
+              choice.effekter?.flagg?.[practice.evidence_flag] !== true) {
+            push(`scene ${sid}/${cid}: skills_practice krever gyldig Skill, aktivitet, delta 1–3 og et true effektflagg`);
+          }
+        }
         for (const target of choice.laaserOpp || []) {
           if (typeof target !== "string" || !target) push(`scene ${sid}/${cid}: ugyldig laaserOpp-referanse`);
         }

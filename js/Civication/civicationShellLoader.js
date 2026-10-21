@@ -35,7 +35,6 @@
   const SHELL_SCRIPTS = [
     "js/Civication/systems/civicationStorageTrace.js",
     "js/Civication/core/civicationState.js",
-    "js/Civication/systems/civicationSkills.js",
     "js/Civication/core/CivicationTravelState.js",
     "js/Civication/systems/civicationRoleSession.js",
     "js/Civication/systems/civicationActivePositionRecovery.js",

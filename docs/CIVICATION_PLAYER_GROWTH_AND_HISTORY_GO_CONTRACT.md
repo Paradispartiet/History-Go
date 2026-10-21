@@ -50,6 +50,14 @@ Krav til opptjening: definert handling, dokumentert kilde/event, idempotent bel�
 - Den synlige «Skills»-flaten under Personlig viser seks skalaer uten å fabrikere startskårer. Eksisterende `job_learning_progress`, `player.competence.psychology`, relasjoner og kapital forblir hos sine respektive eiere; de er ennå ikke oversatt automatisk til generelle Skills-poeng.
 - Implementasjonen gir **ingen** automatisk poeng ved besøk, quiz, åpning av mail, rollebytte eller History Go-retur. Ferdig authored øvingskatalog, langsiktig balanse, konsekvensdrevne Skills-porter og full 14-dagers brukerreise står fortsatt åpne.
 
+### Skills i forfattede Life Stories (implementert v1-eksempel)
+
+Seks konkrete valg i eksisterende pakker (`arbeidsledig`, `ekspeditor` og felles privatliv) er nå koblet til én Skill hver: `agency` (ryddet dokumentasjon via telefonsamtale), `creativity` (laget noe i eget prosjekt), `wisdom_judgement` (analysert jobbtilbakemelding og laget læringsplan), `social_awareness` (ærlig og krevende svar i en vennskapsrelasjon), `practical_mastery` (kontrollert og korrigert prisplakater) og `communication` (lært bort arbeidsmetode). Dette er **seks forfattede, valgfrie hendelser**, ikke en garanti for at én spiller tjener alle Skills automatisk.
+
+`lifestoryContent` validerer nå `valg.skills_practice = { skill_id, activity_type, evidence_flag, delta }`, inkludert at `evidence_flag` er en faktisk `true`-effekt av akkurat det valget. `CivicationLifestoryUI.onChoose` registrerer øvingen **etter** vellykket `Runner.applyChoice` og `State.save`, og bruker stabil `lifestory:<sceneId>` som dedupliseringsnøkkel. Ingen poeng ved å åpne en scene, lese fortellingstekst, velge feil eller være på History Go. Testmodus skal ikke kreditere Skills. På denne måten fortsetter `job_learning_progress`, psyke, kapital og relasjoner å ha sine egne eiere.
+
+Fortsatt åpne krav: større authored dekning, faglig vekting, gradert utfordring, medvirkning fra History Go-kunnskap i senere scener, Skills-baserte handlingsvalg og faktisk godkjent 14-dagers spillerreise. Denne bolken etablerer én kildebelagt praksisvei inn i den allerede etablerte Skills-visningen; den påstår ikke at Skills-systemet er fullstendig balansert.
+
 ## 4. Streetkred er kontekstuell, ikke én allmenn popularitetsscore
 
 «Streetkred» betyr **opparbeidet troverdighet i et konkret miljø**: for eksempel musikk, gatekunst, idrett, lokale kulturmiljøer eller andre subkulturer. En historie om miljøet og faktisk tilstedeværelse kan åpne kontakt, men varig kred krever autentiske bidrag og andres reaksjoner.

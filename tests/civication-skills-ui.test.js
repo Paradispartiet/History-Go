@@ -74,7 +74,7 @@ const loader = repoFile("js/Civication/civicationShellLoader.js");
 assert(html.includes('href="css/civi-skills.css"'), "graphical style loaded");
 assert(html.includes('id="civiSkillsPanel"'), "panel exists");
 assert(mini.includes('civiSkillsSection: {'), "Skills are navigable under Personal");
-assert(loader.includes("civicationSkills.js"), "Skills read model loads");
+assert(html.includes('src="js/Civication/systems/civicationSkills.js"'), "Skills loads before Life Story UI");
 assert(loader.includes("civicationSkillsPracticeBridge.js"), "Skills practice bridge loads");
 assert(css.includes("@media (max-width: 560px)"), "mobile layout supplied");
 assert(css.includes("prefers-reduced-motion"), "reduced motion supported");
