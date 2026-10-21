@@ -27,15 +27,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/build-quiz-production-context.mjs --category historie --target gamle_aker_kirke --output data/quiz/production_context/historie/gamle_aker_kirke.json
-          node scripts/build-quiz-production-context.mjs --category historie --target gamle_aker_kirke --output data/quiz/production_context/historie/gamle_aker_kirke.json --check
-      - name: Commit regenerated context
-        shell: bash
-        run: |
-          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/quiz/production_context/historie/gamle_aker_kirke.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "build(history): sync Gamle Aker quiz context after portrait materialization"
-          git push origin "HEAD:history-go/gamle-aker-quizcard-v1-20261021"
+          BRANCH=history-go/gamle-aker-quizcard-v1-20261021
+          for attempt in 1 2 3 4 5; do
+            echo "Context sync attempt $attempt against latest remote branch"
+            git fetch origin "$BRANCH"
+            git reset --hard FETCH_HEAD
+            node scripts/build-quiz-production-context.mjs --category historie --target gamle_aker_kirke --output data/quiz/production_context/historie/gamle_aker_kirke.json
+            node scripts/build-quiz-production-context.mjs --category historie --target gamle_aker_kirke --output data/quiz/production_context/historie/gamle_aker_kirke.json --check
+            git add data/quiz/production_context/historie/gamle_aker_kirke.json
+            if git diff --cached --quiet; then echo 'Context already synchronized'; exit 0; fi
+            git commit -m "build(history): sync Gamle Aker quiz context after portrait materialization"
+            if git push origin "HEAD:$BRANCH"; then echo 'Context pushed'; exit 0; fi
+          done
+          echo 'Concurrent commits prevented safe sync after 5 attempts' >&2
+          exit 1
