@@ -1,0 +1,27 @@
+name: DNT C46 foyer source-only PR validation
+on:
+  pull_request:
+    paths:
+      - 'reports/place-production/det-norske-teatret/20261021/foyer-paintings-c46-research.json'
+      - 'reports/place-production/det-norske-teatret/20261021/painting-photo-intake-c46.json'
+      - 'reports/place-production/det-norske-teatret-workcard-current.json'
+      - 'scripts/place-production/stage-dnt-foyer-painting-c46.mjs'
+      - 'tests/det-norske-teatret-foyer-painting-c46.test.mjs'
+      - '.github/workflows/dnt-foyer-painting-c46.yml'
+      - '.github/workflows/dnt-foyer-painting-c46-pr-check.yml'
+permissions:
+  contents: read
+concurrency:
+  group: dnt-c46-pr-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node-npm
+      - name: Check exact source and asset-lock syntax
+        run: |
+          node --check scripts/place-production/stage-dnt-foyer-painting-c46.mjs
+          node --test tests/det-norske-teatret-foyer-painting-c46.test.mjs
