@@ -709,6 +709,20 @@
     return thread ? thread.tittel : threadId;
   }
 
+  // A chapter can only open through the current Life Story gates. Read the
+  // real History Go merit counter; do not award points or choose a life role.
+  /**
+   * @param {string} badgeId
+   * @returns {number}
+   */
+  function chapterBadgePoints(badgeId) {
+    try {
+      const merits = JSON.parse(window.localStorage?.getItem("merits_by_category") || "{}");
+      const points = Number(merits?.[badgeId]?.points || 0);
+      return Number.isFinite(points) ? Math.max(0, points) : 0;
+    } catch { return 0; }
+  }
+
   /**
    * @param {any} view
    * @returns {string}
@@ -759,6 +773,28 @@
     const continuationHtml = next
       ? '<button class="civi-btn primary" type="button" data-lifestory-continue="' + escapeHtml(next.id) + '"' + (continuing ? ' disabled' : '') + '>' + (continuing ? "Åpner fortsettelsen …" : escapeHtml(next.navn)) + '</button>'
       : "";
+    const chosenLifePosition = sisteDag && !next ? getRoleSuggestion() : null;
+    const pendingPrivate = !!Runner.hasPendingPrivateScenes?.(state, content);
+    // Private Life Stories remain playable without a badge. The History Go
+    // guide is optional and must also appear when private stories continue.
+    const offerExploration = sisteDag && !next;
+    const required = Number(chosenLifePosition?.threshold);
+    const hasPointGate = Number.isFinite(required) && required > 0 && !!chosenLifePosition?.badge_id;
+    const earned = hasPointGate ? chapterBadgePoints(chosenLifePosition.badge_id) : 0;
+    const needsMerits = hasPointGate && earned < required;
+    const nextChapterHint = !offerExploration ? "" :
+      '<section class="civi-lifestory-next-chapter" role="status" aria-label="Veien videre">'
+      + '<h4>Veien videre</h4>'
+      + (chosenLifePosition
+        ? '<p>Privatlivet kan fortsette uansett jobbstatus. Du har vist interesse for <strong>' + escapeHtml(chosenLifePosition.navn) + '</strong>. Vil du åpne dette ekstra historiekapittelet, kreves riktig opptjening og et frivillig valg av livsposisjon.</p>'
+          + (needsMerits ? '<p>Du har ' + escapeHtml(earned) + ' av ' + escapeHtml(required) + ' poeng i ' + escapeHtml(chosenLifePosition.badge_id) + '. Ta quizer i History Go for å bygge kunnskap.</p>'
+            : hasPointGate ? '<p>Du har nok poeng. Åpne livsposisjonene og velg ' + escapeHtml(chosenLifePosition.navn) + ' for å låse opp neste kapittel.</p>'
+              : '<p>Undersøk hvilke krav som gjelder for livsposisjonen før du fortsetter.</p>')
+        : '<p>Du kan fortsette privatlivet uten jobb eller livsposisjon. Utforsk History Go når du vil for å bygge kunnskap, utvide samlingen og finne nye muligheter i livsverdenen.</p>')
+      + '<div class="civi-lifestory-actions">'
+      + '<button class="civi-btn primary" type="button" data-lifestory-study>Utforsk History Go</button>'
+      + '<button class="civi-btn" type="button" data-lifestory-life-profile>Se livsposisjoner</button>'
+      + '</div></section>';
     // A pending mail needs a reachable player action in Min dag, even when
     // there is no active job or visible top-action card.
     const pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.();
@@ -773,6 +809,7 @@
     const handlingsHtml = sisteDag
       ? "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
+        + nextChapterHint
         + (Runner.hasPendingPrivateScenes?.(state, content) ? '<button class="civi-btn primary" type="button" data-lifestory-next-day' + nextDayDisabled + '>Fortsett privatlivet</button>' : "")
         + blockedDayNote
         + pendingDayActionHtml
@@ -1146,6 +1183,15 @@
           window.dispatchEvent(new Event("civi:lifestoryChanged"));
           render();
         }
+        return;
+      }
+      if (target.closest("[data-lifestory-study]")) {
+        const suggestion = getRoleSuggestion();
+        // A chosen profile without an explicit point threshold and the
+        // open exploratory route both carry a valid guidance card. Completion
+        // is never faked: the History Go toast only marks numeric goals done.
+        window.CivicationHistoryGoDeepLink?.startLifePositionGuidance?.(suggestion);
+        window.CivicationLifestoryActions?.perform?.({ type: "gaa_til_byen" });
         return;
       }
       if (target.closest("[data-lifestory-next-day]")) { onNextDay(); return; }

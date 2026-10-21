@@ -71,6 +71,59 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 | C10 | 14 dager | Autentisk brukerreise med kausale konsekvenser | Ikke godkjent |
 | C11 | UI | Én tydelig innboks, naturlig dagflyt og tilbakemelding | Dagsplan #6400 og toppkort/innboks #6408 merget; integrert nettleserkontroll gjenstår |
 
+## Helhetlig progresjon: Life Stories × History Go × skills (beslutning 21.10.2026)
+
+Dette er det operative implementeringssporet for den besluttede [Civication-spillerutviklingskontrakten](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md). Ved tvil om skillet mellom eksisterende state, nye ferdigheter og samlingens evidens: følg kontrakten og dagens faktiske runtime, ikke anta at roadmap-punkter er levert.
+
+Dette er **produktkrav og prioritert implementeringsplan**, ikke bevis på at systemene allerede fungerer fra ende til ende. Arbeidsledig skal være en faktisk arbeids- og inntektssituasjon som kan vare utover både dag 7, dag 14 og dag 30. Den skal korrespondere med **rolleuavhengige Life Stories**, ikke først og fremst med jobbrettede rollehistorier. Nye jobber er muligheter, ikke obligatorisk progresjon. Eksisterende `Runner.canStartContinuation` kan bevare gater for *spesialkapitler*, men må ikke brukes som global dag-8-/livsport.
+
+### Hvilke skalaer har vi, og hva mangler?
+
+| Lag | Gjeldende status | Produktregel |
+| --- | --- | --- |
+| Psyke/energi/integritet/synlighet/handlingsrom og fortellingspenger | Eksisterende `lifestoryState.js`, med psyke/energi også i øvrige systemer | Midlertidig tilstand; behold riktig eier og overføring, unngå dobbeltelling/forveksling med wallet |
+| Psykologi og autonomi/tillit | Eksisterende `CivicationPsyche`, inkludert egen psykologikompetanse | Bevar; ikke opprett kopi av eksisterende psykeskår |
+| Syv kapitalakser | `economic`, `cultural`, `social`, `symbolic`, `political`, `institutional`, `subculture` i `capitalEngine.js` | Ressurser/posisjon, ikke direkte ferdighet eller XP |
+| Identitet og livsstil | Eksisterende `identityCore`, `civiLifestyle` | Preferanser og observerte vaner, ikke tvungne identiteter |
+| Sosial status/anseelse | Karriereomdømme, relasjoner og `civicationSocialStanding` | Situert vurdering, ikke universell streetkred |
+| Fagmeritter, besøk, kunnskap og samling | Eksisterende History Go-stores og `civicationProfileSignalBridge` | Bevis for forskjellige typer fremdrift; ingen automatisk jobb/skill |
+| Seks varige skillscores | **Planlagt; ikke implementert felles ferdighetsmodell** | 0–100, dokumenterte, idempotente aktiviteter og konsekvenser |
+
+### Seks skillscores (langsiktig kompetanse, ikke dagsform)
+
+| Skår (visning 0–100) | Kvalifiserende erfaring – krever faktisk handling/konsekvens | Eksempel på Life Story-virkning |
+| --- | --- | --- |
+| **Visdom / dømmekraft** | Bruke reell kunnskap/kildekritikk i et valg der mulige følger vurderes | Oppdage hull i en påstand, unngå forhastet konklusjon |
+| **Sosial teft** | Håndtere en faktisk misforståelse, lytte, kommunisere og avklare grenser | Få en ny dialoggren eller reparere en relasjon |
+| **Kreativitet** | Utvikle en idé eller prøvbar løsning, lage kunst/prototype | Åpne en alternativ idé i et prosjekt eller møte |
+| **Praktisk mestring** | Utføre, øve og fullføre konkret praktisk arbeid | Løse et avgrenset hverdagsproblem |
+| **Formidling** | Lage en etterprøvbar forklaring, debattbidrag eller presentasjon | Forklare fagstoff, bedre forståelsen i en samtale |
+| **Handlekraft** | Følge et tatt initiativ opp med en handling og bære konsekvensen | Gjennomføre avtaler/prosjekt uten gratis suksess |
+
+Foreslått intervall 0–100 er en **spillbalansebeslutning**, ikke en medisinsk eller psykologisk måling. Ulike ferdigheter har egne hendelseskilder. Ikke skriv XP for bare å laste siden, besøke et sted, motta en People-oppføring eller gjenta samme quiz. Først ved implementasjon vedtas kanonisk stateeier, initialverdier, opptjeningstakt, event-ID/proveniens, migrasjon og gjenopprettingskontrakt. Eksisterende `CivicationState.player.competence.psychology` og `job_learning_progress` skal ikke nullstilles eller dupliseres.
+
+### History Go-samlingen skal få konkrete konsekvenser
+
+1. **Besøk/sted:** `visited_places` skal gi faktisk besøkshistorikk, lokal interesse, nye samtale- og sceneinnganger. Ikke likestill med `places_collected` eller fasit på en quiz.
+2. **Kunnskap og visdom:** Knowledge V2, loggede læringsaktiviteter og quizmeritter kan gi dokumentert faginnsikt. Når spilleren *bruker* innsikten i en relevant Civication-beslutning, kan dette kvalifisere for dømmekraft; kunnskapspoeng og ferdighetsskår er ulike størrelser.
+3. **People og samling:** `people_collected`, merker, notater og bidrag kan åpne emner, interesser og invitasjoner, men aldri automatisk gjøre en historisk person til fiktiv NPC, eller skape vennskap uten et faktisk møte og valg.
+4. **Frivillige livsposisjoner:** `merits_by_category` og katalogens dokumenterte krav kan låse opp **muligheten til å velge** nye hobby-/sosial-/kunnskapsroller. Livsposisjon, jobb, inntekt, autorisasjon og mandat er adskilte tilstander.
+5. **Streetkred:** ikke en generisk score. Tilstedeværelse kan gjøre spilleren synlig for et bestemt miljø, men respekt, innpass og rykteskifte må følge konkrete sosiale handlinger og dokumenteres per miljø/aktør. Undersøk bevisst utvidelse av `civicationSocialStanding` og bruk eksisterende `subculture`-kapital som separat ressurs.
+6. **Livsverdensreaksjoner:** de samme kanoniske History Go-bevisene skal kunne vekte nye private historier, samtaler, miljøkontakt og valg gjennom `civicationProfileSignalBridge` og eksisterende Scene/Knowledge/Relationship-motorer. Fagdomene, tidligere personlige valg, handling og relasjon må samsvare; ingen oppdiktet tidligere opplevelse.
+
+### Prioritert gjennomføring uten parallelle motorer
+
+1. **Dag 7:** Gjør History Go-veiledningen frivillig ved siden av «Fortsett privatlivet». Gjennomfør ekte 7-dagers test uten fiktiv opptjening. PR #6516 er *ikke merget* per denne dokumentrevisjonen; bare grønn CI + faktisk appkontroll kan godkjenne.
+2. **Dag 8–14:** Bevis nye ordinære private dager for fortsatt arbeidsledig *uten* et krav om badge, jobbtilbud eller livsposisjon. Test også lønn/ytelser, økonomi, energi, NPC-etterspill og vedvarende valg.
+3. **Samling → liv:** Bruk eksisterende History Go-signaler; innfør minst én kildebelagt, domain-spesifikk scene med forskjellig utfall for besøkt/ikke besøkt, lært/ikke lært og korrekt tidligere valg.
+4. **Skillscores:** Definer én autoritativ ferdighetsstate/adapter i Civications eksisterende arkitektur; lag kildehendelser, minne, idempotens, skårbalanse, profilsynlighet og test for alle seks ferdigheter. Skill fremdrift fra kompetansekrav i jobbkontrakter.
+5. **Streetkred:** kvalifiserte miljøhendelser, positivt/negativt situert rykte, ulike reaksjoner fra ulike aktører, men ingen automatisk globale kapital-/ansettelsesendringer.
+6. **Langtidsprøve:** Prøv en organisk 30-dagers arbeidsledig spillerreise med flere private historier, interesser, nye valg og bevarte relasjoner/økonomiske realiteter. Test reload, to entry-points, skykopiering, konto-/enhetsbytte og ingen dupliserte belønninger.
+
+### Akseptanseregel
+
+Ikke rapporter en ferdighet, miljøscore, dag-14-/dag-30-reise eller samlingskonsekvens som ferdig før både eier, dataflyt, faktisk UI-hendelse, kanonisk persistert bevis og relevant regresjon er kontrollert. All dokumentasjon må skille **implementert**, **på gren**, **testet**, **merget** og **planlagt**. Kilder: `CIVICATION_DATA_LAYERS.md`, `civication-life-story-system.md`, `CIVICATION_PERSON_MODEL_V1.md`, `CIVICATION_NONCAREER_ROLE_TAXONOMY.md`, `PERSONAL_COLLECTION_V1.md`, `PROGRESSION_MODEL.md` og akseptansedokumentet `CIVICATION_ORGANIC_14_DAY_AND_VITALITY_ACCEPTANCE_2026_10_20.md`.
+
 ## Arbeidsregler
 1. Oppdater dette registeret ved hver vesentlige leveranse; skill mellom «kode på gren», «CI bestått», «merget» og «spilltest godkjent».
 2. Én arbeidsbolk om gangen. Prioriter feil som bryter spillerreisen før nye historier eller bred innholdsproduksjon.
@@ -80,3 +133,17 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 ## Neste spesifikke 14-dagers lagringskontroll (2026-10-21)
 
 `civi.playerPhaseSnapshots.v1` er spillerens sist lagrede aktivitet og tilgjengelighet i hver sosial fase. Den bruker en egen prikk-notasjon og falt utenfor skybackup selv etter at NPC-samtaler ble rettet i #6500. En avgrenset oppfølging inkluderer nøyaktig denne kanoniske nøkkelen, uten å åpne for vilkårlige `civi.*`-nøkler. Ny regresjon kontrollerer samtidig `hg_civi_calendar_v1`, `hg_civi_livelihood_v1`, Life Story og wallet ved simulert kontogjenoppretting etter spilldag 14. Dette er **ikke** en ekte fjorten dagers nettleserreise og godkjenner ikke C8–C10 alene.
+
+
+## Dag 7 → History Go → kapittel 2: veiledning (2026-10-21)
+
+Problem: Etter dag 7 kan private Life Stories fortsatt følges gjennom «Fortsett privatlivet» selv om ingen livsposisjon er aktivert. Den valgfrie History Go-veiledningen må derfor aldri skjules eller feilaktig framstilles som en nødvendighet for å leve videre. Ingen meritter, jobb, penger eller kapittel tildeles automatisk.
+
+Løsning i eksisterende systemer:
+- «Min dag» viser **Veien videre** når siste dag er avsluttet og intet ekstra kapittel er tilgjengelig, også når private scener venter. «Fortsett privatlivet» beholdes samtidig. Arbeidsledighet er en jobbstatus, ikke et krav om en ny livsidentitet etter syv dager. Valgt *valgfri* retning og dokumenterte poengkrav vises fra eksisterende `rollebroer` og `merits_by_category`.
+- Knappen **Utforsk History Go** bruker eksisterende `CivicationLifestoryActions` til kartet og gjenbruker `CivicationHistoryGoDeepLink.startLifePositionGuidance` for en eksplisitt læringssesjon.
+- History Go sitt eksisterende permanente **Civication-modus-kort** i `js/ui/toast.js` viser mål og relevante steder, følger faktisk poengprogresjon til livsposisjonens fullstendige terskel og har **Tilbake til Civication**.
+- Ved retur velger spilleren selv om vedkommende vil aktivere en opptjent livsposisjon for et ekstra kapittel; ordinære private Life Stories fortsetter uavhengig. Først ordinær `Runner.canStartContinuation` kan åpne det betingede kapitlet. Quiz eller velkomsttoast er ikke et automatisk jobbtilbud. Ubesvart inbox og dagsporter beholdes.
+- Uten valgt/gyldig poengkrav vises bare utforskingsveien og livsprofilen, uten en falsk «oppdrag fullført»-indikator.
+- Testdekning: `civication-lifestory-week7-guidance.test.js` (syv forfattede dager; både privatlivet og valgfri oppdragsveiledning synlig), `civication-history-go-deeplink-session.test.js` (sesjonsdata) og `civication-history-go-mission-badge-points.test.js` (opptjente meritter). Alle skal kjøres i eksisterende Civication-regresjon.
+- **Avgrensning:** Dette er gjenfunnet veiledning og reelle gating-regler, ikke dokumentasjon på at en fersk spiller faktisk har opptjent poengene eller gjennomført 14 dager og kontogjenoppretting i en nettleser.

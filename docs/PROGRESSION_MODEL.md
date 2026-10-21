@@ -34,6 +34,21 @@ Regel:
 
 > Ikke flytt eksisterende state til en ny nøkkel bare for å gjøre modellen penere. Første steg er alltid å lese og normalisere eksisterende state.
 
+## 1b. Bro til Civication: kunnskap, ferdigheter, rykte og livsposisjon
+
+Progress-read-modelen kan gi Civication en **kildebelagt oversikt over faktiske prestasjoner**, men eier ikke konsekvensene i rollespillet. Skill mellom `visited_places` (besøk), `places_collected` (samlet via mål/quiz), `people_collected`, Knowledge V2, quizhistorikk, `hg_learning_log_v1` og `merits_by_category`. De må aldri kondenseres til ett udifferensiert «progresjonstall».
+
+| History Go-hendelse | Tillatt Civication-effekt (etter eksplisitt kontrakt) | Ikke tillatt som automatisk premie |
+| --- | --- | --- |
+| Stedsbesøk dokumentert | Lokalkunnskap, stedsminne, samtale-/scenarioforslag og besøksprogresjon | Visdom, ferdighet, full quiz, vennskap eller jobb |
+| Lest/lært og dokumentert fagkunnskap | Kunnskapsbasert handlingsalternativ og relevant læringsprofil | Universell ekspertise eller formell autorisasjon |
+| Quiz med lagret resultat | Faktisk merit-/badgeprogresjon og eventuelt valgbare livsposisjoner | Ansatt stilling, betalt oppdrag eller tvungen livsidentitet |
+| Person-/samleobjekt | Samling, kildeoppdagelse og eventuelt relevant fortellingskontekst | Fiktiv direkte relasjon til historisk person |
+| Dokumentert refleksjon, bidrag eller valg i Civication | Mulig ferdighetsutvikling når hendelsen faktisk begrunner det | Skår for bare å åpne en side eller repetere samme handling |
+| Interaksjon i konkret fiktivt miljø | Situert omdømme og streetkred hos aktører som faktisk reagerte | Global respekt eller automatisk økning i all sosial kapital |
+
+Planlagte seks ferdighetsskalaer er 0–100 for **visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling og handlekraft**, men implementasjon/eier av skillpoints er ikke bestemt. Psyke og energi er dagsform; kapital, fagmeritter, relasjoner og anseelse er andre akser. Civication kan bruke profilbroen og sine egne scene-/relasjonsmotorer til å tolke dette, men først etter reell persistert evidens, idempotent behandling og senere akseptansetester (dag 1–14, retur, reload og kontogjenoppretting).
+
 ## 2. Ikke bruk én statusstige for alt
 
 Stedprogresjon består av flere uavhengige akser.
@@ -300,6 +315,12 @@ history_go_progress_read_model_v1 = {
 ```
 
 Hvert felt skal kunne forklares med hvilken eksisterende state-kilde som bærer sannheten.
+
+## History Go-progresjon inn i Civications livsverden
+
+History Go eier dokumenterte, ulike progresjonsakser (besøk, quiz, kunnskap, samling, People og meritter); Civication eier konsekvensene som oppstår når spilleren faktisk bruker denne erfaringen i en Life Story. `civicationProfileSignalBridge.js` leser profiler/interesser, og `civicationHistoryGoTaskBridge.js` avstemmer faktisk oppgaveevidens. Ikke opprett ny XP- eller samlingsstore for å koble systemene. Besøk alene gir ikke visdom, formidlingskompetanse, streetkred eller jobb. Seks framtidige ferdigheter er et planlagt Civication-system, ikke en ny History Go-read-model.
+
+Produktkontrakt og kilde-/eierregler: [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md). Samlingens brukerrettede rolle: [PERSONAL_COLLECTION_V1.md](PERSONAL_COLLECTION_V1.md).
 
 ## 18. Autoritetsregel
 

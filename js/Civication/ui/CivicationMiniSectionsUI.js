@@ -233,6 +233,29 @@
       }
     },
 
+    civiSkillsSection: {
+      category: "personlig",
+      label: "Skills",
+      accent: "✦",
+      source: "civiSkillsPanel",
+      empty: "Skills blir synlige etter dokumentert praksis.",
+      action: "Se Skills",
+      summary: function () {
+        const snapshot = window.CivicationSkills?.getViewModel?.(window.CivicationState?.getState?.() || {});
+        if (!snapshot) return "Seks Skills under utvikling.";
+        return snapshot.documented_count
+          ? snapshot.documented_count + " av 6 Skills med dokumentert praksis"
+          : "Seks Skills · ingen dokumentert praksis ennå";
+      },
+      details: function () {
+        const snapshot = window.CivicationSkills?.getViewModel?.(window.CivicationState?.getState?.() || {});
+        if (!snapshot) return [];
+        return snapshot.skills.map(function (entry) {
+          return entry.label + ": " + (entry.measured ? entry.score + "/100" : "ikke målt");
+        });
+      }
+    },
+
     civiIdentity: {
       category: "personlig",
       selector: ".civi-identity",

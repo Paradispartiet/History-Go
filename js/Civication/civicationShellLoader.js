@@ -35,6 +35,7 @@
   const SHELL_SCRIPTS = [
     "js/Civication/systems/civicationStorageTrace.js",
     "js/Civication/core/civicationState.js",
+    "js/Civication/systems/civicationSkills.js",
     "js/Civication/core/CivicationTravelState.js",
     "js/Civication/systems/civicationRoleSession.js",
     "js/Civication/systems/civicationActivePositionRecovery.js",
@@ -159,6 +160,7 @@
     "js/Civication/ui/CivicationMilestoneHighlight.js",
     "js/Civication/systems/civicationLifeMailRuntime.js",
     "js/Civication/systems/day/dayChoiceDirector.js",
+    "js/Civication/systems/civicationSkillsPracticeBridge.js",
     "js/Civication/systems/day/dayConsequences.js",
     "js/Civication/systems/day/dayConsequencesUI.js",
     "js/Civication/systems/day/dayNarrativeConsequencesUI.js",

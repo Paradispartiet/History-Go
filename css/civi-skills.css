@@ -1,0 +1,124 @@
+/* Civication / Personlig — six visible Skills, using the Psyke dashboard language.
+   The section body moves into a popup in mini mode, so selectors target the panel ID. */
+#civiSkillsSection {
+  order: 9;
+  grid-column: span 6;
+  --sec-accent: var(--civi-hue-personlig, #5fb879);
+}
+
+.civi-skills-summary {
+  margin: 0 0 14px;
+  color: var(--ink2, #c5c5c5);
+  font-size: var(--civi-text-sm, 14px);
+  font-variant-numeric: tabular-nums;
+}
+
+#civiSkillsPanel.civi-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+#civiSkillsPanel .civi-skill-card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(95, 184, 121, 0.24);
+  border-radius: 12px;
+  background: var(--civi-panel-bg-soft, rgba(255,255,255,0.06));
+}
+
+#civiSkillsPanel .civi-skill-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-bottom: 12px;
+}
+
+#civiSkillsPanel .civi-skill-label {
+  color: var(--ink2, #e9e9e9);
+  font-size: var(--civi-text-sm, 14px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+#civiSkillsPanel .civi-skill-value {
+  color: #fff;
+  font-size: var(--civi-text-md, 18px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+#civiSkillsPanel .civi-skill-meter {
+  position: relative;
+  overflow: hidden;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.09);
+}
+
+/* Muted guide marks indicate four equal 25-point segments. */
+#civiSkillsPanel .civi-skill-meter::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent calc(25% - 0.5px), rgba(0,0,0,0.25) 25%, transparent calc(25% + 0.5px), transparent calc(50% - 0.5px), rgba(0,0,0,0.25) 50%, transparent calc(50% + 0.5px), transparent calc(75% - 0.5px), rgba(0,0,0,0.25) 75%, transparent calc(75% + 0.5px));
+}
+
+#civiSkillsPanel .civi-skill-meter-fill {
+  height: 100%;
+  min-width: 0;
+  max-width: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4c9d6d, #8ed7a0);
+  transition: width 240ms ease-out;
+}
+
+#civiSkillsPanel .civi-skill-footer {
+  margin-top: 9px;
+  color: var(--ink3, #aab0b5);
+  font-size: var(--civi-text-xs, 12.5px);
+  line-height: 1.4;
+}
+
+#civiSkillsPanel .civi-skill-card.is-unmeasured {
+  border-style: dashed;
+  border-color: rgba(255,255,255,0.16);
+}
+
+#civiSkillsPanel .is-unmeasured .civi-skill-value {
+  font-size: var(--civi-text-sm, 14px);
+  color: var(--ink3, #b0b0b0);
+}
+
+#civiSkillsPanel .is-unmeasured .civi-skill-meter {
+  border-style: dashed;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 12px, rgba(255,255,255,0.025) 12px, rgba(255,255,255,0.025) 24px);
+}
+
+@media (max-width: 900px) {
+  #civiSkillsSection {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  #civiSkillsPanel.civi-skills-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  #civiSkillsPanel .civi-skill-card {
+    padding: 12px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #civiSkillsPanel .civi-skill-meter-fill {
+    transition: none;
+  }
+}
