@@ -8,16 +8,22 @@ const TEMPLATES = JSON.parse(fs.readFileSync('data/Civication/livelihoodOpportun
 function setup({ activeByBadge = {}, createResult = null } = {}) {
   global.window = global;
   global.Event = function Event(type) { this.type = type; };
-  global.addEventListener = () => {};
+  const listeners = new Map();
+  global.addEventListener = (name, callback) => {
+    if (!listeners.has(name)) listeners.set(name, []);
+    listeners.get(name).push(callback);
+  };
   global.fetch = undefined;
-  global.weekKey = () => '2026-W33';
+  global.weekKey = () => '2026-W33'; // deliberately never changes
   global.CIVI_LIVELIHOOD_OPPORTUNITY_TEMPLATES = TEMPLATES;
 
   const created = [];
   let state = { opportunities: [], streams: [], ledger: [] };
+  let gameWeek = 'game-week-000001';
   global.CivicationLivelihoods = {
     async ensureCatalogLoaded() { return {}; },
     getState() { return state; },
+    getSnapshot() { return { week: gameWeek }; },
     createOpportunity(input) {
       created.push(input);
       const result = createResult || { ok: true, opportunity: input };
@@ -33,7 +39,11 @@ function setup({ activeByBadge = {}, createResult = null } = {}) {
 
   delete global.CivicationLivelihoodOpportunityBridge;
   vm.runInThisContext(BRIDGE, { filename: 'civicationLivelihoodOpportunityBridge.js' });
-  return { api: global.CivicationLivelihoodOpportunityBridge, created, getState: () => state };
+  return {
+    api: global.CivicationLivelihoodOpportunityBridge, created, getState: () => state,
+    setWeek: (week) => { gameWeek = week; },
+    emit: (name) => { for (const callback of listeners.get(name) || []) callback(new Event(name)); }
+  };
 }
 
 assert.strictEqual(TEMPLATES.schema, 'civication_livelihood_opportunity_templates_v1');
@@ -143,13 +153,47 @@ assert.strictEqual(env.api.attachToEngine(engine), true);
   assert.strictEqual(env.created[0].source.type, 'life_position_network');
   assert.deepStrictEqual(env.created[0].related_life_positions, [{ badge_id: 'naeringsliv', label: 'Frilanser' }]);
   assert.strictEqual(env.created[0].requires_life_positions, undefined, 'offer stays valid after it has reached the player; life position is provenance, not permanent gate');
-  assert.strictEqual(env.created[0].metadata.week, '2026-W33');
+  assert.strictEqual(env.created[0].metadata.week, 'game-week-000001');
   assert.strictEqual(env.created[0].income.min, 4);
   assert.strictEqual(env.created[0].income.max, 9);
 
   produced = await env.api.produceWeeklyLifePositionOpportunities();
-  assert.strictEqual(produced.produced, 0, 'same position+template+week is deduplicated');
+  assert.strictEqual(produced.produced, 0, 'same position+template+game week is deduplicated');
   assert.strictEqual(env.created.length, 1, 'reload cannot spam duplicate weekly offers');
+
+  // A new life-position offer is considered when the actual game week
+  // changes, not when the system ISO week changes. Phase changes within
+  // the same game week cannot generate duplicates.
+  env.api.init();
+  env.emit('civi:dayPhaseChanged');
+  await new Promise(resolve => setImmediate(resolve));
+  assert.strictEqual(env.created.length, 1, 'same game week has only one offer');
+
+  env.setWeek('game-week-000002'); // played day 8; real week unchanged
+  env.emit('civi:dayPhaseChanged');
+  await new Promise(resolve => setImmediate(resolve));
+  assert.strictEqual(env.created.length, 2, 'new game week generates one new offer');
+  assert.strictEqual(env.created[1].metadata.week, 'game-week-000002');
+  assert.notStrictEqual(env.created[0].id, env.created[1].id,
+    'game-week scoped IDs remain distinct');
+  env.emit('civi:dayPhaseChanged');
+  env.emit('civi:dayPhaseChanged');
+  await new Promise(resolve => setImmediate(resolve));
+  assert.strictEqual(env.created.length, 2, 'repeated phase changes do not regenerate an offer');
+
+  env.setWeek('game-week-000003'); // played day 15, same real ISO week
+  env.emit('civi:dayPhaseChanged');
+  await new Promise(resolve => setImmediate(resolve));
+  assert.strictEqual(env.created.length, 3);
+  assert.strictEqual(env.created[2].metadata.week, 'game-week-000003');
+  env.setWeek(null);
+  produced = await env.api.produceWeeklyLifePositionOpportunities();
+  assert.strictEqual(produced.produced, 0, 'no game clock means no artificial opportunity');
+  assert.strictEqual(produced.reason, 'game_clock_unavailable');
+  env.emit('civi:dayPhaseChanged');
+  await new Promise(resolve => setImmediate(resolve));
+  assert.strictEqual(env.created.length, 3, 'missing game clock never creates a bogus offer');
+
   frilanserTemplate.weekly_chance = originalChance;
 
   // Gangster gets a legal underground-network opportunity, never criminal-income semantics.
