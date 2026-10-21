@@ -55,7 +55,7 @@ test('Foucault generator-owned module and claims preserve all 60 theory units an
     work.theory_units.map((row) => row.expanded_prose));
   assert.equal(canonical.works.length, 20);
   assert.equal(canonical.works.reduce((n, row) => n + row.theory_units.length, 0), 60);
-  assert.equal(canonical.works.flatMap((row) => row.theory_units).filter((row) => row.expanded_prose).length, 51);
+  assert.equal(canonical.works.flatMap((row) => row.theory_units).filter((row) => row.expanded_prose).length, 54);
   assert.equal(packages.reduce((n, pkg) => n + pkg.claims.claims.length, 0), 60);
   assert.equal(packages.reduce((n, pkg) => n + pkg.assessment.questions.length, 0), 60);
   for (const pkg of packages) {
