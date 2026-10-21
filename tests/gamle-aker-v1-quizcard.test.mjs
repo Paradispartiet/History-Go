@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const id='gamle_aker_kirke';
@@ -48,11 +49,18 @@ test('exactly one existing QuizCard, ten unique sourced canonical questions and 
 test('Gamle Aker photo files and source credits remain canonical; no fake year assertion',()=>{
  assert.match(place.desc,/usikker/i);
  assert.match(place.popupDesc,/usikker/i);
- for(const filepath of [place.image,place.cardImage,place.for_na.beforeImage,place.for_na.nowImage]){
+ for(const filepath of [place.frontImage,place.image,place.cardImage,place.for_na.beforeImage,place.for_na.nowImage]){
   assert.ok(filepath?.startsWith('bilder/places/'),String(filepath));
   assert.ok(fs.existsSync(filepath),'missing image '+filepath);
   assert.ok(fs.statSync(filepath).size>20000,'empty image '+filepath);
  }
+ const provenance=read('reports/place-production/gamle-aker-kirke-v1-portrait-photo.json');
+ assert.equal(place.frontImage,provenance.outputFile);
+ assert.equal(place.frontImageMeta.license, 'Public domain');
+ assert.deepEqual(place.frontImageMeta.outputDimensions,[600,800]);
+ assert.equal(place.frontImageMeta.sourceSha256,provenance.sourceSha256);
+ assert.equal(place.frontImageMeta.outputSha256,crypto.createHash('sha256').update(fs.readFileSync(place.frontImage)).digest('hex'));
+ assert.equal(provenance.outputSha256,place.frontImageMeta.outputSha256);
  assert.equal(place.imageMeta.verified,true);
  assert.equal(place.imageMeta.license,'Public domain');
  assert.ok(place.for_na.beforeImageMeta.license);
