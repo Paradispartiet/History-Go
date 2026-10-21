@@ -95,7 +95,7 @@ jobs:
           set -euo pipefail
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          const file='data/places/natur/oslo/places_oslo_natur_hovedsteder/bogstadvannet.json';
+          const file='data/places/natur/oslo/places_natur/bogstadvannet.json';
           const place=JSON.parse(fs.readFileSync(file,'utf8'));
           place.frontImageMeta.visualReview='approved_2026-10-21_actual_390px_1440px_browser';
           place.imageMeta.visualReview='approved_2026-10-21_actual_390px_1440px_browser';
