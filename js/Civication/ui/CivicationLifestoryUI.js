@@ -775,20 +775,22 @@
       : "";
     const chosenLifePosition = sisteDag && !next ? getRoleSuggestion() : null;
     const pendingPrivate = !!Runner.hasPendingPrivateScenes?.(state, content);
-    const blockedChapter = sisteDag && !next && !pendingPrivate;
+    // Private Life Stories remain playable without a badge. The History Go
+    // guide is optional and must also appear when private stories continue.
+    const offerExploration = sisteDag && !next;
     const required = Number(chosenLifePosition?.threshold);
     const hasPointGate = Number.isFinite(required) && required > 0 && !!chosenLifePosition?.badge_id;
     const earned = hasPointGate ? chapterBadgePoints(chosenLifePosition.badge_id) : 0;
     const needsMerits = hasPointGate && earned < required;
-    const nextChapterHint = !blockedChapter ? "" :
+    const nextChapterHint = !offerExploration ? "" :
       '<section class="civi-lifestory-next-chapter" role="status" aria-label="Veien videre">'
       + '<h4>Veien videre</h4>'
       + (chosenLifePosition
-        ? '<p>Du har valgt retningen <strong>' + escapeHtml(chosenLifePosition.navn) + '</strong>. Neste kapittel åpnes først når du har opptjent og aktivert riktig livsposisjon.</p>'
+        ? '<p>Privatlivet kan fortsette uansett jobbstatus. Du har vist interesse for <strong>' + escapeHtml(chosenLifePosition.navn) + '</strong>. Vil du åpne dette ekstra historiekapittelet, kreves riktig opptjening og et frivillig valg av livsposisjon.</p>'
           + (needsMerits ? '<p>Du har ' + escapeHtml(earned) + ' av ' + escapeHtml(required) + ' poeng i ' + escapeHtml(chosenLifePosition.badge_id) + '. Ta quizer i History Go for å bygge kunnskap.</p>'
             : hasPointGate ? '<p>Du har nok poeng. Åpne livsposisjonene og velg ' + escapeHtml(chosenLifePosition.navn) + ' for å låse opp neste kapittel.</p>'
               : '<p>Undersøk hvilke krav som gjelder for livsposisjonen før du fortsetter.</p>')
-        : '<p>Første kapittel er ferdig. Utforsk History Go for å bygge kunnskap, og gå tilbake til livsposisjonene i Civication når du har låst opp en retning.</p>')
+        : '<p>Du kan fortsette privatlivet uten jobb eller livsposisjon. Utforsk History Go når du vil for å bygge kunnskap, utvide samlingen og finne nye muligheter i livsverdenen.</p>')
       + '<div class="civi-lifestory-actions">'
       + '<button class="civi-btn primary" type="button" data-lifestory-study>Utforsk History Go</button>'
       + '<button class="civi-btn" type="button" data-lifestory-life-profile>Se livsposisjoner</button>'
