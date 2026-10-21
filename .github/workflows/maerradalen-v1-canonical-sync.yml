@@ -1,0 +1,88 @@
+name: Mærradalen v1 canonical translations and runtime
+on:
+  push:
+    branches: [history-go/maerradalen-v1-20261021]
+    paths:
+      - '.github/workflows/maerradalen-v1-canonical-sync.yml'
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Author translations and correct source hashes
+        shell: bash
+        run: |
+          node --input-type=module <<'MAERRADALEN_I18N'
+          
+          import fs from "node:fs";
+          import crypto from "node:crypto";
+          const canonical=JSON.parse(fs.readFileSync("data/places/natur/oslo/places_oslo_natur_hovedsteder/maerradalen.json","utf8"));
+          const normalise=s=>String(s||"").replace(/\r\n/g,"\n").replace(/[ \t]+/g," ").trim();
+          const hash=crypto.createHash("sha256").update(JSON.stringify({name:normalise(canonical.name),desc:normalise(canonical.desc),popupDesc:normalise(canonical.popupDesc||canonical.popupdesc)})).digest("hex").slice(0,16);
+          const translations={"en":{"desc":"Mærradalen is a narrow wooded valley along a geological fault between Ullernåsen and Husebyskogen, with Mærradalsbekken flowing along its floor. The name has several competing explanations, and a smallholding on the western slope disappeared in 1904. The stream, the railway bridge over the valley and its rich wildlife make Mærradalen a place where Oslo's natural and human histories meet.","popupDesc":"A stream cuts through a narrow green valley on Oslo's western side. Mærradalen lies between Ullernåsen and Husebyskogen, following an old fault in the bedrock. The name usually refers to the almost two-kilometre stretch between Sørkedalsveien and Ullernchausséen. On the footpath, you can follow the brook while the city's roads and neighbourhoods remain higher on the slopes.\n\nMærradalsbekken begins as small streams from Voksenåsen and eventually flows into Bestumkilen. Yet it is not visible for its entire course. During construction at Hovseter in the early 1970s, roughly 900 metres of the stream were put into a culvert. South of Sørkedalsveien, the brook reappears and flows through the wooded valley. Even seemingly untouched countryside can tell a story about urban planning.\n\nWhat does the name Mærradalen actually mean? Some believe farmers from Ullern and Huseby grazed their horses here. Others suggest Mariæ dalr, or Mary's Valley, associated with the monks of Hovedøya Abbey. None of the explanations is certain. A smallholding called Mærradalen stood on the western side before being moved or demolished in 1904.\n\nHigh above the valley runs the Kolsås railway. When the line was planned, its company wanted to fill part of the ravine, but Aker municipality objected. In 1939, the Norwegian Ministry of Labour ruled that the line had to cross on a bridge. The connection opened in June 1942, during the Second World War. Beside the bridge stood a temporary stop called Mærradalen, closed in 1957.\n\nBelow the trees, the stream creates a damp microclimate. It supports ferns such as green spleenwort and lady fern, along with wetland plants such as bladder sedge. White-throated dippers, grey wagtails and tawny owls are among the birds recorded here. The valley has important natural values, but protective planning regulations do not mean that the entire valley is formally a nature reserve. Mærradalen shows how nature between residential districts can carry stories about people, railways, water and conservation."},"es":{"desc":"Mærradalen es un estrecho valle boscoso que sigue una falla geológica entre Ullernåsen y Husebyskogen, con el arroyo Mærradalsbekken en su fondo. Existen varias teorías sobre el origen del nombre y una antigua pequeña explotación agrícola de la ladera occidental desapareció en 1904. El arroyo, el puente ferroviario y la extraordinaria biodiversidad convierten el valle en un lugar donde confluyen la historia y la naturaleza de Oslo.","popupDesc":"Un arroyo atraviesa un valle estrecho y verde en el oeste de Oslo. Mærradalen se encuentra entre Ullernåsen y Husebyskogen y sigue una antigua falla del terreno. El nombre suele designar el tramo de casi dos kilómetros entre Sørkedalsveien y Ullernchausséen. Desde el sendero se puede seguir el arroyo mientras el tráfico y los barrios quedan más arriba, en las laderas.\n\nMærradalsbekken nace de pequeños arroyos procedentes de Voksenåsen y termina desembocando en Bestumkilen. Sin embargo, el agua no es visible en todo su recorrido. Durante la urbanización de Hovseter a comienzos de la década de 1970, unos 900 metros del arroyo fueron canalizados bajo tierra. Al sur de Sørkedalsveien vuelve a aparecer y atraviesa el valle arbolado. Incluso un paisaje que parece intacto revela decisiones urbanísticas.\n\n¿Qué significa realmente el nombre Mærradalen? Algunos creen que los agricultores de Ullern y Huseby dejaban pastar allí a sus caballos. Otros sugieren Mariæ dalr, el valle de María, vinculado a los monjes de la abadía de Hovedøya. Ninguna explicación está confirmada. Una pequeña finca llamada Mærradalen se encontraba en la ladera occidental hasta que fue trasladada o derribada en 1904.\n\nMuy por encima del valle pasa el ferrocarril de Kolsås. Al planificar la línea, la compañía quería rellenar parte del barranco, pero el municipio de Aker se opuso. En 1939, el Ministerio de Trabajo decidió que debía construirse un puente. La conexión abrió en junio de 1942, durante la Segunda Guerra Mundial. Junto al puente existía una parada provisional llamada Mærradalen, clausurada en 1957.\n\nBajo los árboles, el arroyo crea un microclima húmedo. Allí prosperan helechos como la asplenio verde y otras plantas adaptadas a suelos húmedos, entre ellas la cárice vesiculosa. Entre las aves registradas figuran el mirlo acuático, la lavandera cascadeña y el cárabo común. El valle posee grandes valores naturales, pero las normas urbanísticas de protección no significan que todo el valle tenga la categoría jurídica de reserva natural. Mærradalen recuerda que la naturaleza entre viviendas también cuenta historias de personas, ferrocarriles, agua y conservación."},"pt":{"desc":"Mærradalen é um vale florestal estreito que acompanha uma falha geológica entre Ullernåsen e Husebyskogen, com o ribeiro Mærradalsbekken no fundo. Há várias teorias sobre a origem do nome, e uma antiga pequena propriedade na encosta ocidental desapareceu em 1904. O ribeiro, a ponte ferroviária e a diversidade natural fazem do vale um lugar onde se encontram a história humana e a natureza de Oslo.","popupDesc":"Um ribeiro atravessa um vale estreito e verde na zona ocidental de Oslo. Mærradalen fica entre Ullernåsen e Husebyskogen e acompanha uma antiga falha no substrato rochoso. O nome costuma designar o troço de quase dois quilómetros entre Sørkedalsveien e Ullernchausséen. Pelo percurso pedestre, pode acompanhar-se o ribeiro enquanto as estradas e os bairros ficam mais acima nas encostas.\n\nMærradalsbekken nasce de pequenos cursos de água de Voksenåsen e acaba por desaguar em Bestumkilen. Mas a água não está visível ao longo de todo o percurso. Durante a urbanização de Hovseter no início da década de 1970, cerca de 900 metros do ribeiro foram canalizados em tubagens subterrâneas. A sul de Sørkedalsveien, o ribeiro reaparece e atravessa o vale arborizado. Até uma paisagem que parece intocada conta uma história de decisões urbanísticas.\n\nO que significa afinal o nome Mærradalen? Há quem acredite que os agricultores de Ullern e Huseby deixavam ali pastar os seus cavalos. Outros sugerem Mariæ dalr, Vale de Maria, associado aos monges do mosteiro de Hovedøya. Nenhuma destas explicações é certa. Uma pequena propriedade chamada Mærradalen situava-se na encosta ocidental antes de ser transferida ou demolida em 1904.\n\nPor cima do vale passa a linha ferroviária de Kolsås. Quando a linha foi planeada, a empresa queria aterrar parte da ravina, mas o município de Aker opôs-se. Em 1939, o Ministério do Trabalho decidiu que a linha teria de atravessar o vale sobre uma ponte. A ligação abriu em junho de 1942, durante a Segunda Guerra Mundial. Junto à ponte existia uma paragem provisória chamada Mærradalen, encerrada em 1957.\n\nSob as árvores, o ribeiro cria um microclima húmido. Aí crescem fetos adaptados a zonas frescas e húmidas, além de plantas de solos encharcados. O melro-d'água, a alvéola-cinzenta e a coruja-do-mato estão entre as aves registadas. O vale tem importantes valores naturais, mas regras de ordenamento para proteção da natureza não significam que todo o vale esteja formalmente classificado como reserva natural. Mærradalen mostra como a natureza entre bairros pode contar histórias de pessoas, ferrovias, água e conservação."}};
+          for(const [lang,data] of Object.entries(translations)){
+            const p="data/i18n/content/places/"+lang+".json";
+            const map=JSON.parse(fs.readFileSync(p,"utf8"));
+            map.maerradalen={_sourceHash:hash,_status:"machine_translated",name:"Mærradalen",...data};
+            fs.writeFileSync(p,JSON.stringify(map,null,2)+"\n","utf8");
+            console.log("Translated Mærradalen",lang,hash);
+          }
+          MAERRADALEN_I18N
+          node scripts/check-place-i18n-freshness.mjs maerradalen
+      - name: Canonical Knowledge generator
+        run: npm run knowledge:canonical:write
+      - name: Fagverk release builder
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Place-open runtime builder
+        run: npm run place-open:build
+      - name: Epoch place index builder
+        run: npm run epoker:places:build
+      - name: Place catalog builder
+        run: npm run places:index:build
+      - name: Check quiz links and runtime image URLs
+        shell: bash
+        run: |
+          node --input-type=module <<'MAERRADALEN_CHECK'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const q=JSON.parse(fs.readFileSync('data/quiz/natur/maerradalen_sets.json','utf8'));
+          const questions=q.sets.flatMap(s=>s.questions);
+          assert.equal(questions.length,21);
+          for(const x of questions){
+            assert.equal(x.answer,x.options[x.answerIndex]);
+            assert.equal(x.knowledge_link_status,'linked',x.id);
+            assert.ok(x.primary_knowledge_unit_id,x.id);
+          }
+          const p=JSON.parse(fs.readFileSync('data/runtime/place-open/maerradalen.json','utf8')).place;
+          assert.equal(p.id,'maerradalen');
+          assert.ok(p.frontImage&&p.image);
+          assert.ok(fs.statSync(p.frontImage).size>10000);
+          assert.ok(fs.statSync(p.image).size>10000);
+          console.log('Mærradalen 21/21 canonical Knowledge and local WebP passed');
+          MAERRADALEN_CHECK
+          node scripts/check-place-i18n-freshness.mjs maerradalen
+      - name: Commit only changed generated files to same PR
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/i18n/content/places/en.json data/i18n/content/places/es.json data/i18n/content/places/pt.json
+          git add data/quiz/natur/maerradalen_sets.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/fagverk/fagverk_release.json data/runtime data/epoker/epoke-place-index.json data/places/places_index.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(history-go): materialize Mærradalen Knowledge translations and place runtime'
+            git pull --rebase origin history-go/maerradalen-v1-20261021
+            git push origin HEAD:history-go/maerradalen-v1-20261021
+          fi
