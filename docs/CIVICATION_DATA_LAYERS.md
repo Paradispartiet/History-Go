@@ -253,6 +253,8 @@ Ikke:
 
 ## 8a. Helhetlige skalaer og History Go-evidens (planlagt utvidelse 2026-10-21)
 
+Utdypet design, opptjeningsregler og akseptanse står i [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md). Her beskrives kun eksisterende datalag og deres eierskap; seks nye ferdighetsskalaer krever senere implementering.
+
 **Ikke bygg én ny poengmotor eller parallell sannhetskilde.** Dagens eiere, som en framtidig samlet kompetanse-read-model må koordinere, er:
 
 | Lag | Nåværende eier / kanonisk signal | Ikke forveksle med |
