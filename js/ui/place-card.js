@@ -1202,7 +1202,6 @@ const worksEl           = document.getElementById("pcWorksList");
 const eventsBox         = document.getElementById("pcEventsBox");
   
 const btnInfo   = document.getElementById("pcInfo");
-const btnSources = document.getElementById("pcSources");
 const btnQuiz   = document.getElementById("pcQuiz");
 const btnUnlock = /** @type {HTMLButtonElement|null} */ (document.getElementById("pcUnlock"));
 const btnRoute  = document.getElementById("pcRoute");
@@ -1484,7 +1483,6 @@ const setRoundPreview = (el, src, alt, fallbackEmoji, count) => {
 
 if (isNarrow) {
   setPcIcon(btnInfo,  "ℹ️", tt("ui.place.moreInfo", "Mer info"));
-  setPcText(btnSources, tt("ui.tabs.sources", "Kilder"));
   setPcText(btnQuiz,  tt("ui.place.takeQuiz", "Ta quiz"));
   setPcText(btnRoute, tt("ui.place.route", "Rute"));
   setPcIcon(btnObs,   "👁️", tt("ui.place.observe", "Observer"));
@@ -1492,7 +1490,6 @@ if (isNarrow) {
   setPcIcon(btnClose, "✕",  tt("ui.quiz.close", "Lukk"));
 } else {
   setPcText(btnInfo,  tt("ui.place.moreInfo", "Mer info"));
-  setPcText(btnSources, tt("ui.tabs.sources", "Kilder"));
   setPcText(btnQuiz,  tt("ui.place.takeQuiz", "Ta quiz"));
   // btnUnlock settes lenger nede av unlock-UI – la den være
   setPcText(btnRoute, tt("ui.place.route", "Rute"));
@@ -2492,20 +2489,6 @@ window.HGVisualPlaceRounds?.apply?.(place);
 // --- Mer info ---
   
 if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
-
-// C44: dedicated Kilder entry. Do not restore the retired generic Mer info
-// control to the public PlaceCard. Use the actual Place popup and source tab.
-if (btnSources) btnSources.onclick = async () => {
-  if (typeof window.showPlacePopup !== "function") return;
-  try {
-    await window.showPlacePopup(place);
-    window.HGPlacePopupTabs?.decoratePopup?.(place);
-    const sourceTabs = document.querySelectorAll(".hg-popup.place-popup-v2 [data-place-tab=\"sources\"]");
-    sourceTabs[sourceTabs.length - 1]?.click();
-  } catch (error) {
-    console.warn("[PlaceCard Kilder]", error);
-  }
-};
 
 // Footer actions are owned by one global listener below, not by each PlaceCard render.
 
