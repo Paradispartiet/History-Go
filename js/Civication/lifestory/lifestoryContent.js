@@ -84,6 +84,7 @@
    * @property {string[]} [laaserOpp]
    * @property {string[]} [livsstil] Livsstilstags (se LIVSSTIL_TAGS) — mates til skallets HG_Lifestyle ved valg.
    * @property {{skill_id:string,activity_type:string,evidence_flag:string,delta:number}} [skills_practice] Dokumentert handling for Skills.
+   * @property {{skill_id:string,min_score:number}} [skills_requirement] Valgfritt Skills-minimum for bonusvalg; grunnvalg skal forbli åpne.
    *
    * @typedef {Object} LifestoryScene
    * @property {string} id
@@ -244,6 +245,18 @@
             push(`scene ${sid}/${cid}: skills_practice krever gyldig Skill, aktivitet, delta 1–3 og et true effektflagg`);
           }
         }
+        if (choice.skills_requirement !== undefined) {
+          const requirement = choice.skills_requirement;
+          const valid = requirement && typeof requirement === "object" && !Array.isArray(requirement);
+          const keys = valid ? Object.keys(requirement) : [];
+          if (!valid || keys.length !== 2 ||
+              keys.some(key => key !== "skill_id" && key !== "min_score") ||
+              !SKILL_IDS.has(requirement.skill_id) ||
+              !Number.isInteger(requirement.min_score) ||
+              requirement.min_score < 1 || requirement.min_score > 100) {
+            push(`scene ${sid}/${cid}: skills_requirement krever gyldig Skill og min_score 1–100`);
+          }
+        }
         for (const target of choice.laaserOpp || []) {
           if (typeof target !== "string" || !target) push(`scene ${sid}/${cid}: ugyldig laaserOpp-referanse`);
         }
@@ -275,6 +288,9 @@
             }
           }
         }
+      }
+      if (valg.length && valg.every(choice => choice.skills_requirement !== undefined)) {
+        push(`scene ${sid}: minst ett valg må kunne spilles uten Skills-krav`);
       }
     }
 

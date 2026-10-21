@@ -182,6 +182,19 @@
     return "";
   }
 
+  // A missing Skills engine or unknown score fails closed for the bonus
+  // choice only. The ordinary Life Story alternatives are always available.
+  function getChoiceAvailability(choice) {
+    if (!choice?.skills_requirement) return {
+      available: true, required: 0, score: null, measured: false, label: ""
+    };
+    const skills = /** @type {any} */ (globalScope).CivicationSkills;
+    return skills?.checkRequirement
+      ? skills.checkRequirement(choice.skills_requirement)
+      : { available: false, required: choice.skills_requirement.min_score,
+          score: null, measured: false, label: "Skill" };
+  }
+
   /**
    * Spilleren tar et valg: effekter skrives til Player State, valget
    * arkiveres, nye scener låses opp, scenen markeres spilt, og dagen
@@ -201,6 +214,9 @@
     }
     const choice = (scene.valg || []).find((c) => c.id === choiceId);
     if (!choice) throw new Error(`[LifestoryRunner] ukjent valg "${choiceId}" i scenen "${sceneId}"`);
+    if (!getChoiceAvailability(choice).available) {
+      throw new Error(`[LifestoryRunner] valget "${choiceId}" krever dokumentert Skills-praksis`);
+    }
 
     // Symposium-pakken tillater aldri at en fremtidig eller avvist scene
     // skriver et møte/valg inn i historien (inkludert gamle DOM-knapper).
@@ -506,6 +522,7 @@
     isThreadPlayable,
     getCandidateScenes,
     selectNextScene,
+    getChoiceAvailability,
     applyChoice,
     advance,
     completeDay,

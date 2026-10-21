@@ -46,7 +46,7 @@ function playFullWeek(content, pick) {
   return state;
 }
 const foerste = (s) => s.valg[0].id;
-const siste = (s) => s.valg[s.valg.length - 1].id;
+const siste = (s) => s.valg.filter(choice => !choice.skills_requirement).at(-1).id;
 
 const FORVENTET = {
   arbeidsledig: { foerste: "bygget_kompetanse", siste: "kom_i_jobb" },

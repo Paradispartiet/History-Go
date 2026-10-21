@@ -668,16 +668,25 @@
     const thread = content.threads.find((t) => t.id === scene.threadId);
     const ts = state.threadState[scene.threadId];
     const representative = state.personRepresentanter?.[scene.avsender];
-    const valgHtml = (scene.valg || []).map((valg) =>
-      "<button class=\"civi-lifestory-choice\" type=\"button\" data-lifestory-scene=\"" + escapeHtml(scene.id) + "\""
-      + " data-lifestory-choice=\"" + escapeHtml(valg.id) + "\">"
-      + "<span>" + escapeHtml(valg.tekst) + "</span>"
-      + (valg.tone ? "<small>" + escapeHtml(valg.tone) + "</small>" : "")
-      + (/** @type {any} */ (valg).handling ? "<small class=\"civi-lifestory-action-hint\">→ "
-        + escapeHtml(/** @type {any} */ (window).CivicationLifestoryActions?.HANDLING_LABELS?.[/** @type {any} */ (valg).handling.type] || "utfører handlingen")
-        + "</small>" : "")
-      + "</button>"
-    ).join("");
+    const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
+    const valgHtml = (scene.valg || []).map((valg) => {
+      const required = valg.skills_requirement;
+      const status = Runner.getChoiceAvailability(valg);
+      const detail = !required ? "" : status.available
+        ? "Skills: " + status.label + " " + status.score + " / 100 – tilgjengelig"
+        : "Krever " + status.label + " " + status.required + " / 100. Du har "
+          + (status.measured ? status.score + " / 100" : "ikke målt Skills");
+      return "<button class=\"civi-lifestory-choice\" type=\"button\" data-lifestory-scene=\"" + escapeHtml(scene.id) + "\""
+        + " data-lifestory-choice=\"" + escapeHtml(valg.id) + "\""
+        + (status.available ? "" : " disabled aria-disabled=\"true\"") + ">"
+        + "<span>" + escapeHtml(valg.tekst) + "</span>"
+        + (valg.tone ? "<small>" + escapeHtml(valg.tone) + "</small>" : "")
+        + (required ? "<small class=\"civi-lifestory-skill-hint\">" + escapeHtml(detail) + "</small>" : "")
+        + (/** @type {any} */ (valg).handling ? "<small class=\"civi-lifestory-action-hint\">→ "
+          + escapeHtml(/** @type {any} */ (window).CivicationLifestoryActions?.HANDLING_LABELS?.[/** @type {any} */ (valg).handling.type] || "utfører handlingen")
+          + "</small>" : "")
+        + "</button>";
+    }).join("");
     return ""
       + "<article class=\"civi-lifestory-scene\" aria-label=\"Nå-scene\">"
       + "<div class=\"civi-lifestory-kicker\"><span>NÅ</span><span>" + escapeHtml(viewPhaseName(scene.fase)) + "</span><span>" + escapeHtml(scene.visningstype) + "</span>" + (scene.avsender ? "<span>Fra " + escapeHtml(personNavn(scene.avsender)) + "</span>" : "") + "</div>"
