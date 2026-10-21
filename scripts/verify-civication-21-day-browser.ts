@@ -12,6 +12,23 @@ export default async function verifyThreeWeekLife(browser: any, origin: string, 
   const trace: { day: number; scene: string; choice: string }[] = [];
   page.on('pageerror', (error: Error) => pageErrors.push(error.message));
   const readState = () => page.evaluate(() => (globalThis as any).CivicationLifestoryState.load());
+  const readEconomy = () => page.evaluate(() => {
+    const app = globalThis as any;
+    const wallet = app.CivicationState.getWallet();
+    const clock = app.CivicationCalendar.getClock();
+    const snapshot = app.CivicationEconomyEngine.getEconomySnapshot();
+    return {
+      day: Number(clock.dayIndex),
+      balance: Number(wallet.balance ?? 0),
+      lastSettledDay: Number(wallet.last_tick_day_index),
+      completedDays: (wallet.completed_game_days_v1 || []).map((r: any) => ({
+        day: Number(r.dayIndex), career: String(r.careerId || ''), net: Number(r.weeklyNet)
+      })),
+      gameWeek: snapshot.tickStatus.currentWeekKey,
+      nextSettlement: !!snapshot.tickStatus.canTickNow
+    };
+  });
+  const weeklyBalances: { day: number; balance: number; lastSettledDay: number }[] = [];
 
   try {
     await page.goto(origin + '/Civication.html', { waitUntil: 'load', timeout: 90000 });
@@ -70,10 +87,14 @@ export default async function verifyThreeWeekLife(browser: any, origin: string, 
         await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
         if ([9, 15, 20].includes(day) && scenesPlayedToday === 1) {
           const snapshot = await readState();
+          const moneyBeforeReload = await readEconomy();
           const archivedChoices = snapshot.arkiv.map((row: any) => [row.sceneId, row.valgId, row.livsdag]);
           await page.reload({ waitUntil: 'load', timeout: 90000 });
           await page.waitForFunction(() => !!(globalThis as any).CivicationLifestoryUI?.getCurrentSceneInfo?.(), null, { timeout: 90000 });
           const restored = await readState();
+          const moneyAfterReload = await readEconomy();
+          assert.deepEqual(moneyAfterReload, moneyBeforeReload,
+            'reload never creates another payment or loses daily earnings on day ' + day);
           // A boot may normalize the private-history mirror or recompute
           // transient pointers; those are not lost player progress.
           assert.equal(restored.livsdag, day, 'reloading retains the life day');
@@ -92,6 +113,27 @@ export default async function verifyThreeWeekLife(browser: any, origin: string, 
       }
       assert.ok(scenesPlayedToday > 0, 'no empty Life Story day ' + day);
       dayCounts.push(scenesPlayedToday);
+      // Follow the canonical wallet and calendar, not narrative meters.
+      // A seven-day salary/NAV settlement occurs on day 8 and 15; the
+      // third week has been *played* at day 21 but can only be paid after
+      // the next real game-clock rollover to day 22.
+      const economy = await readEconomy();
+      assert.equal(economy.day, day, 'calendar matches personal life day ' + day);
+      if ([8, 15, 21].includes(day)) {
+        const expectedCheckpoint = day === 21 ? 15 : day;
+        assert.equal(economy.lastSettledDay, expectedCheckpoint,
+          'only fully elapsed game weeks are settled on day ' + day);
+        assert.ok(Number.isFinite(economy.balance), 'canonical wallet stays numeric');
+        weeklyBalances.push({ day, balance: economy.balance,
+          lastSettledDay: economy.lastSettledDay });
+        assert.equal(new Set(economy.completedDays.map(r => r.day)).size, economy.completedDays.length,
+          'one economic record per played day, including after reload');
+        assert.ok(economy.completedDays.every(r => !r.career && r.net === 0),
+          'no fabricated salary while unemployed');
+        assert.ok(economy.completedDays.every(r => r.day >= expectedCheckpoint),
+          'settled days cannot remain payable for a second time');
+        assert.equal(economy.nextSettlement, false, 'no duplicate week settlement available');
+      }
       if (day < 21) {
         assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifePositions.getUnlockedPositions('liv_treuker').length),
           0, 'identity is not unlocked before real day-21 choice');
@@ -115,10 +157,16 @@ export default async function verifyThreeWeekLife(browser: any, origin: string, 
     assert.equal(unlocked.primary, null, 'life path is offered, never activated automatically');
     assert.equal(unlocked.job, null, 'no job assigned for Life Story progress');
     assert.equal(unlocked.merits, null, 'ordinary private days do not award History Go merit points');
+    assert.equal(weeklyBalances.length, 3, 'three game-week checkpoints audited');
+    assert.equal(weeklyBalances[0].lastSettledDay, 8);
+    assert.equal(weeklyBalances[1].lastSettledDay, 15);
+    assert.equal(weeklyBalances[2].lastSettledDay, 15,
+      'do not settle a third week early at the end of day 21');
     assert.deepEqual(pageErrors, [], 'no browser JavaScript errors');
     await page.screenshot({ path: join(outputDir, 'civication-organic-21-day.png'), fullPage: true });
     console.log('PASS: 21 actual browser days, no empty days, saved/reloaded private actions, optional documented Skaper, no synthetic job or merits.');
-    return { passed: true, completedDays: dayCounts.length, totalScenes: totalSteps, dayCounts, trace: trace.slice(-30) };
+    return { passed: true, completedDays: dayCounts.length, totalScenes: totalSteps,
+      weeklyBalances, dayCounts, trace: trace.slice(-30) };
   } catch (error) {
     await page.screenshot({ path: join(outputDir, 'civication-organic-21-day-failure.png'), fullPage: true }).catch(() => {});
     console.error('Civication 21-day browser failure, recent trace:', JSON.stringify(trace.slice(-20)));
