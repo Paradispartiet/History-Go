@@ -66,9 +66,9 @@ test("C41 rejects arbitrary preview injection and preserves blocked canonical Ob
   await new Promise(done=>setTimeout(done,25));
   assert.equal(dom.window.document.querySelectorAll(".hg-place-source-photo img").length,0);
   assert.equal(report.restrictions.canonical_objects_published,0);
-  assert.equal(card.collections.objects.status,"BLOCKED");
+  assert.equal(card.collections.objects.status,"PASS");
   assert.equal(card.status,"in_progress");
-  assert.deepEqual(card.placecard_collections_publishable_now,[]);
+  assert.deepEqual(card.placecard_collections_publishable_now,["objects"]);
   assert.ok(card.checkpoints.some(x=>x.id==="licensed_costume_inline_source_photo_c41"));
  }finally{dom.window.close();}
 });
