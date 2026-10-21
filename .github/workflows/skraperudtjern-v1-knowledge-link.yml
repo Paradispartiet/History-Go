@@ -1,0 +1,50 @@
+name: Skraperudtjern v1 finalize canonical Knowledge links once
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/skraperudtjern-v1-knowledge-link.yml'
+permissions:
+  contents: write
+jobs:
+  link:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'content/oslo-skraperudtjern-v1-20261021'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Materialize canonical Knowledge IDs on the 21 sourced questions
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const data=JSON.parse(fs.readFileSync('data/quiz/natur/skraperudtjern_sets.json','utf8'));
+          const questions=data.sets.flatMap(s=>s.questions);
+          if(questions.length!==21)throw new Error('Expected 21 quiz questions');
+          for(const q of questions){
+            if(!q.primary_knowledge_unit_id||!q.knowledge_unit_ids?.length||q.knowledge_link_status!=='linked')throw new Error('Missing canonical Knowledge link: '+q.id);
+          }
+          console.log('21/21 Skraperudtjern Knowledge IDs linked and verified');
+          NODE
+      - name: Save generated quiz source and registry on this existing PR
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A data/quiz/natur/skraperudtjern_sets.json data/knowledge/ reports/knowledge-id-backfill.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Link all 21 Skraperudtjern quiz questions to canonical Knowledge units'
+            git push origin HEAD:content/oslo-skraperudtjern-v1-20261021
+          fi
