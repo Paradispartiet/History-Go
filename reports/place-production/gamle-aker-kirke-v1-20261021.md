@@ -11,13 +11,13 @@
 - Bevarer eksisterende, stedsspesifikke fotofiler `bilder/places/auto/gamle_aker_kirke__sorsiden.jpg` og `bilder/places/auto/gamle_aker_kirke__sorsiden_card.jpg`; canonical proveniens er Mahlum/Wikimedia Commons, public domain.
 - Før/etter-fotoet (Ole Tobias Olsen/Oslo Museum, CC BY-SA 4.0) beholdes med egen kreditering.
 - Bildene er eksisterende lokale filer med dokumentert lisens og ble tidligere kontrollert i fase 11. Dette er ikke et nytt fotografi eller en påstand om at 2008-fotoet viser rehabiliteringen i 2024.
-- Eget stående `frontImage`-bilde mangler i canonical plassering. Hvis aktuell PlaceCard fortsatt krever dette i v1, er formell v1-closeout blokkert til et ekte stående, rettighetsklarert bilde er lagt inn og visuelt kontrollert.
+- Eget uavhengig, dokumentarisk **stående** `frontImage` er nå integrert: `bilder/places/gamle_aker_kirke_front_nemo_bis_2019.webp` (900 × 1200). Foto: Nemo bis, 23.08.2019; Wikimedia Commons, CC BY-SA 3.0. Dette er ikke beskåret fra eksisterende `image`; original, SHA-256 og endringsbeskrivelse er sporet i `reports/place-production/gamle-aker-portrait-2019-image-v1.json`. Canonical Place, places_index og place-open er regenerert.
 
 ## Permanent kvalitetssikring
 - `tests/gamle-aker-v1-quizcard.test.mjs`: 21 Knowledge-linkede spørsmål, kildeparitet for 10 av dem, unik manifest-kobling, korrekt fasit, gyldige bildepaths og usikker datering.
 - `tests/gamle-aker-v1-real-browser.mjs`: ekte History Go-app i 390 og 1440 px, lokal fotodekoding, QuizCard-flipp etter animasjon, quiz-navigasjon og Fagverk.
 - `.github/workflows/gamle-aker-v1-browser.yml`: kjører begge testene og full 21/21-quiz på mobil og desktop, med skjermbildebevis.
-- GitHub CI-status og eventuelle rendering-feil skal inn her etter faktisk kjøring. Inntil da: **v1-kandidat, ikke sluttgodkjent**.
+- Permanente kontroller og appbevis dokumenteres løpende i `reports/place-production/gamle-aker-kirke-v1-qa-20261021.md`. **Endelig v1-gate krever grønn CI på siste PR-head**, ikke tidligere kjøringer.
 
 ## Kilder
 - https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/sthans/forsideoppslag/gamle-aker/
