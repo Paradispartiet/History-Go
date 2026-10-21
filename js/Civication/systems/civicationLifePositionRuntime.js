@@ -285,6 +285,20 @@
     utforsker: { label: "Utforsker", description: "Du vil undersøke flere mulige retninger før du velger én.", hooks: ["nysgjerrighet", "utforskning", "valgfrihet"] }
   });
   const THREE_WEEK_SCENE = /^wave_e_life21_d21_(skape_veien|narmiljo_veien|relasjon_veien|rytme_veien|jobb_veien)$/;
+  // A chosen label is a declaration of intent, not proof of prior development.
+  // Require archived participation at the beginning and a concrete practice
+  // during week three. Every focus keeps an ordinary, freely playable route.
+  const THREE_WEEK_PRACTICE_SCENES = Object.freeze({
+    skaper: ["wave_e_life21_d16_arbeidsro"],
+    narmiljobygger: ["wave_e_life21_d16_kontaktpunkt"],
+    relasjonsbygger: ["wave_e_life21_d16_ta_kontakt"],
+    hverdagsbygger: ["wave_e_life21_d16_holde_rytmen", "wave_e_life21_d16_kompetanse_eller_jobb"],
+    utforsker: [
+      "wave_e_life21_d16_arbeidsro", "wave_e_life21_d16_kontaktpunkt",
+      "wave_e_life21_d16_ta_kontakt", "wave_e_life21_d16_holde_rytmen",
+      "wave_e_life21_d16_kompetanse_eller_jobb"
+    ]
+  });
 
   function getThreeWeekPosition() {
     const saved = safeParse(localStorage.getItem("civication_lifestory_v1"), null);
@@ -305,7 +319,12 @@
         relasjon_veien: "relasjonsbygger", rytme_veien: "hverdagsbygger", jobb_veien: "hverdagsbygger"
       })[entry.sceneId.replace("wave_e_life21_d21_", "")] === result)
     );
-    if (!def || !approved) return [];
+    const practiceScenes = THREE_WEEK_PRACTICE_SCENES[result] || [];
+    const hasStart = entries.some(entry =>
+      entry?.sceneId === "wave_e_life21_d8_foerste_spor" && Number(entry.livsdag) === 8);
+    const hasPractice = entries.some(entry =>
+      practiceScenes.includes(String(entry?.sceneId || "")) && Number(entry.livsdag) === 16);
+    if (!def || !approved || !hasStart || !hasPractice) return [];
     return [{
       badge_id: "liv_treuker", badge_name: "Tre uker – ditt liv", id: result,
       label: def.label, threshold: 0, kind: "self_selected_life_path",
