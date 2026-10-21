@@ -58,7 +58,7 @@ test('Hirschman generation retains all canonical identities, domain membership a
     work.theory_units.map((u) => u.expanded_prose));
   assert.equal(canonical.works.length, 20);
   assert.equal(canonical.works.reduce((n, w) => n + w.theory_units.length, 0), 60);
-  assert.equal(canonical.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 33);
+  assert.equal(canonical.works.flatMap((w) => w.theory_units).filter((u) => u.expanded_prose).length, 36);
   assert.equal(packages.reduce((n, pkg) => n + pkg.claims.claims.length, 0), 60);
   assert.equal(packages.reduce((n, pkg) => n + pkg.assessment.questions.length, 0), 60);
   assert.deepEqual(target.assessment.questions.filter((q) => HIRSCHMAN.includes(q.id.replace(/^advq-/, ''))).map((q) => q.id),
