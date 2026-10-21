@@ -69,6 +69,12 @@ Når målet er å gi hele katalogen grunninnhold, brukes metoden i `docs/PLACE_P
 
 Prioriter 20–50 steder per batch, gjenbruk allerede korrekt innhold, flytt kildetunge og rettighetsblokkerte saker til egen kø, kjør én relevant kontroll etter ferdig innholdsbolk, og ikke kjør full browser-/katalogregresjon gjentatte ganger. Dagens README/checklist og READ-FIRST for fullproduksjon gjelder fremdeles. En særskilt 1×10 quizprofil kan ikke kalles produksjonsklar før parser, manifest, Knowledge og QuizCard er tilpasset og validert.
 
+### Obligatorisk tekstkvalitet ved hver stedspakke
+
+Når stedsinnhold produseres eller forbedres, skal agenten **alltid lese eksisterende `desc` og `popupDesc`, vurdere fortellerkvaliteten og forbedre dokumentert svake tekster**. Faktakorrekt tekst er ikke automatisk god historie: bruk kildebelagte hendelser, mennesker, arbeid, konflikter og fysiske spor, og fjern byråkratisk språk, generiske pedagogiske fraser og unødvendig mange årstall. Fortell hva som skjedde og hvorfor stedet er særegent; ikke dikt opp hendelser, motiv eller dialog.
+
+**Bindende, fullstendig redaksjonell metode** er `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` §9A. Produksjonsløp er `docs/PLACE_PRODUCTION_CHECKLIST.md`; v1-minimum er `docs/PLACE_PRODUCTION_MINIMUM_V1.md`. Eksisterende kilde- og setningsparitet, teksthash, reviews, image/QuizCard, Knowledge, runtime og PR-isolasjon gjelder fortsatt. Ingen regel bare i chatsammendrag eller arbeidsrapport er bindende; varige krav skal inn i deres canonical eierdokument og henvises fra operativ sjekkliste.
+
 ## Place production: obligatorisk READ-FIRST-gate
 
 Disse reglene gjelder hver gang en agent, assistent eller automasjon oppretter, fullfører eller vesentlig reviderer et canonical Place.

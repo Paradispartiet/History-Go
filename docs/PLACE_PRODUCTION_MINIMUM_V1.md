@@ -20,6 +20,13 @@ Et ordinært sted kan betegnes `v1` først når alle disse punktene er oppfylt:
 4. **QuizCard:** Ett reelt quizkort for samme sted med **de samme ti spørsmålene** og korrekt fasit. Gjenbruk et eksisterende QuizCard framfor å lage dubletter. Registrer korrekt `categoryId`, `targetId` og runtime-/PlaceCard-kobling.
 5. **Publiserbar integrasjon:** Riktig quizregistrering, image/QuizCard-binding og nødvendig materialisering til runtime; én målrettet relevant kontroll av den ferdige bolken, samt ordinær PR-mergeport.
 
+### Redaksjonell historiefortelling er en del av v1-porten
+
+- Hvert nytt eller revidert sted skal få **redaksjonell kvalitetskontroll av både `desc` og `popupDesc`**, også når tidligere versjon er faktakontrollert. En svak tekst er ikke «ferdig» fordi den er kildebelagt eller validert. Gode eksisterende tekster beholdes; dokumenter konkrete feil før omskriving.
+- **Skriv historie, ikke administrasjon:** led med det som faktisk skjedde, menneskene og bruken av stedet, historiske hendelser, valg, interesser og virkninger. Beskriv hva stedet representerer gjennom konkrete og kontrollerbare fakta, ikke abstrakte produksjonsuttrykk. Bygninger, produksjon, miljø, konflikt og endring skal få den plassen kildene fortjener.
+- **Årstall er fortellerverktøy, ikke måltall:** ta med årstall ved vesentlige vendepunkter, men flytt lange rekker av etableringsår, eierskifter, endringsvedtak og andre registreringsdata til kronologi der de hører hjemme. Ingen datokvote og ingen kunstig dramatikk.
+- **Bindende metode** ligger i `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` §9A, og sluttreview i `docs/PLACE_PRODUCTION_CHECKLIST.md`. Følg dokumentert kilde→claim→setningsparitet, oppdatert teksthash og separat faktareview/redaksjonell review ved tekstendringer. Reglene endres separat fra stedsinnhold.
+
 ### Visuell bildekvalitet er en del av v1-porten
 
 - **Velg motivet før du beskjærer:** Bildet skal dokumentere det konkrete stedet og være visuelt leselig som liten miniatyr, stående PlaceCard og bredt toppbilde. Et tilfeldig hyggelig bilde fra serveringsstedet, nabolaget eller en konsert er ikke automatisk et godt stedsbilde. Unngå dominante biler, reklameflater, tom himmel og utsnitt som skjuler selve objektet.

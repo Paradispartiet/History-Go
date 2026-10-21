@@ -25,6 +25,14 @@ God konsis tekst beholder relevant innhold med færrest nødvendige ord. Konsis 
 6. Les teksten høyt og fjern alle ledd som får den til å høres ut som en punktliste.
 7. Kontroller at hver faktisk bestanddel fortsatt har claim-dekning.
 
+## Hendelser og betydning, ikke årstallrekker
+
+Velg en historisk bevegelse som *faktisk er dokumentert på stedet*: hvem som brukte området, en konkret hendelse, et problem som måtte løses, arbeid som foregikk der, en konflikt eller en forandring som fikk følger. Vis betydningen gjennom mennesker, handlinger og fysiske spor. Ikke åpne med «stedet representerer en viktig del av ...» eller list opp eiere, stiftelsesår og ombyggingsår uten å forklare hva som skjedde.
+
+Behold årstall bare når de bærer selve hovedfortellingen. Et viktig årstall er nyttig; fem årstall uten sammenheng er støy. En kildebelagt, levende ingress er bedre enn en byråkratisk faktaliste. Ikke innfør udokumenterte detaljer for å gjøre historien dramatisk.
+
+Fullstendig redaksjonell port gjelder både ingress og artikkel: `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` §9A.
+
 ## God og svak komprimering
 
 Svak komprimering forsøker å nevne alle epoker, personer og vendepunkter. Resultatet blir ofte grammatisk korrekt, men mentalt fragmentert.
