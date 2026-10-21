@@ -64,6 +64,43 @@ assert.strictEqual(final.after, 100, "score is clamped to 0–100");
 assert.strictEqual(skills.render(), false, "no browser DOM required to compute Skills");
 console.log("civication Skills evidence and replay checks ok");
 
+// The Life Story UI may accept a choice before CivicationState loads.
+// Persist the pending practice in its *existing* story save and replay once.
+{
+  const realStateApi = global.CivicationState;
+  const pendingStory = { rolle: "arbeidsledig" };
+  let savedStory = null;
+  let saveCount = 0;
+  const storeStory = (snapshot) => { savedStory = JSON.parse(JSON.stringify(snapshot)); saveCount++; };
+  const pendingPractice = {
+    source: "life_story_choice", event_id: "lifestory:boot_gap",
+    choice_id: "real_action", skill_id: "practical_mastery",
+    activity_type: "documented_store_check", evidence_flag: "checked_store_prices", delta: 2
+  };
+  delete global.CivicationState;
+  assert.strictEqual(skills.applyOrQueue(pendingPractice, pendingStory, storeStory).reason, "queued_until_state_ready");
+  assert.strictEqual(skills.applyOrQueue(pendingPractice, pendingStory, storeStory).reason, "queued_until_state_ready");
+  assert.strictEqual(saveCount, 1, "duplicate pending event does not write twice");
+  assert.strictEqual(savedStory.pendingSkillsPracticesV1.length, 1, "queued in the existing Life Story save");
+  assert.strictEqual(skills.applyOrQueue({ ...pendingPractice, event_id: "bad_no_evidence", evidence_flag: "" }, pendingStory, storeStory).reason, "unverified_practice");
+  assert.strictEqual(saveCount, 1, "invalid metadata cannot be queued");
+
+  global.CivicationState = realStateApi;
+  const switched = { rolle: "ekspeditor", rolleTilstander: { arbeidsledig: savedStory } };
+  global.CIVICATION_TEST_MODE = true;
+  assert.strictEqual(skills.flushQueued(switched, storeStory).cleared, 0, "test mode never writes deferred Skills");
+  delete global.CIVICATION_TEST_MODE;
+  const recovered = skills.flushQueued(switched, storeStory);
+  assert.deepStrictEqual({ applied: recovered.applied, cleared: recovered.cleared }, { applied: 1, cleared: 1 });
+  assert.strictEqual(switched.rolleTilstander.arbeidsledig.pendingSkillsPracticesV1.length, 0,
+    "a queued event survives role switch and is removed after successful replay");
+  assert.strictEqual(skills.getViewModel(state).skills.find(s => s.id === "practical_mastery").score, 2);
+  const replay = skills.flushQueued(JSON.parse(JSON.stringify(switched)), storeStory);
+  assert.strictEqual(replay.applied, 0, "reload never re-awards the same practice");
+  assert.strictEqual(saveCount, 2, "queue cleanup is persisted exactly once");
+}
+
+
 
 // Authored Life Story + DOM integration checks share this established Skills test
 // so the governed career-gameplay evidence matrix remains unchanged.
