@@ -48,7 +48,16 @@ test("three different Oslo Places have canonical, publicly routable Fagverk",()=
 test("Fagverk release and registry hashes are synchronized",()=>{
   const live=read("data/fagverk/fagverk_release.json");
   const rebuilt=buildReleaseManifest({root:process.cwd()});
-  assert.equal(serializeReleaseManifest(rebuilt),JSON.stringify(live,null,2)+"\n");
+  const changed=[];
+  const diff=(expected,actual,at="release")=>{
+    if(changed.length>=45)return;
+    if(expected&&actual&&typeof expected==="object"&&typeof actual==="object"){
+      for(const key of new Set([...Object.keys(expected),...Object.keys(actual)]))diff(expected[key],actual[key],at+"."+key);
+    }else if(expected!==actual)changed.push({key:at,rebuilt:String(expected).slice(0,160),committed:String(actual).slice(0,160)});
+  };
+  diff(rebuilt,live);
+  if(changed.length)console.error("FAGVERK_RELEASE_DIFFERENCES",JSON.stringify(changed));
+  assert.deepEqual(live,rebuilt);
   assert.equal(live.registry.version,registry.version);
 });
 
