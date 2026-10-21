@@ -5,7 +5,7 @@ import path from "node:path";
 import { chromium } from "playwright";
 
 // C44 exercises the REAL index.html boot and public route into PlaceCard,
-// dismisses the genuine first-visit overlay, and clicks the actual #pcInfo
+// dismisses the genuine first-visit overlay, and clicks the actual #pcSources
 // control to reach the real Kilder tab. No direct showPlacePopup() test shortcut.
 const root = process.cwd();
 const placeId = "det_norske_teatret";
@@ -17,7 +17,7 @@ assert.equal(place.id, placeId);
 const markup = fs.readFileSync("index.html", "utf8");
 const placeCard = fs.readFileSync("js/ui/place-card.js", "utf8");
 assert.match(markup, /id="pcInfo"[^>]+type="button"/);
-assert.match(placeCard, /if \(btnInfo\) btnInfo\.onclick = \(\) => window\.showPlacePopup\?\.\(place\)/);
+assert.match(placeCard, /if \(btnSources\) btnSources\.onclick = async/);
 const mime = {".html":"text/html", ".js":"text/javascript", ".mjs":"text/javascript",
   ".css":"text/css", ".json":"application/json", ".webp":"image/webp",
   ".jpg":"image/jpeg", ".png":"image/png", ".woff2":"font/woff2",
@@ -69,15 +69,15 @@ try {
         document.querySelector("#placeCard")?.dataset?.currentPlaceId === id &&
         document.querySelector("#placeCard")?.classList.contains("is-open"),placeId,{timeout:35000});
       assert.equal(await page.locator("#pcTitle").innerText(),"Det Norske Teatret");
-      const info = page.locator("#pcInfo");
+      const info = page.locator("#pcSources");
       await info.waitFor({state:"visible",timeout:10000});
       const rect = await info.boundingBox();
       assert.ok(rect && rect.width >= 42 && rect.height >= 40,"The More info control needs a usable tap area");
-      assert.match(await info.getAttribute("aria-label"), /Mer info/i);
+      assert.match(await info.getAttribute("aria-label"), /Kilder|kilder/i);
       await info.click({timeout:15000});
       const tab = page.locator('.hg-popup.place-popup-v2 [data-place-tab="sources"]').last();
       await tab.waitFor({state:"visible",timeout:15000});
-      await tab.click({timeout:12000});
+      assert.equal(await tab.getAttribute("aria-selected"),"true", "C44 Kilder action selects the Sources tab itself");
       const panel = page.locator('.hg-popup.place-popup-v2 [data-place-panel="sources"]').last();
       assert.equal(await panel.isVisible(),true);
       const image = panel.locator(".hg-place-source-photo img");
@@ -104,10 +104,10 @@ try {
       caseResult.outcome="PASS";
       caseResult.welcome_dismissed=true;
       caseResult.app_route="#/place/"+placeId;
-      caseResult.more_info_clicked=true;
+      caseResult.sources_entry_clicked=true;
       caseResult.kilder_clicked=true;
       caseResult.image_decoded=true;
-      console.log("C44 "+name+" native router -> PlaceCard -> More info -> Kilder PASS");
+      console.log("C44 "+name+" native router -> PlaceCard -> Kilder direct PASS");
     }catch(error){
       caseResult.outcome="BLOCKED";
       caseResult.error=String(error);
