@@ -73,7 +73,7 @@
   // Hele rolletilstanden forblir separat; bare disse to historienes konkrete
   // fakta, scenevalg og arkiv følger spilleren ved jobbbytte.
   const PRIVATE_FLAG = /^wa_(?:(?:[bcde]_)?c0[15]|e_c21)_/;
-  const PRIVATE_SCENE = /^wave_[abcde]_c0[15]_/;
+  const PRIVATE_SCENE = /^wave_(?:[abcde]_c0[15]|e_c21)_/;
   function emptyPrivateStory() { return { flagg: {}, flaggDager: {}, spilteScener: [], arkiv: [], relasjoner: {} }; }
   function capturePrivateStory(state) {
     const story = emptyPrivateStory();
