@@ -264,8 +264,8 @@
   function startLifePositionGuidance(bridge) {
     const badgeId = clean(bridge?.badge_id);
     const requiredPoints = Number(bridge?.threshold);
-    if (!badgeId || !Number.isFinite(requiredPoints) || requiredPoints <= 0) return null;
-    const label = clean(bridge?.navn) || "livsposisjon";
+    const hasPointGate = !!badgeId && Number.isFinite(requiredPoints) && requiredPoints > 0;
+    const label = clean(bridge?.navn) || "nye livsposisjoner";
     const now = Date.now();
     const session = {
       version: 1,
@@ -275,16 +275,19 @@
       started_at: new Date(now).toISOString(),
       started_ts: now,
       title: `Bygg kunnskap for ${label}`,
-      description: `Ta relevante quizer i History Go. Når du har nok poeng, gå tilbake til Civication og velg ${label} blant livsposisjonene. Et kapittel åpnes ikke automatisk.`,
+      description: hasPointGate
+        ? `Ta relevante quizer i History Go. Når du har nok poeng, gå tilbake til Civication og velg ${label} blant livsposisjonene. Et kapittel åpnes ikke automatisk.`
+        : `Utforsk relevante steder og quizer i History Go. Se de faktiske kravene til ${label} i Civication. Kapittelet åpnes ikke automatisk.`,
       life_role_label: label,
       target_type: "knowledge",
       category_id: badgeId,
-      completion_mode: "badge_points",
-      required_points: requiredPoints,
+      completion_mode: hasPointGate ? "badge_points" : "explore_category",
+      required_points: hasPointGate ? requiredPoints : null,
       expanded: true,
       return_href: currentCivicationHref(),
       payload: { target_type: "knowledge", category_id: badgeId,
-        completion_mode: "badge_points", required_points: requiredPoints }
+        completion_mode: hasPointGate ? "badge_points" : "explore_category",
+        required_points: hasPointGate ? requiredPoints : null }
     };
     try {
       localStorage.setItem(SESSION_KEY, JSON.stringify(session));
