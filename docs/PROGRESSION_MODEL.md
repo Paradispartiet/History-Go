@@ -316,6 +316,12 @@ history_go_progress_read_model_v1 = {
 
 Hvert felt skal kunne forklares med hvilken eksisterende state-kilde som bærer sannheten.
 
+## History Go-progresjon inn i Civications livsverden
+
+History Go eier dokumenterte, ulike progresjonsakser (besøk, quiz, kunnskap, samling, People og meritter); Civication eier konsekvensene som oppstår når spilleren faktisk bruker denne erfaringen i en Life Story. `civicationProfileSignalBridge.js` leser profiler/interesser, og `civicationHistoryGoTaskBridge.js` avstemmer faktisk oppgaveevidens. Ikke opprett ny XP- eller samlingsstore for å koble systemene. Besøk alene gir ikke visdom, formidlingskompetanse, streetkred eller jobb. Seks framtidige ferdigheter er et planlagt Civication-system, ikke en ny History Go-read-model.
+
+Produktkontrakt og kilde-/eierregler: [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md). Samlingens brukerrettede rolle: [PERSONAL_COLLECTION_V1.md](PERSONAL_COLLECTION_V1.md).
+
 ## 18. Autoritetsregel
 
 Ved konflikt gjelder:
