@@ -48,6 +48,7 @@ async function init() {
   renderWorkdayPanel();
   renderPsycheDashboard();
   renderCapital();
+    window.CivicationSkills?.render?.();
   renderHomeStatus();
   renderPublicFeed();
   renderTrackHUD();
@@ -65,6 +66,7 @@ async function init() {
     renderWorkdayPanel();
     renderPsycheDashboard();
     renderCapital();
+    window.CivicationSkills?.render?.();
     renderHomeStatus();
     renderPerception();
     renderTrackHUD();
