@@ -17,7 +17,11 @@ jobs:
         with:
           node-version: '24'
       - name: Build canonical quiz production contexts
-        run: npm run quiz:context
+        run: |
+          for file in data/quiz/production_context/politikk/*.json; do
+            target="$(basename "$file" .json)"
+            node scripts/build-quiz-production-context.mjs --category politikk --target "$target" --output "$file"
+          done
       - name: Rebuild release manifest
         run: node scripts/build-fagverk-release-manifest.mjs
       - name: Commit derived Politikk contexts on wave4 branch only
