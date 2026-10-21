@@ -93,7 +93,12 @@
           "id": "svar_aerlig",
           "tekst": "Svare ærlig, selv om det koster krefter",
           "tone": "ærlig",
-          "skills_practice": {"skill_id":"social_awareness","activity_type":"honest_relationship_communication","evidence_flag":"svarte_aerlig_privat","delta":1},
+          "skills_practice": {
+            "skill_id": "social_awareness",
+            "activity_type": "honest_relationship_communication",
+            "evidence_flag": "svarte_aerlig_privat",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 5,
@@ -209,7 +214,12 @@
           "id": "endre_maaten",
           "tekst": "Endre noe konkret i morgen",
           "tone": "reflektert",
-          "skills_practice": {"skill_id":"agency","activity_type":"prepare_new_daily_routine","evidence_flag":"vil_endre_arbeidsmaate","delta":1},
+          "skills_practice": {
+            "skill_id": "agency",
+            "activity_type": "prepare_new_daily_routine",
+            "evidence_flag": "vil_endre_arbeidsmaate",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -466,7 +476,12 @@
           "id": "legg_en_plan",
           "tekst": "Legge en enkel plan for uka og sove på det",
           "tone": "ansvarlig",
-          "skills_practice": {"skill_id":"wisdom_judgement","activity_type":"build_weekly_budget_plan","evidence_flag":"dag2_la_oekonomiplan","delta":1},
+          "skills_practice": {
+            "skill_id": "wisdom_judgement",
+            "activity_type": "build_weekly_budget_plan",
+            "evidence_flag": "dag2_la_oekonomiplan",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 4,
@@ -1219,7 +1234,12 @@
           "id": "del_det",
           "tekst": "Dele det du lærte med noen som vil like det",
           "tone": "raus",
-          "skills_practice": {"skill_id":"communication","activity_type":"explain_lesson_to_friend","evidence_flag":"delte_det_du_laerte","delta":2},
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "explain_lesson_to_friend",
+            "evidence_flag": "delte_det_du_laerte",
+            "delta": 2
+          },
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -1658,7 +1678,12 @@
           "id": "ta_praten",
           "tekst": "Ta praten ordentlig — hverdagslige ting er aldri bare hverdagslige",
           "tone": "nær",
-          "skills_practice": {"skill_id":"social_awareness","activity_type":"hold_family_conversation","evidence_flag":"tok_familiepraten","delta":1},
+          "skills_practice": {
+            "skill_id": "social_awareness",
+            "activity_type": "hold_family_conversation",
+            "evidence_flag": "tok_familiepraten",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
               "familie": 6
@@ -2324,7 +2349,12 @@
           "id": "sette_gjerde_naa",
           "tekst": "Gjøre én konkret ting nå: en tur ut, en økt, et kvarter med noe du liker",
           "tone": "bevisst",
-          "skills_practice": {"skill_id":"agency","activity_type":"take_deliberate_break","evidence_flag":"satte_gjerde","delta":1},
+          "skills_practice": {
+            "skill_id": "agency",
+            "activity_type": "take_deliberate_break",
+            "evidence_flag": "satte_gjerde",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -4401,6 +4431,905 @@
             "flagg": {
               "wa_e_c05_etterspill": "senere_kontroll"
             }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d8_retning",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 8,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Den første uka er over. Hva nå?",
+      "tekst": "Du står ved et kjøkkenbord med en notatblokk. De samme søknadene og brevene vil ikke fylle et liv. Du trenger ikke velge identitet i dag, men du kan velge hva du faktisk gjør denne uka.",
+      "valg": [
+        {
+          "id": "sjekk_jobbmuligheter",
+          "tekst": "Undersøk hvilke faktiske jobbtilbud og krav som finnes",
+          "konsekvensTekst": "Du åpner karrierepanelet. Et tilbud må være tjent opp og kan bare aksepteres der. At du ønsker jobb, er ennå ikke en ansettelse.",
+          "effekter": {
+            "flagg": {
+              "wa_f_uke3_retning": "jobb"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "oppdag_et_sted",
+          "tekst": "Finn et sted i byen du vil utforske",
+          "konsekvensTekst": "Du åpner History Go for å finne et sted. Bare et reelt besøk eller fullført quiz gir dokumentert progresjon.",
+          "effekter": {
+            "flagg": {
+              "wa_f_uke3_retning": "by"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_byen"
+          }
+        },
+        {
+          "id": "ta_kontakt",
+          "tekst": "Send en konkret invitasjon til noen du kjenner",
+          "konsekvensTekst": "Du sender en melding med et forslag om å gå en tur. Ingen avtale er bekreftet før den andre har svart.",
+          "effekter": {
+            "flagg": {
+              "wa_f_uke3_retning": "folk"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d10_jobb",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 10,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "En jobb er mer enn en ledig stilling",
+      "tekst": "Du vil undersøke jobb, men må velge et konkret neste steg. Du kan bygge kompetanse, se hvilke faktiske tilbud som finnes, eller jobbe med en ærlig presentasjon av deg selv.",
+      "conditions": {
+        "flagg": {
+          "wa_f_uke3_retning": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "aapne_jobber",
+          "tekst": "Se om et reelt jobbtilbud kan aksepteres",
+          "konsekvensTekst": "Du åpner karrierepanelet. Tilbud du faktisk har opparbeidet er tilgjengelige der; ellers ser du hva som mangler.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d10_handling": "tilbud_sjekket"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "skaff_mer_kunnskap",
+          "tekst": "Utforsk et kunnskapsområde med relevante oppgaver",
+          "konsekvensTekst": "Du går til History Go. Quiz- og stedsprogresjon krever virkelige handlinger der, ikke dette valget alene.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d10_handling": "laeringsvei"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_quiz"
+          }
+        },
+        {
+          "id": "cv_eksempel",
+          "tekst": "Skriv ned et arbeid du faktisk har utført, uten å pynte på det",
+          "konsekvensTekst": "Du formulerer ett konkret eksempel og hva du lærte. Det er et utkast til egen presentasjon, ikke en sendt søknad.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d10_handling": "erfaring_skrevet"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d10_by",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 10,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Byen er større enn arbeidslista",
+      "tekst": "Du tenker på steder du ikke kjenner godt. Du kan gjøre utforskningen til en konkret aktivitet, eller holde deg til notatene hjemme.",
+      "conditions": {
+        "flagg": {
+          "wa_f_uke3_retning": "by"
+        }
+      },
+      "valg": [
+        {
+          "id": "gaa_ut",
+          "tekst": "Gå til History Go og finn en tur eller et sted",
+          "konsekvensTekst": "Du åpner kartet og kan velge et sted. Ingenting blir registrert som besøkt før History Go faktisk gjør det.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d10_handling": "utforsket_mulighet"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_byen"
+          }
+        },
+        {
+          "id": "tegn_rute",
+          "tekst": "Tegn en realistisk rute du kan gå senere",
+          "konsekvensTekst": "Du legger en rute i notatene og beregner hvilken del av dagen den kan passe. Turen er ikke gjennomført ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d10_handling": "planlagt_rute"
+            }
+          }
+        },
+        {
+          "id": "snu_hjem",
+          "tekst": "Legg bort planen og hvil uten å late som du var ute",
+          "konsekvensTekst": "Du velger en roligere ettermiddag. Den planlagte turen blir liggende som en mulighet.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d10_handling": "valgte_hvile"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d10_folk",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 10,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Meldingen du ikke kan svare på for andre",
+      "tekst": "Du har åpnet en sosial mulighet, men venter ikke på at en tilfeldig kontakt automatisk skal bli vennskap. Du kan følge opp uten å presse, eller gjøre kvelden til din egen.",
+      "conditions": {
+        "flagg": {
+          "wa_f_uke3_retning": "folk"
+        }
+      },
+      "valg": [
+        {
+          "id": "konkret_tid",
+          "tekst": "Foreslå et bestemt tidspunkt, tydelig som et spørsmål",
+          "konsekvensTekst": "Du sender en konkret forespørsel. Den andre står fortsatt fritt til å svare eller la være.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d10_handling": "tid_foreslaatt"
+            }
+          }
+        },
+        {
+          "id": "del_hverdagen",
+          "tekst": "Send en kort hilsen uten forventning om svar",
+          "konsekvensTekst": "Du deler en liten hendelse fra dagen. Det skaper et mulig utgangspunkt, ikke en ny relasjonsverdi.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d10_handling": "hilsen_sendt"
+            }
+          }
+        },
+        {
+          "id": "gi_rom",
+          "tekst": "Legg bort telefonen og gjør noe for deg selv",
+          "konsekvensTekst": "Du lar den andre ta initiativ om vedkommende ønsker det. Kvelden blir roligere.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d10_handling": "lot_kontakten_hvile"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d11_oversikt",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 11,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Tre ting som faktisk må gjøres",
+      "tekst": "På bordet ligger et par ting som har hopet seg opp: en regning, et reparasjonsbehov og en avtale du ikke har fulgt opp. Du kan ikke tenke deg ut av alt sammen.",
+      "valg": [
+        {
+          "id": "ordne_en_ting",
+          "tekst": "Fullfør én liten praktisk oppgave nå",
+          "konsekvensTekst": "Du reparerer det løse dørhåndtaket og legger verktøyet tilbake. Ett konkret problem er borte, de andre er det ikke.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d11_resultat": "reparerte_handtak"
+            },
+            "meters": {
+              "energi": -1,
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "faa_oversikt",
+          "tekst": "Skriv en oversikt med datoer og kostnader",
+          "konsekvensTekst": "Du får på plass faktiske frister og skiller regninger du kjenner fra utgifter du ennå ikke vet om. Ingen betaling er utført.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d11_resultat": "oversikt_laget"
+            }
+          }
+        },
+        {
+          "id": "spør_om_hjelp",
+          "tekst": "Spør en bekjent om hjelp til det praktiske",
+          "konsekvensTekst": "Du sender en forespørsel. Hjelp er ikke avtalt før noen har svart; du legger oppgaven åpent til du vet mer.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d11_resultat": "hjelp_etterspurt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d13_oppfolging",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "En ny uke trenger et nytt grep",
+      "tekst": "To uker har endret mer enn CV-en. Du har prøvd noe, nølt med noe annet og sett hva som faktisk krever innsats. Nå velger du én ting å følge opp i stedet for å få en ny generisk purring.",
+      "valg": [
+        {
+          "id": "arbeidsmulighet",
+          "tekst": "Se etter faktiske arbeidstilbud, uten å forplikte deg",
+          "konsekvensTekst": "Du åpner jobbmulighetene. Dersom du har opptjent og mottatt et tilbud, kan du akseptere det. Uten tilbud kan du fortsette å utvikle deg.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d13_oppfolging": "jobb_sjekket"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "miljo_og_liv",
+          "tekst": "Se hvilke livsposisjoner som faktisk er tilgjengelige",
+          "konsekvensTekst": "Du åpner livsprofilen og ser både frivillige valg og posisjoner med dokumenterte krav. Ingen blir valgt automatisk.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d13_oppfolging": "livsprofil_sjekket"
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "fullfor_hverdagsgrep",
+          "tekst": "Lag en konkret plan for å få én hverdagsoppgave gjort i dag",
+          "konsekvensTekst": "Du sorterer papirene, merker det som gjenstår og fullfører den delen du har kontroll over.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d13_oppfolging": "oppgave_ryddet"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d14_jobb",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 14,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Jobbsporet har fått en form",
+      "tekst": "Du begynte med å se etter arbeid. Det har gitt deg spørsmål om erfaring, krav og muligheter, men ingen arbeidsgiver har ennå lovet deg noe. Veien videre må bygges på det som finnes.",
+      "conditions": {
+        "flagg": {
+          "wa_f_uke3_retning": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "kontroll_krav",
+          "tekst": "Sammenlign erfaringen din med kravene til aktuelle roller",
+          "konsekvensTekst": "Du noterer hvilke krav du kan dokumentere, og hvilke du eventuelt må arbeide videre med.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d14_avklaring": "jobbkrav"
+            }
+          }
+        },
+        {
+          "id": "gaa_til_karriere",
+          "tekst": "Undersøk eksisterende, kvalifiserte jobbtilbud",
+          "konsekvensTekst": "Du åpner karrierepanelet. Et faktisk tilbud kan aksepteres, men det blir ikke opprettet ved at du trykker her.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d14_avklaring": "karrierepanel"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "andre_spor",
+          "tekst": "Gi også plass til en aktivitet utenfor arbeidslivet",
+          "konsekvensTekst": "Du bestemmer deg for å undersøke en interesse ved siden av jobbsøkingen. Det er ikke et avslag på fremtidig arbeid.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d14_avklaring": "interesse"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d14_by",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 14,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Et sted kan bli en vane",
+      "tekst": "En tur du vurderte er ikke det samme som et gjennomført besøk. Du vil finne ut om interessen din for byen tåler å gjentas når hverdagen fortsetter.",
+      "conditions": {
+        "flagg": {
+          "wa_f_uke3_retning": "by"
+        }
+      },
+      "valg": [
+        {
+          "id": "finne_aktivitet",
+          "tekst": "Finn et faktisk sted eller en kunnskapsoppgave i History Go",
+          "konsekvensTekst": "Du går til History Go. Bare dokumentert gjennomføring der kan styrke samlingen eller åpne fagbaserte posisjoner.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d14_avklaring": "byutforsking"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_byen"
+          }
+        },
+        {
+          "id": "egne_notater",
+          "tekst": "Skriv ned hva du vil undersøke ved et bestemt sted",
+          "konsekvensTekst": "Du lager tre konkrete spørsmål du vil finne svar på. De er fortsatt spørsmål, ikke ny historisk kunnskap.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d14_avklaring": "spor"
+            }
+          }
+        },
+        {
+          "id": "sosial_tur",
+          "tekst": "Inviter noen med på en framtidig tur",
+          "konsekvensTekst": "Du spør om selskap. Ingen annen person blir automatisk registrert som venn eller deltaker.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d14_avklaring": "invitasjon"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d14_folk",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 14,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Vennskap trenger mer enn en melding",
+      "tekst": "Du valgte å kontakte noen. Du kan fortsette å vise interesse uten å kreve svar, eller bygge en helt annen aktivitet i mellomtiden.",
+      "conditions": {
+        "flagg": {
+          "wa_f_uke3_retning": "folk"
+        }
+      },
+      "valg": [
+        {
+          "id": "foresla_aktivitet",
+          "tekst": "Spør om en konkret, lavterskel aktivitet",
+          "konsekvensTekst": "Du sender en forespørsel om å ta en kaffe eller gå en tur. Ingen avtale blir lagt inn før den er bekreftet.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d14_avklaring": "foresla_mote"
+            }
+          }
+        },
+        {
+          "id": "bidra_i_miljo",
+          "tekst": "Se etter steder og aktiviteter der du kan møte folk",
+          "konsekvensTekst": "Du åpner History Go og ser etter steder som passer interessene dine. Å åpne kartet er ikke et sosialt møte.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d14_avklaring": "utforsk_miljo"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_byen"
+          }
+        },
+        {
+          "id": "ta_egen_kveld",
+          "tekst": "Gi andre rom og bruk kvelden på et lite eget prosjekt",
+          "konsekvensTekst": "Du tar ansvar for din egen tid. En kontakt kan vokse senere uten at du sitter og venter.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d14_avklaring": "egen_tid"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d15_liten_gjerning",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 15,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Noen trenger en hånd",
+      "tekst": "En oppslagstavle i nabolaget forteller om en liten dugnadsoppgave. Du kjenner ingen av de andre, og ingen har satt deg på vaktlista. Du kan prøve en praktisk oppgave eller velge noe eget.",
+      "valg": [
+        {
+          "id": "hjelp_med_utstyr",
+          "tekst": "Ta med utstyr og hjelp til med et konkret oppryddingsarbeid",
+          "konsekvensTekst": "Du møter opp og bærer bort en stabel materialer. De andre takker for hjelpen, men du har ikke meldt deg inn i en organisasjon.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d15_resultat": "praktisk_bidratt"
+            },
+            "meters": {
+              "energi": -2,
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "snakk_med_arrangor",
+          "tekst": "Spør hvem som organiserer oppgaven før du lover noe",
+          "konsekvensTekst": "Du får oversikt over hvem som tar ansvar og hva som trengs. Du har ennå ikke bundet deg til en vakt.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d15_resultat": "snakket_med_arrangor"
+            }
+          }
+        },
+        {
+          "id": "eget_prosjekt",
+          "tekst": "Bruk ettermiddagen på å få et eget utkast videre",
+          "konsekvensTekst": "Du fullfører første avsnitt i et lite prosjekt du har utsatt. Det blir ikke til en offentlig publisering av seg selv.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d15_resultat": "utkast_fullfort"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d16_kontakt",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Et ja, et kanskje og et nei",
+      "tekst": "Du får en generell invitasjon til en åpen nabolagskveld. Det er fristende å kalle det nettverk før du har møtt noen. Du må selv velge hvor mye du vil investere.",
+      "valg": [
+        {
+          "id": "moet_opp",
+          "tekst": "Gå innom den åpne kvelden og snakk med én deltaker",
+          "konsekvensTekst": "Du møter opp, presenterer deg og lytter til hva en annen driver med. Samtalen er reell i fortellingen, men ingen ny vennskapsskår tildeles automatisk.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d16_kontakt": "mottemennesker"
+            },
+            "meters": {
+              "energi": -1
+            }
+          }
+        },
+        {
+          "id": "send_sporsmal",
+          "tekst": "Spør arrangøren om neste åpne treff",
+          "konsekvensTekst": "Du sender et konkret spørsmål. Du har ikke deltatt på et arrangement ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d16_kontakt": "spurt_om_neste"
+            }
+          }
+        },
+        {
+          "id": "bli_hjemme",
+          "tekst": "Ta en rolig kveld i stedet",
+          "konsekvensTekst": "Du velger å hente deg inn uten å gi andre falske løfter om å komme.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d16_kontakt": "hjemme"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d17_hverdagsvalg",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 17,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Tid er ikke bare penger",
+      "tekst": "Du har flere muligheter enn i begynnelsen av perioden, men ikke mer tid. En jobb ville ta timer, et prosjekt krever øving, og sosiale avtaler trenger faktisk oppfølging.",
+      "valg": [
+        {
+          "id": "prioriter_jobben",
+          "tekst": "Se etter jobbmuligheter du kan oppfylle kravene til",
+          "konsekvensTekst": "Du åpner karrierepanelet. Dersom et reelt tilbud finnes, kan du velge å ta det; arbeidsledighet avsluttes først når jobb faktisk aksepteres.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d17_prioritet": "arbeid"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "prioriter_kunnskap",
+          "tekst": "Gå til History Go for å gjøre en dokumenterbar læringsaktivitet",
+          "konsekvensTekst": "Du åpner History Go. Et kartbesøk alene gir ikke riktig quizsvar eller Skills-poeng.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d17_prioritet": "kunnskap"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_quiz"
+          }
+        },
+        {
+          "id": "prioriter_relajson",
+          "tekst": "Følg opp et menneske du faktisk har kontakt med",
+          "konsekvensTekst": "Du skriver en kort, konkret melding og tar hensyn til tidligere svar. Det utgjør ikke et avtalt møte.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d17_prioritet": "kontakt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d18_sosial",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 18,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Du kjenner igjen ansiktet",
+      "tekst": "Etter kvelden du var innom, ser du en av deltakerne igjen i forbifarten. Et ansikt du kjenner igjen er ikke automatisk et vennskap; du bestemmer hvordan du møter situasjonen.",
+      "conditions": {
+        "flagg": {
+          "wa_f_d16_kontakt": "mottemennesker"
+        }
+      },
+      "valg": [
+        {
+          "id": "sporr_om_oppgaven",
+          "tekst": "Spør hva vedkommende holder på med nå",
+          "konsekvensTekst": "Dere snakker kort om et konkret prosjekt. Du får informasjon, men ingen adgang eller jobb uten en egen prosess.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d18_etterspill": "samtale"
+            }
+          }
+        },
+        {
+          "id": "hils_rolig",
+          "tekst": "Hils og gå videre til det du skulle gjøre",
+          "konsekvensTekst": "Du viser at dere har møttes uten å presse fram en avtale.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d18_etterspill": "kort_hilsen"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d18_annen",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 18,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Et annet sosialt tempo",
+      "tekst": "Du møtte ikke opp på kvelden, eller valgte å spørre om neste gang. Det er fortsatt mulig å treffe folk uten å late som en invitasjon var en gjennomført samtale.",
+      "conditions": {
+        "flagg": {
+          "wa_f_d16_kontakt": "spurt_om_neste"
+        }
+      },
+      "valg": [
+        {
+          "id": "undersok_muligheter",
+          "tekst": "Finn en åpen aktivitet du kan velge senere",
+          "konsekvensTekst": "Du åpner History Go for å se hva du kan utforske. Å se på kartet blir ikke et møte eller en meritt.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d18_etterspill": "ny_mulighet"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_byen"
+          }
+        },
+        {
+          "id": "send_foresporsel",
+          "tekst": "Send en høflig forespørsel om neste treff",
+          "konsekvensTekst": "Du spør om en konkret mulighet, men ingen deltakelse er bekreftet.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d18_etterspill": "forespurte"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d18_hjemme",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 18,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Hvile kan også være et valg",
+      "tekst": "Du valgte en rolig kveld og har nå mer overskudd til å gjøre noe. Uten aktivitet kommer verken nye bekjentskaper eller et prosjekt av seg selv.",
+      "conditions": {
+        "flagg": {
+          "wa_f_d16_kontakt": "hjemme"
+        }
+      },
+      "valg": [
+        {
+          "id": "ordne_smaating",
+          "tekst": "Fullfør en liten oppgave du har utsatt",
+          "konsekvensTekst": "Du rydder arbeidsplassen og får unna en faktisk oppgave. Det gir rom for noe mer senere.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d18_etterspill": "oppgave_fort"
+            }
+          }
+        },
+        {
+          "id": "gaa_ut",
+          "tekst": "Se om du vil undersøke et sted eller en aktivitet",
+          "konsekvensTekst": "Du åpner History Go for å finne noe å gjøre. Det er fortsatt frivillig å dra dit.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d18_etterspill": "mulighet_ute"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_byen"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d19_virkning",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 19,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Hva ble det egentlig av planen?",
+      "tekst": "Du ser tilbake på notatene fra den siste uka. Noen ting ble gjennomført; andre ble bare foreslått. Du kan skille resultat fra forventning uten å dømme hele livet etter én uke.",
+      "valg": [
+        {
+          "id": "oppsummer_fakta",
+          "tekst": "Skriv ned tre ting du faktisk gjorde",
+          "konsekvensTekst": "Du lager en kort oppsummering og merker planene som ennå ikke er gjennomført. Den bygger på dine egne valg, ikke på gratis opptjening.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d19_laring": "faktaliste"
+            }
+          }
+        },
+        {
+          "id": "endre_plan",
+          "tekst": "Velg ett lite, konkret neste skritt",
+          "konsekvensTekst": "Du skriver et neste trinn med en realistisk tidsramme. Det er ennå ikke gjennomført.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d19_laring": "nytt_trinn"
+            }
+          }
+        },
+        {
+          "id": "takk_for_uke",
+          "tekst": "La noe ligge og hent deg inn",
+          "konsekvensTekst": "Du velger å hente deg inn i stedet for å jage enda en oppgave før natten.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d19_laring": "restitusjon"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d20_muligheter",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 20,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Du har ikke bare én vei videre",
+      "tekst": "Etter snart tre uker har du tydeligere interesser og erfaringer. Du kan ønske deg arbeid, se etter en livsposisjon som passer, eller fortsette å utforske. Ingen av valgene skal forveksles med en automatisk belønning.",
+      "valg": [
+        {
+          "id": "se_jobbtilbud",
+          "tekst": "Se om du kan akseptere et faktisk jobbtilbud",
+          "konsekvensTekst": "Du åpner karrierepanelet. Bare et virkelig opptjent og tilbudt arbeidsforhold kan aksepteres; du kan fortsatt leve et privatliv ved siden av.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d20_spor": "jobb"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "se_livsposisjon",
+          "tekst": "Se hvilke livsposisjoner du faktisk kan velge",
+          "konsekvensTekst": "Du åpner livsprofilen. Å velge en tilgjengelig posisjon er frivillig; en låst merittposisjon krever fortsatt reell opptjening.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d20_spor": "livsposisjon"
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "gaa_ut_og_lare",
+          "tekst": "Utforsk et sted for å få mer kunnskap om byen",
+          "konsekvensTekst": "Du åpner History Go. Det du gjør der, ikke selve åpningen, avgjør samling og meritter.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d20_spor": "utforsking"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_byen"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d21_hovedkapittel",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Tre uker – og livet går videre",
+      "tekst": "Du blar i historikken. Den viser det du faktisk valgte: ting du gjorde, relasjoner du forsøkte å følge opp og muligheter du ennå ikke har tatt. Du er ikke låst til arbeidsledighet, og du får heller ikke en identitet eller jobb bare fordi 21 dager har gått.",
+      "valg": [
+        {
+          "id": "velg_retning",
+          "tekst": "Undersøk livsposisjonene og velg selv en tilgjengelig retning",
+          "konsekvensTekst": "Du åpner livsprofilen. Å velge er frivillig, og poengbaserte posisjoner krever fortsatt dokumentert progresjon.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d21_veivalg": "livsprofil"
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "velg_arbeid",
+          "tekst": "Se etter reelle jobbtilbud du nå kan ta imot",
+          "konsekvensTekst": "Du åpner karrierepanelet. Hvis et faktisk tilbud finnes, kan du akseptere det der. Ingen jobb utstedes av sluttscenen.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d21_veivalg": "arbeid"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "bygg_videre",
+          "tekst": "Fortsett å bygge på interesser og kunnskap",
+          "konsekvensTekst": "Du går til History Go for å utvikle interessene videre. Livet kan fortsette også uten en formell jobb eller valgt livsposisjon.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d21_veivalg": "utforsk"
+            }
+          },
+          "handling": {
+            "type": "gaa_til_byen"
           }
         }
       ]
