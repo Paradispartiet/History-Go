@@ -34,7 +34,7 @@ test("C35 original photo now has an explicit, reviewed C36 canonical binding wit
  assert.equal(p.frontImage,asset);
  assert.equal(read("reports/place-production/det-norske-teatret/20261020/front-image-c36-visual-review.json").decision,"APPROVE_PHOTO_FOR_CANONICAL_FRONTIMAGE_BINDING");
  assert.equal(w.status,"in_progress");
- assert.equal(w.collections.objects.status,"BLOCKED");
- assert.deepEqual(w.placecard_collections_publishable_now,[]);
+ assert.equal(w.collections.objects.status,"PASS");
+ assert.deepEqual(w.placecard_collections_publishable_now,["objects"]);
  assert.ok(w.checkpoints.some(x=>x.id==="front_facade_media_staged_c35"));
 });

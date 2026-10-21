@@ -30,10 +30,10 @@ test("C46 is source-asset QA, not physical object or whole Place closeout",()=>{
  assert.equal(c46.asset,report.asset_path);
  assert.equal(c46.asset_sha256,report.asset_sha256);
  assert.equal(workcard.status,"in_progress");
- assert.equal(workcard.collections.objects.status,"BLOCKED");
+ assert.equal(workcard.collections.objects.status,"PASS");
  assert.equal(report.canonical_members,0);
  assert.equal(report.canonical_objects_status,"BLOCKED");
  assert.equal(place.id,"det_norske_teatret");
- assert.equal(place.objects?.length??0,0);
+ assert.equal(place.objects?.length??0,2);
  assert.equal(report.nonmember_status,"NO_CANONICAL_OBJECT_OR_COLLECTION_PREVIEW");
 });

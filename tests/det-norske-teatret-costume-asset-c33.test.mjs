@@ -29,14 +29,14 @@ test("C33 original asset SHA, dimensions and attribution match the source-checke
 test("C33 asset publication is not a phantom canonical Objects or PlaceCard collection",()=>{
  const reg=read(registry),p=read(place),w=read(workcard);
  assert.equal(p.id,"det_norske_teatret");
- assert.ok(!p.objects?.length,"Cannot invent canonical Object from asset");
+ assert.equal(p.objects?.length, 2, "C50 registers two separately verified canonical Objects");
  assert.equal(reg.counts.candidates,3);
  assert.equal(reg.counts.local_rights_checked_assets_staged,1);
  assert.equal(reg.counts.published_objects,0);
  assert.equal(reg.counts.local_member_images_published,0);
- assert.equal(w.collections.objects.status,"BLOCKED");
+ assert.equal(w.collections.objects.status,"PASS");
  assert.equal(w.status,"in_progress");
- assert.deepEqual(w.placecard_collections_publishable_now,[]);
+ assert.deepEqual(w.placecard_collections_publishable_now,["objects"]);
  const ids=reg.candidates.map(x=>x.id);
  assert.equal(new Set(ids).size,3);
  const costume=reg.candidates.find(x=>x.museum_accession==="TM.01641.A-C");

@@ -1,0 +1,44 @@
+name: Det Norske Teatret C51 deployed Objects QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/dnt-public-objects-c51.yml'
+      - 'tests/det-norske-teatret-public-objects-c51.mjs'
+      - 'data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json'
+      - 'data/runtime/place-open/det_norske_teatret.json'
+      - 'reports/place-production/det-norske-teatret-workcard-current.json'
+      - 'reports/place-production/det-norske-teatret/20261021/objects-c51-public-qa.json'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'css/place-rounds-fill-layout.css'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dnt-public-c51-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  public-objects:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install project dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify test syntax
+        run: node --check tests/det-norske-teatret-public-objects-c51.mjs
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: Verify PUBLIC GitHub Pages Objects, photo, illustration and cards at mobile and desktop widths
+        run: node tests/det-norske-teatret-public-objects-c51.mjs
+      - name: Preserve public evidence and screenshots regardless of test result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dnt-c51-public-objects-evidence
+          path: artifacts/dnt-c51-public/*
+          if-no-files-found: warn
+          retention-days: 10

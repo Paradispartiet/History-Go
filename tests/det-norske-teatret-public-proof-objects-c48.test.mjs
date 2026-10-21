@@ -47,9 +47,9 @@ test("C48 distinct Object leads preserve original source distinctions and noncom
 test("C48 is a source-only checkpoint; no canonical Objects or collection preview", () => {
   assert.equal(work.place_id, c48.place_id);
   assert.equal(work.status, "in_progress");
-  assert.equal(work.collections.objects.status, "BLOCKED");
-  assert.deepEqual(work.placecard_collections_publishable_now, []);
-  assert.equal(place.objects?.length ?? 0, 0);
+  assert.equal(work.collections.objects.status, "PASS");
+  assert.deepEqual(work.placecard_collections_publishable_now, ["objects"]);
+  assert.equal(place.objects?.length ?? 0, 2);
   assert.equal(c48.publication_boundary.canonical_object_members, 0);
   assert.equal(c48.publication_boundary.ready_to_publish_objects_collection, false);
   const cp47 = work.checkpoints.find(x => x.id === "foyer_painting_kilder_c47");
