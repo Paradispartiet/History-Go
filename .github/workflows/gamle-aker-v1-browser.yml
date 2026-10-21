@@ -1,0 +1,59 @@
+name: Gamle Aker kirke v1 real browser acceptance
+# Permanent acceptance: 21/21 canonical Knowledge links and real mobile/desktop quiz playback
+on:
+  pull_request:
+    paths:
+      - 'tests/gamle_aker_kirke-v1-real-browser.mjs'
+      - 'data/places/historie/oslo/places_historie/gamle_aker_kirke.json'
+      - 'data/quiz/historie/gamle_aker_kirke_sets.json'
+      - 'data/quizcards/historie/topp10_historie_sted_kort_batch1.json'
+      - 'data/runtime/place-open/gamle_aker_kirke.json'
+      - 'data/places/production/gamle_aker_kirke.json'
+      - 'tests/gamle-aker-v1-quizcard.test.mjs'
+      - 'bilder/places/auto/gamle_aker_kirke__sorsiden.jpg'
+      - 'bilder/places/auto/gamle_aker_kirke__sorsiden_card.jpg'
+      - '.github/workflows/gamle_aker_kirke-v1-browser.yml'
+  workflow_dispatch:
+concurrency:
+  group: gamle_aker_kirke-v1-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install project dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Check QuizCard/fullquiz contracts
+        run: node --test tests/gamle-aker-v1-quizcard.test.mjs
+      - name: Check actual app at 390 and 1440 px, including QuizCard after animation
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node tests/gamle_aker_kirke-v1-real-browser.mjs
+      - name: Complete all 21 questions on desktop and mobile without a false physical visit
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-ljanselva-fullquiz-browser.mjs gamle_aker_kirke
+      - name: Upload actual app evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamle_aker_kirke-v1-permanent-browser-evidence
+          path: |
+            artifacts/gamle_aker_kirke-browser/**
+            artifacts/place-quiz/gamle_aker_kirke/**
+          if-no-files-found: ignore
+          retention-days: 14
