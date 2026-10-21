@@ -30,12 +30,12 @@ Ingen nye QuizCards eller quizpakker ble opprettet i dette arbeidet. Gjenbruk ek
 
 Egen permanent CI-port: `.github/workflows/oslo-batch04-quiz-parity.yml`. Resultatet regnes ikke som godkjent før jobbene faktisk er kjørt grønt på den siste PR-commiten.
 
-## To konkrete redaksjonelle avvik før v1
+## To redaksjonelle avvik – rettet etter paritetskontrollen
 
-- **Akers mekaniske Verksted, `oslo_mek_quiz_1`** spør etter riktig «hovedanker for `oslo_mek`-targetet». Dette er intern datamodell, ikke et historisk spørsmål. Skal byttes med ett kildebelagt konkret historisk spørsmål uten å endre eller miste øvrige 29 spørsmål.
-- **Grev Wedels plass, `grev_wedels_plass_quiz_7`** spør «Hva er canonical sted i History Go?». Skal omarbeides til et faktisk spørsmål om plassen, med oppdatert fasit, kilder, Knowledge og eventuell QuizCard-paritet.
+- **Akers mekaniske Verksted, `oslo_mek_quiz_1`:** tidligere et spørsmål om et internt target-anker. Spør nå hvilket skipsverft som preget området før det ble Aker Brygge. Knowledge-teksten og emnet er stedsspesifikke, og den interne target-koblingen er fjernet fra de faglige begrepene.
+- **Grev Wedels plass, `grev_wedels_plass_quiz_7`:** tidligere spørsmål om «canonical sted i History Go». Spør nå hvilket byrom stedsnavnet betegner, med kilde- og Knowledge-tekst om parkrommet og nabobyggene.
 
-Det er ingen indikasjon på at de to spørsmålene må løses med nye quizfiler eller ny quizmotor. Eksisterende source-of-truth skal oppdateres sammen med eventuelle avledede data, og relevante tester må kjøres på nytt.
+Begge endringene gjenbruker eksisterende spørsmåls-ID, fasitalternativer og **Knowledge-ID**, slik at registrert læringsprogresjon ikke mister identiteten sin. Knowledge-katalogen er regenerert fra quizdata, og den strenge regresjonstesten godtar ikke lenger de tidligere unntakene. Disse to spørsmålene ligger ikke i de ti utvalgte QuizCard-spørsmålene for de respektive stedene; øvrig kortparitet er uendret.
 
 ## Ikke dekket av den statiske porten
 
@@ -44,4 +44,4 @@ Det er ingen indikasjon på at de to spørsmålene må løses med nye quizfiler 
 - Endelig fotografisk utsnitt, lisens-/krediteringsvisning, og eventuell fysisk visuell QA.
 - Vurdering av hver enkelt teksts fortellerkvalitet, datoavhengige påstander og epokeplassering.
 
-**Riktig neste leveranse:** rette de to identifiserte redaksjonelle avvikene på originalquizene, sikre avledet QuizCard/Knowledge-paritet, og etablere faktisk 390/1440 px browser-aksept for den samlede 17-stedersbolken. Ikke oppgrader `v1_candidate` før alle portene er tilfredsstilt.
+**Riktig neste leveranse:** etablere faktisk 390/1440 px browser-aksept for den samlede 17-stedersbolken, gjennomføre full redaksjonell fagkontroll av de 503 spørsmålene og godkjenne bilder/utsnitt. De to påviste interne spørsmålene er rettet med generert Knowledge-paritet. Ikke oppgrader `v1_candidate` før alle portene er tilfredsstilt.
