@@ -4,6 +4,13 @@ on:
   pull_request:
     paths:
       - 'tests/black-box-quiz-flip-browser.test.mjs'
+      - 'tests/akerselva-dams-v1-placecard-browser.test.mjs'
+      - 'data/places/natur/oslo/brekkedammen.json'
+      - 'data/places/natur/oslo/places_oslo_natur_akerselvarute/nydalsdammen.json'
+      - 'data/quiz/natur/brekkedammen_sets.json'
+      - 'data/quiz/natur/nydalsdammen_sets.json'
+      - 'data/quizcards/natur/**'
+      - 'js/ui/placeQuizCards.ts'
       - '.github/workflows/black-box-quiz-flip-browser.yml'
       - 'js/ui/place-card.js'
       - 'js/ui/place-card-quizcards-patch.js'
@@ -37,3 +44,4 @@ jobs:
         run: |
           node --test tests/black-box-productions-placecard.test.mjs
           node tests/black-box-quiz-flip-browser.test.mjs
+          node tests/akerselva-dams-v1-placecard-browser.test.mjs
