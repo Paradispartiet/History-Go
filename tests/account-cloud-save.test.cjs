@@ -365,3 +365,77 @@ test("conflicting local and cloud phase memories remain separate", async () => {
   assert.equal(db.writes.length, 0, "a different device must not overwrite the saved phase history");
   assert.equal(db.record.payload.state["civi.playerPhaseSnapshots.v1"], cloud);
 });
+
+
+test("21-day earned museum career restores qualifications, week settlements and private life on a fresh device", async () => {
+  const db = { record: null, writes: [] };
+  const earnedSets = Object.fromEntries(Array.from({ length: 5 }, (_, i) =>
+    ["munch_museet_set_" + (i + 1), { completed: true, completedAt: "2026-10-21T12:00:00Z" }]));
+  const progress = {
+    merits_by_category: JSON.stringify({ kunst: { points: 5 } }),
+    hg_quiz_sets_v1: JSON.stringify(earnedSets),
+    hg_badge_tiers_v1: JSON.stringify({ kunst: 0 }),
+    hg_active_position_v1: JSON.stringify({
+      career_id: "kunst", role_key: "kunst_publikum_og_formidling",
+      title: "Vertskap (museum/galleri)"
+    }),
+    hg_job_history_v1: JSON.stringify([{ career_id: "kunst", started_day_index: 8 }]),
+    hg_civi_calendar_v1: JSON.stringify({ dayIndex: 22, currentMinutes: 480 }),
+    hg_civi_wallet_v1: JSON.stringify({
+      balance: 6, last_tick_day_index: 22, completed_game_days_v1: []
+    }),
+    civication_lifestory_v1: JSON.stringify({
+      livsdag: 21, rolle: "arbeidsledig",
+      privatHistorie: { arkiv: [{ sceneId: "wave_e_life21_d21_identity", valgId: "kept" }] }
+    })
+  };
+  const source = await runtime({ db, initial: progress });
+  const snapshot = source.save.snapshot();
+  for (const [key, value] of Object.entries(progress)) {
+    assert.equal(snapshot[key], value, key + " must be eligible for account backup");
+  }
+  await source.save.flush();
+  assert.equal(db.writes.length, 1);
+  const device = await runtime({ db });
+  for (const [key, value] of Object.entries(progress)) {
+    assert.equal(device.localStorage.getItem(key), value,
+      key + " must survive complete account restore without changing the player's identity");
+  }
+  assert.equal(JSON.parse(device.localStorage.getItem("merits_by_category")).kunst.points, 5);
+  assert.equal(Object.keys(JSON.parse(device.localStorage.getItem("hg_quiz_sets_v1"))).length, 5);
+  assert.equal(JSON.parse(device.localStorage.getItem("hg_civi_wallet_v1")).last_tick_day_index, 22);
+  await device.save.flush();
+  assert.equal(db.writes.length, 1, "read-only restore must not duplicate cloud backups");
+});
+
+test("different earned History Go merits on two devices block destructive overwrite", async () => {
+  const cloudMerits = JSON.stringify({ kunst: { points: 5 } });
+  const localMerits = JSON.stringify({ kunst: { points: 2 } });
+  const db = { record: {
+    payload: { state: { merits_by_category: cloudMerits } },
+    created_at: "2026-10-21T14:00:00Z"
+  }, writes: [] };
+  const device = await runtime({ db, initial: { merits_by_category: localMerits } });
+  assert.match(device.element.textContent, /ulike/);
+  await device.save.flush();
+  assert.equal(db.writes.length, 0);
+  assert.equal(device.localStorage.getItem("merits_by_category"), localMerits);
+  assert.equal(db.record.payload.state.merits_by_category, cloudMerits);
+});
+
+test("History Go backup includes only explicitly allowed qualifications", async () => {
+  const db = { record: null, writes: [] };
+  const device = await runtime({ db, initial: {
+    merits_by_category: '{"kunst":{"points":5}}',
+    hg_quiz_sets_v1: '{"set_1":{"completed":true}}',
+    hg_badge_tiers_v1: '{"kunst":0}',
+    hg_quiz_debug_answers_v1: '{"allCorrect":true}',
+    hg_temporary_merits_v1: '{"kunst":500}'
+  } });
+  const snapshot = device.save.snapshot();
+  assert.ok(snapshot.merits_by_category);
+  assert.ok(snapshot.hg_quiz_sets_v1);
+  assert.ok(snapshot.hg_badge_tiers_v1);
+  assert.equal(snapshot.hg_quiz_debug_answers_v1, undefined);
+  assert.equal(snapshot.hg_temporary_merits_v1, undefined);
+});

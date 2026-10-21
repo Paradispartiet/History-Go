@@ -7,6 +7,8 @@
   const PREFIX = "civication_latest_";
   const EXTRA_KEYS = new Set(["hg_active_position_v1", "hg_capital_v1",
     "hg_pc_wallet_v1", "hg_civi_wallet_v1", "hg_job_history_v1",
+    // Preserve earned History Go qualifications used for Civication jobs.
+    "merits_by_category", "hg_quiz_sets_v1", "hg_badge_tiers_v1",
     // Legacy NPC memory uses dotted civi.* keys, not the civi_ prefix.
     // Include only these canonical keys, never a blanket civi.* wildcard.
     "civi.socialRelationships.v1", "civi.socialResponses.v1",
