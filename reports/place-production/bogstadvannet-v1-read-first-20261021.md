@@ -16,3 +16,6 @@ Redaksjonell grense: ingen udokumenterte personscener, ingen antatt gjeldende ba
 - Kildekontrollerte, separat stående og brede foto er valgt: Bjoertvedt 2010 CC BY-SA 3.0 (https://commons.wikimedia.org/wiki/File:Bogstadvannet_IMG_1611.JPG); Ryan Hodnett 2021 CC BY-SA 4.0 (https://commons.wikimedia.org/wiki/File:Bogstadvannet_-_Oslo,_Norway_2021-03-25.jpg). Lokal WebP-konvertering og faktisk app-QA **gjenstår**. Ingen bildestatus er satt til godkjent.
 - Fullquiz, QuizCard, Knowledge-linker, v4.2-setningspakke, oversettelser og generert runtime er **ikke fullført på dette trinnet**.
 - Ingen påstand om ferdig v1 / V3. Én gren, ett PR-løp; ingen parallell produksjon.
+
+## Bildevalg oppdatert ved materialisering
+Et vinterfoto med person og et vinterpanorama ble forkastet som svake hovedmotiver. Lokal WebP skal komme fra Steinar Midtskogen 2006 (public domain; https://commons.wikimedia.org/wiki/File:Bogstadvannet-20060527.jpg) og Øyvind Holmstad 2022 (CC BY-SA 4.0; https://commons.wikimedia.org/wiki/File:Tur_til_Oslo_og_Bogstad_sommeren_2022_-_Bogstadvannet_-_2.jpg). Bildene er fortsatt underlagt reell PlaceCard/quiz-/Fagverk-QA.
