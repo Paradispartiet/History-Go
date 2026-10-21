@@ -1,18 +1,17 @@
-name: Det Norske Teatret C44 native PlaceCard to Kilder browser QA
+name: Det Norske Teatret C44 unified PlaceCard Sources QA
 
 on:
   pull_request:
     paths:
       - '.github/workflows/det-norske-teatret-real-route-c44.yml'
       - 'tests/det-norske-teatret-real-placecard-sources-c44.mjs'
-      - 'index.html'
-      - 'js/ui/place-card.js'
-      - 'css/placeCard.css'
+      - 'js/ui/place-sheet/sections/sources.ts'
+      - 'css/place-sheet-sources.css'
+      - 'dist/web/place-unified-surface.js'
+      - 'dist/web/place-unified-surface.js.map'
       - 'js/router/AppRouter.js'
       - 'js/views/MapView.js'
       - 'js/ui/onboarding-welcome.js'
-      - 'js/ui/place-popup-v2.js'
-      - 'js/ui/place-popup-tabs.js'
       - 'data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json'
   workflow_dispatch:
 
@@ -37,7 +36,7 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-      - name: Verify real index app and routed More info to Kilder
+      - name: Verify native unified PlaceCard route and licensed Kilder photo
         run: node tests/det-norske-teatret-real-placecard-sources-c44.mjs
       - name: Preserve QA report and screenshots even on failure
         if: always()
