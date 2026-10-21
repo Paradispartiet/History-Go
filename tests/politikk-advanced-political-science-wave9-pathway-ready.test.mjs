@@ -4,12 +4,12 @@ import fs from 'node:fs';
 
 const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const existing = read('data/quiz/politikk/politikk_subject_pathways_v1.json');
-const pack = read('data/quiz/politikk/politikk_hungary_poland_pathway_candidate_v1.json');
+const pack = read('data/quiz/politikk/politikk_subject_pathways_v1.json');
 const evidence = read('data/fag/politikk/advanced_political_science_wave8_hungary_poland_comparison_v1.json');
 const schema = read('data/quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json');
 const quizSchema = read('data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json');
 const manifest = read('data/quiz/manifest.json');
-const qs = pack.sets[0].questions;
+const qs = pack.sets[1].questions;
 const claims = new Map(evidence.claim_bank.map(x => [x.id, x]));
 const sources = new Map(evidence.sources.map(x => [x.id, x]));
 const stages = ['observe', 'explain', 'evaluate_evidence', 'diagnose_failure', 'decide_and_justify'];
@@ -17,14 +17,14 @@ const stages = ['observe', 'explain', 'evaluate_evidence', 'diagnose_failure', '
 test('Bølge 9: kandidat oppfyller femtrinns- og Knowledge-kontrakten', () => {
   assert.equal(pack.schema, 'history_go_subject_pathway_package_v1');
   for (const key of schema.required_top_fields) assert.ok(Object.hasOwn(pack, key), key);
-  for (const key of schema.set_contract.required_fields) assert.ok(Object.hasOwn(pack.sets[0], key), key);
+  for (const key of schema.set_contract.required_fields) assert.ok(Object.hasOwn(pack.sets[1], key), key);
   assert.equal(qs.length, 5);
   assert.deepEqual(qs.map(q => q.pathway_stage), stages);
   for (const q of qs) {
     for (const key of [...quizSchema.required_fields, ...schema.question_contract.required_fields])
       assert.ok(Object.hasOwn(q, key), q.id + ': ' + key);
     assert.equal(q.categoryId, 'politikk');
-    assert.equal(q.targetId, pack.sets[0].targetId);
+    assert.equal(q.targetId, pack.sets[1].targetId);
     assert.equal(q.question_scope, 'subject_area');
     assert.equal(q.options.length, 4);
     assert.equal(new Set(q.options).size, 4);
@@ -59,15 +59,16 @@ test('Bølge 9: kandidat oppfyller femtrinns- og Knowledge-kontrakten', () => {
   assert.deepEqual(qs.map(q => q.answerIndex), [2,1,3,0,2]);
 });
 
-test('Bølge 9: eksisterende Polen-pilot beholdes; kandidat er ikke aktivert', () => {
+test('Bølge 9: to aktive sett og ti unike Knowledge-enheter i samme Politikk-manifest', () => {
   assert.equal(existing.status, 'pilot_active');
-  assert.equal(existing.sets.length, 1);
-  assert.equal(existing.sets[0].questions.length, 5);
-  assert.equal(pack.status, 'editorial_ready_unregistered');
-  assert.equal(pack.production_context.runtime_activation, false);
-  assert.equal(pack.production_context.knowledge_registry_materialized, false);
-  assert.equal(pack.production_context.quiz_manifest_registered, false);
-  assert.equal(pack.published_quiz_items, 0);
-  assert.ok(!manifest.subjectPackages.some(p => p.file === 'data/quiz/politikk/politikk_hungary_poland_pathway_candidate_v1.json'));
-  assert.equal(new Set([...existing.sets[0].questions, ...qs].map(q => q.primary_knowledge_unit_id)).size, 10);
+  assert.equal(pack.sets.length, 2);
+  assert.equal(pack.sets[0].questions.length, 5);
+  assert.equal(pack.sets[1].questions.length, 5);
+  assert.notEqual(pack.sets[0].targetId, pack.sets[1].targetId);
+  assert.equal(pack.production_context.active_question_count, 10);
+  assert.equal(pack.production_context.runtime_activation, true);
+  assert.equal(pack.production_context.quiz_manifest_registered, true);
+  assert.ok(manifest.subjectPackages.some(p => p.subjectId === 'politikk' && p.file === 'data/quiz/politikk/politikk_subject_pathways_v1.json'));
+  assert.equal(new Set(pack.sets.flatMap(set => set.questions.map(q => q.primary_knowledge_unit_id))).size, 10);
+  assert.ok(!manifest.subjectPackages.some(p => p.file?.includes('hungary_poland_pathway_candidate')));
 });
