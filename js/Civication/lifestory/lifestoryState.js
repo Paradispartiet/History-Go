@@ -69,11 +69,10 @@
    * @returns {LifestoryState}
    */
 
-  // C01 og C05 er privatliv, ikke eiendeler til den siste arbeidsgiveren.
-  // Hele rolletilstanden forblir separat; bare disse to historienes konkrete
-  // fakta, scenevalg og arkiv følger spilleren ved jobbbytte.
-  const PRIVATE_FLAG = /^wa_(?:[bcde]_)?c0[15]_/;
-  const PRIVATE_SCENE = /^wave_[abcde]_c0[15]_/;
+  // C01/C05 og det delte treukers-privatlivet tilhører spilleren, ikke
+  // arbeidsgiveren. De samme kanoniske private flagg/arkiv følger ved jobbbytte.
+  const PRIVATE_FLAG = /^(?:wa_(?:[bcde]_)?c0[15]_|wa_f_)/;
+  const PRIVATE_SCENE = /^(?:wave_[abcde]_c0[15]_|wave_e_liv_)/;
   function emptyPrivateStory() { return { flagg: {}, flaggDager: {}, spilteScener: [], arkiv: [], relasjoner: {} }; }
   function capturePrivateStory(state) {
     const story = emptyPrivateStory();
