@@ -180,8 +180,12 @@ function recordCompletedGameDay(rawDay) {
     : [];
   if (previous.some((r) => r.dayIndex === day)) return;
   const careerId = String(state.getActivePosition?.()?.career_id || "").trim();
+  /** @type {CiviEconomyCareer | null} */
   const career = Array.isArray(window.HG_CAREERS)
-    ? window.HG_CAREERS.find((c) => String(c?.career_id || "") === careerId)
+    ? /** @type {CiviEconomyCareer | null} */ (window.HG_CAREERS.find(
+        /** @param {CiviEconomyCareer} c */
+        (c) => String(c?.career_id || "") === careerId
+      ) || null)
     : null;
   const badge = Array.isArray(window.BADGES)
     ? window.BADGES.find((b) => String(b?.id || "") === careerId)
