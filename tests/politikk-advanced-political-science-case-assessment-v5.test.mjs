@@ -11,7 +11,7 @@ const emner = read(base + 'emner_politikk_canonical_v4_5.json');
 const methods = read(base + 'methods_politikk_canonical_v4_5.json').methods;
 const questionSchema = read('data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json');
 const normalize = (value) => String(value).toLocaleLowerCase('nb-NO').normalize('NFKD')
-  .replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-z0-9æøå]+/g, ' ').trim();
+  .replace(/\p{M}/gu, '').replace(/[^a-z0-9æøå]+/g, ' ').trim();
 const unique = (a) => new Set(a).size;
 
 test('Statsvitenskap v5: hele kanoniske begreps-/emneregisteret er maskinelt kontrollert', () => {
