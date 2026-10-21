@@ -239,9 +239,9 @@ test('day-21 life direction is earned from a saved choice; career remains indepe
   const content = pack('arbeidsledig');
   const clerk = pack('ekspeditor');
   const state = S.createInitialState(content);
-  const saved = { raw: JSON.stringify(state),
-    getItem(key) { return key === S.STORAGE_KEY ? this.raw : null; },
-    setItem(key, value) { if (key === S.STORAGE_KEY) this.raw = value; }
+  const saved = { raw: JSON.stringify(state), values: {},
+    getItem(key) { return key === S.STORAGE_KEY ? this.raw : this.values[key] ?? null; },
+    setItem(key, value) { if (key === S.STORAGE_KEY) this.raw = value; else this.values[key] = value; }
   };
   const app = { localStorage: saved, dispatchEvent() {},
     CivicationState: { getActivePosition: () => null } };
