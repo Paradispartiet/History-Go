@@ -1212,6 +1212,39 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 }
 
 
+/* C44: A visible, keyboard-accessible path to the actual Place Kilder tab.
+   The pre-existing #pcInfo click handler in place-card.js owns navigation. */
+#placeCard .pc-text > #pcInfo{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  width: auto;
+  min-height: 42px;
+  max-width: 100%;
+  margin: 10px 0 4px;
+  padding: 9px 15px;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.25;
+  font-weight: 750;
+  text-align: center;
+  white-space: normal;
+  cursor: pointer;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.23);
+  color: #fff;
+}
+#placeCard .pc-text > #pcInfo:focus-visible{
+  outline: 3px solid #ffe168;
+  outline-offset: 3px;
+}
+#placeCard .pc-text > #pcInfo:hover{
+  background: rgba(246,200,0,.18);
+  border-color: rgba(246,200,0,.6);
+}
+
 /* ===================================================== */
 /* Smooth “sted skifter”                                  */
 /* ===================================================== */
