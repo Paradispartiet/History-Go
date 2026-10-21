@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'tests/ljanselva-v1-real-browser.mjs'
+      - 'scripts/verify-ljanselva-fullquiz-browser.mjs'
       - 'data/places/natur/oslo/places_oslo_natur_hovedsteder/ljanselva.json'
       - 'data/quiz/natur/ljanselva_sets.json'
       - 'data/quizcards/natur/topp10_natur_ljanselva_20261021.json'
@@ -11,6 +12,9 @@ on:
       - 'bilder/places/ljanselva_landscape.webp'
       - '.github/workflows/ljanselva-v1-browser.yml'
   workflow_dispatch:
+concurrency:
+  group: ljanselva-v1-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 concurrency:
   group: ljanselva-v1-browser-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -37,7 +41,7 @@ jobs:
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
           test -n "$CHROME_BIN"
-          CHROME_BIN="$CHROME_BIN" node scripts/verify-place-quiz-browser.mjs ljanselva
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-ljanselva-fullquiz-browser.mjs ljanselva
       - name: Store browser screenshots and progress evidence
         if: always()
         uses: actions/upload-artifact@v4
