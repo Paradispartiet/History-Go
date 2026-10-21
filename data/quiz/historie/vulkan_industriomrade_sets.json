@@ -1,7 +1,7 @@
 {
   "targetId": "vulkan_industriomrade",
   "categoryId": "historie",
-  "generator_version": "chatgpt_history_go_manual_v2_source_enriched",
+  "generator_version": "history_go_source_verified_normal_4x7_20261021",
   "generated_from": [
     "data/places/natur/oslo/places_oslo_natur_akerselvarute/vulkan_industriomrade.json",
     "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json",
@@ -15,7 +15,19 @@
       "Skiftende nåværende virksomheter hardkodes ikke.",
       "1850-årene brukes som dokumentert industriell forhistorie på tomten, mens canonical Vulkan-år er 1873.",
       "Kilder varierer noe mellom 2007 og 2008 for Dansens Hus sin permanente etablering; områdekronologien bruker 2007 med eksplisitt forbehold."
-    ]
+    ],
+    "editorialReview": {
+      "reviewedAt": "2026-10-21",
+      "profile": "normal_4x7",
+      "previousQuestions": 42,
+      "activeQuestions": 28,
+      "revisedQuestions": 14,
+      "retainedQuizCardIds": 10,
+      "sourcePackets": [
+        "data/places/production/vulkan_industriomrade.json"
+      ],
+      "focus": "specific events, local historical actors, documented factories and evidence; retire generic/meta questions"
+    }
   },
   "sets": [
     {
@@ -191,26 +203,25 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hvorfor er 1873 et bedre canonical år for Vulkan enn legacy-året 1857?",
+          "question": "Hva viser navnet Vulkan til?",
           "options": [
-            "1873 er grunnleggelsesåret for Vulkan-bedriften, mens 1850-årene tilhører forhistorien på tomten",
-            "1857 er året jernstøperiet stengte",
-            "1873 er året Mathallen åpnet"
+            "Den romerske guden for ild og smedhåndverk",
+            "En tidligere byport ved Akerselva",
+            "Navnet på et norsk sagbruk"
           ],
-          "answer": "1873 er grunnleggelsesåret for Vulkan-bedriften, mens 1850-årene tilhører forhistorien på tomten",
+          "answer": "Den romerske guden for ild og smedhåndverk",
           "answerIndex": 0,
-          "knowledge": "Kildekritisk må stedets eldre industrihistorie skilles fra selve Vulkan-bedriftens start.",
+          "knowledge": "Bedriften tok navn etter den romerske guden for ild og smedhåndverk.",
           "difficulty": 1,
-          "question_type": "saertrekk",
+          "question_type": "stedskonkret",
           "question_layer": "intro_story",
           "tags": [
             "byomforming"
           ],
           "source": [
-            "Oslo byleksikon – Vulkan Jernstøberi og mekaniske Verksted",
-            "Oslo byleksikon – Bagaas Brug"
+            "https://vulkanoslo.no/om-vulkan/"
           ],
-          "claim_basis": "source_comparison",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_historie_kildekritisk_ma_stedets__d28d3b8874",
           "knowledge_unit_ids": [
             "ku_historie_kildekritisk_ma_stedets__d28d3b8874"
@@ -218,25 +229,20 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
-                "score": 10
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-                "score": 10
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
-                "score": 10
-              }
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.85,
+            "score": 10,
+            "matched": [
+              "sted",
+              "omforming",
+              "handverk"
             ]
-          }
+          },
+          "emne_ids": [
+            "em_his_middelalder_kirke_jord_eiendom_og_patronasje"
+          ]
         },
         {
           "id": "vulkan_industriomrade_s1_q5",
@@ -245,25 +251,25 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva skiller Vulkan fra et tilfeldig nytt kvartal?",
+          "question": "Hvilke varer produserte Vulkan før broproduksjonen ble sentral?",
           "options": [
-            "Det ligger i et elvenært område med tydelige eldre produksjonslag",
-            "Det er helt uten landskap",
-            "Det kan bare forstås gjennom reklame"
+            "Vekter, pengeskap og støpegods",
+            "Bomullsgarn, tepper og strømper",
+            "Teglstein, fliser og takstein"
           ],
-          "answer": "Det ligger i et elvenært område med tydelige eldre produksjonslag",
+          "answer": "Vekter, pengeskap og støpegods",
           "answerIndex": 0,
-          "knowledge": "Vulkan bør leses som et sted med historiske lag, ikke bare som ny bybruk.",
+          "knowledge": "I den tidlige virksomheten inngikk vekter, pengeskap, støpegods, maskiner og dampkjeler.",
           "difficulty": 1,
-          "question_type": "gjenkjenning",
+          "question_type": "stedskonkret",
           "question_layer": "intro_story",
           "tags": [
             "historiske_lag"
           ],
           "source": [
-            "History Go leksikon: vulkan_industriomrade"
+            "https://oslobyleksikon.no/side/Vulkan_Jernst%C3%B8beri_og_mekaniske_Verksted"
           ],
-          "claim_basis": "safe_leksikon_data",
+          "claim_basis": "verified_sources",
           "emne_ids": [
             "em_his_historiske_lag_i_byrom"
           ],
@@ -292,25 +298,25 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva er et godt første observasjonsspørsmål på Vulkan?",
+          "question": "Hva leverte Vulkan til nye bygårder i Kristiania omkring 1880?",
           "options": [
-            "Hvilke spor viser at dette området har skiftet funksjon?",
-            "Hvilken nøyaktig meny har stedet i dag?",
-            "Hvorfor er alle gamle spor borte?"
+            "Støpejernstrapper",
+            "Trelast til takkonstruksjoner",
+            "Glassmalerier til vinduer"
           ],
-          "answer": "Hvilke spor viser at dette området har skiftet funksjon?",
+          "answer": "Støpejernstrapper",
           "answerIndex": 0,
-          "knowledge": "Transformasjon blir synlig når spilleren ser etter funksjonsskifte i bygg, elverom og bruk.",
+          "knowledge": "Vulkan leverte støpejernstrapper til nye bygårder i Kristiania.",
           "difficulty": 1,
-          "question_type": "observasjon",
+          "question_type": "stedskonkret",
           "question_layer": "intro_story",
           "tags": [
             "funksjonsskifte"
           ],
           "source": [
-            "History Go leksikon: vulkan_industriomrade"
+            "https://oslobyleksikon.no/side/Vulkan_Jernst%C3%B8beri_og_mekaniske_Verksted"
           ],
-          "claim_basis": "safe_leksikon_data",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_historie_transformasjon_blir_synl_153d314866",
           "knowledge_unit_ids": [
             "ku_historie_transformasjon_blir_synl_153d314866"
@@ -324,15 +330,15 @@
             "confidence": 0,
             "top": [
               {
-                "emne_id": "em_his_gjenoppbygging_minne",
-                "score": 4
-              },
-              {
                 "emne_id": "em_his_ruiner_rester_ombruk",
-                "score": 4
+                "score": 7
               },
               {
                 "emne_id": "em_his_spor_materialitet",
+                "score": 7
+              },
+              {
+                "emne_id": "em_his_jernalder_gard_handverk_makt",
                 "score": 4
               }
             ]
@@ -345,27 +351,26 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva binder Vulkan og Nedre Foss sammen som læringssteder?",
+          "question": "Hvor flyttet den gjenværende industrivirksomheten da jernstøperiet ble lagt ned?",
           "options": [
-            "Begge viser hvordan Akerselva kobler vann, industri og ny bybruk",
-            "Begge er fjelltopper",
-            "Begge handler bare om sport"
+            "Furuset",
+            "Lodalen",
+            "Skøyen"
           ],
-          "answer": "Begge viser hvordan Akerselva kobler vann, industri og ny bybruk",
+          "answer": "Furuset",
           "answerIndex": 0,
-          "knowledge": "Vulkan fungerer godt etter Nedre Foss fordi begge leser Akerselva som kraft, spor og transformasjon.",
+          "knowledge": "Etter nedleggelsen av jernstøperiet i 1968 ble den gjenværende industrivirksomheten flyttet til Furuset.",
           "difficulty": 1,
-          "question_type": "rutekobling",
+          "question_type": "stedskonkret",
           "question_layer": "intro_story",
           "tags": [
             "rute",
             "nedre_foss"
           ],
           "source": [
-            "History Go leksikon: nedre_foss",
-            "History Go leksikon: vulkan_industriomrade"
+            "https://oslobyleksikon.no/side/Vulkan_Jernst%C3%B8beri_og_mekaniske_Verksted"
           ],
-          "claim_basis": "safe_leksikon_data",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_historie_vulkan_fungerer_godt_ett_b0c4558db0",
           "knowledge_unit_ids": [
             "ku_historie_vulkan_fungerer_godt_ett_b0c4558db0"
@@ -379,16 +384,16 @@
             "confidence": 0,
             "top": [
               {
-                "emne_id": "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
-                "score": 9
-              },
-              {
                 "emne_id": "em_his_gjenoppbygging_minne",
                 "score": 7
               },
               {
-                "emne_id": "em_his_kildekritikk_arkiv_spor",
-                "score": 6
+                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+                "score": 7
+              },
+              {
+                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
+                "score": 7
               }
             ]
           }
@@ -556,25 +561,25 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva kan ganglinjer og åpne rom fortelle på Vulkan?",
+          "question": "Hvor lå de opprinnelige verkstedene til Vulkan?",
           "options": [
-            "Hvordan et tidligere produksjonslandskap er gjort tilgjengelig for bybruk",
-            "At området ikke kan brukes av mennesker",
-            "At elva mangler betydning"
+            "På en tidligere brennerigård i Brenneribakken",
+            "I et sjøhus ved Vippetangen",
+            "I et mekanisk verksted på Filipstad"
           ],
-          "answer": "Hvordan et tidligere produksjonslandskap er gjort tilgjengelig for bybruk",
+          "answer": "På en tidligere brennerigård i Brenneribakken",
           "answerIndex": 0,
-          "knowledge": "Tilgjengelighet, passasjer og oppholdsrom er viktige tegn på byomforming.",
+          "knowledge": "Vulkans første verksteder lå på tomten til en eldre brennerigård.",
           "difficulty": 1,
-          "question_type": "bruk_stemning",
+          "question_type": "stedskonkret",
           "question_layer": "place_life",
           "tags": [
             "tilgjengelighet"
           ],
           "source": [
-            "History Go place data: vulkan_industriomrade"
+            "https://oslobyleksikon.no/side/Vulkan_Jernst%C3%B8beri_og_mekaniske_Verksted"
           ],
-          "claim_basis": "safe_place_data",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_historie_tilgjengelighet_passasje_a21095aca7",
           "knowledge_unit_ids": [
             "ku_historie_tilgjengelighet_passasje_a21095aca7"
@@ -588,8 +593,16 @@
             "confidence": 0,
             "top": [
               {
-                "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
+                "emne_id": "em_his_familie_transnasjonale_band",
                 "score": 4
+              },
+              {
+                "emne_id": "em_his_1814_grunnlov_statsdannelse",
+                "score": 3
+              },
+              {
+                "emne_id": "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+                "score": 3
               }
             ]
           }
@@ -601,26 +614,26 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva gjør Vulkan relevant for diskusjoner om hvem byen er for?",
+          "question": "Hva produserte Vulkan også til industrien, i tillegg til broer?",
           "options": [
-            "Transformasjon kan skape både nytt liv og nye grenser for bruk",
-            "Alle byrom er nøytrale",
-            "Områder ved elva påvirker aldri folk"
+            "Varme- og ventilasjonsanlegg",
+            "Papir og kartong",
+            "Garn og tekstilmaskiner"
           ],
-          "answer": "Transformasjon kan skape både nytt liv og nye grenser for bruk",
+          "answer": "Varme- og ventilasjonsanlegg",
           "answerIndex": 0,
-          "knowledge": "Byomforming handler også om tilgjengelighet, kommersialisering og hvem som føler tilhørighet.",
+          "knowledge": "Vulkan leverte etter hvert blant annet varme- og ventilasjonsanlegg.",
           "difficulty": 1,
-          "question_type": "samfunn",
+          "question_type": "stedskonkret",
           "question_layer": "place_life",
           "tags": [
             "gentrifisering",
             "tilgjengelighet"
           ],
           "source": [
-            "History Go leksikon: vulkan_industriomrade"
+            "https://oslobyleksikon.no/side/Vulkan_Jernst%C3%B8beri_og_mekaniske_Verksted"
           ],
-          "claim_basis": "conceptual_safe",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_historie_byomforming_handler_ogsa_e24bd4f498",
           "knowledge_unit_ids": [
             "ku_historie_byomforming_handler_ogsa_e24bd4f498"
@@ -634,16 +647,16 @@
             "confidence": 0,
             "top": [
               {
-                "emne_id": "em_his_tilhorighet_ekskludering",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_stedsnavn_navnepolitikk",
-                "score": 6
-              },
-              {
                 "emne_id": "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder",
-                "score": 4
+                "score": 7
+              },
+              {
+                "emne_id": "em_his_gjenoppbygging_minne",
+                "score": 7
+              },
+              {
+                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+                "score": 7
               }
             ]
           }
@@ -709,25 +722,25 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva gir Vulkan sin tydelige History Go-stemning?",
+          "question": "Hva foregikk i deler av Vulkan-området etter industrinedleggelsen?",
           "options": [
-            "Kontrasten mellom eldre industrielt elverom og nyere byliv",
-            "Fravær av alle spor",
-            "At stedet bare er et veikryss"
+            "Lager- og håndverksvirksomhet",
+            "Bare ordinær boligutleie",
+            "Et offentlig kraftverk"
           ],
-          "answer": "Kontrasten mellom eldre industrielt elverom og nyere byliv",
+          "answer": "Lager- og håndverksvirksomhet",
           "answerIndex": 0,
-          "knowledge": "Kontraster mellom gammelt og nytt gjør Vulkan godt egnet for stedslæring.",
+          "knowledge": "Det tidligere fabrikkområdet hadde lager- og håndverksfunksjoner før den store byomformingen.",
           "difficulty": 1,
-          "question_type": "bruk_stemning",
+          "question_type": "stedskonkret",
           "question_layer": "place_life",
           "tags": [
             "kontrast"
           ],
           "source": [
-            "History Go leksikon: vulkan_industriomrade"
+            "https://vulkanoslo.no/om-vulkan/"
           ],
-          "claim_basis": "safe_leksikon_data",
+          "claim_basis": "verified_sources",
           "emne_ids": [
             "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
           ],
@@ -752,375 +765,9 @@
       ]
     },
     {
-      "set_id": "historie_vulkan_industriomrade_set_3",
+      "set_id": "historie_vulkan_industriomrade_set_4",
       "level": 3,
       "order": 3,
-      "xp": 70,
-      "mode": "emne_based_foundation",
-      "questions": [
-        {
-          "id": "vulkan_industriomrade_s3_q1",
-          "quiz_id": "historie_vulkan_industriomrade_set_3_q1",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva betyr byomforming?",
-          "options": [
-            "At et område får ny struktur, funksjon eller bruk over tid",
-            "At byen aldri endrer seg",
-            "At alle historiske spor fjernes"
-          ],
-          "answer": "At et område får ny struktur, funksjon eller bruk over tid",
-          "answerIndex": 0,
-          "knowledge": "Vulkan er et godt sted for å forstå byomforming gjennom endret bruk av et industrinært område.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "byomforming"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_vulkan_er_et_godt_sted_f_5b10c3c282",
-          "knowledge_unit_ids": [
-            "ku_historie_vulkan_er_et_godt_sted_f_5b10c3c282"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
-                "score": 7
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s3_q2",
-          "quiz_id": "historie_vulkan_industriomrade_set_3_q2",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva betyr industriarv?",
-          "options": [
-            "Spor og fortellinger etter tidligere industri og arbeid",
-            "En type moderne reklame",
-            "Et ord for natur uten mennesker"
-          ],
-          "answer": "Spor og fortellinger etter tidligere industri og arbeid",
-          "answerIndex": 0,
-          "knowledge": "Industriarv gjør tidligere arbeid og produksjon synlig i dagens bylandskap.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "industriarv"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_industriarv_gj_r_tidlige_90cc9588cf",
-          "knowledge_unit_ids": [
-            "ku_historie_industriarv_gj_r_tidlige_90cc9588cf"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_industriby_1900",
-                "score": 10
-              },
-              {
-                "emne_id": "em_his_kjonn_familie_familie_hushold_og_slektskap",
-                "score": 10
-              },
-              {
-                "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
-                "score": 9
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s3_q3",
-          "quiz_id": "historie_vulkan_industriomrade_set_3_q3",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva er et transformasjonsområde?",
-          "options": [
-            "Et område der tidligere bruk er omformet til nye funksjoner",
-            "Et område uten historie",
-            "Et område som ikke kan endre seg"
-          ],
-          "answer": "Et område der tidligere bruk er omformet til nye funksjoner",
-          "answerIndex": 0,
-          "knowledge": "Transformasjonsområder kan vise både bevaring, ny bruk og konflikter om byutvikling.",
-          "difficulty": 2,
-          "question_type": "begrep",
-          "question_layer": "foundation",
-          "tags": [
-            "transformasjon"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_transformasjonsomrader_k_38a3bc6bca",
-          "knowledge_unit_ids": [
-            "ku_historie_transformasjonsomrader_k_38a3bc6bca"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_byhistorie_stedsendring_gentrifisering_ombruk_og_bevaring",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_kongemakt_kirke_konflikt",
-                "score": 4
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s3_q4",
-          "quiz_id": "historie_vulkan_industriomrade_set_3_q4",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva betyr blandet bybruk?",
-          "options": [
-            "At flere funksjoner som ferdsel, opphold, arbeid, kultur og bolig kan ligge tett",
-            "At stedet bare har én funksjon",
-            "At mennesker ikke bruker området"
-          ],
-          "answer": "At flere funksjoner som ferdsel, opphold, arbeid, kultur og bolig kan ligge tett",
-          "answerIndex": 0,
-          "knowledge": "Vulkan kan brukes til å forstå hvordan tidligere industriområder får sammensatt bybruk.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "blandet_bybruk"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_vulkan_kan_brukes_til_a__22631eff1b",
-          "knowledge_unit_ids": [
-            "ku_historie_vulkan_kan_brukes_til_a__22631eff1b"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_stat_institusjoner",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
-                "score": 7
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s3_q5",
-          "quiz_id": "historie_vulkan_industriomrade_set_3_q5",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva betyr gentrifisering i en nøktern byanalyse?",
-          "options": [
-            "At oppgradering kan endre priser, brukere og sosial tilhørighet",
-            "At alle endringer er nøytrale",
-            "At bare natur påvirkes"
-          ],
-          "answer": "At oppgradering kan endre priser, brukere og sosial tilhørighet",
-          "answerIndex": 0,
-          "knowledge": "Gentrifisering kan være en del av transformasjonsdiskusjonen når gamle områder får ny verdi og ny brukergruppe.",
-          "difficulty": 2,
-          "question_type": "begrep",
-          "question_layer": "foundation",
-          "tags": [
-            "gentrifisering"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_gentrifisering_kan_v_re__0a1304c64a",
-          "knowledge_unit_ids": [
-            "ku_historie_gentrifisering_kan_v_re__0a1304c64a"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_bruker_tjeneste_forvaltning",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_byhistorie_stedsendring_bydannelse_og_urban_morfologi",
-                "score": 3
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s3_q6",
-          "quiz_id": "historie_vulkan_industriomrade_set_3_q6",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva er et elverom?",
-          "options": [
-            "Rommet rundt elva, med vann, kanter, broer, ferdsel og opphold",
-            "Et rom uten vann",
-            "Et rom som bare finnes innendørs"
-          ],
-          "answer": "Rommet rundt elva, med vann, kanter, broer, ferdsel og opphold",
-          "answerIndex": 0,
-          "knowledge": "Elverommet gjør Akerselva til en fysisk struktur i byens bruk.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "elverom"
-          ],
-          "source": [
-            "History Go place data: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_elverommet_gj_r_akerselv_cb2ac49c91",
-          "knowledge_unit_ids": [
-            "ku_historie_elverommet_gj_r_akerselv_cb2ac49c91"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s3_q7",
-          "quiz_id": "historie_vulkan_industriomrade_set_3_q7",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva er et produksjonslandskap?",
-          "options": [
-            "Et område formet av arbeid, kraft, transport og produksjon",
-            "Et sted uten menneskelig bruk",
-            "En ren park uten historie"
-          ],
-          "answer": "Et område formet av arbeid, kraft, transport og produksjon",
-          "answerIndex": 0,
-          "knowledge": "Vulkan kan leses som del av et tidligere produksjonslandskap langs Akerselva.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "produksjonslandskap"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_vulkan_kan_leses_som_del_4f8974b44f",
-          "knowledge_unit_ids": [
-            "ku_historie_vulkan_kan_leses_som_del_4f8974b44f"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_industri_produksjon_energi",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_miljo_klima_landskap_som_historisk_prosess",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_industriby_1900",
-                "score": 6
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "set_id": "historie_vulkan_industriomrade_set_4",
-      "level": 4,
-      "order": 4,
       "xp": 80,
       "mode": "place_concrete_advanced",
       "questions": [
@@ -1257,26 +904,25 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva gjør Vulkan til et godt neste stopp etter Nedre Foss?",
+          "question": "Hva ble kombinert med nybygg under omformingen av Vulkan?",
           "options": [
-            "Nedre Foss viser kraftpunktet; Vulkan viser transformert industriby rundt elva",
-            "Stedene har ingen sammenheng",
-            "Begge handler bare om konger"
+            "De gamle verkstedhallene",
+            "En middelalderkirke",
+            "En eldre jernbanestasjon"
           ],
-          "answer": "Nedre Foss viser kraftpunktet; Vulkan viser transformert industriby rundt elva",
+          "answer": "De gamle verkstedhallene",
           "answerIndex": 0,
-          "knowledge": "Sammen gir Nedre Foss og Vulkan en rute fra vannkraft til byomforming.",
+          "knowledge": "De tidligere verkstedhallene ble bevart og kombinert med nye bolig-, nærings- og kulturbygg.",
           "difficulty": 2,
-          "question_type": "rutekobling",
+          "question_type": "stedskonkret",
           "question_layer": "advanced_place",
           "tags": [
             "rute"
           ],
           "source": [
-            "History Go leksikon: nedre_foss",
-            "History Go leksikon: vulkan_industriomrade"
+            "https://snl.no/Vulkan_Jernst%C3%B8beri_og_mekaniske_Verksted"
           ],
-          "claim_basis": "safe_leksikon_data",
+          "claim_basis": "verified_sources",
           "emne_ids": [
             "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
           ],
@@ -1300,26 +946,26 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva er et godt kritisk spørsmål ved Vulkan?",
+          "question": "Hva var det gamle Broverkstedet opprinnelig knyttet til?",
           "options": [
-            "Hvem får bruke og føle eierskap til det nye byrommet?",
-            "Hvorfor skal ingen bruke området?",
-            "Hvorfor finnes ikke gamle spor?"
+            "Vulkans mekaniske industri og broproduksjon",
+            "Byens sporveisdrift",
+            "Trelasthandelen på Bjørvika"
           ],
-          "answer": "Hvem får bruke og føle eierskap til det nye byrommet?",
+          "answer": "Vulkans mekaniske industri og broproduksjon",
           "answerIndex": 0,
-          "knowledge": "Transformerte områder kan leses både som åpning av byen og som sosial sortering.",
+          "knowledge": "Broverkstedet var en del av den mekaniske industrien som hadde vokst fram langs Akerselva.",
           "difficulty": 2,
-          "question_type": "kritisk_analyse",
+          "question_type": "stedskonkret",
           "question_layer": "advanced_place",
           "tags": [
             "tilgjengelighet",
             "gentrifisering"
           ],
           "source": [
-            "History Go leksikon: vulkan_industriomrade"
+            "https://snl.no/Vulkan_Jernst%C3%B8beri_og_mekaniske_Verksted"
           ],
-          "claim_basis": "conceptual_safe",
+          "claim_basis": "verified_sources",
           "emne_ids": [
             "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
           ],
@@ -1343,25 +989,25 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva kan bygg og materialer fortelle selv uten eksakt datering?",
+          "question": "Hva ble endret i Broverkstedet da Mathallen flyttet inn?",
           "options": [
-            "At området har skiftet funksjon og verdi over tid",
-            "At all historie er borte",
-            "At årstall er det eneste som betyr noe"
+            "Rommene ble tilpasset mathandel og servering",
+            "Hele bygningen ble revet og bygd på nytt",
+            "Maskinene ble satt tilbake for broproduksjon"
           ],
-          "answer": "At området har skiftet funksjon og verdi over tid",
+          "answer": "Rommene ble tilpasset mathandel og servering",
           "answerIndex": 0,
-          "knowledge": "Man kan lese funksjonsskifte uten å gjøre usikre dateringer til fakta.",
+          "knowledge": "Broverkstedets eldre form ble bevart, mens rommene ble ombygd til handel og servering.",
           "difficulty": 2,
-          "question_type": "analyse",
+          "question_type": "stedskonkret",
           "question_layer": "advanced_place",
           "tags": [
             "funksjonsskifte"
           ],
           "source": [
-            "History Go leksikon: vulkan_industriomrade"
+            "https://www.lpo.no/prosjekter/mathallen"
           ],
-          "claim_basis": "safe_leksikon_data",
+          "claim_basis": "verified_sources",
           "emne_ids": [
             "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
           ],
@@ -1385,25 +1031,25 @@
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
           "question_scope": "place",
-          "question": "Hva bør en god Vulkan-quiz trene spilleren i?",
+          "question": "Hvem kjøpte eiendommer på Vulkan på slutten av 1990-årene?",
           "options": [
-            "Å lese industriarv, elverom og ny bybruk sammen",
-            "Å overse stedet",
-            "Å velge svar uten observasjon"
+            "Aspelin Ramm og Anthon B Nilsen",
+            "NSB og Statens Veivesen",
+            "Halvor Hoaas og Ferdinand Vibe"
           ],
-          "answer": "Å lese industriarv, elverom og ny bybruk sammen",
+          "answer": "Aspelin Ramm og Anthon B Nilsen",
           "answerIndex": 0,
-          "knowledge": "Quizzen skal gjøre spilleren bedre til å forstå stedet de står på.",
+          "knowledge": "Eiendomsaktørene kjøpte tomter for videre utvikling av det tidligere industriområdet.",
           "difficulty": 2,
-          "question_type": "meta",
+          "question_type": "stedskonkret",
           "question_layer": "advanced_place",
           "tags": [
             "stedbasert_læring"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "https://vulkanoslo.no/om-vulkan/"
           ],
-          "claim_basis": "generator_rule",
+          "claim_basis": "verified_sources",
           "emne_ids": [
             "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
           ],
@@ -1429,8 +1075,8 @@
     },
     {
       "set_id": "historie_vulkan_industriomrade_set_5",
-      "level": 5,
-      "order": 5,
+      "level": 4,
+      "order": 4,
       "xp": 90,
       "mode": "emne_based_advanced",
       "questions": [
@@ -1533,27 +1179,26 @@
           "categoryId": "historie",
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva viser Dansens Hus på Vulkan særlig tydelig?",
+          "question_scope": "place",
+          "question": "Hvilken institusjon for dans ble del av det ombygde Vulkan-området?",
           "options": [
-            "At gamle industribygg kan få ny kulturfunksjon",
-            "At alle industribygg må rives",
-            "At Vulkan aldri hadde verksteder"
+            "Dansens Hus",
+            "Oslo Nye Teater",
+            "Nationaltheatret"
           ],
-          "answer": "At gamle industribygg kan få ny kulturfunksjon",
+          "answer": "Dansens Hus",
           "answerIndex": 0,
-          "knowledge": "Dansens Hus tok i bruk ombygde industribygninger og er et klart eksempel på adaptiv ombruk.",
+          "knowledge": "Dansens Hus er en av kulturfunksjonene som inngår i det omformede området.",
           "difficulty": 3,
-          "question_type": "emne_avansert",
+          "question_type": "stedskonkret",
           "question_layer": "advanced_emne",
           "tags": [
             "ombruk"
           ],
           "source": [
-            "Oslo byleksikon – Vulkan (område)",
-            "Store norske leksikon – Vulkan (område i Oslo)"
+            "https://snl.no/Vulkan_-_omr%C3%A5de_i_Oslo"
           ],
-          "claim_basis": "documented_external_sources",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_historie_dansens_hus_tok_i_bruk_o_e953a52c84",
           "knowledge_unit_ids": [
             "ku_historie_dansens_hus_tok_i_bruk_o_e953a52c84"
@@ -1567,16 +1212,16 @@
             "confidence": 0,
             "top": [
               {
+                "emne_id": "em_his_ruiner_rester_ombruk",
+                "score": 8
+              },
+              {
                 "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
-                "score": 4
+                "score": 7
               },
               {
                 "emne_id": "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_industriby_1900",
-                "score": 4
+                "score": 7
               }
             ]
           }
@@ -1694,26 +1339,26 @@
           "categoryId": "historie",
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva er et godt sammenligningspunkt mellom Vulkan og Bjørvika?",
+          "question_scope": "place",
+          "question": "Hvilke nye funksjoner ble kombinert med Vulkans eldre verkstedhaller?",
           "options": [
-            "Begge kan leses som transformasjon med nye offentlige og kommersielle byrom",
-            "Begge er urørte skoger",
-            "Begge mangler planlegging"
+            "Boliger, næring og kulturbygg",
+            "Bare lagre og tekniske anlegg",
+            "Et jernbanedepot og en ny godshavn"
           ],
-          "answer": "Begge kan leses som transformasjon med nye offentlige og kommersielle byrom",
+          "answer": "Boliger, næring og kulturbygg",
           "answerIndex": 0,
-          "knowledge": "Sammenligning gjør transformasjonsbegrepet tydeligere på tvers av steder.",
+          "knowledge": "Ombruken av verkstedhallene ble kombinert med ny bolig-, nærings- og kulturbygging.",
           "difficulty": 3,
-          "question_type": "emne_avansert",
+          "question_type": "stedskonkret",
           "question_layer": "advanced_emne",
           "tags": [
             "sammenligning"
           ],
           "source": [
-            "History Go leksikon: vulkan_industriomrade"
+            "https://snl.no/Vulkan_Jernst%C3%B8beri_og_mekaniske_Verksted"
           ],
-          "claim_basis": "conceptual_safe",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_historie_sammenligning_gj_r_trans_0eea34900a",
           "knowledge_unit_ids": [
             "ku_historie_sammenligning_gj_r_trans_0eea34900a"
@@ -1727,16 +1372,16 @@
             "confidence": 0,
             "top": [
               {
-                "emne_id": "em_his_atomvapen_avskrekking_opprustning",
-                "score": 6
+                "emne_id": "em_his_kultur_modernisme_kunst_visuell_politikk",
+                "score": 9
               },
               {
-                "emne_id": "em_his_avkolonisering_alliansefrihet_utvikling",
-                "score": 6
+                "emne_id": "em_his_ruiner_rester_ombruk",
+                "score": 8
               },
               {
-                "emne_id": "em_his_bonder_fiskere_bygdesamfunn_modernisering",
-                "score": 6
+                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
+                "score": 7
               }
             ]
           }
@@ -1747,26 +1392,26 @@
           "categoryId": "historie",
           "placeId": "vulkan_industriomrade",
           "targetId": "vulkan_industriomrade",
-          "question_scope": "emne",
-          "question": "Hva er viktigst for History Go-læring på Vulkan?",
+          "question_scope": "place",
+          "question": "Hva ble sentrale produkter i Vulkans videre industrihistorie?",
           "options": [
-            "Å forstå hvordan stedets fysiske spor åpner større byhistoriske spørsmål",
-            "Å samle løsrevne navn",
-            "Å ignorere bruk og landskap"
+            "Broer og tekniske stålkonstruksjoner",
+            "Tekstilvarer og fargede stoffer",
+            "Teglstein og murpuss"
           ],
-          "answer": "Å forstå hvordan stedets fysiske spor åpner større byhistoriske spørsmål",
+          "answer": "Broer og tekniske stålkonstruksjoner",
           "answerIndex": 0,
-          "knowledge": "Vulkan er best som inngang til industriarv, transformasjon, elverom og bypolitikk.",
+          "knowledge": "Broer og tekniske stålkonstruksjoner ble viktige for bedriften under Amundsen.",
           "difficulty": 3,
-          "question_type": "emne_avansert",
+          "question_type": "stedskonkret",
           "question_layer": "advanced_emne",
           "tags": [
             "stedslæring"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "https://oslobyleksikon.no/side/Vulkan_Jernst%C3%B8beri_og_mekaniske_Verksted"
           ],
-          "claim_basis": "generator_rule",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_historie_vulkan_er_best_som_innga_014d1ee833",
           "knowledge_unit_ids": [
             "ku_historie_vulkan_er_best_som_innga_014d1ee833"
@@ -1784,387 +1429,12 @@
                 "score": 9
               },
               {
-                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
+                "emne_id": "em_his_byhistorie_stedsendring_sanering_byfornyelse_og_modernisme",
                 "score": 7
-              },
-              {
-                "emne_id": "em_his_politi_straff_institusjonshverdag",
-                "score": 7
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "set_id": "historie_vulkan_industriomrade_set_6",
-      "level": 6,
-      "order": 6,
-      "xp": 100,
-      "mode": "concept_based",
-      "questions": [
-        {
-          "id": "vulkan_industriomrade_s6_q1",
-          "quiz_id": "historie_vulkan_industriomrade_set_6_q1",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "concept",
-          "question": "Hva er den viktigste forskjellen mellom Bagaas Brug og Vulkan i stedets tidslinje?",
-          "options": [
-            "Bagaas Brug tilhører den eldre industriforhistorien, mens Vulkan-bedriften ble grunnlagt i 1873",
-            "De er to navn på samme bedrift fra samme år",
-            "Bagaas Brug kom etter 1968"
-          ],
-          "answer": "Bagaas Brug tilhører den eldre industriforhistorien, mens Vulkan-bedriften ble grunnlagt i 1873",
-          "answerIndex": 0,
-          "knowledge": "Stedet har flere industrilag som må holdes fra hverandre for at kronologien skal bli riktig.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "transformasjonsområde"
-          ],
-          "source": [
-            "Oslo byleksikon – Vulkan Jernstøberi og mekaniske Verksted",
-            "Oslo byleksikon – Bagaas Brug"
-          ],
-          "claim_basis": "source_comparison",
-          "primary_knowledge_unit_id": "ku_historie_stedet_har_flere_industr_77b1b09367",
-          "knowledge_unit_ids": [
-            "ku_historie_stedet_har_flere_industr_77b1b09367"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_arkeologisk_datering_kronologi",
-                "score": 11
-              },
-              {
-                "emne_id": "em_his_kronologi_datering_usikkerhet",
-                "score": 10
               },
               {
                 "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-                "score": 10
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s6_q2",
-          "quiz_id": "historie_vulkan_industriomrade_set_6_q2",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "concept",
-          "question": "Hva er den tryggeste måten å beskrive dagens Vulkan på i et varig quizspørsmål?",
-          "options": [
-            "Bruk stabile funksjoner og dokumentert ombruk fremfor en detaljert liste over dagens leietakere",
-            "Lås alle nåværende restauranter som evige fakta",
-            "Unngå all omtale av byomforming"
-          ],
-          "answer": "Bruk stabile funksjoner og dokumentert ombruk fremfor en detaljert liste over dagens leietakere",
-          "answerIndex": 0,
-          "knowledge": "Virksomhetsmiksen kan endres, mens de dokumenterte bygnings- og transformasjonslagene er mer stabile.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "industriarv"
-          ],
-          "source": [
-            "Oslo byleksikon – Vulkan (område)",
-            "Store norske leksikon – Vulkan (område i Oslo)"
-          ],
-          "claim_basis": "time_sensitive_holdback",
-          "primary_knowledge_unit_id": "ku_historie_virksomhetsmiksen_kan_en_924b6649ce",
-          "knowledge_unit_ids": [
-            "ku_historie_virksomhetsmiksen_kan_en_924b6649ce"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_ankomst_bosetting_bolig",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_migrasjon_mangfold",
-                "score": 4
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s6_q3",
-          "quiz_id": "historie_vulkan_industriomrade_set_6_q3",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "concept",
-          "question": "Hva betyr ombruk i byutvikling?",
-          "options": [
-            "At eksisterende strukturer får ny funksjon",
-            "At alt må rives",
-            "At ingen endring skjer"
-          ],
-          "answer": "At eksisterende strukturer får ny funksjon",
-          "answerIndex": 0,
-          "knowledge": "Ombruk kan koble eldre spor til nye funksjoner og ny bybruk.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "ombruk"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_ombruk_kan_koble_eldre_s_fdf381dba8",
-          "knowledge_unit_ids": [
-            "ku_historie_ombruk_kan_koble_eldre_s_fdf381dba8"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_ruiner_rester_ombruk",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_spor_materialitet",
                 "score": 7
-              },
-              {
-                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
-                "score": 4
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s6_q4",
-          "quiz_id": "historie_vulkan_industriomrade_set_6_q4",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "concept",
-          "question": "Hvilket begrep handler om at oppgradering kan endre brukergrupper og priser?",
-          "options": [
-            "Gentrifisering",
-            "Fotosyntese",
-            "Middelalderrett"
-          ],
-          "answer": "Gentrifisering",
-          "answerIndex": 0,
-          "knowledge": "Gentrifisering er relevant når byomforming endrer økonomisk og sosial tilgjengelighet.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "gentrifisering"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_gentrifisering_er_releva_f2dff5e7f8",
-          "knowledge_unit_ids": [
-            "ku_historie_gentrifisering_er_releva_f2dff5e7f8"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_okonomi_handel_forbruk_priser_og_levestandard",
-                "score": 7
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s6_q5",
-          "quiz_id": "historie_vulkan_industriomrade_set_6_q5",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "concept",
-          "question": "Hva er blandet bybruk?",
-          "options": [
-            "Flere funksjoner tett sammen i samme område",
-            "Bare én funksjon overalt",
-            "Et område uten mennesker"
-          ],
-          "answer": "Flere funksjoner tett sammen i samme område",
-          "answerIndex": 0,
-          "knowledge": "Blandet bybruk gjør transformerte områder mer sammensatte, men kan også gjøre dem mer kommersielle.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "blandet_bybruk"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_blandet_bybruk_gj_r_tran_810917c396",
-          "knowledge_unit_ids": [
-            "ku_historie_blandet_bybruk_gj_r_tran_810917c396"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
-                "score": 5
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s6_q6",
-          "quiz_id": "historie_vulkan_industriomrade_set_6_q6",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "concept",
-          "question": "Hva er en elvekorridor i History Go-sammenheng?",
-          "options": [
-            "En sammenhengende struktur der elva binder steder, natur og bybruk",
-            "En blindgate uten vann",
-            "Et rom uten ferdsel"
-          ],
-          "answer": "En sammenhengende struktur der elva binder steder, natur og bybruk",
-          "answerIndex": 0,
-          "knowledge": "Akerselva-korridoren gjør det mulig å lese steder som ledd i en rute.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "elvekorridor"
-          ],
-          "source": [
-            "History Go place data: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_akerselva_korridoren_gj__f29ae5b9de",
-          "knowledge_unit_ids": [
-            "ku_historie_akerselva_korridoren_gj__f29ae5b9de"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_1814_grunnlov_statsdannelse",
-                "score": 3
-              },
-              {
-                "emne_id": "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
-                "score": 3
-              },
-              {
-                "emne_id": "em_his_1814_statsdannelse_enevelde_og_dansk_norsk_statsutvikling",
-                "score": 3
-              }
-            ]
-          }
-        },
-        {
-          "id": "vulkan_industriomrade_s6_q7",
-          "quiz_id": "historie_vulkan_industriomrade_set_6_q7",
-          "categoryId": "historie",
-          "placeId": "vulkan_industriomrade",
-          "targetId": "vulkan_industriomrade",
-          "question_scope": "concept",
-          "question": "Hvilket begrepspar forklarer Vulkan best?",
-          "options": [
-            "Industriarv og byomforming",
-            "Skog og fjellklatring",
-            "Kongebolig og slagmark"
-          ],
-          "answer": "Industriarv og byomforming",
-          "answerIndex": 0,
-          "knowledge": "Vulkan blir tydeligst når eldre produksjonslag leses sammen med ny bruk og ny byverdi.",
-          "difficulty": 3,
-          "question_type": "concept_pair",
-          "question_layer": "concept",
-          "tags": [
-            "industriarv",
-            "byomforming"
-          ],
-          "source": [
-            "History Go leksikon: vulkan_industriomrade"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_vulkan_blir_tydeligst_na_a87d1f721c",
-          "knowledge_unit_ids": [
-            "ku_historie_vulkan_blir_tydeligst_na_a87d1f721c"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_industri_produksjon_energi",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
-                "score": 4
               }
             ]
           }
