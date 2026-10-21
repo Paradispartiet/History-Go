@@ -620,6 +620,25 @@ if (write) {
   for (const [rel, expected] of [[MATRIX_PATH, matrixText], [REPORT_PATH, reportText]]) {
     if (!exists(rel) || fs.readFileSync(abs(rel), 'utf8') !== expected) {
       console.error(`${rel} is stale. Run node scripts/audit-civication-career-gameplay.mjs --write.`);
+      if (rel === MATRIX_PATH && exists(rel)) {
+        const changes = [];
+        function showDiff(before, after, prefix) {
+          if (changes.length >= 70 || JSON.stringify(before) === JSON.stringify(after)) return;
+          if (Array.isArray(before) && Array.isArray(after)) {
+            changes.push({
+              path: prefix, from: before.length, to: after.length,
+              removed: before.filter((item) => !after.includes(item)).slice(0, 6),
+              added: after.filter((item) => !before.includes(item)).slice(0, 6)
+            });
+          } else if (before && after && typeof before === 'object' && typeof after === 'object') {
+            for (const key of new Set([...Object.keys(before), ...Object.keys(after)])) {
+              showDiff(before[key], after[key], prefix ? prefix + '.' + key : key);
+            }
+          } else changes.push({ path: prefix, from: before, to: after });
+        }
+        showDiff(JSON.parse(fs.readFileSync(abs(rel), 'utf8')), matrix, '');
+        console.error('Generated matrix differences:', JSON.stringify(changes));
+      }
       process.exit(1);
     }
   }
