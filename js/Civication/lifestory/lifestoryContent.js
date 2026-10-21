@@ -625,8 +625,17 @@
     }
     // The unemployment role's NAV and job-application threads are also
     // marked "privatliv" in legacy content. Never use type alone here.
-    // Keep canonical shared life plus the day-two personal-direction choice.
-    const ids = new Set([...(original.sharedLifeThreadIds || []), "ugens_retning"]);
+    // Keep shared life and the personal friendships/projects actually started
+    // during unemployment; only unemployment administration/work-search scenes
+    // become inapplicable after the player accepts a real job.
+    const personalRoleThreads = [
+      "ugens_retning", "musikken_og_mira", "miljoet_og_amir",
+      "prosjektet_og_lea", "skaperrommet_og_elin",
+      "klubben_og_sara", "byvandringen_og_ivar",
+      "feltarbeidet_og_nora", "kulturkveldene_og_daniel",
+      "wave_a_c01", "wave_b_c01", "wave_c_c01", "wave_d_c01"
+    ];
+    const ids = new Set([...(original.sharedLifeThreadIds || []), ...personalRoleThreads]);
     const threads = (original.threads || []).filter(t => ids.has(t.id));
     const scenes = (original.scenes || []).filter(scene =>
       ids.has(scene.threadId) &&
