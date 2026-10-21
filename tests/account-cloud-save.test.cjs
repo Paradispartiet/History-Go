@@ -219,13 +219,21 @@ test("NPC social memory survives cloud backup and an empty new device", async ()
       messageId: "encounter-7", responseId: "reply", status: "replied", friendId: "npc_sara"
     }
   });
+  const conversations = JSON.stringify({
+    conv_npc_sara_leisure_001: {
+      conversationId: "conv_npc_sara_leisure_001", friendId: "npc_sara",
+      turns: [{ messageId: "encounter-7", responseId: "reply", text: "Hei, Sara." }]
+    }
+  });
   const first = await runtime({ db, initial: {
+    "civi.socialConversations.v1": conversations,
     "civi.socialRelationships.v1": relationships,
     "civi.socialResponses.v1": responses,
     "civi.socialRelationships.debug": '{"dev":true}',
     civication_lifestory_v1: '{"dag":7,"rolle":"arbeidsledig"}',
     hg_pc_wallet_v1: '{"balance":131}'
   } });
+  assert.equal(first.save.snapshot()["civi.socialConversations.v1"], conversations);
   assert.equal(first.save.snapshot()["civi.socialRelationships.v1"], relationships);
   assert.equal(first.save.snapshot()["civi.socialResponses.v1"], responses);
   assert.equal(first.save.snapshot()["civi.socialRelationships.debug"], undefined,
@@ -233,6 +241,8 @@ test("NPC social memory survives cloud backup and an empty new device", async ()
   await first.save.flush();
   assert.equal(db.writes.length, 1);
   const second = await runtime({ db });
+  assert.equal(second.localStorage.getItem("civi.socialConversations.v1"), conversations,
+    "an ongoing NPC conversation must survive a fresh device");
   assert.equal(second.localStorage.getItem("civi.socialRelationships.v1"), relationships);
   assert.equal(second.localStorage.getItem("civi.socialResponses.v1"), responses,
     "already answered NPC encounters must not become new unanswered messages");
@@ -270,4 +280,19 @@ test("older cloud snapshots accept new local NPC memory without deleting story s
   assert.equal(db.writes.length, 1);
   assert.equal(db.record.payload.state["civi.socialResponses.v1"], responses);
   assert.equal(db.record.payload.state.civication_lifestory_v1, '{"dag":8}');
+});
+
+test("different NPC conversation histories block destructive cloud overwrite", async () => {
+  const cloud = '{"conv_npc_sara_leisure_001":{"conversationId":"conv_npc_sara_leisure_001","turns":[{"text":"Svar fra Sara"}]}}';
+  const local = '{"conv_npc_sara_leisure_001":{"conversationId":"conv_npc_sara_leisure_001","turns":[]}}';
+  const db = { record: {
+    payload: { state: { "civi.socialConversations.v1": cloud } },
+    created_at: "2026-10-21T10:00:00Z"
+  }, writes: [] };
+  const game = await runtime({ db, initial: { "civi.socialConversations.v1": local } });
+  assert.match(game.element.textContent, /ulike/);
+  assert.equal(game.localStorage.getItem("civi.socialConversations.v1"), local);
+  await game.save.flush();
+  assert.equal(db.writes.length, 0);
+  assert.equal(db.record.payload.state["civi.socialConversations.v1"], cloud);
 });
