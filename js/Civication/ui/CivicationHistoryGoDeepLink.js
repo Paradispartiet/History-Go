@@ -258,11 +258,48 @@
     }
   }
 
+  // Life Story's chapter gate is not a daily task. Reuse the existing
+  // History Go Civication-mode toast for a voluntary learning journey,
+  // without marking a task complete or granting badge points in Civication.
+  function startLifePositionGuidance(bridge) {
+    const badgeId = clean(bridge?.badge_id);
+    const requiredPoints = Number(bridge?.threshold);
+    if (!badgeId || !Number.isFinite(requiredPoints) || requiredPoints <= 0) return null;
+    const label = clean(bridge?.navn) || "livsposisjon";
+    const now = Date.now();
+    const session = {
+      version: 1,
+      active: true,
+      session_id: `civi_hg_lifestory_${badgeId}_${now}`,
+      source: "lifestory_continuation",
+      started_at: new Date(now).toISOString(),
+      started_ts: now,
+      title: `Bygg kunnskap for ${label}`,
+      description: `Ta relevante quizer i History Go. Når du har nok poeng, gå tilbake til Civication og velg ${label} blant livsposisjonene. Et kapittel åpnes ikke automatisk.`,
+      life_role_label: label,
+      target_type: "knowledge",
+      category_id: badgeId,
+      completion_mode: "badge_points",
+      required_points: requiredPoints,
+      expanded: true,
+      return_href: currentCivicationHref(),
+      payload: { target_type: "knowledge", category_id: badgeId,
+        completion_mode: "badge_points", required_points: requiredPoints }
+    };
+    try {
+      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      return session;
+    } catch {
+      return null;
+    }
+  }
+
   window.CivicationHistoryGoDeepLink = {
     SESSION_KEY,
     resolve,
     go,
     startSession,
+    startLifePositionGuidance,
     clearSession,
     actionHtml,
     pickPendingTask
