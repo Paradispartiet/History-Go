@@ -66,10 +66,14 @@ assert.strictEqual(guided.target_type, "knowledge");
 assert.strictEqual(guided.category_id, "naeringsliv");
 assert.strictEqual(guided.return_href, "Civication.html#inbox");
 assert.strictEqual(JSON.parse(global.localStorage.getItem(DL.SESSION_KEY)).payload.required_points, 10);
-assert.strictEqual(DL.startLifePositionGuidance({
-  badge_id: "naeringsliv", navn: "Ukjent", threshold: 0
-}), null, "without a real threshold, no misleading completion mission is created");
-assert.strictEqual(JSON.parse(global.localStorage.getItem(DL.SESSION_KEY)).title,
-  "Bygg kunnskap for Sideprosjektbygger", "invalid attempt keeps the previous session intact");
+const explore = DL.startLifePositionGuidance({ badge_id: "musikk", navn: "Frilansmusiker" });
+assert(explore, "a path without explicit numeric threshold still gets a persistent mission");
+assert.strictEqual(explore.completion_mode, "explore_category");
+assert.strictEqual(explore.required_points, null);
+assert.strictEqual(explore.category_id, "musikk");
+const openJourney = DL.startLifePositionGuidance(null);
+assert(openJourney, "a player without a chosen path still gets History Go guidance");
+assert.strictEqual(openJourney.completion_mode, "explore_category");
+assert.strictEqual(openJourney.category_id, null);
 
 console.log("civication history-go deeplink session ok");
