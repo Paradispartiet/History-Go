@@ -817,6 +817,15 @@
       ? '<button class="civi-btn primary" type="button" data-lifestory-continue="' + escapeHtml(next.id) + '"' + (continuing ? ' disabled' : '') + '>' + (continuing ? "Åpner fortsettelsen …" : escapeHtml(next.navn)) + '</button>'
       : "";
     const chosenLifePosition = sisteDag && !next ? getRoleSuggestion() : null;
+    const atThreeWeeks = (state.livsdag || state.dag) >= 21
+      && state.spilteScener?.includes("wave_e_c21_d21_tre_ukers_valg");
+    const earnedEverydayLifePosition = atThreeWeeks
+      ? window.CivicationLifePositions?.getEarnedPracticePositions?.()?.[0] : null;
+    const threeWeeksHtml = !atThreeWeeks ? "" : earnedEverydayLifePosition
+      ? '<p>Etter 21 dager har du fulgt opp en aktivitet flere ganger. <strong>'
+        + escapeHtml(earnedEverydayLifePosition.label)
+        + '</strong> kan nå velges i Livsprofilen. Det gir ingen automatisk jobb, lønn eller merker.</p>'
+      : '<p>Tre uker er gjennomført. Du kan fortsette å utforske uten å velge livsposisjon; en plan alene gir ingen opparbeidet identitet.</p>';
     const pendingPrivate = !!Runner.hasPendingPrivateScenes?.(state, content);
     // Private Life Stories remain playable without a badge. The History Go
     // guide is optional and must also appear when private stories continue.
@@ -828,6 +837,7 @@
     const nextChapterHint = !offerExploration ? "" :
       '<section class="civi-lifestory-next-chapter" role="status" aria-label="Veien videre">'
       + '<h4>Veien videre</h4>'
+      + threeWeeksHtml
       + (chosenLifePosition
         ? '<p>Privatlivet kan fortsette uansett jobbstatus. Du har vist interesse for <strong>' + escapeHtml(chosenLifePosition.navn) + '</strong>. Vil du åpne dette ekstra historiekapittelet, kreves riktig opptjening og et frivillig valg av livsposisjon.</p>'
           + (needsMerits ? '<p>Du har ' + escapeHtml(earned) + ' av ' + escapeHtml(required) + ' poeng i ' + escapeHtml(chosenLifePosition.badge_id) + '. Ta quizer i History Go for å bygge kunnskap.</p>'
