@@ -221,11 +221,11 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .map(([placeId]) => placeId)
     .sort();
 
-  // Source-backed Oslo places include the 2026 Vulkan and Blå packets, Sentrum Scene, and the Rockefeller, John Dee and SALT production packets.
+  // Brekkedammen adds dated evidence; Nydalsdammen gains reviewed dam-history anchors.
   assert.equal(coverage.canonical_place_count, 587);
-  assert.equal(coverage.dated_evidence_place_count, 264);
+  assert.equal(coverage.dated_evidence_place_count, 265);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 321);
+  assert.equal(coverage.awaiting_source_backed_history_count, 320);
   for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "dramatikkens_hus", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset", "museumsleiligheten_grabein", "teater_manu", "black_box_teater", "vippetangen_fisketorg", "sentrum_scene", "vulkan_industriomrade", "blaa", "rockefeller", "john_dee", "salt"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,
