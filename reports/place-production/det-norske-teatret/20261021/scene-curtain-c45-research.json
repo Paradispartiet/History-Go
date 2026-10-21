@@ -24,7 +24,7 @@
       "local_copy": false,
       "license": "NOT_OPENLY_LICENSED_AS_CC_IN_REVIEWED_SOURCE",
       "published_use": "EXTERNAL_ORIGINAL_PAGE_LINK_ONLY",
-      "rights_notice": "Theatre's public press-image guidance restricts image reuse to non-commercial coverage, and notes separate photographer and performers' rights. No verified reusable CC member-photo license for this specific curtain image.",
+      "rights_notice": "Theatre's public press-image guidance restricts image reuse to non-commercial coverage, and notes separate photographer and performers' rights. No verified reusable CC member-photo license for this specific curtain image. Physical Jan Groth artwork rights are distinct from the photograph's copyright, and both must be respected for new local image reproduction.",
       "rights_source": "https://www.detnorsketeatret.no/presse",
       "date_caveat": "Theatre article text contains an internally inconsistent reference to photographing the curtain in 2014 on the occasion of Jan Groth's death while it separately gives his death as 2022. Do not assign a verified image date from that caption."
     },
@@ -50,12 +50,44 @@
   ],
   "workflow_test": "tests/det-norske-teatret-public-unified-c45.mjs",
   "workflow": ".github/workflows/det-norske-teatret-public-unified-c45.yml",
-  "public_test_outcome": "PENDING_GITHUB_ACTIONS",
+  "public_test_outcome": "PUBLIC_UNIFIED_KILDER_BROWSER_PASS",
   "notices": [
     "Do not seek permissions or send emails.",
     "Do not copy public original photographer images into Assets absent source-specific reusable license.",
     "Image available via external official source link; that is separate from a published canonical Objects member.",
     "Do not infer multiple Objects from 12 panels comprising one artwork.",
     "No Place status or existing Object gate change is justified by this research alone."
-  ]
+  ],
+  "test_evidence": {
+    "workflow_run_id": 39578403086,
+    "artifact": "dnt-c45-public-unified-evidence",
+    "origin": "https://paradispartiet.github.io/History-Go/",
+    "tested_viewports": [
+      {
+        "device": "mobile",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "device": "desktop",
+        "width": 1280,
+        "height": 900
+      }
+    ],
+    "browser": "GitHub Actions Playwright Chromium",
+    "real_path": "public index.html > dismiss onboarding > standard HGAppRouter.toPlace(det_norske_teatret) > existing unified Kilder section",
+    "sources": "Downloaded runner result.json and manually inspected both actual screenshots",
+    "browser_pageerrors": [],
+    "public_compiled_bundle_sha256": "dafafe4d56860659bb25d7f6735310e2621e9fad95fb0e2e679a4025791176ec",
+    "exact_public_vs_checked_out_bundle_match": true,
+    "source_photo_sha256_matches_canonical": true,
+    "facade_photo_sha256_matches_canonical": true,
+    "actual_museum_image_dimensions": [
+      800,
+      800
+    ],
+    "source_link_visible": true,
+    "external_juleroser_link_kept_external": true,
+    "limits": "Public Chromium UI verification, not physical phone, not real map-marker clicking, and not Objects publication."
+  }
 }
