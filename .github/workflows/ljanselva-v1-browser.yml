@@ -1,0 +1,51 @@
+name: Ljanselva v1 real browser acceptance
+on:
+  pull_request:
+    paths:
+      - 'tests/ljanselva-v1-real-browser.mjs'
+      - 'scripts/verify-ljanselva-fullquiz-browser.mjs'
+      - 'data/places/natur/oslo/places_oslo_natur_hovedsteder/ljanselva.json'
+      - 'data/quiz/natur/ljanselva_sets.json'
+      - 'data/quizcards/natur/topp10_natur_ljanselva_20261021.json'
+      - 'data/runtime/place-open/ljanselva.json'
+      - 'bilder/places/ljanselva_front_portrait.webp'
+      - 'bilder/places/ljanselva_landscape.webp'
+      - '.github/workflows/ljanselva-v1-browser.yml'
+  workflow_dispatch:
+concurrency:
+  group: ljanselva-v1-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Validate live app at 390 and 1440 px including post-animation QuizCard
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node tests/ljanselva-v1-real-browser.mjs
+      - name: Play all 21 place quiz questions to completion on desktop and mobile
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-ljanselva-fullquiz-browser.mjs ljanselva
+      - name: Store browser screenshots and progress evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ljanselva-v1-actual-app-qa
+          path: |
+            artifacts/ljanselva-browser/**
+            artifacts/place-quiz/ljanselva/**
+          if-no-files-found: ignore
+          retention-days: 14
