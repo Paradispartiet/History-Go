@@ -197,6 +197,15 @@ function recordCompletedGameDay(rawDay) {
       * Number(career.economy?.weekly_expenses?.risk_modifier || 1));
     weeklyNet = weeklySalary - (Number.isFinite(expense) ? expense : 0);
   }
+  // Eligibility is based on the first completed day without work; returning
+  // to a job cancels the unemployment streak, including across job changes.
+  const currentState = state.getState?.() || {};
+  const sinceDay = Number(currentState.unemployed_since_day_index);
+  if (!careerId && (!Number.isSafeInteger(sinceDay) || sinceDay < 1)) {
+    state.setState?.({ unemployed_since_day_index: day });
+  } else if (careerId && currentState.unemployed_since_day_index != null) {
+    state.setState?.({ unemployed_since_day_index: null, unemployed_since_week: null });
+  }
   // One record per completed day; same-day retries never accrue twice.
   wallet.completed_game_days_v1 = previous.concat({ dayIndex: day, careerId, weeklyNet });
   state.updateWallet(wallet);
