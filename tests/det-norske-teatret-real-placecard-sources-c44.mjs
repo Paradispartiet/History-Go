@@ -4,9 +4,10 @@ import http from "node:http";
 import path from "node:path";
 import { chromium } from "playwright";
 
-// C44 exercises the REAL index.html boot and public route into PlaceCard,
-// dismisses the genuine first-visit overlay, and clicks the actual #pcSources
-// control to reach the real Kilder tab. No direct showPlacePopup() test shortcut.
+// C44 exercises actual index.html boot, the public place route, first-visit
+// welcome dismissal and existing unified PlaceCard Kilder navigation.
+// It verifies the shipping TypeScript-rendered Sources section, not the
+// legacy popup nor an invented replacement for the retired Mer info button.
 const root = process.cwd();
 const placeId = "det_norske_teatret";
 const sourceFile = "data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json";
@@ -16,9 +17,10 @@ const c41 = JSON.parse(fs.readFileSync(
 assert.equal(place.id, placeId);
 const markup = fs.readFileSync("index.html", "utf8");
 const placeCard = fs.readFileSync("js/ui/place-card.js", "utf8");
-assert.match(markup, /id="pcSources"[^>]+type="button"/);
-assert.doesNotMatch(markup, /id="pcInfo"/, "retired More info entry must stay absent");
-assert.match(placeCard, /if \(btnSources\) btnSources\.onclick = async/);
+assert.doesNotMatch(markup, /id="pcInfo"/, "intentionally retired Mer info remains absent");
+assert.doesNotMatch(markup, /id="pcSources"/, "do not introduce duplicate Sources buttons");
+const compiled = fs.readFileSync("dist/web/place-unified-surface.js","utf8");
+assert.match(compiled,/hg-place-source-photo-grid/,"canonical TypeScript must be rebuilt into deployed bundle");
 const mime = {".html":"text/html", ".js":"text/javascript", ".mjs":"text/javascript",
   ".css":"text/css", ".json":"application/json", ".webp":"image/webp",
   ".jpg":"image/jpeg", ".png":"image/png", ".woff2":"font/woff2",
@@ -70,25 +72,27 @@ try {
         document.querySelector("#placeCard")?.dataset?.currentPlaceId === id &&
         document.querySelector("#placeCard")?.classList.contains("is-open"),placeId,{timeout:35000});
       assert.equal(await page.locator("#pcTitle").innerText(),"Det Norske Teatret");
-      const info = page.locator("#pcSources");
-      await info.waitFor({state:"visible",timeout:10000});
-      const rect = await info.boundingBox();
-      assert.ok(rect && rect.width >= 42 && rect.height >= 40,"The More info control needs a usable tap area");
-      assert.match(await info.getAttribute("aria-label"), /Kilder|kilder/i);
-      await info.click({timeout:15000});
-      const tab = page.locator('.hg-popup.place-popup-v2 [data-place-tab="sources"]').last();
-      await tab.waitFor({state:"visible",timeout:15000});
-      assert.equal(await tab.getAttribute("aria-selected"),"true", "C44 Kilder action selects the Sources tab itself");
-      const panel = page.locator('.hg-popup.place-popup-v2 [data-place-panel="sources"]').last();
-      assert.equal(await panel.isVisible(),true);
+      // This is the existing unified PlaceCard nav, visible in the real UI.
+      const sourceNav = page.locator('#placeCard [data-hg-place-sheet-jump="sources"]');
+      await sourceNav.waitFor({state:"visible",timeout:20000});
+      assert.equal(await sourceNav.innerText(),"Kilder");
+      await sourceNav.click({timeout:15000});
+      const panel = page.locator('#placeCard [data-hg-place-sheet-section="sources"]');
+      await panel.waitFor({state:"visible",timeout:15000});
+      assert.match(await panel.innerText(),/Kilder/);
       const image = panel.locator(".hg-place-source-photo img");
       assert.equal(await image.count(),1,"documentary image must not create a second canonical Object");
       await image.scrollIntoViewIfNeeded();
       await page.waitForFunction(() => {
-        const img = document.querySelector('.hg-popup.place-popup-v2 [data-place-panel="sources"] .hg-place-source-photo img');
+        const img = document.querySelector('#placeCard [data-hg-place-sheet-section="sources"] .hg-place-source-photo img');
         return img?.complete && img.naturalWidth === 800 && img.naturalHeight === 800;
       },null,{timeout:15000});
       assert.equal(await image.getAttribute("src"),c41.museum_image.file);
+      const fit = await image.evaluate(el=>getComputedStyle(el).objectFit);
+      assert.equal(fit,"contain","physical costume may not be cropped");
+      const box = await image.boundingBox();
+      assert.ok(box && box.x >= -1 && box.x+box.width <= width+1,
+        "museum image must fit mobile/desktop viewport");
       const caption = panel.locator(".hg-place-source-photo figcaption");
       await caption.scrollIntoViewIfNeeded();
       assert.match(await caption.innerText(),/Lone Lunde.*Oslo Museum/);
@@ -105,10 +109,10 @@ try {
       caseResult.outcome="PASS";
       caseResult.welcome_dismissed=true;
       caseResult.app_route="#/place/"+placeId;
-      caseResult.sources_entry_clicked=true;
+      caseResult.unified_sources_nav_clicked=true;
       caseResult.kilder_clicked=true;
       caseResult.image_decoded=true;
-      console.log("C44 "+name+" native router -> PlaceCard -> Kilder direct PASS");
+      console.log("C44 "+name+" native router -> unified PlaceCard -> Kilder PASS");
     }catch(error){
       caseResult.outcome="BLOCKED";
       caseResult.error=String(error);
