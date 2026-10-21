@@ -257,6 +257,52 @@
       }));
   }
 
+  // Day-21 Life Story practices are an additional *evidence source* for the
+  // existing Life Position runtime, not Badge points or a parallel identity
+  // store. Only a finished authored 21st-day episode plus a completed action
+  // can unlock these voluntary noncareer positions.
+  const STORY_LIFE_POSITIONS = Object.freeze([
+    {
+      badge_id: "liv_erfaring", badge_name: "Levd erfaring",
+      id: "naermiljo_bidragsyter", label: "Nærmiljøbidragsyter",
+      threshold: 0, kind: "practice_identity",
+      description: "Du har gjennomført et konkret bidrag i et lokalt fellesskap.",
+      hooks: ["fellesoppgaver", "samarbeid", "forpliktelser", "nye_invitasjoner"],
+      employment_independent: true, source: "authored_life_story_21d",
+      evidence_flag: "privat21_bidrag_fullfort"
+    },
+    {
+      badge_id: "liv_erfaring", badge_name: "Levd erfaring",
+      id: "naermiljo_utforsker", label: "Nærmiljøutforsker",
+      threshold: 0, kind: "practice_identity",
+      description: "Du har oppsøkt et miljø, lyttet og undersøkt hvordan mennesker samarbeider.",
+      hooks: ["nye_miljoer", "samtaler", "observasjoner", "deltakelse"],
+      employment_independent: true, source: "authored_life_story_21d",
+      evidence_flag: "privat21_miljo_undersokt"
+    }
+  ]);
+
+  function getStoryEarnedPositions(scopeId) {
+    const wanted = String(scopeId || "").trim();
+    if (wanted && wanted !== "liv_erfaring") return [];
+    let saved = null;
+    try { saved = safeParse(localStorage.getItem("civication_lifestory_v1"), null); }
+    catch { return []; }
+    if (!saved || typeof saved !== "object") return [];
+    const snapshots = [saved, ...Object.values(saved.rolleTilstander || {})
+      .filter(s => s && typeof s === "object")];
+    const privateStory = saved.privatHistorie || {};
+    const journal = snapshots.flatMap(s => s.arkiv || []).concat(privateStory.arkiv || []);
+    const day21Played = journal.some(entry =>
+      /^privat_21d_d21_/.test(String(entry.sceneId || "")) &&
+      Number(entry.livsdag || entry.dag) >= 21);
+    if (!day21Played || Number(saved.livsdag || saved.dag) < 21) return [];
+    const evidence = Object.assign({}, ...snapshots.map(s => s.tidligereValg || {}),
+      privateStory.flagg || {});
+    return STORY_LIFE_POSITIONS.filter(position => evidence[position.evidence_flag] === true)
+      .map(({ evidence_flag, ...position }) => ({ ...position }));
+  }
+
   function getOpenPositions(scopeId) {
     const wanted = String(scopeId || "").trim();
     return OPEN_LIFE_POSITIONS
@@ -276,6 +322,8 @@
 
   function getUnlockedPositions(badgeId) {
     const id = String(badgeId || "").trim();
+    const story = getStoryEarnedPositions(id);
+    if (story.length) return story;
     const open = getOpenPositions(id);
     if (open.length) return open;
 
@@ -294,6 +342,7 @@
       : [];
     return dedupePositions([
       ...getOpenPositions(),
+      ...getStoryEarnedPositions(),
       ...badgePositions
     ]);
   }
