@@ -65,7 +65,7 @@ jobs:
             exit 0
           fi
           changed="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files?per_page=100" --jq '.[].filename')"
-          if grep -Fxq 'scripts/verify-civication-organic-player-browser.ts' <<< "$changed"; then
+          if grep -Fxq 'scripts/verify-civication-organic-player-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-21-day-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-boot-smoke.ts' <<< "$changed"; then
             echo "depth=organic" >> "$GITHUB_OUTPUT"
           else
             echo "depth=smoke" >> "$GITHUB_OUTPUT"
