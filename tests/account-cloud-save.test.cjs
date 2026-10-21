@@ -144,3 +144,64 @@ test("obsolete local override does not conflict with valid restored cloud role",
   await game.save.flush();
   assert.equal(db.writes.length, 0, "no unwarranted backup rewrite");
 });
+
+
+test("job history survives a cloud backup and an empty new device", async () => {
+  const db = { record: null, writes: [] };
+  const history = JSON.stringify([
+    { career_id: "handel", started_day_index: 1, ended_day_index: 3 },
+    { career_id: "service", started_day_index: 4 }
+  ]);
+  const original = await runtime({ db, initial: {
+    hg_job_history_v1: history,
+    hg_active_position_v1: '{"career_id":"service"}',
+    hg_pc_wallet_v1: '{"balance":131}',
+    hg_job_history_debug_v1: '{"dev":true}'
+  } });
+  assert.equal(original.save.snapshot().hg_job_history_v1, history);
+  assert.equal(original.save.snapshot().hg_job_history_debug_v1, undefined,
+    "only the canonical job history key is included");
+  await original.save.flush();
+  assert.equal(db.writes.length, 1);
+  assert.equal(db.record.payload.state.hg_job_history_v1, history);
+
+  const restored = await runtime({ db });
+  assert.equal(restored.localStorage.getItem("hg_job_history_v1"), history);
+  assert.equal(restored.localStorage.getItem("hg_active_position_v1"),
+    '{"career_id":"service"}');
+  assert.equal(restored.localStorage.getItem("hg_pc_wallet_v1"), '{"balance":131}');
+  await restored.save.flush();
+  assert.equal(db.writes.length, 1, "restoring an unchanged snapshot must not rewrite the cloud copy");
+});
+
+test("divergent job histories retain both copies and block cloud overwrite", async () => {
+  const cloudHistory = '[{"career_id":"handel","started_day_index":1}]';
+  const localHistory = '[{"career_id":"service","started_day_index":2}]';
+  const db = {
+    record: { payload: { state: { hg_job_history_v1: cloudHistory } },
+      created_at: "2026-10-21T09:00:00Z" },
+    writes: []
+  };
+  const game = await runtime({ db, initial: { hg_job_history_v1: localHistory } });
+  assert.match(game.element.textContent, /ulike/);
+  assert.equal(game.localStorage.getItem("hg_job_history_v1"), localHistory);
+  assert.equal(db.record.payload.state.hg_job_history_v1, cloudHistory);
+  await game.save.flush();
+  assert.equal(db.writes.length, 0, "conflicting histories cannot be silently overwritten");
+});
+
+test("an existing cloud backup without job history accepts added local history", async () => {
+  const history = '[{"career_id":"service","started_day_index":4}]';
+  const db = {
+    record: { payload: { state: { civication_lifestory_v1: '{"dag":7}' } },
+      created_at: "2026-10-20T12:00:00Z" },
+    writes: []
+  };
+  const game = await runtime({ db, initial: { hg_job_history_v1: history } });
+  assert.equal(game.localStorage.getItem("civication_lifestory_v1"), '{"dag":7}');
+  assert.doesNotMatch(game.element.textContent, /ulike/);
+  await game.save.flush();
+  assert.equal(db.writes.length, 1);
+  assert.equal(db.record.payload.state.hg_job_history_v1, history);
+  assert.equal(db.record.payload.state.civication_lifestory_v1, '{"dag":7}');
+});
