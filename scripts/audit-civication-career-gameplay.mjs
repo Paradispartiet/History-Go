@@ -229,6 +229,9 @@ const testFiles = walk('tests').filter((rel) =>
   // Life Story UI recovery exercises narrative saves and job selection,
   // not the role's workday/competency engine. Keep that boundary explicit.
   rel !== 'tests/civication-lifestory-player-journey.test.js' &&
+  // Narrative ending tests cover epilogues, not a role's daily career gameplay.
+  // Incidental role mentions must not become career-test evidence.
+  rel !== 'tests/civication-lifestory-endings.test.js' &&
   // Vitality narrative tests are not proof of independent career workday gameplay.
   !/^tests\/civication-lifestory-vitality-/.test(rel)
 );
@@ -617,39 +620,6 @@ if (write) {
   for (const [rel, expected] of [[MATRIX_PATH, matrixText], [REPORT_PATH, reportText]]) {
     if (!exists(rel) || fs.readFileSync(abs(rel), 'utf8') !== expected) {
       console.error(`${rel} is stale. Run node scripts/audit-civication-career-gameplay.mjs --write.`);
-      // Bounded, field-level diagnostics make stale generated reports actionable
-      // without exposing or printing the entire megabyte-sized career matrix.
-      const actual = exists(rel) ? fs.readFileSync(abs(rel), 'utf8') : '';
-      if (rel === MATRIX_PATH && actual) {
-        try {
-          const changes = [];
-          function inspect(left, right, prefix) {
-            if (changes.length >= 35 || Object.is(left, right)) return;
-            if (left === null || right === null || typeof left !== 'object' ||
-                typeof right !== 'object' || Array.isArray(left) !== Array.isArray(right)) {
-              changes.push({ path: prefix, actual: left, expected: right }); return;
-            }
-            if (Array.isArray(left) && left.length !== right.length) {
-              changes.push({ path: prefix + '.length', actual: left.length, expected: right.length });
-            }
-            for (const key of new Set([...Object.keys(left), ...Object.keys(right)])) {
-              if (changes.length >= 35) break;
-              inspect(left[key], right[key], prefix ? prefix + '.' + key : key);
-            }
-          }
-          inspect(JSON.parse(actual), matrix, '');
-          console.error('Stale matrix fields (first 35):', JSON.stringify(changes));
-        } catch (err) { console.error('Could not compare matrix:', String(err)); }
-      } else if (rel === REPORT_PATH && actual) {
-        const left = actual.split('\n'), right = expected.split('\n');
-        let changes = 0;
-        for (let i = 0; i < Math.max(left.length, right.length) && changes < 12; i++) {
-          if (left[i] !== right[i]) {
-            console.error(`Report line ${i + 1}: actual=${JSON.stringify(left[i])}, expected=${JSON.stringify(right[i])}`);
-            changes++;
-          }
-        }
-      }
       process.exit(1);
     }
   }
