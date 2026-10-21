@@ -319,6 +319,8 @@ function tickPCIncomeWeekly() {
       : null;
 
   if (!career) {
+    // An unavailable current job must not erase wages from recorded days.
+    if (recordedNet !== null) wallet.balance += recordedNet;
     stampSettledWeek();
     return;
   }
@@ -338,6 +340,7 @@ function tickPCIncomeWeekly() {
     ));
 
   if (!badge) {
+    if (recordedNet !== null) wallet.balance += recordedNet;
     stampSettledWeek();
     return;
   }
