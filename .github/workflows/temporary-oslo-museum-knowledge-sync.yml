@@ -1,0 +1,39 @@
+name: Temporary Oslo museum Knowledge sync
+on:
+  push:
+    branches:
+      - content/oslo-fullquiz-fact-quality-20261021
+    paths:
+      - .github/workflows/temporary-oslo-museum-knowledge-sync.yml
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-fullquiz-fact-quality-20261021
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Rebuild and verify canonical Knowledge
+        run: |
+          npm ci --no-audit --no-fund
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+      - name: Commit generated outputs
+        shell: bash
+        run: |
+          git add -u -- data/quiz/kunst/munch_museet_sets.json data/quiz/kunst/nasjonalmuseet_sets.json data/knowledge reports/knowledge-id-backfill.json
+          if git diff --cached --quiet; then
+            echo 'Already synchronized'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(knowledge): synchronize reconciled Oslo museum quiz data'
+          git pull --rebase origin content/oslo-fullquiz-fact-quality-20261021
+          git push origin HEAD:refs/heads/content/oslo-fullquiz-fact-quality-20261021
