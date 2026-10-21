@@ -22,8 +22,6 @@ const fullManifest = read("data/quiz/manifest.json");
 const quizFor = new Map();
 const cardFor = new Map();
 const knownDebts = new Map([
-  ["oslo_mek_quiz_1", "Hvilket historisk verksted er riktig hovedanker for `oslo_mek`-targetet?"],
-  ["grev_wedels_plass_quiz_7", "Hva er canonical sted i History Go?"],
   ["grev_wedels_plass_quiz_34", "Hvorfor holdes Brands-feltet uten oppdiktet innhold?"]
 ]);
 const forbidden = /History Go|PlaceCard|QuizCard|Objects|Brands|canonical|targetId|targetet|quizkort|intern(?:e)? spill|spillterminologi/i;
@@ -122,9 +120,34 @@ test("Oslo batch04: no new player-facing quiz question exposes internal model te
   for (const item of offenders) {
     assert.equal(item.question, knownDebts.get(item.qid), item.qid + ": newly introduced internal/game-facing language");
   }
-  // Three pre-existing editorial defects remain blockers for editorial v1 acceptance.
+  // One pre-existing editorial defect remains a blocker for full editorial v1 acceptance.
   const revised = quizFor.get("grev_wedels_plass").questions.find(q => q.id === "grev_wedels_plass_quiz_22");
   assert.match(revised.question, /Kvinnetorso.*Hanne på stranden.*fontenen/, "The park-art question must remain grounded in actual artworks");
   assert.equal(revised.answer, "De er fysiske spor i selve parkrommet");
   console.log("EDITORIAL_DEBT", JSON.stringify(offenders));
+});
+
+test("Oslo batch04: the two formerly internal questions now teach place history with consistent Knowledge", () => {
+  const unitRows = read("data/knowledge/knowledge_units.generated.json").units;
+  const byKnowledgeId = new Map(unitRows.map(unit => [unit.knowledge_unit_id, unit]));
+  const checks = [
+    ["oslo_mek", "oslo_mek_quiz_1", "Hvilket skipsverft preget området som senere ble Aker Brygge?"],
+    ["grev_wedels_plass", "grev_wedels_plass_quiz_7", "Hvilket byrom betegner navnet Grev Wedels plass?"]
+  ];
+  for (const [id, questionId, expectedText] of checks) {
+    const q = quizFor.get(id).questions.find(item => item.id === questionId);
+    assert.ok(q, questionId + ": canonical question missing");
+    assert.equal(q.question, expectedText, questionId + ": editorial correction regressed");
+    assert.ok(!forbidden.test(q.knowledge), questionId + ": internal terminology persists in Knowledge");
+    assert.ok(!forbidden.test(q.claim_basis), questionId + ": internal terminology persists in source claim");
+    assert.equal(q.knowledge_unit_ids[0], q.primary_knowledge_unit_id);
+    const unit = byKnowledgeId.get(q.primary_knowledge_unit_id);
+    assert.ok(unit, questionId + ": linked canonical Knowledge is missing");
+    assert.equal(unit.canonical_claim, q.knowledge, questionId + ": derived Knowledge claim is out of sync");
+    assert.equal(unit.summary, q.knowledge, questionId + ": derived Knowledge summary is stale");
+    assert.ok(unit.quiz_refs.includes(q.quiz_id), questionId + ": Knowledge lost its source quiz reference");
+  }
+  const aker = quizFor.get("oslo_mek").questions.find(q => q.id === "oslo_mek_quiz_1");
+  assert.ok(!forbidden.test(aker.topic), "Aker place topic must not reference the data model");
+  assert.ok(!aker.core_concepts.some(concept => /target-avklaring|canonical/i.test(concept)), "Internal target concept must not be part of learning");
 });
