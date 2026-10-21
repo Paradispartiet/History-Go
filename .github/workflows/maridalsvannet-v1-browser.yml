@@ -1,0 +1,41 @@
+name: Maridalsvannet v1 real browser acceptance
+on:
+  pull_request:
+    paths:
+      - 'tests/maridalsvannet-v1-real-browser.mjs'
+      - '.github/workflows/maridalsvannet-v1-browser.yml'
+      - 'data/places/natur/oslo/places_oslo_natur_hovedsteder/maridalsvannet.json'
+      - 'data/runtime/place-open/maridalsvannet.json'
+      - 'data/i18n/content/places/en.json'
+      - 'data/quizcards/natur/topp10_natur_maridalsvannet_20261021.json'
+      - 'bilder/places/maridalsvannet_front_portrait.webp'
+      - 'bilder/places/maridalsvannet_landscape.webp'
+  workflow_dispatch:
+concurrency:
+  group: maridalsvannet-v1-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  place-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install Chromium for native app browser
+        run: npx playwright install --with-deps chromium
+      - name: Verify historical translation, image, QuizCard after flip, quiz launch and Fagverk at 390 and 1440
+        run: node tests/maridalsvannet-v1-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: maridalsvannet-v1-post-animation-screenshots
+          path: artifacts/maridalsvannet-browser/
+          if-no-files-found: ignore
+          retention-days: 14
