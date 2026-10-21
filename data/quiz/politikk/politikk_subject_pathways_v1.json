@@ -1,7 +1,7 @@
 {
   "schema": "history_go_subject_pathway_package_v1",
   "version": 1,
-  "status": "editorial_ready_unregistered",
+  "status": "pilot_active",
   "package_kind": "subject_pathway",
   "categoryId": "politikk",
   "subject_id": "politikk",
@@ -82,12 +82,12 @@
     "scope_limit": "ODIHRs offisielle HTML-sammendrag og misjonens metodetekst, ikke uttømmende fulltekstgjennomgang av den lange PDF-rapporten.",
     "geographic_activation": false,
     "knowledge_ids_assigned": true,
-    "knowledge_registry_materialized": false,
-    "quiz_manifest_registered": false,
-    "knowledge_manifest_registered": false,
-    "fag_manifest_registered": false,
-    "runtime_activation": false,
-    "release_gate": "Kjør canonical knowledge-data --write, kontroller alle genererte registre og referanser, registrer fag-/quiz-/knowledge-manifester, kjør full Knowledge, Politikk, fagverk og browser-test før status pilot_active."
+    "knowledge_registry_materialized": true,
+    "quiz_manifest_registered": true,
+    "knowledge_manifest_registered": true,
+    "fag_manifest_registered": true,
+    "runtime_activation": true,
+    "release_gate": "v7 activation candidate: pilot_active is gated by the deterministic Knowledge canonical --write/--check output, quiz/Knowledge/Fagverk contracts, full CI, and an actual browser smoke test prior to merge."
   },
   "sets": [
     {
@@ -214,7 +214,7 @@
           ],
           "claim_id": "claim_pol_pl2023_01_competition_administration",
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "staged_unregistered"
+          "knowledge_link_status": "linked"
         },
         {
           "id": "quiz_politikk_pl2023_pathway_q2",
@@ -309,7 +309,7 @@
           ],
           "claim_id": "claim_pol_pl2023_02_resources_media",
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "staged_unregistered"
+          "knowledge_link_status": "linked"
         },
         {
           "id": "quiz_politikk_pl2023_pathway_q3",
@@ -404,7 +404,7 @@
           ],
           "claim_id": "claim_pol_pl2023_03_competition_vs_administration",
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "staged_unregistered"
+          "knowledge_link_status": "linked"
         },
         {
           "id": "quiz_politikk_pl2023_pathway_q4",
@@ -496,7 +496,7 @@
           ],
           "claim_id": "claim_pol_pl2023_04_evidence_limit",
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "staged_unregistered"
+          "knowledge_link_status": "linked"
         },
         {
           "id": "quiz_politikk_pl2023_pathway_q5",
@@ -579,7 +579,7 @@
           ],
           "claim_id": "claim_pol_pl2023_05_recommendations",
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "staged_unregistered"
+          "knowledge_link_status": "linked"
         }
       ]
     }
