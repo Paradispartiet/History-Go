@@ -636,13 +636,24 @@
     return [];
   }
 
+  // Rendering the same action repeatedly must not detach its live buttons.
+  // Profile/day updates can arrive while a player is about to click.
+  let lastRenderedBody = null;
+  let lastRenderedMarkup = null;
+  function setActionBodyMarkup(body, markup) {
+    if (body === lastRenderedBody && markup === lastRenderedMarkup && body.isConnected) return;
+    body.innerHTML = markup;
+    lastRenderedBody = body;
+    lastRenderedMarkup = markup;
+  }
+
   function renderInto(body) {
     const action = getCurrentAction();
     if (!action) {
       const active = /** @type {{ title?: string, role_key?: string }|null} */ (getActiveRole());
       if (active && lastNoActionDebug) {
         const roleScope = lastNoActionDebug.resolvedRoleScope || resolveRoleScope(active);
-        body.innerHTML = "<div class=\"civi-next-action-empty\" role=\"alert\">"
+        setActionBodyMarkup(body, "<div class=\"civi-next-action-empty\" role=\"alert\">"
           + "<p><strong>Dagens hendelser kunne ikke hentes.</strong></p>"
           + "<p>Prøv igjen for å fortsette dagen. Tidligere valg er bevart.</p>"
           + (window.DEBUG ? "<details class=\"civi-next-action-debug-error\"><summary>Tekniske detaljer</summary><dl class=\"civi-debug-list\">"
@@ -653,11 +664,11 @@
           + "</dl></details>" : "")
           + "</div>"
           + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn primary\" type=\"button\" data-civi-next-action-retry=\"1\">Hent dagens hendelser</button>"
-          + "<button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>";
+          + "<button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>");
         return action;
       }
-      body.innerHTML = "<p class=\"civi-next-action-empty muted\">Ingen handling krever svar nå. Innboksen er ajour.</p>"
-        + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>";
+      setActionBodyMarkup(body, "<p class=\"civi-next-action-empty muted\">Ingen handling krever svar nå. Innboksen er ajour.</p>"
+        + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>");
       return action;
     }
 
@@ -668,7 +679,7 @@
     }
 
     const lines = bodyLines(action);
-    body.innerHTML = ""
+    setActionBodyMarkup(body, ""
       + "<article class=\"civi-next-action-card\" data-mail-id=\"" + escapeHtml(action.id) + "\">"
       + "<h3 class=\"civi-next-action-subject\">" + escapeHtml(action.subject) + "</h3>"
       + metaLine(action)
@@ -677,7 +688,7 @@
         return "<p>" + escapeHtml(line) + "</p>";
       }).join("") + "</div>" : "")
       + buildChoicesHtml(action)
-      + "</article>";
+      + "</article>");
     return action;
   }
 
@@ -724,7 +735,7 @@
     try { window.CivicationAnswerPrewarm?.prewarm?.(); } catch {}
     const immediate = getCurrentAction();
     if (immediate) render();
-    else if (bodyEl) bodyEl.innerHTML = "<p class=\"civi-next-action-empty muted\">Finner neste handling…</p>";
+    else if (bodyEl) { lastRenderedMarkup = null; bodyEl.innerHTML = "<p class=\"civi-next-action-empty muted\">Finner neste handling…</p>"; }
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     prepareNextActionSurface()
