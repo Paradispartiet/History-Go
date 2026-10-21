@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { nextDayViaUi } from './verify-civication-arbeidsledig-browser.js';
+import { nextDayViaUi, queuedPointerFallbacks } from './verify-civication-arbeidsledig-browser.js';
 
 export default async function verifyOrganicPlayer(browser: any, origin: string) {
   const quiz = JSON.parse(readFileSync(join(process.cwd(), 'data/quiz/kunst/munch_museet_sets.json'), 'utf8'));
@@ -379,6 +379,8 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
         if (!condition) throw new Error(message);
       }
     });
+    assert.deepEqual(queuedPointerFallbacks.filter(item => item.scenario === 'earned-museum-21-day'), [],
+      'queued-job controls must remain physically clickable without DOM-event fallback');
     assert.deepEqual(errors, [], 'No browser runtime errors during the 21-day organic player journey');
     console.log('PASS: 21 real Civication days, five earned History Go sets, museum job accepted on day 8, three weekly settlements, private choices and simulated-account restoration.');
     return { passed: true, completedDays: 21, totalChoices: played.length,
