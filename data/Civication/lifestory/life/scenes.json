@@ -5333,6 +5333,94 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_e_liv_d9_hverdag",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Et spor du selv må følge",
+      "tekst": "Ingen ny melding har løst livet over natta. Ved siden av tidligere løfter og avtaler finnes en aktivitet du kan gjøre nå, uavhengig av om andre har svart.",
+      "valg": [
+        {
+          "id": "les_ferdig",
+          "tekst": "Les ferdig teksten du begynte på og noter ett spørsmål",
+          "konsekvensTekst": "Du leser resten og skriver ned et konkret spørsmål. Du kan undersøke svaret senere; du har ikke automatisk bestått noen quiz.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d9_resultat": "sporsmal_notert"
+            }
+          }
+        },
+        {
+          "id": "ut_og_luft",
+          "tekst": "Gå en kort tur for å få hodet i gang",
+          "konsekvensTekst": "Du tar en runde i nærområdet og kommer hjem igjen. Turen blir ikke et History Go-besøk uten at du faktisk registrerer det der.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d9_resultat": "luftetur"
+            }
+          }
+        },
+        {
+          "id": "rydd_arbeidsplass",
+          "tekst": "Rydd en liten arbeidsflate og legg fram det du trenger",
+          "konsekvensTekst": "Du sorterer det du har utsatt og lager fysisk plass til neste oppgave. Det er en fullført, enkel aktivitet.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d9_resultat": "ryddet"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_liv_d12_vurdering",
+      "threadId": "wave_e_livsretning",
+      "dag": 1,
+      "livsdagFra": 12,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Hva tok faktisk form de siste dagene?",
+      "tekst": "To uker har gått. Du trenger ikke ha funnet deg en jobb eller et nytt miljø for at dagene skal ha vært virkelige. Men du kan merke forskjellen på planlagte og gjennomførte handlinger.",
+      "valg": [
+        {
+          "id": "gjennomga_valg",
+          "tekst": "Gå gjennom arkivet og finn en handling du faktisk fullførte",
+          "konsekvensTekst": "Du leser dine tidligere valg og skriver ned hva du gjorde. Ingen ny fortid blir funnet på, og ingen ekstra meritter deles ut.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d12_resultat": "arkiv_gjennomgatt"
+            }
+          }
+        },
+        {
+          "id": "gjore_det_enklere",
+          "tekst": "Velg bort ett prosjekt du ikke har kapasitet til nå",
+          "konsekvensTekst": "Du stryker et krav til deg selv uten å late som det ble gjennomført. Det frigjør rom til å følge opp noe annet.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d12_resultat": "prioritert"
+            }
+          }
+        },
+        {
+          "id": "velg_nytt_spor",
+          "tekst": "Skriv et konkret mål for kommende uke",
+          "konsekvensTekst": "Du formulerer et realistisk neste steg. Det blir først et resultat dersom du senere utfører handlingen.",
+          "effekter": {
+            "flagg": {
+              "wa_f_d12_resultat": "plan_skrevet"
+            }
+          }
+        }
+      ]
     }
   ]
 }
