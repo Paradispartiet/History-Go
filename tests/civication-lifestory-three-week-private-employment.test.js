@@ -58,17 +58,22 @@ async function run() {
         milestones.push('private-view-after-earned-employment');
       }
       if (lifeDay === 15) {
-        const previousArchive = clone(state.arkiv);
-        const previousRelations = clone(state.relasjoner);
+        const previousPrivateArchive = clone(state.arkiv.filter(event =>
+          sharedSceneIds.has(event.sceneId) || /^wave_[abcd]_c0[15]_/.test(event.sceneId)));
+        const family = state.relasjoner.familie;
+        const friend = state.relasjoner.venn;
         const lifeClock = state.livsdag;
         state = State.selectRole(state, cleaner);
         content = cleaner;
         assert.equal(state.rolle, 'renholder', 'known job reopens authored work package');
         assert.equal(state.livsdag, lifeClock, 'job change never resets player life day');
-        assert.deepEqual(state.relasjoner, previousRelations, 'family and friends follow player');
-        assert.ok(previousArchive.every(event =>
+        assert.equal(state.relasjoner.familie, family, 'family follows player');
+        assert.equal(state.relasjoner.venn, friend, 'friends follow player');
+        assert.ok(previousPrivateArchive.length > 0,
+          'real personal events were played before employment changed');
+        assert.ok(previousPrivateArchive.every(event =>
           state.arkiv.some(row => row.sceneId === event.sceneId && row.valgId === event.valgId)),
-          'archived private actions follow the player into the mapped job');
+          'only personal archive transfers to the new active role; work history stays in role snapshots');
         milestones.push('mapped-role-switch');
       }
       if (lifeDay === 18) {
