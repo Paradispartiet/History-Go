@@ -5,7 +5,7 @@ import { join } from 'node:path';
 
 // One browser day through real controls. No direct writes to the game clock
 // and no test invocation of the phase-advance API.
-async function nextDayViaUi(page: any, scenarioId: string, day: number) {
+export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
   for (let step = 0; step < 55; step++) {
     const before = await page.evaluate(() => {
       const app = globalThis as any;
