@@ -12,6 +12,9 @@ on:
       - 'fagverk.html'
       - 'tests/politikk-poland-pathway-browser.test.mjs'
       - 'tests/politikk-hungary-poland-pathway-browser.test.mjs'
+      - 'tests/politikk-comparative-evidence-lab-browser.test.mjs'
+      - 'js/politikk-evidence-workshop.js'
+      - 'css/politikk-curriculum.css'
       - '.github/workflows/politikk-poland-pathway-browser.yml'
 
 permissions:
@@ -35,6 +38,7 @@ jobs:
         run: |
           node --check js/quizzes.js
           node --check js/fagverk.js
+          node --check js/politikk-evidence-workshop.js
           node --check js/fagverk-ia-v3.js
       - name: Verify five-stage Politics package
         run: node --test tests/politikk-advanced-political-science-subject-pathway-v6.test.mjs
@@ -44,3 +48,4 @@ jobs:
         run: |
           node tests/politikk-poland-pathway-browser.test.mjs
           node tests/politikk-hungary-poland-pathway-browser.test.mjs
+          node tests/politikk-comparative-evidence-lab-browser.test.mjs
