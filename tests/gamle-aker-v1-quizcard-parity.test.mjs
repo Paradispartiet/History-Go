@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
+import { JSDOM } from "jsdom";
 
 const root = "data/quizcards/historie";
 const manifest = JSON.parse(fs.readFileSync(root + "/manifest.json", "utf8"));
@@ -66,4 +67,42 @@ test("Gamle Aker photo files and historical-photo provenance remain intact", () 
   }
   assert.match(place.for_na.beforeImageMeta.license, /CC BY-SA/);
   assert.match(place.for_na.beforeImageMeta.sourcePage, /commons\.wikimedia\.org/);
+});
+
+test("Gamle Aker QuizCard resolves and renders through the existing PlaceCard loader", async () => {
+  const bundle = fs.readFileSync("js/ui/place-card-quizcards-patch.js", "utf8");
+  const dom = new JSDOM(`<!doctype html><body>
+    <button id="pcFrontCardFlip" aria-label="Quizkort mangler"></button>
+    <div id="pcQuizCardContent" hidden></div>
+    <img id="pcQuizCardImage" alt="">
+  </body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
+  try {
+    const { window } = dom;
+    const paths = [];
+    window.TEST_MODE = true;
+    window.visited = {};
+    window.HG_I18N = { t: (_key, fallback) => fallback };
+    window.openPlaceCard = async () => true;
+    window.DataHub = {
+      loadQuizCardsCollection: async path => {
+        paths.push(path);
+        if (path === "historie/manifest.json") return { collections: [batchName] };
+        if (path === "historie/" + batchName) return collection;
+        return null;
+      }
+    };
+    window.eval(bundle);
+    await window.openPlaceCard({ id: "gamle_aker_kirke", name: "Gamle Aker kirke", category: "historie" });
+    assert.ok(paths.includes("historie/manifest.json"));
+    assert.ok(paths.includes("historie/" + batchName));
+    const flip = window.document.getElementById("pcFrontCardFlip");
+    const content = window.document.getElementById("pcQuizCardContent");
+    assert.equal(flip.getAttribute("aria-label"), "Vis quizkort");
+    assert.equal(content.hidden, false);
+    assert.match(content.textContent, /Gamle Aker kirke/);
+    assert.match(content.textContent, /Hva kan være synlig i kalksteinen/);
+    assert.doesNotMatch(content.textContent, /hva bør et godt.*kort formidle/i);
+  } finally {
+    dom.window.close();
+  }
 });
