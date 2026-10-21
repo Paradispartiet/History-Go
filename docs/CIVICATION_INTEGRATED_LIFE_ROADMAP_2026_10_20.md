@@ -7,8 +7,18 @@ Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, 
 
 Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. Følg `CIVICATION_README.md`, `CIVICATION_PATCH_ORDER.md`, Scene Pipeline, Life Story og eksisterende økonomi-/relasjonskontrakter. Opprett ingen parallelle motorer.
 
+## Faktisk publiseringsstatus – 21. oktober 2026
+
+- [#6400](https://github.com/Paradispartiet/History-Go/pull/6400) er merget: idempotent dagsplan og aktiviteter knyttet til riktig spilldag.
+- [#6408](https://github.com/Paradispartiet/History-Go/pull/6408) er merget: én eier av toppkort, tydelige innboksstatuser og sikker dagslutt.
+- [#6481](https://github.com/Paradispartiet/History-Go/pull/6481) og [#6490](https://github.com/Paradispartiet/History-Go/pull/6490) er merget: syv spilldager per uke og lønn etter faktisk jobb hver spilldag.
+- [#6496](https://github.com/Paradispartiet/History-Go/pull/6496) er merget: jobbhistorikk følger kontosikkerhetskopi.
+- [#6500](https://github.com/Paradispartiet/History-Go/pull/6500) korrigerer at NPC-relasjonene `civi.socialRelationships.v1` og tidligere svar `civi.socialResponses.v1` falt utenfor kontoens nøkkelutvalg. Tre mock-baserte regresjoner følger PR-en; merge krever grønn CI.
+- [#6382](https://github.com/Paradispartiet/History-Go/pull/6382) er fremdeles et **utkast**: røde tester og gjeninnføring av faste Mira/Lea/Arvid-navn i brukerrettet tekst er ikke godkjent. De skal være fiktive typer med kanonisk intern-ID, ikke faste personer eller virkelige History Go-personer.
+- Dette er **ikke** en gjennomført 14-dagers nettlesertest; fysisk kontogjenoppretting, NPC-etterspill og reelle History Go-opplåsinger er fortsatt åpne porter.
+
 ## Én prioritert leveranse
-**PR #6437** (`fa223ed75547212edbc33792d705e79287527d2c`) er merget til `main` med seks beståtte CI-arbeidsflyter. Vitalitets-/Life Story-koden og regressjonene er publisert; dette er **ikke** full 14-dagers browser-/kontoakseptanse. PR #6415 og #6427 er også merget. Ukeavregningen etter **syv faktiske spilldager** er merget i PR #6481 (`dacbd7270bbf41f7bfb90ac1996f1d92a95d7ed8`). Neste avgrensede bolk registrerer faktisk jobb og lønnsgrunnlag ved dagslutt, slik at jobbbytter ikke etterbetales som en hel uke i den siste jobben. Ekte 14-dagers gjennomspilling gjenstår.
+**PR #6437** (`fa223ed75547212edbc33792d705e79287527d2c`) er merget til `main` med seks beståtte CI-arbeidsflyter. Vitalitets-/Life Story-koden og regressjonene er publisert; dette er **ikke** full 14-dagers browser-/kontoakseptanse. PR #6415 og #6427 er også merget. Ukeavregningen etter **syv faktiske spilldager** er merget i PR #6481 (`dacbd7270bbf41f7bfb90ac1996f1d92a95d7ed8`). Denne feilen ved jobbbytte er lukket i #6490. Ekte 14-dagers gjennomspilling gjenstår.
 
 ### Fase 1: verifiser publisert PR #6437
 - [ ] Les fersk CI for nøyaktig siste head-commit; rett feil i samme PR, ikke ved å ignorere tester.
@@ -47,19 +57,19 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 - [ ] Dokumenter akseptansestatus med bevis: testnavn, commit, scenario, forventet/faktisk, avvik, PR og beslutning.
 
 ## Kontrollregister – oppdater etter hvert arbeid
-| ID | Område | Akseptansekriterium | Status per 2026-10-20 |
+| ID | Område | Akseptansekriterium | Status per 2026-10-21 |
 | --- | --- | --- | --- |
 | C1 | PR #6437 | Grønn CI og reell spillflyt før merge | Merget, 6/6 CI; full E2E-spillflyt ikke godkjent |
-| C2 | Energi | Gradvis restitusjon uten dobbeltelling | Implementert på gren, ikke godkjent |
-| C3 | Psyke | Små, forutsigbare utslag med synlige følger | Implementert på gren, ikke kalibrert bredt |
-| C4 | Jobbbytte | Personlige målere bevares; rollespesifikke verdier isoleres | Endret på gren, må regresjonstestes |
-| C5 | Etterspill | Dag 2-valg endrer dag 3-hendelse | Innhold lagt på gren, må gjennomspilles |
+| C2 | Energi | Gradvis restitusjon uten dobbeltelling | Implementert i #6437 (main); full spillerreise ikke godkjent |
+| C3 | Psyke | Små, forutsigbare utslag med synlige følger | Implementert i #6437 (main); bred balansekalibrering mangler |
+| C4 | Jobbbytte | Personlige målere bevares; rollespesifikke verdier isoleres | Merget i #6437; komplett spillreise må regresjonstestes |
+| C5 | Etterspill | Dag 2-valg endrer dag 3-hendelse | Oppfølgingsscene merget; full nettlesergjennomspilling mangler |
 | C6 | Økonomi | Fortellingstransaksjoner og faktisk lommebok samstemmer | Åpent |
-| C7 | Kalender | Livsdager og økonomiuker gir forventet progresjon | Syv spilldager/idempotens merget i #6481; lønn ved jobbbytte under ny CI; full E2E ikke godkjent |
-| C8 | Relasjoner | Personer reagerer senere på tidligere valg | Delvis, ende-til-ende ikke bevist |
-| C9 | Skylagring | Samme progresjon etter reload/ny enhet | Åpent som full akseptanse |
+| C7 | Kalender | Livsdager og økonomiuker gir forventet progresjon | #6481 og #6490 merget; kalender/lønn korrigert, full E2E ikke godkjent |
+| C8 | Relasjoner | Personer reagerer senere på tidligere valg | Delvis; vedvarende NPC-minne sikres i PR #6500 (CI påkrevd), senere sosialt etterspill ikke bevist |
+| C9 | Skylagring | Samme progresjon etter reload/ny enhet | #6395/#6496 merget og #6500 under CI; mock restore testet, fysisk konto-/enhetsbytte ikke godkjent |
 | C10 | 14 dager | Autentisk brukerreise med kausale konsekvenser | Ikke godkjent |
-| C11 | UI | Én tydelig innboks, naturlig dagflyt og tilbakemelding | Sluttkontroll gjenstår |
+| C11 | UI | Én tydelig innboks, naturlig dagflyt og tilbakemelding | Dagsplan #6400 og toppkort/innboks #6408 merget; integrert nettleserkontroll gjenstår |
 
 ## Arbeidsregler
 1. Oppdater dette registeret ved hver vesentlige leveranse; skill mellom «kode på gren», «CI bestått», «merget» og «spilltest godkjent».
