@@ -597,7 +597,7 @@ dlog("loaded sets:", _byTargetSets.size);
 // meta = { correctAnswers, conceptsCorrect, emnerTouched }
 // ============================================================
 
-function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "", autoClose = true }) {
+function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "", autoClose = true, captureCanonicalOnly = false }) {
   ensureQuizUI();
 
   const qs = {
@@ -731,7 +731,7 @@ if (canTag) {
         ? window.saveKnowledgeFromQuiz
         : null;
 
-  if (saveKnowledge && q.knowledge) {
+  if (saveKnowledge && q.knowledge && !captureCanonicalOnly) {
     try {
       saveKnowledge(
         {
@@ -910,6 +910,7 @@ if (canTag) {
         questions: set.questions,
         progressPrefix: "Fagområdeforløp",
         autoClose: false,
+        captureCanonicalOnly: true,
         onEnd: (correct, total, result) => {
           // Capture *full* source-bound question records, retaining their
           // canonical ku_*, co_*, term_* and emne IDs for Knowledge V2.
@@ -940,7 +941,7 @@ if (canTag) {
                 link.href = source.url;
                 link.target = "_blank";
                 link.rel = "noopener noreferrer";
-                link.textContent = source.publisher_or_author || source.title || "Kilde";
+                link.textContent = source.title || source.source_id || source.publisher_or_author || "Kilde";
                 sources.appendChild(link);
               });
               article.append(title, explanation, sources);
