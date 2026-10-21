@@ -1,0 +1,283 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "oslo_gassverk",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Christiania Gasværks historiske produksjons- og distribusjonssystem ved Storgata og Ankertorget, ikke det senere anlegget på Sjursøya.",
+    "anchorType": "production_site",
+    "placeObjectDistinction": "Produksjonsområdet ved Ankertorget er revet. Det fredede administrasjonsbygget i Storgata 36C fra 1883 er et bevart spor, ikke selve fabrikkflaten.",
+    "temporalScope": {
+      "start": "1848",
+      "end": "1978",
+      "precision": "period",
+      "rationale": "Driftshistorien går fra oppstart i 1848 til opphør i 1978. Senere bevaringsstatus for kontorbygningen omtales separat."
+    },
+    "sourceIds": [
+      "source_gassverk_byarkiv",
+      "source_gassverk_riksantikvaren",
+      "source_gassverk_byleksikon"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_industri_og_mekanisering",
+      "siteSpecificRationale": "Oppvarming av kull i lukkede anlegg skapte by-gass og salgbare biprodukter; senere skiftet produksjonen til lettbensin på Sjursøya.",
+      "caseIds": [
+        "case_gassverk_urban_energy"
+      ]
+    },
+    {
+      "emneId": "em_naering_teknologi_infrastruktur",
+      "siteSpecificRationale": "Ledningsnett og gasslykter knytter Storgata-anlegget til utbyggingen av organisert energiforsyning i Christiania.",
+      "caseIds": [
+        "case_gassverk_urban_energy"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_gassverk_byarkiv",
+      "url": "https://blogg.oslobyarkiv.no/blog/2016/08/12/gass-mot-elektrisitet/",
+      "sourceLocation": "Gass mot elektrisitet: «Kull ga gass», «Elektrisiteten overtar» og arkivreferanser",
+      "sourceType": "archive",
+      "verifiedAt": "2026-10-21",
+      "temporalCoverage": "historical",
+      "provenance": "Øystein Eikes formidling hos Oslo byarkiv, med henvisning til Oslo gassverks og Oslo lysverkers arkiver.",
+      "limitations": "Formidlingsartikkel, ikke fullstendig årsregnskap eller dokumentasjon av produksjonsvolumer; oppgir annet år for Sjursøya-anlegget enn stedsleksikonet."
+    },
+    {
+      "id": "source_gassverk_riksantikvaren",
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/10.storgata36c.pdf",
+      "sourceLocation": "Fredningsvedlegg Storgata 36C, sidene 1–2: oppføring, avgrensning og fredningsformål",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-21",
+      "temporalCoverage": "current",
+      "provenance": "Riksantikvarens fredningsvedlegg for det tidligere administrasjonsbygget, oppført 1883.",
+      "limitations": "Dokumenterer bevart bygning og fredningsomfang, ikke hele gassverksdriften eller historisk fabrikkgeometri."
+    },
+    {
+      "id": "source_gassverk_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Gassverket.",
+      "sourceLocation": "Oppstarten, kommunaliseringen, konkurransen fra elektrisitet, Sjursøya og nedleggelsen",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-21",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo byleksikons stedshistorie om Gassverket, også brukt i den eksisterende stedsteksten.",
+      "limitations": "Oversiktskilde uten fullstendige regnskaper, og med 1964 for Sjursøya i motsetning til 1962 i Byarkivets korttekst."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_gassverk_urban_energy",
+      "claim": "Et kullbasert gassverk forsynte Christianias belysning og senere andre energibehov fra 1848, før elektrifisering, nytt anlegg og råstoffkostnader bidro til omstilling og nedleggelse.",
+      "unitOfAnalysis": {
+        "unit": "Historisk gassproduksjon og gassdistribusjon ved Storgata–Ankertorget",
+        "boundary": "Stedsanalysen gjelder det eldre anlegget og dets rørnett i byen; Sjursøya fra 1960-årene behandles som senere separat produksjonssted.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1848",
+          "end": "1978",
+          "precision": "period",
+          "rationale": "Driftshistorien går fra oppstart i 1848 til opphør i 1978. Senere bevaringsstatus for kontorbygningen omtales separat."
+        },
+        "sourceIds": [
+          "source_gassverk_byarkiv",
+          "source_gassverk_riksantikvaren",
+          "source_gassverk_byleksikon"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Christiania Gascompagnie og fra 1878 Oslo kommune",
+          "roleOrInterest": "Private eiere og senere kommunal forvaltning finansierte og styrte gassforsyningens anlegg og drift.",
+          "economicPosition": "Kontrollerte investeringene, konsesjonen, eierskapet og offentlig energiforsyning.",
+          "sourceIds": [
+            "source_gassverk_byarkiv",
+            "source_gassverk_byleksikon"
+          ]
+        },
+        {
+          "name": "Arbeidere ved gassverk, ledningsnett og drift",
+          "roleOrInterest": "Utførte praktisk produksjon og drift som forsyningen var avhengig av.",
+          "economicPosition": "Bidro med arbeidskraft, men individuelt arbeids- og lønnsgrunnlag er ikke dokumentert her.",
+          "sourceIds": [
+            "source_gassverk_byarkiv",
+            "source_gassverk_byleksikon"
+          ]
+        },
+        {
+          "name": "Belysningskunder, husholdninger og næringsliv",
+          "roleOrInterest": "Kjøpte gass til lys, varme, husholdning og industrielle prosesser.",
+          "economicPosition": "Var brukere og betalere, i konkurranse med parafin og senere elektrisitet.",
+          "sourceIds": [
+            "source_gassverk_byarkiv",
+            "source_gassverk_byleksikon"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Kull, oppvarmingsutstyr, et sentralt fabrikksted, arbeidskraft og et omfattende distribusjonsnett.",
+            "sourceIds": [
+              "source_gassverk_byarkiv",
+              "source_gassverk_byleksikon"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Oppvarming av kull til gass, håndtering av biprodukter og distribusjon gjennom ledningsnettet til lys og andre formål.",
+          "sourceIds": [
+            "source_gassverk_byarkiv",
+            "source_gassverk_byleksikon"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Gass til belysning, husholdninger og bedrifter; koks, tjære og ammoniakk som biprodukter.",
+            "sourceIds": [
+              "source_gassverk_byarkiv",
+              "source_gassverk_byleksikon"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer produksjon og bruk, men gir ikke sammenlignbare regnskapstall til å beregne samlet merverdi eller lønnsomhet.",
+          "sourceIds": [
+            "source_gassverk_byarkiv",
+            "source_gassverk_byleksikon"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Dokumentert drift fra 1848, kommunal overtakelse i 1878, skifte i energimarked og opphør i 1978.",
+        "unit": "historiske steds- og produksjonshendelser",
+        "period": "1848–1978",
+        "comparability": "Historiske endringer kan sammenholdes, men er ikke en sammenlignbar kvantitativ tidsserie.",
+        "dataLimitations": "Kildeutvalget gir ikke fullstendige årstallfestede produksjonsmengder, lønninger eller inntekter.",
+        "sourceIds": [
+          "source_gassverk_byarkiv",
+          "source_gassverk_byleksikon"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Et privat gascompagnie kontrollerte oppstarten; kommunen overtok i 1878.",
+        "laborPosition": "Anlegget krevde teknisk arbeidskraft, men kildeutvalget gir ikke pålitelig oversikt over arbeidsvilkår eller lønninger.",
+        "beneficiaries": [
+          "Byens kunder som fikk tilgang til gassbelysning og andre energitjenester.",
+          "Virksomhetens eiere og senere kommunal energiforvaltning."
+        ],
+        "costRiskBearers": [
+          "Eiere og kommunal forvaltning med drifts- og investeringsrisiko.",
+          "Abonnenter som kunne påvirkes av priser, teknologiskift og forsyningsvalg."
+        ],
+        "sourceIds": [
+          "source_gassverk_byarkiv",
+          "source_gassverk_byleksikon"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Elektrisitetens vekst, underskudd og oljeprisøkning etter 1973 svekket gassverkets drift før nedleggelsen.",
+          "sourceIds": [
+            "source_gassverk_byarkiv",
+            "source_gassverk_byleksikon"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Det foreligger ikke stedsspesifikke målinger av utslipp eller arbeidshelseeffekter i det gjennomgåtte kildeutvalget."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Byarkivets arkivbaserte energioversikt og Oslo byleksikons driftskronologi sammenholdes med Riksantikvarens dokumentasjon av den bevarte bygningen.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Kildene knytter omstillingen til konkurrerende energiteknologi og økonomiske forhold, men isolerer ingen målbar kausal effekt.",
+        "alternativeExplanations": [
+          "Energikundenes skiftende behov, kommunal drift, investeringer, ny produksjonsteknologi og utviklingen i oljepris kan alle bidra til endringene."
+        ],
+        "uncertainty": "Byarkivet nevner 1962 for Sjursøya, Oslo byleksikon og Lokalhistoriewiki 1964; 1964 beholdes som kildedatert anleggsår, uten å utlede en presis åpningsdag.",
+        "sourceIds": [
+          "source_gassverk_byarkiv",
+          "source_gassverk_riksantikvaren",
+          "source_gassverk_byleksikon"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Gassproduksjonen er avsluttet og fabrikkbygningene ved Ankertorget er borte; administrasjonsbygget i Storgata 36C fra 1883 er bevart og fredet.",
+    "originalEconomicRoleRelationship": "Det fredede kontorbygget minner om energiforsyningen, men er ikke i seg selv det tidligere kullgassproduserende anlegget.",
+    "checkedAt": "2026-10-21",
+    "sourceIds": [
+      "source_gassverk_riksantikvaren",
+      "source_gassverk_byleksikon"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "De ti QuizCard-spørsmålene gjenbrukes fra eksisterende fullquiz; oppstart av en ny fagspesifikk 2×7-quiz er ikke del av denne v1-bolken."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Driftsårene og stedsavgrensningen er gjennomgått. Ingen ny separat Story- eller kronologiproduksjon bestilles i denne bolken."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Eksisterende fullquiz beholdes og QuizCard velger kildebelagte spørsmål; ingen ny fullquiz produseres."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Historisk kronologi vurdert, men ingen ny Story- eller tidslinjeepisode tilføyes."
+    }
+  },
+  "review": {
+    "reviewer": "History Go – redaksjonell stedsproduksjon",
+    "reviewedAt": "2026-10-21",
+    "notes": "Gassverkets faktiske start 1848 og avslutning 1978 kontrollert mot Oslo byarkiv og Oslo byleksikon. Bevart administrasjonsbygg fra 1883 og fredningsomfang kontrollert mot Riksantikvaren. Sjursøya behandles som et annet anlegg. Ingen regnskapstall eller utslippsmålinger oppfunnet."
+  }
+}
