@@ -79,6 +79,13 @@ const fixtureStream = {
         { id: "A", label: "Fortsett", effect: 1 },
         { id: "B", label: "Avslutt", effect: 0 }
       ]
+    },
+    {
+      id: "supporter_people",
+      time_slot: ["people", "leisure"],
+      subject: "Supportersamtale som privat aktivitet",
+      situation: ["En privat interesse er ikke en arbeidsordre."],
+      choices: [{ id: "A", label: "Inviter", effect: 0 }]
     }
   ]
 };
@@ -114,7 +121,7 @@ const windowObject = {
     getState: () => state,
     getActivePosition: () => active
   },
-  CivicationCareerRoleResolver: { resolveCareerRoleScope: () => "fixture_role" },
+  CivicationCareerRoleResolver: { resolveCareerRoleScope: (position) => position?.role_key || "fixture_role" },
   CivicationWorkdayRuntime: { getEmployerId: () => "fixture_employer", getWorkdayDayIndex: () => 1 },
   CivicationMailRuntime: { makeCandidateMailsForActiveRole: async () => [] },
   CivicationEventEngine: MockEventEngine,
@@ -181,6 +188,25 @@ vm.runInContext(narrativeSource, context, { filename: narrativePath });
     exclude_storylet_keys: [], date: "2026-08-15", ordinal: 2
   });
   assert.equal(injectedWrongWork.length, 0, "role change also guards same-day injection");
+  // A private supporter/people story must never become operational work at a
+  // museum simply because the player has the relevant private interest.
+  const noLeisureAtWork = await catalog.getSourceScenes("narrative", {
+    mode: "slot", phaseId: "forenoon", active, state,
+    narrativeState: { active_streams: ["fixture_leisure_stream"], stream_progress: {}, flags: [] },
+    candidate_stream_ids: ["fixture_leisure_stream"],
+    used_storylet_keys: [], date: "2026-08-15", ordinal: 3
+  });
+  assert.equal(noLeisureAtWork.length, 0,
+    "private people/leisure storylets cannot occupy an employment phase");
+  const factoryActive = { ...active, role_key: "fagarbeider" };
+  const factoryDay = await catalog.getSourceScenes("narrative", {
+    mode: "slot", phaseId: "forenoon", active: factoryActive, state,
+    narrativeState: { active_streams: ["fagarbeider_work_stream"], stream_progress: {}, flags: [] },
+    candidate_stream_ids: ["fagarbeider_work_stream"],
+    used_storylet_keys: [], date: "2026-08-15", ordinal: 4
+  });
+  assert.equal(factoryDay.length, 1, "legitimate work streams still play in their own job");
+  assert.equal(factoryDay[0].narrative_stream_id, "fagarbeider_work_stream");
   const narrativeState = {
     active_streams: activation.matched_stream_ids,
     stream_progress: {},
