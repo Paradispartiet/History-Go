@@ -504,6 +504,12 @@
     if (context.exclude_work_streams === true) {
       candidateStreams = candidateStreams.filter(stream => !WORK_STREAM_TYPES.has(slugify(stream?.type)));
     }
+    // Forenoon and workday are employer time. A leisure stream with a
+    // "people" slot (e.g. football supporters) must never be queued as
+    // museum/other paid work merely because the player's interests match.
+    if (!isPrivatePhase(phaseId)) {
+      candidateStreams = candidateStreams.filter(stream => WORK_STREAM_TYPES.has(slugify(stream?.type)));
+    }
     const npcAlreadyAssigned = npcAssignedThisDay(streams, usedStorylets, narrativeState, isPrivatePhase(phaseId));
     const picks = storyletsForSlot(candidateStreams, phaseId, usedStorylets, active, state, narrativeState, npcAlreadyAssigned);
     return picks.map(pick => storyletToEvent({ ...context, active, state, phaseId }, pick.stream, pick.storylet));
