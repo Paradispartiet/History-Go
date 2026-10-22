@@ -582,6 +582,20 @@
         + "</div>";
     }
 
+    // A delivered day-end summary is intentionally read-only. It must be
+    // acknowledged through the real queue before "Start ny dag" appears;
+    // treating its empty choices as a broken mail traps players on day 8.
+    // All other answerable mails without choices still fail closed.
+    if (action.source === "day_phase" && action.phase === "day_end"
+        && action.slot === "day_summary" && action.status === "delivered"
+        && !resolveActionChoices(action).length) {
+      return ""
+        + '<p class="civi-next-action-sub muted">Dagens oppsummering er klar. Les den før du avslutter dagen.</p>'
+        + '<div class="civi-next-action-choices" role="group" aria-label="Dagsoppsummering">'
+        + '<button class="civi-btn" type="button" data-civi-next-action-acknowledge="1" data-mail-id="' + escapeHtml(mailId) + '">Lest oppsummeringen</button>'
+        + '</div>';
+    }
+
     const choices = resolveActionChoices(action);
     if (!choices.length) {
       if (isAnswerableAction(action)) {
@@ -1081,6 +1095,30 @@
         // Deliver the exact queued mail the player opened; requesting an
         // unspecified next item can keep re-delivering an older runtime row.
         deliverQueuedAction(String(openQueuedBtn.getAttribute("data-mail-id") || ""));
+        return;
+      }
+
+      const acknowledgeBtn = target.closest("[data-civi-next-action-acknowledge]");
+      if (acknowledgeBtn && modal.contains(acknowledgeBtn) && !acknowledgeBtn.disabled) {
+        event.preventDefault();
+        const mailId = String(acknowledgeBtn.getAttribute("data-mail-id") || "").trim();
+        const current = getCurrentAction();
+        // Never let this read-only shortcut answer a job, task gate, private
+        // choice, different phase or stale/forged mail pointer.
+        if (!mailId || current?.id !== mailId || current?.source !== "day_phase"
+            || current?.phase !== "day_end" || current?.slot !== "day_summary"
+            || current?.status !== "delivered" || resolveActionChoices(current).length) return;
+        acknowledgeBtn.disabled = true;
+        Promise.resolve(window.CivicationDailyMailBuilder?.markHandled?.(mailId, "read"))
+          .then(function (result) {
+            if (!result) throw new Error("Dagsoppsummeringen kunne ikke bekreftes");
+            dispatchNextActionUpdates();
+            render();
+          })
+          .catch(function (error) {
+            notifyFailure("Kunne ikke fullføre dagsoppsummeringen", error);
+            render();
+          });
         return;
       }
 
