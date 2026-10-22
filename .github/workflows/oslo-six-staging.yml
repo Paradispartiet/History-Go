@@ -1,0 +1,37 @@
+name: Oslo six-place editorial staging QA
+
+on:
+  pull_request:
+    paths:
+      - 'reports/place-production/oslo-six-places-editorial-20261022.md'
+      - 'reports/place-production/oslo-six-places-integration-gates-20261022.json'
+      - 'data/quiz/production_briefs/historie/linderud_gard.json'
+      - 'scripts/build-oslo-six-quiz-handoff.mjs'
+      - 'tests/oslo-six-quiz-handoff.test.mjs'
+      - 'tests/oslo-six-places-integration-gates.test.mjs'
+      - '.github/workflows/oslo-six-staging.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-six-staging-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  staging:
+    name: Source, count and publication-hold parity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out pull-request head
+        uses: actions/checkout@v4
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify six-place staging handoff and release holds
+        run: node --test tests/oslo-six-quiz-handoff.test.mjs tests/oslo-six-places-integration-gates.test.mjs
+      - name: Verify non-publishing data export
+        run: node scripts/build-oslo-six-quiz-handoff.mjs
