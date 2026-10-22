@@ -109,3 +109,20 @@
   max-width:100%;
   font-size:clamp(26px,11cqi,64px);
 }
+
+/* Oslo sentrum A: prevent the long canonical name from being clipped on phones.
+   Scoped to Telegrafbygningen; other Place and Fagverk layouts remain unchanged. */
+@media (max-width: 720px) {
+  body.hg-fagverk-place-page[data-place-id="telegrafbygningen"] .fagverk-place-hero-copy {
+    min-width: 0;
+  }
+
+  body.hg-fagverk-place-page[data-place-id="telegrafbygningen"] .fagverk-place-hero h1 {
+    max-width: 100%;
+    font-size: clamp(1.8rem, 8vw, 3.4rem);
+    line-height: 1.06;
+    letter-spacing: -.045em;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+}
