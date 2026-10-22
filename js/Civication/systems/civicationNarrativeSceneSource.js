@@ -489,6 +489,15 @@
     // workday. This also protects callers with stale candidate_stream_ids.
     candidateStreams = candidateStreams.filter(stream =>
       streamEligibleForCurrentRole(stream, active, state, narrativeState));
+    // Forenoon/workday are employment phases. A personal interest such as
+    // football must not turn a leisure/supporter scene into a museum work mail,
+    // even if its storylet happens to advertise the generic `people` slot.
+    // Private phases continue to admit private/leisure narratives; actual
+    // work streams remain eligible for the role that owns their workday.
+    if (!isPrivatePhase(phaseId)) {
+      candidateStreams = candidateStreams.filter(stream =>
+        WORK_STREAM_TYPES.has(slugify(stream?.type)));
+    }
     if (context.npc_only === true) {
       candidateStreams = candidateStreams.filter(isNpcRoleStoryStream);
     }
