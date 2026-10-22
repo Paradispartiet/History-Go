@@ -2,7 +2,7 @@
   "schema": "history_go_frognerseteren_operator_source_line_review_v1",
   "as_of": "2026-10-22",
   "place_id": "frognerseteren",
-  "canonical_scope": "Hovedrestaurant Holmenkollveien 200. Historiske bygg utenfor restauranten er egne objekter og kan bare omtales som kontekst.",
+  "canonical_scope": "Hovedrestaurant Holmenkollveien 200. Alle 21 spørsmålskandidater gjelder nå hovedrestauranten eller dens egen historiske drift. Andre bygninger omtales bare i kontrast eller kontekst.",
   "source": {
     "url": "https://www.frognerseteren.no/mer-historie-",
     "publisher": "Frognerseteren Restaurant",
@@ -23,8 +23,8 @@
     },
     {
       "question_id": "frognerseteren_review_quiz_12",
-      "claim_topic": "timber_origin",
-      "evidence_section": "Historikkens første avsnitt om byggingen, 1891",
+      "claim_topic": "construction_cost_1891",
+      "evidence_section": "Historikkens første avsnitt om byggetrinnet og byggekostnad 85 000 kroner",
       "display_line_hint": 18,
       "editorial_source_read": "matched_primary_source",
       "independent_claim_signoff": false,
@@ -112,21 +112,26 @@
       "release_ready": false
     }
   ],
-  "quizcard_context_decisions": [
+  "quizcard_context_decisions": [],
+  "chronology_caveat": "Oslo byleksikon beskriver restaurantens om- og tilbygg som 1909; operatørens historikk daterer ferdigstilling av Storstua til 1910 og refererer til 1909–10. Oppgi hendelsen og datoen presist, unngå å presentere forskjellen som en avklart konflikt.",
+  "runtime_publication_status": "NOT_REGISTERED",
+  "next_gate": "Independent source-to-claim assessment, redaksjonell kvalitetssikring, all-six geo/image/Place/Knowledge/parity and browser QA.",
+  "quizcard_operator_source_facts": [
     {
       "question_id": "frognerseteren_review_quiz_03",
-      "subject": "Heftyevillaens oppføringsår",
-      "decision": "CONTEXT_HOLD",
-      "reason": "Separate Heftyevilla, not the restaurant; replace or explicitly sign off before runtime publication."
+      "claim_topic": "timber_from_municipal_forest",
+      "evidence_section": "Restaurantens historie: materialer fra kommunens egen skog",
+      "editorial_source_read": "matched_primary_source",
+      "independent_claim_signoff": false,
+      "release_ready": false
     },
     {
       "question_id": "frognerseteren_review_quiz_05",
-      "subject": "Åpning av veien mot Frognerseteren",
-      "decision": "CONTEXT_HOLD",
-      "reason": "Site access history, not the restaurant building; verify whether it belongs in main restaurant QuizCard."
+      "claim_topic": "styrerommet_designed_by_christian_heiberg",
+      "evidence_section": "Restaurantens historie: byarkitekt Christian Heiberg innredet Styrerommet",
+      "editorial_source_read": "matched_primary_source",
+      "independent_claim_signoff": false,
+      "release_ready": false
     }
-  ],
-  "chronology_caveat": "Oslo byleksikon beskriver restaurantens om- og tilbygg som 1909; operatørens historikk daterer ferdigstilling av Storstua til 1910 og refererer til 1909–10. Oppgi hendelsen og datoen presist, unngå å presentere forskjellen som en avklart konflikt.",
-  "runtime_publication_status": "NOT_REGISTERED",
-  "next_gate": "Independent source-to-claim assessment, redaksjonell kvalitetssikring, all-six geo/image/Place/Knowledge/parity and browser QA."
+  ]
 }
