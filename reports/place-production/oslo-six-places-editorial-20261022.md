@@ -221,3 +221,93 @@ Driften tok slutt sent på 1960-tallet, men teglverksbygningen og ringovnen ble 
 ## Kvalitets- og statusport
 
 Dette er ett isolert redaksjonelt researchtillegg, ikke produksjonskode. Foreløpig seksdelt vurdering (1–5): korrekthet/evidens **3** (referanser undersøkt; full claim-review gjenstår); dekning **2** (v1-teknikken mangler); redaksjonell egenart **4**; teknisk integritet **2** (ingen kjørt app-/CI-test av innholdet); sikkerhet **5** (ingen feilaktige pinner/rettighetsløse bilder); etterprøvbarhet **4**. Sum **20/30**, ikke høy kvalitet eller v1. Denne skalaen er *ikke* en vurdering av de eksisterende stedene i appen. Ved canonical import skal hver påstand få claim/source-binding og både tekst og quiz redigeres på nytt mot kildene.
+
+## Supplerende Fagverk-plan og firevalgsutkast (Stage B)
+
+Dette er **ikke 50 nye aktive spørsmål i tillegg til de 60 over**, men alternativ- og distraktorarbeid for de fem stedene som skal redigeres inn i fullquizen. Velg én variant per kunnskapsmål, fjern overlapp, og kontroller fasit, distraktorer, forklaring og kilde før import. Linderud bruker PR #6567. Ingen fullt registrerte Fagverk-sider finnes ennå.
+
+### Ekebergrestauranten
+
+**Fagverk – stedets egen undersøkelsesjobb:** Funksjonalismens møte med landskapet; hvordan samme bygg fikk roller som restaurant, militær post, nedslitt kulturminne og nyåpnet spisested. Undersøk hva 1929-foto viser om arkitektens grep, og hva fredning innebærer sammenlignet med restaurering.
+
+**QuizCard-distraktorutkast (spørsmål | riktig svar | tre andre svar | kildespor):**
+
+1. Hva var den første restaurantbygningen fra 1916 opprinnelig? | En utstillingspaviljong | En togstasjon; en skole; et badehus | E1/E2
+2. Hvilken utstilling hadde paviljongen stått på? | Jubileumsutstillingen i 1914 | Verdensutstillingen i 1900; Landbruksutstillingen i 1938; Høstutstillingen i 1955 | E1/E2
+3. Hvem tegnet den nye Ekebergrestauranten? | Lars Backer | Holm Munthe; Jacob Wilhelm Nordan; Henrik Bull | E1/E2
+4. Hvilken stil representerer 1929-bygningen? | Funksjonalisme | Jugend; klassisisme; dragestil | E1/E2
+5. Hva gir restaurantbygningen særlig kontakt med utsikten? | Vinduer og terrasser | Vollgrav; borgtårn; overdekt gårdsrom | E2
+6. Hvordan ble bygningen brukt av tyske styrker? | Som kommandopost og offiserskvarter | Som skipsverft; som flyplass; som jernbanedepot | E1
+7. Hva inntraff i 1953? | Ras ned i en tunnel under bygningen | En storbrann; flom fra Alna; et skipsforlis | E1
+8. Når opphørte restaurantdriften før restaureringen? | 1997 | 1929; 1953; 2011 | E1/E2
+9. Hvilket år ble bygningen fredet? | 2001 | 1916; 1945; 2020 | E1/E2
+10. Når gjenåpnet restauranten? | 2005 | 1891; 1998; 2016 | E1/E2
+
+### Frognerseteren
+
+**Fagverk – stedets egen undersøkelsesjobb:** Eiendomsrett og allmenn utfart; dragestil i offentlig serveringsarkitektur. Undersøk betydningen av kommunens kjøp i 1889, veien i 1890 og banens ankomst i 1916.
+
+**QuizCard-distraktorutkast (spørsmål | riktig svar | tre andre svar | kildespor):**
+
+1. Hva var Frognerseteren opprinnelig? | En seter under Frogner hovedgård | Et teglverk; et fyr; en festning | F1
+2. Hvem kjøpte området i 1864? | Thomas Heftye | Lars Backer; Christian Ringnes; Carl Berner | F1
+3. Hva bygde Heftye som landsted i 1867? | Heftyevillaen | Skistua; Sportshallen; Roseslottet | F1
+4. Hvem kjøpte Frognerseteren i 1889? | Kristiania kommune | Staten Danmark; Schous Bryggeri; Nasjonalmuseet | F1
+5. Når ble ny vei opp nordover fra Holmenkollen åpnet? | 1890 | 1852; 1916; 1968 | F1
+6. Hvem tegnet hovedrestauranten? | Holm Munthe | Lars Backer; Jacob Wilhelm Nordan; Wilhelm von Hanno | F1
+7. I hvilken stil er hovedrestauranten tegnet? | Dragestil | Funksjonalisme; brutalisme; renessanse | F1
+8. Når ble hovedrestauranten om- og tilbygd? | 1909 | 1862; 1936; 1998 | F1
+9. Når ble Frognerseteren sportshall oppført? | 1896 | 1714; 1916; 1973 | F1
+10. Når ble Frognerseteren endestasjon for Holmenkollbanen? | 1916 | 1889; 1909; 2005 | F1
+
+### Sarabråten
+
+**Fagverk – stedets egen undersøkelsesjobb:** Hvordan lese et sted der bygningene er borte; sammenhengen mellom eierskap, tilgjengelig natur, idrett, ruiner og minnekultur. Sammenhold historiske foto med terrengspor.
+
+**QuizCard-distraktorutkast (spørsmål | riktig svar | tre andre svar | kildespor):**
+
+1. Hva het Sarabråten opprinnelig? | Jørgensrud | Voksenkollen; Linderud; Kjelsås | R1
+2. Hvilket vann ligger Sarabråten ved? | Nøklevann | Maridalsvannet; Bogstadvannet; Østensjøvannet | R1/R2
+3. Hvem utviklet stedet som sommersted på 1800-tallet? | Thomas Joh. Heftye | Holm Munthe; Lars Backer; Jacob Wilhelm Nordan | R1
+4. Hvem fikk også benytte Heftyes skogeiendom? | Allmennheten | Bare hoffet; bare militære; bare ansatte | R1
+5. Hva het hjulbåten på Nøklevann? | Sara | Aurora; Oscar; Frøn | R1
+6. Hva ble oppført på Sarabråten i 1897? | En dragestilvilla | En funkisrestaurant; et rådhus; et badehus på pram | R1/R2
+7. Hva var Sarabråtrennet? | Et skirenn | Et seilregatta; et teglverksløp; en fabrikkutstilling | R1
+8. Hva var Sarabråtrennets kallenavn? | Østkantens Holmenkollrenn | Nordmarkas Birkebeinerrenn; Kongerennet; Oslomila | R1
+9. Hvem kjøpte Sarabråten i 1911? | Aker kommune | Norsk Folkemuseum; Schous Bryggeri; MiA | R1/R2
+10. Hva finnes på stedet etter de gamle husene? | Ruiner og historiske spor | En bevart dragestilvilla; en ny kongelig residens; en fungerende hjulbåt | R1/R2
+
+### Sæterhytten
+
+**Fagverk – stedets egen undersøkelsesjobb:** Et flyttet kulturminne: opprinnelig funksjon, materialskader, ombygging, hoffkultur og serveringshistorie. Undersøk bygningsdetaljer og hva restaureringen i 2011 faktisk tilbakeførte.
+
+**QuizCard-distraktorutkast (spørsmål | riktig svar | tre andre svar | kildespor):**
+
+1. Hva var Sæterhytten opprinnelig? | Et kongelig badehus | En skolestue; et sagbruk; en jernbanestasjon | S1
+2. Hvor lå badehuset først? | På en pram utenfor Oscarshall | Ved Nøklevann; ved Holmenkollen; ved Alna | S1
+3. Hvilken konge ble badehuset laget for? | Oscar I | Olav V; Harald V; Christian IV | S1
+4. Hva angrep treverket i badehuset? | Skipsmark | Hussopp i ringovn; lyn; kvikkleire | S1
+5. Hvor ble Sæterhytten gjenreist? | Dronningberget | Sarabråten; Linderud; Ekeberg | S1/S2
+6. Når ble Sæterhytten innviet på Dronningberget? | 1862 | 1851; 1916; 2011 | S1/S2
+7. Hvem skrev et dikt til åpningen? | Henrik Ibsen | Knut Hamsun; Alf Prøysen; Arnulf Øverland | S2
+8. Hva symboliserer de tre L-ene i dekoren? | Tre kvinner i kongefamilien som het Louise | Tre fjelltopper; tre innsjøer; tre badekar | S1
+9. Hva begynte ved Sæterhytten i 1866? | Kafédrift og musikkpaviljong | Teglproduksjon; togtrafikk; skoleundervisning | S1/S2
+10. Når ble Sæterhytten ferdig restaurert? | 2011 | 1866; 1897; 1971 | S1/S2
+
+### Kristiania Teglverk
+
+**Fagverk – stedets egen undersøkelsesjobb:** Byvekst, leire og energibruk. Hvordan produksjonslinjen fungerte; hvorfor konjunkturene kunne stanse et verk; hvordan en ringovn og tørkereolene utnyttet varmen.
+
+**QuizCard-distraktorutkast (spørsmål | riktig svar | tre andre svar | kildespor):**
+
+1. Når ble Kristiania Teglverk bygget? | 1897 | 1853; 1912; 1936 | T1/T2
+2. Hva førte til driftsstans i 1898? | Byggekrakket | En jernbanestreik; en flom; en ny ovn | T1
+3. Når kom produksjonen i gang igjen? | 1912 | 1899; 1936; 1968 | T1
+4. Hvilket selskap overtok i 1918? | A/S Einar Stange | Schous Bryggeri; Oslo Folkerestauranter; MiA | T1
+5. Hva hendte i 1936? | En omfattende brann | Flytting til Bygdøy; fredning; utvidelse av Nøklevann | T1
+6. Hva ble ringovnens spillvarme brukt til? | Tørking av teglstein | Drivstoff for trikken; isproduksjon; kjøling av øl | T1
+7. Hva ble produsert ved teglverket? | Murstein | Stålsviller; tog; glassflasker | T1
+8. Hvor i bygningen ligger ringovnen? | På grunnplanet | På taket; i en separat kirke; under jernbanesporet | T1
+9. Hva hadde andre og tredje etasje? | Tørkerom for teglstein | Kontorer for bystyret; restaurant; kongelig bad | T1
+10. Når opphørte driften? | Mot slutten av 1960-årene | Rett etter 1897; i 1912; i 2005 | T1
+
