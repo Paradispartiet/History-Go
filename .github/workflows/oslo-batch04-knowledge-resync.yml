@@ -1,0 +1,38 @@
+name: Temporary Oslo batch04 final editorial Knowledge resync
+on:
+  push:
+    branches:
+      - history-go/oslo-batch04-final-question-and-browser-20261022
+    paths:
+      - '.github/workflows/oslo-batch04-knowledge-resync.yml'
+permissions:
+  contents: write
+concurrency:
+  group: oslo-batch04-knowledge-resync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild canonical Knowledge from all 503 source questions
+        run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+      - name: Commit regenerated units without touching canonical source IDs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json reports/knowledge-id-backfill.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'build(history): sync Knowledge after full-field Oslo editorial QA'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
