@@ -66,12 +66,15 @@
     "license_attribution_sidecar_present": true
   },
   "still_required": {
-    "webp_binary_committed_to_repository": false,
+    "webp_binary_committed_to_repository": true,
     "canonical_place_image_references_set": false,
     "attribution_rendered_in_app": false,
     "mobile_390px_browser_qa": false,
-    "desktop_1440px_browser_qa": false
+    "desktop_1440px_browser_qa": false,
+    "attribution_metadata_committed_to_repository": true
   },
-  "status": "VISUAL_CROP_FRAMING_PASS_ARTIFACT_ONLY_NOT_PUBLISHED",
-  "next_action": "Import the 12 reviewed WebP bytes from the GitHub Actions artifact into bilder/places/auto, preserve sidecar credits and then validate their actual runtime in PlaceCard. No auto-written file or public canonical place has been created."
+  "status": "VISUAL_FRAMING_PASS_12_ASSETS_COMMITTED_BUT_NO_RUNTIME_BINDING",
+  "next_action": "Run checksum/dimensions CI against all 12 committed files and ensure source credits can be rendered. Import into canonical Place only when safe visitor anchor, quiz, Knowledge and Fagverk release gates all pass; then run real mobile/desktop app QA.",
+  "source_photos_committed_on_branch_commit": "ce3d39d21d2516bd5d74f2c26990e4cd901337d3",
+  "repository_asset_root": "bilder/places/auto/"
 }
