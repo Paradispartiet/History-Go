@@ -38,6 +38,58 @@
     }
   ]);
 
+  // Pedagogiske vurderingskriterier, ikke en automatisk analyse av fritekst.
+  const SELF_REVIEW = Object.freeze([
+    {
+      id: 'belegg',
+      heading: 'Kildebelegg',
+      question: 'Har jeg knyttet en konkret observasjon til begge land og oppgitt hvilken kilde som støtter den?',
+      example: 'Et presist belegg skiller ODIHRs beskrivelse av konkurransevilkårene i Ungarn 2022 og Polen 2023 fra mine egne vurderinger.',
+      questionIndex: 3,
+      next: {
+        improve: 'Finn én etterprøvbar observasjon i hver rapport. Skriv hvilket land og hvilken kilde hver observasjon gjelder.',
+        uncertain: 'Sammenlign de to kildeutdragene og presiser hvilke setninger som er observasjoner, ikke egne konklusjoner.',
+        clear: 'Kontroller at alle sentrale påstander fortsatt kan spores til den angitte rapporten.'
+      }
+    },
+    {
+      id: 'sammenligning',
+      heading: 'Sammenlignbarhet',
+      question: 'Har jeg forklart hva som kan sammenlignes, og at land, valgår og observatørmandater er forskjellige?',
+      example: 'Begge rapporter omtaler skjeve konkurransevilkår, men det beviser ikke at årsakene og konsekvensene var identiske.',
+      questionIndex: 3,
+      next: {
+        improve: 'Skriv én tydelig likhet og én relevant forskjell. Beskriv hvorfor sammenligningen er avgrenset.',
+        uncertain: 'Skill liknende observasjoner fra påstanden om at de to valgene hadde samme årsaksforløp.',
+        clear: 'Undersøk om forskjellene i mandat og institusjoner kan endre hvordan sammenligningen tolkes.'
+      }
+    },
+    {
+      id: 'mekanisme',
+      heading: 'Mekanisme og årsak',
+      question: 'Har jeg begrunnet hvordan statsressurser eller medier kan påvirke konkurransen uten å påstå en målt stemmeeffekt?',
+      example: 'Sammenblanding av stat og partivalgkamp kan gi fordeler, men observasjonene oppgir ikke hvor mange stemmer dette eventuelt endret.',
+      questionIndex: 1,
+      next: {
+        improve: 'Beskriv en mulig mekanisme fra observasjon til fordel og skill den fra et bevist valgresultat.',
+        uncertain: 'Bruk ordene «kan bidra til» når du skisserer mekanismen, og oppgi hva som måtte undersøkes for å måle effekten.',
+        clear: 'Kontroller at formuleringene dine ikke gjør en plausibel mekanisme til bevist stemme- eller mandateffekt.'
+      }
+    },
+    {
+      id: 'forbehold',
+      heading: 'Usikkerhet og anbefalinger',
+      question: 'Har jeg skrevet hva kildene ikke dokumenterer, og skilt en reformanbefaling fra en gjennomført reform?',
+      example: 'ODIHRs anbefalinger angir mulige tiltak. De er ikke dokumentasjon på at tiltakene senere ble vedtatt eller virket.',
+      questionIndex: 4,
+      next: {
+        improve: 'Legg til ett eksplisitt forbehold om årsak eller effekt og ett om hva reformanbefalinger ikke beviser.',
+        uncertain: 'Marker forskjellen mellom hva ODIHR observerte, anbefalte og ikke har undersøkt videre.',
+        clear: 'Sjekk at du ikke har skrevet at en anbefaling allerede er gjennomført eller har hatt effekt.'
+      }
+    }
+  ]);
+
   function element(tag, className, value) {
     const node = document.createElement(tag);
     if (className) node.className = className;
@@ -112,11 +164,92 @@
     report.id = 'politikkEvidenceReport';
     report.hidden = true;
 
+    const selfReview = element('section', 'politikk-evidence-rubric');
+    selfReview.id = 'politikkEvidenceRubric';
+    selfReview.hidden = true;
+    selfReview.append(
+      element('h6', '', 'Vurder din egen begrunnelse'),
+      element('p', '', 'Les kriteriene og velg selv hvor godt du mener teksten din oppfyller hvert av dem. Dette er egenvurdering, ikke automatisk retting, karakter eller mestring.')
+    );
+    const reviewGrid = element('div', 'politikk-evidence-rubric-grid');
+    const selectors = [];
+    for (const criterion of SELF_REVIEW) {
+      const card = element('article', 'politikk-evidence-rubric-item');
+      card.dataset.criterion = criterion.id;
+      const title = element('strong', '', criterion.heading);
+      const prompt = element('p', '', criterion.question);
+      const examples = element('details', 'politikk-evidence-rubric-example');
+      examples.append(
+        element('summary', '', 'Se faglig eksempel og kilde'),
+        element('p', '', criterion.example),
+        sourceLinks(comparison.questions[criterion.questionIndex])
+      );
+      const rating = element('select', 'politikk-evidence-self-rating');
+      rating.id = 'politikkEvidenceRating-' + criterion.id;
+      rating.dataset.criterion = criterion.id;
+      for (const [value, title] of [
+        ['', 'Velg egen vurdering'],
+        ['improve', 'Dette må jeg forbedre'],
+        ['uncertain', 'Jeg er usikker'],
+        ['clear', 'Jeg mener dette er tydelig']
+      ]) {
+        const option = element('option', '', title);
+        option.value = value;
+        rating.append(option);
+      }
+      const label = element('label', '', 'Din vurdering av ' + criterion.heading.toLowerCase());
+      label.htmlFor = rating.id;
+      card.append(title, prompt, examples, label, rating);
+      reviewGrid.append(card);
+      selectors.push(rating);
+    }
+    const planButton = element('button', '', 'Lag min forbedringsplan');
+    planButton.type = 'button';
+    const planStatus = element('p', 'politikk-evidence-plan-status');
+    planStatus.setAttribute('role', 'status');
+    const plan = element('section', 'politikk-evidence-plan');
+    plan.id = 'politikkEvidenceImprovementPlan';
+    plan.hidden = true;
+
+    planButton.addEventListener('click', () => {
+      const unanswered = selectors.find(select => !select.value);
+      if (unanswered) {
+        planStatus.textContent = 'Velg din egen vurdering for alle fire kriterier først.';
+        plan.hidden = true;
+        unanswered.focus();
+        return;
+      }
+      plan.replaceChildren(element('h6', '', 'Dine neste forbedringsgrep'));
+      SELF_REVIEW.forEach((criterion, index) => {
+        const item = element('p', '', criterion.heading + ': ' + criterion.next[selectors[index].value]);
+        item.dataset.criterion = criterion.id;
+        plan.append(item);
+      });
+      plan.append(element('p', '', 'Dette er forslag valgt ut fra dine egne avkrysninger. Ingen har kontrollert eller vurdert friteksten automatisk.'));
+      planStatus.textContent = 'Forbedringsplanen er klar. Rediger gjerne teksten og gjør en ny egenvurdering.';
+      plan.hidden = false;
+    });
+
+    note.addEventListener('input', () => {
+      report.hidden = true;
+      selfReview.hidden = true;
+      plan.hidden = true;
+      planStatus.textContent = '';
+      response.textContent = 'Teksten er endret. Vis argumentrekken på nytt for å gjøre en ny egenvurdering.';
+      selectors.forEach(select => { select.value = ''; });
+    });
+    selectors.forEach(select => select.addEventListener('change', () => {
+      plan.hidden = true;
+      planStatus.textContent = 'Egenvurderingen er endret. Lag en oppdatert forbedringsplan.';
+    }));
+    selfReview.append(reviewGrid, planButton, planStatus, plan);
+
     show.addEventListener('click', () => {
       const own = note.value.trim();
       if (own.length < 20) {
         response.textContent = 'Skriv en kort selvstendig begrunnelse før du viser argumentrekken.';
         report.hidden = true;
+        selfReview.hidden = true;
         note.focus();
         return;
       }
@@ -130,13 +263,18 @@
       report.append(element('p', '', 'Din begrunnelse: ' + own));
       report.append(element('p', '', 'Metodegrense: Valgobservasjonene dokumenterer ikke en identisk årsakskjede, nøyaktig stemmeeffekt eller senere reformvirkning.'));
       report.hidden = false;
+      selfReview.hidden = false;
     });
 
     function refresh() {
       const correct = answers.filter((choice, index) => choice != null && STEPS[index].options[choice][1]).length;
       progress.textContent = correct + ' av ' + STEPS.length + ' kildebegrunnede valg. Dette er en øvelse, ikke automatisk faglig mestring.';
       assembly.hidden = correct !== STEPS.length;
-      if (correct !== STEPS.length) report.hidden = true;
+      if (correct !== STEPS.length) {
+        report.hidden = true;
+        selfReview.hidden = true;
+        plan.hidden = true;
+      }
     }
 
     for (const [index, step] of STEPS.entries()) {
@@ -170,7 +308,7 @@
       sections.push(section);
     }
 
-    assembly.append(instructions, label, note, show, response, report);
+    assembly.append(instructions, label, note, show, response, report, selfReview);
     host.append(heading, intro, matrix, progress, ...sections, assembly);
     refresh();
   }
