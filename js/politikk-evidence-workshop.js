@@ -355,12 +355,16 @@
       plan.replaceChildren(element('h6', '', 'Dine neste forbedringsgrep'));
       // Prioriter ett selvvalgt forbedringsbehov fremfor fire likeverdige råd.
       const priority = { improve: 0, uncertain: 1, clear: 2 };
-      const rated = SELF_REVIEW.map((baseCriterion, index) => ({
-        id: baseCriterion.id,
-        criterion: CASE_REVIEW[activeTask.id]?.[baseCriterion.id] || baseCriterion,
-        rating: selectors[index].value,
-        index
-      })).sort((a, b) => priority[a.rating] - priority[b.rating] || a.index - b.index);
+      const rated = [];
+      SELF_REVIEW.forEach((baseCriterion, index) => {
+        rated.push({
+          id: baseCriterion.id,
+          criterion: CASE_REVIEW[activeTask.id]?.[baseCriterion.id] || baseCriterion,
+          rating: selectors[index].value,
+          index
+        });
+      });
+      rated.sort((a, b) => priority[a.rating] - priority[b.rating] || a.index - b.index);
       rated.forEach(({ id, criterion, rating }, index) => {
         const lead = index === 0;
         const item = element('p', lead ? 'politikk-evidence-first-step' : '',
