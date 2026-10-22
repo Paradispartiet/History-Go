@@ -259,7 +259,9 @@ vm.runInContext(narrativeSource, context, { filename: narrativePath });
   const injected = await catalog.getSourceScenes("narrative", {
     mode: "opened_streams",
     opened_stream_ids: ["fixture_leisure_stream"],
-    exclude_storylet_keys: ["fixture_leisure_stream::first"],
+    // Earlier people-slot scene remains available as a private interaction,
+    // but this assertion explicitly verifies the later leisure storylet.
+    exclude_storylet_keys: ["fixture_leisure_stream::first", "fixture_leisure_stream::offshift_people"],
     active,
     state,
     narrativeState,
