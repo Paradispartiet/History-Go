@@ -85,6 +85,19 @@ async function main() {
   assert.ok(panel.textContent.includes("Aktiv"), "trådstatus skal ha norsk label");
   assert.ok(!panel.textContent.includes("skolevei_parkeringskjeller"), "tekniske tråd-id-er skal ikke dominere UI");
 
+  // A playable scene and its choices stay visible; history is present but closed.
+  for (const section of ["threads", "later", "archive", "stories"]) {
+    const disclosure = panel.querySelector('[data-lifestory-disclosure="' + section + '"]');
+    assert.ok(disclosure, section + " remains available as an expandable section");
+    assert.strictEqual(disclosure.open, false, section + " should not crowd the initial day");
+  }
+  assert.ok(panel.querySelector(".civi-lifestory-scene [data-lifestory-choice]"),
+    "collapsing metadata must not hide the actual player decisions");
+  panel.querySelector('[data-lifestory-disclosure="archive"]').open = true;
+  window.dispatchEvent(new window.Event("updateProfile"));
+  assert.strictEqual(panel.querySelector('[data-lifestory-disclosure="archive"]').open, true,
+    "opening the archive must survive ordinary profile-driven rendering");
+
   // v2-headeren viser dag/fase/status, men ingen demo-rolle når canonical aktiv rolle mangler.
   const header = window.document.getElementById("civiLifestoryHeaderStatus").textContent;
   assert.ok(header.includes("Ingen aktiv rolle") && header.includes("Dag 1"), "headerstatus: " + header);
@@ -116,6 +129,11 @@ async function main() {
     "dagsoppsummeringen viser livsstilslinjen");
   assert.ok(saaKonsekvens, "konsekvensTekst skal vises som feedback etter minst ett valg");
   assert.ok(window.document.getElementById("civiLifestoryHeaderStatus").textContent.includes("Dagen er over"));
+
+  const recap = panel.querySelector('[data-lifestory-disclosure="day-recap"]');
+  assert.ok(recap && !recap.open, "recap detail starts collapsed while day-end actions stay visible");
+  assert.ok(panel.querySelector("[data-lifestory-next-day]"),
+    "the next-day action is outside archived recap details");
 
   // Oppsummeringen viser tråder og «Start neste dag».
   assert.ok(panel.querySelector("[data-lifestory-next-day]"), "oppsummeringen har Start neste dag");
