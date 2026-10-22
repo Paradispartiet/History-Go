@@ -84,7 +84,7 @@ const EXTRAS = Object.freeze({
     ['Hvor i bygningen ligger den bevarte ringovnen?', 'På grunnplanet', ['I tredje etasje', 'På taket', 'I en separat bygning ved elva'], 'Ringovnen ligger på grunnplanet i den treetasjes teglverksbygningen, med tørkerom over seg.'],
     ['Hvilke etasjer rommet tørkerom for teglstein?', 'Andre og tredje etasje', ['Bare kjelleren', 'Bare første etasje', 'Et loft i et nabohus'], 'Tørkerommene lå i andre og tredje etasje, slik at varmen fra ovnen nedenfor kunne utnyttes.'],
     ['Hva skjedde med den gamle teglverkspipen etter driftsstansen?', 'Den ble revet noen år senere', ['Den ble flyttet til Bygdøy', 'Den ble omgjort til fyrtårn', 'Den står fortsatt helt uendret'], 'Den tidligere utvendige pipen ble revet noen år etter at teglproduksjonen tok slutt sent i 1960-årene.']
-
+  ]
 });
 const normalize = s => String(s).normalize('NFKC').trim().toLowerCase();
 const error = msg => { throw new Error('Oslo-six fullquiz staging: ' + msg); };
@@ -116,7 +116,7 @@ export function buildOsloSixFullquizReview() {
         return {
           id: id + '_review_quiz_' + String(i + 11).padStart(2, '0'),
           targetId: id, categoryId: card.draft_cards[0].categoryId, question, options, answer, answerIndex, knowledge,
-          source_trace: 'Oslo byleksikon – ' + card.name, source_url: SOURCE_URLS[id],
+          source_trace: (id === 'kristiania_teglverk_bryn' ? 'teglverk.no – ' : 'Oslo byleksikon – ') + card.name, source_url: SOURCE_URLS[id],
           external_claim_review: 'source_article_read_editorial_claim_signoff_pending',
           quizcard_candidate_id: null, runtime_registered: false
         };
