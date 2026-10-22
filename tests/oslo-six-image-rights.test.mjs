@@ -7,7 +7,7 @@ const read = path => JSON.parse(readFileSync(new URL('../' + path, import.meta.u
 test('five correct licensed images found while Kristiania Teglverk remains without a safe photo', () => {
   const pack = read('reports/place-production/oslo-six-image-rights-shortlist-20261022.json');
   const gates = read('reports/place-production/oslo-six-places-integration-gates-20261022.json');
-  assert.equal(pack.status, 'SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED');
+  assert.equal(pack.status, 'SOURCE_PAGES_REVIEWED_15_CROPS_STAGED_NOT_REGISTERED');
   assert.equal(pack.places.length, 6);
   assert.deepEqual(pack.places.map(p => p.place_id), gates.places.map(p => p.place_id));
   const ready = pack.places.filter(p => p.lead_candidate !== null);
