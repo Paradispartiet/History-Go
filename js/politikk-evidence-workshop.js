@@ -357,19 +357,16 @@
       const priority = { improve: 0, uncertain: 1, clear: 2 };
       const rated = [];
       SELF_REVIEW.forEach((baseCriterion, index) => {
-        rated.push({
-          id: baseCriterion.id,
-          criterion: CASE_REVIEW[activeTask.id]?.[baseCriterion.id] || baseCriterion,
-          rating: selectors[index].value,
-          index
-        });
+        const criterion = CASE_REVIEW[activeTask.id]?.[baseCriterion.id] || baseCriterion;
+        const item = element('p', '', criterion.heading + ': ' + criterion.next[selectors[index].value]);
+        item.dataset.criterion = baseCriterion.id;
+        rated.push({ item, rating: selectors[index].value, index });
       });
       rated.sort((a, b) => priority[a.rating] - priority[b.rating] || a.index - b.index);
-      rated.forEach(({ id, criterion, rating }, index) => {
+      rated.forEach(({ item }, index) => {
         const lead = index === 0;
-        const item = element('p', lead ? 'politikk-evidence-first-step' : '',
-          (lead ? 'Start her – ' : 'Deretter – ') + criterion.heading + ': ' + criterion.next[rating]);
-        item.dataset.criterion = id;
+        if (lead) item.classList.add('politikk-evidence-first-step');
+        item.textContent = (lead ? 'Start her – ' : 'Deretter – ') + item.textContent;
         plan.append(item);
         if (lead) plan.append(element('p', '', 'Prøv denne setningsstrukturen med egne ord: ' + activeTask.revisionStarter));
       });
