@@ -9,11 +9,13 @@ on:
       - 'scripts/build-oslo-six-quiz-handoff.mjs'
       - 'scripts/build-oslo-six-card-review.mjs'
       - 'scripts/build-oslo-six-fullquiz-review.mjs'
+      - 'scripts/build-oslo-six-remaining-fullquiz-review.mjs'
       - 'tests/oslo-six-quiz-handoff.test.mjs'
       - 'tests/oslo-six-places-integration-gates.test.mjs'
       - 'tests/oslo-six-linderud-quiz-preintegration.test.mjs'
       - 'tests/oslo-six-card-review.test.mjs'
       - 'tests/oslo-six-fullquiz-review.test.mjs'
+      - 'tests/oslo-six-remaining-fullquiz-review.test.mjs'
       - 'reports/place-production/linderud-gard-quiz-preintegration-20261022.json'
       - '.github/workflows/oslo-six-staging.yml'
   workflow_dispatch:
@@ -38,9 +40,10 @@ jobs:
         with:
           node-version: '22'
       - name: Verify six-place staging handoff and release holds
-        run: node --test tests/oslo-six-quiz-handoff.test.mjs tests/oslo-six-places-integration-gates.test.mjs tests/oslo-six-linderud-quiz-preintegration.test.mjs tests/oslo-six-card-review.test.mjs tests/oslo-six-fullquiz-review.test.mjs
+        run: node --test tests/oslo-six-quiz-handoff.test.mjs tests/oslo-six-places-integration-gates.test.mjs tests/oslo-six-linderud-quiz-preintegration.test.mjs tests/oslo-six-card-review.test.mjs tests/oslo-six-fullquiz-review.test.mjs tests/oslo-six-remaining-fullquiz-review.test.mjs
       - name: Verify non-publishing data export
         run: |
           node scripts/build-oslo-six-quiz-handoff.mjs
           node scripts/build-oslo-six-card-review.mjs
           node scripts/build-oslo-six-fullquiz-review.mjs
+          node scripts/build-oslo-six-remaining-fullquiz-review.mjs
