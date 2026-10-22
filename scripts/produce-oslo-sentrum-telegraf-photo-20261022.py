@@ -81,6 +81,19 @@ def main():
         "transformation": "Stedstro 3:4-beskjæring og WebP-normalisering, ingen generativ endring.",
         "reviewStatus": "pending_native_mobile_desktop_and_editorial",
     }
+    # Keep image rights auditable: retire unproven legacy PNGs from both
+    # display slots. Reuse the SHA-verified Commons portrait rather than
+    # assigning any speculative license to the old images.
+    place["image"] = place["frontImage"]
+    place["cardImage"] = place["frontImage"]
+    place["imageMeta"] = dict(place["frontImageMeta"])
+    place["imageMeta"]["transformation"] = (
+        "Samme verifiserte 3:4-WebP som frontfoto; brukes som hovedbilde."
+    )
+    place["cardImageMeta"] = dict(place["frontImageMeta"])
+    place["cardImageMeta"]["transformation"] = (
+        "Samme verifiserte 3:4-WebP som frontfoto; eventuell visningsbeskjæring styres av kortet."
+    )
     place.setdefault("imageComposition", {})["portraitPosition"] = "50% 50%"
     place["imageComposition"]["portraitRatio"] = "3:4"
     place["imageComposition"]["portraitFit"] = "cover"
