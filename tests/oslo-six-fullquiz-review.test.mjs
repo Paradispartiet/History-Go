@@ -30,7 +30,7 @@ test('three place-specific fullquiz proposals meet 3x7, answer, source and exact
     for (const [i, q] of questions.entries()) {
       assert.equal(q.id, place.place_id + '_review_quiz_' + String(i + 1).padStart(2, '0'));
       assert.equal(q.targetId, place.place_id);
-      assert.equal(q.categoryId, 'historie');
+      assert.equal(q.categoryId, gate.places.find(p => p.place_id === place.place_id).category_candidate);
       assert.equal(q.runtime_registered, false);
       assert.equal(q.source_url, place.source_url);
       assert.ok(q.source_url.startsWith('https://'));
