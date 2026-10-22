@@ -11,7 +11,7 @@
 - 16 Commons-sider ble kontrollert direkte for samsvar med den oppgitte lisensetiketten, inkludert Grønlikaia (CC BY-SA 4.0, via kategorilenke til filens lisensside). Museumsoppføringen for Fiskehallen samsvarer med **CC BY-SA**, men angir ingen versjon.
 - De tekniske Chromium-testene i #6561 kontrollerer bildeinnlasting, **ikke** at kreditering, lisenslenke, endringsangivelse og eventuelle delingsvilkår vises korrekt for sluttbrukeren.
 - **Korrigert i denne PR-en:** Norges Varemesse hadde den feilaktige brukerrettede teksten `Unknown authorUnknown author`. Korrekt kildebasert kreditering: «Ukjent fotograf / Nasjonalbiblioteket / Wikimedia Commons». Bildetekstens bastante fotograferingsår ble fjernet fordi kildeopplysningene ikke fastslår et sikkert opptaksår.
-- **Korrigert i denne PR-en:** Gamle trikkestallen og Gamle rådhus hadde kreditering kun i `imageMeta` / `frontImageMeta`, ikke i de flate feltene. `imageCredit`, `imageLicense`, `imageSourceUrl` og `imageCaption` er nå også tilgjengelige i begge kanoniske stedsfiler og i runtime-projeksjonen.
+- **Separat oppfølgingspunkt:** Gamle trikkestallen og Gamle rådhus har kilde, kreditering og lisens i `imageMeta` / `frontImageMeta`, men ikke i de flate feltene. Å endre kanoniske stedsfiler krever også deterministisk regenerering av både Fagverk-release og quiz-produksjonskontekst. Metadatafeltene ble derfor holdt uendret i denne PR-en for å bevare dataparitet; ny løsning skal følge den etablerte byggekjeden.
 
 ## Sted-for-sted-oversikt
 
@@ -39,9 +39,10 @@
 
 1. **Kildestatus Grønlikaia:** CC BY-SA 4.0 og fotograf Anders Beer Wilse er bekreftet fra filens lisensside; gjennomfør fortsatt visuell krediteringskontroll av det avledede utsnittet i appen.
 2. **Fiskehallen:** DigitaltMuseum oppgir `CC BY-SA` uten eksplisitt lisensversjon. Kontroller vilkårene for avledede WebP-utsnitt og avklar eksakt lisensversjon hvis relevant. Ikke finn på en versjon.
-3. **Faktisk sluttbrukervisning:** inspiser kilde, fotograf, lisensbetegnelse/-lenke og beskjæringsangivelse på telefon og desktop for alle 17 steder. Et vellykket nettlesertestløp beviser ikke at juridisk relevant kreditering vises.
-4. **Bilde- og fortellerpresisjon:** vurder at fotografiets motiv stemmer med stedsfortellingen. Frysja-fotoet viser Brekkefossen/vannkraftlandskap og må ikke presenteres som fabrikkbygninger; Trikkestallen er dokumentasjon fra 2016 og ikke garanti for dagens skilting.
-5. **Historisk redaksjonell kontroll:** 503 spørsmål må vurderes for presisjon, gode distraktorer, repetisjon og kildebelegg ut over maskinell paritet. Fotografikontrollen godkjenner ikke disse spørsmålene.
+3. **Krediteringsprosjeksjon:** sørg for at Gamle trikkestallen og Gamle rådhus krediteres fra eksisterende `imageMeta` / `frontImageMeta`, eller regenerer alle avledede filer samlet hvis flatfelter innføres. Kjøres gjennom relevant datakontroll før merge.
+4. **Faktisk sluttbrukervisning:** inspiser kilde, fotograf, lisensbetegnelse/-lenke og beskjæringsangivelse på telefon og desktop for alle 17 steder. Et vellykket nettlesertestløp beviser ikke at juridisk relevant kreditering vises.
+5. **Bilde- og fortellerpresisjon:** vurder at fotografiets motiv stemmer med stedsfortellingen. Frysja-fotoet viser Brekkefossen/vannkraftlandskap og må ikke presenteres som fabrikkbygninger; Trikkestallen er dokumentasjon fra 2016 og ikke garanti for dagens skilting.
+6. **Historisk redaksjonell kontroll:** 503 spørsmål må vurderes for presisjon, gode distraktorer, repetisjon og kildebelegg ut over maskinell paritet. Fotografikontrollen godkjenner ikke disse spørsmålene.
 
 ## Frigivelsesregel
 
