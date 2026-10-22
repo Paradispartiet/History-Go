@@ -77,16 +77,35 @@ export function buildOsloSixStaging() {
   ensure(Object.values(linderud.publication_gate).every((value) => value === false),
     'Linderuds reviewbrief må ikke påstå publisering');
 
+  const gate = JSON.parse(read('reports/place-production/oslo-six-places-integration-gates-20261022.json'));
+  ensure(gate.schema === 'history_go_oslo_six_place_intake_gate_v1' &&
+         gate.status === 'editorial_only_not_v1' &&
+         gate.safeguards.active_places === 0 &&
+         gate.safeguards.v1_certified === 0,
+    'samlet publiseringsport må eksplisitt være editorial-only');
+  ensure(gate.places.length === STEDER.length &&
+         gate.places.every((entry, index) => entry.place_id === STEDER[index][0]),
+    'seksstedslisten må samsvare med publiseringsporten');
+
   const places = JSON.parse(read('data/places/manifest.json'));
   const placeIds = new Set(places.files.map((file) => basename(file, '.json')));
   const quizManifest = read('data/quiz/manifest.json');
   const records = STEDER.map(([id, name]) => {
+    const intake = gate.places.find((entry) => entry.place_id === id);
+    ensure(intake && intake.release_status === 'BLOCKED' &&
+           intake.geographical_anchor.status === 'HOLD' &&
+           Object.values(intake.publication_gates).every((passed) => passed === false),
+      id + ': status motstrider felles publiseringsport');
     ensure(!placeIds.has(id), id + ': canonical sted finnes allerede; bruk ny v1-audit, ikke staging');
     ensure(!quizManifest.includes('"targetId": "' + id + '"') &&
            !quizManifest.includes('"targetId":"' + id + '"'),
       id + ': aktivt quizmål finnes allerede; staging-kontrollen må revideres');
     const core = parseCore(primary, id, name);
     const alternatives = id === 'linderud_gard' ? [] : parseAlternatives(stage, id, name);
+    ensure(core.length === intake.editorial.quizcard_fact_candidates &&
+           alternatives.length === intake.editorial.four_choice_alternatives &&
+           intake.editorial.source_claim_bank_count === (id === 'linderud_gard' ? linderud.claims.length : 0),
+      id + ': redaksjonelle antall avviker fra felles publiseringsport');
     return {
       id, name, status: 'editorial_staging_only', fact_candidates: core,
       four_option_drafts: alternatives, canonical_place_ready: false,
