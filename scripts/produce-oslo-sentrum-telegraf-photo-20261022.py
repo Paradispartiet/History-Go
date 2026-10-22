@@ -114,6 +114,20 @@ def main():
     place.setdefault("imageComposition", {})["portraitPosition"] = "50% 50%"
     place["imageComposition"]["portraitRatio"] = "3:4"
     place["imageComposition"]["portraitFit"] = "cover"
+    # EDITORIAL_GAME_PROSE: remove internal quiz/production commentary from
+    # public historical narrative, keeping the source-grounded facts intact.
+    obsolete_game_sentence = "Dermed kan stedet brukes til å undersøke prosjektøkonomi, kapasitetsstyring, internkontroll, eiendomsverdi og hvordan en tidligere samfunnskritisk infrastruktur får en ny forretningsmodell."
+    factual_replacement = "Ombyggingen viser hvordan et tidligere knutepunkt for nasjonal telekommunikasjon fikk nye funksjoner i byens næringsliv."
+    obsolete_game_paragraph = "\\n\\nQuizens første fjorten spørsmål gir normal stedskunnskap. Deretter arbeider spilleren med dokumenterte forhold, eksplisitte NOK-scenarioer, beregninger og profesjonelle beslutninger uten å forveksle pedagogiske scenarioer med historiske fakta."
+    desc = place.get("popupDesc", "")
+    if obsolete_game_sentence in desc and obsolete_game_paragraph in desc:
+        desc = desc.replace(obsolete_game_sentence, factual_replacement, 1)
+        desc = desc.replace(obsolete_game_paragraph, "", 1)
+        place["popupDesc"] = desc
+    elif obsolete_game_sentence in desc or obsolete_game_paragraph in desc:
+        raise ValueError("Partially outdated Telegraf editorial copy: manual review required")
+    elif factual_replacement not in desc:
+        raise ValueError("Unexpected Telegraf text: refusing unreviewed editorial change")
     PLACE_FILE.write_text(json.dumps(place, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     print("PHOTO_PRODUCED", place["frontImage"], OUT.stat().st_size, hashlib.sha256(OUT.read_bytes()).hexdigest())
 
