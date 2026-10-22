@@ -410,7 +410,16 @@ function main() {
   const outputPath = path.resolve(args.root, args.output);
   if (args.check) {
     if (!fs.existsSync(outputPath)) throw new Error(`Missing Fagverk release manifest: ${args.output}`);
-    if (fs.readFileSync(outputPath, "utf8") !== serialized) throw new Error(`Stale Fagverk release manifest: ${args.output}`);
+    if (fs.readFileSync(outputPath, "utf8") !== serialized) {
+      const politikk = release.subjects.politikk;
+      console.log("FAGVERK_DIGEST_DIAGNOSTIC " + JSON.stringify({
+        release_sha256: release.release_sha256,
+        chapter_content_sha256: politikk.chapter_content_sha256,
+        content_sha256: politikk.content_sha256,
+        changed_chapters: politikk.chapters.filter((chapter) => ['forvaltning', 'fordeling-velferd-ulikhet'].includes(chapter.chapter_id)).map(({ chapter_id, content_sha256 }) => ({ chapter_id, content_sha256 }))
+      }));
+      throw new Error(`Stale Fagverk release manifest: ${args.output}`);
+    }
     console.log(`Verified Fagverk release ${release.release_sha256}: ${release.summary.subject_count} packages, ${release.summary.chapter_count} chapters.`);
     return;
   }
