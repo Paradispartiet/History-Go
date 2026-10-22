@@ -21,8 +21,12 @@ const canonical=Object.fromEntries(ids.map(id=>{
 const photo=canonical.telegrafbygningen;
 assert.equal(photo.frontImageMeta?.license,'CC BY-SA 4.0');
 assert.equal(photo.frontImageMeta?.creator,'Helge Høifødt');
-assert.match(photo.frontImage||'',/^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\//);
-assert.equal(photo.frontImageMeta?.delivery,'remote_original_provisional');
+assert.ok(
+ (photo.frontImageMeta?.delivery==='remote_original_provisional' && /^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\//.test(photo.frontImage||'')) ||
+ (photo.frontImageMeta?.delivery==='local_webp_licensed' && /^bilder\/places\/telegrafbygningen_front_portrait\.webp$/.test(photo.frontImage||'') && fs.statSync(path.resolve(root,photo.frontImage)).size>20000),
+ 'Portrait must be the identified Commons image or its locally verified WebP'
+);
+assert.ok(['remote_original_provisional','local_webp_licensed'].includes(photo.frontImageMeta?.delivery));
 assert.ok(photo.externalLinks?.some(x=>x.url===photo.frontImageMeta?.sourcePage));
 const server=http.createServer((req,res)=>{
  const uri=new URL(req.url,'http://localhost'),pathname=decodeURIComponent(uri.pathname);
@@ -61,7 +65,10 @@ try{
     assert.match(details.title,id==='telegrafbygningen'?/Telegraf|Telegraph/i:/Post|Hovedpost/i,'Incorrect PlaceCard title after localization');
     assert.ok(details.open,'PlaceCard is not visible');
     assert.ok(details.hero>0&&details.front>0,'Front or hero photo not decoded');
-    if(id==='telegrafbygningen')assert.ok(details.source.includes('upload.wikimedia.org'),'Not using identified Commons portrait');
+    if(id==='telegrafbygningen'){
+      const expected=photo.frontImageMeta?.delivery==='local_webp_licensed'?'telegrafbygningen_front_portrait.webp':'upload.wikimedia.org';
+      assert.ok(details.source.includes(expected),'PlaceCard did not use the attributed portrait asset');
+    }
     result.placeCard=true;result.frontDecoded=true;result.heroDecoded=true;
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&Boolean(document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card')),null,{timeout:35000});
     result.quizCardVisible=true;
