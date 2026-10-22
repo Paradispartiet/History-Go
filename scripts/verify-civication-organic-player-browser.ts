@@ -46,6 +46,14 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
   };
   async function playStoryDay(day: number) {
     let actions = 0;
+    // A genuine day rollover can leave the inbox popup open in front of
+    // Min dag. Close it using the real visible UI before choosing in the
+    // underlying story; never force-click through an overlay.
+    const openingPopupClose = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+    if (await openingPopupClose.isVisible().catch(() => false)) {
+      await openingPopupClose.click({ timeout: 12000 });
+    }
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
     while (true) {
       const before = await readStory();
       assert.equal(before.livsdag, day, 'private Life Story day must stay synchronized');
