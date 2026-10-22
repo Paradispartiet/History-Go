@@ -103,8 +103,9 @@ export function buildOsloSixIntegrationPreview({
         claim_id: q.claim_id || null,
         claim_basis: q.claim_basis || null,
         needs_independent_claim_review: true,
-        // Off-building content is not automatically licensed into a restaurant Place quiz.
-        adjacent_building_scope_hold: id === 'frognerseteren' && index >= 10,
+        // The extras are now based on the main restaurant's own history. Two legacy
+        // editorial core-card facts concern separate history and need scope sign-off.
+        adjacent_building_scope_hold: id === 'frognerseteren' && [2, 4].includes(index),
         runtime_registered: false
       };
     });
