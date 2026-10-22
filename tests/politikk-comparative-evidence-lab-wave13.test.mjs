@@ -26,7 +26,7 @@ test('Bølge 13: alle tre skriveoppgavene har egne skrivestøtter uten automatis
 test('Bølge 13: egenvurdering prioriterer forbedringsbehov og beholder fire sporbare råd', () => {
   assert.match(script, /const priority = \{ improve: 0, uncertain: 1, clear: 2 \}/);
   assert.match(script, /rated\.sort\(/);
-  assert.match(script, /item\.dataset\.criterion = id/);
+  assert.match(script, /item\.dataset\.criterion = baseCriterion\.id/);
   assert.match(script, /politikk-evidence-first-step/);
   assert.match(script, /\(lead \? 'Start her – ' : 'Deretter – '\)/);
   assert.match(browser, /first revision priority/);
