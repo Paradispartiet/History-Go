@@ -101,16 +101,16 @@ Frognerseteren viser hvordan kommunal tilrettelegging, servering og friluftsliv 
 |---:|---|---|---|
 | 1 | Hvilken gård tilhørte seterområdet opprinnelig? | Frogner hovedgård | Oslo byleksikon |
 | 2 | Hvem kjøpte Frognerseteren i 1864? | Thomas Heftye | Oslo byleksikon |
-| 3 | Når ble Heftyevillaen oppført? | 1867 | Oslo byleksikon |
+| 3 | Hvor kom byggetømmeret til hovedrestauranten fra? | Kommunens egen skog | Frognerseteren Restaurant (K4) |
 | 4 | Hvem kjøpte Frognerseteren av Heftyes arvinger i 1889? | Kristiania kommune | Oslo byleksikon |
-| 5 | Hvilket år åpnet den nye veien opp mot Frognerseteren? | 1890 | Oslo byleksikon |
+| 5 | Hvilken arkitekt innredet restaurantens Styrerom? | Christian Heiberg | Frognerseteren Restaurant (K4) |
 | 6 | Når ble restaurantens hovedbygning oppført? | 1891 | Oslo byleksikon |
 | 7 | Hvilken arkitekt tegnet Frognerseterens restaurant? | Holm Munthe | Oslo byleksikon |
 | 8 | Hvilken stil ble restauranten bygd i? | Dragestil | Oslo byleksikon |
 | 9 | Hvilket år ble restauranten om- og tilbygd? | 1909 | Oslo byleksikon |
 | 10 | Hvilken adresse tilhører restaurantbygningen, ikke Heftyevillaen? | Holmenkollveien 200 | Oslo byleksikon |
 
-**Redaksjonell scope-note (22.10):** Kortkandidat nr. 3 (Heftyevillaen) og nr. 5 (veien) er fortsatt kontekstspørsmål og skal ikke automatisk godkjennes som spørsmål om restaurantbygningen. De elleve øvrige fullquiz-spørsmålene er nå erstattet med restauranthistoriske spørsmål fra [K4], med individuelle kildespor i `reports/place-production/frognerseteren-building-quiz-source-audit-20261022.json`. Byleksikonet omtaler hovedrestaurantens tilbygg i 1909; operatøren sier at Storstua var ferdig i 1910. Angi derfor 1909–1910 eller presiser forskjellen mellom ombyggingsfase og ferdigstilling. Alle forslag er fortsatt uregistrerte.
+**Redaksjonell scope-note (22.10):** De opprinnelige kortkandidatene nr. 3 (Heftyevillaen) og nr. 5 (veien) er erstattet med restaurantspesifikke spørsmål om byggemateriale og Styrerommet etter operatørens egen historikk [K4]. De elleve øvrige fullquiz-spørsmålene er nå erstattet med restauranthistoriske spørsmål fra [K4], med individuelle kildespor i `reports/place-production/frognerseteren-building-quiz-source-audit-20261022.json`. Byleksikonet omtaler hovedrestaurantens tilbygg i 1909; operatøren sier at Storstua var ferdig i 1910. Angi derfor 1909–1910 eller presiser forskjellen mellom ombyggingsfase og ferdigstilling. Alle forslag er fortsatt uregistrerte.
 
 ## Sarabråten (`sarabraten`)
 
