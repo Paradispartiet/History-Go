@@ -15,7 +15,7 @@ test('all twelve checked-in Commons WebPs have exact recorded cryptographic hash
   assert.equal(source.status,'SOURCE_PAGES_REVIEWED_15_CROPS_STAGED_NOT_REGISTERED');
   assert.equal(report.schema,'history_go_oslo_six_prepared_commons_image_triplets_v1');
   assert.equal(report.status,'PREPARED_BYTES_NOT_VISUALLY_QA_NOT_REGISTERED');
-  assert.equal(qa.status,'VISUAL_FRAMING_PASS_12_ASSETS_COMMITTED_BUT_NO_RUNTIME_BINDING');
+  assert.equal(qa.status,'VISUAL_FRAMING_PASS_15_ASSETS_COMMITTED_BUT_NO_RUNTIME_BINDING');
   assert.equal(qa.still_required.webp_binary_committed_to_repository,true);
   const allowedIds=new Set(['linderud_gard','ekebergrestauranten','frognerseteren','saeterhytten_bygdoy']);
   const roleSize={lead:[1600,900],card:[900,600],popup:[1200,800]};
