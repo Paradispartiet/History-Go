@@ -21,31 +21,37 @@ window.CivicationDailyMailBuilder = {
   inspect: () => ({ runtime: null }),
   markHandled: async (id, choice) => {
     handled.push([id, choice]);
-    if (id === summary.id) current = newDay;
+    if (id.startsWith("day-8-summary")) current = newDay;
     return { answered_ids: [id] };
   }
 };
 window.eval(fs.readFileSync(path.join(__dirname, "../js/Civication/ui/CivicationNextActionUI.js"), "utf8"));
 assert.ok(window.CivicationNextActionUI?.render, "production NextActionUI loaded");
-window.CivicationNextActionUI.render();
-const modal = window.document.getElementById("civiNextActionModal");
-const ack = modal.querySelector('[data-civi-next-action-acknowledge]');
-assert.equal(ack?.textContent, "Lest oppsummeringen");
-assert.equal(ack?.getAttribute("data-mail-id"), summary.id);
-assert.equal(modal.querySelectorAll('[data-civi-next-action-answer]').length, 0);
-ack.click();
+const modal = (() => {
+  window.CivicationNextActionUI.render();
+  return window.document.getElementById("civiNextActionModal");
+})();
 (async () => {
-  // The handler is async and changes only the canonical mail row.
-  await new Promise(resolve => setTimeout(resolve, 0));
-  assert.deepEqual(handled, [[summary.id, "read"]]);
-  assert.ok(modal.querySelector('[data-civi-next-action-advance]'),
-    "only after acknowledgement can the player start a new day");
+  for (const slot of ["day_summary", "score_summary", "role_progress_summary"]) {
+    const id = "day-8-summary-" + slot;
+    current = { ...summary, id, slot };
+    window.CivicationNextActionUI.render();
+    const ack = modal.querySelector('[data-civi-next-action-acknowledge]');
+    assert.equal(ack?.textContent, "Lest oppsummeringen", slot);
+    assert.equal(ack?.getAttribute("data-mail-id"), id);
+    assert.equal(modal.querySelectorAll('[data-civi-next-action-answer]').length, 0);
+    ack.click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    assert.deepEqual(handled.at(-1), [id, "read"], slot + " uses canonical queue");
+    assert.ok(modal.querySelector('[data-civi-next-action-advance]'),
+      slot + " only unlocks new day after real acknowledgement");
+  }
   current = { ...summary, id: "unanswered-work", phase: "workday", slot: "job", subject: "Jobb", choices: [] };
   window.CivicationNextActionUI.render();
   assert.equal(modal.querySelectorAll('[data-civi-next-action-acknowledge]').length, 0,
     "other empty-choice mails must never be acknowledged as a day summary");
   assert.equal(modal.querySelectorAll('[data-civi-next-action-answer]').length, 0);
-  assert.deepEqual(handled, [[summary.id, "read"]]);
+  assert.equal(handled.length, 3);
   console.log("civication-day-end-summary-acknowledgement: PASS");
   window.close();
 })().catch(error => { console.error(error); process.exitCode = 1; });
