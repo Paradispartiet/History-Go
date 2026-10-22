@@ -1,0 +1,131 @@
+{
+  "schema": "history_go_oslo_six_image_candidate_rights_v1",
+  "as_of": "2026-10-22",
+  "status": "SOURCE_PAGES_REVIEWED_NO_IMAGE_IMPORTED_OR_CROPPED",
+  "objective": "A source-backed lead-image shortlist. Image candidates MUST NOT enter canonical Place or app assets until actual bytes, attribution, attribution placement, three WebP variants and mobile/desktop image QA are checked.",
+  "requirements": [
+    "Check source file identity and building depicted",
+    "Retain full Commons file URL, creator, license and edit notes alongside derivatives",
+    "Fetch original image bytes and validate actual dimensions",
+    "Make three independently reviewed WebP crops with uncut subject and appropriate card/header/popup focal points",
+    "Verify runtime references, alt text, credits and mobile/desktop display"
+  ],
+  "places": [
+    {
+      "place_id": "linderud_gard",
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "lead_candidate": {
+        "page": "https://commons.wikimedia.org/wiki/File:Linderud_g%C3%A5rd_hovedbygning2.JPG",
+        "author": "Helge Høifødt",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "date": "2008-07-25",
+        "subject": "Linderud hovedbygning sett fra syd med hagen foran",
+        "original_dimensions": [
+          3872,
+          2592
+        ],
+        "image_identity_confidence": "high",
+        "next": "Validate original, choose 3 crop compositions, WebP and on-screen credits"
+      },
+      "alternate_candidate": {
+        "page": "https://commons.wikimedia.org/wiki/File:Linderud_g%C3%A5rd_hovedbygning1.JPG",
+        "author": "Helge Høifødt",
+        "license": "CC BY-SA 3.0",
+        "subject": "Hovedbygning fra nord og oppkjørsel"
+      }
+    },
+    {
+      "place_id": "ekebergrestauranten",
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "lead_candidate": {
+        "page": "https://commons.wikimedia.org/wiki/File:Ekebergrestauranten_2012.jpg",
+        "author": "Bjørn Erik Pedersen",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0/",
+        "date": "2012-09-29",
+        "subject": "Nåværende Ekebergrestauranten; fotografert 2012",
+        "original_dimensions": [
+          3356,
+          2237
+        ],
+        "image_identity_confidence": "high",
+        "next": "Check cropping and include CC BY attribution"
+      },
+      "alternate_candidate": {
+        "page": "https://commons.wikimedia.org/wiki/File:Ekebergrestauranten_fra_nord.JPG",
+        "author": "Helge Høifødt",
+        "license": "CC BY-SA 3.0",
+        "subject": "Restaurantbygningen fra nord"
+      }
+    },
+    {
+      "place_id": "frognerseteren",
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "lead_candidate": {
+        "page": "https://commons.wikimedia.org/wiki/File:Frogners%C3%A6teren_restaurant.jpg",
+        "author": "Bjørn Erik Pedersen",
+        "license": "CC BY 2.5",
+        "license_url": "https://creativecommons.org/licenses/by/2.5/",
+        "date": "2009-03-18",
+        "subject": "Frognerseteren hovedrestaurant, ikke Heftyevillaen eller Sportshallen",
+        "original_dimensions": [
+          3500,
+          2220
+        ],
+        "image_identity_confidence": "high",
+        "next": "Visually review three crops and ensure restaurant building remains in frame"
+      },
+      "alternate_candidate": {
+        "page": "https://commons.wikimedia.org/wiki/File:Frognerseteren_restaurant_-_2025_%282%29.jpg",
+        "author": "Ssu",
+        "license": "NOT_REVIEWED",
+        "subject": "Restaurantbygning i 2025; alternate awaiting independent license review"
+      }
+    },
+    {
+      "place_id": "sarabraten",
+      "status": "NO_SAFE_PRIMARY_RUIN_IMAGE_APPROVED",
+      "lead_candidate": null,
+      "alternates": [
+        {
+          "page": "https://commons.wikimedia.org/wiki/File:N%C3%B8klevann_Sarabr%C3%A5ten.jpg",
+          "author": "Kjetil Ree",
+          "license": "CC BY-SA 3.0",
+          "subject": "Nøklevann sett fra Sarabråten",
+          "reason_not_primary": "Shows landscape, not surviving foundation remains; only context image"
+        }
+      ],
+      "next": "Find a freely licensed actual photo of ruins and identify its viewpoint and authorship; avoid images of a standing villa being misrepresented as current"
+    },
+    {
+      "place_id": "saeterhytten_bygdoy",
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "lead_candidate": {
+        "page": "https://commons.wikimedia.org/wiki/File:Seterhytten_pa_Dronningberget.JPG",
+        "author": "Helge Høifødt",
+        "license": "public_domain_dedication_by_author",
+        "license_url": "https://commons.wikimedia.org/wiki/File:Seterhytten_pa_Dronningberget.JPG",
+        "date": "2007-03-18",
+        "subject": "Sæterhytten i Dronningberget park, Bygdøy",
+        "original_dimensions": [
+          2592,
+          1944
+        ],
+        "image_identity_confidence": "high",
+        "next": "Check image composition and record source/author even if attribution not legally required"
+      }
+    },
+    {
+      "place_id": "kristiania_teglverk_bryn",
+      "status": "HARD_HOLD_NO_BUILDING_IDENTITY_IMAGE",
+      "lead_candidate": null,
+      "rejected_misidentification": {
+        "page": "https://commons.wikimedia.org/wiki/File:Bryn_teglverk_%281933%29.jpg",
+        "subject": "Bryn Teglverk, Østensjøveien 79",
+        "reason": "DIFFERENT TEGLVERK. Cannot portray Kristiania Teglverk or ringovn at Nils Hansens vei 14/18."
+      },
+      "next": "Establish exact ringovn building and secure licensable matching photograph; do not request rights, do not use unrelated Bryn factory"
+    }
+  ]
+}
