@@ -23,16 +23,18 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Rebuild deterministic Grev Wedels production context
+        run: node scripts/build-quiz-production-context.mjs --category by --target grev_wedels_plass --output data/quiz/production_context/by/grev_wedels_plass.json
       - name: Rebuild canonical Knowledge from all 503 source questions
         run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
       - name: Commit regenerated units without touching canonical source IDs
         shell: bash
         run: |
           set -euo pipefail
-          git add data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json reports/knowledge-id-backfill.json
+          git add data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json reports/knowledge-id-backfill.json data/quiz/production_context/by/grev_wedels_plass.json
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'build(history): sync Knowledge after full-field Oslo editorial QA'
+            git commit -m 'build(history): rebuild canonical Grev Wedels quiz context and Knowledge'
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
