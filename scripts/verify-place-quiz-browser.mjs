@@ -11,8 +11,13 @@ assert.match(placeId || '', /^[a-z0-9_]+$/, 'Require a canonical place ID');
 const root = process.cwd();
 const manifest = JSON.parse(fs.readFileSync('data/quiz/manifest.json', 'utf8'));
 const entries = manifest.sets.filter(entry => entry.targetId === placeId);
-assert.equal(entries.length, 1, 'Exactly one active quiz manifest target');
-const quiz = JSON.parse(fs.readFileSync(entries[0].file, 'utf8'));
+assert.ok(entries.length > 0, 'No active fullquiz manifest rows for target');
+const files = [...new Set(entries.map(entry => entry.file))];
+assert.equal(files.length, 1, 'One canonical fullquiz file per target, even with multiple set rows');
+const quiz = JSON.parse(fs.readFileSync(files[0], 'utf8'));
+if (entries.some(entry => entry.set_id)) {
+  assert.deepEqual(entries.map(entry => entry.set_id), quiz.sets.map(set => set.set_id), 'Manifest and canonical set ordering differ');
+}
 assert.equal(quiz.targetId, placeId);
 const questions = quiz.sets.flatMap(set => set.questions);
 assert.equal(new Set(questions.map(q => q.question)).size, questions.length);
