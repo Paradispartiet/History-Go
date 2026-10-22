@@ -8,6 +8,9 @@ import { join } from 'node:path';
 export const queuedPointerFallbacks: { scenario: string; day: number; mailId: string }[] = [];
 
 export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
+  const trace: string[] = [];
+  let lastFingerprint = '';
+  let unchangedSteps = 0;
   for (let step = 0; step < 55; step++) {
     const before = await page.evaluate(() => {
       const app = globalThis as any;
@@ -19,6 +22,49 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
         blocking: app.CivicationDayProgression?.inspect?.()?.blockingReason
       };
     });
+    if (scenarioId === 'earned-museum-21-day' && day >= 9) {
+      // Observe the real engine and rendered controls. Keep a compact trail
+      // without changing mail/day state, and fail on genuine unchanged action
+      // cycles instead of spending 55 UI clicks on the same stale mail.
+      const ui = await page.evaluate(() => {
+        const app = globalThis as any;
+        const inspect = app.CivicationDayProgression?.inspect?.() || {};
+        const panel = app.document.getElementById('civiNextActionModal');
+        return {
+          phase: app.CivicationCalendar?.getPhase?.(),
+          reason: inspect.reason, blockingReason: inspect.blockingReason,
+          openItems: inspect.openItemsInPhase,
+          pendingId: inspect.pendingItem?.id || null,
+          queuedId: inspect.nextQueuedItem?.id || null,
+          activeAction: app.CivicationNextActionSelector?.getCurrent?.(),
+          buttons: [...(panel?.querySelectorAll?.('button') || [])].filter((b: any) =>
+            [...b.attributes].some((a: any) => a.name.startsWith('data-civi-next-action'))
+          ).slice(0, 5).map((b: any) => ({
+            name: [...b.attributes].find((a: any) => a.name.startsWith('data-civi-next-action'))?.name,
+            disabled: b.disabled,
+            id: b.getAttribute('data-mail-id'),
+            label: b.textContent?.trim()?.slice(0, 60)
+          }))
+        };
+      });
+      const fp = JSON.stringify({
+        phase: ui.phase, reason: ui.reason, blocking: ui.blockingReason,
+        open: ui.openItems, pending: ui.pendingId, queued: ui.queuedId,
+        action: ui.activeAction?.id, status: ui.activeAction?.status
+      });
+      trace.push(fp);
+      unchangedSteps = fp === lastFingerprint ? unchangedSteps + 1 : 0;
+      lastFingerprint = fp;
+      if (step === 0 || step % 5 === 0 || unchangedSteps === 4) {
+        console.warn('Civication museum continuation diagnostic',
+          JSON.stringify({ scenarioId, day, step, unchangedSteps, ui }));
+      }
+      if (unchangedSteps >= 7) {
+        throw Error(`${scenarioId}: unchanged phase/mail loop on day ${day}: ${JSON.stringify({
+          recent: trace.slice(-10), ui
+        })}`);
+      }
+    }
     // Capture the authentic browser state when a role mail keeps recycling.
     // This is observation only: no synthetic dispatch, forced phase, or state write.
     if (scenarioId === 'earned-museum-21-day' && day === 8 &&
@@ -146,7 +192,7 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
       throw Error(`${scenarioId}: calendar stuck: ${JSON.stringify({ before: { phase: before.phase, blocking: before.blocking }, after })}`);
     }
   }
-  throw Error(`${scenarioId}: more than 55 real UI actions on calendar day ${day}`);
+  throw Error(`${scenarioId}: more than 55 real UI actions on calendar day ${day}; ${JSON.stringify(trace.slice(-18))}`);
 }
 
 export default async function verifyArbeidsledig(browser: any, origin: string, outputDir: string) {
