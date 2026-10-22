@@ -21,9 +21,7 @@ const cardBatches = [
 const fullManifest = read("data/quiz/manifest.json");
 const quizFor = new Map();
 const cardFor = new Map();
-const knownDebts = new Map([
-  ["grev_wedels_plass_quiz_34", "Hvorfor holdes Brands-feltet uten oppdiktet innhold?"]
-]);
+const knownDebts = new Map();
 const forbidden = /History Go|PlaceCard|QuizCard|Objects|Brands|canonical|targetId|targetet|quizkort|intern(?:e)? spill|spillterminologi/i;
 
 test("Oslo batch04: each of 17 places has a unique fullquiz file, valid manifest entries and 21+ questions", () => {
@@ -120,7 +118,8 @@ test("Oslo batch04: no new player-facing quiz question exposes internal model te
   for (const item of offenders) {
     assert.equal(item.question, knownDebts.get(item.qid), item.qid + ": newly introduced internal/game-facing language");
   }
-  // One pre-existing editorial defect remains a blocker for full editorial v1 acceptance.
+  // Zero accepted editorial exemptions: all 503 fullquiz prompts must be place-facing.
+  assert.equal(offenders.length, 0, 'No Oslo fullquiz question may show internal game terminology');
   const revised = quizFor.get("grev_wedels_plass").questions.find(q => q.id === "grev_wedels_plass_quiz_22");
   assert.match(revised.question, /Kvinnetorso.*Hanne på stranden.*fontenen/, "The park-art question must remain grounded in actual artworks");
   assert.equal(revised.answer, "De er fysiske spor i selve parkrommet");
@@ -150,4 +149,19 @@ test("Oslo batch04: the two formerly internal questions now teach place history 
   const aker = quizFor.get("oslo_mek").questions.find(q => q.id === "oslo_mek_quiz_1");
   assert.ok(!forbidden.test(aker.topic), "Aker place topic must not reference the data model");
   assert.ok(!aker.core_concepts.some(concept => /target-avklaring|canonical/i.test(concept)), "Internal target concept must not be part of learning");
+});
+
+test("Oslo batch04: Grev Wedels plass civic preservation has a source-backed question and synchronized Knowledge", () => {
+  const q = quizFor.get("grev_wedels_plass").questions.find(q => q.id === "grev_wedels_plass_quiz_34");
+  assert.equal(q.question, "Hva gjorde Oslo Byes Vel i 1962 som fikk betydning for Grev Wedels plass?");
+  assert.equal(q.answer, "Reddet Militærhospitalet fra ødeleggelse");
+  assert.deepEqual(q.source, ["grev_oslobyesvel_event"]);
+  assert.match(q.knowledge, /reddet Militærhospitalet fra ødeleggelse i 1962/);
+  assert.equal(q.claim_basis, q.knowledge);
+  const units = read("data/knowledge/knowledge_units.generated.json").units;
+  const unit = units.find(u => u.knowledge_unit_id === q.primary_knowledge_unit_id);
+  assert.ok(unit, "Canonical Knowledge missing for q34");
+  assert.equal(unit.canonical_claim, q.knowledge);
+  assert.equal(unit.summary, q.knowledge);
+  assert.ok(unit.quiz_refs.includes(q.quiz_id));
 });
