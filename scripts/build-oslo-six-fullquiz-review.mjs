@@ -13,8 +13,9 @@ const SOURCE_URLS = Object.freeze({
   sarabraten: 'https://oslobyleksikon.no/side/Sarabr%C3%A5ten'
 });
 
-// Each fact below was checked against the named Oslo byleksikon place article.
-// Retain explicit review status: article-level review is not source->claim audit or canonical preflight.
+// Ekebergrestauranten and Sarabråten extras trace to Oslo byleksikon; Frognerseteren extras
+// trace to the restaurant operator's own published building history.
+// Article-level reading is not independent claim-level sign-off or canonical preflight.
 // Format: question, correct answer, three distinct distractors, explanation.
 const EXTRAS = Object.freeze({
   ekebergrestauranten: [
@@ -31,17 +32,17 @@ const EXTRAS = Object.freeze({
     ['Hvilken restauratør kjøpte anlegget i 2002 sammen med Christian Ringnes og Eiendomsspar?', 'Bjørn Tore Furset', ['Jens P. Heyerdahl', 'Olav Selvaag', 'Arne Garborg'], 'Restauratør Bjørn Tore Furset gikk inn i kjøpet av anlegget i 2002. Gjenåpningen kom tre år senere.']
   ],
   frognerseteren: [
-    ['Hva het skogområdet som Frognerseteren opprinnelig var del av?', 'Trevollskogen', ['Lillomarka', 'Svartdalen', 'Frognerseterskogen som eget gods'], 'Frognerseteren var seter i Trevollskogen, skog som lå under Frogner hovedgård.'],
-    ['Hvem tegnet Heftyevillaen fra 1867 i det historiske miljøet ved Frognerseteren?', 'Herman Major Schirmer', ['Holm Munthe', 'Lars Backer', 'Christian Heinrich Grosch'], 'Heftyevillaen ble tegnet av Herman Major Schirmer og må ikke forveksles med restaurantbygningen tegnet av Holm Munthe.'],
-    ['Hva flyttet Thomas Heftye til Frognerseteren i 1880-årene?', 'Gamle bondestuer', ['En jernbanestasjon', 'En teglverksovn', 'Et gammelt fyrtårn'], 'Heftye flyttet eldre bondestuer til tunet og ga stedet en tydelig forbindelse til et idealisert norsk bygdemiljø.'],
-    ['Hvilke to regenter var til stede da den nye veien til Frognerseteren åpnet i 1890?', 'Oscar II og Wilhelm II', ['Oscar I og Karl XV', 'Haakon VII og Christian X', 'Harald V og Carl XVI Gustaf'], 'Den nye veien ble åpnet i 1890 i nærvær av Oscar II og den tyske keiser Wilhelm II.'],
-    ['Hva het veistrekningen mot Frognerseteren før navneendringen etter andre verdenskrig?', 'Keiser Wilhelms vei', ['Kong Olavs vei', 'Heftyes allé', 'Frognerseterbakken'], 'Veien fikk først navn etter keiser Wilhelm II og ble omdøpt etter andre verdenskrig.'],
-    ['Hvilket annet utfartsbygg ved Frognerseteren ble tegnet av Holm Munthe?', 'Frognerseteren Sportshall', ['Skimuseet fra 1923', 'Heftyevillaen', 'Frognerseteren T-banestasjon'], 'Holm Munthe tegnet både hovedrestauranten og Sportshallen i dragestil, mens Heftyevillaen hadde en annen arkitekt.'],
-    ['Hvilket år ble Frognerseteren Sportshall oppført?', '1896', ['1867', '1891', '1916'], 'Sportshallen ble oppført i 1896, noen år etter hovedrestauranten. Dette er separate bygninger i samme utfartsmiljø.'],
-    ['Hvilket museum åpnet mellom restauranten og Sportshallen i 1923?', 'Skimuseet', ['Norsk Folkemuseum', 'Teknisk Museum', 'Frammuseet'], 'Skimuseet åpnet her i 1923 og ble flyttet til Holmenkollbakken i 1951. Det er del av nærmiljøets historie, ikke selve restauranten.'],
-    ['Hva ble sletta nedenfor Skimuseet brukt til i perioden 1922–1951?', 'Start og innkomst for langrenn i Holmenkollrennene', ['Oppstilling for en flyplass', 'Produksjon av teglstein', 'Endestasjon for en hestetrikk'], 'Sletta var start- og innkomstområde for langrennsøvelsene i Holmenkollrennene mellom 1922 og 1951.'],
-    ['Når fikk Frognerseteren endestasjon på Holmenkollbanen?', '1916', ['1890', '1891', '1936'], 'Holmenkollbanen nådde Frognerseteren i 1916. Stasjonen ligger høyere oppe enn hovedrestauranten og er ikke samme bygning.'],
-    ['Hva skjedde med den gamle Skimuseumsbygningen ved Frognerseteren i 1968?', 'Den brant ned', ['Den ble flyttet til Bygdøy', 'Den ble gjort om til rådhus', 'Den ble bygget om til en teglverksovn'], 'Det gamle Skimuseets bygg, senere brukt til garderober og treningslokaler, brant i 1968. Det må ikke forveksles med restaurantens historie.']
+    ["Hvilken inntektskilde var med på å finansiere byggingen av Frognerseterens hovedrestaurant?", "Overskudd fra Christiania Brændevinssamlag", ["Billettinntekter fra Holmenkollbanen","Inntekter fra Skimuseet","En bevilgning fra Riksantikvaren"], "Restaurantens egen historikk forteller at overskudd fra Christiania Brændevinssamlag bidro til oppføringen av hovedrestauranten i 1891."],
+    ["Hvor kom byggetømmeret til Frognerseterens hovedrestaurant fra?", "Kommunens egen skog", ["En importleveranse fra Sverige","En bygning revet på Bygdøy","Tømmer fra Sørlandet fraktet sjøveien"], "Ifølge restaurantens egen historikk ble tømmer til hovedrestauranten tatt ut av kommunens egen skog."],
+    ["Hvorfor ble en separat sportskafé planlagt kort etter at hovedrestauranten åpnet?", "Hovedrestauranten ble fylt av velstående gjester, mens sportsfolk manglet plass", ["Hovedrestauranten ble stengt etter brann","Jernbanestasjonen krevde en ventesal","Kommunen forbød servering i hovedrestauranten"], "Restaurantens historikk forteller at hovedhuset straks ble fylt av byens velstående herrer, slik at sportsfolket ikke fikk plass; dermed ble en egen sportskafé planlagt."],
+    ["Hva het utvidelsen av hovedrestauranten som sto ferdig rundt 1910?", "Storstua", ["Heftyevillaen","Skimuseet","Sportshallen"], "Storstua hører til selve hovedrestauranten og sto ifølge restaurantens historikk ferdig i 1910; Sportshallen fra 1896 var et eget bygg."],
+    ["Hva skjedde med verandaen foran hovedrestauranten under ombyggingene tidlig på 1900-tallet?", "Den ble bygget inn for mer innendørs plass", ["Den ble revet for en ringovn","Den ble flyttet til Holmenkollbanen","Den ble omgjort til et frittstående stabbur"], "Restaurantens historikk beskriver at verandaen ble lukket inn slik at huset fikk mer serveringsareal."],
+    ["Hvem dekorerte Styrerommet i Frognerseterens hovedrestaurant?", "Ulrik Hendriksen", ["Holm Munthe","Lars Backer","Herman Major Schirmer"], "Ulrik Hendriksen malte Styrerommet. Holm Munthe var arkitekten for hovedrestaurantens opprinnelige bygg, ikke kunstneren bak denne romdekorasjonen."],
+    ["Hvilken dekorasjonsstil fikk Styrerommet i hovedrestauranten?", "Norsk bonderokokko", ["Funksjonalisme","Brutalisme","Art deco"], "Styrerommet fikk ifølge restaurantens historikk dekorasjon i norsk bonderokokko, med malte visdomsord og ornamenter. Dette er en interiørstil, ikke husets ytre dragestil."],
+    ["Hvilket rom i restaurantens andre etasje omtales med romansk ornamentikk?", "Peisestua", ["Sportshallen","Heftyevillaen","Stasjonsbygningen"], "Peisestua i andre etasje er beskrevet som dekorert med romansk ornamentikk og viser et annet estetisk lag enn eksteriørets dragestil."],
+    ["Hva ble det lille møterommet Kvisten brukt til tidligere?", "Herretoalett", ["T-banekontrollrom","Badstue for skiløpere","Kjølerom for kjøtt"], "Kvisten ble ifølge restaurantens egen historikk omgjort fra herretoalett til møterom i 1994. Det viser hvordan romfunksjoner har endret seg i huset."],
+    ["Hva slags rom var Finstua før utvidelsen med Storstua i 1909–1910?", "Veranda", ["Bibliotek","Stall","Skolestue"], "Finstua var opprinnelig veranda og ble del av den videreutviklede hovedrestauranten. Det er ikke et separat historisk bygg på området."],
+    ["Hva ble koksovnen i Skjenkestua erstattet med i 1932?", "En vedovn", ["Et industrikjøleanlegg","En teglverksovn","En åpen kullgruve"], "Restaurantens historikk oppgir at Skjenkestuas koksovn ble byttet med en vedovn i 1932, som et konkret spor av endringer i rommets bruk og interiør."]
   ],
   sarabraten: [
     ['Hva slags gods ble Sarabråten omtalt som i lensregnskapet fra 1578?', 'Oslo stiftsgods', ['Kongelig lystgård', 'Kommunal allmenning', 'Statlig teglverk'], 'Jørgensrud, senere Sarabråten, er omtalt som Oslo stiftsgods i Akershus lensregnskap i 1578.'],
@@ -88,7 +89,8 @@ export function buildOsloSixFullquizReview() {
         return {
           id: id + '_review_quiz_' + String(i + 11).padStart(2, '0'),
           targetId: id, categoryId: card.draft_cards[0].categoryId, question, options, answer, answerIndex, knowledge,
-          source_trace: (id === 'kristiania_teglverk_bryn' ? 'teglverk.no – ' : 'Oslo byleksikon – ') + card.name, source_url: SOURCE_URLS[id],
+          source_trace: id === 'frognerseteren' ? 'Restaurantens publiserte bygningshistorie' : 'Oslo byleksikon – ' + card.name,
+          source_url: id === 'frognerseteren' ? 'https://www.frognerseteren.no/mer-historie-' : SOURCE_URLS[id],
           external_claim_review: 'source_article_read_editorial_claim_signoff_pending',
           quizcard_candidate_id: null, runtime_registered: false
         };
@@ -103,7 +105,7 @@ export function buildOsloSixFullquizReview() {
         proposed_quiz_profile: 'narrow_3x7_not_confirmed', sets,
         quizcard_question_ids: questions.slice(0, 10).map(q => q.id),
         learning_scope_notice: id === 'frognerseteren' ?
-          'Some contextual questions concern adjacent historic buildings; require scope audit so the Place stays the restaurant at Holmenkollveien 200.' : null,
+          'The 11 additional questions now concern the restaurant itself. Editorial core cards 03 and 05 still require a contextual-scope decision before release. This Place remains the main restaurant at Holmenkollveien 200.' : null,
         source_url: SOURCE_URLS[id], canonical_place_created: false,
         quiz_manifest_registered: false, knowledge_synced: false, browser_qa_passed: false
       };
