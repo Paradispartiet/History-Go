@@ -32,5 +32,6 @@ test('six-place image shortlist has four licensable subjects and two explicit no
   assert.match(ruins.alternates[0].reason_not_primary, /not surviving foundation/);
   assert.match(tegl.rejected_misidentification.reason, /DIFFERENT TEGLVERK/);
   assert.equal(gates.places.at(-1).geographical_anchor.status, 'HOLD');
-  assert.ok(pack.requirements.some(x => x.includes('WebP')));
+  assert.ok(pack.completed_requirements.some(x => x.includes('WebP')));
+  assert.ok(pack.requirements.some(x => x.includes('mobile/desktop')));
 });
