@@ -19,6 +19,8 @@ SOURCE_PAGE = "https://commons.wikimedia.org/wiki/File:Telegrafbygningen_Kongens
 SOURCE_SHA1 = "d80326c40d8dc535c32838742b14eba36eb88971"
 PLACE_FILE = ROOT / "data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json"
 OUT = ROOT / "bilder/places/telegrafbygningen_front_portrait.webp"
+HERO_OUT = ROOT / "bilder/places/telegrafbygningen_hero.webp"
+CARD_OUT = ROOT / "bilder/kort/places/telegrafbygningen_card.webp"
 UA = "HistoryGo-Sentrum-PlacePhoto/1.0 (public Commons attribution; https://github.com/Paradispartiet/History-Go)"
 
 def download():
@@ -52,13 +54,25 @@ def main():
         if im.size != (3712, 5417):
             raise ValueError(f"Unrecognized Commons source dimensions: {im.size}")
         portrait = ImageOps.fit(im, (900, 1200), method=Image.Resampling.LANCZOS, centering=(0.5, 0.5))
+        hero = ImageOps.fit(im, (1400, 900), method=Image.Resampling.LANCZOS, centering=(0.5, 0.5))
+        card = ImageOps.fit(im, (900, 600), method=Image.Resampling.LANCZOS, centering=(0.5, 0.5))
     OUT.parent.mkdir(parents=True, exist_ok=True)
     portrait.save(OUT, format="WEBP", quality=88, method=6)
+    HERO_OUT.parent.mkdir(parents=True, exist_ok=True)
+    CARD_OUT.parent.mkdir(parents=True, exist_ok=True)
+    hero.save(HERO_OUT, format="WEBP", quality=88, method=6)
+    card.save(CARD_OUT, format="WEBP", quality=88, method=6)
     if OUT.stat().st_size < 20_000:
         raise ValueError("Produced portrait is implausibly small")
     with Image.open(OUT) as check:
         if check.format != "WEBP" or check.size != (900, 1200):
             raise ValueError("Invalid WebP output")
+    for asset, size in ((HERO_OUT, (1400, 900)), (CARD_OUT, (900, 600))):
+        if asset.stat().st_size < 20_000:
+            raise ValueError(f"Produced image too small: {asset}")
+        with Image.open(asset) as check:
+            if check.format != "WEBP" or check.size != size:
+                raise ValueError(f"Invalid WebP image: {asset}")
     place["frontImage"] = str(OUT.relative_to(ROOT)).replace("\\", "/")
     place["frontImageMeta"] = {
         "source": "wikimedia_commons",
@@ -81,19 +95,22 @@ def main():
         "transformation": "Stedstro 3:4-beskjæring og WebP-normalisering, ingen generativ endring.",
         "reviewStatus": "pending_native_mobile_desktop_and_editorial",
     }
-    # Keep image rights auditable: retire unproven legacy PNGs from both
-    # display slots. Reuse the SHA-verified Commons portrait rather than
-    # assigning any speculative license to the old images.
-    place["image"] = place["frontImage"]
-    place["cardImage"] = place["frontImage"]
+    # Three separate, provenance-bound physical crops; never invent a
+    # license for the old Telegraf PNG. Editorial crop approval is separate.
+    place["image"] = str(HERO_OUT.relative_to(ROOT)).replace("\\", "/")
+    place["cardImage"] = str(CARD_OUT.relative_to(ROOT)).replace("\\", "/")
     place["imageMeta"] = dict(place["frontImageMeta"])
-    place["imageMeta"]["transformation"] = (
-        "Samme verifiserte 3:4-WebP som frontfoto; brukes som hovedbilde."
-    )
+    place["imageMeta"]["outputDimensions"] = "1400x900"
+    place["imageMeta"]["orientation"] = "landscape"
+    place["imageMeta"]["aspectRatio"] = "14:9"
+    place["imageMeta"]["outputSha256"] = hashlib.sha256(HERO_OUT.read_bytes()).hexdigest()
+    place["imageMeta"]["transformation"] = "Eget 1400x900 fasadeutsnitt fra verifisert fotografi; WebP, ingen generativ endring."
     place["cardImageMeta"] = dict(place["frontImageMeta"])
-    place["cardImageMeta"]["transformation"] = (
-        "Samme verifiserte 3:4-WebP som frontfoto; eventuell visningsbeskjæring styres av kortet."
-    )
+    place["cardImageMeta"]["outputDimensions"] = "900x600"
+    place["cardImageMeta"]["orientation"] = "landscape"
+    place["cardImageMeta"]["aspectRatio"] = "3:2"
+    place["cardImageMeta"]["outputSha256"] = hashlib.sha256(CARD_OUT.read_bytes()).hexdigest()
+    place["cardImageMeta"]["transformation"] = "Eget 900x600 kortutsnitt fra verifisert fotografi; WebP, ingen generativ endring."
     place.setdefault("imageComposition", {})["portraitPosition"] = "50% 50%"
     place["imageComposition"]["portraitRatio"] = "3:4"
     place["imageComposition"]["portraitFit"] = "cover"
