@@ -14,7 +14,8 @@ test('six-place image shortlist has four licensable subjects and two explicit no
   assert.equal(ready.length, 4);
   for (const p of ready) {
     const c = p.lead_candidate;
-    assert.equal(p.status, 'LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED');
+    assert.equal(p.status, 'LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND');
+    assert.equal(p.asset_paths.length, 3);
     assert.match(c.page, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
     assert.ok(c.author.length > 1);
     assert.ok(['CC BY 2.5', 'CC BY 3.0', 'CC BY-SA 3.0', 'public_domain_dedication_by_author'].includes(c.license));
