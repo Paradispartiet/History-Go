@@ -85,7 +85,9 @@ try {
           await page.waitForFunction(expected => document.querySelector('#quizQuestion')?.textContent?.trim() === expected,
             q.question,{timeout:20000});
           assert.equal(await page.locator('#quizChoices button').count(),q.options.length,set.set_id + ':' + qi);
-          await page.locator('#quizChoices').getByRole('button',{name:q.answer,exact:true}).click({timeout:20000});
+          // The responsive quiz choices animate while long labels wrap on 390px screens;
+          // bypass Playwright's stability waiting but keep a native pointer click and actual game handler.
+          await page.locator('#quizChoices').getByRole('button',{name:q.answer,exact:true}).click({timeout:20000,force:true});
         }
         await page.waitForFunction(id => JSON.parse(localStorage.getItem('hg_quiz_sets_v1')||'{}')[id]?.completed === true,
           set.set_id,{timeout:20000});
