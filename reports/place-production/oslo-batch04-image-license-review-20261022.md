@@ -17,23 +17,23 @@
 
 | # | Sted | Oppgitt lisens | Kreditert skaper/kilde | Original | Kildekontroll |
 |---:|---|---|---|---|---|
-| 1 | Den gamle Norges Bank | CC BY-SA 3.0 no | Bjoertvedt / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Nasjonalmuseet_Akritektur_gamle_norgesbank_IMG_3894_rk_87641.JPG) | Kontrollert direkte på Wikimedia Commons |
-| 2 | Akershuskaiene | Public domain | Narve Skarpmoen / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Oslo_Havn_-_no-nb_digifoto_20160222_00074_NB_NS_NM_06937.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 3 | Akers mekaniske Verksted | Public domain | Hermann Christian Neupert / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Ships_at_Akers_Mekaniske_Verksted_1931_%28NTM_86_2-2039%29.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 4 | Grensen – handelsgate | CC BY-SA 4.0 | Bahnfrend / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Grensen%2C_Oslo%2C_2019_%2801%29.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 5 | Fiskehallen på Vippetangen | CC BY-SA | Wilhelm Råger / Oslo Museum / DigitaltMuseum | [Original](https://digitaltmuseum.no/021015456022/fiskehallen-pa-vippetangen) | Metadata oppgir CC BY-SA; uavklart versjon |
-| 6 | Frysja industriområde | CC BY 2.0 | Sean Hayford O'Leary / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Frysja.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 7 | Norges Varemesse – Sjølystsenteret | Public domain | Ukjent fotograf / Nasjonalbiblioteket / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Varemessen_-_no-nb_digifoto_20150105_00001_NB_MIT_FNR_20402.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 8 | Bryn industriområde | CC BY-SA 3.0 | Anders Beer Wilse / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Bryn_teglverk_%281933%29.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 9 | Grønlikaia | CC BY-SA 4.0 | Anders Beer Wilse / Oslo Museum / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:OB.X0999_Gr%C3%B8nlikaia_%28cropped%29.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 10 | Christiania Seildugsfabrik | CC0 | Leonhard Lenz / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Christiania_Seildugsfabrik_Oslo_2022-08-17_05.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 11 | Sagene skole | CC BY-SA 4.0 | Bjoertvedt / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Sagene_skole_86163_IMG_3931.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 12 | Stortorget | CC BY-SA 3.0 | Michal Klajban / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Oslo,_market.JPG) | Kontrollert direkte på Wikimedia Commons |
-| 13 | Norges Bank – Bankplassen 4 | CC BY 2.0 | Tomoyoshi NOGUCHI / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Norges_Bank.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 14 | Gamle trikkestallen på Torshov | CC BY-SA 4.0 | Jan-Tore Egge / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Torshovgata_33.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 15 | Gamle rådhus | CC BY-SA 3.0 | Mahlum / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Gamle_r%C3%A5dhus_Oslo.jpg) | Kontrollert direkte på Wikimedia Commons |
-| 16 | Grev Wedels plass | Public domain | Helge Høifødt / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Grev_Wedels_plass1.JPG) | Kontrollert direkte på Wikimedia Commons |
-| 17 | Sofienbergparken | CC0 1.0 | Leonhard Lenz / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Sofienbergparken_Oslo_2022-08-17_03.jpg) | Kontrollert direkte på Wikimedia Commons |
+| 1 | Den gamle Norges Bank | CC BY-SA 3.0 no | Bjoertvedt / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Nasjonalmuseet_Akritektur_gamle_norgesbank_IMG_3894_rk_87641.JPG) | Uavhengig lisenskontroll gjenstår |
+| 2 | Akershuskaiene | Public domain | Narve Skarpmoen / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Oslo_Havn_-_no-nb_digifoto_20160222_00074_NB_NS_NM_06937.jpg) | Uavhengig lisenskontroll gjenstår |
+| 3 | Akers mekaniske Verksted | Public domain | Hermann Christian Neupert / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Ships_at_Akers_Mekaniske_Verksted_1931_%28NTM_86_2-2039%29.jpg) | Uavhengig lisenskontroll gjenstår |
+| 4 | Grensen – handelsgate | CC BY-SA 4.0 | Bahnfrend / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Grensen%2C_Oslo%2C_2019_%2801%29.jpg) | Uavhengig lisenskontroll gjenstår |
+| 5 | Fiskehallen på Vippetangen | CC BY-SA | Wilhelm Råger / Oslo Museum / DigitaltMuseum | [Original](https://digitaltmuseum.no/021015456022/fiskehallen-pa-vippetangen) | Lisensversjon må bekreftes på originalkilden |
+| 6 | Frysja industriområde | CC BY 2.0 | Sean Hayford O'Leary / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Frysja.jpg) | Uavhengig lisenskontroll gjenstår |
+| 7 | Norges Varemesse – Sjølystsenteret | Public domain | Ukjent fotograf / Nasjonalbiblioteket / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Varemessen_-_no-nb_digifoto_20150105_00001_NB_MIT_FNR_20402.jpg) | Uavhengig lisenskontroll gjenstår |
+| 8 | Bryn industriområde | CC BY-SA 3.0 | Anders Beer Wilse / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Bryn_teglverk_%281933%29.jpg) | Uavhengig lisenskontroll gjenstår |
+| 9 | Grønlikaia | CC BY-SA 4.0 | Anders Beer Wilse / Oslo Museum / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:OB.X0999_Gr%C3%B8nlikaia_%28cropped%29.jpg) | Original kontrollert: CC BY-SA 4.0 |
+| 10 | Christiania Seildugsfabrik | CC0 | Leonhard Lenz / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Christiania_Seildugsfabrik_Oslo_2022-08-17_05.jpg) | Uavhengig lisenskontroll gjenstår |
+| 11 | Sagene skole | CC BY-SA 4.0 | Bjoertvedt / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Sagene_skole_86163_IMG_3931.jpg) | Uavhengig lisenskontroll gjenstår |
+| 12 | Stortorget | CC BY-SA 3.0 | Michal Klajban / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Oslo,_market.JPG) | Uavhengig lisenskontroll gjenstår |
+| 13 | Norges Bank – Bankplassen 4 | CC BY 2.0 | Tomoyoshi NOGUCHI / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Norges_Bank.jpg) | Uavhengig lisenskontroll gjenstår |
+| 14 | Gamle trikkestallen på Torshov | CC BY-SA 4.0 | Jan-Tore Egge / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Torshovgata_33.jpg) | Uavhengig lisenskontroll gjenstår |
+| 15 | Gamle rådhus | CC BY-SA 3.0 | Mahlum / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Gamle_r%C3%A5dhus_Oslo.jpg) | Uavhengig lisenskontroll gjenstår |
+| 16 | Grev Wedels plass | Public domain | Helge Høifødt / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Grev_Wedels_plass1.JPG) | Uavhengig lisenskontroll gjenstår |
+| 17 | Sofienbergparken | CC0 1.0 | Leonhard Lenz / Wikimedia Commons | [Original](https://commons.wikimedia.org/wiki/File:Sofienbergparken_Oslo_2022-08-17_03.jpg) | Uavhengig lisenskontroll gjenstår |
 
 ## Gjenstående akseptansepunkter før `v1`
 
