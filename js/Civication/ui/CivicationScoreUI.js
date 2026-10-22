@@ -7,7 +7,7 @@
   const nice = (id) => String(id || "").replace(/[_:.-]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
   function getModel(options = {}) {
-    const canonical = root.CivicationState?.getState?.() || {};
+    const canonical = /** @type {any} */ (root).CivicationState?.getState?.() || {};
     const life = options.state || root.CivicationLifestoryState?.load?.() || null;
     const groups = [];
     function add(name, rows) {
@@ -51,7 +51,7 @@
       .map(([id,label]) => row(label, capital[id], capital[id] > 100
         ? "Råverdi over 100, vist som 100 / 100." : "")));
 
-    const psyche = root.CivicationPsyche?.getSnapshot?.(root.CivicationState?.getActivePosition?.()?.career_id);
+    const psyche = root.CivicationPsyche?.getSnapshot?.(/** @type {any} */ (root).CivicationState?.getActivePosition?.()?.career_id);
     if (psyche) {
       const specs = [
         ["Integritet", psyche.integrity], ["Synlighet", psyche.visibility],
