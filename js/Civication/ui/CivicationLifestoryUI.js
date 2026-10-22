@@ -422,7 +422,14 @@
     const view = Runner.getView(state, content);
     if (!view?.dagFerdig) return;
     const html = renderSummaryHtml(view);
-    if (summary.outerHTML !== html) summary.outerHTML = html;
+    if (summary.outerHTML !== html) {
+      const expandedRecap = !!summary.querySelector?.('details[data-lifestory-disclosure="day-recap"][open]');
+      summary.outerHTML = html;
+      if (expandedRecap) {
+        const recap = getPanel()?.querySelector?.('details[data-lifestory-disclosure="day-recap"]');
+        if (recap) recap.open = true;
+      }
+    }
   }
   // updateProfile: jobbtilbud kan ha endret rollen, og HG_Lifestyle kan ha
   // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
@@ -930,9 +937,10 @@
       + (narrative ? "<p>" + escapeHtml(narrative) + "</p>" : "<p class=\"muted\">Dagen er avsluttet og valgene dine er lagret i arkivet.</p>")
       + dramatizationNote(summary.valg.some(entry => Object.keys(entry.personRepresentanter || {}).some(id => entry.personRepresentanter[id]?.personId)))
       + stampHtml
+      + "<details class=\"civi-lifestory-disclosure\" data-lifestory-disclosure=\"day-recap\"><summary>Dagens valg, tråder og endringer</summary>"
       + "<h4>Meter-endringer siden morgenen</h4><div class=\"civi-lifestory-deltas\">" + (meterHtml || "<span class=\"muted\">Ingen målbare endringer.</span>") + "</div>"
       + (traadHtml ? "<h4>Tråder som endret status</h4><ul>" + traadHtml + "</ul>" : "")
-      + "<h4>Viktige valg i dag</h4><ul>" + valgHtml + "</ul>"
+      + "<h4>Viktige valg i dag</h4><ul>" + valgHtml + "</ul></details>"
       + endingHtml
       + (continuationError ? '<p role="alert">' + escapeHtml(continuationError) + '</p>' : "")
       + handlingsHtml
@@ -978,9 +986,9 @@
 
     return ""
       + "<aside class=\"civi-lifestory-panels\" aria-label=\"Oversikt\">"
-      + "<section><h4>Aktive tråder</h4><ul>" + (traaderHtml || "<li class=\"muted\">Ingen tråder ennå.</li>") + "</ul></section>"
-      + "<section><h4>Senere i dag</h4><ul>" + (kalenderHtml + senereHtml || "<li class=\"muted\">Ingen flere planlagte scener.</li>") + "</ul></section>"
-      + "<section><h4>Arkiv / tidligere valg</h4><ul>" + arkivHtml + "</ul></section>"
+      + "<details class=\"civi-lifestory-disclosure\" data-lifestory-disclosure=\"threads\"><summary>Historietråder (" + allThreads.length + ")</summary><ul>" + (traaderHtml || "<li class=\"muted\">Ingen tråder ennå.</li>") + "</ul></details>"
+      + "<details class=\"civi-lifestory-disclosure\" data-lifestory-disclosure=\"later\"><summary>Senere i dag (" + (view.dagsplan.length + view.senereIDag.length) + ")</summary><ul>" + (kalenderHtml + senereHtml || "<li class=\"muted\">Ingen flere planlagte scener.</li>") + "</ul></details>"
+      + "<details class=\"civi-lifestory-disclosure\" data-lifestory-disclosure=\"archive\"><summary>Arkiv / tidligere valg (" + view.arkiv.length + ")</summary><ul>" + arkivHtml + "</ul></details>"
       + renderWaveAOverviewHtml()
       + renderSymposiumHtml(symposium)
       + "</aside>";
@@ -1049,11 +1057,9 @@
           + escapeLiteral(id) + "' data-wave-a-command='end'>Avslutt historien</button>")
         + "</li>";
     }).join("");
-    return "<section data-wave-a-overview><h4>Åtte historier – pågående og tidligere</h4><ul>"
-      + rows + "</ul><h4>Åpne avtaler</h4><ul>"
-      + (agreements.length ? agreements.join("") :
-        "<li class='muted'>Ingen dokumentert åpen avtale.</li>")
-      + "</ul>" + (buttons ? "<h4>Styr dine historier</h4><ul>" + buttons + "</ul>" : "")
+    return "<section data-wave-a-overview><details class=\"civi-lifestory-disclosure\" data-lifestory-disclosure=\"stories\"><summary>Åtte historier – pågående og tidligere</summary><ul>"
+      + rows + "</ul></details>"
+      + (agreements.length ? "<h4>Åpne avtaler</h4><ul>" + agreements.join("") + "</ul>" : "") + (buttons ? "<h4>Styr dine historier</h4><ul>" + buttons + "</ul>" : "")
       + "</section>";
   }
 
@@ -1104,7 +1110,7 @@
       + "<p>" + escapeHtml(e.valgTekst) + "</p>"
       + (e.konsekvensTekst ? "<p>" + escapeHtml(e.konsekvensTekst) + "</p>" : "") + "</li>").join("");
     const plans = book.avtaler.map((a) => "<li>Dag " + escapeHtml(a.dag) + " · " + escapeHtml(viewPhaseName(a.fase)) + ": " + escapeHtml(a.tittel) + (a.sted ? " · " + escapeHtml(a.sted.navn) : "") + "</li>").join("");
-    return "<section><details data-lifestory-symposium><summary>Historien så langt</summary>"
+    return "<section><details data-lifestory-symposium data-lifestory-disclosure=\"full-history\"><summary>Hele livshistorien</summary>"
       + "<h4>" + escapeHtml(book.tittel) + "</h4>"
       + (book.kapitler?.length ? "<h4>Avsluttede kapitler</h4><ul>" + book.kapitler.map((k) => "<li><strong>" + escapeHtml(k.tittel) + "</strong> · dag " + escapeHtml(k.fraDag) + "–" + escapeHtml(k.tilDag) + "<p>" + escapeHtml(k.ending.navn) + "</p><p>" + escapeHtml(k.ending.tekst) + "</p></li>").join("") + "</ul>" : "")
       + (book.hovedtraad ? "<p>Tråden i forgrunnen: <strong>" + escapeHtml(book.hovedtraad.tittel) + "</strong></p>" : "")
@@ -1232,6 +1238,10 @@
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const view = Runner.getView(state, content);
     const continuationRole = content.role.symposium?.rollebroer?.find((b) => b.role_scope === content.fortsettelse?.role_scope)?.navn || "kapittelets rolle";
+    // Keep expanded archival sections expanded across ordinary profile/UI updates.
+    // This is view-only state, never part of the canonical story save.
+    const expanded = new Set(Array.from(panel.querySelectorAll?.("details[data-lifestory-disclosure][open]") || [])
+      .map((detail) => detail.getAttribute("data-lifestory-disclosure")));
 
     renderHeaderStatus(view);
     const personalBanner = shellStory?.status === "private-only"
@@ -1247,6 +1257,9 @@
         ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
         : (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : renderEmptyPhaseHtml())))
       + renderPanelsHtml(view);
+    panel.querySelectorAll?.("details[data-lifestory-disclosure]").forEach((detail) => {
+      if (expanded.has(detail.getAttribute("data-lifestory-disclosure"))) detail.open = true;
+    });
     // When an asynchronous role adoption finishes, retire the prior role\x27s
     // unanswerable inbox projection and expose this role\x27s current scene.
     window.CivicationWaveAInboxBridge?.sync?.();
