@@ -9,6 +9,9 @@ on:
       - 'tests/oslo-sentrum-spor-a-browser.mjs'
       - '.github/workflows/oslo-sentrum-spor-a-browser.yml'
   workflow_dispatch:
+concurrency:
+  group: oslo-sentrum-spor-a-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
