@@ -30,7 +30,7 @@ test('five remaining sites have exactly ten four-option review questions with ed
       assert.equal(candidate.question, fact.question, candidate.id);
       assert.equal(candidate.answer, fact.answer_core, candidate.id);
       assert.equal(candidate.source_trace, fact.source_trace, candidate.id);
-      assert.equal(candidate.categoryId, place.place_id === 'kristiania_teglverk_bryn' ? 'naeringsliv' : 'historie');
+      assert.equal(candidate.categoryId, release.places.find(p => p.place_id === place.place_id).category_candidate);
       assert.equal(candidate.targetId, place.place_id);
       assert.equal(candidate.options.length, 4, candidate.id);
       assert.equal(new Set(candidate.options.map(v => v.toLowerCase().normalize('NFKC'))).size, 4, candidate.id);
