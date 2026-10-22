@@ -33,7 +33,7 @@ test('six editorial stories export as faithful nonplayable canonical-shaped Plac
     assert.equal([...active].some(x=>x.endsWith('/'+p.id+'.json')),false);
   }
   assert.equal(release.places.filter(p=>p.provisional_site_poi_reference!==null).length,2);
-  assert.equal(release.places.filter(p=>p.image_source_page_candidate!==null).length,4);
+  assert.equal(release.places.filter(p=>p.image_source_page_candidate!==null).length,5);
 });
 
 test('no staging generator may import a candidate as an approved visitor entrance',()=>{
