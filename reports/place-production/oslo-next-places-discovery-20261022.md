@@ -93,4 +93,20 @@ Ved lesning på `main` ble disse faktiske filene brukt til semantisk sammenligni
 - `data/places/naeringsliv/oslo/places_naeringsliv/bryn_industriomrade.json` – **inneholder allerede opplysninger om Kristiania Teglverk**, så eget sted krever distinkt fysisk anker og egen faglig læringsoppgave.
 - `data/places/by/oslo/places/nydalen.json` – omtaler allerede Christiania Spiger- og Valseværk i områdets historie; samme prinsipielle avgrensning må gjelde ved eventuell ny fabrikk-Place.
 
-**Produksjonsrekkefølge:** Linderud gård → Ekebergrestauranten → Kristiania Teglverk **etter adressesperre**. Ingen canonical file, status, quiz, bilde eller kategori er endret. Før en eneste canonical Place-write: les alle ni READ-FIRST-filer på aktuell produksjonsgren, fastsett hovedbadge → underbadges → source review → confirmed profil → endelig innholdsplan, og registrer `rule_preflight`. Lag deretter minst én felles isolert produksjons-PR for nye steder i separat neste Oslo-bolk. Oslo-bolk 04 er aldri del av dette sporet.
+**Tidligere foreslått produksjonsrekkefølge (erstattet av beslutningen nedenfor):** Linderud gård → Ekebergrestauranten → Kristiania Teglverk **etter adressesperre**. Ingen canonical file, status, quiz, bilde eller kategori er endret. Før en eneste canonical Place-write: les alle ni READ-FIRST-filer på aktuell produksjonsgren, fastsett hovedbadge → underbadges → source review → confirmed profil → endelig innholdsplan, og registrer `rule_preflight`. Lag deretter minst én felles isolert produksjons-PR for nye steder i separat neste Oslo-bolk. Oslo-bolk 04 er aldri del av dette sporet.
+
+## Beslutning – avgrenset felles femstedsbolk (22.10.2026)
+
+**Aktivt utvalg, i denne rekkefølgen:**
+
+1. **Linderud gård** (`linderud_gard`) – gjenbruk og fullfør kilde-/claim-arbeidet i PR #6567 uten å duplisere eller overskrive det. Avklar 1713/1714 før spørsmål om eksakt byggeår; forankre offentlig utepunkt, foto og tilgjengelighet.
+2. **Ekebergrestauranten** (`ekebergrestauranten`) – avgrens restaurantbygningen fra Ekebergparken/museet; kontroller bygningshistorie, fotoidentitet og lovlig utsnitt.
+3. **Frognerseteren** (`frognerseteren`) – egen restaurantbygning som stedsanker; skill den fra Frognerseteren stasjon, Heftyevillaen og det videre utfartsområdet. Kontroller adresse/offentlig pin.
+4. **Sarabråten** (`sarabraten`) – det historiske sommerstedets dokumenterte ruiner/spor, ikke et generelt Nøklevann-punkt. Fastsett kartanker og offentlig tilgjengelig sti uten å antyde at bygningene står.
+5. **Sæterhytten** (`saeterhytten_bygdoy`) – særskilt bygning/kulturminne på Dronningberget, ikke Bygdøy samlet; verifiser eksakt adresse, stedsanker og visningsrett.
+
+**Eksplisitt HOLD utenfor femstedsbolken:** Kristiania Teglverk (`kristiania_teglverk_bryn`). Avvik mellom Nils Hansens vei 14 og 18 samt sammenblanding av teglverk, zinkhvidtfabrikk, bevarte bygninger og ringovn må avklares mot eiendoms-/bygningsregister og kulturminnekilder før ny pin, bilde eller canonical Place. Ikke erstatt med gjetning eller trekk inn Bryn Teglverk.
+
+**Felles leveransekriterier for hvert av de fem stedene:** semantisk dublettsøk i manifest og nabosteder; obligatorisk READ-FIRST etter AGENTS.md på produksjonsgren; Badge/routing og dokumentert source review; bekreftet profil og `rule_preflight` per sted; kildebelagt `desc`/`popupDesc` med faktiske mennesker, hendelser og stedlige spor; gjennomgått fullquiz etter canonical profil, ti kontrollerte QuizCard-spørsmål, egen Fagverk-side, korrekt og rettighetsklart bilde, og faktisk mobil-/desktopvisning. Samle produksjonen i én felles implementasjonsbolk/PR og kjør endringsrelevante tester samlet. Ingen v1-, complete- eller mergepåstand uten evidens.
+
+**Avgrensning:** De øvrige kandidatene i tabellen er kun senere forskningskø, ikke del av denne produksjonen. Oslo-bolk 04 og PR #6567 skal ikke få parallelle eller motstridende canonical endringer. Denne beslutningen er kun en endring i forsknings-/scope-dokumentet, ikke levert stedskode eller app-QA.
