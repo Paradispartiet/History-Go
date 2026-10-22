@@ -21,9 +21,9 @@ test('Fordeling, velferd og ulikhet oppfyller Fagverkets kapittelkontrakt', () =
   assert.equal(report.summary.moduleCount, 3);
   assert.equal(report.summary.sectionCount, 9);
   assert.equal(report.summary.paragraphCount, 27);
-  assert.equal(report.summary.claimCount, 45);
-  assert.equal(report.summary.sourceCount, 30);
-  assert.equal(report.summary.tracedClaimCount, 45);
+  assert.equal(report.summary.claimCount, 48);
+  assert.equal(report.summary.sourceCount, 33);
+  assert.equal(report.summary.tracedClaimCount, 48);
   assert.equal(report.summary.relatedPlaceCount, 6);
   assert.equal(report.gates.paragraphLevelClaimTrace, true);
   assert.equal(report.gates.registryAndRuntimeSynced, true);
