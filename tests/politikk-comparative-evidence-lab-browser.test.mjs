@@ -98,6 +98,42 @@ try {
     assert.equal(await rubric.locator('#politikkEvidenceImprovementPlan').isVisible(), false);
     assert.ok(await rubric.locator('.politikk-evidence-rubric-example a').count() >= 4, 'rubric examples remain linked to checked primary sources');
 
+    // Wave 12: a single rubric adapts to both additional source-bound writing tasks.
+    const taskSelect = host.locator('#politikkEvidenceCaseTask');
+    assert.equal(await taskSelect.locator('option').count(), 3, 'comparison plus two single-country writing tasks');
+    await taskSelect.selectOption('poland');
+    assert.equal(await rubric.isVisible(), false, 'changing case invalidates prior review');
+    assert.equal(await host.locator('#politikkEvidenceOwnReasoning').inputValue(), '', 'no prior text is reused');
+    assert.match(await host.locator('.politikk-evidence-assignment').textContent(), /konkurransepreget og effektivt administrert valg/);
+    assert.match(await host.locator('.politikk-evidence-task-sources').textContent(), /nasjonale valgkommisjonen/);
+    assert.equal(await host.locator('.politikk-evidence-task-source').count(), 4);
+    assert.ok((await host.locator('.politikk-evidence-task-sources a').evaluateAll(nodes => nodes.map(node => node.getAttribute('href'))))
+      .every(url => url.includes('/poland/')), 'Poland task uses only Polish source references');
+
+    await host.locator('#politikkEvidenceOwnReasoning').fill('Polens valg var konkurransepreget, men kildene peker også på skjeve konkurransevilkår; det beviser ikke manipulert opptelling.');
+    await host.getByRole('button', { name: 'Vis min argumentrekke' }).click();
+    assert.equal(await rubric.isVisible(), true);
+    assert.match(await rubric.textContent(), /Analytisk sammenlignbarhet/);
+    assert.match(await host.locator('#politikkEvidenceReport').textContent(), /manipulert opptelling i hele landet/);
+    for (const id of ['belegg', 'sammenligning', 'mekanisme', 'forbehold']) {
+      await rubric.locator('#politikkEvidenceRating-' + id).selectOption('improve');
+    }
+    await rubric.getByRole('button', { name: 'Lag min forbedringsplan' }).click();
+    assert.match(await rubric.locator('#politikkEvidenceImprovementPlan').textContent(), /valgadministrasjon/);
+
+    await taskSelect.selectOption('hungary');
+    assert.equal(await rubric.isVisible(), false, 'new case clears prior self-review');
+    assert.equal(await host.locator('#politikkEvidenceImprovementPlan').isVisible(), false);
+    assert.equal(await host.locator('#politikkEvidenceOwnReasoning').inputValue(), '');
+    assert.equal(await host.locator('.politikk-evidence-task-source').count(), 3);
+    assert.ok((await host.locator('.politikk-evidence-task-sources a').evaluateAll(nodes => nodes.map(node => node.getAttribute('href'))))
+      .every(url => url.includes('/hungary/') || url.endsWith('/523565')), 'Hungary task links to Hungarian reports');
+    await host.locator('#politikkEvidenceOwnReasoning').fill('Ungarn hadde reelle valgalternativer, men sammenblanding av stat og parti kan gi fordel uten at mandatvirkning er målt.');
+    await host.getByRole('button', { name: 'Vis min argumentrekke' }).click();
+    assert.match(await rubric.textContent(), /valgavvikling, valgkamp og velgeratferd/);
+    assert.match(await host.locator('#politikkEvidenceReport').textContent(), /nøyaktig stemme-\/mandateffekt/);
+    assert.equal(await rubric.locator('#politikkEvidenceRating-belegg').inputValue(), '');
+
     const stored = await page.evaluate(() => ({
       knowledge: JSON.parse(localStorage.getItem('hg_knowledge_entries_v2') || '[]'),
       progress: JSON.parse(localStorage.getItem('quiz_progress') || '{}')
