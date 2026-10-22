@@ -34,7 +34,7 @@ const DETAILS = Object.freeze({
       'I mai 1953 raste gulv og masser fra bygningen ned i en tunnel under huset. Skaden fikk store følger for restaurantdriften.',
       'Driften stanset i 1997, og etter flere år med forfall og ombyggingsforsøk ble bygningen fredet.',
       'Fredningen i 2001 kom etter debatt om hvordan den tidlige funksjonalistiske bygningen skulle bevares.',
-      'Etter istandsetting åpnet Ekebergrestauranten igjen i 2005.'
+      'Etter flere år med forfall og omfattende istandsetting åpnet Ekebergrestauranten igjen i 2005, med den fredede funksjonalistiske bygningen bevart.'
     ]
   },
   frognerseteren: {
