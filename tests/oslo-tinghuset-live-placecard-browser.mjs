@@ -17,6 +17,13 @@ assert.equal(runtime.place?.fagverk?.schema,'history_go_place_fagverk_v2');
 assert.equal(canonical.imageMeta?.license,'Public domain');
 assert.ok(fs.statSync(canonical.image).size>8000);
 assert.ok(fs.statSync(canonical.cardImage).size>8000);
+assert.equal(canonical.frontImage,'bilder/places/tinghuset_front_portrait.webp');
+assert.equal(canonical.frontImageMeta?.license,'Public domain');
+assert.equal(canonical.frontImageMeta?.creator,'Mahlum');
+assert.equal(canonical.frontImageMeta?.sourcePage,'https://commons.wikimedia.org/wiki/File:Oslo_tinghus.jpg');
+assert.match(canonical.frontImageMeta?.outputSha256||'',/^[a-f0-9]{64}$/);
+assert.ok(fs.statSync(canonical.frontImage).size>20000);
+assert.equal(runtime.place?.frontImage,canonical.frontImage);
 fs.mkdirSync(out,{recursive:true});
 const mime={'.css':'text/css','.js':'text/javascript','.mjs':'text/javascript','.html':'text/html','.json':'application/json','.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{
@@ -44,7 +51,8 @@ try{
    await page.waitForFunction(()=>document.querySelector('#pcFrontImage')?.complete&&document.querySelector('#pcFrontImage')?.naturalWidth>0&&document.querySelector('#pcHeaderImage')?.naturalWidth>0,null,{timeout:35000});
    const actualTitle=await page.locator('#pcTitle').innerText();
    assert.match(actualTitle,/tinghus/i);
-   const imgs=await page.evaluate(()=>({hero:document.querySelector('#pcHeaderImage')?.naturalWidth||0,front:document.querySelector('#pcFrontImage')?.naturalHeight||0}));
+   const imgs=await page.evaluate(()=>({hero:document.querySelector('#pcHeaderImage')?.naturalWidth||0,front:document.querySelector('#pcFrontImage')?.naturalHeight||0,frontSrc:document.querySelector('#pcFrontImage')?.currentSrc||''}));
+   assert.ok(imgs.frontSrc.includes('tinghuset_front_portrait.webp'),'PlaceCard must render separately sourced portrait');
    assert.ok(imgs.hero>0&&imgs.front>0);
    check.placeCard=true;check.photos=true;
    await page.screenshot({path:path.join(out,'tinghuset-'+label+'-front.png'),fullPage:false});
