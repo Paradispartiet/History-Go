@@ -118,7 +118,7 @@ def main():
     # public historical narrative, keeping the source-grounded facts intact.
     obsolete_game_sentence = "Dermed kan stedet brukes til å undersøke prosjektøkonomi, kapasitetsstyring, internkontroll, eiendomsverdi og hvordan en tidligere samfunnskritisk infrastruktur får en ny forretningsmodell."
     factual_replacement = "Ombyggingen viser hvordan et tidligere knutepunkt for nasjonal telekommunikasjon fikk nye funksjoner i byens næringsliv."
-    obsolete_game_paragraph = "\\n\\nQuizens første fjorten spørsmål gir normal stedskunnskap. Deretter arbeider spilleren med dokumenterte forhold, eksplisitte NOK-scenarioer, beregninger og profesjonelle beslutninger uten å forveksle pedagogiske scenarioer med historiske fakta."
+    obsolete_game_paragraph = chr(10) + chr(10) + "Quizens første fjorten spørsmål gir normal stedskunnskap. Deretter arbeider spilleren med dokumenterte forhold, eksplisitte NOK-scenarioer, beregninger og profesjonelle beslutninger uten å forveksle pedagogiske scenarioer med historiske fakta."
     desc = place.get("popupDesc", "")
     if obsolete_game_sentence in desc and obsolete_game_paragraph in desc:
         desc = desc.replace(obsolete_game_sentence, factual_replacement, 1)
