@@ -58,7 +58,7 @@ export function buildOsloSixRemainingFullquizReview() {
     const initial=base.draft_cards.map((c,i)=>({
       id:place_id+'_review_quiz_'+String(i+1).padStart(2,'0'),targetId:place_id,categoryId:c.categoryId,
       question:c.question,answer:c.answer,answerIndex:c.answerIndex,options:c.options,knowledge:c.knowledge,
-      source_trace:c.source_trace,source_url:SOURCE[place_id][0],quizcard_candidate_id:c.id,
+      source_trace:c.source_trace,source_url:(place_id==='saeterhytten_bygdoy' && i===7 ? SOURCE[place_id][1] : SOURCE[place_id][0]),quizcard_candidate_id:c.id,
       source_review:'pending_per_question_original_source_review',runtime_registered:false
     }));
     const additions=extras.map(([question,answer,others,knowledge,urlIndex],i)=>{
