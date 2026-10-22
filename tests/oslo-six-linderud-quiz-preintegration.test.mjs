@@ -50,7 +50,7 @@ test('Linderud: exactly four distinct sets of seven with source/claim/answer con
 test('Linderud: exactly ten selected questions preserve editorial QuizCard wording and answers', () => {
   const block = editorial.split('## Linderud gård (\`linderud_gard\`)')[1].split('\n## Ekebergrestauranten')[0];
   assert.ok(block);
-  const rows = block.split('\n').filter(s => /^\\|\\s*\\d+\\s*\\|/.test(s));
+  const rows = block.split('\n').filter(s => /^\|\s*\d+\s*\|/.test(s));
   assert.equal(rows.length, 10);
   assert.equal(draft.quizcard_selection.length, 10);
   assert.equal(new Set(draft.quizcard_selection).size, 10);
