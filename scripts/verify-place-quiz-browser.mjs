@@ -85,7 +85,10 @@ try {
           await page.waitForFunction(expected => document.querySelector('#quizQuestion')?.textContent?.trim() === expected,
             q.question,{timeout:20000});
           assert.equal(await page.locator('#quizChoices button').count(),q.options.length,set.set_id + ':' + qi);
-          const correct = page.locator('#quizChoices button').nth(q.answerIndex);
+          // The engine shuffles the visible answer buttons independently of
+          // the source file's answerIndex. Match the exact rendered answer.
+          const correct = page.locator('#quizChoices').getByRole('button',{name:q.answer,exact:true});
+          assert.equal(await correct.count(),1,q.id+': correct answer must occur exactly once');
           assert.equal((await correct.innerText()).trim(),q.answer,q.id+': rendered answer diverges');
           if (profile.isMobile) {
             // Keep the acceptance test faithful to an actual phone: touch the
@@ -100,11 +103,12 @@ try {
               assert.ok(box && box.width>30 && box.height>18,q.id+': untappable answer box');
               const x=Math.min(profile.viewport.width-8,Math.max(8,box.x+box.width/2));
               const y=Math.min(profile.viewport.height-8,Math.max(8,box.y+box.height/2));
+              const visibleButtonIndex=await correct.getAttribute('data-idx');
               const hit=await page.evaluate(({x,y})=>{
                 const element=document.elementFromPoint(x,y);
                 return {target:element?.tagName||null,choice:element?.closest?.('#quizChoices button')?.getAttribute('data-idx')||null};
               },{x,y});
-              const tapped=hit.choice===String(q.answerIndex);
+              const tapped=hit.choice===visibleButtonIndex;
               if (!tapped) {
                 await page.waitForTimeout(200);
                 continue;
