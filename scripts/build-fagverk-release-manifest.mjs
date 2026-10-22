@@ -410,21 +410,7 @@ function main() {
   const outputPath = path.resolve(args.root, args.output);
   if (args.check) {
     if (!fs.existsSync(outputPath)) throw new Error(`Missing Fagverk release manifest: ${args.output}`);
-    if (fs.readFileSync(outputPath, "utf8") !== serialized) {
-      const old = JSON.parse(fs.readFileSync(outputPath, "utf8"));
-      const changes = [];
-      const walk = (a,b,p) => {
-        if (JSON.stringify(a) === JSON.stringify(b)) return;
-        if (a && b && typeof a === "object" && typeof b === "object" && !Array.isArray(a) && !Array.isArray(b)) {
-          for (const k of Object.keys(b)) walk(a[k], b[k], p.concat(k));
-        } else if (Array.isArray(a) && Array.isArray(b)) {
-          for (let i = 0; i < b.length; i++) walk(a[i],b[i],p.concat(i));
-        } else changes.push({path:p,value:b});
-      };
-      walk(old, release, []);
-      console.log("HG_RELEASE_DELTA_START" + JSON.stringify(changes) + "HG_RELEASE_DELTA_END");
-      throw new Error(`Stale Fagverk release manifest: ${args.output}`);
-    }
+    if (fs.readFileSync(outputPath, "utf8") !== serialized) throw new Error(`Stale Fagverk release manifest: ${args.output}`);
     console.log(`Verified Fagverk release ${release.release_sha256}: ${release.summary.subject_count} packages, ${release.summary.chapter_count} chapters.`);
     return;
   }
