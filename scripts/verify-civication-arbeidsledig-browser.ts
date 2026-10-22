@@ -40,17 +40,22 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
       if (await queued.count()) {
         const mailId = String(await queued.getAttribute('data-mail-id') || '');
         try {
-          await queued.click({ timeout: 2500 });
+          // Playwright retries detached nodes when an inbox render races a click.
+          // Never dispatch a synthetic event or bypass the actual UI.
+          await queued.click({ timeout: 12000 });
         } catch (error) {
-          // This still invokes the visible button's real delegated click
-          // handler, not the game's enqueue API. Keep a diagnostic marker:
-          // a pointer-unstable inbox fails full acceptance even if the
-          // remainder of the journey can be inspected.
-          const current = modal.locator('[data-civi-next-action-open-queued][data-mail-id="' + mailId + '"]').first();
-          if (!(await current.count())) throw error;
-          queuedPointerFallbacks.push({ scenario: scenarioId, day, mailId });
-          console.warn('Civication pointer-unstable queued action', JSON.stringify({ scenarioId, day, mailId }));
-          await current.dispatchEvent('click');
+          const after = await page.evaluate(() => ({
+            day: Number((globalThis as any).CivicationCalendar?.getClock?.().dayIndex),
+            next: (globalThis as any).CivicationNextActionSelector?.getCurrent?.()
+          }));
+          // The button may legitimately disappear when another UI action
+          // already advanced this mail. Re-read the canonical gate and continue.
+          if (after.day !== before.day ||
+              !after.next ||
+              String(after.next.id || '') !== mailId ||
+              after.next.canStartNewDay) continue;
+          // A still-blocking unchanged mail is a genuine click failure.
+          throw error;
         }
       }
       else if (await task.count()) await task.click();
