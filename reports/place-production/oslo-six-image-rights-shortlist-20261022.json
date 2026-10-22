@@ -1,19 +1,19 @@
 {
   "schema": "history_go_oslo_six_image_candidate_rights_v1",
   "as_of": "2026-10-22",
-  "status": "SOURCE_PAGES_REVIEWED_NO_IMAGE_IMPORTED_OR_CROPPED",
-  "objective": "A source-backed lead-image shortlist. Image candidates MUST NOT enter canonical Place or app assets until actual bytes, attribution, attribution placement, three WebP variants and mobile/desktop image QA are checked.",
+  "status": "SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED",
+  "objective": "Four previously CC-licensed Commons photos have now been imported as twelve checked-in staged WebP crop assets and independently framing-reviewed. Images MUST NOT enter canonical Place runtime until visitor location, photo credit display and browser QA are approved.",
   "requirements": [
     "Check source file identity and building depicted",
     "Retain full Commons file URL, creator, license and edit notes alongside derivatives",
-    "Fetch original image bytes and validate actual dimensions",
-    "Make three independently reviewed WebP crops with uncut subject and appropriate card/header/popup focal points",
-    "Verify runtime references, alt text, credits and mobile/desktop display"
+    "Verify real photo author/license attribution is visible in PlaceCard and image detail",
+    "Confirm canonical image, card and popup asset paths are correctly bound to an approved Place",
+    "Verify mobile/desktop cropping and legibility in real app screens, plus all standard release gates"
   ],
   "places": [
     {
       "place_id": "linderud_gard",
-      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND",
       "lead_candidate": {
         "page": "https://commons.wikimedia.org/wiki/File:Linderud_g%C3%A5rd_hovedbygning2.JPG",
         "author": "Helge Høifødt",
@@ -33,11 +33,17 @@
         "author": "Helge Høifødt",
         "license": "CC BY-SA 3.0",
         "subject": "Hovedbygning fra nord og oppkjørsel"
-      }
+      },
+      "asset_paths": [
+        "bilder/places/auto/linderud_gard__commons_lead.webp",
+        "bilder/places/auto/linderud_gard__commons_card.webp",
+        "bilder/places/auto/linderud_gard__commons_popup.webp"
+      ],
+      "visual_qa_report": "reports/place-production/oslo-six-image-visual-qa-20261022.json"
     },
     {
       "place_id": "ekebergrestauranten",
-      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND",
       "lead_candidate": {
         "page": "https://commons.wikimedia.org/wiki/File:Ekebergrestauranten_fra_nord.JPG",
         "author": "Helge Høifødt",
@@ -59,11 +65,17 @@
         "subject": "Restaurant i åssiden fotografert på avstand; anlegget blir lite i full- og kortutsnitt",
         "reason_not_primary": "QA of first 1600×900 crop shows restaurant too small for a place hero image"
       },
-      "editorial_image_review": "2026-10-22: first Commons batch generated and reviewed; switched lead candidate from 2012 distant view to 2010 closer north-side building photograph. New crop QA required."
+      "editorial_image_review": "2026-10-22: first Commons batch generated and reviewed; switched lead candidate from 2012 distant view to 2010 closer north-side building photograph. New crop QA required.",
+      "asset_paths": [
+        "bilder/places/auto/ekebergrestauranten__commons_lead.webp",
+        "bilder/places/auto/ekebergrestauranten__commons_card.webp",
+        "bilder/places/auto/ekebergrestauranten__commons_popup.webp"
+      ],
+      "visual_qa_report": "reports/place-production/oslo-six-image-visual-qa-20261022.json"
     },
     {
       "place_id": "frognerseteren",
-      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND",
       "lead_candidate": {
         "page": "https://commons.wikimedia.org/wiki/File:Frogners%C3%A6teren_restaurant.jpg",
         "author": "Bjørn Erik Pedersen",
@@ -83,7 +95,13 @@
         "author": "Ssu",
         "license": "NOT_REVIEWED",
         "subject": "Restaurantbygning i 2025; alternate awaiting independent license review"
-      }
+      },
+      "asset_paths": [
+        "bilder/places/auto/frognerseteren__commons_lead.webp",
+        "bilder/places/auto/frognerseteren__commons_card.webp",
+        "bilder/places/auto/frognerseteren__commons_popup.webp"
+      ],
+      "visual_qa_report": "reports/place-production/oslo-six-image-visual-qa-20261022.json"
     },
     {
       "place_id": "sarabraten",
@@ -102,7 +120,7 @@
     },
     {
       "place_id": "saeterhytten_bygdoy",
-      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND",
       "lead_candidate": {
         "page": "https://commons.wikimedia.org/wiki/File:Seterhytten_pa_Dronningberget.JPG",
         "author": "Helge Høifødt",
@@ -116,7 +134,13 @@
         ],
         "image_identity_confidence": "high",
         "next": "Check image composition and record source/author even if attribution not legally required"
-      }
+      },
+      "asset_paths": [
+        "bilder/places/auto/saeterhytten_bygdoy__commons_lead.webp",
+        "bilder/places/auto/saeterhytten_bygdoy__commons_card.webp",
+        "bilder/places/auto/saeterhytten_bygdoy__commons_popup.webp"
+      ],
+      "visual_qa_report": "reports/place-production/oslo-six-image-visual-qa-20261022.json"
     },
     {
       "place_id": "kristiania_teglverk_bryn",
@@ -129,5 +153,11 @@
       },
       "next": "Establish exact ringovn building and secure licensable matching photograph; do not request rights, do not use unrelated Bryn factory"
     }
+  ],
+  "completed_requirements": [
+    "Verified four Commons originals with SHA-1 and MIME/dimensions in CI",
+    "Produced three independently size-defined WebP crops per lead photo",
+    "Inspected all twelve actual crops for scene identity and subject framing",
+    "Committed twelve WebP candidates and attribution sidecar to the same PR"
   ]
 }
