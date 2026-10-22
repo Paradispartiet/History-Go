@@ -240,6 +240,17 @@
     return isNpcRoleStoryStream(stream) && !WORK_STREAM_TYPES.has(slugify(stream?.type));
   }
 
+  // An active narrative stream remains in the player's history after a job
+  // change, but role-bound work must not materialize for an unrelated job.
+  // Keep free-standing private/leisure streams available across career changes.
+  function streamEligibleForCurrentRole(stream, active, state, narrativeState) {
+    const scopes = stream?.applies_when?.role_scopes;
+    const roleBoundWork = WORK_STREAM_TYPES.has(slugify(stream?.type))
+      && Array.isArray(scopes) && scopes.length > 0;
+    return (!roleBoundWork && !isNpcRoleStoryStream(stream))
+      || streamMatches(stream, active, state, narrativeState);
+  }
+
   function npcDayField(stream) {
     return isPrivateNpcStream(stream) ? "answered_calendar_day" : "answered_workday_day";
   }
@@ -308,7 +319,8 @@
     const activeStreamIds = uniqueStrings(narrativeState.active_streams || []);
     const candidateStreams = streams.filter(stream => {
       const id = norm(stream?.id);
-      return !!id && (activeStreamIds.includes(id) || matchedStreams.some(match => norm(match?.id) === id));
+      return !!id && (activeStreamIds.includes(id) || matchedStreams.some(match => norm(match?.id) === id))
+        && streamEligibleForCurrentRole(stream, active, state, narrativeState);
     });
     return {
       matched_stream_ids: matchedStreams.map(stream => norm(stream?.id)).filter(Boolean),
@@ -473,11 +485,10 @@
     let candidateStreams = candidateIds.length
       ? streams.filter(stream => candidateIdSet.has(norm(stream?.id)))
       : streams;
-    // Narrative source requests with no candidate IDs predate this contract.
-    // Preserve that behavior for other streams, but never leak NPC stories
-    // into a role where their applies_when rule is not satisfied.
+    // Saved streams from a prior job remain in history, not in the current
+    // workday. This also protects callers with stale candidate_stream_ids.
     candidateStreams = candidateStreams.filter(stream =>
-      !isNpcRoleStoryStream(stream) || streamMatches(stream, active, state, narrativeState));
+      streamEligibleForCurrentRole(stream, active, state, narrativeState));
     if (context.npc_only === true) {
       candidateStreams = candidateStreams.filter(isNpcRoleStoryStream);
     }
@@ -501,8 +512,8 @@
     for (const streamId of openedStreamIds) {
       const stream = streams.find(candidate => norm(candidate?.id) === streamId);
       if (!stream) continue;
-      if (isNpcRoleStoryStream(stream) &&
-          (!streamMatches(stream, active, state, narrativeState) ||
+      if (!streamEligibleForCurrentRole(stream, active, state, narrativeState) ||
+          (isNpcRoleStoryStream(stream) &&
            npcAssignedThisDay(streams, excluded, narrativeState, isPrivateNpcStream(stream)))) continue;
       const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
       const storylet = storylets
