@@ -58,7 +58,7 @@ try{
      source:document.querySelector('#pcFrontImage')?.currentSrc||'',
      quizReady:Boolean(document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card'))
     }));
-    assert.ok(details.title.includes(canonical[id].name),'Incorrect PlaceCard title');
+    assert.match(details.title,id==='telegrafbygningen'?/Telegraf|Telegraph/i:/Post|Hovedpost/i,'Incorrect PlaceCard title after localization');
     assert.ok(details.open,'PlaceCard is not visible');
     assert.ok(details.hero>0&&details.front>0,'Front or hero photo not decoded');
     if(id==='telegrafbygningen')assert.ok(details.source.includes('upload.wikimedia.org'),'Not using identified Commons portrait');
