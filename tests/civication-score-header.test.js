@@ -42,7 +42,8 @@ assert.equal(model.count, 17);
 assert.equal(model.score, 56, "the score is the unweighted mean of measured 0–100 indicators");
 assert.equal(model.groups.find(g => g.name === "Skills").rows[2].score, null,
   "unmeasured skills are not invented as zero");
-assert.deepEqual(model.groups.find(g => g.name === "Omdømme").rows.map(x => x.score), [0, 100]);
+// Array.from produces a host-realm array (the model was created in JSDOM).
+assert.deepEqual(Array.from(model.groups.find(g => g.name === "Omdømme").rows, x => x.score), [0, 100]);
 assert.equal(model.currency, -50000, "unbounded money stays an amount and is excluded");
 assert.equal(model.groups.find(g => g.name === "Kapital").rows[0].score, 100,
   "capital above 100 is visually capped without migrating the underlying game state");
