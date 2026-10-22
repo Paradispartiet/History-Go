@@ -7,10 +7,12 @@ import { buildOsloSixCardReview } from './build-oslo-six-card-review.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const GATE = JSON.parse(readFileSync(resolve(ROOT, 'reports/place-production/oslo-six-places-integration-gates-20261022.json'), 'utf8'));
-const BYLEKSIKON = Object.freeze({
+const SOURCE_URLS = Object.freeze({
   ekebergrestauranten: 'https://oslobyleksikon.no/side/Ekebergrestauranten',
   frognerseteren: 'https://oslobyleksikon.no/side/Frognerseteren',
-  sarabraten: 'https://oslobyleksikon.no/side/Sarabr%C3%A5ten'
+  sarabraten: 'https://oslobyleksikon.no/side/Sarabr%C3%A5ten',
+  saeterhytten_bygdoy: 'https://oslobyleksikon.no/side/S%C3%A6terhytten',
+  kristiania_teglverk_bryn: 'https://teglverk.no/kristiania-teglverk/'
 });
 
 // Each fact below was checked against the named Oslo byleksikon place article.
@@ -55,7 +57,34 @@ const EXTRAS = Object.freeze({
     ['Hva ble sperrestua kalt etter en senere ombygging?', 'Kuskeboligen', ['Heftyevillaen', 'Skistua', 'Sæterhytten'], 'Sperrestua fra 1856 ble senere bygd om til Kuskeboligen, som var det siste huset som sto igjen.'],
     ['Til hvilket år var det serveringssted i Kuskeboligen?', '1943', ['1897', '1911', '1971'], 'Kuskeboligen hadde serveringssted fram til 1943. Selve bygningen brant først i 1971.'],
     ['I hvilket tidsrom ble Sarabråtrennet holdt?', '1902–1928', ['1891–1909', '1911–1945', '1946–1971'], 'Skirennet Sarabråtrennet ble arrangert fra 1902 til 1928 og fikk tilnavnet Østkantens Holmenkollrenn.']
-  ]
+
+  ],
+  saeterhytten_bygdoy: [
+    ['Hvilken stil ble Sæterhytten ifølge Oslo byleksikon reist i?', 'Nasjonal stil', ['Funksjonalisme', 'Jugendstil', 'Brutalisme'], 'Oslo byleksikon omtaler Sæterhytten som oppført i nasjonal stil. Stilbetegnelsen må skilles fra bygningens tidligere badehusfunksjon.'],
+    ['Hvilken fjordarm ligger Sæterhytten høyt over på Dronningberget?', 'Frognerkilen', ['Bunnefjorden', 'Bestumkilen', 'Hvervenbukta'], 'Sæterhytten ligger høyt på Dronningberget vest for den innerste delen av Frognerkilen.'],
+    ['Hvem var moren til dronning Louise som deltok ved innvielsen?', 'Prinsesse Louise av Nederlandene', ['Dronning Maud', 'Prinsesse Märtha av Sverige', 'Dronning Desideria'], 'Dronning Louises mor, prinsesse Louise av Nederlandene, var til stede da paviljongen ble innviet i 1862.'],
+    ['Hva ble dronning Louises datter Louise senere?', 'Dronning av Danmark', ['Dronning av Storbritannia', 'Dronning av Belgia', 'Dronning av Portugal'], 'Datteren Louise, som deltok på innvielsen sammen med sin mor og mormor, ble senere dronning av Danmark.'],
+    ['Hva het diktet Henrik Ibsen skrev til Sæterhyttens åpning?', 'Reist er Hytten paa Norges Fjeld', ['Ja, vi elsker dette landet', 'Terje Vigen', 'Til Ungdommen'], 'Henrik Ibsens dikt til innvielsen begynte med ordene «Reist er Hytten paa Norges Fjeld».'],
+    ['Hvilken ny paviljong ble satt opp ved Sæterhytten i 1866?', 'En musikkpaviljong', ['En glasspaviljong for botanikk', 'En kongelig jaktstue', 'En teglverksbygning'], 'En musikkpaviljong ble satt opp i 1866, samme år som det begynte servering i Sæterhytten.'],
+    ['Hva ble bygd til ved Sæterhyttens nordende i 1881?', 'Kjeller og kjøkken', ['Et kirketårn', 'En skibakke', 'En stor ballsal'], 'Ombyggingen med kjeller og kjøkken i 1881 gjorde det mulig å drive mer omfattende restaurantvirksomhet.'],
+    ['I hvilken retning vendte Sæterhyttens uteservering med utsikt?', 'Mot sør', ['Mot nord', 'Mot øst', 'Mot nordvest'], 'Uteserveringen vendte mot sør, der utsikten var en viktig del av stedets tiltrekningskraft.'],
+    ['Hva fungerte som spisesal ute før Sæterhytten fikk glassveranda?', 'Et seildukstelt', ['Et gammelt båtskur', 'En tømmerlåve', 'En steinkjeller'], 'Et seildukstelt fungerte som utendørs spisesal før glassverandaen ble en del av serveringsmiljøet.'],
+    ['I hvilket tiår kom glassverandaen trolig til Sæterhytten?', '1890-årene', ['1860-årene', '1930-årene', '1970-årene'], 'Oslo byleksikon daterer glassverandaen forsiktig til antakelig 1890-årene. Det er ikke et sikkert eksakt byggeår.'],
+    ['Hvilken historisk parkstil skulle landskapet på Dronningberget tilbakeføres til?', 'Landskapspark i 1800-tallsstil', ['Renessansens geometriske parterrehage', 'En moderne skulpturpark', 'En middelaldersk urtehage'], 'Restaureringsgaven ved kongeparets 70-årsjubileum omfattet også tilbakeføring av Dronningberget til landskapspark i 1800-tallsstil.']
+  ],
+  kristiania_teglverk_bryn: [
+    ['Hvem ledet gjenstarten av Kristiania Teglverk i 1912?', 'Disponent Helge Nielsen', ['Elling Jonassen', 'Thomas Joh. Heftye', 'Mogens Lauritssøn'], 'Disponent Helge Nielsen sto bak gjenstarten i 1912 etter at teglverket hadde stanset produksjonen etter byggekrakket.'],
+    ['Hvilket selskap overtok Kristiania Teglverk i 1918?', 'A/S Einar Stange', ['Schous Bryggeri', 'Christiania Spigerverk', 'Norsk Hydro'], 'A/S Einar Stange overtok verket i 1918 og var også knyttet til den senere driftsavviklingen.'],
+    ['Hvilken maskin fikk verket omkring 1920 for å forme murstein?', 'Strengpresse', ['Dampvevstol', 'Papirmaskin', 'Vannhjulsdrevet sag'], 'Omkring 1920 kom en strengpresse for murstein som del av den teknologiske utviklingen i produksjonslinjen.'],
+    ['Hvilket utstyr ble brukt til oppredning og bearbeiding av leira?', 'Liggende forelter og valseverk', ['Spinnebenk og vevstol', 'Smiebelg og esse', 'Dreiebenk for metallrør'], 'Verket fikk liggende forelter og valseverk for oppredning av leira, ved siden av utstyr for forming og kutting.'],
+    ['Hva slags halvautomatisk maskin ble installert for å kutte murstein?', 'Kappebord', ['Glasskjærer', 'Sirkelsag for tømmer', 'Stansepresse for metall'], 'Et halvautomatisk kappebord inngikk i maskinutviklingen for å kutte murstein til produksjonen.'],
+    ['Hvor stor ble den oppgitte årlige produksjonskapasiteten?', 'Omkring fire millioner enheter', ['Omkring førti tusen enheter', 'Omkring hundre tusen enheter', 'Omkring førti millioner enheter'], 'Kilden oppgir en kapasitet på rundt fire millioner teglproduktenheter årlig etter maskinutbyggingen.'],
+    ['Hva ble installert i leirfeltet etter gjenoppbyggingen i 1936?', 'Kjedegravemaskin og kabelbane', ['Lokomotivfabrikk og smie', 'Gassverk og vannkraftverk', 'Kran for skip og kaikraner'], 'Etter brannen ble leirfeltet utstyrt med kjedegravemaskin og kabelbane for transport av leire til verket.'],
+    ['Hvilket hovedmateriale ble brukt i teglverksbygningens bærekonstruksjon?', 'Trebindingsverk', ['Armert betong', 'Helstøpt jern', 'Massiv granitt'], 'Verksbygningen ble oppført i trebindingsverk, mens den karakteristiske gavlveggen mot nordøst er av tegl.'],
+    ['Hvor i bygningen ligger den bevarte ringovnen?', 'På grunnplanet', ['I tredje etasje', 'På taket', 'I en separat bygning ved elva'], 'Ringovnen ligger på grunnplanet i den treetasjes teglverksbygningen, med tørkerom over seg.'],
+    ['Hvilke etasjer rommet tørkerom for teglstein?', 'Andre og tredje etasje', ['Bare kjelleren', 'Bare første etasje', 'Et loft i et nabohus'], 'Tørkerommene lå i andre og tredje etasje, slik at varmen fra ovnen nedenfor kunne utnyttes.'],
+    ['Hva skjedde med den gamle teglverkspipen etter driftsstansen?', 'Den ble revet noen år senere', ['Den ble flyttet til Bygdøy', 'Den ble omgjort til fyrtårn', 'Den står fortsatt helt uendret'], 'Den tidligere utvendige pipen ble revet noen år etter at teglproduksjonen tok slutt sent i 1960-årene.']
+
 });
 const normalize = s => String(s).normalize('NFKC').trim().toLowerCase();
 const error = msg => { throw new Error('Oslo-six fullquiz staging: ' + msg); };
@@ -76,7 +105,7 @@ export function buildOsloSixFullquizReview() {
         targetId: id, categoryId: q.categoryId, question: q.question,
         options: q.options, answer: q.answer, answerIndex: q.answerIndex,
         knowledge: q.knowledge, source_trace: q.source_trace,
-        source_url: BYLEKSIKON[id], external_claim_review: 'editorial_candidate_pending_line_by_line',
+        source_url: SOURCE_URLS[id], external_claim_review: 'editorial_candidate_pending_line_by_line',
         quizcard_candidate_id: q.id, runtime_registered: false
       })).concat(extras.map(([question, answer, incorrect, knowledge], i) => {
         if (incorrect.length !== 3 || new Set([answer, ...incorrect].map(normalize)).size !== 4)
@@ -86,14 +115,14 @@ export function buildOsloSixFullquizReview() {
         options.splice(answerIndex, 0, answer);
         return {
           id: id + '_review_quiz_' + String(i + 11).padStart(2, '0'),
-          targetId: id, categoryId: 'historie', question, options, answer, answerIndex, knowledge,
-          source_trace: 'Oslo byleksikon – ' + card.name, source_url: BYLEKSIKON[id],
+          targetId: id, categoryId: card.draft_cards[0].categoryId, question, options, answer, answerIndex, knowledge,
+          source_trace: 'Oslo byleksikon – ' + card.name, source_url: SOURCE_URLS[id],
           external_claim_review: 'source_article_read_editorial_claim_signoff_pending',
           quizcard_candidate_id: null, runtime_registered: false
         };
       }));
       const sets = [0, 1, 2].map(n => ({
-        set_id: 'historie_' + id + '_review_set_' + (n + 1),
+        set_id: card.draft_cards[0].categoryId + '_' + id + '_review_set_' + (n + 1),
         order: n + 1, level: n + 1,
         questions: questions.slice(n * 7, (n + 1) * 7)
       }));
@@ -103,7 +132,7 @@ export function buildOsloSixFullquizReview() {
         quizcard_question_ids: questions.slice(0, 10).map(q => q.id),
         learning_scope_notice: id === 'frognerseteren' ?
           'Some contextual questions concern adjacent historic buildings; require scope audit so the Place stays the restaurant at Holmenkollveien 200.' : null,
-        source_url: BYLEKSIKON[id], canonical_place_created: false,
+        source_url: SOURCE_URLS[id], canonical_place_created: false,
         quiz_manifest_registered: false, knowledge_synced: false, browser_qa_passed: false
       };
     })
@@ -113,6 +142,6 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   try {
     const pack = buildOsloSixFullquizReview();
     if (process.argv.includes('--json')) process.stdout.write(JSON.stringify(pack, null, 2) + '\n');
-    else console.log('Oslo six: 3 staged narrow 3x7 fullquiz candidates (63 questions), no runtime activation');
+    else console.log('Oslo six: 5 staged narrow 3x7 fullquiz candidates (105 questions), no runtime activation');
   } catch (err) { console.error(err); process.exitCode = 1; }
 }
