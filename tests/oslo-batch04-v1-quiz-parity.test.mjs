@@ -173,7 +173,7 @@ test("Oslo batch04: Grev Wedels plass civic preservation has a source-backed que
   assert.equal(q.question, "Hva gjorde Oslo Byes Vel i 1962 som fikk betydning for Grev Wedels plass?");
   assert.equal(q.answer, "Reddet Militærhospitalet fra ødeleggelse");
   assert.deepEqual(q.source, ["grev_oslobyesvel_event"]);
-  assert.match(q.knowledge, /reddet Militærhospitalet fra ødeleggelse i 1962/);
+  assert.match(q.knowledge, /1962 reddet Oslo Byes Vel Militærhospitalet fra ødeleggelse/);
   assert.equal(q.claim_basis, q.knowledge);
   const units = read("data/knowledge/knowledge_units.generated.json").units;
   const unit = units.find(u => u.knowledge_unit_id === q.primary_knowledge_unit_id);
