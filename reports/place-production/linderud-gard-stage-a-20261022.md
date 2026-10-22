@@ -41,6 +41,7 @@ Nedenstående er kildereferanser og eksplisitt kildevurdering, ikke import- elle
 | LG-08 | Etterkrigstidens byutvikling endret tidligere jordbruksarealer til boligbebyggelse | Oslo kommune, «Oslos ukjente perler» | Kommunalt kildeutdrag; detaljer om arealomfang sjekkes |
 | LG-09 | Hovedbygningen inneholder De Mathiesenske Samlinger | Oslo kommune, «Oslos ukjente perler» | Kommunalt kildeutdrag |
 | LG-10 | Museene i Akershus driver museumsformidling på Linderud | MiA «Om Linderud gård» | Dagens driftsopplysning; datér ved publisering |
+| LG-11 | Godsets hovedsete har vært Eidsvold Værk fra 1894 | Oslo byleksikon; SNL | Samstemmige kildeutdrag; skill fra dagens Linderud-anlegg |
 
 Kilder:
 - Oslo byleksikon: https://oslobyleksikon.no/side/Linderud_g%C3%A5rd
@@ -82,13 +83,13 @@ Svaralternativer er foreløpige; endelig fasitindeks beregnes fra riktig alterna
 | 3 | Hvilken næring var Mogens Lauritssøn særlig knyttet til? | A Steinbrudd; B Trelasthandel; C Fiskeri; D Skipsbygging | B | LG-02 |
 | 4 | Hvem fikk reist Linderuds hovedbygning tidlig på 1700-tallet? | A Peder Griffenfeld; B Christian Pierre Mathiesen; C Haagen Mathiesen; D Erich Mogenssøn | D | LG-03 |
 | 5 | Hvor stor var godssamlingen omtrent mot slutten av 1700-tallet? | A Rundt 35 gårder; B Rundt 350 gårder; C Rundt 3 500 gårder; D Bare hovedgården | B | LG-04 |
-| 6 | Hvilket av disse er et dokumentert element i Linderuds historiske hage? | A Et drivhus i glass fra 2000-tallet; B En renessansefestning; C En lindehall; D En romersk akvedukt | C | LG-05 |
+| 6 | Hvilket av disse hageelementene regnes som bevart fra barokkanlegget? | A Nyere rosebed med buksbom; B Den lange lindehallen; C En romantisk trapp fra 1900-tallet; D Slyngende grusganger fra 1800-tallet | B | LG-05, LG-06 |
 | 7 | Hva er riktig om dagens rosehage? | A Den er aldri endret; B Den ble først anlagt i 2007; C Den ble bygd som parkeringsplass; D Den har blitt omformet i flere perioder | D | LG-06 |
-| 8 | Hva kjennetegnet godset utover selve hovedgården? | A Skog og sagbruk; B Kun én sjøbod; C Ett steinbrudd; D Et fiskevær | A | LG-04 |
+| 8 | Hvor har godsets hovedsete ligget siden 1894? | A Bogstad gård; B Bærums Verk; C Eidsvold Værk; D Nordre Skøyen hovedgård | C | LG-11 |
 | 9 | Hva skjedde med mye av det tidligere jordbrukslandet etter krigen? | A Det ble havneanlegg; B Det ble boligbebyggelse; C Det ble flyplass; D Det ble sjø | B | LG-08 |
 | 10 | Hvilket år ble Linderud Stiftelse opprettet? | A 1894; B 1940; C 1954; D 2007 | C | LG-07 |
 
-**Quiz-revisjon:** Nr. 6 og 8 har for lite plausible distraktorer og må forbedres. Fasit og begrunnelser skal skrives kilde for kilde og kontrolleres mot fullquizstandard før import. Dette er **ikke** en godkjent QuizCard eller et fullquizsett. Den ordinære quizkontrakten krever minimum 3×7 for narrow og 4×7 for normal, med særskilt kilde-/Knowledge-/manifestkobling.
+**Quiz-revisjon:** Spørsmålene er ennå ikke validerte mot fullquizkontrakten, og distraktorer, kildekoblinger og fasitforklaringer trenger faglig kvalitetssikring. Fasit og begrunnelser skal skrives kilde for kilde og kontrolleres mot fullquizstandard før import. Dette er **ikke** en godkjent QuizCard eller et fullquizsett. Den ordinære quizkontrakten krever minimum 3×7 for narrow og 4×7 for normal, med særskilt kilde-/Knowledge-/manifestkobling.
 
 ## 6. Fagverk-idé – unik læringsjobb, ikke schema-validert blokk
 
