@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 const root = path => new URL('../' + path, import.meta.url);
 const load = path => JSON.parse(readFileSync(root(path), 'utf8'));
 
-test('all twelve checked-in Commons WebPs have exact recorded cryptographic hashes and retained source credits', () => {
+test('all fifteen checked-in Commons WebPs have exact recorded cryptographic hashes and retained source credits', () => {
   const report=load('reports/place-production/oslo-six-generated-image-attribution-20261022.json');
   const source=load('reports/place-production/oslo-six-image-rights-shortlist-20261022.json');
   const qa=load('reports/place-production/oslo-six-image-visual-qa-20261022.json');
@@ -17,9 +17,9 @@ test('all twelve checked-in Commons WebPs have exact recorded cryptographic hash
   assert.equal(report.status,'PREPARED_BYTES_NOT_VISUALLY_QA_NOT_REGISTERED');
   assert.equal(qa.status,'VISUAL_FRAMING_PASS_15_ASSETS_COMMITTED_BUT_NO_RUNTIME_BINDING');
   assert.equal(qa.still_required.webp_binary_committed_to_repository,true);
-  const allowedIds=new Set(['linderud_gard','ekebergrestauranten','frognerseteren','saeterhytten_bygdoy']);
+  const allowedIds=new Set(['linderud_gard','ekebergrestauranten','frognerseteren','sarabraten','saeterhytten_bygdoy']);
   const roleSize={lead:[1600,900],card:[900,600],popup:[1200,800]};
-  assert.equal(report.places.length,4);
+  assert.equal(report.places.length,5);
   assert.deepEqual(new Set(report.places.map(p=>p.place_id)),allowedIds);
   const paths=new Set();
   for(const p of report.places){
@@ -49,5 +49,5 @@ test('all twelve checked-in Commons WebPs have exact recorded cryptographic hash
     assert.equal(manifests.files.some(path=>path.endsWith('/'+p.place_id+'.json')),false);
     assert.equal(gate.places.find(x=>x.place_id===p.place_id).release_status,'BLOCKED');
   }
-  assert.equal(paths.size,12);
+  assert.equal(paths.size,15);
 });
