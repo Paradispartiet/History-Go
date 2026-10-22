@@ -36,6 +36,21 @@
       add("Skills", skillsModel.skills.map((item) =>
         row(item.label, item.measured ? item.score : null, item.measured ? "" : "Ikke målt")));
     }
+    // Seven capital gauges belong to the player's actual capital store, not
+    // to the monetary PC wallet. The identity engine uses 30/60/80 thresholds.
+    // Keep raw capital (including values above 100) intact; cap HUD at 100.
+    let capital = {};
+    try { capital = JSON.parse(root.localStorage?.getItem("hg_capital_v1") || "{}") || {}; }
+    catch { capital = {}; }
+    const capitalNames = { economic: "Økonomisk kapital", cultural: "Kulturell kapital",
+      social: "Sosial kapital", symbolic: "Symbolsk kapital",
+      political: "Politisk kapital", institutional: "Institusjonell kapital",
+      subculture: "Subkulturell kapital" };
+    add("Kapital", Object.entries(capitalNames)
+      .filter(([id]) => isScore(capital[id]))
+      .map(([id,label]) => row(label, capital[id], capital[id] > 100
+        ? "Råverdi over 100, vist som 100 / 100." : "")));
+
     const psyche = root.CivicationPsyche?.getSnapshot?.(root.CivicationState?.getActivePosition?.()?.career_id);
     if (psyche) {
       const specs = [
