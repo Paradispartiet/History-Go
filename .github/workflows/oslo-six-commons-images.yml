@@ -1,4 +1,4 @@
-name: Oslo six Commons crop preparation
+name: Oslo six Commons crop QA artifacts
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: oslo-six-commons-crops-${{ github.event.pull_request.number || github.ref }}
@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   prepare:
-    # Only the existing internal six-place PR may generate bytes, not a fork PR.
+    # Only the existing internal six-place PR may stage image review artifacts.
     if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 6563 && github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -43,15 +43,6 @@ jobs:
             reports/place-production/oslo-six-generated-image-attribution-20261022.json
           if-no-files-found: error
           retention-days: 14
-      - name: Commit prepared candidates to this PR only
-        env:
-          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
-        run: |
-          git add bilder/places/auto/*__commons_*.webp reports/place-production/oslo-six-generated-image-attribution-20261022.json
-          if git diff --cached --quiet; then
-            echo "Prepared image files already match the PR branch."
-            exit 0
-          fi
-          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -m "History Go: add four credited Commons image triplets for visual QA"
-          git push origin "HEAD:${HEAD_BRANCH}"
+      # Artifacts are deliberately review-only; repository write access is
+      # prohibited by the project's PR workflow governance. Import separately
+      # after visual crop QA and source-credit checks.
