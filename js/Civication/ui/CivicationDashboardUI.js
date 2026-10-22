@@ -147,8 +147,18 @@
       chips.push({ kind: "role is-empty", label: "Ingen aktiv rolle" });
     }
 
-    chips.push({ kind: "day", label: "Dag " + asNumber(lifeState.dag, 1) });
-    chips.push({ kind: "phase", label: view.dagFerdig ? "Dagen er over" : String(view.fase?.navn || lifeState.fase || "Morgen") });
+    // The career-specific story day can reset after a role switch. In the
+    // actual shell, the canonical calendar owns the player's displayed day.
+    const clockDay = asNumber(window.CivicationCalendar?.getClock?.()?.dayIndex, NaN);
+    const calendarDay = Number.isInteger(clockDay) && clockDay >= 1
+      ? clockDay : asNumber(lifeState.dag, 1);
+    const shellPhase = String(window.CivicationCalendar?.getPhase?.() || "").trim();
+    const shellPhaseLabel = shellPhase
+      ? String(window.CivicationCalendar?.getPhaseLabel?.(shellPhase) || shellPhase)
+      : "";
+    chips.push({ kind: "day", label: "Dag " + calendarDay });
+    chips.push({ kind: "phase", label: shellPhaseLabel ||
+      (view.dagFerdig ? "Dagen er over" : String(view.fase?.navn || lifeState.fase || "Morgen")) });
     // Numeric capabilities belong behind the score circle. Currency is not
     // a 0–100 stat and remains visible in the economy section.
 
