@@ -11,6 +11,7 @@ on:
       - 'tests/politikk-advanced-political-science-wave8-comparison.test.mjs'
       - 'tests/politikk-advanced-political-science-wave9-pathway-ready.test.mjs'
       - 'tests/politikk-comparative-evidence-lab-wave10.test.mjs'
+      - 'tests/politikk-comparative-evidence-lab-wave11.test.mjs'
       - 'js/politikk-evidence-workshop.js'
       - 'css/politikk-curriculum.css'
       - 'data/quiz/politikk/politikk_subject_pathways_v1.json'
@@ -152,6 +153,7 @@ jobs:
           node --test tests/politikk-advanced-political-science-wave9-pathway-ready.test.mjs
           node --check js/politikk-evidence-workshop.js
           node --test tests/politikk-comparative-evidence-lab-wave10.test.mjs
+          node --test tests/politikk-comparative-evidence-lab-wave11.test.mjs
           node --experimental-strip-types scripts/knowledge-canonical-data.mts --check
           node --test tests/politikk-theory-integrity.test.mjs
           node --test tests/politikk-curriculum-architecture.test.mjs tests/politikk-fag-integration.test.mjs tests/fagverk-politikk-runtime-equivalence.test.mjs
