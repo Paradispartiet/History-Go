@@ -48,13 +48,22 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
             day: Number((globalThis as any).CivicationCalendar?.getClock?.().dayIndex),
             next: (globalThis as any).CivicationNextActionSelector?.getCurrent?.()
           }));
-          // The button may legitimately disappear when another UI action
-          // already advanced this mail. Re-read the canonical gate and continue.
+          // A queued action can turn into its actual mail/task during
+          // async delivery without changing the mail ID. Re-query real UI
+          // controls rather than clicking a detached node or dispatching
+          // a synthetic event. An unchanged visible queued button that cannot
+          // be clicked after Playwright retries is still a hard failure.
+          const queuedStillPresent = await modal.locator('[data-civi-next-action-open-queued][data-mail-id="' + mailId + '"]').count();
+          console.warn('Civication queued-button rerender', JSON.stringify({
+            scenarioId, day, mailId, queuedStillPresent, next: after.next?.id || null,
+            currentType: after.next?.type || after.next?.source || null
+          }));
           if (after.day !== before.day ||
               !after.next ||
               String(after.next.id || '') !== mailId ||
-              after.next.canStartNewDay) continue;
-          // A still-blocking unchanged mail is a genuine click failure.
+              after.next.canStartNewDay ||
+              !queuedStillPresent) continue;
+          // No UI workaround may conceal a genuinely blocked action.
           throw error;
         }
       }
