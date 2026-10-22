@@ -74,7 +74,7 @@ def sha1_base36(data: bytes) -> str:
 def main() -> None:
     shortlist = json.loads(SHORTLIST.read_text(encoding="utf-8"))
     candidates = {row["place_id"]: row for row in shortlist["places"]}
-    if shortlist["status"] != "SOURCE_PAGES_REVIEWED_NO_IMAGE_IMPORTED_OR_CROPPED":
+    if shortlist["status"] not in ("SOURCE_PAGES_REVIEWED_NO_IMAGE_IMPORTED_OR_CROPPED", "SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED"):
         raise RuntimeError("Source image review stage has changed")
     if set(APPROVED_IDS) - set(candidates):
         raise RuntimeError("Missing image source rows")
@@ -83,7 +83,7 @@ def main() -> None:
     for place_id in APPROVED_IDS:
         row = candidates[place_id]
         lead = row.get("lead_candidate")
-        if row["status"] != "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED" or not lead:
+        if row["status"] not in ("LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED", "LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND") or not lead:
             raise RuntimeError("Source not license-reviewed: " + place_id)
         if lead["license"] not in ("CC BY-SA 3.0", "CC BY 3.0", "CC BY 2.5", "public_domain_dedication_by_author"):
             raise RuntimeError("Unexpected license " + place_id)
