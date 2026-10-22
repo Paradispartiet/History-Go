@@ -54,7 +54,11 @@ test('six-place read-only integration preview has 133 unique fullquiz candidates
   }
   assert.equal(questionIds.size, 133);
   const frognerseteren = result.places.find(p => p.place_id === 'frognerseteren');
-  assert.equal(frognerseteren.fullquiz_preview.filter(q => q.adjacent_building_scope_hold).length, 11);
+  assert.deepEqual(frognerseteren.fullquiz_preview.filter(q => q.adjacent_building_scope_hold).map(q => q.id), [
+    'frognerseteren_review_quiz_03', 'frognerseteren_review_quiz_05'
+  ]);
+  assert.ok(frognerseteren.fullquiz_preview.slice(10).every(q =>
+    q.source_urls.includes('https://www.frognerseteren.no/mer-historie-') && !q.adjacent_building_scope_hold));
   assert.equal(result.places.at(-1).geo_status, 'HARD_HOLD');
 });
 
