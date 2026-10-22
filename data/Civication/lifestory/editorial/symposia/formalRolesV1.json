@@ -1,0 +1,3304 @@
+{
+  "schema": "civication_formal_role_symposia_editorial_v1",
+  "version": 1,
+  "created_at": "2026-10-12",
+  "authority": "roleFirstStoryArchitectureV1 + lifestory manifest + canonical role files",
+  "noGameplayEffects": true,
+  "total": 15,
+  "roles": [
+    {
+      "role_id": "arbeidsledig",
+      "role_kind": "formal_work_role",
+      "display_name": "Arbeidsledig",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/arbeidsledig/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": null,
+        "content_only": false,
+        "system_role": true,
+        "badge_id": null,
+        "canonical_badge_titles": []
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Arbeidsledig",
+        "protagonist": "Spilleren i formell jobbrolle Arbeidsledig",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du er uten formell jobb, men livet ditt består av mer enn venting. Søknader og praktiske plikter går ved siden av selvvalgte prosjekter, miljøer og livsroller. Den første uka lar en kontakt bli til en egen historie; det du har sagt, gjort eller takket nei til, følger deg videre.",
+        "central_question": "Jobbsøkerens status og faktiske inntektsmuligheter",
+        "primary_plot": {
+          "id": "P02",
+          "title": "Fra ringe kår til anerkjennelse"
+        },
+        "literary_main_track": {
+          "id": "L03",
+          "title": "Utenforskap og identitet"
+        },
+        "contemporary_story_type": {
+          "id": "C01",
+          "title": "Jobbtap og verdighet"
+        },
+        "conflicts": [
+          "systemkrav vs verdighet",
+          "ærlighet vs selvpresentasjon",
+          "struktur vs dager som flyter",
+          "søke bredt vs bygge på det du kan"
+        ],
+        "work_tasks": [
+          "holde meldekort og dokumentasjon i orden",
+          "avklare søknader uten å gjøre dem til hele identiteten",
+          "bygge en egen rytme med plass til hvile og mennesker",
+          "utforske prosjekter, fellesskap og livsroller gjennom konkrete valg"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/arbeidsledig/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "systemkrav vs verdighet",
+              "ærlighet vs selvpresentasjon",
+              "struktur vs dager som flyter",
+              "søke bredt vs bygge på det du kan"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "kom_i_jobb",
+              "bygget_kompetanse",
+              "mistet_rytmen",
+              "sto_i_det"
+            ]
+          }
+        ],
+        "narrative_boundaries": null,
+        "authored_endings": [
+          {
+            "id": "kom_i_jobb",
+            "title": "Søknadssporet lever",
+            "conditions": {
+              "meters": {
+                "synlighet": {
+                  "min": 24
+                }
+              },
+              "flagg": {
+                "sokte_tre_nye": true,
+                "delte_lista_med_bekjenten": true,
+                "ba_om_referanse": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "bygget_kompetanse",
+            "title": "En retning for læringen",
+            "conditions": {
+              "meters": {
+                "handlingsrom": {
+                  "min": 42
+                }
+              },
+              "flagg": {
+                "begynte_aa_tette_hullet": true,
+                "la_laeringsplan": true,
+                "satser_paa_kunnskap": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "mistet_rytmen",
+            "title": "Mistet rytmen",
+            "conditions": {
+              "meters": {
+                "psyke": {
+                  "max": 46
+                }
+              },
+              "flagg": {
+                "lot_dagen_skli": true,
+                "utsatte_igjen": true,
+                "utsatte_avslaget": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "sto_i_det",
+            "title": "Sto i det",
+            "conditions": {
+              "flagg": {
+                "sendte_meldekortet": true,
+                "aerlig_om_hullet": true,
+                "pustet_ut": true
+              }
+            },
+            "standard": true
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "arbeidsledig:nav_veileder",
+          "local_id": "nav_veileder",
+          "display_name": "NAV-veilederen",
+          "dramatic_function": "Følger opp meldekort og dokumentasjon. Systemet er firkantet; hun er ikke.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:bekjent",
+          "local_id": "bekjent",
+          "display_name": "Bekjenten",
+          "dramatic_function": "Kjenner folk. Spør hver gang: «Har du hørt noe?»",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din. Har kjent deg lenge nok til å høre forskjell på «det går bra» og «det går bra».",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Ringer om hverdagslige ting som aldri bare er hverdagslige.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:mira",
+          "local_id": "mira",
+          "display_name": "Medmusikeren",
+          "dramatic_function": "Jonas kjenner medmusikeren fra musikkmiljøet. Medmusikeren trenger en medspiller til en prøve, ikke en ansatt.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:amir",
+          "local_id": "amir",
+          "display_name": "Miljøkontakten",
+          "dramatic_function": "Bekjentens gamle kjenning. Tilbyr plass i et miljø der tjenester og forventninger må avklares.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:booker",
+          "local_id": "booker",
+          "display_name": "Kveldens booker",
+          "dramatic_function": "Avklarer en mulig liten spillejobb. En forespørsel er ikke en bekreftet booking.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:lea",
+          "local_id": "lea",
+          "display_name": "Prosjektbyggeren",
+          "dramatic_function": "Bygger små prototyper på biblioteket. Spør etter én ting som kan prøves, og tåler at et prosjekt foreløpig ikke skal selges.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:elin",
+          "local_id": "elin",
+          "display_name": "Elin",
+          "dramatic_function": "Deler atelierplass og går i skrivegruppe. Hun spør før hun leser, låner materialer eller viser andres arbeid.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:sara",
+          "local_id": "sara",
+          "display_name": "Sara",
+          "dramatic_function": "Holder orden på klubbkvelder og et lokalt initiativ. Hun vil dele oppgaver, men vet at ledig tid ikke betyr ubegrenset kapasitet.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:ivar",
+          "local_id": "ivar",
+          "display_name": "Ivar",
+          "dramatic_function": "Går gjennom byen med gamle bilder og egne notater. Skiller minner fra det kildene faktisk kan vise.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:nora",
+          "local_id": "nora",
+          "display_name": "Nora",
+          "dramatic_function": "Registrerer natur sammen med andre og bruker verkstedet til enkle modeller. Vil heller beholde et usikkert funn enn å pynte på resultatet.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arbeidsledig:daniel",
+          "local_id": "daniel",
+          "display_name": "Daniel",
+          "dramatic_function": "Er med i filmklubb, bokgruppe og på konserter. Vil at nye folk skal kunne delta uten å kjenne alle referansene eller ta alle vaktene.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "arealplanlegger",
+      "role_kind": "formal_work_role",
+      "display_name": "Arealplanlegger",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/arealplanlegger/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/arealplanlegger/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "by_radgiver_plan",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "by",
+        "canonical_badge_titles": [
+          "Rådgiver (byutvikling)",
+          "Seniorrådgiver (byutvikling)",
+          "Arealplanlegger",
+          "Byplanlegger"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Arealplanlegger",
+        "protagonist": "Spilleren i formell jobbrolle Arealplanlegger",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du balanserer fag, lovverk, politikk, naboer og utbyggere.",
+        "central_question": "Faglig integritet i møte med utbygger, nabo og plansjef",
+        "primary_plot": {
+          "id": "P03",
+          "title": "Oppdraget"
+        },
+        "literary_main_track": {
+          "id": "L17",
+          "title": "Novellen og det moralske paradokset"
+        },
+        "contemporary_story_type": {
+          "id": "C06",
+          "title": "Faglig integritet under press"
+        },
+        "conflicts": [
+          "faglig integritet vs politisk press",
+          "utbygging vs nærmiljø",
+          "effektivitet vs grundighet",
+          "trafikksikkerhet vs økonomi",
+          "lovverk vs skjønn"
+        ],
+        "work_tasks": [
+          "lese høringsinnspill",
+          "vurdere reguleringsplaner",
+          "svare på interne avklaringer",
+          "forberede politiske saker",
+          "håndtere utbyggere og naboer"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/arealplanlegger/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "faglig integritet vs politisk press",
+              "utbygging vs nærmiljø",
+              "effektivitet vs grundighet",
+              "trafikksikkerhet vs økonomi",
+              "lovverk vs skjønn"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "faglig_sterk",
+              "politisk_lydig",
+              "utbrent",
+              "varsler",
+              "ledertalent"
+            ]
+          }
+        ],
+        "narrative_boundaries": null,
+        "authored_endings": [
+          {
+            "id": "faglig_sterk",
+            "title": "Faglig sterk planlegger",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 70
+                }
+              },
+              "flagg": {
+                "skrev_skoleveinotat": true,
+                "trakk_faggrense": true,
+                "ga_skriftlig_svar": true,
+                "sto_faglig_dag2": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "politisk_lydig",
+            "title": "Politisk lydig saksbehandler",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "max": 50
+                }
+              },
+              "flagg": {
+                "ga_muntlig_ja": true,
+                "ga_etter_dag2": true,
+                "minimerte_skolevei_dag2": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "utbrent",
+            "title": "Utbrent kommunearbeider",
+            "conditions": {
+              "meters": {
+                "psyke": {
+                  "max": 55
+                },
+                "energi": {
+                  "max": 55
+                }
+              },
+              "flagg": {
+                "presset_seg_gjennom_moetet": true,
+                "innroemmet_sliten": true,
+                "grublet_over_saken": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "varsler",
+            "title": "Varsler",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 65
+                }
+              },
+              "flagg": {
+                "sendte_sak_til_politisk_behandling": true,
+                "eskalerte_frist": true,
+                "loeftet_skolevei_til_plansjef": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "ledertalent",
+            "title": "Ledertalent",
+            "conditions": {
+              "meters": {
+                "synlighet": {
+                  "min": 55
+                },
+                "integritet": {
+                  "min": 60
+                }
+              },
+              "flagg": {
+                "loeftet_skolevei_til_plansjef": true,
+                "foreslo_kompromiss": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/arealplanlegger/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "arealplanlegger:plansjef",
+          "local_id": "plansjef",
+          "display_name": "Plansjefen",
+          "dramatic_function": "Din leder. Vil ha flyt i sakene og minst mulig merarbeid.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arealplanlegger:skolekontakt",
+          "local_id": "skolekontakt",
+          "display_name": "Skolekontakten",
+          "dramatic_function": "FAU-kontakt ved skolen. Kjenner barnas faktiske skolevei.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arealplanlegger:utbygger",
+          "local_id": "utbygger",
+          "display_name": "Utbyggeren",
+          "dramatic_function": "Vil ha rask avklaring på parkeringskjelleren.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arealplanlegger:utvalgssekretaer",
+          "local_id": "utvalgssekretaer",
+          "display_name": "Utvalgssekretæren",
+          "dramatic_function": "Holder styr på hva som skal til politisk behandling.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arealplanlegger:nabo",
+          "local_id": "nabo",
+          "display_name": "Naboen",
+          "dramatic_function": "Skriver lange, detaljerte høringsinnspill.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arealplanlegger:jurist",
+          "local_id": "jurist",
+          "display_name": "Kommunejuristen",
+          "dramatic_function": "Skiller mellom lovkrav og skjønn.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arealplanlegger:politiker",
+          "local_id": "politiker",
+          "display_name": "Utvalgslederen",
+          "dramatic_function": "Vil vite hva som egentlig er et politisk valg.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arealplanlegger:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din. Har kjent deg lenge nok til å høre forskjell på «det går bra» og «det går bra».",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "arealplanlegger:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Ringer om hverdagslige ting som aldri bare er hverdagslige.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "renholder",
+      "role_kind": "formal_work_role",
+      "display_name": "Renholder",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/renholder/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/renholder/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/renholder/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "renholder",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "naeringsliv",
+        "canonical_badge_titles": [
+          "Renholder"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Renholder",
+        "protagonist": "Spilleren i formell jobbrolle Renholder",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du holder bygget hygienisk trygt uten å bli sett — under tidspress, lav status og med kroppen som verktøy.",
+        "central_question": "Usynlig arbeid, belastning og ansvar når tiden ikke strekker til",
+        "primary_plot": {
+          "id": "P06",
+          "title": "Tragedien"
+        },
+        "literary_main_track": {
+          "id": "L06",
+          "title": "Det sosiale fallet"
+        },
+        "contemporary_story_type": {
+          "id": "C17",
+          "title": "Å arbeide seg tom"
+        },
+        "conflicts": [
+          "synlig resultat vs usynlig arbeid",
+          "tempo vs grundighet",
+          "hygiene vs tidsbudsjett",
+          "verdighet vs lav status",
+          "HMS vs produksjonspress"
+        ],
+        "work_tasks": [
+          "prioritere soner og berøringspunkter",
+          "skille synlig rent fra hygienisk rent",
+          "bruke riktig utstyr og kjemikalier",
+          "melde avvik ved søl, skade, lukt eller fare",
+          "beskytte kroppen gjennom teknikk og pauser"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/renholder/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "synlig resultat vs usynlig arbeid",
+              "tempo vs grundighet",
+              "hygiene vs tidsbudsjett",
+              "verdighet vs lav status",
+              "HMS vs produksjonspress"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "fagstolt",
+              "sliten_kropp",
+              "usynlig_forbigaatt",
+              "sier_fra",
+              "teamleder_emne"
+            ]
+          }
+        ],
+        "narrative_boundaries": null,
+        "authored_endings": [
+          {
+            "id": "fagstolt",
+            "title": "Fagstolt renholder",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 70
+                }
+              },
+              "flagg": {
+                "dokumenterte_runden": true,
+                "laerte_soneprioritering": true,
+                "forklarte_hygienisk": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "sliten_kropp",
+            "title": "Sliten kropp",
+            "conditions": {
+              "meters": {
+                "energi": {
+                  "max": 50
+                },
+                "psyke": {
+                  "max": 52
+                }
+              },
+              "flagg": {
+                "presset_kroppen": true,
+                "lovte_aa_vaere_raskere": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "usynlig_forbigaatt",
+            "title": "Usynlig og forbigått",
+            "conditions": {
+              "meters": {
+                "synlighet": {
+                  "max": 43
+                }
+              },
+              "flagg": {
+                "holdt_avstand": true,
+                "lot_klagen_passere": true,
+                "tonet_ned_soelet": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "sier_fra",
+            "title": "Den som sier fra",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 60
+                }
+              },
+              "flagg": {
+                "meldte_klagen": true,
+                "viste_loggen": true,
+                "sa_fra_om_standard": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "teamleder_emne",
+            "title": "Teamleder-emne",
+            "conditions": {
+              "meters": {
+                "synlighet": {
+                  "min": 50
+                },
+                "integritet": {
+                  "min": 65
+                }
+              },
+              "flagg": {
+                "foreslo_sjekkliste": true,
+                "hjalp_amina": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/renholder/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "renholder:driftsleder",
+          "local_id": "driftsleder",
+          "display_name": "Kari, driftslederen",
+          "dramatic_function": "Fordeler rom, tid og avvikstrykk. Vil ha flyt og minst mulig småsaker.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "renholder:erfaren_kollega",
+          "local_id": "erfaren_kollega",
+          "display_name": "Amina, erfaren renholder",
+          "dramatic_function": "Oversetter usynlig fagarbeid til metode og prioritering.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "renholder:kontorbruker",
+          "local_id": "kontorbruker",
+          "display_name": "Sindre, kontoransatt",
+          "dramatic_function": "Vil ha rommet tilgjengelig og rent uten å se arbeidet bak.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "renholder:verneombud",
+          "local_id": "verneombud",
+          "display_name": "Ole, verneombudet",
+          "dramatic_function": "Gjør kropp, kjemi og avvik synlig — også når driften presser.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "renholder:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din. Har kjent deg lenge nok til å høre forskjell på «det går bra» og «det går bra».",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "renholder:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Ringer om hverdagslige ting som aldri bare er hverdagslige.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "ekspeditor",
+      "role_kind": "formal_work_role",
+      "display_name": "Ekspeditør",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/ekspeditor/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/ekspeditor/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/ekspeditor/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "ekspeditor",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "naeringsliv",
+        "canonical_badge_titles": [
+          "Ekspeditør / butikkmedarbeider"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Ekspeditør",
+        "protagonist": "Spilleren i formell jobbrolle Ekspeditør",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du står bak disken der butikken møter folk — kasse, kunder, prisfeil, lager og lukking, i tempo som aldri venter.",
+        "central_question": "Kundehendelser og kasseavvik som følger spilleren videre",
+        "primary_plot": {
+          "id": "P03",
+          "title": "Oppdraget"
+        },
+        "literary_main_track": {
+          "id": "L17",
+          "title": "Novellen og det moralske paradokset"
+        },
+        "contemporary_story_type": {
+          "id": "C23",
+          "title": "Den lille feilen som ikke forsvinner"
+        },
+        "conflicts": [
+          "tempo vs nøyaktighet",
+          "kundens forventning vs fullmakten du faktisk har",
+          "hjelpe på gulvet vs egen kø",
+          "love for mye vs si sannheten om lageret",
+          "bli fort ferdig vs standard for neste skift"
+        ],
+        "work_tasks": [
+          "holde flyt i kassa uten å miste nøyaktighet",
+          "møte kunder med regler du ikke selv eier",
+          "rette prisfeil synlig når butikken har gjort feil",
+          "holde lager og hyller ærlige",
+          "åpne og lukke slik at neste skift slipper å rydde"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/ekspeditor/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "tempo vs nøyaktighet",
+              "kundens forventning vs fullmakten du faktisk har",
+              "hjelpe på gulvet vs egen kø",
+              "love for mye vs si sannheten om lageret",
+              "bli fort ferdig vs standard for neste skift"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "trygg_paa_gulvet",
+              "faar_ting_unna",
+              "nokkelbaerer",
+              "mistet_tilliten",
+              "butikksjef_emne"
+            ]
+          }
+        ],
+        "narrative_boundaries": null,
+        "authored_endings": [
+          {
+            "id": "trygg_paa_gulvet",
+            "title": "Trygg på gulvet",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 70
+                }
+              },
+              "flagg": {
+                "rettet_feilen_synlig": true,
+                "aerlig_om_lageret": true,
+                "holdt_regelen": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "faar_ting_unna",
+            "title": "En som bare får ting unna",
+            "conditions": {
+              "meters": {
+                "synlighet": {
+                  "min": 40
+                }
+              },
+              "flagg": {
+                "aapnet_raskt": true,
+                "kuttet_lukkingen": true,
+                "gjettet_prisen": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "nokkelbaerer",
+            "title": "Nøkkelbærer",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 60
+                }
+              },
+              "flagg": {
+                "fant_lovlig_losning": true,
+                "tok_nokkelansvar": true,
+                "ryddet_for_neste_skift": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "mistet_tilliten",
+            "title": "Mistet tilliten",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "max": 45
+                }
+              },
+              "flagg": {
+                "ga_etter_igjen": true,
+                "boyde_regelen": true,
+                "skyldte_paa_kunden": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "butikksjef_emne",
+            "title": "Butikksjef-emne",
+            "conditions": {
+              "meters": {
+                "synlighet": {
+                  "min": 47
+                },
+                "integritet": {
+                  "min": 60
+                }
+              },
+              "flagg": {
+                "laerte_bort_metoden": true,
+                "tok_nokkelansvar": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/ekspeditor/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "ekspeditor:butikksjef",
+          "local_id": "butikksjef",
+          "display_name": "Lene, butikksjefen",
+          "dramatic_function": "Vil ha flyt uten å miste nøyaktighet. Ser mer enn hun kommenterer.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "ekspeditor:erfaren_kollega",
+          "local_id": "erfaren_kollega",
+          "display_name": "Amir, erfaren kollega",
+          "dramatic_function": "Kan kassa og kundene. «Det tar lengre tid å rette en feil du latet som du visste.»",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "ekspeditor:ny_kollega",
+          "local_id": "ny_kollega",
+          "display_name": "Vikaren",
+          "dramatic_function": "Ny på gulvet. Spør deg — midt i køen.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "ekspeditor:stamkunde",
+          "local_id": "stamkunde",
+          "display_name": "Stamkunden",
+          "dramatic_function": "Kommer hver dag. Husker hvordan du behandlet henne sist.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "ekspeditor:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din. Har kjent deg lenge nok til å høre forskjell på «det går bra» og «det går bra».",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "ekspeditor:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Ringer om hverdagslige ting som aldri bare er hverdagslige.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "psykologi_miljoarbeid",
+      "role_kind": "formal_work_role",
+      "display_name": "Miljøarbeid og oppfølging",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/psykologi_miljoarbeid/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/psykologi_miljoarbeid/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/psykologi_miljoarbeid/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "psykologi_miljoarbeid",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "psykologi",
+        "canonical_badge_titles": [
+          "Miljøassistent",
+          "Sosialassistent",
+          "Aktivitetsleder (omsorgsarbeid)",
+          "Miljøarbeider"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Miljøarbeid og oppfølging",
+        "protagonist": "Spilleren i formell jobbrolle Miljøarbeid og oppfølging",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du står nær et annet menneskes hverdag og må bruke psykologi presist nok til å hjelpe, men aldri som om nærhet gir deg klinisk myndighet.",
+        "central_question": "Nærhet, samtykke og ikke-klinisk myndighet",
+        "primary_plot": {
+          "id": "P03",
+          "title": "Oppdraget"
+        },
+        "literary_main_track": {
+          "id": "L11",
+          "title": "Sammenflettede liv"
+        },
+        "contemporary_story_type": {
+          "id": "C12",
+          "title": "Grensen du ikke satte"
+        },
+        "conflicts": [
+          "observasjon vs tolkning",
+          "hjelp vs autonomi",
+          "nærhet vs profesjonell grense",
+          "motivasjon vs press",
+          "tillit vs sikker eskalering",
+          "dokumentasjon vs stigma"
+        ],
+        "work_tasks": [
+          "støtte daglige rutiner og avtaler",
+          "motivere og tilrettelegge aktivitet",
+          "observere konkrete endringer uten å diagnostisere",
+          "dempe konflikter og sette trygge grenser",
+          "dokumentere nøkternt og etterprøvbart",
+          "eskalere bekymring til riktig fagperson"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/psykologi_miljoarbeid/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "observasjon vs tolkning",
+              "hjelp vs autonomi",
+              "nærhet vs profesjonell grense",
+              "motivasjon vs press",
+              "tillit vs sikker eskalering",
+              "dokumentasjon vs stigma"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "presis_og_trygg",
+              "for_nar",
+              "merkelappen",
+              "for_lukket",
+              "baret_jobben_hjem"
+            ]
+          }
+        ],
+        "narrative_boundaries": {
+          "kan": [
+            "støtte",
+            "motivere",
+            "tilrettelegge aktivitet",
+            "observere",
+            "dokumentere konkret",
+            "deeskalere",
+            "eskalere bekymring"
+          ],
+          "kanIkke": [
+            "diagnostisere",
+            "drive psykoterapi på eget ansvar",
+            "endre behandling",
+            "framstille antakelser som kliniske vurderinger"
+          ]
+        },
+        "authored_endings": [
+          {
+            "id": "presis_og_trygg",
+            "title": "Presis og trygg miljøarbeider",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 65
+                },
+                "handlingsrom": {
+                  "min": 50
+                }
+              },
+              "flagg": {
+                "skrev_konkret": true,
+                "eskalerte_trygt": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "for_nar",
+            "title": "For nær rollen",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "max": 50
+                }
+              },
+              "flagg": {
+                "lovet_for_mye": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "merkelappen",
+            "title": "Den raske forklaringen",
+            "conditions": {
+              "flagg": {
+                "skrev_tolkning_som_fakta": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "for_lukket",
+            "title": "Trygg avstand, for lite kontakt",
+            "conditions": {
+              "flagg": {
+                "trakk_seg_for_tidlig": true,
+                "avviste_paaroerende": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "baret_jobben_hjem",
+            "title": "Bar jobben hjem",
+            "conditions": {
+              "meters": {
+                "psyke": {
+                  "max": 50
+                },
+                "energi": {
+                  "max": 50
+                }
+              },
+              "flagg": {
+                "lovet_for_mye": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/psykologi_miljoarbeid/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "psykologi_miljoarbeid:mina",
+          "local_id": "mina",
+          "display_name": "Mina",
+          "dramatic_function": "Personen du følger tettest denne uka. Hun vil bli møtt som et menneske, ikke som en samling symptomer.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_miljoarbeid:teamleder",
+          "local_id": "teamleder",
+          "display_name": "Teamlederen",
+          "dramatic_function": "Vil ha trygg drift, korte notater og tydelige varsler når noe faktisk endrer seg.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_miljoarbeid:erfaren_kollega",
+          "local_id": "erfaren_kollega",
+          "display_name": "Rune",
+          "dramatic_function": "Erfaren miljøarbeider. Ser mye raskt, men erfaringen hans kan noen ganger bli til sikre forklaringer for tidlig.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_miljoarbeid:psykolog_fagkontakt",
+          "local_id": "psykolog_fagkontakt",
+          "display_name": "Psykologen",
+          "dramatic_function": "Autorisert fagkontakt. Trenger presise observasjoner fra hverdagen, ikke diagnoser fra deg.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_miljoarbeid:paaroerende",
+          "local_id": "paaroerende",
+          "display_name": "Moren til Mina",
+          "dramatic_function": "Bekymret og handlekraftig. Vil vite mer enn du alltid kan eller bør fortelle.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_miljoarbeid:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din. Har kjent deg lenge nok til å merke når jobben fortsetter i hodet etter at vakten er slutt.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_miljoarbeid:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Ringer om hverdagslige ting og minner deg på at livet utenfor jobben også trenger plass.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "psykologi_arbeids_og_karriereveiledning",
+      "role_kind": "formal_work_role",
+      "display_name": "Arbeids- og karriereveiledning",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "psykologi_arbeids_og_karriereveiledning",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "psykologi",
+        "canonical_badge_titles": [
+          "Veileder",
+          "Rådgiver",
+          "Seniorrådgiver"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Arbeids- og karriereveiledning",
+        "protagonist": "Spilleren i formell jobbrolle Arbeids- og karriereveiledning",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du kjenner systemet og mulighetene, men den andre personen skal fortsatt eie målet. Jobben er å gjøre valget klarere uten å gjøre ditt råd til deres liv.",
+        "central_question": "Veiledning der den andre eier valget",
+        "primary_plot": {
+          "id": "P04",
+          "title": "Ut og hjem igjen"
+        },
+        "literary_main_track": {
+          "id": "L17",
+          "title": "Novellen og det moralske paradokset"
+        },
+        "contemporary_story_type": {
+          "id": "C19",
+          "title": "Å begynne på nytt"
+        },
+        "conflicts": [
+          "autonomi vs styring",
+          "utforsking vs fasit",
+          "jobbmatch vs personvern",
+          "rask plassering vs bærekraftig valg",
+          "systemkrav vs individuell prosess"
+        ],
+        "work_tasks": [
+          "avklare hva veisøkeren ønsker hjelp til",
+          "kartlegge interesser, erfaring, kompetanse og ressurser sammen",
+          "utforske utdannings- og arbeidsmuligheter",
+          "støtte CV, søknad og intervjuforberedelse",
+          "lage og følge opp handlingsplaner sammen med veisøker",
+          "samarbeide med arbeidsgiver, NAV og relevante fagpersoner innenfor samtykke og rolle"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "autonomi vs styring",
+              "utforsking vs fasit",
+              "jobbmatch vs personvern",
+              "rask plassering vs bærekraftig valg",
+              "systemkrav vs individuell prosess"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "selvstendig_og_opplyst",
+              "kartlegging_som_fasit",
+              "for_mye_delt",
+              "systemet_styrte",
+              "for_lite_handling"
+            ]
+          }
+        ],
+        "narrative_boundaries": {
+          "kan": [
+            "kartlegge interesser, kompetanse, ressurser og mål sammen med veisøker",
+            "utforske utdannings- og arbeidsmuligheter",
+            "støtte jobbsøking og intervjuforberedelse",
+            "lage handlingsplan sammen med veisøker",
+            "motivere uten å overta valget",
+            "samarbeide med arbeidsgiver, NAV og relevante fagpersoner innenfor mandat"
+          ],
+          "kanIkke": [
+            "diagnostisere",
+            "drive psykoterapi",
+            "gjøre medisinsk eller klinisk arbeidsevnevurdering",
+            "bruke kartleggingsverktøy som klinisk fasit",
+            "dele sensitive opplysninger uten grunnlag eller avklart samtykke",
+            "bestemme utdanning eller jobb på vegne av veisøker"
+          ]
+        },
+        "authored_endings": [
+          {
+            "id": "selvstendig_og_opplyst",
+            "title": "Et valg som faktisk er hennes",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 62
+                },
+                "handlingsrom": {
+                  "min": 52
+                }
+              },
+              "flagg": {
+                "lot_veisoker_eie_malet": true,
+                "beskyttet_personvern": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "kartlegging_som_fasit",
+            "title": "Skjemaet fikk siste ord",
+            "conditions": {
+              "flagg": {
+                "gjorde_kartlegging_til_fasit": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "for_mye_delt",
+            "title": "Jobbmatch på bekostning av tillit",
+            "conditions": {
+              "flagg": {
+                "delte_sensitive_opplysninger": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "systemet_styrte",
+            "title": "Planen vant over personen",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "max": 56
+                }
+              },
+              "flagg": {
+                "styrte_veisoker": true,
+                "prioriterte_systemet": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "for_lite_handling",
+            "title": "God samtale, lite bevegelse",
+            "conditions": {
+              "flagg": {
+                "utsatte_alle_valg": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "psykologi_arbeids_og_karriereveiledning:nora",
+          "local_id": "nora",
+          "display_name": "Nora",
+          "dramatic_function": "Veisøkeren du følger tettest denne uka. Hun vil videre, men vil ikke reduseres til et hull i CV-en eller et tiltaksmål.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_arbeids_og_karriereveiledning:teamleder",
+          "local_id": "teamleder",
+          "display_name": "Teamlederen",
+          "dramatic_function": "Må levere framdrift og resultater, og presser på for tydelige planer når usikkerheten tar tid.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_arbeids_og_karriereveiledning:kollega",
+          "local_id": "kollega",
+          "display_name": "Samir",
+          "dramatic_function": "Erfaren veileder som liker struktur og kartleggingsverktøy, men vet at de bare er gode når de brukes som spørsmål.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_arbeids_og_karriereveiledning:arbeidsgiver",
+          "local_id": "arbeidsgiver",
+          "display_name": "Elin, arbeidsgiverkontakten",
+          "dramatic_function": "Har en reell jobbmulighet og vil redusere risiko før hun bestemmer seg.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_arbeids_og_karriereveiledning:nav_kontakt",
+          "local_id": "nav_kontakt",
+          "display_name": "Marius i NAV",
+          "dramatic_function": "Samarbeidspartner med frister, tiltak og rammer som må fungere sammen med Noras faktiske plan.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_arbeids_og_karriereveiledning:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din. Merker når du begynner å behandle andres valg som et problem du personlig må løse.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykologi_arbeids_og_karriereveiledning:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Ringer om sitt eget liv og minner deg på at jobbens uløste spørsmål ikke trenger å flytte inn hjemme hos deg.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "psykolog",
+      "role_kind": "formal_work_role",
+      "display_name": "Psykolog",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/psykolog/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/psykolog/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/psykolog/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "psykolog",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "psykologi",
+        "canonical_badge_titles": [
+          "Psykolog"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Psykolog",
+        "protagonist": "Spilleren i formell jobbrolle Psykolog",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du har klinisk ansvar, men det viktigste du forvalter er ikke retten til å konkludere raskt — det er evnen til å holde vurderingen presis, pasienten med og risikoen synlig samtidig.",
+        "central_question": "Vurdering og allianse når grunnlaget er ufullstendig",
+        "primary_plot": {
+          "id": "P03",
+          "title": "Oppdraget"
+        },
+        "literary_main_track": {
+          "id": "L17",
+          "title": "Novellen og det moralske paradokset"
+        },
+        "contemporary_story_type": {
+          "id": "C06",
+          "title": "Faglig integritet under press"
+        },
+        "conflicts": [
+          "presisjon vs for tidlig lukking",
+          "medvirkning vs overstyring",
+          "sikkerhet vs kontroll",
+          "samhandling vs taushet",
+          "tempo vs faglig grunnlag"
+        ],
+        "work_tasks": [
+          "klinisk utredning",
+          "behandlingsplanlegging og behandling",
+          "journalføring",
+          "risiko- og sikkerhetsvurdering",
+          "tverrfaglig samarbeid",
+          "veiledningsbruk"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/psykolog/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "presisjon vs for tidlig lukking",
+              "medvirkning vs overstyring",
+              "sikkerhet vs kontroll",
+              "samhandling vs taushet",
+              "tempo vs faglig grunnlag"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "trygg_og_samarbeidende",
+              "kontroll_foran_allianse",
+              "for_lite_retning"
+            ]
+          }
+        ],
+        "narrative_boundaries": {
+          "kan": [
+            "utrede og behandle innen egen kompetanse og stilling",
+            "ha behandlingsansvar når rollen faktisk innebærer det",
+            "journalføre og begrunne kliniske valg",
+            "samarbeide innen gyldig informasjonsgrunnlag",
+            "eskalere til riktig kompetanse eller myndighet"
+          ],
+          "kanIkke": [
+            "bruke psykologtittelen uten gyldig norsk autorisasjon eller lisens",
+            "framstille autorisasjon som spesialistgodkjenning",
+            "fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking",
+            "behandle utenfor egen kompetanse",
+            "dele taushetsbelagte opplysninger uten nødvendig grunnlag"
+          ]
+        },
+        "authored_endings": [
+          {
+            "id": "trygg_og_samarbeidende",
+            "title": "Presis uten å bli lukket",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 62
+                },
+                "handlingsrom": {
+                  "min": 52
+                }
+              },
+              "flagg": {
+                "bevarte_usikkerhet": true,
+                "lot_pasient_medvirke": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "kontroll_foran_allianse",
+            "title": "Kontroll foran allianse",
+            "conditions": {
+              "flagg": {
+                "lukket_hypotese": true,
+                "overstyrte_pasient": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "for_lite_retning",
+            "title": "Alt ble stående åpent",
+            "conditions": {
+              "flagg": {
+                "utsatte_all_handling": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/psykolog/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "psykolog:pasient",
+          "local_id": "pasient",
+          "display_name": "Lea",
+          "dramatic_function": "Pasienten du følger tettest denne uka. Hun vil ha hjelp, men er redd for at én forklaring skal bli hele historien om henne.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykolog:kollega",
+          "local_id": "kollega",
+          "display_name": "Amir",
+          "dramatic_function": "Sykepleier i teamet. Trenger tydelig retning og sier fra når planen ikke fungerer i hverdagen.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykolog:leder",
+          "local_id": "leder",
+          "display_name": "Seksjonslederen",
+          "dramatic_function": "Har ansvar for kapasitet og ventelister og trenger at forløp faktisk beveger seg.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykolog:veileder",
+          "local_id": "veileder",
+          "display_name": "Ingrid",
+          "dramatic_function": "Erfaren psykologspesialist som spør hva du vet, hva du antar og hva du ennå ikke har undersøkt.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykolog:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din som merker når du tar arbeidets usikkerhet med hjem.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "psykolog:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Søsteren din følger med på hvordan arbeidsuka påvirker resten av livet ditt.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "spesialistpsykolog",
+      "role_kind": "formal_work_role",
+      "display_name": "Spesialistpsykolog",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/spesialistpsykolog/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/spesialistpsykolog/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/spesialistpsykolog/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "spesialistpsykolog",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "psykologi",
+        "canonical_badge_titles": [
+          "Spesialistpsykolog"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Spesialistpsykolog",
+        "protagonist": "Spilleren i formell jobbrolle Spesialistpsykolog",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du er den andre ber om når saken blir vanskelig. Utfordringen er å bruke ekspertisen til å gjøre rommet klokere uten å gjøre din egen sikkerhet større enn grunnlaget.",
+        "central_question": "Ekspertise under usikkerhet og ulike faglige perspektiver",
+        "primary_plot": {
+          "id": "P03",
+          "title": "Oppdraget"
+        },
+        "literary_main_track": {
+          "id": "L13",
+          "title": "Flerstemmighet"
+        },
+        "contemporary_story_type": {
+          "id": "C22",
+          "title": "Kunnskap du ikke kan bekrefte"
+        },
+        "conflicts": [
+          "ekspertise vs usikkerhet",
+          "metodefidelitet vs tilpasning",
+          "veiledning vs overtakelse",
+          "egen spesialitet vs annen kompetanse",
+          "fagutvikling vs produksjon"
+        ],
+        "work_tasks": [
+          "komplekse kliniske vurderinger",
+          "behandling innen spesialitet",
+          "veiledning",
+          "konsultasjon",
+          "metodekvalitet",
+          "fagutvikling"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/spesialistpsykolog/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "ekspertise vs usikkerhet",
+              "metodefidelitet vs tilpasning",
+              "veiledning vs overtakelse",
+              "egen spesialitet vs annen kompetanse",
+              "fagutvikling vs produksjon"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "kompleksitet_med_ydmykhet",
+              "ekspertrollen_lukket_rommet",
+              "ingen_vil_velge"
+            ]
+          }
+        ],
+        "narrative_boundaries": {
+          "kan": [
+            "utrede og behandle innen egen spesialitet og stilling",
+            "veilede kolleger",
+            "bidra til fagutvikling",
+            "be om annen spesialistkompetanse"
+          ],
+          "kanIkke": [
+            "bruke spesialisttittel uten separat godkjenning",
+            "framstille egen spesialitet som kompetanse på alle områder",
+            "fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking",
+            "overta kollegers ansvar bare på grunn av status"
+          ]
+        },
+        "authored_endings": [
+          {
+            "id": "kompleksitet_med_ydmykhet",
+            "title": "Ekspert uten fasitbehov",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 62
+                },
+                "handlingsrom": {
+                  "min": 52
+                }
+              },
+              "flagg": {
+                "synliggjorde_usikkerhet": true,
+                "veiledet_uten_a_overta": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "ekspertrollen_lukket_rommet",
+            "title": "Ekspertrollen lukket rommet",
+            "conditions": {
+              "flagg": {
+                "brukte_status_som_fasit": true,
+                "overtok_ansvar": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "ingen_vil_velge",
+            "title": "Alt måtte undersøkes mer",
+            "conditions": {
+              "flagg": {
+                "utsatte_alle_valg": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/spesialistpsykolog/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "spesialistpsykolog:pasient",
+          "local_id": "pasient",
+          "display_name": "Sander",
+          "dramatic_function": "Har et komplekst forløp der flere forklaringer og tiltak er plausible.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "spesialistpsykolog:psykolog",
+          "local_id": "psykolog",
+          "display_name": "Ida",
+          "dramatic_function": "Psykologen du veileder. Vil ha retning, men trenger å beholde eget klinisk ansvar.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "spesialistpsykolog:teamleder",
+          "local_id": "teamleder",
+          "display_name": "Teamlederen",
+          "dramatic_function": "Trenger tydelige beslutninger og likere praksis i teamet.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "spesialistpsykolog:kollega",
+          "local_id": "kollega",
+          "display_name": "Ravi",
+          "dramatic_function": "Spesialist fra et annet fagfelt som ser saken gjennom en annen linse.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "spesialistpsykolog:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din som merker når ekspertrollen gjør deg mindre villig til å si at du er usikker.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "spesialistpsykolog:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Søsteren din følger med på om ekspertrollen også følger deg hjem.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "fagansvarlig",
+      "role_kind": "formal_work_role",
+      "display_name": "Fagansvarlig",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/fagansvarlig/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/fagansvarlig/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/fagansvarlig/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "fagansvarlig",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "psykologi",
+        "canonical_badge_titles": [
+          "Fagansvarlig"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Fagansvarlig",
+        "protagonist": "Spilleren i formell jobbrolle Fagansvarlig",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du skal gjøre klinikken mer lærende og etterprøvbar uten å bli personen som alle sender beslutninger til bare fordi tittelen høres autoritativ ut.",
+        "central_question": "Faglige standarder mot konkret avvik og ansvar",
+        "primary_plot": {
+          "id": "P03",
+          "title": "Oppdraget"
+        },
+        "literary_main_track": {
+          "id": "L19",
+          "title": "Vitnesbyrd og politikk"
+        },
+        "contemporary_story_type": {
+          "id": "C22",
+          "title": "Kunnskap du ikke kan bekrefte"
+        },
+        "conflicts": [
+          "formell etterlevelse vs reell læring",
+          "standardisering vs faglig skjønn",
+          "veiledning vs kontroll",
+          "individfeil vs systemårsak",
+          "handlekraft vs riktig myndighet"
+        ],
+        "work_tasks": [
+          "kvalitetsforbedring",
+          "avviksoppfølging",
+          "fagprosedyrer",
+          "kompetanseplanlegging",
+          "veiledningsstruktur",
+          "rolle- og myndighetsavklaring"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/fagansvarlig/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "formell etterlevelse vs reell læring",
+              "standardisering vs faglig skjønn",
+              "veiledning vs kontroll",
+              "individfeil vs systemårsak",
+              "handlekraft vs riktig myndighet"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "kvalitet_som_laering",
+              "prosedyren_som_skjold",
+              "for_mye_prosess"
+            ]
+          }
+        ],
+        "narrative_boundaries": {
+          "kan": [
+            "koordinere fag- og kvalitetsarbeid innen arbeidsgiverens mandat",
+            "utvikle prosedyrer og kompetansetiltak",
+            "analysere avvik og foreslå forbedringer",
+            "eskalere til riktig klinisk, juridisk eller organisatorisk myndighet"
+          ],
+          "kanIkke": [
+            "framstille tittelen som lovens faglig ansvarlig etter psykisk helsevernloven",
+            "fatte lovregulerte vedtak uten særskilt kvalifikasjon og utpeking",
+            "diagnostisere eller behandle uten separat profesjonskompetanse",
+            "erstatte klinikerens individuelle ansvar med lokal prosedyre"
+          ]
+        },
+        "authored_endings": [
+          {
+            "id": "kvalitet_som_laering",
+            "title": "Kvalitet som læring",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 62
+                },
+                "handlingsrom": {
+                  "min": 52
+                }
+              },
+              "flagg": {
+                "loste_systemarsak": true,
+                "beskyttet_rollegrense": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "prosedyren_som_skjold",
+            "title": "Prosedyren som skjold",
+            "conditions": {
+              "flagg": {
+                "lukket_uten_laering": true,
+                "tok_feil_myndighet": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "for_mye_prosess",
+            "title": "For mye prosess",
+            "conditions": {
+              "flagg": {
+                "utsatte_tiltak": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/fagansvarlig/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "fagansvarlig:kliniker",
+          "local_id": "kliniker",
+          "display_name": "Sara",
+          "dramatic_function": "Erfaren kliniker som vil ha tydelige rammer uten at prosedyrene erstatter faglig skjønn.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "fagansvarlig:leder",
+          "local_id": "leder",
+          "display_name": "Avdelingslederen",
+          "dramatic_function": "Vil lukke avvik raskt og vise dokumenterbar forbedring.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "fagansvarlig:kvalitet",
+          "local_id": "kvalitet",
+          "display_name": "Henrik",
+          "dramatic_function": "Kvalitetsrådgiver som følger systemet og spør om tiltakene faktisk endrer arbeidsflyten.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "fagansvarlig:nyansatt",
+          "local_id": "nyansatt",
+          "display_name": "Amina",
+          "dramatic_function": "Ny i teamet og avhengig av at prosedyrer, veiledning og rollegrenser faktisk er forståelige.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "fagansvarlig:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din som minner deg på at ansvaret ditt er å bygge system, ikke å eie alle avgjørelser.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "fagansvarlig:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Søsteren din minner deg på at fagansvar også har grenser utenfor arbeidsdagen.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "klinikkleder",
+      "role_kind": "formal_work_role",
+      "display_name": "Klinikkleder",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/klinikkleder/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/klinikkleder/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/klinikkleder/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "klinikkleder",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "psykologi",
+        "canonical_badge_titles": [
+          "Klinikkleder"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Klinikkleder",
+        "protagonist": "Spilleren i formell jobbrolle Klinikkleder",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du leder ikke behandlingene enkeltvis; du leder rammene som avgjør om gode behandlinger faktisk kan skje. Hver beslutning om folk, kapasitet, penger og endring flytter risiko et sted.",
+        "central_question": "Prioriteringer mellom kapasitet, kvalitet og mennesker",
+        "primary_plot": {
+          "id": "P06",
+          "title": "Tragedien"
+        },
+        "literary_main_track": {
+          "id": "L07",
+          "title": "Samfunnskrise og makt"
+        },
+        "contemporary_story_type": {
+          "id": "C06",
+          "title": "Faglig integritet under press"
+        },
+        "conflicts": [
+          "kapasitet vs forsvarlighet",
+          "budsjett vs langsiktig risiko",
+          "resultattall vs faglige signaler",
+          "tempo vs forankring",
+          "ledermyndighet vs klinisk myndighet"
+        ],
+        "work_tasks": [
+          "strategi og mål",
+          "bemanning og kompetanse",
+          "økonomi og kapasitet",
+          "kvalitet og pasientsikkerhet",
+          "endringsledelse",
+          "rolle- og myndighetsavklaring"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/klinikkleder/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "kapasitet vs forsvarlighet",
+              "budsjett vs langsiktig risiko",
+              "resultattall vs faglige signaler",
+              "tempo vs forankring",
+              "ledermyndighet vs klinisk myndighet"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "retning_med_baerekraft",
+              "tallene_vant",
+              "ingen_beslutning"
+            ]
+          }
+        ],
+        "narrative_boundaries": {
+          "kan": [
+            "lede strategi, organisasjon, bemanning, økonomi og kvalitetsarbeid innen arbeidsgiverens mandat",
+            "sette mål og fordele ressurser",
+            "følge opp risiko og resultater",
+            "sørge for at kliniske og juridiske beslutninger ligger hos riktig kvalifisert person"
+          ],
+          "kanIkke": [
+            "diagnostisere eller behandle bare i kraft av lederstillingen",
+            "bruke lederrollen som erstatning for profesjonskompetanse",
+            "fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking",
+            "delegere klinisk myndighet til ukvalifiserte personer",
+            "bruke produksjonstall alene som bevis på faglig kvalitet"
+          ]
+        },
+        "authored_endings": [
+          {
+            "id": "retning_med_baerekraft",
+            "title": "Retning med bærekraft",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 62
+                },
+                "handlingsrom": {
+                  "min": 52
+                }
+              },
+              "flagg": {
+                "beskyttet_forsvarlighet": true,
+                "holdt_myndighetsgrense": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "tallene_vant",
+            "title": "Tallene vant",
+            "conditions": {
+              "flagg": {
+                "prioriterte_tall": true,
+                "brukte_hierarki_som_klinikk": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "ingen_beslutning",
+            "title": "Alt måtte forankres mer",
+            "conditions": {
+              "flagg": {
+                "utsatte_alle_beslutninger": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/klinikkleder/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "klinikkleder:avdelingsleder",
+          "local_id": "avdelingsleder",
+          "display_name": "Nora",
+          "dramatic_function": "Avdelingsleder med økende venteliste og to ubesatte stillinger.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "klinikkleder:fagansvarlig",
+          "local_id": "fagansvarlig",
+          "display_name": "Jonas F.",
+          "dramatic_function": "Fagansvarlig som ser kvalitets- og sikkerhetssignaler før de blir tydelige i resultatrapporten.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "klinikkleder:tillitsvalgt",
+          "local_id": "tillitsvalgt",
+          "display_name": "Elise",
+          "dramatic_function": "Tillitsvalgt som følger belastning, medvirkning og hva endringene faktisk gjør med arbeidsmiljøet.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "klinikkleder:divisjonsleder",
+          "local_id": "divisjonsleder",
+          "display_name": "Divisjonsdirektøren",
+          "dramatic_function": "Forventer budsjettkontroll, framdrift og tydelige resultater.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "klinikkleder:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din som spør om du fortsatt klarer å skille det du kan beslutte fra det du bare kan gjøre mulig.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "klinikkleder:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Søsteren din følger med på om lederansvaret spiser opp resten av livet.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "forsker_psykologi",
+      "role_kind": "formal_work_role",
+      "display_name": "Forsker (psykologi)",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/forsker_psykologi/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/forsker_psykologi/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/forsker_psykologi/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "forsker_psykologi",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "psykologi",
+        "canonical_badge_titles": [
+          "Forsker (psykologi)"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Forsker (psykologi)",
+        "protagonist": "Spilleren i formell jobbrolle Forsker (psykologi)",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du får betalt for å finne ut noe ingen vet sikkert ennå. Uka avgjøres av om du klarer å bevare sporbarheten fra spørsmål til data til konklusjon når prosjektet helst vil ha et tydelig resultat.",
+        "central_question": "Funn, publiseringspress og redelig metode",
+        "primary_plot": {
+          "id": "P03",
+          "title": "Oppdraget"
+        },
+        "literary_main_track": {
+          "id": "L20",
+          "title": "Essay og reportasje"
+        },
+        "contemporary_story_type": {
+          "id": "C22",
+          "title": "Kunnskap du ikke kan bekrefte"
+        },
+        "conflicts": [
+          "integritet vs forventning",
+          "planlagt analyse vs utforskning",
+          "datakvalitet vs tidsfrist",
+          "nytte vs usikkerhet",
+          "publisering vs etterprøvbarhet"
+        ],
+        "work_tasks": [
+          "forskningsdesign",
+          "datakvalitet og analyse",
+          "forskningsetikk",
+          "vitenskapelig skriving",
+          "prosjektsamarbeid",
+          "formidling"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/forsker_psykologi/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "integritet vs forventning",
+              "planlagt analyse vs utforskning",
+              "datakvalitet vs tidsfrist",
+              "nytte vs usikkerhet",
+              "publisering vs etterprøvbarhet"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "etterprovbar_forsker",
+              "resultatet_foran_metoden",
+              "analyse_uten_leveranse"
+            ]
+          }
+        ],
+        "narrative_boundaries": {
+          "kan": [
+            "planlegge og gjennomføre forskning innen prosjektets og egen kompetanses rammer",
+            "analysere og formidle data",
+            "foreslå nye studier og søknader",
+            "samarbeide og veilede når stillingen innebærer det"
+          ],
+          "kanIkke": [
+            "framstille forskeransettelse som psykologautorisasjon",
+            "diagnostisere eller behandle bare i kraft av forskerrollen",
+            "skjule analyseendringer eller nullfunn for å styrke fortellingen",
+            "behandle persondata uten nødvendig grunnlag og sikkerhet"
+          ]
+        },
+        "authored_endings": [
+          {
+            "id": "etterprovbar_forsker",
+            "title": "Et resultat som tåler dagslys",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 62
+                },
+                "handlingsrom": {
+                  "min": 52
+                }
+              },
+              "flagg": {
+                "rapporterte_apent": true,
+                "merket_eksplorativt": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "resultatet_foran_metoden",
+            "title": "Resultatet foran metoden",
+            "conditions": {
+              "flagg": {
+                "skjulte_nullfunn": true,
+                "etterrasjonaliserte_analyse": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "analyse_uten_leveranse",
+            "title": "Alt måtte kvalitetssikres mer",
+            "conditions": {
+              "flagg": {
+                "utsatte_all_leveranse": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/forsker_psykologi/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "forsker_psykologi:prosjektleder",
+          "local_id": "prosjektleder",
+          "display_name": "Ingrid",
+          "dramatic_function": "Prosjektleder som trenger leveranse og ny finansiering, men som også vet at prosjektets troverdighet er langsiktig kapital.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "forsker_psykologi:kollega",
+          "local_id": "kollega",
+          "display_name": "Amir",
+          "dramatic_function": "Medforsker som er metodisk sterk og ofte den første som spør hva som faktisk var planlagt før dataene ble sett.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "forsker_psykologi:partner",
+          "local_id": "partner",
+          "display_name": "Nora",
+          "dramatic_function": "Ekstern samarbeidspartner som trenger en konklusjon hun kan bruke i praksis.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "forsker_psykologi:deltakeransvarlig",
+          "local_id": "deltakeransvarlig",
+          "display_name": "Sara",
+          "dramatic_function": "Har ansvar for rekruttering, samtykke og at datainnsamlingen faktisk følger protokollen.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "forsker_psykologi:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din som merker når prosjektets tidsfrister følger deg hjem.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "forsker_psykologi:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Søsteren din spør om jobben fortsatt handler om å finne ut noe eller om å få prosjektet til å se vellykket ut.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "professor_psykologi",
+      "role_kind": "formal_work_role",
+      "display_name": "Professor (psykologi)",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/professor_psykologi/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/professor_psykologi/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/professor_psykologi/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "professor_psykologi",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "psykologi",
+        "canonical_badge_titles": [
+          "Professor (psykologi)"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Professor (psykologi)",
+        "protagonist": "Spilleren i formell jobbrolle Professor (psykologi)",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du har faglig tyngde nok til å åpne dører eller lukke rom. Uka handler om forskning, undervisning og veiledning — og om hvorvidt andre blir mer selvstendige av å arbeide med deg.",
+        "central_question": "Makt, veiledning og å slippe andre fram",
+        "primary_plot": {
+          "id": "P07",
+          "title": "Gjenfødelsen"
+        },
+        "literary_main_track": {
+          "id": "L13",
+          "title": "Flerstemmighet"
+        },
+        "contemporary_story_type": {
+          "id": "C20",
+          "title": "Fellesskapet uten helt"
+        },
+        "conflicts": [
+          "status vs åpen kritikk",
+          "mentorskap vs eierskap",
+          "forskningsfrist vs undervisningskvalitet",
+          "framdrift vs kandidatens selvstendighet",
+          "finansiering vs faglig bredde"
+        ],
+        "work_tasks": [
+          "forskningsledelse",
+          "universitetsundervisning",
+          "veiledning",
+          "faglig vurdering",
+          "søknader og prosjektutvikling",
+          "bygging av forsknings- og læringsmiljø"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/professor_psykologi/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "status vs åpen kritikk",
+              "mentorskap vs eierskap",
+              "forskningsfrist vs undervisningskvalitet",
+              "framdrift vs kandidatens selvstendighet",
+              "finansiering vs faglig bredde"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "miljo_som_taler_imot_deg",
+              "professoren_som_tyngdepunkt",
+              "ingen_prioritering"
+            ]
+          }
+        ],
+        "narrative_boundaries": {
+          "kan": [
+            "drive og lede forskning innen faglig mandat",
+            "undervise og veilede i høyere utdanning",
+            "vurdere faglig arbeid når rollen krever det",
+            "bygge fagmiljø og utdanningskvalitet"
+          ],
+          "kanIkke": [
+            "framstille professortittel som psykologautorisasjon",
+            "diagnostisere eller behandle bare i kraft av akademisk stilling",
+            "bruke senioritet som erstatning for argument eller data",
+            "ta eierskap til studenters eller yngre forskeres ideer uten korrekt kreditering",
+            "framstille publikasjonsvolum alene som professorkompetanse"
+          ]
+        },
+        "authored_endings": [
+          {
+            "id": "miljo_som_taler_imot_deg",
+            "title": "Et miljø som kan si imot deg",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 62
+                },
+                "handlingsrom": {
+                  "min": 52
+                }
+              },
+              "flagg": {
+                "krediterte_rettferdig": true,
+                "apnet_for_kritikk": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "professoren_som_tyngdepunkt",
+            "title": "Alt begynte å dreie mot deg",
+            "conditions": {
+              "flagg": {
+                "tok_eierskap": true,
+                "brukte_status_mot_kritikk": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "ingen_prioritering",
+            "title": "Alle oppgaver var like viktige",
+            "conditions": {
+              "flagg": {
+                "utsatte_alle_prioriteringer": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/professor_psykologi/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "professor_psykologi:phd",
+          "local_id": "phd",
+          "display_name": "Amina",
+          "dramatic_function": "Ph.d.-kandidat du veileder. Har en god idé som avviker fra din opprinnelige prosjektplan.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "professor_psykologi:student",
+          "local_id": "student",
+          "display_name": "Leo",
+          "dramatic_function": "Masterstudent som trenger tydelig veiledning uten å få løsningen levert.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "professor_psykologi:kollega",
+          "local_id": "kollega",
+          "display_name": "Ravi",
+          "dramatic_function": "Yngre forsker som har data som utfordrer et etablert argument du selv har vært med på å bygge.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "professor_psykologi:studieleder",
+          "local_id": "studieleder",
+          "display_name": "Nora",
+          "dramatic_function": "Studieleder som trenger at emnet ditt forbedres samtidig som søknadsfristen nærmer seg.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "professor_psykologi:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din som spør om det fortsatt finnes folk på jobben som kan si at du tar feil uten å betale for det.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "professor_psykologi:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Søsteren din følger med på om universitetet får alle kveldene også denne uka.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "barnehageassistent",
+      "role_kind": "formal_work_role",
+      "display_name": "Barnehageassistent / pedagogisk medarbeider",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/barnehageassistent/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/barnehageassistent/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "barnehageassistent",
+        "content_only": true,
+        "system_role": false,
+        "badge_id": null,
+        "canonical_badge_titles": []
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Barnehageassistent / pedagogisk medarbeider",
+        "protagonist": "Spilleren i formell jobbrolle Barnehageassistent / pedagogisk medarbeider",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du holder en barnegruppes dag trygg gjennom små voksenhandlinger som får store følger når de mangler.",
+        "central_question": "Omsorg under bemanningstrykk og barnas trygghet",
+        "primary_plot": {
+          "id": "P03",
+          "title": "Oppdraget"
+        },
+        "literary_main_track": {
+          "id": "L11",
+          "title": "Sammenflettede liv"
+        },
+        "contemporary_story_type": {
+          "id": "C20",
+          "title": "Fellesskapet uten helt"
+        },
+        "conflicts": [
+          "trygg overgang vs tidspress",
+          "frilek vs usynlig utenforskap",
+          "varm grensesetting vs egen aktivering",
+          "konkret observasjon vs magefølelse",
+          "barnets beste vs stram bemanning"
+        ],
+        "work_tasks": [
+          "støtte levering og overganger",
+          "se hvem som kommer inn i leken og hvem som blir stående utenfor",
+          "sette varme, tydelige grenser under støy og tidspress",
+          "observere konkret uten å diagnostisere",
+          "gi presise observasjoner til leder og foreldre"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/barnehageassistent/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "trygg overgang vs tidspress",
+              "frilek vs usynlig utenforskap",
+              "varm grensesetting vs egen aktivering",
+              "konkret observasjon vs magefølelse",
+              "barnets beste vs stram bemanning"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "trygg_voksen",
+              "drift_foran_barn",
+              "utslitt",
+              "faglig_stemme"
+            ]
+          }
+        ],
+        "narrative_boundaries": null,
+        "authored_endings": [
+          {
+            "id": "trygg_voksen",
+            "title": "Den trygge voksne",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 70
+                }
+              },
+              "flagg": {
+                "skapte_rolig_overgang": true,
+                "aapnet_leken_for_ema": true,
+                "skrev_konkret_observasjon": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "drift_foran_barn",
+            "title": "Drift foran barn",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "max": 50
+                }
+              },
+              "flagg": {
+                "lot_ema_staa_utenfor": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "utslitt",
+            "title": "Utslitt omsorgsarbeider",
+            "conditions": {
+              "meters": {
+                "energi": {
+                  "max": 50
+                },
+                "psyke": {
+                  "max": 55
+                }
+              },
+              "flagg": {
+                "tok_alt_selv": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "faglig_stemme",
+            "title": "Faglig stemme",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 65
+                },
+                "synlighet": {
+                  "min": 50
+                }
+              },
+              "flagg": {
+                "loeftet_bemanning": true,
+                "delte_observasjon_faglig": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "barnehageassistent:pedagogisk_leder",
+          "local_id": "pedagogisk_leder",
+          "display_name": "Anne, pedagogisk leder",
+          "dramatic_function": "Din nærmeste faglige leder. Trenger observasjoner hun kan stole på mens hun holder en presset avdeling i gang.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "barnehageassistent:erfaren_assistent",
+          "local_id": "erfaren_assistent",
+          "display_name": "Kari, erfaren assistent",
+          "dramatic_function": "Kjenner rytmen og snarveiene. Hjelper deg ofte, men kan prioritere flyt foran langsom trygghet.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "barnehageassistent:ny_vikar",
+          "local_id": "ny_vikar",
+          "display_name": "Milo, ny vikar",
+          "dramatic_function": "Vil gjøre en god jobb, men kjenner ikke barnas signaler ennå.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "barnehageassistent:noah",
+          "local_id": "noah",
+          "display_name": "Noah",
+          "dramatic_function": "Et barn som strever med levering og overganger.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "barnehageassistent:ema",
+          "local_id": "ema",
+          "display_name": "Ema",
+          "dramatic_function": "Et stille barn som lett forsvinner i frileken.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "barnehageassistent:forelder_linn",
+          "local_id": "forelder_linn",
+          "display_name": "Linn, forelder",
+          "dramatic_function": "Har lav tillit etter flere uklare hentebeskjeder og spør om Ema faktisk blir sett.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "barnehageassistent:forelder_samir",
+          "local_id": "forelder_samir",
+          "display_name": "Samir, forelder",
+          "dramatic_function": "Vil samarbeide, men trenger tydelige svar når morgenene blir vanskelige.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "barnehageassistent:styrer",
+          "local_id": "styrer",
+          "display_name": "Ragnhild, styrer",
+          "dramatic_function": "Har ansvar for bemanning og drift, men ser ikke alltid trykket i de korte overgangene.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "barnehageassistent:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Vennen din. Hører forskjell på vanlig sliten og en dag som har satt seg i kroppen.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "barnehageassistent:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Minner deg på at jobben ikke er hele livet.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "controller",
+      "role_kind": "formal_work_role",
+      "display_name": "Controller",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/controller/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/controller/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/controller/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "controller",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "naeringsliv",
+        "canonical_badge_titles": [
+          "Controller",
+          "Finansanalytiker",
+          "Økonomi- og finanssjef",
+          "Finansdirektør"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Controller",
+        "protagonist": "Spilleren i formell jobbrolle Controller",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du gjør driftens urolige virkelighet lesbar i tall uten å la rapporten bli penere enn det den faktisk kan bevise.",
+        "central_question": "Tall som kan etterprøves mot forventningen om pene rapporter",
+        "primary_plot": {
+          "id": "P03",
+          "title": "Oppdraget"
+        },
+        "literary_main_track": {
+          "id": "L12",
+          "title": "Den upålitelige fortelleren"
+        },
+        "contemporary_story_type": {
+          "id": "C22",
+          "title": "Kunnskap du ikke kan bekrefte"
+        },
+        "conflicts": [
+          "sporbarhet vs rapportfrist",
+          "styringsinformasjon vs ønsket resultat",
+          "økonomisk kontroll vs driftstillit",
+          "presisjon vs falsk sikkerhet",
+          "profesjonelt kontrollblikk vs privat tillit"
+        ],
+        "work_tasks": [
+          "forklare avvik mellom budsjett, prognose og faktisk resultat",
+          "avstemme kontoer og finne rotårsaken bak differanser",
+          "bygge prognoser med synlige forutsetninger og usikkerhet",
+          "samle revisjonsspor og dokumentasjon som tåler etterprøving",
+          "oversette driftens erfaringer til styringsinformasjon uten å gjøre mennesker til avvik"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/controller/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "sporbarhet vs rapportfrist",
+              "styringsinformasjon vs ønsket resultat",
+              "økonomisk kontroll vs driftstillit",
+              "presisjon vs falsk sikkerhet",
+              "profesjonelt kontrollblikk vs privat tillit"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "sporbar_styring",
+              "hard_kontroll",
+              "pen_rapport",
+              "tillit_som_kontroll"
+            ]
+          }
+        ],
+        "narrative_boundaries": null,
+        "authored_endings": [
+          {
+            "id": "sporbar_styring",
+            "title": "Sporbar styring",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 66
+                },
+                "handlingsrom": {
+                  "min": 48
+                }
+              },
+              "flagg": {
+                "controller_skrev_forbehold": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "hard_kontroll",
+            "title": "Hard kontroll",
+            "conditions": {
+              "meters": {
+                "synlighet": {
+                  "min": 58
+                },
+                "psyke": {
+                  "max": 54
+                }
+              },
+              "flagg": {
+                "controller_presset_bevis": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "pen_rapport",
+            "title": "Den pene rapporten",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "max": 48
+                }
+              },
+              "flagg": {
+                "controller_valgte_ro": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "tillit_som_kontroll",
+            "title": "Tillit som kontroll",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 60
+                },
+                "psyke": {
+                  "min": 56
+                }
+              },
+              "flagg": {
+                "controller_lyttet_for_konklusjon": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/controller/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "controller:ingrid_okonomisjef",
+          "local_id": "ingrid_okonomisjef",
+          "display_name": "Ingrid, økonomisjefen",
+          "dramatic_function": "Setter rapportfrister og trenger tall ledelsen kan bruke, men vet at for mye usikkerhet kan gjøre møtet vanskelig.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "controller:marius_regnskap",
+          "local_id": "marius_regnskap",
+          "display_name": "Marius i regnskap",
+          "dramatic_function": "Eier mye av underlaget og ser hvor ofte et tilsynelatende lite avvik skjuler et svakt spor.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "controller:driftsleder",
+          "local_id": "driftsleder",
+          "display_name": "Elin, driftslederen",
+          "dramatic_function": "Kjenner gulvet og nekter å la økonomispråk gjøre praktiske årsaker om til skyld.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "controller:revisor",
+          "local_id": "revisor",
+          "display_name": "Revisoren",
+          "dramatic_function": "Spør ikke om tallet ser rimelig ut, men om organisasjonen kan vise hvorfor det står der.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "controller:markedssjef",
+          "local_id": "markedssjef",
+          "display_name": "Markedssjefen",
+          "dramatic_function": "Lever med usikre kampanjeeffekter og har sterke grunner til å tro at neste uke blir bedre.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "controller:innkjoper",
+          "local_id": "innkjoper",
+          "display_name": "Innkjøperen",
+          "dramatic_function": "Ser leverandørpriser, avtaler og timing som rapporten bare viser som kostnad.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "controller:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Merker når du begynner å kreve dokumentasjon, presisjon og forklaringer også av mennesker som bare vil bli trodd.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "controller:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Er stolt av at du har ansvar, men reagerer når du snakker om familieliv som om det var et avviksnotat.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    },
+    {
+      "role_id": "sport_utover",
+      "role_kind": "formal_work_role",
+      "display_name": "Profesjonell utøver",
+      "authority": {
+        "role_file": "data/Civication/lifestory/roles/sport_utover/role.json",
+        "scenes_file": "data/Civication/lifestory/roles/sport_utover/scenes.json",
+        "threads_file": "data/Civication/lifestory/roles/sport_utover/threads.json",
+        "manifest": "data/Civication/lifestory/manifest.json",
+        "role_scope": "sport_utover",
+        "content_only": false,
+        "system_role": false,
+        "badge_id": "sport",
+        "canonical_badge_titles": [
+          "Profesjonell utøver"
+        ]
+      },
+      "symposium": {
+        "title": "Arbeidsliv: Profesjonell utøver",
+        "protagonist": "Spilleren i formell jobbrolle Profesjonell utøver",
+        "status": "eksisterende_rollepakke_med_redaksjonelt_symposium",
+        "dramatic_premise": "Du lever av å prestere med kroppen uten å la kontrakt, uttak og resultat bli samme ting — eller la idretten spise hele livet rundt arbeidet.",
+        "central_question": "Idrettslig ambisjon mot kroppen og livet utenfor",
+        "primary_plot": {
+          "id": "P02",
+          "title": "Fra ringe kår til anerkjennelse"
+        },
+        "literary_main_track": {
+          "id": "L15",
+          "title": "Gjentakelse og gjenkomst"
+        },
+        "contemporary_story_type": {
+          "id": "C19",
+          "title": "Å begynne på nytt"
+        },
+        "conflicts": [
+          "prestasjon vs forsvarlig belastning",
+          "lagrolle vs statusambisjon",
+          "kontrakt vs sportslig uttak",
+          "resultat vs selvbilde",
+          "profesjonell disiplin vs privat liv"
+        ],
+        "work_tasks": [
+          "følge trenings- og konkurranseplan",
+          "rapportere belastning og skade tidlig",
+          "samarbeide med trener og støtteapparat",
+          "ivareta kontraktsforpliktelser",
+          "bygge restitusjon som del av arbeidet"
+        ],
+        "phase_plan": [
+          {
+            "phase": "inngang",
+            "function": "Etabler spillerens jobb, ansvar og mennesker rundt",
+            "source": "data/Civication/lifestory/roles/sport_utover/role.json"
+          },
+          {
+            "phase": "press",
+            "function": "La konkrete arbeidskonflikter og spillerens valg endre relasjoner og handlingsrom",
+            "motifs": [
+              "prestasjon vs forsvarlig belastning",
+              "lagrolle vs statusambisjon",
+              "kontrakt vs sportslig uttak",
+              "resultat vs selvbilde",
+              "profesjonell disiplin vs privat liv"
+            ]
+          },
+          {
+            "phase": "utfall_eller_videreforing",
+            "function": "Vis dokumenterte konsekvenser og mulig videreføring, uten automatisk karriereforfremmelse",
+            "existing_endings": [
+              "baerekraftig_profesjonell",
+              "presset_for_langt",
+              "lagrolle_med_tillit",
+              "statusjageren"
+            ]
+          }
+        ],
+        "narrative_boundaries": null,
+        "authored_endings": [
+          {
+            "id": "baerekraftig_profesjonell",
+            "title": "Bærekraftig profesjonell",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 60
+                }
+              },
+              "flagg": {
+                "sport_rapporterte_belastning": true
+              }
+            },
+            "standard": true
+          },
+          {
+            "id": "presset_for_langt",
+            "title": "Presset for langt",
+            "conditions": {
+              "meters": {
+                "energi": {
+                  "max": 55
+                }
+              },
+              "flagg": {
+                "sport_presset_videre": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "lagrolle_med_tillit",
+            "title": "Lagrolle med tillit",
+            "conditions": {
+              "meters": {
+                "integritet": {
+                  "min": 56
+                }
+              },
+              "flagg": {
+                "sport_eide_lagrollen": true
+              }
+            },
+            "standard": false
+          },
+          {
+            "id": "statusjageren",
+            "title": "Statusjageren",
+            "conditions": {
+              "meters": {
+                "synlighet": {
+                  "min": 55
+                }
+              },
+              "flagg": {
+                "sport_jaget_status": true
+              }
+            },
+            "standard": false
+          }
+        ],
+        "authored_scene_source": "data/Civication/lifestory/roles/sport_utover/scenes.json",
+        "next_editorial_step": "Kvalitetssikre dag-for-dag-scener, rolletro NPC-identitet og valgkonsekvenser før eventuelle nye kapitler"
+      },
+      "civication_cast": [
+        {
+          "actor_key": "sport_utover:trener_maja",
+          "local_id": "trener_maja",
+          "display_name": "Maja",
+          "dramatic_function": "Planlegger belastning, konkurranseforberedelse og rollebruk uten å eie utøverens kropp eller selvbilde.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "sport_utover:fysio_elias",
+          "local_id": "fysio_elias",
+          "display_name": "Elias",
+          "dramatic_function": "Gjør smerte, restitusjon og risiko til faglige signaler før de blir prestasjonsstopp.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "sport_utover:lagkontakt_samir",
+          "local_id": "lagkontakt_samir",
+          "display_name": "Samir",
+          "dramatic_function": "Bærer garderobens normer og oversetter hva laget faktisk tåler sosialt.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "sport_utover:lagkamerat_nora",
+          "local_id": "lagkamerat_nora",
+          "display_name": "Nora",
+          "dramatic_function": "Er både samarbeidspartner og sammenligningsflate for status, spilletid og utvikling.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "sport_utover:sportslig_leder",
+          "local_id": "sportslig_leder",
+          "display_name": "Ragnhild",
+          "dramatic_function": "Eier kontrakts- og troppsrammer, men kan ikke love prestasjon eller uttak.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "sport_utover:kontraktansvarlig",
+          "local_id": "kontraktansvarlig",
+          "display_name": "Henrik",
+          "dramatic_function": "Skiller profesjonell avtale, kommersielle muligheter og sportslig status fra hverandre.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "sport_utover:venn",
+          "local_id": "venn",
+          "display_name": "Jonas",
+          "dramatic_function": "Merker når trening, mat, søvn og resultat gjør hele privatlivet til prestasjonsforberedelse.",
+          "fictional": true,
+          "history_go_person_id": null
+        },
+        {
+          "actor_key": "sport_utover:familie",
+          "local_id": "familie",
+          "display_name": "Søsteren din",
+          "dramatic_function": "Ser både stoltheten og kostnaden ved å gjøre kroppen og resultatene til sosial identitet.",
+          "fictional": true,
+          "history_go_person_id": null
+        }
+      ],
+      "historical_people": {
+        "status": "ingen_kuratert_individuell_kobling_i_dette_registeret",
+        "policy": "History Go-personer er historisk fagkontekst, aldri fiktive karakterer",
+        "source": "data/Civication/historyPeople_index.json",
+        "refs": []
+      }
+    }
+  ]
+}
