@@ -10,9 +10,9 @@ test('Offentlig politikk, beslutning og implementering oppfyller Fagverkets kapi
   assert.equal(report.summary.moduleCount, 3);
   assert.equal(report.summary.sectionCount, 9);
   assert.equal(report.summary.paragraphCount, 27);
-  assert.equal(report.summary.claimCount, 33);
-  assert.equal(report.summary.sourceCount, 21);
-  assert.equal(report.summary.tracedClaimCount, 33);
+  assert.equal(report.summary.claimCount, 37);
+  assert.equal(report.summary.sourceCount, 25);
+  assert.equal(report.summary.tracedClaimCount, 37);
   assert.equal(report.gates.paragraphLevelClaimTrace, true);
   assert.equal(report.gates.registryAndRuntimeSynced, true);
   assert.equal(report.gates.honestEditorialStatus, true);
