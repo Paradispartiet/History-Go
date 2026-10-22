@@ -200,7 +200,12 @@
     // updateProfile / day events, unlike wholesale header innerHTML replacement.
     Array.from(header.querySelectorAll(".civi-header-chip")).forEach(function (chip) { chip.remove(); });
     const before = header.querySelector("#civiScoreTrigger");
-    chips.map(renderHeaderChip).forEach(function (chip) { header.insertBefore(chip, before); });
+    chips.map(renderHeaderChip).forEach(function (chip) {
+      // Append when the score widget has not been mounted yet. This also
+      // supports the lightweight shell used by standalone Civication tests.
+      if (before) header.insertBefore(chip, before);
+      else header.appendChild(chip);
+    });
     window.CivicationScoreUI?.renderHeader?.(header, options || lastHeaderStatusOptions || undefined);
   }
 
