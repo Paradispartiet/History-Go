@@ -640,8 +640,14 @@
   // Profile/day updates can arrive while a player is about to click.
   let lastRenderedBody = null;
   let lastRenderedMarkup = null;
+  let queuedDeliveryInFlight = false;
   function setActionBodyMarkup(body, markup) {
-    if (body === lastRenderedBody && markup === lastRenderedMarkup && body.isConnected) return;
+    if (body === lastRenderedBody && markup === lastRenderedMarkup && body.isConnected) {
+      const disabledQueued = body.querySelector?.("[data-civi-next-action-open-queued]:disabled");
+      if (!disabledQueued || queuedDeliveryInFlight) return;
+      // After a completed delivery attempt, an unchanged queued action must
+      // get a live button again; retaining its disabled DOM traps the player.
+    }
     body.innerHTML = markup;
     lastRenderedBody = body;
     lastRenderedMarkup = markup;
@@ -682,7 +688,8 @@
     // asynchronous profile metadata refreshes in the surrounding inbox.
     const queuedButton = body.querySelector("[data-civi-next-action-open-queued]");
     if (isQueuedAction(action) && queuedButton
-        && queuedButton.getAttribute("data-mail-id") === String(action.id || "")) {
+        && queuedButton.getAttribute("data-mail-id") === String(action.id || "")
+        && (queuedDeliveryInFlight || !queuedButton.disabled)) {
       return action;
     }
 
@@ -768,7 +775,13 @@
   }
 
   function deliverQueuedAction() {
-    const result = window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: true });
+    queuedDeliveryInFlight = true;
+    let result;
+    try {
+      result = window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: true });
+    } catch (error) {
+      result = Promise.reject(error);
+    }
     return Promise.resolve(result)
       .then(function (delivery) {
         dispatchNextActionUpdates();
@@ -779,6 +792,12 @@
         notifyFailure("Kunne ikke åpne saken", error);
         render();
         return { enqueued: false, reason: "exception", error };
+      })
+      .finally(function () {
+        queuedDeliveryInFlight = false;
+        // Rendering after settlement must recover a queued action left behind
+        // by an async update, while never bypassing the mail itself.
+        render();
       });
   }
 
