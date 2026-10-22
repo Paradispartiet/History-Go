@@ -658,9 +658,13 @@
   function setActionBodyMarkup(body, markup) {
     if (body === lastRenderedBody && markup === lastRenderedMarkup && body.isConnected) {
       const disabledQueued = body.querySelector?.("[data-civi-next-action-open-queued]:disabled");
-      if (!disabledQueued || queuedDeliveryInFlight) return;
-      // After a completed delivery attempt, an unchanged queued action must
-      // get a live button again; retaining its disabled DOM traps the player.
+      const disabledAnswer = body.querySelector?.("[data-civi-next-action-answer]:disabled");
+      // Preserve the DOM while an action is actually pending. Once the
+      // promise settles, unchanged markup is not proof that an old disabled
+      // button is still usable: rebuild it so real retries remain possible.
+      const queuedNeedsReset = !!disabledQueued && !queuedDeliveryInFlight;
+      const answerNeedsReset = !!disabledAnswer && !answerInFlight;
+      if (!queuedNeedsReset && !answerNeedsReset) return;
     }
     body.innerHTML = markup;
     lastRenderedBody = body;
@@ -992,7 +996,11 @@
         const debug = answerDebugContext;
         answerInFlight = false;
         answerDebugContext = null;
-        if (pendingRefresh) {
+        // A rejected/no-op answer may leave the same action current. Restore
+        // its real answer buttons after in-flight state clears, even when no
+        // separate profile event requested a rerender.
+        const staleDisabledAnswers = !!bodyEl?.querySelector?.("[data-civi-next-action-answer]:disabled");
+        if (pendingRefresh || staleDisabledAnswers) {
           pendingRefresh = false;
           render();
         }
