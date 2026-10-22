@@ -165,7 +165,7 @@ Senere kom kjøkken, restaurantdrift og glassveranda. I nyere tid ble bygningen 
 |---:|---|---|---|
 | 1 | Hva var Sæterhytten opprinnelig, før den ble parkpaviljong? | Et flytende kongelig badehus | Statsbygg |
 | 2 | Hvor lå badehuset før flyttingen? | På en pram utenfor Oscarshall | Statsbygg |
-| 3 | Hvem var badehuset fra 1852 bygget for? | Oscar I | Statsbygg |
+| 3 | Hvilken konge ble badehuset opprinnelig laget for? | Oscar I | Statsbygg |
 | 4 | Hvorfor ble badehuset tatt ned og flyttet? | Treverket var angrepet av mark | Statsbygg |
 | 5 | Hvilket år ble Sæterhytten innviet på Dronningberget? | 1862 | Oslo byleksikon / Statsbygg |
 | 6 | Hvilken dronning var innvielsen knyttet til? | Dronning Louise | Oslo byleksikon |
