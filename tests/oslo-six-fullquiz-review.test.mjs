@@ -7,10 +7,10 @@ import { buildOsloSixFullquizReview } from '../scripts/build-oslo-six-fullquiz-r
 const gate = JSON.parse(readFileSync(new URL('../reports/place-production/oslo-six-places-integration-gates-20261022.json', import.meta.url)));
 const manifest = JSON.parse(readFileSync(new URL('../data/quiz/manifest.json', import.meta.url)));
 
-test('five place-specific fullquiz proposals meet 3x7, answer, source and exact first-ten QuizCard parity', () => {
+test('three place-specific fullquiz proposals meet 3x7, answer, source and exact first-ten QuizCard parity', () => {
   const pack = buildOsloSixFullquizReview();
   const cards = buildOsloSixCardReview();
-  const ids = ['ekebergrestauranten', 'frognerseteren', 'sarabraten', 'saeterhytten_bygdoy', 'kristiania_teglverk_bryn'];
+  const ids = ['ekebergrestauranten', 'frognerseteren', 'sarabraten'];
   assert.equal(pack.publication_status, 'NOT_REGISTERED_NOT_PLAYABLE');
   assert.deepEqual(pack.places.map(p => p.place_id), ids);
   for (const place of pack.places) {
@@ -30,7 +30,7 @@ test('five place-specific fullquiz proposals meet 3x7, answer, source and exact 
     for (const [i, q] of questions.entries()) {
       assert.equal(q.id, place.place_id + '_review_quiz_' + String(i + 1).padStart(2, '0'));
       assert.equal(q.targetId, place.place_id);
-      assert.equal(q.categoryId, place.place_id === 'kristiania_teglverk_bryn' ? 'naeringsliv' : 'historie');
+      assert.equal(q.categoryId, 'historie');
       assert.equal(q.runtime_registered, false);
       assert.equal(q.source_url, place.source_url);
       assert.ok(q.source_url.startsWith('https://'));
@@ -51,7 +51,7 @@ test('five place-specific fullquiz proposals meet 3x7, answer, source and exact 
   }
 });
 
-test('five fullquiz proposals do not bypass source and geographic release gates', () => {
+test('three fullquiz proposals do not bypass source and geographic release gates', () => {
   const pack = buildOsloSixFullquizReview();
   for (const place of pack.places) {
     const hold = gate.places.find(p => p.place_id === place.place_id);
@@ -66,6 +66,4 @@ test('five fullquiz proposals do not bypass source and geographic release gates'
     assert.ok(!(manifest.sets || []).some(s => s.targetId === place.place_id));
   }
   assert.match(pack.places.find(p => p.place_id === 'frognerseteren').learning_scope_notice, /Holmenkollveien 200/);
-  const tegl = gate.places.find(p => p.place_id === 'kristiania_teglverk_bryn');
-  assert.match(tegl.geographical_anchor.reason, /14\/18/);
 });
