@@ -71,6 +71,13 @@ const fixtureStream = {
       opens_streams: ["fixture_leisure_stream"]
     },
     {
+      id: "offshift_people",
+      time_slot: ["people"],
+      subject: "Supporterprat utenom jobb",
+      situation: ["En venn vil snakke om helgens kamp."],
+      choices: [{ id: "A", label: "Snakk med vennen", effect: 0 }]
+    },
+    {
       id: "second",
       time_slot: ["leisure"],
       subject: "Andre storylet",
@@ -207,6 +214,15 @@ vm.runInContext(narrativeSource, context, { filename: narrativePath });
   });
   assert.equal(factoryDay.length, 1, "legitimate work streams still play in their own job");
   assert.equal(factoryDay[0].narrative_stream_id, "fagarbeider_work_stream");
+  const leisureDuringPaidWork = await catalog.getSourceScenes("narrative", {
+    mode: "slot", phaseId: "forenoon", active, state,
+    narrativeState: { active_streams: ["fixture_leisure_stream"], stream_progress: {}, flags: [] },
+    candidate_stream_ids: ["fixture_leisure_stream"],
+    used_storylet_keys: [], date: "2026-08-15", ordinal: 3
+  });
+  assert.equal(leisureDuringPaidWork.length, 0,
+    "off-duty supporter/people scenes must not appear during paid work phases");
+
   const narrativeState = {
     active_streams: activation.matched_stream_ids,
     stream_progress: {},
