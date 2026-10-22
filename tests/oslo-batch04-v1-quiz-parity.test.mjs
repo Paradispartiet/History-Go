@@ -21,10 +21,7 @@ const cardBatches = [
 const fullManifest = read("data/quiz/manifest.json");
 const quizFor = new Map();
 const cardFor = new Map();
-const knownDebts = new Map([
-  ["grev_wedels_plass_quiz_34", "Hvorfor holdes Brands-feltet uten oppdiktet innhold?"]
-]);
-const forbidden = /History Go|PlaceCard|QuizCard|Objects|Brands|canonical|targetId|targetet|quizkort|intern(?:e)? spill|spillterminologi/i;
+const forbidden = /History Go|PlaceCard|QuizCard|Objects|Brands|canonical|targetId|targetet|quizkort|intern(?:e)? spill|spillterminologi|`[a-z0-9_]+`/i;
 
 test("Oslo batch04: each of 17 places has a unique fullquiz file, valid manifest entries and 21+ questions", () => {
   assert.equal(ids.length, 17);
@@ -110,21 +107,40 @@ test("Oslo batch04: exactly 170 QuizCard questions retain direct and exact canon
   assert.equal([...cardFor.values()].reduce((n, c) => n + c.questions.length, 0), 170);
 });
 
-test("Oslo batch04: no new player-facing quiz question exposes internal model terminology", () => {
+test("Oslo batch04: player-facing question, choices and Knowledge contain no internal implementation terminology", () => {
   const offenders = [];
   for (const id of ids) {
     for (const q of quizFor.get(id).questions) {
-      if (forbidden.test(q.question)) offenders.push({ id, qid: q.id, question: q.question });
+      for (const [field, value] of [["question", q.question], ["knowledge", q.knowledge], ...q.options.map((option, index) => ["option " + index, option])]) {
+        if (typeof value === "string" && forbidden.test(value)) offenders.push({ id, qid: q.id, field, value });
+      }
     }
   }
-  for (const item of offenders) {
-    assert.equal(item.question, knownDebts.get(item.qid), item.qid + ": newly introduced internal/game-facing language");
-  }
-  // One pre-existing editorial defect remains a blocker for full editorial v1 acceptance.
+  assert.deepEqual(offenders, [], "Player-visible Oslo quiz terminology must be about history, not implementation");
   const revised = quizFor.get("grev_wedels_plass").questions.find(q => q.id === "grev_wedels_plass_quiz_22");
   assert.match(revised.question, /Kvinnetorso.*Hanne på stranden.*fontenen/, "The park-art question must remain grounded in actual artworks");
   assert.equal(revised.answer, "De er fysiske spor i selve parkrommet");
-  console.log("EDITORIAL_DEBT", JSON.stringify(offenders));
+});
+
+test("Oslo batch04: final source-aware revisions preserve place histories, chronology and linked Knowledge", () => {
+  const units = new Map(read("data/knowledge/knowledge_units.generated.json").units.map(u => [u.knowledge_unit_id, u]));
+  for (const id of ["grunnlovsbygget_bankplassen","akershus_kaier","oslo_mek","christiania_seildugsfabrik"]) {
+    const q = quizFor.get(id).questions.find(q => q.id === id + "_quiz_30");
+    assert.ok(q, id + ": synthesis question missing");
+    assert.ok(!q.question.includes("`"), id + ": internal place slug in question");
+    const unit = units.get(q.primary_knowledge_unit_id);
+    assert.ok(unit && unit.canonical_claim === q.knowledge, id + ": stale Knowledge for synthesis");
+  }
+  const grev = quizFor.get("grev_wedels_plass").questions;
+  for (const num of [23,27]) {
+    const q = grev.find(q => q.id === "grev_wedels_plass_quiz_" + num);
+    assert.ok(q && !forbidden.test(q.answer) && !forbidden.test(q.knowledge), q?.id + ": internal term survived");
+    const unit = units.get(q.primary_knowledge_unit_id);
+    assert.ok(unit && unit.canonical_claim === q.knowledge, q.id + ": canonical Knowledge mismatch");
+  }
+  const seilduk = quizFor.get("christiania_seildugsfabrik").questions.find(q => q.id === "christiania_seildugsfabrik_quiz_6");
+  assert.match(seilduk.knowledge, /seilduk for sjøfarten/);
+  assert.equal(units.get(seilduk.primary_knowledge_unit_id)?.canonical_claim, seilduk.knowledge);
 });
 
 test("Oslo batch04: the two formerly internal questions now teach place history with consistent Knowledge", () => {
@@ -150,4 +166,19 @@ test("Oslo batch04: the two formerly internal questions now teach place history 
   const aker = quizFor.get("oslo_mek").questions.find(q => q.id === "oslo_mek_quiz_1");
   assert.ok(!forbidden.test(aker.topic), "Aker place topic must not reference the data model");
   assert.ok(!aker.core_concepts.some(concept => /target-avklaring|canonical/i.test(concept)), "Internal target concept must not be part of learning");
+});
+
+test("Oslo batch04: Grev Wedels plass civic preservation has a source-backed question and synchronized Knowledge", () => {
+  const q = quizFor.get("grev_wedels_plass").questions.find(q => q.id === "grev_wedels_plass_quiz_34");
+  assert.equal(q.question, "Hva gjorde Oslo Byes Vel i 1962 som fikk betydning for Grev Wedels plass?");
+  assert.equal(q.answer, "Reddet Militærhospitalet fra ødeleggelse");
+  assert.deepEqual(q.source, ["grev_oslobyesvel_event"]);
+  assert.match(q.knowledge, /1962 reddet Oslo Byes Vel Militærhospitalet fra ødeleggelse/);
+  assert.equal(q.claim_basis, q.knowledge);
+  const units = read("data/knowledge/knowledge_units.generated.json").units;
+  const unit = units.find(u => u.knowledge_unit_id === q.primary_knowledge_unit_id);
+  assert.ok(unit, "Canonical Knowledge missing for q34");
+  assert.equal(unit.canonical_claim, q.knowledge);
+  assert.equal(unit.summary, q.knowledge);
+  assert.ok(unit.quiz_refs.includes(q.quiz_id));
 });
