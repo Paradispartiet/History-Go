@@ -113,3 +113,39 @@ Dette må senere materialiseres som Place-eid, kildebasert Fagverk etter gjelden
 5. **Kvalitetsgate:** målrettede schema-/manifest-/quiz-/Fagverk-/image-tester, faktisk mobil- og desktop-visning og seksdelt kvalitetsvurdering. Ingen v1/vFerdig, merge eller ferdigmelding før dokumenterte porter.
 
 **Scope-kontroll:** Denne filen er eneste foreslåtte endring i denne Stage A-grenen. Ingen fil i Oslo-bolk 04, eksisterende Place, produksjonsstatus eller forsknings-PR #6563 skal endres.
+
+## 8. Ettersjekk 22.10.2026 – katalogdublett, stedspunkt og fotorettigheter (Stage B-undersøkelse)
+
+> **Status:** Det er gjennomført skrivebordsbasert katalog-, kartkilde- og lisenssjekk. Dette er IKKE gjennomført regel-preflight, stedskontroll, bildeimport, fullquiz, Fagverk-integrasjon, browser-QA eller v1. Ingen canonical Place eller releasefiler endres av dette notatet.
+
+### 8A. Dokumentert dublett-/nærhetskontroll
+
+- Faktisk lest `data/places/manifest.json` (**1547** filbaner) og `data/places/places_index.json` (**1534** indekserte Places med kildefil). Sammenligning på `sourceFile` gir **13** manifestfiler som ikke forekommer i indeksen.
+- Kontroll av `id`, `name` og `aliases` i alle 1534 indekserte Places gav **null** kandidater med navnet «Linderud»; ett tilfeldig teksttreff på ordet i Aftenpostens `desc` gjelder en senere trykkeriadresse og er **ikke** et sted med identiteten Linderud gård.
+- Alle 13 uindekserte manifestfiler ble åpnet og kontrollert for `id`, `name`, koordinater og omtale av «Linderud». De fordeler seg på én Alnaelva-hovedsteder-fil, tre andre naturfiler og ni subkulturfiler; ingen er Linderud gård. Dermed er **1547/1547** katalogførte filbaner dekket av navne-/stedsidentitetskontroll, uten dokumentert direkte dublett.
+- Avstandsmåling fra foreløpig anleggspunkt **59.94194, 10.83380** til indekserte koordinater (haversine; luftlinje): **ingen innen 500 m**; nærmeste indekserte sted er `alnabru_jernbane_og_logistikk` («Alnabru godsterminal»), ca. **960 m** unna, radius 350 m. De 13 unntaksfilenes posisjoner gir heller ingen kollisjon; Alnaelva-hovedsteder er ca. 1,05 km unna. Avstand er ikke bevis for samme sted, men her samsvarer navn, kategori og geografisk atskillelse.
+- Avgrensning: dette er katalogkontroll mot den lesbare manifest-/indeksversjonen av `main` 22.10.2026, ikke bevis for at ingen framtidige PR-er, uindekserte eksterne databaser eller ugyldige historiske alias kan overlappe. Revider dublettkontrollen rett før canonical fil skrives.
+
+### 8B. Kildesamsvar for stedsanker; ingen spillerpin godkjent
+
+- **Adresse:** Trondheimsveien 319, 0593 Oslo. Samstemmig Oslo kommune, Oslo byleksikon og MiA.
+- **Forslag til foreløpig anleggspunkt:** `lat: 59.94194`, `lon: 10.83380`, fra Lokalhistoriewiki-siden *Linderud (gård i Oslo)*: https://lokalhistoriewiki.no/index.php/Linderud_(g%C3%A5rd_i_Oslo).
+- Uavhengige, omtrentlige anleggssentre: Mapcarta/GeoNames gård **59.94188, 10.83366** (https://mapcarta.com/31336468); OSM-avledet museumsbygning **59.94189, 10.83378** (https://mapcarta.com/W80871207). Samstemmer i størrelsesorden titalls meter, men ingen er dokumentasjon på trygg/åpen inngangsplassering.
+- MiA bekrefter at den historiske **hagen er åpen hele året**, og omtaler grusvei gjennom alleen, på gårdsplassen og gjennom hasseltunnelen/lindehallen. Kilder: https://mia.no/linderud/hagen og https://mia.no/linderud/om/tilgjengelighet. Det er likevel ikke koordinatfestet hvilken gangveiposisjon som er best for spill og ferdsel.
+- **Koordinatbeslutning:** godkjent *geografisk identitet / foreløpig anleggspunkt*, **ikke** endelig `coordRole`, `r`, offentlig inngang eller gameplay-pin. Velg kontrollerbart offentlig utepunkt og test avstand/radius før registrering.
+
+### 8C. Lisensverifisert primærkandidat for stedsfoto (ikke importert)
+
+- Anbefalt motiv for første produksjonsforsøk: **«Linderud gård hovedbygning2.JPG»**, hovedbygningen sett fra sør med hagen foran, foto **Helge Høifødt**, tatt 25.07.2008, original **3872×2592**. Originalfilens Commons-side dokumenterer fotografens eget arbeid og **CC BY-SA 3.0**: https://commons.wikimedia.org/wiki/File:Linderud_g%C3%A5rd_hovedbygning2.JPG.
+- Mulig alternativ med innkjørsel: **«Linderud gård hovedbygning1.JPG»**, Helge Høifødt, 25.07.2008, **CC BY-SA 3.0**, https://commons.wikimedia.org/wiki/File:Linderud_g%C3%A5rd_hovedbygning1.JPG. Alternativet fra vest, **hovedbygning3.JPG**, har tilsvarende opphavs- og lisensmetadata, men bildeutsnitt må vurderes visuelt for dagens PlaceCard: https://commons.wikimedia.org/wiki/File:Linderud_g%C3%A5rd_hovedbygning3.JPG.
+- **Påkrevd kreditering:** «Foto: Helge Høifødt / Wikimedia Commons, CC BY-SA 3.0», lenke til filside og lisens https://creativecommons.org/licenses/by-sa/3.0/; beskriv bearbeiding (beskjæring/WebP). Bearbeidede versjoner må distribueres på vilkår som er forenlige med ShareAlike.
+- **Bildestatus:** kun kandidat, metadata og lisens gjennomgått. Ingen binærfiler lastet inn i repo; ingen tre separate WebP-utgaver, ingen `image/frontImage/cardImage`, ingen mobil-/desktop-QA. Ikke bruk museumsnettstedets bildeserver som om deres foto automatisk er frie.
+
+### 8D. Faktakontroll: byggeår og hageanlegg
+
+- MiAs informasjonsside og tilgjengelighetside bruker **1713**: https://mia.no/linderud/om og https://mia.no/linderud/om/tilgjengelighet.
+- Oslo byleksikon bruker **1714**: https://oslobyleksikon.no/side/Linderud_g%C3%A5rd. SNL beskriver oppføring «omkring 1713»: https://snl.no/Linderud.
+- Hold formuleringen **«tidlig på 1700-tallet»** og ingen quiz om eksakt år inntil kildekonflikten er avklart.
+- MiA bekrefter at hagen blander trekk fra **renessanse, barokk, engelsk landskapsstil og funksjonalisme**, og har blant annet terrasser, speilkanal, hasseltunnel og en 180 meter lang lindehall (https://mia.no/linderud/hagen). Fagverk og quiz bør skille bevarte elementer, senere omforminger og restaurering tydelig.
+
+**Neste reelle produksjonsport:** løp gjeldende READ-FIRST og `node scripts/place-production-rule-preflight.mjs record ...` i sjekket ut repo; dokumenter kommandoresultat. Deretter velges offentlig utepunkt, originalbilder hentes og tre WebP-varianter lages, før canonical Place, 3×7 eller 4×7 fullquiz, identisk QuizCard-10 og Fagverk opprettes i samme stedsbolk. `v1_candidate` eller `v1` skal ikke settes fra denne rapporten.
