@@ -56,7 +56,10 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
       // Visit the canonical answer surface, including queued mail and task
       // gates. An actual pending mail cannot be bypassed by this helper.
       const modal = page.locator('#civiNextActionModal.is-open');
-      if (!(await modal.count())) {
+      // A prior inbox popup may leave an is-open action card in the DOM
+      // while its parent sheet is hidden. DOM presence is not visibility.
+      // Reopen the real inbox surface before trying to click its controls.
+      if (!(await modal.isVisible().catch(() => false))) {
         await page.locator('[data-lifestory-next-action], #civiTopActionCard [data-civi-top-action], [data-civi-open-next-action]').first().click({ timeout: 12000 });
         await modal.waitFor({ state: 'visible', timeout: 12000 });
       }
