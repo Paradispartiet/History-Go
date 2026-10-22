@@ -26,6 +26,20 @@ assert.equal(photo.frontImage,'bilder/places/telegrafbygningen_front_portrait.we
 assert.ok(fs.statSync(path.resolve(root,photo.frontImage)).size>20000);
 assert.match(photo.frontImageMeta?.outputSha256||'',/^[0-9a-f]{64}$/);
 assert.ok(photo.externalLinks?.some(x=>x.url===photo.frontImageMeta?.sourcePage));
+assert.equal(photo.image,'bilder/places/telegrafbygningen_hero.webp');
+assert.equal(photo.cardImage,'bilder/kort/places/telegrafbygningen_card.webp');
+assert.equal(new Set([photo.image,photo.frontImage,photo.cardImage]).size,3,'Three physical photo files required');
+for (const [key,metaKey,dimensions] of [
+ ['image','imageMeta','1400x900'],
+ ['cardImage','cardImageMeta','900x600'],
+ ['frontImage','frontImageMeta','900x1200']
+]) {
+ assert.equal(photo[metaKey]?.license,'CC BY-SA 4.0');
+ assert.equal(photo[metaKey]?.sourcePage,photo.frontImageMeta.sourcePage);
+ assert.equal(photo[metaKey]?.outputDimensions,dimensions);
+ assert.match(photo[metaKey]?.outputSha256||'',/^[0-9a-f]{64}$/);
+ assert.ok(fs.statSync(path.resolve(root,photo[key])).size>20000);
+}
 const server=http.createServer((req,res)=>{
  const uri=new URL(req.url,'http://localhost'),pathname=decodeURIComponent(uri.pathname);
  const file=path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));
@@ -58,6 +72,7 @@ try{
      hero:document.querySelector('#pcHeaderImage')?.naturalWidth||0,
      front:document.querySelector('#pcFrontImage')?.naturalWidth||0,
      source:document.querySelector('#pcFrontImage')?.currentSrc||'',
+     heroSource:document.querySelector('#pcHeaderImage')?.currentSrc||'',
      quizReady:Boolean(document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card'))
     }));
     assert.match(details.title,id==='telegrafbygningen'?/Telegraf|Telegraph/i:/Post|Hovedpost/i,'Incorrect PlaceCard title after localization');
@@ -66,6 +81,7 @@ try{
     if(id==='telegrafbygningen'){
       const expected='telegrafbygningen_front_portrait.webp';
       assert.ok(details.source.includes(expected),'PlaceCard did not use the attributed portrait asset');
+      assert.ok(details.heroSource.includes('telegrafbygningen_hero.webp'),'PlaceCard did not display sourced Telegraf hero image');
     }
     result.placeCard=true;result.frontDecoded=true;result.heroDecoded=true;
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&Boolean(document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card')),null,{timeout:35000});
