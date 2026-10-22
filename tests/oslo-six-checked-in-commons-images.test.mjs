@@ -12,7 +12,7 @@ test('all twelve checked-in Commons WebPs have exact recorded cryptographic hash
   const qa=load('reports/place-production/oslo-six-image-visual-qa-20261022.json');
   const manifests=load('data/places/manifest.json');
   const gate=load('reports/place-production/oslo-six-places-integration-gates-20261022.json');
-  assert.equal(source.status,'SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED');
+  assert.equal(source.status,'SOURCE_PAGES_REVIEWED_15_CROPS_STAGED_NOT_REGISTERED');
   assert.equal(report.schema,'history_go_oslo_six_prepared_commons_image_triplets_v1');
   assert.equal(report.status,'PREPARED_BYTES_NOT_VISUALLY_QA_NOT_REGISTERED');
   assert.equal(qa.status,'VISUAL_FRAMING_PASS_12_ASSETS_COMMITTED_BUT_NO_RUNTIME_BINDING');
