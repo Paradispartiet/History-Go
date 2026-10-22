@@ -774,11 +774,14 @@
     return true;
   }
 
-  function deliverQueuedAction() {
+  function deliverQueuedAction(queuedEventId = "") {
     queuedDeliveryInFlight = true;
     let result;
     try {
-      result = window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: true });
+      result = window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, {
+        ignorePending: true,
+        ...(queuedEventId ? { queuedEventId } : {})
+      });
     } catch (error) {
       result = Promise.reject(error);
     }
@@ -1075,7 +1078,9 @@
       if (openQueuedBtn && modal.contains(openQueuedBtn) && !openQueuedBtn.disabled) {
         event.preventDefault();
         openQueuedBtn.disabled = true;
-        deliverQueuedAction();
+        // Deliver the exact queued mail the player opened; requesting an
+        // unspecified next item can keep re-delivering an older runtime row.
+        deliverQueuedAction(String(openQueuedBtn.getAttribute("data-mail-id") || ""));
         return;
       }
 
