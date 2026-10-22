@@ -257,8 +257,8 @@ Dette er **ikke 50 nye aktive spørsmål i tillegg til de 60 over**, men alterna
 6. Hvem tegnet hovedrestauranten? | Holm Munthe | Lars Backer; Jacob Wilhelm Nordan; Wilhelm von Hanno | F1
 7. I hvilken stil er hovedrestauranten tegnet? | Dragestil | Funksjonalisme; brutalisme; renessanse | F1
 8. Når ble hovedrestauranten om- og tilbygd? | 1909 | 1862; 1936; 1998 | F1
-9. Når ble Frognerseteren sportshall oppført? | 1896 | 1714; 1916; 1973 | F1
-10. Når ble Frognerseteren endestasjon for Holmenkollbanen? | 1916 | 1889; 1909; 2005 | F1
+9. Hvilket år sto selve hovedrestauranten ferdig? | 1891 | 1867; 1909; 1916 | F1
+10. Hvilken bygning er Frognerseterens hovedrestaurant? | Bygningen i Holmenkollveien 200 | Heftyevillaen i nummer 201; Sportshallen i nummer 204; Skistua i nummer 202 | F1
 
 ### Sarabråten
 
