@@ -63,6 +63,7 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
       const queued = modal.locator('[data-civi-next-action-open-queued]').first();
       const task = modal.locator('[data-civi-next-action-task]').first();
       const answer = modal.locator('[data-civi-next-action-answer]').first();
+      const acknowledge = modal.locator('[data-civi-next-action-acknowledge]').first();
       if (await queued.count()) {
         const mailId = String(await queued.getAttribute('data-mail-id') || '');
         try {
@@ -94,6 +95,14 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
         }
       }
       else if (await task.count()) await task.click();
+      else if (await acknowledge.count()) {
+        // Real player acknowledgement of the read-only day summary, not a
+        // synthetic progression or test-only bypass of the mail runtime.
+        assert.equal(before.next?.phase, 'day_end');
+        assert.equal(before.next?.slot, 'day_summary');
+        assert.equal((before.next?.choices || []).length, 0);
+        await acknowledge.click({ timeout: 12000 });
+      }
       else if (await answer.count()) await answer.click();
       else throw Error(`${scenarioId}: no player answer for ${JSON.stringify(before.next)}`);
       await page.waitForTimeout(160);
