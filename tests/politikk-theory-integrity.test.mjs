@@ -14,10 +14,10 @@ test('Politikk strict theory integrity proves all thirteen canonical major field
   assert.equal(r.summary.canonicalEmners,123);
   assert.equal(r.summary.canonicalMethods,71);
   assert.equal(r.summary.canonicalHooks,152);
-  assert.equal(r.summary.directProofFields,5);
-  assert.equal(r.summary.explicitReadOnlySidecarFields,8);
+  assert.equal(r.summary.directProofFields,6);
+  assert.equal(r.summary.explicitReadOnlySidecarFields,7);
   assert.equal(r.summary.substantiveContentGapsProven,0);
-  assert.equal(r.sidecarFields.length,8);
+  assert.equal(r.sidecarFields.length,7);
   assert.equal(r.fields.length,13);
   assert.ok(r.fields.every(field=>field.strictlyProven===true));
   assert.ok(r.fields.every(field=>field.verifiedProseBoundClaims>=20));
