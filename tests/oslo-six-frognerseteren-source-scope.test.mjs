@@ -37,12 +37,23 @@ test('eleven new Frognerseteren restaurant-only questions match primary-source c
   assert.equal(audit.runtime_publication_status, 'NOT_REGISTERED');
 });
 
-test('restaurant extras have no adjacent-building hold; two contextual core questions stay blocked', () => {
+test('restaurant QuizCard and extras all target the correct building with operator sources, but remain unregistered', () => {
   const preview = buildOsloSixIntegrationPreview();
   const p = preview.places.find(p => p.place_id === 'frognerseteren');
   const held = p.fullquiz_preview.filter(q => q.adjacent_building_scope_hold).map(q => q.id);
-  assert.deepEqual(held, audit.quizcard_context_decisions.map(x => x.question_id));
-  assert.deepEqual(audit.quizcard_context_decisions.map(x => x.decision), ['CONTEXT_HOLD', 'CONTEXT_HOLD']);
+  assert.deepEqual(held, []);
+  assert.deepEqual(audit.quizcard_context_decisions, []);
+  assert.deepEqual(audit.quizcard_operator_source_facts.map(r => r.question_id), [
+    'frognerseteren_review_quiz_03', 'frognerseteren_review_quiz_05'
+  ]);
+  for (const row of audit.quizcard_operator_source_facts) {
+    const q = p.fullquiz_preview.find(question => question.id === row.question_id);
+    assert.ok(q);
+    assert.ok(q.source_urls.includes(OPERATOR));
+    assert.ok(p.quizcard_preview.some(card => card.sourceQuestionId === row.question_id));
+    assert.equal(row.independent_claim_signoff, false);
+    assert.equal(row.release_ready, false);
+  }
   assert.ok(p.fullquiz_preview.slice(10).every(q => !q.adjacent_building_scope_hold && q.source_urls.includes(OPERATOR)));
   assert.equal(preview.publication_status, 'BLOCKED_PREVIEW_ONLY_NO_RUNTIME_WRITES');
 });
