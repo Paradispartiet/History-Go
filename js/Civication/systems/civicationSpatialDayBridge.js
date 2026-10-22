@@ -37,6 +37,17 @@
   function activePosition() {
     try { return W.CivicationState?.getActivePosition?.() || null; } catch { return null; }
   }
+  // A formal job can replace the unemployed workday midway through a
+  // personal Life Story day. Spatial projections must never reuse yesterday's
+  // job/NAV runtime as if its tasks were today's work.
+  function activeRoleScope(active) {
+    if (!active) return "";
+    try {
+      const resolved = norm(W.CivicationCareerRoleResolver?.resolveCareerRoleScope?.(active));
+      if (resolved && resolved !== "unknown") return resolved;
+    } catch {}
+    return first(active.role_scope, active.role_key);
+  }
   function homeSnapshot() {
     try { return W.CivicationHome?.getState?.() || null; } catch { return null; }
   }
@@ -162,6 +173,8 @@
   function rawRuntimeRows() {
     try {
       const runtime = W.CivicationDailyMailBuilder?.inspect?.()?.runtime;
+      const scope = activeRoleScope(activePosition());
+      if (scope && runtime?.role_scope && norm(runtime.role_scope) !== scope) return [];
       return Array.isArray(runtime?.items) ? runtime.items : [];
     } catch { return []; }
   }
@@ -201,7 +214,21 @@
     return idx < 0 ? 99 : idx;
   }
   function getCurrentAction() {
-    try { return enrichAction(W.CivicationNextActionSelector?.getCurrent?.() || null); } catch { return null; }
+    try {
+      const action = W.CivicationNextActionSelector?.getCurrent?.() || null;
+      if (!action) return null;
+      const scope = activeRoleScope(activePosition());
+      const runtime = W.CivicationDailyMailBuilder?.inspect?.()?.runtime;
+      // Mirror the authority guard in CivicationNextActionUI: a stale
+      // day-phase item from the old job must not appear as a live map task.
+      if (scope && String(action.source || "").startsWith("day_phase")
+          && runtime?.role_scope && norm(runtime.role_scope) !== scope) return null;
+      const raw = findRawMailById(action.id);
+      const eventScope = first(raw?.role_scope, raw?.role_model_meta?.role_scope);
+      if (scope && eventScope && eventScope !== scope
+          && isWorkMail(raw, phaseOf(raw))) return null;
+      return enrichAction(action);
+    } catch { return null; }
   }
   function getDayPlan() {
     const current = getCurrentAction();
