@@ -79,6 +79,9 @@ assert.ok(dialog.textContent.includes("Omdømme") && dialog.textContent.includes
 dialog.querySelector(".civi-score-close").click();
 assert.equal(dialog.hasAttribute("open"), false, "dialog close works");
 
+// Clear the fixture's capital before asserting the no-measurements state.
+// A stored cultural capital score is a legitimate measured value.
+window.localStorage.removeItem("hg_capital_v1");
 window.CivicationSkills = null;
 window.CivicationPsyche = null;
 window.CivicationState = { getState: () => ({}), getActivePosition: () => null };
