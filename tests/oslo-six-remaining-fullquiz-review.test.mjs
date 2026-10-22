@@ -1,0 +1,70 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { buildOsloSixCardReview } from '../scripts/build-oslo-six-card-review.mjs';
+import { buildOsloSixRemainingFullquizReview } from '../scripts/build-oslo-six-remaining-fullquiz-review.mjs';
+
+const load = path => JSON.parse(readFileSync(new URL('../'+path,import.meta.url),'utf8'));
+const gate = load('reports/place-production/oslo-six-places-integration-gates-20261022.json');
+const manifest = load('data/quiz/manifest.json');
+
+test('Sæterhytten and Kristiania Teglverk each have 3x7 distinct source-traced questions and exact ten-card parity', () => {
+  const draft=buildOsloSixRemainingFullquizReview();
+  const cards=buildOsloSixCardReview();
+  assert.equal(draft.publication_status,'NOT_REGISTERED_NOT_PLAYABLE');
+  assert.deepEqual(draft.places.map(p=>p.place_id),['saeterhytten_bygdoy','kristiania_teglverk_bryn']);
+  for(const p of draft.places){
+    assert.equal(p.status,'EDITORIAL_SOURCE_REVIEW_NOT_V1');
+    assert.equal(p.sets.length,3);
+    assert.equal(p.proposed_quiz_profile,'narrow_3x7_unconfirmed');
+    assert.equal(p.quizcard_question_ids.length,10);
+    const flattened=p.sets.flatMap((s,i)=>{
+      assert.equal(s.order,i+1);
+      assert.equal(s.level,i+1);
+      assert.equal(s.questions.length,7);
+      return s.questions;
+    });
+    assert.equal(flattened.length,21);
+    assert.equal(new Set(flattened.map(q=>q.id)).size,21);
+    assert.equal(new Set(flattened.map(q=>q.question.toLowerCase())).size,21);
+    const card=cards.places.find(c=>c.place_id===p.place_id);
+    const category=p.place_id==='kristiania_teglverk_bryn'?'naeringsliv':'historie';
+    for(const [i,q] of flattened.entries()){
+      assert.equal(q.id,p.place_id+'_review_quiz_'+String(i+1).padStart(2,'0'));
+      assert.equal(q.targetId,p.place_id);
+      assert.equal(q.categoryId,category);
+      assert.ok(q.question.length>20,q.id);
+      assert.ok(q.knowledge.length>=70,q.id);
+      assert.ok(q.source_url.startsWith('https://'),q.id);
+      assert.equal(q.options.length,4,q.id);
+      assert.equal(new Set(q.options.map(v=>v.toLowerCase().normalize('NFKC'))).size,4,q.id);
+      assert.equal(q.options[q.answerIndex],q.answer,q.id);
+      assert.equal(q.runtime_registered,false,q.id);
+      if(i<10){
+        assert.equal(q.question,card.draft_cards[i].question,q.id);
+        assert.equal(q.answer,card.draft_cards[i].answer,q.id);
+        assert.equal(q.quizcard_candidate_id,card.draft_cards[i].id,q.id);
+        assert.equal(p.quizcard_question_ids[i],q.id);
+      }else{
+        assert.equal(q.quizcard_candidate_id,null,q.id);
+        assert.equal(q.source_review,'article_inspected_pending_independent_claim_signoff',q.id);
+      }
+    }
+  }
+});
+
+test('new 3x7 review packs retain geographic and publication holds', () => {
+  const draft=buildOsloSixRemainingFullquizReview();
+  for(const p of draft.places){
+    const release=gate.places.find(x=>x.place_id===p.place_id);
+    assert.equal(release.release_status,'BLOCKED');
+    assert.equal(release.geographical_anchor.status,'HOLD');
+    assert.ok(Object.values(release.publication_gates).every(x=>x===false));
+    assert.equal(p.canonical_place_created,false);
+    assert.equal(p.quiz_manifest_registered,false);
+    assert.equal(p.knowledge_synced,false);
+    assert.equal(p.browser_qa_passed,false);
+    assert.ok(!(manifest.sets||[]).some(s=>s.targetId===p.place_id));
+  }
+  assert.match(draft.places.at(-1).important_hold,/14\/18/);
+});
