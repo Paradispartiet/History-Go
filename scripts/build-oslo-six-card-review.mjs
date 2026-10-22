@@ -172,7 +172,7 @@ export function buildOsloSixCardReview() {
       options.splice(insertAt, 0, answer);
       return {
         id: place.id + '_card_review_' + String(index + 1).padStart(2, '0'),
-        categoryId: place.id === 'kristiania_teglverk_bryn' ? 'naeringsliv' : 'historie',
+        categoryId: place.id === 'kristiania_teglverk_bryn' ? 'naeringsliv' : (place.id === 'ekebergrestauranten' ? 'by' : 'historie'),
         targetId: place.id,
         question: core.question,
         answer,
