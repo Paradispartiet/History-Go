@@ -20,9 +20,9 @@ test('Offentlig forvaltning oppfyller full Politikk-kontrakt', () => {
   assert.equal(report.summary.methodCount, 21);
   assert.equal(report.summary.sectionCount, 9);
   assert.equal(report.summary.paragraphCount, 27);
-  assert.equal(report.summary.claimCount, 36);
-  assert.equal(report.summary.sourceCount, 24);
-  assert.equal(report.summary.tracedClaimCount, 36);
+  assert.equal(report.summary.claimCount, 39);
+  assert.equal(report.summary.sourceCount, 27);
+  assert.equal(report.summary.tracedClaimCount, 39);
   assert.equal(report.summary.fullContractChapterCount, 13);
   assert.equal(report.gates.completeEditorialStatus, true);
 });
