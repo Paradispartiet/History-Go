@@ -96,13 +96,17 @@
       id: 'comparison', label: 'Sammenlign Ungarn og Polen',
       prompt: 'Hva er likt, hva er forskjellig, og hva kan ikke kildene bevise?',
       placeholder: 'Jeg sammenligner ... Kildene viser ... Men vi vet ikke ...',
-      limit: 'Valgobservasjonene dokumenterer ikke en identisk årsakskjede, nøyaktig stemmeeffekt eller senere reformvirkning.'
+      limit: 'Valgobservasjonene dokumenterer ikke en identisk årsakskjede, nøyaktig stemmeeffekt eller senere reformvirkning.',
+      instructions: 'Skriv med egne ord en etterprøvbar likhet og en relevant forskjell mellom valgene. Forklar også hva kildene ikke kan bevise. Teksten vurderes ikke automatisk og lagres ikke som mestring.',
+      revisionStarter: 'ODIHR observerte ... i begge land. En viktig forskjell er ... . Det gir grunnlag for å si ..., men ikke ... .'
     },
     {
       id: 'poland', label: 'Polen 2023: administrasjon og konkurranse',
       prompt: 'Forklar hvordan et konkurransepreget og effektivt administrert valg likevel kan ha skjeve konkurransevilkår. Bruk ODIHRs konkrete observasjoner, drøft en mulig mekanisme og avgrens slutningen.',
       placeholder: 'I Polen 2023 observerte ODIHR ... En mulig mekanisme er ... Rapporten beviser ikke ...',
       limit: 'ODIHRs vurderinger av valgkamp og administrasjon dokumenterer ikke manipulert opptelling i hele landet, en bestemt stemmeeffekt eller gjennomførte reformer.',
+      instructions: 'Skriv med egne ord én dokumentert observasjon om valgadministrasjon og én om konkurransevilkår i Polen. Forklar forskjellen, en mulig mekanisme og en grense for slutningen. Teksten vurderes ikke automatisk og lagres ikke som mestring.',
+      revisionStarter: 'I Polen beskrev ODIHR ... om administrasjonen, men ... om konkurransevilkårene. Dette kan gi en fordel ved at ...; rapporten måler ikke ... .',
       questionIndices: [0, 1, 3, 4]
     },
     {
@@ -110,6 +114,8 @@
       prompt: 'Forklar hvordan sammenblanding av stat og regjeringsparti kan svekke lik konkurranse uten å påstå at valgets opptelling var manipulert eller at en bestemt stemmeeffekt er beregnet.',
       placeholder: 'I Ungarn 2022 observerte ODIHR ... Dette kan påvirke konkurransen ved ... Vi kan ikke slutte at ...',
       limit: 'ODIHRs observasjoner dokumenterer konkurransevilkår og mulige mekanismer, ikke nøyaktig stemme-/mandateffekt, manipulert opptelling eller senere reformvirkning.',
+      instructions: 'Skriv med egne ord en observert skjevhet i Ungarns valgkamp, en mulig mekanisme og et presist forbehold om virkning. Ikke forveksle valgkampvilkår med påstander om manipulert opptelling. Teksten vurderes ikke automatisk og lagres ikke som mestring.',
+      revisionStarter: 'I Ungarn observerte ODIHR ... . Det kan påvirke konkurransen fordi ... . Kilden viser ikke hvor mange stemmer eller mandater dette endret.',
       questionIndices: [0, 1, 2]
     }
   ]);
@@ -274,7 +280,7 @@
     const taskDescription = element('p', 'politikk-evidence-assignment', activeTask.prompt);
     const taskEvidence = element('div', 'politikk-evidence-task-sources');
     taskEvidence.hidden = true;
-    const instructions = element('p', '', 'Skriv minst én begrunnelse med egne ord: Hva er likt, hva er forskjellig, og hva kan ikke kildene bevise? Teksten vurderes ikke automatisk og lagres ikke som mestring.');
+    const instructions = element('p', 'politikk-evidence-instructions', activeTask.instructions);
     const note = element('textarea', 'politikk-evidence-note');
     note.id = 'politikkEvidenceOwnReasoning';
     note.rows = 4;
@@ -347,11 +353,22 @@
         return;
       }
       plan.replaceChildren(element('h6', '', 'Dine neste forbedringsgrep'));
+      // Prioriter ett selvvalgt forbedringsbehov fremfor fire likeverdige råd.
+      const priority = { improve: 0, uncertain: 1, clear: 2 };
+      const rated = [];
       SELF_REVIEW.forEach((baseCriterion, index) => {
         const criterion = CASE_REVIEW[activeTask.id]?.[baseCriterion.id] || baseCriterion;
         const item = element('p', '', criterion.heading + ': ' + criterion.next[selectors[index].value]);
-        item.dataset.criterion = criterion.id;
+        item.dataset.criterion = baseCriterion.id;
+        rated.push({ item, rating: selectors[index].value, index });
+      });
+      rated.sort((a, b) => priority[a.rating] - priority[b.rating] || a.index - b.index);
+      rated.forEach(({ item }, index) => {
+        const lead = index === 0;
+        if (lead) item.classList.add('politikk-evidence-first-step');
+        item.textContent = (lead ? 'Start her – ' : 'Deretter – ') + item.textContent;
         plan.append(item);
+        if (lead) plan.append(element('p', '', 'Prøv denne setningsstrukturen med egne ord: ' + activeTask.revisionStarter));
       });
       plan.append(element('p', '', 'Dette er forslag valgt ut fra dine egne avkrysninger. Ingen har kontrollert eller vurdert friteksten automatisk.'));
       planStatus.textContent = 'Forbedringsplanen er klar. Rediger gjerne teksten og gjør en ny egenvurdering.';
@@ -376,6 +393,7 @@
     caseSelect.addEventListener('change', () => {
       activeTask = CASE_TASKS.find(task => task.id === caseSelect.value) || CASE_TASKS[0];
       taskDescription.textContent = activeTask.prompt;
+      instructions.textContent = activeTask.instructions;
       note.value = '';
       note.placeholder = activeTask.placeholder;
       report.hidden = true;

@@ -83,6 +83,8 @@ try {
     assert.match(suggestions, /plausibel mekanisme/);
     assert.match(suggestions, /reformanbefalinger ikke beviser/);
     assert.match(suggestions, /dine egne avkrysninger/);
+    assert.match(await rubric.locator('.politikk-evidence-first-step').textContent(), /Start her – Kildebelegg/, 'first revision priority');
+    assert.match(suggestions, /ODIHR observerte/, 'comparison writing scaffold is available');
 
     await rubric.locator('#politikkEvidenceRating-belegg').selectOption('clear');
     assert.equal(await rubric.locator('#politikkEvidenceImprovementPlan').isVisible(), false, 'changing the self-review invalidates old advice');
@@ -105,6 +107,7 @@ try {
     assert.equal(await rubric.isVisible(), false, 'changing case invalidates prior review');
     assert.equal(await host.locator('#politikkEvidenceOwnReasoning').inputValue(), '', 'no prior text is reused');
     assert.match(await host.locator('.politikk-evidence-assignment').textContent(), /konkurransepreget og effektivt administrert valg/);
+    assert.match(await host.locator('.politikk-evidence-instructions').textContent(), /valgadministrasjon og én om konkurransevilkår/, 'country-specific instructions for Poland');
     assert.match(await host.locator('.politikk-evidence-task-sources').textContent(), /nasjonale valgkommisjonen/);
     assert.equal(await host.locator('.politikk-evidence-task-source').count(), 4);
     assert.ok((await host.locator('.politikk-evidence-task-sources a').evaluateAll(nodes => nodes.map(node => node.getAttribute('href'))))
@@ -120,12 +123,15 @@ try {
     }
     await rubric.getByRole('button', { name: 'Lag min forbedringsplan' }).click();
     assert.match(await rubric.locator('#politikkEvidenceImprovementPlan').textContent(), /valgadministrasjon/);
+    assert.match(await rubric.locator('#politikkEvidenceImprovementPlan').textContent(), /I Polen beskrev ODIHR/, 'Poland revision scaffold');
+    assert.equal(await rubric.locator('#politikkEvidenceImprovementPlan [data-criterion]').count(), 4, 'all four criteria retain identities');
 
     await taskSelect.selectOption('hungary');
     assert.equal(await rubric.isVisible(), false, 'new case clears prior self-review');
     assert.equal(await host.locator('#politikkEvidenceImprovementPlan').isVisible(), false);
     assert.equal(await host.locator('#politikkEvidenceOwnReasoning').inputValue(), '');
     assert.equal(await host.locator('.politikk-evidence-task-source').count(), 3);
+    assert.match(await host.locator('.politikk-evidence-instructions').textContent(), /observert skjevhet i Ungarns valgkamp/, 'country-specific instructions for Hungary');
     assert.ok((await host.locator('.politikk-evidence-task-sources a').evaluateAll(nodes => nodes.map(node => node.getAttribute('href'))))
       .every(url => url.includes('/hungary/') || url.endsWith('/523565')), 'Hungary task links to Hungarian reports');
     await host.locator('#politikkEvidenceOwnReasoning').fill('Ungarn hadde reelle valgalternativer, men sammenblanding av stat og parti kan gi fordel uten at mandatvirkning er målt.');
@@ -133,6 +139,14 @@ try {
     assert.match(await rubric.textContent(), /valgavvikling, valgkamp og velgeratferd/);
     assert.match(await host.locator('#politikkEvidenceReport').textContent(), /nøyaktig stemme-\/mandateffekt/);
     assert.equal(await rubric.locator('#politikkEvidenceRating-belegg').inputValue(), '');
+    for (const id of ['belegg', 'sammenligning', 'forbehold']) {
+      await rubric.locator('#politikkEvidenceRating-' + id).selectOption('clear');
+    }
+    await rubric.locator('#politikkEvidenceRating-mekanisme').selectOption('improve');
+    await rubric.getByRole('button', { name: 'Lag min forbedringsplan' }).click();
+    assert.match(await rubric.locator('.politikk-evidence-first-step').textContent(), /Start her – Mekanisme og årsak/, 'Hungary mechanism gets priority');
+    assert.match(await rubric.locator('#politikkEvidenceImprovementPlan').textContent(), /I Ungarn observerte ODIHR/, 'Hungary revision scaffold');
+    assert.equal(await rubric.locator('#politikkEvidenceImprovementPlan [data-criterion]').count(), 4);
 
     const stored = await page.evaluate(() => ({
       knowledge: JSON.parse(localStorage.getItem('hg_knowledge_entries_v2') || '[]'),
