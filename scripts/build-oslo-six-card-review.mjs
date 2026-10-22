@@ -105,13 +105,13 @@ const DETAILS = Object.freeze({
     knowledge: [
       'Før den sto på Dronningberget, var Sæterhytten et flytende badehus for kongefamilien ved Oscarshall.',
       'Badehuset lå på en pram utenfor Oscarshall før det ble tatt ned og flyttet til Dronningberget.',
-      'Det opprinnelige badehuset ble bygd i 1852 for kong Oscar I.',
+      'Det opprinnelige badehuset ble bygd i 1852 for kong Oscar I, da det lå flytende på en pram utenfor Oscarshall.',
       'Tømmeret var skadet av mark. Bygningen ble demontert, flyttet og tatt i bruk på ny måte.',
       'Sæterhytten ble innviet på Dronningberget i 1862, etter ombyggingen fra badehus til paviljong.',
-      'Innvielsen ble knyttet til dronning Louises navnedag 25. august 1862.',
+      'Innvielsen fant sted 25. august 1862 på dronning Louises navnedag, etter at det tidligere badehuset var flyttet til Dronningberget.',
       'De tre L-ene viste til dronning Louise og to andre kvinnelige gjester i kongefamilien som også het Louise.',
       'Henrik Ibsen skrev et dikt til innvielsen. Det hører til bygningens rolle i 1800-tallets hoffkultur.',
-      'Kafédriften ved Sæterhytten startet i 1866, noen år etter innvielsen.',
+      'Kafédriften ved Sæterhytten startet i 1866, fire år etter innvielsen. Samme år ble det også reist en musikkpaviljong på Dronningberget.',
       'Restaureringen av Sæterhytten ble avsluttet i 2011. Den er ikke identisk med de eldre flytte- og ombyggingsfasene.'
     ]
   },
@@ -132,9 +132,9 @@ const DETAILS = Object.freeze({
       'Kristiania Teglverk ble anlagt ved Bryn i 1897 under byens sterke byggevekst.',
       'Byggekrakket svekket etterspørselen, og verket stanset produksjonen allerede i 1898.',
       'Virksomheten kom i gang igjen i 1912 etter den første langvarige driftsstansen.',
-      'Råstoffet var leire, som ble bearbeidet til ulike teglprodukter.',
+      'Råstoffet var leire, som ble bearbeidet i teglverkets produksjonslinje før den ble formet, tørket og brent til ulike teglprodukter.',
       'Ringovnen brente teglstein og er et sentralt bevart industrispor i verksbygningen.',
-      'Fabrikken ble rammet av brann i 1936 og måtte bygges opp igjen.',
+      'Fabrikken ble rammet av en omfattende brann i 1936 og måtte bygges opp igjen. Gjenoppbyggingen ble brukt til å modernisere maskiner og tørking.',
       'Spillvarme fra ringovnen ble brukt til tørking av tegl, et viktig samspill mellom ovn og tørkerom.',
       'Verket framstilte blant annet drensrør i tillegg til mur- og takstein.',
       'Driften ble avviklet mot slutten av 1960-årene etter svake avsetningsforhold.',
