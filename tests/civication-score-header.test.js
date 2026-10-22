@@ -29,6 +29,8 @@ window.CivicationPsyche = { getSnapshot: () => ({
   integrity: 70, visibility: 50, economicRoom: 40, autonomy: 60,
   psychologyCompetence: 30, trustSummary: { avgPercent: 50, count: 0 }
 }) };
+window.localStorage.setItem("hg_capital_v1", JSON.stringify({ cultural: 170 }));
+const beforeCapital = window.localStorage.getItem("hg_capital_v1");
 const beforeCanonical = JSON.stringify(canonical);
 const beforeLife = JSON.stringify(life);
 for (const filename of ["js/Civication/ui/CivicationScoreUI.js",
@@ -36,12 +38,16 @@ for (const filename of ["js/Civication/ui/CivicationScoreUI.js",
   window.eval(fs.readFileSync(path.join(root, filename), "utf8"));
 }
 const model = window.CivicationScoreUI.getModel({ state: life });
-assert.equal(model.count, 16);
-assert.equal(model.score, 53, "the score is the unweighted mean of measured 0–100 indicators");
+assert.equal(model.count, 17);
+assert.equal(model.score, 56, "the score is the unweighted mean of measured 0–100 indicators");
 assert.equal(model.groups.find(g => g.name === "Skills").rows[2].score, null,
   "unmeasured skills are not invented as zero");
 assert.deepEqual(model.groups.find(g => g.name === "Omdømme").rows.map(x => x.score), [0, 100]);
 assert.equal(model.currency, -50000, "unbounded money stays an amount and is excluded");
+assert.equal(model.groups.find(g => g.name === "Kapital").rows[0].score, 100,
+  "capital above 100 is visually capped without migrating the underlying game state");
+assert.equal(window.localStorage.getItem("hg_capital_v1"), beforeCapital,
+  "display-only capital cap cannot overwrite saved values");
 assert.equal(JSON.stringify(canonical), beforeCanonical, "HUD never mutates canonical state");
 assert.equal(JSON.stringify(life), beforeLife, "HUD never mutates life state");
 
@@ -49,8 +55,8 @@ const header = window.document.getElementById("civiLifestoryHeaderStatus");
 window.CivicationDashboardUI.updateHeaderStatus({ state: life, view: { fase: { navn: "Morgen" } } });
 const btn = header.querySelector("#civiScoreTrigger");
 assert.ok(btn && btn.tagName === "BUTTON", "score is an accessible interactive button");
-assert.equal(btn.textContent, "53");
-assert.match(btn.getAttribute("aria-label"), /53 av 100/);
+assert.equal(btn.textContent, "56");
+assert.match(btn.getAttribute("aria-label"), /56 av 100/);
 assert.ok(header.textContent.includes("Museumsvert") && header.textContent.includes("Dag 3"));
 assert.ok(!header.textContent.includes("Psyke") && !header.textContent.includes("PC"));
 window.CivicationDashboardUI.updateHeaderStatus();
