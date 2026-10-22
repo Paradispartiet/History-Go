@@ -89,8 +89,16 @@ def main() -> None:
             raise RuntimeError("Unexpected license " + place_id)
         info = commons_image_info(lead["page"])
         data = fetch(info["url"])
-        if sha1_base36(data) != info["sha1"]:
-            raise RuntimeError("Commons content checksum mismatch for " + place_id)
+        # MediaWiki imageinfo deployments can represent SHA-1 in base-36 or hex.
+        # Accept only a checksum that exactly matches one of those two encodings.
+        expected = str(info["sha1"]).lower().lstrip("0")
+        hashes = {sha1_base36(data).lstrip("0"), hashlib.sha1(data).hexdigest().lstrip("0")}
+        if expected not in hashes:
+            raise RuntimeError(
+                "Commons content checksum mismatch for " + place_id +
+                "; expected=" + str(info["sha1"]) + ", derived_base36=" +
+                sha1_base36(data) + ", derived_hex=" + hashlib.sha1(data).hexdigest()
+            )
         with Image.open(io.BytesIO(data)) as raw:
             raw.load()
             if raw.format != "JPEG":
