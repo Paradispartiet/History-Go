@@ -41,9 +41,9 @@ const DETAILS = Object.freeze({
     distractors: [
       ['Bogstad gård', 'Vestre Holmen gård', 'Sogn hovedgård'],
       ['Axel Heiberg', 'Christian Ringnes', 'Thorvald Meyer'],
-      ['1864', '1889', '1891'],
+      ['Importert svensk tømmer', 'Tømmer fra Bygdøy', 'Gjenbrukte skipsplanker'],
       ['Aker kommune', 'Den norske stat', 'Et privat utbyggingsselskap'],
-      ['1889', '1891', '1909'],
+      ['Holm Munthe', 'Herman Major Schirmer', 'Christian Heinrich Grosch'],
       ['1867', '1909', '1916'],
       ['Lars Backer', 'Herman Major Schirmer', 'Henrik Bull'],
       ['Funksjonalisme', 'Jugendstil', 'Nyklassisisme'],
@@ -53,9 +53,9 @@ const DETAILS = Object.freeze({
     knowledge: [
       'Frognerseteren var opprinnelig seter i Trevollskogen, som hørte til Frogner hovedgård.',
       'Thomas Heftye kjøpte skogeiendommen i 1864. Kommunen kjøpte området av arvingene først i 1889.',
-      'Heftyes landsted ble oppført i 1867; dette er Heftyevillaen, ikke hovedrestauranten fra 1891.',
+      'Hovedrestaurantens byggetømmer kom fra kommunens egen skog ifølge restauratørens publiserte bygningshistorie.',
       'Kristiania kommune kjøpte eiendommen i 1889, noe som la grunnlag for videre offentlig utfartstilrettelegging.',
-      'Den nye veien opp fra Holmenkollbakken mot Frognerseteren ble åpnet i 1890.',
+      'Byarkitekt Christian Heiberg innredet Styrerommet. Rommets dekorative malerier ble utført av Ulrik Hendriksen.',
       'Hovedrestauranten ble oppført i 1891 og senere utvidet. Heftyevillaen fra 1867 er en annen bygning.',
       'Holm Munthe tegnet både hovedrestauranten og Sportshallen i dragestil. Han var ikke arkitekt for Heftyevillaen.',
       'Dragestilen viste romantiske forbilder fra norsk trearkitektur, blant annet gjennom takformer og utskjæringer.',
@@ -180,6 +180,8 @@ export function buildOsloSixCardReview() {
         answerIndex: insertAt,
         knowledge: details.knowledge[index],
         source_trace: core.source_trace,
+        source_url: place.id === 'frognerseteren' && [2, 4].includes(index)
+          ? 'https://www.frognerseteren.no/mer-historie-' : null,
         source_bundle_urls,
         source_claim_review: 'pending_per_question_original_source_review',
         fullquiz_question_id: null,
