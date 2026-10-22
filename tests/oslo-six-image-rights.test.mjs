@@ -14,11 +14,8 @@ test('five correct licensed images found while Kristiania Teglverk remains witho
   assert.equal(ready.length, 5);
   for (const p of ready) {
     const c = p.lead_candidate;
-    if (p.place_id === 'sarabraten') assert.equal(p.status, 'LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED');
-    else {
-      assert.equal(p.status, 'LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND');
-      assert.equal(p.asset_paths.length, 3);
-    }
+    assert.equal(p.status, 'LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND');
+    assert.equal(p.asset_paths.length, 3);
     assert.match(c.page, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
     assert.ok(c.author.length > 1);
     assert.ok(['CC BY 2.5', 'CC BY 3.0', 'CC BY-SA 3.0', 'public_domain_dedication_by_author'].includes(c.license));
@@ -28,7 +25,8 @@ test('five correct licensed images found while Kristiania Teglverk remains witho
   }
   const ruins = pack.places.find(p => p.place_id === 'sarabraten');
   const tegl = pack.places.find(p => p.place_id === 'kristiania_teglverk_bryn');
-  assert.equal(ruins.status, 'LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED');
+  assert.equal(ruins.status, 'LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND');
+  assert.equal(ruins.asset_paths.length,3);
   assert.equal(tegl.status, 'HARD_HOLD_NO_BUILDING_IDENTITY_IMAGE');
   assert.equal(ruins.lead_candidate.author, 'Kjetil Ree');
   assert.match(ruins.lead_candidate.subject, /stein/);
