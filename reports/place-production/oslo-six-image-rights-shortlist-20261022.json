@@ -1,8 +1,8 @@
 {
   "schema": "history_go_oslo_six_image_candidate_rights_v1",
   "as_of": "2026-10-22",
-  "status": "SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED",
-  "objective": "Four Commons images with twelve WebP assets already staged in repository; a fifth independently license-reviewed Sarabråten ruined-wall lead now found awaiting source SHA1 and crop QA. All remain unbound to active Places.",
+  "status": "SOURCE_PAGES_REVIEWED_15_CROPS_STAGED_NOT_REGISTERED",
+  "objective": "Five independently source/license verified Commons place photographs have produced fifteen checked-in WebP crops with separate visual framing review. None are bound to active Places. The remaining Kristiania Teglverk image requires specific factory building identity and license.",
   "requirements": [
     "Check source file identity and building depicted",
     "Retain full Commons file URL, creator, license and edit notes alongside derivatives",
@@ -105,7 +105,7 @@
     },
     {
       "place_id": "sarabraten",
-      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_ASSETS_STAGED_NOT_BOUND",
       "lead_candidate": {
         "page": "https://commons.wikimedia.org/wiki/File:Sarabr%C3%A5ten_-_2012-08-12_at_13-36-42.jpg",
         "author": "Kjetil Ree",
@@ -137,7 +137,13 @@
         }
       ],
       "next": "Prepare three WebP crops and retain true ruins/forest scene; credit Kjetil Ree and mark modifications.",
-      "editorial_image_review": "2026-10-22: found 2012 ruin-wall closeup on Commons with credited CC BY-SA 3.0; verified in original image; original image height 2848, width 4288. Photo has no claim that destroyed villa still stands. Crop QA pending."
+      "editorial_image_review": "2026-10-22: found 2012 ruin-wall closeup on Commons with credited CC BY-SA 3.0; verified in original image; original image height 2848, width 4288. Photo has no claim that destroyed villa still stands. Crop QA pending.",
+      "asset_paths": [
+        "bilder/places/auto/sarabraten__commons_lead.webp",
+        "bilder/places/auto/sarabraten__commons_card.webp",
+        "bilder/places/auto/sarabraten__commons_popup.webp"
+      ],
+      "visual_qa_report": "reports/place-production/oslo-six-image-visual-qa-20261022.json"
     },
     {
       "place_id": "saeterhytten_bygdoy",
@@ -176,9 +182,9 @@
     }
   ],
   "completed_requirements": [
-    "Verified four Commons originals with SHA-1 and MIME/dimensions in CI",
-    "Produced three independently size-defined WebP crops per lead photo",
-    "Inspected all twelve actual crops for scene identity and subject framing",
-    "Committed twelve WebP candidates and attribution sidecar to the same PR"
+    "Verified five Commons originals with SHA-1, MIME and dimensions in GitHub Actions",
+    "Generated three correctly sized WebP crops for each of five leads",
+    "Inspected all fifteen real image crops for historic site identity and usable card/popup framing",
+    "Committed fifteen WebP candidates and attribution sidecar to the existing six-place PR"
   ]
 }
