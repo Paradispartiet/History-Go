@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SHORTLIST = ROOT / "reports/place-production/oslo-six-image-rights-shortlist-20261022.json"
 OUT = ROOT / "bilder/places/auto"
 ATTRIBUTION = ROOT / "reports/place-production/oslo-six-generated-image-attribution-20261022.json"
-APPROVED_IDS = ("linderud_gard", "ekebergrestauranten", "frognerseteren", "saeterhytten_bygdoy")
+APPROVED_IDS = ("linderud_gard", "ekebergrestauranten", "frognerseteren", "sarabraten", "saeterhytten_bygdoy")
 USER_AGENT = "HistoryGo-ImageQA/1.0 (https://github.com/Paradispartiet/History-Go; Commons author credit preserved)"
 MAX_INPUT = 24 * 1024 * 1024
 
