@@ -74,7 +74,7 @@ def sha1_base36(data: bytes) -> str:
 def main() -> None:
     shortlist = json.loads(SHORTLIST.read_text(encoding="utf-8"))
     candidates = {row["place_id"]: row for row in shortlist["places"]}
-    if shortlist["status"] not in ("SOURCE_PAGES_REVIEWED_NO_IMAGE_IMPORTED_OR_CROPPED", "SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED"):
+    if shortlist["status"] not in ("SOURCE_PAGES_REVIEWED_NO_IMAGE_IMPORTED_OR_CROPPED", "SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED", "SOURCE_PAGES_REVIEWED_15_CROPS_STAGED_NOT_REGISTERED"):
         raise RuntimeError("Source image review stage has changed")
     if set(APPROVED_IDS) - set(candidates):
         raise RuntimeError("Missing image source rows")
