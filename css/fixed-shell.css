@@ -405,3 +405,10 @@ body.civi-app .civi-score-close{
     margin-left:auto;
   }
 }
+
+
+/* Room for the accessible 42px score on the second HUD row. All scroll
+   offsets use the same shell header variable, including iPad safe areas. */
+:root{ --civi-shell-header-h:94px; }
+@media(max-width:920px){ :root{ --civi-shell-header-h:94px; } }
+@media(max-width:560px){ :root{ --civi-shell-header-h:100px; } }
