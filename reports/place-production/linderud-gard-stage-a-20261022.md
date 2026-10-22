@@ -153,7 +153,7 @@ Dette må senere materialiseres som Place-eid, kildebasert Fagverk etter gjelden
 
 ## 9. Stage C – nye kildebekreftede historiespor og korrigert fortelling (22.10.2026)
 
-> **Status:** Historisk fulltekstmateriale fra Oslo byleksikon og MiAs hagesider ble gjennomgått 22.10.2026. En strukturert kilde-/påstandsbank med 35 konkrete claims i seks kilder er nå skrevet til `data/quiz/production_briefs/historie/linderud_gard.json` på samme PR-gren. Filen er **ikke registrert som aktivt quizmål**. Ingen quiz, Place, fotobinarier, Fagverk-registry, workcard-PASS eller app-QA er produsert. Denne seksjonen erstatter ikke pliktig preflight.
+> **Status:** Indekserte sidetekster og kildesammendrag fra Oslo byleksikon og MiAs hagesider ble kontrollert 22.10.2026; direkte åpning av originalsidene ga 403/timeout, så fulltekstreview er ikke godkjent. En strukturert kilde-/påstandsbank med 35 konkrete claims fra seks kildereferanser er nå skrevet til `data/quiz/production_briefs/historie/linderud_gard.json` på samme PR-gren. Filen er **ikke registrert som aktivt quizmål**. Ingen quiz, Place, fotobinarier, Fagverk-registry, workcard-PASS eller app-QA er produsert. Denne seksjonen erstatter ikke pliktig preflight.
 
 ### 9A. Nye presise historiske belegg
 
