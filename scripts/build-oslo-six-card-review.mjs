@@ -105,7 +105,7 @@ const DETAILS = Object.freeze({
     knowledge: [
       'Før den sto på Dronningberget, var Sæterhytten et flytende badehus for kongefamilien ved Oscarshall.',
       'Badehuset lå på en pram utenfor Oscarshall før det ble tatt ned og flyttet til Dronningberget.',
-      'Det opprinnelige badehuset ble bygd i 1852 for kong Oscar I, da det lå flytende på en pram utenfor Oscarshall.',
+      'Badehuset ved Oscarshall ble laget for kong Oscar I og lå flytende på en pram. Kildene bruker både 1851 og 1852 om byggeåret; derfor brukes ikke ett sikkert år her.',
       'Tømmeret var skadet av mark. Bygningen ble demontert, flyttet og tatt i bruk på ny måte.',
       'Sæterhytten ble innviet på Dronningberget i 1862, etter ombyggingen fra badehus til paviljong.',
       'Innvielsen fant sted 25. august 1862 på dronning Louises navnedag, etter at det tidligere badehuset var flyttet til Dronningberget.',
