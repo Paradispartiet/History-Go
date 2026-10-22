@@ -427,7 +427,7 @@
       summary.outerHTML = html;
       if (expandedRecap) {
         const recap = getPanel()?.querySelector?.('details[data-lifestory-disclosure="day-recap"]');
-        if (recap) recap.open = true;
+        if (recap) /** @type {HTMLDetailsElement} */ (recap).open = true;
       }
     }
   }
@@ -1258,7 +1258,7 @@
         : (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : renderEmptyPhaseHtml())))
       + renderPanelsHtml(view);
     panel.querySelectorAll?.("details[data-lifestory-disclosure]").forEach((detail) => {
-      if (expanded.has(detail.getAttribute("data-lifestory-disclosure"))) detail.open = true;
+      if (expanded.has(detail.getAttribute("data-lifestory-disclosure"))) /** @type {HTMLDetailsElement} */ (detail).open = true;
     });
     // When an asynchronous role adoption finishes, retire the prior role\x27s
     // unanswerable inbox projection and expose this role\x27s current scene.
