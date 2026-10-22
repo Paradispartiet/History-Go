@@ -35,7 +35,7 @@ const report = {date:"2026-10-22", head:execFileSync("git", ["rev-parse","HEAD"]
   photos_approved:0, v1_promoted:0, checks:[], errors:[]};
 let browser;
 try {
-  browser = await chromium.launch({headless:true});
+  browser = await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN || undefined,args:['--no-sandbox','--disable-dev-shm-usage']});
   for (const width of [390,1440]) {
     const page = await browser.newPage({viewport:{width,height:width===390?844:1000},isMobile:width===390,hasTouch:width===390});
     const errors = [];
