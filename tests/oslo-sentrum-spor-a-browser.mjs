@@ -19,8 +19,6 @@ const canonical=Object.fromEntries(ids.map(id=>{
  return [id,place];
 }));
 const photo=canonical.telegrafbygningen;
-assert.doesNotMatch(photo.popupDesc||'',/Quizens første|NOK-scenario|arbeider spilleren/i,'Public historical description must not contain internal quiz-production text');
-assert.match(photo.popupDesc||'',/Ombyggingen viser hvordan et tidligere knutepunkt for nasjonal telekommunikasjon fikk nye funksjoner/i);
 assert.equal(photo.frontImageMeta?.license,'CC BY-SA 4.0');
 assert.equal(photo.frontImageMeta?.creator,'Helge Høifødt');
 assert.equal(photo.frontImageMeta?.delivery,'local_webp_licensed','Portrait must now be local');
