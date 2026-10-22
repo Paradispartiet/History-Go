@@ -1148,16 +1148,12 @@
       return;
     }
 
-    const m = state.meters;
     const chips = [
-      // Rollechipen viser canonical aktiv rolle (skall-jobben), aldri Life
-      // Story-rollen — kontrakten håndheves av civication-v2-min-dag-ui-testen.
+      // The isolated Life Story fallback stays compact; the real shell adds
+      // its circular score control once CivicationDashboardUI has loaded.
       ["role is-empty", "Ingen aktiv rolle"],
       ["day", "Dag " + state.dag],
-      ["phase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)],
-      ["meter", "Psyke " + m.psyke],
-      ["meter", "Energi " + m.energi],
-      ["meter", "Fortellingsøkonomi " + m.penger]
+      ["phase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)]
     ];
     header.textContent = "";
     chips.map(function (chip) {
