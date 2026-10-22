@@ -1,0 +1,50 @@
+name: Oslo batch04 real Chromium acceptance
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/oslo-batch04-browser-acceptance.yml'
+      - 'tests/oslo-batch04-v1-real-browser.mjs'
+      - 'scripts/verify-place-quiz-browser.mjs'
+      - 'data/quiz/**'
+      - 'data/quizcards/**'
+      - 'data/runtime/place-open/**'
+      - 'data/fagverk/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: oslo-batch04-real-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  real-browser:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Open actual PlaceCards, flip 10-question cards, view Fagverk, decode portraits and complete all fullquiz questions
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node tests/oslo-batch04-v1-real-browser.mjs ${{ matrix.shard }}
+      - name: Preserve native Chromium evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-batch04-native-chromium-shard-${{ matrix.shard }}
+          path: |
+            artifacts/oslo-batch04-v1-browser/shard-${{ matrix.shard }}/**
+            artifacts/place-quiz/**
+          if-no-files-found: ignore
+          retention-days: 14
