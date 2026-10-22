@@ -21,12 +21,10 @@ const canonical=Object.fromEntries(ids.map(id=>{
 const photo=canonical.telegrafbygningen;
 assert.equal(photo.frontImageMeta?.license,'CC BY-SA 4.0');
 assert.equal(photo.frontImageMeta?.creator,'Helge Høifødt');
-assert.ok(
- (photo.frontImageMeta?.delivery==='remote_original_provisional' && /^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\//.test(photo.frontImage||'')) ||
- (photo.frontImageMeta?.delivery==='local_webp_licensed' && /^bilder\/places\/telegrafbygningen_front_portrait\.webp$/.test(photo.frontImage||'') && fs.statSync(path.resolve(root,photo.frontImage)).size>20000),
- 'Portrait must be the identified Commons image or its locally verified WebP'
-);
-assert.ok(['remote_original_provisional','local_webp_licensed'].includes(photo.frontImageMeta?.delivery));
+assert.equal(photo.frontImageMeta?.delivery,'local_webp_licensed','Portrait must now be local');
+assert.equal(photo.frontImage,'bilder/places/telegrafbygningen_front_portrait.webp');
+assert.ok(fs.statSync(path.resolve(root,photo.frontImage)).size>20000);
+assert.match(photo.frontImageMeta?.outputSha256||'',/^[0-9a-f]{64}$/);
 assert.ok(photo.externalLinks?.some(x=>x.url===photo.frontImageMeta?.sourcePage));
 const server=http.createServer((req,res)=>{
  const uri=new URL(req.url,'http://localhost'),pathname=decodeURIComponent(uri.pathname);
@@ -37,7 +35,7 @@ const server=http.createServer((req,res)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const base='http://127.0.0.1:'+server.address().port;
-const report={schema:'history_go_oslo_sentrum_a_real_browser_review_v1',places:ids,checks:[],errors:[],v1Approved:false,photoStatus:'remote_portrait_pending_local_asset_and_editorial_review'};
+const report={schema:'history_go_oslo_sentrum_a_real_browser_review_v1',places:ids,checks:[],errors:[],v1Approved:false,photoStatus:'verified_local_webp_editorial_review_pending'};
 let browser;
 try{
  browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN||undefined,args:['--no-sandbox','--disable-dev-shm-usage']});
@@ -66,7 +64,7 @@ try{
     assert.ok(details.open,'PlaceCard is not visible');
     assert.ok(details.hero>0&&details.front>0,'Front or hero photo not decoded');
     if(id==='telegrafbygningen'){
-      const expected=photo.frontImageMeta?.delivery==='local_webp_licensed'?'telegrafbygningen_front_portrait.webp':'upload.wikimedia.org';
+      const expected='telegrafbygningen_front_portrait.webp';
       assert.ok(details.source.includes(expected),'PlaceCard did not use the attributed portrait asset');
     }
     result.placeCard=true;result.frontDecoded=true;result.heroDecoded=true;
@@ -96,7 +94,7 @@ try{
  await browser?.close();
  await new Promise(resolve=>server.close(resolve));
 }
-report.status=report.errors.length?'BLOCKED':'BROWSER_PASS_EDITORIAL_AND_LOCAL_PHOTO_STILL_PENDING';
+report.status=report.errors.length?'BLOCKED':'BROWSER_PASS_EDITORIAL_IMAGE_REVIEW_PENDING';
 fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');
 console.log('OSLO_SEN_SUMMARY',JSON.stringify({count:report.checks.length,errors:report.errors.length,status:report.status}));
 if(report.errors.length)process.exitCode=1;
