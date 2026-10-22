@@ -32,7 +32,7 @@ const modal = (() => {
   return window.document.getElementById("civiNextActionModal");
 })();
 (async () => {
-  for (const slot of ["day_summary", "score_summary", "role_progress_summary"]) {
+  for (const slot of ["day_summary", "score_summary", "role_progress_summary", "sleep_or_recovery", "carryover"]) {
     const id = "day-8-summary-" + slot;
     current = { ...summary, id, slot };
     window.CivicationNextActionUI.render();
@@ -51,7 +51,11 @@ const modal = (() => {
   assert.equal(modal.querySelectorAll('[data-civi-next-action-acknowledge]').length, 0,
     "other empty-choice mails must never be acknowledged as a day summary");
   assert.equal(modal.querySelectorAll('[data-civi-next-action-answer]').length, 0);
-  assert.equal(handled.length, 3);
+  assert.equal(handled.length, 5);
+  current = { ...summary, id: "day-end-required-task", slot: "sleep_or_recovery", isTaskGate: true };
+  window.CivicationNextActionUI.render();
+  assert.equal(modal.querySelectorAll('[data-civi-next-action-acknowledge]').length, 0,
+    "task gates cannot be waived with read-only acknowledgement");
   console.log("civication-day-end-summary-acknowledgement: PASS");
   window.close();
 })().catch(error => { console.error(error); process.exitCode = 1; });
