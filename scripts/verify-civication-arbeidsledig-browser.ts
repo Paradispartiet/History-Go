@@ -19,6 +19,32 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
         blocking: app.CivicationDayProgression?.inspect?.()?.blockingReason
       };
     });
+    // Capture the authentic browser state when a role mail keeps recycling.
+    // This is observation only: no synthetic dispatch, forced phase, or state write.
+    if (scenarioId === 'earned-museum-21-day' && day === 8 &&
+        [0, 2, 4, 8, 12, 18, 25, 40, 50].includes(step)) {
+      const ui = await page.evaluate(() => {
+        const app = globalThis as any;
+        const panel = app.document.getElementById('civiNextActionModal');
+        const pending = app.CivicationDayProgression?.inspect?.();
+        const current = app.CivicationNextActionSelector?.getCurrent?.();
+        const mail = current?.id ? app.CivicationMailEngine?.getMail?.(current.id) : null;
+        return {
+          phase: app.CivicationCalendar?.getPhase?.(),
+          pending: pending?.pendingItem, queued: pending?.nextQueuedItem,
+          inspection: { reason: pending?.reason, blockingReason: pending?.blockingReason,
+            openItemsInPhase: pending?.openItemsInPhase },
+          current,
+          mail: mail && { status: mail.status, resolved: mail.resolved,
+            archived: mail.archived, choiceCount: mail.event?.choices?.length },
+          controls: [...(panel?.querySelectorAll?.('button') || [])].map((b: any) => ({
+            action: [...b.attributes].filter((a: any) => a.name.startsWith('data-civi-next-action')).map((a: any) => a.name),
+            disabled: b.disabled, text: b.textContent?.trim().slice(0, 60)
+          })).slice(0, 8)
+        };
+      });
+      console.warn('Civication museum day-8 action diagnostic', JSON.stringify({step, ui}));
+    }
     if (before.day === day + 1) {
       assert.equal(before.story.kalenderDag, day + 1, `${scenarioId}: calendar/story day remain synchronized`);
       return;
