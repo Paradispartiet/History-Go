@@ -60,6 +60,44 @@ try {
     assert.match(await host.locator('#politikkEvidenceReport').textContent(), /Din begrunnelse/);
     assert.match(await host.locator('#politikkEvidenceReport').textContent(), /nøyaktig stemmeeffekt/);
 
+    // Wave 11: explicit self-review is not an automated judgment of the written response.
+    const rubric = host.locator('#politikkEvidenceRubric');
+    await rubric.waitFor({ state: 'visible' });
+    assert.equal(await rubric.locator('.politikk-evidence-rubric-item').count(), 4);
+    assert.equal(await rubric.locator('select').count(), 4);
+    assert.match(await rubric.textContent(), /egenvurdering, ikke automatisk/i);
+    await rubric.getByRole('button', { name: 'Lag min forbedringsplan' }).click();
+    assert.match(await rubric.locator('[role="status"]').textContent(), /alle fire kriterier/);
+    assert.equal(await rubric.locator('#politikkEvidenceImprovementPlan').isVisible(), false);
+
+    await rubric.locator('#politikkEvidenceRating-belegg').selectOption('improve');
+    await rubric.locator('#politikkEvidenceRating-sammenligning').selectOption('uncertain');
+    await rubric.locator('#politikkEvidenceRating-mekanisme').selectOption('clear');
+    await rubric.locator('#politikkEvidenceRating-forbehold').selectOption('improve');
+    await rubric.getByRole('button', { name: 'Lag min forbedringsplan' }).click();
+    assert.equal(await rubric.locator('#politikkEvidenceImprovementPlan').isVisible(), true);
+    assert.equal(await rubric.locator('#politikkEvidenceImprovementPlan [data-criterion]').count(), 4);
+    const suggestions = await rubric.locator('#politikkEvidenceImprovementPlan').textContent();
+    assert.match(suggestions, /Finn én etterprøvbar observasjon i hver rapport/);
+    assert.match(suggestions, /liknende observasjoner/);
+    assert.match(suggestions, /plausibel mekanisme/);
+    assert.match(suggestions, /reformanbefalinger ikke beviser/);
+    assert.match(suggestions, /dine egne avkrysninger/);
+
+    await rubric.locator('#politikkEvidenceRating-belegg').selectOption('clear');
+    assert.equal(await rubric.locator('#politikkEvidenceImprovementPlan').isVisible(), false, 'changing the self-review invalidates old advice');
+    await rubric.getByRole('button', { name: 'Lag min forbedringsplan' }).click();
+    assert.match(await rubric.locator('#politikkEvidenceImprovementPlan').textContent(), /Kontroller at alle sentrale påstander/);
+
+    await host.locator('#politikkEvidenceOwnReasoning').fill('Jeg reviderer vurderingen: kildene viser likheter, men ikke identiske årsaker eller dokumentert reformvirkning.');
+    assert.equal(await rubric.isVisible(), false, 'changing the draft invalidates old self-ratings');
+    assert.equal(await host.locator('#politikkEvidenceReport').isVisible(), false);
+    await host.getByRole('button', { name: 'Vis min argumentrekke' }).click();
+    assert.equal(await rubric.isVisible(), true);
+    assert.equal(await rubric.locator('#politikkEvidenceRating-belegg').inputValue(), '', 'new draft requires renewed self-review');
+    assert.equal(await rubric.locator('#politikkEvidenceImprovementPlan').isVisible(), false);
+    assert.ok(await rubric.locator('.politikk-evidence-rubric-example a').count() >= 4, 'rubric examples remain linked to checked primary sources');
+
     const stored = await page.evaluate(() => ({
       knowledge: JSON.parse(localStorage.getItem('hg_knowledge_entries_v2') || '[]'),
       progress: JSON.parse(localStorage.getItem('quiz_progress') || '{}')
