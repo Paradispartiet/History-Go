@@ -47,7 +47,10 @@ assert.doesNotMatch(injectionSource, /storyletMatchesContext\s*\(/, "same-day in
 
 const fixtureManifest = {
   schema: "civication_narrative_manifest_v1",
-  streams: [{ id: "fixture_leisure_stream", path: "data/Civication/narratives/fixture_leisure.json" }]
+  streams: [
+    { id: "fixture_leisure_stream", path: "data/Civication/narratives/fixture_leisure.json" },
+    { id: "fagarbeider_work_stream", path: "data/Civication/narratives/fixture_work.json" }
+  ]
 };
 const fixtureStream = {
   schema: "civication_narrative_stream_v1",
@@ -80,6 +83,18 @@ const fixtureStream = {
   ]
 };
 
+const fixtureWorkStream = {
+  schema: "civication_narrative_stream_v1",
+  id: "fagarbeider_work_stream",
+  type: "work",
+  applies_when: { role_scopes: ["fagarbeider"] },
+  storylets: [{
+    id: "shift_start_followup", time_slot: ["work"], subject: "Morgenstatus fra linja",
+    situation: ["Målinger fra produksjonslinja."],
+    choices: [{ id: "A", label: "Kontroller målingen", effect: 0 }]
+  }]
+};
+
 const active = {
   career_id: "fixture_career",
   role_id: "fixture_role",
@@ -107,6 +122,7 @@ const windowObject = {
     fetchJson: async (sourcePath) => {
       if (sourcePath === "data/Civication/narratives/manifest.json") return fixtureManifest;
       if (sourcePath === "data/Civication/narratives/fixture_leisure.json") return fixtureStream;
+      if (sourcePath === "data/Civication/narratives/fixture_work.json") return fixtureWorkStream;
       return null;
     }
   },
@@ -142,6 +158,29 @@ vm.runInContext(narrativeSource, context, { filename: narrativePath });
   assert.deepEqual(Array.from(activation.matched_stream_ids), ["fixture_leisure_stream"]);
   assert.deepEqual(Array.from(activation.candidate_stream_ids), ["fixture_leisure_stream"]);
 
+  // A player may have old work streams in history after switching jobs.
+  // Their authored progress survives, but the wrong industry's workday does not.
+  const staleNarrative = {
+    active_streams: ["fagarbeider_work_stream"], stream_progress: {}, flags: []
+  };
+  const afterJobChange = await source.sourceAdapter.getActivationSnapshot({
+    active, state, narrativeState: staleNarrative
+  });
+  assert.equal(afterJobChange.candidate_stream_ids.includes("fagarbeider_work_stream"), false,
+    "an earlier factory work stream must not be a museum/other role candidate");
+  const leakedWork = await catalog.getSourceScenes("narrative", {
+    mode: "slot", phaseId: "forenoon", active, state,
+    narrativeState: staleNarrative,
+    candidate_stream_ids: ["fagarbeider_work_stream"],
+    used_storylet_keys: [], date: "2026-08-15", ordinal: 1
+  });
+  assert.equal(leakedWork.length, 0, "even stale candidate IDs cannot show factory work");
+  const injectedWrongWork = await catalog.getSourceScenes("narrative", {
+    mode: "opened_streams", opened_stream_ids: ["fagarbeider_work_stream"],
+    active, state, narrativeState: staleNarrative,
+    exclude_storylet_keys: [], date: "2026-08-15", ordinal: 2
+  });
+  assert.equal(injectedWrongWork.length, 0, "role change also guards same-day injection");
   const narrativeState = {
     active_streams: activation.matched_stream_ids,
     stream_progress: {},
