@@ -107,7 +107,7 @@ try {
     assert.match(await host.locator('.politikk-evidence-assignment').textContent(), /konkurransepreget og effektivt administrert valg/);
     assert.match(await host.locator('.politikk-evidence-task-sources').textContent(), /nasjonale valgkommisjonen/);
     assert.equal(await host.locator('.politikk-evidence-task-source').count(), 4);
-    assert.ok((await host.locator('.politikk-evidence-task-sources a').allAttributeValues('href'))
+    assert.ok((await host.locator('.politikk-evidence-task-sources a').evaluateAll(nodes => nodes.map(node => node.getAttribute('href'))))
       .every(url => url.includes('/poland/')), 'Poland task uses only Polish source references');
 
     await host.locator('#politikkEvidenceOwnReasoning').fill('Polens valg var konkurransepreget, men kildene peker også på skjeve konkurransevilkår; det beviser ikke manipulert opptelling.');
@@ -126,7 +126,7 @@ try {
     assert.equal(await host.locator('#politikkEvidenceImprovementPlan').isVisible(), false);
     assert.equal(await host.locator('#politikkEvidenceOwnReasoning').inputValue(), '');
     assert.equal(await host.locator('.politikk-evidence-task-source').count(), 3);
-    assert.ok((await host.locator('.politikk-evidence-task-sources a').allAttributeValues('href'))
+    assert.ok((await host.locator('.politikk-evidence-task-sources a').evaluateAll(nodes => nodes.map(node => node.getAttribute('href'))))
       .every(url => url.includes('/hungary/') || url.endsWith('/523565')), 'Hungary task links to Hungarian reports');
     await host.locator('#politikkEvidenceOwnReasoning').fill('Ungarn hadde reelle valgalternativer, men sammenblanding av stat og parti kan gi fordel uten at mandatvirkning er målt.');
     await host.getByRole('button', { name: 'Vis min argumentrekke' }).click();
