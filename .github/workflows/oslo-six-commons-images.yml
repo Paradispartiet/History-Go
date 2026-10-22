@@ -1,49 +1,63 @@
-name: Oslo six Commons crop QA artifacts
+name: Oslo six one-time fifth photo import
 
 on:
-  pull_request:
+  push:
+    branches:
+      - 'research/oslo-next-places-20261022'
     paths:
       - '.github/workflows/oslo-six-commons-images.yml'
-      - 'scripts/prepare-oslo-six-commons-webp.py'
-      - 'reports/place-production/oslo-six-image-rights-shortlist-20261022.json'
-      - 'reports/place-production/oslo-six-generated-image-attribution-20261022.json'
-      - 'bilder/places/auto/*__commons_*.webp'
-  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: oslo-six-commons-crops-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  group: oslo-six-fifth-source-checked-image-import
+  cancel-in-progress: false
 
 jobs:
-  prepare:
-    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 6563 && github.event.pull_request.head.repo.full_name == github.repository }}
+  import:
+    if: ${{ github.repository == 'Paradispartiet/History-Go' && github.ref == 'refs/heads/research/oslo-next-places-20261022' && github.event_name == 'push' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check out pull-request head for image replay
+      - name: Check out same trusted PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          persist-credentials: false
+          ref: 'research/oslo-next-places-20261022'
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install locked crop dependency
+      - name: Install locked source-verified cropping tools
         run: python -m pip install --disable-pip-version-check "Pillow==11.3.0"
-      - name: Regenerate reviewed Commons variants from trusted source pages
+      - name: Generate five source-verified Commons photos in three sizes
         run: python scripts/prepare-oslo-six-commons-webp.py
-      # Fifth Sarabråten ruin-wall photo is newly selected and not yet committed.
-      # Crop review artifact is generated first; byte-for-byte repository comparison
-      # resumes after visual QA and the staged image has been checked in.
-      - name: Keep QA artifact available for crop review
-        uses: actions/upload-artifact@v4
-        with:
-          name: oslo-six-commons-image-review
-          path: |
-            bilder/places/auto/*__commons_*.webp
-            reports/place-production/oslo-six-generated-image-attribution-20261022.json
-          if-no-files-found: error
-          retention-days: 14
+      - name: Verify fifth photo and keep public app disconnected
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          record=json.loads(Path('reports/place-production/oslo-six-generated-image-attribution-20261022.json').read_text(encoding='utf-8'))
+          expected={'linderud_gard','ekebergrestauranten','frognerseteren','sarabraten','saeterhytten_bygdoy'}
+          assert {p['place_id'] for p in record['places']}==expected
+          assert len(record['places'])==5
+          paths=[v['path'] for p in record['places'] for v in p['variants']]
+          assert len(paths)==len(set(paths))==15
+          assert all(Path(p).exists() and p.startswith('bilder/places/auto/') for p in paths)
+          assert all(p['canonical_place_bound'] is False and p['attribution_display_checked'] is False for p in record['places'])
+          ruin=next(p for p in record['places'] if p['place_id']=='sarabraten')
+          assert ruin['author']=='Kjetil Ree' and ruin['license']=='CC BY-SA 3.0'
+          print('15 staged WebPs, five source licenses, no live Place image references')
+          PY
+      - name: Commit only verified new images and attribution sidecar to existing PR
+        env:
+          HEAD_BRANCH: 'research/oslo-next-places-20261022'
+        run: |
+          git add bilder/places/auto/*__commons_*.webp reports/place-production/oslo-six-generated-image-attribution-20261022.json
+          if git diff --cached --quiet; then
+            echo "Five photo triplets already imported"
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "History Go: add licensed Sarabråten ruin-photo triplet as staged assets"
+          git push origin "HEAD:${HEAD_BRANCH}"
