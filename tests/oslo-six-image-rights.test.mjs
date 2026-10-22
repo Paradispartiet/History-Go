@@ -7,7 +7,7 @@ const read = path => JSON.parse(readFileSync(new URL('../' + path, import.meta.u
 test('six-place image shortlist has four licensable subjects and two explicit no-image holds', () => {
   const pack = read('reports/place-production/oslo-six-image-rights-shortlist-20261022.json');
   const gates = read('reports/place-production/oslo-six-places-integration-gates-20261022.json');
-  assert.equal(pack.status, 'SOURCE_PAGES_REVIEWED_NO_IMAGE_IMPORTED_OR_CROPPED');
+  assert.equal(pack.status, 'SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED');
   assert.equal(pack.places.length, 6);
   assert.deepEqual(pack.places.map(p => p.place_id), gates.places.map(p => p.place_id));
   const ready = pack.places.filter(p => p.lead_candidate !== null);
