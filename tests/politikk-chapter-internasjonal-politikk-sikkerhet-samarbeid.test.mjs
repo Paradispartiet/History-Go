@@ -19,10 +19,10 @@ test('Internasjonal politikk, sikkerhet og samarbeid oppfyller Fagverkets kapitt
   assert.equal(report.summary.methodCount, 4);
   assert.equal(report.summary.moduleCount, 3);
   assert.equal(report.summary.sectionCount, 9);
-  assert.equal(report.summary.paragraphCount, 27);
-  assert.equal(report.summary.claimCount, 34);
-  assert.equal(report.summary.sourceCount, 21);
-  assert.equal(report.summary.tracedClaimCount, 34);
+  assert.equal(report.summary.paragraphCount, 30);
+  assert.equal(report.summary.claimCount, 37);
+  assert.equal(report.summary.sourceCount, 22);
+  assert.equal(report.summary.tracedClaimCount, 37);
   assert.equal(report.gates.paragraphLevelClaimTrace, true);
   assert.equal(report.gates.registryAndRuntimeSynced, true);
   assert.equal(report.gates.honestEditorialStatus, true);
