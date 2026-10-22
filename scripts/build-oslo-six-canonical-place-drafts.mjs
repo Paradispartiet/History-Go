@@ -42,7 +42,7 @@ export function buildOsloSixCanonicalStaging({
 }={}) {
   if(integration.publication_status!=='BLOCKED_PREVIEW_ONLY_NO_RUNTIME_WRITES'||
      geo.release_status!=='RESEARCH_ONLY_NO_COORDINATES_OR_PINS'||
-     imageRights.status!=='SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED'||
+     imageRights.status!=='SOURCE_PAGES_REVIEWED_15_CROPS_STAGED_NOT_REGISTERED'||
      candidates.status!=='RESEARCH_CANDIDATES_NO_CANONICAL_COORDINATES')
      fail('publication hold was removed');
   const images=new Map(imageRights.places.map(p=>[p.place_id,p]));
