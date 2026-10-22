@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+// Score header: real 0–100 values, unknown Skills, legacy standings and dialog UX.
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const { JSDOM } = require("jsdom");
+
+const root = path.join(__dirname, "..");
+const dom = new JSDOM('<!doctype html><html><body class="civi-app"><header><div id="civiLifestoryHeaderStatus"></div></header></body></html>',
+  { url: "http://localhost/Civication.html", runScripts: "outside-only" });
+const { window } = dom;
+const canonical = { social_standing: { by_audience: { "team:local": -100, "public:city": 100 } } };
+const life = { dag: 3, fase: "morgen", meters: { psyke: 60, energi: 80, integritet: 100,
+  synlighet: 20, handlingsrom: 40, penger: -50000 },
+  relasjoner: { venn: 90, familie: 10 } };
+window.CivicationState = {
+  getState: () => canonical,
+  getActivePosition: () => ({ title: "Museumsvert", career_id: "kunst" })
+};
+window.CivicationSkills = {
+  getViewModel: () => ({ skills: [
+    { label: "Visdom", score: 100, measured: true },
+    { label: "Kreativitet", score: 0, measured: true },
+    { label: "Sosial teft", score: null, measured: false },
+    { label: "Mestring", score: null, measured: false }
+  ] })
+};
+window.CivicationPsyche = { getSnapshot: () => ({
+  integrity: 70, visibility: 50, economicRoom: 40, autonomy: 60,
+  psychologyCompetence: 30, trustSummary: { avgPercent: 50, count: 0 }
+}) };
+const beforeCanonical = JSON.stringify(canonical);
+const beforeLife = JSON.stringify(life);
+for (const filename of ["js/Civication/ui/CivicationScoreUI.js",
+  "js/Civication/ui/CivicationDashboardUI.js"]) {
+  window.eval(fs.readFileSync(path.join(root, filename), "utf8"));
+}
+const model = window.CivicationScoreUI.getModel({ state: life });
+assert.equal(model.count, 16);
+assert.equal(model.score, 53, "the score is the unweighted mean of measured 0–100 indicators");
+assert.equal(model.groups.find(g => g.name === "Skills").rows[2].score, null,
+  "unmeasured skills are not invented as zero");
+assert.deepEqual(model.groups.find(g => g.name === "Omdømme").rows.map(x => x.score), [0, 100]);
+assert.equal(model.currency, -50000, "unbounded money stays an amount and is excluded");
+assert.equal(JSON.stringify(canonical), beforeCanonical, "HUD never mutates canonical state");
+assert.equal(JSON.stringify(life), beforeLife, "HUD never mutates life state");
+
+const header = window.document.getElementById("civiLifestoryHeaderStatus");
+window.CivicationDashboardUI.updateHeaderStatus({ state: life, view: { fase: { navn: "Morgen" } } });
+const btn = header.querySelector("#civiScoreTrigger");
+assert.ok(btn && btn.tagName === "BUTTON", "score is an accessible interactive button");
+assert.equal(btn.textContent, "53");
+assert.match(btn.getAttribute("aria-label"), /53 av 100/);
+assert.ok(header.textContent.includes("Museumsvert") && header.textContent.includes("Dag 3"));
+assert.ok(!header.textContent.includes("Psyke") && !header.textContent.includes("PC"));
+window.CivicationDashboardUI.updateHeaderStatus();
+assert.strictEqual(header.querySelector("#civiScoreTrigger"), btn,
+  "routine HUD rerenders must retain the score button and focus target");
+btn.click();
+const dialog = window.document.getElementById("civiScoreDialog");
+assert.ok(dialog?.hasAttribute("open"), "score breakdown opens on click");
+assert.ok(dialog.textContent.includes("Skills") && dialog.textContent.includes("Ikke målt"));
+assert.ok(dialog.textContent.includes("Omdømme") && dialog.textContent.includes("Fortellingspenger"));
+dialog.querySelector(".civi-score-close").click();
+assert.equal(dialog.hasAttribute("open"), false, "dialog close works");
+
+window.CivicationSkills = null;
+window.CivicationPsyche = null;
+window.CivicationState = { getState: () => ({}), getActivePosition: () => null };
+assert.equal(window.CivicationScoreUI.getModel({ state: {} }).score, null,
+  "missing capability measurements are not quietly reported as a real zero");
+console.log("civication-score-header: PASS");
+dom.window.close();
