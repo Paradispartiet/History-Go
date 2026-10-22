@@ -52,10 +52,18 @@ const action = {
 };
 
 const answerCalls = [];
+let firstAnswerRejected = true;
 win.CivicationNextActionSelector = { getCurrent: () => action };
 win.CivicationMailEngine = {
   getInbox: () => [{ status: 'pending', event: gateEvent }],
-  answerMail(mailId, choiceId) { answerCalls.push({ mailId, choiceId }); return Promise.resolve({ ok: true }); }
+  answerMail(mailId, choiceId) {
+    answerCalls.push({ mailId, choiceId });
+    if (firstAnswerRejected) {
+      firstAnswerRejected = false;
+      return Promise.resolve({ ok: false, reason: 'retryable_mock_rejection' });
+    }
+    return Promise.resolve({ ok: true });
+  }
 };
 win.CivicationTaskEngine = {
   getTaskByMailId: (mailId) => (mailId === gateEvent.id
@@ -105,6 +113,15 @@ vm.runInContext(
   assert.strictEqual(answerCalls.length, 1, 'ett svar registrert');
   assert.strictEqual(answerCalls[0].mailId, gateEvent.id, 'svaret gjelder gate-mailen');
   assert.strictEqual(answerCalls[0].choiceId, 'A', 'valgt leveranse sendes som choice');
+  // The first attempt was rejected by the mail engine. A cache of identical
+  // markup must not leave the task's only real answer buttons disabled forever.
+  const retryBtn = bodyEl.querySelector('[data-civi-next-action-answer][data-choice-id="A"]');
+  assert(retryBtn, 'same actionable task remains visible after rejection');
+  assert.strictEqual(retryBtn.disabled, false, 'failed mail submission unlocks a genuine retry');
+  retryBtn.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true }));
+  await new Promise((r) => setTimeout(r, 50));
+  assert.strictEqual(answerCalls.length, 2, 'second real submission reaches mail engine');
+  assert.strictEqual(answerCalls[1].choiceId, 'A', 'retry keeps original choice');
 
   console.log('civication-task-gate-inline.test.js passed');
   win.close();
