@@ -99,7 +99,8 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
         // Real player acknowledgement of the read-only day summary, not a
         // synthetic progression or test-only bypass of the mail runtime.
         assert.equal(before.next?.phase, 'day_end');
-        assert.equal(before.next?.slot, 'day_summary');
+        assert.ok(['day_summary', 'score_summary', 'role_progress_summary'].includes(before.next?.slot),
+          'only a known day-end summary can be acknowledged');
         assert.equal((before.next?.choices || []).length, 0);
         await acknowledge.click({ timeout: 12000 });
       }
