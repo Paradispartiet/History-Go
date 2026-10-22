@@ -2,7 +2,7 @@
   "schema": "history_go_oslo_six_image_candidate_rights_v1",
   "as_of": "2026-10-22",
   "status": "SOURCE_PAGES_REVIEWED_12_CROPS_STAGED_NOT_REGISTERED",
-  "objective": "Four previously CC-licensed Commons photos have now been imported as twelve checked-in staged WebP crop assets and independently framing-reviewed. Images MUST NOT enter canonical Place runtime until visitor location, photo credit display and browser QA are approved.",
+  "objective": "Four Commons images with twelve WebP assets already staged in repository; a fifth independently license-reviewed Sarabråten ruined-wall lead now found awaiting source SHA1 and crop QA. All remain unbound to active Places.",
   "requirements": [
     "Check source file identity and building depicted",
     "Retain full Commons file URL, creator, license and edit notes alongside derivatives",
@@ -105,8 +105,21 @@
     },
     {
       "place_id": "sarabraten",
-      "status": "NO_SAFE_PRIMARY_RUIN_IMAGE_APPROVED",
-      "lead_candidate": null,
+      "status": "LICENSE_PAGE_CHECKED_IMAGE_NOT_IMPORTED",
+      "lead_candidate": {
+        "page": "https://commons.wikimedia.org/wiki/File:Sarabr%C3%A5ten_-_2012-08-12_at_13-36-42.jpg",
+        "author": "Kjetil Ree",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "date": "2012-08-12",
+        "subject": "Nåværende bevarte steingrunnmurer på Sarabråten i Østmarka (ikke stående villa, ikke bare Nøklevann)",
+        "original_dimensions": [
+          4288,
+          2848
+        ],
+        "image_identity_confidence": "high",
+        "next": "Generate lead/card/popup crops, inspect framing and keep actual ruin walls in focus"
+      },
       "alternates": [
         {
           "page": "https://commons.wikimedia.org/wiki/File:N%C3%B8klevann_Sarabr%C3%A5ten.jpg",
@@ -114,9 +127,17 @@
           "license": "CC BY-SA 3.0",
           "subject": "Nøklevann sett fra Sarabråten",
           "reason_not_primary": "Shows landscape, not surviving foundation remains; only context image"
+        },
+        {
+          "page": "https://commons.wikimedia.org/wiki/File:Sarabr%C3%A5ten_-_2012-08-12_at_13-36-40.jpg",
+          "author": "Kjetil Ree",
+          "license": "CC BY-SA 3.0",
+          "subject": "Utsikt over ruinfundamentene og dagens populære rasteplass; mulig kontekstbilde",
+          "reason_not_primary": "Wider scene with people, path, trees and benches; ruin walls are less prominent than in 13-36-42."
         }
       ],
-      "next": "Find a freely licensed actual photo of ruins and identify its viewpoint and authorship; avoid images of a standing villa being misrepresented as current"
+      "next": "Prepare three WebP crops and retain true ruins/forest scene; credit Kjetil Ree and mark modifications.",
+      "editorial_image_review": "2026-10-22: found 2012 ruin-wall closeup on Commons with credited CC BY-SA 3.0; verified in original image; original image height 2848, width 4288. Photo has no claim that destroyed villa still stands. Crop QA pending."
     },
     {
       "place_id": "saeterhytten_bygdoy",
