@@ -587,8 +587,8 @@
     // treating its empty choices as a broken mail traps players on day 8.
     // All other answerable mails without choices still fail closed.
     if (action.source === "day_phase" && action.phase === "day_end"
-        && ["day_summary", "score_summary", "role_progress_summary"].includes(action.slot) && action.status === "delivered"
-        && !resolveActionChoices(action).length) {
+        && ["day_summary", "score_summary", "role_progress_summary", "sleep_or_recovery", "carryover"].includes(action.slot) && action.status === "delivered"
+        && !action.isTaskGate && !resolveActionChoices(action).length) {
       return ""
         + '<p class="civi-next-action-sub muted">Dagens oppsummering er klar. Les den før du avslutter dagen.</p>'
         + '<div class="civi-next-action-choices" role="group" aria-label="Dagsoppsummering">'
@@ -1106,8 +1106,8 @@
         // Never let this read-only shortcut answer a job, task gate, private
         // choice, different phase or stale/forged mail pointer.
         if (!mailId || current?.id !== mailId || current?.source !== "day_phase"
-            || current?.phase !== "day_end" || !["day_summary", "score_summary", "role_progress_summary"].includes(current?.slot)
-            || current?.status !== "delivered" || resolveActionChoices(current).length) return;
+            || current?.phase !== "day_end" || !["day_summary", "score_summary", "role_progress_summary", "sleep_or_recovery", "carryover"].includes(current?.slot)
+            || current?.status !== "delivered" || current?.isTaskGate || resolveActionChoices(current).length) return;
         acknowledgeBtn.disabled = true;
         Promise.resolve(window.CivicationDailyMailBuilder?.markHandled?.(mailId, "read"))
           .then(function (result) {
