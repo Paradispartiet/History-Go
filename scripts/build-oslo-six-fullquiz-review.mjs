@@ -33,7 +33,7 @@ const EXTRAS = Object.freeze({
   ],
   frognerseteren: [
     ["Hvilken inntektskilde var med på å finansiere byggingen av Frognerseterens hovedrestaurant?", "Overskudd fra Christiania Brændevinssamlag", ["Billettinntekter fra Holmenkollbanen","Inntekter fra Skimuseet","En bevilgning fra Riksantikvaren"], "Restaurantens egen historikk forteller at overskudd fra Christiania Brændevinssamlag bidro til oppføringen av hovedrestauranten i 1891."],
-    ["Hvor kom byggetømmeret til Frognerseterens hovedrestaurant fra?", "Kommunens egen skog", ["En importleveranse fra Sverige","En bygning revet på Bygdøy","Tømmer fra Sørlandet fraktet sjøveien"], "Ifølge restaurantens egen historikk ble tømmer til hovedrestauranten tatt ut av kommunens egen skog."],
+    ["Hva kostet første byggetrinn av Frognerseterens hovedrestaurant ifølge restaurantens egen historikk?", "85 000 kroner", ["8 500 kroner","850 000 kroner","1,5 millioner kroner"], "Restaurantens egen historikk oppgir byggekostnaden til 85 000 kroner da hovedrestauranten sto ferdig i 1891."],
     ["Hvorfor ble en separat sportskafé planlagt kort etter at hovedrestauranten åpnet?", "Hovedrestauranten ble fylt av velstående gjester, mens sportsfolk manglet plass", ["Hovedrestauranten ble stengt etter brann","Jernbanestasjonen krevde en ventesal","Kommunen forbød servering i hovedrestauranten"], "Restaurantens historikk forteller at hovedhuset straks ble fylt av byens velstående herrer, slik at sportsfolket ikke fikk plass; dermed ble en egen sportskafé planlagt."],
     ["Hva het utvidelsen av hovedrestauranten som sto ferdig rundt 1910?", "Storstua", ["Heftyevillaen","Skimuseet","Sportshallen"], "Storstua hører til selve hovedrestauranten og sto ifølge restaurantens historikk ferdig i 1910; Sportshallen fra 1896 var et eget bygg."],
     ["Hva skjedde med verandaen foran hovedrestauranten under ombyggingene tidlig på 1900-tallet?", "Den ble bygget inn for mer innendørs plass", ["Den ble revet for en ringovn","Den ble flyttet til Holmenkollbanen","Den ble omgjort til et frittstående stabbur"], "Restaurantens historikk beskriver at verandaen ble lukket inn slik at huset fikk mer serveringsareal."],
@@ -78,7 +78,7 @@ export function buildOsloSixFullquizReview() {
         targetId: id, categoryId: q.categoryId, question: q.question,
         options: q.options, answer: q.answer, answerIndex: q.answerIndex,
         knowledge: q.knowledge, source_trace: q.source_trace,
-        source_url: SOURCE_URLS[id], external_claim_review: 'editorial_candidate_pending_line_by_line',
+        source_url: q.source_url || SOURCE_URLS[id], external_claim_review: 'editorial_candidate_pending_line_by_line',
         quizcard_candidate_id: q.id, runtime_registered: false
       })).concat(extras.map(([question, answer, incorrect, knowledge], i) => {
         if (incorrect.length !== 3 || new Set([answer, ...incorrect].map(normalize)).size !== 4)
@@ -105,7 +105,7 @@ export function buildOsloSixFullquizReview() {
         proposed_quiz_profile: 'narrow_3x7_not_confirmed', sets,
         quizcard_question_ids: questions.slice(0, 10).map(q => q.id),
         learning_scope_notice: id === 'frognerseteren' ?
-          'The 11 additional questions now concern the restaurant itself. Editorial core cards 03 and 05 still require a contextual-scope decision before release. This Place remains the main restaurant at Holmenkollveien 200.' : null,
+          'The 11 additional questions now concern the restaurant itself. All 21 question candidates now target the main restaurant; independent source-to-claim sign-off remains required. This Place remains the main restaurant at Holmenkollveien 200.' : null,
         source_url: SOURCE_URLS[id], canonical_place_created: false,
         quiz_manifest_registered: false, knowledge_synced: false, browser_qa_passed: false
       };
