@@ -26,20 +26,20 @@ Ingen nye QuizCards eller quizpakker ble opprettet i dette arbeidet. Gjenbruk ek
 1. Hvert av de 17 stedene har ett entydig aktivt quizfilvalg i manifestet, minst tre sett og minst 21 spørsmål.
 2. Alle 503 spørsmål har entydig fasit, unike ID-er/tekster innen quiz, kildepekere og kobling til kanoniske Knowledge-ID-er.
 3. Alle 170 QuizCard-spørsmål peker til eksisterende fullquizspørsmål med identisk spørsmålstekst, alternativer, svar, svarindeks og Knowledge-ID. Kortenes `sourceQuizFile` og offentlig kilde-URL kontrolleres.
-4. Nye spørsmål som eksponerer intern implementasjons-/spillterminologi, gir regresjonsfeil. Ett gjenstående eldre kvalitetsavvik holdes eksplisitt synlig til det er omskrevet.
+4. Nye spørsmål som eksponerer intern implementasjons-/spillterminologi, gir regresjonsfeil. Ingen eldre terminologiunntak tillates etter rettelsen i denne PR-en.
 
 Egen permanent CI-port: `.github/workflows/oslo-batch04-quiz-parity.yml`. Resultatet regnes ikke som godkjent før jobbene faktisk er kjørt grønt på den siste PR-commiten.
 
-## Fire kartlagte avvik – tre rettet, ett gjenstår
+## Fire kartlagte avvik – alle fire rettet på PR-grenen
 
-En utvidet gjennomgang av alle 503 spørsmål fant fire tilfeller av eksplisitt intern spill-/implementasjonsterminologi. Spørsmål 22 om skulpturene er rettet på `main` gjennom #6559. Spørsmål 1 ved Akers mekaniske Verksted og spørsmål 7 ved Grev Wedels plass er i tillegg omskrevet til stedsbasert historie med regenerert Knowledge og uendrede Knowledge-ID-er. Guard-testen har dermed **ett** eksakt eldre baseline-unntak igjen (`grev_wedels_plass_quiz_34`). Nye tilsvarende spørsmål skal feile CI.
+En utvidet gjennomgang av alle 503 spørsmål fant fire tilfeller av eksplisitt intern spill-/implementasjonsterminologi. Spørsmål 22 om skulpturene er rettet på `main` gjennom #6559. Spørsmål 1 ved Akers mekaniske Verksted og spørsmål 7 ved Grev Wedels plass er i tillegg omskrevet til stedsbasert historie med regenerert Knowledge og uendrede Knowledge-ID-er. Guard-testen har nå **null** baseline-unntak etter denne endringen. CI skal avvise enhver ny synlig internterm.
 
 - **Rettet – Akers mekaniske Verksted, `oslo_mek_quiz_1`:** spør nå «Hvilket skipsverft preget området som senere ble Aker Brygge?». Kunnskapsforklaringen og tematitlene er stedsspesifikke; intern targetterminologi er fjernet fra emnet og tilknyttede begreper.
 - **Rettet – Grev Wedels plass, `grev_wedels_plass_quiz_7`:** spør nå «Hvilket byrom betegner navnet Grev Wedels plass?». Den godkjente kildebriefen og quizens `claim_basis` beskriver parkrommet ved Gamle Logen og Militærhospitalet uten intern datamodellterminologi.
 - **Rettet i denne PR-en – `grev_wedels_plass_quiz_22`:** det gamle spørsmålet om «Objects i PlaceCard» er erstattet av et faktisk spørsmål om «Kvinnetorso», «Hanne på stranden» og fontenen. Distraktorene er forbedret, fasiten og den faktiske kildeforankrede Knowledge-teksten beholdt. Historisk støtte: https://oslobyleksikon.no/side/Grev_Wedels_plass.
-- **Grev Wedels plass, `grev_wedels_plass_quiz_34`**: «Hvorfor holdes Brands-feltet uten oppdiktet innhold?» Dette er en intern redaksjonell instruks, og må erstattes med et faktisk spørsmål, kilde- og fasitbelagt fra eksisterende Grev Wedels plass-kilder.
+- **Rettet på denne PR-grenen – Grev Wedels plass, `grev_wedels_plass_quiz_34`:** spør nå hva Oslo Byes Vel gjorde i 1962. Kilden dokumenterer at foreningen reddet Militærhospitalet fra ødeleggelse; denne bygningen ble gjenreist på plassen i 1982–1984. Original Knowledge-ID beholdes med oppdatert, stedsbasert kunnskapsinnhold.
 
-Spørsmål 7, 22 og 34 i Grev Wedels plass, samt spørsmål 1 ved Akers mekaniske Verksted, er **ikke blant de nåværende QuizCard-spørsmålene**. Kortenes 170 kildekoblede spørsmål er dermed uendret. Quizens kunnskapstekster og Grev Wedels plass sin kildebrief er samordnet med de kanoniske Knowledge-enhetene. Spørsmål 34 må fremdeles revideres før redaksjonell v1-godkjenning.
+Spørsmål 7, 22 og 34 i Grev Wedels plass, samt spørsmål 1 ved Akers mekaniske Verksted, er **ikke blant de nåværende QuizCard-spørsmålene**. Kortenes 170 kildekoblede spørsmål er dermed uendret. Quizens kunnskapstekster og Grev Wedels plass sin kildebrief er samordnet med de kanoniske Knowledge-enhetene. Spørsmål 34 er nå revidert på PR-grenen; oppdatert generert Knowledge og grønn CI må verifiseres før merge.
 
 En egen redaksjonell gjennomlesing gjenstår fortsatt for de øvrige spørsmålene – en terminologidetektor erstatter ikke faktakontroll eller vurdering av pedagogiske distraktorer.
 
@@ -50,4 +50,4 @@ En egen redaksjonell gjennomlesing gjenstår fortsatt for de øvrige spørsmåle
 - Endelig fotografisk utsnitt, lisens-/krediteringsvisning, og eventuell fysisk visuell QA.
 - Vurdering av hver enkelt teksts fortellerkvalitet, datoavhengige påstander og epokeplassering.
 
-**Riktig neste leveranse:** erstatte `grev_wedels_plass_quiz_34` med et kildebelagt historisk spørsmål, og etablere faktisk 390/1440 px browser-aksept for den samlede 17-stedersbolken. Full redaksjonell gjennomgang og fotokontroll gjenstår. Ikke oppgrader `v1_candidate` før alle portene er tilfredsstilt.
+**Riktig neste leveranse:** verifisere generert Knowledge, gjennomføre faktisk 390/1440 px browser-aksept for alle 17 steder og sluttføre bred redaksjonell gjennomlesing og bilde-/lisenskontroll. Behold `v1_candidate` frem til godkjenning. Ikke oppgrader `v1_candidate` før alle portene er tilfredsstilt.
