@@ -59,7 +59,15 @@ assert.equal(btn.textContent, "56");
 assert.match(btn.getAttribute("aria-label"), /56 av 100/);
 assert.ok(header.textContent.includes("Museumsvert") && header.textContent.includes("Dag 3"));
 assert.ok(!header.textContent.includes("Psyke") && !header.textContent.includes("PC"));
+window.CivicationCalendar = {
+  getClock: () => ({ dayIndex: 8 }),
+  getPhase: () => "workday",
+  getPhaseLabel: () => "Arbeidsdag"
+};
 window.CivicationDashboardUI.updateHeaderStatus();
+assert.ok(header.textContent.includes("Dag 8") && header.textContent.includes("Arbeidsdag"),
+  "header follows the shared calendar after career switch, not the new role's local story day");
+assert.equal(life.dag, 3, "HUD did not rewrite the role-specific story counter");
 assert.strictEqual(header.querySelector("#civiScoreTrigger"), btn,
   "routine HUD rerenders must retain the score button and focus target");
 btn.click();
