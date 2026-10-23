@@ -63,7 +63,7 @@ function setPos(lat: unknown, lon: unknown, acc?: unknown): void {
 
   win.HGMap?.setUser?.(updated.lat as number, updated.lon as number);
   // GPS updates may refresh nearby places, but visits remain user-controlled by default.
-  if (win.HG_AUTODISCOVER_PLACES === true) {
+  if (win.HG_AUTODISCOVER_PLACES === true && !getLocationOverride()) {
     autoUnlockPlacesFromPosition(updated.lat as number, updated.lon as number);
   }
   win.renderNearbyPlaces?.();
