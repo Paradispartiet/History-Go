@@ -302,7 +302,7 @@ test("fresh session ignores old single-category choices and shows ALL places", (
   ];
   win.HGMap.setPlaces(places);
   assert.deepEqual(calls.at(-1), ["street", "museum"]);
-  assert.deepEqual(win.HGMapCategoryFilter.get(), []);
+  assert.deepEqual([...win.HGMapCategoryFilter.get()], []);
   assert.equal(storage.has("hg_map_category_filters_v2"), false);
   assert.equal(storage.has("hg_map_category_filter_v1"), false);
 });
@@ -316,7 +316,7 @@ test("in-session category selection still works without hiding places after rest
   win.HGMap.setPlaces(places);
   win.HGMapCategoryFilter.set("by");
   assert.deepEqual(calls.at(-1), ["street"]);
-  assert.deepEqual(win.HGMapCategoryFilter.get(), ["by"]);
+  assert.deepEqual([...win.HGMapCategoryFilter.get()], ["by"]);
   assert.equal(storage.has("hg_map_category_filters_v2"), false);
   win.HGMapCategoryFilter.showAll();
   assert.deepEqual(calls.at(-1), ["street", "museum"]);
@@ -331,5 +331,5 @@ test("category selection with zero matching places falls back to all dots", () =
   win.HGMap.setPlaces(places);
   win.HGMapCategoryFilter.set("by");
   assert.deepEqual(calls.at(-1), ["museum", "monument"]);
-  assert.deepEqual(win.HGMapCategoryFilter.get(), []);
+  assert.deepEqual([...win.HGMapCategoryFilter.get()], []);
 });
