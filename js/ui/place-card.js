@@ -1,3 +1,17 @@
+/** @param {HTMLElement|null} host @param {Record<string, unknown>|undefined} metadata */
+function renderPlaceCardPhotoCaption(host, metadata) {
+  if (!host) return;
+  const text = metadata?.historicalOnly === true ? String(metadata.historicalCaption || "").trim() : "";
+  let caption = host.querySelector(".pc-photo-caption");
+  if (!text) { caption?.remove(); return; }
+  if (!caption) {
+    caption = host.ownerDocument.createElement("p");
+    caption.className = "pc-photo-caption";
+    host.appendChild(caption);
+  }
+  caption.textContent = text;
+}
+
 // ============================================================
 // 5. PLACE CARD (det store kortpanelet) — REN SAMLET VERSJON
 // ============================================================
@@ -1066,7 +1080,11 @@ async function setPlaceCardQuizBack(card, quizImgEl, quizContentEl, place) {
 
   if (cardData) {
     if (quizContentEl) {
-      quizContentEl.innerHTML = renderPlaceCardQuizData(cardData);
+      const signature = JSON.stringify(cardData);
+      if (quizContentEl.dataset.quizCardSignature !== signature || !quizContentEl.querySelector(".pc-rendered-quiz-card")) {
+        quizContentEl.innerHTML = renderPlaceCardQuizData(cardData);
+        quizContentEl.dataset.quizCardSignature = signature;
+      }
       quizContentEl.dataset.placeId = requestedPlaceId;
       quizContentEl.hidden = false;
     }
@@ -1548,6 +1566,7 @@ if (!card) return;
       headerHeroEl.classList.add("has-image");
     }
   }
+  renderPlaceCardPhotoCaption(headerHeroEl?.querySelector(".pc-heading-content") || null, place.imageMeta);
   // The editor chooses focal points per surface. Never carry one place's
   // inline position into the next place when a player switches cards.
   const imageComposition = /** @type {{ portraitPosition?: string, heroPosition?: string, portraitFit?: string }} */ (place.imageComposition || {});

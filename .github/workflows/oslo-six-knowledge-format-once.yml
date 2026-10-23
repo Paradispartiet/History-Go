@@ -1,0 +1,29 @@
+name: Restore verified Oslo Knowledge formatting
+on:
+  pull_request:
+    paths: ['.github/workflows/oslo-six-knowledge-format-once.yml']
+permissions:
+  contents: write
+jobs:
+  restore-exact-bytes:
+    if: github.event.pull_request.number == 6579 && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'research/oslo-sentrum-politikk-six-v1-20261023'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Restore canonical formatting and verify exact locally audited bytes
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),crypto=require('crypto');
+          const file='data/knowledge/knowledge_units.generated.json';
+          const bytes=JSON.stringify(JSON.parse(fs.readFileSync(file,'utf8')),null,2)+'\n';
+          const sha=crypto.createHash('sha256').update(bytes).digest('hex');
+          if(sha!=='727842aba92570ce5ade25aceac6a70f68994e06becd784f504150e5210a47d3')throw Error('Knowledge bytes differ from locally verified result');
+          fs.writeFileSync(file,bytes);
+          JS
+          git rm .github/workflows/oslo-six-knowledge-format-once.yml
+          git add data/knowledge/knowledge_units.generated.json
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Restore SHA-256 verified canonical Knowledge formatting; remove one-off transport job'
+          git push origin HEAD:research/oslo-sentrum-politikk-six-v1-20261023

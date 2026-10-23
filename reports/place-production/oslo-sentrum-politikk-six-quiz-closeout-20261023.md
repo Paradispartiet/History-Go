@@ -62,3 +62,19 @@ Alle 36 skjermbilder fra head `26b08d39` er gjennomgått som tre oversiktsark (f
 Historisk fotodatering er en faktisk uløst blocker: rapporten har `historicalYearVisible:false` for både Høyblokka og Y-blokka på mobil og desktop, men status ble likevel grønn. Reproduksjon: les artefaktets report.json og assert at ingen checks har historicalYearVisible === false; kontrollen feilet med akkurat disse fire kombinasjonene. Browser-testen strammes inn til å feile etter bevisopptak når årstallet mangler. Dette løser testens falske grønnstatus; det hevder ikke at bildedatering i appen er rettet. Ny CI og nye kortbilder må vurderes før godkjenning.
 
 Ytterligere kontrollpunkt: Høyblokkas Fagverk-forside sier 1959, mens quiz og stedstekst bruker 1958. Skill ferdigstillelse og datering i kildegrunnlaget før sluttreview. Ingen publisering eller v1-godkjenning er gitt.
+
+## Rettelser etter reprodusert sluttkontroll – 23. oktober 2026
+
+- **Korrigering av forrige visuelle observasjon:** Påstått 1959-avvik var en feillesning av nedskalert oversiktsark. Originalen `hoyblokka-mobile-fagverk.png` og canonical `fagverk.intro` viser begge **1958**. Ingen årstallsendring er nødvendig.
+- `hoyres_hus_card_10` spør nå hvem som står bak det blå Tivoli-skiltet (Oslo Byes Vel), støttet av Oslo byleksikon, Stortingsgata nr. 20, avsnittet om skiltet.
+- `victoria_terrasse_card_10` spør nå om salgsplanen som aktualiserte fredningen, støttet av Riksantikvarens fredningsomtale, avsnittet Eiendommen skal selges og begrunnelsen fra Hanna Geiran.
+- `hoyesteretts_card_10` spør nå om prøvingsretten i Grunnloven § 89, støttet av Stortingets sak 66436, Vedtak i korthet (vedtak 14. mai 2020). Rettslig kontroll skilles fra politisk hensiktsmessighet og valgoppslutning. Maktfordelingsbindingen er konkretisert.
+- Disse tre spørsmålenes claim-baser, source briefs, produksjonskontekster og berørte QuizCards er oppdatert. Knowledge er regenerert fra endrede påstander; gamle generiske forklaringer gjenbrukes ikke som fasitgrunnlag.
+- Historisk bildetekst fra eksisterende `imageMeta.historicalCaption` rendres nå synlig i PlaceCard ved bildet. DOM-test viste først forventet feil, deretter bestått datering, tømming ved stedsskifte og trygg tekstvisning.
+- Browser-kjøring 40007481517 avdekket også `Element is not attached to the DOM` under kortfotografering: to eksisterende renderere skrev samme QuizCard på nytt ved bakgrunnshydrering. Begge beholder nå identisk kort-DOM når data er uendret, men oppdaterer ved endret kortinnhold. En DOM-identitetstest feilet før rettelsen og består etterpå. TypeScript-kilde og deployede JS-bundler er bygget sammen.
+
+### Utført lokal verifikasjon
+
+`npm run build:web`, `npm run typecheck:web`, `npm run knowledge:canonical:write`, `npm run audit:quiz-content`, `npm run audit:quiz-production-context`, `npm run audit:quiz-progression`, `npm run audit:quiz-theory-binding`, `npm run audit:quiz-templates`, `npm run test:quiz-content-audit`, `node scripts/build-place-open-payloads.mjs --check`, samt sju DOM-/QuizCard-regresjoner bestod. Innholds-auditen rapporterer globale redaksjonelle advarsler; exit 0 er ikke redaksjonell sluttgodkjenning. Knowledge rapporterte 0 feil og eksisterende advarsler (451 uløste emnekoblinger, 2853 varselspørsmål globalt).
+
+Lokal Playwright-nedlasting feilet med ugyldig/tom zip fra nettverkskanalen; dette er ikke en bestått browser-kjøring. GitHub Actions brukes til ny faktisk mobil-/desktopkontroll. PR beholder draft til ny CI, visuell kontroll og full kilde–påstand–distraktor-review er godkjent.

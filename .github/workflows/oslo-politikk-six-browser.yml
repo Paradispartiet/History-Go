@@ -15,6 +15,12 @@ on:
       - 'data/quiz/politikk/victoria_terrasse_sets.json'
       - 'data/quiz/politikk/y_blokka_sets.json'
       - 'data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json'
+      - 'js/ui/place-card.js'
+      - 'js/ui/placeQuizCards.ts'
+      - 'js/ui/place-card-quizcards-patch.js'
+      - 'css/placeCard.css'
+      - 'tests/place-card-photo-caption.test.mjs'
+      - 'tests/place-quizcard-hydration-stability.test.mjs'
       - 'tests/oslo-politikk-six-browser.mjs'
       - '.github/workflows/oslo-politikk-six-browser.yml'
   workflow_dispatch:
@@ -34,6 +40,7 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - run: node --test tests/place-card-photo-caption.test.mjs tests/place-quizcard-hydration-stability.test.mjs
       - run: npx playwright install --with-deps chromium
       - name: Verify PlaceCard, photos, flipped QuizCard and Fagverk on mobile and desktop
         run: node tests/oslo-politikk-six-browser.mjs
