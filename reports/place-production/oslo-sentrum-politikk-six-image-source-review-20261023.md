@@ -22,3 +22,23 @@ På siste kontrollert ferdige PR-head `dd108cc7` bestod 10 av 11 testarbeidsflyt
 3. Materialiser lokale original-/avledede filer med verifisert SHA-256, ikke strekkt oppskalering for å fylle kvoter.
 4. Utfør visuell redaksjonell kontroll av frontbilde, kortbilde og bredt toppbilde på mobil og PC.
 5. Gjennomfør tilsvarende kilde- og motivaudit for resten av de seks; ikke bruk kunstfotografi uten klarert tilstrekkelig rettighet.
+
+## Andre billedkilder — etterkontroll 23. oktober 2026
+
+Ny research etter første lisensgjennomgang. **Følgende er identifiserte Commons-originaler og lisenser, ikke materialiserte eller visuelt godkjente History GO-bilder.** Originalmålene er filsidens metadata; ingen nye lokale bildefiler, SHA-256, 3-format-derivater eller `image`-felter er opprettet.
+
+| Place | Ny hovedkandidat på Commons | Fotograf | Lisens oppgitt på Commons | Originalformat | Redaksjonell vurdering |
+| --- | --- | --- | --- | --- | --- |
+| `hoyesteretts_hus` | [Norges Høyesterett Supreme Court of Norway.jpg](https://commons.wikimedia.org/wiki/File:Norges_H%C3%B8yesterett_Supreme_Court_of_Norway.jpg) | Helge Høifødt | CC BY-SA 4.0 | 3557 × 2276 (liggende) | Høyoppløselig alternativ til Tore Sætres 900×600. Bred fasade; stående utsnitt må komposisjonskontrolleres. |
+| `folkets_hus_oslo` | [Folkets Hus Youngstorget.JPG](https://commons.wikimedia.org/wiki/File:Folkets_Hus_Youngstorget.JPG) | Kjetil Ree | CC BY-SA 2.5 (og 2.0/1.0) | 3072 × 2304 (liggende) | Betydelig større original enn tidligere 1256×669. Stående utsnitt kan prøves, men motiv og LO-merke må beholdes lesbart. |
+| `hoyres_hus` | [Høyres Hus Oslo.jpg](https://commons.wikimedia.org/wiki/File:H%C3%B8yres_Hus_Oslo.jpg) | Kjetil Ree | CC BY-SA 2.5 (og 2.0/1.0) | 2304 × 3072 (stående) | Prioritert frontImage-kandidat: selvstendig høydeformat og dokumentert adresse Stortingsgata 20. Historisk foto fra 2007. |
+| `hoyblokka` | [Regjeringskvartalet H-blokk Johan Nygaardsvolds plass Oslo Norway (2008.07.01).jpg](https://commons.wikimedia.org/wiki/File:Regjeringskvartalet_H-blokk_Johan_Nygaardsvolds_plass_Oslo_Norway_(2008.07.01).jpg) | Geir Hval | CC BY-SA 4.0 | 3008 × 2000 (liggende) | Historisk foto før angrepet i 2011: må merkes som eldre tidslag; ikke som 2026-status. For ny fasade finnes [2026-foto av Wolfmann](https://commons.wikimedia.org/wiki/File:OSLO_Norway_2026-10-12_AKERSGATA_Deich_bibliotek_byggegrop_heisekran_Regjeringskvartalet_A-blokka_H%C3%B8yblokka_Johan_Nygaardsvolds_plass_Lindeall%C3%A9en_22_juli-minnesmerke_(Mathias_Faldbakken)_Gamle_regjeringsbygning_etc_IMG_3393.jpg), 6048×8064, CC BY-SA 4.0, men utsnitt/kunst- og minnesmerkerettigheter må vurderes særskilt. |
+| `victoria_terrasse` | [Victoria Terrasse in Oslo Norway.jpg](https://commons.wikimedia.org/wiki/File:Victoria_Terrasse_in_Oslo_Norway.jpg) | Leif Knutsen / Leifern | CC BY-SA 3.0 (og GFDL) | 2000 × 3008 (stående) | God frontImage-kandidat fra 2008; kontroller at fasadens sentrale arkitektur bevares i utsnitt. |
+| `y_blokka` | [Regjeringskvartalet Y-blokk R5 Johan Nygaardsvolds plass Oslo Norway (2008.07.01).jpg](https://commons.wikimedia.org/wiki/File:Regjeringskvartalet_Y-blokk_R5_Johan_Nygaardsvolds_plass_Oslo_Norway_(2008.07.01).jpg) | Geir Hval | CC BY-SA 4.0 for foto | 3008 × 2000 (liggende) | Historisk før rivingen i 2020. **Ikke kunst-rettighetsklarert**: undersøk om beskyttet Picasso/Nesjar-verk er synlig/hovedmotiv, og dokumenter rettighetsgrunnlag før bruk. |
+
+### Brukstillatelse er ikke ferdig bildelevaranse
+
+- Commons-opphaverens fotolisens er dokumentert i tabellen; nødvendig navngivelse, lenke til konkret lisensversjon og synlig beskjærings-/bearbeidingsmerknad må følge hvert brukt bilde. Ved bearbeidede CC BY-SA-bilder må delingen skje i samsvar med samme eller kompatibel lisens.
+- Portrait (`frontImage`, mål 900×1350), kort (`cardImage`, mål 900×600) og bredt hovedbilde (`image`, mål 1400×900) skal lages fra reelle lisensierte originalbytes og inspiseres separat. Ingen oppskalering for å skjule manglende oppløsning, og ingen falske hashverdier.
+- Bruk historisk datert bildetekst for `hoyblokka` og `y_blokka`. For Y-blokka må stedsmarkøren vise tidligere bygning og eventuelle kunstverk vurderes juridisk separat fra fotografiets lisens. Også det nyere 2026-fotoet med minnesmerke for `hoyblokka` kan inneholde tredjepartskunst.
+- Neste tekniske port krever tilgang til originale bildefiler, validert WebP-konvertering, SHA-256, synlig korrekt kreditering i appen samt telefon-/desktopkontroll. GitHub-connectorens tekstfiloppdatering er ikke en erstatning for import av faktiske bildefiler. **Alle seks Place-bilder forblir BLOCKED** til dette er gjort.
