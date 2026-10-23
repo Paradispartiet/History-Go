@@ -83,7 +83,7 @@ Etter mange år med dans, servering og skiftende eiere stanset driften i 1997. B
 
 **Foreslått `popupDesc` (ikke canonical):**
 
-Frognerseteren var opprinnelig knyttet til Frogner hovedgårds seterdrift. Finansmannen Thomas Heftye kjøpte eiendommen i 1864. Han lot oppføre Heftyevillaen som landsted i 1867 og flyttet senere gamle tømmerstuer hit. Slik ble skogseiendommen også et sted der byfolk kunne møte et idealisert bilde av norsk bygdekultur.
+Frognerseteren var opprinnelig knyttet til Frogner hovedgårds seterdrift. Finansmannen Thomas Heftye kjøpte eiendommen på 1860-tallet. Han lot oppføre Heftyevillaen som landsted i 1867 og flyttet senere gamle tømmerstuer hit. Slik ble skogseiendommen også et sted der byfolk kunne møte et idealisert bilde av norsk bygdekultur.
 
 Etter at Kristiania kommune kjøpte eiendommen av Heftyes arvinger i 1889, ble utfartstilbudet utbygget. Den nye veien opp ble åpnet i 1890. Året etter sto restaurantbygningen ferdig, tegnet av Holm Munthe i dragestil. De bratte takflatene og utskårne detaljene skulle knytte stedet til forestillinger om norsk middelalder og folkekunst. I 1909 ble hovedrestauranten om- og tilbygd.
 
@@ -100,7 +100,7 @@ Frognerseteren viser hvordan kommunal tilrettelegging, servering og friluftsliv 
 | Nr | Spørsmål | Korrekt faktakjerne | Kildespor |
 |---:|---|---|---|
 | 1 | Hvilken gård tilhørte seterområdet opprinnelig? | Frogner hovedgård | Oslo byleksikon |
-| 2 | Hvem kjøpte Frognerseteren i 1864? | Thomas Heftye | Oslo byleksikon |
+| 2 | Hvem kjøpte skogeiendommen ved Frognerseteren på 1860-tallet? | Thomas Heftye | Oslo byleksikon |
 | 3 | Hvor kom byggetømmeret til hovedrestauranten fra? | Kommunens egen skog | Frognerseteren Restaurant (K4) |
 | 4 | Hvem kjøpte Frognerseteren av Heftyes arvinger i 1889? | Kristiania kommune | Oslo byleksikon |
 | 5 | Hvilken arkitekt innredet restaurantens Styrerom? | Christian Heiberg | Frognerseteren Restaurant (K4) |
@@ -253,7 +253,7 @@ Dette er **ikke 50 nye aktive spørsmål i tillegg til de 60 over**, men alterna
 **QuizCard-distraktorutkast (spørsmål | riktig svar | tre andre svar | kildespor):**
 
 1. Hva var Frognerseteren opprinnelig? | En seter under Frogner hovedgård | Et teglverk; et fyr; en festning | F1
-2. Hvem kjøpte området i 1864? | Thomas Heftye | Lars Backer; Christian Ringnes; Carl Berner | F1
+2. Hvem kjøpte området på 1860-tallet? | Thomas Heftye | Lars Backer; Christian Ringnes; Carl Berner | F1
 3. Hva bygde Heftye som landsted i 1867? | Heftyevillaen | Skistua; Sportshallen; Roseslottet | F1
 4. Hvem kjøpte Frognerseteren i 1889? | Kristiania kommune | Staten Danmark; Schous Bryggeri; Nasjonalmuseet | F1
 5. Når ble ny vei opp nordover fra Holmenkollen åpnet? | 1890 | 1852; 1916; 1968 | F1

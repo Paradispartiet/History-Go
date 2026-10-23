@@ -52,7 +52,7 @@ const DETAILS = Object.freeze({
     ],
     knowledge: [
       'Frognerseteren var opprinnelig seter i Trevollskogen, som hørte til Frogner hovedgård.',
-      'Thomas Heftye kjøpte skogeiendommen i 1864. Kommunen kjøpte området av arvingene først i 1889.',
+      'Thomas Heftye kjøpte skogeiendommen på 1860-tallet. Oslo byleksikon sier 1864, mens restaurantens egen historikk sier 1865. Kommunen overtok i 1889.',
       'Hovedrestaurantens byggetømmer kom fra kommunens egen skog ifølge restauratørens publiserte bygningshistorie.',
       'Kristiania kommune kjøpte eiendommen i 1889, noe som la grunnlag for videre offentlig utfartstilrettelegging.',
       'Byarkitekt Christian Heiberg innredet Styrerommet. Rommets dekorative malerier ble utført av Ulrik Hendriksen.',

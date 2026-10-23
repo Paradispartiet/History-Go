@@ -57,3 +57,23 @@ test('restaurant QuizCard and extras all target the correct building with operat
   assert.ok(p.fullquiz_preview.slice(10).every(q => !q.adjacent_building_scope_hold && q.source_urls.includes(OPERATOR)));
   assert.equal(preview.publication_status, 'BLOCKED_PREVIEW_ONLY_NO_RUNTIME_WRITES');
 });
+
+test('Frognerseteren 1864/1865 purchase discrepancy is source-attributed without false exact-date quiz premise',()=>{
+  const shortQuiz=buildOsloSixFullquizReview().places.find(p=>p.place_id==='frognerseteren').sets.flatMap(s=>s.questions);
+  const target=shortQuiz[1];
+  assert.match(target.question,/1860-tallet/);
+  assert.doesNotMatch(target.question,/1864|1865/);
+  assert.match(target.knowledge,/1864/);
+  assert.match(target.knowledge,/1865/);
+  const caveat=audit.ownership_chronology_caveat;
+  assert.equal(caveat.date_reported_by_oslo_byleksikon,1864);
+  assert.equal(caveat.date_reported_by_restaurant_operator,1865);
+  assert.equal(caveat.independent_editorial_resolution,false);
+  const editorial=readFileSync(new URL('../reports/place-production/oslo-six-places-editorial-20261022.md',import.meta.url),'utf8')
+    .split('## Frognerseteren (`frognerseteren`)')[1].split('## Sarabråten')[0];
+  const article=JSON.parse(readFileSync(new URL('../reports/place-production/oslo-six-fagverk-preintegration-20261022.json',import.meta.url),'utf8'))
+    .places.find(p=>p.place_id==='frognerseteren').fagverk;
+  for(const publicText of [editorial,...article.article,...article.lenses.map(x=>x.evidence)])
+    assert.doesNotMatch(publicText,/Heftye kjøpte (?:eiendommen|Frognerseteren|området) i 1864/);
+  assert.equal(target.runtime_registered,false);
+});
