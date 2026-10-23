@@ -40,3 +40,17 @@ Konsistenskontrollen sammenlignet alle 60 QuizCards med kanonisk fullquiz på sp
 Nyere datoer er kryssjekket mot offisielle kilder: Regjeringens omtale 13. april 2026 av åpningen av første byggetrinn i regjeringskvartalet og UD i D-blokka (https://www.regjeringen.no/no/aktuelt/det-nye-regjeringskvartalet-offisielt-apnet/id3155987/), og Riksantikvarens markering av fredningen av Victoria terrasse 21. mars 2025 (https://riksantikvaren.no/kalender/fredingsmarkering-victoria-terrasse/).
 
 **Avgrensning:** Dette er delvis redaksjonell kvalitetsforbedring og teknisk paritetskontroll; den er **ikke** uavhengig kilde–påstand–distraktor-evaluering av samtlige 126 oppgaver. Skjermbilder og faktisk apprespons på smal mobil og desktop er fortsatt ikke dokumentert. Gjennomfør disse portene før v1-godkjenning og merge. Oslo-bolk 04 og andre arbeidsspor er ikke berørt.
+
+## Sluttkontroll – konkrete distraktoravvik, 23. oktober 2026
+
+Kontrollert GitHub-head før revisjon: `26b08d39e3866cc9d0ad615c024371575f6d8944`. Alle 21 registrerte arbeidsflyter var completed/success, inkludert real app browser QA og fullquiz live playthrough. Dette er maskinelt testbevis; skjermbildene er ikke visuelt godkjent i denne revisjonen.
+
+Sju spørsmål fikk fjorten nye feilalternativer; to berørte QuizCard-spørsmål er synkronisert. Korrekte svar, indeks, spørsmåls-ID, Knowledge og kilder er uendret. Endringene fjerner anakronistiske, faglig usammenlignbare eller åpenbart uvedkommende valg: unionsoppløsning/flom ved 22. juli, middelalderglass/laft ved naturbetong, dramatiker/komponist ved billedkunst, høyesterettslokale/jernbaneterminal ved Folkets Hus og bank/Røde Kors ved tysk politi. Nye alternativer er hypoteser som skal avvises, ikke nye historiske påstander.
+
+Reviderte ID-er: `hoyblokka_card_05`, `hoyblokka_card_06`, `hoyblokka_fullquiz_research_17`, `folkets_hus_fullquiz_research_12`, `folkets_hus_fullquiz_research_17`, `hoyres_hus_fullquiz_research_16`, `hoyres_hus_fullquiz_research_18`.
+
+Fortsatt redaksjonell blocker: `hoyres_hus_card_10` tester hva fasaden ikke dokumenterer og inngår i de ti QuizCard-spørsmålene; dette oppfyller ikke kravet om ti direkte stedsspesifikke faktaspørsmål. `hoyesteretts_card_10` har samme metaspørsmålstype i fullquiz. `victoria_terrasse_card_10` er et generelt normativt spørsmål i åpningsblokken. Disse trenger kildebårne erstatninger med oppdatert brief/Knowledge/paritet. Andre åpenbare feilalternativer og datotung progresjon må inngå i full sluttgjennomgang. Ingen fullstendig kilde–påstand-godkjenning gis her.
+
+Avgrenset verifikasjon før commit: alle endrede spørsmål har tre forskjellige alternativer, gyldig indeks og bevart fasit; QuizCard synkronisert fra canonical fullquiz. Ny ordinær CI kreves på revisjonscommit.
+
+Kvalitetsporten består ikke ennå: korrekthet/evidens 3/5 (full kildepassasjeaudit gjenstår), dekning 3/5 (metaspørsmål gjenstår), redaksjon 3/5 (konkrete forbedringer, fortsatt svakheter), teknisk integritet 4/5 (21 grønne før endringen; ny CI avventes), ansvarlighet 4/5 (historisk ansvar avgrenset, ingen nye fasitpåstander), etterprøvbarhet 4/5 (ID-festet revisjon og bevart paritet). Sum 21/30; draft beholdes.
