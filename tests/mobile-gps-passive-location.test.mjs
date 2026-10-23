@@ -87,6 +87,9 @@ test("manual city/place selection never fabricates a GPS visit, even in opt-in m
   assert.deepEqual(app.recordedVisits, []);
   assert.deepEqual(app.openedCards, []);
   assert.equal(app.page.HGPos.getPos().mode, "manual");
+  app.page.HGPos.setPos(59.9, 10.7, 10); // background GPS while virtual city is selected
+  assert.deepEqual(app.recordedVisits, []);
+  assert.deepEqual(app.openedCards, []);
 });
 
 test("explicit legacy opt-in can discover nearby places but cannot hijack the card", () => {
