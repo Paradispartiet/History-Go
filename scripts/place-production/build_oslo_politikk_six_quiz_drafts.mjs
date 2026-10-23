@@ -113,7 +113,7 @@ for(const id of ids){
    // Only existing Folkets Hus questions preserve their existing stable question IDs.
    // Knowledge canonical pipeline will reconcile the revised facts and unit references.
    claims.push({claim_id:claimId,order:i+1,planned_phase:phase,
-      family:kind,statement:q.claim_basis,source_ids:sourceIds,source_origin:'external',
+      family:kind==='concept'?'concept_theory':kind,statement:q.claim_basis,source_ids:sourceIds,source_origin:'external',
       emne_id:emne,...(q.method_id?{method_id:q.method_id}:{}),
       ...(q.topic_hook_id?{topic_hook_id:q.topic_hook_id,thinker_id:q.thinker_id}:{})});
    questionRows.push(q);
