@@ -1,0 +1,70 @@
+name: Oslo sentrum Y-blokka facade photo review only (PR 6579)
+
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-politikk-six-v1-20261023
+    paths:
+      - .github/workflows/oslo-sentrum-politikk-y-blokka-facade-staging.yml
+
+permissions:
+  contents: read
+
+jobs:
+  architecture-only-staging:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out isolated PR branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install WebP decoder
+        run: python -m pip install 'Pillow>=10,<13'
+      - name: Validate photo processing script
+        run: python -m py_compile scripts/place-production/stage_oslo_sentrum_politikk_photos.py
+      - name: Stage only the 2008 Y-blokka facade without visible murals
+        run: |
+          python scripts/place-production/stage_oslo_sentrum_politikk_photos.py \
+            --place y_blokka \
+            --allow-architecture-only-yblokka \
+            --focus-x 0.7
+      - name: Create unapproved image review sheet
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from PIL import Image, ImageDraw
+          root=Path('reports/place-production/media-staging/oslo-sentrum-politikk/y_blokka')
+          meta=json.loads((root/'staging-metadata.json').read_text())
+          assert meta['historical_only'] and meta['architecture_only_no_artwork_visible']
+          assert meta['source_page']=='https://commons.wikimedia.org/wiki/File:Regjeringskvartalet_Y-blokk_R5_Johan_Nygaardsvolds_plass_Oslo_Norway_(2008.07.01).jpg'
+          sheet=Image.new('RGB',(1700,1650),'white');draw=ImageDraw.Draw(sheet)
+          draw.text((24,12),'Y-blokka 2008 facade without Picasso/Nesjar murals – visual rights review pending',fill='black')
+          for x,filename,scale in ((24,'y_blokka_front_portrait.webp',(800,1350)),(850,'y_blokka.webp',(800,515))):
+              with Image.open(root/filename) as im:
+                  preview=im.convert('RGB');preview.thumbnail(scale)
+                  sheet.paste(preview,(x,56))
+          sheet.save(root/'y-blokka-facade-review.jpg',quality=87)
+          PY
+      - name: Upload review-only artifact, not canonical photos
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-politikk-pr6579-y-blokka-facade-review
+          path: reports/place-production/media-staging/oslo-sentrum-politikk/y_blokka/
+          if-no-files-found: error
+          retention-days: 14
+      - name: State remaining blockers accurately
+        if: always()
+        run: |
+          {
+            echo "### Y-blokka historical facade photograph (2008)"
+            echo "Staging only. This is a building overview rather than reproduction of Picasso/Nesjar motifs."
+            echo "Rights analysis is scoped to the photograph and depicted architecture, not the separate artworks."
+            echo "Publishing requires actual visual review, original/derived SHA, accurate date, attribution and application QA."
+          } >> "$GITHUB_STEP_SUMMARY"
