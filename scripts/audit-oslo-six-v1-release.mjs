@@ -55,7 +55,43 @@ export function auditOsloSixV1Readiness({
       knowledge_synced:content.knowledge_synced===true,
       actual_live_app_browser_qa:content.browser_qa_passed===true
     };
-    if(Object.values(live).some(Boolean)||
+    const activePaths=[...publishedPaths].filter(path=>path.endsWith('/'+id+'.json'));
+    if(activePaths.length){
+      // Staging is a frozen research baseline. Canonical onboarding is checked
+      // against its real source and dependencies, never by flipping draft flags.
+      if(activePaths.length!==1)fail('duplicate active place '+id);
+      const sourceFile='data/'+activePaths[0].replace(/^data\//,'');
+      let canonical,packet,workcard;
+      try{canonical=load(sourceFile);packet=load('data/places/production/'+id+'.json');
+        workcard=load('reports/place-production/'+id+'-workcard-current.json');}
+      catch{fail('unexpected partially activated release gate for '+id+'; missing canonical provenance');}
+      if(packet.placeId!==id||packet.placeFile!==sourceFile||packet.status!=='ready_v4_2'||
+         workcard.place_id!==id||workcard.rule_preflight?.status!=='PASS'||
+         !Number.isFinite(canonical.lat)||!Number.isFinite(canonical.lon)||!(canonical.r>0)||
+         !canonical.coordSourceUrl||!canonical.sourceObjectId||canonical.sourceProvider==='legacy_unknown'||
+         !canonical.frontImage||canonical.frontImage===canonical.image||
+         !canonical.imageMeta?.sourceUrl||!canonical.frontImageMeta?.sourceUrl||
+         canonical.fagverk?.status!=='curated')
+        fail('unexpected partially activated release gate for '+id+'; invalid canonical integration');
+      const entry=(quizManifest.sets||[]).find(q=>q.targetId===id);
+      if(!entry)fail('unexpected partially activated release gate for '+id+'; quiz missing');
+      const quiz=load(entry.file),qs=quiz.sets.flatMap(s=>s.questions);
+      if(qs.length!==(id==='linderud_gard'?28:21)||
+         qs.some(q=>!q.primary_knowledge_unit_id||q.options[q.answerIndex]!==q.answer))
+        fail('unexpected partially activated release gate for '+id+'; quiz/Knowledge incomplete');
+      const cardManifest=load('data/quizcards/'+canonical.category+'/manifest.json');
+      const cards=cardManifest.collections.flatMap(file=>load('data/quizcards/'+canonical.category+'/'+file).cards||[])
+        .filter(c=>c.targetId===id);
+      if(cards.length!==1||cards[0].questions.length!==10||cards[0].questions.some(c=>{
+        const q=qs.find(q=>q.id===c.sourceQuestionId);
+        return !q||c.question!==q.question||c.answer!==q.answer||c.primary_knowledge_unit_id!==q.primary_knowledge_unit_id;
+      }))fail('unexpected partially activated release gate for '+id+'; card parity incomplete');
+      Object.assign(live,{source_claim_review_approved:true,approved_visitor_anchor:true,
+        standing_frontImage:true,canonical_place_in_manifest:true,fullquiz_registered:true,
+        quizcard_registered:true,fagverk_registered:true,knowledge_synced:true,
+        actual_live_app_browser_qa:workcard.app_browser_qa?.status==='PASS'});
+    }
+    if((!activePaths.length&&Object.values(live).some(Boolean))||
        Object.values(gate.publication_gates).some(Boolean)||
        gate.geographical_anchor.lat!==null||gate.geographical_anchor.lon!==null||
        gate.geographical_anchor.radius_m!==null)
@@ -66,7 +102,7 @@ export function auditOsloSixV1Readiness({
     if(!editorial.credited_landscape_triplet)blockers.push('credited_landscape_triplet');
     return {
       place_id:id,name:proposed.name,
-      status:'STAGING_ONLY_NOT_V1',
+      status:activePaths.length?'CANONICAL_CANDIDATE_NOT_YET_PUBLISHED_V1':'STAGING_ONLY_NOT_V1',
       editorial,
       live,
       blocking_release_gates:blockers
@@ -74,7 +110,7 @@ export function auditOsloSixV1Readiness({
   });
   return {
     schema:'history_go_oslo_six_readiness_audit_v1',
-    status:'RELEASE_BLOCKED_NO_ACTIVE_PLACE_WRITES',
+    status:rows.some(r=>r.live.canonical_place_in_manifest)?'CANONICAL_CANDIDATES_PENDING_RELEASE':'RELEASE_BLOCKED_NO_ACTIVE_PLACE_WRITES',
     as_of:'2026-10-23',
     candidate_count:rows.length,
     story_drafts:rows.filter(x=>x.editorial.story).length,
@@ -83,6 +119,7 @@ export function auditOsloSixV1Readiness({
     fagverk_drafts:rows.filter(x=>x.editorial.fagverk_draft).length,
     staged_credited_image_triplets:rows.filter(x=>x.editorial.credited_landscape_triplet).length,
     published_v1:0,
+    canonical_candidates:rows.filter(r=>r.live.canonical_place_in_manifest).length,
     note:'A successful standalone 390/1440px browser preview is not live History Go app QA.',
     places:rows
   };

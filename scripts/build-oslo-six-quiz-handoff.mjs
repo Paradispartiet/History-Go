@@ -87,19 +87,15 @@ export function buildOsloSixStaging() {
          gate.places.every((entry, index) => entry.place_id === STEDER[index][0]),
     'seksstedslisten må samsvare med publiseringsporten');
 
-  const places = JSON.parse(read('data/places/manifest.json'));
-  const placeIds = new Set(places.files.map((file) => basename(file, '.json')));
-  const quizManifest = read('data/quiz/manifest.json');
+  // This is a read-only historical draft projection. A canonical onboarding
+  // must not make the original source drafts unreadable. Actual activation is
+  // checked by audit-oslo-six-v1-release, against real source/quiz dependencies.
   const records = STEDER.map(([id, name]) => {
     const intake = gate.places.find((entry) => entry.place_id === id);
     ensure(intake && intake.release_status === 'BLOCKED' &&
            intake.geographical_anchor.status === 'HOLD' &&
            Object.values(intake.publication_gates).every((passed) => passed === false),
       id + ': status motstrider felles publiseringsport');
-    ensure(!placeIds.has(id), id + ': canonical sted finnes allerede; bruk ny v1-audit, ikke staging');
-    ensure(!quizManifest.includes('"targetId": "' + id + '"') &&
-           !quizManifest.includes('"targetId":"' + id + '"'),
-      id + ': aktivt quizmål finnes allerede; staging-kontrollen må revideres');
     const core = parseCore(primary, id, name);
     const alternatives = id === 'linderud_gard' ? [] : parseAlternatives(stage, id, name);
     ensure(core.length === intake.editorial.quizcard_fact_candidates &&

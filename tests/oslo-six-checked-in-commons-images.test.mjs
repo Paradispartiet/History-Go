@@ -46,7 +46,7 @@ test('all fifteen checked-in Commons WebPs have exact recorded cryptographic has
       assert.equal(createHash('sha256').update(data).digest('hex'),v.sha256,path);
       assert.equal(q[v.role+'_status'],'FRAMING_PASS');
     }
-    assert.equal(manifests.files.some(path=>path.endsWith('/'+p.place_id+'.json')),false);
+    assert.equal(manifests.files.some(path=>path.endsWith('/'+p.place_id+'.json')),p.place_id==='ekebergrestauranten');
     assert.equal(gate.places.find(x=>x.place_id===p.place_id).release_status,'BLOCKED');
   }
   assert.equal(paths.size,15);

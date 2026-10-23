@@ -59,7 +59,7 @@ test('draft review cards cannot implicitly turn on a Place, quiz or location', (
     assert.equal(gate.release_status, 'BLOCKED', place.place_id);
     assert.equal(gate.geographical_anchor.status, 'HOLD', place.place_id);
     assert.ok(Object.values(gate.publication_gates).every(x => x === false));
-    assert.ok(!(manifest.sets || []).some(s => s.targetId === place.place_id));
+    assert.equal((manifest.sets || []).some(s => s.targetId === place.place_id),place.place_id==='ekebergrestauranten');
     assert.ok(!(manifest.targets || []).some(s => s.targetId === place.place_id));
     assert.ok(!(manifest.files || []).some(f => f.includes(place.place_id)));
   }

@@ -48,7 +48,7 @@ test('six editorial stories export as faithful nonplayable canonical-shaped Plac
     }
     for (const key of ['lat','lon','r']) assert.equal(draft[key],null);
     assert.ok(p.missing_release_checks.includes('safe_visitor_geopoint_and_radius'));
-    assert.equal([...active].some(x=>x.endsWith('/'+p.id+'.json')),false);
+    assert.equal([...active].some(x=>x.endsWith('/'+p.id+'.json')),p.id==='ekebergrestauranten');
   }
   assert.equal(release.places.filter(p=>p.provisional_site_poi_reference!==null).length,2);
   assert.equal(release.places.filter(p=>p.image_source_page_candidate!==null).length,5);

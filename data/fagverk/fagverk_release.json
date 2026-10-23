@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.17.4",
     "updated_at": "2026-10-21",
-    "content_sha256": "62d03302db5eb5d787b9c98558e19b080b0fe72b895a07c69c4320be02fd6ded"
+    "content_sha256": "30b4b8ca82cd55634ef907fb0c3cfca684f0fcc8c00a97ab9e939970e8f355c2"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "206b205c219f8ce580908e66abcd3cd15227ea62cbb07c4833d2e7c580c23742"
+    "content_sha256": "49d7876e813b2bea5f8ac89ba02e5c7639c25d4ad2f7594a8ff452c85a07a7b5"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 462,
+    "package_file_count": 465,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1326,
+    "referenced_file_count": 1329,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 99,
+      "package_file_count": 102,
       "required_package_file_count": 4,
-      "optional_package_file_count": 95,
+      "optional_package_file_count": 98,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -201,6 +201,18 @@
           "content_sha256": "0bbf806341a777cac2cddaaa839716623bf9202dca3ba604ed956b1b7501617d"
         },
         {
+          "path": "data/quiz/by/ekebergrestauranten_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ekebergrestauranten.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "f6232eb3deddf9abd277355496762cd56862ad0e3d0caf49a9e4ddecb64984c2"
+        },
+        {
           "path": "data/quiz/by/gamle_trikkestallen_sets.json",
           "required": false,
           "fields": [
@@ -222,7 +234,7 @@
             "quizProduction.targets.grev_wedels_plass.quiz_file"
           ],
           "exists": true,
-          "content_sha256": "359d9ed3e5c65a1f7701dd8fa435b58c4b6f7d7e85c36b358165b9bc7c5e779d"
+          "content_sha256": "3e597bd88d2fc4e8a073bf82bc5947db95eb274240c08c72aa18bf328349aa70"
         },
         {
           "path": "data/quiz/by/hammersborg_torg_sets.json",
@@ -561,6 +573,18 @@
           "content_sha256": "39c221abfd5d9cd96d3d2850152521e7a05a1aac463c6995863dd72a23009672"
         },
         {
+          "path": "data/quiz/production_briefs/by/ekebergrestauranten.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ekebergrestauranten.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "6e70dfb4800051a41b120537044275ea9eb86f4aad2c55c819b16c67af61d63b"
+        },
+        {
           "path": "data/quiz/production_briefs/by/gamle_trikkestallen.json",
           "required": false,
           "fields": [
@@ -582,7 +606,7 @@
             "quizProduction.targets.grev_wedels_plass.source_brief"
           ],
           "exists": true,
-          "content_sha256": "43643471123d74aaf785c72b90e691e8566a66007eb9c358d3e79113a678ce88"
+          "content_sha256": "efad9b8e4bc4ebec39e00c98d01057b3eb9f7b5d27bb728b2c68214df1c36a79"
         },
         {
           "path": "data/quiz/production_briefs/by/hammersborg_torg.json",
@@ -921,6 +945,18 @@
           "content_sha256": "22b915731c4c3f0f8cc3c5328e6bd2dc4b019ff3bf0f686087401fe65e5ff6f5"
         },
         {
+          "path": "data/quiz/production_context/by/ekebergrestauranten.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ekebergrestauranten.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "8dac5078e250743fafdf460f1a65f4752fe1b4ca6f1c0526d40dbb36e33e4342"
+        },
+        {
           "path": "data/quiz/production_context/by/gamle_trikkestallen.json",
           "required": false,
           "fields": [
@@ -942,7 +978,7 @@
             "quizProduction.targets.grev_wedels_plass.context_artifact"
           ],
           "exists": true,
-          "content_sha256": "6ab57a7092dd2905732da36902289b062295b58ab0cb161855c51be349db102e"
+          "content_sha256": "495777d13526d461fd1beb66a4f47703ac1d5439b47d49088279b80cb6711fa4"
         },
         {
           "path": "data/quiz/production_context/by/hammersborg_torg.json",
@@ -1269,20 +1305,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "730aa1a8e9f886e3100b1bb3944c599bff99b1a0bf727e43c70799fb873034c1",
+      "package_content_sha256": "33f9e89f6e1c670c1e44e8375553f661d37c55a0a09202918fbc44dd26e22619",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "38e5be5259e0aa3d733f4ddeeb46df87769c935ad9dd76cd175f8bb645ee79fa",
-      "referenced_file_count": 201,
+      "referenced_file_count": 204,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "bfd684b6573b59bac1cbdac5a8ffdccd04616db578068bc60c70da42fbed7e27",
-      "content_sha256": "140f13cf97ca8a93f25c9c7c6eddabcdaf2beea4f810984b40f0efbf4ce2a207",
+      "structure_sha256": "dc92e929a3c572db989336316275f83d6bdb14da8cbaebfade736a5d63aa42a4",
+      "content_sha256": "3dc71c59780008f299dac96a16f0bc3f3395e7234fcbf7b08b2ddd89848bea78",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -8265,5 +8301,5 @@
       ]
     }
   },
-  "release_sha256": "9183e516ebf0d4a90dde6f12a394b78a32db24fbcca08be0d491233a1b33349b"
+  "release_sha256": "1a9b4e9662c096b5ba06d92b9dcef1c0a9b950e42e11402aece439023c1278e6"
 }

@@ -7,7 +7,8 @@ const load=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url),'utf8'));
 test('six places have staged material but zero falsely published v1 releases',()=>{
   const report=auditOsloSixV1Readiness();
   assert.equal(report.schema,'history_go_oslo_six_readiness_audit_v1');
-  assert.equal(report.status,'RELEASE_BLOCKED_NO_ACTIVE_PLACE_WRITES');
+  assert.equal(report.status,'CANONICAL_CANDIDATES_PENDING_RELEASE');
+  assert.equal(report.canonical_candidates,1);
   assert.equal(report.candidate_count,6);
   assert.equal(report.story_drafts,6);
   assert.equal(report.fullquiz_candidates,133);
@@ -17,6 +18,13 @@ test('six places have staged material but zero falsely published v1 releases',()
   assert.equal(report.published_v1,0);
   assert.equal(report.places.filter(p=>p.editorial.credited_landscape_triplet).length,5);
   for(const item of report.places){
+    if(item.place_id==='ekebergrestauranten'){
+      assert.equal(item.status,'CANONICAL_CANDIDATE_NOT_YET_PUBLISHED_V1');
+      assert.equal(item.live.canonical_place_in_manifest,true);
+      assert.equal(item.live.quizcard_registered,true);
+      assert.equal(item.live.knowledge_synced,true);
+      continue;
+    }
     assert.equal(item.status,'STAGING_ONLY_NOT_V1');
     assert.ok(Object.values(item.live).every(v=>v===false),item.place_id);
     assert.ok(item.blocking_release_gates.includes('approved_visitor_anchor'));

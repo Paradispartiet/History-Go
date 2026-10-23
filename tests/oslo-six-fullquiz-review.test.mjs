@@ -69,7 +69,7 @@ test('three fullquiz proposals do not bypass source and geographic release gates
     assert.equal(place.quiz_manifest_registered, false);
     assert.equal(place.knowledge_synced, false);
     assert.equal(place.browser_qa_passed, false);
-    assert.ok(!(manifest.sets || []).some(s => s.targetId === place.place_id));
+    assert.equal((manifest.sets || []).some(s => s.targetId === place.place_id),place.place_id==='ekebergrestauranten');
   }
   assert.match(pack.places.find(p => p.place_id === 'frognerseteren').learning_scope_notice, /Holmenkollveien 200/);
 });
