@@ -35,14 +35,11 @@ test('six editorial stories export as faithful nonplayable canonical-shaped Plac
     } else {
       const photo=p.staged_image_candidates;
       assert.equal(photo.publication_status,'STAGED_ONLY_NOT_BOUND');
-      assert.equal(photo.front_image_status,
-        ['ekebergrestauranten','frognerseteren'].includes(p.id)?
-          'REJECTED_PORTRAIT_COMPOSITION':'REVIEWED_PORTRAIT_ARTIFACT_NOT_CHECKED_IN');
-      if(photo.portrait_review_candidate){
-        assert.equal(photo.portrait_review_candidate.artifact_only,true);
-        assert.equal(photo.portrait_review_candidate.runtime_registered,false);
-        assert.match(photo.portrait_review_candidate.sha256,/^[a-f0-9]{64}$/);
-      }else assert.ok(['ekebergrestauranten','frognerseteren'].includes(p.id));
+      assert.equal(photo.front_image_status,'PORTRAIT_BINARY_IN_REPO_NOT_BOUND');
+      assert.equal(photo.portrait_review_candidate.artifact_only,false);
+      assert.equal(photo.portrait_review_candidate.runtime_registered,false);
+      assert.match(photo.portrait_review_candidate.sha256,/^[a-f0-9]{64}$/);
+      assert.equal(photo.portrait_review_candidate.path,'bilder/places/auto/'+p.id+'__front_portrait.webp');
       assert.equal(photo.source_attribution_rendered,false);
       assert.ok(photo.source_page.startsWith('https://commons.wikimedia.org/wiki/File:'));
       assert.ok(photo.author && photo.license_url);
@@ -99,4 +96,29 @@ test('the 2026-10-23 portrait visual verdict cannot be replaced by identical cro
   const premature=structuredClone(report);
   premature.constraints.candidates_checked_into_repository=true;
   assert.throws(()=>buildOsloSixCanonicalStaging({portraitReview:premature}),/portrait review must not imply image release/);
+});
+
+test('five physically committed portraits verify SHA256 and different photo source credits where relevant',()=>{
+  const images=load('reports/place-production/oslo-six-frontimage-candidate-assets-20261023.json');
+  const report=buildOsloSixCanonicalStaging();
+  assert.equal(images.count,5);
+  assert.equal(report.places.filter(p=>p.staged_image_candidates!==null).length,5);
+  for(const image of images.sites){
+    const staged=report.places.find(p=>p.id===image.place_id);
+    assert.equal(staged.staged_image_candidates.portrait_review_candidate.source_page,image.source_page);
+    assert.equal(staged.proposed_canonical_fields.frontImage,'');
+    assert.equal(staged.proposed_canonical_fields.image,'');
+    assert.equal(staged.proposed_canonical_fields.cardImage,'');
+  }
+  for(const id of ['ekebergrestauranten','frognerseteren']){
+    const p=report.places.find(p=>p.id===id);
+    assert.notEqual(p.staged_image_candidates.portrait_review_candidate.source_page,
+      p.staged_image_candidates.source_page,'portrait and landscape must preserve separate photo attribution');
+  }
+  const changed=structuredClone(images);
+  changed.sites[0].sha256='f'.repeat(64);
+  assert.throws(()=>buildOsloSixCanonicalStaging({portraitAssets:changed}),/SHA256 or WebP signature drift/);
+  const prematurelyReleased=structuredClone(images);
+  prematurelyReleased.sites[0].canonical_place_bound=true;
+  assert.throws(()=>buildOsloSixCanonicalStaging({portraitAssets:prematurelyReleased}),/cannot assert runtime release/);
 });

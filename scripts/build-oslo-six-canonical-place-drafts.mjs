@@ -4,6 +4,7 @@
  * Never register these as active: visitor coordinates, radius and images are absent.
  */
 import { readFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildOsloSixIntegrationPreview } from './build-oslo-six-integration-preview.mjs';
@@ -40,6 +41,7 @@ export function buildOsloSixCanonicalStaging({
   imageAttribution = load('reports/place-production/oslo-six-generated-image-attribution-20261022.json'),
   imageVisualQA = load('reports/place-production/oslo-six-image-visual-qa-20261022.json'),
   portraitReview = load('reports/place-production/oslo-six-portrait-visual-review-20261023.json'),
+  portraitAssets = load('reports/place-production/oslo-six-frontimage-candidate-assets-20261023.json'),
   candidates = load('reports/place-production/oslo-six-geolocation-candidates-20261022.json'),
   editorialText = readFileSync(resolve(ROOT,EDITORIAL_FILE),'utf8')
 }={}) {
@@ -54,6 +56,13 @@ export function buildOsloSixCanonicalStaging({
   const imageReviews=new Map(imageVisualQA.per_place.map(p=>[p.place_id,p]));
   const roughLocations=new Map(candidates.places.map(p=>[p.place_id,p]));
   const portraitSelections=new Map(portraitReview.per_place.map(p=>[p.place_id,p]));
+  const portraitBinaries=new Map(portraitAssets.sites.map(p=>[p.place_id,p]));
+  if(portraitAssets.schema!=='history_go_oslo_six_portrait_candidate_assets_v1' ||
+     portraitAssets.status!=='BINARY_IN_REPO_NOT_REGISTERED_IN_CANONICAL_PLACE' ||
+     portraitAssets.count!==5 || portraitBinaries.size!==5 || portraitAssets.sites.length!==5 ||
+     portraitAssets.sites.some(p=>p.canonical_place_bound!==false || p.source_credit_rendered_in_app!==false ||
+       p.app_browser_qa_passed!==false || p.role!=='portrait_frontImage_candidate'))
+    fail('portrait source binaries cannot assert runtime release');
   if(portraitReview.status!=='SELECTED_CANDIDATES_IN_ARTIFACT_ONLY_ZERO_FRONTIMAGE_REGISTERED' ||
      portraitReview.constraints.candidates_checked_into_repository!==false ||
      portraitReview.constraints.release_allowed!==false ||
@@ -80,12 +89,13 @@ export function buildOsloSixCanonicalStaging({
     const assets=imageFiles.get(id);
     const reviewed=imageReviews.get(id);
     const portrait=portraitSelections.get(id);
+    const portraitFile=portraitBinaries.get(id);
     let stagedImages=null;
     if(id==='kristiania_teglverk_bryn') {
-      if(assets||reviewed||portrait||photo.asset_paths?.length||photo.lead_candidate)
+      if(assets||reviewed||portrait||portraitFile||photo.asset_paths?.length||photo.lead_candidate)
         fail(id+': unsafe factory photograph staged as a matching image');
     } else {
-      if(!assets||!reviewed||!portrait||!photo.lead_candidate||
+      if(!assets||!reviewed||!portrait||!portraitFile||!photo.lead_candidate||
          assets.source_page!==photo.lead_candidate.page||
          assets.author!==photo.lead_candidate.author||
          assets.license!==photo.lead_candidate.license||
@@ -113,6 +123,18 @@ export function buildOsloSixCanonicalStaging({
          (portrait.visual_decision==='PASS_FRAMING' && !['center_original','offset_original'].includes(portrait.preferred_mode)) ||
          (portrait.visual_decision!=='PASS_FRAMING' && portrait.preferred_mode!==null))
         fail(id+': portrait metadata, image attribution or safe selection differs');
+      if(portraitFile.path!=='bilder/places/auto/'+id+'__front_portrait.webp' ||
+         !existsSync(resolve(ROOT,portraitFile.path)) ||
+         portraitFile.width!==900 || portraitFile.height!==1350 ||
+         !/^[a-f0-9]{64}$/.test(portraitFile.sha256) ||
+         !portraitFile.source_page.startsWith('https://commons.wikimedia.org/wiki/File:') ||
+         !portraitFile.author || !portraitFile.license || !portraitFile.license_url)
+         fail(id+': expected original-source standing portrait binary not present');
+      const originalBytes=readFileSync(resolve(ROOT,portraitFile.path));
+      if(createHash('sha256').update(originalBytes).digest('hex')!==portraitFile.sha256 ||
+         originalBytes.subarray(0,4).toString()!=='RIFF' ||
+         originalBytes.subarray(8,12).toString()!=='WEBP')
+         fail(id+': standing portrait SHA256 or WebP signature drift');
       stagedImages={
         publication_status:'STAGED_ONLY_NOT_BOUND',
         paths:variants,
@@ -121,16 +143,18 @@ export function buildOsloSixCanonicalStaging({
         license_url:assets.license_url,
         source_page:assets.source_page,
         source_attribution_rendered:false,
-        front_image_status:portrait.visual_decision==='PASS_FRAMING'?
-          'REVIEWED_PORTRAIT_ARTIFACT_NOT_CHECKED_IN':'REJECTED_PORTRAIT_COMPOSITION',
-        portrait_review_candidate:portrait.preferred_mode ? {
-          mode:portrait.preferred_mode,
-          sha256:pair[portrait.preferred_mode],
-          artifact_id:portraitReview.artifact_id,
-          artifact_only:true,
+        front_image_status:'PORTRAIT_BINARY_IN_REPO_NOT_BOUND',
+        portrait_review_candidate:{
+          path:portraitFile.path,
+          sha256:portraitFile.sha256,
+          source_page:portraitFile.source_page,
+          author:portraitFile.author,
+          license:portraitFile.license,
+          license_url:portraitFile.license_url,
+          artifact_only:false,
           runtime_registered:false
-        }:null,
-        note:'Three repository crops are landscape; portrait candidate is stored only as CI artifact and is NOT an approved runtime frontImage.'
+        },
+        note:'Three landscape crops plus a separate 900x1350 WebP now exist in repo. Not a live frontImage: portrait attribution, geolocation and PlaceCard browser release gates remain blocked.'
       };
     }
     const fields={
