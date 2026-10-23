@@ -396,10 +396,10 @@ test("Oslo city map visibly renders both detail dots and hit targets at zoom 11"
 
 test("dedicated map mode hides ghost PlaceCard and keeps dock at screen bottom", () => {
   const css = readFileSync(new URL("../css/map.css", import.meta.url), "utf8");
-  assert.match(css, /body\\.hg-app\\.mode-map #placeCard/);
-  assert.match(css, /body\\.hg-app\\.map-only #placeCard/);
-  assert.match(css, /bottom: calc\\(8px \\+ env\\(safe-area-inset-bottom, 0px\\)\\) !important/);
-  assert.match(css, /position: fixed !important/);
+  assert.ok(css.includes("body.hg-app.mode-map #placeCard"));
+  assert.ok(css.includes("body.hg-app.map-only #placeCard"));
+  assert.ok(css.includes("bottom: calc(8px + env(safe-area-inset-bottom, 0px)) !important"));
+  assert.ok(css.includes("position: fixed !important"));
 });
 
 test("mobile native detail markers appear on the first view even without WebGL circles", () => {
