@@ -368,10 +368,11 @@ test("main entry does not inject obsolete transparent map-control stylesheet", (
   const config = readFileSync(new URL("../js/config.js", import.meta.url), "utf8");
   const index = readFileSync(new URL("../index.html", import.meta.url), "utf8");
   const css = readFileSync(new URL("../css/map.css", import.meta.url), "utf8");
-  assert.doesNotMatch(config, /link\\.href\\s*=\\s*["']css\\/map-controls-flat\\.css["']/,
-    "old control style must not override mobile black dock");
-  assert.doesNotMatch(config, /ensureMapControlsStyles\\s*\\(/);
-  assert.doesNotMatch(index, /href=["']css\\/map-controls-flat\\.css/);
-  assert.match(css, /body\\.hg-app \\.map-controls \\.hg-map-style-toggle/);
-  assert.match(css, /background: #050505/);
+  assert.ok(!config.includes('link.href = "css/map-controls-flat.css"'),
+    "old control CSS must not override the black map dock");
+  assert.ok(!config.includes("ensureMapControlsStyles("),
+    "legacy dynamic style owner must be removed");
+  assert.ok(!index.includes('href="css/map-controls-flat.css"'));
+  assert.ok(css.includes("body.hg-app .map-controls .hg-map-style-toggle"));
+  assert.ok(css.includes("background: #050505"));
 });
