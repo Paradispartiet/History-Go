@@ -203,7 +203,12 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
     // before clicking the regular day button. Never force-click through overlays.
     const popupAdvance = page.locator('#civiSectionPopup.is-open [data-civi-next-action-advance]').first();
     if (await popupAdvance.isVisible().catch(() => false)) {
-      await popupAdvance.click({ timeout: 12000 });
+      // The real day-advance click can schedule a page navigation on the
+      // final authored day. Do not turn Playwright's navigation wait into a
+      // false failure after the user click has already been dispatched.
+      // The canonical calendar/story rollover is checked below, so this
+      // does not skip a pending mail, task, or day-progress requirement.
+      await popupAdvance.click({ timeout: 12000, noWaitAfter: true });
     } else {
       const popupClose = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
       if (await popupClose.isVisible().catch(() => false)) await popupClose.click({ timeout: 12000 });
