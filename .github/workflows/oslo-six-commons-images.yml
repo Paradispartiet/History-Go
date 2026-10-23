@@ -184,7 +184,7 @@ jobs:
           }
           assert len(rows)==5
           Path('reports/place-production/oslo-six-frontimage-candidate-assets-20261023.json').write_text(
-            json.dumps(release,indent=2,ensure_ascii=False)+'\\n',encoding='utf-8')
+            json.dumps(release,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
           print('Five original-source portraits staged, matched SHA-256 and ready for PR review.')
           PY
           git config user.name "github-actions[bot]"
