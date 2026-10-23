@@ -3,7 +3,7 @@
  * Generates production-shaped Place story payloads, read-only.
  * Never register these as active: visitor coordinates, radius and images are absent.
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildOsloSixIntegrationPreview } from './build-oslo-six-integration-preview.mjs';
@@ -37,6 +37,8 @@ export function buildOsloSixCanonicalStaging({
   integration = buildOsloSixIntegrationPreview(),
   geo = load('reports/place-production/oslo-six-geo-entrance-source-audit-20261022.json'),
   imageRights = load('reports/place-production/oslo-six-image-rights-shortlist-20261022.json'),
+  imageAttribution = load('reports/place-production/oslo-six-generated-image-attribution-20261022.json'),
+  imageVisualQA = load('reports/place-production/oslo-six-image-visual-qa-20261022.json'),
   candidates = load('reports/place-production/oslo-six-geolocation-candidates-20261022.json'),
   editorialText = readFileSync(resolve(ROOT,EDITORIAL_FILE),'utf8')
 }={}) {
@@ -47,8 +49,12 @@ export function buildOsloSixCanonicalStaging({
      fail('publication hold was removed');
   const images=new Map(imageRights.places.map(p=>[p.place_id,p]));
   const geoRows=new Map(geo.places.map(p=>[p.place_id,p]));
+  const imageFiles=new Map(imageAttribution.places.map(p=>[p.place_id,p]));
+  const imageReviews=new Map(imageVisualQA.per_place.map(p=>[p.place_id,p]));
   const roughLocations=new Map(candidates.places.map(p=>[p.place_id,p]));
-  if(images.size!==6 || geoRows.size!==6 || roughLocations.size!==2)
+  if(images.size!==6 || geoRows.size!==6 || roughLocations.size!==2 ||
+     imageFiles.size!==5 || imageReviews.size!==5 ||
+     imageAttribution.places.length!==5 || imageVisualQA.per_place.length!==5)
     fail('unexpected evidence coverage');
   const places=integration.places.map(p=>{
     const id=p.place_id,photo=images.get(id),point=geoRows.get(id);
@@ -59,11 +65,51 @@ export function buildOsloSixCanonicalStaging({
     const proof=roughLocations.get(id);
     if(proof&&(proof.public_entrance_coordinate_verified||proof.visitor_radius_m!==null))
       fail(id+': tentative point mistaken for verified entry');
+    // Only five places have licensed image triplets. These are *candidates*,
+    // not live Place image fields; the ordinary PlaceCard also needs its
+    // own actually portrait frontImage and visible attribution.
+    const assets=imageFiles.get(id);
+    const reviewed=imageReviews.get(id);
+    let stagedImages=null;
+    if(id==='kristiania_teglverk_bryn') {
+      if(assets||reviewed||photo.asset_paths?.length||photo.lead_candidate)
+        fail(id+': unsafe factory photograph staged as a matching image');
+    } else {
+      if(!assets||!reviewed||!photo.lead_candidate||
+         assets.source_page!==photo.lead_candidate.page||
+         assets.author!==photo.lead_candidate.author||
+         assets.license!==photo.lead_candidate.license||
+         !assets.license_url||assets.variants.length!==3||
+         photo.asset_paths.length!==3)
+        fail(id+': image attribution, ownership or crop coverage mismatch');
+      const variants={};
+      for(const v of assets.variants) {
+        if(!['lead','card','popup'].includes(v.role)||variants[v.role]||
+           v.path!=='bilder/places/auto/'+id+'__commons_'+v.role+'.webp'||
+           !photo.asset_paths.includes(v.path)||!existsSync(resolve(ROOT,v.path))||
+           !(v.width>v.height) || reviewed[v.role+'_status']!=='FRAMING_PASS')
+          fail(id+': invalid, missing or unreviewed '+v.role+' image candidate');
+        variants[v.role]=v.path;
+      }
+      if(Object.keys(variants).length!==3)
+        fail(id+': incomplete image roles');
+      stagedImages={
+        publication_status:'STAGED_ONLY_NOT_BOUND',
+        paths:variants,
+        author:assets.author,
+        license:assets.license,
+        license_url:assets.license_url,
+        source_page:assets.source_page,
+        source_attribution_rendered:false,
+        front_image_status:'MISSING_SEPARATE_PORTRAIT_ASSET',
+        note:'All three prepared crops are landscape; none qualifies as frontImage.'
+      };
+    }
     const fields={
       id,name:p.name,category:p.categoryId,
       lat:null,lon:null,r:null,
       desc:story.desc,popupDesc:story.popupDesc,
-      image:'',cardImage:''
+      image:'',frontImage:'',cardImage:''
     };
     return {
       id,publication_status:'STAGING_ONLY_NOT_PLAYABLE',
@@ -73,13 +119,15 @@ export function buildOsloSixCanonicalStaging({
       provisional_site_poi_reference:proof?{...proof.provisional_poi,scope:proof.provisional_precision}:null,
       image_source_page_candidate:photo.lead_candidate?.page||null,
       image_license_candidate:photo.lead_candidate?.license||null,
+      staged_image_candidates:stagedImages,
       quiz_candidate_count:p.fullquiz_preview.length,
       quizcard_candidate_count:p.quizcard_preview.length,
       fagverk_prepared:!!p.fagverk_preview,
       missing_release_checks:[
         'line_by_line_history_review','semantic_question_review',
         'safe_visitor_geopoint_and_radius','canonical_rule_preflight',
-        'image_file_and_3_webp_derivatives','quiz_and_quizcard_activation',
+        'licensed_image_binding_and_attribution','separate_portrait_frontImage',
+        'quiz_and_quizcard_activation',
         'fagverk_and_knowledge_registration','mobile_desktop_browser_qa'
       ]
     };
