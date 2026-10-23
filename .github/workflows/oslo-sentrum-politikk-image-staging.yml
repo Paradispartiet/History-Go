@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   scoped-photo-staging:
@@ -30,13 +31,24 @@ jobs:
         run: python -m pip install 'Pillow>=10,<13'
       - name: Validate script syntax
         run: python -m py_compile scripts/place-production/stage_oslo_sentrum_politikk_photos.py
-      - name: Stage three remaining historically documented candidates (not canonical assets)
+      - name: Download verified original-file artifact from previous successful GitHub run
+        uses: actions/download-artifact@v4
+        with:
+          name: oslo-politikk-pr6579-three-photo-recomposed-review
+          run-id: 39935997979
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: reports/place-production/media-originals/oslo-sentrum-politikk
+      - name: Stage manually composed portrait crops from approved original bytes
         run: |
           python scripts/place-production/stage_oslo_sentrum_politikk_photos.py \
             --place hoyesteretts_hus \
-            --place folkets_hus_oslo \
-            --place hoyblokka \
-            --allow-historical-hoyblokka
+            --source-dir reports/place-production/media-originals/oslo-sentrum-politikk/hoyesteretts_hus
+          python scripts/place-production/stage_oslo_sentrum_politikk_photos.py \
+            --place folkets_hus_oslo --focus-x 0.92 \
+            --source-dir reports/place-production/media-originals/oslo-sentrum-politikk/folkets_hus_oslo
+          python scripts/place-production/stage_oslo_sentrum_politikk_photos.py \
+            --place hoyblokka --focus-x 0.93 --allow-historical-hoyblokka \
+            --source-dir reports/place-production/media-originals/oslo-sentrum-politikk/hoyblokka
       - name: Produce three-place visual review contact sheet
         run: |
           python - <<'PY'
