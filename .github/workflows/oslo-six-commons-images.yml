@@ -6,6 +6,7 @@ on:
       - '.github/workflows/oslo-six-commons-images.yml'
       - 'scripts/prepare-oslo-six-commons-webp.py'
       - 'scripts/build-oslo-six-portrait-review.py'
+      - 'scripts/build-oslo-six-portrait-alternates.py'
       - 'reports/place-production/oslo-six-image-rights-shortlist-20261022.json'
       - 'reports/place-production/oslo-six-generated-image-attribution-20261022.json'
       - 'bilder/places/auto/*__commons_*.webp'
@@ -90,6 +91,30 @@ jobs:
           assert (root/'portrait-contact-sheet.jpg').is_file()
           print('10 original JPEG-derived standing candidates / contact sheet / zero live bindings')
           PY
+      - name: Generate read-only new-source alternative portrait candidates
+        run: python scripts/build-oslo-six-portrait-alternates.py
+      - name: Verify alternative portraits are safe, distinct and not promoted
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('tmp/oslo-six-portrait-alternates/review.json')
+          data=json.loads(p.read_text(encoding='utf-8'))
+          assert data['status']=='ARTIFACT_ONLY_UNREVIEWED_NEVER_RUNTIME'
+          assert data['count']==3 and data['visual_approval_count']==0 and data['active_place_bindings']==0
+          assert set(data['places'])=={'ekebergrestauranten','frognerseteren'}
+          rows=data['proposals']
+          assert len(rows)==3
+          assert len({x['sha256'] for x in rows})==3
+          for row in rows:
+            f=Path(row['path'])
+            assert f.is_file() and f.suffix=='.webp'
+            assert row['width']==900 and row['height']==1350
+            assert not row['visual_approved'] and not row['committed_to_runtime']
+            assert row['author'] and row['license'] and row['source_page']
+            assert hashlib.sha256(f.read_bytes()).hexdigest()==row['sha256']
+          assert Path('tmp/oslo-six-portrait-alternates/alternate-contact-sheet.jpg').is_file()
+          PY
       - name: Upload image QA bundle with source credits
         uses: actions/upload-artifact@v4
         with:
@@ -100,5 +125,8 @@ jobs:
             tmp/oslo-six-portrait-review/*.webp
             tmp/oslo-six-portrait-review/review.json
             tmp/oslo-six-portrait-review/portrait-contact-sheet.jpg
+            tmp/oslo-six-portrait-alternates/*.webp
+            tmp/oslo-six-portrait-alternates/review.json
+            tmp/oslo-six-portrait-alternates/alternate-contact-sheet.jpg
           if-no-files-found: error
           retention-days: 14
