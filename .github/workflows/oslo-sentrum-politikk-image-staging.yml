@@ -34,7 +34,7 @@ jobs:
       - name: Download verified original-file artifact from previous successful GitHub run
         uses: actions/download-artifact@v4
         with:
-          name: oslo-politikk-pr6579-three-photo-recomposed-review
+          name: oslo-politikk-pr6579-three-photo-review
           run-id: 39935997979
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: reports/place-production/media-originals/oslo-sentrum-politikk
