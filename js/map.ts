@@ -21,6 +21,13 @@
   let userMarker = null;
   const placeAreaMarkers = new Map();
   let placeAreaMarkerZoomBound = false;
+  // Mobile Android has repeatedly rendered our area DOM squares while
+  // dropping MapLibre's WebGL detail circles. Keep a bounded native marker
+  // representation for details so normal places remain visible and tappable.
+  const placeDetailMarkers = new Map();
+  let placeDetailMarkerEventsBound = false;
+  let lastPlaceMarkerFeatures = [];
+  const MAX_MOBILE_DETAIL_MARKERS = 240;
   const STYLE_STORAGE_KEY = "hg_map_style_mode";
   const STYLE_MODE_STANDARD = "standard";
   const STYLE_MODE_SATELLITE = "satellite";
@@ -729,6 +736,95 @@
     updatePlaceAreaDomMarkerSizes();
   }
 
+  function useNativeMobileDetailMarkers() {
+    if (typeof window.matchMedia === "function") {
+      return window.matchMedia("(max-width: 699px)").matches;
+    }
+    return typeof window.innerWidth === "number" && window.innerWidth <= 699;
+  }
+
+  function syncPlaceDetailDomMarkers(features) {
+    if (!MAP || typeof maplibregl?.Marker !== "function") return;
+    const zoom = Number(MAP.getZoom?.() ?? START.zoom ?? 13);
+    if (!useNativeMobileDetailMarkers() || zoom < PLACE_DETAIL_MIN_ZOOM) {
+      for (const entry of placeDetailMarkers.values()) entry.marker.remove();
+      placeDetailMarkers.clear();
+      return;
+    }
+
+    // Limit DOM nodes to the current visible viewport: the canonical vector
+    // layers still represent all places, including those outside this window.
+    const bounds = MAP.getBounds?.();
+    const center = MAP.getCenter?.() || { lng: START.lon, lat: START.lat };
+    const lon0 = Number(center.lng ?? center.lon ?? START.lon);
+    const lat0 = Number(center.lat ?? START.lat);
+    const visible = features.filter(feature => {
+      if (feature?.properties?.mapLod !== PLACE_MAP_LOD_DETAIL) return false;
+      const coords = feature.geometry?.coordinates;
+      if (!Array.isArray(coords) || coords.length < 2) return false;
+      return typeof bounds?.contains !== "function" || bounds.contains(coords);
+    }).sort((a, b) => {
+      const [ax, ay] = a.geometry.coordinates;
+      const [bx, by] = b.geometry.coordinates;
+      return ((ax - lon0) ** 2 + (ay - lat0) ** 2)
+        - ((bx - lon0) ** 2 + (by - lat0) ** 2);
+    }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+
+    const keep = new Set();
+    for (const feature of visible) {
+      const id = String(feature.properties.id || "").trim();
+      if (!id) continue;
+      keep.add(id);
+      let entry = placeDetailMarkers.get(id);
+      if (!entry) {
+        const element = document.createElement("div");
+        element.className = "hg-place-detail-marker";
+        element.dataset.placeId = id;
+        element.setAttribute("role", "button");
+        element.setAttribute("aria-label", String(feature.properties.name || id));
+        element.style.boxSizing = "border-box";
+        element.style.borderRadius = "50%";
+        element.style.borderStyle = "solid";
+        element.style.borderWidth = "2px";
+        element.style.pointerEvents = "auto";
+        element.style.cursor = "pointer";
+        element.style.touchAction = "manipulation";
+        element.style.zIndex = "8";
+        element.addEventListener("click", event => {
+          event.preventDefault?.();
+          event.stopPropagation?.();
+          onPlaceClick(id);
+        });
+        const marker = new maplibregl.Marker({ element, anchor: "center" })
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(MAP);
+        entry = { marker, element };
+        placeDetailMarkers.set(id, entry);
+      } else {
+        entry.marker.setLngLat(feature.geometry.coordinates);
+      }
+      const diameter = zoom < 12 ? 9 : zoom < 14 ? 10 : 11;
+      entry.element.style.width = `${diameter}px`;
+      entry.element.style.height = `${diameter}px`;
+      entry.element.style.backgroundColor = feature.properties.fill;
+      entry.element.style.borderColor = feature.properties.border;
+      entry.element.style.opacity = feature.properties.coordinateTrust === "invalid" ? "0" : "1";
+      entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 5px rgba(0,0,0,.30)";
+    }
+    for (const [id, entry] of placeDetailMarkers) {
+      if (keep.has(id)) continue;
+      entry.marker.remove();
+      placeDetailMarkers.delete(id);
+    }
+
+    if (!placeDetailMarkerEventsBound) {
+      const onViewportChanged = () => syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
+      MAP.on("moveend", onViewportChanged);
+      MAP.on("zoomend", onViewportChanged);
+      placeDetailMarkerEventsBound = true;
+    }
+  }
+
   function getPlaceGlowPaint(isArea = false) {
     const radius = isArea
       ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15]
@@ -912,7 +1008,11 @@
 
     const fc = { type: "FeatureCollection", features };
     applyStandardMapPalette();
+    lastPlaceMarkerFeatures = features;
     syncPlaceAreaDomMarkers(features);
+    // Native mobile detail dots do not depend on WebGL circle rendering.
+    // They are created before the GeoJSON layers so they survive style errors.
+    syncPlaceDetailDomMarkers(features);
     const src = MAP.getSource(SRC);
     if (src && REQUIRED_PLACE_LAYERS.every(id => MAP.getLayer(id))) {
       src.setData(fc);
