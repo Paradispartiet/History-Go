@@ -13,7 +13,19 @@ test('Kristiania Teglverk sources favor historical no. 18 but contradictory no. 
   assert.equal(a.assessment.stronger_historical_building_address, 'Nils Hansens vei 18');
   assert.equal(a.assessment.status, 'ADDRESS_EVIDENCE_STRONGER_FOR_18_BUT_HARD_HOLD');
   assert.equal(a.publication_status,'NO_CANONICAL_PLACE_NO_PIN_NO_PUBLIC_ENTRY_ASSUMED');
-  assert.equal(a.evidence.filter(e=>e.address==='Nils Hansens vei 18').length, 2);
+  assert.ok(a.evidence.filter(e=>e.address==='Nils Hansens vei 18').length>=5);
+  const municipal=a.evidence.find(e=>e.kind==='oslo_municipality_heritage_planning_report_search_extract');
+  assert.ok(municipal.source.endsWith('.pdf'));
+  assert.match(municipal.current_review,/full_page_review_pending/);
+  const caseFile=a.evidence.find(e=>e.kind==='recent_building_project_register_reporting_official_application');
+  assert.ok(caseFile.source.startsWith('https://norskbyggedata.no/'));
+  assert.deepEqual(
+    [a.assessment.recent_cadastral_reference_candidate.gnr,
+     a.assessment.recent_cadastral_reference_candidate.bnr],
+    [137,31]
+  );
+  assert.equal(a.assessment.recent_cadastral_reference_candidate.may_use_for_public_GPS,false);
+  assert.match(a.assessment.recent_cadastral_reference_candidate.validation_status,/NOT_INDEPENDENTLY_VERIFIED/);
   assert.equal(a.evidence.filter(e=>e.address==='Nils Hansens vei 14').length, 1);
   assert.match(a.assessment.address_14_alternate_identity,/Zinkhvidt/);
   for (const row of a.evidence) assert.ok(row.source.startsWith('https://'));
