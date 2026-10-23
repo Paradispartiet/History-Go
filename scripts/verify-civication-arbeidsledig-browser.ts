@@ -37,6 +37,24 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
           pendingId: inspect.pendingItem?.id || null,
           queuedId: inspect.nextQueuedItem?.id || null,
           activeAction: app.CivicationNextActionSelector?.getCurrent?.(),
+          answerInFlight: app.CivicationNextActionUI?.isAnswerInFlight?.(),
+          lastAnswerOutcome: app.CivicationNextActionUI?.getLastAnswerOutcome?.(),
+          runtimeRow: (() => {
+            const mailId = app.CivicationNextActionSelector?.getCurrent?.()?.id;
+            const row = app.CivicationDailyMailBuilder?.inspect?.()?.runtime?.items?.find(
+              (item: any) => item?.event?.id === mailId
+            );
+            if (!row) return null;
+            return {
+              status: row.status, slot: row.slot,
+              eventSource: row.event?.source_type,
+              eventType: row.event?.mail_type,
+              choiceId: row.choice_id || null,
+              taskPayload: !!row.event?.task_payload,
+              taskId: row.event?.task_id || null,
+              mailStatus: app.CivicationMailEngine?.getMail?.(mailId)?.status || null
+            };
+          })(),
           buttons: [...(panel?.querySelectorAll?.('button') || [])].filter((b: any) =>
             [...b.attributes].some((a: any) => a.name.startsWith('data-civi-next-action'))
           ).slice(0, 5).map((b: any) => ({

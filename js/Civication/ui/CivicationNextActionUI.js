@@ -28,6 +28,7 @@
   let answerInFlight = false;
   let pendingRefresh = false;
   let answerDebugContext = null;
+  let lastAnswerOutcome = null;
   let queuedUpdateFrame = 0;
   let roleMailPersonState = { mailId: "", personId: "", questionId: "" };
 
@@ -959,6 +960,7 @@
 
     perfMark("civi-answer-click");
     answerInFlight = true;
+    lastAnswerOutcome = null;
     pendingRefresh = false;
     disableAnswerButtons();
 
@@ -981,6 +983,18 @@
 
     return Promise.resolve(result)
       .then(function (answerResult) {
+        const runtimeRow = window.CivicationDailyMailBuilder?.inspect?.()?.runtime?.items?.find(function (row) {
+          return String(row?.event?.id || "") === String(mailId);
+        });
+        lastAnswerOutcome = {
+          mailId, choiceId, ok: answerResult?.ok !== false,
+          reason: String(answerResult?.reason || ""),
+          runtimeStatus: runtimeRow?.status || null,
+          runtimeSource: runtimeRow?.event?.source_type || null,
+          runtimeMailType: runtimeRow?.event?.mail_type || null,
+          hasTaskPayload: !!runtimeRow?.event?.task_payload,
+          taskEngineTask: !!window.CivicationTaskEngine?.getTaskByMailId?.(mailId)
+        };
         perfMark("civi-answer-after-answerMail");
         if (answerResult?.dailyRuntimeAnswered === true) perfMark("civi-answer-after-markAnswered");
         if (answerDebugContext) {
@@ -1036,6 +1050,7 @@
         });
       })
       .catch(function (error) {
+        lastAnswerOutcome = { mailId, choiceId, ok: false, reason: String(error?.message || error) };
         notifyFailure("Kunne ikke svare på mail", error);
         render();
         return { ok: false, reason: "exception", error };
@@ -1217,7 +1232,8 @@
     buildRoleMailHistoryPersonAnswer,
     advanceUntilNextRealAction,
     prepareNextActionSurface,
-    isAnswerInFlight: function () { return answerInFlight; }
+    isAnswerInFlight: function () { return answerInFlight; },
+    getLastAnswerOutcome: function () { return lastAnswerOutcome ? { ...lastAnswerOutcome } : null; }
   };
 })();
 
