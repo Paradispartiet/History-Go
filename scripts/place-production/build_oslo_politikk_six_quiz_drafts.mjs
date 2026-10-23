@@ -84,7 +84,7 @@ for(const id of ids){
    if(!urls.length||sourceIds.length<1)fail('No source '+raw.id);
    // Balanced positions in stored data; runtime will independently shuffle.
    const options=[...raw.options];
-   const shift=(i%3-raw.answerIndex+3)%3;
+   const shift=(raw.answerIndex-(i%3)+3)%3;
    for(let j=0;j<shift;j++) options.push(options.shift());
    const ans=options.indexOf(raw.answer);
    if(ans!==i%3)fail('Cannot balance answer for '+raw.id);
