@@ -38,10 +38,10 @@
   const L_AREA_LAB = "hg-place-areas-label";
   const PLACE_AREA_MARKER_CLASS = "hg-place-area-marker";
   const PLACE_AREA_LABEL_MIN_ZOOM = 9.5;
-  const PLACE_DETAIL_MIN_ZOOM = 11.8;
-  const PLACE_DETAIL_HIT_MIN_ZOOM = 12.35;
-  const PLACE_DETAIL_LABEL_MIN_ZOOM = 13.15;
-  const PLACE_DETAIL_FULL_ZOOM = 13.0;
+  const PLACE_DETAIL_MIN_ZOOM = 9.8;
+  const PLACE_DETAIL_HIT_MIN_ZOOM = 9.8;
+  const PLACE_DETAIL_LABEL_MIN_ZOOM = 12.7;
+  const PLACE_DETAIL_FULL_ZOOM = 12.7;
   const PLACE_SCOPE_AREA = "area";
   const PLACE_MAP_LOD_OVERVIEW = "overview";
   const PLACE_MAP_LOD_AREA = "area";
@@ -809,11 +809,11 @@
           ]
         : [
             "interpolate", ["linear"], ["zoom"],
-            10, ["+", 1.6, ["*", 0.2, ["get", "visited"]]],
-            12, ["+", 2.2, ["*", 0.3, ["get", "visited"]]],
-            14, ["+", 3.0, ["*", 0.4, ["get", "visited"]]],
-            16, ["+", 4.0, ["*", 0.6, ["get", "visited"]]],
-            18, ["+", 5.6, ["*", 0.8, ["get", "visited"]]]
+            9.8, ["+", 3.1, ["*", 0.3, ["get", "visited"]]],
+            12, ["+", 3.5, ["*", 0.4, ["get", "visited"]]],
+            14, ["+", 4.2, ["*", 0.5, ["get", "visited"]]],
+            16, ["+", 5.0, ["*", 0.7, ["get", "visited"]]],
+            18, ["+", 6.0, ["*", 0.8, ["get", "visited"]]]
           ],
       "circle-color": ["get", "fill"],
       "circle-stroke-color": ["get", "border"],
