@@ -105,7 +105,7 @@ jobs:
           # and contract reports, but never unrelated Places/quiz packages.
           unexpected=[x for x in changed if not (
             x in allowed or x.startswith('data/knowledge/') or x.startswith('reports/knowledge-')
-            or x in {'reports/knowledge-id-backfill.json','reports/knowledge-contract-audit.json','reports/knowledge-universe-readers.json'}
+            or x in {'reports/knowledge-id-backfill.json','reports/knowledge-contract-audit.json','reports/knowledge-universe-readers.json','reports/quiz_manifest_v2_audit_report.json'}
           )]
           if unexpected:
             raise SystemExit('Unexpected changed files; do not push: '+repr(unexpected[:50]))
