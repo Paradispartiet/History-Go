@@ -346,9 +346,15 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
       assertCloud(!!save?.bootstrap && !!save?.flush && !!save?.snapshot,
         'the production Civication cloud adapter must be present');
       const before = save.snapshot();
+      // A first-ever active job has no ended employment to archive.
+      // CivicationState only creates hg_job_history_v1 on a real job exit;
+      // requiring it here would fabricate history in this organic journey.
       const required = ['civication_lifestory_v1', 'hg_civi_wallet_v1',
-        'hg_civi_calendar_v1', 'hg_active_position_v1', 'hg_job_history_v1'];
+        'hg_civi_calendar_v1', 'hg_active_position_v1'];
       for (const key of required) assertCloud(!!before[key], 'missing canonical backup key ' + key);
+      assertCloud(localStorage.getItem('hg_job_history_v1') === null
+        && before.hg_job_history_v1 === undefined,
+        'the first earned job must not manufacture an ended-job history');
       const remote: { record: any } = { record: null };
       const client = {
         from(name: string) {
@@ -376,6 +382,8 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
         assertCloud(remote.record.payload.state[key] === before[key],
           'account transport must preserve ' + key);
       }
+      assertCloud(!Object.hasOwn(remote.record.payload.state, 'hg_job_history_v1'),
+        'cloud backup must not invent a job-exit record');
       localStorage.clear();
       const restored = await save.bootstrap();
       assertCloud(restored?.ok === true, 'account bootstrap restores an empty browser storage');
@@ -383,6 +391,8 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
         assertCloud(localStorage.getItem(key) === before[key],
           'account restore must recover exactly ' + key);
       }
+      assertCloud(localStorage.getItem('hg_job_history_v1') === null,
+        'cloud restore must not invent an ended job');
       return { keys: keys.length, recovered: required.length };
       function assertCloud(condition: boolean, message: string) {
         if (!condition) throw new Error(message);
