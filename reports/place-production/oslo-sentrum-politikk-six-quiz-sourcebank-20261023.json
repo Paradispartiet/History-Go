@@ -10,7 +10,8 @@
     "Complete quiz must use adaptive narrow/normal/rich/major profile; 10 QuizCard questions do not replace fullquiz. Confirm ownership of source IDs, claim bank, quiz manifest, production_context and Knowledge units before publication.",
     "The 40 new candidates are preliminary research material, not canonical fullquiz or QuizCard. All new source URLs require independent claim-level review before use.",
     "The 40 new candidates intentionally store the correct option first; production must review distractors and perform answer shuffle/index parity.",
-    "Statsbygg documents both Picasso/Nesjar works Fiskerne and Måken in A-blokka in 2024; beware of older future-tense planning sources."
+    "Statsbygg documents both Picasso/Nesjar works Fiskerne and Måken in A-blokka in 2024; beware of older future-tense planning sources.",
+    "Folkets Hus question s1_q4: Oslo byleksikon documents Youngstorget as a venue for demonstrations and the adjacent LO building; SNL documents the building's administrative function. The interpretation remains subject to full independent distractor audit."
   ],
   "targets": [
     {
@@ -257,8 +258,11 @@
           "answerIndex": 0,
           "answer": "Folkets Hus rommer organisasjonsarbeidet, mens Youngstorget gjør krav og mobilisering synlig ute i offentligheten",
           "knowledge": "Huset gir bevegelsen kontorer, møterom og arkiv. Torget gir den en synlig scene for taler, demonstrasjoner og folkemengder.",
-          "source_urls": [],
-          "review_status": "existing_quiz_question_requires_full_source_and_distractor_audit",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Youngstorget",
+            "https://snl.no/Folkets_hus_-_Oslo"
+          ],
+          "review_status": "source_urls_added_interpretive_claim_and_distractors_still_need_review",
           "reuses_existing_id": true
         },
         {
@@ -1061,7 +1065,6 @@
     "exact 10 QuizCard parity with correct answer index after runtime shuffle",
     "image licenses and three real assets per place",
     "place-opening mobile and desktop browser acceptance",
-    "whole-PR CI, source claims, six-dimensional completion review",
-    "Audit Folkets Hus candidate folkets_hus_oslo_s1_q4: external source_urls is empty in this editorial sourcebank, despite repository-internal quiz sources."
+    "whole-PR CI, source claims, six-dimensional completion review"
   ]
 }
