@@ -43,7 +43,7 @@ const EXTRAS = Object.freeze({
     ['Hvordan ble leiren transportert fra leirfeltet mot fabrikken etter modernisering?', 'Med kabelbane', ['Med T-banen','Med trikkespor til sentrum','Med lekter fra Bygdøy'], 'Kabelbane ble tatt i bruk for å transportere leire fra leirfeltet inn i produksjonsanlegget.',0],
     ['Hvilken spesialstein nevner teglverk.no som et av verkets produkter?', 'Sterk&Lett-stein', ['Larvikittfliser','Kvernstein i granitt','Glassbyggerstein'], 'Kristiania Teglverk produserte blant annet Sterk&Lett-stein, murstein, takstein og drensrør.',0],
     ['I hvilke etasjer lå tørkerommene i den bevarte teglverksbygningen?', 'Andre og tredje etasje', ['Bare i kjelleren','Bare i første etasje','På taket'], 'Ringovnen lå på grunnplanet, mens andre og tredje etasje hadde tørkerom for teglstein. Dette er dokumentert av teglverk.no.',0],
-    ['Hvilken del av teglverksbygningen er knyttet til administrasjon rundt år 1900?', 'Teglfløyen mot nord', ['Et hagehus på taket','En stasjonspaviljong ved elva','En egen trevilla på Bygdøy'], 'Teglverk.no beskriver administrasjonsfløyen mot nord som en teglfløy fra omkring 1900. Den historiske adressekonflikten 14/18 er fremdeles uløst.',0]
+    ['Hvilken del av teglverksbygningen er knyttet til administrasjon rundt år 1900?', 'Teglfløyen mot nord', ['Et hagehus på taket','En stasjonspaviljong ved elva','En egen trevilla på Bygdøy'], 'Teglverk.no beskriver administrasjonsfløyen mot nord som en teglfløy fra omkring 1900, adskilt fra den eldre trekonstruksjonen over ringovnen.',0]
   ]
 });
 const norm=v=>String(v).normalize('NFKC').trim().toLowerCase();
