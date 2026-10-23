@@ -232,7 +232,7 @@ test("touchend plus click cannot open one map marker twice", () => {
 
 test("restart after Detaljert uses reliable Kart base and still renders dots with late place data", () => {
   const { win, main } = setup({ savedStyle: "satellite", delayedPlaces: true });
-  assert.match(main.initialStyle, /cartocdn\\.com/, "initial map does not require remote detailed tiles");
+  assert.match(main.initialStyle, /cartocdn\.com/, "initial map does not require remote detailed tiles");
   assert.equal(win.localStorage.getItem("hg_map_style_mode"), "standard");
   assert.ok(main.getSource("hg-places"), "places arrive after initial style load");
   assert.ok(main.getLayer("hg-places-dots"), "dots must show after startup");
@@ -247,7 +247,7 @@ test("detailed map load failure automatically restores default map and place dot
   assert.equal(main.styleChanges.length, 1);
   main.emit("error", { error: new Error("Remote detailed style unavailable") });
   assert.equal(main.styleChanges.length, 2, "fall back to standard map on style load error");
-  assert.match(main.styleChanges[1], /cartocdn\\.com/);
+  assert.match(main.styleChanges[1], /cartocdn\.com/);
   main.finishStyle();
   assert.ok(main.getLayer("hg-places-dots"), "dots restored after remote style failure");
   assert.ok(main.getLayer("hg-places-hit"), "hit layer restored after remote style failure");
