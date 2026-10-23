@@ -539,6 +539,24 @@
       + "</div>";
   }
 
+  // Some role packs lack a real workday task for the program's task_gate
+  // slot. The day builder then provides an ordinary generated phase decision
+  // (mail_type=phase), not a TaskEngine task. It still requires a genuine
+  // player choice, but must not be presented as a phantom task gate.
+  function generatedPhaseDecisionInTaskSlot(action) {
+    if (!action || action.source !== "day_phase" || action.slot !== "task_gate"
+        || action.mail_type !== "phase" || action.taskId) return null;
+    const runtime = window.CivicationDailyMailBuilder?.inspect?.()?.runtime;
+    const row = Array.isArray(runtime?.items)
+      ? runtime.items.find(function (item) { return String(item?.event?.id || "") === String(action.id || ""); })
+      : null;
+    if (!row || row?.event?.source_type !== "daily_generated"
+        || row?.event?.mail_type !== "phase"
+        || row?.event?.task_id || row?.event?.task_payload
+        || window.CivicationTaskEngine?.getTaskByMailId?.(action.id)) return null;
+    return row;
+  }
+
   function buildChoicesHtml(action) {
     const mailId = String(action.id || "");
     if (isQueuedAction(action)) {
@@ -549,7 +567,7 @@
         + "</div>";
     }
 
-    if (action.isTaskGate) {
+    if (action.isTaskGate && !generatedPhaseDecisionInTaskSlot(action)) {
       if (expandedTaskGateId === mailId) {
         return ""
           + "<p class=\"civi-next-action-sub muted\">Oppgave som må gjøres før du kan gå videre.</p>"
@@ -970,8 +988,35 @@
           answerDebugContext.legacyFollowupEnqueued = answerResult?.legacyImmediateFollowupEnqueued === true;
         }
         if (answerResult?.ok === false) {
+          // Recover only a real choice on a delivered, builder-generated
+          // *non-task* phase decision. Some legacy inbox projections omit its
+          // pending copy: EventEngine returns not_found while the canonical
+          // day runtime still holds the actionable row. Record the selected
+          // choice through DailyMailBuilder, never an automatic task waiver.
+          const generatedRow = answerResult.reason === "not_found"
+            ? generatedPhaseDecisionInTaskSlot(action) : null;
+          const allowedChoice = generatedRow?.event?.choices?.some(function (choice) {
+            return String(choice?.id || "") === String(choiceId || "");
+          });
+          if (generatedRow?.status === "delivered" && allowedChoice) {
+            return Promise.resolve(window.CivicationDailyMailBuilder?.markHandled?.(mailId, choiceId))
+              .then(function () {
+                const rows = window.CivicationDailyMailBuilder?.inspect?.()?.runtime?.items;
+                const resolved = Array.isArray(rows) && rows.some(function (row) {
+                  return String(row?.event?.id || "") === mailId
+                    && row?.status === "answered" && String(row.choice_id || "") === choiceId;
+                });
+                if (!resolved) throw new Error("Generated phase decision was not recorded");
+                dispatchNextActionUpdates();
+                return advanceUntilNextRealAction().then(function () {
+                  render();
+                  return { ok: true, dailyRuntimeAnswered: true, generatedPhaseFallback: true };
+                });
+              });
+          }
           notifyFailure("Kunne ikke svare på mail", answerResult);
-          if (answerResult.reason === "not_found" && action?.source === "day_phase") {
+          if (answerResult.reason === "not_found" && action?.source === "day_phase"
+              && action?.status === "queued") {
             return deliverQueuedAction();
           }
           render();
