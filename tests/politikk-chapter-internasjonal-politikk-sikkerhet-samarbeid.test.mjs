@@ -36,7 +36,7 @@ test('nye primærkilder er knyttet til egne claim-spor', async () => {
   const claims = JSON.parse(await readFile(resolve(dir, 'claims.json'), 'utf8'));
   const modules = await Promise.all(['01-grunnlag', '02-fordypning', '03-anvendelse'].map(async name => JSON.parse(await readFile(resolve(dir, `${name}.json`), 'utf8'))));
   for (const [number, source] of [[38,'schelling_arms_influence_1966'],[39,'barnett_finnemore_io_1999'],[40,'walter_civil_war_1997'],[41,'fortna_peacekeeping_2004']]) {
-    const id = `claim_${number}`; const claim = claims.claims.find(c => c.id === id);
+    const id = `claim_${String(number).padStart(3, '0')}`; const claim = claims.claims.find(c => c.id === id);
     assert.ok(claim, `Missing ${id}`); assert.deepEqual(claim.source_ids, [source]);
     assert.ok(claims.sources.some(s => s.id === source && s.url.startsWith('https://')));
     assert.ok(modules.some(m => m.sections.some(s => s.paragraphClaimIds.some(ids => ids.includes(id)))));
