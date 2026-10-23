@@ -52,7 +52,7 @@ for (const field of ['desc','popupDesc']){
  const exact=createHash('sha256').update(canonical.telegrafbygningen[field]||'','utf8').digest('hex');
  assert.equal(telegrafV42.textHashes[field],exact,field+' must match its reviewed text hash');
 }
-assert.ok(canonical.telegrafbygningen.popupDesc.split(/\\s+/).length>=300);
+assert.ok(canonical.telegrafbygningen.popupDesc.split(/\s+/).length>=300);
 assert.doesNotMatch(canonical.telegrafbygningen.popupDesc,/Quizens første|NOK-scenario|arbeider spilleren|History Go/i);
 assert.equal(telegrafV42.quizReadiness.questions.length,8);
 assert.deepEqual(telegrafV42.quizReadiness.questions.map(q=>q.claimIds[0]),[
