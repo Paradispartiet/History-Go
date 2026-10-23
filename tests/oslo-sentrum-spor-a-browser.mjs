@@ -19,6 +19,31 @@ const canonical=Object.fromEntries(ids.map(id=>{
  assert.equal(place.fagverk?.schema,'history_go_place_fagverk_v2');
  return [id,place];
 }));
+// QuizCard must match the existing sourced fullquiz, not a second quiz store.
+const cards=JSON.parse(fs.readFileSync(path.join(root,'data/quizcards/naeringsliv/topp10_naeringsliv_oslo_v1_batch01.json'),'utf8')).cards;
+for(const id of ids){
+ const card=cards.find(x=>x.targetId===id);
+ assert.ok(card,'QuizCard missing for '+id);
+ assert.equal(card.questionCount,10,'QuizCard must contain ten sourced choices');
+ assert.equal(card.questions?.length,10);
+ const fullPath=path.resolve(root,card.sourceFile);
+ assert.ok(fullPath.startsWith(root+path.sep),'Quiz source must be inside the repository');
+ const fullQuiz=JSON.parse(fs.readFileSync(fullPath,'utf8'));
+ assert.equal(fullQuiz.targetId,id);
+ const fullQuestions=fullQuiz.sets.flatMap(set=>set.questions);
+ assert.ok(fullQuestions.length>=21,'Existing complete quiz must be preserved');
+ for(const question of card.questions){
+  const source=fullQuestions.find(q=>q.id===question.sourceQuestionId);
+  assert.ok(source,id+' QuizCard source question missing: '+question.sourceQuestionId);
+  assert.equal(question.sourceQuizId,source.quiz_id);
+  assert.equal(question.question,source.question);
+  assert.deepEqual(question.options,source.options);
+  assert.equal(question.answer,source.answer);
+  assert.equal(question.answerIndex,source.answerIndex);
+  assert.equal(question.options[question.answerIndex],question.answer);
+  assert.ok(question.source_urls?.some(url=>url.startsWith('https://')),'QuizCard question lacks inspectable source');
+ }
+}
 const photo=canonical.telegrafbygningen;
 assert.equal(photo.frontImageMeta?.license,'CC BY-SA 4.0');
 assert.equal(photo.frontImageMeta?.creator,'Helge Høifødt');
