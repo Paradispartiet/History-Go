@@ -14,7 +14,8 @@
     "Folkets Hus question s1_q4: Oslo byleksikon documents Youngstorget as a venue for demonstrations and the adjacent LO building; SNL documents the building's administrative function. The interpretation remains subject to full independent distractor audit.",
     "Redaksjonell svarposisjonskontroll 2026-10-23: de siste 40 kandidatene er omordnet til variert fasitposisjon uten å endre ordlyd, ID, selve fasitsvaret eller de fem eksisterende spillquizspørsmålene. Kandidatbanken har nå 20 fasiter på hver av posisjonene 0, 1 og 2.",
     "Åtte stedsspesifikke påstander har fått supplerende eksterne kilder og kontroll av kjernepåstanden; review_status gjelder ikke distraktorer, Knowledge, spillkontrakt eller publisering.",
-    "Høyesteretts hus: 16 nye kildekontrollerte, stedsspesifikke fullquiz-researchkandidater er lagt separat fra ti QuizCard-kandidater. Kjernepåstander er sjekket mot domstol.no og gjeldende Grunnlov; distraktorer, faglig progresjon og Knowledge-kontrakt er fortsatt ikke godkjent."
+    "Høyesteretts hus: 16 nye kildekontrollerte, stedsspesifikke fullquiz-researchkandidater er lagt separat fra ti QuizCard-kandidater. Kjernepåstander er sjekket mot domstol.no og gjeldende Grunnlov; distraktorer, faglig progresjon og Knowledge-kontrakt er fortsatt ikke godkjent.",
+    "Folkets Hus: 15 kildesjekkede tillegg til fullquiz-researchbanken; 1 av 15 er eksplisitt holdt tilbake pga. motstrid om 'andre Folkets hus' versus Spjærøy 1898. Eksisterende fasadespørsmål s1_q1 er merket hold for omskriving, uten å endre aktiv quiz. Kjernepåstander er ikke full distraktor-/Knowledge-/runtime-godkjenning."
   ],
   "targets": [
     {
@@ -520,8 +521,9 @@
           "source_urls": [
             "https://snl.no/Knut_Knutsen"
           ],
-          "review_status": "existing_quiz_question_requires_full_source_and_distractor_audit",
-          "reuses_existing_id": true
+          "review_status": "hold_for_rewrite_unsupported_visual_inference",
+          "reuses_existing_id": true,
+          "review_note": "Arkitekturen kan observeres, men det er ikke dokumentert at den repeterende vindusfasaden i seg selv beviser byggets interne kontor- og møteprogram. Dette eksisterende spillspørsmålet må revideres i canonical quiz med Knowledge-paritet før v1."
         },
         {
           "id": "folkets_hus_oslo_s1_q2",
@@ -677,7 +679,297 @@
           ],
           "review_status": "source_candidate_not_published"
         }
-      ]
+      ],
+      "additional_fullquiz_candidates": [
+        {
+          "id": "folkets_hus_fullquiz_research_11",
+          "question": "Hva skjedde med Folkets Hus-eiendommene allerede i 1911?",
+          "options": [
+            "Naboeiendommer ble kjøpt for videre utvikling",
+            "Hovedbygningen ble revet og gjenreist",
+            "Landsorganisasjonen flyttet til Bergen"
+          ],
+          "answer": "Naboeiendommer ble kjøpt for videre utvikling",
+          "answerIndex": 0,
+          "knowledge": "Arbeiderbevegelsens arkiv beskriver kjøp av naboeiendommer i 1911 som del av den gradvise utvidelsen.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "early_expansion",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_12",
+          "question": "Hvilken del ble bygd ved Folkets Hus i 1935–1936?",
+          "options": [
+            "Et nytt høyesterettslokale",
+            "En ny storsal mot daværende Henrik Ibsens gate",
+            "En jernbaneterminal mot Møllergata"
+          ],
+          "answer": "En ny storsal mot daværende Henrik Ibsens gate",
+          "answerIndex": 1,
+          "knowledge": "Et nytt bygg med storsal kom i 1935–1936 mot gaten som senere ble Hammersborggata.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "interwar_hall",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_13",
+          "question": "Hva ble laget for Folkets Hus-kvartalet i 1938?",
+          "options": [
+            "Et fredningsvedtak for hele torget",
+            "En samlet generalplan for kvartalet",
+            "En plan om å flytte Youngstorget"
+          ],
+          "answer": "En samlet generalplan for kvartalet",
+          "answerIndex": 1,
+          "knowledge": "I 1938 forelå en samlet plan for utbygging av hele Folkets Hus-kvartalet.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "masterplan_1938",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_14",
+          "question": "Hvorfor ble ikke Knut Knutsens utbyggingsplan fra 1939 gjennomført straks?",
+          "options": [
+            "Andre verdenskrig stanset planleggingen",
+            "Huset ble flyttet til Slottsplassen",
+            "Tegningene ble brukt til Høyesteretts hus"
+          ],
+          "answer": "Andre verdenskrig stanset planleggingen",
+          "answerIndex": 0,
+          "knowledge": "Knutsens forslag ble valgt i 1939, men krigen avbrøt videre planlegging.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "war_delays",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_15",
+          "question": "Hvilket år kom den store etterkrigsutbyggingen av Folkets Hus i gang?",
+          "options": [
+            "1939",
+            "1962",
+            "1954"
+          ],
+          "answer": "1954",
+          "answerIndex": 2,
+          "knowledge": "Arbeidet kunne først settes i gang i 1954, etter at planleggingen hadde stoppet under krigen.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "postwar_construction_start",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_16",
+          "question": "Hva skjedde med den gamle bygningen i Youngs gate 11 i 1954?",
+          "options": [
+            "Den ble flyttet til Torggata",
+            "Den ble revet for å gi plass til et nytt byggeprosjekt",
+            "Den ble fredet som domstol"
+          ],
+          "answer": "Den ble revet for å gi plass til et nytt byggeprosjekt",
+          "answerIndex": 1,
+          "knowledge": "Arbeiderbevegelsens arkiv dokumenterer at den gamle Youngs gate 11-bygningen var revet da arbeidet startet høsten 1954.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "replacement_1954",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_17",
+          "question": "Hva ble markert ved Folkets Hus 1. mai 1955?",
+          "options": [
+            "Høytidelig nedleggelse av grunnsteinen",
+            "Åpningen av hele anlegget",
+            "Innvielsen av Oslo rådhus"
+          ],
+          "answer": "Høytidelig nedleggelse av grunnsteinen",
+          "answerIndex": 0,
+          "knowledge": "Grunnsteinen ble lagt ned 1. mai 1955, og et skrin med historikk, tegninger og avis ble murt inn.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "cornerstone",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_18",
+          "question": "Når flyttet LO inn i det nye Folkets Hus før første byggetrinn var helt ferdig?",
+          "options": [
+            "Juni 1962",
+            "April 1958",
+            "Desember 1957"
+          ],
+          "answer": "Desember 1957",
+          "answerIndex": 2,
+          "knowledge": "LO flyttet inn i desember 1957, mens første byggetrinn ble ferdigstilt i april 1958.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "lo_early_occupation",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_19",
+          "question": "Når ble første byggetrinn av dagens Folkets Hus ferdig?",
+          "options": [
+            "April 1958",
+            "Juni 1962",
+            "Oktober 1954"
+          ],
+          "answer": "April 1958",
+          "answerIndex": 0,
+          "knowledge": "Første byggetrinn var ferdig i april 1958; senere byggetrinn fortsatte fram til 1962.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "first_stage_completion",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_20",
+          "question": "Hvilken eiendom ble revet da andre byggetrinn startet?",
+          "options": [
+            "Møllergata 20",
+            "Møllergata 18",
+            "Youngstorget 2"
+          ],
+          "answer": "Møllergata 18",
+          "answerIndex": 1,
+          "knowledge": "Møllergata 18 ble revet i forbindelse med andre byggetrinn i 1958–1959.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "second_stage_demolition",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_21",
+          "question": "Hvilken eiendom ble innlemmet i Folkets Hus først i 1985?",
+          "options": [
+            "Torggata 14",
+            "Youngstorget 2",
+            "Møllergata 20"
+          ],
+          "answer": "Møllergata 20",
+          "answerIndex": 2,
+          "knowledge": "Møllergata 20 ble del av anlegget ved utbyggingen i 1985.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm",
+            "https://oslobyleksikon.no/side/Folkets_hus"
+          ],
+          "claim_family": "expansion_1985",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_22",
+          "question": "Hvem tegnet utkastet til Folkets Hus som ble vist ved innvielsen i 1907?",
+          "options": [
+            "Knut Knutsen",
+            "Harald Ohlsen",
+            "Erling Viksjø"
+          ],
+          "answer": "Harald Ohlsen",
+          "answerIndex": 1,
+          "knowledge": "Arkivets 1906-illustrasjon av det første Folkets Hus var tegnet etter Harald Ohlsens utkast. Dette er ikke arkitekten for dagens etterkrigsbygg.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "original_building_designer",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_23",
+          "question": "Hvilken type handel fantes i Folkets Hus-anlegget fra 1961?",
+          "options": [
+            "En selvbetjent Snarkjøp-butikk fra Oslo Samvirkelag",
+            "En offentlig tingrettsskranke",
+            "En tollstasjon for Oslo havn"
+          ],
+          "answer": "En selvbetjent Snarkjøp-butikk fra Oslo Samvirkelag",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon beskriver en Snarkjøp-butikk åpnet i 1961 med inngang fra Youngsbakken.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Folkets_hus"
+          ],
+          "claim_family": "cooperative_shop",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_24",
+          "question": "Hva viser at Folkets Hus hadde flere oppgaver enn møter og kontorer?",
+          "options": [
+            "Det hadde også bank- og butikkfunksjoner",
+            "Det fungerte som Norges høyeste domstol",
+            "Det drev militær utdanning"
+          ],
+          "answer": "Det hadde også bank- og butikkfunksjoner",
+          "answerIndex": 0,
+          "knowledge": "Historiske kilder dokumenterer både Snarkjøp-butikk og lokaler for Arbeidernes Landsbank i anlegget.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Folkets_hus"
+          ],
+          "claim_family": "mixed_use",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_25",
+          "question": "Hvilket år ble Folkets Hus oppført som landets andre slike hus ifølge Oslo byleksikon?",
+          "options": [
+            "1901",
+            "1907",
+            "1958"
+          ],
+          "answer": "1907",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon omtaler Oslo-huset som det andre huset innviet i denne tradisjonen, etter Bergen 1901. SNL oppgir imidlertid et eldre hus fra 1898 på Spjærøy; denne rekkefølgepåstanden må derfor IKKE publiseres uten definisjons- og kildeavklaring.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Folkets_hus",
+            "https://snl.no/Folkets_hus"
+          ],
+          "claim_family": "contested_national_order",
+          "review_status": "held_back_sources_disagree_about_national_order",
+          "review_note": "Hold: Oslo byleksikon og SNL bruker forskjellige kriterier om hvilke Folkets hus som var først/nummer to. Ikke publiser dette spørsmålet.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        }
+      ],
+      "fullquiz_research_status": "25_multiple_choice_candidates_total_10_quizcard_plus_15_fullquiz_only_including_1_held_back_not_published"
     },
     {
       "place_id": "hoyres_hus",
