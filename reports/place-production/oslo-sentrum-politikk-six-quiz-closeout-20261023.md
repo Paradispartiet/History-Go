@@ -24,3 +24,9 @@
 5. Globalt `audit:quiz-manifest:v2` har en **forhåndseksisterende** fehlende sett-ID på *Nasjonalmuseet*. Ikke endre denne andre arbeidslinjen uten egen oppgave. Produksjonsjobben krevde eksakt denne kjente baseline-avviket og ingen nye avvik.
 
 **Beslutning:** Dette er en teknisk komplett **quiz- og bildeintegrert draft**, men **ikke redaksjonelt eller browser-QA-godkjent v1**. Ikke endre PR til ready eller merge uten kontrollene ovenfor.
+
+## Teknisk etterrettelse av full PR-CI – 23. oktober
+
+Etter quiz- og Knowledge-regenerering krevde standardkontrollen at `data/fagverk/fagverk_release.json` ble regenerert mot det nå oppdaterte `data/fag/fag_manifest.json`; dette er gjennomført og --check bestod. `reports/knowledge-contract-audit.json`, et generert diagnostikkprodukt på 1,6 MB, er tatt ut av Git slik at repo-hygienens 500 KiB-grense overholdes. [Rettet med GitHub Actions #39948914426](https://github.com/Paradispartiet/History-Go/actions/runs/39948914426). Ingen quiz-, Place- eller bildetekster er endret i denne oppryddingen.
+
+Ordinære PR-tester på commit etter oppryddingen må fortsatt bestå. Ingen v1-erklæring eller merge uten kontroll av faktisk appvisning og faglig gjennomgang av de innførte distraktorene.
