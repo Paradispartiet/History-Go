@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   scoped-photo-staging:
@@ -21,7 +21,7 @@ jobs:
       - name: Check out reviewed PR branch only
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          persist-credentials: true
       - name: Prepare Python
         uses: actions/setup-python@v5
         with:
@@ -80,6 +80,32 @@ jobs:
           path: reports/place-production/media-staging/oslo-sentrum-politikk/
           if-no-files-found: error
           retention-days: 14
+      - name: Promote two visually reviewed and pinned pairs only (no v1 status)
+        run: python scripts/place-production/promote_oslo_politikk_two_images.py
+      - name: Commit exact four WebPs and two Place JSON files to draft PR branch
+        run: |
+          test "$GITHUB_REF_NAME" = "research/oslo-sentrum-politikk-six-v1-20261023"
+          git add -- \
+            bilder/places/hoyres_hus.webp \
+            bilder/places/hoyres_hus_front_portrait.webp \
+            bilder/places/victoria_terrasse.webp \
+            bilder/places/victoria_terrasse_front_portrait.webp \
+            data/places/politikk/oslo/places_politikk/hoyres_hus.json \
+            data/places/politikk/oslo/places_politikk/victoria_terrasse.json
+          git diff --cached --name-only | sort > /tmp/actually-staged
+          printf '%s\n' \
+            bilder/places/hoyres_hus.webp \
+            bilder/places/hoyres_hus_front_portrait.webp \
+            bilder/places/victoria_terrasse.webp \
+            bilder/places/victoria_terrasse_front_portrait.webp \
+            data/places/politikk/oslo/places_politikk/hoyres_hus.json \
+            data/places/politikk/oslo/places_politikk/victoria_terrasse.json \
+            | sort > /tmp/expected-staged
+          diff -u /tmp/expected-staged /tmp/actually-staged
+          git -c user.name="History GO photo production" \
+            -c user.email="225725199+Paradispartiet@users.noreply.github.com" \
+            commit -m "Stage verified Høyres Hus and Victoria terrasse images in draft PR"
+          git push origin "HEAD:refs/heads/research/oslo-sentrum-politikk-six-v1-20261023"
       - name: Report hard remaining gates
         if: always()
         run: |
