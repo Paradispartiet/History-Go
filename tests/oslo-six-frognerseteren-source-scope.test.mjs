@@ -77,3 +77,26 @@ test('Frognerseteren 1864/1865 purchase discrepancy is source-attributed without
     assert.doesNotMatch(publicText,/Heftye kjøpte (?:eiendommen|Frognerseteren|området) i 1864/);
   assert.equal(target.runtime_registered,false);
 });
+
+test('all 21 Frognerseteren quiz claims have source owners and source-date caveats without runtime approval',()=>{
+  const qs=buildOsloSixFullquizReview().places.find(p=>p.place_id==='frognerseteren').sets.flatMap(s=>s.questions);
+  const mapped=audit.all_21_question_source_alignment;
+  assert.equal(mapped.length,21);
+  assert.deepEqual(mapped.map(x=>x.question_id),qs.map(x=>x.id));
+  assert.deepEqual(mapped.slice(10).map(x=>x.question_id),audit.rows.map(x=>x.question_id));
+  assert.equal(mapped.filter(x=>x.primary_source===OPERATOR).length,13);
+  assert.equal(mapped.filter(x=>x.primary_source==='https://oslobyleksikon.no/side/Frognerseteren').length,8);
+  for(let i=0;i<mapped.length;i++){
+    const evidence=mapped[i],quiz=qs[i];
+    assert.equal(evidence.primary_source,quiz.source_url,evidence.question_id);
+    assert.equal(evidence.status,'SOURCE_TEXT_MATCHED_CANDIDATE_ONLY');
+    assert.equal(evidence.independently_approved,false);
+    assert.ok(evidence.source_text_anchor.length>15);
+    assert.ok(evidence.claim_topic.length>12);
+    assert.equal(quiz.runtime_registered,false);
+  }
+  assert.equal(audit.all_21_review_summary.question_count,21);
+  assert.equal(audit.all_21_review_summary.source_approval_for_runtime,false);
+  assert.equal(audit.ownership_chronology_caveat.independent_editorial_resolution,false);
+  assert.match(audit.all_21_review_summary.safe_player_question_policy,/decade/);
+});
