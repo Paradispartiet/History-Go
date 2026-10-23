@@ -154,6 +154,19 @@
         "bottom-right"
       );
       MAP.on("style.load", restorePlaceLayersAfterStyleLoad);
+      MAP.on("error", (event) => {
+        if (!isApplyingStyle || pendingStyleMode !== STYLE_MODE_SATELLITE) return;
+        console.warn("[HGMap] Detaljert kartstil kunne ikke lastes; g\xE5r tilbake til Kart.", event == null ? void 0 : event.error);
+        queuedStyleMode = null;
+        pendingStyleMode = STYLE_MODE_STANDARD;
+        try {
+          MAP.setStyle(STYLE_URL_STANDARD);
+        } catch (error) {
+          isApplyingStyle = false;
+          pendingStyleMode = null;
+          console.warn("[HGMap] Kunne ikke gjenopprette standardkart", error);
+        }
+      });
       MAP.on("idle", () => {
         if (isApplyingStyle) restorePlaceLayersAfterStyleLoad();
         else ensureMarkers();
@@ -193,8 +206,9 @@
     }
     function getSavedMapStyleMode() {
       try {
-        const raw = localStorage.getItem(STYLE_STORAGE_KEY);
-        if (raw === STYLE_MODE_STANDARD || raw === STYLE_MODE_SATELLITE) return raw;
+        if (localStorage.getItem(STYLE_STORAGE_KEY) !== STYLE_MODE_STANDARD) {
+          localStorage.setItem(STYLE_STORAGE_KEY, STYLE_MODE_STANDARD);
+        }
       } catch {
       }
       return STYLE_MODE_STANDARD;
