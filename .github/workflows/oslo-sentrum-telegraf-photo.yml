@@ -36,6 +36,7 @@ jobs:
         run: |
           npm run places:index:build
           node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
           npm run place-open:build
           node scripts/build-fagverk-release-manifest.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
@@ -53,6 +54,7 @@ jobs:
           git add bilder/kort/places/telegrafbygningen_card.webp
           git add data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json
           git add data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          git add data/quiz/production_context/naeringsliv/oslo_posthus.json
           git add data/runtime/place-open/telegrafbygningen.json
           git add data/places/places_index.json
           git add data/fagverk/fagverk_release.json
