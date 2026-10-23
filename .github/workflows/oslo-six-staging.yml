@@ -23,6 +23,8 @@ on:
       - 'scripts/build-oslo-six-integration-preview.mjs'
       - 'tests/oslo-six-integration-preview.test.mjs'
       - 'reports/place-production/frognerseteren-building-quiz-source-audit-20261022.json'
+      - 'reports/place-production/ekebergrestauranten-quiz-line-source-review-20261023.json'
+      - 'tests/oslo-six-ekeberg-source-line-review.test.mjs'
       - 'tests/oslo-six-frognerseteren-source-scope.test.mjs'
       - 'reports/place-production/kristiania-teglverk-address-identity-evidence-20261022.json'
       - 'tests/oslo-six-teglverk-address-evidence.test.mjs'
@@ -68,7 +70,7 @@ jobs:
         with:
           node-version: '22'
       - name: Verify six-place staging handoff and release holds
-        run: node --test tests/oslo-six-browser-review.test.mjs tests/oslo-six-checked-in-commons-images.test.mjs tests/oslo-six-geolocation-candidates.test.mjs tests/oslo-six-canonical-place-drafts.test.mjs tests/oslo-six-teglverk-quiz-claim-audit.test.mjs tests/oslo-six-teglverk-address-evidence.test.mjs tests/oslo-six-frognerseteren-source-scope.test.mjs tests/oslo-six-image-rights.test.mjs tests/oslo-six-integration-preview.test.mjs tests/oslo-six-quiz-handoff.test.mjs tests/oslo-six-places-integration-gates.test.mjs tests/oslo-six-linderud-quiz-preintegration.test.mjs tests/oslo-six-card-review.test.mjs tests/oslo-six-fullquiz-review.test.mjs tests/oslo-six-remaining-fullquiz-review.test.mjs tests/oslo-six-review-ownership.test.mjs tests/oslo-six-fagverk-preintegration.test.mjs
+        run: node --test tests/oslo-six-ekeberg-source-line-review.test.mjs tests/oslo-six-browser-review.test.mjs tests/oslo-six-checked-in-commons-images.test.mjs tests/oslo-six-geolocation-candidates.test.mjs tests/oslo-six-canonical-place-drafts.test.mjs tests/oslo-six-teglverk-quiz-claim-audit.test.mjs tests/oslo-six-teglverk-address-evidence.test.mjs tests/oslo-six-frognerseteren-source-scope.test.mjs tests/oslo-six-image-rights.test.mjs tests/oslo-six-integration-preview.test.mjs tests/oslo-six-quiz-handoff.test.mjs tests/oslo-six-places-integration-gates.test.mjs tests/oslo-six-linderud-quiz-preintegration.test.mjs tests/oslo-six-card-review.test.mjs tests/oslo-six-fullquiz-review.test.mjs tests/oslo-six-remaining-fullquiz-review.test.mjs tests/oslo-six-review-ownership.test.mjs tests/oslo-six-fagverk-preintegration.test.mjs
       - name: Verify non-publishing data export
         run: |
           node scripts/build-oslo-six-quiz-handoff.mjs
