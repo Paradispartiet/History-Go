@@ -2,8 +2,18 @@ name: Oslo sentrum Politikk six – real app browser QA
 on:
   pull_request:
     paths:
-      - 'data/places/politikk/oslo/places_politikk/*.json'
-      - 'data/quiz/politikk/*_sets.json'
+      - 'data/places/politikk/oslo/places_politikk/folkets_hus_oslo.json'
+      - 'data/places/politikk/oslo/places_politikk/hoyesteretts_hus.json'
+      - 'data/places/politikk/oslo/places_politikk/hoyres_hus.json'
+      - 'data/places/politikk/oslo/places_politikk/hoyblokka.json'
+      - 'data/places/politikk/oslo/places_politikk/victoria_terrasse.json'
+      - 'data/places/politikk/oslo/places_politikk/y_blokka.json'
+      - 'data/quiz/politikk/folkets_hus_oslo_sets.json'
+      - 'data/quiz/politikk/hoyesteretts_hus_sets.json'
+      - 'data/quiz/politikk/hoyres_hus_sets.json'
+      - 'data/quiz/politikk/hoyblokka_sets.json'
+      - 'data/quiz/politikk/victoria_terrasse_sets.json'
+      - 'data/quiz/politikk/y_blokka_sets.json'
       - 'data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json'
       - 'tests/oslo-politikk-six-browser.mjs'
       - '.github/workflows/oslo-politikk-six-browser.yml'
@@ -11,7 +21,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: oslo-politikk-six-pr6579
+  group: oslo-politikk-six-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
   actual-mobile-desktop:
