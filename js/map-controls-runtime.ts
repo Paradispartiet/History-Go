@@ -271,12 +271,19 @@ function createUtilityRow(): HTMLDivElement {
 }
 function ensureControls(): HTMLElement | null {
   if (!document.getElementById("mapLayer")) return null;
-  let controls = document.querySelector<HTMLElement>(".map-controls");
+  // Earlier map-mode runtimes could leave a second, empty control host at
+  // the top of the viewport. Reuse the populated dock and retire duplicates,
+  // rather than keeping a grey orphan toolbar over the map.
+  const hosts = [...document.querySelectorAll<HTMLElement>(".map-controls")];
+  let controls = hosts.find(host => host.querySelector(".hg-map-style-toggle, .hg-map-utility-row")) || hosts[0];
   if (!controls) {
     controls = document.createElement("div");
     controls.className = "map-controls";
-    controls.setAttribute("aria-label", "Kartkontroller");
     document.body.appendChild(controls);
+  }
+  controls.setAttribute("aria-label", "Kartkontroller");
+  for (const host of hosts) {
+    if (host !== controls) host.remove();
   }
   let utilityRow = controls.querySelector<HTMLDivElement>(".hg-map-utility-row");
   if (!utilityRow) {
