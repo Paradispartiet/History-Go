@@ -5,7 +5,7 @@
  * Distinguishes staged content/assets, preview-only Chromium QA, and live
  * published v1. No optimistic promotion based on a prepared quiz or image.
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildOsloSixCanonicalStaging } from './build-oslo-six-canonical-place-drafts.mjs';
@@ -80,7 +80,9 @@ export function auditOsloSixV1Readiness({
          qs.some(q=>!q.primary_knowledge_unit_id||q.options[q.answerIndex]!==q.answer))
         fail('unexpected partially activated release gate for '+id+'; quiz/Knowledge incomplete');
       const cardManifest=load('data/quizcards/'+canonical.category+'/manifest.json');
-      const cards=cardManifest.collections.flatMap(file=>load('data/quizcards/'+canonical.category+'/'+file).cards||[])
+      const cards=cardManifest.collections.map(file=>'data/quizcards/'+canonical.category+'/'+file)
+        // Runtime ignores missing legacy collections too; validate every existing card, including duplicates.
+        .filter(file=>existsSync(resolve(ROOT,file))).flatMap(file=>load(file).cards||[])
         .filter(c=>c.targetId===id);
       if(cards.length!==1||cards[0].questions.length!==10||cards[0].questions.some(c=>{
         const q=qs.find(q=>q.id===c.sourceQuestionId);

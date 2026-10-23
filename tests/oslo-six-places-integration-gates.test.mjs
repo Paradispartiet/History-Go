@@ -55,7 +55,7 @@ test('six-place integration gate is explicit, non-canonical and fail-closed', ()
       assert.equal(passed, false, `${place.place_id}: ${gateName} cannot be marked PASS from an editorial draft`);
     }
     assert.ok(Object.keys(place.publication_gates).length >= 10);
-    assert.equal([...paths].some((file) => file.endsWith(`/${place.place_id}.json`)), place.place_id==='ekebergrestauranten',
+    assert.equal([...paths].some((file) => file.endsWith(`/${place.place_id}.json`)), ['ekebergrestauranten','frognerseteren'].includes(place.place_id),
       `${place.place_id} must follow the separately validated canonical onboarding inventory`);
   }
   const teglverk = gate.places.find((place) => place.place_id === 'kristiania_teglverk_bryn');

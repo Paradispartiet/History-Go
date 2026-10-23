@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'data/places/by/oslo/places/ekebergrestauranten.json'
+      - 'data/places/historie/oslo/places/frognerseteren.json'
+      - 'data/quiz/historie/frognerseteren_sets.json'
       - 'data/quiz/by/ekebergrestauranten_sets.json'
       - 'data/quizcards/by/oslo_six_20261023.json'
       - 'tests/oslo-six-canonical-app-browser.mjs'
@@ -132,7 +134,11 @@ jobs:
           retention-days: 14
 
   canonical_app:
-    name: Oslo six canonical History Go app (390 + 1440)
+    strategy:
+      fail-fast: false
+      matrix:
+        place: [ekebergrestauranten, frognerseteren]
+    name: ${{ matrix.place }} History Go app (390 + 1440)
     runs-on: ubuntu-latest
     timeout-minutes: 18
     steps:
@@ -143,11 +149,13 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npx playwright install --with-deps chromium
       - name: Verify canonical Place, QuizCard flip, full-screen reader, quiz route and Fagverk
+        env:
+          HG_PLACE_ID: ${{ matrix.place }}
         run: node tests/oslo-six-canonical-app-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: oslo-six-canonical-app
-          path: artifacts/ekebergrestauranten-browser/
+          name: oslo-six-canonical-app-${{ matrix.place }}
+          path: artifacts/${{ matrix.place }}-browser/
           if-no-files-found: warn
           retention-days: 14

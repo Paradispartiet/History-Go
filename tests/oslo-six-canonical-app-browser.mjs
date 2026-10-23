@@ -7,20 +7,22 @@ import path from 'node:path';
 import http from 'node:http';
 import { chromium } from 'playwright';
 
-const root=process.cwd(), id='ekebergrestauranten';
+const root=process.cwd(), id=process.env.HG_PLACE_ID||'ekebergrestauranten';
+assert.ok(['ekebergrestauranten','frognerseteren'].includes(id));
+const category=id==='ekebergrestauranten'?'by':'historie';
 const data=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-const place=data('data/runtime/place-open/ekebergrestauranten.json').place;
-const cards=data('data/quizcards/by/oslo_six_20261023.json').cards;
+const place=data('data/runtime/place-open/'+id+'.json').place;
+const cards=data('data/quizcards/'+category+'/oslo_six_20261023.json').cards;
 assert.equal(place.id,id);
 assert.equal(cards.filter(c=>c.targetId===id).length,1);
 assert.equal(cards.find(c=>c.targetId===id).questions.length,10);
 assert.ok(fs.statSync(place.image).size>12000,'Existing local Ekebergrestauranten main image missing');
-assert.equal(place.frontImage,'bilder/places/auto/ekebergrestauranten__front_portrait.webp','Independent portrait must be wired through place-open');
+assert.equal(place.frontImage,'bilder/places/auto/'+id+'__front_portrait.webp','Independent portrait must be wired through place-open');
 assert.ok(place.frontImage!==place.image&&place.frontImage!==place.cardImage,'Portrait must be a separately documented photograph');
 assert.ok(fs.statSync(place.frontImage).size>10000,'New real portrait image is missing');
-assert.equal(place.frontImageMeta?.creator,'Zinneke');
-assert.equal(place.frontImageMeta?.license,'CC BY-SA 3.0');
-const folder='artifacts/ekebergrestauranten-browser';
+assert.equal(place.frontImageMeta?.creator,id==='ekebergrestauranten'?'Zinneke':'Ssu');
+assert.equal(place.frontImageMeta?.license,id==='ekebergrestauranten'?'CC BY-SA 3.0':'CC BY-SA 4.0');
+const folder='artifacts/'+id+'-browser';
 fs.mkdirSync(folder,{recursive:true});
 const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{
@@ -48,7 +50,7 @@ try{
    await page.waitForFunction(()=>document.querySelector('#pcFrontImage')?.complete&&document.querySelector('#pcFrontImage')?.naturalWidth>0,null,{timeout:30000});
    await page.waitForFunction(()=>document.querySelector('#pcQuizCardContent')?.querySelector('.pc-rendered-quiz-card')&&document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card'),null,{timeout:40000});
    const description=await page.locator('#placeCard').innerText();
-   assert.ok(/Ekebergrestauranten|Ekeberg restaurant/i.test(description),name+': canonical church title or its verified English translation not rendered in place card');
+   assert.ok(new RegExp(id==='ekebergrestauranten'?'Ekebergrestauranten|Ekeberg restaurant':'Frognerseteren','i').test(description),name+': canonical place title or its verified English translation not rendered in place card');
    const image=await page.locator('#pcFrontImage').evaluate(el=>({src:el.currentSrc||el.src,width:el.naturalWidth,height:el.naturalHeight}));
    assert.ok(image.src.includes(place.frontImage.split('/').at(-1))&&image.width===900&&image.height===1350,name+': independent licensed 900x1350 restaurant portrait not decoded');
    await page.screenshot({path:folder+'/'+name+'-front.png',fullPage:true});
@@ -90,7 +92,7 @@ try{
    assert.equal(expanded.mode,'rendered',name+': expanded card must render real questions');
    assert.equal(await page.locator('#pcQuizExpandedContent li').count(),10,name+': expanded reader lost questions');
    assert.ok(expanded.width>100&&expanded.height>100,name+': expanded reader occupies no usable visible area');
-   assert.match(expanded.text,/Lars Backer/);
+   assert.match(expanded.text,id==='ekebergrestauranten'?/Lars Backer/:/Holm Munthe/);
    await page.screenshot({path:folder+'/'+name+'-quizcard-expanded.png',fullPage:true});
    await page.locator('#pcQuizExpandedClose').click();
    assert.equal(await page.locator('#pcQuizExpanded').isHidden(),true,name+': expanded reader cannot close');
@@ -115,7 +117,7 @@ try{
    await page.locator('#pcQuiz').click({timeout:18000});
    await page.waitForFunction(id=>location.hash.startsWith('#/quiz/'+id),id,{timeout:18000});
    const quizRoute=await page.evaluate(()=>location.hash);
-   const sourceQuiz=data('data/quiz/by/'+id+'_sets.json');
+   const sourceQuiz=data('data/quiz/'+category+'/'+id+'_sets.json');
    const byQuestion=new Map(sourceQuiz.sets.flatMap(s=>s.questions).map(q=>[q.question,q]));
    const answered=new Set();
    for(let set=0;set<3;set++){
@@ -140,15 +142,15 @@ try{
    assert.equal(answered.size,21,name+': fullquiz must play all 21 source-owned questions');
    await page.goto(base+'/fagverk-sted.html?place='+id,{waitUntil:'domcontentloaded',timeout:70000});
    await page.waitForFunction(()=>document.querySelector('#fagverkPlaceContent')?.hidden===false,null,{timeout:30000});
-   assert.match(await page.locator('#fagverkPlaceTitle').innerText(),/Ekebergrestauranten/);
+   assert.match(await page.locator('#fagverkPlaceTitle').innerText(),new RegExp(id==='ekebergrestauranten'?'Ekebergrestauranten':'Frognerseteren'));
    assert.ok((await page.locator('#fagverkPlaceQuestions li').count())>=4,name+': Fagverk investigation questions missing');
    assert.ok((await page.locator('#fagverkPlaceLenses a').count())>=3,name+': Fagverk lenses missing');
    assert.equal(await page.locator('#fagverkPlaceError').isHidden(),true);
    await page.screenshot({path:folder+'/'+name+'-fagverk.png',fullPage:true});
    assert.deepEqual(pageErrors,[],name+': app browser errors');
    browserReports.push({name,width,portrait:image,quizCardVisibleAfterAnimation:true,quizRoute,fagverk:true,canonicalTitleVerified:true});
-   console.log('Ekebergrestauranten',name,'native browser, story, local church photograph, QuizCard after flip, quiz route and Fagverk: PASS');
+   console.log(id,name,'native browser, story, licensed portrait, QuizCard after flip, quiz route and Fagverk: PASS');
   }finally{await context.close();}
  }
 }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}
-fs.writeFileSync(folder+'/result.json',JSON.stringify({schema:'ekebergrestauranten-v1-real-browser-regression-v1',screenshotsAfterFlipAnimation:true,checks:browserReports},null,2)+'\n');
+fs.writeFileSync(folder+'/result.json',JSON.stringify({schema:'oslo-six-v1-real-browser-regression-v1',placeId:id,screenshotsAfterFlipAnimation:true,checks:browserReports},null,2)+'\n');
