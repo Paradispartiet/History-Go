@@ -55,7 +55,9 @@ jobs:
             assert hashlib.sha256(Path(v['path']).read_bytes()).hexdigest()==v['sha256']
           print('15 reproducible SHA-256-checked WebPs / 5 sources / zero live Place bindings')
           PY
-      - name: Generate portrait frontImage candidates for manual framing review
+      - name: Self-test independent portrait crop from original photographs
+        run: python scripts/build-oslo-six-portrait-review.py --self-test
+      - name: Generate portrait frontImage candidates from original credited JPEGs
         run: python scripts/build-oslo-six-portrait-review.py
       - name: Validate portrait candidates remain separate from approved Place assets
         run: |
@@ -64,19 +66,25 @@ jobs:
           import hashlib,json
           root=Path('tmp/oslo-six-portrait-review')
           doc=json.loads((root/'review.json').read_text(encoding='utf-8'))
-          assert doc['status']=='ARTIFACT_ONLY_VISUAL_SELECTION_REQUIRED_NO_RUNTIME_REGISTRATION'
+          assert doc['schema']=='history_go_oslo_six_frontimage_review_candidates_v2'
+          assert doc['status']=='ORIGINAL_SOURCE_CROPS_ARTIFACT_ONLY_VISUAL_REVIEW_REQUIRED'
           entries=doc['candidates']
           assert len(entries)==10
           assert len({(x['place_id'],x['mode']) for x in entries})==10
-          assert {x['mode'] for x in entries}=={'center_crop','full_subject_blurred_backdrop'}
+          assert {x['mode'] for x in entries}=={'center_original','offset_original'}
           assert len({x['place_id'] for x in entries})==5
           for row in entries:
             assert not row['visually_approved'] and not row['runtime_registered']
-            assert row['width']==800 and row['height']==1000
+            assert row['width']==900 and row['height']==1350
+            assert row['source_provenance']=='VERIFIED_ORIGINAL_COMMONS_JPEG'
+            assert row['derived_from_lead_or_card_image'] is False
+            assert len(row['original_sha1'])>=30
+            assert row['source_original_dimensions'][0]>0
             assert row['path'].startswith('tmp/oslo-six-portrait-review/')
             assert row['author'] and row['license'] and row['source_page']
             assert hashlib.sha256(Path(row['path']).read_bytes()).hexdigest()==row['sha256']
-          print('10 portrait review candidates / 5 places / no live image bindings')
+          assert (root/'portrait-contact-sheet.jpg').is_file()
+          print('10 original JPEG-derived standing candidates / contact sheet / zero live bindings')
           PY
       - name: Upload image QA bundle with source credits
         uses: actions/upload-artifact@v4
@@ -87,5 +95,6 @@ jobs:
             reports/place-production/oslo-six-generated-image-attribution-20261022.json
             tmp/oslo-six-portrait-review/*.webp
             tmp/oslo-six-portrait-review/review.json
+            tmp/oslo-six-portrait-review/portrait-contact-sheet.jpg
           if-no-files-found: error
           retention-days: 14
