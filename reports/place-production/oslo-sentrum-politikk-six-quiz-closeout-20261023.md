@@ -30,3 +30,13 @@
 Etter quiz- og Knowledge-regenerering krevde standardkontrollen at `data/fagverk/fagverk_release.json` ble regenerert mot det nå oppdaterte `data/fag/fag_manifest.json`; dette er gjennomført og --check bestod. `reports/knowledge-contract-audit.json`, et generert diagnostikkprodukt på 1,6 MB, er tatt ut av Git slik at repo-hygienens 500 KiB-grense overholdes. [Rettet med GitHub Actions #39948914426](https://github.com/Paradispartiet/History-Go/actions/runs/39948914426). Ingen quiz-, Place- eller bildetekster er endret i denne oppryddingen.
 
 Ordinære PR-tester på commit etter oppryddingen må fortsatt bestå. Ingen v1-erklæring eller merge uten kontroll av faktisk appvisning og faglig gjennomgang av de innførte distraktorene.
+
+## Andre redaksjonelle revisjon – svaralternativer, 23. oktober 2026
+
+På arbeidsgrenen ble 27 fullquizspørsmål gjennomgått med **53 forbedrede feilalternativer** fordelt på alle seks stedene. 25 tilhørende alternativtekster i 13 QuizCard-spørsmål ble endret tilsvarende; dessuten ble to tvetydige alternativer i et *annet* Y-blokka-spørsmål presisert. Spørsmåls-ID-er, fasit, Knowledge-koblinger, kilde-URL-er og settrekkefølge ble beholdt.
+
+Konsistenskontrollen sammenlignet alle 60 QuizCards med kanonisk fullquiz på spørsmålsformulering, tre alternativ, fasit og svarindeks: **60/60 samsvar, null avvik**. Seks kanoniske quizfiler har fortsatt tre sett med sju spørsmål per sted, totalt 126.
+
+Nyere datoer er kryssjekket mot offisielle kilder: Regjeringens omtale 13. april 2026 av åpningen av første byggetrinn i regjeringskvartalet og UD i D-blokka (https://www.regjeringen.no/no/aktuelt/det-nye-regjeringskvartalet-offisielt-apnet/id3155987/), og Riksantikvarens markering av fredningen av Victoria terrasse 21. mars 2025 (https://riksantikvaren.no/kalender/fredingsmarkering-victoria-terrasse/).
+
+**Avgrensning:** Dette er delvis redaksjonell kvalitetsforbedring og teknisk paritetskontroll; den er **ikke** uavhengig kilde–påstand–distraktor-evaluering av samtlige 126 oppgaver. Skjermbilder og faktisk apprespons på smal mobil og desktop er fortsatt ikke dokumentert. Gjennomfør disse portene før v1-godkjenning og merge. Oslo-bolk 04 og andre arbeidsspor er ikke berørt.
