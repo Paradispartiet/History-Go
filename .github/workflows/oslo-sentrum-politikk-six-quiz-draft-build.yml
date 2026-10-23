@@ -51,6 +51,21 @@ jobs:
           npm run audit:quiz-theory-binding
           npm run test:quiz-content-audit
           npm run audit:quiz-wiring
+      - name: Show failed manifest/Knowledge audit details
+        if: failure()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('reports/quiz_manifest_v2_audit_report.json')
+          if p.exists():
+            x=json.loads(p.read_text(encoding='utf-8'))
+            for k,v in x.items():
+              if isinstance(v,list) and v:
+                print('REPORT',k,repr(v[:12])[:9000])
+          else:
+            print('Manifest report not present')
+          PY
       - name: Enforce scoped staged files and non-destructive canonical updates
         run: |
           python3 - <<'PY'
