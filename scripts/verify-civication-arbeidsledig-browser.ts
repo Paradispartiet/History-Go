@@ -171,7 +171,18 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
         assert.equal((before.next?.choices || []).length, 0);
         await acknowledge.click({ timeout: 12000 });
       }
-      else if (await answer.count()) await answer.click();
+      else if (await answer.count()) {
+        await answer.click();
+        // A Playwright click only waits for DOM dispatch, not for the async
+        // Civication mail/day answer to finish. Do not re-click the same
+        // decision while its real engine promise is still in flight.
+        // A permanently hung answer remains a hard timeout, never a waiver.
+        await page.waitForFunction(
+          () => (globalThis as any).CivicationNextActionUI?.isAnswerInFlight?.() !== true,
+          null,
+          { timeout: 30000 }
+        );
+      }
       else throw Error(`${scenarioId}: no player answer for ${JSON.stringify(before.next)}`);
       await page.waitForTimeout(160);
       continue;
