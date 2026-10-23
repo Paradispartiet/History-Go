@@ -74,3 +74,27 @@ Gjeldende `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` v3.4 krever kategori-/
 5. Kjør målrettet QA og full PR-CI på siste commit, og gjør **faktisk nettleser-/appkontroll på smal mobil og desktop** av bilder, PlaceCard-flipp, quiz, kreditering og Fagverk-side før v1-merke.
 
 **Beslutning:** Redaksjonell forskningsbank kan brukes videre. Ingen nye kanoniske quizsett, quizmanifestoppføringer, QuizCards eller Knowledge ble opprettet som del av denne 143-spørsmålskontrollen. PR #6579 skal være draft.
+
+
+## Implementering etter redaksjonell bankkontroll – 23. oktober 2026
+
+**Oppdatert produksjonsstatus på bot-commit `ebf09a951cb6b6b0a5897758d78331154fe2adc6`:**
+Seks nye/reviderte kanoniske fullquizer er lagret i `data/quiz/politikk/<place_id>_sets.json`, med 3 sett à 7 (**126 spillregistrerte spørsmål**). Seks `source_brief` og seks deterministiske `production_context`-filer er produsert etter `QUIZ_PRODUCTION_CANONICAL` v3.4 og koblet fra Politikk-delen av `data/fag/fag_manifest.json`. Alle seks har egne `data/quiz/manifest.json`-oppføringer. Ny samling `data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json` er registrert i QuizCard-manifestet med **10 flervalgs-QuizCards per sted**, 60 totalt, med `sourceQuestionId`/`sourceQuizId` til kanoniske spørsmål.
+
+**Kvantitativ filkontroll:** Hvert sted har 21 svar med 3 unike alternativer, 7 korrekte svarposisjoner i hver lagret indeks (0, 1, 2), ett teoribundet og fire eksplisitte metodebundne spørsmål i sluttdelen, og **21/21 `knowledge_link_status: linked`** etter `knowledge:canonical:write`. Samlet 126/126 linked. De gamle fem `folkets_hus_oslo_s1_q1` … `q5` har beholdt spørsmålsidentitetene (q4 er flyttet i settrekkefølgen). q1 har fått et nytt spørsmål om 1962-kompleksets dokumenterte funksjoner fremfor å kreve at en fasade alene beviser interiørfunksjoner.
+
+**Teknisk målrettet kvalitetsrunde:** [GitHub Actions #39948052196](https://github.com/Paradispartiet/History-Go/actions/runs/39948052196) fullførte med `success` og kjørte:
+- `audit:quiz-content`
+- `audit:quiz-templates`
+- `audit:quiz-production-context`
+- `audit:quiz-progression`
+- `audit:quiz-theory-binding`
+- `test:quiz-content-audit`
+- `audit:quiz-wiring`
+- Knowledge-regenerering og kontraktskontroll.
+
+**Eksisterende, urelatert dataproblem:** `audit:quiz-manifest:v2` skriver fortsatt status `failed` fordi `data/quiz/kunst/nasjonalmuseet_sets.json` mangler `kunst_nasjonalmuseet_set_6`. En egen eksakt-delta-kontroll i produksjonsjobben tillot bare *denne kjente urelaterte feiloppføringen* og krevde null øvrige nye manifestfeil. Feilen skal ikke skjules eller erklæres løst, og Nasjonalmuseet skal ikke endres fra vårt Oslo-Politikk-spor.
+
+**Kvalitetsforbehold:** Kildene er tidligere kontrollert som kjernepåstander i forskningsbanken, men status som `reviewed` i produksjonsmetadata er **ikke dokumentasjon på at alle distraktorer er uavhengig fagfelle-/redaksjonsgodkjent**. Flere av de innførte 126 spørsmålene kommer fra foreløpige kandidater som tidligere hadde `review_status: source_candidate_not_published`. Før v1-status må en uavhengig spørsmål-for-spørsmål-kvalitetsrevisjon vurdere distraktorers plausibilitet, balanse og faglig verdi, og kontrollere utvalgsprofilen særskilt for større bygg som Høyblokka/Y-blokka. Appens faktiske respons på smal mobil/desktop, QuizCard-åpning, bilde/attribution og lokal GPS-visning er ennå **ikke manuelt eller browser-automatisert bestått**.
+
+**PR-beslutning:** Behold `draft`; ikke merge eller kall stedene v1-ferdige kun fordi tekniske quizkontrakter består. Ingen Oslo-bolk 04-steder eller andre konkurrerende arbeidsfiler er endret.
