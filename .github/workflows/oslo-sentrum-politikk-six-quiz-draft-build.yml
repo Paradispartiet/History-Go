@@ -1,0 +1,147 @@
+name: Oslo sentrum Politikk six fullquiz draft validation PR 6579
+
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-politikk-six-v1-20261023
+    paths:
+      - .github/workflows/oslo-sentrum-politikk-six-quiz-draft-build.yml
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-validate-scoped-quizzes:
+    if: github.repository == 'Paradispartiet/History-Go' && github.ref == 'refs/heads/research/oslo-sentrum-politikk-six-v1-20261023'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout isolated six-place PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-politikk-six-v1-20261023
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Prepare Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install lockfile dependencies
+        run: npm ci
+      - name: Preview exactly six 3x7 quizzes and six ten-question QuizCards
+        run: node scripts/place-production/build_oslo_politikk_six_quiz_drafts.mjs
+      - name: Generate draft canonical fullquiz packages, briefs and QuizCards
+        run: node scripts/place-production/build_oslo_politikk_six_quiz_drafts.mjs --apply
+      - name: Regenerate all six deterministic quiz production contexts
+        run: |
+          for place in hoyesteretts_hus folkets_hus_oslo hoyres_hus hoyblokka victoria_terrasse y_blokka; do
+            node scripts/build-quiz-production-context.mjs --category politikk --target "$place" \
+              --output "data/quiz/production_context/politikk/$place.json"
+          done
+      - name: Regenerate canonical Knowledge linking
+        run: npm run knowledge:canonical:write
+      - name: Run canonical quiz content and production audits
+        run: |
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          npm run audit:quiz-wiring
+      - name: Enforce scoped staged files and non-destructive canonical updates
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          from pathlib import Path
+          ids=['hoyesteretts_hus','folkets_hus_oslo','hoyres_hus','hoyblokka','victoria_terrasse','y_blokka']
+          allowed={
+            'data/fag/fag_manifest.json','data/quiz/manifest.json',
+            'data/quizcards/politikk/manifest.json',
+            'data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json'
+          }
+          for id in ids:
+            allowed.update({
+              f'data/quiz/politikk/{id}_sets.json',
+              f'data/quiz/production_briefs/politikk/{id}.json',
+              f'data/quiz/production_context/politikk/{id}.json'
+            })
+          edited=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          untracked=set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines())
+          changed=edited|untracked
+          # The canonical Knowledge pipeline may change its own generated registries
+          # and contract reports, but never unrelated Places/quiz packages.
+          unexpected=[x for x in changed if not (
+            x in allowed or x.startswith('data/knowledge/') or x.startswith('reports/knowledge-')
+            or x in {'reports/knowledge-id-backfill.json','reports/knowledge-contract-audit.json','reports/knowledge-universe-readers.json'}
+          )]
+          if unexpected:
+            raise SystemExit('Unexpected changed files; do not push: '+repr(unexpected[:50]))
+          Path('reports/place-production').mkdir(parents=True,exist_ok=True)
+          (Path('reports/place-production/oslo-sentrum-politikk-six-quiz-generated-files-20261023.txt')).write_text(
+            '\n'.join(sorted(changed))+'\n',encoding='utf-8')
+          print('Scoped changed file count',len(changed))
+          PY
+      - name: Stage validated scoped changes and push draft commit only
+        run: |
+          git add -- data/fag/fag_manifest.json data/quiz/manifest.json \
+            data/quiz/politikk/hoyesteretts_hus_sets.json \
+            data/quiz/politikk/folkets_hus_oslo_sets.json \
+            data/quiz/politikk/hoyres_hus_sets.json \
+            data/quiz/politikk/hoyblokka_sets.json \
+            data/quiz/politikk/victoria_terrasse_sets.json \
+            data/quiz/politikk/y_blokka_sets.json \
+            data/quiz/production_briefs/politikk \
+            data/quiz/production_context/politikk \
+            data/quizcards/politikk/manifest.json \
+            data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json \
+            data/knowledge/ \
+            reports/knowledge-id-backfill.json \
+            reports/knowledge-contract-audit.json \
+            reports/knowledge-universe-readers.json \
+            reports/place-production/oslo-sentrum-politikk-six-quiz-generated-files-20261023.txt
+          git diff --cached --check
+          python3 - <<'PY'
+          import subprocess
+          staged=set(subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines())
+          allowed_prefixes=(
+            'data/quiz/politikk/hoyesteretts_hus_sets.json',
+            'data/quiz/politikk/folkets_hus_oslo_sets.json',
+            'data/quiz/politikk/hoyres_hus_sets.json',
+            'data/quiz/politikk/hoyblokka_sets.json',
+            'data/quiz/politikk/victoria_terrasse_sets.json',
+            'data/quiz/politikk/y_blokka_sets.json',
+            'data/quiz/production_briefs/politikk/hoyesteretts_hus.json',
+            'data/quiz/production_briefs/politikk/folkets_hus_oslo.json',
+            'data/quiz/production_briefs/politikk/hoyres_hus.json',
+            'data/quiz/production_briefs/politikk/hoyblokka.json',
+            'data/quiz/production_briefs/politikk/victoria_terrasse.json',
+            'data/quiz/production_briefs/politikk/y_blokka.json',
+            'data/quiz/production_context/politikk/hoyesteretts_hus.json',
+            'data/quiz/production_context/politikk/folkets_hus_oslo.json',
+            'data/quiz/production_context/politikk/hoyres_hus.json',
+            'data/quiz/production_context/politikk/hoyblokka.json',
+            'data/quiz/production_context/politikk/victoria_terrasse.json',
+            'data/quiz/production_context/politikk/y_blokka.json',
+            'data/fag/fag_manifest.json','data/quiz/manifest.json',
+            'data/quizcards/politikk/manifest.json',
+            'data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json',
+            'reports/place-production/oslo-sentrum-politikk-six-quiz-generated-files-20261023.txt'
+          )
+          bad=[x for x in staged if x not in allowed_prefixes and not x.startswith('data/knowledge/') and not x.startswith('reports/knowledge-')]
+          if bad: raise SystemExit('Unauthorized staged paths: '+repr(bad))
+          print('Stage allowlist passed',len(staged))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Add six source-anchored 3x7 Politikk quizzes and QuizCards; v1 editorial QA pending"
+          git push origin HEAD:refs/heads/research/oslo-sentrum-politikk-six-v1-20261023
+      - name: Summarize QA state
+        if: always()
+        run: |
+          {
+            echo '### PR 6579 fullquiz draft production'
+            echo 'No merge or v1 designation authorized by this workflow.'
+            echo 'Six narrow quiz packages (3×7) and six QuizCards (10 each) require independent editorial distractor review and mobile/desktop QA.'
+          } >> "$GITHUB_STEP_SUMMARY"
