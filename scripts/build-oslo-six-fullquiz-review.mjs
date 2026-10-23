@@ -50,12 +50,12 @@ const EXTRAS = Object.freeze({
     ['Hvilket år ble Sarabråten skilt ut igjen sammen med Bremsrud?', '1723', ['1578', '1663', '1852'], 'Etter å ha ligget under Rustad ble eiendommen skilt ut igjen sammen med Bremsrud i 1723.'],
     ['Hvilket handelshus kjøpte eiendommen omkring 1840?', 'Tho. Joh. Heftye & Søn', ['Schous Bryggeri', 'Ringnes & Co.', 'Christiania Spigerverk'], 'Handelshuset Tho. Joh. Heftye & Søn kjøpte Sarabråten omkring 1840, før Thomas Joh. Heftye overtok fra farens firma i 1852.'],
     ['Hvilke to arkitekter tegnet sperrestua som ble oppført i 1856?', 'H. E. Schirmer og Wilhelm von Hanno', ['Holm Munthe og Lars Backer', 'Erik Glosimodt og Arnstein Arneberg', 'Christian Heinrich Grosch og Henrik Bull'], 'Sperrestua fra 1856 var tegnet av H. E. Schirmer og Wilhelm von Hanno. Bygningen ble senere kalt Kuskeboligen.'],
-    ['Hvilken bruk av Nøklevann knyttes til utfartsstedet Sarabråten?', 'Lystfart med hjulbåten Sara', ['Organisert havnefart for lasteskip', 'Kongelig marinehavn', 'Jernbanefrakt av tømmer'], 'Hjulbåten Sara fraktet besøkende på Nøklevann som del av Heftyes tilrettelegging for utfart.'],
+    ['Hvilken transportforbindelse gjorde Sarabråten lettere tilgjengelig for byfolk på 1800-tallet?', 'Jernbanen til Bryn', ['Dampskipsruta over Bunnefjorden', 'Sporveien til Skullerud', 'T-banen til Østensjø'], 'Da jernbanen kom til Bryn, ble turen videre inn til Sarabråten lettere. Det bidro til at stedet ble et av hovedstadens mest brukte utfartssteder.', 'https://www.skiforeningen.no/utimarka/omrader/ostmarka/steder/sarabraten/'],
     ['Hvem fikk oppført den nye dragestilsvillaen i 1897?', 'Thomas Thomassen Heftye', ['Thomas Joh. Heftye', 'Holm Munthe', 'Oscar II'], 'Det var Thomas Thomassen Heftye som fikk oppført dragestilsvillaen i 1897, en annen generasjon enn Thomas Joh. Heftye fra 1852.'],
     ['Hvem kjøpte Sarabråten i 1911?', 'Aker kommune', ['Kristiania kommune', 'Staten', 'Norsk Folkemuseum'], 'Aker kommune kjøpte Sarabråten i 1911. De historiske bygningene ble senere borte.'],
     ['Hva ble sperrestua kalt etter en senere ombygging?', 'Kuskeboligen', ['Heftyevillaen', 'Skistua', 'Sæterhytten'], 'Sperrestua fra 1856 ble senere bygd om til Kuskeboligen, som var det siste huset som sto igjen.'],
     ['Til hvilket år var det serveringssted i Kuskeboligen?', '1943', ['1897', '1911', '1971'], 'Kuskeboligen hadde serveringssted fram til 1943. Selve bygningen brant først i 1971.'],
-    ['I hvilket tidsrom ble Sarabråtrennet holdt?', '1902–1928', ['1891–1909', '1911–1945', '1946–1971'], 'Skirennet Sarabråtrennet ble arrangert fra 1902 til 1928 og fikk tilnavnet Østkantens Holmenkollrenn.']
+    ['Hvorfor ble bygningene på Sarabråten etter hvert revet eller forlatt?', 'Nøklevann ble drikkevannskilde', ['Det ble anlagt en flyplass ved Nøklevann', 'En ny jernbanelinje gikk over ruinene', 'Hele området ble brukt til teglproduksjon'], 'Da Nøklevann ble brukt til kommunal drikkevannsforsyning, ble det innført restriksjoner. Bebyggelsen på Sarabråten forsvant gradvis. Det siste huset brant i 1971.', 'https://oslobyleksikon.no/side/N%C3%B8klevann']
 
   ],
 });
@@ -80,7 +80,7 @@ export function buildOsloSixFullquizReview() {
         knowledge: q.knowledge, source_trace: q.source_trace,
         source_url: q.source_url || SOURCE_URLS[id], external_claim_review: 'editorial_candidate_pending_line_by_line',
         quizcard_candidate_id: q.id, runtime_registered: false
-      })).concat(extras.map(([question, answer, incorrect, knowledge], i) => {
+      })).concat(extras.map(([question, answer, incorrect, knowledge, independentSourceUrl], i) => {
         if (incorrect.length !== 3 || new Set([answer, ...incorrect].map(normalize)).size !== 4)
           error(id + ': invalid additional question ' + (i + 1));
         const answerIndex = (i + index + 1) % 4;
@@ -89,8 +89,8 @@ export function buildOsloSixFullquizReview() {
         return {
           id: id + '_review_quiz_' + String(i + 11).padStart(2, '0'),
           targetId: id, categoryId: card.draft_cards[0].categoryId, question, options, answer, answerIndex, knowledge,
-          source_trace: id === 'frognerseteren' ? 'Restaurantens publiserte bygningshistorie' : 'Oslo byleksikon – ' + card.name,
-          source_url: id === 'frognerseteren' ? 'https://www.frognerseteren.no/mer-historie-' : SOURCE_URLS[id],
+          source_trace: independentSourceUrl ? 'Egen institusjonskilde for særskilt stedspåstand' : id === 'frognerseteren' ? 'Restaurantens publiserte bygningshistorie' : 'Oslo byleksikon – ' + card.name,
+          source_url: independentSourceUrl || (id === 'frognerseteren' ? 'https://www.frognerseteren.no/mer-historie-' : SOURCE_URLS[id]),
           external_claim_review: 'source_article_read_editorial_claim_signoff_pending',
           quizcard_candidate_id: null, runtime_registered: false
         };
