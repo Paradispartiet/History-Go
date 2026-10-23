@@ -32,6 +32,13 @@ test('five correct licensed images found while Kristiania Teglverk remains witho
   assert.match(ruins.lead_candidate.subject, /stein/);
   assert.equal(ruins.lead_candidate.license, 'CC BY-SA 3.0');
   assert.equal(tegl.lead_candidate, null);
+  assert.equal(tegl.unapproved_identity_review_candidate.status,
+    'LICENSE_CHECKED_PHOTOGRAPH_SITE_IDENTITY_NOT_YET_SIGNED_OFF');
+  assert.equal(tegl.unapproved_identity_review_candidate.author, 'Roy Olsen');
+  assert.equal(tegl.unapproved_identity_review_candidate.license, 'CC BY-SA 3.0');
+  assert.equal(tegl.unapproved_identity_review_candidate.original_dimensions[0], 1920);
+  assert.ok(tegl.unapproved_identity_review_candidate.not_cleared_for.includes('active_PlaceCard'));
+  assert.ok(tegl.unapproved_identity_review_candidate.identity_note.includes('ring-kiln'));
   assert.match(ruins.alternates[0].reason_not_primary, /not surviving foundation/);
   assert.match(tegl.rejected_misidentification.reason, /DIFFERENT TEGLVERK/);
   assert.equal(gates.places.at(-1).geographical_anchor.status, 'HOLD');
