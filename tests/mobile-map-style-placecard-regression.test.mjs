@@ -67,6 +67,7 @@ class FakeMap {
     this.sources = new Map();
     this.canvas = new FakeElement("canvas");
     this.styleReady = false;
+    this.pendingTiles = false;
     this.styleChanges = [];
     this.resizes = 0;
     this.zoom = 15;
@@ -86,7 +87,7 @@ class FakeMap {
     this.on(name, wrapped);
   }
   emit(name, event = {}) { for (const fn of [...(this.listeners.get(name) || [])]) fn(event); }
-  isStyleLoaded() { return this.styleReady; }
+  isStyleLoaded() { return this.styleReady && !this.pendingTiles; }
   getStyle() { return { layers: [] }; }
   queryRenderedFeatures() { return []; }
   getLayer(id) { return this.layers.get(id) || null; }
@@ -116,11 +117,12 @@ class FakeMap {
   }
 }
 
-function setup({ savedStyle = null, delayedPlaces = false } = {}) {
+function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false } = {}) {
   const controls = new FakeElement("controls");
   const mapElement = new FakeElement("map");
   const placeCard = new FakeElement("placeCard");
   const main = new FakeMap();
+  main.pendingTiles = pendingTiles;
   const loc = new Map();
   if (savedStyle) loc.set("hg_map_style_mode", savedStyle);
   const win = {
@@ -332,4 +334,32 @@ test("category selection with zero matching places falls back to all dots", () =
   win.HGMapCategoryFilter.set("by");
   assert.deepEqual(calls.at(-1), ["museum", "monument"]);
   assert.deepEqual([...win.HGMapCategoryFilter.get()], []);
+});
+
+test("first map paint restores dots even when MapLibre style.load fires before tiles finish", () => {
+  const { win, main } = setup({ pendingTiles: true });
+  assert.equal(main.isStyleLoaded(), false, "tiles still downloading after style.load");
+  assert.ok(main.getSource("hg-places"), "place source created on first map load");
+  assert.ok(main.getLayer("hg-places-dots"), "place dots created before full tile idle");
+  assert.ok(main.getLayer("hg-places-hit"), "dots are tappable on first paint");
+  assert.equal(main.styleChanges.length, 0, "no Kart/Detaljert click necessary");
+  win.HGMapView.showMap();
+  assert.ok(main.getLayer("hg-places-dots"), "mode switch preserves visible dots");
+});
+
+test("late place data still creates dots when style.load was already fired and tiles keep loading", () => {
+  const { main } = setup({ pendingTiles: true, delayedPlaces: true });
+  assert.equal(main.isStyleLoaded(), false);
+  assert.ok(main.getLayer("hg-places-dots"), "late place data is drawn without a second style.load event");
+  assert.ok(main.getSource("hg-places"));
+  assert.equal(main.styleChanges.length, 0);
+});
+
+test("map control styling has a single CSS owner and keeps attribution visible", () => {
+  const css = readFileSync(new URL("../css/map.css", import.meta.url), "utf8");
+  const runtime = readFileSync(new URL("../dist/web/map-controls-runtime.js", import.meta.url), "utf8");
+  assert.ok(css.includes("background: #050505"), "opaque controls");
+  assert.ok(css.includes("body.hg-app.mode-map .map-controls"), "bottom dock in map mode");
+  assert.ok(css.includes("maplibregl-ctrl-bottom-right"), "attribution remains visible");
+  assert.equal(runtime.includes("hgMapControlsRuntimeStyle"), false, "no late competing style element");
 });

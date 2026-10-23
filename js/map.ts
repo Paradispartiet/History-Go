@@ -5,6 +5,7 @@
 
   let MAP = null;
   let mapReady = false;
+  let styleReady = false;
   let mapStyleMode = "standard";
   let pendingStyleMode = null;
   let queuedStyleMode = null;
@@ -170,16 +171,21 @@
     } catch (error) {
       MAP = null;
       mapReady = false;
+      styleReady = false;
       el.dataset.mapUnavailable = "1";
       el.setAttribute("aria-label", "Kart utilgjengelig – innhold kan fortsatt brukes");
       console.warn("[HGMap] WebGL-kart utilgjengelig; fortsetter uten kart.", error);
       return null;
     }
 
-    MAP.addControl(
-      new maplibregl.NavigationControl({ showCompass: false }),
-      "bottom-right"
-    );
+    // Mobile already has touch/pinch gestures and the compact History GO dock.
+    // Do not stack MapLibre's white +/- zoom toolbar on top of these controls.
+    if (window.matchMedia?.("(min-width: 700px)")?.matches) {
+      MAP.addControl(
+        new maplibregl.NavigationControl({ showCompass: false }),
+        "bottom-right"
+      );
+    }
 
     // Rebuilding the base style removes custom GeoJSON layers. Restore place
     // dots whenever the new style loads, not only after a later "idle" event.
@@ -205,6 +211,7 @@
     });
 
     MAP.on("load", () => {
+      styleReady = true;
       mapReady = true;
       ensureMapStyleToggle(containerId);
       MAP.resize();
@@ -284,20 +291,15 @@
     return `https://api.maptiler.com/maps/${encodeURIComponent(styleId)}/style.json?key=${encodeURIComponent(key)}`;
   }
 
-  function runWhenStyleReady(fn) {
-    if (!MAP || typeof fn !== "function") return;
-    if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
-      fn();
-      return;
-    }
-    MAP.once("style.load", () => {
-      if (typeof MAP.once === "function") MAP.once("idle", fn);
-      else fn();
-    });
-  }
+  // MapLibre's isStyleLoaded() can remain false while map tiles, glyphs or
+  // sprites are loading AFTER "style.load" has already fired. Listening once
+  // for a second "style.load" then deadlocks until Kart/Detaljert switches
+  // styles. Track the actual style.load event independently of tile loading.
+  // Marker layers only need the parsed style, not a fully idle map.
 
   function restorePlaceLayersAfterStyleLoad() {
-    if (!MAP || (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded())) return;
+    if (!MAP) return;
+    styleReady = true;
 
     // Resolve the requested style before painting its marker colors.
     if (pendingStyleMode) {
@@ -342,6 +344,7 @@
     }
 
     isApplyingStyle = true;
+    styleReady = false;
     pendingStyleMode = desired;
     try {
       MAP.setStyle(styleUrl);
@@ -351,6 +354,7 @@
       isApplyingStyle = false;
       pendingStyleMode = null;
       queuedStyleMode = null;
+      styleReady = Boolean(MAP.getStyle?.());
       renderMapStyleToggle();
       ensureMarkers();
     }
@@ -574,10 +578,7 @@
 
   function applyStandardMapPalette() {
     if (!MAP || mapStyleMode !== STYLE_MODE_STANDARD) return;
-    if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
-      runWhenStyleReady(applyStandardMapPalette);
-      return;
-    }
+    if (!styleReady) return;
 
     tuneStandardBaseMapStyle();
     moveMarkersOnTop();
@@ -865,10 +866,9 @@
     if (!MAP) return;
     if (!Array.isArray(PLACES) || PLACES.length === 0) return;
 
-    if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
-      runWhenStyleReady(drawPlaceMarkers);
-      return;
-    }
+    // A loaded style can still report isStyleLoaded() === false while tiles
+    // download. Do not defer to another style.load event that may never fire.
+    if (!styleReady) return;
 
     const places = (typeof window.HG_I18N?.localizePlaces === "function")
       ? window.HG_I18N.localizePlaces(PLACES)
@@ -1180,7 +1180,7 @@
   }
 
   function ensureMarkers() {
-    if (!MAP || !mapReady || isApplyingStyle) return;
+    if (!MAP || !styleReady || !mapReady || isApplyingStyle) return;
     if (!MAP.getSource(SRC) || !REQUIRED_PLACE_LAYERS.every(id => MAP.getLayer(id))) {
       drawPlaceMarkers();
     }
