@@ -73,6 +73,10 @@ jobs:
           assert len({(x['place_id'],x['mode']) for x in entries})==10
           assert {x['mode'] for x in entries}=={'center_original','offset_original'}
           assert len({x['place_id'] for x in entries})==5
+          assert doc['pair_distinct_sha256'] is True
+          for pid in {x['place_id'] for x in entries}:
+            sha256s={x['sha256'] for x in entries if x['place_id']==pid}
+            assert len(sha256s)==2, f'{pid}: portrait review candidates are identical'
           for row in entries:
             assert not row['visually_approved'] and not row['runtime_registered']
             assert row['width']==900 and row['height']==1350

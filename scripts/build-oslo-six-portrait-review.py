@@ -29,12 +29,16 @@ EXPECTED_IDS = {
 }
 # Two distinct framing proposals from the original photo, not two artificial
 # letterbox/blur composites. Neither is automatically an approved composition.
+# All five source photographs are landscape, whereas the portrait crop is 2:3.
+# Pillow's centering tuple is (horizontal, vertical), so changing only y
+# yielded two byte-identical variants. Shift x to give reviewers a real choice.
+# These are candidates, not approved frontImage crops.
 CENTERS = {
-    "linderud_gard": (0.50, 0.64),
-    "ekebergrestauranten": (0.50, 0.63),
-    "frognerseteren": (0.50, 0.63),
-    "sarabraten": (0.50, 0.65),
-    "saeterhytten_bygdoy": (0.50, 0.62),
+    "linderud_gard": (0.35, 0.50),
+    "ekebergrestauranten": (0.36, 0.50),
+    "frognerseteren": (0.65, 0.50),
+    "sarabraten": (0.66, 0.50),
+    "saeterhytten_bygdoy": (0.36, 0.50),
 }
 USER_AGENT = "HistoryGo-PlacePhotoQA/1.1 (https://github.com/Paradispartiet/History-Go)"
 
@@ -99,12 +103,17 @@ def write_contact_sheet(thumbs: list[tuple[str, str, Image.Image]]) -> Path:
 
 def self_test() -> None:
     sample = Image.new("RGB", (1800, 1200), "#4b5648")
+    # Introduce a distinctive pattern so horizontal displacement is measurable.
+    draw = ImageDraw.Draw(sample)
+    draw.rectangle((0, 0, 450, 1199), fill="#f03020")
+    draw.rectangle((1350, 0, 1799, 1199), fill="#2050f0")
     a = original_portrait(sample, (0.5, 0.5))
-    b = original_portrait(sample, (0.64, 0.5))
+    b = original_portrait(sample, (0.30, 0.5))
     assert a.size == (WIDTH, HEIGHT) and b.size == (WIDTH, HEIGHT)
     assert a.height > a.width
+    assert a.tobytes() != b.tobytes(), "Shifting the horizontal crop must change pixels"
     assert sha1_base36(b"source-check") == sha1_base36(b"source-check")
-    print("Source-original portrait crop functions passed self-test")
+    print("Source-original portrait crop orientation and distinctness passed self-test")
 
 
 def main() -> None:
@@ -165,10 +174,15 @@ def main() -> None:
         "note": "10 actual standing photo crops created independently from original JPEGs. Do not copy to active frontImage without site-specific visual/attribution QA.",
         "count": len(candidates),
         "place_count": 5,
+        "pair_distinct_sha256": True,
         "candidates": candidates,
     }
     if len(candidates) != 10:
         raise RuntimeError("Expected two original-photo portrait crops per place")
+    for pid in EXPECTED_IDS:
+        pair = [x for x in candidates if x["place_id"] == pid]
+        if len(pair) != 2 or pair[0]["sha256"] == pair[1]["sha256"]:
+            raise RuntimeError("Portrait candidates must show distinct pixels: " + pid)
     contact = write_contact_sheet(thumbs)
     (OUT / "review.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
