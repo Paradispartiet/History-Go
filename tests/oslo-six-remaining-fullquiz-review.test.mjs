@@ -90,3 +90,26 @@ test('Sæterhytten: royal-house 1851 and Statsbygg 1852 must not become a single
   assert.ok(questions.some(q=>q.knowledge.includes('1862')));
   assert.ok(questions.every(q=>q.runtime_registered===false));
 });
+
+test('all 21 Sæterhytten draft questions map to page-specific Statsbygg or Oslo byleksikon claim evidence',()=>{
+  const review=load('reports/place-production/saeterhytten-bathhouse-year-review-20261023.json');
+  const pack=buildOsloSixRemainingFullquizReview().places.find(p=>p.place_id==='saeterhytten_bygdoy');
+  const qs=pack.sets.flatMap(s=>s.questions);
+  const rows=review.all_21_source_alignment;
+  assert.equal(rows.length,21);
+  assert.deepEqual(rows.map(x=>x.question_id),qs.map(x=>x.id));
+  assert.equal(rows.filter(x=>x.source_url==='https://oslobyleksikon.no/side/S%C3%A6terhytten').length,3);
+  assert.equal(rows.filter(x=>x.source_url.endsWith('/bygning_3710_seterhytten.pdf')).length,18);
+  for(let i=0;i<qs.length;i++){
+    const q=qs[i],claim=rows[i];
+    assert.equal(q.source_url,claim.source_url,q.id);
+    assert.ok(claim.source_text_anchor.length>=20,q.id);
+    assert.equal(claim.independent_editorial_signoff,false,q.id);
+    assert.equal(claim.review_status,'ORIGINAL_TEXT_MATCHED_NOT_INDEPENDENTLY_APPROVED');
+    assert.equal(q.runtime_registered,false);
+    if(claim.source_url.endsWith('.pdf'))assert.equal(claim.source_page,1);
+  }
+  assert.equal(review.all_21_source_review_summary.source_fulltext_read,true);
+  assert.equal(review.all_21_source_review_summary.independent_editorial_signoff_complete,false);
+  assert.equal(review.all_21_source_review_summary.no_runtime_registration,true);
+});
