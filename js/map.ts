@@ -178,10 +178,14 @@
       return null;
     }
 
-    MAP.addControl(
-      new maplibregl.NavigationControl({ showCompass: false }),
-      "bottom-right"
-    );
+    // Mobile already has touch/pinch gestures and the compact History GO dock.
+    // Do not stack MapLibre's white +/- zoom toolbar on top of these controls.
+    if (window.matchMedia?.("(min-width: 700px)")?.matches) {
+      MAP.addControl(
+        new maplibregl.NavigationControl({ showCompass: false }),
+        "bottom-right"
+      );
+    }
 
     // Rebuilding the base style removes custom GeoJSON layers. Restore place
     // dots whenever the new style loads, not only after a later "idle" event.
