@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: oslo-six-commons-crops-${{ github.event.pull_request.number || github.ref }}
@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-          persist-credentials: false
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -130,3 +130,67 @@ jobs:
             tmp/oslo-six-portrait-alternates/alternate-contact-sheet.jpg
           if-no-files-found: error
           retention-days: 14
+
+      - name: Commit five verified portrait candidate assets to PR branch
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 6563 && github.event.pull_request.head.repo.full_name == github.repository }}
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          python - <<'PY'
+          import hashlib, json, shutil
+          from pathlib import Path
+          from PIL import Image
+          target=Path('bilder/places/auto')
+          source1=json.loads(Path('tmp/oslo-six-portrait-review/review.json').read_text(encoding='utf-8'))
+          source2=json.loads(Path('tmp/oslo-six-portrait-alternates/review.json').read_text(encoding='utf-8'))
+          # Explicitly inspected compositions; no guesswork during publication.
+          selected={
+            'linderud_gard':('offset_original','2cb9ded70072f7aa8aeb7418891e1ebdd1760b3793a11cead1b056af21786484'),
+            'ekebergrestauranten':('original_aspect_centered','4fe4bbd5d19caef27f34085f56a88817bcce21dc11b82ad62c065a4c5b689de3'),
+            'frognerseteren':('center_original','8e153e47a7f94d9f93d30bd92262fe3c64effba2a079a90ba1ac9f10e2f21557'),
+            'sarabraten':('offset_original','c5ded8496aca88f651ca29e4a93434add461bc3c3b442c62facdf932b2110c0'),
+            'saeterhytten_bygdoy':('center_original','761fc5c1e4281b89816d2aea5b86a02934c4da8ed194e4a6ce17873929c3db8e')
+          }
+          a={(row['place_id'],row['mode']):row for row in source1['candidates']}
+          b={(row['place_id'],row['mode']):row for row in source2['proposals']}
+          rows=[]
+          for place_id,(mode,expected) in selected.items():
+            row=(b if place_id in {'ekebergrestauranten','frognerseteren'} else a).get((place_id,mode))
+            assert row is not None,place_id
+            src=Path(row['path'])
+            assert src.is_file(),src
+            actual=hashlib.sha256(src.read_bytes()).hexdigest()
+            assert expected==row['sha256']==actual,place_id
+            with Image.open(src) as im:
+              assert im.size==(900,1350) and im.format=='WEBP',place_id
+            dst=target/(place_id+'__front_portrait.webp')
+            if dst.exists():
+              assert hashlib.sha256(dst.read_bytes()).hexdigest()==expected,place_id+' asset drift'
+            else:
+              shutil.copyfile(src,dst)
+            rows.append({
+              'place_id':place_id,'path':dst.as_posix(),'source_page':row['source_page'],
+              'author':row['author'],'license':row['license'],'license_url':row['license_url'],
+              'sha256':expected,'width':900,'height':1350,
+              'role':'portrait_frontImage_candidate','canonical_place_bound':False,
+              'source_credit_rendered_in_app':False,'app_browser_qa_passed':False
+            })
+          release={
+            'schema':'history_go_oslo_six_portrait_candidate_assets_v1',
+            'date':'2026-10-23',
+            'status':'BINARY_IN_REPO_NOT_REGISTERED_IN_CANONICAL_PLACE',
+            'count':len(rows),'sites':rows,
+            'note':'These are genuine separate portrait WebP images, not active frontImage bindings. Exact GPS anchors, credit rendering, live app browser QA and approved source claims are still mandatory.'
+          }
+          assert len(rows)==5
+          Path('reports/place-production/oslo-six-frontimage-candidate-assets-20261023.json').write_text(
+            json.dumps(release,indent=2,ensure_ascii=False)+'\\n',encoding='utf-8')
+          print('Five original-source portraits staged, matched SHA-256 and ready for PR review.')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/places/auto/*__front_portrait.webp reports/place-production/oslo-six-frontimage-candidate-assets-20261023.json
+          if ! git diff --cached --quiet; then
+            git commit -m "History Go: check in five source-verified standing portrait image candidates"
+            git push origin "HEAD:refs/heads/${TARGET_BRANCH}"
+          fi
