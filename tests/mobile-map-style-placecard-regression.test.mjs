@@ -115,17 +115,23 @@ class FakeMap {
   }
 }
 
-function setup() {
+function setup({ savedStyle = null, delayedPlaces = false } = {}) {
   const controls = new FakeElement("controls");
   const mapElement = new FakeElement("map");
   const placeCard = new FakeElement("placeCard");
   const main = new FakeMap();
   const loc = new Map();
+  if (savedStyle) loc.set("hg_map_style_mode", savedStyle);
   const win = {
     console,
     fetch: async () => ({ ok: false, status: 404 }),
     maplibregl: {
-      Map: class { constructor() { return main; } },
+      Map: class {
+        constructor(options) {
+          main.initialStyle = options.style;
+          return main;
+        }
+      },
       NavigationControl: class {},
       Marker: class {
         setLngLat() { return this; }
@@ -161,8 +167,9 @@ function setup() {
   win.PLACES = places;
   win.HG_PLACES_READY = true;
   win.HGMap.initMap();
-  win.HGMap.setPlaces(places);
+  if (!delayedPlaces) win.HGMap.setPlaces(places);
   main.finishStyle({ initial: true });
+  if (delayedPlaces) win.HGMap.setPlaces(places);
   win.MAP = main;
   runInNewContext(mapViewBundle, win, { timeout: 1000 });
   return { win, main, controls };
@@ -221,4 +228,27 @@ test("touchend plus click cannot open one map marker twice", () => {
   main.emit("touchend", event);
   main.emit("click", event);
   assert.deepEqual(opened, ["park"]);
+});
+
+test("restart after Detaljert uses reliable Kart base and still renders dots with late place data", () => {
+  const { win, main } = setup({ savedStyle: "satellite", delayedPlaces: true });
+  assert.match(main.initialStyle, /cartocdn\\.com/, "initial map does not require remote detailed tiles");
+  assert.equal(win.localStorage.getItem("hg_map_style_mode"), "standard");
+  assert.ok(main.getSource("hg-places"), "places arrive after initial style load");
+  assert.ok(main.getLayer("hg-places-dots"), "dots must show after startup");
+  assert.ok(main.getLayer("hg-places-hit"), "markers remain tappable");
+});
+
+test("detailed map load failure automatically restores default map and place dots", () => {
+  const { main, controls } = setup();
+  const toggle = controls.querySelector(".hg-map-style-toggle");
+  const detailed = toggle.querySelectorAll(".hg-map-style-btn")[1];
+  toggle.emit("click", { target: detailed, preventDefault() {}, stopPropagation() {} });
+  assert.equal(main.styleChanges.length, 1);
+  main.emit("error", { error: new Error("Remote detailed style unavailable") });
+  assert.equal(main.styleChanges.length, 2, "fall back to standard map on style load error");
+  assert.match(main.styleChanges[1], /cartocdn\\.com/);
+  main.finishStyle();
+  assert.ok(main.getLayer("hg-places-dots"), "dots restored after remote style failure");
+  assert.ok(main.getLayer("hg-places-hit"), "hit layer restored after remote style failure");
 });
