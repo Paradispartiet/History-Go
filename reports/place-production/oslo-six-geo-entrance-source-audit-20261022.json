@@ -113,7 +113,7 @@
       "confirmed_address": null,
       "address_source_status": "building_identity_documented_no_visitor_address",
       "entrance_status": "current_public_access_not_confirmed",
-      "visitor_guidance": "Statsbyggs bygningsrapport dokumenterer bygning 3710, historisk badehus (1852) flyttet og ombygd til Sæterhytten på Dronningberget i 1862. Den historiske rapporten kvalifiserer ikke dagens publikumsadkomst.",
+      "visitor_guidance": "Statsbygg dokumenterer bygning 3710. Statsforvalterens godkjente forvaltningsplan for Dronningberget (26.10.2023), lest 23.10.2026, dokumenterer at eksisterende stier og vei gjennom reservatet brukes som adkomst til Sæterhytten. Dette støtter gangadkomst; presist offentlig observasjonspunkt, besøksradius og eventuell innendørs adgang er fortsatt ikke verifisert.",
       "access_constraints": [
         "Never infer 2026 public indoor access from 2012 report",
         "No use of rights-protected Statsbygg illustration without rights verification"
@@ -123,11 +123,33 @@
           "url": "https://www.regjeringen.no/contentassets/c90f250c1e6b4645acc9b8be40e9a2ea/bygning_3710_seterhytten.pdf",
           "authority": "Statsbygg / regjeringen.no",
           "evidence": "Building no. 3710 and historic identity; map is copyright-labelled, not a verified pin"
+        },
+        {
+          "url": "https://fpnv.naturbase.no/Plan/View?naturvernId=VV00003059",
+          "authority": "Statsforvalteren i Oslo og Viken / Miljødirektoratet, Forvaltningsplaner på nett",
+          "evidence": "Godkjent forvaltningsplan 26.10.2023, seksjon «Bygg og Installasjoner»: eksisterende stier og vei brukes som adkomst til Sæterhytten. Seksjon «Natur – Beskrivelse» beskriver bratte, stedvis ustabile skråninger. Ingen eksakt besøkskoordinat eller generell innendørs besøksrett dokumenteres.",
+          "reviewed_at": "2026-10-23"
         }
       ],
       "coordinate_status": "HOLD",
       "coordinate": null,
-      "radius_m": null
+      "radius_m": null,
+      "documented_pedestrian_approach": {
+        "source": "https://fpnv.naturbase.no/Plan/View?naturvernId=VV00003059",
+        "plan_approved_at": "2023-10-26",
+        "reviewed_at": "2026-10-23",
+        "source_sections": [
+          "Bygg og Installasjoner",
+          "Natur – Beskrivelse"
+        ],
+        "existing_path_access_documented": true,
+        "building_and_nearby_monument_outside_reserve": true,
+        "route_limit": "Bruk eksisterende stier og vei. Ikke plasser spillanker i de bratte skråningene eller la radius kreve ferdsel utenfor stinettet.",
+        "current_path_condition_surveyed": false,
+        "exact_public_observation_coordinate": null,
+        "indoor_public_access_verified": false,
+        "safe_gps_release": false
+      }
     },
     {
       "place_id": "kristiania_teglverk_bryn",
