@@ -376,3 +376,25 @@ test("main entry does not inject obsolete transparent map-control stylesheet", (
   assert.ok(css.includes("body.hg-app .map-controls .hg-map-style-toggle"));
   assert.ok(css.includes("background: #050505"));
 });
+
+test("Oslo city map visibly renders both detail dots and hit targets at zoom 11", () => {
+  const { main } = setup();
+  main.zoom = 11;
+  const detail = main.getLayer("hg-places-dots");
+  const hit = main.getLayer("hg-places-hit");
+  assert.ok(detail, "detail circle layer exists");
+  assert.ok(hit, "touch hit target layer exists");
+  assert.ok(detail.minzoom <= 11, "detail dots must not be gated above ordinary city zoom");
+  assert.ok(hit.minzoom <= 11, "visible dots must be tappable at ordinary city zoom");
+  const radius = detail.paint["circle-radius"];
+  assert.equal(radius[0], "interpolate");
+  assert.ok(radius[3][1] >= 3, "dots must be legible on a phone");
+});
+
+test("dedicated map mode hides ghost PlaceCard and keeps dock at screen bottom", () => {
+  const css = readFileSync(new URL("../css/map.css", import.meta.url), "utf8");
+  assert.match(css, /body\\.hg-app\\.mode-map #placeCard/);
+  assert.match(css, /body\\.hg-app\\.map-only #placeCard/);
+  assert.match(css, /bottom: calc\\(8px \\+ env\\(safe-area-inset-bottom, 0px\\)\\) !important/);
+  assert.match(css, /position: fixed !important/);
+});
