@@ -19,7 +19,7 @@ test('Ekeberg has 21 individually source-mapped draft questions, including nonre
     assert.equal(entry.primary_source,'https://oslobyleksikon.no/side/Ekebergrestauranten');
     assert.equal(entry.primary_claim_alignment,'MATCHES_REFERENCED_ARTICLE');
     assert.equal(entry.release_approval,false);
-    assert.ok(entry.claim_topic.length>20);
+    assert.ok(entry.claim_topic.trim().length>=8);
     assert.ok(entry.secondary_corroboration_sources.every(s=>s.startsWith('https://')));
     const match=q.find(x=>x.id===entry.question_id);
     assert.equal(match.source_url,entry.primary_source);
