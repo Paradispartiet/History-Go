@@ -16,6 +16,9 @@ on:
       - 'tests/mobile-footer-layout.test.mjs'
       - 'tests/mobile-footer-browser.test.mjs'
       - 'css/nearby.css'
+      - 'css/map.css'
+      - 'css/placeCard.css'
+      - 'tests/map-mode-controls-browser.test.mjs'
       - 'css/people.css'
       - 'css/nature.css'
       - 'index.html'
@@ -53,5 +56,7 @@ jobs:
         run: node tests/mobile-footer-browser.test.mjs
       - name: Audit framed Nearby layout on phone, tablet and desktop
         run: node tests/nearby-framed-layout-browser.test.mjs
+      - name: Audit map-mode bottom dock and ghost PlaceCard on Android viewports
+        run: node tests/map-mode-controls-browser.test.mjs
       - name: Verify Hurtigmeny language flag on mobile and desktop
         run: node tests/header-language-menu-browser.test.mjs
