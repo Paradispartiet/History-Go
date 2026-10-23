@@ -34,7 +34,7 @@ Under okkupasjonen ble deler av eiendommen rekvirert, mens mye av jordbrukslands
 | 2 | Hvem kjøpte Linderud i 1679? | Mogens Lauritssøn | Oslo byleksikon / MiA |
 | 3 | Hvilken næring gjorde Mogens Lauritssøn velstående? | Trelasthandel | MiA |
 | 4 | Hvem overtok gården fra faren i 1713? | Erich Mogenssøn | MiA |
-| 5 | Når ble hovedbygningen reist, formulert uten omstridt eksakt år? | Tidlig på 1700-tallet | MiA / Oslo byleksikon |
+| 5 | Når ble Linderud gårds hovedbygning reist? | Tidlig på 1700-tallet | MiA / Oslo byleksikon |
 | 6 | Hvilken hagestil satte sitt første tydelige preg nedenfor huset? | Barokk | MiA |
 | 7 | Hvilken ressurs var sentral for det store godsets økonomi? | Skog og sagbruk | Oslo byleksikon |
 | 8 | Hvilken gruppe arbeidet på plasser tilknyttet gården? | Husmenn | Oslo byleksikon |
