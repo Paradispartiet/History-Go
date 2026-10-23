@@ -59,9 +59,16 @@ def main():
             COMMONS.sha1_base36(data).lower().lstrip('0')
         }:
             raise RuntimeError('MediaWiki imageinfo checksum mismatch for '+p['place_id'])
+        if info['mime'] != 'image/jpeg' or data[:2] != b'\\xff\\xd8':
+            raise RuntimeError('Original MIME or JPEG signature mismatch for '+p['place_id'])
         with Image.open(io.BytesIO(data)) as src:
-            if src.format!='JPEG':
-                raise RuntimeError('Non-JPEG original for '+p['place_id'])
+            # Pillow identifies some Apple JPEG containers as MPO. Commons
+            # still reports image/jpeg. Decode the first image only, after
+            # checking the original source SHA-1 and JPEG magic bytes above.
+            if src.format not in ('JPEG', 'MPO'):
+                raise RuntimeError('Unsupported original image container for '+p['place_id']+': '+str(src.format))
+            if getattr(src,'n_frames',1)>1:
+                src.seek(0)
             src.load()
             original=ImageOps.exif_transpose(src).convert('RGB')
         if list(original.size)!=p['original_dimensions']:
