@@ -152,7 +152,7 @@ I dag er den historiske bebyggelsen borte. Kommunen kjøpte eiendommen i 1911, b
 
 **Foreslått `popupDesc` (ikke canonical):**
 
-På Dronningberget står Sæterhytten, som i dag kan se ut som en liten romantisk parkbygning. Historien begynner på vannet. I 1852 ble et flytende badehus reist for Oscar I utenfor Oscarshall. Da treverket senere ble angrepet av mark, ble bygningen demontert, flyttet opp på Dronningberget og bygget om til Sæterhytten.
+På Dronningberget står Sæterhytten, som i dag kan se ut som en liten romantisk parkbygning. Historien begynner på vannet. Tidlig på 1850-tallet ble et flytende badehus reist for Oscar I utenfor Oscarshall. Da treverket senere ble angrepet av mark, ble bygningen demontert, flyttet opp på Dronningberget og bygget om til Sæterhytten.
 
 Den nye paviljongen ble innviet på dronning Louises navnedag, 25. august 1862. Hennes mor og datter – også de Louise – var til stede. Tre L-er ble brukt som dekor på bygningen. Henrik Ibsen hadde skrevet et dikt til innvielsen. Fra 1866 ble det kafédrift, og sammen med en musikkpaviljong og utsikten ble stedet et populært mål for byens utflukter.
 

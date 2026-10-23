@@ -68,3 +68,25 @@ test('new 3x7 review packs retain geographic and publication holds', () => {
   }
   assert.match(draft.places.at(-1).important_hold,/14\/18/);
 });
+
+test('Sæterhytten: royal-house 1851 and Statsbygg 1852 must not become a single factual build-year claim in visitor prose',()=>{
+  const audit=load('reports/place-production/saeterhytten-bathhouse-year-review-20261023.json');
+  assert.equal(audit.original_bathhouse_year.norwegian_royal_house.year,1851);
+  assert.equal(audit.original_bathhouse_year.statsbygg.year,1852);
+  assert.equal(audit.original_bathhouse_year.independent_resolution,false);
+  assert.equal(audit.source_claim_release_approved,false);
+  const editorial=readFileSync(new URL('../reports/place-production/oslo-six-places-editorial-20261022.md',import.meta.url),'utf8');
+  const visitor=editorial.split('## Sæterhytten (`saeterhytten_bygdoy`)')[1].split('## Kristiania Teglverk')[0];
+  const fagverk=load('reports/place-production/oslo-six-fagverk-preintegration-20261022.json')
+    .places.find(p=>p.place_id==='saeterhytten_bygdoy').fagverk;
+  for(const body of [visitor,...fagverk.article,...fagverk.lenses.map(x=>x.evidence),...fagverk.observable_traces.map(x=>x.interpretation_boundary)]){
+    assert.doesNotMatch(body,/I 1852 ble (?:et|det) (?:flytende |kongelig )?badehus/i);
+    assert.doesNotMatch(body,/urørt fra 1852/);
+  }
+  const pack=buildOsloSixRemainingFullquizReview().places.find(p=>p.place_id==='saeterhytten_bygdoy');
+  const questions=pack.sets.flatMap(s=>s.questions);
+  assert.equal(questions.length,21);
+  assert.ok(questions.every(q=>!q.question.includes('1851')&&!q.question.includes('1852')));
+  assert.ok(questions.some(q=>q.knowledge.includes('1862')));
+  assert.ok(questions.every(q=>q.runtime_registered===false));
+});
