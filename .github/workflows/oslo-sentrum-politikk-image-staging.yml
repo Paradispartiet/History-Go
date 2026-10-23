@@ -42,7 +42,7 @@ jobs:
           from PIL import Image, ImageDraw
           root = Path('reports/place-production/media-staging/oslo-sentrum-politikk')
           places = ['hoyres_hus','victoria_terrasse']
-          canvas = Image.new('RGB', (1600, 1180), '#f7f7f7')
+          canvas = Image.new('RGB', (1600, 1600), '#f7f7f7')
           d = ImageDraw.Draw(canvas)
           for idx, place in enumerate(places):
               front = root/place/f'{place}_front_portrait.webp'
