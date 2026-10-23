@@ -122,6 +122,7 @@ function setup() {
   const loc = new Map();
   const win = {
     console,
+    fetch: async () => ({ ok: false, status: 404 }),
     maplibregl: {
       Map: class { constructor() { return main; } },
       NavigationControl: class {},
