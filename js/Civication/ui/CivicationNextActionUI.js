@@ -987,18 +987,20 @@
           answerDebugContext.legacyFollowupSuppressed = answerResult?.legacyImmediateFollowupSuppressed === true;
           answerDebugContext.legacyFollowupEnqueued = answerResult?.legacyImmediateFollowupEnqueued === true;
         }
-        if (answerResult?.ok === false) {
-          // Recover only a real choice on a delivered, builder-generated
-          // *non-task* phase decision. Some legacy inbox projections omit its
-          // pending copy: EventEngine returns not_found while the canonical
-          // day runtime still holds the actionable row. Record the selected
-          // choice through DailyMailBuilder, never an automatic task waiver.
-          const generatedRow = answerResult.reason === "not_found"
-            ? generatedPhaseDecisionInTaskSlot(action) : null;
-          const allowedChoice = generatedRow?.event?.choices?.some(function (choice) {
-            return String(choice?.id || "") === String(choiceId || "");
-          });
-          if (generatedRow?.status === "delivered" && allowedChoice) {
+        // A real generated phase choice can outlive a stale inbox projection.
+        // Even a successful MailEngine reply is insufficient if it never
+        // recorded the selected answer in the canonical day runtime. Only
+        // reconcile a delivered daily_generated/phase decision with a valid
+        // authored choice and no TaskEngine task or task payload.
+        const generatedRow = generatedPhaseDecisionInTaskSlot(action);
+        const allowedGeneratedChoice = generatedRow?.event?.choices?.some(function (choice) {
+          return String(choice?.id || "") === String(choiceId || "");
+        });
+        const missingInboxProjection = answerResult?.ok === false
+          && ["not_found", "not_pending"].includes(String(answerResult.reason || ""));
+        const mailSucceeded = answerResult !== false && answerResult?.ok !== false;
+        if (generatedRow?.status === "delivered" && allowedGeneratedChoice
+            && (mailSucceeded || missingInboxProjection)) {
             return Promise.resolve(window.CivicationDailyMailBuilder?.markHandled?.(mailId, choiceId))
               .then(function () {
                 const rows = window.CivicationDailyMailBuilder?.inspect?.()?.runtime?.items;
@@ -1014,6 +1016,7 @@
                 });
               });
           }
+        if (answerResult?.ok === false) {
           notifyFailure("Kunne ikke svare på mail", answerResult);
           if (answerResult.reason === "not_found" && action?.source === "day_phase"
               && action?.status === "queued") {
