@@ -45,3 +45,22 @@ test('Sarabråten ruin place must not be merged with the separate memorial viewp
   assert.equal(hold.radius_m,null);
   assert.equal(hold.coordinate_status,'HOLD');
 });
+
+test('2026-10-23 Ekeberg footprint and Sarabråten approach evidence remain separate from the playable visitor anchor',()=>{
+  const pack=load('reports/place-production/oslo-six-geolocation-candidates-20261022.json');
+  const ek=pack.places.find(p=>p.place_id==='ekebergrestauranten');
+  const sar=pack.places.find(p=>p.place_id==='sarabraten');
+  assert.equal(ek.building_footprint_candidate.upstream_osm_way_id,115901265);
+  assert.ok(distanceMetres(ek.provisional_poi,ek.building_footprint_candidate)<15);
+  assert.ok(distanceMetres(ek.provisional_poi,ek.building_footprint_candidate)>5);
+  assert.equal(ek.building_footprint_candidate.usable_as_canonical_visitor_point,false);
+  assert.equal(ek.building_footprint_candidate.usable_as_radius_basis,false);
+  assert.equal(ek.official_public_approach_evidence.exact_public_entrance_location,null);
+  assert.equal(ek.official_public_approach_evidence.safe_gps_release,false);
+  assert.match(sar.documented_walkway_approach.approach,/Ulsrudvannet/);
+  assert.match(sar.documented_walkway_approach.approach,/Nøklevann/);
+  assert.equal(sar.documented_walkway_approach.exact_ruin_site_trail_waypoint,null);
+  assert.equal(sar.documented_walkway_approach.safe_gps_release,false);
+  assert.equal(sar.public_entrance_coordinate_verified,false);
+  assert.equal(ek.public_entrance_coordinate_verified,false);
+});

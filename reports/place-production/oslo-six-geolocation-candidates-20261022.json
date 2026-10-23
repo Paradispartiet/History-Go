@@ -1,6 +1,6 @@
 {
   "schema": "history_go_oslo_six_coordinate_candidate_evidence_v1",
-  "as_of": "2026-10-22",
+  "as_of": "2026-10-23",
   "status": "RESEARCH_CANDIDATES_NO_CANONICAL_COORDINATES",
   "note": "Coordinates from independent map and geotagged image sources are POI/site or photographer locations. They are not inspected public access/entrance points. Never auto-promote to canonical Place, and never derive a playable radius from them.",
   "places": [
@@ -40,7 +40,28 @@
       "public_access_supported": true,
       "public_entrance_coordinate_verified": false,
       "visitor_radius_m": null,
-      "status": "SITE_POI_CANDIDATE_PENDING_PUBLIC_ENTRANCE_INSPECTION"
+      "status": "SITE_POI_CANDIDATE_PENDING_PUBLIC_ENTRANCE_INSPECTION",
+      "building_footprint_candidate": {
+        "source": "https://mapcarta.com/W115901265",
+        "upstream_osm_object_url": "https://www.openstreetmap.org/way/115901265",
+        "upstream_osm_way_id": 115901265,
+        "kind": "osm_derived_commercial_building_centroid_not_a_public_entrance",
+        "lat": 59.89936,
+        "lon": 10.76171,
+        "name": "Ekebergrestauranten",
+        "site_identity": "restaurant building at Kongsveien 15",
+        "verification": "secondary OSM derived centroid, not manual entry-door survey",
+        "usable_as_canonical_visitor_point": false,
+        "usable_as_radius_basis": false
+      },
+      "official_public_approach_evidence": {
+        "source": "https://www.ekebergrestauranten.com/faq",
+        "operator_contact": "https://furset-ekeberg.squarespace.com/kontakt",
+        "route_description": "Tram 13/19 to Ekebergparken and walk to restaurant; commercial restaurant access is public during operation",
+        "never_use_as_permanent_instructions": "Temporary 2026 Kongsveien roadworks or transit frequency",
+        "exact_public_entrance_location": null,
+        "safe_gps_release": false
+      }
     },
     {
       "place_id": "sarabraten",
@@ -77,7 +98,17 @@
       "public_access_supported": true,
       "public_entrance_coordinate_verified": false,
       "visitor_radius_m": null,
-      "status": "HISTORIC_SITE_CANDIDATE_SEPARATE_RUINS_AND_MEMORIAL"
+      "status": "HISTORIC_SITE_CANDIDATE_SEPARATE_RUINS_AND_MEMORIAL",
+      "documented_walkway_approach": {
+        "source": "https://lokalhistoriewiki.no/wiki/Sarabr%C3%A5tveien",
+        "way_name": "Sarabråtveien",
+        "approach": "From General Ruges vei, shared route with Østmarkveien to Ulsrudvannet, then public trail on east side of Nøklevann towards Sarabråten",
+        "trail_history": "Sarabråtveien established on Heftye initiative in 1854",
+        "exact_ruin_site_trail_waypoint": null,
+        "exact_observation_entrance": null,
+        "safe_gps_release": false,
+        "avoid_confusion": "Sarabråtveien article coordinate describes the road, NOT the ruins, Milorg monument or selected visitor entrance"
+      }
     }
   ],
   "release_constraints": [
@@ -85,6 +116,8 @@
     "No GPS radius until on-path public observation/wayfinding point is independently checked",
     "Avoid claiming Sarabråten's Milorg monument is at the ruin-point coordinate",
     "For Ekebergrestauranten don't confuse the southern alternative with entrance without site geometry or imagery",
-    "Maintain the teglverk's separate address/footprint HARD HOLD"
+    "Maintain the teglverk's separate address/footprint HARD HOLD",
+    "The OSM Ekeberg building centroid is not a door; its closer correspondence does not remove the public-entrance HOLD",
+    "Sarabråtveien's public trail is documented but has no exact approved ruin observation waypoint or valid play radius"
   ]
 }
