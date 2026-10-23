@@ -157,13 +157,6 @@ async function run() {
   await build(startupOptions);
   await build(compactStartupOptions);
   console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length + COMPACT_STARTUP_ENTRIES.length} entry/entries -> dist/web`);
-  // Temporary CI-only bundle capture for exact browser-build parity; remove before merge.
-  const { readFile } = await import("node:fs/promises");
-  for (const name of ["map.js", "map-controls-runtime.js"]) {
-    console.log("HG_FIRST_PAINT_BASE64_BEGIN:" + name);
-    console.log((await readFile(path.join(OUT_DIR, name))).toString("base64"));
-    console.log("HG_FIRST_PAINT_BASE64_END:" + name);
-  }
 }
 
 run().catch((err) => {
