@@ -37,6 +37,11 @@ on:
       - 'scripts/build-oslo-six-canonical-place-drafts.mjs'
       - 'tests/oslo-six-geolocation-candidates.test.mjs'
       - 'tests/oslo-six-canonical-place-drafts.test.mjs'
+      - 'scripts/build-oslo-six-browser-review.mjs'
+      - 'js/ui/oslo-six-browser-review.js'
+      - 'css/oslo-six-browser-review.css'
+      - 'tests/oslo-six-browser-review.test.mjs'
+      - 'tests/oslo-six-browser-review.chromium.mjs'
       - '.github/workflows/oslo-six-staging.yml'
   workflow_dispatch:
 
@@ -60,7 +65,7 @@ jobs:
         with:
           node-version: '22'
       - name: Verify six-place staging handoff and release holds
-        run: node --test tests/oslo-six-checked-in-commons-images.test.mjs tests/oslo-six-geolocation-candidates.test.mjs tests/oslo-six-canonical-place-drafts.test.mjs tests/oslo-six-teglverk-address-evidence.test.mjs tests/oslo-six-frognerseteren-source-scope.test.mjs tests/oslo-six-image-rights.test.mjs tests/oslo-six-integration-preview.test.mjs tests/oslo-six-quiz-handoff.test.mjs tests/oslo-six-places-integration-gates.test.mjs tests/oslo-six-linderud-quiz-preintegration.test.mjs tests/oslo-six-card-review.test.mjs tests/oslo-six-fullquiz-review.test.mjs tests/oslo-six-remaining-fullquiz-review.test.mjs tests/oslo-six-review-ownership.test.mjs tests/oslo-six-fagverk-preintegration.test.mjs
+        run: node --test tests/oslo-six-browser-review.test.mjs tests/oslo-six-checked-in-commons-images.test.mjs tests/oslo-six-geolocation-candidates.test.mjs tests/oslo-six-canonical-place-drafts.test.mjs tests/oslo-six-teglverk-address-evidence.test.mjs tests/oslo-six-frognerseteren-source-scope.test.mjs tests/oslo-six-image-rights.test.mjs tests/oslo-six-integration-preview.test.mjs tests/oslo-six-quiz-handoff.test.mjs tests/oslo-six-places-integration-gates.test.mjs tests/oslo-six-linderud-quiz-preintegration.test.mjs tests/oslo-six-card-review.test.mjs tests/oslo-six-fullquiz-review.test.mjs tests/oslo-six-remaining-fullquiz-review.test.mjs tests/oslo-six-review-ownership.test.mjs tests/oslo-six-fagverk-preintegration.test.mjs
       - name: Verify non-publishing data export
         run: |
           node scripts/build-oslo-six-quiz-handoff.mjs
@@ -69,3 +74,35 @@ jobs:
           node scripts/build-oslo-six-remaining-fullquiz-review.mjs
           node scripts/build-oslo-six-integration-preview.mjs
           node scripts/build-oslo-six-canonical-place-drafts.mjs
+          node scripts/build-oslo-six-browser-review.mjs
+
+  browser_review:
+    name: Oslo six read-only Chromium review (390 + 1440)
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install project browser-test dependencies
+        run: npm ci --ignore-scripts
+      - name: Install test Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Generate six-place editorial QA page from production source owners
+        run: node scripts/build-oslo-six-browser-review.mjs --write
+      - name: Check actual browser rendering, quiz content and all fifteen images
+        run: node tests/oslo-six-browser-review.chromium.mjs
+      - name: Save browser review and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-six-browser-review
+          path: |
+            reports/place-production/oslo-six-browser-review.html
+            reports/place-production/oslo-six-browser-review-390.png
+            reports/place-production/oslo-six-browser-review-1440.png
+          if-no-files-found: warn
+          retention-days: 14
