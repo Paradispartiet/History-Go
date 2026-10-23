@@ -220,6 +220,9 @@
     window.setNearbyCollapsed?.(false);
     window.HGMap?.resize?.();
     window.MAP?.resize?.();
+    // Navigating back from another place or a closed PlaceCard must restore
+    // any style layers that were discarded while the map was covered.
+    window.HGMap?.ensureMarkers?.();
   }
 
   /** @param {unknown} placeId

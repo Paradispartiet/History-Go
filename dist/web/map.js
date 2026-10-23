@@ -6,6 +6,7 @@
     let mapReady = false;
     let mapStyleMode = "standard";
     let pendingStyleMode = null;
+    let queuedStyleMode = null;
     let isApplyingStyle = false;
     let START = { lat: 59.9139, lon: 10.7522, zoom: 13 };
     let PLACES = [];
@@ -44,6 +45,7 @@
     const PLACE_DETAIL_LOD_FILTER = ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL];
     const PLACE_HIT_LAYERS = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
     const PLACE_HIT_PRIORITY = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
+    const REQUIRED_PLACE_LAYERS = [L_GLOW, L_DOTS, L_LAB, L_AREA_LAB, L_HIT, L_AREA_HIT];
     const PLACE_TAP_TOLERANCE_PX = 12;
     const PLACE_POINTER_MOVE_TOLERANCE_PX = 7;
     const PLACE_GESTURE_COOLDOWN_MS = 180;
@@ -151,6 +153,11 @@
         new maplibregl.NavigationControl({ showCompass: false }),
         "bottom-right"
       );
+      MAP.on("style.load", restorePlaceLayersAfterStyleLoad);
+      MAP.on("idle", () => {
+        if (isApplyingStyle) restorePlaceLayersAfterStyleLoad();
+        else ensureMarkers();
+      });
       MAP.on("load", () => {
         mapReady = true;
         ensureMapStyleToggle(containerId);
@@ -226,96 +233,54 @@
         else fn();
       });
     }
-    function applyMapStyle(nextMode) {
-      console.debug("[HGMap] set style start", nextMode);
-      if (!MAP || typeof MAP.setStyle !== "function") {
-        console.warn("[HGMap] MapLibre map not ready for style switch");
-        return;
+    function restorePlaceLayersAfterStyleLoad() {
+      if (!MAP || typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) return;
+      if (pendingStyleMode) {
+        mapStyleMode = pendingStyleMode;
+        pendingStyleMode = null;
+        isApplyingStyle = false;
+        saveMapStyleMode(mapStyleMode);
       }
+      mapReady = true;
+      applyStandardMapPalette();
+      drawPlaceMarkers();
+      moveMarkersOnTop();
+      MAP.resize();
+      renderMapStyleToggle();
+      const queued = queuedStyleMode;
+      queuedStyleMode = null;
+      if (queued && queued !== mapStyleMode) applyMapStyle(queued);
+    }
+    function applyMapStyle(nextMode) {
+      if (!MAP || typeof MAP.setStyle !== "function") return;
       const desired = nextMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
       if (isApplyingStyle) {
-        console.debug("[HGMap] style switch already in progress");
+        queuedStyleMode = desired;
         return;
       }
-      if (desired === mapStyleMode && !isApplyingStyle) {
-        console.debug("[HGMap] style already active", desired);
+      if (desired === mapStyleMode) {
+        ensureMarkers();
         renderMapStyleToggle();
-        drawPlaceMarkers();
         return;
       }
-      const key = getMapTilerKey();
-      console.debug("[HGMap] key present", Boolean(key));
       const styleUrl = getStyleUrlForMode(desired);
-      console.debug("[HGMap] style url", styleUrl);
       if (!styleUrl) {
-        if (desired === STYLE_MODE_SATELLITE) {
-          console.warn("[HGMap] Naturtro kart krever window.HG_MAPTILER_KEY. Beholder standardkart.");
-        }
+        console.warn("[HGMap] Detaljert kart er ikke konfigurert; behold kartvisning.");
         renderMapStyleToggle();
         return;
       }
       isApplyingStyle = true;
       pendingStyleMode = desired;
-      const onStyleReady = () => {
-        if (!MAP) return;
-        const resolvedMode = pendingStyleMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
-        mapStyleMode = resolvedMode;
-        pendingStyleMode = null;
-        isApplyingStyle = false;
-        saveMapStyleMode(mapStyleMode);
-        mapReady = true;
-        applyStandardMapPalette();
-        drawPlaceMarkers();
-        moveMarkersOnTop();
-        MAP.resize();
-        renderMapStyleToggle();
-        console.debug("[HGMap] place layers restored", {
-          source: Boolean(MAP.getSource(SRC)),
-          glow: Boolean(MAP.getLayer(L_GLOW)),
-          hit: Boolean(MAP.getLayer(L_HIT)),
-          dots: Boolean(MAP.getLayer(L_DOTS)),
-          label: Boolean(MAP.getLayer(L_LAB))
-        });
-      };
       try {
         MAP.setStyle(styleUrl);
-        runWhenStyleReady(onStyleReady);
-        console.debug("[HGMap] setStyle called");
       } catch (error) {
-        const message = (error == null ? void 0 : error.message) || "unknown error";
-        console.warn("[HGMap] Naturtro style failed", message, error);
+        console.warn("[HGMap] Kartstil kunne ikke lastes", error);
         isApplyingStyle = false;
         pendingStyleMode = null;
+        queuedStyleMode = null;
         renderMapStyleToggle();
+        ensureMarkers();
       }
-    }
-    function redrawPlacesAfterStyleLoad(mode) {
-      if (!MAP) return;
-      const resolvedMode = mode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
-      const run = () => {
-        mapStyleMode = resolvedMode;
-        pendingStyleMode = null;
-        isApplyingStyle = false;
-        saveMapStyleMode(mapStyleMode);
-        mapReady = true;
-        console.debug("[HGMap] redrawing place markers after style switch");
-        applyStandardMapPalette();
-        drawPlaceMarkers();
-        moveMarkersOnTop();
-        MAP.resize();
-        renderMapStyleToggle();
-        console.debug("[HGMap] place layers restored");
-      };
-      if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
-        if (typeof MAP.once === "function") MAP.once("idle", run);
-        else run();
-        return;
-      }
-      MAP.once("style.load", () => {
-        console.debug("[HGMap] style loaded", resolvedMode);
-        if (typeof MAP.once === "function") MAP.once("idle", run);
-        else run();
-      });
     }
     function ensureMapStyleToggle(containerId) {
       const controls = document.querySelector(".map-controls");
@@ -338,9 +303,6 @@
         applyMapStyle(btn.dataset.mode);
       };
       wrap.addEventListener("click", onStyleTogglePress);
-      wrap.querySelectorAll(".hg-map-style-btn").forEach((btn) => {
-        btn.addEventListener("touchend", onStyleTogglePress, { passive: false });
-      });
       controls.insertBefore(wrap, controls.firstChild);
       renderMapStyleToggle();
       const mapEl = (
@@ -820,7 +782,7 @@
       applyStandardMapPalette();
       syncPlaceAreaDomMarkers(features);
       const src = MAP.getSource(SRC);
-      if (src) {
+      if (src && REQUIRED_PLACE_LAYERS.every((id) => MAP.getLayer(id))) {
         src.setData(fc);
         moveMarkersOnTop();
         return;
@@ -939,7 +901,6 @@
           MAP.off("mouseleave", layerId, prev.clearPointer);
         }
         MAP.off("click", prev.handlePlaceClick);
-        MAP.off("touchend", prev.handlePlaceClick);
         MAP.off("dragstart", prev.markMapGesture);
         MAP.off("zoomstart", prev.markMapGesture);
         MAP.off("rotatestart", prev.markMapGesture);
@@ -1047,7 +1008,6 @@
       MAP.on("zoomend", finishMapGesture);
       MAP.on("rotateend", finishMapGesture);
       MAP.on("click", handlePlaceClick);
-      MAP.on("touchend", handlePlaceClick);
     }
     function moveMarkersOnTop() {
       if (!MAP) return;
@@ -1055,8 +1015,14 @@
         if (MAP.getLayer(id)) MAP.moveLayer(id);
       });
     }
+    function ensureMarkers() {
+      if (!MAP || !mapReady || isApplyingStyle) return;
+      if (!MAP.getSource(SRC) || !REQUIRED_PLACE_LAYERS.every((id) => MAP.getLayer(id))) {
+        drawPlaceMarkers();
+      }
+    }
     function maybeDrawMarkers() {
-      drawPlaceMarkers();
+      ensureMarkers();
     }
     function refreshMarkers() {
       drawPlaceMarkers();
@@ -1076,6 +1042,7 @@
       isAreaPlace,
       getMapLod,
       maybeDrawMarkers,
+      ensureMarkers,
       refreshMarkers
     };
   })();
