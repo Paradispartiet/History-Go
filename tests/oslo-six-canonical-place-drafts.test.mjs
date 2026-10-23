@@ -35,7 +35,14 @@ test('six editorial stories export as faithful nonplayable canonical-shaped Plac
     } else {
       const photo=p.staged_image_candidates;
       assert.equal(photo.publication_status,'STAGED_ONLY_NOT_BOUND');
-      assert.equal(photo.front_image_status,'MISSING_SEPARATE_PORTRAIT_ASSET');
+      assert.equal(photo.front_image_status,
+        ['ekebergrestauranten','frognerseteren'].includes(p.id)?
+          'REJECTED_PORTRAIT_COMPOSITION':'REVIEWED_PORTRAIT_ARTIFACT_NOT_CHECKED_IN');
+      if(photo.portrait_review_candidate){
+        assert.equal(photo.portrait_review_candidate.artifact_only,true);
+        assert.equal(photo.portrait_review_candidate.runtime_registered,false);
+        assert.match(photo.portrait_review_candidate.sha256,/^[a-f0-9]{64}$/);
+      }else assert.ok(['ekebergrestauranten','frognerseteren'].includes(p.id));
       assert.equal(photo.source_attribution_rendered,false);
       assert.ok(photo.source_page.startsWith('https://commons.wikimedia.org/wiki/File:'));
       assert.ok(photo.author && photo.license_url);
@@ -77,4 +84,19 @@ test('image candidates fail closed on mismatched credits, unsafe release and inc
   const unsafeFactory=structuredClone(attribution);
   unsafeFactory.places.push({...unsafeFactory.places[0],place_id:'kristiania_teglverk_bryn'});
   assert.throws(()=>buildOsloSixCanonicalStaging({imageAttribution:unsafeFactory}),/unexpected evidence coverage/);
+});
+
+test('the 2026-10-23 portrait visual verdict cannot be replaced by identical crops or a false pass',()=>{
+  const report=load('reports/place-production/oslo-six-portrait-visual-review-20261023.json');
+  assert.equal(report.per_place.length,5);
+  assert.equal(report.per_place.filter(p=>p.visual_decision==='PASS_FRAMING').length,3);
+  assert.equal(report.per_place.filter(p=>p.visual_decision==='HOLD_ALTERNATIVE_SOURCE_OR_COMPOSITION').length,2);
+  assert.equal(report.constraints.candidates_checked_into_repository,false);
+  for(const row of report.per_place)assert.notEqual(row.candidate_sha256.center_original,row.candidate_sha256.offset_original,row.place_id);
+  const bad=structuredClone(report);
+  bad.per_place[0].candidate_sha256.offset_original=bad.per_place[0].candidate_sha256.center_original;
+  assert.throws(()=>buildOsloSixCanonicalStaging({portraitReview:bad}),/portrait metadata/);
+  const premature=structuredClone(report);
+  premature.constraints.candidates_checked_into_repository=true;
+  assert.throws(()=>buildOsloSixCanonicalStaging({portraitReview:premature}),/portrait review must not imply image release/);
 });

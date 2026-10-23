@@ -39,6 +39,7 @@ export function buildOsloSixCanonicalStaging({
   imageRights = load('reports/place-production/oslo-six-image-rights-shortlist-20261022.json'),
   imageAttribution = load('reports/place-production/oslo-six-generated-image-attribution-20261022.json'),
   imageVisualQA = load('reports/place-production/oslo-six-image-visual-qa-20261022.json'),
+  portraitReview = load('reports/place-production/oslo-six-portrait-visual-review-20261023.json'),
   candidates = load('reports/place-production/oslo-six-geolocation-candidates-20261022.json'),
   editorialText = readFileSync(resolve(ROOT,EDITORIAL_FILE),'utf8')
 }={}) {
@@ -52,6 +53,14 @@ export function buildOsloSixCanonicalStaging({
   const imageFiles=new Map(imageAttribution.places.map(p=>[p.place_id,p]));
   const imageReviews=new Map(imageVisualQA.per_place.map(p=>[p.place_id,p]));
   const roughLocations=new Map(candidates.places.map(p=>[p.place_id,p]));
+  const portraitSelections=new Map(portraitReview.per_place.map(p=>[p.place_id,p]));
+  if(portraitReview.status!=='SELECTED_CANDIDATES_IN_ARTIFACT_ONLY_ZERO_FRONTIMAGE_REGISTERED' ||
+     portraitReview.constraints.candidates_checked_into_repository!==false ||
+     portraitReview.constraints.release_allowed!==false ||
+     portraitSelections.size!==5 || portraitReview.per_place.length!==5 ||
+     portraitReview.rejected_industrial_place.place_id!=='kristiania_teglverk_bryn' ||
+     portraitReview.rejected_industrial_place.portrait_candidate_created!==false)
+    fail('portrait review must not imply image release');
   if(images.size!==6 || geoRows.size!==6 || roughLocations.size!==2 ||
      imageFiles.size!==5 || imageReviews.size!==5 ||
      imageAttribution.places.length!==5 || imageVisualQA.per_place.length!==5)
@@ -70,12 +79,13 @@ export function buildOsloSixCanonicalStaging({
     // own actually portrait frontImage and visible attribution.
     const assets=imageFiles.get(id);
     const reviewed=imageReviews.get(id);
+    const portrait=portraitSelections.get(id);
     let stagedImages=null;
     if(id==='kristiania_teglverk_bryn') {
-      if(assets||reviewed||photo.asset_paths?.length||photo.lead_candidate)
+      if(assets||reviewed||portrait||photo.asset_paths?.length||photo.lead_candidate)
         fail(id+': unsafe factory photograph staged as a matching image');
     } else {
-      if(!assets||!reviewed||!photo.lead_candidate||
+      if(!assets||!reviewed||!portrait||!photo.lead_candidate||
          assets.source_page!==photo.lead_candidate.page||
          assets.author!==photo.lead_candidate.author||
          assets.license!==photo.lead_candidate.license||
@@ -93,6 +103,16 @@ export function buildOsloSixCanonicalStaging({
       }
       if(Object.keys(variants).length!==3)
         fail(id+': incomplete image roles');
+      const pair=portrait.candidate_sha256;
+      if(portrait.source_page!==assets.source_page || portrait.author!==assets.author ||
+         portrait.license!==assets.license ||
+         !pair || !/^[a-f0-9]{64}$/.test(pair.center_original) ||
+         !/^[a-f0-9]{64}$/.test(pair.offset_original) ||
+         pair.center_original===pair.offset_original ||
+         !['PASS_FRAMING','HOLD_ALTERNATIVE_SOURCE_OR_COMPOSITION'].includes(portrait.visual_decision) ||
+         (portrait.visual_decision==='PASS_FRAMING' && !['center_original','offset_original'].includes(portrait.preferred_mode)) ||
+         (portrait.visual_decision!=='PASS_FRAMING' && portrait.preferred_mode!==null))
+        fail(id+': portrait metadata, image attribution or safe selection differs');
       stagedImages={
         publication_status:'STAGED_ONLY_NOT_BOUND',
         paths:variants,
@@ -101,8 +121,16 @@ export function buildOsloSixCanonicalStaging({
         license_url:assets.license_url,
         source_page:assets.source_page,
         source_attribution_rendered:false,
-        front_image_status:'MISSING_SEPARATE_PORTRAIT_ASSET',
-        note:'All three prepared crops are landscape; none qualifies as frontImage.'
+        front_image_status:portrait.visual_decision==='PASS_FRAMING'?
+          'REVIEWED_PORTRAIT_ARTIFACT_NOT_CHECKED_IN':'REJECTED_PORTRAIT_COMPOSITION',
+        portrait_review_candidate:portrait.preferred_mode ? {
+          mode:portrait.preferred_mode,
+          sha256:pair[portrait.preferred_mode],
+          artifact_id:portraitReview.artifact_id,
+          artifact_only:true,
+          runtime_registered:false
+        }:null,
+        note:'Three repository crops are landscape; portrait candidate is stored only as CI artifact and is NOT an approved runtime frontImage.'
       };
     }
     const fields={
