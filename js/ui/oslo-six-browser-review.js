@@ -74,21 +74,21 @@
     if(!(event.target instanceof Element))return;
     const target=event.target;
     const place=target.closest('[data-place-index]');
-    if(place){
+    if(place instanceof HTMLElement){
       placeIndex=Number(place.dataset.placeIndex);tab='story';
       questionIndex=0;answered=false;mediaRole='lead';render();return;
     }
     const t=target.closest('[data-tab]');
-    if(t){tab=t.dataset.tab;questionIndex=0;answered=false;render();return;}
+    if(t instanceof HTMLElement){tab=t.dataset.tab;questionIndex=0;answered=false;render();return;}
     const mr=target.closest('[data-media-role]');
-    if(mr){mediaRole=mr.dataset.mediaRole;render();return;}
+    if(mr instanceof HTMLElement){mediaRole=mr.dataset.mediaRole;render();return;}
     if(target.id==='next-question'||target.id==='prev-question'){
       const direction=target.id==='next-question'?1:-1;
       questionIndex=Math.max(0,Math.min(currentQuestions().length-1,questionIndex+direction));
       answered=false;render();return;
     }
     const option=target.closest('[data-option]');
-    if(option&&!answered){
+    if(option instanceof HTMLElement&&!answered){
       answered=true;
       const q=currentQuestions()[questionIndex],answer=$('answer');
       const correct=Number(option.dataset.option)===q.answerIndex;
