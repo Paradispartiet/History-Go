@@ -448,3 +448,30 @@ body.hg-app .maplibregl-ctrl-bottom-right {
     flex-basis: 36px;
   }
 }
+
+/* Dedicated map mode is an uninterrupted map surface. A previously collapsed
+   empty PlaceCard can otherwise reappear as a wide grey rounded strip at the
+   top after route transitions. LayerManager's inline display state alone
+   isn't sufficient when the PlaceCard runtime updates asynchronously. */
+body.hg-app.mode-map #placeCard,
+body.hg-app.map-only #placeCard,
+body.hg-app.mode-map #nearbyListContainer,
+body.hg-app.map-only #nearbyListContainer,
+body.hg-app.mode-map .app-shell #panel,
+body.hg-app.map-only .app-shell #panel {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Map mode has no app footer, so do not reserve footer height for the dock.
+   Keep it fixed to the real visual viewport and out of the empty top region. */
+body.hg-app.mode-map .map-controls,
+body.hg-app.map-only .map-controls {
+  position: fixed !important;
+  top: auto !important;
+  bottom: calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+  transform: none !important;
+  margin: 0 !important;
+  z-index: 10050;
+}
