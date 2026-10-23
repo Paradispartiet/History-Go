@@ -75,10 +75,18 @@ try{
     await flip.click({position:{x:20,y:Math.max(24,rect.height-24)},timeout:12000});
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:12000});
     assert.ok((await page.locator('.pc-card-face-back').innerText()).length>50);
-    const back=page.locator('#pcQuizCardContent .pc-rendered-quiz-card');
-    await back.scrollIntoViewIfNeeded();
-    await page.waitForFunction(()=>{const e=document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card');const r=e?.getBoundingClientRect();return r&&r.width>0&&r.height>0&&r.top<innerHeight&&r.bottom>0;},null,{timeout:12000});
-    await back.screenshot({path:path.join(out,id+'-'+label+'-quizcard.png')});
+    await flip.scrollIntoViewIfNeeded();
+    await page.waitForFunction(()=>{
+     const flip=document.querySelector('#pcFrontCardFlip'),inner=flip?.querySelector('.pc-card-flip-inner'),head=flip?.querySelector('.pc-rendered-quiz-head');
+     if(!flip||!inner||!head)return false;
+     const matrix=new DOMMatrix(getComputedStyle(inner).transform),r=head.getBoundingClientRect(),card=flip.getBoundingClientRect();
+     const x=Math.max(card.left,r.left)+Math.min(card.width,r.width)/2,y=Math.max(card.top,r.top)+5;
+     const hit=document.elementFromPoint(x,y);
+     return matrix.m11 < -0.999 && r.width>0 && r.top>=card.top && r.top<card.bottom && y>0 && y<innerHeight && !!hit?.closest('.pc-card-face-back');
+    },null,{timeout:12000});
+    // Capture the bounded 3:4 card, not its overflowing 10-question descendant.
+    await flip.screenshot({path:path.join(out,id+'-'+label+'-quizcard.png')});
+    await page.screenshot({path:path.join(out,id+'-'+label+'-quizcard-viewport.png')});
     item.quizCard=true;
     if(places[id].frontImageMeta.historicalOnly)assert.equal(item.historicalYearVisible,true,id+' historical photo year missing from PlaceCard');
    }catch(e){item.problems.push('PlaceCard/QuizCard '+String(e).slice(0,300));}

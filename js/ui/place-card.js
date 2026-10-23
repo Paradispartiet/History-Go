@@ -1,7 +1,8 @@
-/** @param {HTMLElement|null} host @param {Record<string, unknown>|undefined} metadata */
+/** @param {HTMLElement|null} host @param {unknown} metadata */
 function renderPlaceCardPhotoCaption(host, metadata) {
   if (!host) return;
-  const text = metadata?.historicalOnly === true ? String(metadata.historicalCaption || "").trim() : "";
+  const photo = metadata && typeof metadata === "object" ? /** @type {Record<string, unknown>} */ (metadata) : {};
+  const text = photo.historicalOnly === true ? String(photo.historicalCaption || "").trim() : "";
   let caption = host.querySelector(".pc-photo-caption");
   if (!text) { caption?.remove(); return; }
   if (!caption) {

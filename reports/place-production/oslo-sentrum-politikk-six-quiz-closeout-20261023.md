@@ -88,3 +88,13 @@ Revidert etter review: Folkets Hus spør direkte om foreslått ekstra ukekonting
 Teknisk review fant at full bildetekst under tittelen ble klippet bort ved sticky rulling. Bildeteksten ligger nå foran tittelraden i bevart region; browser-testen ruller og kontrollerer reelle rektangler innenfor den synlige bildehoderegionen. Controlleren bruker den eksisterende canonicale kort-rendereren i appen, slik at første async renderer ikke avgjør alternativmarkeringen.
 
 Knowledge-overføringen måtte gå gjennom GitHub-tilkoblingen fordi lokal git-push manglet legitimasjon. En engangsjobb gjenopprettet de lokalt kontrollerte filbytene med SHA-256 `727842aba92570ce5ade25aceac6a70f68994e06becd784f504150e5210a47d3` og slettet seg selv. En siste begrenset patchoverføring gjør det samme etter siste innholdsrevisjon; formatteringen skal være eksakt, ikke en svekket determinismekontrakt.
+
+### Kildepresisjon og strengere visuell evidens – siste oppfølging
+
+Separat reviewer kontrollerte alle 21 Y-blokka-spørsmål mot tilgjengelige kildepassasjer. Klimakravet gjelder behandling av søknaden for søndre del, ikke all riving. Formuleringen er rettet. Regjeringens bygningshistorikk oppgir 2020 for riving; Statsbygg oppgir prosjektperioden 2020–2021. Spørsmålet attribuerer nå året uttrykkelig til bygningshistorikken, uten å konstruere en forklaring på forskjellen. Det ubekreftede felles monteringsåret 2024 er fjernet; KOROs omtale fra april 2026 støtter plasseringen i/på A-blokka. Direkte kildebindinger for arkitekt, kunstnere og opprinnelige plasseringer er styrket. Spørsmålet om arkitektonisk sammenheng markeres som tolkning.
+
+GitHub-kjøring 40014302752 på 5c0fe2df bestod alle tolv mobile/desktop-kombinasjoner, historisk bildetekst og hydrering. Artefakten inneholder 40 bilder. Visuell kontroll fant imidlertid at QuizCard-bildene fanget den lange, rullbare etterkommeren i stedet for det avgrensede snudde kortet. Disse tolv bildene godkjennes ikke. Testen krever nå ferdig 180-graders transformasjon og treff på baksiden ved faktisk skjermkoordinat, og tar både kortutsnitt og viewport. Fersk kjøring må bestå og bildene må gjennomgås før visuell sluttgodkjenning.
+
+TypeScript guard på samme head fant én ny feil i bildeteksthjelperens parameter. Hjelperen tar nå unknown og validerer metadataobjektet før bruk. Lokal root-typekontroll viser etter rettelsen bare de eksisterende diagnostikkene i andre filer; ny GitHub-guard gjenstår.
+
+Status er fortsatt utkast, ikke v1-godkjent eller publisert. Bestått CI fra tidligere head erstatter ikke sluttkontroll av siste head. De seks foreslåtte nye stedene skal eventuelt produseres i en separat PR.
