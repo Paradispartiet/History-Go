@@ -54,3 +54,11 @@ Fortsatt redaksjonell blocker: `hoyres_hus_card_10` tester hva fasaden ikke doku
 Avgrenset verifikasjon før commit: alle endrede spørsmål har tre forskjellige alternativer, gyldig indeks og bevart fasit; QuizCard synkronisert fra canonical fullquiz. Ny ordinær CI kreves på revisjonscommit.
 
 Kvalitetsporten består ikke ennå: korrekthet/evidens 3/5 (full kildepassasjeaudit gjenstår), dekning 3/5 (metaspørsmål gjenstår), redaksjon 3/5 (konkrete forbedringer, fortsatt svakheter), teknisk integritet 4/5 (21 grønne før endringen; ny CI avventes), ansvarlighet 4/5 (historisk ansvar avgrenset, ingen nye fasitpåstander), etterprøvbarhet 4/5 (ID-festet revisjon og bevart paritet). Sum 21/30; draft beholdes.
+
+## Visuell gjennomgang av CI-artefakt 12504098676
+
+Alle 36 skjermbilder fra head `26b08d39` er gjennomgått som tre oversiktsark (front, quizcard, fagverk) med to skjermbredder og seks steder. Foto og Fagverk-forsider vises. Y-blokka er tydelig omtalt som historisk/revet. Men QuizCard-skjermbildene viser i stedet nedrullet stedstekst og tom kortflate uten synlige spørsmål; de dokumenterer ikke godkjent kortlesbarhet. Testen kontrollerte tekst i DOM og flipklasse, men ikke kortets plass i skjermutsnittet. Screenshot rettes til selve det rendrerte kortet etter scrolling og positiv skjermgeometri.
+
+Historisk fotodatering er en faktisk uløst blocker: rapporten har `historicalYearVisible:false` for både Høyblokka og Y-blokka på mobil og desktop, men status ble likevel grønn. Reproduksjon: les artefaktets report.json og assert at ingen checks har historicalYearVisible === false; kontrollen feilet med akkurat disse fire kombinasjonene. Browser-testen strammes inn til å feile etter bevisopptak når årstallet mangler. Dette løser testens falske grønnstatus; det hevder ikke at bildedatering i appen er rettet. Ny CI og nye kortbilder må vurderes før godkjenning.
+
+Ytterligere kontrollpunkt: Høyblokkas Fagverk-forside sier 1959, mens quiz og stedstekst bruker 1958. Skill ferdigstillelse og datering i kildegrunnlaget før sluttreview. Ingen publisering eller v1-godkjenning er gitt.
