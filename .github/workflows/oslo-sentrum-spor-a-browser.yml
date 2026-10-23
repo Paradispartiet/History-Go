@@ -1,0 +1,40 @@
+name: Oslo sentrum spor A – actual app browser review
+on:
+  pull_request:
+    paths:
+      - 'data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json'
+      - 'data/runtime/place-open/oslo_posthus.json'
+      - 'data/runtime/place-open/telegrafbygningen.json'
+      - 'tests/oslo-sentrum-spor-a-browser.mjs'
+      - '.github/workflows/oslo-sentrum-spor-a-browser.yml'
+  workflow_dispatch:
+concurrency:
+  group: oslo-sentrum-spor-a-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  real-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Check native PlaceCard, portrait, quiz and Fagverk at mobile and desktop widths
+        run: node tests/oslo-sentrum-spor-a-browser.mjs
+      - name: Upload native browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-sentrum-spor-a-app-review
+          path: artifacts/oslo-sentrum-spor-a-browser/**
+          if-no-files-found: ignore
+          retention-days: 14
