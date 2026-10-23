@@ -138,7 +138,7 @@ const DETAILS = Object.freeze({
       'Spillvarme fra ringovnen ble brukt til tørking av tegl, et viktig samspill mellom ovn og tørkerom.',
       'Verket framstilte blant annet drensrør i tillegg til mur- og takstein.',
       'Driften ble avviklet mot slutten av 1960-årene etter svake avsetningsforhold.',
-      'Det eldre Bryn Teglverk og Kristiania Teglverk er ikke samme anlegg. Adressen for Kristiania-anlegget er fortsatt på HOLD på grunn av 14/18-konflikten.'
+      'Bryn Teglverk og Kristiania Teglverk var to forskjellige teglverk ved Bryn. Kristiania-anleggets bevarte ringovn ligger i den historiske teglverksbygningen.'
     ]
   }
 });
