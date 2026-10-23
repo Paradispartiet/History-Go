@@ -43,6 +43,22 @@ for (const [key,metaKey,dimensions] of [
  const actualHash=createHash('sha256').update(fs.readFileSync(path.resolve(root,photo[key]))).digest('hex');
  assert.equal(actualHash,photo[metaKey].outputSha256,'Photographic metadata must match exact local WebP bytes');
 }
+// Verify the historical copy against the real audited 4.2 packet, not an
+// untracked game-production blurb or a source-less Place fallback.
+const telegrafV42=JSON.parse(fs.readFileSync(path.join(root,'data/places/production/telegrafbygningen.json'),'utf8'));
+assert.equal(telegrafV42.status,'ready_v4_2');
+assert.equal(telegrafV42.placeId,'telegrafbygningen');
+for (const field of ['desc','popupDesc']){
+ const exact=createHash('sha256').update(canonical.telegrafbygningen[field]||'','utf8').digest('hex');
+ assert.equal(telegrafV42.textHashes[field],exact,field+' must match its reviewed text hash');
+}
+assert.ok(canonical.telegrafbygningen.popupDesc.split(/\\s+/).length>=300);
+assert.doesNotMatch(canonical.telegrafbygningen.popupDesc,/Quizens første|NOK-scenario|arbeider spilleren|History Go/i);
+assert.equal(telegrafV42.quizReadiness.questions.length,8);
+assert.deepEqual(telegrafV42.quizReadiness.questions.map(q=>q.claimIds[0]),[
+ 'claim_telegraf_v42_01','claim_telegraf_v42_05','claim_telegraf_v42_06','claim_telegraf_v42_05',
+ 'claim_telegraf_v42_21','claim_telegraf_v42_17','claim_telegraf_v42_08','claim_telegraf_v42_22'
+]);
 const server=http.createServer((req,res)=>{
  const uri=new URL(req.url,'http://localhost'),pathname=decodeURIComponent(uri.pathname);
  const file=path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));
