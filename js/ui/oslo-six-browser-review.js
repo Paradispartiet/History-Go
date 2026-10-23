@@ -69,21 +69,25 @@
       tab==='fagverk'?fagverkPanel():quizPanel();
   }
   document.addEventListener('click',event=>{
-    const place=event.target.closest('[data-place-index]');
+    // An EventTarget is not necessarily a DOM Element (e.g. a text node).
+    // Narrow once before using closest, dataset and id in this review-only UI.
+    if(!(event.target instanceof Element))return;
+    const target=event.target;
+    const place=target.closest('[data-place-index]');
     if(place){
       placeIndex=Number(place.dataset.placeIndex);tab='story';
       questionIndex=0;answered=false;mediaRole='lead';render();return;
     }
-    const t=event.target.closest('[data-tab]');
+    const t=target.closest('[data-tab]');
     if(t){tab=t.dataset.tab;questionIndex=0;answered=false;render();return;}
-    const mr=event.target.closest('[data-media-role]');
+    const mr=target.closest('[data-media-role]');
     if(mr){mediaRole=mr.dataset.mediaRole;render();return;}
-    if(event.target.id==='next-question'||event.target.id==='prev-question'){
-      const direction=event.target.id==='next-question'?1:-1;
+    if(target.id==='next-question'||target.id==='prev-question'){
+      const direction=target.id==='next-question'?1:-1;
       questionIndex=Math.max(0,Math.min(currentQuestions().length-1,questionIndex+direction));
       answered=false;render();return;
     }
-    const option=event.target.closest('[data-option]');
+    const option=target.closest('[data-option]');
     if(option&&!answered){
       answered=true;
       const q=currentQuestions()[questionIndex],answer=$('answer');
