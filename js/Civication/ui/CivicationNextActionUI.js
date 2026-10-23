@@ -1010,8 +1010,12 @@
         const allowedGeneratedChoice = generatedRow?.event?.choices?.some(function (choice) {
           return String(choice?.id || "") === String(choiceId || "");
         });
+        // A legacy task-contract guard can misclassify the task_gate *slot*
+        // as a task even when this is a genuine generated phase choice. The
+        // strict generatedPhaseDecisionInTaskSlot guard above confirms there
+        // is no task id, task payload, or TaskEngine task to bypass.
         const missingInboxProjection = answerResult?.ok === false
-          && ["not_found", "not_pending"].includes(String(answerResult.reason || ""));
+          && ["not_found", "not_pending", "task_requires_contract"].includes(String(answerResult.reason || ""));
         const mailSucceeded = answerResult !== false && answerResult?.ok !== false;
         if (generatedRow?.status === "delivered" && allowedGeneratedChoice
             && (mailSucceeded || missingInboxProjection)) {

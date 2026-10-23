@@ -62,7 +62,7 @@ win.CivicationMailEngine = {
     if (mailId === 'generated-workday-decision') return Promise.resolve(generatedMailReply);
     if (firstAnswerRejected) {
       firstAnswerRejected = false;
-      return Promise.resolve({ ok: false, reason: 'retryable_mock_rejection' });
+      return Promise.resolve({ ok: false, reason: 'task_requires_contract' });
     }
     return Promise.resolve({ ok: true });
   }
@@ -164,6 +164,21 @@ vm.runInContext(
   assert.strictEqual(generatedRow.choice_id, 'B', 'the actual selected choice is preserved');
   assert.strictEqual(answerCalls.at(-1).mailId, generatedEvent.id,
     'the mail engine receives the choice before the fallback');
+  // The legacy task-contract middleware may reject a generated phase choice
+  // merely because it lives in the task_gate schedule slot. This row has no
+  // actual task id, payload or TaskEngine task. It still needs a real choice.
+  generatedMailReply = { ok: false, reason: 'task_requires_contract' };
+  generatedRow.status = 'delivered';
+  generatedRow.choice_id = null;
+  action = generatedAction;
+  ui.render();
+  const contractMisclassification = bodyEl.querySelector('[data-civi-next-action-answer][data-choice-id="A"]');
+  assert(contractMisclassification, 'generated phase decision remains playable');
+  contractMisclassification.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true }));
+  await new Promise(resolve => setTimeout(resolve, 50));
+  assert.strictEqual(generatedRow.status, 'answered', 'non-task decision rejected as task is recorded');
+  assert.strictEqual(generatedRow.choice_id, 'A', 'contract mismatch preserves the player choice');
+
   // A real browser run may report success without persisting the generated
   // choice in the day runtime. Reconcile that drift, not just not_found.
   generatedMailReply = { ok: true, dailyRuntimeAnswered: true };
