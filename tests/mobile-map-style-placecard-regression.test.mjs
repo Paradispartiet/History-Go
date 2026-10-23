@@ -69,6 +69,7 @@ class FakeMap {
     this.styleReady = false;
     this.pendingTiles = false;
     this.styleChanges = [];
+    this.nativeMarkers = [];
     this.resizes = 0;
     this.zoom = 15;
   }
@@ -117,7 +118,7 @@ class FakeMap {
   }
 }
 
-function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false } = {}) {
+function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false, mobile = false } = {}) {
   const controls = new FakeElement("controls");
   const mapElement = new FakeElement("map");
   const placeCard = new FakeElement("placeCard");
@@ -127,6 +128,7 @@ function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false 
   if (savedStyle) loc.set("hg_map_style_mode", savedStyle);
   const win = {
     console,
+    matchMedia: () => ({ matches: mobile }),
     fetch: async () => ({ ok: false, status: 404 }),
     maplibregl: {
       Map: class {
@@ -137,9 +139,10 @@ function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false 
       },
       NavigationControl: class {},
       Marker: class {
-        setLngLat() { return this; }
-        addTo() { return this; }
-        remove() {}
+        constructor(options) { this.element = options.element; this.removed = false; }
+        setLngLat(coords) { this.coords = coords; return this; }
+        addTo(map) { map.nativeMarkers.push(this); return this; }
+        remove() { this.removed = true; }
       }
     },
     HG_MAPTILER_KEY: "testing-only",
@@ -397,4 +400,17 @@ test("dedicated map mode hides ghost PlaceCard and keeps dock at screen bottom",
   assert.match(css, /body\\.hg-app\\.map-only #placeCard/);
   assert.match(css, /bottom: calc\\(8px \\+ env\\(safe-area-inset-bottom, 0px\\)\\) !important/);
   assert.match(css, /position: fixed !important/);
+});
+
+test("mobile native detail markers appear on the first view even without WebGL circles", () => {
+  const { win, main } = setup({ mobile: true, pendingTiles: true });
+  const native = main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker" && !m.removed);
+  assert.equal(native.length, 1, "detail place has an independent, visible HTML marker");
+  assert.equal(native[0].element.style.pointerEvents, "auto");
+  assert.equal(native[0].element.style.opacity, "1");
+  const opened = [];
+  win.HGMap.setOnPlaceClick(id => opened.push(id));
+  native[0].element.emit("click", { preventDefault() {}, stopPropagation() {} });
+  assert.deepEqual(opened, ["park"], "touching the native marker opens its PlaceCard");
+  assert.ok(main.getLayer("hg-places-dots"), "normal vector dot layer also remains available");
 });
