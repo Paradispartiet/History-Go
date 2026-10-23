@@ -1,0 +1,36 @@
+name: Oslo sentrum Politikk six – real app browser QA
+on:
+  pull_request:
+    paths:
+      - 'data/places/politikk/oslo/places_politikk/*.json'
+      - 'data/quiz/politikk/*_sets.json'
+      - 'data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json'
+      - 'tests/oslo-politikk-six-browser.mjs'
+      - '.github/workflows/oslo-politikk-six-browser.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: oslo-politikk-six-pr6579
+  cancel-in-progress: true
+jobs:
+  actual-mobile-desktop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Verify PlaceCard, photos, flipped QuizCard and Fagverk on mobile and desktop
+        run: node tests/oslo-politikk-six-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-politikk-six-browser-evidence
+          path: artifacts/oslo-politikk-six-browser/**
+          if-no-files-found: ignore
+          retention-days: 14
