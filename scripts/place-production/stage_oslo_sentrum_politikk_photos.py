@@ -14,6 +14,8 @@ import argparse
 import hashlib
 import io
 import json
+import time
+from urllib.error import HTTPError
 from pathlib import Path
 from urllib.parse import quote
 from urllib.request import Request, urlopen
@@ -27,6 +29,7 @@ except ImportError as exc:
 SOURCES = {
     "hoyesteretts_hus": {
         "filename": "Norges Høyesterett Supreme Court of Norway.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Norges_H%C3%B8yesterett_Supreme_Court_of_Norway.jpg",
         "size": (3557, 2276),
         "creator": "Helge Høifødt",
         "license": "CC BY-SA 4.0",
@@ -35,11 +38,12 @@ SOURCES = {
     },
     "folkets_hus_oslo": {
         "filename": "Folkets Hus Youngstorget.JPG",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Folkets_Hus_Youngstorget.JPG",
         "size": (3072, 2304),
         "creator": "Kjetil Ree",
         "license": "CC BY-SA 2.5",
         "license_url": "https://creativecommons.org/licenses/by-sa/2.5/",
-        "date": "2006",
+        "date": "2006-08-16",
     },
     "hoyres_hus": {
         "filename": "Høyres Hus Oslo.jpg",
@@ -51,6 +55,7 @@ SOURCES = {
     },
     "hoyblokka": {
         "filename": "Regjeringskvartalet H-blokk Johan Nygaardsvolds plass Oslo Norway (2008.07.01).jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Regjeringskvartalet_H-blokk_Johan_Nygaardsvolds_plass_Oslo_Norway_%282008.07.01%29.jpg",
         "size": (3008, 2000),
         "creator": "Geir Hval",
         "license": "CC BY-SA 4.0",
@@ -111,13 +116,32 @@ def load_original(place, record, source_dir):
         if not candidate.is_file():
             raise FileNotFoundError(f"Missing original: {candidate}")
         return candidate.read_bytes(), str(candidate)
-    url = commons_download(filename)
-    req = Request(url, headers={"User-Agent": "HistoryGoImageStaging/1.0 (editorial non-runtime utility)"})
-    with urlopen(req, timeout=45) as response:
-        final = response.geturl()
-        if not final.startswith("https://upload.wikimedia.org/"):
-            raise ValueError(f"Unexpected download redirect host: {final}")
-        return response.read(30_000_001), final
+    # Verified original URLs are documented at each Commons file page.
+    # Direct origin requests avoid an extra Special:Redirect round-trip.
+    url = record.get("original_url") or commons_download(filename)
+    req = Request(url, headers={"User-Agent": "HistoryGoImageStaging/1.0 (editorial Commons credit in repo)"})
+    for attempt in range(3):
+        try:
+            with urlopen(req, timeout=60) as response:
+                final = response.geturl()
+                if not final.startswith("https://upload.wikimedia.org/"):
+                    raise ValueError(f"Unexpected image origin: {final}")
+                data = response.read(30_000_001)
+                if len(data) > 30_000_000:
+                    raise ValueError("Original exceeds 30 MB")
+                return data, final
+        except HTTPError as exc:
+            # Respect Wikimedia Retry-After without busy re-requesting.
+            if exc.code not in (429, 503) or attempt == 2:
+                raise
+            retry_after = exc.headers.get("Retry-After")
+            try:
+                delay = max(30, min(180, int(retry_after))) if retry_after else 30 * (attempt + 1)
+            except ValueError:
+                delay = 30 * (attempt + 1)
+            print(f"Temporarily limited (HTTP {exc.code}); pause {delay}s before attempt {attempt + 2}/3", flush=True)
+            time.sleep(delay)
+    raise RuntimeError("Unreachable")
 
 
 def main():
