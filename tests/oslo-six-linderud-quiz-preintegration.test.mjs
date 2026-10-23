@@ -77,3 +77,15 @@ test('Linderud: staging has not bypassed any publication gates', () => {
   assert.ok(!(manifest.targets || []).some(s => s.targetId === draft.place_id));
   assert.ok(!(manifest.files || []).some(f => f.includes('linderud_gard')));
 });
+
+
+test('Linderud quiz prompts keep source-year ambiguity in explanation, not player-facing question', () => {
+  const questions=draft.sets.flatMap(s=>s.questions);
+  const q=questions.find(x=>x.id==='linderud_gard_quiz_05');
+  assert.ok(q);
+  assert.equal(q.question,'Når ble Linderud gårds hovedbygning reist?');
+  assert.equal(q.answer,'Tidlig på 1700-tallet');
+  assert.match(q.knowledge,/Kildene spriker/);
+  assert.ok(questions.every(x=>!/formulert uten|omstridt eksakt år/i.test(x.question)));
+  assert.notEqual(draft.publication_hold?.status,'PUBLISHED');
+});
