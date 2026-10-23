@@ -87,6 +87,7 @@ class FakeMap {
   emit(name, event = {}) { for (const fn of [...(this.listeners.get(name) || [])]) fn(event); }
   isStyleLoaded() { return this.styleReady; }
   getStyle() { return { layers: [] }; }
+  queryRenderedFeatures() { return []; }
   getLayer(id) { return this.layers.get(id) || null; }
   addLayer(layer) { this.layers.set(layer.id, layer); }
   removeLayer(id) { this.layers.delete(id); }
