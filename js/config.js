@@ -156,15 +156,6 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
 // Legacy bootstrap bridge only: the map-control implementation itself lives in
 // TypeScript and is built to dist/web according to docs/TYPESCRIPT_FIRST_POLICY.md.
 (function loadMapControlsRuntime() {
-  function ensureMapControlsStyles() {
-    if (document.querySelector('link[data-hg-map-controls-style="1"]')) return;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "css/map-controls-flat.css";
-    link.dataset.hgMapControlsStyle = "1";
-    document.head.appendChild(link);
-  }
-
   function ensureMapControlsHost() {
     if (!document.getElementById("mapLayer") || document.querySelector(".map-controls")) return;
     const controls = document.createElement("div");
@@ -174,7 +165,9 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
   }
 
   function load() {
-    ensureMapControlsStyles();
+    // css/map.css is the sole map-control visual owner. The historical
+    // css/map-controls-flat.css overlay forced translucent controls and old
+    // bottom offsets with !important, overriding the published redesign.
     ensureMapControlsHost();
     if (document.querySelector('script[data-hg-map-controls-runtime="1"]')) return;
     const script = document.createElement("script");
