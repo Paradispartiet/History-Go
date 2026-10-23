@@ -104,21 +104,21 @@ function normalizeSelection(values: unknown): Set<string> {
   return next;
 }
 function readSavedCategories(): Set<string> {
+  // Filters are a temporary map exploration state, not a user preference.
+  // Persisting a single obscure badge can make a fresh mobile session look
+  // completely empty even though all place data and marker layers are healthy.
   try {
-    const raw = localStorage.getItem(FILTER_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) return normalizeSelection(parsed);
-    }
-    const legacy = localStorage.getItem(LEGACY_FILTER_KEY);
-    if (legacy && legacy !== ALL) return normalizeSelection([legacy]);
+    localStorage.removeItem(FILTER_KEY);
+    localStorage.removeItem(LEGACY_FILTER_KEY);
   } catch {
   }
   return new Set<string>();
 }
 function saveActiveCategories(): void {
+  // Preserve category choices only in this running app session. Old storage
+  // keys are intentionally removed so a later restart always shows all dots.
   try {
-    localStorage.setItem(FILTER_KEY, JSON.stringify([...activeCategories]));
+    localStorage.removeItem(FILTER_KEY);
     localStorage.removeItem(LEGACY_FILTER_KEY);
   } catch {
   }
@@ -207,7 +207,15 @@ function filteredPlaces(places: MapPlace[]): MapPlace[] {
   const list = Array.isArray(places) ? places : [];
   sanitizeActiveCategories();
   if (!activeCategories.size) return list;
-  return list.filter((place) => activeCategories.has(placeCategory(place)));
+  const matches = list.filter((place) => activeCategories.has(placeCategory(place)));
+  // Never hide every marker because of a stale/invalid/empty category choice.
+  // Show all places rather than leave a blank map with no explanation.
+  if (list.length && matches.length === 0) {
+    activeCategories = new Set<string>();
+    saveActiveCategories();
+    return list;
+  }
+  return matches;
 }
 function ensureControlStyles(): void {
   if (document.getElementById("hgMapControlsRuntimeStyle")) return;
@@ -324,12 +332,15 @@ function renderCategoryUi(): void {
   logos.innerHTML = logoStackMarkup(visibleForLogos);
   if (!selected.length) {
     label.textContent = "Alle prikker";
+    trigger.setAttribute("aria-label", "Alle prikker vises. Velg kategorier");
     trigger.title = "Viser alle kategorier";
   } else if (selected.length === 1) {
     label.textContent = selected[0].name || selected[0].id;
-    trigger.title = `Viser ${selected[0].name || selected[0].id}`;
+    trigger.setAttribute("aria-label", `Filter aktivt: bare ${selected[0].name || selected[0].id}. Trykk for Alle prikker`);
+    trigger.title = `Filter aktivt: ${selected[0].name || selected[0].id}`;
   } else {
     label.textContent = `${selected.length} kategorier`;
+    trigger.setAttribute("aria-label", `Filter aktivt: ${selected.length} kategorier. Trykk for Alle prikker`);
     trigger.title = `Viser ${selected.map((category) => category.name || category.id).join(", ")}`;
   }
   const allSelected = activeCategories.size === 0;

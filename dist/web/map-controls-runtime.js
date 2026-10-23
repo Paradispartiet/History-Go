@@ -41,20 +41,15 @@
   }
   function readSavedCategories() {
     try {
-      const raw = localStorage.getItem(FILTER_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) return normalizeSelection(parsed);
-      }
-      const legacy = localStorage.getItem(LEGACY_FILTER_KEY);
-      if (legacy && legacy !== ALL) return normalizeSelection([legacy]);
+      localStorage.removeItem(FILTER_KEY);
+      localStorage.removeItem(LEGACY_FILTER_KEY);
     } catch {
     }
     return /* @__PURE__ */ new Set();
   }
   function saveActiveCategories() {
     try {
-      localStorage.setItem(FILTER_KEY, JSON.stringify([...activeCategories]));
+      localStorage.removeItem(FILTER_KEY);
       localStorage.removeItem(LEGACY_FILTER_KEY);
     } catch {
     }
@@ -137,7 +132,13 @@
     const list = Array.isArray(places) ? places : [];
     sanitizeActiveCategories();
     if (!activeCategories.size) return list;
-    return list.filter((place) => activeCategories.has(placeCategory(place)));
+    const matches = list.filter((place) => activeCategories.has(placeCategory(place)));
+    if (list.length && matches.length === 0) {
+      activeCategories = /* @__PURE__ */ new Set();
+      saveActiveCategories();
+      return list;
+    }
+    return matches;
   }
   function ensureControlStyles() {
     if (document.getElementById("hgMapControlsRuntimeStyle")) return;
@@ -232,12 +233,15 @@
     logos.innerHTML = logoStackMarkup(visibleForLogos);
     if (!selected.length) {
       label.textContent = "Alle prikker";
+      trigger.setAttribute("aria-label", "Alle prikker vises. Velg kategorier");
       trigger.title = "Viser alle kategorier";
     } else if (selected.length === 1) {
       label.textContent = selected[0].name || selected[0].id;
-      trigger.title = `Viser ${selected[0].name || selected[0].id}`;
+      trigger.setAttribute("aria-label", `Filter aktivt: bare ${selected[0].name || selected[0].id}. Trykk for Alle prikker`);
+      trigger.title = `Filter aktivt: ${selected[0].name || selected[0].id}`;
     } else {
       label.textContent = `${selected.length} kategorier`;
+      trigger.setAttribute("aria-label", `Filter aktivt: ${selected.length} kategorier. Trykk for Alle prikker`);
       trigger.title = `Viser ${selected.map((category) => category.name || category.id).join(", ")}`;
     }
     const allSelected = activeCategories.size === 0;
