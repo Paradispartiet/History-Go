@@ -388,7 +388,7 @@ test("Oslo city map visibly renders both detail dots and hit targets at zoom 11"
   assert.ok(hit.minzoom <= 11, "visible dots must be tappable at ordinary city zoom");
   const radius = detail.paint["circle-radius"];
   assert.equal(radius[0], "interpolate");
-  assert.ok(radius[3][1] >= 3, "dots must be legible on a phone");
+  assert.ok(radius[4][1] >= 3, "dots must be legible on a phone");
 });
 
 test("dedicated map mode hides ghost PlaceCard and keeps dock at screen bottom", () => {
