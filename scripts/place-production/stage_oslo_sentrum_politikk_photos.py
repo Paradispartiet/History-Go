@@ -8,7 +8,7 @@ Run on a machine with network access and Pillow:
 Never copy staged outputs into canonical Place files until licenses, composition,
 actual image bytes, credit and mobile/desktop rendering have been reviewed.
 No cardImage is created: the current Place Production Checklist v2.6 forbids it.
-Y-blokka is deliberately excluded until Picasso/Nesjar artwork rights are cleared.
+Y-blokka can only be staged using the documented 2008 facade-only source with explicit --allow-architecture-only-yblokka. No Picasso/Nesjar artwork is authorized.
 """
 import argparse
 import hashlib
@@ -62,6 +62,17 @@ SOURCES = {
         "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
         "date": "2008-07-01",
         "historical": True,
+    },
+    "y_blokka": {
+        "filename": "Regjeringskvartalet Y-blokk R5 Johan Nygaardsvolds plass Oslo Norway (2008.07.01).jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Regjeringskvartalet_Y-blokk_R5_Johan_Nygaardsvolds_plass_Oslo_Norway_%282008.07.01%29.jpg",
+        "size": (3008, 2000),
+        "creator": "Geir Hval",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "date": "2008-07-01",
+        "historical": True,
+        "architecture_only": True,
     },
     "victoria_terrasse": {
         "filename": "Victoria Terrasse in Oslo Norway.jpg",
@@ -147,13 +158,15 @@ def load_original(place, record, source_dir):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--place", choices=sorted(SOURCES), action="append", required=True,
-                        help="One or more scoped Place IDs. Y-blokka is blocked.")
+                        help="One or more scoped Place IDs; Y-blokka requires facade-only flag.")
     parser.add_argument("--source-dir", type=Path, help="Use downloaded Commons original files from this directory")
     parser.add_argument("--output-dir", type=Path, default=Path("reports/place-production/media-staging/oslo-sentrum-politikk"))
     parser.add_argument("--focus-x", type=float, default=0.5, help="Composition focus from 0.0 (left) to 1.0 (right)")
     parser.add_argument("--focus-y", type=float, default=0.5, help="Composition focus from 0.0 (top) to 1.0 (bottom)")
     parser.add_argument("--allow-historical-hoyblokka", action="store_true",
                         help="Stage a pre-2011 photo for historical illustration, NOT as current 2026 view")
+    parser.add_argument("--allow-architecture-only-yblokka", action="store_true",
+                        help="Stage reviewed 2008 building facade, no Picasso/Nesjar art; historical-only")
     parser.add_argument("--overwrite", action="store_true", help="Permit replacing staged files only")
     args = parser.parse_args()
 
@@ -162,6 +175,8 @@ def main():
     places = list(dict.fromkeys(args.place))
     if "hoyblokka" in places and not args.allow_historical_hoyblokka:
         parser.error("Høyblokka photo is from 2008; pass --allow-historical-hoyblokka for an explicitly historical asset.")
+    if "y_blokka" in places and not args.allow_architecture_only_yblokka:
+        parser.error("Y-blokka: only the architecturally focused 2008 photograph with no artwork visible is approved for staging.")
 
     entries = []
     for place in places:
@@ -211,6 +226,7 @@ def main():
             "license_needs_recheck": True,
             "photo_date": source["date"],
             "historical_only": bool(source.get("historical")),
+            "architecture_only_no_artwork_visible": bool(source.get("architecture_only")),
             "original_sha256": sha256(original),
             "original_dimensions": list(image.size),
             "transformation": f"EXIF orientation, WebP conversion, composed crop focus ({args.focus_x}, {args.focus_y})",
