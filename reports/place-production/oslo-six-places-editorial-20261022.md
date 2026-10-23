@@ -122,7 +122,7 @@ Frognerseteren viser hvordan kommunal tilrettelegging, servering og friluftsliv 
 
 Sarabråten het tidligere Jørgensrud og var nevnt i skriftlige kilder allerede i 1578. Da bankier og konsul Thomas Joh. Heftye overtok i 1852, vokste et nytt sommersted fram i skogen. Han bygde den såkalte sperrestua i 1856, men åpnet også eiendommen for allmennheten. Det gikk an å komme hit på nye stier og veier, og hjulbåten «Sara» fraktet besøkende på Nøklevann.
 
-Sarabråten var et møtested for ulike deler av Kristianias samfunn. Her kom kongen og kulturpersonligheter, mens mange andre fant et utfartssted. En ny dragestilsvilla ble oppført i 1897. Hoppkonkurransene i Sarabråtrennet fra 1902 til 1928 ga stedet tilnavnet «Østkantens Holmenkollrenn».
+Sarabråten var et møtested for ulike deler av Kristianias samfunn. Her kom kongen og kulturpersonligheter, mens mange andre fant et utfartssted. En ny dragestilsvilla ble oppført i 1897. Sarabråtrennet, som ble arrangert fram til 1928, fikk tilnavnet «Østkantens Holmenkollrenn».
 
 I dag er den historiske bebyggelsen borte. Kommunen kjøpte eiendommen i 1911, bygningene forsvant gradvis, og det siste huset brant i 1971. På vollen står også en minnestein reist i 1946 over ni falne fra hjemmefronten. Besøket skal knyttes til ruinene og minnestedet, ikke gi inntrykk av at villaene ennå står.
 

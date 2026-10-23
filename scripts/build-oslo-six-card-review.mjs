@@ -84,7 +84,7 @@ const DETAILS = Object.freeze({
       'Hjulbåten Sara gikk på Nøklevann og var del av tilretteleggingen for besøkende i skogeiendommen.',
       'Thomas Joh. Heftye åpnet skogeiendommen også for allmennheten, ikke bare for private gjester.',
       'En ny hovedbygning i dragestil ble bygd i 1897, men den står ikke på Sarabråten i dag.',
-      'Sarabråtrennet, holdt fra 1902 til 1928, fikk tilnavnet Østkantens Holmenkollrenn.',
+      'Sarabråtrennet ble arrangert fram til 1928 og fikk tilnavnet Østkantens Holmenkollrenn. Kildene er uenige om startåret (1900 eller 1902).',
       'Det siste huset på Sarabråten, den tidligere sperrestua som ble kalt Kuskeboligen, brant i 1971.',
       'Minnesteinen reist i 1946 hedrer ni falne fra hjemmefronten. Den skal ikke forveksles med minnene etter skirennene.'
     ]
