@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/oslo-six-commons-images.yml'
       - 'scripts/prepare-oslo-six-commons-webp.py'
+      - 'scripts/build-oslo-six-portrait-review.py'
       - 'reports/place-production/oslo-six-image-rights-shortlist-20261022.json'
       - 'reports/place-production/oslo-six-generated-image-attribution-20261022.json'
       - 'bilder/places/auto/*__commons_*.webp'
@@ -54,6 +55,29 @@ jobs:
             assert hashlib.sha256(Path(v['path']).read_bytes()).hexdigest()==v['sha256']
           print('15 reproducible SHA-256-checked WebPs / 5 sources / zero live Place bindings')
           PY
+      - name: Generate portrait frontImage candidates for manual framing review
+        run: python scripts/build-oslo-six-portrait-review.py
+      - name: Validate portrait candidates remain separate from approved Place assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          root=Path('tmp/oslo-six-portrait-review')
+          doc=json.loads((root/'review.json').read_text(encoding='utf-8'))
+          assert doc['status']=='ARTIFACT_ONLY_VISUAL_SELECTION_REQUIRED_NO_RUNTIME_REGISTRATION'
+          entries=doc['candidates']
+          assert len(entries)==10
+          assert len({(x['place_id'],x['mode']) for x in entries})==10
+          assert {x['mode'] for x in entries}=={'center_crop','full_subject_blurred_backdrop'}
+          assert len({x['place_id'] for x in entries})==5
+          for row in entries:
+            assert not row['visually_approved'] and not row['runtime_registered']
+            assert row['width']==800 and row['height']==1000
+            assert row['path'].startswith('tmp/oslo-six-portrait-review/')
+            assert row['author'] and row['license'] and row['source_page']
+            assert hashlib.sha256(Path(row['path']).read_bytes()).hexdigest()==row['sha256']
+          print('10 portrait review candidates / 5 places / no live image bindings')
+          PY
       - name: Upload image QA bundle with source credits
         uses: actions/upload-artifact@v4
         with:
@@ -61,5 +85,7 @@ jobs:
           path: |
             bilder/places/auto/*__commons_*.webp
             reports/place-production/oslo-six-generated-image-attribution-20261022.json
+            tmp/oslo-six-portrait-review/*.webp
+            tmp/oslo-six-portrait-review/review.json
           if-no-files-found: error
           retention-days: 14
