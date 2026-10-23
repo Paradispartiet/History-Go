@@ -76,6 +76,22 @@ try{
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:12000});
     assert.ok((await page.locator('.pc-card-face-back').innerText()).length>50);
     await flip.scrollIntoViewIfNeeded();
+    await flip.locator('.pc-card-flip-inner').evaluate(async el=>{
+     await Promise.all(el.getAnimations().map(a=>a.finished));
+    });
+    // Browser visibility ignores sticky overlays. Scroll the actual outer
+    // card below the retained hero/nav before testing a rendered screen point.
+    item.quizPosition=await flip.evaluate(async el=>{
+     const body=el.closest('.pc-body');
+     const rect=e=>{const r=e?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,left:r.left,width:r.width,height:r.height}:null;};
+     const before={card:rect(el),hero:rect(document.querySelector('#placeCard .pc-sheet-hero'))};
+     for(let i=0;i<3;i++){
+      const top=Math.max(body.getBoundingClientRect().top,document.querySelector('#placeCard .pc-sheet-hero')?.getBoundingClientRect().bottom||0,document.querySelector('#placeCard .pc-sheet-section-nav')?.getBoundingClientRect().bottom||0)+12;
+      body.scrollTop+=el.getBoundingClientRect().top-top;
+      await new Promise(requestAnimationFrame);
+     }
+     return {before,after:{card:rect(el),hero:rect(document.querySelector('#placeCard .pc-sheet-hero'))}};
+    });
     await page.waitForFunction(()=>{
      const flip=document.querySelector('#pcFrontCardFlip'),inner=flip?.querySelector('.pc-card-flip-inner'),head=flip?.querySelector('.pc-rendered-quiz-head');
      if(!flip||!inner||!head)return false;
@@ -89,7 +105,16 @@ try{
     await page.screenshot({path:path.join(out,id+'-'+label+'-quizcard-viewport.png')});
     item.quizCard=true;
     if(places[id].frontImageMeta.historicalOnly)assert.equal(item.historicalYearVisible,true,id+' historical photo year missing from PlaceCard');
-   }catch(e){item.problems.push('PlaceCard/QuizCard '+String(e).slice(0,300));}
+   }catch(e){
+    item.problems.push('PlaceCard/QuizCard '+String(e).slice(0,300));
+    item.quizFailure=await page.evaluate(()=>{
+     const el=document.querySelector('#pcFrontCardFlip'),head=el?.querySelector('.pc-rendered-quiz-head'),inner=el?.querySelector('.pc-card-flip-inner');
+     const rect=e=>{const r=e?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,left:r.left,width:r.width,height:r.height}:null;};
+     const r=head?.getBoundingClientRect(),hit=r?document.elementFromPoint(r.left+r.width/2,r.top+5):null;
+     return {classes:el?.className,card:rect(el),head:rect(head),transform:inner?getComputedStyle(inner).transform:null,hit:hit?.outerHTML.slice(0,500)};
+    });
+    await page.screenshot({path:path.join(out,id+'-'+label+'-failure.png')});
+   }
    try{
     await page.goto(base+'/fagverk-sted.html?place='+id,{waitUntil:'domcontentloaded',timeout:55000});
     await page.waitForFunction(()=>document.querySelector('#fagverkPlaceContent')?.hidden===false,null,{timeout:35000});
