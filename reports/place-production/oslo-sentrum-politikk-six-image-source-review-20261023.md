@@ -1,6 +1,6 @@
 # Oslo sentrum Politikk — billedkilde og rettighetskontroll 23. oktober 2026
 
-**Status:** to verifiserte originale foto-lisenser, men **ingen fil eller bildeformat er ennå integrert i Place**. Dette er **ikke** bildegodkjenning for v1.
+> **Oppdatert arbeidsregel 23. oktober:** Ved motstrid følger vi hovedsjekklisten `docs/PLACE_PRODUCTION_CHECKLIST.md` v2.6. Den tillater **`image` og en selvstendig stående `frontImage`**, men sier at `cardImage` er legacy og **ikke skal opprettes eller gjeninnføres** i ny/revidert produksjon. Eldre formuleringer om tre nye bildefiler nedenfor er kun historisk researchkontekst, ikke gjeldende importinstruks. En eksisterende CI-feilmelding kan fremdeles navngi legacy-felt; ikke omgå sjekklisten for å oppnå grønn test.\n\n**Status:** to verifiserte originale foto-lisenser, men **ingen fil eller bildeformat er ennå integrert i Place**. Dette er **ikke** bildegodkjenning for v1.
 
 | Place | Wikimedia Commons original | Fotokreditering | Rettighetsstatus | Originalstørrelse | Forbehold |
 | --- | --- | --- | --- | --- | --- |
@@ -25,7 +25,7 @@ På siste kontrollert ferdige PR-head `dd108cc7` bestod 10 av 11 testarbeidsflyt
 
 ## Andre billedkilder — etterkontroll 23. oktober 2026
 
-Ny research etter første lisensgjennomgang. **Følgende er identifiserte Commons-originaler og lisenser, ikke materialiserte eller visuelt godkjente History GO-bilder.** Originalmålene er filsidens metadata; ingen nye lokale bildefiler, SHA-256, 3-format-derivater eller `image`-felter er opprettet.
+Ny research etter første lisensgjennomgang. **Følgende er identifiserte Commons-originaler og lisenser, ikke materialiserte eller visuelt godkjente History GO-bilder.** Originalmålene er filsidens metadata; ingen nye lokale bildefiler, SHA-256, kanoniske bildevarianter eller `image`-felter er opprettet.
 
 | Place | Ny hovedkandidat på Commons | Fotograf | Lisens oppgitt på Commons | Originalformat | Redaksjonell vurdering |
 | --- | --- | --- | --- | --- | --- |
@@ -39,6 +39,24 @@ Ny research etter første lisensgjennomgang. **Følgende er identifiserte Common
 ### Brukstillatelse er ikke ferdig bildelevaranse
 
 - Commons-opphaverens fotolisens er dokumentert i tabellen; nødvendig navngivelse, lenke til konkret lisensversjon og synlig beskjærings-/bearbeidingsmerknad må følge hvert brukt bilde. Ved bearbeidede CC BY-SA-bilder må delingen skje i samsvar med samme eller kompatibel lisens.
-- Portrait (`frontImage`, mål 900×1350), kort (`cardImage`, mål 900×600) og bredt hovedbilde (`image`, mål 1400×900) skal lages fra reelle lisensierte originalbytes og inspiseres separat. Ingen oppskalering for å skjule manglende oppløsning, og ingen falske hashverdier.
+- Gjeldende importmål er bredt hovedbilde (`image`, mål 1400×900) og en separat, faktisk stående PlaceCard-fil (`frontImage`, mål 900×1350). **Ikke produser ny `cardImage`**; den er legacy etter hovedsjekklisten v2.6. Begge rollene må lages fra reelle lisensierte originalbytes og inspiseres separat. Ingen oppskalering for å skjule manglende oppløsning, og ingen falske hashverdier.
 - Bruk historisk datert bildetekst for `hoyblokka` og `y_blokka`. For Y-blokka må stedsmarkøren vise tidligere bygning og eventuelle kunstverk vurderes juridisk separat fra fotografiets lisens. Også det nyere 2026-fotoet med minnesmerke for `hoyblokka` kan inneholde tredjepartskunst.
 - Neste tekniske port krever tilgang til originale bildefiler, validert WebP-konvertering, SHA-256, synlig korrekt kreditering i appen samt telefon-/desktopkontroll. GitHub-connectorens tekstfiloppdatering er ikke en erstatning for import av faktiske bildefiler. **Alle seks Place-bilder forblir BLOCKED** til dette er gjort.
+
+
+## Verktøy lagt til for sikker import – ikke kjørt i publiseringsløpet
+
+Kilde: `scripts/place-production/stage_oslo_sentrum_politikk_photos.py` på PR #6579. Det er et avgrenset, manuelt kjørbart klargjøringsverktøy som følger den **nyere** bildekontrakten. Det skriver kun til `reports/place-production/media-staging/oslo-sentrum-politikk/<place_id>/`, ikke til `data/places` eller `bilder/places`.
+
+Eksempel på en maskin med nettverk og Pillow:
+
+```bash
+python -m pip install Pillow
+python scripts/place-production/stage_oslo_sentrum_politikk_photos.py --place hoyres_hus --place victoria_terrasse
+python scripts/place-production/stage_oslo_sentrum_politikk_photos.py --place hoyesteretts_hus --place folkets_hus_oslo
+python scripts/place-production/stage_oslo_sentrum_politikk_photos.py --place hoyblokka --allow-historical-hoyblokka
+```
+
+Det kontrollerer faktisk JPEG-dekoding, EXIF-rotasjon, forventede originaldimensjoner, at bildene ikke oppskaleres, begge WebP-dimensjonene, stående `frontImage`, og SHA-256 for original- og utdata. Det skriver en `staging-metadata.json` per sted med fotograf, Commons-kildeside, lisens og *pending human QA*.
+
+**Begrensning i denne gjennomføringen:** Originalbildene kunne ikke lastes ned fra Wikimedia til arbeidsmiljøet. Derfor finnes fremdeles ingen materialiserte, inspiserte WebP-assetfiler på arbeidsgrenen, og ingen kanoniske stedsbilder er koblet. Skriptet er ikke en erstatning for å kjøre importen i et nettverkstilgjengelig miljø og kontrollere resultatene visuelt. Det oppretter med hensikt **ikke** Y-blokka: det må komme egen klarering for Picasso/Nesjar-verk før aktuell fotografering brukes. Historisk foto av Høyblokka krever eksplisitt valg og datert bildetekst. CI-, rettighets- og browser-port er fortsatt blokkert.
