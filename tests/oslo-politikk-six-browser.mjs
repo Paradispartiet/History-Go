@@ -62,6 +62,13 @@ try{
     item.placeCard=true;item.photo=true;
     if(places[id].frontImageMeta.historicalOnly)item.historicalYearVisible=view.text.includes('2008');
     await page.screenshot({path:path.join(out,id+'-'+label+'-front.png')});
+    if(places[id].frontImageMeta.historicalOnly){
+     await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTop=240;el.dispatchEvent(new Event('scroll'));});
+     await page.waitForFunction(()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned'),null,{timeout:12000});
+     await page.waitForFunction(()=>{const c=document.querySelector('#placeCard .pc-photo-caption'),shell=document.querySelector('#placeCard .pc-sheet-hero');if(!c||!shell)return false;const a=c.getBoundingClientRect(),b=shell.getBoundingClientRect();return a.width>0&&a.height>0&&a.top>=b.top&&a.bottom<=b.bottom&&a.top>=0&&a.bottom<=innerHeight;},null,{timeout:12000});
+     await page.screenshot({path:path.join(out,id+'-'+label+'-historical-sticky.png')});
+     await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTop=0;el.dispatchEvent(new Event('scroll'));});
+    }
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card'),null,{timeout:35000});
     const flip=page.locator('#pcFrontCardFlip'),rect=await flip.boundingBox();
     assert.ok(rect?.height>75,'QuizCard zero height');

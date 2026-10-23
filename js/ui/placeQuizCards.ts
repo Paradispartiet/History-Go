@@ -32,6 +32,7 @@ export type PlaceQuizCardsRuntimeWindow = Window & typeof globalThis & {
       options?: { cache?: string }
     ) => unknown;
   };
+  renderPlaceCardQuizData?: (card: QuizCardData) => string;
   HGQuizLoadAccelerator?: {
     prewarm?: () => unknown;
   };
@@ -291,7 +292,8 @@ export function createPlaceQuizCardsController(options: {
 
     const signature = JSON.stringify(cardData);
     if (contentElement.dataset.quizCardSignature !== signature || !contentElement.querySelector(".pc-rendered-quiz-card")) {
-      contentElement.innerHTML = renderQuizCard(cardData);
+      contentElement.innerHTML = runtime.renderPlaceCardQuizData
+        ? runtime.renderPlaceCardQuizData(cardData) : renderQuizCard(cardData);
       contentElement.dataset.quizCardSignature = signature;
     }
     contentElement.hidden = false;
