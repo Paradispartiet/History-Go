@@ -140,13 +140,6 @@
     }
     return matches;
   }
-  function ensureControlStyles() {
-    if (document.getElementById("hgMapControlsRuntimeStyle")) return;
-    const style = document.createElement("style");
-    style.id = "hgMapControlsRuntimeStyle";
-    style.textContent = `.map-controls{top:auto!important;left:auto!important;right:calc(12px + env(safe-area-inset-right,0px))!important;transform:none!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 12px + env(safe-area-inset-bottom,0px))!important;display:flex!important;flex-direction:row!important;align-items:flex-end!important;justify-content:flex-end!important;gap:6px!important;width:auto!important;max-width:calc(100vw - 24px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px))!important;max-height:none!important;padding:0!important;pointer-events:none!important;}body.mode-map .map-controls,body.map-only .map-controls{top:auto!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 12px + env(safe-area-inset-bottom,0px))!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-style-toggle{display:inline-flex!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{display:flex!important;}.map-controls .hg-map-style-toggle{flex:0 1 auto;width:auto!important;min-width:154px;}.map-controls .hg-map-category-filter{flex:0 0 auto;width:104px!important;order:999;}.map-controls .hg-map-category-trigger{width:104px!important;grid-template-columns:minmax(0,1fr) 14px!important;}.hg-map-category-trigger-logos,.hg-map-category-option-logos{display:flex;align-items:center;justify-content:center;min-width:0;}.hg-map-category-trigger-logos{width:auto!important;height:42px;padding-left:0;overflow:hidden;}.hg-map-category-logo{display:block;width:44px;height:44px;flex:0 0 44px;object-fit:contain;border-radius:0;background:transparent;box-shadow:none;}.hg-map-category-logo.is-stacked{margin-left:-18px;}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(2){transform:scale(.96);}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(3){transform:scale(.9);}.hg-map-category-options{display:flex!important;flex-direction:column!important;gap:4px!important;width:104px!important;max-height:min(52dvh,430px);overflow-y:auto;overflow-x:hidden;}.hg-map-category-options[hidden]{display:none!important;}.map-controls .hg-map-category-option{grid-template-columns:1fr!important;place-items:center;min-height:58px;width:100%!important;aspect-ratio:auto;}.hg-map-category-option-logos{width:100%!important;height:54px;}.hg-map-category-option-logos .hg-map-category-logo{width:52px;height:52px;flex-basis:52px;}.hg-map-category-option-check{position:absolute;top:3px;right:3px;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.16);font-size:11px;font-weight:900;}.hg-map-category-option:not(.is-active) .hg-map-category-option-check{opacity:.2;color:transparent;}body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn{display:none!important;}@media (max-width:420px){.map-controls{right:calc(6px + env(safe-area-inset-right,0px))!important;max-width:calc(100vw - 12px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px))!important;gap:4px!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 8px + env(safe-area-inset-bottom,0px))!important;}.map-controls .hg-map-style-toggle{min-width:128px;}.map-controls .hg-map-style-toggle .hg-map-style-btn{padding:0 6px;font-size:12px;}.map-controls .hg-map-category-filter,.map-controls .hg-map-category-trigger,.map-controls .hg-map-category-options{width:96px!important;}.map-controls .hg-map-utility-row{gap:4px!important;}.map-controls .hg-map-utility-btn{width:40px!important;height:40px!important;flex-basis:40px!important;}}`;
-    document.head.appendChild(style);
-  }
   function createCategoryFilter() {
     const filter = document.createElement("div");
     filter.className = "hg-map-category-filter";
@@ -191,12 +184,16 @@
   }
   function ensureControls() {
     if (!document.getElementById("mapLayer")) return null;
-    let controls = document.querySelector(".map-controls");
+    const hosts = [...document.querySelectorAll(".map-controls")];
+    let controls = hosts.find((host) => host.querySelector(".hg-map-style-toggle, .hg-map-utility-row")) || hosts[0];
     if (!controls) {
       controls = document.createElement("div");
       controls.className = "map-controls";
-      controls.setAttribute("aria-label", "Kartkontroller");
       document.body.appendChild(controls);
+    }
+    controls.setAttribute("aria-label", "Kartkontroller");
+    for (const host of hosts) {
+      if (host !== controls) host.remove();
     }
     let utilityRow = controls.querySelector(".hg-map-utility-row");
     if (!utilityRow) {
@@ -394,7 +391,6 @@
     }
   }
   function refresh() {
-    ensureControlStyles();
     ensureControls();
     bindUi();
     installFilterHook();
