@@ -52,11 +52,7 @@ test('six-place browser review is strictly nonpublishing and renders all real co
 });
 
 test('tampering with publication gates breaks browser QA generator',()=>{
-  const original=load('reports/place-production/oslo-six-places-integration-gates-20261022.json');
-  const modified=structuredClone(original);
-  modified.places[0].publication_gates.canonical_place=true;
-  const { buildOsloSixIntegrationPreview } = { buildOsloSixIntegrationPreview: null };
-  // The builder receives already-validated data only. Its own hold validates too.
+  // A release status is not valid input for a non-publishing browser preview.
   const invalidStaging={publication_status:'PUBLISHED',places:new Array(6).fill({})};
   assert.throws(()=>buildOsloSixBrowserReviewHtml({staging:invalidStaging}),/publication gates/);
 });
