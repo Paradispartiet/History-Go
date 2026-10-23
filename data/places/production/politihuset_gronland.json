@@ -94,7 +94,7 @@
       "status": "verified",
       "claimKind": "ordinary",
       "evidenceMode": "direct",
-      "temporalStatus": "historical"
+      "temporalStatus": "current"
     },
     {
       "id": "claim_politihuset_gronland_popup_04",
@@ -188,9 +188,12 @@
       "sourceType": "reputable_secondary",
       "verifiedAt": "2026-10-23",
       "status": "verified",
-      "claimKind": "ordinary",
-      "evidenceMode": "direct",
-      "temporalStatus": "historical"
+      "claimKind": "strong",
+      "evidenceMode": "explicit",
+      "temporalStatus": "historical",
+      "independentSourceUrls": [
+        "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/gronland-politistasjon/"
+      ]
     }
   ],
   "sentenceCoverage": {
@@ -293,8 +296,100 @@
     }
   },
   "quizReadiness": {
-    "status": "quiz_not_produced",
-    "questions": []
+    "status": "source_claim_question_bank_ready_fullquiz_runtime_pending",
+    "questions": [
+      {
+        "question": "Hvor ligger Politihuset som stod ferdig i 1978?",
+        "answer": "Grønlandsleiret 44",
+        "type": "hvor",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_desc_01"
+        ]
+      },
+      {
+        "question": "Når stod dagens Politihus i Grønlandsleiret ferdig?",
+        "answer": "1978",
+        "type": "når",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_desc_01"
+        ]
+      },
+      {
+        "question": "Hvilket arkitektkontor tegnet Politihuset?",
+        "answer": "Telje–Torp–Aasen",
+        "type": "hvem",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_desc_01"
+        ]
+      },
+      {
+        "question": "Når ble Grønland politistasjon opprettet som institusjon?",
+        "answer": "1859",
+        "type": "når",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_popup_01"
+        ]
+      },
+      {
+        "question": "Hvilken annen offentlig tjeneste delte politistasjonen lokaler med fra 1866?",
+        "answer": "Grønland brannstasjon",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_popup_02"
+        ]
+      },
+      {
+        "question": "Hvor lå Grønlands tidligere politistasjon før den flyttet til Politihuset?",
+        "answer": "Tøyenbekken 5",
+        "type": "hvor",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_popup_03"
+        ]
+      },
+      {
+        "question": "Når fikk Politihuset Houens diplom?",
+        "answer": "1982",
+        "type": "når",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_popup_06"
+        ]
+      },
+      {
+        "question": "Hva forbinder de lange kontorfløyene i Politihuset?",
+        "answer": "En sentralhall",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_popup_07"
+        ]
+      },
+      {
+        "question": "Hvilket kunstverk finnes i Politihusets sentralhall?",
+        "answer": "Kilden",
+        "type": "hvilket_verk_eller_objekt",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_popup_08"
+        ]
+      },
+      {
+        "question": "Hvem laget kunstverket «Kilden»?",
+        "answer": "Kari Christensen",
+        "type": "hvem",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_politihuset_gronland_popup_08"
+        ]
+      }
+    ],
+    "notes": "Source-linked facts are candidates, not manifested fullquiz. Further distractor and Knowledge QA required before any v1 approval."
   },
   "completion": {
     "completedUnder": "4.2",
