@@ -2,6 +2,7 @@
 // Real History GO browser review for this account's separate Oslo sentrum PR.
 // This tests app rendering; it does NOT award v1 and it does NOT replace human image review.
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
@@ -39,6 +40,8 @@ for (const [key,metaKey,dimensions] of [
  assert.equal(photo[metaKey]?.outputDimensions,dimensions);
  assert.match(photo[metaKey]?.outputSha256||'',/^[0-9a-f]{64}$/);
  assert.ok(fs.statSync(path.resolve(root,photo[key])).size>20000);
+ const actualHash=createHash('sha256').update(fs.readFileSync(path.resolve(root,photo[key]))).digest('hex');
+ assert.equal(actualHash,photo[metaKey].outputSha256,'Photographic metadata must match exact local WebP bytes');
 }
 const server=http.createServer((req,res)=>{
  const uri=new URL(req.url,'http://localhost'),pathname=decodeURIComponent(uri.pathname);
