@@ -1,0 +1,79 @@
+name: Oslo sentrum A – materialize licensed Telegraf photo
+on:
+  push:
+    branches:
+      - production/oslo-sentrum-v1-separate-20261022
+    paths:
+      - 'scripts/produce-oslo-sentrum-telegraf-photo-20261022.py'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json'
+      - 'data/places/production/telegrafbygningen.json'
+      - '.github/workflows/oslo-sentrum-telegraf-photo.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: oslo-sentrum-a-photo-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow
+        run: python -m pip install Pillow==11.3.0
+      - name: Download SHA-1-pinned Commons original and produce local licensed portrait
+        run: python scripts/produce-oslo-sentrum-telegraf-photo-20261022.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate deterministic quiz context and Place runtime
+        run: |
+          npm run places:index:build
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+          npm run place-open:build
+          npm run epoker:places:build
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+      - name: Run exact mobile and desktop browser audit with local portrait
+        run: |
+          npx playwright install --with-deps chromium
+          node tests/oslo-sentrum-spor-a-browser.mjs
+      - name: Commit only the verified Telegraf photo and its canonical dependency files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/telegrafbygningen_front_portrait.webp
+          git add bilder/places/telegrafbygningen_hero.webp
+          git add bilder/kort/places/telegrafbygningen_card.webp
+          git add data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json
+          git add data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          git add data/quiz/production_context/naeringsliv/oslo_posthus.json
+          git add data/runtime/place-open/telegrafbygningen.json
+          git add data/epoker/epoke-place-index.json
+          git add data/places/places_index.json
+          git add data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then
+            echo 'Licensed Telegraf portrait already synchronized'
+          else
+            git commit -m 'assets(oslo-sentrum): publish verified local Telegraf portrait'
+            git push origin HEAD:production/oslo-sentrum-v1-separate-20261022
+          fi
+      - name: Upload real mobile and desktop screenshots for editorial acceptance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-sentrum-a-licensed-telegraf-photo
+          path: artifacts/oslo-sentrum-spor-a-browser/**
+          if-no-files-found: ignore
+          retention-days: 14

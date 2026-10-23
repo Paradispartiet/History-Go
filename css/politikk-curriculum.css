@@ -410,3 +410,36 @@
 .politikk-evidence-note { display: block; box-sizing: border-box; width: 100%; max-width: 100%; margin-bottom: .8rem; padding: .75rem; font: inherit; }
 .politikk-evidence-report { border-top: 1px solid rgba(161, 202, 241, .26); padding-top: .8rem; margin-top: 1rem; }
 @media (max-width: 640px) { .politikk-evidence-matrix { grid-template-columns: 1fr; } }
+
+/* Bølge 11: refleksjonsbasert vurderingsrubrikk uten karakterer eller poeng. */
+.politikk-evidence-rubric { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(161, 202, 241, .3); }
+.politikk-evidence-rubric h6, .politikk-evidence-plan h6 { font-size: 1rem; margin: .25rem 0 .7rem; }
+.politikk-evidence-rubric-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; margin: 1rem 0; }
+.politikk-evidence-rubric-item { min-width: 0; border: 1px solid rgba(161, 202, 241, .26); border-radius: .7rem; padding: 1rem; background: rgba(255, 255, 255, .025); }
+.politikk-evidence-rubric-item strong { display: block; }
+.politikk-evidence-rubric-item p { line-height: 1.6; }
+.politikk-evidence-rubric-item label { display: block; margin: .85rem 0 .4rem; font-weight: 600; }
+.politikk-evidence-self-rating { box-sizing: border-box; width: 100%; max-width: 100%; min-width: 0; padding: .65rem; background: #13283b; color: inherit; border: 1px solid rgba(161, 202, 241, .55); border-radius: .4rem; font: inherit; }
+.politikk-evidence-rubric-example summary { cursor: pointer; }
+.politikk-evidence-rubric-example[open] { margin-top: .65rem; }
+.politikk-evidence-plan { margin-top: 1rem; padding: 1rem; border-left: 3px solid rgba(161, 202, 241, .6); background: rgba(161, 202, 241, .07); }
+.politikk-evidence-plan p { line-height: 1.6; }
+@media (max-width: 640px) { .politikk-evidence-rubric-grid { grid-template-columns: minmax(0, 1fr); } }
+
+
+/* Bølge 12: samme kildevurdering kan brukes i to flere caseoppgaver. */
+.politikk-evidence-case-select {
+  display: block; box-sizing: border-box; width: 100%; max-width: 100%;
+  padding: .7rem; margin: 0 0 .85rem; font: inherit;
+  background: #13283b; color: inherit;
+  border: 1px solid rgba(161, 202, 241, .55); border-radius: .45rem;
+}
+.politikk-evidence-assignment { line-height: 1.6; }
+.politikk-evidence-task-sources { margin: .8rem 0 1rem; }
+.politikk-evidence-task-source {
+  padding: .6rem .8rem; margin: .55rem 0;
+  border-left: 2px solid rgba(161, 202, 241, .5);
+  background: rgba(161, 202, 241, .04);
+  overflow-wrap: anywhere;
+}
+.politikk-evidence-task-source p { line-height: 1.6; }

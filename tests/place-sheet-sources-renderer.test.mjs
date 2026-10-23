@@ -107,3 +107,42 @@ test("direct Kilder panel has responsive Place Sheet compatibility styling", () 
   assert.match(css, /hg-place-source-link-list/);
   assert.match(css, /@media \(max-width:720px\)/);
 });
+
+test("all 17 Oslo batch04 places expose distinct main and portrait credits from runtime metadata", () => {
+  const dom = new JSDOM('<!doctype html><head></head><body></body>', { url: "https://history-go.test/", runScripts: "outside-only" });
+  dom.window.eval(runtimeSource);
+  const ids = ["grunnlovsbygget_bankplassen", "akershus_kaier", "oslo_mek", "grensen_kjopesenter", "vippetangen_fisketorg", "frysja_industriomrade", "norges_varemesse", "bryn_industriomrade", "gronlikaia", "christiania_seildugsfabrik", "sagene_skole", "stortorget", "norges_bank_bankplassen_4", "gamle_trikkestallen", "gamle_radhus", "grev_wedels_plass", "sofienbergparken"];
+  for (const id of ids) {
+    const { place } = JSON.parse(fs.readFileSync(`data/runtime/place-open/${id}.json`, "utf8"));
+    dom.window.document.body.innerHTML = dom.window.HGPlaceSheetSections.sources.renderHtml(place);
+    for (const field of ["image", "frontImage"]) {
+      const credit = dom.window.document.querySelector(`[data-image-credit="${field}"]`);
+      const meta = place[`${field}Meta`];
+      assert.ok(credit, `${id}: ${field}`);
+      assert.ok(credit.textContent.includes(meta.credit), `${id}: photographer`);
+      assert.ok(credit.textContent.includes(meta.license), `${id}: license`);
+      assert.ok(credit.textContent.includes(meta.transformation), `${id}: transformation`);
+      assert.ok([...credit.querySelectorAll("a")].some(a => a.href === meta.sourcePage), `${id}: original`);
+    }
+    if (id === "vippetangen_fisketorg") {
+      assert.match(dom.window.document.body.textContent, /versjon ikke oppgitt i kilden/);
+      assert.equal(dom.window.document.querySelector('a[href*="creativecommons.org"]'), null);
+    }
+  }
+  dom.window.close();
+});
+
+test("image credits reject unsafe links, escape text and never reuse main attribution for a distinct portrait", () => {
+  const dom = new JSDOM('<!doctype html><head></head><body></body>', { url: "https://history-go.test/", runScripts: "outside-only" });
+  dom.window.eval(runtimeSource);
+  const render = dom.window.HGPlaceSheetSections.sources.renderHtml;
+  dom.window.document.body.innerHTML = render({ image: "main.webp", frontImage: "portrait.webp", imageCredit: "<img src=x onerror=alert(1)>", imageLicense: "CC BY-SA 3.0 no", imageSourceUrl: "javascript:alert(1)" });
+  assert.equal(dom.window.document.querySelector('[data-image-credit="frontImage"]'), null);
+  assert.equal(dom.window.document.querySelector("img"), null);
+  assert.match(dom.window.document.body.textContent, /<img src=x onerror=alert\(1\)>/);
+  assert.equal(dom.window.document.querySelector("a").href, "https://creativecommons.org/licenses/by-sa/3.0/no/");
+  dom.window.document.body.innerHTML = render({ image: "main.webp", imageMeta: { credit: "Author", license: "Unspecified", licenseUrl: "javascript:alert(1)", sourcePage: "data:text/html,bad" } });
+  assert.equal(dom.window.document.querySelector("a"), null);
+  assert.doesNotMatch(dom.window.document.body.textContent, /Ingen brukerrettede kilder/);
+  dom.window.close();
+});

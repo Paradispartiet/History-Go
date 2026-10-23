@@ -1,0 +1,349 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "telegrafbygningen",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Telegrafbygningen i Kongens gate 21 var et stedbundet knutepunkt for telekommunikasjon, administrasjon og manuelt telefonarbeid fra 1924, mens bygningen senere ble ombrukt til nye næringsfunksjoner.",
+    "anchorType": "infrastructure",
+    "placeObjectDistinction": "Rapporten analyserer det fysiske bygget og dets dokumenterte stedbundne arbeid, ikke Telegrafverket, hele Telenor eller telemarkedet som abstrakt system.",
+    "temporalScope": {
+      "start": "1916",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Byggeperiode, televirksomhet, automatsentral og dokumentert ombruk frem til kildekontrolltidspunktet."
+    },
+    "sourceIds": [
+      "source_oslo_byleksikon",
+      "source_riksantikvaren_ombruk"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_teknologi_infrastruktur",
+      "siteSpecificRationale": "Kongens gate 21 samlet telefon- og telegrafarbeid og utgjorde en konkret teknisk kommunikasjonsinfrastruktur.",
+      "caseIds": [
+        "case_telegraf_telework_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_innovasjon_teknologisk_skift",
+      "siteSpecificRationale": "Tilbygget for automatsentral fra 1966 dokumenterer en teknologisk omstilling ved samme kvartalsanlegg.",
+      "caseIds": [
+        "case_telegraf_telework_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_arbeid_verdiskaping",
+      "siteSpecificRationale": "Kilder om ansatte og telefonistinner viser hvordan tjenesteproduksjon og manuell koblingskapasitet var knyttet til bygningen.",
+      "caseIds": [
+        "case_telegraf_telework_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_logistikk_verdikjeder",
+      "siteSpecificRationale": "Den historiske telegraf- og telefonsentralen formidlet samtaler og meldinger mellom brukere gjennom en stedbundet informasjonskjede. Kildene gir ikke trafikkvolum eller grunnlag for å sammenligne dette med varelogistikk.",
+      "caseIds": [
+        "case_telegraf_telework_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_omstilling_kriser_skift",
+      "siteSpecificRationale": "Avviklingen av televirksomheten i 2000 og ombyggingen fram mot 2021 dokumenterer endret bruk av samme eiendom.",
+      "caseIds": [
+        "case_telegraf_telework_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_kapital_finans",
+      "siteSpecificRationale": "Det dokumenterte verne- og rehabiliteringsarbeidet og senere kontorbruk viser omdisponering av bygningskapital. Kildene dokumenterer ikke prosjektets investeringsbeløp, avkastning eller finansieringsstruktur.",
+      "caseIds": [
+        "case_telegraf_telework_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_forbruk_marked",
+      "siteSpecificRationale": "Bygningen huset tidligere telefon- og telegraftjenester for brukere, mens dagens kontor- og arrangementsvirksomhet leverer andre tjenester. Kildene dokumenterer tilbudet, ikke etterspørselsnivå eller markedsandel.",
+      "caseIds": [
+        "case_telegraf_telework_reuse"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oslo_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Telegrafbygningen",
+      "sourceLocation": "Telegrafbygningen: oppføring 1916–24, arkitektur, sentralbordarbeid, tysk kontroll, 1966-tilbygg og 2019–21-ombygging",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-23",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo byleksikons redaksjonelle stedshistorikk.",
+      "limitations": "Gir ikke en fullstendig kvantitativ oversikt over bemanning, investeringer eller verdiskaping gjennom hele perioden."
+    },
+    {
+      "id": "source_riksantikvaren_ombruk",
+      "url": "https://riksantikvaren.no/eksempelsamling/mindre-telekommunikasjon-bedre-internkommunikasjon/",
+      "sourceLocation": "Historikk, utfordringer og løsning, ombyggingen fullført 2021, mellombygg, bevarte interiører og nye funksjoner",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-23",
+      "temporalCoverage": "mixed",
+      "provenance": "Riksantikvarens prosjektbeskrivelse av bevaring og ny bruk.",
+      "limitations": "Prosjektbeskrivelsen dokumenterer tiltak og funksjoner, ikke lønnsomhet, investeringsbudsjett eller kontrafaktisk effekt."
+    },
+    {
+      "id": "source_riksantikvaren_adkomst",
+      "url": "https://riksantikvaren.no/eksempelsamling/vindu-blir-til-dor/",
+      "sourceLocation": "Historikk og løsning for ny trinnfri inngang i Telegrafbygningen",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-23",
+      "temporalCoverage": "mixed",
+      "provenance": "Riksantikvarens eksempelsamling om tilgjengelighet og tilpasninger i vernet bygning.",
+      "limitations": "Beskriver ett konkret tilgjengelighetstiltak, ikke en samlet effektmåling av besøksbruk eller forretningsdrift."
+    },
+    {
+      "id": "source_norwegian_property_current",
+      "url": "https://www.norwegianproperty.no/no/properties/central-business-district/telegrafen",
+      "sourceLocation": "Eiendomssiden «Telegrafen»: adresse Kongens gate 21, kontorer, restauranter, kafeer, butikker og møteromsfasiliteter",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-10-23",
+      "temporalCoverage": "current",
+      "provenance": "Norwegian Propertys offentlige eiendomspresentasjon av Telegrafen i Kongens gate 21, kontrollert mot aktiv nettside 23. oktober 2026.",
+      "limitations": "Eierens markedsføring dokumenterer publisert bruk og fasiliteter, men ikke faktisk utleiebelegg, driftsresultat eller finansiell avkastning."
+    },
+    {
+      "id": "source_telegrafen_venue_current",
+      "url": "https://telegrafenoslo.no/faksen/",
+      "sourceLocation": "Faksen, Telegrafen Oslo: arrangementslokale og adresse Kongens gate 21, oppgitt som del av Telegrafen",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-10-23",
+      "temporalCoverage": "current",
+      "provenance": "Arrangementsoperatøren Telegrafen Oslos publiserte presentasjon og bestillingsinformasjon for det aktuelle lokalet i bygningen.",
+      "limitations": "En aktiv presentasjon viser et tilbud, men bekrefter ikke antall gjennomførte arrangementer eller samlet kommersiell aktivitet."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_telegraf_telework_reuse",
+      "claim": "Telegrafbygningen ble brukt til samordning av telekommunikasjonsarbeid og senere til kontorer og arrangementer; kildene dokumenterer funksjonsskift, men ikke netto økonomisk effekt.",
+      "unitOfAnalysis": {
+        "unit": "Telegrafbygningen, Kongens gate 21 i Oslo",
+        "boundary": "Bygning og kvartalsanlegg med dokumenterte telefunksjoner, ansatte, automatsentral og senere ombruk; ikke nasjonal telekommunikasjonsvirksomhet.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1924",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Fra første driftsperiode til gjennomført rehabilitering og dokumentert bruk etter 2021."
+        },
+        "sourceIds": [
+          "source_oslo_byleksikon",
+          "source_riksantikvaren_ombruk"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Telegrafverket og ansatte ved telefon- og telegrafdriften",
+          "roleOrInterest": "Drev manuelt sentralbordarbeid, kommunikasjonstjenester og administrasjon i bygningen.",
+          "economicPosition": "Den stedbundne arbeidskraften og infrastrukturen muliggjorde telekommunikasjon før driften opphørte på stedet.",
+          "sourceIds": [
+            "source_oslo_byleksikon",
+            "source_riksantikvaren_ombruk"
+          ]
+        },
+        {
+          "name": "Senere bygningseiere og brukere",
+          "roleOrInterest": "Tilpasset og benyttet arealer til kontorer, møter og arrangementer i det rehabiliterte anlegget.",
+          "economicPosition": "Kontrollerte og brukte eiendomsarealer med nye funksjoner under vernehensyn.",
+          "sourceIds": [
+            "source_riksantikvaren_ombruk",
+            "source_riksantikvaren_adkomst"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Bygning, sentralbord, tekniske forbindelser og ansattes arbeid var nødvendige innsatsfaktorer i den opprinnelige televirksomheten.",
+            "sourceIds": [
+              "source_oslo_byleksikon",
+              "source_riksantikvaren_ombruk"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Telekommunikasjonsarbeid og administrasjon ble samlet i kvartalet, mens automatsentral og senere ombruk endret funksjonen.",
+          "sourceIds": [
+            "source_oslo_byleksikon",
+            "source_riksantikvaren_ombruk"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "De historiske funksjonene omfattet telefon- og telegraftjenester; etter rehabiliteringen rommet anlegget blant annet kontor- og møtelokaler.",
+            "sourceIds": [
+              "source_oslo_byleksikon",
+              "source_riksantikvaren_ombruk"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Dokumentasjonen støtter en kvalitativ analyse av arbeid, teknisk kapasitet og arealombruk, men ikke beregning av økonomisk avkastning, produktivitet eller nettogevinst.",
+          "sourceIds": [
+            "source_oslo_byleksikon",
+            "source_riksantikvaren_ombruk"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_infrastrukturanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Historiske bygge- og endringsår, beskrivelser av telefunksjoner, om lag tusen ansatte ved åpningen, opphør av televirksomhet og dokumentert rehabilitering.",
+        "unit": "historiske funksjoner, arbeid og bygningstilpasninger",
+        "period": "1916–2026",
+        "comparability": "Kildene kan sammenholdes om tidsforløp og funksjoner, men beskriver ulike måleenheter og er ingen ensartet statistisk tidsserie.",
+        "dataLimitations": "Årsserier for trafikkvolum, produktivitet, kostnader, arbeidstimer og økonomisk avkastning er ikke dokumentert i materialet.",
+        "sourceIds": [
+          "source_oslo_byleksikon",
+          "source_riksantikvaren_ombruk"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Den tidligere televirksomheten styrte de tekniske arbeidsrommene; senere eiere disponerte arealene innenfor kulturminne- og tilgjengelighetshensyn.",
+        "laborPosition": "Telefonistinner og andre ansatte utførte sentralbord- og kommunikasjonsarbeidet; kildene gir ikke grunnlag for presise lønns- eller arbeidsvilkårsberegninger.",
+        "beneficiaries": [
+          "Brukere av telekommunikasjonstjenestene fikk tilgang til informasjonsoverføring.",
+          "Senere kontor- og arrangementsbrukere fikk tilgang til rehabiliterte arealer."
+        ],
+        "costRiskBearers": [
+          "Televirksomheten var avhengig av arbeidskraft, sentraldrift og teknisk kapasitet.",
+          "Eiere og utbyggere måtte forholde seg til bevaring og tekniske tilpasninger ved ombruk."
+        ],
+        "sourceIds": [
+          "source_oslo_byleksikon",
+          "source_riksantikvaren_ombruk",
+          "source_riksantikvaren_adkomst"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Under okkupasjonen ble sentralene underlagt væpnet overvåking; senere ombygging måtte forene tekniske krav, vern og tilgjengelighet.",
+          "sourceIds": [
+            "source_oslo_byleksikon",
+            "source_riksantikvaren_ombruk",
+            "source_riksantikvaren_adkomst"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene gir ikke et målbart grunnlag for å tallfeste bygningens eksterne virkninger på næringslivet, arbeidsmarkedet eller bymiljøet."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Oslo byleksikon dokumenterer bygningens telefunksjoner, mens Riksantikvaren dokumenterer opphør, vern og senere ombygging.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Det historiske funksjonsskiftet er dokumentert, men kildene isolerer ikke én økonomisk eller teknologisk årsak og måler ingen kontrafaktisk virkning.",
+        "alternativeExplanations": [
+          "Teknologisk endring, endret organisering av televirksomhet og andre arealbehov kan ha bidratt til ombruket."
+        ],
+        "uncertainty": "Ingen kontrollerte sammenligningsbygg, inntekts- eller kostnadsserier eller etterprøvbar avkastningsanalyse foreligger i kildene.",
+        "sourceIds": [
+          "source_oslo_byleksikon",
+          "source_riksantikvaren_ombruk"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Telegrafverkets opprinnelige drift opphørte her i 2000. Norwegian Property presenterer i dag Telegrafen som eiendom med kontorer, restaurant-, kafé- og butikkfunksjoner, mens Telegrafen Oslo tilbyr møte- og arrangementslokaler på adressen.",
+    "originalEconomicRoleRelationship": "Nye nærings- og publikumsfunksjoner erstatter den stedbundne telefunksjonen, samtidig som viktige historiske rom og bygningsdetaljer er bevart.",
+    "checkedAt": "2026-10-23",
+    "sourceIds": [
+      "source_riksantikvaren_ombruk",
+      "source_norwegian_property_current",
+      "source_telegrafen_venue_current"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "telegrafbygningen",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/telegrafbygningen.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Bygge- og funksjonsår er gjennomgått i kildeartikkelen og Fagverk. Det er ikke påvist en ferdig, selvstendig canonical kronologi/Story som må erklæres fullført i denne v1-leveransen."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity",
+        "source_oslo_byleksikon"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics",
+        "case_telegraf_telework_reuse"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases",
+        "case_telegraf_telework_reuse"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources",
+        "presentOperation"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases.comparisonAndCausality"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases.measurement",
+        "economicCases.distributionAndPower"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+        "data/quiz/production_context/naeringsliv/telegrafbygningen.json"
+      ]
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Selvstendig kronologi og Story er kildevurdert, men ikke etablert i denne avgrensede v1-leveransen."
+    }
+  },
+  "review": {
+    "reviewer": "History GO source-based review",
+    "reviewedAt": "2026-10-23",
+    "notes": "Kvalitativ, kildeavgrenset Næringsliv-audit for det fysiske Televerk-bygget. Tre etterprøvbare kilder støtter opplysninger om virksomhet, ansatte, automatsentral og ombruk. Ingen budsjett-, lønnsomhets- eller kausalpåstander er tilskrevet historiske kilder."
+  }
+}

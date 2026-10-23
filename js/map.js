@@ -4,8 +4,10 @@
     "use strict";
     let MAP = null;
     let mapReady = false;
+    let styleReady = false;
     let mapStyleMode = "standard";
     let pendingStyleMode = null;
+    let queuedStyleMode = null;
     let isApplyingStyle = false;
     let START = { lat: 59.9139, lon: 10.7522, zoom: 13 };
     let PLACES = [];
@@ -16,6 +18,10 @@
     let userMarker = null;
     const placeAreaMarkers = /* @__PURE__ */ new Map();
     let placeAreaMarkerZoomBound = false;
+    const placeDetailMarkers = /* @__PURE__ */ new Map();
+    let placeDetailMarkerEventsBound = false;
+    let lastPlaceMarkerFeatures = [];
+    const MAX_MOBILE_DETAIL_MARKERS = 240;
     const STYLE_STORAGE_KEY = "hg_map_style_mode";
     const STYLE_MODE_STANDARD = "standard";
     const STYLE_MODE_SATELLITE = "satellite";
@@ -32,10 +38,10 @@
     const L_AREA_LAB = "hg-place-areas-label";
     const PLACE_AREA_MARKER_CLASS = "hg-place-area-marker";
     const PLACE_AREA_LABEL_MIN_ZOOM = 9.5;
-    const PLACE_DETAIL_MIN_ZOOM = 11.8;
-    const PLACE_DETAIL_HIT_MIN_ZOOM = 12.35;
-    const PLACE_DETAIL_LABEL_MIN_ZOOM = 13.15;
-    const PLACE_DETAIL_FULL_ZOOM = 13;
+    const PLACE_DETAIL_MIN_ZOOM = 9.8;
+    const PLACE_DETAIL_HIT_MIN_ZOOM = 9.8;
+    const PLACE_DETAIL_LABEL_MIN_ZOOM = 12.7;
+    const PLACE_DETAIL_FULL_ZOOM = 12.7;
     const PLACE_SCOPE_AREA = "area";
     const PLACE_MAP_LOD_OVERVIEW = "overview";
     const PLACE_MAP_LOD_AREA = "area";
@@ -44,6 +50,7 @@
     const PLACE_DETAIL_LOD_FILTER = ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL];
     const PLACE_HIT_LAYERS = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
     const PLACE_HIT_PRIORITY = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
+    const REQUIRED_PLACE_LAYERS = [L_GLOW, L_DOTS, L_LAB, L_AREA_LAB, L_HIT, L_AREA_HIT];
     const PLACE_TAP_TOLERANCE_PX = 12;
     const PLACE_POINTER_MOVE_TOLERANCE_PX = 7;
     const PLACE_GESTURE_COOLDOWN_MS = 180;
@@ -119,6 +126,7 @@
       return `rgb(${r},${g},${b})`;
     }
     function initMap({ containerId = "map", start = START } = {}) {
+      var _a, _b;
       START = start || START;
       const el = document.getElementById(containerId);
       if (!el || !window.maplibregl) return null;
@@ -142,16 +150,38 @@
       } catch (error) {
         MAP = null;
         mapReady = false;
+        styleReady = false;
         el.dataset.mapUnavailable = "1";
         el.setAttribute("aria-label", "Kart utilgjengelig \u2013 innhold kan fortsatt brukes");
         console.warn("[HGMap] WebGL-kart utilgjengelig; fortsetter uten kart.", error);
         return null;
       }
-      MAP.addControl(
-        new maplibregl.NavigationControl({ showCompass: false }),
-        "bottom-right"
-      );
+      if ((_b = (_a = window.matchMedia) == null ? void 0 : _a.call(window, "(min-width: 700px)")) == null ? void 0 : _b.matches) {
+        MAP.addControl(
+          new maplibregl.NavigationControl({ showCompass: false }),
+          "bottom-right"
+        );
+      }
+      MAP.on("style.load", restorePlaceLayersAfterStyleLoad);
+      MAP.on("error", (event) => {
+        if (!isApplyingStyle || pendingStyleMode !== STYLE_MODE_SATELLITE) return;
+        console.warn("[HGMap] Detaljert kartstil kunne ikke lastes; g\xE5r tilbake til Kart.", event == null ? void 0 : event.error);
+        queuedStyleMode = null;
+        pendingStyleMode = STYLE_MODE_STANDARD;
+        try {
+          MAP.setStyle(STYLE_URL_STANDARD);
+        } catch (error) {
+          isApplyingStyle = false;
+          pendingStyleMode = null;
+          console.warn("[HGMap] Kunne ikke gjenopprette standardkart", error);
+        }
+      });
+      MAP.on("idle", () => {
+        if (isApplyingStyle) restorePlaceLayersAfterStyleLoad();
+        else ensureMarkers();
+      });
       MAP.on("load", () => {
+        styleReady = true;
         mapReady = true;
         ensureMapStyleToggle(containerId);
         MAP.resize();
@@ -186,8 +216,9 @@
     }
     function getSavedMapStyleMode() {
       try {
-        const raw = localStorage.getItem(STYLE_STORAGE_KEY);
-        if (raw === STYLE_MODE_STANDARD || raw === STYLE_MODE_SATELLITE) return raw;
+        if (localStorage.getItem(STYLE_STORAGE_KEY) !== STYLE_MODE_STANDARD) {
+          localStorage.setItem(STYLE_STORAGE_KEY, STYLE_MODE_STANDARD);
+        }
       } catch {
       }
       return STYLE_MODE_STANDARD;
@@ -215,107 +246,58 @@
       const styleId = String(window.HG_NATURTRO_STYLE_ID || "streets-v4").trim() || "streets-v4";
       return `https://api.maptiler.com/maps/${encodeURIComponent(styleId)}/style.json?key=${encodeURIComponent(key)}`;
     }
-    function runWhenStyleReady(fn) {
-      if (!MAP || typeof fn !== "function") return;
-      if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
-        fn();
-        return;
+    function restorePlaceLayersAfterStyleLoad() {
+      if (!MAP) return;
+      styleReady = true;
+      if (pendingStyleMode) {
+        mapStyleMode = pendingStyleMode;
+        pendingStyleMode = null;
+        isApplyingStyle = false;
+        saveMapStyleMode(mapStyleMode);
       }
-      MAP.once("style.load", () => {
-        if (typeof MAP.once === "function") MAP.once("idle", fn);
-        else fn();
-      });
+      mapReady = true;
+      applyStandardMapPalette();
+      drawPlaceMarkers();
+      moveMarkersOnTop();
+      MAP.resize();
+      renderMapStyleToggle();
+      const queued = queuedStyleMode;
+      queuedStyleMode = null;
+      if (queued && queued !== mapStyleMode) applyMapStyle(queued);
     }
     function applyMapStyle(nextMode) {
-      console.debug("[HGMap] set style start", nextMode);
-      if (!MAP || typeof MAP.setStyle !== "function") {
-        console.warn("[HGMap] MapLibre map not ready for style switch");
-        return;
-      }
+      var _a;
+      if (!MAP || typeof MAP.setStyle !== "function") return;
       const desired = nextMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
       if (isApplyingStyle) {
-        console.debug("[HGMap] style switch already in progress");
+        queuedStyleMode = desired;
         return;
       }
-      if (desired === mapStyleMode && !isApplyingStyle) {
-        console.debug("[HGMap] style already active", desired);
+      if (desired === mapStyleMode) {
+        ensureMarkers();
         renderMapStyleToggle();
-        drawPlaceMarkers();
         return;
       }
-      const key = getMapTilerKey();
-      console.debug("[HGMap] key present", Boolean(key));
       const styleUrl = getStyleUrlForMode(desired);
-      console.debug("[HGMap] style url", styleUrl);
       if (!styleUrl) {
-        if (desired === STYLE_MODE_SATELLITE) {
-          console.warn("[HGMap] Naturtro kart krever window.HG_MAPTILER_KEY. Beholder standardkart.");
-        }
+        console.warn("[HGMap] Detaljert kart er ikke konfigurert; behold kartvisning.");
         renderMapStyleToggle();
         return;
       }
       isApplyingStyle = true;
+      styleReady = false;
       pendingStyleMode = desired;
-      const onStyleReady = () => {
-        if (!MAP) return;
-        const resolvedMode = pendingStyleMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
-        mapStyleMode = resolvedMode;
-        pendingStyleMode = null;
-        isApplyingStyle = false;
-        saveMapStyleMode(mapStyleMode);
-        mapReady = true;
-        applyStandardMapPalette();
-        drawPlaceMarkers();
-        moveMarkersOnTop();
-        MAP.resize();
-        renderMapStyleToggle();
-        console.debug("[HGMap] place layers restored", {
-          source: Boolean(MAP.getSource(SRC)),
-          glow: Boolean(MAP.getLayer(L_GLOW)),
-          hit: Boolean(MAP.getLayer(L_HIT)),
-          dots: Boolean(MAP.getLayer(L_DOTS)),
-          label: Boolean(MAP.getLayer(L_LAB))
-        });
-      };
       try {
         MAP.setStyle(styleUrl);
-        runWhenStyleReady(onStyleReady);
-        console.debug("[HGMap] setStyle called");
       } catch (error) {
-        const message = (error == null ? void 0 : error.message) || "unknown error";
-        console.warn("[HGMap] Naturtro style failed", message, error);
+        console.warn("[HGMap] Kartstil kunne ikke lastes", error);
         isApplyingStyle = false;
         pendingStyleMode = null;
+        queuedStyleMode = null;
+        styleReady = Boolean((_a = MAP.getStyle) == null ? void 0 : _a.call(MAP));
         renderMapStyleToggle();
+        ensureMarkers();
       }
-    }
-    function redrawPlacesAfterStyleLoad(mode) {
-      if (!MAP) return;
-      const resolvedMode = mode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
-      const run = () => {
-        mapStyleMode = resolvedMode;
-        pendingStyleMode = null;
-        isApplyingStyle = false;
-        saveMapStyleMode(mapStyleMode);
-        mapReady = true;
-        console.debug("[HGMap] redrawing place markers after style switch");
-        applyStandardMapPalette();
-        drawPlaceMarkers();
-        moveMarkersOnTop();
-        MAP.resize();
-        renderMapStyleToggle();
-        console.debug("[HGMap] place layers restored");
-      };
-      if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
-        if (typeof MAP.once === "function") MAP.once("idle", run);
-        else run();
-        return;
-      }
-      MAP.once("style.load", () => {
-        console.debug("[HGMap] style loaded", resolvedMode);
-        if (typeof MAP.once === "function") MAP.once("idle", run);
-        else run();
-      });
     }
     function ensureMapStyleToggle(containerId) {
       const controls = document.querySelector(".map-controls");
@@ -338,9 +320,6 @@
         applyMapStyle(btn.dataset.mode);
       };
       wrap.addEventListener("click", onStyleTogglePress);
-      wrap.querySelectorAll(".hg-map-style-btn").forEach((btn) => {
-        btn.addEventListener("touchend", onStyleTogglePress, { passive: false });
-      });
       controls.insertBefore(wrap, controls.firstChild);
       renderMapStyleToggle();
       const mapEl = (
@@ -506,10 +485,7 @@
     }
     function applyStandardMapPalette() {
       if (!MAP || mapStyleMode !== STYLE_MODE_STANDARD) return;
-      if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
-        runWhenStyleReady(applyStandardMapPalette);
-        return;
-      }
+      if (!styleReady) return;
       tuneStandardBaseMapStyle();
       moveMarkersOnTop();
     }
@@ -640,6 +616,88 @@
       }
       updatePlaceAreaDomMarkerSizes();
     }
+    function useNativeMobileDetailMarkers() {
+      if (typeof window.matchMedia === "function") {
+        return window.matchMedia("(max-width: 699px)").matches;
+      }
+      return typeof window.innerWidth === "number" && window.innerWidth <= 699;
+    }
+    function syncPlaceDetailDomMarkers(features) {
+      var _a, _b, _c, _d, _e, _f, _g, _h;
+      if (!MAP || typeof (maplibregl == null ? void 0 : maplibregl.Marker) !== "function") return;
+      const zoom = Number((_c = (_b = (_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) != null ? _b : START.zoom) != null ? _c : 13);
+      if (!useNativeMobileDetailMarkers() || zoom < PLACE_DETAIL_MIN_ZOOM) {
+        for (const entry of placeDetailMarkers.values()) entry.marker.remove();
+        placeDetailMarkers.clear();
+        return;
+      }
+      const bounds = (_d = MAP.getBounds) == null ? void 0 : _d.call(MAP);
+      const center = ((_e = MAP.getCenter) == null ? void 0 : _e.call(MAP)) || { lng: START.lon, lat: START.lat };
+      const lon0 = Number((_g = (_f = center.lng) != null ? _f : center.lon) != null ? _g : START.lon);
+      const lat0 = Number((_h = center.lat) != null ? _h : START.lat);
+      const visible = features.filter((feature) => {
+        var _a2, _b2;
+        if (((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) !== PLACE_MAP_LOD_DETAIL) return false;
+        const coords = (_b2 = feature.geometry) == null ? void 0 : _b2.coordinates;
+        if (!Array.isArray(coords) || coords.length < 2) return false;
+        return typeof (bounds == null ? void 0 : bounds.contains) !== "function" || bounds.contains(coords);
+      }).sort((a, b) => {
+        const [ax, ay] = a.geometry.coordinates;
+        const [bx, by] = b.geometry.coordinates;
+        return (ax - lon0) ** 2 + (ay - lat0) ** 2 - ((bx - lon0) ** 2 + (by - lat0) ** 2);
+      }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+      const keep = /* @__PURE__ */ new Set();
+      for (const feature of visible) {
+        const id = String(feature.properties.id || "").trim();
+        if (!id) continue;
+        keep.add(id);
+        let entry = placeDetailMarkers.get(id);
+        if (!entry) {
+          const element = document.createElement("div");
+          element.className = "hg-place-detail-marker";
+          element.dataset.placeId = id;
+          element.setAttribute("role", "button");
+          element.setAttribute("aria-label", String(feature.properties.name || id));
+          element.style.boxSizing = "border-box";
+          element.style.borderRadius = "50%";
+          element.style.borderStyle = "solid";
+          element.style.borderWidth = "2px";
+          element.style.pointerEvents = "auto";
+          element.style.cursor = "pointer";
+          element.style.touchAction = "manipulation";
+          element.style.zIndex = "8";
+          element.addEventListener("click", (event) => {
+            var _a2, _b2;
+            (_a2 = event.preventDefault) == null ? void 0 : _a2.call(event);
+            (_b2 = event.stopPropagation) == null ? void 0 : _b2.call(event);
+            onPlaceClick(id);
+          });
+          const marker = new maplibregl.Marker({ element, anchor: "center" }).setLngLat(feature.geometry.coordinates).addTo(MAP);
+          entry = { marker, element };
+          placeDetailMarkers.set(id, entry);
+        } else {
+          entry.marker.setLngLat(feature.geometry.coordinates);
+        }
+        const diameter = zoom < 12 ? 9 : zoom < 14 ? 10 : 11;
+        entry.element.style.width = `${diameter}px`;
+        entry.element.style.height = `${diameter}px`;
+        entry.element.style.backgroundColor = feature.properties.fill;
+        entry.element.style.borderColor = feature.properties.border;
+        entry.element.style.opacity = feature.properties.coordinateTrust === "invalid" ? "0" : "1";
+        entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 5px rgba(0,0,0,.30)";
+      }
+      for (const [id, entry] of placeDetailMarkers) {
+        if (keep.has(id)) continue;
+        entry.marker.remove();
+        placeDetailMarkers.delete(id);
+      }
+      if (!placeDetailMarkerEventsBound) {
+        const onViewportChanged = () => syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
+        MAP.on("moveend", onViewportChanged);
+        MAP.on("zoomend", onViewportChanged);
+        placeDetailMarkerEventsBound = true;
+      }
+    }
     function getPlaceGlowPaint(isArea = false) {
       const radius = isArea ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15] : ["interpolate", ["linear"], ["zoom"], 10, 1.8, 12, 2.5, 14, 3.7, 16, 5.2, 18, 7.4];
       const visibility = isArea ? 1 : getPlaceDetailVisibility();
@@ -726,16 +784,16 @@
           "interpolate",
           ["linear"],
           ["zoom"],
-          10,
-          ["+", 1.6, ["*", 0.2, ["get", "visited"]]],
+          9.8,
+          ["+", 3.1, ["*", 0.3, ["get", "visited"]]],
           12,
-          ["+", 2.2, ["*", 0.3, ["get", "visited"]]],
+          ["+", 3.5, ["*", 0.4, ["get", "visited"]]],
           14,
-          ["+", 3, ["*", 0.4, ["get", "visited"]]],
+          ["+", 4.2, ["*", 0.5, ["get", "visited"]]],
           16,
-          ["+", 4, ["*", 0.6, ["get", "visited"]]],
+          ["+", 5, ["*", 0.7, ["get", "visited"]]],
           18,
-          ["+", 5.6, ["*", 0.8, ["get", "visited"]]]
+          ["+", 6, ["*", 0.8, ["get", "visited"]]]
         ],
         "circle-color": ["get", "fill"],
         "circle-stroke-color": ["get", "border"],
@@ -780,10 +838,7 @@
       var _a;
       if (!MAP) return;
       if (!Array.isArray(PLACES) || PLACES.length === 0) return;
-      if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
-        runWhenStyleReady(drawPlaceMarkers);
-        return;
-      }
+      if (!styleReady) return;
       const places = typeof ((_a = window.HG_I18N) == null ? void 0 : _a.localizePlaces) === "function" ? window.HG_I18N.localizePlaces(PLACES) : PLACES;
       const features = [];
       for (const p of places) {
@@ -818,9 +873,11 @@
       if (!features.length) return;
       const fc = { type: "FeatureCollection", features };
       applyStandardMapPalette();
+      lastPlaceMarkerFeatures = features;
       syncPlaceAreaDomMarkers(features);
+      syncPlaceDetailDomMarkers(features);
       const src = MAP.getSource(SRC);
-      if (src) {
+      if (src && REQUIRED_PLACE_LAYERS.every((id) => MAP.getLayer(id))) {
         src.setData(fc);
         moveMarkersOnTop();
         return;
@@ -939,7 +996,6 @@
           MAP.off("mouseleave", layerId, prev.clearPointer);
         }
         MAP.off("click", prev.handlePlaceClick);
-        MAP.off("touchend", prev.handlePlaceClick);
         MAP.off("dragstart", prev.markMapGesture);
         MAP.off("zoomstart", prev.markMapGesture);
         MAP.off("rotatestart", prev.markMapGesture);
@@ -1047,7 +1103,6 @@
       MAP.on("zoomend", finishMapGesture);
       MAP.on("rotateend", finishMapGesture);
       MAP.on("click", handlePlaceClick);
-      MAP.on("touchend", handlePlaceClick);
     }
     function moveMarkersOnTop() {
       if (!MAP) return;
@@ -1055,8 +1110,14 @@
         if (MAP.getLayer(id)) MAP.moveLayer(id);
       });
     }
+    function ensureMarkers() {
+      if (!MAP || !styleReady || !mapReady || isApplyingStyle) return;
+      if (!MAP.getSource(SRC) || !REQUIRED_PLACE_LAYERS.every((id) => MAP.getLayer(id))) {
+        drawPlaceMarkers();
+      }
+    }
     function maybeDrawMarkers() {
-      drawPlaceMarkers();
+      ensureMarkers();
     }
     function refreshMarkers() {
       drawPlaceMarkers();
@@ -1076,6 +1137,7 @@
       isAreaPlace,
       getMapLod,
       maybeDrawMarkers,
+      ensureMarkers,
       refreshMarkers
     };
   })();
