@@ -1,0 +1,93 @@
+name: Oslo sentrum Politikk image staging (PR 6579)
+
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-politikk-six-v1-20261023
+    paths:
+      - .github/workflows/oslo-sentrum-politikk-image-staging.yml
+      - scripts/place-production/stage_oslo_sentrum_politikk_photos.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scoped-photo-staging:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out reviewed PR branch only
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Prepare Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image decoder
+        run: python -m pip install 'Pillow>=10,<13'
+      - name: Validate script syntax
+        run: python -m py_compile scripts/place-production/stage_oslo_sentrum_politikk_photos.py
+      - name: Stage two licensed, portrait-first buildings (not canonical assets)
+        run: |
+          python scripts/place-production/stage_oslo_sentrum_politikk_photos.py \
+            --place hoyres_hus \
+            --place victoria_terrasse
+      - name: Produce visual review contact sheet
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageDraw
+          root = Path('reports/place-production/media-staging/oslo-sentrum-politikk')
+          places = ['hoyres_hus','victoria_terrasse']
+          canvas = Image.new('RGB', (1600, 1180), '#f7f7f7')
+          d = ImageDraw.Draw(canvas)
+          for idx, place in enumerate(places):
+              front = root/place/f'{place}_front_portrait.webp'
+              hero = root/place/f'{place}.webp'
+              with Image.open(front) as im:
+                  thumbnail = im.convert('RGB')
+                  thumbnail.thumbnail((520, 930))
+                  canvas.paste(thumbnail, (idx*800+24, 55))
+              with Image.open(hero) as im:
+                  thumbnail = im.convert('RGB')
+                  thumbnail.thumbnail((745, 520))
+                  canvas.paste(thumbnail, (idx*800+24, 1000))
+              d.text((idx*800+24, 12), f'{place}: portrait vs. hero (separate crops)', fill='#111111')
+          canvas.save(root/'side-by-side-review.jpg', quality=88)
+          PY
+      - name: Verify staging isolated from runtime and prints reviewer checklist
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          base=Path('reports/place-production/media-staging/oslo-sentrum-politikk')
+          for name in ('hoyres_hus','victoria_terrasse'):
+              meta=json.loads((base/name/'staging-metadata.json').read_text())
+              assert meta['status']=='STAGED_NOT_PUBLISHED_REQUIRES_HUMAN_QA'
+              assert set(meta['assets'])=={'image','frontImage'}
+              assert all(Path(item['staged_file']).exists() for item in meta['assets'].values())
+              assert all(item['sha256'] for item in meta['assets'].values())
+              print(name, meta['creator'], meta['license'], meta['original_sha256'])
+          print('No canonical data/places, bilder/places or runtime files were modified.')
+          PY
+      - name: Upload staged originals, WebP roles, metadata and contact sheet
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-politikk-pr6579-two-photo-review
+          path: reports/place-production/media-staging/oslo-sentrum-politikk/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Report hard remaining gates
+        if: always()
+        run: |
+          {
+            echo "### Oslo Politikk staged-photo review"
+            echo ""
+            echo "This job prepares **non-runtime review assets only**."
+            echo "No Place image field, binary, production manifest or v1 status has been published."
+            echo "Review exact photo identity, 2 crop roles, license and credit in app before import."
+            echo "Y-blokka remains blocked by artwork rights. Høyblokka needs dated historical-only label."
+          } >> "$GITHUB_STEP_SUMMARY"
