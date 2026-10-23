@@ -56,8 +56,16 @@ try{
       }
       assert.equal(await page.evaluate(()=>window.__HG_SIX_REVIEW__.state.questionIndex),9);
       await page.evaluate(()=>window.__HG_SIX_REVIEW__.selectTab('fullquiz'));
-      assert.equal(await page.locator('.question').count(),1);
-      assert.equal(await page.locator('[data-option]').count(),4);
+      const fullCount=id==='linderud_gard'?28:21;
+      for(let qi=0;qi<fullCount;qi++){
+        assert.equal(await page.locator('.question').count(),1,id+': fullquiz');
+        assert.equal(await page.locator('[data-option]').count(),4,id+': fullquiz choices');
+        await page.locator('[data-option="0"]').click();
+        assert.equal(await page.locator('#answer').isVisible(),true,id+': answer');
+        assert.ok(await page.locator('#answer .source a').count()>0,id+': fullquiz source');
+        if(qi<fullCount-1)await page.locator('#next-question').click();
+      }
+      assert.equal(await page.evaluate(()=>window.__HG_SIX_REVIEW__.state.questionIndex),fullCount-1);
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
       assert.ok(overflow<=3,id+': horizontal overflow '+overflow+'px at '+width);
     }
@@ -65,6 +73,6 @@ try{
     await page.screenshot({path:resolve(ROOT,'reports/place-production/oslo-six-browser-review-'+width+'.png'),fullPage:true});
     assert.deepEqual(errors,[],'No browser exception at '+width);
     await page.close();
-    console.log('Chromium '+width+'px: six source-bound stories, 5x3 real WebP images, 60 QuizCard questions sampled with answer/source and Fagverk panels PASSED');
+    console.log('Chromium '+width+'px: six source-bound stories, 5x3 real WebP images, 60 QuizCard and 133 fullquiz candidates answered with source links, Fagverk and images PASSED');
   }
 }finally{await browser.close();}
