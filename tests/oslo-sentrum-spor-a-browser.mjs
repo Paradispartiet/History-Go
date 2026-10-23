@@ -55,6 +55,13 @@ for (const field of ['desc','popupDesc']){
 assert.ok(canonical.telegrafbygningen.popupDesc.split(/\s+/).length>=300);
 assert.doesNotMatch(canonical.telegrafbygningen.popupDesc,/Quizens første|NOK-scenario|arbeider spilleren|History Go/i);
 assert.equal(telegrafV42.quizReadiness.questions.length,8);
+const telegrafBusinessProduction=JSON.parse(fs.readFileSync(path.join(root,'data/places/naeringsliv-production/telegrafbygningen.json'),'utf8'));
+assert.equal(telegrafBusinessProduction.placeId,'telegrafbygningen');
+assert.equal(telegrafBusinessProduction.status,'ready');
+assert.ok(telegrafBusinessProduction.economicCases.length>=1);
+for(const gate of ['A','B','C','D','E','F','G']) assert.equal(telegrafBusinessProduction.gates[gate]?.status,'PASS');
+assert.equal(telegrafBusinessProduction.gates.H?.status,'N/A');
+
 assert.deepEqual(telegrafV42.quizReadiness.questions.map(q=>q.claimIds[0]),[
  'claim_telegraf_v42_01','claim_telegraf_v42_05','claim_telegraf_v42_06','claim_telegraf_v42_05',
  'claim_telegraf_v42_21','claim_telegraf_v42_17','claim_telegraf_v42_08','claim_telegraf_v42_22'
