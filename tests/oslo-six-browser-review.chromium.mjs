@@ -45,24 +45,42 @@ try{
       }
       await page.evaluate(()=>window.__HG_SIX_REVIEW__.selectTab('fagverk'));
       assert.equal(await page.locator('.learning-lens').count()>0,true,id);
+      const reviewData=await page.evaluate(()=>JSON.parse(document.getElementById('review-data').textContent));
+      const placeDraft=reviewData.places.find(place=>place.id===id);
+      assert.ok(placeDraft,id+': source data missing');
       await page.evaluate(()=>window.__HG_SIX_REVIEW__.selectTab('quizcard'));
       for(let qi=0;qi<10;qi++){
-        assert.equal(await page.locator('.question').count(),1,id+': quiz');
+        const q=placeDraft.quizcard[qi];
+        assert.equal(await page.locator('.question').count(),1,id+': quizcard');
+        assert.equal(await page.locator('.question').getAttribute('data-question-id'),q.id);
         assert.equal(await page.locator('[data-option]').count(),4,id+': four choices');
-        await page.locator('[data-option="0"]').click();
-        assert.equal(await page.locator('#answer').isVisible(),true);
+        const correctlyAnswered=qi%2===0;
+        const choice=correctlyAnswered?q.answerIndex:(q.answerIndex+1)%4;
+        await page.locator('[data-option="'+choice+'"]').click();
+        const answer=await page.locator('#answer').innerText();
+        assert.ok(answer.startsWith(correctlyAnswered?'Riktig. ':'Ikke riktig. '),id+': QuizCard answer verdict '+qi);
+        assert.ok(answer.includes('Fasit: '+q.options[q.answerIndex]+'. '),id+': QuizCard answer key '+qi);
+        assert.equal(await page.locator('#answer').getAttribute('aria-live'),'polite');
         assert.equal(await page.locator('#answer .source a').count()>0,true,id+': source link');
+        assert.equal(await page.locator('[data-option]:disabled').count(),4,id+': answer locked');
         if(qi<9)await page.locator('#next-question').click();
       }
       assert.equal(await page.evaluate(()=>window.__HG_SIX_REVIEW__.state.questionIndex),9);
       await page.evaluate(()=>window.__HG_SIX_REVIEW__.selectTab('fullquiz'));
       const fullCount=id==='linderud_gard'?28:21;
       for(let qi=0;qi<fullCount;qi++){
+        const q=placeDraft.fullquiz[qi];
         assert.equal(await page.locator('.question').count(),1,id+': fullquiz');
+        assert.equal(await page.locator('.question').getAttribute('data-question-id'),q.id);
         assert.equal(await page.locator('[data-option]').count(),4,id+': fullquiz choices');
-        await page.locator('[data-option="0"]').click();
-        assert.equal(await page.locator('#answer').isVisible(),true,id+': answer');
+        const correctlyAnswered=qi%2===1;
+        const choice=correctlyAnswered?q.answerIndex:(q.answerIndex+1)%4;
+        await page.locator('[data-option="'+choice+'"]').click();
+        const answer=await page.locator('#answer').innerText();
+        assert.ok(answer.startsWith(correctlyAnswered?'Riktig. ':'Ikke riktig. '),id+': Fullquiz answer verdict '+qi);
+        assert.ok(answer.includes('Fasit: '+q.options[q.answerIndex]+'. '),id+': Fullquiz answer key '+qi);
         assert.ok(await page.locator('#answer .source a').count()>0,id+': fullquiz source');
+        assert.equal(await page.locator('[data-option]:disabled').count(),4,id+': answer locked');
         if(qi<fullCount-1)await page.locator('#next-question').click();
       }
       assert.equal(await page.evaluate(()=>window.__HG_SIX_REVIEW__.state.questionIndex),fullCount-1);
@@ -73,6 +91,6 @@ try{
     await page.screenshot({path:resolve(ROOT,'reports/place-production/oslo-six-browser-review-'+width+'.png'),fullPage:true});
     assert.deepEqual(errors,[],'No browser exception at '+width);
     await page.close();
-    console.log('Chromium '+width+'px: six source-bound stories, 5x3 real WebP images, 60 QuizCard and 133 fullquiz candidates answered with source links, Fagverk and images PASSED');
+    console.log('Chromium '+width+'px: six source-bound stories, 5x3 real WebP images, 60 QuizCard and 133 fullquiz candidates checked for correct and incorrect answers with source links, Fagverk and images PASSED');
   }
 }finally{await browser.close();}
