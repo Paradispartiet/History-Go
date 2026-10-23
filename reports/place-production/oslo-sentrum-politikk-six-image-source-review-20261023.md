@@ -60,3 +60,14 @@ python scripts/place-production/stage_oslo_sentrum_politikk_photos.py --place ho
 Det kontrollerer faktisk JPEG-dekoding, EXIF-rotasjon, forventede originaldimensjoner, at bildene ikke oppskaleres, begge WebP-dimensjonene, stående `frontImage`, og SHA-256 for original- og utdata. Det skriver en `staging-metadata.json` per sted med fotograf, Commons-kildeside, lisens og *pending human QA*.
 
 **Begrensning i denne gjennomføringen:** Originalbildene kunne ikke lastes ned fra Wikimedia til arbeidsmiljøet. Derfor finnes fremdeles ingen materialiserte, inspiserte WebP-assetfiler på arbeidsgrenen, og ingen kanoniske stedsbilder er koblet. Skriptet er ikke en erstatning for å kjøre importen i et nettverkstilgjengelig miljø og kontrollere resultatene visuelt. Det oppretter med hensikt **ikke** Y-blokka: det må komme egen klarering for Picasso/Nesjar-verk før aktuell fotografering brukes. Historisk foto av Høyblokka krever eksplisitt valg og datert bildetekst. CI-, rettighets- og browser-port er fortsatt blokkert.
+
+
+## Faktisk importstatus etter de to første plasseringene (23. oktober)
+
+**Dette avsnittet oppdaterer eldre, fortsatt bevarte research-notater ovenfor.** Fire kanoniske WebP-filer er nå kontrollert mot originale SHA-256-summer og lagt på PR-grenen for **Høyres Hus** og **Victoria terrasse**. Begge stedsfilene har egne `image`- og `frontImage`-stier med `imageMeta` og `frontImageMeta` (Commons-side, fotograf, konkret CC BY-SA-lisens og opplysning om beskjæring). Ingen ny `cardImage` er lagt inn. Begge er fortsatt **ikke v1-ferdige** før app-/browserkontroll.
+
+**Etter denne importen:** `hoyesteretts_hus`, `folkets_hus_oslo`, `hoyblokka` og `y_blokka` mangler fortsatt kanoniske bildefiler. Den første forsøkte tresteds-stagingen feilet ved Wikimedia HTTP 429; skriptet er deretter utvidet med direkte kontrollert original-URL og høflig Retry-After/pause, men dette er ingen garanti for nedlasting. Staging-jobs må være bekreftet `success`, bildene må åpnes og kontrolleres i både bredt/portrettformat før eventuell promotion. Høyblokka-fotoet viser **2008**, ikke nåværende situasjon; Y-blokka ligger fremdeles utenfor kjøringen i påvente av separat kunstvurdering.
+
+Kontrollerte historiske kildefiler: [Høyesteretts hus (Helge Høifødt)](https://commons.wikimedia.org/wiki/File:Norges_H%C3%B8yesterett_Supreme_Court_of_Norway.jpg), [Folkets Hus (Kjetil Ree, 16. august 2006)](https://commons.wikimedia.org/wiki/File:Folkets_Hus_Youngstorget.JPG), [Høyblokka (Geir Hval, 1. juli 2008)](https://commons.wikimedia.org/wiki/File:Regjeringskvartalet_H-blokk_Johan_Nygaardsvolds_plass_Oslo_Norway_(2008.07.01).jpg).
+
+**Krav som består:** Avledede place-open-/indeksfiler må være regenerert etter bildekobling, billedmetadata må vises korrekt med lisens i UI, faktisk smal-mobil-/desktop-test skal dokumenteres, og PR forblir `draft` inntil alle kritiske porter består. Ingen endringer i Oslo-bolk 04 eller andre stedsarbeid.
