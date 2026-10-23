@@ -42,6 +42,7 @@ on:
       - 'css/oslo-six-browser-review.css'
       - 'tests/oslo-six-browser-review.test.mjs'
       - 'tests/oslo-six-browser-review.chromium.mjs'
+      - 'reports/place-production/oslo-six-browser-QA-README.md'
       - '.github/workflows/oslo-six-staging.yml'
   workflow_dispatch:
 
@@ -104,5 +105,9 @@ jobs:
             reports/place-production/oslo-six-browser-review.html
             reports/place-production/oslo-six-browser-review-390.png
             reports/place-production/oslo-six-browser-review-1440.png
+            reports/place-production/oslo-six-browser-QA-README.md
+            css/oslo-six-browser-review.css
+            js/ui/oslo-six-browser-review.js
+            bilder/places/auto/*__commons_*.webp
           if-no-files-found: warn
           retention-days: 14
