@@ -32,8 +32,13 @@ test('three place-specific fullquiz proposals meet 3x7, answer, source and exact
       assert.equal(q.targetId, place.place_id);
       assert.equal(q.categoryId, gate.places.find(p => p.place_id === place.place_id).category_candidate);
       assert.equal(q.runtime_registered, false);
-      assert.equal(q.source_url, place.place_id === 'frognerseteren' && (i >= 10 || i === 2 || i === 4)
-        ? 'https://www.frognerseteren.no/mer-historie-' : place.source_url);
+      const individualSarabratenSources = {
+        15: 'https://www.skiforeningen.no/utimarka/omrader/ostmarka/steder/sarabraten/',
+        20: 'https://oslobyleksikon.no/side/N%C3%B8klevann'
+      };
+      const individualSource = place.place_id === 'sarabraten' ? individualSarabratenSources[i] : null;
+      assert.equal(q.source_url, individualSource || (place.place_id === 'frognerseteren' && (i >= 10 || i === 2 || i === 4)
+        ? 'https://www.frognerseteren.no/mer-historie-' : place.source_url));
       assert.ok(q.source_url.startsWith('https://'));
       assert.ok(q.knowledge.length > 65, q.id);
       assert.equal(q.options.length, 4);
