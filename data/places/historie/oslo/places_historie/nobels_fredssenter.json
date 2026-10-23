@@ -95,5 +95,107 @@
   "underbadge_ids": [
     "samtidshistorie",
     "kulturminner_og_bevaring"
-  ]
+  ],
+  "fagverk": {
+    "schema": "history_go_place_fagverk_v2",
+    "level": "standard",
+    "status": "curated",
+    "intro": "Nobels Fredssenter viser hvordan en fredet jernbanestasjon fra 1872 ble omgjort til museum for Nobels fredspris i 2005. Stedet binder sammen bygningens fysiske historie, institusjonell beslutning og formidling av fredsprisens ettertid.",
+    "article": [
+      "Vestbanestasjonens hovedbygning stod ferdig i 1872 som endestasjon for Drammensbanen. Da den siste jernbanedriften ble avviklet i 1989, var bygningen fortsatt et historisk landemerke. Fredningen i 1994 satte rammer for senere ombruk. I bygningen finnes dermed spor fra transporthistorie som ikke opprinnelig hadde noe med fredsprisen å gjøre.",
+      "Geir Lundestad arbeidet fra 1990-årene for et museum om Nobels fredspris. Stortingets beslutning fra 2000 la til rette for et senter i Vestbanestasjonen. Den planlagte åpningen 7. juni 2005 ble forskjøvet til 11. juni. Dette skillet mellom vedtak, plan og faktisk åpning er sentralt når en institusjons historie rekonstrueres.",
+      "Den nye bruken krevde innpassing av utstillingsrom i den fredede stasjonen. Fredssenteret dokumenterer at deler av eldre interiør og den tidligere toghallen ble bevart eller tilpasset. Fysisk bevaring og kuratert museumshistorie er ulike kilder: stasjonsbygningen sier noe om materialer og rom, mens utstillingene forteller om fredsprisvinnere og historiske konflikter.",
+      "Nobels Fredssenter er museum og samtalearena, men deler ikke ut Nobels fredspris. Den Norske Nobelkomité fatter beslutningen om prisvinnerne, og Det Norske Nobelinstitutt fungerer som dens sekretariat. En utstilling kan analysere eller kritisere en tildeling i ettertid uten å være selve beslutningsorganet."
+    ],
+    "subject_ids": [
+      "historie"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_minnesteder_historiebruk"
+    ],
+    "chapter_ids": [
+      "kilder_arkiv_spor",
+      "minne_kulturarv_historiebruk"
+    ],
+    "lenses": [
+      {
+        "id": "nobels_fredssenter-jernbanespor",
+        "title": "Fra terminal til museum",
+        "prompt": "Hvilke spor viser at fredssenterets bygning først ble brukt som jernbanestasjon?",
+        "subject_id": "historie",
+        "emne_id": "em_his_spor_materialitet",
+        "evidence": "Byleksikonet og fredssenterets bygningshistorie dokumenterer 1872-stasjonen og ombyggingen."
+      },
+      {
+        "id": "nobels_fredssenter-plan-og-apning",
+        "title": "Fra vedtak til åpning",
+        "prompt": "Hva er forskjellen mellom Stortingets vedtak i 2000, den planlagte datoen og den faktiske åpningen i 2005?",
+        "subject_id": "historie",
+        "emne_id": "em_his_historiske_lag_i_byrom",
+        "evidence": "Fredssenterets egen historikk oppgir vedtaket, 7. juni som plan og 11. juni som faktisk åpning."
+      },
+      {
+        "id": "nobels_fredssenter-fredet-ombruk",
+        "title": "Fredning og ombygging",
+        "prompt": "Hva ble bevart fra den eldre Vestbanestasjonen ved ombyggingen til fredssenter?",
+        "subject_id": "historie",
+        "emne_id": "em_his_spor_materialitet",
+        "evidence": "Fredningsåret 1994 og omtalen av David Adjayes ombygging dokumenterer både vern og ny bruk."
+      },
+      {
+        "id": "nobels_fredssenter-museum-og-komite",
+        "title": "Historiefortelling er ikke prisvedtak",
+        "prompt": "Hvorfor må fredssenteret skilles fra Nobelkomiteen og Nobelinstituttet?",
+        "subject_id": "historie",
+        "emne_id": "em_his_minnesteder_historiebruk",
+        "evidence": "Nobel-nettverket skiller museets formidling fra komiteens avgjørelser og instituttets sekretariat."
+      }
+    ],
+    "guiding_questions": [
+      "Når ble Vestbanestasjonens hovedbygning reist, og hvilken funksjon hadde den da?",
+      "Hva skjedde med jernbanedriften før fredssenteret flyttet inn?",
+      "Hvorfor er åpningen 11. juni 2005 noe annet enn planlagt dato 7. juni?",
+      "Hvilke bygningsspor kan dokumentere jernbanehistorien?",
+      "Hvilke institusjoner velger, administrerer og formidler Nobels fredspris?"
+    ],
+    "concepts": [
+      "jernbaneterminal",
+      "fredning",
+      "kulturminne",
+      "ombruk",
+      "musealisering",
+      "historiebruk",
+      "tildelingsmyndighet",
+      "institusjon",
+      "kildeforskjell"
+    ],
+    "observable_traces": [
+      {
+        "title": "Det fredede Vestbanebygget",
+        "observation": "Undersøk rundbuede vinduer og bygningsform som kan sammenholdes med dokumentasjon fra 1872.",
+        "interpretation_boundary": "Fasadestil alene daterer ikke alle senere interiørendringer eller utstillingene.",
+        "source_urls": [
+          "https://oslobyleksikon.no/side/Vestbanestasjonen"
+        ]
+      },
+      {
+        "title": "Toghallen som utstillingsrom",
+        "observation": "Se hvordan et tidligere rom for togtrafikk brukes til utstillinger.",
+        "interpretation_boundary": "En utstilling er produsert i nyere tid; den er ikke automatisk samtidige kilder til hendelsene den omtaler.",
+        "source_urls": [
+          "https://www.nobelpeacecenter.org/aktuelt/en-levende-moteplass-for-og-na"
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://oslobyleksikon.no/side/Vestbanestasjonen",
+      "https://www.nobelpeacecenter.org/en/news/from-idea-to-reality",
+      "https://www.nobelpeacecenter.org/aktuelt/en-levende-moteplass-for-og-na",
+      "https://www.nobelpeaceprize.org/about-us/nobel-network/",
+      "https://www.nobelpeaceprize.org/about-us/nobel-institute/"
+    ],
+    "verified_at": "2026-10-23"
+  }
 }
