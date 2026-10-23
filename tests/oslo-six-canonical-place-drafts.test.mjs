@@ -27,13 +27,28 @@ test('six editorial stories export as faithful nonplayable canonical-shaped Plac
     assert.ok(draft.desc.length>=110);
     assert.ok(draft.popupDesc.length>=600);
     assert.ok(draft.popupDesc.includes('\n\n'));
-    assert.equal(draft.image,''); assert.equal(draft.cardImage,'');
+    assert.equal(draft.image,''); assert.equal(draft.frontImage,''); assert.equal(draft.cardImage,'');
+    assert.ok(p.missing_release_checks.includes('separate_portrait_frontImage'));
+    assert.ok(p.missing_release_checks.includes('licensed_image_binding_and_attribution'));
+    if(p.id==='kristiania_teglverk_bryn') {
+      assert.equal(p.staged_image_candidates,null);
+    } else {
+      const photo=p.staged_image_candidates;
+      assert.equal(photo.publication_status,'STAGED_ONLY_NOT_BOUND');
+      assert.equal(photo.front_image_status,'MISSING_SEPARATE_PORTRAIT_ASSET');
+      assert.equal(photo.source_attribution_rendered,false);
+      assert.ok(photo.source_page.startsWith('https://commons.wikimedia.org/wiki/File:'));
+      assert.ok(photo.author && photo.license_url);
+      for(const role of ['lead','card','popup'])
+        assert.equal(photo.paths[role],'bilder/places/auto/'+p.id+'__commons_'+role+'.webp');
+    }
     for (const key of ['lat','lon','r']) assert.equal(draft[key],null);
     assert.ok(p.missing_release_checks.includes('safe_visitor_geopoint_and_radius'));
     assert.equal([...active].some(x=>x.endsWith('/'+p.id+'.json')),false);
   }
   assert.equal(release.places.filter(p=>p.provisional_site_poi_reference!==null).length,2);
   assert.equal(release.places.filter(p=>p.image_source_page_candidate!==null).length,5);
+  assert.equal(release.places.filter(p=>p.staged_image_candidates!==null).length,5);
 });
 
 test('no staging generator may import a candidate as an approved visitor entrance',()=>{
@@ -45,4 +60,21 @@ test('no staging generator may import a candidate as an approved visitor entranc
   const lifted=structuredClone(candidates);
   lifted.places[0].visitor_radius_m=60;
   assert.throws(()=>buildOsloSixCanonicalStaging({candidates:lifted}),/tentative point/);
+});
+
+test('image candidates fail closed on mismatched credits, unsafe release and incorrect roles',()=>{
+  const attribution=load('reports/place-production/oslo-six-generated-image-attribution-20261022.json');
+  const badCredit=structuredClone(attribution);
+  badCredit.places[0].author='Unknown';
+  assert.throws(()=>buildOsloSixCanonicalStaging({imageAttribution:badCredit}),/image attribution/);
+  const badVariant=structuredClone(attribution);
+  badVariant.places[0].variants[0].width=400;
+  assert.throws(()=>buildOsloSixCanonicalStaging({imageAttribution:badVariant}),/invalid, missing or unreviewed/);
+  const visualQA=load('reports/place-production/oslo-six-image-visual-qa-20261022.json');
+  const unreviewed=structuredClone(visualQA);
+  unreviewed.per_place[0].lead_status='HOLD';
+  assert.throws(()=>buildOsloSixCanonicalStaging({imageVisualQA:unreviewed}),/invalid, missing or unreviewed/);
+  const unsafeFactory=structuredClone(attribution);
+  unsafeFactory.places.push({...unsafeFactory.places[0],place_id:'kristiania_teglverk_bryn'});
+  assert.throws(()=>buildOsloSixCanonicalStaging({imageAttribution:unsafeFactory}),/unexpected evidence coverage/);
 });
