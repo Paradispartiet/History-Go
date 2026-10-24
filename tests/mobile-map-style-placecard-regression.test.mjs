@@ -43,6 +43,7 @@ class FakeElement {
     if (selector === ".hg-map-style-btn") return this.children;
     return [];
   }
+  appendChild(child) { this.children.push(child); return child; }
   insertBefore(child) { this.children.push(child); }
   get firstChild() { return this.children[0] || null; }
   set innerHTML(value) {
@@ -485,4 +486,40 @@ test("phone and iPad dots shrink progressively during zoom without marker replac
     assert.equal(marker.setLngLatCount, 1, "changing zoom must not relayout marker coordinates");
     assert.equal(main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker").length, 1);
   }
+});
+
+test("iPad and phone carry native place names before style.load and after Detaljert", () => {
+  for (const kind of [{ mobile: true }, { ipad: true }]) {
+    const { main, controls } = setup({ ...kind, skipStyleLoad: true });
+    const marker = main.nativeMarkers.find(m => m.element.className === "hg-place-detail-marker" && !m.removed);
+    assert.ok(marker);
+    const label = marker.element.children.find(c => c.className === "hg-place-detail-name");
+    assert.ok(label, "place name is attached to the same native dot");
+    assert.equal(label.textContent, "Park");
+    assert.equal(label.style.display, "block", "name visible even before WebGL loads");
+    main.finishStyle();
+    assert.equal(main.getLayer("hg-places-label")?.layout?.visibility, "none",
+      "avoid competing WebGL text and native name");
+    const toggle = controls.querySelector(".hg-map-style-toggle");
+    toggle.emit("click", { target: toggle.querySelectorAll(".hg-map-style-btn")[1],
+      preventDefault() {}, stopPropagation() {} });
+    main.finishStyle();
+    assert.equal(label.style.display, "block");
+    assert.strictEqual(marker.element.children.find(c => c.className === "hg-place-detail-name"), label,
+      "style change retains the original name label");
+    assert.equal(marker.element.children.filter(c => c.className === "hg-place-detail-name").length, 1);
+    assert.ok(!marker.removed, "dot and name keep the same marker instance");
+    main.zoom = 12;
+    main.emit("zoom");
+    assert.equal(label.style.display, "none", "names declutter at low zoom");
+    main.zoom = 14;
+    main.emit("zoom");
+    assert.equal(label.style.display, "block", "name reappears without replacing the dot");
+  }
+});
+
+test("desktop still renders WebGL place names without HTML marker duplication", () => {
+  const { main } = setup({ mobile: false });
+  assert.equal(main.getLayer("hg-places-label")?.layout?.visibility, "visible");
+  assert.equal(main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker").length, 0);
 });
