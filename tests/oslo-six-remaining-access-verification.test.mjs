@@ -49,3 +49,43 @@ test('public gardens and parks do not imply event-space access, and teglverk sta
   assert.equal(kiln.visitor_pin, 'HARD_HOLD');
   assert.match(kiln.next_required, /eiendomsparsell/i);
 });
+
+test('geo research stays explicitly non-canonical until a public path waypoint and radius are checked', () => {
+  const report = read(EVIDENCE);
+  const byId = new Map(report.decisions.map(x => [x.place_id, x]));
+  for (const entry of report.decisions) {
+    const geo = entry.geo_research;
+    assert.ok(geo, entry.place_id + ': missing source-sensitive geo research');
+    assert.equal(geo.usable_as_canonical_waypoint, false);
+    assert.equal(geo.on_path_waypoint_verified, false);
+    assert.equal(geo.radius_justified, false);
+    assert.ok(geo.public_path_verification_method.length > 80);
+    assert.ok(geo.new_evidence.length > 80);
+    if (geo.research_only_coordinate) {
+      assert.ok(Number.isFinite(geo.research_only_coordinate.lat));
+      assert.ok(Number.isFinite(geo.research_only_coordinate.lon));
+      assert.ok(geo.research_only_coordinate.role.includes('not_'));
+    }
+    assert.equal(entry.safe_observation_waypoint, null);
+    assert.equal(entry.visitor_radius_m, null);
+  }
+  const linderud = byId.get('linderud_gard');
+  assert.equal(linderud.geo_research.operator_map_url, 'https://mia.no/linderud/finn-oss');
+  assert.match(linderud.geo_research.research_only_coordinate.role, /not_visitor_path/);
+
+  const sarabraten = byId.get('sarabraten');
+  assert.match(sarabraten.geo_research.candidate_kind, /separate_from_ruins_and_milorg_memorial/);
+
+  const saeterhytten = byId.get('saeterhytten_bygdoy');
+  assert.equal(saeterhytten.geo_research.research_only_coordinate.role,
+    'photo_camera_location_not_independently_confirmed_public_waypoint');
+  assert.match(saeterhytten.geo_research.coordinate_independence_warning,
+    /ikke to uavhengig/);
+
+  const teglverk = byId.get('kristiania_teglverk_bryn');
+  assert.equal(teglverk.geo_research.research_only_coordinate, null);
+  assert.equal(teglverk.geo_research.cadastral_reference, '137/31');
+  assert.ok(teglverk.geo_research.address_18_support.length >= 3);
+  assert.match(teglverk.geo_research.conflicting_source_14, /oslobyleksikon/);
+  assert.equal(teglverk.visitor_pin, 'HARD_HOLD');
+});
