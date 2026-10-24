@@ -47,7 +47,7 @@ try{
    await page.locator('#placeCard').screenshot({path:reports+'/'+width+'-placecard.png'});
    if (mobile && (target === 'arbeidersamfunnets_plass' || target === 'statsministerboligen')) {
     const wordLayout = await page.locator('#pcTitle').evaluate(el => {
-     const firstWord = el.textContent.trim().split(/\\s+/)[0];
+     const firstWord = el.textContent.trim().split(/\s+/)[0];
      const node = [...el.childNodes].find(n => n.nodeType === Node.TEXT_NODE && n.textContent.includes(firstWord));
      if (!node) return {firstWord, fragments:0};
      const start = node.textContent.indexOf(firstWord);
