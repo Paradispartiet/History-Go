@@ -48,4 +48,28 @@ for(const p of ledger.places){
   const visualReady=Boolean(place.frontImage&&place.image&&place.cardImage);
   report.push({id:p.place_id,canonical:true,sourceClaims:p.claims.length,quizSetFiles:relevantQuiz.map(z=>z.file),quizCardCollections:categoryQuizCardMatches,missingLegacyQuizCardFiles,fagverkReady:articleReady,visualFieldsReady:visualReady,notYetV1:!(relevantQuiz.length&&categoryQuizCardMatches.length&&articleReady&&visualReady)});
 }
-console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',records:report},null,2));
+// Source-led quiz candidates are editorial inputs, never automatically published sets.
+const quizCandidates=read('reports/place-production/oslo-sentrum-kvadraturen-first20-quiz-candidates-20261024.json');
+assert.equal(quizCandidates.schema,'history_go_oslo_kvadraturen_quiz_candidates_v1');
+assert.equal(quizCandidates.status,'editorial_candidates_not_manifested');
+assert.equal(quizCandidates.places.length,2);
+const allClaims=new Map(ledger.places.flatMap(p=>p.claims.map(c=>[c.claim_id,p.place_id])));
+const allCandidateIds=new Set();
+let candidateCount=0;
+for(const group of quizCandidates.places){
+  assert.ok(ledger.places.some(p=>p.place_id===group.place_id),group.place_id+': outside approved scope');
+  assert.equal(group.questions.length,10,group.place_id+': not 10 candidates');
+  for(const q of group.questions){
+    candidateCount++;
+    assert.ok(!allCandidateIds.has(q.candidate_id),'Repeated candidate ID');
+    allCandidateIds.add(q.candidate_id);
+    assert.equal(q.options.length,4,q.candidate_id+': options');
+    assert.equal(new Set(q.options).size,4,q.candidate_id+': duplicate distractor');
+    assert.equal(q.options[q.answer_index],q.answer,q.candidate_id+': wrong answer mapping');
+    assert.ok(q.question.length>25&&q.claim_ids.length>=1,q.candidate_id+': no question or source claim');
+    for(const id of q.claim_ids) assert.equal(allClaims.get(id),group.place_id,q.candidate_id+': cross-place claim');
+    assert.equal(q.status,'source_led_editorial_candidate',q.candidate_id+': falsely approved candidate');
+  }
+}
+assert.equal(candidateCount,20);
+console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',candidateCount,records:report},null,2));
