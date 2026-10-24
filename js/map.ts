@@ -756,6 +756,43 @@
     return Math.max(3.5, Math.min(8.5, 3.5 + (zoom - PLACE_DETAIL_MIN_ZOOM) * 0.78));
   }
 
+  function updateNativeDetailLabelVisibility() {
+    if (!MAP || !placeDetailMarkers.size) return;
+    const zoom = Number(MAP.getZoom?.() ?? START.zoom ?? 13);
+    const labelsAllowed = zoom >= PLACE_DETAIL_LABEL_MIN_ZOOM;
+    const maxLabels = zoom < 13.8 ? 24 : zoom < 15.5 ? 48 : 90;
+    const occupied = [];
+    let shown = 0;
+    const canvas = MAP.getCanvas?.();
+    // Zero-sized startup maps must not suppress every label.
+    const hasViewport = Number(canvas?.clientWidth || 0) > 100 &&
+      Number(canvas?.clientHeight || 0) > 100;
+
+    for (const entry of placeDetailMarkers.values()) {
+      const label = entry.label;
+      if (!label) continue;
+      label.style.display = "none";
+      if (!labelsAllowed || !entry.name || shown >= maxLabels) continue;
+
+      if (hasViewport && typeof MAP.project === "function") {
+        let point;
+        try { point = MAP.project([entry.lon, entry.lat]); } catch { point = null; }
+        if (point && Number.isFinite(point.x) && Number.isFinite(point.y)) {
+          const width = Math.min(146, Math.max(34, entry.name.length * 6.3));
+          const left = point.x - width / 2;
+          const top = point.y + nativeDetailDotDiameter(zoom) / 2 + 3;
+          const rect = { left, right: left + width, top, bottom: top + 16 };
+          if (occupied.some(other =>
+            rect.left < other.right + 6 && rect.right > other.left - 6 &&
+            rect.top < other.bottom + 3 && rect.bottom > other.top - 3)) continue;
+          occupied.push(rect);
+        }
+      }
+      label.style.display = "block";
+      shown++;
+    }
+  }
+
   function updateNativeDetailDotSizes() {
     if (!MAP || !placeDetailMarkers.size) return;
     const zoom = Number(MAP.getZoom?.() ?? START.zoom ?? 13);
@@ -766,6 +803,7 @@
       entry.element.style.height = `${diameter.toFixed(2)}px`;
       entry.element.style.borderWidth = `${width.toFixed(2)}px`;
     }
+    updateNativeDetailLabelVisibility();
   }
 
   function syncPlaceDetailDomMarkers(features) {
@@ -828,6 +866,14 @@
         element.style.cursor = "pointer";
         element.style.touchAction = "manipulation";
         element.style.zIndex = "8";
+        // Native touch markers must own visible place names: the separate
+        // WebGL text layer previously vanished on some iPads.
+        const label = document.createElement("span");
+        label.className = "hg-place-detail-label";
+        label.setAttribute("aria-hidden", "true");
+        label.textContent = String(feature.properties.name || id);
+        label.style.display = "none";
+        element.appendChild(label);
         element.addEventListener("click", event => {
           event.preventDefault?.();
           event.stopPropagation?.();
@@ -836,7 +882,8 @@
         const marker = new maplibregl.Marker({ element, anchor: "center" })
           .setLngLat(feature.geometry.coordinates)
           .addTo(MAP);
-        entry = { marker, element, lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] };
+        entry = { marker, element, label, name: String(feature.properties.name || id),
+          lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] };
         placeDetailMarkers.set(id, entry);
       } else if (entry.lon !== feature.geometry.coordinates[0] || entry.lat !== feature.geometry.coordinates[1]) {
         // Repeating setLngLat for an unchanged dot can cause needless DOM
@@ -844,6 +891,12 @@
         entry.marker.setLngLat(feature.geometry.coordinates);
         entry.lon = feature.geometry.coordinates[0];
         entry.lat = feature.geometry.coordinates[1];
+      }
+      const name = String(feature.properties.name || id);
+      if (name !== entry.name) {
+        entry.name = name;
+        entry.label.textContent = name;
+        entry.element.setAttribute("aria-label", name);
       }
       entry.element.style.backgroundColor = feature.properties.fill;
       const borderColor = String(feature.properties.border || "").trim();
@@ -1093,11 +1146,15 @@
 
     MAP.addLayer({
       id: L_LAB,
+      // Touch text follows stable native dots; desktop keeps WebGL labels.
       minzoom: PLACE_DETAIL_LABEL_MIN_ZOOM,
       filter: PLACE_DETAIL_LOD_FILTER,
       type: "symbol",
       source: SRC,
-      layout: getPlaceLabelLayout(false),
+      layout: {
+        ...getPlaceLabelLayout(false),
+        visibility: useNativeTouchDetailMarkers() ? "none" : "visible"
+      },
       paint: getPlaceLabelPaint(false)
     });
 

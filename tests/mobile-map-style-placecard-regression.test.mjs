@@ -44,6 +44,7 @@ class FakeElement {
     return [];
   }
   insertBefore(child) { this.children.push(child); }
+  appendChild(child) { this.children.push(child); return child; }
   get firstChild() { return this.children[0] || null; }
   set innerHTML(value) {
     this._html = value;
@@ -485,4 +486,44 @@ test("phone and iPad dots shrink progressively during zoom without marker replac
     assert.equal(marker.setLngLatCount, 1, "changing zoom must not relayout marker coordinates");
     assert.equal(main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker").length, 1);
   }
+});
+
+test("touch dots carry actual visible place names rather than aria-label only", () => {
+  for (const opts of [{ mobile: true }, { ipad: true }]) {
+    const { main } = setup(opts);
+    const dot = main.nativeMarkers.find(m =>
+      m.element.className === "hg-place-detail-marker" && !m.removed);
+    assert.ok(dot, "native marker on phone/iPad");
+    const label = dot.element.children.find(el => el.className === "hg-place-detail-label");
+    assert.ok(label, "name is a real child element");
+    assert.equal(label.textContent, "Park");
+    assert.equal(label.style.display, "block", "names visible at detailed zoom");
+    assert.equal(main.getLayer("hg-places-label")?.layout?.visibility, "none",
+      "do not overlay an unreliable duplicate WebGL label");
+    main.zoom = 10;
+    main.emit("zoom");
+    assert.equal(label.style.display, "none", "hide labels when zoomed far out");
+    main.zoom = 14;
+    main.emit("zoom");
+    assert.equal(label.style.display, "block", "restore labels at detail zoom");
+    assert.ok(!dot.removed);
+  }
+});
+
+test("changing a touch place name updates its existing marker text", () => {
+  const { win, main } = setup({ ipad: true });
+  const dot = main.nativeMarkers.find(m => m.element.className === "hg-place-detail-marker");
+  const label = dot.element.children.find(el => el.className === "hg-place-detail-label");
+  const places = [
+    { id: "park", name: "Park med nytt navn", category: "by", lat: 59.917, lon: 10.7533, r: 180 }
+  ];
+  win.HGMap.setPlaces(places);
+  assert.equal(label.textContent, "Park med nytt navn");
+  assert.equal(dot.element.getAttribute("aria-label"), "Park med nytt navn");
+  assert.ok(!dot.removed, "label update does not recreate the dot");
+});
+
+test("desktop continues to use original vector place-name labels", () => {
+  const { main } = setup({ mobile: false });
+  assert.equal(main.getLayer("hg-places-label")?.layout?.visibility, "visible");
 });
