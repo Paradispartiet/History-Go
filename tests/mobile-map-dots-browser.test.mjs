@@ -92,6 +92,7 @@ try {
         }
       };
       localStorage.clear();
+      window.HG_MAPTILER_KEY = "test-only";
     });
     await page.addScriptTag({ content: bundle });
     await page.evaluate(() => {
@@ -135,6 +136,9 @@ try {
         window.HGMap.resize();
         window.HGMap.refreshMarkers();
         document.querySelector('.hg-map-style-btn[data-mode="satellite"]').click();
+        if (!window.__testMap.lastStyle?.includes("maptiler.com")) {
+          throw new Error("Detaljert click never requested a real style switch");
+        }
         window.__testMap.finishStyle();
         window.HGMap.refreshMarkers();
       });
