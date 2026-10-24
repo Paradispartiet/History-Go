@@ -21,7 +21,7 @@
     const placeDetailMarkers = /* @__PURE__ */ new Map();
     let placeDetailMarkerEventsBound = false;
     let lastPlaceMarkerFeatures = [];
-    const MAX_MOBILE_DETAIL_MARKERS = 240;
+    const MAX_TOUCH_DETAIL_MARKERS = 240;
     const STYLE_STORAGE_KEY = "hg_map_style_mode";
     const STYLE_MODE_STANDARD = "standard";
     const STYLE_MODE_SATELLITE = "satellite";
@@ -126,7 +126,6 @@
       return `rgb(${r},${g},${b})`;
     }
     function initMap({ containerId = "map", start = START } = {}) {
-      var _a, _b;
       START = start || START;
       const el = document.getElementById(containerId);
       if (!el || !window.maplibregl) return null;
@@ -156,7 +155,7 @@
         console.warn("[HGMap] WebGL-kart utilgjengelig; fortsetter uten kart.", error);
         return null;
       }
-      if ((_b = (_a = window.matchMedia) == null ? void 0 : _a.call(window, "(min-width: 700px)")) == null ? void 0 : _b.matches) {
+      if (!useNativeTouchDetailMarkers()) {
         MAP.addControl(
           new maplibregl.NavigationControl({ showCompass: false }),
           "bottom-right"
@@ -619,17 +618,35 @@
       }
       updatePlaceAreaDomMarkerSizes();
     }
-    function useNativeMobileDetailMarkers() {
+    function useNativeTouchDetailMarkers() {
+      var _a;
+      const width = Number(window.innerWidth || 0);
+      if (Number(((_a = window.navigator) == null ? void 0 : _a.maxTouchPoints) || 0) >= 1) return true;
       if (typeof window.matchMedia === "function") {
-        return window.matchMedia("(max-width: 699px)").matches;
+        return window.matchMedia("(max-width: 1199px), (pointer: coarse)").matches;
       }
-      return typeof window.innerWidth === "number" && window.innerWidth <= 699;
+      return width > 0 && width <= 1199;
+    }
+    function nativeDetailDotDiameter(zoom) {
+      return Math.max(3.5, Math.min(8.5, 3.5 + (zoom - PLACE_DETAIL_MIN_ZOOM) * 0.78));
+    }
+    function updateNativeDetailDotSizes() {
+      var _a, _b, _c;
+      if (!MAP || !placeDetailMarkers.size) return;
+      const zoom = Number((_c = (_b = (_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) != null ? _b : START.zoom) != null ? _c : 13);
+      const diameter = nativeDetailDotDiameter(zoom);
+      const width = Math.max(0.9, Math.min(1.4, diameter * 0.2));
+      for (const entry of placeDetailMarkers.values()) {
+        entry.element.style.width = `${diameter.toFixed(2)}px`;
+        entry.element.style.height = `${diameter.toFixed(2)}px`;
+        entry.element.style.borderWidth = `${width.toFixed(2)}px`;
+      }
     }
     function syncPlaceDetailDomMarkers(features) {
       var _a, _b, _c, _d, _e, _f, _g, _h;
       if (!MAP || typeof (maplibregl == null ? void 0 : maplibregl.Marker) !== "function") return;
       const zoom = Number((_c = (_b = (_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) != null ? _b : START.zoom) != null ? _c : 13);
-      if (!useNativeMobileDetailMarkers() || zoom < PLACE_DETAIL_MIN_ZOOM) {
+      if (!useNativeTouchDetailMarkers() || zoom < PLACE_DETAIL_MIN_ZOOM) {
         for (const entry of placeDetailMarkers.values()) entry.marker.remove();
         placeDetailMarkers.clear();
         return;
@@ -648,7 +665,7 @@
         const [ax, ay] = a.geometry.coordinates;
         const [bx, by] = b.geometry.coordinates;
         return (ax - lon0) ** 2 + (ay - lat0) ** 2 - ((bx - lon0) ** 2 + (by - lat0) ** 2);
-      }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+      }).slice(0, MAX_TOUCH_DETAIL_MARKERS);
       if (!visible.length) {
         visible = features.filter((feature) => {
           var _a2;
@@ -657,7 +674,7 @@
           const [ax, ay] = a.geometry.coordinates;
           const [bx, by] = b.geometry.coordinates;
           return (ax - lon0) ** 2 + (ay - lat0) ** 2 - ((bx - lon0) ** 2 + (by - lat0) ** 2);
-        }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+        }).slice(0, MAX_TOUCH_DETAIL_MARKERS);
       }
       const keep = /* @__PURE__ */ new Set();
       for (const feature of visible) {
@@ -674,7 +691,7 @@
           element.style.boxSizing = "border-box";
           element.style.borderRadius = "50%";
           element.style.borderStyle = "solid";
-          element.style.borderWidth = "2px";
+          element.style.borderWidth = "1px";
           element.style.pointerEvents = "auto";
           element.style.cursor = "pointer";
           element.style.touchAction = "manipulation";
@@ -693,23 +710,22 @@
           entry.lon = feature.geometry.coordinates[0];
           entry.lat = feature.geometry.coordinates[1];
         }
-        const diameter = zoom < 12 ? 9 : zoom < 14 ? 10 : 11;
-        entry.element.style.width = `${diameter}px`;
-        entry.element.style.height = `${diameter}px`;
         entry.element.style.backgroundColor = feature.properties.fill;
         const borderColor = String(feature.properties.border || "").trim();
         const fillColor = String(feature.properties.fill || "").trim();
         entry.element.style.borderColor = !borderColor || borderColor.toLowerCase() === fillColor.toLowerCase() ? "#17212a" : borderColor;
         entry.element.style.opacity = feature.properties.coordinateTrust === "invalid" ? "0" : "1";
-        entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 5px rgba(0,0,0,.30)";
+        entry.element.style.boxShadow = "0 0 0 .45px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.28)";
       }
       for (const [id, entry] of placeDetailMarkers) {
         if (keep.has(id)) continue;
         entry.marker.remove();
         placeDetailMarkers.delete(id);
       }
+      updateNativeDetailDotSizes();
       if (!placeDetailMarkerEventsBound) {
         const onViewportChanged = () => syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
+        MAP.on("zoom", updateNativeDetailDotSizes);
         MAP.on("moveend", onViewportChanged);
         MAP.on("zoomend", onViewportChanged);
         placeDetailMarkerEventsBound = true;
@@ -903,7 +919,7 @@
       MAP.addSource(SRC, { type: "geojson", data: fc });
       MAP.addLayer({
         id: L_GLOW,
-        layout: { visibility: useNativeMobileDetailMarkers() ? "none" : "visible" },
+        layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
@@ -912,7 +928,7 @@
       });
       MAP.addLayer({
         id: L_DOTS,
-        layout: { visibility: useNativeMobileDetailMarkers() ? "none" : "visible" },
+        layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
