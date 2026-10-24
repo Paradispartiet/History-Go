@@ -1,23 +1,23 @@
 {
   "schema": "history_go_place_image_backlog_summary_v1",
   "generatedAt": "2026-10-24",
-  "generatedFromCommit": "0d0736fec2958924a4586f2d1a70683f459451f7",
+  "generatedFromCommit": "eb477ab92ad88b7d62417f96c7bc2cab04dfadfd",
   "totalPlaces": 1540,
   "summary": {
     "validLocal": 174,
-    "validRemote": 64,
+    "validRemote": 78,
     "optionalMissing": 79,
-    "missing": 1214,
-    "invalidLocalPath": 9,
-    "remaining": 1223
+    "missing": 1205,
+    "invalidLocalPath": 4,
+    "remaining": 1209
   },
   "byCategory": {
     "by": {
       "total": 254,
-      "valid": 69,
+      "valid": 83,
       "optional": 2,
-      "missing": 174,
-      "invalid": 9
+      "missing": 165,
+      "invalid": 4
     },
     "naeringsliv": {
       "total": 156,
@@ -140,11 +140,11 @@
     }
   },
   "productionOrder": [
-    "repair_31_invalid_local_paths",
+    "repair_remaining_invalid_local_paths",
     "politikk_and_current_fagverk_places",
     "places_with_existing_popupdesc_and_no_image",
     "nature_and_scenekunst",
     "remaining_categories_by_verified_source_availability"
   ],
-  "note": "Dette er en materialisert status, ikke en allowlist. Nye og endrede standardsteder stoppes av CI dersom de mangler gyldig stedsbilde. Canonical Micro Places kan mangle bilde etter den eksplisitte Micro Place-kontrakten; oppgitte, ugyldige bilder er fortsatt blokkerende. Full rapport med place-id-er regenereres av scripts/audit-place-images.mjs. Fem nye, fotograferte Oslo-steder flyttet fra missing til validRemote ved PR #6586, etter at kanoniske Place-filer og opphav ble oppdatert."
+  "note": "Materialisert status fra uendret bildevalidator. By-bolk 20/20 har nå gyldig bildepeker; eksisterende standardsteder uten gyldig bilde forblir i backlog og blokkeres ved endring."
 }
