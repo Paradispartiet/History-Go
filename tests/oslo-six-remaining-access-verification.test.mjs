@@ -89,3 +89,31 @@ test('geo research stays explicitly non-canonical until a public path waypoint a
   assert.match(teglverk.geo_research.conflicting_source_14, /oslobyleksikon/);
   assert.equal(teglverk.visitor_pin, 'HARD_HOLD');
 });
+
+test('candidate landmarks are documented without declaring a playable coordinate', () => {
+  const report = read(EVIDENCE);
+  assert.equal(report.on_path_validation_status,
+    'CANDIDATE_LANDMARKS_DOCUMENTED_NO_GEOREFERENCED_PUBLIC_VISITOR_ANCHOR');
+  for (const entry of report.decisions) {
+    const plan = entry.visitor_observation_plan;
+    assert.ok(plan && plan.candidate_landmark.length > 60, entry.place_id);
+    assert.ok(plan.visual_evidence_url.startsWith('https://'), entry.place_id);
+    assert.ok(plan.operator_site_layout_url.startsWith('https://'), entry.place_id);
+    assert.ok(plan.onsite_scope.length > 60, entry.place_id);
+    assert.ok(plan.exclusion.length > 80, entry.place_id);
+    assert.ok(plan.missing_verification.length > 80, entry.place_id);
+    assert.equal(plan.approved_waypoint, null, entry.place_id);
+    assert.equal(plan.approved_radius_m, null, entry.place_id);
+    assert.equal(plan.ready_for_activation, false, entry.place_id);
+    assert.equal(entry.safe_observation_waypoint, null, entry.place_id);
+    assert.equal(entry.visitor_radius_m, null, entry.place_id);
+  }
+  const byId = new Map(report.decisions.map(e => [e.place_id, e]));
+  assert.match(byId.get('linderud_gard').visitor_observation_plan.candidate_landmark, /blå X/);
+  assert.match(byId.get('sarabraten').visitor_observation_plan.exclusion, /Milorg/);
+  assert.match(byId.get('saeterhytten_bygdoy').visitor_observation_plan.exclusion, /brattskråningen/);
+  const tegl = byId.get('kristiania_teglverk_bryn');
+  assert.equal(tegl.visitor_pin, 'HARD_HOLD');
+  assert.match(tegl.visitor_observation_plan.exclusion, /næringseiendom/);
+  assert.ok(tegl.sources.some(s => s.url.endsWith('/bevarte-ringovner-i-norge/')));
+});
