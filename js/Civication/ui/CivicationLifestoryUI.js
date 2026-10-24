@@ -958,7 +958,7 @@
     const previous = [...(view.arkiv || [])].reverse().find(entry => entry.konsekvensTekst);
     if (!previous) return "";
     const text = String(previous.konsekvensTekst).trim();
-    const excerpt = text.length > 170 ? text.slice(0, 170).replace(/\\s+\\S*$/, "") + "…" : text;
+    const excerpt = text.length > 170 ? text.slice(0, 170).replace(/\s+\S*$/, "") + "…" : text;
     return '<section class="civi-lifestory-previous" aria-label="Et tidligere valg har betydning">'
       + '<strong>Et tidligere valg har betydning</strong><p>' + escapeHtml(excerpt)
       + '</p></section>';
