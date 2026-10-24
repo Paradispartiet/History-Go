@@ -42,6 +42,7 @@ on:
       - 'docs/PLACE_UNIFIED_SURFACE_PLAN.md'
       - 'scripts/build-place-open-payloads.mjs'
       - 'tests/place-open-hyperfast.test.mjs'
+      - 'tests/oslo-four-canonical-app-browser.mjs'
       - 'tests/black-box-productions-placecard.test.mjs'
       - 'tests/place-popup-lesespor-place-open-race.test.mjs'
       - 'tests/place-popup-v2-unified-target.test.mjs'
@@ -120,3 +121,29 @@ jobs:
           node --check tests/place-sheet-special-profiles.test.mjs
           node --check tests/place-sheet-phase7-legacy-cleanup.test.mjs
           node --test tests/place-unified-surface.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-popup-root-scoped-decorators.test.mjs tests/place-sheet-phase1.test.mjs tests/place-sheet-about-renderer.test.mjs tests/place-sheet-history-renderer.test.mjs tests/place-sheet-stories-renderer.test.mjs tests/place-sheet-before-after-renderer.test.mjs tests/place-sheet-news-renderer.test.mjs tests/place-sheet-reading-renderer.test.mjs tests/place-sheet-language-renderer.test.mjs tests/place-sheet-learning-renderer.test.mjs tests/place-sheet-sources-renderer.test.mjs tests/place-sheet-render-queue.test.mjs tests/place-sheet-direct-routing.test.mjs tests/place-sheet-special-profiles.test.mjs tests/place-sheet-phase7-legacy-cleanup.test.mjs
+
+  oslo_four_browser:
+    name: Four Oslo Places app 390/1440
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - name: Build updated Places index for real app QA
+        run: npm run places:index:build
+      - name: Build all Place-open data including four new sites
+        run: npm run place-open:build
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify all four PlaceCards, QuizCards, quiz and Fagverk on mobile and desktop
+        run: node tests/oslo-four-canonical-app-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-four-real-app-browser
+          path: artifacts/oslo-four/
+          if-no-files-found: warn
+          retention-days: 14
