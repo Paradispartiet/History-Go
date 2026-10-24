@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "arbeidersamfunnets_plass",
+  "placeFile": "data/places/politikk/oslo/places_politikk/arbeidersamfunnets_plass.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Arbeidersamfunnets plass er en offentlig plass oppkalt etter Oslo Arbeidersamfunn og ligger på tidligere tukthuseiendom.",
+    "placeObjectDistinction": "Denne rapporten gjelder plassrommet, ikke Samfunnshuset, Folkets Hus eller en av organisasjonenes bygninger.",
+    "sourceIds": [
+      "source_by",
+      "source_soc"
+    ]
+  },
+  "politicsTopics": [],
+  "sources": [
+    {
+      "id": "source_by",
+      "url": "https://oslobyleksikon.no/side/Arbeidersamfunnets_plass",
+      "sourceLocation": "Innledningen om Tukthuset, plassrom og navngivning i 1962",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-24",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_soc",
+      "url": "https://oslobyleksikon.no/side/Oslo_Arbeidersamfunn",
+      "sourceLocation": "Historien 1864, Eilert Sundt, organisasjonsform og 1893",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-24",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_house",
+      "url": "https://oslobyleksikon.no/side/Samfunnshuset",
+      "sourceLocation": "Samfunnshuset oppført for Oslo Arbeidersamfunn 1934–1941",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-24",
+      "temporalStatus": "historical"
+    }
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_arbeidersamfunnets_plass",
+      "claim": "Arbeidersamfunnets plass bærer spor av organisering og bypolitikk, men bygningen ved plassen er en annen fysisk stedsenhet.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Oslo Arbeidersamfunn var en organisasjon etablert i 1864, som senere fikk navnet på plassen.",
+          "sourceIds": [
+            "source_by"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Plassen fikk offentlig stednavn i 1962, og organisasjonen er historisk opphav til navnet.",
+          "sourceIds": [
+            "source_by"
+          ]
+        },
+        "ruleDecision": {
+          "status": "not_applicable",
+          "rationale": "Stedsbeskrivelsens kildegrunnlag dokumenterer ikke et enkelt lovvedtak som avgjør den samlede stedsfunksjonen."
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Det offentlige plassrommet og Samfunnshuset ble ulike arenaer for debatt og organisering.",
+          "sourceIds": [
+            "source_by"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Tomten ble omgjort fra tidligere tukthuseiendom til offentlig plass.",
+          "sourceIds": [
+            "source_by"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Plassen ble etablert på tidligere tukthustomt, og navnet ble vedtatt i 1962.",
+          "sourceIds": [
+            "source_by"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "De registrerte historiske hendelsene dokumenterer ikke i seg selv en målt samfunnseffekt eller årsakssammenheng."
+        }
+      }
+    }
+  ],
+  "currentVerification": {
+    "status": "N/A",
+    "rationale": "Rapporten dokumenterer historiske funksjoner og daterte institusjonsforhold, ingen ubekreftede nåtidskrav."
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "arbeidersamfunnets_plass",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/arbeidersamfunnets_plass.json",
+    "productionContext": "data/quiz/production_context/politikk/arbeidersamfunnets_plass.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Kontrollert mot kanonisk stedstekst, dokumentert utvikling 1864–1962, Oslo byleksikon, epoke-place-indeks og gjeldende story-manifest/narratives: ingen selvstendig chronology-post eller story-id for dette plassrommet. N/A er et begrunnet resultat, ikke en uutført kontroll."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "primaryFunction"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "politicsTopics",
+        "primaryFunction"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "evidenceChains"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "currentVerification"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/arbeidersamfunnets_plass_sets.json",
+        "data/quiz/production_briefs/politikk/arbeidersamfunnets_plass.json",
+        "data/quiz/production_context/politikk/arbeidersamfunnets_plass.json"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Kronologi og fortellinger kontrollert i eksisterende registre. Ingen egen chronology-post eller Story er knyttet til Place-ID-en; gate G er dokumentert N/A."
+    }
+  },
+  "review": {
+    "reviewer": "History GO assisted source trace; final editorial approval outstanding",
+    "reviewedAt": "2026-10-24",
+    "notes": "Historiske stedsfakta og eksplisitte avgrensninger dokumentert fra åpne kilder. F og G står bevisst N/A. Ingen falsk påstand om v1- eller menneskelig endelig godkjenning. Quizåpningen har nå 14 historiske, kildebelagte spørsmål knyttet til fullquiz og produksjonskontekst."
+  }
+}

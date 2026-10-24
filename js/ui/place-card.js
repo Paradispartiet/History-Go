@@ -1592,7 +1592,13 @@ if (!card) return;
   const miniImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcMiniImg"));
   setPlaceCardImgSrcStable(miniImgEl, frontImgEl?.getAttribute("src") || String(place.image ?? ""));
   
-  if (titleEl) titleEl.textContent = String(place.name || "");
+  if (titleEl) {
+    titleEl.textContent = String(place.name || "");
+    const hasLongPhoneTitle = (place.id === "arbeidersamfunnets_plass" || place.id === "statsministerboligen")
+      && window.matchMedia("(max-width: 520px)").matches;
+    titleEl.style.fontSize = hasLongPhoneTitle ? "clamp(16px, 4.5vw, 20px)" : "";
+    titleEl.style.letterSpacing = hasLongPhoneTitle ? "-.045em" : "";
+  }
   if (favoriteBtn) {
     const updatePlaceCardFavorite = () => {
       const active = !!window.HGFavoritePlaces?.has?.(place.id);

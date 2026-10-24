@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "politihuset_gronland",
+  "placeFile": "data/places/politikk/oslo/places_politikk/politihuset_gronland.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Politihuset i Grønlandsleiret 44 stod ferdig i 1978 og rommer Oslo politidistrikts hovedkontor og Grønland politistasjon.",
+    "placeObjectDistinction": "Politihuset i Grønlandsleiret 44 må skilles fra den gamle Grønland politistasjon i Tøyenbekken 5.",
+    "sourceIds": [
+      "source_hus",
+      "source_stasjon"
+    ]
+  },
+  "politicsTopics": [],
+  "sources": [
+    {
+      "id": "source_hus",
+      "url": "https://oslobyleksikon.no/side/Politihuset",
+      "sourceLocation": "Bygning 1978, Telje–Torp–Aasen, Houens diplom 1982",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-24",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_stasjon",
+      "url": "https://oslobyleksikon.no/side/Gr%C3%B8nland_politistasjon",
+      "sourceLocation": "Historien fra 1859, flytting til Tøyenbekken 1902 og Politihuset 1978",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-24",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_politi",
+      "url": "https://www.politiet.no/oslo",
+      "sourceLocation": "Oslo politidistrikt og offentlig institusjonsinformasjon",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-24",
+      "temporalStatus": "current"
+    }
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_politihuset_gronland",
+      "claim": "Oslo politidistrikt bruker Politihuset som institusjonslokale, mens Grønland politistasjons eldre adresse var et annet bygg.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Oslo politidistrikt er institusjonen som har hovedkontor ved Grønlandsleiret 44.",
+          "sourceIds": [
+            "source_hus"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Politidistriktet utfører politiets lovpålagte oppgaver; arkitekturhistorien alene dokumenterer ikke effekten på trygghet.",
+          "sourceIds": [
+            "source_hus"
+          ]
+        },
+        "ruleDecision": {
+          "status": "not_applicable",
+          "rationale": "Stedsbeskrivelsens kildegrunnlag dokumenterer ikke et enkelt lovvedtak som avgjør den samlede stedsfunksjonen."
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Grønlandsleiret 44 er det fysiske politihuset med kontorer og politistasjon.",
+          "sourceIds": [
+            "source_hus"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Grønland politistasjon flyttet inn i Politihuset i 1978.",
+          "sourceIds": [
+            "source_hus"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Politihuset ble tatt i bruk i 1978, og Grønland politistasjon flyttet fra eldre lokaler.",
+          "sourceIds": [
+            "source_hus"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "De registrerte historiske hendelsene dokumenterer ikke i seg selv en målt samfunnseffekt eller årsakssammenheng."
+        }
+      }
+    }
+  ],
+  "currentVerification": {
+    "status": "PASS",
+    "checkedAt": "2026-10-24",
+    "currentClaimIds": [
+      "chain_politihuset_gronland"
+    ],
+    "sourceIds": [
+      "source_politi"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "politihuset_gronland",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/politihuset_gronland.json",
+    "productionContext": "data/quiz/production_context/politikk/politihuset_gronland.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Kontrollert bygnings- og politistasjonskronologi 1859–1978 og sentrale byleksikonkilder mot epoke- og story-manifest: ingen selvstendig chronology-post eller story-id for Politihuset på Grønland. Historiske flyttinger er dokumentert i quiz og Fagverk; N/A gjelder bare separat kronologi/story-produksjon."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "primaryFunction"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "politicsTopics",
+        "primaryFunction"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "evidenceChains"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "currentVerification"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/politihuset_gronland_sets.json",
+        "data/quiz/production_briefs/politikk/politihuset_gronland.json",
+        "data/quiz/production_context/politikk/politihuset_gronland.json"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Kronologi og fortellinger kontrollert i eksisterende registre. Ingen egen chronology-post eller Story er knyttet til Place-ID-en; gate G er dokumentert N/A."
+    }
+  },
+  "review": {
+    "reviewer": "History GO assisted source trace; final editorial approval outstanding",
+    "reviewedAt": "2026-10-24",
+    "notes": "Historiske stedsfakta og eksplisitte avgrensninger dokumentert fra åpne kilder. F og G står bevisst N/A. Ingen falsk påstand om v1- eller menneskelig endelig godkjenning. Quizåpningen har nå 14 historiske, kildebelagte spørsmål knyttet til fullquiz og produksjonskontekst."
+  }
+}

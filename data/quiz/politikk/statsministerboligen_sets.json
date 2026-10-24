@@ -1,0 +1,858 @@
+{
+  "targetId": "statsministerboligen",
+  "categoryId": "politikk",
+  "sources": {
+    "source_statsministerboligen_01": "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1905-1945/1908-Statsministerboliger/id759072/",
+    "source_statsministerboligen_02": "https://www.regjeringen.no/no/dokumenter/Stmeld-nr-22-2003-2004-/id135996/?ch=2",
+    "source_statsministerboligen_03": "https://www.regjeringen.no/no/dokumenter/stprp-nr-1-20082009-/id529604/?ch=2",
+    "source_statsministerboligen_04": "https://www.regjeringen.no/no/dokumenter/Stmeld-nr-22-2003-2004-/id135996/?ch=3"
+  },
+  "production_context": {
+    "manifest_category": "politikk",
+    "profile": "narrow_3x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/politikk/statsministerboligen.json",
+    "context_artifact": "data/quiz/production_context/politikk/statsministerboligen.json",
+    "resolved_files": {
+      "pensum": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "emner": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "fagkart": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "methods": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "styring_institusjoner_forvaltning",
+      "rett_lov_rettssikkerhet"
+    ],
+    "emne_ids": [
+      "em_pol_institusjoner_styring",
+      "em_pol_administrativ_makt",
+      "em_pol_politisk_historie"
+    ],
+    "topic_hook_ids": [
+      "institusjon_som_maktform",
+      "legitimitet_i_systemet",
+      "lovendringer",
+      "parlamentarisme"
+    ],
+    "method_ids": [
+      "met_pol_institusjonsanalyse",
+      "met_pol_forvaltningsanalyse",
+      "met_pol_legitimitetsanalyse",
+      "met_pol_politisk_historisk_analyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/politikk/",
+        "data/places/politikk/oslo/places_politikk/statsministerboligen.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen aktiv fullquiz med targetId=statsministerboligen i manifestet per 24.10.2026."
+      },
+      "decisions": [
+        "Produksjon fra kontrollerte kilder; ti opprinnelige spørsmål redigert og bevart.",
+        "Elleve nye spørsmål for stedsspesifikk historisk dybde.",
+        "Tre sett à sju spørsmål fordi kildene bærer 21 distinkte faktiske læringsoppgaver; ikke fyll med generiske eller teoretiske spørsmål."
+      ],
+      "knowledge_migration": "Ingen tidligere canonical quiz-eier; genereres fra fullquiz med Knowledge canonical generator."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Avgrenset by- eller institusjonshistorie med 21 særskilte kildebelagte spørsmål om opphav, historiske endringer og institusjonell funksjon. Rich-profil ville kreve mer uavhengig primærmateriale."
+    },
+    "held_back_candidates": [
+      "Uverifiserte fortolkninger av sosiale og økonomiske effekter.",
+      "Oppgaver om andre bygg uten presis stedsrelasjon.",
+      "Generiske teori- og metodeoppgaver uten kildegrunnlag."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "politikk_statsministerboligen_set_1",
+      "title": "Stedet og bakgrunnen",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "statsministerboligen_quiz_01",
+          "quiz_id": "politikk_statsministerboligen_set_1_q1",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvor ligger den faste statsministerboligen som ble tatt i bruk i 2008?",
+          "options": [
+            "Grønlandsleiret 44",
+            "Torggata 9",
+            "Inkognitogata 18"
+          ],
+          "answer": "Inkognitogata 18",
+          "answerIndex": 2,
+          "knowledge": "Statsministerboligen i Inkognitogata 18 ble tatt i bruk høsten 2008, da Jens Stoltenberg flyttet inn.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_institusjoner_styring",
+          "source": [
+            "source_statsministerboligen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Statsministerboligen i Inkognitogata 18 ble tatt i bruk høsten 2008, da Jens Stoltenberg flyttet inn.",
+          "claim_id": "claim_statsministerboligen_quiz_01",
+          "primary_knowledge_unit_id": "ku_politikk_statsministerboligen_i_i_8b14f37572",
+          "knowledge_unit_ids": [
+            "ku_politikk_statsministerboligen_i_i_8b14f37572"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_02",
+          "quiz_id": "politikk_statsministerboligen_set_1_q2",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvilken statsminister flyttet inn i den nye embetsboligen høsten 2008?",
+          "options": [
+            "Kjell Magne Bondevik",
+            "Jens Stoltenberg",
+            "Erna Solberg"
+          ],
+          "answer": "Jens Stoltenberg",
+          "answerIndex": 1,
+          "knowledge": "Statsministerboligen i Inkognitogata 18 ble tatt i bruk høsten 2008, da Jens Stoltenberg flyttet inn.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_institusjoner_styring",
+          "source": [
+            "source_statsministerboligen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Statsministerboligen i Inkognitogata 18 ble tatt i bruk høsten 2008, da Jens Stoltenberg flyttet inn.",
+          "claim_id": "claim_statsministerboligen_quiz_02",
+          "primary_knowledge_unit_id": "ku_politikk_statsministerboligen_i_i_8b14f37572",
+          "knowledge_unit_ids": [
+            "ku_politikk_statsministerboligen_i_i_8b14f37572"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_03",
+          "quiz_id": "politikk_statsministerboligen_set_1_q3",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Når ble statsministerboligen i Inkognitogata 18 tatt i bruk?",
+          "options": [
+            "Høsten 1999",
+            "Høsten 2008",
+            "Høsten 2013"
+          ],
+          "answer": "Høsten 2008",
+          "answerIndex": 1,
+          "knowledge": "Statsministerboligen i Inkognitogata 18 ble tatt i bruk høsten 2008, da Jens Stoltenberg flyttet inn.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_institusjoner_styring",
+          "source": [
+            "source_statsministerboligen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Statsministerboligen i Inkognitogata 18 ble tatt i bruk høsten 2008, da Jens Stoltenberg flyttet inn.",
+          "claim_id": "claim_statsministerboligen_quiz_03",
+          "primary_knowledge_unit_id": "ku_politikk_statsministerboligen_i_i_8b14f37572",
+          "knowledge_unit_ids": [
+            "ku_politikk_statsministerboligen_i_i_8b14f37572"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_04",
+          "quiz_id": "politikk_statsministerboligen_set_1_q4",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "I hvilken periode hadde statsministerembetet fast boligtilknytning til Parkveien 45?",
+          "options": [
+            "1873–1908",
+            "1945–1978",
+            "1999–2008"
+          ],
+          "answer": "1873–1908",
+          "answerIndex": 0,
+          "knowledge": "I perioden 1873–1908 hadde statsministerembetet en fast boligtilknytning til Parkveien 45.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_institusjoner_styring",
+          "source": [
+            "source_statsministerboligen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I perioden 1873–1908 hadde statsministerembetet en fast boligtilknytning til Parkveien 45.",
+          "claim_id": "claim_statsministerboligen_quiz_04",
+          "primary_knowledge_unit_id": "ku_politikk_i_perioden_1873_1908_had_3f380b0992",
+          "knowledge_unit_ids": [
+            "ku_politikk_i_perioden_1873_1908_had_3f380b0992"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_05",
+          "quiz_id": "politikk_statsministerboligen_set_1_q5",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvordan bodde flere norske statsministre etter at ordningen ved Parkveien 45 opphørte i 1908?",
+          "options": [
+            "Fast i Slottet",
+            "Fast på Akershus festning",
+            "I sine egne hjem"
+          ],
+          "answer": "I sine egne hjem",
+          "answerIndex": 2,
+          "knowledge": "Etter 1908 bodde flere norske statsministre i sine egne hjem.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_institusjoner_styring",
+          "source": [
+            "source_statsministerboligen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Etter 1908 bodde flere norske statsministre i sine egne hjem.",
+          "claim_id": "claim_statsministerboligen_quiz_05",
+          "primary_knowledge_unit_id": "ku_politikk_etter_1908_bodde_flere_n_7d7ea29388",
+          "knowledge_unit_ids": [
+            "ku_politikk_etter_1908_bodde_flere_n_7d7ea29388"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_06",
+          "quiz_id": "politikk_statsministerboligen_set_1_q6",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Når startet statens planlegging av et nytt samlet representasjonsanlegg med statsministerbolig?",
+          "options": [
+            "På 1870-tallet",
+            "På 1960-tallet",
+            "Mot slutten av 1990-årene"
+          ],
+          "answer": "Mot slutten av 1990-årene",
+          "answerIndex": 2,
+          "knowledge": "På slutten av 1990-årene arbeidet staten med planer for et samlet representasjonsanlegg med statsministerbolig.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_institusjoner_styring",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "På slutten av 1990-årene arbeidet staten med planer for et samlet representasjonsanlegg med statsministerbolig.",
+          "claim_id": "claim_statsministerboligen_quiz_06",
+          "primary_knowledge_unit_id": "ku_politikk_pa_slutten_av_1990_arene_0fe6bdc627",
+          "knowledge_unit_ids": [
+            "ku_politikk_pa_slutten_av_1990_arene_0fe6bdc627"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_07",
+          "quiz_id": "politikk_statsministerboligen_set_1_q7",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Når la regjeringen fram forslag om et samlet representasjonsanlegg?",
+          "options": [
+            "1989",
+            "2004",
+            "2013"
+          ],
+          "answer": "2004",
+          "answerIndex": 1,
+          "knowledge": "Regjeringen la i 2004 fram et forslag om et slikt representasjonsanlegg.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_institusjoner_styring",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Regjeringen la i 2004 fram et forslag om et slikt representasjonsanlegg.",
+          "claim_id": "claim_statsministerboligen_quiz_07",
+          "primary_knowledge_unit_id": "ku_politikk_regjeringen_la_i_2004_fr_8ac362335b",
+          "knowledge_unit_ids": [
+            "ku_politikk_regjeringen_la_i_2004_fr_8ac362335b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_statsministerboligen_set_2",
+      "title": "Mennesker og tidslag",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "statsministerboligen_quiz_08",
+          "quiz_id": "politikk_statsministerboligen_set_2_q1",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvilke tre eiendommer inngikk i planen for representasjonsanlegget?",
+          "options": [
+            "Inkognitogata 18, Riddervolds gate 2 og Parkveien 45",
+            "Stortinget, Slottet og Oslo rådhus",
+            "Grønlandsleiret 44, Tøyenbekken 5 og Ruseløkkveien 3"
+          ],
+          "answer": "Inkognitogata 18, Riddervolds gate 2 og Parkveien 45",
+          "answerIndex": 0,
+          "knowledge": "Planen omfattet eiendommene Inkognitogata 18, Riddervolds gate 2 og Parkveien 45.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_administrativ_makt",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Planen omfattet eiendommene Inkognitogata 18, Riddervolds gate 2 og Parkveien 45.",
+          "claim_id": "claim_statsministerboligen_quiz_08",
+          "primary_knowledge_unit_id": "ku_politikk_planen_omfattet_eiendomm_1ce3129c13",
+          "knowledge_unit_ids": [
+            "ku_politikk_planen_omfattet_eiendomm_1ce3129c13"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_09",
+          "quiz_id": "politikk_statsministerboligen_set_2_q2",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Når begynte byggearbeidene for det nye representasjonsanlegget?",
+          "options": [
+            "November 2006",
+            "Juni 1999",
+            "Oktober 2013"
+          ],
+          "answer": "November 2006",
+          "answerIndex": 0,
+          "knowledge": "Byggearbeidet for representasjonsanlegget startet i november 2006.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_administrativ_makt",
+          "source": [
+            "source_statsministerboligen_03"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byggearbeidet for representasjonsanlegget startet i november 2006.",
+          "claim_id": "claim_statsministerboligen_quiz_09",
+          "primary_knowledge_unit_id": "ku_politikk_byggearbeidet_for_repres_a17eef5585",
+          "knowledge_unit_ids": [
+            "ku_politikk_byggearbeidet_for_repres_a17eef5585"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_10",
+          "quiz_id": "politikk_statsministerboligen_set_2_q3",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvem flyttet inn i statsministerboligen etter regjeringsskiftet i 2013?",
+          "options": [
+            "Gro Harlem Brundtland",
+            "Kåre Willoch",
+            "Erna Solberg"
+          ],
+          "answer": "Erna Solberg",
+          "answerIndex": 2,
+          "knowledge": "Ved regjeringsskiftet i 2013 flyttet Jens Stoltenberg ut, og Erna Solberg flyttet inn et par uker senere.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_administrativ_makt",
+          "source": [
+            "source_statsministerboligen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ved regjeringsskiftet i 2013 flyttet Jens Stoltenberg ut, og Erna Solberg flyttet inn et par uker senere.",
+          "claim_id": "claim_statsministerboligen_quiz_10",
+          "primary_knowledge_unit_id": "ku_politikk_ved_regjeringsskiftet_i__b78e029876",
+          "knowledge_unit_ids": [
+            "ku_politikk_ved_regjeringsskiftet_i__b78e029876"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_11",
+          "quiz_id": "politikk_statsministerboligen_set_2_q4",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvilken statlig byggherre fikk i 1999 oppdraget med å utrede representasjonsanlegget?",
+          "options": [
+            "Oslo kommune",
+            "Statsbygg",
+            "Norges Bank"
+          ],
+          "answer": "Statsbygg",
+          "answerIndex": 1,
+          "knowledge": "Statsbygg ble bedt om å utarbeide skisseprosjektet for de tre statlige eiendommene i 1999.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_administrativ_makt",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Statsbygg ble bedt om å utarbeide skisseprosjektet for de tre statlige eiendommene i 1999.",
+          "claim_id": "claim_statsministerboligen_quiz_11",
+          "primary_knowledge_unit_id": "ku_politikk_statsbygg_ble_bedt_om_a__ff85c2b878",
+          "knowledge_unit_ids": [
+            "ku_politikk_statsbygg_ble_bedt_om_a__ff85c2b878"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_12",
+          "quiz_id": "politikk_statsministerboligen_set_2_q5",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "I hvilken måned i 1999 fikk Statsbygg oppdraget fra Statsministerens kontor?",
+          "options": [
+            "Juli",
+            "Januar",
+            "Desember"
+          ],
+          "answer": "Januar",
+          "answerIndex": 1,
+          "knowledge": "Stortingsmeldingen beskriver oppdraget som gitt i januar 1999.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_administrativ_makt",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Stortingsmeldingen beskriver oppdraget som gitt i januar 1999.",
+          "claim_id": "claim_statsministerboligen_quiz_12",
+          "primary_knowledge_unit_id": "ku_politikk_stortingsmeldingen_beskr_5aedcf5e9f",
+          "knowledge_unit_ids": [
+            "ku_politikk_stortingsmeldingen_beskr_5aedcf5e9f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_13",
+          "quiz_id": "politikk_statsministerboligen_set_2_q6",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvilken eiendom i representasjonsanlegget skulle brukes til overnatting og møter for gjester?",
+          "options": [
+            "Riddervolds gate 2",
+            "Inkognitogata 18",
+            "Kristian IVs gate 7"
+          ],
+          "answer": "Riddervolds gate 2",
+          "answerIndex": 0,
+          "knowledge": "Riddervolds gate 2 var planlagt til innkvartering og møtefasiliteter for utenlandske gjester.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_administrativ_makt",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Riddervolds gate 2 var planlagt til innkvartering og møtefasiliteter for utenlandske gjester.",
+          "claim_id": "claim_statsministerboligen_quiz_13",
+          "primary_knowledge_unit_id": "ku_politikk_riddervolds_gate_2_var_p_4d06538c0c",
+          "knowledge_unit_ids": [
+            "ku_politikk_riddervolds_gate_2_var_p_4d06538c0c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_14",
+          "quiz_id": "politikk_statsministerboligen_set_2_q7",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvordan ble de tre statlige eiendommene fordelt i 2004-planen?",
+          "options": [
+            "Statsministerbolig, representasjon og gjesterom fikk ulike funksjoner",
+            "Alle tre ble planlagt som private statsrådsboliger",
+            "Planen skilte bolig og offisielle møter i forskjellige byer"
+          ],
+          "answer": "Statsministerbolig, representasjon og gjesterom fikk ulike funksjoner",
+          "answerIndex": 0,
+          "knowledge": "Regjeringens plan omfattet Inkognitogata 18, Riddervolds gate 2 og Parkveien 45 med ulike bolig- og representasjonsfunksjoner.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_administrativ_makt",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Regjeringens plan omfattet Inkognitogata 18, Riddervolds gate 2 og Parkveien 45 med ulike bolig- og representasjonsfunksjoner.",
+          "claim_id": "claim_statsministerboligen_quiz_14",
+          "primary_knowledge_unit_id": "ku_politikk_regjeringens_plan_omfatt_c32440deb7",
+          "knowledge_unit_ids": [
+            "ku_politikk_regjeringens_plan_omfatt_c32440deb7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_statsministerboligen_set_3",
+      "title": "Endring og betydning",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "statsministerboligen_quiz_15",
+          "quiz_id": "politikk_statsministerboligen_set_3_q1",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hva skiller statsministerens embetsbolig fra en privat bolig?",
+          "options": [
+            "Boligen blir statsministerens private eiendom etter avgang",
+            "Embetsboligen følger statsministervervet ved regjeringsskifte",
+            "Boligen følger alltid samme politiske parti"
+          ],
+          "answer": "Embetsboligen følger statsministervervet ved regjeringsskifte",
+          "answerIndex": 1,
+          "knowledge": "Inkognitogata 18 brukes av skiftende statsministre i kraft av embetet, slik innflyttingene i 2008 og 2013 viser.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_politisk_historie",
+          "source": [
+            "source_statsministerboligen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Inkognitogata 18 brukes av skiftende statsministre i kraft av embetet, slik innflyttingene i 2008 og 2013 viser.",
+          "claim_id": "claim_statsministerboligen_quiz_15",
+          "primary_knowledge_unit_id": "ku_politikk_inkognitogata_18_brukes__20ed957dea",
+          "knowledge_unit_ids": [
+            "ku_politikk_inkognitogata_18_brukes__20ed957dea"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_16",
+          "quiz_id": "politikk_statsministerboligen_set_3_q2",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvilken forskjell hadde planlagte Inkognitogata 18 og Riddervolds gate 2?",
+          "options": [
+            "Inkognitogata var planlagt til gjester, Riddervolds gate til statsminister",
+            "Begge byggene skulle bare være kontorlokaler uten overnatting",
+            "Statsministerbolig i den første, gjesteovernatting og møter i den andre"
+          ],
+          "answer": "Statsministerbolig i den første, gjesteovernatting og møter i den andre",
+          "answerIndex": 2,
+          "knowledge": "Planmeldingen beskriver privat statsministerbolig i Inkognitogata 18 og gjeste- og møtefasiliteter i Riddervolds gate 2.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_politisk_historie",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Planmeldingen beskriver privat statsministerbolig i Inkognitogata 18 og gjeste- og møtefasiliteter i Riddervolds gate 2.",
+          "claim_id": "claim_statsministerboligen_quiz_16",
+          "primary_knowledge_unit_id": "ku_politikk_planmeldingen_beskriver__6dabcd9f64",
+          "knowledge_unit_ids": [
+            "ku_politikk_planmeldingen_beskriver__6dabcd9f64"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_17",
+          "quiz_id": "politikk_statsministerboligen_set_3_q3",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hva viser hendelsesrekken fra 2004 til 2008 for statsministerboligen?",
+          "options": [
+            "Først offentlig plan, deretter byggestart og innflytting",
+            "Regjeringsskiftet i 2013 startet planleggingen",
+            "Boligen ble tatt i bruk før byggearbeidene startet"
+          ],
+          "answer": "Først offentlig plan, deretter byggestart og innflytting",
+          "answerIndex": 0,
+          "knowledge": "Representasjonsanlegget ble omtalt i regjeringens planmelding i 2004, bygging begynte i 2006, og boligen ble tatt i bruk i 2008.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_politisk_historie",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Representasjonsanlegget ble omtalt i regjeringens planmelding i 2004, bygging begynte i 2006, og boligen ble tatt i bruk i 2008.",
+          "claim_id": "claim_statsministerboligen_quiz_17",
+          "primary_knowledge_unit_id": "ku_politikk_representasjonsanlegget__4d97bf5d13",
+          "knowledge_unit_ids": [
+            "ku_politikk_representasjonsanlegget__4d97bf5d13"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_18",
+          "quiz_id": "politikk_statsministerboligen_set_3_q4",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hva hadde Jens Stoltenbergs innflytting i 2008 og Erna Solbergs i 2013 til felles?",
+          "options": [
+            "De kjøpte begge boligen av staten ved tiltredelsen",
+            "Begge flyttet inn i den samme varige embetsboligen",
+            "De flyttet til forskjellige nybygde embetsboliger i 2008 og 2013"
+          ],
+          "answer": "Begge flyttet inn i den samme varige embetsboligen",
+          "answerIndex": 1,
+          "knowledge": "Boligen har en kontinuerlig funksjon knyttet til statsministerembetet selv om statsministeren skifter.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_politisk_historie",
+          "source": [
+            "source_statsministerboligen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Boligen har en kontinuerlig funksjon knyttet til statsministerembetet selv om statsministeren skifter.",
+          "claim_id": "claim_statsministerboligen_quiz_18",
+          "primary_knowledge_unit_id": "ku_politikk_boligen_har_en_kontinuer_407303f464",
+          "knowledge_unit_ids": [
+            "ku_politikk_boligen_har_en_kontinuer_407303f464"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "statsministerboligen_quiz_19",
+          "quiz_id": "politikk_statsministerboligen_set_3_q5",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hva illustrerer det at statsministerboligen skifter beboer med regjeringen?",
+          "options": [
+            "Hver statsminister får varig eiendomsrett til boligen",
+            "Hver regjering bygger sin egen statsministerbolig",
+            "Institusjonell kontinuitet gjennom skiftende politiske ledere"
+          ],
+          "answer": "Institusjonell kontinuitet gjennom skiftende politiske ledere",
+          "answerIndex": 2,
+          "knowledge": "Embetsboligen hører til den statlige institusjonsordningen, mens de enkelte statsministrene kommer og går.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_pol_institusjoner_styring",
+          "source": [
+            "source_statsministerboligen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Embetsboligen hører til den statlige institusjonsordningen, mens de enkelte statsministrene kommer og går.",
+          "claim_id": "claim_statsministerboligen_quiz_19",
+          "primary_knowledge_unit_id": "ku_politikk_embetsboligen_h_rer_til__e9e3d79636",
+          "knowledge_unit_ids": [
+            "ku_politikk_embetsboligen_h_rer_til__e9e3d79636"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_institusjonsanalyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1905-1945/1908-Statsministerboliger/id759072/",
+            "Bruk met_pol_institusjonsanalyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ],
+          "topic_hook_id": "institusjon_som_maktform",
+          "thinker_id": "max_weber",
+          "theory_ref": {
+            "topic_hook_id": "institusjon_som_maktform",
+            "why_it_helps": "Webers skille mellom embete og person setter den faste statsministerboligen og de skiftende beboerne inn i en institusjonell ramme. Den historiske kilden fastslår selve innflyttingene."
+          }
+        },
+        {
+          "id": "statsministerboligen_quiz_20",
+          "quiz_id": "politikk_statsministerboligen_set_3_q6",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hvordan viser representasjonsanlegget samordning av statlige funksjoner?",
+          "options": [
+            "Bolig, sikkerhet og offisielle møter ble planlagt i ett sammenhengende kvartal",
+            "Planen flyttet statsministerens kontor til Slottet",
+            "Bolig- og møtefunksjoner ble plassert i forskjellige landsdeler"
+          ],
+          "answer": "Bolig, sikkerhet og offisielle møter ble planlagt i ett sammenhengende kvartal",
+          "answerIndex": 0,
+          "knowledge": "Representasjonsprosjektet skulle samle statsministerbolig, gjestefasiliteter og statlige møter på nærliggende eiendommer.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_pol_politisk_historie",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Representasjonsprosjektet skulle samle statsministerbolig, gjestefasiliteter og statlige møter på nærliggende eiendommer.",
+          "claim_id": "claim_statsministerboligen_quiz_20",
+          "primary_knowledge_unit_id": "ku_politikk_representasjonsprosjekte_5644208afa",
+          "knowledge_unit_ids": [
+            "ku_politikk_representasjonsprosjekte_5644208afa"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_forvaltningsanalyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://www.regjeringen.no/no/dokumenter/Stmeld-nr-22-2003-2004-/id135996/?ch=2",
+            "Bruk met_pol_forvaltningsanalyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        },
+        {
+          "id": "statsministerboligen_quiz_21",
+          "quiz_id": "politikk_statsministerboligen_set_3_q7",
+          "categoryId": "politikk",
+          "placeId": "statsministerboligen",
+          "targetId": "statsministerboligen",
+          "question_scope": "place",
+          "question": "Hva kan en offentlig planmelding fra 2004 dokumentere?",
+          "options": [
+            "At alle planlagte effekter var målt i 2004",
+            "Forslag og begrunnelser, men ikke alle senere faktiske virkninger",
+            "At alle senere endringer ble umulige etter vedtaket"
+          ],
+          "answer": "Forslag og begrunnelser, men ikke alle senere faktiske virkninger",
+          "answerIndex": 1,
+          "knowledge": "Planmeldingen dokumenterer begrunnelser for et nytt anlegg; senere gjennomføring og effekter må kontrolleres med nyere kilder.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_pol_politisk_historie",
+          "source": [
+            "source_statsministerboligen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Planmeldingen dokumenterer begrunnelser for et nytt anlegg; senere gjennomføring og effekter må kontrolleres med nyere kilder.",
+          "claim_id": "claim_statsministerboligen_quiz_21",
+          "primary_knowledge_unit_id": "ku_politikk_planmeldingen_dokumenter_99919671be",
+          "knowledge_unit_ids": [
+            "ku_politikk_planmeldingen_dokumenter_99919671be"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_politisk_historisk_analyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://www.regjeringen.no/no/dokumenter/Stmeld-nr-22-2003-2004-/id135996/?ch=2",
+            "Bruk met_pol_politisk_historisk_analyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        }
+      ]
+    }
+  ]
+}

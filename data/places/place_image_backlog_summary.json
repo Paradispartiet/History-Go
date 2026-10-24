@@ -1,22 +1,22 @@
 {
   "schema": "history_go_place_image_backlog_summary_v1",
   "generatedAt": "2026-10-24",
-  "generatedFromCommit": "e129800057cd77b4f2864cd9dfbf971a62550987",
+  "generatedFromCommit": "0d0736fec2958924a4586f2d1a70683f459451f7",
   "totalPlaces": 1540,
   "summary": {
     "validLocal": 174,
-    "validRemote": 59,
+    "validRemote": 64,
     "optionalMissing": 79,
-    "missing": 1219,
+    "missing": 1214,
     "invalidLocalPath": 9,
-    "remaining": 1228
+    "remaining": 1223
   },
   "byCategory": {
     "by": {
       "total": 254,
-      "valid": 68,
+      "valid": 69,
       "optional": 2,
-      "missing": 175,
+      "missing": 174,
       "invalid": 9
     },
     "naeringsliv": {
@@ -42,16 +42,16 @@
     },
     "historie": {
       "total": 528,
-      "valid": 31,
+      "valid": 32,
       "optional": 8,
-      "missing": 489,
+      "missing": 488,
       "invalid": 0
     },
     "politikk": {
       "total": 45,
-      "valid": 15,
+      "valid": 18,
       "optional": 7,
-      "missing": 23,
+      "missing": 20,
       "invalid": 0
     },
     "natur": {
@@ -146,5 +146,5 @@
     "nature_and_scenekunst",
     "remaining_categories_by_verified_source_availability"
   ],
-  "note": "Dette er en materialisert status, ikke en allowlist. Nye og endrede standardsteder stoppes av CI dersom de mangler gyldig stedsbilde. Canonical Micro Places kan mangle bilde etter den eksplisitte Micro Place-kontrakten; oppgitte, ugyldige bilder er fortsatt blokkerende. Full rapport med place-id-er regenereres av scripts/audit-place-images.mjs."
+  "note": "Dette er en materialisert status, ikke en allowlist. Nye og endrede standardsteder stoppes av CI dersom de mangler gyldig stedsbilde. Canonical Micro Places kan mangle bilde etter den eksplisitte Micro Place-kontrakten; oppgitte, ugyldige bilder er fortsatt blokkerende. Full rapport med place-id-er regenereres av scripts/audit-place-images.mjs. Fem nye, fotograferte Oslo-steder flyttet fra missing til validRemote ved PR #6586, etter at kanoniske Place-filer og opphav ble oppdatert."
 }

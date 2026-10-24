@@ -1,0 +1,865 @@
+{
+  "targetId": "nobels_fredssenter",
+  "categoryId": "historie",
+  "sources": {
+    "source_nobels_fredssenter_01": "https://www.nobelpeacecenter.org/en/news/from-idea-to-reality",
+    "source_nobels_fredssenter_02": "https://www.nobelpeacecenter.org/en/about-us",
+    "source_nobels_fredssenter_03": "https://oslobyleksikon.no/side/Vestbanestasjonen",
+    "source_nobels_fredssenter_04": "https://www.nobelpeaceprize.org/about-us/nobel-network/",
+    "source_nobels_fredssenter_05": "https://www.nobelpeacecenter.org/en/news/a-meeting-place-for-people-and-culture"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/historie/nobels_fredssenter.json",
+    "context_artifact": "data/quiz/production_context/historie/nobels_fredssenter.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_minnesteder_historiebruk"
+    ],
+    "topic_hook_ids": [
+      "his_minnested_ritual_offentlig_sorg",
+      "his_spor_materialitet",
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_minnesteds_og_ritualanalyse",
+      "met_minneanalyse",
+      "met_kildekritikk",
+      "met_restaurerings_autentisitetsanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/",
+        "data/places/historie/oslo/places_historie/nobels_fredssenter.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen aktiv fullquiz med targetId=nobels_fredssenter i manifestet per 24.10.2026."
+      },
+      "decisions": [
+        "Produksjon fra kontrollerte kilder; ti opprinnelige spørsmål redigert og bevart.",
+        "Elleve nye spørsmål for stedsspesifikk historisk dybde.",
+        "Tre sett à sju spørsmål fordi kildene bærer 21 distinkte faktiske læringsoppgaver; ikke fyll med generiske eller teoretiske spørsmål."
+      ],
+      "knowledge_migration": "Ingen tidligere canonical quiz-eier; genereres fra fullquiz med Knowledge canonical generator."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Avgrenset by- eller institusjonshistorie med 21 særskilte kildebelagte spørsmål om opphav, historiske endringer og institusjonell funksjon. Rich-profil ville kreve mer uavhengig primærmateriale."
+    },
+    "held_back_candidates": [
+      "Uverifiserte fortolkninger av sosiale og økonomiske effekter.",
+      "Oppgaver om andre bygg uten presis stedsrelasjon.",
+      "Generiske teori- og metodeoppgaver uten kildegrunnlag."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "historie_nobels_fredssenter_set_1",
+      "title": "Stedet og bakgrunnen",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "nobels_fredssenter_quiz_01",
+          "quiz_id": "historie_nobels_fredssenter_set_1_q1",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "På hvilken dato åpnet Nobels Fredssenter?",
+          "options": [
+            "7. juni 2005",
+            "11. juni 1995",
+            "11. juni 2005"
+          ],
+          "answer": "11. juni 2005",
+          "answerIndex": 2,
+          "knowledge": "Nobels Fredssenter åpnet 11. juni 2005 i den tidligere Vestbanestasjonens hovedbygning på Brynjulf Bulls plass.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "source_nobels_fredssenter_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nobels Fredssenter åpnet 11. juni 2005 i den tidligere Vestbanestasjonens hovedbygning på Brynjulf Bulls plass.",
+          "claim_id": "claim_nobels_fredssenter_quiz_01",
+          "primary_knowledge_unit_id": "ku_historie_nobels_fredssenter_apnet_78a8853ca6",
+          "knowledge_unit_ids": [
+            "ku_historie_nobels_fredssenter_apnet_78a8853ca6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_02",
+          "quiz_id": "historie_nobels_fredssenter_set_1_q2",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hva var bygningens tidligere hovedfunksjon?",
+          "options": [
+            "Regjeringskontor",
+            "Jernbanestasjon",
+            "Postkontor"
+          ],
+          "answer": "Jernbanestasjon",
+          "answerIndex": 1,
+          "knowledge": "Jernbanebygningen fra 1872 ble tatt i bruk til utstillinger, møter og samtaler om Nobels fredspris.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "source_nobels_fredssenter_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Jernbanebygningen fra 1872 ble tatt i bruk til utstillinger, møter og samtaler om Nobels fredspris.",
+          "claim_id": "claim_nobels_fredssenter_quiz_02",
+          "primary_knowledge_unit_id": "ku_historie_jernbanebygningen_fra_18_17e748a126",
+          "knowledge_unit_ids": [
+            "ku_historie_jernbanebygningen_fra_18_17e748a126"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_03",
+          "quiz_id": "historie_nobels_fredssenter_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Når stod Vestbanestasjonens hovedbygning ferdig?",
+          "options": [
+            "1905",
+            "1872",
+            "1950"
+          ],
+          "answer": "1872",
+          "answerIndex": 1,
+          "knowledge": "Vestbanestasjonen stod ferdig ved Drammensbanens åpning i 1872 etter tegninger av Georg Andreas Bull.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "source_nobels_fredssenter_03"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vestbanestasjonen stod ferdig ved Drammensbanens åpning i 1872 etter tegninger av Georg Andreas Bull.",
+          "claim_id": "claim_nobels_fredssenter_quiz_03",
+          "primary_knowledge_unit_id": "ku_historie_vestbanestasjonen_stod_f_493ada8305",
+          "knowledge_unit_ids": [
+            "ku_historie_vestbanestasjonen_stod_f_493ada8305"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_04",
+          "quiz_id": "historie_nobels_fredssenter_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvem tegnet Vestbanestasjonens hovedbygning?",
+          "options": [
+            "Georg Andreas Bull",
+            "Ove Bang",
+            "Arnstein Arneberg"
+          ],
+          "answer": "Georg Andreas Bull",
+          "answerIndex": 0,
+          "knowledge": "Vestbanestasjonen stod ferdig ved Drammensbanens åpning i 1872 etter tegninger av Georg Andreas Bull.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "source_nobels_fredssenter_03"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vestbanestasjonen stod ferdig ved Drammensbanens åpning i 1872 etter tegninger av Georg Andreas Bull.",
+          "claim_id": "claim_nobels_fredssenter_quiz_04",
+          "primary_knowledge_unit_id": "ku_historie_vestbanestasjonen_stod_f_493ada8305",
+          "knowledge_unit_ids": [
+            "ku_historie_vestbanestasjonen_stod_f_493ada8305"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_05",
+          "quiz_id": "historie_nobels_fredssenter_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvilken jernbane var Vestbanestasjonen endestasjon for ved åpningen?",
+          "options": [
+            "Bergensbanen",
+            "Dovrebanen",
+            "Drammensbanen"
+          ],
+          "answer": "Drammensbanen",
+          "answerIndex": 2,
+          "knowledge": "Vestbanestasjonen stod ferdig ved Drammensbanens åpning i 1872 etter tegninger av Georg Andreas Bull.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "source_nobels_fredssenter_03"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vestbanestasjonen stod ferdig ved Drammensbanens åpning i 1872 etter tegninger av Georg Andreas Bull.",
+          "claim_id": "claim_nobels_fredssenter_quiz_05",
+          "primary_knowledge_unit_id": "ku_historie_vestbanestasjonen_stod_f_493ada8305",
+          "knowledge_unit_ids": [
+            "ku_historie_vestbanestasjonen_stod_f_493ada8305"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_06",
+          "quiz_id": "historie_nobels_fredssenter_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Når ble Vestbanestasjonen nedlagt som togstasjon?",
+          "options": [
+            "2005",
+            "1940",
+            "1989"
+          ],
+          "answer": "1989",
+          "answerIndex": 2,
+          "knowledge": "Stasjonen ble nedlagt i 1989, og bygningen ble fredet før den ble tatt i bruk som fredssenter.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "source_nobels_fredssenter_03"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Stasjonen ble nedlagt i 1989, og bygningen ble fredet før den ble tatt i bruk som fredssenter.",
+          "claim_id": "claim_nobels_fredssenter_quiz_06",
+          "primary_knowledge_unit_id": "ku_historie_stasjonen_ble_nedlagt_i__2097819865",
+          "knowledge_unit_ids": [
+            "ku_historie_stasjonen_ble_nedlagt_i__2097819865"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_07",
+          "quiz_id": "historie_nobels_fredssenter_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvem arbeidet på 1990-tallet for å opprette et fredsprismuseum i Oslo?",
+          "options": [
+            "Henry Dunant",
+            "Geir Lundestad",
+            "Alfred Nobel"
+          ],
+          "answer": "Geir Lundestad",
+          "answerIndex": 1,
+          "knowledge": "I 1990-årene arbeidet Geir Lundestad, daværende direktør ved Det Norske Nobelinstitutt, for et museum om Nobels fredspris.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "source_nobels_fredssenter_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I 1990-årene arbeidet Geir Lundestad, daværende direktør ved Det Norske Nobelinstitutt, for et museum om Nobels fredspris.",
+          "claim_id": "claim_nobels_fredssenter_quiz_07",
+          "primary_knowledge_unit_id": "ku_historie_i_1990_arene_arbeidet_ge_a421add39c",
+          "knowledge_unit_ids": [
+            "ku_historie_i_1990_arene_arbeidet_ge_a421add39c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_nobels_fredssenter_set_2",
+      "title": "Mennesker og tidslag",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "nobels_fredssenter_quiz_08",
+          "quiz_id": "historie_nobels_fredssenter_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Når ba Stortinget regjeringen legge til rette for et fredssenter på Vestbanen?",
+          "options": [
+            "2000",
+            "1972",
+            "2012"
+          ],
+          "answer": "2000",
+          "answerIndex": 0,
+          "knowledge": "I 2000 ba Stortinget regjeringen legge til rette for et fredssenter i den gamle Vestbanestasjonen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "source_nobels_fredssenter_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I 2000 ba Stortinget regjeringen legge til rette for et fredssenter i den gamle Vestbanestasjonen.",
+          "claim_id": "claim_nobels_fredssenter_quiz_08",
+          "primary_knowledge_unit_id": "ku_historie_i_2000_ba_stortinget_reg_8085858167",
+          "knowledge_unit_ids": [
+            "ku_historie_i_2000_ba_stortinget_reg_8085858167"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_09",
+          "quiz_id": "historie_nobels_fredssenter_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvilken dato var først planlagt som åpning for Nobels Fredssenter?",
+          "options": [
+            "7. juni 2005",
+            "11. juni 2022",
+            "10. desember 2005"
+          ],
+          "answer": "7. juni 2005",
+          "answerIndex": 0,
+          "knowledge": "Åpningen var først planlagt til 7. juni 2005, men fant sted 11. juni.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "source_nobels_fredssenter_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Åpningen var først planlagt til 7. juni 2005, men fant sted 11. juni.",
+          "claim_id": "claim_nobels_fredssenter_quiz_09",
+          "primary_knowledge_unit_id": "ku_historie_apningen_var_f_rst_planl_ded1f6c3d8",
+          "knowledge_unit_ids": [
+            "ku_historie_apningen_var_f_rst_planl_ded1f6c3d8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_10",
+          "quiz_id": "historie_nobels_fredssenter_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvilken institusjon avgjør hvem som får Nobels fredspris?",
+          "options": [
+            "Nobels Fredssenter",
+            "Oslo kommune",
+            "Den Norske Nobelkomité"
+          ],
+          "answer": "Den Norske Nobelkomité",
+          "answerIndex": 2,
+          "knowledge": "Nobels Fredssenter er en egen formidlingsinstitusjon, mens Den Norske Nobelkomité avgjør hvem som får fredsprisen.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "source_nobels_fredssenter_04"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nobels Fredssenter er en egen formidlingsinstitusjon, mens Den Norske Nobelkomité avgjør hvem som får fredsprisen.",
+          "claim_id": "claim_nobels_fredssenter_quiz_10",
+          "primary_knowledge_unit_id": "ku_historie_nobels_fredssenter_er_en_06b5f08099",
+          "knowledge_unit_ids": [
+            "ku_historie_nobels_fredssenter_er_en_06b5f08099"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_11",
+          "quiz_id": "historie_nobels_fredssenter_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hva heter plassen der Nobels Fredssenter har adresse?",
+          "options": [
+            "Eidsvolls plass",
+            "Brynjulf Bulls plass",
+            "St. Olavs plass"
+          ],
+          "answer": "Brynjulf Bulls plass",
+          "answerIndex": 1,
+          "knowledge": "Senteret ligger på Brynjulf Bulls plass 1 i den tidligere Vestbanebygningen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "source_nobels_fredssenter_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Senteret ligger på Brynjulf Bulls plass 1 i den tidligere Vestbanebygningen.",
+          "claim_id": "claim_nobels_fredssenter_quiz_11",
+          "primary_knowledge_unit_id": "ku_historie_senteret_ligger_pa_brynj_2d0b7bf825",
+          "knowledge_unit_ids": [
+            "ku_historie_senteret_ligger_pa_brynj_2d0b7bf825"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_12",
+          "quiz_id": "historie_nobels_fredssenter_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvem åpnet Nobels Fredssenter 11. juni 2005?",
+          "options": [
+            "Alfred Nobel",
+            "Kong Harald V",
+            "Geir Lundestad"
+          ],
+          "answer": "Kong Harald V",
+          "answerIndex": 1,
+          "knowledge": "Nobels Fredssenter forteller at kong Harald V foretok den offisielle åpningen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "source_nobels_fredssenter_05"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nobels Fredssenter forteller at kong Harald V foretok den offisielle åpningen.",
+          "claim_id": "claim_nobels_fredssenter_quiz_12",
+          "primary_knowledge_unit_id": "ku_historie_nobels_fredssenter_forte_ae83b799ac",
+          "knowledge_unit_ids": [
+            "ku_historie_nobels_fredssenter_forte_ae83b799ac"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_13",
+          "quiz_id": "historie_nobels_fredssenter_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hva knyttet markeringen av 1905 til åpningen av Fredssenteret i 2005?",
+          "options": [
+            "Vestbanen ble oppført i 1905",
+            "Nobelkomiteen ble opprettet i 2005",
+            "Åpningen inngikk i hundreårsmarkeringen for unionsoppløsningen"
+          ],
+          "answer": "Åpningen inngikk i hundreårsmarkeringen for unionsoppløsningen",
+          "answerIndex": 2,
+          "knowledge": "Fredssenteret åpnet i juni 2005 som del av markeringen av hundre år siden unionsoppløsningen i 1905.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "source_nobels_fredssenter_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fredssenteret åpnet i juni 2005 som del av markeringen av hundre år siden unionsoppløsningen i 1905.",
+          "claim_id": "claim_nobels_fredssenter_quiz_13",
+          "primary_knowledge_unit_id": "ku_historie_fredssenteret_apnet_i_ju_9225d43596",
+          "knowledge_unit_ids": [
+            "ku_historie_fredssenteret_apnet_i_ju_9225d43596"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_14",
+          "quiz_id": "historie_nobels_fredssenter_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hva skjedde med Vestbanebygningens rolle mellom 1989 og 2005?",
+          "options": [
+            "Fra nedlagt jernbanestasjon til formidlingsarena for fredsprisen",
+            "Fra fredssenter til ordinær jernbaneterminal i 2005",
+            "Fra fungerende jernbanestasjon i 1989 til samme trafikk i 2005"
+          ],
+          "answer": "Fra nedlagt jernbanestasjon til formidlingsarena for fredsprisen",
+          "answerIndex": 0,
+          "knowledge": "Vestbanen ble nedlagt som stasjon i 1989; Nobels Fredssenter åpnet i den eldre bygningen i 2005.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "source_nobels_fredssenter_03"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vestbanen ble nedlagt som stasjon i 1989; Nobels Fredssenter åpnet i den eldre bygningen i 2005.",
+          "claim_id": "claim_nobels_fredssenter_quiz_14",
+          "primary_knowledge_unit_id": "ku_historie_vestbanen_ble_nedlagt_so_0dc6a59ebf",
+          "knowledge_unit_ids": [
+            "ku_historie_vestbanen_ble_nedlagt_so_0dc6a59ebf"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_nobels_fredssenter_set_3",
+      "title": "Endring og betydning",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "nobels_fredssenter_quiz_15",
+          "quiz_id": "historie_nobels_fredssenter_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvordan ble de eldre stasjonslokalene brukt etter ombyggingen til Fredssenteret?",
+          "options": [
+            "Stasjonen fortsatte med ordinære avganger etter 2005",
+            "Historiske rom fikk ny bruk til utstillinger og formidling",
+            "Fredssenteret overtok helt nye lokaler utenfor Vestbanen"
+          ],
+          "answer": "Historiske rom fikk ny bruk til utstillinger og formidling",
+          "answerIndex": 1,
+          "knowledge": "Fredssenteret tilpasset den gamle Vestbanebygningen til utstillinger, samtidig som eldre bygningsspor ble ivaretatt.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "source_nobels_fredssenter_05"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fredssenteret tilpasset den gamle Vestbanebygningen til utstillinger, samtidig som eldre bygningsspor ble ivaretatt.",
+          "claim_id": "claim_nobels_fredssenter_quiz_15",
+          "primary_knowledge_unit_id": "ku_historie_fredssenteret_tilpasset__786d1fc886",
+          "knowledge_unit_ids": [
+            "ku_historie_fredssenteret_tilpasset__786d1fc886"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_16",
+          "quiz_id": "historie_nobels_fredssenter_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvilken forskjell er det på Den Norske Nobelkomité og Nobels Fredssenter?",
+          "options": [
+            "Komiteen kuraterer utstillinger, senteret kårer prisvinnerne",
+            "Begge bestemmer prisvinnerne gjennom hver sin avstemning",
+            "Komiteen velger fredsprisvinneren; senteret formidler kunnskap"
+          ],
+          "answer": "Komiteen velger fredsprisvinneren; senteret formidler kunnskap",
+          "answerIndex": 2,
+          "knowledge": "Fredssenteret er en formidlingsinstitusjon, mens Den Norske Nobelkomité avgjør hvem som får fredsprisen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "source_nobels_fredssenter_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fredssenteret er en formidlingsinstitusjon, mens Den Norske Nobelkomité avgjør hvem som får fredsprisen.",
+          "claim_id": "claim_nobels_fredssenter_quiz_16",
+          "primary_knowledge_unit_id": "ku_historie_fredssenteret_er_en_form_cd69d60264",
+          "knowledge_unit_ids": [
+            "ku_historie_fredssenteret_er_en_form_cd69d60264"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_17",
+          "quiz_id": "historie_nobels_fredssenter_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvordan skiller Stortingets initiativ fra 2000 seg fra åpningen i 2005?",
+          "options": [
+            "Initiativet la til rette for senteret; åpningen viste at det ble realisert",
+            "Initiativet kom etter at senteret allerede hadde åpnet",
+            "Initiativet medførte ingen senere etablering"
+          ],
+          "answer": "Initiativet la til rette for senteret; åpningen viste at det ble realisert",
+          "answerIndex": 0,
+          "knowledge": "I 2000 ba Stortinget regjeringen legge til rette for et fredssenter; institusjonen åpnet 11. juni 2005.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "source_nobels_fredssenter_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I 2000 ba Stortinget regjeringen legge til rette for et fredssenter; institusjonen åpnet 11. juni 2005.",
+          "claim_id": "claim_nobels_fredssenter_quiz_17",
+          "primary_knowledge_unit_id": "ku_historie_i_2000_ba_stortinget_reg_56dbf7a1d7",
+          "knowledge_unit_ids": [
+            "ku_historie_i_2000_ba_stortinget_reg_56dbf7a1d7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "nobels_fredssenter_quiz_18",
+          "quiz_id": "historie_nobels_fredssenter_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hva viser ombruken av Vestbanen om historiske tidslag i én bygning?",
+          "options": [
+            "Jernbanetrafikken fortsatte fra samme stasjonsbygning etter 2005",
+            "En gammel togstasjon kan få ny rolle som formidlingssted",
+            "Bygningen ble reist spesielt for Nobels Fredssenter i 2005"
+          ],
+          "answer": "En gammel togstasjon kan få ny rolle som formidlingssted",
+          "answerIndex": 1,
+          "knowledge": "Vestbanebygningen fra 1872 har historie som jernbaneterminal, men er fra 2005 også brukt som Nobels Fredssenter.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "source_nobels_fredssenter_03"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vestbanebygningen fra 1872 har historie som jernbaneterminal, men er fra 2005 også brukt som Nobels Fredssenter.",
+          "claim_id": "claim_nobels_fredssenter_quiz_18",
+          "primary_knowledge_unit_id": "ku_historie_vestbanebygningen_fra_18_69b0873bb8",
+          "knowledge_unit_ids": [
+            "ku_historie_vestbanebygningen_fra_18_69b0873bb8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_minneanalyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://oslobyleksikon.no/side/Vestbanestasjonen",
+            "Bruk met_minneanalyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        },
+        {
+          "id": "nobels_fredssenter_quiz_19",
+          "quiz_id": "historie_nobels_fredssenter_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hva kan fredssenterets bruk av Vestbanen vise om kulturarv og formidling?",
+          "options": [
+            "Senteret ble bygget i 1872 spesielt til fredsprisformidling",
+            "Bygningen kan bare dokumentere togtrafikk, ikke ha nye funksjoner",
+            "Historiske bygninger kan brukes til å formidle nyere samfunnshistorie"
+          ],
+          "answer": "Historiske bygninger kan brukes til å formidle nyere samfunnshistorie",
+          "answerIndex": 2,
+          "knowledge": "Senterets lokaler er en eldre jernbanebygning som har fått ny funksjon for historie- og fredsformidling.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "source_nobels_fredssenter_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Senterets lokaler er en eldre jernbanebygning som har fått ny funksjon for historie- og fredsformidling.",
+          "claim_id": "claim_nobels_fredssenter_quiz_19",
+          "primary_knowledge_unit_id": "ku_historie_senterets_lokaler_er_en__7e504539f0",
+          "knowledge_unit_ids": [
+            "ku_historie_senterets_lokaler_er_en__7e504539f0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_restaurerings_autentisitetsanalyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://www.nobelpeacecenter.org/en/about-us",
+            "Bruk met_restaurerings_autentisitetsanalyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ],
+          "topic_hook_id": "his_minnested_ritual_offentlig_sorg",
+          "thinker_id": "pierre_nora",
+          "work": "Realms of Memory",
+          "theory_ref": {
+            "topic_hook_id": "his_minnested_ritual_offentlig_sorg",
+            "why_it_helps": "Noras minnestedsbegrep er nyttig for å drøfte hvordan en jernbanebygning får ny offentlig erindrings- og formidlingsfunksjon; det er en tolkningsramme, ikke et eget kildebevis."
+          }
+        },
+        {
+          "id": "nobels_fredssenter_quiz_20",
+          "quiz_id": "historie_nobels_fredssenter_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hvorfor er det viktig å skille Fredssenterets informasjon fra Nobelkomiteens beslutninger?",
+          "options": [
+            "Formidlingssenteret velger ikke selv prisvinnerne",
+            "Fredssenteret og komiteen har samme formelle stemmerett",
+            "En utstilling er automatisk et bindende Nobelkomitévedtak"
+          ],
+          "answer": "Formidlingssenteret velger ikke selv prisvinnerne",
+          "answerIndex": 0,
+          "knowledge": "Kildekritikk krever at senterets formidling skilles fra Nobelkomiteens beslutningsmyndighet.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "source_nobels_fredssenter_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kildekritikk krever at senterets formidling skilles fra Nobelkomiteens beslutningsmyndighet.",
+          "claim_id": "claim_nobels_fredssenter_quiz_20",
+          "primary_knowledge_unit_id": "ku_historie_kildekritikk_krever_at_s_79bc737f24",
+          "knowledge_unit_ids": [
+            "ku_historie_kildekritikk_krever_at_s_79bc737f24"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://www.nobelpeacecenter.org/en/about-us",
+            "Bruk met_kildekritikk til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        },
+        {
+          "id": "nobels_fredssenter_quiz_21",
+          "quiz_id": "historie_nobels_fredssenter_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "nobels_fredssenter",
+          "targetId": "nobels_fredssenter",
+          "question_scope": "place",
+          "question": "Hva kan materielle spor etter Vestbanestasjonen dokumentere?",
+          "options": [
+            "Fredsprisens målbare effekt på internasjonale konflikter",
+            "Den tidligere jernbanebruken, men ikke fredsprisens internasjonale effekt",
+            "Hvilke kandidater Nobelkomiteen drøftet i hemmelige møter"
+          ],
+          "answer": "Den tidligere jernbanebruken, men ikke fredsprisens internasjonale effekt",
+          "answerIndex": 1,
+          "knowledge": "Bygningens bevart stasjonsarkitektur er kilder til jernbanehistorie; påvirkning fra fredsprisen må undersøkes med andre kilder.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "source_nobels_fredssenter_05"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningens bevart stasjonsarkitektur er kilder til jernbanehistorie; påvirkning fra fredsprisen må undersøkes med andre kilder.",
+          "claim_id": "claim_nobels_fredssenter_quiz_21",
+          "primary_knowledge_unit_id": "ku_historie_bygningens_bevart_stasjo_a58b120aec",
+          "knowledge_unit_ids": [
+            "ku_historie_bygningens_bevart_stasjo_a58b120aec"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_restaurerings_autentisitetsanalyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://www.nobelpeacecenter.org/en/news/a-meeting-place-for-people-and-culture",
+            "Bruk met_restaurerings_autentisitetsanalyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        }
+      ]
+    }
+  ]
+}

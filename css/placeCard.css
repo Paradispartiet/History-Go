@@ -2336,3 +2336,20 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   text-align: left;
   text-shadow: 0 1px 3px #000;
 }
+
+/* On narrow PlaceCards, keep these long Norwegian place names as whole words.
+   Other place headings retain the standard typography. */
+@media (max-width: 520px) {
+  #placeCard[data-current-place-id="arbeidersamfunnets_plass"] .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle,
+  #placeCard[data-current-place-id="statsministerboligen"] .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle {
+    grid-column: 1 / -1;
+    box-sizing: border-box;
+    padding-right: 40px;
+    font-size: clamp(16px, 4.5vw, 20px);
+    line-height: 1.12;
+    letter-spacing: -.045em;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: manual;
+  }
+}
