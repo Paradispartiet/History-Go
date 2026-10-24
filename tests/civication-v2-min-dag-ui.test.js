@@ -73,6 +73,14 @@ async function main() {
   await new Promise((r) => setTimeout(r, 300));
   const panel = window.document.getElementById("civiLifestoryPanel");
   assert.ok(panel.querySelector(".civi-lifestory-scene"), "Min dag skal vise nå-scenen");
+  assert.ok(panel.firstElementChild?.classList.contains("civi-lifestory-scene"),
+    "den spillbare nå-scenen skal stå foran status og historikk");
+  const statusDetails = panel.querySelector('[data-lifestory-disclosure="status"]');
+  assert.ok(statusDetails && !statusDetails.open, "statusmålingene er tilgjengelige, men lukket ved start");
+  const historyDetails = panel.querySelector('[data-lifestory-disclosure="history"]');
+  assert.ok(historyDetails && !historyDetails.open, "eldre valg og tråder skal samles bak én arkivknapp");
+  assert.ok(historyDetails.querySelector('[data-lifestory-disclosure="archive"]'),
+    "det eksisterende valgarkivet er bevart inne i historikkgruppen");
   assert.ok(panel.querySelector("button.civi-lifestory-choice[data-lifestory-choice]"), "Min dag skal vise store klikkbare valg");
   assert.ok(panel.querySelector(".civi-lifestory-status-chip"), "Min dag skal vise statuslinje med statuschips");
   assert.ok(panel.textContent.includes("Fortellingsøkonomi"), "den interne pengeskalaen har egen etikett");
@@ -93,10 +101,17 @@ async function main() {
   }
   assert.ok(panel.querySelector(".civi-lifestory-scene [data-lifestory-choice]"),
     "collapsing metadata must not hide the actual player decisions");
+  panel.querySelector('[data-lifestory-disclosure="history"]').open = true;
   panel.querySelector('[data-lifestory-disclosure="archive"]').open = true;
+  panel.querySelector('[data-lifestory-disclosure="status"]').open = true;
+  const initialSave = window.localStorage.getItem("civication_lifestory_v1");
   window.dispatchEvent(new window.Event("updateProfile"));
-  assert.strictEqual(panel.querySelector('[data-lifestory-disclosure="archive"]').open, true,
-    "opening the archive must survive ordinary profile-driven rendering");
+  for (const section of ["history", "archive", "status"]) {
+    assert.strictEqual(panel.querySelector('[data-lifestory-disclosure="' + section + '"]').open, true,
+      section + " må forbli åpen under vanlig rerender");
+  }
+  assert.strictEqual(window.localStorage.getItem("civication_lifestory_v1"), initialSave,
+    "å vise historikken skal ikke endre spilltilstanden");
 
   // v2-headeren viser dag/fase/status, men ingen demo-rolle når canonical aktiv rolle mangler.
   const header = window.document.getElementById("civiLifestoryHeaderStatus").textContent;
@@ -151,6 +166,8 @@ async function main() {
   // Start neste dag: dag 2 starter uten crash og uten å slette arkivet.
   panel.querySelector("[data-lifestory-next-day]").click();
   assert.ok(panel.querySelector("[data-lifestory-choice]"), "dag 2 viser en spillbar scene");
+  assert.ok(panel.querySelector(".civi-lifestory-previous")?.textContent.includes("Et tidligere valg har betydning"),
+    "en tidligere dokumentert konsekvens synliggjøres på neste dag uten å vise hele arkivet");
   assert.ok(window.document.getElementById("civiLifestoryHeaderStatus").textContent.includes("Dag 2"), "headeren viser Dag 2");
   stored = JSON.parse(window.localStorage.getItem("civication_lifestory_v1"));
   assert.strictEqual(stored.dag, 2, "state er på dag 2");
