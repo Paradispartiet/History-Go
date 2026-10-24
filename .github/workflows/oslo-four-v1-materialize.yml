@@ -40,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/places/historie/oslo/places data/places/naeringsliv/oslo/places data/quiz/historie data/quiz/naeringsliv data/quizcards/historie/oslo_four_20261024.json data/quizcards/naeringsliv/oslo_four_20261024.json bilder/places/auto/kristiania_teglverk_bryn__historical_illustration.svg bilder/places/auto/kristiania_teglverk_bryn__front_illustration.svg bilder/places/auto/kristiania_teglverk_bryn__card_illustration.svg reports/place-production/oslo-four-release-candidate-20261024.json
+          git add data/places/historie/oslo/places data/places/naeringsliv/oslo/places data/quiz/historie data/quiz/naeringsliv data/quizcards/historie/oslo_four_20261024.json data/quizcards/naeringsliv/oslo_four_20261024.json bilder/places/auto/kristiania_teglverk_bryn__historical_illustration.svg bilder/places/auto/kristiania_teglverk_bryn__front_illustration.svg bilder/places/auto/kristiania_teglverk_bryn__card_illustration.svg reports/place-production/oslo-four-release-candidate-20261024.json reports/place-production/linderud_gard-workcard-current.json reports/place-production/sarabraten-workcard-current.json reports/place-production/saeterhytten_bygdoy-workcard-current.json reports/place-production/kristiania_teglverk_bryn-workcard-current.json
           if ! git diff --cached --quiet; then
             git commit -m "data(oslo): materialize 4 Place, 91 quiz and 40 QuizCard candidates"
             git push origin HEAD:feat/oslo-four-places-canonical-20261024
