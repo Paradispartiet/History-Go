@@ -696,9 +696,9 @@
     const stamp = lifestyleStamp();
     if (stamp) items.push(["Livsstil", (stamp.icon ? stamp.icon + " " : "") + stamp.name]);
     const capacity = window.CivicationLifestoryRunner?.capacityWarning?.(state) || "";
-    return "<div class=\"civi-lifestory-status\" aria-label=\"Statuslinje\">" + items.map(([label, value]) =>
+    return '<details class="civi-lifestory-disclosure civi-lifestory-status-details" data-lifestory-disclosure="status"><summary>Status og verdier</summary>' + "<div class=\"civi-lifestory-status\" aria-label=\"Statuslinje\">" + items.map(([label, value]) =>
       "<span class=\"civi-lifestory-status-chip\"><small>" + escapeHtml(label) + "</small><strong>" + escapeHtml(value) + "</strong></span>"
-    ).join("") + "</div>" + (capacity
+    ).join("") + "</div></details>" + (capacity
       ? '<p class="muted" role="status" data-lifestory-capacity-warning>' + escapeHtml(capacity) + '</p>' : "");
   }
 
@@ -951,6 +951,19 @@
    * @param {any} view
    * @returns {string}
    */
+  function renderPreviousChoiceHtml(view) {
+    // The last documented consequence stays visible after a reload or day
+    // change. This is a read-only excerpt from the canonical choice archive.
+    if (sisteKonsekvens || view.dagFerdig) return "";
+    const previous = [...(view.arkiv || [])].reverse().find(entry => entry.konsekvensTekst);
+    if (!previous) return "";
+    const text = String(previous.konsekvensTekst).trim();
+    const excerpt = text.length > 170 ? text.slice(0, 170).replace(/\s+\S*$/, "") + "…" : text;
+    return '<section class="civi-lifestory-previous" aria-label="Et tidligere valg har betydning">'
+      + '<strong>Et tidligere valg har betydning</strong><p>' + escapeHtml(excerpt)
+      + '</p></section>';
+  }
+
   function renderPanelsHtml(view) {
     const symposium = window.CivicationLifestoryRunner.getSymposium(state, content);
     const allThreads = Object.entries(state.threadState || {}).map(([id, ts]) => {
@@ -985,13 +998,15 @@
       : "<li class=\"muted\">Ingen valg tatt ennå.</li>";
 
     return ""
-      + "<aside class=\"civi-lifestory-panels\" aria-label=\"Oversikt\">"
-      + "<details class=\"civi-lifestory-disclosure\" data-lifestory-disclosure=\"threads\"><summary>Historietråder (" + allThreads.length + ")</summary><ul>" + (traaderHtml || "<li class=\"muted\">Ingen tråder ennå.</li>") + "</ul></details>"
-      + "<details class=\"civi-lifestory-disclosure\" data-lifestory-disclosure=\"later\"><summary>Senere i dag (" + (view.dagsplan.length + view.senereIDag.length) + ")</summary><ul>" + (kalenderHtml + senereHtml || "<li class=\"muted\">Ingen flere planlagte scener.</li>") + "</ul></details>"
-      + "<details class=\"civi-lifestory-disclosure\" data-lifestory-disclosure=\"archive\"><summary>Arkiv / tidligere valg (" + view.arkiv.length + ")</summary><ul>" + arkivHtml + "</ul></details>"
+      + '<aside class="civi-lifestory-panels" aria-label="Flere muligheter">'
       + renderWaveAOverviewHtml()
+      + '<details class="civi-lifestory-disclosure" data-lifestory-disclosure="later"><summary>Senere i dag (' + (view.dagsplan.length + view.senereIDag.length) + ')</summary><ul>' + (kalenderHtml + senereHtml || '<li class="muted">Ingen flere planlagte scener.</li>') + '</ul></details>'
+      + '<details class="civi-lifestory-disclosure civi-lifestory-history" data-lifestory-disclosure="history"><summary>Historikk og tidligere valg (' + view.arkiv.length + ')</summary><div class="civi-lifestory-history-content">'
+      + '<details class="civi-lifestory-disclosure" data-lifestory-disclosure="threads"><summary>Historietråder (' + allThreads.length + ')</summary><ul>' + (traaderHtml || '<li class="muted">Ingen tråder ennå.</li>') + '</ul></details>'
+      + '<details class="civi-lifestory-disclosure" data-lifestory-disclosure="archive"><summary>Tidligere valg (' + view.arkiv.length + ')</summary><ul>' + arkivHtml + '</ul></details>'
       + renderSymposiumHtml(symposium)
-      + "</aside>";
+      + '</div></details>'
+      + '</aside>';
   }
 
 
@@ -1027,7 +1042,7 @@
         : last ? "Siste valg: " + String(last.sceneTittel || last.sceneId)
           + " (" + (last.savedRole === state.rolle ? "gjeldende rolle" : "tidligere rolle: " + last.savedRole) + ")"
         : entryHint;
-      return "<li><strong>" + escapeLiteral(type.toUpperCase() + " · " + title)
+      return "<li><strong>" + escapeLiteral(title)
         + "</strong> – " + escapeLiteral(detail)
         + (last ? " <small>(" + matching.length + " lagrede valg)</small>" : "")
         + "</li>";
@@ -1050,17 +1065,24 @@
       const paused = progress.status === "dormant";
       const label = paused ? "Fortsett" : "Sett på pause";
       const command = paused ? "resume" : "pause";
-      return "<li>" + escapeLiteral(id.toUpperCase().replace(/_/g, " "))
+      return "<li>" + escapeLiteral(formatThreadTitle(content.threads.find(thread => thread.id === id) || { id }))
         + " <button type='button' data-wave-a-thread='" + escapeLiteral(id)
         + "' data-wave-a-command='" + command + "'>" + label + "</button>"
         + (paused ? "" : " <button type='button' data-wave-a-thread='"
           + escapeLiteral(id) + "' data-wave-a-command='end'>Avslutt historien</button>")
         + "</li>";
     }).join("");
-    return "<section data-wave-a-overview><details class=\"civi-lifestory-disclosure\" data-lifestory-disclosure=\"stories\"><summary>Åtte historier – pågående og tidligere</summary><ul>"
-      + rows + "</ul></details>"
-      + (agreements.length ? "<h4>Åpne avtaler</h4><ul>" + agreements.join("") + "</ul>" : "") + (buttons ? "<h4>Styr dine historier</h4><ul>" + buttons + "</ul>" : "")
-      + "</section>";
+    const controls = agreements.length || buttons
+      ? '<details class="civi-lifestory-disclosure" data-lifestory-disclosure="story-controls"><summary>Avtaler og styring av historier</summary>'
+        + (agreements.length ? '<h4>Åpne avtaler</h4><ul>' + agreements.join("") + '</ul>' : "")
+        + (buttons ? '<h4>Styr dine historier</h4><ul>' + buttons + '</ul>' : "")
+        + '</details>'
+      : "";
+    return '<section class="civi-lifestory-story-overview" data-wave-a-overview>'
+      + '<details class="civi-lifestory-disclosure" data-lifestory-disclosure="stories"><summary>Mine historier – åtte forløp</summary><ul>'
+      + rows + '</ul></details>'
+      + controls
+      + '</section>';
   }
 
   // Pause, resume and terminate operate on the canonical thread state. A
@@ -1247,11 +1269,12 @@
         + ' har ennå ingen egen jobbfortelling her. Dine private historier og relasjoner fortsetter; '
         + 'arbeidsoppgaver og meldinger finner du i innboksen.</p></section>'
       : "";
-    panel.innerHTML = personalBanner + renderStatusHtml(view)
-      + renderKonsekvensHtml()
+    panel.innerHTML = personalBanner + renderKonsekvensHtml()
       + (Runner.isContinuationPaused?.(state, content)
         ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
         : (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : renderEmptyPhaseHtml())))
+      + renderPreviousChoiceHtml(view)
+      + renderStatusHtml(view)
       + renderPanelsHtml(view);
     panel.querySelectorAll?.("details[data-lifestory-disclosure]").forEach((detail) => {
       if (expanded.has(detail.getAttribute("data-lifestory-disclosure"))) /** @type {HTMLDetailsElement} */ (detail).open = true;
