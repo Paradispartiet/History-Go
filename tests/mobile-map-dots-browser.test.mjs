@@ -7,7 +7,7 @@ import http from "node:http";
 // with a zero-sized/hidden map and then a Detaljert style switch.
 const bundle = readFileSync(new URL("../js/map.js", import.meta.url), "utf8");
 const mapCss = readFileSync(new URL("../css/map.css", import.meta.url), "utf8");
-const fixture = '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;width:100%;height:100%}#map{position:relative;width:100%;height:100%;background:#f3efe5;overflow:hidden}.maplibregl-marker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}</style></head><body><div id="map"></div><div class="map-controls"></div></body></html>';
+const fixture = '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;width:100%;height:100%}#map{position:relative;width:100%;height:100%;background:#f3efe5;overflow:hidden}.maplibregl-marker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}</style></head><body class="hg-app"><div id="map"></div><div class="map-controls"></div></body></html>';
 const server = http.createServer((_req, res) => {
   res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
   res.end(fixture);
@@ -124,6 +124,9 @@ try {
         outline: css?.borderTopColor,
         name: el?.querySelector(".hg-place-detail-label")?.textContent,
         nameDisplay: el?.querySelector(".hg-place-detail-label")?.style.display,
+        nameColor: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).color : null,
+        nameShadow: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).textShadow : null,
+        nameBackground: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).backgroundColor : null,
         markerCssPosition: css?.position,
         nameCssPosition: el?.querySelector(".hg-place-detail-label")
           ? getComputedStyle(el.querySelector(".hg-place-detail-label")).position : null,
@@ -138,6 +141,9 @@ try {
       assert.equal(first.vector, false, "native renderer does not await vector style");
       assert.equal(first.name, "Torggata", "a visible place name must accompany native dots");
       assert.equal(first.nameDisplay, "block", "touch name is visible before style.load");
+      assert.equal(first.nameColor, "rgb(0, 0, 0)", "phone and iPad names must render in actual black, not white");
+      assert.equal(first.nameShadow, "none", "place name must not have the white halo that made text look white");
+      assert.equal(first.nameBackground, "rgba(255, 255, 255, 0.78)", "actual label CSS must be loaded on the app body");
       assert.equal(first.nameCssPosition, "absolute", "label is anchored to marker without changing dot size");
       assert.equal(first.markerCssPosition, "absolute", "MapLibre must retain absolute coordinates");
     }
@@ -194,11 +200,12 @@ try {
           m.element.classList.contains("hg-place-detail-marker")).setCount,
         visibility: window.__testMap.getLayer("hg-places-dots")?.layout?.visibility,
         label: document.querySelector(".hg-place-detail-label")?.textContent,
-        labelVisible: document.querySelector(".hg-place-detail-label")?.style.display
+        labelVisible: document.querySelector(".hg-place-detail-label")?.style.display,
+        labelColor: getComputedStyle(document.querySelector(".hg-place-detail-label")).color
       }));
       assert.deepEqual(after, {
         sameDot: true, count: 1, calls: 1, visibility: "none",
-        label: "Torggata", labelVisible: "block"
+        label: "Torggata", labelVisible: "block", labelColor: "rgb(0, 0, 0)"
       },
         "style changes must not blink or duplicate dots at width=" + width);
     }
