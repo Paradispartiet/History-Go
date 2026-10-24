@@ -1,16 +1,16 @@
 {
   "schema": "history_go_eldorado_fullquiz_review_v1",
   "as_of": "2026-10-24",
-  "status": "REWRITTEN_PENDING_CANONICAL_PROFILE_KNOWLEDGE_AND_V1_QA",
+  "status": "35_QUESTIONS_REWRITTEN_5X7_PENDING_CONTEXT_KNOWLEDGE_AND_V1_QA",
   "placeId": "eldorado_bokhandel",
   "source_file": "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
-  "total_questions": 30,
+  "total_questions": 35,
   "existing_sets": [
-    6,
-    6,
-    6,
-    6,
-    6
+    7,
+    7,
+    7,
+    7,
+    7
   ],
   "quizcard_parity_source_ids": [
     "eldorado_bokhandel_quiz_2",
@@ -27,7 +27,7 @@
   "review_focus": {
     "historical_start": "Varietéteater 1891; kino fra 1911; Eldorado navn og lydfilm 1929; bokhandel fra 2013",
     "historic_year_corrected_to": 1891,
-    "fullquiz_profile": "Eksisterende fem sett med seks spørsmål (5×6) beholdt for å unngå å oppfinne fem svake utfyllingsspørsmål; kanonisk profil 7 per sett er fortsatt ikke oppfylt.",
+    "fullquiz_profile": "Utvidet til 5×7 spørsmål med fem kildebelagte nye stedsspørsmål (ID 31–35). Formell profilbeslutning og production_context er fortsatt pending.",
     "knowledge_sync": "Alle 30 knowledge-tekster forbedret og alle 10 QuizCards synkronisert, men genererte Knowledge-registere er ennå ikke regenerert eller verifisert.",
     "quizcard_status": "Alle 10 QuizCards har identisk question, options, answer, answerIndex og quiz-id mot fullquiz i repo; nettleser-/fliptest ikke gjennomført."
   },
@@ -248,11 +248,11 @@
   "unflagged_count": 9,
   "unflagged_policy": "Også de opprinnelig uflaggede ni spørsmålene har fått gjennomgått kildereferanse, utdypet knowledge og justert svaralternativer. Ikke v1-godkjent.",
   "next_actions": [
-    "Løs 5×6-formatet mot kanonisk 7-spørsmålsprofil med ekstra uavhengige kilder, ikke kunstig utfylling",
     "Bygg påstandsbank, source_brief, production_context og kontroller eksisterende quiz før profil låses",
     "Synkroniser Knowledge deterministisk etter nye formuleringer",
     "Kjør quiz- og QuizCard-integrasjonstest med faktisk shuffle og riktig fasit",
-    "Redaksjonell sluttkontroll av kildeattribusjon, svaralternativer og appens mobilvisning"
+    "Redaksjonell sluttkontroll av kildeattribusjon, svaralternativer og appens mobilvisning",
+    "Verifiser alle 35 spørsmål i faktisk runtime og alle 10 QuizCards"
   ],
   "rewrite_pass": {
     "date": "2026-10-24",
@@ -269,15 +269,23 @@
       "1": 10,
       "2": 10
     },
-    "questionCount": 30,
+    "questionCount": 35,
     "quizcardParity": 10,
     "scope": "Redaksjonell omskriving med kontrollerte nettsteder; ingen påstand om endelig menneskelig fagreview eller ny produksjonskontekst",
     "pending": [
-      "5×6 møter ikke 7-spørsmålsett i kanonisk quizprofil",
       "Source brief og production_context for full revisjon",
       "Regenerere og validere Knowledge-enheter",
       "Kjøre innholdstester, runtime shuffle og QuizCard-flip",
-      "Gjennomføre uavhengig redaksjonell sluttlesning"
+      "Gjennomføre uavhengig redaksjonell sluttlesning",
+      "Kanonisk rich-profil må låses og begrunnes i source_brief og production_context, ikke utledes bare fra 5×7."
+    ],
+    "addedQuestions": 5,
+    "addedQuestionIds": [
+      "eldorado_bokhandel_quiz_31",
+      "eldorado_bokhandel_quiz_32",
+      "eldorado_bokhandel_quiz_33",
+      "eldorado_bokhandel_quiz_34",
+      "eldorado_bokhandel_quiz_35"
     ]
   }
 }
