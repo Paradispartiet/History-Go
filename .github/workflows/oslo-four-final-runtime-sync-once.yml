@@ -1,0 +1,41 @@
+name: Oslo four final runtime sync (one-shot)
+on:
+  push:
+    branches: [feat/oslo-four-runtime-index-20261024]
+    paths:
+      - '.github/workflows/oslo-four-final-runtime-sync-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: oslo-four-final-runtime-sync
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/oslo-four-runtime-index-20261024
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - name: Build and verify canonical Place-open payloads after Fagverk fixes
+        run: |
+          npm run places:index:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:build
+          npm run place-open:check
+      - name: Commit only updated Place-open payloads
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/place-open/linderud_gard.json data/runtime/place-open/sarabraten.json data/runtime/place-open/saeterhytten_bygdoy.json data/runtime/place-open/kristiania_teglverk_bryn.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build(oslo): synchronize four Place-open payloads with curated Fagverk"
+            git fetch origin feat/oslo-four-runtime-index-20261024
+            git rebase origin/feat/oslo-four-runtime-index-20261024
+            git push origin HEAD:feat/oslo-four-runtime-index-20261024
+          fi
