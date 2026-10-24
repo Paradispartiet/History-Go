@@ -218,12 +218,22 @@ jobs:
           PLACE_REGRESSION_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           PLACE_REGRESSION_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: node scripts/run-place-regressions-v1.mjs
+      - name: Resolve current main merge base for place production audits
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          base="$(git merge-base FETCH_HEAD HEAD)"
+          test -n "$base"
+          echo "PLACE_REPORT_DIFF_BASE_SHA=$base" >> "$GITHUB_ENV"
+          echo "Audit changes since current main merge base: $base"
       - name: Enforce Politikk place production reports
         shell: bash
         run: |
           node --test tests/politikk-place-production.test.mjs
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            node scripts/audit-politikk-place-production.mjs --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}"
+            node scripts/audit-politikk-place-production.mjs --changed --base "$PLACE_REPORT_DIFF_BASE_SHA" --head "${{ github.sha }}"
           else
             node scripts/audit-politikk-place-production.mjs --all
           fi
@@ -232,7 +242,7 @@ jobs:
         run: |
           node --test tests/historie-place-production.test.mjs
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            node scripts/audit-historie-place-production.mjs --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}"
+            node scripts/audit-historie-place-production.mjs --changed --base "$PLACE_REPORT_DIFF_BASE_SHA" --head "${{ github.sha }}"
           else
             node scripts/audit-historie-place-production.mjs --all
           fi
@@ -241,7 +251,7 @@ jobs:
         run: |
           node --test tests/naeringsliv-place-production.test.mjs
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            node scripts/audit-naeringsliv-place-production.mjs --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}"
+            node scripts/audit-naeringsliv-place-production.mjs --changed --base "$PLACE_REPORT_DIFF_BASE_SHA" --head "${{ github.sha }}"
           else
             node scripts/audit-naeringsliv-place-production.mjs --all
           fi
@@ -250,7 +260,7 @@ jobs:
         run: |
           node --test tests/subkultur-place-production.test.mjs
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            node scripts/audit-subkultur-place-production.mjs --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}"
+            node scripts/audit-subkultur-place-production.mjs --changed --base "$PLACE_REPORT_DIFF_BASE_SHA" --head "${{ github.sha }}"
           else
             node scripts/audit-subkultur-place-production.mjs --all
           fi

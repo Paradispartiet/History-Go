@@ -1,0 +1,2686 @@
+{
+  "schema": "history_go_place_quiz_candidate_bank_v1",
+  "date": "2026-10-23",
+  "scope": "Oslo sentrum Politikk six, editorial multiple-choice candidate bank for six places",
+  "status": "editorial_candidates_only_not_quizcard_or_gameplay",
+  "notes": [
+    "This source bank is NOT a canonical quiz package and must not be included in data/quiz/manifest.json until full QUIZ_PRODUCTION_CANONICAL 3.4 and Knowledge/QuizCard audits are complete.",
+    "All questions use multiple-choice options; no player free-text answer. Option order is illustrative. Production runtime shuffles options and owns final answer indices.",
+    "Existing five Folkets Hus questions in the canonical quiz file must be audited and preserved/revised in place; DO NOT duplicate them in gameplay.",
+    "Complete quiz must use adaptive narrow/normal/rich/major profile; 10 QuizCard questions do not replace fullquiz. Confirm ownership of source IDs, claim bank, quiz manifest, production_context and Knowledge units before publication.",
+    "The 40 new candidates are preliminary research material, not canonical fullquiz or QuizCard. All new source URLs require independent claim-level review before use.",
+    "The 40 newest candidates now have varied correct-option positions. This editorial balance does not replace production answer-shuffle/index checks or a distractor audit.",
+    "Statsbygg documents both Picasso/Nesjar works Fiskerne and Måken in A-blokka in 2024; beware of older future-tense planning sources.",
+    "Folkets Hus question s1_q4: Oslo byleksikon documents Youngstorget as a venue for demonstrations and the adjacent LO building; SNL documents the building's administrative function. The interpretation remains subject to full independent distractor audit.",
+    "Redaksjonell svarposisjonskontroll 2026-10-23: de siste 40 kandidatene er omordnet til variert fasitposisjon uten å endre ordlyd, ID, selve fasitsvaret eller de fem eksisterende spillquizspørsmålene. Kandidatbanken har nå 20 fasiter på hver av posisjonene 0, 1 og 2.",
+    "Åtte stedsspesifikke påstander har fått supplerende eksterne kilder og kontroll av kjernepåstanden; review_status gjelder ikke distraktorer, Knowledge, spillkontrakt eller publisering.",
+    "Høyesteretts hus: 16 nye kildekontrollerte, stedsspesifikke fullquiz-researchkandidater er lagt separat fra ti QuizCard-kandidater. Kjernepåstander er sjekket mot domstol.no og gjeldende Grunnlov; distraktorer, faglig progresjon og Knowledge-kontrakt er fortsatt ikke godkjent.",
+    "Folkets Hus: 15 kildesjekkede tillegg til fullquiz-researchbanken; 1 av 15 er eksplisitt holdt tilbake pga. motstrid om 'andre Folkets hus' versus Spjærøy 1898. Eksisterende fasadespørsmål s1_q1 er merket hold for omskriving, uten å endre aktiv quiz. Kjernepåstander er ikke full distraktor-/Knowledge-/runtime-godkjenning.",
+    "Victoria terrasse: 14 kildekontrollerte tilleggsspørsmål. Kildene er ikke samstemte om nøyaktig år da alle kvartalene gikk over til staten (Riksantikvaren skriver 1912; SNL beskriver Stortingets kjøpsvedtak 1913). Ingen quiz om dette året produseres før primærvedtak og overdragelsesdato er avklart.",
+    "Høyblokka: 13 nye primærkildebaserte fullquizkandidater om 1958-bruk, materialteknologi, integrert kunst, 2011-konservering og 2021–2022-rehabilitering. SNL/Nasjonalmuseet bruker både 1958 og 1959 om ferdigstilling/bruk; ved tidsfestede spørsmål må historisk milepæl navngis presist, ikke hevdes lik på tvers av kildene.",
+    "Y-blokka: 13 kildekontrollerte fullquizkandidater om form/territorium, sikkerhets- og byutviklingshensyn, Oslo kommunes bevaringsinnvendinger, skadedokumentasjon og kunstkonservering. Regjeringen skriver ferdig 1969, Oslo kommune har omtalt 1970; ingen ny kandidat bruker omstridt nøyaktig ferdigstillelsesdato. Y-blokka skal fortsatt omtales som revet i 2020.",
+    "Høyres Hus: 11 nye kildekontrollerte fullquizkandidater med særskilt tydelig adskillelse mellom Tivoli-området før 1935, partihuset etter 1935 og bruk under okkupasjonen. Ett spørsmål om konferansesalnavn er HOLD, da dagens navnebruk og historisk læringsverdi ikke er tilstrekkelig avklart. Faglig viktigere stedsstoff må prioriteres framfor kvotefyll.",
+    "Høyres Hus: Kandidat #22 skiller eksplisitt Stortingsgata 20 (1935) fra Høyres Hus på Kalbakken (1965), en separat lokal partiadresse. Kilden er Lokalhistoriewiki. Nå 21 kandidater uten 'held'-status, men ingen godkjent fullquiz før komplett kilde-, distraktor- og Knowledge-QA."
+  ],
+  "targets": [
+    {
+      "place_id": "hoyesteretts_hus",
+      "categoryId": "politikk",
+      "existing_quiz_audit": "No place-specific quiz sets file identified by filename in main tree; verify quiz manifest, legacy index, shared sets and QuizCard before materializing.",
+      "ten_quizcard_candidates": [
+        {
+          "id": "hoyesteretts_card_01",
+          "question": "Når stod bygningen som nå heter Høyesteretts hus ferdig?",
+          "options": [
+            "1815",
+            "1903",
+            "1958"
+          ],
+          "answerIndex": 1,
+          "answer": "1903",
+          "knowledge": "Hans Jacob Sparres Justisbygning stod ferdig i 1903. Høyesterett som institusjon er eldre.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/H%C3%B8yesteretts_hus"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyesteretts_card_02",
+          "question": "Hva het Høyesteretts hus da bygningen åpnet?",
+          "options": [
+            "Justisbygningen",
+            "Regjeringsbygningen",
+            "Stortingets anneks"
+          ],
+          "answerIndex": 0,
+          "answer": "Justisbygningen",
+          "knowledge": "Bygningen fra 1903 het Justisbygningen og rommet flere rettsinstanser.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/H%C3%B8yesteretts_hus"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyesteretts_card_03",
+          "question": "Hvem tegnet den monumentale Justisbygningen fra 1903?",
+          "options": [
+            "Knut Knutsen",
+            "Erling Viksjø",
+            "Hans Jacob Sparre"
+          ],
+          "answerIndex": 2,
+          "answer": "Hans Jacob Sparre",
+          "knowledge": "Arkitekt Hans Jacob Sparre tegnet Justisbygningen.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/H%C3%B8yesteretts_hus"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyesteretts_card_04",
+          "question": "Hva er Høyesteretts oppgave i Norges rettssystem?",
+          "options": [
+            "Å vedta nye lover",
+            "Å være landets øverste domstol",
+            "Å administrere alle departementer"
+          ],
+          "answerIndex": 1,
+          "answer": "Å være landets øverste domstol",
+          "knowledge": "Høyesterett er Norges øverste domstol, adskilt fra Stortingets lovgivning og regjeringens forvaltning.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/historie/",
+            "https://lovdata.no/nav/lov/1814-05-17/kapE"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyesteretts_card_05",
+          "question": "Når ble Høyesterett som norsk institusjon åpnet?",
+          "options": [
+            "1815",
+            "1903",
+            "1996"
+          ],
+          "answerIndex": 0,
+          "answer": "1815",
+          "knowledge": "Høyesterett begynte sitt arbeid i 1815, lenge før dagens hus ble tatt i bruk.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/historie/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyesteretts_card_06",
+          "question": "Hvilke rettsinstanser hadde opprinnelig lokaler i Justisbygningen?",
+          "options": [
+            "Bare Høyesterett",
+            "Bare Oslo tingrett",
+            "Byrett, lagmannsrett og Høyesterett"
+          ],
+          "answerIndex": 2,
+          "answer": "Byrett, lagmannsrett og Høyesterett",
+          "knowledge": "Justisbygningen samlet opprinnelig flere rettsinstanser på den samme adressen.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/H%C3%B8yesteretts_hus"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyesteretts_card_07",
+          "question": "Hva endret seg med restaureringen og tilpasningen av bygningen i 1996?",
+          "options": [
+            "Bygningen ble revet",
+            "Den ble brukt bare av Høyesterett",
+            "Stortinget flyttet inn"
+          ],
+          "answerIndex": 1,
+          "answer": "Den ble brukt bare av Høyesterett",
+          "knowledge": "Da øvrige domstoler var flyttet til Oslo tinghus, ble den gamle Justisbygningen tilrettelagt for Høyesterett alene.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/H%C3%B8yesteretts_hus"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyesteretts_card_08",
+          "question": "Hvilken rettssikkerhetsgaranti står i Grunnloven § 95?",
+          "options": [
+            "Rett til uavhengig og upartisk domstol",
+            "At regjeringen bestemmer domsutfallet",
+            "At alle saker skal avgjøres uten rettsmøte"
+          ],
+          "answerIndex": 0,
+          "answer": "Rett til uavhengig og upartisk domstol",
+          "knowledge": "Grunnloven § 95 fastslår retten til rettferdig rettergang ved en uavhengig og upartisk domstol.",
+          "source_urls": [
+            "https://lovdata.no/nav/lov/1814-05-17/kapE"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyesteretts_card_09",
+          "question": "Hva skiller Høyesteretts hus fra Oslo tinghus?",
+          "options": [
+            "De er to navn på samme bygg",
+            "Tinghuset ligger i Høyesteretts kjeller",
+            "De er to ulike bygninger for forskjellige domstolsfunksjoner"
+          ],
+          "answerIndex": 2,
+          "answer": "De er to ulike bygninger for forskjellige domstolsfunksjoner",
+          "knowledge": "Høyesteretts hus brukes av landets øverste domstol; Oslo tinghus er et separat bygg for andre rettsinstanser.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/H%C3%B8yesteretts_hus"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyesteretts_card_10",
+          "question": "Hva kan man ikke avgjøre bare ved å se Høyesteretts fasade?",
+          "options": [
+            "Om huset er bygd av mur og stein",
+            "Om en konkret sak ble behandlet rettferdig",
+            "Om det har en monumental inngang"
+          ],
+          "answerIndex": 1,
+          "answer": "Om en konkret sak ble behandlet rettferdig",
+          "knowledge": "Fasaden viser arkitektur, mens rettferdig behandling vurderes ut fra rettsregler, saksbehandling og etterprøvbare avgjørelser.",
+          "source_urls": [
+            "https://lovdata.no/nav/lov/1814-05-17/kapE",
+            "https://oslobyleksikon.no/side/H%C3%B8yesteretts_hus"
+          ],
+          "review_status": "source_candidate_not_published"
+        }
+      ],
+      "additional_fullquiz_candidates": [
+        {
+          "id": "hoyesteretts_fullquiz_research_11",
+          "question": "Hvilken stilart beskriver Norges domstoler for Høyesteretts hus?",
+          "options": [
+            "Funksjonalisme",
+            "Italiensk nyrenessanse",
+            "Nygotikk"
+          ],
+          "answer": "Italiensk nyrenessanse",
+          "answerIndex": 1,
+          "knowledge": "Bygningen har et monumentalt formspråk i italiensk nyrenessanse.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "architectural_style",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_12",
+          "question": "Hvor mange konkurranseutkast hadde kommet inn innen mars 1898?",
+          "options": [
+            "13",
+            "33",
+            "23"
+          ],
+          "answer": "23",
+          "answerIndex": 2,
+          "knowledge": "Domstolens bygningshistorie opplyser at 23 forslag hadde kommet inn innen mars 1898; Sparres forslag kom senere.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "competition_proposals",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_13",
+          "question": "Hvordan fordelte Sparre opprinnelig de tre rettsinstansene i bygget?",
+          "options": [
+            "I forskjellige etasjer",
+            "I separate fløyer på bakkeplan",
+            "I tre nabobygninger"
+          ],
+          "answer": "I forskjellige etasjer",
+          "answerIndex": 0,
+          "knowledge": "Sparre valgte en horisontal funksjonsdeling med en rettsinstans per etasje.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "original_building_plan",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_14",
+          "question": "Hvilken rettsinstans fikk opprinnelig lokaler i første etasje?",
+          "options": [
+            "Høyesterett",
+            "Byretten",
+            "Lagmannsretten"
+          ],
+          "answer": "Byretten",
+          "answerIndex": 1,
+          "knowledge": "Byretten ble lagt i første etasje, med egen inngang fra Grubbegata.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "first_floor_court",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_15",
+          "question": "Hvilken instans hadde opprinnelig den store rettssalen i andre etasje?",
+          "options": [
+            "Byretten",
+            "Høyesterett",
+            "Lagmannsretten"
+          ],
+          "answer": "Lagmannsretten",
+          "answerIndex": 2,
+          "knowledge": "Lagmannsretten fikk rettssal i andre etasje og et representativt inngangsparti med vestibyle og trappehall.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "second_floor_court",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_16",
+          "question": "Hvor lå Høyesteretts opprinnelige rettssal i Justisbygningen?",
+          "options": [
+            "I tredje etasje",
+            "I første etasje",
+            "I andre etasje"
+          ],
+          "answer": "I tredje etasje",
+          "answerIndex": 0,
+          "knowledge": "Den opprinnelige rettssalen for Høyesterett lå i tredje etasje, med overlys og vinduer.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "third_floor_court",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_17",
+          "question": "Hvilken gate hadde opprinnelig egen inngang til Høyesteretts rettssal?",
+          "options": [
+            "Grubbegata",
+            "Akersgata",
+            "Karl Johans gate"
+          ],
+          "answer": "Akersgata",
+          "answerIndex": 1,
+          "knowledge": "Høyesteretts rettssal hadde egen inngang fra Akersgata.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "supreme_court_original_entrance",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_18",
+          "question": "Hvilken gate vendte byrettens egen inngang i Justisbygningen mot?",
+          "options": [
+            "Akersgata",
+            "Høyesteretts plass",
+            "Grubbegata"
+          ],
+          "answer": "Grubbegata",
+          "answerIndex": 2,
+          "knowledge": "Byrettens egen inngang lå ved Grubbegata.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "district_court_original_entrance",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_19",
+          "question": "Hva ved tomten var en arkitektonisk utfordring for Hans Jakob Sparre?",
+          "options": [
+            "Den var lang og smal",
+            "Den lå på en øy",
+            "Den var rund og symmetrisk"
+          ],
+          "answer": "Den var lang og smal",
+          "answerIndex": 0,
+          "knowledge": "Domstolen beskriver den lange, smale tomten som en utfordring som måtte løses i planleggingen.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "site_constraints",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_20",
+          "question": "I hvilken periode foregikk den omfattende restaureringen ved overtakelsen?",
+          "options": [
+            "1962–1964",
+            "1994–1996",
+            "2011–2013"
+          ],
+          "answer": "1994–1996",
+          "answerIndex": 1,
+          "knowledge": "Bygningen ble omfattende restaurert i 1994–1996 før Høyesterett tok den i bruk alene.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "restoration_period",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_21",
+          "question": "Hvilket år vedtok Riksantikvaren fredning av Høyesteretts hus?",
+          "options": [
+            "1996",
+            "2025",
+            "2014"
+          ],
+          "answer": "2014",
+          "answerIndex": 2,
+          "knowledge": "Riksantikvaren fattet vedtak om fredning 18. november 2014.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "heritage_protection_year",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_22",
+          "question": "Hva omfatter fredningen av Høyesteretts hus, i tillegg til fasadene?",
+          "options": [
+            "Bare bygningens uteareal",
+            "Deler av interiøret og spesialtegnet løst inventar",
+            "Alle bøker og saksmapper"
+          ],
+          "answer": "Deler av interiøret og spesialtegnet løst inventar",
+          "answerIndex": 1,
+          "knowledge": "Fredningen omfatter utvendig bygningskropp, deler av interiøret og spesialtegnet løst inventar.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/"
+          ],
+          "claim_family": "heritage_protection_scope",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_23",
+          "question": "Hvor ble Høyesterett åpnet første gang i 1815?",
+          "options": [
+            "I Katedralskolens bibliotek i Dronningens gate 15",
+            "I Justisbygningen ved Høyesteretts plass",
+            "I den daværende Stortingssalen"
+          ],
+          "answer": "I Katedralskolens bibliotek i Dronningens gate 15",
+          "answerIndex": 0,
+          "knowledge": "Domstolen opplyser at åpningen 30. juni 1815 fant sted i lånte lokaler i Katedralskolens bibliotek.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/historie/"
+          ],
+          "claim_family": "original_1815_location",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_24",
+          "question": "Hvem ble Norges første høyesterettsjustitiarius?",
+          "options": [
+            "Carsten Smith",
+            "Toril Marie Øie",
+            "Johan Randulf Bull"
+          ],
+          "answer": "Johan Randulf Bull",
+          "answerIndex": 2,
+          "knowledge": "Johan Randulf Bull ble utnevnt sammen med de seks første dommerne 27. september 1814.",
+          "source_urls": [
+            "https://www.domstol.no/no/hoyesterett/om/historie/"
+          ],
+          "claim_family": "first_chief_justice",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_25",
+          "question": "Hva fastsetter Grunnloven § 88 om Høyesteretts avgjørelser?",
+          "options": [
+            "Høyesterett dømmer i siste instans, og dommene kan ikke ankes",
+            "Regjeringen kan oppheve dommene i statsråd",
+            "Stortinget må stadfeste hver dom"
+          ],
+          "answer": "Høyesterett dømmer i siste instans, og dommene kan ikke ankes",
+          "answerIndex": 0,
+          "knowledge": "Grunnloven § 88 slår fast Høyesteretts plass som siste instans og at dommene ikke kan ankes.",
+          "source_urls": [
+            "https://lovdata.no/dokument/NL/lov/1814-05-17/KAPITTEL_3"
+          ],
+          "claim_family": "constitutional_final_instance",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_26",
+          "question": "Hva innebærer prøvingsretten etter Grunnloven § 89?",
+          "options": [
+            "Bare Stortinget kan avgjøre hva Grunnloven betyr i en rettssak",
+            "Domstolene kan prøve om det er i strid med Grunnloven å anvende en lovbestemmelse",
+            "Regjeringen kan instruere Høyesterett i en konkret sak"
+          ],
+          "answer": "Domstolene kan prøve om det er i strid med Grunnloven å anvende en lovbestemmelse",
+          "answerIndex": 1,
+          "knowledge": "Grunnloven § 89 gir domstolene rett og plikt til å prøve grunnlovsmessighet ved anvendelse av lover i saker for domstolene.",
+          "source_urls": [
+            "https://lovdata.no/dokument/NL/lov/1814-05-17/KAPITTEL_3"
+          ],
+          "claim_family": "judicial_review",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Steds-/lovpåstanden er kontrollert direkte mot angitt institusjonskilde. Feilsvar, quizprogresjon, Knowledge-ID og runtime-integrasjon er ikke sluttgodkjent.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        }
+      ],
+      "fullquiz_research_status": "26_multiple_choice_candidates_total_10_quizcard_plus_16_fullquiz_only_not_published"
+    },
+    {
+      "place_id": "folkets_hus_oslo",
+      "categoryId": "politikk",
+      "existing_quiz_file": "data/quiz/politikk/folkets_hus_oslo_sets.json",
+      "existing_quiz_count": 5,
+      "existing_ids_to_audit_and_reuse": [
+        "folkets_hus_oslo_s1_q1",
+        "folkets_hus_oslo_s1_q2",
+        "folkets_hus_oslo_s1_q3",
+        "folkets_hus_oslo_s1_q4",
+        "folkets_hus_oslo_s1_q5"
+      ],
+      "ten_quizcard_candidates": [
+        {
+          "id": "folkets_hus_oslo_s1_q1",
+          "question": "Hva forteller den lange, repeterende vindusfasaden best om Folkets Hus?",
+          "options": [
+            "At bygget rommer et stort apparat av kontorer, møterom og fellesfunksjoner",
+            "At hele bygget først og fremst er én stor teatersal",
+            "At fasaden skjuler et tidligere jernbaneanlegg"
+          ],
+          "answerIndex": 0,
+          "answer": "At bygget rommer et stort apparat av kontorer, møterom og fellesfunksjoner",
+          "knowledge": "Den regelmessige fasaden til Knut Knutsens Folkets Hus uttrykker et stort og sammensatt organisasjonsbygg med mange kontorer, saler og møtefunksjoner.",
+          "source_urls": [
+            "https://snl.no/Knut_Knutsen"
+          ],
+          "review_status": "hold_for_rewrite_unsupported_visual_inference",
+          "reuses_existing_id": true,
+          "review_note": "Arkitekturen kan observeres, men det er ikke dokumentert at den repeterende vindusfasaden i seg selv beviser byggets interne kontor- og møteprogram. Dette eksisterende spillspørsmålet må revideres i canonical quiz med Knowledge-paritet før v1."
+        },
+        {
+          "id": "folkets_hus_oslo_s1_q2",
+          "question": "Hva er den viktigste historiske forskjellen mellom Folkets Hus fra 1907 og dagens anlegg?",
+          "options": [
+            "Det første var et mer avgrenset forsamlingshus, mens dagens bygg er et stort organisasjons- og møtekompleks",
+            "Det første var et regjeringsbygg, mens dagens bygg er et privat bolighus",
+            "Det første lå på Eidsvolls plass, mens dagens bygg ble flyttet til Youngstorget"
+          ],
+          "answerIndex": 0,
+          "answer": "Det første var et mer avgrenset forsamlingshus, mens dagens bygg er et stort organisasjons- og møtekompleks",
+          "knowledge": "Det første Folkets Hus åpnet i 1907. Dagens anlegg ble reist i flere byggetrinn og samlet langt flere kontor-, arkiv- og møtefunksjoner.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "review_status": "existing_quiz_question_requires_full_source_and_distractor_audit",
+          "reuses_existing_id": true
+        },
+        {
+          "id": "folkets_hus_oslo_s1_q3",
+          "question": "Hvorfor er historien om ekstrakontingenten på 25 øre viktig?",
+          "options": [
+            "Den viser at huset ble finansiert som et kollektivt organisasjonsprosjekt",
+            "Den viser at inngangsbilletten til Youngstorget kostet 25 øre",
+            "Den var en bot for å holde politiske møter uten tillatelse"
+          ],
+          "answerIndex": 0,
+          "answer": "Den viser at huset ble finansiert som et kollektivt organisasjonsprosjekt",
+          "knowledge": "Fagorganiserte ble oppfordret til å bidra gjennom en ekstra ukentlig kontingent. Finansieringen gjorde selve byggeprosjektet til en del av arbeiderbevegelsens organisering.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "review_status": "existing_quiz_question_requires_full_source_and_distractor_audit",
+          "reuses_existing_id": true
+        },
+        {
+          "id": "folkets_hus_oslo_s1_q4",
+          "question": "Hva er den viktigste forskjellen mellom Folkets Hus og Youngstorget som politiske rom?",
+          "options": [
+            "Folkets Hus rommer organisasjonsarbeidet, mens Youngstorget gjør krav og mobilisering synlig ute i offentligheten",
+            "Folkets Hus vedtar lover, mens Youngstorget fungerer som domstol",
+            "Folkets Hus er et privat hjem, mens Youngstorget er et departement"
+          ],
+          "answerIndex": 0,
+          "answer": "Folkets Hus rommer organisasjonsarbeidet, mens Youngstorget gjør krav og mobilisering synlig ute i offentligheten",
+          "knowledge": "Huset gir bevegelsen kontorer, møterom og arkiv. Torget gir den en synlig scene for taler, demonstrasjoner og folkemengder.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Youngstorget",
+            "https://snl.no/Folkets_hus_-_Oslo"
+          ],
+          "review_status": "source_urls_added_interpretive_claim_and_distractors_still_need_review",
+          "reuses_existing_id": true
+        },
+        {
+          "id": "folkets_hus_oslo_s1_q5",
+          "question": "Hvorfor er funnet av et overvåkingsanlegg fra den kalde krigen politisk interessant?",
+          "options": [
+            "Det viser at et demokratisk organisasjonsbygg også kunne bli mål for skjult kontroll",
+            "Det beviser at alle møter i bygget ble sendt direkte på TV",
+            "Det viser at huset opprinnelig var bygget som politistasjon"
+          ],
+          "answerIndex": 0,
+          "answer": "Det viser at et demokratisk organisasjonsbygg også kunne bli mål for skjult kontroll",
+          "knowledge": "Ved modernisering rundt 1990 ble det funnet et avlyttings- og overvåkingsanlegg fra den kalde krigens tid. Funnet må omtales uten å dikte detaljer, men viser spenningen mellom organisasjonsfrihet og kontroll.",
+          "source_urls": [
+            "https://snl.no/Folkets_hus_-_Oslo"
+          ],
+          "review_status": "existing_quiz_question_requires_full_source_and_distractor_audit",
+          "reuses_existing_id": true
+        },
+        {
+          "id": "folkets_hus_card_06",
+          "question": "Hvilket år åpnet det første Folkets Hus ved Youngstorget?",
+          "options": [
+            "1907",
+            "1958",
+            "1962"
+          ],
+          "answerIndex": 0,
+          "answer": "1907",
+          "knowledge": "Det første Folkets Hus på stedet åpnet i 1907, før etterkrigstidens nye bygningskompleks.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm",
+            "https://snl.no/Folkets_hus_-_Oslo"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "folkets_hus_card_07",
+          "question": "Hvilken arkitekt tegnet dagens hovedanlegg ved Youngstorget?",
+          "options": [
+            "Hans Jacob Sparre",
+            "Knut Knutsen",
+            "Erling Viksjø"
+          ],
+          "answerIndex": 1,
+          "answer": "Knut Knutsen",
+          "knowledge": "Knut Knutsen tegnet det moderne Folkets Hus som ble oppført i byggetrinn fram til 1962.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm",
+            "https://snl.no/Folkets_hus_-_Oslo"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "folkets_hus_card_08",
+          "question": "Når stod det nåværende Folkets Hus-anlegget i hovedsak ferdig?",
+          "options": [
+            "1907",
+            "1935",
+            "1962"
+          ],
+          "answerIndex": 2,
+          "answer": "1962",
+          "knowledge": "Dagens Folkets Hus ble oppført i etapper i etterkrigstiden og stod i hovedsak ferdig i 1962.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm",
+            "https://snl.no/Folkets_hus_-_Oslo"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "folkets_hus_card_09",
+          "question": "Hvilken organisasjon har en sentral tilknytning til Folkets Hus i Oslo?",
+          "options": [
+            "Landsorganisasjonen (LO)",
+            "Norges Høyesterett",
+            "Norges Bank"
+          ],
+          "answerIndex": 0,
+          "answer": "Landsorganisasjonen (LO)",
+          "knowledge": "Folkets Hus rommer organisasjonsarbeid knyttet til LO og fagbevegelsen.",
+          "source_urls": [
+            "https://snl.no/Folkets_hus_-_Oslo",
+            "https://oslobyleksikon.no/side/Folkets_hus"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "folkets_hus_card_10",
+          "question": "Hvilken dokumentasjonsinstitusjon er knyttet til Folkets Hus?",
+          "options": [
+            "Nasjonalbibliotekets musikksamling",
+            "Arbeiderbevegelsens arkiv og bibliotek",
+            "Norsk Folkemuseum"
+          ],
+          "answerIndex": 1,
+          "answer": "Arbeiderbevegelsens arkiv og bibliotek",
+          "knowledge": "Arbeiderbevegelsens arkiv og bibliotek dokumenterer blant annet organisasjonenes og fagbevegelsens historie.",
+          "source_urls": [
+            "https://snl.no/Folkets_hus_-_Oslo",
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "review_status": "source_candidate_not_published"
+        }
+      ],
+      "additional_fullquiz_candidates": [
+        {
+          "id": "folkets_hus_fullquiz_research_11",
+          "question": "Hva skjedde med Folkets Hus-eiendommene allerede i 1911?",
+          "options": [
+            "Naboeiendommer ble kjøpt for videre utvikling",
+            "Hovedbygningen ble revet og gjenreist",
+            "Landsorganisasjonen flyttet til Bergen"
+          ],
+          "answer": "Naboeiendommer ble kjøpt for videre utvikling",
+          "answerIndex": 0,
+          "knowledge": "Arbeiderbevegelsens arkiv beskriver kjøp av naboeiendommer i 1911 som del av den gradvise utvidelsen.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "early_expansion",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_12",
+          "question": "Hvilken del ble bygd ved Folkets Hus i 1935–1936?",
+          "options": [
+            "Et nytt høyesterettslokale",
+            "En ny storsal mot daværende Henrik Ibsens gate",
+            "En jernbaneterminal mot Møllergata"
+          ],
+          "answer": "En ny storsal mot daværende Henrik Ibsens gate",
+          "answerIndex": 1,
+          "knowledge": "Et nytt bygg med storsal kom i 1935–1936 mot gaten som senere ble Hammersborggata.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "interwar_hall",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_13",
+          "question": "Hva ble laget for Folkets Hus-kvartalet i 1938?",
+          "options": [
+            "Et fredningsvedtak for hele torget",
+            "En samlet generalplan for kvartalet",
+            "En plan om å flytte Youngstorget"
+          ],
+          "answer": "En samlet generalplan for kvartalet",
+          "answerIndex": 1,
+          "knowledge": "I 1938 forelå en samlet plan for utbygging av hele Folkets Hus-kvartalet.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "masterplan_1938",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_14",
+          "question": "Hvorfor ble ikke Knut Knutsens utbyggingsplan fra 1939 gjennomført straks?",
+          "options": [
+            "Andre verdenskrig stanset planleggingen",
+            "Huset ble flyttet til Slottsplassen",
+            "Tegningene ble brukt til Høyesteretts hus"
+          ],
+          "answer": "Andre verdenskrig stanset planleggingen",
+          "answerIndex": 0,
+          "knowledge": "Knutsens forslag ble valgt i 1939, men krigen avbrøt videre planlegging.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "war_delays",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_15",
+          "question": "Hvilket år kom den store etterkrigsutbyggingen av Folkets Hus i gang?",
+          "options": [
+            "1939",
+            "1962",
+            "1954"
+          ],
+          "answer": "1954",
+          "answerIndex": 2,
+          "knowledge": "Arbeidet kunne først settes i gang i 1954, etter at planleggingen hadde stoppet under krigen.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "postwar_construction_start",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_16",
+          "question": "Hva skjedde med den gamle bygningen i Youngs gate 11 i 1954?",
+          "options": [
+            "Den ble flyttet til Torggata",
+            "Den ble revet for å gi plass til et nytt byggeprosjekt",
+            "Den ble fredet som domstol"
+          ],
+          "answer": "Den ble revet for å gi plass til et nytt byggeprosjekt",
+          "answerIndex": 1,
+          "knowledge": "Arbeiderbevegelsens arkiv dokumenterer at den gamle Youngs gate 11-bygningen var revet da arbeidet startet høsten 1954.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "replacement_1954",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_17",
+          "question": "Hva ble markert ved Folkets Hus 1. mai 1955?",
+          "options": [
+            "Høytidelig nedleggelse av grunnsteinen",
+            "Åpningen av hele anlegget",
+            "Innvielsen av Oslo rådhus"
+          ],
+          "answer": "Høytidelig nedleggelse av grunnsteinen",
+          "answerIndex": 0,
+          "knowledge": "Grunnsteinen ble lagt ned 1. mai 1955, og et skrin med historikk, tegninger og avis ble murt inn.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "cornerstone",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_18",
+          "question": "Når flyttet LO inn i det nye Folkets Hus før første byggetrinn var helt ferdig?",
+          "options": [
+            "Juni 1962",
+            "April 1958",
+            "Desember 1957"
+          ],
+          "answer": "Desember 1957",
+          "answerIndex": 2,
+          "knowledge": "LO flyttet inn i desember 1957, mens første byggetrinn ble ferdigstilt i april 1958.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "lo_early_occupation",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_19",
+          "question": "Når ble første byggetrinn av dagens Folkets Hus ferdig?",
+          "options": [
+            "April 1958",
+            "Juni 1962",
+            "Oktober 1954"
+          ],
+          "answer": "April 1958",
+          "answerIndex": 0,
+          "knowledge": "Første byggetrinn var ferdig i april 1958; senere byggetrinn fortsatte fram til 1962.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "first_stage_completion",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_20",
+          "question": "Hvilken eiendom ble revet da andre byggetrinn startet?",
+          "options": [
+            "Møllergata 20",
+            "Møllergata 18",
+            "Youngstorget 2"
+          ],
+          "answer": "Møllergata 18",
+          "answerIndex": 1,
+          "knowledge": "Møllergata 18 ble revet i forbindelse med andre byggetrinn i 1958–1959.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "second_stage_demolition",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_21",
+          "question": "Hvilken eiendom ble innlemmet i Folkets Hus først i 1985?",
+          "options": [
+            "Torggata 14",
+            "Youngstorget 2",
+            "Møllergata 20"
+          ],
+          "answer": "Møllergata 20",
+          "answerIndex": 2,
+          "knowledge": "Møllergata 20 ble del av anlegget ved utbyggingen i 1985.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm",
+            "https://oslobyleksikon.no/side/Folkets_hus"
+          ],
+          "claim_family": "expansion_1985",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_22",
+          "question": "Hvem tegnet utkastet til Folkets Hus som ble vist ved innvielsen i 1907?",
+          "options": [
+            "Knut Knutsen",
+            "Harald Ohlsen",
+            "Erling Viksjø"
+          ],
+          "answer": "Harald Ohlsen",
+          "answerIndex": 1,
+          "knowledge": "Arkivets 1906-illustrasjon av det første Folkets Hus var tegnet etter Harald Ohlsens utkast. Dette er ikke arkitekten for dagens etterkrigsbygg.",
+          "source_urls": [
+            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+          ],
+          "claim_family": "original_building_designer",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_23",
+          "question": "Hvilken type handel fantes i Folkets Hus-anlegget fra 1961?",
+          "options": [
+            "En selvbetjent Snarkjøp-butikk fra Oslo Samvirkelag",
+            "En offentlig tingrettsskranke",
+            "En tollstasjon for Oslo havn"
+          ],
+          "answer": "En selvbetjent Snarkjøp-butikk fra Oslo Samvirkelag",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon beskriver en Snarkjøp-butikk åpnet i 1961 med inngang fra Youngsbakken.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Folkets_hus"
+          ],
+          "claim_family": "cooperative_shop",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_24",
+          "question": "Hva viser at Folkets Hus hadde flere oppgaver enn møter og kontorer?",
+          "options": [
+            "Det hadde også bank- og butikkfunksjoner",
+            "Det fungerte som Norges høyeste domstol",
+            "Det drev militær utdanning"
+          ],
+          "answer": "Det hadde også bank- og butikkfunksjoner",
+          "answerIndex": 0,
+          "knowledge": "Historiske kilder dokumenterer både Snarkjøp-butikk og lokaler for Arbeidernes Landsbank i anlegget.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Folkets_hus"
+          ],
+          "claim_family": "mixed_use",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysningen er kontrollert mot Arbark/Oslo byleksikon. Distraktorer og Knowledge-integrasjon krever separat review.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_25",
+          "question": "Hvilket år ble Folkets Hus oppført som landets andre slike hus ifølge Oslo byleksikon?",
+          "options": [
+            "1901",
+            "1907",
+            "1958"
+          ],
+          "answer": "1907",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon omtaler Oslo-huset som det andre huset innviet i denne tradisjonen, etter Bergen 1901. SNL oppgir imidlertid et eldre hus fra 1898 på Spjærøy; denne rekkefølgepåstanden må derfor IKKE publiseres uten definisjons- og kildeavklaring.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Folkets_hus",
+            "https://snl.no/Folkets_hus"
+          ],
+          "claim_family": "contested_national_order",
+          "review_status": "held_back_sources_disagree_about_national_order",
+          "review_note": "Hold: Oslo byleksikon og SNL bruker forskjellige kriterier om hvilke Folkets hus som var først/nummer to. Ikke publiser dette spørsmålet.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        }
+      ],
+      "fullquiz_research_status": "25_multiple_choice_candidates_total_10_quizcard_plus_15_fullquiz_only_including_1_held_back_not_published"
+    },
+    {
+      "place_id": "hoyres_hus",
+      "categoryId": "politikk",
+      "existing_quiz_audit": "Place-specific filename inventory only; manifest, shared sets, Knowledge and QuizCard audit remain mandatory before publication.",
+      "ten_quizcard_candidates": [
+        {
+          "id": "hoyres_hus_card_01",
+          "question": "Hvor ligger Høyres Hus i Oslo?",
+          "options": [
+            "Youngs gate 11",
+            "Akersgata 42",
+            "Stortingsgata 20"
+          ],
+          "answerIndex": 2,
+          "answer": "Stortingsgata 20",
+          "knowledge": "Den historiske partiadressen er Stortingsgata 20.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata",
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyres_hus_card_02",
+          "question": "Når ble Høyres Hus innviet?",
+          "options": [
+            "1905",
+            "1935",
+            "1965"
+          ],
+          "answerIndex": 1,
+          "answer": "1935",
+          "knowledge": "Innvielsen fant sted 21. oktober 1935.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "review_status": "core_claim_crosschecked_distractors_not_yet_approved"
+        },
+        {
+          "id": "hoyres_hus_card_03",
+          "question": "Hvem tegnet Høyres Hus?",
+          "options": [
+            "Magnus Poulsson",
+            "Erling Viksjø",
+            "Knut Knutsen"
+          ],
+          "answerIndex": 0,
+          "answer": "Magnus Poulsson",
+          "knowledge": "Magnus Poulsson var arkitekten.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata",
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyres_hus_card_04",
+          "question": "Hva ble bygget kalt under okkupasjonen?",
+          "options": [
+            "Folkets Hus",
+            "Justisbygningen",
+            "Hirdens Hus"
+          ],
+          "answerIndex": 2,
+          "answer": "Hirdens Hus",
+          "knowledge": "Okkupasjonsmakten tok over huset, som ble kalt Hirdens Hus.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata",
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyres_hus_card_05",
+          "question": "Hvilken politisk organisasjon tok huset i bruk under krigen?",
+          "options": [
+            "Nasjonal Samling",
+            "Landsorganisasjonen",
+            "Stortinget"
+          ],
+          "answerIndex": 0,
+          "answer": "Nasjonal Samling",
+          "knowledge": "NS tok bygningen i bruk under okkupasjonen.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyres_hus_card_06",
+          "question": "Hva slags bygg er Høyres Hus?",
+          "options": [
+            "Domstol",
+            "Kontor- og forretningsbygg med partifunksjoner",
+            "Regjeringsbygg fra 1958"
+          ],
+          "answerIndex": 1,
+          "answer": "Kontor- og forretningsbygg med partifunksjoner",
+          "knowledge": "Huset kombinerte partiorganisasjon og andre byfunksjoner.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyres_hus_card_07",
+          "question": "Hva er forskjellen mellom Høyres Hus og Stortinget?",
+          "options": [
+            "Begge er Norges øverste domstol",
+            "Begge vedtar lover som statsorganer",
+            "Partihuset organiserer et parti, mens Stortinget er en statlig institusjon"
+          ],
+          "answerIndex": 2,
+          "answer": "Partihuset organiserer et parti, mens Stortinget er en statlig institusjon",
+          "knowledge": "En partiorganisasjon er ikke det samme som lovgivende myndighet.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata",
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyres_hus_card_08",
+          "question": "Hvilket tidligere bymiljø hadde tilknytning til adressen?",
+          "options": [
+            "Christiania Tivoli",
+            "Akershus festning",
+            "Y-blokka"
+          ],
+          "answerIndex": 0,
+          "answer": "Christiania Tivoli",
+          "knowledge": "Høyres Hus ble reist på et område med historie fra Christiania Tivoli.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata",
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyres_hus_card_09",
+          "question": "Hvilken restaurant åpnet i bygningen i 1946?",
+          "options": [
+            "Grand Café",
+            "Frascati",
+            "Theatercaféen"
+          ],
+          "answerIndex": 1,
+          "answer": "Frascati",
+          "knowledge": "Restaurant Frascati ble etablert i 1946.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata"
+          ],
+          "review_status": "core_claim_crosschecked_distractors_not_yet_approved"
+        },
+        {
+          "id": "hoyres_hus_card_10",
+          "question": "Hva kan ikke fastslås bare fra partihusets fasade?",
+          "options": [
+            "At adressen er i Oslo sentrum",
+            "At bygget har en utvendig fasade",
+            "Hvilke konkrete interne vedtak et partimøte fattet"
+          ],
+          "answerIndex": 2,
+          "answer": "Hvilke konkrete interne vedtak et partimøte fattet",
+          "knowledge": "Interne beslutninger må dokumenteres i organisatoriske kilder, ikke utledes av arkitektur.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "review_status": "source_candidate_not_published"
+        }
+      ],
+      "additional_fullquiz_candidates": [
+        {
+          "id": "hoyres_hus_fullquiz_research_11",
+          "question": "Hvor mange etasjer har Høyres Hus i Stortingsgata 20?",
+          "options": [
+            "Fire",
+            "Seks",
+            "Ni"
+          ],
+          "answer": "Seks",
+          "answerIndex": 1,
+          "knowledge": "Lokalhistoriewiki beskriver den opprinnelige partigården som et seks etasjer høyt kontor- og forretningsbygg.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "claim_family": "building_height",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_12",
+          "question": "Hvilke partiorganisasjoner har hatt kontorer i Høyres Hus?",
+          "options": [
+            "Bare valgmyndighetene",
+            "Både Høyres hovedorganisasjon og Oslo Høyre",
+            "Statsministerens kontor som statlig kontor"
+          ],
+          "answer": "Både Høyres hovedorganisasjon og Oslo Høyre",
+          "answerIndex": 1,
+          "knowledge": "Lokalhistoriewiki navngir både partiets sentrale organisasjon og Oslo Høyre blant brukerne.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "claim_family": "party_organization_occupants",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_13",
+          "question": "Hvilke av disse navnene er knyttet til møterom i Høyres Hus?",
+          "options": [
+            "Fridtjof Nansen og Thor Heyerdahl",
+            "Emil Stang og Stranger",
+            "Ibsen og Bjørnson"
+          ],
+          "answer": "Emil Stang og Stranger",
+          "answerIndex": 1,
+          "knowledge": "Lokalhistoriewiki oppgir blant annet konferansesalene Emil Stang og Stranger. Slike bruksnavn kan endres og må kontrolleres før spillpublisering.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "claim_family": "historic_conference_rooms",
+          "review_status": "held_back_potentially_changeable_venue_name",
+          "review_note": "Konferansesalnavn kan endres og er mindre viktig enn stedets historiske bruk; hold tilbake til stedlig relevans og tidsangivelse er vurdert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_14",
+          "question": "Hvilket revyteater ble etablert i 1912 i Tivolis tidligere portbygning på samme sted?",
+          "options": [
+            "Nationaltheatret",
+            "Chat Noir",
+            "Det Norske Teatret"
+          ],
+          "answer": "Chat Noir",
+          "answerIndex": 1,
+          "knowledge": "Chat Noir ble etablert ved daværende Tivoli-portbygning i 1912, før dagens Høyres Hus ble oppført.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "claim_family": "earlier_tivoli_theater",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_15",
+          "question": "Hvilken restaurant fantes i Høyres Hus før andre verdenskrig?",
+          "options": [
+            "Grand Café",
+            "Restaurant Ritz",
+            "Restaurant Ekeberg"
+          ],
+          "answer": "Restaurant Ritz",
+          "answerIndex": 1,
+          "knowledge": "Restaurant Ritz holdt til i huset før krigen. Frascati åpnet først i 1946.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29",
+            "https://oslobyleksikon.no/side/Stortingsgata"
+          ],
+          "claim_family": "prewar_restaurant",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_16",
+          "question": "Hvilken NS-avdeling hadde kontorer i det okkuperte Høyres Hus?",
+          "options": [
+            "Stor-Oslo fylkesorganisasjon",
+            "Oslo rådhusadministrasjon",
+            "Riksarkivets historiske avdeling"
+          ],
+          "answer": "Stor-Oslo fylkesorganisasjon",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon nevner Nasjonal Samlings Stor-Oslo fylkesorganisasjon som bruker under okkupasjonen.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata"
+          ],
+          "claim_family": "occupation_party_offices",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_17",
+          "question": "Hvilket norsk-tysk selskapsmiljø hadde også lokaler i huset under okkupasjonen?",
+          "options": [
+            "Norges Røde Kors",
+            "Deutsch-Norwegische Gesellschaft",
+            "Norsk utenrikspolitisk institutt"
+          ],
+          "answer": "Deutsch-Norwegische Gesellschaft",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon dokumenterer lokaler for Deutsch-Norwegische Gesellschaft i gården i krigsårene.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata"
+          ],
+          "claim_family": "occupation_association_occupant",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_18",
+          "question": "Hvilken tysk sikkerhetspolitiinstitusjon brukte bygningen mot slutten av krigen?",
+          "options": [
+            "Sicherheitspolizei",
+            "Norges Bank",
+            "Det internasjonale Røde Kors"
+          ],
+          "answer": "Sicherheitspolizei",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon opplyser at bygningen mot slutten av krigen ble brukt av Sicherheitspolizei.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata"
+          ],
+          "claim_family": "late_occupation_security_police",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_19",
+          "question": "Hva forteller det blå skiltet på Høyres Hus om eldre bruk av stedet?",
+          "options": [
+            "At Norges første storting ble avholdt her",
+            "At inngangen til det gamle Christiania Tivoli lå her",
+            "At Henrik Ibsen ble født på denne adressen"
+          ],
+          "answer": "At inngangen til det gamle Christiania Tivoli lå her",
+          "answerIndex": 1,
+          "knowledge": "Oslo Byes Vels blå skilt viser til den gamle inngangen til Christiania Tivoli, ikke dagens partibyggs oppføring.",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Stortingsgata"
+          ],
+          "claim_family": "historic_blue_plaque",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_20",
+          "question": "Hvilket annet stort bygg var Magnus Poulsson med på å tegne i Oslo?",
+          "options": [
+            "Høyblokka",
+            "Oslo rådhus",
+            "Victoria terrasse"
+          ],
+          "answer": "Oslo rådhus",
+          "answerIndex": 1,
+          "knowledge": "Poulsson tegnet Høyres Hus og var sammen med Arnstein Arneberg arkitekt bak Oslo rådhus.",
+          "source_urls": [
+            "https://nbl.snl.no/Magnus_Poulsson"
+          ],
+          "claim_family": "architect_other_project",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_21",
+          "question": "Hva forteller Aftenpostens referat fra innvielsen i oktober 1935 om deltakelsen?",
+          "options": [
+            "Bare fem deltok på arrangementet",
+            "Innvielsen var utsatt til 1946",
+            "Over 400 deltok på forstanderskapets fest"
+          ],
+          "answer": "Over 400 deltok på forstanderskapets fest",
+          "answerIndex": 2,
+          "knowledge": "Lokalhistoriewiki gjengir Aftenpostens omtale av forstanderskapets fest ved innvielsen, der over 400 var til stede. Dette gjelder arrangementets fest, ikke alle besøkende på åpningsdagen.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "claim_family": "inauguration_account",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Kjerneopplysninger kontrollert i byhistorisk kilde/arkitektbiografi. Flere spørsmål gjelder tidligere brukere av samme bygning; unngå historisk ansvarsforveksling. Feilsvar og Knowledge krever QA.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyres_hus_fullquiz_research_22",
+          "question": "Hva skiller Høyres Hus i Stortingsgata 20 fra et annet bygg med samme navn på Kalbakken?",
+          "options": [
+            "Stortingsgata 20 var kun en midlertidig adresse etter 1965",
+            "Kalbakken-bygget ble reist først, i 1905",
+            "Partihuset i Stortingsgata ble innviet i 1935, mens Kalbakken fikk et eget lokalt partihus i 1965"
+          ],
+          "answer": "Partihuset i Stortingsgata ble innviet i 1935, mens Kalbakken fikk et eget lokalt partihus i 1965",
+          "answerIndex": 2,
+          "knowledge": "Lokalhistoriewiki omtaler et Høyres Hus på Kalbakken, Trondheimsveien 391, fra 1965 med lokale partikontorer, og skiller dette fra det sentrale Høyres Hus i Stortingsgata 20 fra 1935. Bygget på Kalbakken ble senere solgt.",
+          "source_urls": [
+            "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29"
+          ],
+          "claim_family": "distinguish_two_named_venues",
+          "review_status": "core_claim_checked_local_history_source_distractor_review_pending",
+          "review_note": "Særskilt sted-/navnedistinksjon bekreftet fra Lokalhistoriewiki, inkl. ulike adresse- og innvielsesår. Etterprøv kilde/distraktorer og faglig verdi før endelig quizvalg.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        }
+      ],
+      "fullquiz_research_status": "22_multiple_choice_candidates_total_10_quizcard_plus_12_fullquiz_only_including_1_held_back_not_published"
+    },
+    {
+      "place_id": "hoyblokka",
+      "categoryId": "politikk",
+      "existing_quiz_audit": "Place-specific filename inventory only; manifest, shared sets, Knowledge and QuizCard audit remain mandatory before publication.",
+      "ten_quizcard_candidates": [
+        {
+          "id": "hoyblokka_card_01",
+          "question": "Når stod Høyblokka ferdig?",
+          "options": [
+            "1903",
+            "1958",
+            "1969"
+          ],
+          "answerIndex": 1,
+          "answer": "1958",
+          "knowledge": "Bygget stod ferdig i 1958.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/",
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/nar-flytter-departementene-inn-og-nar-er-nytt-regjeringskvartal-ferdig/id3032581/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyblokka_card_02",
+          "question": "Hvilken arkitekt tegnet Høyblokka?",
+          "options": [
+            "Magnus Poulsson",
+            "Hans Jacob Sparre",
+            "Erling Viksjø"
+          ],
+          "answerIndex": 2,
+          "answer": "Erling Viksjø",
+          "knowledge": "Erling Viksjø tegnet modernistbygget.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyblokka_card_03",
+          "question": "Hva skjedde med Høyblokka etter angrepet i 2011?",
+          "options": [
+            "Den ble bevart og rehabilitert",
+            "Den ble revet i 2020",
+            "Den ble flyttet til Akershus festning"
+          ],
+          "answerIndex": 0,
+          "answer": "Den ble bevart og rehabilitert",
+          "knowledge": "Høyblokka ble restaurert og gjenbrukt.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/nar-flytter-departementene-inn-og-nar-er-nytt-regjeringskvartal-ferdig/id3032581/",
+            "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyblokka_card_04",
+          "question": "Når åpnet første byggetrinn i det nye regjeringskvartalet?",
+          "options": [
+            "22. juli 2011",
+            "21. mars 2025",
+            "13. april 2026"
+          ],
+          "answerIndex": 2,
+          "answer": "13. april 2026",
+          "knowledge": "Offisiell åpning ble holdt 13. april 2026.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/aktuelt/det-nye-regjeringskvartalet-offisielt-apnet/id3155987/",
+            "https://www.regjeringen.no/no/aktuelt/offisiell-apning-av-nytt-regjeringskvartal/id3153629/"
+          ],
+          "review_status": "core_claim_crosschecked_distractors_not_yet_approved"
+        },
+        {
+          "id": "hoyblokka_card_05",
+          "question": "Hva rammet regjeringskvartalet 22. juli 2011?",
+          "options": [
+            "En brann under unionsoppløsningen",
+            "Et terrorangrep",
+            "En flom i Akerselva"
+          ],
+          "answerIndex": 1,
+          "answer": "Et terrorangrep",
+          "knowledge": "Åtte ble drept i angrepet i regjeringskvartalet; formidles med respekt.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/aktuelt/det-nye-regjeringskvartalet-offisielt-apnet/id3155987/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyblokka_card_06",
+          "question": "Hvilken teknikk kjennetegner mye av Høyblokkas arkitektur?",
+          "options": [
+            "Naturbetong",
+            "Laftet tømmer",
+            "Glassmalerier fra middelalderen"
+          ],
+          "answerIndex": 0,
+          "answer": "Naturbetong",
+          "knowledge": "Høyblokka er kjent for Viksjøs naturbetong.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyblokka_card_07",
+          "question": "Hvilket departement flyttet tilbake til Høyblokka i 2026?",
+          "options": [
+            "Utenriksdepartementet",
+            "Kultur- og likestillingsdepartementet",
+            "Justis- og beredskapsdepartementet"
+          ],
+          "answerIndex": 2,
+          "answer": "Justis- og beredskapsdepartementet",
+          "knowledge": "Justisdepartementet hører til Høyblokka, mens UD flyttet til D-blokka.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/nar-flytter-departementene-inn-og-nar-er-nytt-regjeringskvartal-ferdig/id3032581/",
+            "https://www.regjeringen.no/no/aktuelt/offisiell-apning-av-nytt-regjeringskvartal/id3153629/"
+          ],
+          "review_status": "core_claim_crosschecked_distractors_not_yet_approved"
+        },
+        {
+          "id": "hoyblokka_card_08",
+          "question": "Betyr åpningen i 2026 at hele regjeringskvartalet er ferdig?",
+          "options": [
+            "Ja, alle framtidige byggetrinn var ferdig",
+            "Nei, det gjaldt første byggetrinn",
+            "Ja, alle departementene flyttet til Høyblokka"
+          ],
+          "answerIndex": 1,
+          "answer": "Nei, det gjaldt første byggetrinn",
+          "knowledge": "Videre byggetrinn gjenstår etter første åpning.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/aktuelt/det-nye-regjeringskvartalet-offisielt-apnet/id3155987/",
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/nar-flytter-departementene-inn-og-nar-er-nytt-regjeringskvartal-ferdig/id3032581/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyblokka_card_09",
+          "question": "Hva skiller Høyblokka fra Y-blokka etter 2020?",
+          "options": [
+            "Høyblokka er bevart, Y-blokka revet",
+            "Begge ble revet",
+            "Bare Y-blokka er bevart"
+          ],
+          "answerIndex": 0,
+          "answer": "Høyblokka er bevart, Y-blokka revet",
+          "knowledge": "To bygg i samme kvartal fikk ulike utfall.",
+          "source_urls": [
+            "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/",
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/nar-flytter-departementene-inn-og-nar-er-nytt-regjeringskvartal-ferdig/id3032581/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "hoyblokka_card_10",
+          "question": "Hvor fant åpningsarrangementet i 2026 sted?",
+          "options": [
+            "I Stortingssalen",
+            "På taket av Y-blokka",
+            "Utenfor Høyblokka"
+          ],
+          "answerIndex": 2,
+          "answer": "Utenfor Høyblokka",
+          "knowledge": "Den offisielle seremonien fant sted foran Høyblokka.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/aktuelt/det-nye-regjeringskvartalet-offisielt-apnet/id3155987/"
+          ],
+          "review_status": "source_candidate_not_published"
+        }
+      ],
+      "additional_fullquiz_candidates": [
+        {
+          "id": "hoyblokka_fullquiz_research_11",
+          "question": "Hva ble området der Høyblokka senere ble reist, tidligere kalt?",
+          "options": [
+            "Ruseløkkbakken",
+            "Empirekvartalet",
+            "Grünerløkka"
+          ],
+          "answer": "Empirekvartalet",
+          "answerIndex": 1,
+          "knowledge": "Regjeringens bygningshistorie navngir området mellom blant annet Akersgata og Grubbegata som Empirekvartalet.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/"
+          ],
+          "claim_family": "earlier_city_quarter",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_12",
+          "question": "Hvilken statlig bygning var første byggetrinn i regjeringskvartalet, før Høyblokka?",
+          "options": [
+            "G-blokka",
+            "Y-blokka",
+            "D-blokka"
+          ],
+          "answer": "G-blokka",
+          "answerIndex": 0,
+          "knowledge": "G-blokka stod ferdig i 1906, lenge før Høyblokka fra 1958.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/"
+          ],
+          "claim_family": "predecessor_government_building",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_13",
+          "question": "Hvilken statsminister flyttet inn i Høyblokka i november 1958?",
+          "options": [
+            "Einar Gerhardsen",
+            "Johan Nygaardsvold",
+            "Gro Harlem Brundtland"
+          ],
+          "answer": "Einar Gerhardsen",
+          "answerIndex": 0,
+          "knowledge": "Statsminister Einar Gerhardsen flyttet inn 26. november 1958.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1946--nyere-tid/1958-Statsministeren-flytter-til-Hoyblokken/id759096/"
+          ],
+          "claim_family": "first_prime_minister_office",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_14",
+          "question": "I hvilken etasje hadde statsminister Einar Gerhardsen sitt kontor i 1958?",
+          "options": [
+            "11. etasje",
+            "15. etasje",
+            "Første etasje"
+          ],
+          "answer": "15. etasje",
+          "answerIndex": 1,
+          "knowledge": "Statsministerens kontor beskriver Gerhardsens arbeidsværelse i 15. etasje ved innflyttingen i 1958.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1946--nyere-tid/1958-Statsministeren-flytter-til-Hoyblokken/id759096/"
+          ],
+          "claim_family": "historical_prime_minister_floor",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_15",
+          "question": "Hvilken ingeniør samarbeidet med Viksjø om å utvikle naturbetongteknikken?",
+          "options": [
+            "Magnus Poulsson",
+            "Sverre Jystad",
+            "Hans Jakob Sparre"
+          ],
+          "answer": "Sverre Jystad",
+          "answerIndex": 1,
+          "knowledge": "Erling Viksjø utviklet naturbetong i samarbeid med ingeniør Sverre Jystad.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/"
+          ],
+          "claim_family": "material_innovation_partner",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_16",
+          "question": "Hvordan ble mye av kunsten laget direkte i Høyblokkas naturbetong?",
+          "options": [
+            "Motiver ble sandblåst i betongoverflatene",
+            "Oljemalerier ble limt på alle yttervinduer",
+            "Glassmalerier ble satt inn i murverket"
+          ],
+          "answer": "Motiver ble sandblåst i betongoverflatene",
+          "answerIndex": 0,
+          "knowledge": "Integrert betongkunst ble sandblåst i naturbetongen, og var dermed knyttet til arkitekturen.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/"
+          ],
+          "claim_family": "integrated_arts_process",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_17",
+          "question": "Hvilken kunstner var blant dem som arbeidet med den integrerte kunsten i Høyblokka?",
+          "options": [
+            "Edvard Grieg",
+            "Inger Sitter",
+            "Henrik Ibsen"
+          ],
+          "answer": "Inger Sitter",
+          "answerIndex": 1,
+          "knowledge": "Inger Sitter nevnes blant kunstnerne som fikk utsmykningsoppdrag i Høyblokka.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/"
+          ],
+          "claim_family": "integrated_artist",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_18",
+          "question": "Hva gjorde KORO og andre institusjoner med mye av kunsten fra regjeringskvartalet etter 2011?",
+          "options": [
+            "De sikret, renset og lagret omkring 1000 kunstverk",
+            "De lot alle verk bli liggende i skadde rom",
+            "De flyttet alle verkene til utlandet"
+          ],
+          "answer": "De sikret, renset og lagret omkring 1000 kunstverk",
+          "answerIndex": 0,
+          "knowledge": "Regjeringen beskriver sikring, rensing og lagring av omkring 1000 verk etter 22. juli 2011.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/"
+          ],
+          "claim_family": "postattack_art_rescue",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_19",
+          "question": "Hvilket år startet rehabiliteringen som skulle føre Høyblokka tilbake mot 1958-uttrykket?",
+          "options": [
+            "1996",
+            "2021",
+            "2008"
+          ],
+          "answer": "2021",
+          "answerIndex": 1,
+          "knowledge": "Rehabiliteringen begynte i 2021, og den opprinnelige naturbetongteknikken ble brukt på nytt.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/",
+            "https://www.statsbygg.no/nyheter/fasaden-pa-hoyblokken-er-klar/"
+          ],
+          "claim_family": "rehabilitation_start",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_20",
+          "question": "Når meldte Statsbygg at Høyblokkas utvendige fasade var ferdig rehabilitert?",
+          "options": [
+            "Oktober 2022",
+            "April 2011",
+            "Desember 2026"
+          ],
+          "answer": "Oktober 2022",
+          "answerIndex": 0,
+          "knowledge": "Statsbygg meldte 5. oktober 2022 at fasaderehabiliteringen var fullført.",
+          "source_urls": [
+            "https://www.statsbygg.no/nyheter/fasaden-pa-hoyblokken-er-klar/"
+          ],
+          "claim_family": "facade_rehabilitation_2022",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_21",
+          "question": "Hva skjedde med de to påbygde etasjene fra slutten av 1980-årene?",
+          "options": [
+            "De ble flyttet til A-blokka",
+            "De ble fjernet under rehabiliteringen",
+            "De ble bygget på ytterligere"
+          ],
+          "answer": "De ble fjernet under rehabiliteringen",
+          "answerIndex": 1,
+          "knowledge": "Statsbygg beskriver at de to påbygde etasjene ble revet for å gi bygningen opprinnelige proporsjoner.",
+          "source_urls": [
+            "https://www.statsbygg.no/nyheter/fasaden-pa-hoyblokken-er-klar/"
+          ],
+          "claim_family": "added_floors_removed",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_22",
+          "question": "Hvilke tresorter beskriver Statsbygg brukt på hver sin side av Høyblokkas rehabiliterte fasade?",
+          "options": [
+            "Bare furu på alle fasader",
+            "Teak mot Akersgata og eik mot Grubbegata",
+            "Mahogni mot Akersgata og granitt mot Grubbegata"
+          ],
+          "answer": "Teak mot Akersgata og eik mot Grubbegata",
+          "answerIndex": 1,
+          "knowledge": "Statsbygg omtaler gjenbruk av teak på Akersgata-siden og ny eik mot Grubbegata.",
+          "source_urls": [
+            "https://www.statsbygg.no/nyheter/fasaden-pa-hoyblokken-er-klar/"
+          ],
+          "claim_family": "material_preservation",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "hoyblokka_fullquiz_research_23",
+          "question": "Hvilken kulturhistorisk institusjon fikk nye lokaler knyttet til Høyblokkas paviljonger?",
+          "options": [
+            "Oslo byarkiv",
+            "Nationaltheatret",
+            "22. juli-senteret"
+          ],
+          "answer": "22. juli-senteret",
+          "answerIndex": 2,
+          "knowledge": "Statsbygg beskriver rehabiliterte og nye lokaler for 22. juli-senteret i og ved Høyblokka.",
+          "source_urls": [
+            "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/"
+          ],
+          "claim_family": "memory_center_integration",
+          "review_status": "core_claim_checked_primary_source_distractor_review_pending",
+          "review_note": "Kjernepåstand kontrollert direkte hos regjeringen.no eller Statsbygg. Merk hvilket historisk tidspunkt spørsmålet gjelder; distraktorer og Knowledge ikke ferdig validert.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        }
+      ],
+      "fullquiz_research_status": "23_multiple_choice_candidates_total_10_quizcard_plus_13_fullquiz_only_not_published"
+    },
+    {
+      "place_id": "victoria_terrasse",
+      "categoryId": "politikk",
+      "existing_quiz_audit": "Place-specific filename inventory only; manifest, shared sets, Knowledge and QuizCard audit remain mandatory before publication.",
+      "ten_quizcard_candidates": [
+        {
+          "id": "victoria_terrasse_card_01",
+          "question": "Hva var Victoria terrasse først bygget som?",
+          "options": [
+            "En domstol",
+            "En jernbanestasjon",
+            "Et påkostet boligkompleks"
+          ],
+          "answerIndex": 2,
+          "answer": "Et påkostet boligkompleks",
+          "knowledge": "Komplekset ble oppført som eksklusive boliger i 1880-årene.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/",
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "victoria_terrasse_card_02",
+          "question": "Hvilket departement holdt til her fra 1905 til 2026?",
+          "options": [
+            "Finansdepartementet",
+            "Utenriksdepartementet",
+            "Justisdepartementet"
+          ],
+          "answerIndex": 1,
+          "answer": "Utenriksdepartementet",
+          "knowledge": "Victoria terrasse var UDs historiske hovedadresse.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/",
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "victoria_terrasse_card_03",
+          "question": "Når ble Victoria terrasse fredet?",
+          "options": [
+            "1905",
+            "1963",
+            "2025"
+          ],
+          "answerIndex": 2,
+          "answer": "2025",
+          "knowledge": "Fredningen ble formelt gjennomført 21. mars 2025.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "review_status": "core_claim_crosschecked_distractors_not_yet_approved"
+        },
+        {
+          "id": "victoria_terrasse_card_04",
+          "question": "Hvilket nazistisk politiorgan hadde hovedkvarter her?",
+          "options": [
+            "Gestapo",
+            "Norges Høyesterett",
+            "Norges Bank"
+          ],
+          "answerIndex": 0,
+          "answer": "Gestapo",
+          "knowledge": "Gestapo brukte komplekset under okkupasjonen.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/",
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "victoria_terrasse_card_05",
+          "question": "Hvilken dramatiker bodde i Sydkvartalet 1891–1895?",
+          "options": [
+            "Bjørnstjerne Bjørnson",
+            "Henrik Ibsen",
+            "Knut Hamsun"
+          ],
+          "answerIndex": 1,
+          "answer": "Henrik Ibsen",
+          "knowledge": "Ibsens gamle leilighet inngår i vernet.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "victoria_terrasse_card_06",
+          "question": "Hvor flyttet Utenriksdepartementet i 2026?",
+          "options": [
+            "Y-blokka",
+            "Oslo tinghus",
+            "D-blokka i nytt regjeringskvartal"
+          ],
+          "answerIndex": 2,
+          "answer": "D-blokka i nytt regjeringskvartal",
+          "knowledge": "UD flyttet til D-blokka i 2026.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/aktuelt/offisiell-apning-av-nytt-regjeringskvartal/id3153629/",
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "review_status": "core_claim_crosschecked_distractors_not_yet_approved"
+        },
+        {
+          "id": "victoria_terrasse_card_07",
+          "question": "Hvilke krigshistoriske rom er omfattet av fredningen?",
+          "options": [
+            "Stortingssalen",
+            "To tidligere fengselsceller",
+            "En bunker under Rådhuset"
+          ],
+          "answerIndex": 1,
+          "answer": "To tidligere fengselsceller",
+          "knowledge": "To celler i kjelleren er blant de fredede delene.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "review_status": "core_claim_crosschecked_distractors_not_yet_approved"
+        },
+        {
+          "id": "victoria_terrasse_card_08",
+          "question": "Hva viser UDs flytting fra Victoria terrasse?",
+          "options": [
+            "Utenrikstjenesten opphørte",
+            "Bygningen mistet all verneverdi",
+            "En institusjon kan fortsette etter at den flytter adresse"
+          ],
+          "answerIndex": 2,
+          "answer": "En institusjon kan fortsette etter at den flytter adresse",
+          "knowledge": "Institusjonens virksomhet og bygningens historiske verdi er ulike størrelser.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/",
+            "https://www.regjeringen.no/no/aktuelt/offisiell-apning-av-nytt-regjeringskvartal/id3153629/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "victoria_terrasse_card_09",
+          "question": "Hvilket tilbygg fra 1900-tallet er fredet?",
+          "options": [
+            "Tilbygget fra 1963 mot Drammensveien",
+            "Y-blokka fra 1969",
+            "Høyesteretts hus fra 1903"
+          ],
+          "answerIndex": 0,
+          "answer": "Tilbygget fra 1963 mot Drammensveien",
+          "knowledge": "Fredningen omfatter blant annet tilbygget fra 1963.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "victoria_terrasse_card_10",
+          "question": "Hva er riktig måte å omtale overgrepene på Victoria terrasse på?",
+          "options": [
+            "Legge ansvaret på bygningens fasade",
+            "Knytte handlingene til dokumenterte ansvarlige og institusjoner",
+            "Behandle tortur som underholdning"
+          ],
+          "answerIndex": 1,
+          "answer": "Knytte handlingene til dokumenterte ansvarlige og institusjoner",
+          "knowledge": "Stedet viser spor; historisk ansvar må tilskrives mennesker og organisasjoner.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/",
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "review_status": "source_candidate_not_published"
+        }
+      ],
+      "additional_fullquiz_candidates": [
+        {
+          "id": "victoria_terrasse_fullquiz_research_11",
+          "question": "Når stod hovedkomplekset Victoria terrasse ferdig?",
+          "options": [
+            "1880",
+            "1890",
+            "1913"
+          ],
+          "answer": "1890",
+          "answerIndex": 1,
+          "knowledge": "Det store boligkomplekset stod ferdig i 1890, før det senere ble kontorer for staten.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "claim_family": "completion_date",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_12",
+          "question": "Hvem var hovedarkitekten bak Victoria terrasse?",
+          "options": [
+            "Olaf Due",
+            "Henrik Thrap-Meyer",
+            "Erling Viksjø"
+          ],
+          "answer": "Henrik Thrap-Meyer",
+          "answerIndex": 1,
+          "knowledge": "Henrik Thrap-Meyer var hovedarkitekt, men flere andre arkitekter deltok i sluttfasen.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse",
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "claim_family": "architect",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_13",
+          "question": "Hvem er bygningskomplekset Victoria terrasse oppkalt etter?",
+          "options": [
+            "Dronning Maud",
+            "Den svensk-norske kronprinsessen Victoria",
+            "En norsk kvinnelig arkitekt"
+          ],
+          "answer": "Den svensk-norske kronprinsessen Victoria",
+          "answerIndex": 1,
+          "knowledge": "Komplekset ble oppkalt etter daværende kronprinsesse Victoria av Sverige og Norge.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse",
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "claim_family": "name_origin",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_14",
+          "question": "Omtrent hvor mange leiligheter omfattet det opprinnelige komplekset?",
+          "options": [
+            "24",
+            "64",
+            "124"
+          ],
+          "answer": "124",
+          "answerIndex": 2,
+          "knowledge": "Victoria terrasse hadde opprinnelig 124 leiligheter, mange med høy standard.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "claim_family": "original_apartments",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_15",
+          "question": "Hvilke tekniske fasiliteter hadde de påkostede leilighetene fra starten?",
+          "options": [
+            "Fjernvarme og heis til hver bolig",
+            "Innlagt vann og elektrisk lys",
+            "Gassverk i hver leilighet"
+          ],
+          "answer": "Innlagt vann og elektrisk lys",
+          "answerIndex": 1,
+          "knowledge": "De opprinnelige leilighetene hadde innlagt vann og elektrisk belysning.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "claim_family": "apartment_technology",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_16",
+          "question": "Hva lå opprinnelig som et handelsanlegg nedenfor Victoria terrasse?",
+          "options": [
+            "Ruseløkkbasarene",
+            "Oslo Børs",
+            "Tollboden i Bjørvika"
+          ],
+          "answer": "Ruseløkkbasarene",
+          "answerIndex": 0,
+          "knowledge": "Ruseløkkbasarene lå på nivået nedenfor den monumentale boligbebyggelsen og ble senere revet.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "claim_family": "original_bazaars",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_17",
+          "question": "Hva ble de tidligere Ruseløkkbasarene erstattet med?",
+          "options": [
+            "En ny jernbanestasjon",
+            "Butikkområdet Vikaterrassen",
+            "Høyesteretts hus"
+          ],
+          "answer": "Butikkområdet Vikaterrassen",
+          "answerIndex": 1,
+          "knowledge": "De opprinnelige basarene ble revet på 1960-tallet, og Vikaterrassen ble senere etablert på stedet.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "claim_family": "bazaars_replacement",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_18",
+          "question": "Hvordan var det store komplekset fysisk organisert?",
+          "options": [
+            "Ett frittstående tårn",
+            "Tre kvartaler med to tverrgater",
+            "Sju identiske paviljonger"
+          ],
+          "answer": "Tre kvartaler med to tverrgater",
+          "answerIndex": 1,
+          "knowledge": "Victoria terrasse består av tre kvartaler skilt av to tverrgater.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "claim_family": "building_massing",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_19",
+          "question": "Hvilke to teaterstykker skrev Henrik Ibsen mens han bodde på Victoria terrasse?",
+          "options": [
+            "Peer Gynt og Et dukkehjem",
+            "Byggmester Solness og Lille Eyolf",
+            "Vildanden og Gengangere"
+          ],
+          "answer": "Byggmester Solness og Lille Eyolf",
+          "answerIndex": 1,
+          "knowledge": "Ibsen bodde i Sydkvartalet 1891–1895 og skrev blant annet Byggmester Solness og Lille Eyolf.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "claim_family": "ibsen_works",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_20",
+          "question": "Hvilket norsk politiorgan hadde også hovedkvarter på Victoria terrasse under okkupasjonen?",
+          "options": [
+            "Kripos i sin nåværende form",
+            "Det nazifiserte Statspolitiet",
+            "Den ordinære norske sivilombudsordningen"
+          ],
+          "answer": "Det nazifiserte Statspolitiet",
+          "answerIndex": 1,
+          "knowledge": "Riksantikvaren nevner det nazifiserte norske Statspolitiet sammen med Gestapo; ansvaret må knyttes til de historiske organene.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "claim_family": "occupation_norwegian_police",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_21",
+          "question": "Hvor mange historiske trapper er omfattet av fredningen fra 2025?",
+          "options": [
+            "Én",
+            "Tre",
+            "Åtte"
+          ],
+          "answer": "Tre",
+          "answerIndex": 1,
+          "knowledge": "Riksantikvaren opplyser at tre trapper inngår i de fredede interiørdelene.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "claim_family": "protected_staircases",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_22",
+          "question": "Hvilken privat bolig inngår i fredningen av interiøret?",
+          "options": [
+            "Christiania Tivolis garderobe",
+            "Henrik Ibsens tidligere leilighet",
+            "Regjeringssjefens senere kontor i Høyblokka"
+          ],
+          "answer": "Henrik Ibsens tidligere leilighet",
+          "answerIndex": 1,
+          "knowledge": "Fredningen omfatter blant annet Henrik Ibsens tidligere leilighet i Sydkvartalet.",
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/"
+          ],
+          "claim_family": "protected_ibsen_apartment",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_23",
+          "question": "Hvilken form for bruk fantes i Victoria terrasse før statens senere overtakelse av hele anlegget?",
+          "options": [
+            "Bare militære brakker",
+            "Både boliger og enkelte offentlige kontorer",
+            "Bare rettssaler for lagmannsretten"
+          ],
+          "answer": "Både boliger og enkelte offentlige kontorer",
+          "answerIndex": 1,
+          "knowledge": "Allerede på 1880-tallet ble flere leiligheter leid ut til offentlige kontorfunksjoner.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "claim_family": "early_office_mix",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "victoria_terrasse_fullquiz_research_24",
+          "question": "Hva skjedde med den eldre bygningen ved Drammensveien 2 etter bombing i 1944?",
+          "options": [
+            "Den ble flyttet til Slottet",
+            "Den ble fredet som intakt i 1944",
+            "Den ble ødelagt, og området fikk senere et nytt UD-tilbygg"
+          ],
+          "answer": "Den ble ødelagt, og området fikk senere et nytt UD-tilbygg",
+          "answerIndex": 2,
+          "knowledge": "SNL opplyser at bombingen i 1944 ødela nabobygningen ved Drammensveien 2; et nytt UD-tilbygg ble reist der i 1961–1963.",
+          "source_urls": [
+            "https://snl.no/Victoria_terrasse"
+          ],
+          "claim_family": "war_bombing_rebuilding",
+          "review_status": "core_claim_checked_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand kontrollert mot den oppgitte kulturminne-/fagkilden. Feilsvar, nivå og Knowledge-integrasjon gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        }
+      ],
+      "fullquiz_research_status": "24_multiple_choice_candidates_total_10_quizcard_plus_14_fullquiz_only_not_published"
+    },
+    {
+      "place_id": "y_blokka",
+      "categoryId": "politikk",
+      "existing_quiz_audit": "Place-specific filename inventory only; manifest, shared sets, Knowledge and QuizCard audit remain mandatory before publication.",
+      "ten_quizcard_candidates": [
+        {
+          "id": "y_blokka_card_01",
+          "question": "Hvorfor er Y-blokka markert som historisk sted?",
+          "options": [
+            "Bygget brukes fremdeles av UD",
+            "Bygget ble revet i 2020",
+            "Bygningen fantes bare på papir"
+          ],
+          "answerIndex": 1,
+          "answer": "Bygget ble revet i 2020",
+          "knowledge": "Markøren viser hvor et nå revet bygg stod.",
+          "source_urls": [
+            "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "y_blokka_card_02",
+          "question": "Hvem tegnet Y-blokka?",
+          "options": [
+            "Hans Jacob Sparre",
+            "Magnus Poulsson",
+            "Erling Viksjø"
+          ],
+          "answerIndex": 2,
+          "answer": "Erling Viksjø",
+          "knowledge": "Y-blokka var tegnet av Erling Viksjø.",
+          "source_urls": [
+            "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "y_blokka_card_03",
+          "question": "Når ble Y-blokka revet?",
+          "options": [
+            "1969",
+            "2020",
+            "2026"
+          ],
+          "answerIndex": 1,
+          "answer": "2020",
+          "knowledge": "Rivingen fant sted i 2020.",
+          "source_urls": [
+            "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/",
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "y_blokka_card_04",
+          "question": "Hvilke to kunstverk var integrert i Y-blokka?",
+          "options": [
+            "Sinnataggen og Monolitten",
+            "Livshjulet og Brudeferden",
+            "Fiskerne og Måken"
+          ],
+          "answerIndex": 2,
+          "answer": "Fiskerne og Måken",
+          "knowledge": "Picassos motiver ble utført i betong av Carl Nesjar.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "y_blokka_card_05",
+          "question": "Hvem utførte kunstmotivene i naturbetongen?",
+          "options": [
+            "Carl Nesjar",
+            "Edvard Munch",
+            "Gustav Vigeland"
+          ],
+          "answerIndex": 0,
+          "answer": "Carl Nesjar",
+          "knowledge": "Carl Nesjar sandblåste motivene basert på Picassos skisser.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/",
+            "https://www.statsbygg.no/nyheter/a-blokken-i-full-storrelse/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "y_blokka_card_06",
+          "question": "Hvor var Fiskerne opprinnelig plassert?",
+          "options": [
+            "I en kjeller på Stortinget",
+            "På ytterveggen mot Akersgata",
+            "På taket av Høyesterett"
+          ],
+          "answerIndex": 1,
+          "answer": "På ytterveggen mot Akersgata",
+          "knowledge": "Fiskerne satt i Y-blokkas ytterfasade.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "y_blokka_card_07",
+          "question": "Hvor var Måken opprinnelig?",
+          "options": [
+            "I Høyesteretts rettssal",
+            "På Youngstorgets scene",
+            "I Y-blokkas vestibyle"
+          ],
+          "answerIndex": 2,
+          "answer": "I Y-blokkas vestibyle",
+          "knowledge": "Måken var integrert i vestibylen.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "y_blokka_card_08",
+          "question": "Hvor ble begge verkene montert på nytt i 2024?",
+          "options": [
+            "I den opprinnelige Y-blokka",
+            "I og på A-blokka",
+            "Ved Stortinget"
+          ],
+          "answerIndex": 1,
+          "answer": "I og på A-blokka",
+          "knowledge": "Statsbygg bekrefter begge montert i A-blokka i 2024.",
+          "source_urls": [
+            "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/",
+            "https://www.statsbygg.no/nyheter/a-blokken-i-full-storrelse/",
+            "https://www.statsbygg.no/nyheter/her-flyr-maken-for-siste-gang",
+            "https://www.mynewsdesk.com/no/koro/news/kunsten-i-regjeringskvartalet-507452"
+          ],
+          "review_status": "core_claim_crosschecked_distractors_not_yet_approved"
+        },
+        {
+          "id": "y_blokka_card_09",
+          "question": "Hvilke hensyn ble veid i striden om riving?",
+          "options": [
+            "Sikkerhet, byutvikling, vern og kunst",
+            "Bare størrelsen på vinduene",
+            "Om Stortinget skulle flyttes til Bergen"
+          ],
+          "answerIndex": 0,
+          "answer": "Sikkerhet, byutvikling, vern og kunst",
+          "knowledge": "Rivingssaken omfattet konkurrerende politiske og kulturminnefaglige interesser.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20182019/id2641647/?ch=5"
+          ],
+          "review_status": "source_candidate_not_published"
+        },
+        {
+          "id": "y_blokka_card_10",
+          "question": "Hva kan gå tapt når et integrert kunstverk flyttes?",
+          "options": [
+            "Alle registrerte rettighetshavere",
+            "Den dokumenterte opphavsretten automatisk",
+            "Forholdet mellom kunst og opprinnelig arkitektur"
+          ],
+          "answerIndex": 2,
+          "answer": "Forholdet mellom kunst og opprinnelig arkitektur",
+          "knowledge": "Verkene er bevart, men stedlig sammenheng endret.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20182019/id2641647/?ch=5",
+            "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/"
+          ],
+          "review_status": "source_candidate_not_published"
+        }
+      ],
+      "additional_fullquiz_candidates": [
+        {
+          "id": "y_blokka_fullquiz_research_11",
+          "question": "Hva viser bokstaven Y i navnet Y-blokka til?",
+          "options": [
+            "Bygningens form sett ovenfra",
+            "At den var reist til et jubileumsår",
+            "At den var byens yngste høyhus"
+          ],
+          "answer": "Bygningens form sett ovenfra",
+          "answerIndex": 0,
+          "knowledge": "Y-blokka hadde tre armer og en Y-form sett ovenfra.",
+          "source_urls": [
+            "https://magasin.oslo.kommune.no/byplan/tillater-riving-av-en-floy-av-y-blokka"
+          ],
+          "claim_family": "plan_shape",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_12",
+          "question": "Hvilken adresse hadde den tidligere Y-blokka?",
+          "options": [
+            "Akersgata 40",
+            "Akersgata 44",
+            "Karl Johans gate 22"
+          ],
+          "answer": "Akersgata 44",
+          "answerIndex": 1,
+          "knowledge": "Regjeringens byggoversikt og kommunens fagartikkel knytter Y-blokka til Akersgata 44.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/",
+            "https://magasin.oslo.kommune.no/byplan/tillater-riving-av-en-floy-av-y-blokka"
+          ],
+          "claim_family": "historic_address",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_13",
+          "question": "Hvilken trafikkåre var sentral i sikkerhetsargumentet for rivning?",
+          "options": [
+            "Ring 1",
+            "E18 ved Lysaker",
+            "Ring 3"
+          ],
+          "answer": "Ring 1",
+          "answerIndex": 0,
+          "knowledge": "Regjeringens rivningsbegrunnelse fremhevet sikkerhet og Ring 1 under eller ved Y-blokka.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "claim_family": "ring1_safety",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_14",
+          "question": "Hvilket år tok regjeringen konseptbeslutningen som la opp til riving?",
+          "options": [
+            "2001",
+            "2020",
+            "2014"
+          ],
+          "answer": "2014",
+          "answerIndex": 2,
+          "knowledge": "Regjeringen valgte konseptet i 2014, lenge før den fysiske rivningen i 2020.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/",
+            "https://magasin.oslo.kommune.no/byplan/tillater-riving-av-en-floy-av-y-blokka"
+          ],
+          "claim_family": "policy_decision_2014",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_15",
+          "question": "Når vedtok departementet reguleringsplanen som åpnet for riving?",
+          "options": [
+            "Februar 2017",
+            "Juni 2020",
+            "November 1969"
+          ],
+          "answer": "Februar 2017",
+          "answerIndex": 0,
+          "knowledge": "Departementets reguleringsplan for nytt regjeringskvartal ble vedtatt i februar 2017.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "claim_family": "planning_2017",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_16",
+          "question": "Hva mente Oslo kommunes plan- og bygningsetat måtte dokumenteres før all rivning?",
+          "options": [
+            "Bare antall parkeringsplasser",
+            "Klimagassberegninger knyttet til riving og bevaring",
+            "Hvor mange vinduer som kunne males"
+          ],
+          "answer": "Klimagassberegninger knyttet til riving og bevaring",
+          "answerIndex": 1,
+          "knowledge": "Oslo kommune etterlyste klimagassberegninger og diskuterte konsekvenser for klima og kulturminner.",
+          "source_urls": [
+            "https://magasin.oslo.kommune.no/byplan/tillater-riving-av-en-floy-av-y-blokka"
+          ],
+          "claim_family": "municipal_climate_concern",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_17",
+          "question": "Hva viste gjennomgangen av skadene etter 22. juli 2011 om Y-blokkas hovedkonstruksjon?",
+          "options": [
+            "Skadene gjorde ikke riving konstruksjonsteknisk nødvendig i seg selv",
+            "Hele konstruksjonen hadde kollapset",
+            "Bygningen var fullstendig uskadd"
+          ],
+          "answer": "Skadene gjorde ikke riving konstruksjonsteknisk nødvendig i seg selv",
+          "answerIndex": 0,
+          "knowledge": "Regjeringens 2020-oversikt presiserer at de fire mest skadde byggene ikke måtte rives på grunn av bærekonstruksjonenes tilstand alene. Den politiske rivingsbegrunnelsen var særlig sikkerhet og byplan.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "claim_family": "damage_vs_decision",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_18",
+          "question": "Hvordan ble deler av Y-blokka dokumentert før rivingen?",
+          "options": [
+            "Bare gjennom muntlige minner",
+            "Med skanning, fotografering og digital modellering",
+            "Ved å overføre hele bygget til et museum"
+          ],
+          "answer": "Med skanning, fotografering og digital modellering",
+          "answerIndex": 1,
+          "knowledge": "Myndighetene dokumenterte fasade, kunst, interiør og planløsning gjennom skanning og foto.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "claim_family": "digital_preservation",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_19",
+          "question": "Hva het den særpregede hovedtrappen i Y-blokka?",
+          "options": [
+            "Håkonshallen",
+            "Konkylietrappen",
+            "Løvebakken"
+          ],
+          "answer": "Konkylietrappen",
+          "answerIndex": 1,
+          "knowledge": "Den sentrale hovedtrappen ble omtalt som konkylietrappen og dokumentert før rivningen.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "claim_family": "interior_stair",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_20",
+          "question": "Hva skjedde med deler av inventaret fra Y-blokka under opprydding og riving?",
+          "options": [
+            "Alt ble klassifisert som farlig avfall",
+            "Møbler, dører og annet brukbart inventar ble tatt vare på for gjenbruk",
+            "Alt ble samlet i en ny fløy av den opprinnelige Y-blokka"
+          ],
+          "answer": "Møbler, dører og annet brukbart inventar ble tatt vare på for gjenbruk",
+          "answerIndex": 1,
+          "knowledge": "Gjenbruksmulighetene ble vurdert flere ganger, og deler av møbler, dører og inventar ble brukt videre.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "claim_family": "building_material_reuse",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_21",
+          "question": "Hvilken institusjon ga konservatorfaglig støtte ved flytting av verkene?",
+          "options": [
+            "Norsk institutt for kulturminneforskning (NIKU)",
+            "Norges Bank",
+            "Riksrevisjonen"
+          ],
+          "answer": "Norsk institutt for kulturminneforskning (NIKU)",
+          "answerIndex": 0,
+          "knowledge": "NIKU bistod med tilstandsvurdering, konservering og kvalitetssikring av demontering og flytting.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "claim_family": "conservation_institution",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_22",
+          "question": "Hvorfor måtte Måken og Fiskerne pakkes og oppbevares forskjellig?",
+          "options": [
+            "De var laget i helt ulike materialer",
+            "Det ene hadde vært innendørs, det andre utsatt for uteklima",
+            "Bare det ene var beskyttet av opphavsrett"
+          ],
+          "answer": "Det ene hadde vært innendørs, det andre utsatt for uteklima",
+          "answerIndex": 1,
+          "knowledge": "Måken var et innendørsverk og skulle ha klimatisert oppbevaring, mens Fiskerne tidligere hadde stått utendørs.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "claim_family": "different_conservation_conditions",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        },
+        {
+          "id": "y_blokka_fullquiz_research_23",
+          "question": "Hvilke hensyn beskrev Statsbygg og KORO ved plassering av kunsten i nytt bygg?",
+          "options": [
+            "Synlighet, stedlig sammenheng og hensyn til materialet",
+            "Kun høyden på bygningen",
+            "Bare antall ansatte i departementene"
+          ],
+          "answer": "Synlighet, stedlig sammenheng og hensyn til materialet",
+          "answerIndex": 0,
+          "knowledge": "Statsbygg/KORO la blant annet vekt på publikums synlighet, kontekstsensitivitet og materialsensitivitet ved ny plassering.",
+          "source_urls": [
+            "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/"
+          ],
+          "claim_family": "art_reinstallation_criteria",
+          "review_status": "core_claim_checked_official_source_distractor_review_pending",
+          "review_note": "Historisk kjernepåstand bekreftet hos stat/kommune. Spørsmålene skal beskrive aktørenes ulike standpunkter i rivningskonflikten nøytralt; distraktorer og Knowledge gjenstår.",
+          "intended_use": "fullquiz_research_only_not_QuizCard"
+        }
+      ],
+      "fullquiz_research_status": "23_multiple_choice_candidates_total_10_quizcard_plus_13_fullquiz_only_not_published"
+    }
+  ],
+  "quality_gates_remaining": [
+    "full source-to-claim bank and editorial audit of all existing and new quiz questions",
+    "quiz profile and 3x7 or richer fullquiz",
+    "canonical production_context and Knowledge ownership",
+    "exact 10 QuizCard parity with correct answer index after runtime shuffle",
+    "image licenses and three real assets per place",
+    "place-opening mobile and desktop browser acceptance",
+    "whole-PR CI, source claims, six-dimensional completion review"
+  ]
+}
