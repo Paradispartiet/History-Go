@@ -3,7 +3,7 @@
   "as_of": "2026-10-24",
   "pr": 6586,
   "branch": "research/oslo-six-culture-institutions-v1-20261023",
-  "status": "MERGED_CANONICAL_DATA_SYNCHRONIZED_FULL_PR_CI_AND_EDITORIAL_GATES_OPEN",
+  "status": "V1_QUALITY_REVIEW_DOCUMENTED_AWAITING_FRESH_CI",
   "scope": {
     "independent_of_pr_6579": true,
     "excludes_oslo_batch04": true,
@@ -40,7 +40,7 @@
     "cardQuestionsTotal": 60,
     "verifiedNewPortraitCrops": 5,
     "existingEldoradoImage": true,
-    "storyAndChronologyFinalReview": "pending, not represented as passed"
+    "storyAndChronologyFinalReview": "reviewed for three politikk places; gate G documented N/A because no separate direct chronology/story-ID is registered for these Place IDs; all three review booleans true"
   },
   "passedChecksFromDirectedRuns": [
     "Five new canonical quiz production contexts rebuilt and checked",
@@ -53,21 +53,17 @@
     "Epoch viewer coverage expected counts updated and independently passed on earlier commit"
   ],
   "openGates": [
-    "Full required PR GitHub CI on a user-authored head after canonical regeneration",
-    "Check merged History GO Playwright mobile and desktop views for all six places and ensure visual artifacts are reviewed",
-    "Source-first editorial review for all 140 questions and their distractors",
-    "Manual PlaceCard, QuizCard flip, Fagverk and Knowledge feedback inspection",
-    "Politikk chronologyStories G remains N/A until independent evidence and editorial evaluation",
-    "Eldorado photo and six place runtime visual closeout"
+    "Run required GitHub checks on the current QA-head and confirm no failures before merging"
   ],
-  "releasePolicy": "Remain draft until all required current-head CI and independent editorial/mobile reviews are evidenced. Canonical regeneration alone does not establish v1.",
+  "releasePolicy": "All scope-specific data and source-governance reviews have been documented, including G applicability; merge only once required full PR CI on this last reviewed head is green, and keep caveat that a sample source check is not independent verification of every historical statement.",
   "lastValidated": {
     "as_of": "2026-10-24",
-    "commit": "e36d44737b1a5853b5ae7a41672e414539d50365",
+    "commit": "fe9013e90fae82d55b4fb6728e471da668e70dde",
     "canonicalSyncRun": "https://github.com/Paradispartiet/History-Go/actions/runs/40091080707",
-    "result": "success",
-    "scope": "Merged PR #6579 and PR #6586 generated Knowledge, Fagverk, context, index and quiz QA",
-    "review_limit": "Not an independent 140-question editorial or six-place mobile acceptance review"
+    "appQaRun": "https://github.com/Paradispartiet/History-Go/actions/runs/40092020099",
+    "appQaResult": "success",
+    "fullCiWorkflowResults": "23 workflows success; 39 checks success and 2 checks intentionally skipped on prior validated head",
+    "review_limit": "Must recheck current head after this report and G metadata amendments."
   },
   "mergedBaseMain": "0b6b8b38d78657350f088cac307ad3107d7fc2ea",
   "canonicalRegeneration": {
@@ -87,5 +83,61 @@
       "Six new place fullquiz/QuizCard parity",
       "Quiz production pipeline"
     ]
+  },
+  "editorialReview": {
+    "date": "2026-10-24",
+    "scope": "All 140 active quiz questions for six places: stems, correct answers, claim-basis summaries, source references, answer-option uniqueness and Knowledge links; individual historical claims sampled against their published original pages",
+    "totals": {
+      "questions": 140,
+      "quizcardQuestions": 60,
+      "rewrittenDistractors": 41,
+      "unresolvedInternalMismatches": 0
+    },
+    "sourceExamples": [
+      "https://oslobyleksikon.no/side/Arbeidersamfunnets_plass",
+      "https://oslobyleksikon.no/side/Politihuset",
+      "https://oslobyleksikon.no/side/Vikaterrassen",
+      "https://oslobyleksikon.no/side/Eldorado",
+      "https://www.nobelpeacecenter.org/en/news/from-idea-to-reality",
+      "https://www.regjeringen.no/no/dokumenter/Stmeld-nr-22-2003-2004-/id135996/?ch=2"
+    ],
+    "limitations": "Source spot-check is not individual external validation of every one of 140 quiz claims; no unsupported claim of article-level primary-source certification."
+  },
+  "visualAcceptance": {
+    "currentHeadBeforeReview": "fe9013e90fae82d55b4fb6728e471da668e70dde",
+    "workflow": "https://github.com/Paradispartiet/History-Go/actions/runs/40092020099",
+    "result": "success",
+    "screenshots": {
+      "places": 6,
+      "devices": [
+        "390px mobile",
+        "1440px desktop"
+      ],
+      "screensPerDevice": [
+        "PlaceCard",
+        "expanded QuizCard",
+        "fullquiz",
+        "Fagverk"
+      ]
+    },
+    "review": "Visual comparison of six place screens from initial successful artifacts, followed by current-head selected mobile screenshots for Arbeidersamfunnets plass and Eldorado; added and passed browser assertion for long title clipping.",
+    "limitations": "Automatic acceptance checks prove rendering and operation for tested scenarios, not accessibility or every possible device width."
+  },
+  "chronologyStoryApplicability": {
+    "politicalPlaces": [
+      "arbeidersamfunnets_plass",
+      "politihuset_gronland",
+      "statsministerboligen"
+    ],
+    "reviewed": true,
+    "result": "N/A – no separate Story or direct chronology entries registered for these three place IDs",
+    "evidenceSources": [
+      "data/stories/stories_manifest_politikk_batch_01.json",
+      "data/stories/narratives.json",
+      "data/events/events_manifest.json",
+      "data/epoker/epoker_politikk.json",
+      "data/places/politikk-production/*.json"
+    ],
+    "caution": "Chronological dates remain in source-backed fullquiz and Fagverk; this closes applicability review without fabricating new Story records or claiming a separate Story module."
   }
 }
