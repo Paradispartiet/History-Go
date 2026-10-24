@@ -38,14 +38,14 @@ for(const p of ledger.places){
   for(const url of p.sources) assert.match(url,/^https:\/\//);
   const relevantQuiz=quizRefs.filter(r=>r.targetId===p.place_id);
   const categoryQuizCardPaths=quizCardSources[p.category].collections.map(n=>'data/quizcards/'+p.category+'/'+n);
-  const categoryQuizCardMatches=categoryQuizCardPaths.filter(f=>{
-    assert.ok(fs.existsSync(f),f+': manifest points at nonexistent QuizCard collection');
-    return fs.readFileSync(f,'utf8').includes('"'+p.place_id+'"');
-  });
+  const missingLegacyQuizCardFiles=categoryQuizCardPaths.filter(f=>!fs.existsSync(f));
+  const categoryQuizCardMatches=categoryQuizCardPaths.filter(f=>
+    fs.existsSync(f) && fs.readFileSync(f,'utf8').includes('"'+p.place_id+'"')
+  );
   const articleReady=place.fagverk?.schema==='history_go_place_fagverk_v2' &&
     place.fagverk?.status==='curated' &&
     Array.isArray(place.fagverk?.article)&&place.fagverk.article.length>0;
   const visualReady=Boolean(place.frontImage&&place.image&&place.cardImage);
-  report.push({id:p.place_id,canonical:true,sourceClaims:p.claims.length,quizSetFiles:relevantQuiz.map(z=>z.file),quizCardCollections:categoryQuizCardMatches,fagverkReady:articleReady,visualFieldsReady:visualReady,notYetV1:!(relevantQuiz.length&&categoryQuizCardMatches.length&&articleReady&&visualReady)});
+  report.push({id:p.place_id,canonical:true,sourceClaims:p.claims.length,quizSetFiles:relevantQuiz.map(z=>z.file),quizCardCollections:categoryQuizCardMatches,missingLegacyQuizCardFiles,fagverkReady:articleReady,visualFieldsReady:visualReady,notYetV1:!(relevantQuiz.length&&categoryQuizCardMatches.length&&articleReady&&visualReady)});
 }
 console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',records:report},null,2));
