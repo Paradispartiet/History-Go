@@ -231,7 +231,11 @@
   }
 
   function resize() {
-    if (MAP && typeof MAP.resize === "function") MAP.resize();
+    if (!MAP) return;
+    MAP.resize?.();
+    // Map bounds can be stale while the app header, PlaceCard and map mode
+    // change visibility. Resync DOM dots after the real viewport is measured.
+    if (lastPlaceMarkerFeatures.length) syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
   }
 
   function getMap() {
@@ -240,17 +244,17 @@
 
   function setPlaces(arr) {
     PLACES = Array.isArray(arr) ? arr : [];
-    if (mapReady) drawPlaceMarkers();
+    if (MAP) drawPlaceMarkers();
   }
 
   function setVisited(obj) {
     visited = obj || {};
-    if (mapReady) drawPlaceMarkers();
+    if (MAP) drawPlaceMarkers();
   }
 
   function setCatColor(fn) {
     if (typeof fn === "function") catColor = fn;
-    if (mapReady) drawPlaceMarkers();
+    if (MAP) drawPlaceMarkers();
   }
 
   function setOnPlaceClick(fn) {
@@ -758,7 +762,7 @@
     const center = MAP.getCenter?.() || { lng: START.lon, lat: START.lat };
     const lon0 = Number(center.lng ?? center.lon ?? START.lon);
     const lat0 = Number(center.lat ?? START.lat);
-    const visible = features.filter(feature => {
+    let visible = features.filter(feature => {
       if (feature?.properties?.mapLod !== PLACE_MAP_LOD_DETAIL) return false;
       const coords = feature.geometry?.coordinates;
       if (!Array.isArray(coords) || coords.length < 2) return false;
@@ -769,6 +773,19 @@
       return ((ax - lon0) ** 2 + (ay - lat0) ** 2)
         - ((bx - lon0) ** 2 + (by - lat0) ** 2);
     }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+
+    // During a cold mobile boot MapLibre can report bounds from an invisible
+    // or zero-sized map container. Never interpret an empty first bounds
+    // calculation as proof that there are no places to display.
+    if (!visible.length) {
+      visible = features.filter(feature => feature?.properties?.mapLod === PLACE_MAP_LOD_DETAIL)
+        .sort((a, b) => {
+          const [ax, ay] = a.geometry.coordinates;
+          const [bx, by] = b.geometry.coordinates;
+          return ((ax - lon0) ** 2 + (ay - lat0) ** 2)
+            - ((bx - lon0) ** 2 + (by - lat0) ** 2);
+        }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+    }
 
     const keep = new Set();
     for (const feature of visible) {
@@ -798,10 +815,14 @@
         const marker = new maplibregl.Marker({ element, anchor: "center" })
           .setLngLat(feature.geometry.coordinates)
           .addTo(MAP);
-        entry = { marker, element };
+        entry = { marker, element, lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] };
         placeDetailMarkers.set(id, entry);
-      } else {
+      } else if (entry.lon !== feature.geometry.coordinates[0] || entry.lat !== feature.geometry.coordinates[1]) {
+        // Repeating setLngLat for an unchanged dot can cause needless DOM
+        // projection/repaint and visible flashing during background updates.
         entry.marker.setLngLat(feature.geometry.coordinates);
+        entry.lon = feature.geometry.coordinates[0];
+        entry.lat = feature.geometry.coordinates[1];
       }
       const diameter = zoom < 12 ? 9 : zoom < 14 ? 10 : 11;
       entry.element.style.width = `${diameter}px`;
@@ -962,10 +983,8 @@
     if (!MAP) return;
     if (!Array.isArray(PLACES) || PLACES.length === 0) return;
 
-    // A loaded style can still report isStyleLoaded() === false while tiles
-    // download. Do not defer to another style.load event that may never fire.
-    if (!styleReady) return;
-
+    // Native mobile dots must not wait for the map style, glyphs or tiles.
+    // WebGL layers below are optional and are installed once style.load fires.
     const places = (typeof window.HG_I18N?.localizePlaces === "function")
       ? window.HG_I18N.localizePlaces(PLACES)
       : PLACES;
@@ -1013,6 +1032,7 @@
     // Native mobile detail dots do not depend on WebGL circle rendering.
     // They are created before the GeoJSON layers so they survive style errors.
     syncPlaceDetailDomMarkers(features);
+    if (!styleReady) return;
     const src = MAP.getSource(SRC);
     if (src && REQUIRED_PLACE_LAYERS.every(id => MAP.getLayer(id))) {
       src.setData(fc);
@@ -1027,6 +1047,7 @@
 
     MAP.addLayer({
       id: L_GLOW,
+      layout: { visibility: useNativeMobileDetailMarkers() ? "none" : "visible" },
       minzoom: PLACE_DETAIL_MIN_ZOOM,
       filter: PLACE_DETAIL_LOD_FILTER,
       type: "circle",
@@ -1036,6 +1057,7 @@
 
     MAP.addLayer({
       id: L_DOTS,
+      layout: { visibility: useNativeMobileDetailMarkers() ? "none" : "visible" },
       minzoom: PLACE_DETAIL_MIN_ZOOM,
       filter: PLACE_DETAIL_LOD_FILTER,
       type: "circle",
