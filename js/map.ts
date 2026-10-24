@@ -756,6 +756,36 @@
     return Math.max(3.5, Math.min(8.5, 3.5 + (zoom - PLACE_DETAIL_MIN_ZOOM) * 0.78));
   }
 
+  function updateNativeDetailDotLabels(zoom) {
+    if (!placeDetailMarkers.size) return;
+    // Touch dots must carry their own names: WebGL's symbol layer can vanish
+    // in Safari even when the native marker is perfectly visible.
+    const showNames = zoom >= PLACE_DETAIL_LABEL_MIN_ZOOM;
+    const maxNames = zoom >= 16 ? 54 : zoom >= 14 ? 36 : 22;
+    const occupied = [];
+    let named = 0;
+    const ordered = [...placeDetailMarkers.values()].sort(
+      (a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity)
+    );
+    for (const entry of ordered) {
+      let show = showNames && named < maxNames && !!entry.name;
+      if (show && typeof MAP?.project === "function") {
+        const point = MAP.project([entry.lon, entry.lat]);
+        if (point && Number.isFinite(point.x) && Number.isFinite(point.y)) {
+          const halfWidth = Math.min(65, Math.max(18, entry.name.length * 3.2));
+          const rect = { left: point.x - halfWidth, right: point.x + halfWidth,
+            top: point.y + 8, bottom: point.y + 24 };
+          if (occupied.some(prev => rect.left < prev.right + 4 &&
+            rect.right + 4 > prev.left && rect.top < prev.bottom + 3 &&
+            rect.bottom + 3 > prev.top)) show = false;
+          if (show) occupied.push(rect);
+        }
+      }
+      entry.label.style.display = show ? "block" : "none";
+      if (show) named += 1;
+    }
+  }
+
   function updateNativeDetailDotSizes() {
     if (!MAP || !placeDetailMarkers.size) return;
     const zoom = Number(MAP.getZoom?.() ?? START.zoom ?? 13);
@@ -766,6 +796,7 @@
       entry.element.style.height = `${diameter.toFixed(2)}px`;
       entry.element.style.borderWidth = `${width.toFixed(2)}px`;
     }
+    updateNativeDetailDotLabels(zoom);
   }
 
   function syncPlaceDetailDomMarkers(features) {
@@ -819,7 +850,15 @@
         element.className = "hg-place-detail-marker";
         element.dataset.placeId = id;
         element.setAttribute("role", "button");
-        element.setAttribute("aria-label", String(feature.properties.name || id));
+        const name = String(feature.properties.name || id).trim();
+        element.setAttribute("aria-label", name);
+        const label = document.createElement("span");
+        label.className = "hg-place-detail-name";
+        label.setAttribute("aria-hidden", "true");
+        label.textContent = name;
+        label.style.display = "none";
+        label.style.pointerEvents = "none";
+        element.appendChild(label);
         element.style.boxSizing = "border-box";
         element.style.borderRadius = "50%";
         element.style.borderStyle = "solid";
@@ -836,7 +875,8 @@
         const marker = new maplibregl.Marker({ element, anchor: "center" })
           .setLngLat(feature.geometry.coordinates)
           .addTo(MAP);
-        entry = { marker, element, lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] };
+        entry = { marker, element, label, name, lon: feature.geometry.coordinates[0],
+          lat: feature.geometry.coordinates[1], distance: Infinity };
         placeDetailMarkers.set(id, entry);
       } else if (entry.lon !== feature.geometry.coordinates[0] || entry.lat !== feature.geometry.coordinates[1]) {
         // Repeating setLngLat for an unchanged dot can cause needless DOM
@@ -845,6 +885,14 @@
         entry.lon = feature.geometry.coordinates[0];
         entry.lat = feature.geometry.coordinates[1];
       }
+      const name = String(feature.properties.name || id).trim();
+      if (entry.name !== name) {
+        entry.name = name;
+        entry.label.textContent = name;
+        entry.element.setAttribute("aria-label", name);
+      }
+      const [lon, lat] = feature.geometry.coordinates;
+      entry.distance = (lon - lon0) ** 2 + (lat - lat0) ** 2;
       entry.element.style.backgroundColor = feature.properties.fill;
       const borderColor = String(feature.properties.border || "").trim();
       const fillColor = String(feature.properties.fill || "").trim();
@@ -1097,7 +1145,8 @@
       filter: PLACE_DETAIL_LOD_FILTER,
       type: "symbol",
       source: SRC,
-      layout: getPlaceLabelLayout(false),
+      layout: { ...getPlaceLabelLayout(false),
+        visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
       paint: getPlaceLabelPaint(false)
     });
 
