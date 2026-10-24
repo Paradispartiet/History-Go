@@ -10,6 +10,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {buildOsloSixIntegrationPreview} from './build-oslo-six-integration-preview.mjs';
 import {buildOsloSixCanonicalStaging} from './build-oslo-six-canonical-place-drafts.mjs';
+import {buildRulePreflight} from './place-production-rule-preflight.mjs';
 
 const ROOT=path.resolve(import.meta.dirname,'..');
 const data=p=>JSON.parse(fs.readFileSync(path.join(ROOT,p),'utf8'));
@@ -162,6 +163,20 @@ if(process.argv[1]&&path.resolve(process.argv[1])===path.resolve(new URL(import.
   for(const item of output){
    write(item.placePath,item.place);write(item.quizPath,item.quiz);
    for(const [p,asset] of item.images)write(p,asset);
+   write(`reports/place-production/${item.id}-workcard-current.json`,{
+     schema:'history_go_place_workcard_v2',place_id:item.id,category:item.place.category,
+     production_profile:'focused',profile_status:'provisional',
+     profile_reason:'Kildebelagt v1-kandidat; fullproduksjon og kategoriens samlinger kommer i vFerdig.',
+     status:'in_progress',branch_status:'PR #6593 – kanonisk v1-kandidat',live_status:'ikke aktiv',
+     source_file:item.placePath,underbadge_ids:item.place.underbadge_ids,
+     scope:'v1-kandidat; ingen Knowledge- eller manifestpublisering før reell app-QA.',
+     source_review:{reviewed_at:'2026-10-24',
+       urls:item.place.externalLinks.map(x=>x.url).filter(Boolean),
+       question_count:item.quiz.sets.flatMap(s=>s.questions).length,
+       claim_status:'pending_independent_final_check'},
+     remaining:['kildereview','Knowledge-synk','manifestregistrering','nettleser-QA'],
+     rule_preflight:buildRulePreflight(item.id,item.place.category)
+   });
    const list=byCat.get(item.place.category)||[];list.push(item.card);byCat.set(item.place.category,list);
   }
   for(const [category,cards] of byCat){
