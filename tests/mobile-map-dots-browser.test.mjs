@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { chromium } from "playwright";
+import { chromium, webkit } from "playwright";
 import http from "node:http";
 
 // Run the actual browser bundle, not a VM approximation, through cold start
@@ -15,9 +15,18 @@ await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const address = server.address();
 let browser;
 try {
-  browser = await chromium.launch({ headless: true });
-  for (const width of [390, 691, 1024]) {
-    const page = await browser.newPage({ viewport: { width, height: 844 } });
+  for (const engine of [chromium, webkit]) {
+    browser = await engine.launch({ headless: true });
+    // iPad Pro landscape can exceed the tablet-width breakpoint.
+    for (const { width, touch } of [
+      { width: 390, touch: true },
+      { width: 820, touch: true },
+      { width: 1024, touch: true },
+      { width: 1194, touch: true },
+      { width: 1366, touch: true },
+      { width: 1440, touch: false }
+    ]) {
+    const page = await browser.newPage({ viewport: { width, height: 844 }, hasTouch: touch });
     await page.goto("http://127.0.0.1:" + address.port + "/");
     await page.evaluate(() => {
       const container = document.getElementById("map");
@@ -102,7 +111,7 @@ try {
         lat: 59.917, lon: 10.7533, r: 180
       }]);
     });
-    const isMobile = width <= 699;
+    const usesNativeDots = width <= 1199 || touch;
     const first = await page.evaluate(() => {
       const el = document.querySelector(".hg-place-detail-marker");
       const rect = el?.getBoundingClientRect();
@@ -114,9 +123,9 @@ try {
         vector: !!window.__testMap.getLayer("hg-places-dots")
       };
     });
-    assert.equal(first.count, isMobile ? 1 : 0, "dot before style.load, width=" + width);
-    if (isMobile) {
-      assert.ok(first.width >= 9, "dot visible even while map bounds are stale");
+    assert.equal(first.count, usesNativeDots ? 1 : 0, "dot before style.load, width=" + width);
+    if (usesNativeDots) {
+      assert.ok(first.width >= 3 && first.width <= 7, "compact dot visible on phone and iPad at zoom 13");
       assert.equal(first.opacity, "1");
       assert.notEqual(first.outline, "rgb(255, 255, 255)", "contrasting outline");
       assert.equal(first.vector, false, "native renderer does not await vector style");
@@ -129,9 +138,27 @@ try {
       visibility: window.__testMap.getLayer("hg-places-dots")?.layout?.visibility,
       dotCount: document.querySelectorAll(".hg-place-detail-marker").length
     }));
-    assert.equal(firstStyle.visibility, isMobile ? "none" : "visible");
-    assert.equal(firstStyle.dotCount, isMobile ? 1 : 0);
-    if (isMobile) {
+    assert.equal(firstStyle.visibility, usesNativeDots ? "none" : "visible");
+    assert.equal(firstStyle.dotCount, usesNativeDots ? 1 : 0);
+    if (usesNativeDots) {
+      const zoomSizes = await page.evaluate(() => {
+        const map = window.__testMap;
+        const dot = document.querySelector(".hg-place-detail-marker");
+        const widths = [];
+        for (const zoom of [10, 12, 14, 16]) {
+          map.zoom = zoom;
+          map.emit("zoom");
+          widths.push(Number(dot.style.width.replace("px", "")));
+        }
+        return { widths, setCount: map.nativeMarkers.find(m =>
+          m.element.classList.contains("hg-place-detail-marker")).setCount };
+      });
+      assert.ok(zoomSizes.widths.every((v, i, a) => i === 0 || v > a[i - 1]),
+        "dots grow smoothly when zooming in on phone and iPad");
+      assert.ok(zoomSizes.widths[0] < 5 && zoomSizes.widths.at(-1) <= 8.5,
+        "dots shrink into smaller points when zoomed out");
+      assert.equal(zoomSizes.setCount, 1, "zoom does not reposition or recreate markers");
+
       await page.evaluate(() => {
         window.HGMap.resize();
         window.HGMap.refreshMarkers();
@@ -153,6 +180,9 @@ try {
         "style changes must not blink or duplicate dots at width=" + width);
     }
     await page.close();
+    }
+    await browser.close();
+    browser = null;
   }
 } finally {
   await browser?.close();

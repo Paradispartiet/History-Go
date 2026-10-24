@@ -121,7 +121,7 @@ class FakeMap {
   }
 }
 
-function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false, mobile = false, emptyBounds = false, skipStyleLoad = false } = {}) {
+function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false, mobile = false, ipad = false, emptyBounds = false, skipStyleLoad = false } = {}) {
   const controls = new FakeElement("controls");
   const mapElement = new FakeElement("map");
   const placeCard = new FakeElement("placeCard");
@@ -132,7 +132,9 @@ function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false,
   if (savedStyle) loc.set("hg_map_style_mode", savedStyle);
   const win = {
     console,
-    matchMedia: () => ({ matches: mobile }),
+    innerWidth: ipad ? 1366 : mobile ? 390 : 1440,
+    navigator: { maxTouchPoints: ipad ? 5 : mobile ? 1 : 0 },
+    matchMedia: query => ({ matches: mobile || (ipad && query.includes("pointer: coarse")) }),
     fetch: async () => ({ ok: false, status: 404 }),
     maplibregl: {
       Map: class {
@@ -455,4 +457,32 @@ test("desktop retains vector circles as its single detail renderer", () => {
   const { main } = setup({ mobile: false });
   assert.equal(main.getLayer("hg-places-dots")?.layout?.visibility, "visible");
   assert.equal(main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker").length, 0);
+});
+
+test("large landscape iPad uses native dots rather than invisible vector-only circles", () => {
+  const { main } = setup({ ipad: true, skipStyleLoad: true });
+  const marker = main.nativeMarkers.find(m => m.element.className === "hg-place-detail-marker" && !m.removed);
+  assert.ok(marker, "iPad must show detail dot without waiting for style.load");
+  main.finishStyle();
+  assert.equal(main.getLayer("hg-places-dots")?.layout?.visibility, "none");
+  assert.ok(!marker.removed);
+});
+
+test("phone and iPad dots shrink progressively during zoom without marker replacement", () => {
+  for (const opts of [{ mobile: true }, { ipad: true }]) {
+    const { main } = setup(opts);
+    const marker = main.nativeMarkers.find(m => m.element.className === "hg-place-detail-marker" && !m.removed);
+    assert.ok(marker);
+    const sizes = [];
+    for (const zoom of [10, 11, 12, 13, 14, 16]) {
+      main.zoom = zoom;
+      main.emit("zoom");
+      sizes.push(Number(marker.element.style.width.replace("px", "")));
+    }
+    assert.ok(sizes.every((n, i) => i === 0 || n > sizes[i - 1]),
+      "continuous zoom must increase diameter at every zoom stop");
+    assert.ok(sizes[0] < 5 && sizes.at(-1) <= 8.5);
+    assert.equal(marker.setLngLatCount, 1, "changing zoom must not relayout marker coordinates");
+    assert.equal(main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker").length, 1);
+  }
 });
