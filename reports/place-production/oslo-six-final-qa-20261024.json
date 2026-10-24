@@ -3,7 +3,7 @@
   "as_of": "2026-10-24",
   "pr": 6586,
   "branch": "research/oslo-six-culture-institutions-v1-20261023",
-  "status": "CANONICAL_QUIZ_SYNC_PASSED_FULL_PR_CI_AND_FINAL_EDITORIAL_GATES_OPEN",
+  "status": "MERGED_CANONICAL_DATA_SYNCHRONIZED_FULL_PR_CI_AND_EDITORIAL_GATES_OPEN",
   "scope": {
     "independent_of_pr_6579": true,
     "excludes_oslo_batch04": true,
@@ -53,20 +53,39 @@
     "Epoch viewer coverage expected counts updated and independently passed on earlier commit"
   ],
   "openGates": [
-    "Run full PR CI on current user-authored head, including dedicated six-place browser QA",
-    "Review all source links and claim distinctions including dated sources and superlatives",
-    "Manual browser review on mobile and desktop of PlaceCard, QuizCard, Knowledge feedback, Fagverk and photo framing",
-    "Independently editorial-review each question, its plausible distractors and knowledge explanation",
-    "Politikk chronologyStories G remains N/A pending evidence and editorial evaluation",
-    "Check all six places for sufficient standalone photo and runtime visual quality"
+    "Full required PR GitHub CI on a user-authored head after canonical regeneration",
+    "Check merged History GO Playwright mobile and desktop views for all six places and ensure visual artifacts are reviewed",
+    "Source-first editorial review for all 140 questions and their distractors",
+    "Manual PlaceCard, QuizCard flip, Fagverk and Knowledge feedback inspection",
+    "Politikk chronologyStories G remains N/A until independent evidence and editorial evaluation",
+    "Eldorado photo and six place runtime visual closeout"
   ],
-  "releasePolicy": "Remain draft until all required checks are green and editorial/mobile review is evidenced. This report does not self-certify v1.",
+  "releasePolicy": "Remain draft until all required current-head CI and independent editorial/mobile reviews are evidenced. Canonical regeneration alone does not establish v1.",
   "lastValidated": {
     "as_of": "2026-10-24",
-    "commit": "de7cdd377d09fad66a04569e6d689cfe91a67b6b",
-    "canonicalSyncRun": "https://github.com/Paradispartiet/History-Go/actions/runs/40088761589",
+    "commit": "e36d44737b1a5853b5ae7a41672e414539d50365",
+    "canonicalSyncRun": "https://github.com/Paradispartiet/History-Go/actions/runs/40091080707",
     "result": "success",
-    "scope": "source-first quiz contexts for five places, 105/105 canonical Knowledge links, 50 QuizCard parity, deterministic Fagverk release digest, quiz progression and theory-binding checks",
-    "review_limit": "Automated integrity verification only; not human editorial review"
+    "scope": "Merged PR #6579 and PR #6586 generated Knowledge, Fagverk, context, index and quiz QA",
+    "review_limit": "Not an independent 140-question editorial or six-place mobile acceptance review"
+  },
+  "mergedBaseMain": "0b6b8b38d78657350f088cac307ad3107d7fc2ea",
+  "canonicalRegeneration": {
+    "runId": 40091080707,
+    "url": "https://github.com/Paradispartiet/History-Go/actions/runs/40091080707",
+    "result": "success",
+    "head": "e36d44737b1a5853b5ae7a41672e414539d50365",
+    "checks": [
+      "Place index and coordinates",
+      "Place-open and epoch indexes",
+      "Both Oslo batches' derived production contexts",
+      "Knowledge canonical data",
+      "Fagverk release digest",
+      "Quiz manifest integrity",
+      "Quiz progression",
+      "Quiz theory binding",
+      "Six new place fullquiz/QuizCard parity",
+      "Quiz production pipeline"
+    ]
   }
 }
