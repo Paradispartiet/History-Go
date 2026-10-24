@@ -497,7 +497,7 @@ test("iPad and phone carry native place names before style.load and after Detalj
     assert.ok(label, "place name is attached to the same native dot");
     assert.equal(label.textContent, "Park");
     assert.equal(label.style.display, "block", "name visible even before WebGL loads");
-    main.finishStyle();
+    main.finishStyle({ initial: true });
     assert.equal(main.getLayer("hg-places-label")?.layout?.visibility, "none",
       "avoid competing WebGL text and native name");
     const toggle = controls.querySelector(".hg-map-style-toggle");
