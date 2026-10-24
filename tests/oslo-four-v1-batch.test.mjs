@@ -46,7 +46,7 @@ test('industrial site never makes a false promise of access or documentary photo
 });
 import fs from 'node:fs';
 
-test('all four Place and quiz sources are complete without prematurely activating manifests',()=>{
+test('all four Place and quiz sources are linked to active manifests and Fagverk',()=>{
  const pack=buildOsloFourV1Batch();
  const places=JSON.parse(fs.readFileSync('data/places/manifest.json','utf8'));
  const quizzes=JSON.parse(fs.readFileSync('data/quiz/manifest.json','utf8'));
@@ -61,9 +61,11 @@ test('all four Place and quiz sources are complete without prematurely activatin
    assert.ok(card && card.questions.length===10,id+' quizcard source');
    assert.equal(quiz.sets.flatMap(s=>s.questions).length,entry.quiz.sets.flatMap(s=>s.questions).length);
    assert.equal(place.fagverk.status,'curated');
-   assert.ok(!places.files.includes(rel),id+' activated ahead of index ownership');
-   assert.ok(!quizzes.sets.some(q=>q.targetId===id),id+' active quiz ahead of index ownership');
-   assert.equal(registry.placeLinks[id],undefined,id+' Fagverk registry ahead of index');
+   assert.ok(places.files.includes(rel),id+' place not in live manifest');
+   assert.equal(quizzes.sets.filter(q=>q.targetId===id).length,1,id+' live quiz registration');
+   assert.equal(registry.placeLinks[id]?.sourceFile,rel,id+' Fagverk registry missing');
    assert.equal(place.coordRole,'display_marker');
+   for(const q of quiz.sets.flatMap(set=>set.questions))assert.ok(q.primary_knowledge_unit_id?.startsWith('ku_'),q.id);
+   for(const cq of card.questions){const q=quiz.sets.flatMap(set=>set.questions).find(q=>q.id===cq.sourceQuestionId);assert.equal(cq.primary_knowledge_unit_id,q?.primary_knowledge_unit_id,cq.id);}
  }
 });
