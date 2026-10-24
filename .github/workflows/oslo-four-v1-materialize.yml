@@ -1,14 +1,6 @@
 name: Oslo four v1 candidate materialization
 
 on:
-  push:
-    branches:
-      - feat/oslo-four-places-canonical-20261024
-    paths:
-      - scripts/build-oslo-four-v1-batch.mjs
-      - scripts/onboard-oslo-four-v1.mjs
-      - tests/oslo-four-v1-batch.test.mjs
-      - .github/workflows/oslo-four-v1-materialize.yml
   workflow_dispatch:
 
 permissions:
