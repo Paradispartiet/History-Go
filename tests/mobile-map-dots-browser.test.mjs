@@ -124,6 +124,8 @@ try {
         outline: css?.borderTopColor,
         name: el?.querySelector(".hg-place-detail-label")?.textContent,
         nameDisplay: el?.querySelector(".hg-place-detail-label")?.style.display,
+        nameColor: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).color : null,
+        nameShadow: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).textShadow : null,
         markerCssPosition: css?.position,
         nameCssPosition: el?.querySelector(".hg-place-detail-label")
           ? getComputedStyle(el.querySelector(".hg-place-detail-label")).position : null,
@@ -138,6 +140,8 @@ try {
       assert.equal(first.vector, false, "native renderer does not await vector style");
       assert.equal(first.name, "Torggata", "a visible place name must accompany native dots");
       assert.equal(first.nameDisplay, "block", "touch name is visible before style.load");
+      assert.equal(first.nameColor, "rgb(0, 0, 0)", "phone and iPad names must render in actual black, not white");
+      assert.equal(first.nameShadow, "none", "place name must not have the white halo that made text look white");
       assert.equal(first.nameCssPosition, "absolute", "label is anchored to marker without changing dot size");
       assert.equal(first.markerCssPosition, "absolute", "MapLibre must retain absolute coordinates");
     }
@@ -194,11 +198,12 @@ try {
           m.element.classList.contains("hg-place-detail-marker")).setCount,
         visibility: window.__testMap.getLayer("hg-places-dots")?.layout?.visibility,
         label: document.querySelector(".hg-place-detail-label")?.textContent,
-        labelVisible: document.querySelector(".hg-place-detail-label")?.style.display
+        labelVisible: document.querySelector(".hg-place-detail-label")?.style.display,
+        labelColor: getComputedStyle(document.querySelector(".hg-place-detail-label")).color
       }));
       assert.deepEqual(after, {
         sameDot: true, count: 1, calls: 1, visibility: "none",
-        label: "Torggata", labelVisible: "block"
+        label: "Torggata", labelVisible: "block", labelColor: "rgb(0, 0, 0)"
       },
         "style changes must not blink or duplicate dots at width=" + width);
     }
