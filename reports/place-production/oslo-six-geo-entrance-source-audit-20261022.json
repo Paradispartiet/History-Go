@@ -1,0 +1,321 @@
+{
+  "schema": "history_go_oslo_six_entrance_source_audit_v1",
+  "reviewed_at": "2026-10-22",
+  "release_status": "RESEARCH_ONLY_NO_COORDINATES_OR_PINS",
+  "review_scope": "Authoritative address, access and building-identity evidence. DOES NOT qualify coordinates, visitor-radius, images, quiz, Fagverk or v1.",
+  "places": [
+    {
+      "place_id": "linderud_gard",
+      "identity": "Linderud gård – hovedbygning og historisk hage",
+      "confirmed_address": "Trondheimsveien 319, 0593 Oslo",
+      "address_source_status": "official_confirmed",
+      "entrance_status": "official_access_instructions_no_verified_pin",
+      "visitor_guidance": "MiA: gåadkomst fra kollektivknutepunkter; biladkomst via Linderud senter, ikke gjennom porten fra Trondheimsveien/RV4. Parkering inne på museumsområdet krever avtale. Karttjenester kan vise feil kjørevei.",
+      "access_constraints": [
+        "Do not route cars to Trondheimsveien/RV4 entrance",
+        "Do not infer museum entry coordinate from postal address"
+      ],
+      "sources": [
+        {
+          "url": "https://mia.no/linderud/finn-oss",
+          "authority": "Museene i Akershus",
+          "evidence": "Postal address and written visitor/vehicle access guidance"
+        },
+        {
+          "url": "https://www.visitoslo.com/no/attraksjon/linderud-g-rd",
+          "authority": "VisitOSLO",
+          "evidence": "Visitor address and outdoor garden public access"
+        }
+      ],
+      "coordinate_status": "HOLD",
+      "coordinate": null,
+      "radius_m": null,
+      "official_address_evidence": {
+        "reviewed_at": "2026-10-23",
+        "source_url": "https://ws.geonorge.no/adresser/v1/sok?sok=Trondheimsveien%20319%20Oslo",
+        "source_object_id": "geonorge-adresser-v1:0301:17749:319",
+        "raw_address": {
+          "adressenavn": "Trondheimsveien",
+          "adressetekst": "Trondheimsveien 319",
+          "adressetilleggsnavn": null,
+          "adressekode": 17749,
+          "nummer": 319,
+          "bokstav": "",
+          "kommunenummer": "0301",
+          "kommunenavn": "OSLO",
+          "gardsnummer": 88,
+          "bruksnummer": 1,
+          "festenummer": 0,
+          "undernummer": null,
+          "bruksenhetsnummer": [
+            "H0101",
+            "H0102",
+            "H0201",
+            "U0101"
+          ],
+          "objtype": "Vegadresse",
+          "poststed": "OSLO",
+          "postnummer": "0593",
+          "adressetekstutenadressetilleggsnavn": "Trondheimsveien 319",
+          "stedfestingverifisert": false,
+          "representasjonspunkt": {
+            "epsg": "EPSG:4258",
+            "lat": 59.94191458255421,
+            "lon": 10.833376615212883
+          },
+          "oppdateringsdato": "2020-06-15T18:06:08"
+        },
+        "role": "official_address_display_marker_candidate_not_door",
+        "public_access_proven_by_geocoder": false,
+        "historical_building_identity_proven_by_geocoder": false,
+        "note": "Offisielt adresserepresentasjonspunkt er hentet. Kildens stedfestingverifisert-flagg bevares; adressepunktet må vurderes sammen med stedets identitet og adkomst, og er ikke en inngangsdør."
+      }
+    },
+    {
+      "place_id": "ekebergrestauranten",
+      "identity": "Ekebergrestaurantens nåværende bygning, ikke Ekebergparken som helhet",
+      "confirmed_address": "Kongsveien 15, 0193 Oslo",
+      "address_source_status": "operator_and_register_confirmed",
+      "entrance_status": "public_restaurant_access_confirmed_geo_anchor_pending",
+      "visitor_guidance": "Restauranten oppgir stoppested Ekebergparken for trikk 13/19. Midlertidige veiarbeider kan påvirke kjørerute og må ikke hardkodes som varig adgang.",
+      "access_constraints": [
+        "Separate restaurant building from Ekebergparken and museum",
+        "Verify exact publicly accessible entry before GPS radius"
+      ],
+      "sources": [
+        {
+          "url": "https://www.ekebergrestauranten.com/kontakt/",
+          "authority": "Restaurant operator",
+          "evidence": "Postal address, transit and car arrival instructions"
+        },
+        {
+          "url": "https://virksomhet.brreg.no/nb/oppslag/underenheter/987325925",
+          "authority": "Brønnøysundregistrene",
+          "evidence": "Independent legal registration of site address"
+        }
+      ],
+      "coordinate_status": "HOLD",
+      "coordinate": null,
+      "radius_m": null
+    },
+    {
+      "place_id": "frognerseteren",
+      "identity": "Frognerseteren hovedrestaurant, ikke Heftyevillaen, Sportshallen eller T-banestasjonen",
+      "confirmed_address": "Holmenkollveien 200, 0791 Oslo",
+      "address_source_status": "operator_and_register_confirmed",
+      "entrance_status": "operator_directions_no_precise_public_pin",
+      "visitor_guidance": "Operatøren bekrefter Holmenkollveien 200 og merket gangvei fra Frognerseteren T-banestasjon. Adresse er ikke i seg selv spillanker.",
+      "access_constraints": [
+        "Pin must be main restaurant entrance, not nearby rail station or Heftyevilla",
+        "Do not derive radius from street address"
+      ],
+      "sources": [
+        {
+          "url": "https://www.frognerseteren.no/kontakt-booking",
+          "authority": "Restaurant operator",
+          "evidence": "Visitor address and T-bane walking directions"
+        },
+        {
+          "url": "https://virksomhet.brreg.no/en/oppslag/underenheter/973212079",
+          "authority": "Brønnøysundregistrene",
+          "evidence": "Independent registration of restaurant site"
+        }
+      ],
+      "coordinate_status": "HOLD",
+      "coordinate": null,
+      "radius_m": null,
+      "official_address_evidence": {
+        "reviewed_at": "2026-10-23",
+        "source_url": "https://ws.geonorge.no/adresser/v1/sok?sok=Holmenkollveien%20200%20Oslo",
+        "source_object_id": "geonorge-adresser-v1:0301:13070:200",
+        "raw_address": {
+          "adressenavn": "Holmenkollveien",
+          "adressetekst": "Holmenkollveien 200",
+          "adressetilleggsnavn": null,
+          "adressekode": 13070,
+          "nummer": 200,
+          "bokstav": "",
+          "kommunenummer": "0301",
+          "kommunenavn": "OSLO",
+          "gardsnummer": 34,
+          "bruksnummer": 14,
+          "festenummer": 0,
+          "undernummer": null,
+          "bruksenhetsnummer": [
+            "H0201",
+            "H0202",
+            "H0203",
+            "H0204",
+            "H0205",
+            "H0206",
+            "H0207",
+            "H0208",
+            "H0209"
+          ],
+          "objtype": "Vegadresse",
+          "poststed": "OSLO",
+          "postnummer": "0791",
+          "adressetekstutenadressetilleggsnavn": "Holmenkollveien 200",
+          "stedfestingverifisert": false,
+          "representasjonspunkt": {
+            "epsg": "EPSG:4258",
+            "lat": 59.97754451986929,
+            "lon": 10.677378363757521
+          },
+          "oppdateringsdato": "2020-06-15T18:03:33"
+        },
+        "role": "official_address_display_marker_candidate_not_door",
+        "public_access_proven_by_geocoder": false,
+        "historical_building_identity_proven_by_geocoder": false,
+        "note": "Offisielt adresserepresentasjonspunkt er hentet. Kildens stedfestingverifisert-flagg bevares; adressepunktet må vurderes sammen med stedets identitet og adkomst, og er ikke en inngangsdør."
+      }
+    },
+    {
+      "place_id": "sarabraten",
+      "identity": "Sarabråten ruin- og minnested, ikke en stående Heftyevilla",
+      "confirmed_address": null,
+      "address_source_status": "no_street_address_confirmed",
+      "entrance_status": "public_site_described_no_precise_trail_anchor",
+      "visitor_guidance": "SNL beskriver Sarabråten ved Nøklevann som Oslo kommunes eiendom med tidligere bebyggelse og minnested. Nøyaktig offentlig ruin-/stiadkomst må dokumenteres.",
+      "access_constraints": [
+        "Represent extant ruins and memorial, never imply villa is standing",
+        "Verify accessible trail and safe observation point before pin"
+      ],
+      "sources": [
+        {
+          "url": "https://snl.no/Sarabr%C3%A5ten",
+          "authority": "Store norske leksikon",
+          "evidence": "Municipal site, ruins and memorial description"
+        }
+      ],
+      "coordinate_status": "HOLD",
+      "coordinate": null,
+      "radius_m": null
+    },
+    {
+      "place_id": "saeterhytten_bygdoy",
+      "identity": "Sæterhytten – Statsbygg bygning 3710 på Dronningberget",
+      "confirmed_address": null,
+      "address_source_status": "building_identity_documented_no_visitor_address",
+      "entrance_status": "public_park_access_operator_confirmed_exact_visitor_pin_not_verified",
+      "visitor_guidance": "Statsbygg dokumenterer bygning 3710. Statsforvalterens godkjente forvaltningsplan for Dronningberget (26.10.2023), lest 23.10.2026, dokumenterer at eksisterende stier og vei gjennom reservatet brukes som adkomst til Sæterhytten. Dette støtter gangadkomst; presist offentlig observasjonspunkt, besøksradius og eventuell innendørs adgang er fortsatt ikke verifisert.",
+      "access_constraints": [
+        "Never infer 2026 public indoor access from 2012 report",
+        "No use of rights-protected Statsbygg illustration without rights verification"
+      ],
+      "sources": [
+        {
+          "url": "https://www.regjeringen.no/contentassets/c90f250c1e6b4645acc9b8be40e9a2ea/bygning_3710_seterhytten.pdf",
+          "authority": "Statsbygg / regjeringen.no",
+          "evidence": "Building no. 3710 and historic identity; map is copyright-labelled, not a verified pin"
+        },
+        {
+          "url": "https://fpnv.naturbase.no/Plan/View?naturvernId=VV00003059",
+          "authority": "Statsforvalteren i Oslo og Viken / Miljødirektoratet, Forvaltningsplaner på nett",
+          "evidence": "Godkjent forvaltningsplan 26.10.2023, seksjon «Bygg og Installasjoner»: eksisterende stier og vei brukes som adkomst til Sæterhytten. Seksjon «Natur – Beskrivelse» beskriver bratte, stedvis ustabile skråninger. Ingen eksakt besøkskoordinat eller generell innendørs besøksrett dokumenteres.",
+          "reviewed_at": "2026-10-23"
+        },
+        {
+          "url": "https://www.historiskelokaler.no/bygdo-kongsgard/saeterhytten",
+          "authority": "Bygdø Kongsgård / venue listing",
+          "evidence": "Venue describes surrounding park as open for ordinary walking and allows passers-by to go around; a gate may be closed during events. No independently surveyed observation waypoint.",
+          "reviewed_at": "2026-10-24"
+        },
+        {
+          "url": "https://www.tgsmat.no/saeterhytten",
+          "authority": "Event caterer",
+          "evidence": "Sæterhytten is an event-hire venue; public exterior walking cannot be read as general indoor visiting.",
+          "reviewed_at": "2026-10-24"
+        }
+      ],
+      "coordinate_status": "HOLD",
+      "coordinate": null,
+      "radius_m": null,
+      "documented_pedestrian_approach": {
+        "source": "https://fpnv.naturbase.no/Plan/View?naturvernId=VV00003059",
+        "plan_approved_at": "2023-10-26",
+        "reviewed_at": "2026-10-23",
+        "source_sections": [
+          "Bygg og Installasjoner",
+          "Natur – Beskrivelse"
+        ],
+        "existing_path_access_documented": true,
+        "building_and_nearby_monument_outside_reserve": true,
+        "route_limit": "Bruk eksisterende stier og vei. Ikke plasser spillanker i de bratte skråningene eller la radius kreve ferdsel utenfor stinettet.",
+        "current_path_condition_surveyed": false,
+        "exact_public_observation_coordinate": null,
+        "indoor_public_access_verified": false,
+        "safe_gps_release": false
+      },
+      "public_access_scope": "Outdoor park and normal walking passage only. No general public right to enter or use the booked Sæterhytten building, private parking or gated event area."
+    },
+    {
+      "place_id": "kristiania_teglverk_bryn",
+      "identity": "Kristiania Teglverk med bevart ringovn ved Bryn, ikke eldre Bryn Teglverk",
+      "confirmed_address": null,
+      "address_source_status": "conflicting_14_18",
+      "address_candidates": [
+        "Nils Hansens vei 14",
+        "Nils Hansens vei 18"
+      ],
+      "entrance_status": "HARD_HOLD_BUILDING_AND_PUBLIC_ACCESS_UNRESOLVED",
+      "visitor_guidance": "To separate the sites: specialist and local property-history sources identify Kristiania Teglverk with Nils Hansens vei 18 and the former Den Norske Zinkhvidt-Fabrik with no. 14. Oslo byleksikon disagrees. The historical address is not a public entrance and no building/visitor coordinate is approved.",
+      "access_constraints": [
+        "Resolve 14/18 building identity with property records",
+        "No implied private-property access or active marker"
+      ],
+      "sources": [
+        {
+          "url": "https://oslobyleksikon.no/side/Kristiania_Teglverk",
+          "authority": "Oslo byleksikon",
+          "evidence": "Address number 14 with preserved oven"
+        },
+        {
+          "url": "https://teglverk.no/kristiania-teglverk/",
+          "authority": "Teglverk.no",
+          "evidence": "Address number 18 and surviving ring kiln"
+        }
+      ],
+      "coordinate_status": "HARD_HOLD",
+      "coordinate": null,
+      "radius_m": null,
+      "preferred_historical_address_reference": "Nils Hansens vei 18 (stronger secondary-building evidence; not a verified cadastral pin)",
+      "address_identity_evidence_file": "reports/place-production/kristiania-teglverk-address-identity-evidence-20261022.json",
+      "official_address_evidence": {
+        "reviewed_at": "2026-10-23",
+        "source_url": "https://ws.geonorge.no/adresser/v1/sok?sok=Nils%20Hansens%20vei%2018%20Oslo",
+        "source_object_id": "geonorge-adresser-v1:0301:15038:18",
+        "raw_address": {
+          "adressenavn": "Nils Hansens vei",
+          "adressetekst": "Nils Hansens vei 18",
+          "adressetilleggsnavn": null,
+          "adressekode": 15038,
+          "nummer": 18,
+          "bokstav": "",
+          "kommunenummer": "0301",
+          "kommunenavn": "OSLO",
+          "gardsnummer": 137,
+          "bruksnummer": 31,
+          "festenummer": 0,
+          "undernummer": null,
+          "bruksenhetsnummer": [],
+          "objtype": "Vegadresse",
+          "poststed": "OSLO",
+          "postnummer": "0667",
+          "adressetekstutenadressetilleggsnavn": "Nils Hansens vei 18",
+          "stedfestingverifisert": false,
+          "representasjonspunkt": {
+            "epsg": "EPSG:4258",
+            "lat": 59.90928471780799,
+            "lon": 10.820381572874084
+          },
+          "oppdateringsdato": "2020-06-15T18:03:33"
+        },
+        "role": "official_address_display_marker_candidate_not_door",
+        "public_access_proven_by_geocoder": false,
+        "historical_building_identity_proven_by_geocoder": false,
+        "note": "Geonorge bekrefter at nummer 18 er knyttet til gnr/bnr 137/31. Det avklarer adresse–eiendom, men ikke hvilken bygningskropp som rommer ringovnen eller publikumsadgang."
+      }
+    }
+  ]
+}

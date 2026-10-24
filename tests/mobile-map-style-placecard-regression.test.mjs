@@ -44,6 +44,7 @@ class FakeElement {
     return [];
   }
   insertBefore(child) { this.children.push(child); }
+  appendChild(child) { this.children.push(child); return child; }
   get firstChild() { return this.children[0] || null; }
   set innerHTML(value) {
     this._html = value;
@@ -72,6 +73,7 @@ class FakeMap {
     this.nativeMarkers = [];
     this.resizes = 0;
     this.zoom = 15;
+    this.boundsEmpty = false;
   }
   on(name, layerOrCallback, callback) {
     if (typeof layerOrCallback !== "function") return;
@@ -104,6 +106,8 @@ class FakeMap {
   getCanvas() { return this.canvas; }
   resize() { this.resizes += 1; }
   getZoom() { return this.zoom; }
+  getBounds() { return { contains: () => !this.boundsEmpty }; }
+  getCenter() { return { lng: 10.75, lat: 59.91 }; }
   setStyle(url) {
     this.styleChanges.push(url);
     this.styleReady = false;
@@ -118,17 +122,20 @@ class FakeMap {
   }
 }
 
-function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false, mobile = false } = {}) {
+function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false, mobile = false, ipad = false, emptyBounds = false, skipStyleLoad = false } = {}) {
   const controls = new FakeElement("controls");
   const mapElement = new FakeElement("map");
   const placeCard = new FakeElement("placeCard");
   const main = new FakeMap();
   main.pendingTiles = pendingTiles;
+  main.boundsEmpty = emptyBounds;
   const loc = new Map();
   if (savedStyle) loc.set("hg_map_style_mode", savedStyle);
   const win = {
     console,
-    matchMedia: () => ({ matches: mobile }),
+    innerWidth: ipad ? 1366 : mobile ? 390 : 1440,
+    navigator: { maxTouchPoints: ipad ? 5 : mobile ? 1 : 0 },
+    matchMedia: query => ({ matches: mobile || (ipad && query.includes("pointer: coarse")) }),
     fetch: async () => ({ ok: false, status: 404 }),
     maplibregl: {
       Map: class {
@@ -140,7 +147,7 @@ function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false,
       NavigationControl: class {},
       Marker: class {
         constructor(options) { this.element = options.element; this.removed = false; }
-        setLngLat(coords) { this.coords = coords; return this; }
+        setLngLat(coords) { this.coords = coords; this.setLngLatCount = (this.setLngLatCount || 0) + 1; return this; }
         addTo(map) { map.nativeMarkers.push(this); return this; }
         remove() { this.removed = true; }
       }
@@ -174,7 +181,7 @@ function setup({ savedStyle = null, delayedPlaces = false, pendingTiles = false,
   win.HG_PLACES_READY = true;
   win.HGMap.initMap();
   if (!delayedPlaces) win.HGMap.setPlaces(places);
-  main.finishStyle({ initial: true });
+  if (!skipStyleLoad) main.finishStyle({ initial: true });
   if (delayedPlaces) win.HGMap.setPlaces(places);
   win.MAP = main;
   runInNewContext(mapViewBundle, win, { timeout: 1000 });
@@ -413,4 +420,110 @@ test("mobile native detail markers appear on the first view even without WebGL c
   native[0].element.emit("click", { preventDefault() {}, stopPropagation() {} });
   assert.deepEqual(opened, ["park"], "touching the native marker opens its PlaceCard");
   assert.ok(main.getLayer("hg-places-dots"), "normal vector dot layer also remains available");
+});
+
+test("cold mobile start draws HTML dots before style.load even with empty initial bounds", () => {
+  const { main } = setup({ mobile: true, emptyBounds: true, skipStyleLoad: true });
+  assert.equal(main.getLayer("hg-places-dots"), null, "WebGL style has not loaded");
+  const native = main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker" && !m.removed);
+  assert.equal(native.length, 1, "HTML dot must not depend on style.load or initially wrong bounds");
+  assert.equal(native[0].element.style.opacity, "1");
+});
+
+test("mobile dots stay mounted across resize and style changes without duplicate WebGL circles", () => {
+  const { win, main, controls } = setup({ mobile: true, emptyBounds: true });
+  const initial = main.nativeMarkers.find(m => m.element.className === "hg-place-detail-marker");
+  assert.ok(initial && !initial.removed);
+  assert.equal(main.getLayer("hg-places-dots")?.layout?.visibility, "none",
+    "mobile detail dots must have one visible renderer, not flickering DOM and WebGL overlap");
+  win.HGMap.resize();
+  main.boundsEmpty = false;
+  win.HGMap.resize();
+  win.HGMap.refreshMarkers();
+  assert.equal(initial.setLngLatCount, 1, "unchanged marker must never be repositioned repeatedly");
+  assert.ok(!initial.removed, "resize preserves marker identity");
+
+  const toggle = controls.querySelector(".hg-map-style-toggle");
+  const detailed = toggle.querySelectorAll(".hg-map-style-btn")[1];
+  toggle.emit("click", { target: detailed, preventDefault() {}, stopPropagation() {} });
+  assert.ok(!initial.removed, "style switch does not remove HTML dot");
+  main.finishStyle();
+  assert.equal(main.getLayer("hg-places-dots")?.layout?.visibility, "none",
+    "new MapLibre style also avoids double-rendering circles on mobile");
+  assert.ok(!initial.removed, "style load does not recreate the native dot");
+  assert.equal(main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker").length, 1);
+});
+
+test("desktop retains vector circles as its single detail renderer", () => {
+  const { main } = setup({ mobile: false });
+  assert.equal(main.getLayer("hg-places-dots")?.layout?.visibility, "visible");
+  assert.equal(main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker").length, 0);
+});
+
+test("large landscape iPad uses native dots rather than invisible vector-only circles", () => {
+  const { main } = setup({ ipad: true, skipStyleLoad: true });
+  const marker = main.nativeMarkers.find(m => m.element.className === "hg-place-detail-marker" && !m.removed);
+  assert.ok(marker, "iPad must show detail dot without waiting for style.load");
+  main.finishStyle();
+  assert.equal(main.getLayer("hg-places-dots")?.layout?.visibility, "none");
+  assert.ok(!marker.removed);
+});
+
+test("phone and iPad dots shrink progressively during zoom without marker replacement", () => {
+  for (const opts of [{ mobile: true }, { ipad: true }]) {
+    const { main } = setup(opts);
+    const marker = main.nativeMarkers.find(m => m.element.className === "hg-place-detail-marker" && !m.removed);
+    assert.ok(marker);
+    const sizes = [];
+    for (const zoom of [10, 11, 12, 13, 14, 16]) {
+      main.zoom = zoom;
+      main.emit("zoom");
+      sizes.push(Number(marker.element.style.width.replace("px", "")));
+    }
+    assert.ok(sizes.every((n, i) => i === 0 || n > sizes[i - 1]),
+      "continuous zoom must increase diameter at every zoom stop");
+    assert.ok(sizes[0] < 5 && sizes.at(-1) <= 8.5);
+    assert.equal(marker.setLngLatCount, 1, "changing zoom must not relayout marker coordinates");
+    assert.equal(main.nativeMarkers.filter(m => m.element.className === "hg-place-detail-marker").length, 1);
+  }
+});
+
+test("touch dots carry actual visible place names rather than aria-label only", () => {
+  for (const opts of [{ mobile: true }, { ipad: true }]) {
+    const { main } = setup(opts);
+    const dot = main.nativeMarkers.find(m =>
+      m.element.className === "hg-place-detail-marker" && !m.removed);
+    assert.ok(dot, "native marker on phone/iPad");
+    const label = dot.element.children.find(el => el.className === "hg-place-detail-label");
+    assert.ok(label, "name is a real child element");
+    assert.equal(label.textContent, "Park");
+    assert.equal(label.style.display, "block", "names visible at detailed zoom");
+    assert.equal(main.getLayer("hg-places-label")?.layout?.visibility, "none",
+      "do not overlay an unreliable duplicate WebGL label");
+    main.zoom = 10;
+    main.emit("zoom");
+    assert.equal(label.style.display, "none", "hide labels when zoomed far out");
+    main.zoom = 14;
+    main.emit("zoom");
+    assert.equal(label.style.display, "block", "restore labels at detail zoom");
+    assert.ok(!dot.removed);
+  }
+});
+
+test("changing a touch place name updates its existing marker text", () => {
+  const { win, main } = setup({ ipad: true });
+  const dot = main.nativeMarkers.find(m => m.element.className === "hg-place-detail-marker");
+  const label = dot.element.children.find(el => el.className === "hg-place-detail-label");
+  const places = [
+    { id: "park", name: "Park med nytt navn", category: "by", lat: 59.917, lon: 10.7533, r: 180 }
+  ];
+  win.HGMap.setPlaces(places);
+  assert.equal(label.textContent, "Park med nytt navn");
+  assert.equal(dot.element.getAttribute("aria-label"), "Park med nytt navn");
+  assert.ok(!dot.removed, "label update does not recreate the dot");
+});
+
+test("desktop continues to use original vector place-name labels", () => {
+  const { main } = setup({ mobile: false });
+  assert.equal(main.getLayer("hg-places-label")?.layout?.visibility, "visible");
 });

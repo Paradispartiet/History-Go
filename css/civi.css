@@ -1302,18 +1302,65 @@ body.civi-mapmode .civi-panels{
 .civi-lifestory-delta.is-negative{ border-color:rgba(248,113,113,.38); }
 
 .civi-lifestory-panels{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  display:flex;
+  flex-direction:column;
   gap:10px;
   min-width:0;
   max-width:100%;
 }
 
-.civi-lifestory-panels > section{
+.civi-lifestory-panels > section,
+.civi-lifestory-panels > details{
   min-width:0;
   padding:10px;
   overflow-wrap:anywhere;
 }
+
+/* Progressive disclosure: the playable scene remains primary, the archive stays available. */
+.civi-lifestory-panels > details{
+  background:var(--card2);
+  border:1px solid var(--line2);
+  border-radius:14px;
+}
+.civi-lifestory-disclosure > summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-height:44px;
+  cursor:pointer;
+  list-style:none;
+  color:var(--ink);
+  font-weight:800;
+  line-height:1.35;
+}
+.civi-lifestory-disclosure > summary::-webkit-details-marker{ display:none; }
+.civi-lifestory-disclosure > summary::after{
+  content:"▾";
+  color:var(--ink2);
+  font-size:16px;
+  flex-shrink:0;
+  transition:transform .15s ease;
+}
+.civi-lifestory-disclosure[open] > summary::after{ transform:rotate(180deg); }
+.civi-lifestory-disclosure > summary:focus-visible{
+  outline:2px solid var(--civi-accent-border);
+  outline-offset:3px;
+  border-radius:4px;
+}
+.civi-lifestory-disclosure[open] > summary{ margin-bottom:10px; }
+.civi-lifestory-summary > .civi-lifestory-disclosure{
+  margin:12px 0;
+  padding:10px 12px;
+  border:1px solid var(--line2);
+  border-radius:12px;
+  background:rgba(255,255,255,.035);
+}
+.civi-lifestory-panels > section > .civi-lifestory-disclosure{
+  margin-bottom:8px;
+}
+.civi-lifestory-panels > details > ul,
+.civi-lifestory-panels > section > details > ul{ margin-top:8px; }
 
 .civi-lifestory-panels h4,
 .civi-lifestory-summary h4{
@@ -1370,4 +1417,112 @@ body.civi-mapmode .civi-panels{
   .civi-lifestory-panels{ grid-template-columns:1fr; }
   .civi-lifestory-scene h3,
   .civi-lifestory-summary h3{ font-size:21px; }
+}
+
+
+/* Min dag: gentle narrative colors, with the next choice remaining dominant. */
+#civiLifestoryPanel .civi-lifestory-status-chip{
+  border-color:rgba(99,203,187,.28);
+  background:linear-gradient(135deg,rgba(62,141,139,.15),rgba(24,24,27,.75));
+}
+#civiLifestoryPanel .civi-lifestory-status-chip:nth-child(2){
+  border-color:rgba(230,189,103,.33);
+  background:linear-gradient(135deg,rgba(214,170,58,.15),rgba(24,24,27,.75));
+}
+#civiLifestoryPanel .civi-lifestory-status-chip:nth-child(3){
+  border-color:rgba(174,150,230,.30);
+  background:linear-gradient(135deg,rgba(113,90,179,.15),rgba(24,24,27,.75));
+}
+#civiLifestoryPanel .civi-lifestory-scene{
+  border-color:rgba(99,203,187,.34);
+  border-left:3px solid #63cbbb;
+  background:linear-gradient(130deg,rgba(34,100,91,.15),rgba(24,24,27,.98) 48%);
+}
+#civiLifestoryPanel .civi-lifestory-scene .civi-lifestory-kicker span:first-child{
+  color:#9df1e3;
+  background:rgba(37,143,125,.21);
+  border-color:rgba(99,203,187,.5);
+}
+#civiLifestoryPanel .civi-lifestory-choice{
+  border-color:rgba(120,187,181,.27);
+  background:rgba(70,111,111,.10);
+  transition:background 120ms ease,border-color 120ms ease;
+}
+#civiLifestoryPanel .civi-lifestory-choice:hover,
+#civiLifestoryPanel .civi-lifestory-choice:focus-visible{
+  border-color:#63cbbb;
+  background:rgba(70,164,146,.18);
+}
+#civiLifestoryPanel .civi-lifestory-choice:focus-visible{
+  outline:2px solid #a7f6ec;
+  outline-offset:2px;
+}
+#civiLifestoryPanel .civi-lifestory-summary{
+  border-color:rgba(174,150,230,.28);
+  border-left:3px solid #ae96e6;
+  background:linear-gradient(135deg,rgba(91,73,143,.13),var(--card2) 44%);
+}
+#civiLifestoryPanel .civi-lifestory-konsekvens{
+  background:linear-gradient(145deg,rgba(54,139,103,.16),var(--card2) 63%);
+  border-color:rgba(101,206,149,.31);
+}
+#civiLifestoryPanel .civi-lifestory-disclosure[open]{
+  border-color:rgba(230,189,103,.35);
+}
+#civiLifestoryPanel .civi-lifestory-delta.is-positive{color:#b1f7c8;}
+#civiLifestoryPanel .civi-lifestory-delta.is-negative{color:#ffc2c2;}
+
+/* Min dag v2: one current decision, with historical and numeric detail secondary. */
+#civiLifestoryPanel .civi-lifestory-status-details,
+#civiLifestoryPanel .civi-lifestory-history-content > details{
+  padding:10px 12px;
+  border:1px solid var(--line2);
+  border-radius:12px;
+  background:var(--card2);
+}
+#civiLifestoryPanel .civi-lifestory-status-details .civi-lifestory-status{
+  margin-top:10px;
+}
+#civiLifestoryPanel .civi-lifestory-history-content{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:8px;
+}
+#civiLifestoryPanel .civi-lifestory-history-content > section{
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+#civiLifestoryPanel .civi-lifestory-previous{
+  padding:12px 14px;
+  border-left:3px solid #63cbbb;
+  border-radius:12px;
+  background:rgba(54,139,103,.09);
+  color:var(--ink);
+}
+#civiLifestoryPanel .civi-lifestory-previous strong{
+  display:block;
+  font-size:var(--civi-font-meta);
+}
+#civiLifestoryPanel .civi-lifestory-previous p{
+  margin:6px 0 0;
+  color:var(--ink2);
+  overflow-wrap:anywhere;
+}
+#civiLifestoryPanel .civi-lifestory-panels > section,
+#civiLifestoryPanel .civi-lifestory-panels > details{
+  width:100%;
+  box-sizing:border-box;
+}
+@media (max-width: 720px){
+  #civiLifestoryPanel .civi-lifestory-status{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  #civiLifestoryPanel .civi-lifestory-panels > section,
+  #civiLifestoryPanel .civi-lifestory-panels > details{
+    padding:12px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #civiLifestoryPanel .civi-lifestory-choice{transition:none;}
 }

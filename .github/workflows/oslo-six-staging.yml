@@ -1,0 +1,163 @@
+name: Oslo six-place editorial staging QA
+
+on:
+  pull_request:
+    paths:
+      - 'data/places/by/oslo/places/ekebergrestauranten.json'
+      - 'data/places/historie/oslo/places/frognerseteren.json'
+      - 'data/quiz/historie/frognerseteren_sets.json'
+      - 'data/quiz/by/ekebergrestauranten_sets.json'
+      - 'data/quizcards/by/oslo_six_20261023.json'
+      - 'tests/oslo-six-canonical-app-browser.mjs'
+      - 'tests/oslo-six-canonical-integration.test.mjs'
+      - 'reports/place-production/oslo-six-places-editorial-20261022.md'
+      - 'reports/place-production/oslo-six-places-integration-gates-20261022.json'
+      - 'data/quiz/production_briefs/historie/linderud_gard.json'
+      - 'scripts/build-oslo-six-quiz-handoff.mjs'
+      - 'scripts/build-oslo-six-card-review.mjs'
+      - 'scripts/build-oslo-six-fullquiz-review.mjs'
+      - 'scripts/build-oslo-six-remaining-fullquiz-review.mjs'
+      - 'tests/oslo-six-quiz-handoff.test.mjs'
+      - 'tests/oslo-six-places-integration-gates.test.mjs'
+      - 'tests/oslo-six-linderud-quiz-preintegration.test.mjs'
+      - 'tests/oslo-six-card-review.test.mjs'
+      - 'tests/oslo-six-fullquiz-review.test.mjs'
+      - 'tests/oslo-six-remaining-fullquiz-review.test.mjs'
+      - 'tests/oslo-six-review-ownership.test.mjs'
+      - 'reports/place-production/linderud-gard-quiz-preintegration-20261022.json'
+      - 'reports/place-production/oslo-six-fagverk-preintegration-20261022.json'
+      - 'tests/oslo-six-fagverk-preintegration.test.mjs'
+      - 'scripts/build-oslo-six-integration-preview.mjs'
+      - 'tests/oslo-six-integration-preview.test.mjs'
+      - 'reports/place-production/frognerseteren-building-quiz-source-audit-20261022.json'
+      - 'reports/place-production/ekebergrestauranten-quiz-line-source-review-20261023.json'
+      - 'tests/oslo-six-ekeberg-source-line-review.test.mjs'
+      - 'tests/oslo-six-sarabraten-semantic-review.test.mjs'
+      - 'reports/place-production/sarabraten-quiz-semantic-uncertainty-review-20261023.json'
+      - 'tests/oslo-six-frognerseteren-source-scope.test.mjs'
+      - 'reports/place-production/kristiania-teglverk-address-identity-evidence-20261022.json'
+      - 'tests/oslo-six-teglverk-address-evidence.test.mjs'
+      - 'reports/place-production/kristiania-teglverk-quiz-claim-audit-20261023.json'
+      - 'tests/oslo-six-teglverk-quiz-claim-audit.test.mjs'
+      - 'reports/place-production/oslo-six-image-rights-shortlist-20261022.json'
+      - 'tests/oslo-six-image-rights.test.mjs'
+      - 'tests/oslo-six-checked-in-commons-images.test.mjs'
+      - 'reports/place-production/oslo-six-generated-image-attribution-20261022.json'
+      - 'reports/place-production/oslo-six-image-visual-qa-20261022.json'
+      - 'reports/place-production/oslo-six-portrait-visual-review-20261023.json'
+      - 'reports/place-production/oslo-six-frontimage-candidate-assets-20261023.json'
+      - 'bilder/places/auto/*__front_portrait.webp'
+      - 'bilder/places/auto/*__commons_*.webp'
+      - 'reports/place-production/oslo-six-geo-entrance-source-audit-20261022.json'
+      - 'reports/place-production/oslo-six-remaining-access-verification-20261024.json'
+      - 'tests/oslo-six-remaining-access-verification.test.mjs'
+      - 'reports/place-production/oslo-six-geolocation-candidates-20261022.json'
+      - 'scripts/build-oslo-six-canonical-place-drafts.mjs'
+      - 'scripts/audit-oslo-six-v1-release.mjs'
+      - 'tests/oslo-six-v1-release-audit.test.mjs'
+      - 'tests/oslo-six-geolocation-candidates.test.mjs'
+      - 'tests/oslo-six-canonical-place-drafts.test.mjs'
+      - 'scripts/build-oslo-six-browser-review.mjs'
+      - 'js/ui/oslo-six-browser-review.js'
+      - 'css/oslo-six-browser-review.css'
+      - 'tests/oslo-six-browser-review.test.mjs'
+      - 'tests/oslo-six-browser-review.chromium.mjs'
+      - 'reports/place-production/oslo-six-browser-QA-README.md'
+      - '.github/workflows/oslo-six-staging.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-six-staging-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  staging:
+    name: Source, count and publication-hold parity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out pull-request head
+        uses: actions/checkout@v4
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify six-place staging handoff and release holds
+        run: node --test tests/oslo-six-remaining-access-verification.test.mjs tests/oslo-six-sarabraten-semantic-review.test.mjs tests/oslo-six-ekeberg-source-line-review.test.mjs tests/oslo-six-browser-review.test.mjs tests/oslo-six-checked-in-commons-images.test.mjs tests/oslo-six-geolocation-candidates.test.mjs tests/oslo-six-v1-release-audit.test.mjs tests/oslo-six-canonical-place-drafts.test.mjs tests/oslo-six-teglverk-quiz-claim-audit.test.mjs tests/oslo-six-teglverk-address-evidence.test.mjs tests/oslo-six-frognerseteren-source-scope.test.mjs tests/oslo-six-image-rights.test.mjs tests/oslo-six-integration-preview.test.mjs tests/oslo-six-quiz-handoff.test.mjs tests/oslo-six-places-integration-gates.test.mjs tests/oslo-six-linderud-quiz-preintegration.test.mjs tests/oslo-six-card-review.test.mjs tests/oslo-six-fullquiz-review.test.mjs tests/oslo-six-remaining-fullquiz-review.test.mjs tests/oslo-six-review-ownership.test.mjs tests/oslo-six-fagverk-preintegration.test.mjs
+      - name: Verify non-publishing data export
+        run: |
+          node scripts/build-oslo-six-quiz-handoff.mjs
+          node scripts/build-oslo-six-card-review.mjs
+          node scripts/build-oslo-six-fullquiz-review.mjs
+          node scripts/build-oslo-six-remaining-fullquiz-review.mjs
+          node scripts/build-oslo-six-integration-preview.mjs
+          node scripts/build-oslo-six-canonical-place-drafts.mjs
+          node scripts/audit-oslo-six-v1-release.mjs
+          node scripts/build-oslo-six-browser-review.mjs
+      - name: Verify canonical onboarding dependencies and research separation
+        run: node --test tests/oslo-six-canonical-integration.test.mjs
+
+  browser_review:
+    name: Oslo six read-only Chromium review (390 + 1440)
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install project browser-test dependencies
+        run: npm ci --ignore-scripts
+      - name: Install test Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Generate six-place editorial QA page from production source owners
+        run: node scripts/build-oslo-six-browser-review.mjs --write
+      - name: Check actual browser rendering, quiz content and all fifteen images
+        run: node tests/oslo-six-browser-review.chromium.mjs
+      - name: Save browser review and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-six-browser-review
+          path: |
+            reports/place-production/oslo-six-browser-review.html
+            reports/place-production/oslo-six-browser-review-390.png
+            reports/place-production/oslo-six-browser-review-1440.png
+            reports/place-production/oslo-six-browser-QA-README.md
+            css/oslo-six-browser-review.css
+            js/ui/oslo-six-browser-review.js
+            bilder/places/auto/*__commons_*.webp
+          if-no-files-found: warn
+          retention-days: 14
+
+  canonical_app:
+    strategy:
+      fail-fast: false
+      matrix:
+        place: [ekebergrestauranten, frognerseteren]
+    name: ${{ matrix.place }} History Go app (390 + 1440)
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Verify canonical Place, QuizCard flip, full-screen reader, quiz route and Fagverk
+        env:
+          HG_PLACE_ID: ${{ matrix.place }}
+        run: node tests/oslo-six-canonical-app-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-six-canonical-app-${{ matrix.place }}
+          path: artifacts/${{ matrix.place }}-browser/
+          if-no-files-found: warn
+          retention-days: 14

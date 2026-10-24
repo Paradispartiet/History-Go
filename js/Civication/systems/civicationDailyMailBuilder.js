@@ -1917,7 +1917,23 @@
       };
     }
 
-    const idx = findNextIndex(runtimeWithBlock);
+    // A queued-action button refers to a specific visible mail. The generic
+    // index can point at an older delivered row whose inbox action is already
+    // resolved; delivering that row again leaves the clicked mail queued and
+    // traps the player in the same phase. Never silently deliver a different
+    // mail when the caller supplied a specific queued event identity.
+    const requestedId = norm(options.queuedEventId);
+    const phaseNow = norm(window.CivicationCalendar?.getPhase?.() || "morning");
+    const targetIndex = requestedId
+      ? runtimeWithBlock.items.findIndex(row =>
+          norm(row?.event?.id) === requestedId &&
+          norm(row?.status) === "queued" &&
+          norm(row?.phase || row?.event?.phase_tag) === phaseNow)
+      : -1;
+    if (requestedId && targetIndex < 0) {
+      return { enqueued: false, reason: "queued_target_not_available", requested_id: requestedId, runtime: runtimeWithBlock };
+    }
+    const idx = requestedId ? targetIndex : findNextIndex(runtimeWithBlock);
     if (idx < 0) return { enqueued: false, reason: "day_complete", runtime };
 
     const item = runtimeWithBlock.items[idx];

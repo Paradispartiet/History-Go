@@ -475,3 +475,43 @@ body.hg-app.map-only .map-controls {
   margin: 0 !important;
   z-index: 10050;
 }
+
+
+/* Touch-native place name, anchored to its stable detail dot.
+   Names appear at detail zoom only; the map engine bounds the number and
+   avoids label collisions. No WebGL glyph dependency on iPad/Safari. */
+#map .hg-place-detail-marker {
+  /* MapLibre owns absolute map-coordinate positioning. Do not override it. */
+  position: absolute;
+  overflow: visible;
+}
+#map .hg-place-detail-marker .hg-place-detail-label {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: calc(100% + 4px);
+  transform: translateX(-50%);
+  z-index: 1;
+  max-width: 146px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #27323b;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 16px;
+  letter-spacing: -.08px;
+  text-align: center;
+  text-shadow:
+    -1px -1px 1px rgba(255,255,255,.97),
+     1px -1px 1px rgba(255,255,255,.97),
+    -1px  1px 1px rgba(255,255,255,.97),
+     1px  1px 1px rgba(255,255,255,.97),
+     0px  0px 3px rgba(255,255,255,.95);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}

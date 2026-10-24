@@ -53,8 +53,10 @@ test("post-construction map failures remain fatal and are not mislabeled as WebG
     setAttribute() {}
   };
   const window = {
-    // The native zoom widget is intentionally desktop-only after map cleanup.
-    matchMedia: () => ({ matches: true }),
+    // Explicit non-touch desktop: iPads intentionally skip the zoom widget.
+    innerWidth: 1440,
+    navigator: { maxTouchPoints: 0 },
+    matchMedia: () => ({ matches: false }),
     maplibregl: {
       Map: class {
         addControl() { throw new Error("Navigation control failed"); }

@@ -21,7 +21,7 @@
     const placeDetailMarkers = /* @__PURE__ */ new Map();
     let placeDetailMarkerEventsBound = false;
     let lastPlaceMarkerFeatures = [];
-    const MAX_MOBILE_DETAIL_MARKERS = 240;
+    const MAX_TOUCH_DETAIL_MARKERS = 240;
     const STYLE_STORAGE_KEY = "hg_map_style_mode";
     const STYLE_MODE_STANDARD = "standard";
     const STYLE_MODE_SATELLITE = "satellite";
@@ -126,7 +126,6 @@
       return `rgb(${r},${g},${b})`;
     }
     function initMap({ containerId = "map", start = START } = {}) {
-      var _a, _b;
       START = start || START;
       const el = document.getElementById(containerId);
       if (!el || !window.maplibregl) return null;
@@ -156,7 +155,7 @@
         console.warn("[HGMap] WebGL-kart utilgjengelig; fortsetter uten kart.", error);
         return null;
       }
-      if ((_b = (_a = window.matchMedia) == null ? void 0 : _a.call(window, "(min-width: 700px)")) == null ? void 0 : _b.matches) {
+      if (!useNativeTouchDetailMarkers()) {
         MAP.addControl(
           new maplibregl.NavigationControl({ showCompass: false }),
           "bottom-right"
@@ -192,22 +191,25 @@
       return MAP;
     }
     function resize() {
-      if (MAP && typeof MAP.resize === "function") MAP.resize();
+      var _a;
+      if (!MAP) return;
+      (_a = MAP.resize) == null ? void 0 : _a.call(MAP);
+      if (lastPlaceMarkerFeatures.length) syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
     }
     function getMap() {
       return MAP;
     }
     function setPlaces(arr) {
       PLACES = Array.isArray(arr) ? arr : [];
-      if (mapReady) drawPlaceMarkers();
+      if (MAP) drawPlaceMarkers();
     }
     function setVisited(obj) {
       visited = obj || {};
-      if (mapReady) drawPlaceMarkers();
+      if (MAP) drawPlaceMarkers();
     }
     function setCatColor(fn) {
       if (typeof fn === "function") catColor = fn;
-      if (mapReady) drawPlaceMarkers();
+      if (MAP) drawPlaceMarkers();
     }
     function setOnPlaceClick(fn) {
       if (typeof fn === "function") onPlaceClick = fn;
@@ -616,17 +618,71 @@
       }
       updatePlaceAreaDomMarkerSizes();
     }
-    function useNativeMobileDetailMarkers() {
+    function useNativeTouchDetailMarkers() {
+      var _a;
+      const width = Number(window.innerWidth || 0);
+      if (Number(((_a = window.navigator) == null ? void 0 : _a.maxTouchPoints) || 0) >= 1) return true;
       if (typeof window.matchMedia === "function") {
-        return window.matchMedia("(max-width: 699px)").matches;
+        return window.matchMedia("(max-width: 1199px), (pointer: coarse)").matches;
       }
-      return typeof window.innerWidth === "number" && window.innerWidth <= 699;
+      return width > 0 && width <= 1199;
+    }
+    function nativeDetailDotDiameter(zoom) {
+      return Math.max(3.5, Math.min(8.5, 3.5 + (zoom - PLACE_DETAIL_MIN_ZOOM) * 0.78));
+    }
+    function updateNativeDetailLabelVisibility() {
+      var _a, _b, _c, _d;
+      if (!MAP || !placeDetailMarkers.size) return;
+      const zoom = Number((_c = (_b = (_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) != null ? _b : START.zoom) != null ? _c : 13);
+      const labelsAllowed = zoom >= PLACE_DETAIL_LABEL_MIN_ZOOM;
+      const maxLabels = zoom < 13.8 ? 24 : zoom < 15.5 ? 48 : 90;
+      const occupied = [];
+      let shown = 0;
+      const canvas = (_d = MAP.getCanvas) == null ? void 0 : _d.call(MAP);
+      const hasViewport = Number((canvas == null ? void 0 : canvas.clientWidth) || 0) > 100 && Number((canvas == null ? void 0 : canvas.clientHeight) || 0) > 100;
+      for (const entry of placeDetailMarkers.values()) {
+        const label = entry.label;
+        if (!label) continue;
+        label.style.display = "none";
+        if (!labelsAllowed || !entry.name || shown >= maxLabels) continue;
+        if (hasViewport && typeof MAP.project === "function") {
+          let point;
+          try {
+            point = MAP.project([entry.lon, entry.lat]);
+          } catch {
+            point = null;
+          }
+          if (point && Number.isFinite(point.x) && Number.isFinite(point.y)) {
+            const width = Math.min(146, Math.max(34, entry.name.length * 6.3));
+            const left = point.x - width / 2;
+            const top = point.y + nativeDetailDotDiameter(zoom) / 2 + 3;
+            const rect = { left, right: left + width, top, bottom: top + 16 };
+            if (occupied.some((other) => rect.left < other.right + 6 && rect.right > other.left - 6 && rect.top < other.bottom + 3 && rect.bottom > other.top - 3)) continue;
+            occupied.push(rect);
+          }
+        }
+        label.style.display = "block";
+        shown++;
+      }
+    }
+    function updateNativeDetailDotSizes() {
+      var _a, _b, _c;
+      if (!MAP || !placeDetailMarkers.size) return;
+      const zoom = Number((_c = (_b = (_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) != null ? _b : START.zoom) != null ? _c : 13);
+      const diameter = nativeDetailDotDiameter(zoom);
+      const width = Math.max(0.9, Math.min(1.4, diameter * 0.2));
+      for (const entry of placeDetailMarkers.values()) {
+        entry.element.style.width = `${diameter.toFixed(2)}px`;
+        entry.element.style.height = `${diameter.toFixed(2)}px`;
+        entry.element.style.borderWidth = `${width.toFixed(2)}px`;
+      }
+      updateNativeDetailLabelVisibility();
     }
     function syncPlaceDetailDomMarkers(features) {
       var _a, _b, _c, _d, _e, _f, _g, _h;
       if (!MAP || typeof (maplibregl == null ? void 0 : maplibregl.Marker) !== "function") return;
       const zoom = Number((_c = (_b = (_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) != null ? _b : START.zoom) != null ? _c : 13);
-      if (!useNativeMobileDetailMarkers() || zoom < PLACE_DETAIL_MIN_ZOOM) {
+      if (!useNativeTouchDetailMarkers() || zoom < PLACE_DETAIL_MIN_ZOOM) {
         for (const entry of placeDetailMarkers.values()) entry.marker.remove();
         placeDetailMarkers.clear();
         return;
@@ -635,7 +691,7 @@
       const center = ((_e = MAP.getCenter) == null ? void 0 : _e.call(MAP)) || { lng: START.lon, lat: START.lat };
       const lon0 = Number((_g = (_f = center.lng) != null ? _f : center.lon) != null ? _g : START.lon);
       const lat0 = Number((_h = center.lat) != null ? _h : START.lat);
-      const visible = features.filter((feature) => {
+      let visible = features.filter((feature) => {
         var _a2, _b2;
         if (((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) !== PLACE_MAP_LOD_DETAIL) return false;
         const coords = (_b2 = feature.geometry) == null ? void 0 : _b2.coordinates;
@@ -645,7 +701,17 @@
         const [ax, ay] = a.geometry.coordinates;
         const [bx, by] = b.geometry.coordinates;
         return (ax - lon0) ** 2 + (ay - lat0) ** 2 - ((bx - lon0) ** 2 + (by - lat0) ** 2);
-      }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+      }).slice(0, MAX_TOUCH_DETAIL_MARKERS);
+      if (!visible.length) {
+        visible = features.filter((feature) => {
+          var _a2;
+          return ((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) === PLACE_MAP_LOD_DETAIL;
+        }).sort((a, b) => {
+          const [ax, ay] = a.geometry.coordinates;
+          const [bx, by] = b.geometry.coordinates;
+          return (ax - lon0) ** 2 + (ay - lat0) ** 2 - ((bx - lon0) ** 2 + (by - lat0) ** 2);
+        }).slice(0, MAX_TOUCH_DETAIL_MARKERS);
+      }
       const keep = /* @__PURE__ */ new Set();
       for (const feature of visible) {
         const id = String(feature.properties.id || "").trim();
@@ -661,11 +727,17 @@
           element.style.boxSizing = "border-box";
           element.style.borderRadius = "50%";
           element.style.borderStyle = "solid";
-          element.style.borderWidth = "2px";
+          element.style.borderWidth = "1px";
           element.style.pointerEvents = "auto";
           element.style.cursor = "pointer";
           element.style.touchAction = "manipulation";
           element.style.zIndex = "8";
+          const label = document.createElement("span");
+          label.className = "hg-place-detail-label";
+          label.setAttribute("aria-hidden", "true");
+          label.textContent = String(feature.properties.name || id);
+          label.style.display = "none";
+          element.appendChild(label);
           element.addEventListener("click", (event) => {
             var _a2, _b2;
             (_a2 = event.preventDefault) == null ? void 0 : _a2.call(event);
@@ -673,26 +745,42 @@
             onPlaceClick(id);
           });
           const marker = new maplibregl.Marker({ element, anchor: "center" }).setLngLat(feature.geometry.coordinates).addTo(MAP);
-          entry = { marker, element };
+          entry = {
+            marker,
+            element,
+            label,
+            name: String(feature.properties.name || id),
+            lon: feature.geometry.coordinates[0],
+            lat: feature.geometry.coordinates[1]
+          };
           placeDetailMarkers.set(id, entry);
-        } else {
+        } else if (entry.lon !== feature.geometry.coordinates[0] || entry.lat !== feature.geometry.coordinates[1]) {
           entry.marker.setLngLat(feature.geometry.coordinates);
+          entry.lon = feature.geometry.coordinates[0];
+          entry.lat = feature.geometry.coordinates[1];
         }
-        const diameter = zoom < 12 ? 9 : zoom < 14 ? 10 : 11;
-        entry.element.style.width = `${diameter}px`;
-        entry.element.style.height = `${diameter}px`;
+        const name = String(feature.properties.name || id);
+        if (name !== entry.name) {
+          entry.name = name;
+          entry.label.textContent = name;
+          entry.element.setAttribute("aria-label", name);
+        }
         entry.element.style.backgroundColor = feature.properties.fill;
-        entry.element.style.borderColor = feature.properties.border;
+        const borderColor = String(feature.properties.border || "").trim();
+        const fillColor = String(feature.properties.fill || "").trim();
+        entry.element.style.borderColor = !borderColor || borderColor.toLowerCase() === fillColor.toLowerCase() ? "#17212a" : borderColor;
         entry.element.style.opacity = feature.properties.coordinateTrust === "invalid" ? "0" : "1";
-        entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 5px rgba(0,0,0,.30)";
+        entry.element.style.boxShadow = "0 0 0 .45px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.28)";
       }
       for (const [id, entry] of placeDetailMarkers) {
         if (keep.has(id)) continue;
         entry.marker.remove();
         placeDetailMarkers.delete(id);
       }
+      updateNativeDetailDotSizes();
       if (!placeDetailMarkerEventsBound) {
         const onViewportChanged = () => syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
+        MAP.on("zoom", updateNativeDetailDotSizes);
         MAP.on("moveend", onViewportChanged);
         MAP.on("zoomend", onViewportChanged);
         placeDetailMarkerEventsBound = true;
@@ -838,7 +926,6 @@
       var _a;
       if (!MAP) return;
       if (!Array.isArray(PLACES) || PLACES.length === 0) return;
-      if (!styleReady) return;
       const places = typeof ((_a = window.HG_I18N) == null ? void 0 : _a.localizePlaces) === "function" ? window.HG_I18N.localizePlaces(PLACES) : PLACES;
       const features = [];
       for (const p of places) {
@@ -876,6 +963,7 @@
       lastPlaceMarkerFeatures = features;
       syncPlaceAreaDomMarkers(features);
       syncPlaceDetailDomMarkers(features);
+      if (!styleReady) return;
       const src = MAP.getSource(SRC);
       if (src && REQUIRED_PLACE_LAYERS.every((id) => MAP.getLayer(id))) {
         src.setData(fc);
@@ -886,6 +974,7 @@
       MAP.addSource(SRC, { type: "geojson", data: fc });
       MAP.addLayer({
         id: L_GLOW,
+        layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
@@ -894,6 +983,7 @@
       });
       MAP.addLayer({
         id: L_DOTS,
+        layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
@@ -902,11 +992,15 @@
       });
       MAP.addLayer({
         id: L_LAB,
+        // Touch text follows stable native dots; desktop keeps WebGL labels.
         minzoom: PLACE_DETAIL_LABEL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "symbol",
         source: SRC,
-        layout: getPlaceLabelLayout(false),
+        layout: {
+          ...getPlaceLabelLayout(false),
+          visibility: useNativeTouchDetailMarkers() ? "none" : "visible"
+        },
         paint: getPlaceLabelPaint(false)
       });
       MAP.addLayer({

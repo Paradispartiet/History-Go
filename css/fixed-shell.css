@@ -303,3 +303,112 @@ body.civi-app .civi-footer-more-toggle:focus-visible {
   outline: 2px solid var(--civi-accent, #d6aa3a);
   outline-offset: 3px;
 }
+
+
+/* Compact playable HUD: one score / 100, details in an accessible dialog. */
+body.civi-app .civi-lifestory-header-status{
+  flex-wrap:nowrap;
+  gap:6px;
+  overflow:visible;
+}
+body.civi-app .civi-lifestory-header-status .civi-header-chip--role{
+  min-width:0;
+  max-width:min(28ch, 45%);
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+body.civi-app .civi-score-circle{
+  flex:0 0 42px;
+  width:42px;
+  height:42px;
+  padding:0;
+  border:2px solid #e5bc60;
+  border-radius:50%;
+  background:linear-gradient(145deg,#402e17,#16130f);
+  color:#ffdf8a;
+  font:800 17px/1 var(--civi-font-sans,system-ui);
+  font-variant-numeric:tabular-nums;
+  box-shadow:0 0 0 3px rgba(214,170,58,.10),inset 0 1px 0 rgba(255,255,255,.13);
+  cursor:pointer;
+}
+body.civi-app .civi-score-circle:hover{background:#553d1a;}
+body.civi-app .civi-score-circle:focus-visible,
+body.civi-app .civi-score-close:focus-visible{
+  outline:3px solid #fff0ae;
+  outline-offset:3px;
+}
+body.civi-app .civi-score-dialog{
+  position:fixed;
+  inset:0;
+  box-sizing:border-box;
+  width:min(510px,calc(100vw - 24px));
+  max-height:min(82dvh,760px);
+  margin:auto;
+  padding:20px;
+  overflow-y:auto;
+  background:#151519;
+  color:#fff;
+  border:1px solid rgba(229,188,96,.55);
+  border-radius:18px;
+  box-shadow:0 24px 80px rgba(0,0,0,.7);
+  z-index:4000;
+}
+body.civi-app .civi-score-dialog::backdrop{
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(5px);
+}
+body.civi-app .civi-score-dialog h2{font-size:24px;margin:0 0 10px;}
+body.civi-app .civi-score-dialog h3{
+  color:#ffe0a0;
+  font-size:15px;
+  margin:16px 0 12px;
+}
+body.civi-app .civi-score-explain{
+  color:#cfd2d9;
+  font-size:13px;
+  line-height:1.5;
+}
+body.civi-app .civi-score-group{
+  border-top:1px solid rgba(255,255,255,.13);
+  margin-top:14px;
+}
+body.civi-app .civi-score-item{margin:11px 0 13px;}
+body.civi-app .civi-score-item-head{
+  display:flex;justify-content:space-between;gap:14px;
+  font-size:14px;margin-bottom:6px;
+}
+body.civi-app .civi-score-item-head strong{
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+body.civi-app .civi-score-track{
+  height:9px;overflow:hidden;border-radius:99px;
+  background:rgba(255,255,255,.12);
+}
+body.civi-app .civi-score-fill{
+  display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,#63cbbb,#e6bd67);
+}
+body.civi-app .civi-score-track.is-unmeasured{opacity:.4;}
+body.civi-app .civi-score-note{display:block;color:#c6cad2;margin-top:5px;}
+body.civi-app .civi-score-close{
+  display:block;width:100%;min-height:44px;margin-top:18px;
+  background:#e1bb6c;color:#151515;border:0;border-radius:10px;
+  font:800 15px var(--civi-font-sans,system-ui);cursor:pointer;
+}
+@media(max-width:560px){
+  body.civi-app .civi-lifestory-header-status .civi-header-chip--phase{display:none;}
+  body.civi-app .civi-lifestory-header-status .civi-header-chip--role{
+    max-width:min(35vw,150px);
+  }
+  body.civi-app .civi-score-circle{
+    width:40px;height:40px;flex-basis:40px;font-size:16px;
+    margin-left:auto;
+  }
+}
+
+
+/* Room for the accessible 42px score on the second HUD row. All scroll
+   offsets use the same shell header variable, including iPad safe areas. */
+:root{ --civi-shell-header-h:94px; }
+@media(max-width:920px){ :root{ --civi-shell-header-h:94px; } }
+@media(max-width:560px){ :root{ --civi-shell-header-h:100px; } }

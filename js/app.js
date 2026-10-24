@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadNatureUnlockToast", () => loadScriptOnce("js/ui/nature-unlock-toast.js"));
     await safeRun("loadPersonPlaceUnlockToast", () => loadScriptOnce("js/ui/person-place-unlock-toast.js"));
     await safeRun("loadBadgeUnlockToast", () => loadScriptOnce("js/ui/badge-unlock-toast.js"));
-    await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20261023-visible-dots3"));
+    await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20261024-native-place-names1"));
     await safeRun("loadAhaMusicBridge", () => loadScriptOnce("js/integrations/aha-music.js"));
     await safeRun("loadNearbyPlaceSelector", () => loadScriptOnce("dist/web/nearbyPlaceSelector.js"));
     await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js"));
