@@ -46,7 +46,7 @@ jobs:
       - name: Synchronize QuizCards to Knowledge units
         run: node scripts/onboard-oslo-four-v1.mjs --sync-knowledge
       - name: Synchronize Fagverk release manifest
-        run: node scripts/build-fagverk-release-manifest.mjs --write
+        run: node scripts/build-fagverk-release-manifest.mjs
       - name: Build mapped Place index before Place-open
         run: npm run places:index:build
       - name: Build Place-open app payloads from updated index
