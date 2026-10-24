@@ -1,0 +1,67 @@
+name: Oslo four runtime index release materialization
+
+on:
+  push:
+    branches:
+      - feat/oslo-four-runtime-index-20261024
+    paths:
+      - .github/workflows/oslo-four-runtime-release.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oslo-four-runtime-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  integrate:
+    name: Build and commit canonical index, Knowledge, Fagverk and runtime
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/oslo-four-runtime-index-20261024
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Register the four Place and quiz assets
+        run: node scripts/onboard-oslo-four-v1.mjs --write
+      - name: Install project tools
+        run: npm ci --ignore-scripts
+      - name: Generate canonical quiz Knowledge units
+        run: npm run knowledge:canonical:write
+      - name: Sync 40 QuizCard primary Knowledge IDs
+        run: node scripts/onboard-oslo-four-v1.mjs --sync-knowledge
+      - name: Rebuild curated Fagverk release registry
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Regenerate Places index from registered sources
+        run: npm run places:index:build
+      - name: Generate all Place-open payloads
+        run: npm run place-open:build
+      - name: Verify generated Places and source/quiz parity
+        run: node --test tests/oslo-four-v1-batch.test.mjs
+      - name: Commit generated assets to this one PR branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/manifest.json data/quiz/manifest.json
+          git add data/quizcards/historie/manifest.json data/quizcards/naeringsliv/manifest.json
+          git add data/quizcards/historie/oslo_four_20261024.json data/quizcards/naeringsliv/oslo_four_20261024.json
+          git add data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json
+          git add data/places/places_index.json data/knowledge/knowledge_units.generated.json
+          git add data/quiz/historie/linderud_gard_sets.json data/quiz/historie/sarabraten_sets.json data/quiz/historie/saeterhytten_bygdoy_sets.json data/quiz/naeringsliv/kristiania_teglverk_bryn_sets.json
+          git add data/places/historie/oslo/places/linderud_gard.json data/places/historie/oslo/places/sarabraten.json data/places/historie/oslo/places/saeterhytten_bygdoy.json data/places/naeringsliv/oslo/places/kristiania_teglverk_bryn.json
+          git add data/runtime/place-open/linderud_gard.json data/runtime/place-open/sarabraten.json data/runtime/place-open/saeterhytten_bygdoy.json data/runtime/place-open/kristiania_teglverk_bryn.json
+          git add reports/place-production/oslo-four-onboarding-state-20261024.json reports/knowledge-id-backfill.json || true
+          git rm -f reports/knowledge-contract-audit.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "release(oslo): activate four Places, 91 quizzes, 40 QuizCards and Fagverk in canonical runtime"
+            git restore --worktree .
+            git fetch origin feat/oslo-four-runtime-index-20261024
+            git rebase origin/feat/oslo-four-runtime-index-20261024
+            git push origin HEAD:feat/oslo-four-runtime-index-20261024
+          fi
