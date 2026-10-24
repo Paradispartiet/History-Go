@@ -36,6 +36,7 @@ jobs:
   browser:
     name: Civication boot smoke
     runs-on: ubuntu-latest
+    timeout-minutes: 95
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -65,7 +66,7 @@ jobs:
             exit 0
           fi
           changed="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files?per_page=100" --jq '.[].filename')"
-          if grep -Fxq 'scripts/verify-civication-organic-player-browser.ts' <<< "$changed"; then
+          if grep -Fxq 'scripts/verify-civication-organic-player-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-21-day-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-boot-smoke.ts' <<< "$changed"; then
             echo "depth=organic" >> "$GITHUB_OUTPUT"
           else
             echo "depth=smoke" >> "$GITHUB_OUTPUT"
@@ -75,7 +76,34 @@ jobs:
           # Run the real quiz -> job acceptance journey on PRs touching its
           # implementation; keep unrelated PR smoke focused and nightly full.
           CIVICATION_BROWSER_DEPTH: ${{ steps.coverage.outputs.depth }}
-        run: npm run civication:boot-smoke
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p reports/civication-browser
+          echo "Civication acceptance depth: ${CIVICATION_BROWSER_DEPTH}"
+          echo "Started: $(date -u +%FT%TZ)" | tee reports/civication-browser/run-timing.txt
+          # A bounded run retains the actual Playwright assertions and exits
+          # nonzero on failure or timeout. It cannot consume a runner indefinitely.
+          set +e
+          timeout --signal=TERM --kill-after=60s 85m npm run civication:boot-smoke \
+            2>&1 | tee reports/civication-browser/ci-output.log
+          result=${PIPESTATUS[0]}
+          set -e
+          echo "Finished: $(date -u +%FT%TZ)" | tee -a reports/civication-browser/run-timing.txt
+          echo "Exit code: ${result}" | tee -a reports/civication-browser/run-timing.txt
+          if [[ "${result}" -eq 124 || "${result}" -eq 137 ]]; then
+            echo "::error::Civication browser acceptance timed out after 85 minutes. Inspect the uploaded browser diagnostics and ci-output.log."
+            echo "### Civication browser timeout" >> "$GITHUB_STEP_SUMMARY"
+            echo "The acceptance test exceeded the 85-minute limit. See the diagnostic artifact for the last played day, browser screenshots, and test log." >> "$GITHUB_STEP_SUMMARY"
+          elif [[ "${result}" -ne 0 ]]; then
+            echo "::error::Civication browser acceptance failed with exit code ${result}. See uploaded diagnostics."
+            echo "### Civication browser failure" >> "$GITHUB_STEP_SUMMARY"
+            echo "Acceptance failed (exit ${result}); review the diagnostic artifact and test log." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### Civication browser passed" >> "$GITHUB_STEP_SUMMARY"
+            echo "Acceptance depth: ${CIVICATION_BROWSER_DEPTH}." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "${result}"
       - name: Upload browser diagnostics
         if: always()
         uses: actions/upload-artifact@v4
