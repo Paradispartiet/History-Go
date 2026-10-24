@@ -45,6 +45,19 @@ try{
    await page.goto(base+'/index.html?hgTest=1#/place/'+target,{waitUntil:'domcontentloaded',timeout:75000});
    await page.waitForFunction(id=>window.__HG_APP_READY__===true && window.__HG_ROUTER_STARTED__===true && document.querySelector('#placeCard')?.dataset.currentPlaceId===id,target,{timeout:80000});
    await page.locator('#placeCard').screenshot({path:reports+'/'+width+'-placecard.png'});
+   if (mobile && (target === 'arbeidersamfunnets_plass' || target === 'statsministerboligen')) {
+    const wordLayout = await page.locator('#pcTitle').evaluate(el => {
+     const firstWord = el.textContent.trim().split(/\\s+/)[0];
+     const node = [...el.childNodes].find(n => n.nodeType === Node.TEXT_NODE && n.textContent.includes(firstWord));
+     if (!node) return {firstWord, fragments:0};
+     const start = node.textContent.indexOf(firstWord);
+     const range = document.createRange();
+     range.setStart(node,start);
+     range.setEnd(node,start + firstWord.length);
+     return {firstWord, fragments:range.getClientRects().length};
+    });
+    assert.equal(wordLayout.fragments,1,target+'/'+width+': PlaceCard splits first word mid-word: '+JSON.stringify(wordLayout));
+   }
    const flip=page.locator('#pcFrontCardFlip');
    await page.waitForFunction(()=>document.querySelector('#pcQuizCardContent')?.querySelector('.pc-rendered-quiz-card') && document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card'),null,{timeout:45000});
    assert.equal(await page.locator('#pcQuizCardContent li').count(),10,target+'/'+width+': missing questions on reverse face');
