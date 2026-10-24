@@ -828,7 +828,12 @@
       entry.element.style.width = `${diameter}px`;
       entry.element.style.height = `${diameter}px`;
       entry.element.style.backgroundColor = feature.properties.fill;
-      entry.element.style.borderColor = feature.properties.border;
+      const borderColor = String(feature.properties.border || "").trim();
+      const fillColor = String(feature.properties.fill || "").trim();
+      // A missing category palette used to produce white fill AND white
+      // outline on CARTO's pale basemap, rendering first-boot dots invisible.
+      entry.element.style.borderColor = !borderColor || borderColor.toLowerCase() === fillColor.toLowerCase()
+        ? "#17212a" : borderColor;
       entry.element.style.opacity = feature.properties.coordinateTrust === "invalid" ? "0" : "1";
       entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 5px rgba(0,0,0,.30)";
     }
