@@ -32,7 +32,7 @@ jobs:
           npm run place-open:check
           npm run epoker:places:build
           npm run epoker:places:check
-      - name: Reconcile five new quiz production contexts
+      - name: Rebuild only derived quiz production contexts from both Oslo batches
         shell: bash
         run: |
           for target in \
@@ -40,7 +40,13 @@ jobs:
             "politikk politihuset_gronland" \
             "politikk statsministerboligen" \
             "historie nobels_fredssenter" \
-            "by vikaterrassen"; do
+            "by vikaterrassen" \
+            "politikk hoyesteretts_hus" \
+            "politikk folkets_hus_oslo" \
+            "politikk hoyres_hus" \
+            "politikk hoyblokka" \
+            "politikk victoria_terrasse" \
+            "politikk y_blokka"; do
             set -- $target
             npm run quiz:context -- --category "$1" --target "$2" --output "data/quiz/production_context/$1/$2.json"
           done
