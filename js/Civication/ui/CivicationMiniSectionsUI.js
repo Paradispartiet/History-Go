@@ -35,6 +35,11 @@
       empty: "Ingen aktiv rolle ennå.",
       action: "Åpne rolle",
       urgentAction: "Svar på tilbud",
+      // Profile controls are editable even after accepting a job; only a real
+      // pending offer should turn this card into an action requiring a reply.
+      actionRequired: function () {
+        return !!window.CivicationJobs?.getLatestPendingOffer?.();
+      },
       summary: function () {
         const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.());
         if (!active) return "Ingen aktiv rolle ennå.";
@@ -612,6 +617,12 @@
 
   function hasActionRequired(section, config) {
     if (!section) return false;
+
+    // Explicit action state is authoritative for sections containing passive
+    // editing controls (for example the active job life-profile selectors).
+    if (typeof config.actionRequired === "function") {
+      try { return !!config.actionRequired(); } catch { return false; }
+    }
 
     if (typeof config.forceUrgent === "function") {
       try {
