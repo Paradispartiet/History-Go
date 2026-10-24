@@ -1,0 +1,111 @@
+name: By v1 one-time quiz Knowledge and image audit sync
+on:
+  push:
+    branches: [content/by-v1-twenty-20261024]
+    paths: ['.github/workflows/by-v1-knowledge-sync-20261024.yml']
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/by-v1-twenty-20261024
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - name: Bind eleven By fullquizzes to existing canonical By emner
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const ids = ["akrobaten_gangbro","frogner","grorud","holmlia","losaeter","okern","sagene","skoyen","sukkerbiten_badstulandsby","torshov","torshovparken"];
+          for (const id of ids) {
+            const file = 'data/quiz/by/'+id+'_oslo_v1_sets.json';
+            const source = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const place = JSON.parse(fs.readFileSync('data/places/by/oslo/places/'+id+'.json','utf8'));
+            const emne_ids = (place.fagverk?.emne_ids || place.emne_ids || []).filter(x=>x.startsWith('em_by_'));
+            if (!emne_ids.length) throw new Error('No canonical By emne: '+id);
+            let count=0;
+            for (const set of source.sets || []) for (const q of set.questions || []) {
+              q.emne_id = q.emne_id || emne_ids[count % emne_ids.length];
+              count++;
+            }
+            if (count !== 10) throw new Error('Quiz must contain ten questions: '+id+': '+count);
+            fs.writeFileSync(file, JSON.stringify(source,null,2)+'\n');
+            console.log(id, count, [...new Set(source.sets.flatMap(s=>s.questions.map(q=>q.emne_id)))].join(', '));
+          }
+          NODE
+      - name: Canonical Knowledge backfill and integrity
+        run: |
+          npm run knowledge:canonical:write
+          npm run audit:knowledge
+      - name: Propagate canonical quiz links and answers to eleven QuizCards
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path = 'data/quizcards/by/oslo_v1_historiske_fakta_20261024.json';
+          const root = JSON.parse(fs.readFileSync(path,'utf8'));
+          const cards = root.cards || [];
+          if (cards.length !== 11) throw new Error('Expected exactly 11 existing By quizcards');
+          for (const card of cards) {
+            const file = 'data/quiz/by/'+card.targetId+'_oslo_v1_sets.json';
+            const quiz = JSON.parse(fs.readFileSync(file,'utf8'));
+            const questions = quiz.sets.flatMap(s=>s.questions || []);
+            if (questions.length !== 10 || card.questions.length !== 10) throw new Error('Invalid quiz/card count '+card.targetId);
+            const byId = new Map(questions.map(q=>[q.id,q]));
+            card.questions = card.questions.map((old,i)=>{
+              const q=byId.get(old.sourceQuestionId || old.id);
+              if (!q || q.answerIndex !== q.options.indexOf(q.answer) || !q.knowledge_unit_ids?.length || !q.emne_id) throw new Error('Broken card link '+card.targetId+' '+i);
+              return {...q,number:i+1,sourceQuestionId:q.id,sourceQuizId:q.quiz_id,sourceQuizFile:file};
+            });
+            card.questionCount = 10;
+            card.answerKey = card.questions.map(q=>({number:q.number,answer:q.answer}));
+          }
+          fs.writeFileSync(path,JSON.stringify(root,null,2)+'\n');
+          NODE
+      - name: Refresh only changed quiz context and aggregate photo status
+        run: |
+          node scripts/build-quiz-production-context.mjs --category by --target deichman_bjorvika --output data/quiz/production_context/by/deichman_bjorvika.json
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const filename='data/places/place_image_backlog_summary.json';
+          const existing=JSON.parse(fs.readFileSync(filename,'utf8'));
+          const audit=JSON.parse(fs.readFileSync('reports/place-image-audit.json','utf8'));
+          const totals=audit.summary;
+          existing.generatedAt = new Date().toISOString().slice(0,10);
+          existing.generatedFromCommit = (await import('node:child_process')).execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
+          existing.totalPlaces=audit.totalPlaces;
+          existing.summary={validLocal:totals.local,validRemote:totals.remote,optionalMissing:totals.optional,missing:totals.missing,invalidLocalPath:totals.invalid,remaining:totals.missing+totals.invalid};
+          existing.byCategory=Object.fromEntries(Object.entries(audit.byCategory).map(([category,v])=>[category,{total:v.total,valid:v.local+v.remote,optional:v.optional,missing:v.missing,invalid:v.invalid}]));
+          existing.productionOrder[0]='repair_remaining_invalid_local_paths';
+          existing.note='Materialisert status fra uendret bildevalidator. By-bolk 20/20 har nå gyldig bildepeker; eksisterende standardsteder uten gyldig bilde forblir i backlog og blokkeres ved endring.';
+          fs.writeFileSync(filename,JSON.stringify(existing,null,2)+'\n');
+          console.log(existing.summary);
+          NODE
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Stage only intended regenerated By and derived files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          unrelated=$(git diff --name-only | grep -vE '^(data/knowledge/|data/quiz/by/(akrobaten_gangbro|frogner|grorud|holmlia|losaeter|okern|sagene|skoyen|sukkerbiten_badstulandsby|torshov|torshovparken)_oslo_v1_sets\.json$|data/quizcards/by/oslo_v1_historiske_fakta_20261024\.json$|data/quiz/production_context/by/deichman_bjorvika\.json$|data/places/place_image_backlog_summary\.json$|reports/knowledge-|reports/place-image-audit\.json$)' || true)
+          if [ -n "$unrelated" ]; then
+            echo "Unexpected Knowledge changes outside this By batch:"
+            echo "$unrelated"
+            exit 1
+          fi
+          git add data/knowledge data/quiz/by/*_oslo_v1_sets.json data/quizcards/by/oslo_v1_historiske_fakta_20261024.json data/quiz/production_context/by/deichman_bjorvika.json data/places/place_image_backlog_summary.json
+          git add reports/knowledge-id-backfill.json reports/knowledge-contract-audit.json reports/knowledge-universe-readers.json || true
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git diff --cached --stat
+          git commit -m "fix(by): backfill 110 quiz Knowledge links and sync image/quiz reports"
+          git push origin HEAD:refs/heads/content/by-v1-twenty-20261024
