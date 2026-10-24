@@ -40,7 +40,7 @@ jobs:
         run: npm run build:scripts
       - name: Rebuild generated Knowledge and Fagverk from canonical inputs
         run: |
-          node dist/scripts/knowledge-canonical-data.mjs
+          node dist/scripts/knowledge-canonical-data.mjs --write
           node scripts/build-fagverk-release-manifest.mjs
       - name: Commit only regenerated manifests to the existing PR branch
         env:
