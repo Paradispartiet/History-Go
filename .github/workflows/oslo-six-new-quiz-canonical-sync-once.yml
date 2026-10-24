@@ -1,0 +1,130 @@
+name: Oslo six new quiz canonical sync once
+on:
+  push:
+    branches:
+      - research/oslo-six-culture-institutions-v1-20261023
+    paths:
+      - .github/workflows/oslo-six-new-quiz-canonical-sync-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  build-five-source-grounded-quizzes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-six-culture-institutions-v1-20261023
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci
+      - name: Build five source-first production contexts
+        shell: bash
+        run: |
+          npm run quiz:context -- --category politikk --target arbeidersamfunnets_plass --output data/quiz/production_context/politikk/arbeidersamfunnets_plass.json
+          npm run quiz:context -- --category politikk --target politihuset_gronland --output data/quiz/production_context/politikk/politihuset_gronland.json
+          npm run quiz:context -- --category politikk --target statsministerboligen --output data/quiz/production_context/politikk/statsministerboligen.json
+          npm run quiz:context -- --category historie --target nobels_fredssenter --output data/quiz/production_context/historie/nobels_fredssenter.json
+          npm run quiz:context -- --category by --target vikaterrassen --output data/quiz/production_context/by/vikaterrassen.json
+      - name: Verify source-first context regeneration
+        shell: bash
+        run: |
+          npm run quiz:context -- --category politikk --target arbeidersamfunnets_plass --output data/quiz/production_context/politikk/arbeidersamfunnets_plass.json --check
+          npm run quiz:context -- --category politikk --target politihuset_gronland --output data/quiz/production_context/politikk/politihuset_gronland.json --check
+          npm run quiz:context -- --category politikk --target statsministerboligen --output data/quiz/production_context/politikk/statsministerboligen.json --check
+          npm run quiz:context -- --category historie --target nobels_fredssenter --output data/quiz/production_context/historie/nobels_fredssenter.json --check
+          npm run quiz:context -- --category by --target vikaterrassen --output data/quiz/production_context/by/vikaterrassen.json --check
+      - name: Generate canonical Knowledge units and validate
+        shell: bash
+        run: |
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+      - name: Verify fullquizzes and synchronize QuizCard references
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const entries = [["politikk","arbeidersamfunnets_plass"],["politikk","politihuset_gronland"],["politikk","statsministerboligen"],["historie","nobels_fredssenter"],["by","vikaterrassen"]];
+          for (const [category, id] of entries) {
+            const qp = 'data/quiz/' + category + '/' + id + '_sets.json';
+            const cp = 'data/quizcards/' + category + '/' + id + '_quizkort_v1.json';
+            const quiz = JSON.parse(fs.readFileSync(qp, 'utf8'));
+            const cardFile = JSON.parse(fs.readFileSync(cp, 'utf8'));
+            const qs = quiz.sets.flatMap(s => s.questions);
+            if (quiz.sets.length !== 3 || qs.length !== 21 || quiz.sets.some(s => s.questions.length !== 7)) throw Error(id + ' has wrong quiz profile');
+            if (cardFile.cards.length !== 1 || cardFile.cards[0].questions.length !== 10) throw Error(id + ' has wrong QuizCard count');
+            const byId = new Map(qs.map(q => [q.id, q]));
+            for (const q of qs) {
+              if (!q.knowledge_unit_ids?.length || !q.primary_knowledge_unit_id || q.knowledge_link_status !== 'linked') throw Error(id + '/' + q.id + ' has no Knowledge');
+              if (q.options.length !== 3 || q.options[q.answerIndex] !== q.answer || !quiz.sources[q.source[0]]) throw Error(id + '/' + q.id + ' has invalid answer or source');
+            }
+            for (const card of cardFile.cards) {
+              for (const question of card.questions) {
+                const q = byId.get(question.sourceQuestionId);
+                if (!q) throw Error(id + '/' + question.sourceQuestionId + ' is missing');
+                for (const key of ['question', 'options', 'answer', 'answerIndex', 'knowledge', 'difficulty', 'claim_id', 'primary_knowledge_unit_id', 'knowledge_unit_ids', 'concept_ids', 'term_ids', 'emne_id', 'knowledge_contract_version', 'knowledge_link_status']) question[key] = q[key];
+                question.sourceQuizId = q.quiz_id;
+                question.source_urls = q.source.map(sourceId => quiz.sources[sourceId]);
+                question.source_refs = q.source;
+              }
+              card.answerKey = card.questions.map(q => ({ number: q.number, answer: q.answer, answerIndex: q.answerIndex }));
+            }
+            fs.writeFileSync(cp, JSON.stringify(cardFile, null, 2) + '\n');
+          }
+          NODE
+      - name: Record Politikk opening gate from materialized quiz
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const requirements = ['pensum', 'emner', 'fagkart', 'methods', 'supersetQuizMal', 'quizStandard', 'quizQuestionSchema'];
+          for (const id of ['arbeidersamfunnets_plass', 'politihuset_gronland', 'statsministerboligen']) {
+            const path = 'data/places/politikk-production/' + id + '.json';
+            const qpath = 'data/quiz/politikk/' + id + '_sets.json';
+            const bpath = 'data/quiz/production_briefs/politikk/' + id + '.json';
+            const cpath = 'data/quiz/production_context/politikk/' + id + '.json';
+            const rpt = JSON.parse(fs.readFileSync(path, 'utf8'));
+            const quiz = JSON.parse(fs.readFileSync(qpath, 'utf8'));
+            const context = JSON.parse(fs.readFileSync(cpath, 'utf8'));
+            const firstTwo = quiz.sets.slice(0,2).reduce((sum, set) => sum + set.questions.length, 0);
+            if (firstTwo !== 14 || context.targetId !== id) throw Error('Politikk opening not ready: ' + id);
+            const r = Object.values(context.resolved_files).map(x => x.path);
+            for (const key of requirements) if (!context.resolved_files[key] || !fs.existsSync(context.resolved_files[key].path)) throw Error('Missing required input '+ key+'/'+id);
+            rpt.quizOpening = { status: 'PASS', quizTargetId: id, firstTwoSetsQuestionCount: firstTwo, sourceBrief: bpath, productionContext: cpath, requiredInputs: r };
+            rpt.gates.F = { status: 'PASS', evidenceRefs: [qpath, bpath, cpath] };
+            rpt.review.notes += ' Quizåpningen har nå 14 historiske, kildebelagte spørsmål knyttet til fullquiz og produksjonskontekst.';
+            fs.writeFileSync(path, JSON.stringify(rpt, null, 2) + '\n');
+          }
+          NODE
+      - name: Run quiz production audit and canonical Knowledge checks
+        shell: bash
+        run: |
+          npm run audit:quiz-production-context
+          npm run knowledge:canonical:check
+      - name: Guard generated diff before commit
+        shell: bash
+        run: |
+          git diff --name-only
+          COUNT="$(git diff --name-only | grep -c . || true)"
+          if [ "$COUNT" -gt 55 ]; then
+            echo "Refusing broad autogenerated update of $COUNT files"
+            exit 1
+          fi
+      - name: Commit generated outputs, remove one-time workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          git add data/quiz/production_context/politikk/{arbeidersamfunnets_plass,politihuset_gronland,statsministerboligen}.json
+          git add data/quiz/production_context/historie/nobels_fredssenter.json
+          git add data/quiz/production_context/by/vikaterrassen.json
+          git rm .github/workflows/oslo-six-new-quiz-canonical-sync-once.yml
+          git diff --cached --stat
+          git diff --cached --quiet || git commit -m 'Materialize five source-first quiz contexts, Knowledge and QuizCard links'
+          git push origin HEAD:research/oslo-six-culture-institutions-v1-20261023
