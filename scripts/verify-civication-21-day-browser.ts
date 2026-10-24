@@ -74,6 +74,14 @@ export default async function verifyThreeWeekLife(browser: any, origin: string, 
         assert.equal(await choice.count(), 1, 'day ' + day + ': expected choice is available: ' + (selected || sceneId));
         const choiceId = await choice.getAttribute('data-lifestory-choice');
         assert.ok(choiceId);
+        // A real inbox popup can remain open after calendar rollover and
+        // intercept an otherwise visible Life Story choice on day two.
+        // Close it through the same control the player uses, never force-click
+        // behind an overlay or skip the authored scene.
+        const obstructingPopup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+        if (await obstructingPopup.isVisible().catch(() => false)) {
+          await obstructingPopup.click({ timeout: 12000 });
+        }
         await choice.click({ timeout: 20000 });
         const after = await readState();
         assert.equal(after.arkiv.length, before.arkiv.length + 1, 'exactly one archived choice');

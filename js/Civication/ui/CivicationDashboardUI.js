@@ -137,7 +137,6 @@
     const opts = options || {};
     const lifeState = opts.state || {};
     const view = opts.view || {};
-    const meters = lifeState.meters || {};
     const activeRoleTitle = getCanonicalActiveRoleTitle();
     /** @type {CiviHeaderChip[]} */
     const chips = [];
@@ -148,11 +147,20 @@
       chips.push({ kind: "role is-empty", label: "Ingen aktiv rolle" });
     }
 
-    chips.push({ kind: "day", label: "Dag " + asNumber(lifeState.dag, 1) });
-    chips.push({ kind: "phase", label: view.dagFerdig ? "Dagen er over" : String(view.fase?.navn || lifeState.fase || "Morgen") });
-    chips.push({ kind: "meter", label: "Psyke " + asNumber(meters.psyke, 62) });
-    chips.push({ kind: "meter", label: "Energi " + asNumber(meters.energi, 71) });
-    chips.push({ kind: "pc", label: getWalletPC() + " PC" });
+    // The career-specific story day can reset after a role switch. In the
+    // actual shell, the canonical calendar owns the player's displayed day.
+    const clockDay = asNumber(window.CivicationCalendar?.getClock?.()?.dayIndex, NaN);
+    const calendarDay = Number.isInteger(clockDay) && clockDay >= 1
+      ? clockDay : asNumber(lifeState.dag, 1);
+    const shellPhase = String(window.CivicationCalendar?.getPhase?.() || "").trim();
+    const shellPhaseLabel = shellPhase
+      ? String(window.CivicationCalendar?.getPhaseLabel?.(shellPhase) || shellPhase)
+      : "";
+    chips.push({ kind: "day", label: "Dag " + calendarDay });
+    chips.push({ kind: "phase", label: shellPhaseLabel ||
+      (view.dagFerdig ? "Dagen er over" : String(view.fase?.navn || lifeState.fase || "Morgen")) });
+    // Numeric capabilities belong behind the score circle. Currency is not
+    // a 0–100 stat and remains visible in the economy section.
 
     return chips.filter(function (chip) { return chip && chip.label; });
   }
@@ -188,8 +196,17 @@
     const header = $("civiLifestoryHeaderStatus");
     if (!header) return;
     const chips = getHeaderStatusChips(options || lastHeaderStatusOptions || undefined);
-    header.textContent = "";
-    chips.map(renderHeaderChip).forEach(function (chip) { header.appendChild(chip); });
+    // Keep the round score button mounted and focusable through asynchronous
+    // updateProfile / day events, unlike wholesale header innerHTML replacement.
+    Array.from(header.querySelectorAll(".civi-header-chip")).forEach(function (chip) { chip.remove(); });
+    const before = header.querySelector("#civiScoreTrigger");
+    chips.map(renderHeaderChip).forEach(function (chip) {
+      // Append when the score widget has not been mounted yet. This also
+      // supports the lightweight shell used by standalone Civication tests.
+      if (before) header.insertBefore(chip, before);
+      else header.appendChild(chip);
+    });
+    window.CivicationScoreUI?.renderHeader?.(header, options || lastHeaderStatusOptions || undefined);
   }
 
   function getCiviState() {

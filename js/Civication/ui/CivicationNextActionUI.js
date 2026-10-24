@@ -28,6 +28,7 @@
   let answerInFlight = false;
   let pendingRefresh = false;
   let answerDebugContext = null;
+  let lastAnswerOutcome = null;
   let queuedUpdateFrame = 0;
   let roleMailPersonState = { mailId: "", personId: "", questionId: "" };
 
@@ -539,6 +540,24 @@
       + "</div>";
   }
 
+  // Some role packs lack a real workday task for the program's task_gate
+  // slot. The day builder then provides an ordinary generated phase decision
+  // (mail_type=phase), not a TaskEngine task. It still requires a genuine
+  // player choice, but must not be presented as a phantom task gate.
+  function generatedPhaseDecisionInTaskSlot(action) {
+    if (!action || action.source !== "day_phase" || action.slot !== "task_gate"
+        || action.mail_type !== "phase" || action.taskId) return null;
+    const runtime = window.CivicationDailyMailBuilder?.inspect?.()?.runtime;
+    const row = Array.isArray(runtime?.items)
+      ? runtime.items.find(function (item) { return String(item?.event?.id || "") === String(action.id || ""); })
+      : null;
+    if (!row || row?.event?.source_type !== "daily_generated"
+        || row?.event?.mail_type !== "phase"
+        || row?.event?.task_id || row?.event?.task_payload
+        || window.CivicationTaskEngine?.getTaskByMailId?.(action.id)) return null;
+    return row;
+  }
+
   function buildChoicesHtml(action) {
     const mailId = String(action.id || "");
     if (isQueuedAction(action)) {
@@ -549,7 +568,7 @@
         + "</div>";
     }
 
-    if (action.isTaskGate) {
+    if (action.isTaskGate && !generatedPhaseDecisionInTaskSlot(action)) {
       if (expandedTaskGateId === mailId) {
         return ""
           + "<p class=\"civi-next-action-sub muted\">Oppgave som må gjøres før du kan gå videre.</p>"
@@ -580,6 +599,20 @@
         + '<div class="civi-next-action-choices" role="group" aria-label="Lukk melding">'
         + '<button class="civi-btn secondary" type="button" data-civi-next-action-close="1">OK</button>'
         + "</div>";
+    }
+
+    // A delivered day-end summary is intentionally read-only. It must be
+    // acknowledged through the real queue before "Start ny dag" appears;
+    // treating its empty choices as a broken mail traps players on day 8.
+    // All other answerable mails without choices still fail closed.
+    if (action.source === "day_phase" && action.phase === "day_end"
+        && ["day_summary", "score_summary", "role_progress_summary", "sleep_or_recovery", "carryover"].includes(action.slot) && action.status === "delivered"
+        && !action.isTaskGate && !resolveActionChoices(action).length) {
+      return ""
+        + '<p class="civi-next-action-sub muted">Dagens oppsummering er klar. Les den før du avslutter dagen.</p>'
+        + '<div class="civi-next-action-choices" role="group" aria-label="Dagsoppsummering">'
+        + '<button class="civi-btn" type="button" data-civi-next-action-acknowledge="1" data-mail-id="' + escapeHtml(mailId) + '">Lest oppsummeringen</button>'
+        + '</div>';
     }
 
     const choices = resolveActionChoices(action);
@@ -636,13 +669,34 @@
     return [];
   }
 
+  // Rendering the same action repeatedly must not detach its live buttons.
+  // Profile/day updates can arrive while a player is about to click.
+  let lastRenderedBody = null;
+  let lastRenderedMarkup = null;
+  let queuedDeliveryInFlight = false;
+  function setActionBodyMarkup(body, markup) {
+    if (body === lastRenderedBody && markup === lastRenderedMarkup && body.isConnected) {
+      const disabledQueued = body.querySelector?.("[data-civi-next-action-open-queued]:disabled");
+      const disabledAnswer = body.querySelector?.("[data-civi-next-action-answer]:disabled");
+      // Preserve the DOM while an action is actually pending. Once the
+      // promise settles, unchanged markup is not proof that an old disabled
+      // button is still usable: rebuild it so real retries remain possible.
+      const queuedNeedsReset = !!disabledQueued && !queuedDeliveryInFlight;
+      const answerNeedsReset = !!disabledAnswer && !answerInFlight;
+      if (!queuedNeedsReset && !answerNeedsReset) return;
+    }
+    body.innerHTML = markup;
+    lastRenderedBody = body;
+    lastRenderedMarkup = markup;
+  }
+
   function renderInto(body) {
     const action = getCurrentAction();
     if (!action) {
       const active = /** @type {{ title?: string, role_key?: string }|null} */ (getActiveRole());
       if (active && lastNoActionDebug) {
         const roleScope = lastNoActionDebug.resolvedRoleScope || resolveRoleScope(active);
-        body.innerHTML = "<div class=\"civi-next-action-empty\" role=\"alert\">"
+        setActionBodyMarkup(body, "<div class=\"civi-next-action-empty\" role=\"alert\">"
           + "<p><strong>Dagens hendelser kunne ikke hentes.</strong></p>"
           + "<p>Prøv igjen for å fortsette dagen. Tidligere valg er bevart.</p>"
           + (window.DEBUG ? "<details class=\"civi-next-action-debug-error\"><summary>Tekniske detaljer</summary><dl class=\"civi-debug-list\">"
@@ -653,11 +707,11 @@
           + "</dl></details>" : "")
           + "</div>"
           + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn primary\" type=\"button\" data-civi-next-action-retry=\"1\">Hent dagens hendelser</button>"
-          + "<button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>";
+          + "<button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>");
         return action;
       }
-      body.innerHTML = "<p class=\"civi-next-action-empty muted\">Ingen handling krever svar nå. Innboksen er ajour.</p>"
-        + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>";
+      setActionBodyMarkup(body, "<p class=\"civi-next-action-empty muted\">Ingen handling krever svar nå. Innboksen er ajour.</p>"
+        + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>");
       return action;
     }
 
@@ -667,8 +721,17 @@
       expandedTaskGateId = "";
     }
 
+    // An unchanged queued mail must retain its live pointer target even if
+    // asynchronous profile metadata refreshes in the surrounding inbox.
+    const queuedButton = body.querySelector("[data-civi-next-action-open-queued]");
+    if (isQueuedAction(action) && queuedButton
+        && queuedButton.getAttribute("data-mail-id") === String(action.id || "")
+        && (queuedDeliveryInFlight || !queuedButton.disabled)) {
+      return action;
+    }
+
     const lines = bodyLines(action);
-    body.innerHTML = ""
+    setActionBodyMarkup(body, ""
       + "<article class=\"civi-next-action-card\" data-mail-id=\"" + escapeHtml(action.id) + "\">"
       + "<h3 class=\"civi-next-action-subject\">" + escapeHtml(action.subject) + "</h3>"
       + metaLine(action)
@@ -677,7 +740,7 @@
         return "<p>" + escapeHtml(line) + "</p>";
       }).join("") + "</div>" : "")
       + buildChoicesHtml(action)
-      + "</article>";
+      + "</article>");
     return action;
   }
 
@@ -724,7 +787,7 @@
     try { window.CivicationAnswerPrewarm?.prewarm?.(); } catch {}
     const immediate = getCurrentAction();
     if (immediate) render();
-    else if (bodyEl) bodyEl.innerHTML = "<p class=\"civi-next-action-empty muted\">Finner neste handling…</p>";
+    else if (bodyEl) { lastRenderedMarkup = null; bodyEl.innerHTML = "<p class=\"civi-next-action-empty muted\">Finner neste handling…</p>"; }
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     prepareNextActionSurface()
@@ -748,8 +811,17 @@
     return true;
   }
 
-  function deliverQueuedAction() {
-    const result = window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: true });
+  function deliverQueuedAction(queuedEventId = "") {
+    queuedDeliveryInFlight = true;
+    let result;
+    try {
+      result = window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, {
+        ignorePending: true,
+        ...(queuedEventId ? { queuedEventId } : {})
+      });
+    } catch (error) {
+      result = Promise.reject(error);
+    }
     return Promise.resolve(result)
       .then(function (delivery) {
         dispatchNextActionUpdates();
@@ -760,6 +832,12 @@
         notifyFailure("Kunne ikke åpne saken", error);
         render();
         return { enqueued: false, reason: "exception", error };
+      })
+      .finally(function () {
+        queuedDeliveryInFlight = false;
+        // Rendering after settlement must recover a queued action left behind
+        // by an async update, while never bypassing the mail itself.
+        render();
       });
   }
 
@@ -882,6 +960,7 @@
 
     perfMark("civi-answer-click");
     answerInFlight = true;
+    lastAnswerOutcome = null;
     pendingRefresh = false;
     disableAnswerButtons();
 
@@ -904,15 +983,61 @@
 
     return Promise.resolve(result)
       .then(function (answerResult) {
+        const runtimeRow = window.CivicationDailyMailBuilder?.inspect?.()?.runtime?.items?.find(function (row) {
+          return String(row?.event?.id || "") === String(mailId);
+        });
+        lastAnswerOutcome = {
+          mailId, choiceId, ok: answerResult?.ok !== false,
+          reason: String(answerResult?.reason || ""),
+          runtimeStatus: runtimeRow?.status || null,
+          runtimeSource: runtimeRow?.event?.source_type || null,
+          runtimeMailType: runtimeRow?.event?.mail_type || null,
+          hasTaskPayload: !!runtimeRow?.event?.task_payload,
+          taskEngineTask: !!window.CivicationTaskEngine?.getTaskByMailId?.(mailId)
+        };
         perfMark("civi-answer-after-answerMail");
         if (answerResult?.dailyRuntimeAnswered === true) perfMark("civi-answer-after-markAnswered");
         if (answerDebugContext) {
           answerDebugContext.legacyFollowupSuppressed = answerResult?.legacyImmediateFollowupSuppressed === true;
           answerDebugContext.legacyFollowupEnqueued = answerResult?.legacyImmediateFollowupEnqueued === true;
         }
+        // A real generated phase choice can outlive a stale inbox projection.
+        // Even a successful MailEngine reply is insufficient if it never
+        // recorded the selected answer in the canonical day runtime. Only
+        // reconcile a delivered daily_generated/phase decision with a valid
+        // authored choice and no TaskEngine task or task payload.
+        const generatedRow = generatedPhaseDecisionInTaskSlot(action);
+        const allowedGeneratedChoice = generatedRow?.event?.choices?.some(function (choice) {
+          return String(choice?.id || "") === String(choiceId || "");
+        });
+        // A legacy task-contract guard can misclassify the task_gate *slot*
+        // as a task even when this is a genuine generated phase choice. The
+        // strict generatedPhaseDecisionInTaskSlot guard above confirms there
+        // is no task id, task payload, or TaskEngine task to bypass.
+        const missingInboxProjection = answerResult?.ok === false
+          && ["not_found", "not_pending", "task_requires_contract"].includes(String(answerResult.reason || ""));
+        const mailSucceeded = answerResult !== false && answerResult?.ok !== false;
+        if (generatedRow?.status === "delivered" && allowedGeneratedChoice
+            && (mailSucceeded || missingInboxProjection)) {
+            return Promise.resolve(window.CivicationDailyMailBuilder?.markHandled?.(mailId, choiceId))
+              .then(function () {
+                const rows = window.CivicationDailyMailBuilder?.inspect?.()?.runtime?.items;
+                const resolved = Array.isArray(rows) && rows.some(function (row) {
+                  return String(row?.event?.id || "") === mailId
+                    && row?.status === "answered" && String(row.choice_id || "") === choiceId;
+                });
+                if (!resolved) throw new Error("Generated phase decision was not recorded");
+                dispatchNextActionUpdates();
+                return advanceUntilNextRealAction().then(function () {
+                  render();
+                  return { ok: true, dailyRuntimeAnswered: true, generatedPhaseFallback: true };
+                });
+              });
+          }
         if (answerResult?.ok === false) {
           notifyFailure("Kunne ikke svare på mail", answerResult);
-          if (answerResult.reason === "not_found" && action?.source === "day_phase") {
+          if (answerResult.reason === "not_found" && action?.source === "day_phase"
+              && action?.status === "queued") {
             return deliverQueuedAction();
           }
           render();
@@ -929,6 +1054,7 @@
         });
       })
       .catch(function (error) {
+        lastAnswerOutcome = { mailId, choiceId, ok: false, reason: String(error?.message || error) };
         notifyFailure("Kunne ikke svare på mail", error);
         render();
         return { ok: false, reason: "exception", error };
@@ -937,7 +1063,11 @@
         const debug = answerDebugContext;
         answerInFlight = false;
         answerDebugContext = null;
-        if (pendingRefresh) {
+        // A rejected/no-op answer may leave the same action current. Restore
+        // its real answer buttons after in-flight state clears, even when no
+        // separate profile event requested a rerender.
+        const staleDisabledAnswers = !!bodyEl?.querySelector?.("[data-civi-next-action-answer]:disabled");
+        if (pendingRefresh || staleDisabledAnswers) {
           pendingRefresh = false;
           render();
         }
@@ -1037,7 +1167,33 @@
       if (openQueuedBtn && modal.contains(openQueuedBtn) && !openQueuedBtn.disabled) {
         event.preventDefault();
         openQueuedBtn.disabled = true;
-        deliverQueuedAction();
+        // Deliver the exact queued mail the player opened; requesting an
+        // unspecified next item can keep re-delivering an older runtime row.
+        deliverQueuedAction(String(openQueuedBtn.getAttribute("data-mail-id") || ""));
+        return;
+      }
+
+      const acknowledgeBtn = target.closest("[data-civi-next-action-acknowledge]");
+      if (acknowledgeBtn && modal.contains(acknowledgeBtn) && !acknowledgeBtn.disabled) {
+        event.preventDefault();
+        const mailId = String(acknowledgeBtn.getAttribute("data-mail-id") || "").trim();
+        const current = getCurrentAction();
+        // Never let this read-only shortcut answer a job, task gate, private
+        // choice, different phase or stale/forged mail pointer.
+        if (!mailId || current?.id !== mailId || current?.source !== "day_phase"
+            || current?.phase !== "day_end" || !["day_summary", "score_summary", "role_progress_summary", "sleep_or_recovery", "carryover"].includes(current?.slot)
+            || current?.status !== "delivered" || current?.isTaskGate || resolveActionChoices(current).length) return;
+        acknowledgeBtn.disabled = true;
+        Promise.resolve(window.CivicationDailyMailBuilder?.markHandled?.(mailId, "read"))
+          .then(function (result) {
+            if (!result) throw new Error("Dagsoppsummeringen kunne ikke bekreftes");
+            dispatchNextActionUpdates();
+            render();
+          })
+          .catch(function (error) {
+            notifyFailure("Kunne ikke fullføre dagsoppsummeringen", error);
+            render();
+          });
         return;
       }
 
@@ -1080,7 +1236,8 @@
     buildRoleMailHistoryPersonAnswer,
     advanceUntilNextRealAction,
     prepareNextActionSurface,
-    isAnswerInFlight: function () { return answerInFlight; }
+    isAnswerInFlight: function () { return answerInFlight; },
+    getLastAnswerOutcome: function () { return lastAnswerOutcome ? { ...lastAnswerOutcome } : null; }
   };
 })();
 

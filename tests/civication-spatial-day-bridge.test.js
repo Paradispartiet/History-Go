@@ -96,6 +96,49 @@ global.CivicationNextActionSelector = { getCurrent() { return { id: 'now', subje
 }
 
 {
+  // Accepting a new formal job must not leave the old unemployed NAV mail
+  // in the live "Dagens steder" map/sidebar projection.
+  const priorBuilder = global.CivicationDailyMailBuilder;
+  const priorSelector = global.CivicationNextActionSelector;
+  const priorPosition = global.CivicationState.getActivePosition;
+  global.CivicationCareerRoleResolver = { resolveCareerRoleScope: active => active.role_scope };
+  global.CivicationState.getActivePosition = () => ({
+    role_scope: 'publikum_formidling', title: 'Vertskap (museum/galleri)'
+  });
+  global.CivicationDailyMailBuilder = { inspect: () => ({ runtime: {
+    role_scope: 'arbeidsledig',
+    items: [{ status: 'queued', event: {
+      id: 'nav_meldekort', subject: 'Meldekort må sendes innen fristen',
+      role_scope: 'arbeidsledig', phase_tag: 'morning', place_name: 'Hjemme'
+    } }]
+  } }) };
+  global.CivicationNextActionSelector = { getCurrent: () => ({
+    id: 'nav_meldekort', subject: 'Meldekort må sendes innen fristen',
+    source: 'day_phase_queued'
+  }) };
+  assert.deepStrictEqual(bridge.getDayPlan(), [],
+    'former unemployment tasks cannot survive into the new formal job map');
+  global.CivicationDailyMailBuilder = { inspect: () => ({ runtime: {
+    role_scope: 'publikum_formidling',
+    items: [{ status: 'queued', event: {
+      id: 'museum_task', subject: 'Ta imot publikum',
+      role_scope: 'publikum_formidling', phase_tag: 'workday',
+      place_id: 'munch_museet', place_name: 'Munchmuseet'
+    } }]
+  } }) };
+  global.CivicationNextActionSelector = { getCurrent: () => ({
+    id: 'museum_task', subject: 'Ta imot publikum',
+    source: 'day_phase_queued'
+  }) };
+  assert.deepStrictEqual(bridge.getDayPlan().map(row => row.id), ['museum_task'],
+    'the museum mail replaces the old NAV mail on the same day');
+  global.CivicationState.getActivePosition = priorPosition;
+  global.CivicationDailyMailBuilder = priorBuilder;
+  global.CivicationNextActionSelector = priorSelector;
+  delete global.CivicationCareerRoleResolver;
+}
+
+{
   let store = {
     byId: { task_now: { id: 'task_now', mail_id: 'now', status: 'open' } },
     byMailId: { now: 'task_now' },

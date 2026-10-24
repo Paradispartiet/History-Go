@@ -47,7 +47,10 @@ assert.doesNotMatch(injectionSource, /storyletMatchesContext\s*\(/, "same-day in
 
 const fixtureManifest = {
   schema: "civication_narrative_manifest_v1",
-  streams: [{ id: "fixture_leisure_stream", path: "data/Civication/narratives/fixture_leisure.json" }]
+  streams: [
+    { id: "fixture_leisure_stream", path: "data/Civication/narratives/fixture_leisure.json" },
+    { id: "fagarbeider_work_stream", path: "data/Civication/narratives/fixture_work.json" }
+  ]
 };
 const fixtureStream = {
   schema: "civication_narrative_stream_v1",
@@ -68,6 +71,13 @@ const fixtureStream = {
       opens_streams: ["fixture_leisure_stream"]
     },
     {
+      id: "offshift_people",
+      time_slot: ["people"],
+      subject: "Supporterprat utenom jobb",
+      situation: ["En venn vil snakke om helgens kamp."],
+      choices: [{ id: "A", label: "Snakk med vennen", effect: 0 }]
+    },
+    {
       id: "second",
       time_slot: ["leisure"],
       subject: "Andre storylet",
@@ -76,8 +86,27 @@ const fixtureStream = {
         { id: "A", label: "Fortsett", effect: 1 },
         { id: "B", label: "Avslutt", effect: 0 }
       ]
+    },
+    {
+      id: "supporter_people",
+      time_slot: ["people", "leisure"],
+      subject: "Supportersamtale som privat aktivitet",
+      situation: ["En privat interesse er ikke en arbeidsordre."],
+      choices: [{ id: "A", label: "Inviter", effect: 0 }]
     }
   ]
+};
+
+const fixtureWorkStream = {
+  schema: "civication_narrative_stream_v1",
+  id: "fagarbeider_work_stream",
+  type: "work",
+  applies_when: { role_scopes: ["fagarbeider"] },
+  storylets: [{
+    id: "shift_start_followup", time_slot: ["work"], subject: "Morgenstatus fra linja",
+    situation: ["Målinger fra produksjonslinja."],
+    choices: [{ id: "A", label: "Kontroller målingen", effect: 0 }]
+  }]
 };
 
 const active = {
@@ -99,7 +128,7 @@ const windowObject = {
     getState: () => state,
     getActivePosition: () => active
   },
-  CivicationCareerRoleResolver: { resolveCareerRoleScope: () => "fixture_role" },
+  CivicationCareerRoleResolver: { resolveCareerRoleScope: (position) => position?.role_key || "fixture_role" },
   CivicationWorkdayRuntime: { getEmployerId: () => "fixture_employer", getWorkdayDayIndex: () => 1 },
   CivicationMailRuntime: { makeCandidateMailsForActiveRole: async () => [] },
   CivicationEventEngine: MockEventEngine,
@@ -107,6 +136,7 @@ const windowObject = {
     fetchJson: async (sourcePath) => {
       if (sourcePath === "data/Civication/narratives/manifest.json") return fixtureManifest;
       if (sourcePath === "data/Civication/narratives/fixture_leisure.json") return fixtureStream;
+      if (sourcePath === "data/Civication/narratives/fixture_work.json") return fixtureWorkStream;
       return null;
     }
   },
@@ -141,6 +171,57 @@ vm.runInContext(narrativeSource, context, { filename: narrativePath });
   const activation = await source.sourceAdapter.getActivationSnapshot({ active, state });
   assert.deepEqual(Array.from(activation.matched_stream_ids), ["fixture_leisure_stream"]);
   assert.deepEqual(Array.from(activation.candidate_stream_ids), ["fixture_leisure_stream"]);
+
+  // A player may have old work streams in history after switching jobs.
+  // Their authored progress survives, but the wrong industry's workday does not.
+  const staleNarrative = {
+    active_streams: ["fagarbeider_work_stream"], stream_progress: {}, flags: []
+  };
+  const afterJobChange = await source.sourceAdapter.getActivationSnapshot({
+    active, state, narrativeState: staleNarrative
+  });
+  assert.equal(afterJobChange.candidate_stream_ids.includes("fagarbeider_work_stream"), false,
+    "an earlier factory work stream must not be a museum/other role candidate");
+  const leakedWork = await catalog.getSourceScenes("narrative", {
+    mode: "slot", phaseId: "forenoon", active, state,
+    narrativeState: staleNarrative,
+    candidate_stream_ids: ["fagarbeider_work_stream"],
+    used_storylet_keys: [], date: "2026-08-15", ordinal: 1
+  });
+  assert.equal(leakedWork.length, 0, "even stale candidate IDs cannot show factory work");
+  const injectedWrongWork = await catalog.getSourceScenes("narrative", {
+    mode: "opened_streams", opened_stream_ids: ["fagarbeider_work_stream"],
+    active, state, narrativeState: staleNarrative,
+    exclude_storylet_keys: [], date: "2026-08-15", ordinal: 2
+  });
+  assert.equal(injectedWrongWork.length, 0, "role change also guards same-day injection");
+  // A private supporter/people story must never become operational work at a
+  // museum simply because the player has the relevant private interest.
+  const noLeisureAtWork = await catalog.getSourceScenes("narrative", {
+    mode: "slot", phaseId: "forenoon", active, state,
+    narrativeState: { active_streams: ["fixture_leisure_stream"], stream_progress: {}, flags: [] },
+    candidate_stream_ids: ["fixture_leisure_stream"],
+    used_storylet_keys: [], date: "2026-08-15", ordinal: 3
+  });
+  assert.equal(noLeisureAtWork.length, 0,
+    "private people/leisure storylets cannot occupy an employment phase");
+  const factoryActive = { ...active, role_key: "fagarbeider" };
+  const factoryDay = await catalog.getSourceScenes("narrative", {
+    mode: "slot", phaseId: "forenoon", active: factoryActive, state,
+    narrativeState: { active_streams: ["fagarbeider_work_stream"], stream_progress: {}, flags: [] },
+    candidate_stream_ids: ["fagarbeider_work_stream"],
+    used_storylet_keys: [], date: "2026-08-15", ordinal: 4
+  });
+  assert.equal(factoryDay.length, 1, "legitimate work streams still play in their own job");
+  assert.equal(factoryDay[0].narrative_stream_id, "fagarbeider_work_stream");
+  const leisureDuringPaidWork = await catalog.getSourceScenes("narrative", {
+    mode: "slot", phaseId: "forenoon", active, state,
+    narrativeState: { active_streams: ["fixture_leisure_stream"], stream_progress: {}, flags: [] },
+    candidate_stream_ids: ["fixture_leisure_stream"],
+    used_storylet_keys: [], date: "2026-08-15", ordinal: 3
+  });
+  assert.equal(leisureDuringPaidWork.length, 0,
+    "off-duty supporter/people scenes must not appear during paid work phases");
 
   const narrativeState = {
     active_streams: activation.matched_stream_ids,
@@ -178,7 +259,9 @@ vm.runInContext(narrativeSource, context, { filename: narrativePath });
   const injected = await catalog.getSourceScenes("narrative", {
     mode: "opened_streams",
     opened_stream_ids: ["fixture_leisure_stream"],
-    exclude_storylet_keys: ["fixture_leisure_stream::first"],
+    // Earlier people-slot scene remains available as a private interaction,
+    // but this assertion explicitly verifies the later leisure storylet.
+    exclude_storylet_keys: ["fixture_leisure_stream::first", "fixture_leisure_stream::offshift_people"],
     active,
     state,
     narrativeState,

@@ -79,6 +79,7 @@
     "js/Civication/systems/civicationNPCs.js",
     "js/Civication/systems/civicationEventChannels.js",
     "js/Civication/ui/CivicationUI.js",
+    "js/Civication/ui/CivicationScoreUI.js",
     "js/Civication/ui/CivicationDashboardUI.js",
     "js/Civication/ui/CivicationMiniSectionsUI.js",
     "js/Civication/ui/CivicationEmptyPanels.js",
