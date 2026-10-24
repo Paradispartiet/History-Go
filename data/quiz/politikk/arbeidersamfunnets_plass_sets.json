@@ -1,0 +1,857 @@
+{
+  "targetId": "arbeidersamfunnets_plass",
+  "categoryId": "politikk",
+  "sources": {
+    "source_arbeidersamfunnets_plass_01": "https://oslobyleksikon.no/side/Arbeidersamfunnets_plass",
+    "source_arbeidersamfunnets_plass_02": "https://oslobyleksikon.no/side/Oslo_Arbeidersamfunn",
+    "source_arbeidersamfunnets_plass_03": "https://magasin.oslo.kommune.no/byplan/moderne-og-allerede-klassikere"
+  },
+  "production_context": {
+    "manifest_category": "politikk",
+    "profile": "narrow_3x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/politikk/arbeidersamfunnets_plass.json",
+    "context_artifact": "data/quiz/production_context/politikk/arbeidersamfunnets_plass.json",
+    "resolved_files": {
+      "pensum": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "emner": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "fagkart": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "methods": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "demokrati_representasjon_offentlighet",
+      "konflikt_makt_sivilsamfunn"
+    ],
+    "emne_ids": [
+      "em_pol_sivilsamfunn_organisering",
+      "em_pol_interessegrupper_organisasjoner",
+      "em_pol_arbeidsliv_kollektiv_kamp"
+    ],
+    "topic_hook_ids": [
+      "arbeidslivspolitikk",
+      "debattarenaer",
+      "interessegrupper",
+      "sivilsamfunn"
+    ],
+    "method_ids": [
+      "met_pol_konfliktanalyse",
+      "met_pol_fordelingsanalyse",
+      "met_pol_makt_og_interesseanalyse",
+      "met_pol_offentlighetsanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/politikk/",
+        "data/places/politikk/oslo/places_politikk/arbeidersamfunnets_plass.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen aktiv fullquiz med targetId=arbeidersamfunnets_plass i manifestet per 24.10.2026."
+      },
+      "decisions": [
+        "Produksjon fra kontrollerte kilder; ti opprinnelige spørsmål redigert og bevart.",
+        "Elleve nye spørsmål for stedsspesifikk historisk dybde.",
+        "Tre sett à sju spørsmål fordi kildene bærer 21 distinkte faktiske læringsoppgaver; ikke fyll med generiske eller teoretiske spørsmål."
+      ],
+      "knowledge_migration": "Ingen tidligere canonical quiz-eier; genereres fra fullquiz med Knowledge canonical generator."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Avgrenset by- eller institusjonshistorie med 21 særskilte kildebelagte spørsmål om opphav, historiske endringer og institusjonell funksjon. Rich-profil ville kreve mer uavhengig primærmateriale."
+    },
+    "held_back_candidates": [
+      "Uverifiserte fortolkninger av sosiale og økonomiske effekter.",
+      "Oppgaver om andre bygg uten presis stedsrelasjon.",
+      "Generiske teori- og metodeoppgaver uten kildegrunnlag."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "politikk_arbeidersamfunnets_plass_set_1",
+      "title": "Stedet og bakgrunnen",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "arbeidersamfunnets_plass_quiz_01",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_1_q1",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hvilken av disse gatene grenser til Arbeidersamfunnets plass?",
+          "options": [
+            "Dronningens gate",
+            "Karl Johans gate",
+            "Calmeyers gate"
+          ],
+          "answer": "Calmeyers gate",
+          "answerIndex": 2,
+          "knowledge": "Arbeidersamfunnets plass er byrommet mellom Torggata, Calmeyers gate, Hammersborggata og Samfunnshuset i Oslo sentrum.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_sivilsamfunn_organisering",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidersamfunnets plass er byrommet mellom Torggata, Calmeyers gate, Hammersborggata og Samfunnshuset i Oslo sentrum.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_01",
+          "primary_knowledge_unit_id": "ku_politikk_arbeidersamfunnets_plass_8e8daa4e72",
+          "knowledge_unit_ids": [
+            "ku_politikk_arbeidersamfunnets_plass_8e8daa4e72"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_02",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_1_q2",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hva lå tidligere på området som ble Arbeidersamfunnets plass?",
+          "options": [
+            "Vestbanestasjonen",
+            "Tukthusets eiendom",
+            "Oslo rådhus"
+          ],
+          "answer": "Tukthusets eiendom",
+          "answerIndex": 1,
+          "knowledge": "Området var tidligere del av Tukthusets eiendom.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_sivilsamfunn_organisering",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Området var tidligere del av Tukthusets eiendom.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_02",
+          "primary_knowledge_unit_id": "ku_politikk_omradet_var_tidligere_de_f9a3706c51",
+          "knowledge_unit_ids": [
+            "ku_politikk_omradet_var_tidligere_de_f9a3706c51"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_03",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_1_q3",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Når ble den tidligere tukthustomten omgjort til offentlig plass?",
+          "options": [
+            "I 1880-årene",
+            "I 1930-årene",
+            "I 1980-årene"
+          ],
+          "answer": "I 1930-årene",
+          "answerIndex": 1,
+          "knowledge": "Etter rivingen av fengselsbygningene i 1930-årene ble tomten gjort om til offentlig plass.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_sivilsamfunn_organisering",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Etter rivingen av fengselsbygningene i 1930-årene ble tomten gjort om til offentlig plass.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_03",
+          "primary_knowledge_unit_id": "ku_politikk_etter_rivingen_av_fengse_373d609070",
+          "knowledge_unit_ids": [
+            "ku_politikk_etter_rivingen_av_fengse_373d609070"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_04",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_1_q4",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Når fikk plassen navnet Arbeidersamfunnets plass?",
+          "options": [
+            "1962",
+            "1940",
+            "1893"
+          ],
+          "answer": "1962",
+          "answerIndex": 0,
+          "knowledge": "Plassen fikk navnet Arbeidersamfunnets plass i 1962, etter organisasjonen Oslo Arbeidersamfunn.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_sivilsamfunn_organisering",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Plassen fikk navnet Arbeidersamfunnets plass i 1962, etter organisasjonen Oslo Arbeidersamfunn.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_04",
+          "primary_knowledge_unit_id": "ku_politikk_plassen_fikk_navnet_arbe_619f75acb2",
+          "knowledge_unit_ids": [
+            "ku_politikk_plassen_fikk_navnet_arbe_619f75acb2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_05",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_1_q5",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hvilken organisasjon er plassen oppkalt etter?",
+          "options": [
+            "Landsorganisasjonen i Norge",
+            "Oslo Håndverks- og Industriforening",
+            "Oslo Arbeidersamfunn"
+          ],
+          "answer": "Oslo Arbeidersamfunn",
+          "answerIndex": 2,
+          "knowledge": "Plassen fikk navnet Arbeidersamfunnets plass i 1962, etter organisasjonen Oslo Arbeidersamfunn.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_sivilsamfunn_organisering",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Plassen fikk navnet Arbeidersamfunnets plass i 1962, etter organisasjonen Oslo Arbeidersamfunn.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_05",
+          "primary_knowledge_unit_id": "ku_politikk_plassen_fikk_navnet_arbe_619f75acb2",
+          "knowledge_unit_ids": [
+            "ku_politikk_plassen_fikk_navnet_arbe_619f75acb2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_06",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_1_q6",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Når ble Oslo Arbeidersamfunn stiftet?",
+          "options": [
+            "1893",
+            "1934",
+            "1864"
+          ],
+          "answer": "1864",
+          "answerIndex": 2,
+          "knowledge": "Oslo Arbeidersamfunn ble stiftet i 1864 under navnet Christiania Arbeidersamfund.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_sivilsamfunn_organisering",
+          "source": [
+            "source_arbeidersamfunnets_plass_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo Arbeidersamfunn ble stiftet i 1864 under navnet Christiania Arbeidersamfund.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_06",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_arbeidersamfunn_ble_cbb020d94d",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_arbeidersamfunn_ble_cbb020d94d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_07",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_1_q7",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hva het Oslo Arbeidersamfunn ved stiftelsen?",
+          "options": [
+            "Kristiania Studentersamfund",
+            "Christiania Arbeidersamfund",
+            "Christiania Haandværkerforening"
+          ],
+          "answer": "Christiania Arbeidersamfund",
+          "answerIndex": 1,
+          "knowledge": "Oslo Arbeidersamfunn ble stiftet i 1864 under navnet Christiania Arbeidersamfund.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_sivilsamfunn_organisering",
+          "source": [
+            "source_arbeidersamfunnets_plass_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo Arbeidersamfunn ble stiftet i 1864 under navnet Christiania Arbeidersamfund.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_07",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_arbeidersamfunn_ble_cbb020d94d",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_arbeidersamfunn_ble_cbb020d94d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_arbeidersamfunnets_plass_set_2",
+      "title": "Mennesker og tidslag",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "arbeidersamfunnets_plass_quiz_08",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_2_q1",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hvem var Oslo Arbeidersamfunns første formann?",
+          "options": [
+            "Eilert Sundt",
+            "Johan Sverdrup",
+            "Marcus Thrane"
+          ],
+          "answer": "Eilert Sundt",
+          "answerIndex": 0,
+          "knowledge": "Eilert Sundt var foreningens første formann, og den ble etablert som et opplysningssamfunn.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_interessegrupper_organisasjoner",
+          "source": [
+            "source_arbeidersamfunnets_plass_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Eilert Sundt var foreningens første formann, og den ble etablert som et opplysningssamfunn.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_08",
+          "primary_knowledge_unit_id": "ku_politikk_eilert_sundt_var_forenin_aaa5249109",
+          "knowledge_unit_ids": [
+            "ku_politikk_eilert_sundt_var_forenin_aaa5249109"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_09",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_2_q2",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Når gikk Oslo Arbeidersamfunn inn i Det norske Arbeiderparti?",
+          "options": [
+            "1893",
+            "1864",
+            "1962"
+          ],
+          "answer": "1893",
+          "answerIndex": 0,
+          "knowledge": "Foreningen gikk inn i Det norske Arbeiderparti i 1893.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_interessegrupper_organisasjoner",
+          "source": [
+            "source_arbeidersamfunnets_plass_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Foreningen gikk inn i Det norske Arbeiderparti i 1893.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_09",
+          "primary_knowledge_unit_id": "ku_politikk_foreningen_gikk_inn_i_de_078a37ec58",
+          "knowledge_unit_ids": [
+            "ku_politikk_foreningen_gikk_inn_i_de_078a37ec58"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_10",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_2_q3",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hvem tegnet Samfunnshuset ved Arbeidersamfunnets plass?",
+          "options": [
+            "Henrik Thrap-Meyer",
+            "Georg Andreas Bull",
+            "Ove Bang"
+          ],
+          "answer": "Ove Bang",
+          "answerIndex": 2,
+          "knowledge": "Bygningen ble tegnet av Ove Bang og har blant annet møtesaler og kontorer.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_interessegrupper_organisasjoner",
+          "source": [
+            "source_arbeidersamfunnets_plass_03"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen ble tegnet av Ove Bang og har blant annet møtesaler og kontorer.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_10",
+          "primary_knowledge_unit_id": "ku_politikk_bygningen_ble_tegnet_av__e24b14427f",
+          "knowledge_unit_ids": [
+            "ku_politikk_bygningen_ble_tegnet_av__e24b14427f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_11",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_2_q4",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hva het plassen i perioden 1934–1962?",
+          "options": [
+            "Tukthusplassen",
+            "Olaf Bulls plass",
+            "Samfundstorget"
+          ],
+          "answer": "Olaf Bulls plass",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon oppgir Olaf Bulls plass som navnet fra 1934 til 1962.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_interessegrupper_organisasjoner",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon oppgir Olaf Bulls plass som navnet fra 1934 til 1962.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_11",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_byleksikon_oppgir_o_3310bec16f",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_byleksikon_oppgir_o_3310bec16f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_12",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_2_q5",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "I hvilket år fikk plassen det tidligere navnet Olaf Bulls plass?",
+          "options": [
+            "1907",
+            "1934",
+            "1883"
+          ],
+          "answer": "1934",
+          "answerIndex": 1,
+          "knowledge": "Stedet het Olaf Bulls plass i perioden 1934–1962.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_interessegrupper_organisasjoner",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Stedet het Olaf Bulls plass i perioden 1934–1962.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_12",
+          "primary_knowledge_unit_id": "ku_politikk_stedet_het_olaf_bulls_pl_e8329aeb68",
+          "knowledge_unit_ids": [
+            "ku_politikk_stedet_het_olaf_bulls_pl_e8329aeb68"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_13",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_2_q6",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hvor ble Christiania Arbeidersamfund stiftet i 1864?",
+          "options": [
+            "På Møllergata skole",
+            "I Stortingssalen",
+            "På Folkets Hus"
+          ],
+          "answer": "På Møllergata skole",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon plasserer stiftelsen ved Møllergata skole.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_interessegrupper_organisasjoner",
+          "source": [
+            "source_arbeidersamfunnets_plass_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon plasserer stiftelsen ved Møllergata skole.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_13",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_byleksikon_plassere_9d827e7165",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_byleksikon_plassere_9d827e7165"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_14",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_2_q7",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hvordan endret plassen navn mellom 1934 og 1962?",
+          "options": [
+            "Fra Olaf Bulls plass til Arbeidersamfunnets plass",
+            "Fra Olaf Bulls plass til Tukthusplassen",
+            "Fra Arbeidersamfunnets plass til Olaf Bulls plass"
+          ],
+          "answer": "Fra Olaf Bulls plass til Arbeidersamfunnets plass",
+          "answerIndex": 0,
+          "knowledge": "Plassen fikk først navnet Olaf Bulls plass i 1934 og ble oppkalt etter Oslo Arbeidersamfunn i 1962.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_interessegrupper_organisasjoner",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Plassen fikk først navnet Olaf Bulls plass i 1934 og ble oppkalt etter Oslo Arbeidersamfunn i 1962.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_14",
+          "primary_knowledge_unit_id": "ku_politikk_plassen_fikk_f_rst_navne_306c0594d0",
+          "knowledge_unit_ids": [
+            "ku_politikk_plassen_fikk_f_rst_navne_306c0594d0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_arbeidersamfunnets_plass_set_3",
+      "title": "Endring og betydning",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "arbeidersamfunnets_plass_quiz_15",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_3_q1",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hvordan endret Oslo Arbeidersamfunn sin politiske tilknytning fra 1864 til 1893?",
+          "options": [
+            "Fra politisk partiforening til upolitisk opplysningslag",
+            "Fra upolitisk opplysningsforening til medlemskap i Arbeiderpartiet",
+            "Fra statlig organisasjon til kommunal virksomhet"
+          ],
+          "answer": "Fra upolitisk opplysningsforening til medlemskap i Arbeiderpartiet",
+          "answerIndex": 1,
+          "knowledge": "Foreningen begynte som et upolitisk opplysningssamfunn i 1864 og gikk inn i Det norske Arbeiderparti i 1893.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "source_arbeidersamfunnets_plass_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Foreningen begynte som et upolitisk opplysningssamfunn i 1864 og gikk inn i Det norske Arbeiderparti i 1893.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_15",
+          "primary_knowledge_unit_id": "ku_politikk_foreningen_begynte_som_e_91215090c8",
+          "knowledge_unit_ids": [
+            "ku_politikk_foreningen_begynte_som_e_91215090c8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_16",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_3_q2",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hvordan skiller Arbeidersamfunnets plass seg fra Samfunnshuset?",
+          "options": [
+            "Plassen er møtesalen i Samfunnshuset",
+            "Samfunnshuset er plassens tidligere navn",
+            "Plassen er et offentlig byrom; Samfunnshuset er et eget bygg"
+          ],
+          "answer": "Plassen er et offentlig byrom; Samfunnshuset er et eget bygg",
+          "answerIndex": 2,
+          "knowledge": "Plassen er en egen stedsenhet, mens Samfunnshuset er bygningen oppført for Oslo Arbeidersamfunn.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Plassen er en egen stedsenhet, mens Samfunnshuset er bygningen oppført for Oslo Arbeidersamfunn.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_16",
+          "primary_knowledge_unit_id": "ku_politikk_plassen_er_en_egen_steds_db37e775ec",
+          "knowledge_unit_ids": [
+            "ku_politikk_plassen_er_en_egen_steds_db37e775ec"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_17",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_3_q3",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hva forteller 1879 og 1893 om Arbeidersamfunnets politiske utvikling?",
+          "options": [
+            "Fra et Venstre-dominert styre til tilknytning til Arbeiderpartiet",
+            "Fra medlemskap i Arbeiderpartiet til partipolitisk nøytralitet",
+            "Fra tilknytning til Arbeiderpartiet til Venstres styre"
+          ],
+          "answer": "Fra et Venstre-dominert styre til tilknytning til Arbeiderpartiet",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon beskriver at Venstre tok kontroll over styret i 1879, før foreningen gikk inn i Arbeiderpartiet i 1893.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "source_arbeidersamfunnets_plass_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon beskriver at Venstre tok kontroll over styret i 1879, før foreningen gikk inn i Arbeiderpartiet i 1893.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_17",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_byleksikon_beskrive_5b6dac507c",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_byleksikon_beskrive_5b6dac507c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_18",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_3_q4",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hva binder sammen Arbeidersamfunnets debatter på 1880-tallet og Samfunnshuset fra 1940?",
+          "options": [
+            "Begge markerte slutten på foreningens møtevirksomhet",
+            "Begge er del av foreningens historie som møte- og debattarena",
+            "Begge viser at møtene først begynte etter 1940"
+          ],
+          "answer": "Begge er del av foreningens historie som møte- og debattarena",
+          "answerIndex": 1,
+          "knowledge": "Foreningen arrangerte politiske og kulturelle diskusjoner før den fikk et eget Samfunnshus ved plassen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "source_arbeidersamfunnets_plass_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Foreningen arrangerte politiske og kulturelle diskusjoner før den fikk et eget Samfunnshus ved plassen.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_18",
+          "primary_knowledge_unit_id": "ku_politikk_foreningen_arrangerte_po_35d701d3c4",
+          "knowledge_unit_ids": [
+            "ku_politikk_foreningen_arrangerte_po_35d701d3c4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_19",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_3_q5",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hva viser Oslo Arbeidersamfunns utvikling om forholdet mellom foreninger og partier?",
+          "options": [
+            "Alle foreninger må bli partier for å delta i offentlig debatt",
+            "Foreninger og partier har aldri historiske forbindelser",
+            "En frivillig organisasjon kan bli del av et politisk parti"
+          ],
+          "answer": "En frivillig organisasjon kan bli del av et politisk parti",
+          "answerIndex": 2,
+          "knowledge": "Organisasjonens overgang fra opplysningsforening til Arbeiderpartiet i 1893 dokumenterer en konkret kobling mellom sivilsamfunn og partipolitikk.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "source_arbeidersamfunnets_plass_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Organisasjonens overgang fra opplysningsforening til Arbeiderpartiet i 1893 dokumenterer en konkret kobling mellom sivilsamfunn og partipolitikk.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_19",
+          "primary_knowledge_unit_id": "ku_politikk_organisasjonens_overgang_2939339f95",
+          "knowledge_unit_ids": [
+            "ku_politikk_organisasjonens_overgang_2939339f95"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_makt_og_interesseanalyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://oslobyleksikon.no/side/Oslo_Arbeidersamfunn",
+            "Bruk met_pol_makt_og_interesseanalyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ],
+          "topic_hook_id": "arbeidslivspolitikk",
+          "thinker_id": "stein_rokkan",
+          "theory_ref": {
+            "topic_hook_id": "arbeidslivspolitikk",
+            "why_it_helps": "Rokkans konfliktskilleteori bidrar til å undersøke veien fra folkeopplysende organisering til parti og interesseorganisasjon. Kilden dokumenterer foreningens endringer, men ikke at teorien alene forårsaket dem."
+          }
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_20",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_3_q6",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hva kan stedsnavnet fra 1962 si om offentlig politisk minne?",
+          "options": [
+            "Organisasjonshistorie kan bli synlig gjennom navn på offentlige steder",
+            "Navnet betyr at foreningen fortsatt eier alle bygningene på plassen",
+            "Navnet beviser at foreningens politikk ble vedtatt i 1962"
+          ],
+          "answer": "Organisasjonshistorie kan bli synlig gjennom navn på offentlige steder",
+          "answerIndex": 0,
+          "knowledge": "Navnet Arbeidersamfunnets plass viser en offentlig historisk tilknytning, men dokumenterer ikke virkningen av foreningens enkelte møter.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Navnet Arbeidersamfunnets plass viser en offentlig historisk tilknytning, men dokumenterer ikke virkningen av foreningens enkelte møter.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_20",
+          "primary_knowledge_unit_id": "ku_politikk_navnet_arbeidersamfunnet_066cc26073",
+          "knowledge_unit_ids": [
+            "ku_politikk_navnet_arbeidersamfunnet_066cc26073"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_offentlighetsanalyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://oslobyleksikon.no/side/Arbeidersamfunnets_plass",
+            "Bruk met_pol_offentlighetsanalyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        },
+        {
+          "id": "arbeidersamfunnets_plass_quiz_21",
+          "quiz_id": "politikk_arbeidersamfunnets_plass_set_3_q7",
+          "categoryId": "politikk",
+          "placeId": "arbeidersamfunnets_plass",
+          "targetId": "arbeidersamfunnets_plass",
+          "question_scope": "place",
+          "question": "Hvilken konklusjon kan byhistoriske kilder om plassen trygt støtte?",
+          "options": [
+            "At navneendringen alene utløste bestemte lovvedtak",
+            "Historiske navn og bygningsbruk, ikke effekten av alle politiske møter",
+            "At alle foreningens tidligere møter ble holdt i Samfunnshuset"
+          ],
+          "answer": "Historiske navn og bygningsbruk, ikke effekten av alle politiske møter",
+          "answerIndex": 1,
+          "knowledge": "Kildene beskriver forening, navn og offentlig byrom, men må suppleres før man påstår en målt politisk effekt.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "source_arbeidersamfunnets_plass_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kildene beskriver forening, navn og offentlig byrom, men må suppleres før man påstår en målt politisk effekt.",
+          "claim_id": "claim_arbeidersamfunnets_plass_quiz_21",
+          "primary_knowledge_unit_id": "ku_politikk_kildene_beskriver_foreni_2ff942f2c6",
+          "knowledge_unit_ids": [
+            "ku_politikk_kildene_beskriver_foreni_2ff942f2c6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_makt_og_interesseanalyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://oslobyleksikon.no/side/Arbeidersamfunnets_plass",
+            "Bruk met_pol_makt_og_interesseanalyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        }
+      ]
+    }
+  ]
+}

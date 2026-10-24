@@ -1,0 +1,143 @@
+{
+  "schema": "history_go_six_oslo_places_final_quality_gate_v1",
+  "as_of": "2026-10-24",
+  "pr": 6586,
+  "branch": "research/oslo-six-culture-institutions-v1-20261023",
+  "status": "V1_QUALITY_REVIEW_DOCUMENTED_AWAITING_FRESH_CI",
+  "scope": {
+    "independent_of_pr_6579": true,
+    "excludes_oslo_batch04": true,
+    "placeIds": [
+      "arbeidersamfunnets_plass",
+      "eldorado_bokhandel",
+      "nobels_fredssenter",
+      "vikaterrassen",
+      "statsministerboligen",
+      "politihuset_gronland"
+    ]
+  },
+  "content": {
+    "places": 6,
+    "fagverkCurated": 6,
+    "quizTotalQuestions": 140,
+    "quizSetsByPlace": {
+      "arbeidersamfunnets_plass": 3,
+      "eldorado_bokhandel": 5,
+      "nobels_fredssenter": 3,
+      "vikaterrassen": 3,
+      "statsministerboligen": 3,
+      "politihuset_gronland": 3
+    },
+    "quizQuestionsByPlace": {
+      "arbeidersamfunnets_plass": 21,
+      "eldorado_bokhandel": 35,
+      "nobels_fredssenter": 21,
+      "vikaterrassen": 21,
+      "statsministerboligen": 21,
+      "politihuset_gronland": 21
+    },
+    "quizCardTop10ByPlace": 10,
+    "cardQuestionsTotal": 60,
+    "verifiedNewPortraitCrops": 5,
+    "existingEldoradoImage": true,
+    "storyAndChronologyFinalReview": "reviewed for three politikk places; gate G documented N/A because no separate direct chronology/story-ID is registered for these Place IDs; all three review booleans true"
+  },
+  "passedChecksFromDirectedRuns": [
+    "Five new canonical quiz production contexts rebuilt and checked",
+    "Five new fullquizzes all Knowledge-linked; 50 new QuizCards in exact source answer parity",
+    "Existing Eldorado: 35 quiz questions and 10 QuizCards Knowledge-linked and answer parity",
+    "Five new 900×1200 WebP portrait files created from licensed Commons photography",
+    "Canonical Place-open regeneration and check passed in image workflow",
+    "Changed-place image audit passed in image workflow",
+    "Three Politikk reports now have 14 source-backed opening questions and context",
+    "Epoch viewer coverage expected counts updated and independently passed on earlier commit"
+  ],
+  "openGates": [
+    "Run required GitHub checks on the current QA-head and confirm no failures before merging"
+  ],
+  "releasePolicy": "All scope-specific data and source-governance reviews have been documented, including G applicability; merge only once required full PR CI on this last reviewed head is green, and keep caveat that a sample source check is not independent verification of every historical statement.",
+  "lastValidated": {
+    "as_of": "2026-10-24",
+    "commit": "fe9013e90fae82d55b4fb6728e471da668e70dde",
+    "canonicalSyncRun": "https://github.com/Paradispartiet/History-Go/actions/runs/40091080707",
+    "appQaRun": "https://github.com/Paradispartiet/History-Go/actions/runs/40092020099",
+    "appQaResult": "success",
+    "fullCiWorkflowResults": "23 workflows success; 39 checks success and 2 checks intentionally skipped on prior validated head",
+    "review_limit": "Must recheck current head after this report and G metadata amendments."
+  },
+  "mergedBaseMain": "0b6b8b38d78657350f088cac307ad3107d7fc2ea",
+  "canonicalRegeneration": {
+    "runId": 40091080707,
+    "url": "https://github.com/Paradispartiet/History-Go/actions/runs/40091080707",
+    "result": "success",
+    "head": "e36d44737b1a5853b5ae7a41672e414539d50365",
+    "checks": [
+      "Place index and coordinates",
+      "Place-open and epoch indexes",
+      "Both Oslo batches' derived production contexts",
+      "Knowledge canonical data",
+      "Fagverk release digest",
+      "Quiz manifest integrity",
+      "Quiz progression",
+      "Quiz theory binding",
+      "Six new place fullquiz/QuizCard parity",
+      "Quiz production pipeline"
+    ]
+  },
+  "editorialReview": {
+    "date": "2026-10-24",
+    "scope": "All 140 active quiz questions for six places: stems, correct answers, claim-basis summaries, source references, answer-option uniqueness and Knowledge links; individual historical claims sampled against their published original pages",
+    "totals": {
+      "questions": 140,
+      "quizcardQuestions": 60,
+      "rewrittenDistractors": 41,
+      "unresolvedInternalMismatches": 0
+    },
+    "sourceExamples": [
+      "https://oslobyleksikon.no/side/Arbeidersamfunnets_plass",
+      "https://oslobyleksikon.no/side/Politihuset",
+      "https://oslobyleksikon.no/side/Vikaterrassen",
+      "https://oslobyleksikon.no/side/Eldorado",
+      "https://www.nobelpeacecenter.org/en/news/from-idea-to-reality",
+      "https://www.regjeringen.no/no/dokumenter/Stmeld-nr-22-2003-2004-/id135996/?ch=2"
+    ],
+    "limitations": "Source spot-check is not individual external validation of every one of 140 quiz claims; no unsupported claim of article-level primary-source certification."
+  },
+  "visualAcceptance": {
+    "currentHeadBeforeReview": "fe9013e90fae82d55b4fb6728e471da668e70dde",
+    "workflow": "https://github.com/Paradispartiet/History-Go/actions/runs/40092020099",
+    "result": "success",
+    "screenshots": {
+      "places": 6,
+      "devices": [
+        "390px mobile",
+        "1440px desktop"
+      ],
+      "screensPerDevice": [
+        "PlaceCard",
+        "expanded QuizCard",
+        "fullquiz",
+        "Fagverk"
+      ]
+    },
+    "review": "Visual comparison of six place screens from initial successful artifacts, followed by current-head selected mobile screenshots for Arbeidersamfunnets plass and Eldorado; added and passed browser assertion for long title clipping.",
+    "limitations": "Automatic acceptance checks prove rendering and operation for tested scenarios, not accessibility or every possible device width."
+  },
+  "chronologyStoryApplicability": {
+    "politicalPlaces": [
+      "arbeidersamfunnets_plass",
+      "politihuset_gronland",
+      "statsministerboligen"
+    ],
+    "reviewed": true,
+    "result": "N/A – no separate Story or direct chronology entries registered for these three place IDs",
+    "evidenceSources": [
+      "data/stories/stories_manifest_politikk_batch_01.json",
+      "data/stories/narratives.json",
+      "data/events/events_manifest.json",
+      "data/epoker/epoker_politikk.json",
+      "data/places/politikk-production/*.json"
+    ],
+    "caution": "Chronological dates remain in source-backed fullquiz and Fagverk; this closes applicability review without fabricating new Story records or claiming a separate Story module."
+  }
+}

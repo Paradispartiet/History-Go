@@ -126,3 +126,22 @@
     hyphens: auto;
   }
 }
+
+/* Fagverk place titles need real line breaks on narrow screens.
+   An unbroken place name otherwise escapes the large premium serif headline
+   and gets cropped by the intentionally clipped hero background. */
+@media (max-width: 720px) {
+  body.hg-fagverk-place-page .fagverk-place-hero-copy {
+    min-width: 0;
+  }
+
+  body.hg-fagverk-place-page .fagverk-place-hero h1 {
+    min-width: 0;
+    max-width: 100%;
+    font-size: clamp(1.75rem, 8vw, 2.75rem);
+    line-height: 1.06;
+    letter-spacing: -.04em;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+}
