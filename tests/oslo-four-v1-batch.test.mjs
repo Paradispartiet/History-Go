@@ -46,24 +46,38 @@ test('industrial site never makes a false promise of access or documentary photo
 });
 import fs from 'node:fs';
 
-test('all four Place and quiz sources are complete without prematurely activating manifests',()=>{
+test('four Oslo Places have canonical manifests, source-linked quiz, cards, Knowledge and Fagverk',()=>{
  const pack=buildOsloFourV1Batch();
  const places=JSON.parse(fs.readFileSync('data/places/manifest.json','utf8'));
  const quizzes=JSON.parse(fs.readFileSync('data/quiz/manifest.json','utf8'));
  const registry=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));
  for(const entry of pack){
    const id=entry.id,category=entry.place.category,rel=entry.placePath.replace('data/','');
-   assert.ok(fs.existsSync(entry.placePath),id+' Place source missing');
-   assert.ok(fs.existsSync(entry.quizPath),id+' quiz source missing');
+   assert.ok(places.files.includes(rel),id+' missing Place manifest');
+   assert.equal(quizzes.sets.filter(q=>q.targetId===id).length,1,id+' quiz manifest');
    const place=JSON.parse(fs.readFileSync(entry.placePath,'utf8'));
    const quiz=JSON.parse(fs.readFileSync(entry.quizPath,'utf8'));
    const card=JSON.parse(fs.readFileSync('data/quizcards/'+category+'/oslo_four_20261024.json','utf8')).cards.find(c=>c.targetId===id);
-   assert.ok(card && card.questions.length===10,id+' quizcard source');
-   assert.equal(quiz.sets.flatMap(s=>s.questions).length,entry.quiz.sets.flatMap(s=>s.questions).length);
+   const cardManifest=JSON.parse(fs.readFileSync('data/quizcards/'+category+'/manifest.json','utf8'));
+   assert.ok(cardManifest.collections.includes('oslo_four_20261024.json'),id+' card manifest');
+   assert.ok(card && card.questions.length===10,id+' quizcard');
+   const qs=quiz.sets.flatMap(s=>s.questions);
+   assert.equal(qs.length,entry.quiz.sets.flatMap(s=>s.questions).length);
    assert.equal(place.fagverk.status,'curated');
-   assert.ok(!places.files.includes(rel),id+' activated ahead of index ownership');
-   assert.ok(!quizzes.sets.some(q=>q.targetId===id),id+' active quiz ahead of index ownership');
-   assert.equal(registry.placeLinks[id],undefined,id+' Fagverk registry ahead of index');
+   assert.equal(registry.placeLinks[id]?.status,'curated');
+   assert.equal(registry.placeLinks[id]?.sourceFile,rel);
+   for(const q of qs){
+     assert.ok(q.primary_knowledge_unit_id,id+' quiz Knowledge id missing');
+     assert.ok(q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id),id+' quiz Knowledge parity');
+   }
+   for(const q of card.questions){
+     const canonical=qs.find(x=>x.id===q.sourceQuestionId);
+     assert.ok(canonical,id+' card source missing');
+     assert.equal(q.primary_knowledge_unit_id,canonical.primary_knowledge_unit_id);
+     assert.deepEqual(q.knowledge_unit_ids,canonical.knowledge_unit_ids);
+     assert.equal(q.answer,canonical.answer);
+     assert.equal(q.question,canonical.question);
+   }
    assert.equal(place.coordRole,'display_marker');
  }
 });
