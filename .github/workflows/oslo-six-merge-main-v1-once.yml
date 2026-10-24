@@ -126,6 +126,8 @@ jobs:
             set -- $subject_target
             npm run quiz:context -- --category "$1" --target "$2" --output "data/quiz/production_context/$1/$2.json"
           done
+      - name: Rebuild release digest after context refresh
+        run: node scripts/build-fagverk-release-manifest.mjs
       - name: Verify derived artifacts and five new quiz contexts
         shell: bash
         run: |
