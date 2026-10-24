@@ -21,13 +21,12 @@
   let userMarker = null;
   const placeAreaMarkers = new Map();
   let placeAreaMarkerZoomBound = false;
-  // Mobile Android has repeatedly rendered our area DOM squares while
-  // dropping MapLibre's WebGL detail circles. Keep a bounded native marker
-  // representation for details so normal places remain visible and tappable.
+  // Touchscreen phones and iPads can render area squares while dropping
+  // WebGL detail circles. Use one native detail-dot renderer on those devices.
   const placeDetailMarkers = new Map();
   let placeDetailMarkerEventsBound = false;
   let lastPlaceMarkerFeatures = [];
-  const MAX_MOBILE_DETAIL_MARKERS = 240;
+  const MAX_TOUCH_DETAIL_MARKERS = 240;
   const STYLE_STORAGE_KEY = "hg_map_style_mode";
   const STYLE_MODE_STANDARD = "standard";
   const STYLE_MODE_SATELLITE = "satellite";
@@ -187,7 +186,7 @@
 
     // Mobile already has touch/pinch gestures and the compact History GO dock.
     // Do not stack MapLibre's white +/- zoom toolbar on top of these controls.
-    if (window.matchMedia?.("(min-width: 700px)")?.matches) {
+    if (!useNativeTouchDetailMarkers()) {
       MAP.addControl(
         new maplibregl.NavigationControl({ showCompass: false }),
         "bottom-right"
@@ -740,17 +739,39 @@
     updatePlaceAreaDomMarkerSizes();
   }
 
-  function useNativeMobileDetailMarkers() {
+  function useNativeTouchDetailMarkers() {
+    // iPad (including desktop-mode Safari and large landscape models) must
+    // use the same reliable native dots as phones, not fragile WebGL circles.
+    const width = Number(window.innerWidth || 0);
+    if (Number(window.navigator?.maxTouchPoints || 0) >= 2) return true;
     if (typeof window.matchMedia === "function") {
-      return window.matchMedia("(max-width: 699px)").matches;
+      return window.matchMedia("(max-width: 1199px), (pointer: coarse)").matches;
     }
-    return typeof window.innerWidth === "number" && window.innerWidth <= 699;
+    return width > 0 && width <= 1199;
+  }
+
+  function nativeDetailDotDiameter(zoom) {
+    // Pixel diameter, interpolated continuously instead of stepwise size
+    // jumps. Zooming OUT visibly reduces the dots on both phone and iPad.
+    return Math.max(3.5, Math.min(8.5, 3.5 + (zoom - PLACE_DETAIL_MIN_ZOOM) * 0.78));
+  }
+
+  function updateNativeDetailDotSizes() {
+    if (!MAP || !placeDetailMarkers.size) return;
+    const zoom = Number(MAP.getZoom?.() ?? START.zoom ?? 13);
+    const diameter = nativeDetailDotDiameter(zoom);
+    const width = Math.max(0.9, Math.min(1.4, diameter * 0.2));
+    for (const entry of placeDetailMarkers.values()) {
+      entry.element.style.width = `${diameter.toFixed(2)}px`;
+      entry.element.style.height = `${diameter.toFixed(2)}px`;
+      entry.element.style.borderWidth = `${width.toFixed(2)}px`;
+    }
   }
 
   function syncPlaceDetailDomMarkers(features) {
     if (!MAP || typeof maplibregl?.Marker !== "function") return;
     const zoom = Number(MAP.getZoom?.() ?? START.zoom ?? 13);
-    if (!useNativeMobileDetailMarkers() || zoom < PLACE_DETAIL_MIN_ZOOM) {
+    if (!useNativeTouchDetailMarkers() || zoom < PLACE_DETAIL_MIN_ZOOM) {
       for (const entry of placeDetailMarkers.values()) entry.marker.remove();
       placeDetailMarkers.clear();
       return;
@@ -772,7 +793,7 @@
       const [bx, by] = b.geometry.coordinates;
       return ((ax - lon0) ** 2 + (ay - lat0) ** 2)
         - ((bx - lon0) ** 2 + (by - lat0) ** 2);
-    }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+    }).slice(0, MAX_TOUCH_DETAIL_MARKERS);
 
     // During a cold mobile boot MapLibre can report bounds from an invisible
     // or zero-sized map container. Never interpret an empty first bounds
@@ -784,7 +805,7 @@
           const [bx, by] = b.geometry.coordinates;
           return ((ax - lon0) ** 2 + (ay - lat0) ** 2)
             - ((bx - lon0) ** 2 + (by - lat0) ** 2);
-        }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+        }).slice(0, MAX_TOUCH_DETAIL_MARKERS);
     }
 
     const keep = new Set();
@@ -802,7 +823,7 @@
         element.style.boxSizing = "border-box";
         element.style.borderRadius = "50%";
         element.style.borderStyle = "solid";
-        element.style.borderWidth = "2px";
+        element.style.borderWidth = "1px";
         element.style.pointerEvents = "auto";
         element.style.cursor = "pointer";
         element.style.touchAction = "manipulation";
@@ -824,9 +845,6 @@
         entry.lon = feature.geometry.coordinates[0];
         entry.lat = feature.geometry.coordinates[1];
       }
-      const diameter = zoom < 12 ? 9 : zoom < 14 ? 10 : 11;
-      entry.element.style.width = `${diameter}px`;
-      entry.element.style.height = `${diameter}px`;
       entry.element.style.backgroundColor = feature.properties.fill;
       const borderColor = String(feature.properties.border || "").trim();
       const fillColor = String(feature.properties.fill || "").trim();
@@ -835,7 +853,7 @@
       entry.element.style.borderColor = !borderColor || borderColor.toLowerCase() === fillColor.toLowerCase()
         ? "#17212a" : borderColor;
       entry.element.style.opacity = feature.properties.coordinateTrust === "invalid" ? "0" : "1";
-      entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 5px rgba(0,0,0,.30)";
+      entry.element.style.boxShadow = "0 0 0 .45px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.28)";
     }
     for (const [id, entry] of placeDetailMarkers) {
       if (keep.has(id)) continue;
@@ -843,8 +861,11 @@
       placeDetailMarkers.delete(id);
     }
 
+    updateNativeDetailDotSizes();
     if (!placeDetailMarkerEventsBound) {
       const onViewportChanged = () => syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
+      // Continuous zoom changes size without replacing marker elements.
+      MAP.on("zoom", updateNativeDetailDotSizes);
       MAP.on("moveend", onViewportChanged);
       MAP.on("zoomend", onViewportChanged);
       placeDetailMarkerEventsBound = true;
@@ -1052,7 +1073,7 @@
 
     MAP.addLayer({
       id: L_GLOW,
-      layout: { visibility: useNativeMobileDetailMarkers() ? "none" : "visible" },
+      layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
       minzoom: PLACE_DETAIL_MIN_ZOOM,
       filter: PLACE_DETAIL_LOD_FILTER,
       type: "circle",
@@ -1062,7 +1083,7 @@
 
     MAP.addLayer({
       id: L_DOTS,
-      layout: { visibility: useNativeMobileDetailMarkers() ? "none" : "visible" },
+      layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
       minzoom: PLACE_DETAIL_MIN_ZOOM,
       filter: PLACE_DETAIL_LOD_FILTER,
       type: "circle",
