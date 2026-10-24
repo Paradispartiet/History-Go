@@ -1,0 +1,65 @@
+{
+  "schema": "history_go_six_oslo_places_final_quality_gate_v1",
+  "as_of": "2026-10-24",
+  "pr": 6586,
+  "branch": "research/oslo-six-culture-institutions-v1-20261023",
+  "status": "CONTENT_INTEGRATED_V1_RELEASE_GATES_STILL_OPEN",
+  "scope": {
+    "independent_of_pr_6579": true,
+    "excludes_oslo_batch04": true,
+    "placeIds": [
+      "arbeidersamfunnets_plass",
+      "eldorado_bokhandel",
+      "nobels_fredssenter",
+      "vikaterrassen",
+      "statsministerboligen",
+      "politihuset_gronland"
+    ]
+  },
+  "content": {
+    "places": 6,
+    "fagverkCurated": 6,
+    "quizTotalQuestions": 140,
+    "quizSetsByPlace": {
+      "arbeidersamfunnets_plass": 3,
+      "eldorado_bokhandel": 5,
+      "nobels_fredssenter": 3,
+      "vikaterrassen": 3,
+      "statsministerboligen": 3,
+      "politihuset_gronland": 3
+    },
+    "quizQuestionsByPlace": {
+      "arbeidersamfunnets_plass": 21,
+      "eldorado_bokhandel": 35,
+      "nobels_fredssenter": 21,
+      "vikaterrassen": 21,
+      "statsministerboligen": 21,
+      "politihuset_gronland": 21
+    },
+    "quizCardTop10ByPlace": 10,
+    "cardQuestionsTotal": 60,
+    "verifiedNewPortraitCrops": 5,
+    "existingEldoradoImage": true,
+    "storyAndChronologyFinalReview": "pending"
+  },
+  "passedChecksFromDirectedRuns": [
+    "Five new canonical quiz production contexts rebuilt and checked",
+    "Five new fullquizzes all Knowledge-linked; 50 new QuizCards in exact source answer parity",
+    "Existing Eldorado: 35 quiz questions and 10 QuizCards Knowledge-linked and answer parity",
+    "Five new 900×1200 WebP portrait files created from licensed Commons photography",
+    "Canonical Place-open regeneration and check passed in image workflow",
+    "Changed-place image audit passed in image workflow",
+    "Three Politikk reports now have 14 source-backed opening questions and context",
+    "Epoch viewer coverage expected counts updated and independently passed on earlier commit"
+  ],
+  "openGates": [
+    "Run complete existing PR CI on a user-authored commit; bot-authored heads may be action_required",
+    "Review and resolve any remaining Data checks or quiz governance failures",
+    "Review all source links and claim distinctions including dated sources and superlatives",
+    "Manual browser review on mobile and desktop of PlaceCard, QuizCard, Knowledge feedback, Fagverk and photo framing",
+    "Independently editorial-review each question, its plausible distractors and knowledge explanation",
+    "Politikk chronologyStories G remains N/A pending evidence and editorial evaluation",
+    "Check all six places for sufficient standalone photo and runtime visual quality"
+  ],
+  "releasePolicy": "Remain draft until all required checks are green and editorial/mobile review is evidenced. This report does not self-certify v1."
+}
