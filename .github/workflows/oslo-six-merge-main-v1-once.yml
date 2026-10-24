@@ -1,0 +1,154 @@
+name: Oslo six merge latest main once
+on:
+  push:
+    branches:
+      - research/oslo-six-culture-institutions-v1-20261023
+    paths:
+      - .github/workflows/oslo-six-merge-main-v1-once.yml
+permissions:
+  contents: write
+jobs:
+  resolve-and-rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-six-culture-institutions-v1-20261023
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Merge latest main preserving other production work
+        shell: bash
+        run: |
+          git fetch origin main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git merge --no-commit --no-ff origin/main || true
+          python3 - <<'PY'
+          import json,subprocess,pathlib
+          def git(*args):
+            return subprocess.check_output(['git',*args],stderr=subprocess.PIPE).decode()
+          conflicts=[p.strip() for p in git('diff','--name-only','--diff-filter=U').splitlines() if p.strip()]
+          allow={
+            'data/epoker/epoke-place-index.json',
+            'data/fag/fag_manifest.json',
+            'data/fagverk/fagverk_registry.json',
+            'data/fagverk/fagverk_release.json',
+            'data/knowledge/knowledge_units.generated.json',
+            'data/places/places_index.json',
+            'data/quiz/manifest.json',
+            'data/quizcards/by/manifest.json',
+            'data/quizcards/historie/manifest.json',
+            'reports/fagverk/fagverk-place-page-coverage-v2.json',
+            'reports/knowledge-id-backfill.json',
+            'tests/epoke-place-index.test.mjs'
+          }
+          print('Git conflicts:',conflicts)
+          unexpected=sorted(set(conflicts)-allow)
+          if unexpected:
+            raise SystemExit('Fail closed; unexpected conflicts: '+repr(unexpected))
+          for path in conflicts:
+            original=git('show',':2:'+path)
+            incoming=git('show',':3:'+path)
+            if path=='data/fag/fag_manifest.json':
+              ours,theirs=json.loads(original),json.loads(incoming)
+              for cat,ids in [('by',['vikaterrassen']),('historie',['nobels_fredssenter']),('politikk',['arbeidersamfunnets_plass','politihuset_gronland','statsministerboligen'])]:
+                for id in ids:
+                  key=ours[cat]['quizProduction']['targets'][id]
+                  present=theirs[cat]['quizProduction']['targets'].get(id)
+                  if present and present!=key: raise SystemExit('Different active quiz target: '+id)
+                  theirs[cat]['quizProduction']['targets'][id]=key
+              merged=json.dumps(theirs,ensure_ascii=False,indent=2)+'\n'
+            elif path=='data/quiz/manifest.json':
+              ours,theirs=json.loads(original),json.loads(incoming)
+              targets={'vikaterrassen','nobels_fredssenter','arbeidersamfunnets_plass','politihuset_gronland','statsministerboligen'}
+              extra=[row for row in ours['sets'] if row.get('targetId') in targets]
+              if len(extra)!=5: raise SystemExit('Cannot find exactly five Oslo quiz manifest rows: '+repr(extra))
+              for row in extra:
+                present=[x for x in theirs['sets'] if x.get('targetId')==row['targetId']]
+                if present and present!=[row]: raise SystemExit('Conflicting quiz manifest target: '+row['targetId'])
+                if not present: theirs['sets'].append(row)
+              merged=json.dumps(theirs,ensure_ascii=False,indent=2)+'\n'
+            elif path in ['data/quizcards/by/manifest.json','data/quizcards/historie/manifest.json']:
+              ours,theirs=json.loads(original),json.loads(incoming)
+              wanted=['vikaterrassen_quizkort_v1.json'] if '/by/' in path else ['nobels_fredssenter_quizkort_v1.json']
+              for item in wanted:
+                if item not in ours['collections']: raise SystemExit('Our card missing: '+item)
+                if item not in theirs['collections']: theirs['collections'].append(item)
+              merged=json.dumps(theirs,ensure_ascii=False,indent=2)+'\n'
+            elif path=='data/fagverk/fagverk_registry.json':
+              ours,theirs=json.loads(original),json.loads(incoming)
+              ids=['vikaterrassen','nobels_fredssenter','arbeidersamfunnets_plass','politihuset_gronland','statsministerboligen','eldorado_bokhandel']
+              for id in ids:
+                val=ours['placeLinks'].get(id)
+                if not val: raise SystemExit('Our Fagverk link missing: '+id)
+                if id in theirs['placeLinks'] and theirs['placeLinks'][id]!=val: raise SystemExit('Fagverk ownership clash: '+id)
+                theirs['placeLinks'][id]=val
+              theirs['updatedAt']='2026-10-24'
+              merged=json.dumps(theirs,ensure_ascii=False,indent=2)+'\n'
+            elif path=='tests/epoke-place-index.test.mjs':
+              if 'coverage.awaiting_source_backed_history_count, 314' not in incoming:
+                raise SystemExit('Main epoch-test baseline changed, manual review needed')
+              merged=incoming.replace('coverage.awaiting_source_backed_history_count, 314','coverage.awaiting_source_backed_history_count, 309')
+            else:
+              # Derived artifacts, never merge record fragments. Regenerate from
+              # canonical sources after preserving newest main's other work.
+              merged=incoming
+            pathlib.Path(path).write_text(merged,encoding='utf-8')
+            subprocess.run(['git','add','--',path],check=True)
+          unresolved=git('diff','--name-only','--diff-filter=U')
+          if unresolved.strip(): raise SystemExit('Unresolved merge conflicts:\n'+unresolved)
+          print('Safe merged paths:',len(conflicts))
+          PY
+      - name: Install pinned workspace
+        run: npm ci
+      - name: Deterministically regenerate canonical indexes and Knowledge
+        shell: bash
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run knowledge:canonical:write
+          npm run epoker:places:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify derived artifacts and five new quiz contexts
+        shell: bash
+        run: |
+          npm run places:index:check
+          npm run place-open:check
+          npm run knowledge:canonical:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          for subject_target in \
+            "politikk arbeidersamfunnets_plass" \
+            "politikk politihuset_gronland" \
+            "politikk statsministerboligen" \
+            "historie nobels_fredssenter" \
+            "by vikaterrassen"; do
+            set -- $subject_target
+            npm run quiz:context -- --category "$1" --target "$2" --output "data/quiz/production_context/$1/$2.json" --check
+          done
+      - name: Guard canonical places and other account untouched
+        shell: bash
+        run: |
+          git diff --name-only | tee /tmp/oslo-six-generated.txt
+          if grep '^data/places/.*oslo.*\.json$' /tmp/oslo-six-generated.txt; then
+            echo 'Canonical Place sources changed by a derived-data builder; review required'
+            exit 1
+          fi
+          COUNT="$(wc -l </tmp/oslo-six-generated.txt)"
+          if [ "$COUNT" -gt 70 ]; then
+            echo "Too many regenerated files: $COUNT"
+            exit 1
+          fi
+      - name: Save reviewed merge and remove one-time workflow
+        shell: bash
+        run: |
+          git add -u
+          git rm .github/workflows/oslo-six-merge-main-v1-once.yml
+          git status --short
+          git commit -m "Merge current main preserving both Oslo workstreams and regenerate canonical derived records"
+          git push origin HEAD:research/oslo-six-culture-institutions-v1-20261023
