@@ -44,3 +44,18 @@ test('industrial site never makes a false promise of access or documentary photo
  assert.ok(tegl.images.every(([,svg])=>svg.includes('Historisk illustrasjon')));
  assert.equal(tegl.images.length,3);
 });
+import fs from 'node:fs';
+
+test('candidate files exist as separate Place and quiz JSON, without silent live activation',()=>{
+ const pack=buildOsloFourV1Batch();
+ const manifest=JSON.parse(fs.readFileSync('data/places/manifest.json','utf8'));
+ for(const entry of pack){
+   assert.ok(fs.existsSync(entry.placePath),entry.id+' missing Place source');
+   assert.ok(fs.existsSync(entry.quizPath),entry.id+' missing quiz source');
+   const place=JSON.parse(fs.readFileSync(entry.placePath,'utf8'));
+   const quiz=JSON.parse(fs.readFileSync(entry.quizPath,'utf8'));
+   assert.equal(place.id,entry.id);
+   assert.equal(quiz.sets.flatMap(set=>set.questions).length,entry.quiz.sets.flatMap(set=>set.questions).length);
+   assert.ok(!manifest.files.includes(entry.placePath.replace(/^data\\//,'')),entry.id+' unexpectedly published');
+ }
+});
