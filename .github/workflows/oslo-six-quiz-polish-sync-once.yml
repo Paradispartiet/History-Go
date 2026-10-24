@@ -37,6 +37,39 @@ jobs:
         run: |
           npm run knowledge:canonical:write
           npm run knowledge:canonical:check
+      - name: Align all five ten-card collections with canonical Knowledge and fullquiz
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const targets = [
+            ['politikk','arbeidersamfunnets_plass'],
+            ['politikk','politihuset_gronland'],
+            ['politikk','statsministerboligen'],
+            ['historie','nobels_fredssenter'],
+            ['by','vikaterrassen']
+          ];
+          for (const [cat,id] of targets) {
+            const quiz = JSON.parse(fs.readFileSync('data/quiz/'+cat+'/'+id+'_sets.json', 'utf8'));
+            const file = 'data/quizcards/'+cat+'/'+id+'_quizkort_v1.json';
+            const cards = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const byId = new Map(quiz.sets.flatMap(set => set.questions.map(q => [q.id,q])));
+            const matched = cards.cards.filter(c => c.targetId === id);
+            if (matched.length !== 1 || matched[0].questions.length !== 10) throw Error(id+' incorrect QuizCard count');
+            for (const card of matched) {
+              for (const qcard of card.questions) {
+                const question = byId.get(qcard.sourceQuestionId);
+                if (!question || question.knowledge_link_status !== 'linked' || !question.primary_knowledge_unit_id) throw Error(id+' unlinked '+qcard.sourceQuestionId);
+                for (const key of ['question','options','answer','answerIndex','knowledge','difficulty','claim_id','primary_knowledge_unit_id','knowledge_unit_ids','concept_ids','term_ids','emne_id','knowledge_contract_version','knowledge_link_status']) qcard[key] = question[key];
+                qcard.sourceQuizId = question.quiz_id;
+                qcard.source_refs = question.source;
+                qcard.source_urls = question.source.map(x => quiz.sources[x] || x);
+              }
+              card.answerKey = card.questions.map(q => ({number:q.number, answer:q.answer, answerIndex:q.answerIndex}));
+            }
+            fs.writeFileSync(file, JSON.stringify(cards,null,2)+'\n');
+          }
+          NODE
       - name: Update Fagverk release digest for source-first context
         run: |
           node scripts/build-fagverk-release-manifest.mjs
@@ -68,5 +101,5 @@ jobs:
           git add -u
           git rm .github/workflows/oslo-six-quiz-polish-sync-once.yml
           git diff --cached --stat
-          git diff --cached --quiet || git commit -m "Regenerate Knowledge, contexts and Fagverk digest for source-checked Oslo quiz reasoning"
+          git diff --cached --quiet || git commit -m "Regenerate quiz Knowledge, 50 QuizCards, contexts and Fagverk digest for Oslo six"
           git push origin HEAD:research/oslo-six-culture-institutions-v1-20261023
