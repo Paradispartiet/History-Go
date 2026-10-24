@@ -95,8 +95,20 @@
     "rationale": "Rapporten dokumenterer historiske funksjoner og daterte institusjonsforhold, ingen ubekreftede nåtidskrav."
   },
   "quizOpening": {
-    "status": "N/A",
-    "rationale": "Stedsquizen og dokumentasjon av 14 åpningsspørsmål mangler fortsatt; denne porten er ikke godkjent."
+    "status": "PASS",
+    "quizTargetId": "statsministerboligen",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/statsministerboligen.json",
+    "productionContext": "data/quiz/production_context/politikk/statsministerboligen.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
   },
   "chronologyStories": {
     "status": "N/A",
@@ -137,8 +149,12 @@
       ]
     },
     "F": {
-      "status": "N/A",
-      "rationale": "Stedsquizen og dokumentasjon av 14 åpningsspørsmål mangler fortsatt; denne porten er ikke godkjent."
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/statsministerboligen_sets.json",
+        "data/quiz/production_briefs/politikk/statsministerboligen.json",
+        "data/quiz/production_context/politikk/statsministerboligen.json"
+      ]
     },
     "G": {
       "status": "N/A",
@@ -148,6 +164,6 @@
   "review": {
     "reviewer": "History GO assisted source trace; final editorial approval outstanding",
     "reviewedAt": "2026-10-24",
-    "notes": "Historiske stedsfakta og eksplisitte avgrensninger dokumentert fra åpne kilder. F og G står bevisst N/A. Ingen falsk påstand om v1- eller menneskelig endelig godkjenning."
+    "notes": "Historiske stedsfakta og eksplisitte avgrensninger dokumentert fra åpne kilder. F og G står bevisst N/A. Ingen falsk påstand om v1- eller menneskelig endelig godkjenning. Quizåpningen har nå 14 historiske, kildebelagte spørsmål knyttet til fullquiz og produksjonskontekst."
   }
 }

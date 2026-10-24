@@ -101,8 +101,20 @@
     ]
   },
   "quizOpening": {
-    "status": "N/A",
-    "rationale": "Stedsquizen må ferdigstilles og dokumenteres i kanoniske produksjonsfiler før denne porten kan bestås."
+    "status": "PASS",
+    "quizTargetId": "politihuset_gronland",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/politihuset_gronland.json",
+    "productionContext": "data/quiz/production_context/politikk/politihuset_gronland.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
   },
   "chronologyStories": {
     "status": "N/A",
@@ -143,8 +155,12 @@
       ]
     },
     "F": {
-      "status": "N/A",
-      "rationale": "Stedsquizen må ferdigstilles og dokumenteres i kanoniske produksjonsfiler før denne porten kan bestås."
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/politihuset_gronland_sets.json",
+        "data/quiz/production_briefs/politikk/politihuset_gronland.json",
+        "data/quiz/production_context/politikk/politihuset_gronland.json"
+      ]
     },
     "G": {
       "status": "N/A",
@@ -154,6 +170,6 @@
   "review": {
     "reviewer": "History GO assisted source trace; final editorial approval outstanding",
     "reviewedAt": "2026-10-24",
-    "notes": "Historiske stedsfakta og eksplisitte avgrensninger dokumentert fra åpne kilder. F og G står bevisst N/A. Ingen falsk påstand om v1- eller menneskelig endelig godkjenning."
+    "notes": "Historiske stedsfakta og eksplisitte avgrensninger dokumentert fra åpne kilder. F og G står bevisst N/A. Ingen falsk påstand om v1- eller menneskelig endelig godkjenning. Quizåpningen har nå 14 historiske, kildebelagte spørsmål knyttet til fullquiz og produksjonskontekst."
   }
 }
