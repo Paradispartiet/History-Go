@@ -1302,8 +1302,8 @@ body.civi-mapmode .civi-panels{
 .civi-lifestory-delta.is-negative{ border-color:rgba(248,113,113,.38); }
 
 .civi-lifestory-panels{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  display:flex;
+  flex-direction:column;
   gap:10px;
   min-width:0;
   max-width:100%;
@@ -1471,6 +1471,58 @@ body.civi-mapmode .civi-panels{
 }
 #civiLifestoryPanel .civi-lifestory-delta.is-positive{color:#b1f7c8;}
 #civiLifestoryPanel .civi-lifestory-delta.is-negative{color:#ffc2c2;}
+
+/* Min dag v2: one current decision, with historical and numeric detail secondary. */
+#civiLifestoryPanel .civi-lifestory-status-details,
+#civiLifestoryPanel .civi-lifestory-history-content > details{
+  padding:10px 12px;
+  border:1px solid var(--line2);
+  border-radius:12px;
+  background:var(--card2);
+}
+#civiLifestoryPanel .civi-lifestory-status-details .civi-lifestory-status{
+  margin-top:10px;
+}
+#civiLifestoryPanel .civi-lifestory-history-content{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:8px;
+}
+#civiLifestoryPanel .civi-lifestory-history-content > section{
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+#civiLifestoryPanel .civi-lifestory-previous{
+  padding:12px 14px;
+  border-left:3px solid #63cbbb;
+  border-radius:12px;
+  background:rgba(54,139,103,.09);
+  color:var(--ink);
+}
+#civiLifestoryPanel .civi-lifestory-previous strong{
+  display:block;
+  font-size:var(--civi-font-meta);
+}
+#civiLifestoryPanel .civi-lifestory-previous p{
+  margin:6px 0 0;
+  color:var(--ink2);
+  overflow-wrap:anywhere;
+}
+#civiLifestoryPanel .civi-lifestory-panels > section,
+#civiLifestoryPanel .civi-lifestory-panels > details{
+  width:100%;
+  box-sizing:border-box;
+}
+@media (max-width: 720px){
+  #civiLifestoryPanel .civi-lifestory-status{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  #civiLifestoryPanel .civi-lifestory-panels > section,
+  #civiLifestoryPanel .civi-lifestory-panels > details{
+    padding:12px;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){
   #civiLifestoryPanel .civi-lifestory-choice{transition:none;}
 }
