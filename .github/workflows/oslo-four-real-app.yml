@@ -17,6 +17,10 @@ on:
       - '.github/workflows/oslo-four-real-app.yml'
   workflow_dispatch:
 
+concurrency:
+  group: oslo-four-app-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
