@@ -30,7 +30,7 @@ function run() {
       </section>
       <section id="activeJobSection">
         <div id="activeJobCard">
-          <strong>Rolle: Renholder</strong>
+          <strong>Rolle: Testrolle</strong>
           <p>Ingen aktive jobbtilbud.</p>
           <label>Hverdagsstatus <select><option>Arbeidssøker / arbeidsledig</option></select></label>
           <button type="button">Rediger livsprofil</button>
@@ -72,7 +72,7 @@ function run() {
     }
   };
   window.CivicationMailEngine = { getInbox() { return []; } };
-  let activePosition = { title: "Renholder", career_id: "naeringsliv" };
+  let activePosition = { title: "Testrolle", career_id: "naeringsliv" };
   let pendingOffer = null;
   window.CivicationState = { getActivePosition() { return activePosition; } };
   window.CivicationJobs = { getLatestPendingOffer() { return pendingOffer; } };
@@ -111,14 +111,14 @@ function run() {
   assert.strictEqual(activeButton.textContent, "Åpne rolle", "accepted job returns to ordinary role action");
 
   activePosition = null;
-  pendingOffer = { offer_key: "naeringsliv:2", status: "pending", title: "Renholder" };
+  pendingOffer = { offer_key: "naeringsliv:2", status: "pending", title: "Testrolle" };
   window.CivicationMiniSectionsUI.refresh();
   assert.ok(activeSection.classList.contains("needs-feedback"), "unanswered job offer should be urgent");
   assert.strictEqual(activeStatus.textContent, "Krever tilbakemelding", "pending offer should require a response");
   assert.strictEqual(activeButton.textContent, "Svar på tilbud", "pending offer should allow a response");
 
   pendingOffer = null;
-  activePosition = { title: "Renholder", career_id: "naeringsliv" };
+  activePosition = { title: "Testrolle", career_id: "naeringsliv" };
   window.CivicationMiniSectionsUI.refresh();
   assert.ok(!activeSection.classList.contains("needs-feedback"), "accepting the offer clears urgency");
   assert.notStrictEqual(activeStatus.textContent, "Krever tilbakemelding", "accepted offer clears feedback badge");
