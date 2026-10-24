@@ -62,5 +62,7 @@ jobs:
           git add data/places/manifest.json data/quiz/manifest.json data/quizcards/historie/manifest.json data/quizcards/naeringsliv/manifest.json data/fagverk/fagverk_registry.json data/knowledge data/runtime reports/knowledge-id-backfill.json reports/place-production/oslo-four-onboarding-state-20261024.json || true
           if ! git diff --cached --quiet; then
             git commit -m "data(oslo): materialize 4 Place, 91 quiz and 40 QuizCard candidates"
+            git fetch origin feat/oslo-four-places-canonical-20261024
+            git rebase origin/feat/oslo-four-places-canonical-20261024
             git push origin HEAD:feat/oslo-four-places-canonical-20261024
           fi
