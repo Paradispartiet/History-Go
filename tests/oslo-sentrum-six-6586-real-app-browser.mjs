@@ -54,7 +54,20 @@ try{
      const range = document.createRange();
      range.setStart(node,start);
      range.setEnd(node,start + firstWord.length);
-     return {firstWord, fragments:range.getClientRects().length};
+     return {
+      firstWord,
+      fragments:range.getClientRects().length,
+      computedFontSize:getComputedStyle(el).fontSize,
+      computedLetterSpacing:getComputedStyle(el).letterSpacing,
+      computedGridColumn:getComputedStyle(el).gridColumn,
+      titleWidth:el.getBoundingClientRect().width,
+      titleScrollWidth:el.scrollWidth,
+      rowWidth:el.parentElement.getBoundingClientRect().width,
+      matchedPlaceId:el.closest('#placeCard')?.dataset.currentPlaceId,
+      rowClass:el.parentElement.className,
+      heroClass:el.closest('.pc-heading-hero')?.className,
+      declaredStylesheets:[...document.styleSheets].map(ss=>ss.href).filter(Boolean).filter(h=>h.includes('placeCard'))
+     };
     });
     assert.equal(wordLayout.fragments,1,target+'/'+width+': PlaceCard splits first word mid-word: '+JSON.stringify(wordLayout));
    }
