@@ -1,0 +1,59 @@
+name: Oslo sentrum Politikk six – real app browser QA
+on:
+  pull_request:
+    paths:
+      - 'data/places/politikk/oslo/places_politikk/folkets_hus_oslo.json'
+      - 'data/places/politikk/oslo/places_politikk/hoyesteretts_hus.json'
+      - 'data/places/politikk/oslo/places_politikk/hoyres_hus.json'
+      - 'data/places/politikk/oslo/places_politikk/hoyblokka.json'
+      - 'data/places/politikk/oslo/places_politikk/victoria_terrasse.json'
+      - 'data/places/politikk/oslo/places_politikk/y_blokka.json'
+      - 'data/quiz/politikk/folkets_hus_oslo_sets.json'
+      - 'data/quiz/politikk/hoyesteretts_hus_sets.json'
+      - 'data/quiz/politikk/hoyres_hus_sets.json'
+      - 'data/quiz/politikk/hoyblokka_sets.json'
+      - 'data/quiz/politikk/victoria_terrasse_sets.json'
+      - 'data/quiz/politikk/y_blokka_sets.json'
+      - 'data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json'
+      - 'js/ui/place-card.js'
+      - 'js/ui/placeQuizCards.ts'
+      - 'js/ui/place-card-quizcards-patch.js'
+      - 'css/placeCard.css'
+      - 'tests/place-card-photo-caption.test.mjs'
+      - 'tests/place-quizcard-hydration-stability.test.mjs'
+      - 'tests/oslo-politikk-six-browser.mjs'
+      - '.github/workflows/oslo-politikk-six-browser.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: oslo-politikk-six-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  actual-mobile-desktop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/place-card-photo-caption.test.mjs tests/place-quizcard-hydration-stability.test.mjs
+      - name: Use installed Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Verify PlaceCard, photos, flipped QuizCard and Fagverk on mobile and desktop
+        run: node tests/oslo-politikk-six-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-politikk-six-browser-evidence
+          path: artifacts/oslo-politikk-six-browser/**
+          if-no-files-found: ignore
+          retention-days: 14

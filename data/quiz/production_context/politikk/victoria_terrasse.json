@@ -1,0 +1,581 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "politikk",
+  "targetId": "victoria_terrasse",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1419,
+    "selection_sha256": "c04f50ec1f427ef896cebe8d42e9e4e817505094f58da24f5c046630d91c0e1a",
+    "category_id": "politikk",
+    "target_id": "victoria_terrasse"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "bytes": 106999,
+      "sha256": "391418e064d0d6c01e25c8ceb605fe1ae48d9fae3e9ccdd5e3091897e185a5a0",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "bytes": 1205851,
+      "sha256": "0711d942ab833490f4914d7ed472a99741021bb5fce76dfb90fea573794aaa1f",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "bytes": 1099481,
+      "sha256": "5a81d0d09ac89093705b6343f8de09d2565ca00e2086a354caa7f652f0ef63c7",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "bytes": 665205,
+      "sha256": "92e56fa6afe941245a6caef1a5e1ca51cca9372cc49f29b003c3e549a6359b62",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "bytes": 17236,
+      "sha256": "47609c9599cdffdf53702152ca3ebf071571cbfa131e1f9a89703964546476de",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/politikk/victoria_terrasse.json",
+      "bytes": 12941,
+      "sha256": "3829c1539720d9b395f698b62557ab9c09fb686f50d3e12642307319c2397021"
+    },
+    "target": {
+      "path": "data/places/politikk/oslo/places_politikk/victoria_terrasse.json",
+      "bytes": 13960,
+      "sha256": "872ca52450c243c66e734d267034cc0d09a058c3a3f92ef88d5458112fc745cd"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1181,
+      "selection_sha256": "1e84ab35f7a4bc7d64dce2986485deab266c2adbcebb7f4e5a63ea2cc6f345ac"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/politikk/victoria_terrasse_sets.json",
+  "source_registry": {
+    "src_874a3f7231ca": {
+      "url": "https://riksantikvaren.no/fredninger/victoria-terrasse-blir-fredet/",
+      "source_type": "official_institution",
+      "review_status": "reviewed",
+      "review_note": "Riksantikvaren, Nå fredes Victoria terrasse for evigheten, avsnittet Eiendommen skal selges og begrunnelsen ved Hanna Geiran; lest 2026-10-23."
+    },
+    "src_decb0738b661": {
+      "url": "https://snl.no/Victoria_terrasse",
+      "source_type": "specialist_historical_reference",
+      "review_status": "reviewed",
+      "review_note": "Historisk kjernepåstand dokumentert med denne lenken i 23. oktober-researchbanken; kandidatens feilsvar og progresjon må dessuten kontrolleres før v1-godkjenning."
+    },
+    "src_a65d79dede2d": {
+      "url": "https://www.regjeringen.no/no/aktuelt/offisiell-apning-av-nytt-regjeringskvartal/id3153629/",
+      "source_type": "official_institution",
+      "review_status": "reviewed",
+      "review_note": "Historisk kjernepåstand dokumentert med denne lenken i 23. oktober-researchbanken; kandidatens feilsvar og progresjon må dessuten kontrolleres før v1-godkjenning."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/politikk/victoria_terrasse_sets.json",
+      "data/quizcards/politikk/manifest.json",
+      "data/quizcards/politikk/topp10_politikk_oslo_v1_batch1.json",
+      "reports/place-production/oslo-sentrum-politikk-six-quiz-sourcebank-20261023.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen direkte aktiv settmanifestoppføring i denne kategori-/målauditen."
+    },
+    "decisions": [
+      "Velg 21 kildebårne, forskjellige påstander og skille tidligere bruk fra dagens sted.",
+      "Ingen hypotetiske, fritekstbaserte eller ikke-kildebelagte oppgaver tas inn.",
+      "victoria_terrasse_card_10: generelt metaspørsmål erstattet med direkte kildebåret spørsmål; kontrollert påstand og sammenlignbare distraktorer 2026-10-23.",
+      "Sluttreview 2026-10-23: konkrete finansierings-, overvåkings-, organisasjons-, verne- og bevaringsspørsmål erstatter generelle/metapregede eller dupliserte oppgaver; kildestøttet ramme og begrensninger er beholdt."
+    ],
+    "knowledge_migration": "Generer canonical Knowledge-ID-er fra de nye kildesporbare quizspørsmålene."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Kildegrunnlaget beskriver boligkompleks, UD, Gestapo/Statspolitiet, krigshistorie og fredningen fra 2025; 1912/1913 er holdt utenfor. Tre konkrete, kildestøttede sett er avgrenset til stedshistorie, dokumentert endring og avsluttende institusjonell sammenligning; øvrige kandidater er ikke selvstendig dokumenterte ekstra sett."
+  },
+  "held_back_candidates": [
+    "Spørsmål og svaralternativer med utilstrekkelig kildestøtte, tidspresisjon eller pedagogisk relevans beholdes utenfor denne narrow-profilen."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 13,
+      "emner": 123,
+      "topic_hooks": 152,
+      "methods": 71
+    },
+    "candidate_emner": [
+      {
+        "id": "em_pol_institusjoner_styring",
+        "title": "Institusjoner og styring",
+        "score": 100
+      },
+      {
+        "id": "em_pol_maktens_geografi",
+        "title": "Maktens geografi",
+        "score": 100
+      },
+      {
+        "id": "em_pol_minnesteder_politisk_kamp",
+        "title": "Minnesteder og politisk kamp",
+        "score": 100
+      },
+      {
+        "id": "em_pol_politisk_historie",
+        "title": "Politisk historie",
+        "score": 100
+      },
+      {
+        "id": "em_pol_rettsstat_rettssikkerhet",
+        "title": "Rettsstat og rettssikkerhet",
+        "score": 100
+      },
+      {
+        "id": "em_pol_utenrikspolitikk_smastat",
+        "title": "Utenrikspolitikk og småstat",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "boligpolitikk",
+        "title": "Boligpolitikk",
+        "category_id": "fordeling_velferd_ulikhet",
+        "score": 10
+      },
+      {
+        "id": "demokratiets_rom",
+        "title": "Demokratiets rom",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "institusjon_som_maktform",
+        "title": "Institusjon som maktform",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 10
+      },
+      {
+        "id": "konfliktens_rom",
+        "title": "Konfliktens rom",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 10
+      },
+      {
+        "id": "legitimitet_i_systemet",
+        "title": "Legitimitet i systemet",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 10
+      },
+      {
+        "id": "parlamentarisme",
+        "title": "Parlamentarisme",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "reguleringsplaner",
+        "title": "Reguleringsplaner",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 10
+      },
+      {
+        "id": "stat_og_by",
+        "title": "Stat og by",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "styring_institusjoner_forvaltning"
+    ],
+    "emne_ids": [
+      "em_pol_institusjoner_styring",
+      "em_pol_maktens_geografi"
+    ],
+    "topic_hook_ids": [
+      "stat_og_by"
+    ],
+    "method_ids": [
+      "met_pol_dokumentanalyse"
+    ],
+    "thinker_ids": [
+      "theda_skocpol"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Komplekset ble oppført som eksklusive boliger i 1880-årene.",
+      "source_ids": [
+        "src_874a3f7231ca",
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Victoria terrasse var UDs historiske hovedadresse.",
+      "source_ids": [
+        "src_874a3f7231ca",
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fredningen ble formelt gjennomført 21. mars 2025.",
+      "source_ids": [
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Gestapo brukte komplekset under okkupasjonen.",
+      "source_ids": [
+        "src_874a3f7231ca",
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ibsens gamle leilighet inngår i vernet.",
+      "source_ids": [
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "UD flyttet til D-blokka i 2026.",
+      "source_ids": [
+        "src_a65d79dede2d",
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "To celler i kjelleren er blant de fredede delene.",
+      "source_ids": [
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_09",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Fredningen omfatter blant annet tilbygget fra 1963.",
+      "source_ids": [
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_10",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Riksantikvaren knyttet fredningen til planene om salg etter UDs utflytting. Vernet fastsetter rammer for framtidig bruk og endring.",
+      "source_ids": [
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_11",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Det store boligkomplekset stod ferdig i 1890, før det senere ble kontorer for staten.",
+      "source_ids": [
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_12",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Henrik Thrap-Meyer var hovedarkitekt, men flere andre arkitekter deltok i sluttfasen.",
+      "source_ids": [
+        "src_decb0738b661",
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_13",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Komplekset ble oppkalt etter daværende kronprinsesse Victoria av Sverige og Norge.",
+      "source_ids": [
+        "src_decb0738b661",
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_14",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Victoria terrasse hadde opprinnelig 124 leiligheter, mange med høy standard.",
+      "source_ids": [
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_15",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "De opprinnelige leilighetene hadde innlagt vann og elektrisk belysning.",
+      "source_ids": [
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_16",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Ruseløkkbasarene lå på nivået nedenfor den monumentale boligbebyggelsen og ble senere revet.",
+      "source_ids": [
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_17",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "De opprinnelige basarene ble revet på 1960-tallet, og Vikaterrassen ble senere etablert på stedet.",
+      "source_ids": [
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_18",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Victoria terrasse består av tre kvartaler skilt av to tverrgater.",
+      "source_ids": [
+        "src_decb0738b661"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_19",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ibsen bodde i Sydkvartalet 1891–1895 og skrev blant annet Byggmester Solness og Lille Eyolf.",
+      "source_ids": [
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring",
+      "method_id": "met_pol_dokumentanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_20",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Riksantikvaren nevner det nazifiserte norske Statspolitiet sammen med Gestapo; ansvaret må knyttes til de historiske organene.",
+      "source_ids": [
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring",
+      "method_id": "met_pol_dokumentanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_fullquiz_research_21",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Riksantikvaren opplyser at tre trapper inngår i de fredede interiørdelene.",
+      "source_ids": [
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring",
+      "method_id": "met_pol_dokumentanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_six_victoria_terrasse_card_08",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fredningen omfatter fasader, 1963-tilbygget og blant annet tre trapper, to fengselsceller og Ibsens leilighet. Riksantikvaren og Statsbygg beskrev vedtaket som en premiss for salget og framtidig bruk.",
+      "source_ids": [
+        "src_874a3f7231ca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_maktens_geografi",
+      "method_id": "met_pol_dokumentanalyse",
+      "topic_hook_id": "stat_og_by",
+      "thinker_id": "theda_skocpol"
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "politikk_victoria_terrasse_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_six_victoria_terrasse_card_01",
+        "claim_oslo_six_victoria_terrasse_card_02",
+        "claim_oslo_six_victoria_terrasse_card_03",
+        "claim_oslo_six_victoria_terrasse_card_04",
+        "claim_oslo_six_victoria_terrasse_card_05",
+        "claim_oslo_six_victoria_terrasse_card_06",
+        "claim_oslo_six_victoria_terrasse_card_07"
+      ]
+    },
+    {
+      "set_id": "politikk_victoria_terrasse_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_six_victoria_terrasse_card_09",
+        "claim_oslo_six_victoria_terrasse_card_10",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_11",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_12",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_13",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_14",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_15"
+      ]
+    },
+    {
+      "set_id": "politikk_victoria_terrasse_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_16",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_17",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_18",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_19",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_20",
+        "claim_oslo_six_victoria_terrasse_fullquiz_research_21",
+        "claim_oslo_six_victoria_terrasse_card_08"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
+    }
+  }
+}
