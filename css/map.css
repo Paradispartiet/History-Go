@@ -481,7 +481,8 @@ body.hg-app.map-only .map-controls {
    Names appear at detail zoom only; the map engine bounds the number and
    avoids label collisions. No WebGL glyph dependency on iPad/Safari. */
 #map .hg-place-detail-marker {
-  position: relative;
+  /* MapLibre owns absolute map-coordinate positioning. Do not override it. */
+  position: absolute;
   overflow: visible;
 }
 #map .hg-place-detail-marker .hg-place-detail-label {
