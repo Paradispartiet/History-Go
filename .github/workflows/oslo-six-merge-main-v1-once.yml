@@ -114,6 +114,18 @@ jobs:
           npm run epoker:places:build
           node scripts/audit-fagverk-place-pages.mjs --write
           node scripts/build-fagverk-release-manifest.mjs
+      - name: Refresh five source-first contexts after the main merge
+        shell: bash
+        run: |
+          for subject_target in \
+            "politikk arbeidersamfunnets_plass" \
+            "politikk politihuset_gronland" \
+            "politikk statsministerboligen" \
+            "historie nobels_fredssenter" \
+            "by vikaterrassen"; do
+            set -- $subject_target
+            npm run quiz:context -- --category "$1" --target "$2" --output "data/quiz/production_context/$1/$2.json"
+          done
       - name: Verify derived artifacts and five new quiz contexts
         shell: bash
         run: |
