@@ -124,6 +124,7 @@ try {
         outline: css?.borderTopColor,
         name: el?.querySelector(".hg-place-detail-label")?.textContent,
         nameDisplay: el?.querySelector(".hg-place-detail-label")?.style.display,
+        markerCssPosition: css?.position,
         nameCssPosition: el?.querySelector(".hg-place-detail-label")
           ? getComputedStyle(el.querySelector(".hg-place-detail-label")).position : null,
         vector: !!window.__testMap.getLayer("hg-places-dots")
@@ -138,6 +139,7 @@ try {
       assert.equal(first.name, "Torggata", "a visible place name must accompany native dots");
       assert.equal(first.nameDisplay, "block", "touch name is visible before style.load");
       assert.equal(first.nameCssPosition, "absolute", "label is anchored to marker without changing dot size");
+      assert.equal(first.markerCssPosition, "absolute", "MapLibre must retain absolute coordinates");
     }
     await page.evaluate(() => {
       window.__originalDot = document.querySelector(".hg-place-detail-marker");
