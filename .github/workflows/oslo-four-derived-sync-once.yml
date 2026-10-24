@@ -1,0 +1,44 @@
+name: Oslo four derived indexes (one-shot)
+on:
+  push:
+    branches: [feat/oslo-four-runtime-index-20261024]
+    paths:
+      - '.github/workflows/oslo-four-derived-sync-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: oslo-four-derived-once
+  cancel-in-progress: true
+jobs:
+  sync:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/oslo-four-runtime-index-20261024
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - name: Regenerate chronological Place and Fagverk derived indexes
+        run: |
+          npm run epoker:places:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Confirm deterministic derived indexes
+        run: |
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit only derived release files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/epoker/epoke-place-index.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build(oslo): sync epoke-place index and Fagverk release for four new Places"
+            git fetch origin feat/oslo-four-runtime-index-20261024
+            git rebase origin/feat/oslo-four-runtime-index-20261024
+            git push origin HEAD:feat/oslo-four-runtime-index-20261024
+          fi
