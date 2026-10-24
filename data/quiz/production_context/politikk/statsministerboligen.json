@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/politikk/statsministerboligen.json",
-      "bytes": 12231,
-      "sha256": "535cd35cb89dce092dcd767540129db504f89b9eda5ea16982252f5939d6a118"
+      "bytes": 12550,
+      "sha256": "143f24a38bd8e41a89b0f8351847f232bf95b8f58029cae80fc9f41c4d1c1371"
     },
     "target": {
       "path": "data/places/politikk/oslo/places_politikk/statsministerboligen.json",
@@ -393,8 +393,8 @@
       "claim_id": "claim_statsministerboligen_quiz_14",
       "order": 14,
       "planned_phase": "bridge",
-      "family": "fact",
-      "statement": "Planen la statsministerens privatdel til de to øverste etasjene i Inkognitogata 18.",
+      "family": "context",
+      "statement": "Regjeringens plan omfattet Inkognitogata 18, Riddervolds gate 2 og Parkveien 45 med ulike bolig- og representasjonsfunksjoner.",
       "source_ids": [
         "source_statsministerboligen_02"
       ],
@@ -405,10 +405,10 @@
       "claim_id": "claim_statsministerboligen_quiz_15",
       "order": 15,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Regjeringen planla en representasjonsdel i første etasje under den private boligdelen.",
+      "family": "context",
+      "statement": "Inkognitogata 18 brukes av skiftende statsministre i kraft av embetet, slik innflyttingene i 2008 og 2013 viser.",
       "source_ids": [
-        "source_statsministerboligen_02"
+        "source_statsministerboligen_01"
       ],
       "source_origin": "external",
       "emne_id": "em_pol_politisk_historie"
@@ -417,8 +417,8 @@
       "claim_id": "claim_statsministerboligen_quiz_16",
       "order": 16,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Parkveien 45 var statens representasjonsbolig, som det nye anlegget skulle utvide.",
+      "family": "context",
+      "statement": "Planmeldingen beskriver privat statsministerbolig i Inkognitogata 18 og gjeste- og møtefasiliteter i Riddervolds gate 2.",
       "source_ids": [
         "source_statsministerboligen_02"
       ],
@@ -430,7 +430,7 @@
       "order": 17,
       "planned_phase": "final",
       "family": "context",
-      "statement": "Statsbygg la fram skisseprosjektet i mars 1999.",
+      "statement": "Representasjonsanlegget ble omtalt i regjeringens planmelding i 2004, bygging begynte i 2006, og boligen ble tatt i bruk i 2008.",
       "source_ids": [
         "source_statsministerboligen_02"
       ],
@@ -441,10 +441,10 @@
       "claim_id": "claim_statsministerboligen_quiz_18",
       "order": 18,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Regjeringen pekte på sikkerhet, nærhet og felles støttefunksjoner.",
+      "family": "context",
+      "statement": "Boligen har en kontinuerlig funksjon knyttet til statsministerembetet selv om statsministeren skifter.",
       "source_ids": [
-        "source_statsministerboligen_04"
+        "source_statsministerboligen_01"
       ],
       "source_origin": "external",
       "emne_id": "em_pol_politisk_historie"
@@ -453,22 +453,22 @@
       "claim_id": "claim_statsministerboligen_quiz_19",
       "order": 19,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Jens Stoltenberg flyttet ut 16. oktober 2013, og Erna Solberg flyttet inn noen uker senere.",
+      "family": "concept_theory",
+      "statement": "Embetsboligen hører til den statlige institusjonsordningen, mens de enkelte statsministrene kommer og går.",
       "source_ids": [
         "source_statsministerboligen_01"
       ],
       "source_origin": "external",
-      "emne_id": "em_pol_politisk_historie"
+      "emne_id": "em_pol_institusjoner_styring"
     },
     {
       "claim_id": "claim_statsministerboligen_quiz_20",
       "order": 20,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Regjeringens historikk beskriver et århundre før fast boligtilknytning til kvartalet ble gjenopprettet.",
+      "family": "concept_theory",
+      "statement": "Representasjonsprosjektet skulle samle statsministerbolig, gjestefasiliteter og statlige møter på nærliggende eiendommer.",
       "source_ids": [
-        "source_statsministerboligen_01"
+        "source_statsministerboligen_02"
       ],
       "source_origin": "external",
       "emne_id": "em_pol_politisk_historie"
@@ -477,10 +477,10 @@
       "claim_id": "claim_statsministerboligen_quiz_21",
       "order": 21,
       "planned_phase": "final",
-      "family": "context",
-      "statement": "Regjeringen beskrev Parkveien 45 som et representasjonssted for blant annet møter, mottakelser og middager.",
+      "family": "concept_theory",
+      "statement": "Planmeldingen dokumenterer begrunnelser for et nytt anlegg; senere gjennomføring og effekter må kontrolleres med nyere kilder.",
       "source_ids": [
-        "source_statsministerboligen_04"
+        "source_statsministerboligen_02"
       ],
       "source_origin": "external",
       "emne_id": "em_pol_politisk_historie"
@@ -540,14 +540,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 19,
-      "context": 2,
-      "concept_theory": 0
+      "fact": 13,
+      "context": 5,
+      "concept_theory": 3
     },
     "ratios": {
-      "fact": 0.905,
-      "context": 0.095,
-      "concept_theory": 0
+      "fact": 0.619,
+      "context": 0.238,
+      "concept_theory": 0.143
     }
   }
 }
