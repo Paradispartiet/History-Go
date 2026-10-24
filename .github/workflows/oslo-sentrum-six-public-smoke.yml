@@ -1,0 +1,55 @@
+name: Oslo sentrum six — public Pages smoke
+on:
+  pull_request:
+    paths:
+      - 'tests/oslo-sentrum-six-public-smoke.mjs'
+      - '.github/workflows/oslo-sentrum-six-public-smoke.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tests/oslo-sentrum-six-public-smoke.mjs'
+      - '.github/workflows/oslo-sentrum-six-public-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: oslo-six-public-pages-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  public-browser:
+    name: ${{ matrix.place }} — WebKit mobile / Chromium desktop
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        place:
+          - arbeidersamfunnets_plass
+          - eldorado_bokhandel
+          - nobels_fredssenter
+          - vikaterrassen
+          - statsministerboligen
+          - politihuset_gronland
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: Install browser engines
+        run: npx playwright install --with-deps chromium webkit
+      - name: Verify real GitHub Pages deployment
+        env:
+          HG_PLACE_ID: ${{ matrix.place }}
+        run: node tests/oslo-sentrum-six-public-smoke.mjs
+      - name: Attach live screenshots and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-six-public-${{ matrix.place }}
+          path: artifacts/oslo-six-public/${{ matrix.place }}/
+          if-no-files-found: warn
+          retention-days: 14
