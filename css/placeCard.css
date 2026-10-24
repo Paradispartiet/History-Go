@@ -2343,8 +2343,11 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   #placeCard[data-current-place-id="arbeidersamfunnets_plass"] .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle,
   #placeCard[data-current-place-id="statsministerboligen"] .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle {
     grid-column: 1 / -1;
-    font-size: clamp(19px, 5.2vw, 22px);
-    line-height: 1.08;
+    box-sizing: border-box;
+    padding-right: 40px;
+    font-size: clamp(16px, 4.5vw, 20px);
+    line-height: 1.12;
+    letter-spacing: -.045em;
     overflow-wrap: normal;
     word-break: normal;
     hyphens: manual;
