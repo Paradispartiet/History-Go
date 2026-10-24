@@ -338,7 +338,11 @@
         "pcQuizCardImage"
       );
       if (!flipElement || !contentElement || !cardData) return false;
-      contentElement.innerHTML = renderQuizCard(cardData);
+      const signature = JSON.stringify(cardData);
+      if (contentElement.dataset.quizCardSignature !== signature || !contentElement.querySelector(".pc-rendered-quiz-card")) {
+        contentElement.innerHTML = runtime.renderPlaceCardQuizData ? runtime.renderPlaceCardQuizData(cardData) : renderQuizCard(cardData);
+        contentElement.dataset.quizCardSignature = signature;
+      }
       contentElement.hidden = false;
       if (imageElement) {
         imageElement.alt = "";

@@ -1,0 +1,1034 @@
+{
+  "targetId": "hoyesteretts_hus",
+  "categoryId": "politikk",
+  "sources": {
+    "src_7ea4aa9fface": "https://oslobyleksikon.no/side/H%C3%B8yesteretts_hus",
+    "src_2fa602a505c5": "https://www.domstol.no/no/hoyesterett/om/historie/",
+    "src_5e32cb0c894a": "https://lovdata.no/nav/lov/1814-05-17/kapE",
+    "src_e551048f7965": "https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/",
+    "src_stortinget_grunnloven_89_2020": "https://www.stortinget.no/no/Saker-og-publikasjoner/Saker/Sak/?p=66436"
+  },
+  "production_context": {
+    "manifest_category": "politikk",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/politikk/hoyesteretts_hus.json",
+    "context_artifact": "data/quiz/production_context/politikk/hoyesteretts_hus.json",
+    "resolved_files": {
+      "pensum": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "emner": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "fagkart": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "methods": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "rett_lov_rettssikkerhet"
+    ],
+    "emne_ids": [
+      "em_pol_domstoler_rettspraksis",
+      "em_pol_maktbegrensning"
+    ],
+    "topic_hook_ids": [
+      "rettsstat"
+    ],
+    "method_ids": [
+      "met_pol_rettslig_analyse"
+    ],
+    "thinker_ids": [
+      "montesquieu"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/politikk/hoyesteretts_hus_sets.json",
+        "data/quizcards/politikk/manifest.json",
+        "data/quizcards/politikk/topp10_politikk_oslo_v1_batch1.json",
+        "reports/place-production/oslo-sentrum-politikk-six-quiz-sourcebank-20261023.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen direkte aktiv settmanifestoppføring i denne kategori-/målauditen."
+      },
+      "decisions": [
+        "Velg 21 kildebårne, forskjellige påstander og skille tidligere bruk fra dagens sted.",
+        "Ingen hypotetiske, fritekstbaserte eller ikke-kildebelagte oppgaver tas inn.",
+        "hoyesteretts_card_10: generelt metaspørsmål erstattet med direkte kildebåret spørsmål; kontrollert påstand og sammenlignbare distraktorer 2026-10-23."
+      ],
+      "knowledge_migration": "Generer canonical Knowledge-ID-er fra de nye kildesporbare quizspørsmålene."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Rett og domstol, Justisbygningens tre institusjoner og Høyesteretts utvikling er forankret i domstolens historikk og Grunnloven. Tre konkrete, kildestøttede sett er avgrenset til stedshistorie, dokumentert endring og avsluttende institusjonell sammenligning; øvrige kandidater er ikke selvstendig dokumenterte ekstra sett."
+    },
+    "held_back_candidates": [
+      "Spørsmål og svaralternativer med utilstrekkelig kildestøtte, tidspresisjon eller pedagogisk relevans beholdes utenfor denne narrow-profilen."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "politikk_hoyesteretts_hus_set_1",
+      "title": "Stedet og historien",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "hoyesteretts_card_01",
+          "quiz_id": "politikk_hoyesteretts_hus_set_1_q1",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Når stod bygningen som nå heter Høyesteretts hus ferdig?",
+          "options": [
+            "1903",
+            "1958",
+            "1815"
+          ],
+          "answer": "1903",
+          "answerIndex": 0,
+          "knowledge": "Hans Jacob Sparres Justisbygning stod ferdig i 1903. Høyesterett som institusjon er eldre.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_7ea4aa9fface"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hans Jacob Sparres Justisbygning stod ferdig i 1903. Høyesterett som institusjon er eldre.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_01",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_hans_jacob_sparres_justi_0655b31abf",
+          "knowledge_unit_ids": [
+            "ku_politikk_hans_jacob_sparres_justi_0655b31abf",
+            "ku_politikk_h_yesterett_som_institus_908d8a7ef8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_card_02",
+          "quiz_id": "politikk_hoyesteretts_hus_set_1_q2",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hva het Høyesteretts hus da bygningen åpnet?",
+          "options": [
+            "Stortingets anneks",
+            "Justisbygningen",
+            "Regjeringsbygningen"
+          ],
+          "answer": "Justisbygningen",
+          "answerIndex": 1,
+          "knowledge": "Bygningen fra 1903 het Justisbygningen og rommet flere rettsinstanser.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_7ea4aa9fface"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen fra 1903 het Justisbygningen og rommet flere rettsinstanser.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_02",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_bygningen_fra_1903_het_j_dded493f3d",
+          "knowledge_unit_ids": [
+            "ku_politikk_bygningen_fra_1903_het_j_dded493f3d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_card_03",
+          "quiz_id": "politikk_hoyesteretts_hus_set_1_q3",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvem tegnet den monumentale Justisbygningen fra 1903?",
+          "options": [
+            "Knut Knutsen",
+            "Erling Viksjø",
+            "Hans Jacob Sparre"
+          ],
+          "answer": "Hans Jacob Sparre",
+          "answerIndex": 2,
+          "knowledge": "Arkitekt Hans Jacob Sparre tegnet Justisbygningen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_7ea4aa9fface"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arkitekt Hans Jacob Sparre tegnet Justisbygningen.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_03",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_arkitekt_hans_jacob_spar_9c10af2906",
+          "knowledge_unit_ids": [
+            "ku_politikk_arkitekt_hans_jacob_spar_9c10af2906"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_card_04",
+          "quiz_id": "politikk_hoyesteretts_hus_set_1_q4",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hva er Høyesteretts oppgave i Norges rettssystem?",
+          "options": [
+            "Å være landets øverste domstol",
+            "Å være øverste ankeinstans for forvaltningens interne klagebehandling",
+            "Å forhåndsgodkjenne alle lovforslag før Stortingets behandling"
+          ],
+          "answer": "Å være landets øverste domstol",
+          "answerIndex": 0,
+          "knowledge": "Høyesterett er Norges øverste domstol, adskilt fra Stortingets lovgivning og regjeringens forvaltning.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_2fa602a505c5",
+            "src_5e32cb0c894a"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Høyesterett er Norges øverste domstol, adskilt fra Stortingets lovgivning og regjeringens forvaltning.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_04",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_h_yesterett_er_norges_ve_fc3b4275e2",
+          "knowledge_unit_ids": [
+            "ku_politikk_h_yesterett_er_norges_ve_fc3b4275e2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_card_05",
+          "quiz_id": "politikk_hoyesteretts_hus_set_1_q5",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Når ble Høyesterett som norsk institusjon åpnet?",
+          "options": [
+            "1996",
+            "1815",
+            "1903"
+          ],
+          "answer": "1815",
+          "answerIndex": 1,
+          "knowledge": "Høyesterett begynte sitt arbeid i 1815, lenge før dagens hus ble tatt i bruk.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_2fa602a505c5"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Høyesterett begynte sitt arbeid i 1815, lenge før dagens hus ble tatt i bruk.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_05",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_h_yesterett_begynte_sitt_5b73030a12",
+          "knowledge_unit_ids": [
+            "ku_politikk_h_yesterett_begynte_sitt_5b73030a12"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_card_06",
+          "quiz_id": "politikk_hoyesteretts_hus_set_1_q6",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvilke rettsinstanser hadde opprinnelig lokaler i Justisbygningen?",
+          "options": [
+            "Høyesterett og lagmannsretten, men ikke byretten",
+            "Høyesterett og byretten, men ikke lagmannsretten",
+            "Byrett, lagmannsrett og Høyesterett"
+          ],
+          "answer": "Byrett, lagmannsrett og Høyesterett",
+          "answerIndex": 2,
+          "knowledge": "Justisbygningen samlet opprinnelig flere rettsinstanser på den samme adressen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_7ea4aa9fface"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Justisbygningen samlet opprinnelig flere rettsinstanser på den samme adressen.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_06",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_justisbygningen_samlet_o_534a94b0d9",
+          "knowledge_unit_ids": [
+            "ku_politikk_justisbygningen_samlet_o_534a94b0d9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_card_07",
+          "quiz_id": "politikk_hoyesteretts_hus_set_1_q7",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hva endret seg med restaureringen og tilpasningen av bygningen i 1996?",
+          "options": [
+            "Den ble brukt bare av Høyesterett",
+            "Den ble omgjort til felles kontorbygg for byretten og lagmannsretten",
+            "Høyesterett flyttet ut, og bygningen fikk en ren museumsfunksjon"
+          ],
+          "answer": "Den ble brukt bare av Høyesterett",
+          "answerIndex": 0,
+          "knowledge": "Da øvrige domstoler var flyttet til Oslo tinghus, ble den gamle Justisbygningen tilrettelagt for Høyesterett alene.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_7ea4aa9fface"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Da øvrige domstoler var flyttet til Oslo tinghus, ble den gamle Justisbygningen tilrettelagt for Høyesterett alene.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_07",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_da_vrige_domstoler_var_f_f18c51758e",
+          "knowledge_unit_ids": [
+            "ku_politikk_da_vrige_domstoler_var_f_f18c51758e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_hoyesteretts_hus_set_2",
+      "title": "Institusjoner og forandring",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "hoyesteretts_card_08",
+          "quiz_id": "politikk_hoyesteretts_hus_set_2_q1",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvilken rettssikkerhetsgaranti står i Grunnloven § 95?",
+          "options": [
+            "At enhver straffesak må behandles av Høyesterett",
+            "Rett til uavhengig og upartisk domstol",
+            "At regjeringen kan instruere dommerne når saken er av stor politisk betydning"
+          ],
+          "answer": "Rett til uavhengig og upartisk domstol",
+          "answerIndex": 1,
+          "knowledge": "Grunnloven § 95 fastslår retten til rettferdig rettergang ved en uavhengig og upartisk domstol.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_5e32cb0c894a"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Grunnloven § 95 fastslår retten til rettferdig rettergang ved en uavhengig og upartisk domstol.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_08",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_grunnloven_95_fastslar_r_9047bbfa12",
+          "knowledge_unit_ids": [
+            "ku_politikk_grunnloven_95_fastslar_r_9047bbfa12"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_card_09",
+          "quiz_id": "politikk_hoyesteretts_hus_set_2_q2",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hva skiller Høyesteretts hus fra Oslo tinghus?",
+          "options": [
+            "De er to navn på samme bygg",
+            "Oslo tinghus er en nyere fløy i samme bygningskompleks som Høyesteretts hus",
+            "De er to ulike bygninger for forskjellige domstolsfunksjoner"
+          ],
+          "answer": "De er to ulike bygninger for forskjellige domstolsfunksjoner",
+          "answerIndex": 2,
+          "knowledge": "Høyesteretts hus brukes av landets øverste domstol; Oslo tinghus er et separat bygg for andre rettsinstanser.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_7ea4aa9fface"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Høyesteretts hus brukes av landets øverste domstol; Oslo tinghus er et separat bygg for andre rettsinstanser.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_09",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_h_yesteretts_hus_brukes__d06a646ff8",
+          "knowledge_unit_ids": [
+            "ku_politikk_h_yesteretts_hus_brukes__d06a646ff8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_11",
+          "quiz_id": "politikk_hoyesteretts_hus_set_2_q3",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvilken stilart beskriver Norges domstoler for Høyesteretts hus?",
+          "options": [
+            "Italiensk nyrenessanse",
+            "Nygotikk",
+            "Funksjonalisme"
+          ],
+          "answer": "Italiensk nyrenessanse",
+          "answerIndex": 0,
+          "knowledge": "Bygningen har et monumentalt formspråk i italiensk nyrenessanse.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen har et monumentalt formspråk i italiensk nyrenessanse.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_11",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_bygningen_har_et_monumen_5687b15632",
+          "knowledge_unit_ids": [
+            "ku_politikk_bygningen_har_et_monumen_5687b15632"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_12",
+          "quiz_id": "politikk_hoyesteretts_hus_set_2_q4",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvor mange konkurranseutkast hadde kommet inn innen mars 1898?",
+          "options": [
+            "33",
+            "23",
+            "13"
+          ],
+          "answer": "23",
+          "answerIndex": 1,
+          "knowledge": "Domstolens bygningshistorie opplyser at 23 forslag hadde kommet inn innen mars 1898; Sparres forslag kom senere.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Domstolens bygningshistorie opplyser at 23 forslag hadde kommet inn innen mars 1898; Sparres forslag kom senere.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_12",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_domstolens_bygningshisto_b19d89690e",
+          "knowledge_unit_ids": [
+            "ku_politikk_domstolens_bygningshisto_b19d89690e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_13",
+          "quiz_id": "politikk_hoyesteretts_hus_set_2_q5",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvordan fordelte Sparre opprinnelig de tre rettsinstansene i bygget?",
+          "options": [
+            "I separate fløyer på bakkeplan",
+            "I tre nabobygninger",
+            "I forskjellige etasjer"
+          ],
+          "answer": "I forskjellige etasjer",
+          "answerIndex": 2,
+          "knowledge": "Sparre valgte en horisontal funksjonsdeling med en rettsinstans per etasje.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sparre valgte en horisontal funksjonsdeling med en rettsinstans per etasje.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_13",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_sparre_valgte_en_horison_365c946f50",
+          "knowledge_unit_ids": [
+            "ku_politikk_sparre_valgte_en_horison_365c946f50"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_14",
+          "quiz_id": "politikk_hoyesteretts_hus_set_2_q6",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvilken rettsinstans fikk opprinnelig lokaler i første etasje?",
+          "options": [
+            "Byretten",
+            "Lagmannsretten",
+            "Høyesterett"
+          ],
+          "answer": "Byretten",
+          "answerIndex": 0,
+          "knowledge": "Byretten ble lagt i første etasje, med egen inngang fra Grubbegata.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byretten ble lagt i første etasje, med egen inngang fra Grubbegata.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_14",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_byretten_ble_lagt_i_f_rs_8f9a642706",
+          "knowledge_unit_ids": [
+            "ku_politikk_byretten_ble_lagt_i_f_rs_8f9a642706"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_15",
+          "quiz_id": "politikk_hoyesteretts_hus_set_2_q7",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvilken instans hadde opprinnelig den store rettssalen i andre etasje?",
+          "options": [
+            "Høyesterett",
+            "Lagmannsretten",
+            "Byretten"
+          ],
+          "answer": "Lagmannsretten",
+          "answerIndex": 1,
+          "knowledge": "Lagmannsretten fikk rettssal i andre etasje og et representativt inngangsparti med vestibyle og trappehall.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Lagmannsretten fikk rettssal i andre etasje og et representativt inngangsparti med vestibyle og trappehall.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_15",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_lagmannsretten_fikk_rett_266e1cf333",
+          "knowledge_unit_ids": [
+            "ku_politikk_lagmannsretten_fikk_rett_266e1cf333"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_hoyesteretts_hus_set_3",
+      "title": "Kilder, ansvar og sammenheng",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "hoyesteretts_fullquiz_research_16",
+          "quiz_id": "politikk_hoyesteretts_hus_set_3_q1",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvor lå Høyesteretts opprinnelige rettssal i Justisbygningen?",
+          "options": [
+            "I første etasje",
+            "I andre etasje",
+            "I tredje etasje"
+          ],
+          "answer": "I tredje etasje",
+          "answerIndex": 2,
+          "knowledge": "Den opprinnelige rettssalen for Høyesterett lå i tredje etasje, med overlys og vinduer.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den opprinnelige rettssalen for Høyesterett lå i tredje etasje, med overlys og vinduer.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_16",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_den_opprinnelige_rettssa_09c5244532",
+          "knowledge_unit_ids": [
+            "ku_politikk_den_opprinnelige_rettssa_09c5244532"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_17",
+          "quiz_id": "politikk_hoyesteretts_hus_set_3_q2",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvilken gate hadde opprinnelig egen inngang til Høyesteretts rettssal?",
+          "options": [
+            "Akersgata",
+            "Karl Johans gate",
+            "Grubbegata"
+          ],
+          "answer": "Akersgata",
+          "answerIndex": 0,
+          "knowledge": "Høyesteretts rettssal hadde egen inngang fra Akersgata.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Høyesteretts rettssal hadde egen inngang fra Akersgata.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_17",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_h_yesteretts_rettssal_ha_a96d6f9512",
+          "knowledge_unit_ids": [
+            "ku_politikk_h_yesteretts_rettssal_ha_a96d6f9512"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_18",
+          "quiz_id": "politikk_hoyesteretts_hus_set_3_q3",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvilken gate vendte byrettens egen inngang i Justisbygningen mot?",
+          "options": [
+            "Høyesteretts plass",
+            "Grubbegata",
+            "Akersgata"
+          ],
+          "answer": "Grubbegata",
+          "answerIndex": 1,
+          "knowledge": "Byrettens egen inngang lå ved Grubbegata.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byrettens egen inngang lå ved Grubbegata.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_18",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_byrettens_egen_inngang_l_a5498d1e0a",
+          "knowledge_unit_ids": [
+            "ku_politikk_byrettens_egen_inngang_l_a5498d1e0a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_19",
+          "quiz_id": "politikk_hoyesteretts_hus_set_3_q4",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hva ved tomten var en arkitektonisk utfordring for Hans Jakob Sparre?",
+          "options": [
+            "Den var bratt og trekantet",
+            "Den bestod av to adskilte tomter",
+            "Den var lang og smal"
+          ],
+          "answer": "Den var lang og smal",
+          "answerIndex": 2,
+          "knowledge": "Domstolen beskriver den lange, smale tomten som en utfordring som måtte løses i planleggingen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Domstolen beskriver den lange, smale tomten som en utfordring som måtte løses i planleggingen.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_19",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "method_id": "met_pol_rettslig_analyse",
+          "primary_knowledge_unit_id": "ku_politikk_domstolen_beskriver_den__95a626f349",
+          "knowledge_unit_ids": [
+            "ku_politikk_domstolen_beskriver_den__95a626f349"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_20",
+          "quiz_id": "politikk_hoyesteretts_hus_set_3_q5",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "I hvilken periode foregikk den omfattende restaureringen ved overtakelsen?",
+          "options": [
+            "1994–1996",
+            "2011–2013",
+            "1962–1964"
+          ],
+          "answer": "1994–1996",
+          "answerIndex": 0,
+          "knowledge": "Bygningen ble omfattende restaurert i 1994–1996 før Høyesterett tok den i bruk alene.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen ble omfattende restaurert i 1994–1996 før Høyesterett tok den i bruk alene.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_20",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "method_id": "met_pol_rettslig_analyse",
+          "primary_knowledge_unit_id": "ku_politikk_bygningen_ble_omfattende_813392a0a8",
+          "knowledge_unit_ids": [
+            "ku_politikk_bygningen_ble_omfattende_813392a0a8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_fullquiz_research_21",
+          "quiz_id": "politikk_hoyesteretts_hus_set_3_q6",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hvilket år vedtok Riksantikvaren fredning av Høyesteretts hus?",
+          "options": [
+            "2025",
+            "2014",
+            "1996"
+          ],
+          "answer": "2014",
+          "answerIndex": 1,
+          "knowledge": "Riksantikvaren fattet vedtak om fredning 18. november 2014.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_pol_domstoler_rettspraksis",
+          "source": [
+            "src_e551048f7965"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Riksantikvaren fattet vedtak om fredning 18. november 2014.",
+          "claim_id": "claim_oslo_six_hoyesteretts_fullquiz_research_21",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "method_id": "met_pol_rettslig_analyse",
+          "primary_knowledge_unit_id": "ku_politikk_riksantikvaren_fattet_ve_9994d674aa",
+          "knowledge_unit_ids": [
+            "ku_politikk_riksantikvaren_fattet_ve_9994d674aa"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyesteretts_card_10",
+          "quiz_id": "politikk_hoyesteretts_hus_set_3_q7",
+          "categoryId": "politikk",
+          "placeId": "hoyesteretts_hus",
+          "targetId": "hoyesteretts_hus",
+          "question_scope": "place",
+          "question": "Hva skal domstolene, også Høyesterett, prøve etter Grunnloven § 89 i saker de behandler?",
+          "options": [
+            "Om en lovbestemmelse er politisk hensiktsmessig",
+            "Om en lovbestemmelse bør få flertall ved neste stortingsvalg",
+            "Om det strider mot Grunnloven å anvende en lovbestemmelse"
+          ],
+          "answer": "Om det strider mot Grunnloven å anvende en lovbestemmelse",
+          "answerIndex": 2,
+          "knowledge": "Prøvingsretten er også en plikt i saker for domstolene. Kontrollen gjelder grunnlovsmessigheten ved lovanvendelsen, og er en rettslig grense for politisk makt.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_pol_maktbegrensning",
+          "source": [
+            "src_stortinget_grunnloven_89_2020"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Prøvingsretten er også en plikt i saker for domstolene. Kontrollen gjelder grunnlovsmessigheten ved lovanvendelsen, og er en rettslig grense for politisk makt.",
+          "claim_id": "claim_oslo_six_hoyesteretts_card_10",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "method_id": "met_pol_rettslig_analyse",
+          "topic_hook_id": "rettsstat",
+          "thinker_id": "montesquieu",
+          "theory_ref": {
+            "topic_hook_id": "rettsstat",
+            "why_it_helps": "Maktfordelingsperspektivet skiller domstolenes rettslige kontroll av lovanvendelsen fra Stortingets politiske vurdering av loven. Prøvingsretten gir et konkret eksempel på begrensning av lovgivningsmakten."
+          },
+          "knowledge_unit_ids": [
+            "ku_politikk_pr_vingsretten_er_ogsa_e_d07c0e3dd8",
+            "ku_politikk_kontrollen_gjelder_grunn_550b6900d7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_politikk_pr_vingsretten_er_ogsa_e_d07c0e3dd8"
+        }
+      ]
+    }
+  ]
+}

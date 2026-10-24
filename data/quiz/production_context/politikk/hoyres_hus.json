@@ -1,0 +1,551 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "politikk",
+  "targetId": "hoyres_hus",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1391,
+    "selection_sha256": "4ec21e038755f5f540b276bd75f1b809c81b74b7f244083456025a6dc89373b3",
+    "category_id": "politikk",
+    "target_id": "hoyres_hus"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "bytes": 106999,
+      "sha256": "391418e064d0d6c01e25c8ceb605fe1ae48d9fae3e9ccdd5e3091897e185a5a0",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "bytes": 1205851,
+      "sha256": "0711d942ab833490f4914d7ed472a99741021bb5fce76dfb90fea573794aaa1f",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "bytes": 1099481,
+      "sha256": "5a81d0d09ac89093705b6343f8de09d2565ca00e2086a354caa7f652f0ef63c7",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "bytes": 665205,
+      "sha256": "92e56fa6afe941245a6caef1a5e1ca51cca9372cc49f29b003c3e549a6359b62",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "bytes": 17236,
+      "sha256": "47609c9599cdffdf53702152ca3ebf071571cbfa131e1f9a89703964546476de",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/politikk/hoyres_hus.json",
+      "bytes": 13165,
+      "sha256": "8bb046d5d834fe20ea00867babb674da31e43c09318db908c6c32ae1074745cd"
+    },
+    "target": {
+      "path": "data/places/politikk/oslo/places_politikk/hoyres_hus.json",
+      "bytes": 12209,
+      "sha256": "edb6df917b8e90f91ba15a818aea43a76f428310c056d643e2553cb9fe18792a"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1198,
+      "selection_sha256": "47cf54f5f65effd13c1a995a7e763de9ea4ff4a6c31b647876f78c02c8b2d902"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/politikk/hoyres_hus_sets.json",
+  "source_registry": {
+    "src_a2aa2e306ac4": {
+      "url": "https://oslobyleksikon.no/side/Stortingsgata",
+      "source_type": "specialist_historical_reference",
+      "review_status": "reviewed",
+      "review_note": "Oslo byleksikon, Stortingsgata nr. 20, avsnittet om det blå skiltet; lest 2026-10-23."
+    },
+    "src_811b314b9de0": {
+      "url": "https://lokalhistoriewiki.no/wiki/H%C3%B8yres_Hus_%28Oslo%29",
+      "source_type": "specialist_historical_reference",
+      "review_status": "reviewed",
+      "review_note": "Historisk kjernepåstand dokumentert med denne lenken i 23. oktober-researchbanken; kandidatens feilsvar og progresjon må dessuten kontrolleres før v1-godkjenning."
+    },
+    "src_4ff0aae970ae": {
+      "url": "https://nbl.snl.no/Magnus_Poulsson",
+      "source_type": "specialist_historical_reference",
+      "review_status": "reviewed",
+      "review_note": "Historisk kjernepåstand dokumentert med denne lenken i 23. oktober-researchbanken; kandidatens feilsvar og progresjon må dessuten kontrolleres før v1-godkjenning."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/politikk/hoyres_hus_sets.json",
+      "data/quizcards/politikk/manifest.json",
+      "data/quizcards/politikk/topp10_politikk_oslo_v1_batch1.json",
+      "reports/place-production/oslo-sentrum-politikk-six-quiz-sourcebank-20261023.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen direkte aktiv settmanifestoppføring i denne kategori-/målauditen."
+    },
+    "decisions": [
+      "Velg 21 kildebårne, forskjellige påstander og skille tidligere bruk fra dagens sted.",
+      "Ingen hypotetiske, fritekstbaserte eller ikke-kildebelagte oppgaver tas inn.",
+      "hoyres_hus_card_10: generelt metaspørsmål erstattet med direkte kildebåret spørsmål; kontrollert påstand og sammenlignbare distraktorer 2026-10-23.",
+      "Sluttreview 2026-10-23: konkrete finansierings-, overvåkings-, organisasjons-, verne- og bevaringsspørsmål erstatter generelle/metapregede eller dupliserte oppgaver; kildestøttet ramme og begrensninger er beholdt."
+    ],
+    "knowledge_migration": "Generer canonical Knowledge-ID-er fra de nye kildesporbare quizspørsmålene."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Bygningen har dokumentert partiorganisering fra 1935 og flere atskilte tidslag, men ikke nok uavhengige forhold til å utvide til fire komplette sett nå. Tre konkrete, kildestøttede sett er avgrenset til stedshistorie, dokumentert endring og avsluttende institusjonell sammenligning; øvrige kandidater er ikke selvstendig dokumenterte ekstra sett."
+  },
+  "held_back_candidates": [
+    "hoyres_hus_fullquiz_research_13",
+    "Spørsmål og svaralternativer med utilstrekkelig kildestøtte, tidspresisjon eller pedagogisk relevans beholdes utenfor denne narrow-profilen."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 13,
+      "emner": 123,
+      "topic_hooks": 152,
+      "methods": 71
+    },
+    "candidate_emner": [
+      {
+        "id": "em_pol_demokrati_representasjon",
+        "title": "Demokrati og representasjon",
+        "score": 100
+      },
+      {
+        "id": "em_pol_kampanje_deltakelse_ansvar",
+        "title": "Kampanje, deltakelse og ansvarliggjøring",
+        "score": 100
+      },
+      {
+        "id": "em_pol_partier_bevegelser",
+        "title": "Partier og bevegelser",
+        "score": 100
+      },
+      {
+        "id": "em_pol_politisk_historie",
+        "title": "Politisk historie",
+        "score": 100
+      },
+      {
+        "id": "em_pol_sivilsamfunn_organisering",
+        "title": "Sivilsamfunn og organisering",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "politisk_tillit",
+        "title": "Politisk tillit",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "politiske_symboler",
+        "title": "Politiske symboler",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "representasjon",
+        "title": "Representasjon",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "valg_og_deltakelse",
+        "title": "Valg og deltakelse",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "demokrati_representasjon_offentlighet"
+    ],
+    "emne_ids": [
+      "em_pol_demokrati_representasjon"
+    ],
+    "topic_hook_ids": [
+      "representasjon"
+    ],
+    "method_ids": [
+      "met_pol_institusjonsanalyse"
+    ],
+    "thinker_ids": [
+      "robert_dahl"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den historiske partiadressen er Stortingsgata 20.",
+      "source_ids": [
+        "src_a2aa2e306ac4",
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Innvielsen fant sted 21. oktober 1935.",
+      "source_ids": [
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Magnus Poulsson var arkitekten.",
+      "source_ids": [
+        "src_a2aa2e306ac4",
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Okkupasjonsmakten tok over huset, som ble kalt Hirdens Hus.",
+      "source_ids": [
+        "src_a2aa2e306ac4",
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "NS tok bygningen i bruk under okkupasjonen.",
+      "source_ids": [
+        "src_a2aa2e306ac4"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Huset kombinerte partiorganisasjon og andre byfunksjoner.",
+      "source_ids": [
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_08",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Høyres Hus ble reist på et område med historie fra Christiania Tivoli.",
+      "source_ids": [
+        "src_a2aa2e306ac4",
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_09",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Restaurant Frascati ble etablert i 1946.",
+      "source_ids": [
+        "src_a2aa2e306ac4"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_10",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo Byes Vels blå skilt markerer inngangen til det gamle Christiania Tivoli. Skiltet viser til tomtens historie før partibygget fra 1935.",
+      "source_ids": [
+        "src_a2aa2e306ac4"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_11",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki beskriver den opprinnelige partigården som et seks etasjer høyt kontor- og forretningsbygg.",
+      "source_ids": [
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_12",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki navngir både partiets sentrale organisasjon og Oslo Høyre blant brukerne.",
+      "source_ids": [
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_14",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Chat Noir ble etablert ved daværende Tivoli-portbygning i 1912, før dagens Høyres Hus ble oppført.",
+      "source_ids": [
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_15",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Restaurant Ritz holdt til i huset før krigen. Frascati åpnet først i 1946.",
+      "source_ids": [
+        "src_811b314b9de0",
+        "src_a2aa2e306ac4"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_16",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo byleksikon nevner Nasjonal Samlings Stor-Oslo fylkesorganisasjon som bruker under okkupasjonen.",
+      "source_ids": [
+        "src_a2aa2e306ac4"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_17",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Oslo byleksikon dokumenterer lokaler for Deutsch-Norwegische Gesellschaft i gården i krigsårene.",
+      "source_ids": [
+        "src_a2aa2e306ac4"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_18",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Oslo byleksikon opplyser at bygningen mot slutten av krigen ble brukt av Sicherheitspolizei.",
+      "source_ids": [
+        "src_a2aa2e306ac4"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_19",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Oslo Byes Vels blå skilt viser til den gamle inngangen til Christiania Tivoli, ikke dagens partibyggs oppføring.",
+      "source_ids": [
+        "src_a2aa2e306ac4"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_20",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Poulsson tegnet Høyres Hus og var sammen med Arnstein Arneberg arkitekt bak Oslo rådhus.",
+      "source_ids": [
+        "src_4ff0aae970ae"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon",
+      "method_id": "met_pol_institusjonsanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_21",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Lokalhistoriewiki gjengir Aftenpostens omtale av forstanderskapets fest ved innvielsen, der over 400 var til stede. Dette gjelder arrangementets fest, ikke alle besøkende på åpningsdagen.",
+      "source_ids": [
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon",
+      "method_id": "met_pol_institusjonsanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_fullquiz_research_22",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Lokalhistoriewiki omtaler et Høyres Hus på Kalbakken, Trondheimsveien 391, fra 1965 med lokale partikontorer, og skiller dette fra det sentrale Høyres Hus i Stortingsgata 20 fra 1935. Bygget på Kalbakken ble senere solgt.",
+      "source_ids": [
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon",
+      "method_id": "met_pol_institusjonsanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_six_hoyres_hus_card_07",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Huset i Stortingsgata samlet sentral og kommunal partiorganisasjon. Høyres Hus på Kalbakken fra 1965 hadde lokale partikontorer. Organisasjonsnivå og adresse må skilles; husene dokumenterer ikke i seg selv medlemmenes innflytelse.",
+      "source_ids": [
+        "src_811b314b9de0"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon",
+      "method_id": "met_pol_institusjonsanalyse",
+      "topic_hook_id": "representasjon",
+      "thinker_id": "robert_dahl"
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "politikk_hoyres_hus_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_six_hoyres_hus_card_01",
+        "claim_oslo_six_hoyres_hus_card_02",
+        "claim_oslo_six_hoyres_hus_card_03",
+        "claim_oslo_six_hoyres_hus_card_04",
+        "claim_oslo_six_hoyres_hus_card_05",
+        "claim_oslo_six_hoyres_hus_card_06",
+        "claim_oslo_six_hoyres_hus_card_08"
+      ]
+    },
+    {
+      "set_id": "politikk_hoyres_hus_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_six_hoyres_hus_card_09",
+        "claim_oslo_six_hoyres_hus_card_10",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_11",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_12",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_14",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_15",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_16"
+      ]
+    },
+    {
+      "set_id": "politikk_hoyres_hus_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_six_hoyres_hus_fullquiz_research_17",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_18",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_19",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_20",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_21",
+        "claim_oslo_six_hoyres_hus_fullquiz_research_22",
+        "claim_oslo_six_hoyres_hus_card_07"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
+    }
+  }
+}
