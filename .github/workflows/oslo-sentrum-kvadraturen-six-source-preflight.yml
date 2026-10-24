@@ -1,0 +1,23 @@
+name: Oslo Kvadraturen six — source research preflight
+on:
+  pull_request:
+    paths:
+      - 'reports/place-production/oslo-sentrum-kvadraturen-six-source-ledger-20261024.json'
+      - 'tests/oslo-sentrum-kvadraturen-six-research-preflight.mjs'
+      - '.github/workflows/oslo-sentrum-kvadraturen-six-source-preflight.yml'
+permissions:
+  contents: read
+concurrency:
+  group: oslo-kvadraturen-source-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  research-integrity:
+    name: Six canonical identities and source references (not v1)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/oslo-sentrum-kvadraturen-six-research-preflight.mjs
