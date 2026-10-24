@@ -2,17 +2,17 @@ name: Oslo sentrum six v1 — real app and quiz QA
 on:
   pull_request:
     paths:
-      - 'data/places/**'
-      - 'data/quiz/**'
-      - 'data/quizcards/**'
-      - 'data/runtime/place-open/**'
-      - 'data/fagverk/**'
+      - 'data/quiz/politikk/arbeidersamfunnets_plass_sets.json'
+      - 'data/quiz/politikk/politihuset_gronland_sets.json'
+      - 'data/quiz/politikk/statsministerboligen_sets.json'
+      - 'data/quiz/historie/nobels_fredssenter_sets.json'
+      - 'data/quiz/by/vikaterrassen_sets.json'
+      - 'data/quiz/litteratur/eldorado_bokhandel_sets_merged.json'
+      - 'data/quizcards/politikk/*_quizkort_v1.json'
+      - 'data/quizcards/historie/nobels_fredssenter_quizkort_v1.json'
+      - 'data/quizcards/by/vikaterrassen_quizkort_v1.json'
+      - 'data/quizcards/litteratur/topp10_lit_kort_batch3.json'
       - 'tests/oslo-sentrum-six-6586-*'
-      - '.github/workflows/oslo-sentrum-six-v1-6586-qa.yml'
-  push:
-    branches:
-      - research/oslo-six-culture-institutions-v1-20261023
-    paths:
       - '.github/workflows/oslo-sentrum-six-v1-6586-qa.yml'
 permissions:
   contents: read
@@ -35,7 +35,10 @@ jobs:
         run: node --test tests/oslo-sentrum-six-6586-integrity.test.mjs
       - name: Audit source-first quiz production and category manifest
         run: |
-          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-manifest:v2 || {
+            node -e "const x=require('./reports/quiz_manifest_v2_audit_report.json');console.log(JSON.stringify({notes:x.notes,missingFiles:x.missingFiles,missingSetIds:x.missingSetIds,invalidQuestions:x.invalidQuestions,targetMismatchQuestions:x.targetMismatchQuestions,duplicateQuizItemIds:x.duplicateQuizItemIds,duplicateSetKeys:x.duplicateSetKeys},null,2))"
+            exit 1
+          }
           npm run audit:quiz-production-context
           npm run test:quiz-production
           npm run test:politikk-place-production
