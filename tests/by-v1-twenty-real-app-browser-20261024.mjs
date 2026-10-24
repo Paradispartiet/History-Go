@@ -96,6 +96,8 @@ try{
    assert.ok(bb,id+'/'+width+' flip control not visible');
    await flip.click({position:{x:20,y:Math.min(bb.height-20,80)},timeout:14000});
    await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:15000});
+   // Wait for the actual 420 ms CSS flip to complete before the real pointer click.
+   await page.waitForTimeout(530);
    await page.locator('#pcQuizExpandBtn').click({timeout:14000});
    await page.locator('#pcQuizExpanded').waitFor({state:'visible',timeout:15000});
    assert.equal(await page.locator('#pcQuizExpandedContent li').count(),10,id+' expanded quizcard missing answers');
