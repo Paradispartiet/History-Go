@@ -79,7 +79,7 @@ try{
    // It cannot legitimately supply 140px of *inner* width after padding.
    // The real gate is a positive painted area and substantive readable DOM text.
    assert.ok(flip.width>85&&flip.height>100&&flip.innerWidth>65&&flip.innerHeight>100,name+': QuizCard occupies no visible area');
-   assert.ok(/Ekebergrestauranten/i.test(flip.text)&&flip.text.length>120,name+': QuizCard reverse has no readable questions');
+   assert.ok(new RegExp(id==='ekebergrestauranten'?'Ekebergrestauranten':'Frognerseteren','i').test(flip.text)&&flip.text.length>120,name+': QuizCard reverse has no readable questions');
    assert.equal(await page.locator('#pcQuizCardContent li').count(),10,name+': ten fullquiz-linked questions must be visibly rendered');
    // Verify the entire ten-question card is genuinely accessible, not clipped inside
    // the compact card face. The expanded reading layer belongs to PlaceCard itself.
