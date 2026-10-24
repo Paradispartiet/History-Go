@@ -48,7 +48,7 @@ jobs:
             }
             card.answerKey = card.questions.map(q => ({number:q.number,answer:q.answer,answerIndex:q.answerIndex}));
           }
-          fs.writeFileSync(cardPath, JSON.stringify(cards, null, 2) + '\\n');
+          fs.writeFileSync(cardPath, JSON.stringify(cards, null, 2) + '\n');
           NODE
       - name: Verify Knowledge artifacts deterministically
         run: npm run knowledge:canonical:check
