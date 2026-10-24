@@ -1,0 +1,47 @@
+name: Oslo four v1 candidate materialization
+
+on:
+  push:
+    branches:
+      - feat/oslo-four-places-canonical-20261024
+    paths:
+      - scripts/build-oslo-four-v1-batch.mjs
+      - tests/oslo-four-v1-batch.test.mjs
+      - .github/workflows/oslo-four-v1-materialize.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oslo-four-v1-candidate
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    name: Generate four place, quiz and QuizCard candidates
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/oslo-four-places-canonical-20261024
+          persist-credentials: true
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify all four original content packages
+        run: node --test tests/oslo-four-v1-batch.test.mjs
+      - name: Generate canonical-shaped candidate files
+        run: node scripts/build-oslo-four-v1-batch.mjs --write
+      - name: Commit generated candidate files back to the same PR branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/historie/oslo/places data/places/naeringsliv/oslo/places data/quiz/historie data/quiz/naeringsliv data/quizcards/historie/oslo_four_20261024.json data/quizcards/naeringsliv/oslo_four_20261024.json bilder/places/auto/kristiania_teglverk_bryn__historical_illustration.svg bilder/places/auto/kristiania_teglverk_bryn__front_illustration.svg bilder/places/auto/kristiania_teglverk_bryn__card_illustration.svg reports/place-production/oslo-four-release-candidate-20261024.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data(oslo): materialize 4 Place, 91 quiz and 40 QuizCard candidates"
+            git push origin HEAD:feat/oslo-four-places-canonical-20261024
+          fi
