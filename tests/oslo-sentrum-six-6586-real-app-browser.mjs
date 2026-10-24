@@ -73,6 +73,18 @@ try{
    assert.equal(await page.locator('#fagverkPlaceUnfinished').isHidden(),true,target+'/'+width+': Fagverk fallback unexpectedly active');
    assert.equal(await page.locator('#fagverkPlaceArticleSection').isVisible(),true,target+'/'+width+': source article not rendered');
    assert.equal(await page.locator('#fagverkPlaceError').isHidden(),true,target+'/'+width+': Fagverk error');
+   if (mobile) {
+    const titleFit = await page.locator('#fagverkPlaceTitle').evaluate(el => {
+      const hero = el.closest('.fagverk-place-hero-copy').getBoundingClientRect();
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      const glyphRows = [...range.getClientRects()];
+      const overflowing = glyphRows.some(rect => rect.right > hero.right - 5 || rect.left < hero.left + 5);
+      return { overflowing, textRows: glyphRows.length, titleWidth: el.clientWidth, scrollWidth: el.scrollWidth, heroWidth: hero.width };
+    });
+    assert.ok(!titleFit.overflowing && titleFit.scrollWidth <= titleFit.titleWidth + 1,
+      target + '/' + width + ': Fagverk title is clipped: ' + JSON.stringify(titleFit));
+   }
    await page.screenshot({path:reports+'/'+width+'-fagverk.png',fullPage:true});
    console.log(target+' '+width+'px: PlaceCard, true image, QuizCard flip, 10 answers, active quiz and Fagverk OK');
   }finally{await page.close();await context.close();}
