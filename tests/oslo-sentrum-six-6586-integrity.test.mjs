@@ -88,5 +88,10 @@ test('Three politics places have a recorded, source-checked fourteen-question op
     assert.equal(report.quizOpening.status,'PASS');
     assert.equal(report.quizOpening.firstTwoSetsQuestionCount,14);
     assert.equal(report.gates.F.status,'PASS');
+    assert.equal(report.chronologyStories?.status,report.gates.G?.status,'Gate G chronology mismatch');
+    assert.equal(report.chronologyStories?.chronologyReviewed,true,'Chronology applicability not reviewed');
+    assert.equal(report.chronologyStories?.storiesReviewed,true,'Story applicability not reviewed');
+    assert.ok(report.chronologyStories?.rationale?.length>=50,'Missing documented G assessment');
+    assert.ok(['PASS','N/A'].includes(report.gates.G.status),'Gate G unresolved');
   }
 });
