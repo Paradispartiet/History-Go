@@ -31,6 +31,23 @@ jobs:
           npm run quiz:context -- --category politikk --target statsministerboligen --output data/quiz/production_context/politikk/statsministerboligen.json
           npm run quiz:context -- --category historie --target nobels_fredssenter --output data/quiz/production_context/historie/nobels_fredssenter.json
           npm run quiz:context -- --category by --target vikaterrassen --output data/quiz/production_context/by/vikaterrassen.json
+      - name: Synchronize fullquiz curriculum selection with canonical context
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          for (const [category,id] of [["politikk","arbeidersamfunnets_plass"],["politikk","politihuset_gronland"],["politikk","statsministerboligen"],["historie","nobels_fredssenter"],["by","vikaterrassen"]]) {
+            const contextPath = 'data/quiz/production_context/' + category + '/' + id + '.json';
+            const quizPath = 'data/quiz/' + category + '/' + id + '_sets.json';
+            const context = JSON.parse(fs.readFileSync(contextPath,'utf8'));
+            const quiz = JSON.parse(fs.readFileSync(quizPath,'utf8'));
+            const selected = context.selected_curriculum;
+            const mapping = {pensum_module_ids:'module_ids',emne_ids:'emne_ids',topic_hook_ids:'topic_hook_ids',method_ids:'method_ids',thinker_ids:'thinker_ids',works:'works'};
+            for (const [key,contextKey] of Object.entries(mapping)) quiz.production_context[key] = selected[contextKey];
+            if (context.profile !== quiz.production_context.profile) throw Error('Profile mismatch ' + id);
+            fs.writeFileSync(quizPath,JSON.stringify(quiz,null,2)+'\n');
+          }
+          NODE
       - name: Verify source-first context regeneration
         shell: bash
         run: |
