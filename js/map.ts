@@ -743,7 +743,7 @@
     // iPad (including desktop-mode Safari and large landscape models) must
     // use the same reliable native dots as phones, not fragile WebGL circles.
     const width = Number(window.innerWidth || 0);
-    if (Number(window.navigator?.maxTouchPoints || 0) >= 2) return true;
+    if (Number(window.navigator?.maxTouchPoints || 0) >= 1) return true;
     if (typeof window.matchMedia === "function") {
       return window.matchMedia("(max-width: 1199px), (pointer: coarse)").matches;
     }
