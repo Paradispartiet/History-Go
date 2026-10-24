@@ -6,6 +6,7 @@ import http from "node:http";
 // Run the actual browser bundle, not a VM approximation, through cold start
 // with a zero-sized/hidden map and then a Detaljert style switch.
 const bundle = readFileSync(new URL("../js/map.js", import.meta.url), "utf8");
+const mapCss = readFileSync(new URL("../css/map.css", import.meta.url), "utf8");
 const fixture = '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;width:100%;height:100%}#map{position:relative;width:100%;height:100%;background:#f3efe5;overflow:hidden}.maplibregl-marker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}</style></head><body><div id="map"></div><div class="map-controls"></div></body></html>';
 const server = http.createServer((_req, res) => {
   res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
@@ -28,6 +29,7 @@ try {
     ]) {
     const page = await browser.newPage({ viewport: { width, height: 844 }, hasTouch: touch });
     await page.goto("http://127.0.0.1:" + address.port + "/");
+    await page.addStyleTag({ content: mapCss });
     await page.evaluate(() => {
       const container = document.getElementById("map");
       window.maplibregl = {
@@ -120,6 +122,8 @@ try {
         count: document.querySelectorAll(".hg-place-detail-marker").length,
         width: rect?.width, opacity: css?.opacity,
         outline: css?.borderTopColor,
+        label: document.querySelector(".hg-place-detail-name")?.textContent,
+        labelDisplay: document.querySelector(".hg-place-detail-name")?.style.display,
         vector: !!window.__testMap.getLayer("hg-places-dots")
       };
     });
@@ -129,6 +133,8 @@ try {
       assert.equal(first.opacity, "1");
       assert.notEqual(first.outline, "rgb(255, 255, 255)", "contrasting outline");
       assert.equal(first.vector, false, "native renderer does not await vector style");
+      assert.equal(first.label, "Torggata", "native label exists before MapLibre style.load");
+      assert.equal(first.labelDisplay, "block", "native label is visible before style.load");
     }
     await page.evaluate(() => {
       window.__originalDot = document.querySelector(".hg-place-detail-marker");
@@ -136,21 +142,26 @@ try {
     });
     const firstStyle = await page.evaluate(() => ({
       visibility: window.__testMap.getLayer("hg-places-dots")?.layout?.visibility,
-      dotCount: document.querySelectorAll(".hg-place-detail-marker").length
+      dotCount: document.querySelectorAll(".hg-place-detail-marker").length,
+      labelVisibility: window.__testMap.getLayer("hg-places-label")?.layout?.visibility
     }));
     assert.equal(firstStyle.visibility, usesNativeDots ? "none" : "visible");
     assert.equal(firstStyle.dotCount, usesNativeDots ? 1 : 0);
+    assert.equal(firstStyle.labelVisibility, usesNativeDots ? "none" : "visible",
+      "native names replace unstable WebGL labels only for phone/iPad");
     if (usesNativeDots) {
       const zoomSizes = await page.evaluate(() => {
         const map = window.__testMap;
         const dot = document.querySelector(".hg-place-detail-marker");
         const widths = [];
+        const labelStates = [];
         for (const zoom of [10, 12, 14, 16]) {
           map.zoom = zoom;
           map.emit("zoom");
           widths.push(Number(dot.style.width.replace("px", "")));
+          labelStates.push(dot.querySelector(".hg-place-detail-name")?.style.display);
         }
-        return { widths, setCount: map.nativeMarkers.find(m =>
+        return { widths, labelStates, setCount: map.nativeMarkers.find(m =>
           m.element.classList.contains("hg-place-detail-marker")).setCount };
       });
       assert.ok(zoomSizes.widths.every((v, i, a) => i === 0 || v > a[i - 1]),
@@ -158,6 +169,8 @@ try {
       assert.ok(zoomSizes.widths[0] < 5 && zoomSizes.widths.at(-1) <= 8.5,
         "dots shrink into smaller points when zoomed out");
       assert.equal(zoomSizes.setCount, 1, "zoom does not reposition or recreate markers");
+      assert.deepEqual(zoomSizes.labelStates, ["none", "none", "block", "block"],
+        "native names appear at city zoom without flashing and hide when zoomed out");
 
       await page.evaluate(() => {
         window.HGMap.resize();
@@ -174,9 +187,13 @@ try {
         count: document.querySelectorAll(".hg-place-detail-marker").length,
         calls: window.__testMap.nativeMarkers.find(m =>
           m.element.classList.contains("hg-place-detail-marker")).setCount,
-        visibility: window.__testMap.getLayer("hg-places-dots")?.layout?.visibility
+        visibility: window.__testMap.getLayer("hg-places-dots")?.layout?.visibility,
+        sameLabel: document.querySelector(".hg-place-detail-name")?.parentElement === window.__originalDot,
+        name: document.querySelector(".hg-place-detail-name")?.textContent,
+        labelCount: document.querySelectorAll(".hg-place-detail-name").length
       }));
-      assert.deepEqual(after, { sameDot: true, count: 1, calls: 1, visibility: "none" },
+      assert.deepEqual(after, { sameDot: true, count: 1, calls: 1, visibility: "none",
+        sameLabel: true, name: "Torggata", labelCount: 1 },
         "style changes must not blink or duplicate dots at width=" + width);
     }
     await page.close();
