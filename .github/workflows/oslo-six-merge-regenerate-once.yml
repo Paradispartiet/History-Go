@@ -51,7 +51,10 @@ jobs:
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Check combined manifests and both place quiz contracts
         run: |
-          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-manifest:v2 || {
+            node -e "const x=require('./reports/quiz_manifest_v2_audit_report.json');console.log(JSON.stringify({status:x.status,notes:x.notes,missingFiles:x.missingFiles,missingSetIds:x.missingSetIds,invalidQuestions:x.invalidQuestions,targetMismatchQuestions:x.targetMismatchQuestions,duplicateQuizItemIds:x.duplicateQuizItemIds,duplicateSetKeys:x.duplicateSetKeys,peopleCoverage:x.norgeFor1500PeopleCoverageComplete,placeCoverage:x.norgeFor1500PlaceCoverageComplete},null,2))"
+            exit 1
+          }
           npm run audit:quiz-progression
           npm run audit:quiz-theory-binding
           node --test tests/oslo-sentrum-six-6586-integrity.test.mjs
