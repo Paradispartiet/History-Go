@@ -1,0 +1,49 @@
+name: By v1 twenty Places app QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/by-v1-twenty-app-qa.yml'
+      - 'tests/by-v1-twenty-real-app-browser-20261024.mjs'
+      - 'data/places/by/oslo/places/*.json'
+      - 'data/quiz/by/*_oslo_v1_sets.json'
+      - 'data/quizcards/by/oslo_v1_historiske_fakta_20261024.json'
+      - 'data/knowledge/knowledge_units.generated.json'
+      - 'data/runtime/place-open/*.json'
+      - 'css/placeCard.css'
+      - 'js/ui/place-card.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: by-v1-twenty-app-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    name: Five Places real app — shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install app and browser dependencies
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Test real History Go app on 390px and 1440px
+        env:
+          HG_BY_SHARD: ${{ matrix.shard }}
+        run: node tests/by-v1-twenty-real-app-browser-20261024.mjs
+      - name: Keep screenshots and per-Place audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: by-v1-20-app-shard-${{ matrix.shard }}
+          path: artifacts/by-v1-20-browser/shard-${{ matrix.shard }}/
+          if-no-files-found: warn
