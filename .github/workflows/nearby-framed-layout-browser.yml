@@ -19,6 +19,10 @@ on:
       - 'css/map.css'
       - 'css/placeCard.css'
       - 'tests/map-mode-controls-browser.test.mjs'
+      - 'tests/mobile-map-dots-browser.test.mjs'
+      - 'js/map.ts'
+      - 'js/map.js'
+      - 'dist/web/map.js'
       - 'css/people.css'
       - 'css/nature.css'
       - 'index.html'
@@ -58,5 +62,7 @@ jobs:
         run: node tests/nearby-framed-layout-browser.test.mjs
       - name: Audit map-mode bottom dock and ghost PlaceCard on Android viewports
         run: node tests/map-mode-controls-browser.test.mjs
+      - name: Audit mobile place dots before tiles load and across Detaljert
+        run: node tests/mobile-map-dots-browser.test.mjs
       - name: Verify Hurtigmeny language flag on mobile and desktop
         run: node tests/header-language-menu-browser.test.mjs
