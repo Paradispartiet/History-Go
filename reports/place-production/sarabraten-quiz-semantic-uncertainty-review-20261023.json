@@ -1,0 +1,61 @@
+{
+  "schema": "history_go_sarabraten_semantic_and_disputed_date_review_v1",
+  "reviewed_at": "2026-10-23",
+  "place_id": "sarabraten",
+  "purpose": "Fix two provenance and pedagogical problems in candidate 3x7 fullquiz, without activating any runtime quiz or map point.",
+  "changes": [
+    {
+      "question_id": "sarabraten_review_quiz_16",
+      "previous_topic": "Nøklevann used for pleasure trips in the wheelboat Sara",
+      "problem": "near-duplicate of core question 5, which already asks the boat name Sara",
+      "replacement_topic": "railway to Bryn made the Sarabråten excursion easier for city dwellers",
+      "new_question": "Hvilken transportforbindelse gjorde Sarabråten lettere tilgjengelig for byfolk på 1800-tallet?",
+      "correct_answer": "Jernbanen til Bryn",
+      "primary_url": "https://www.skiforeningen.no/utimarka/omrader/ostmarka/steder/sarabraten/",
+      "status": "SOURCE_TEXT_MATCHED_CANDIDATE_ONLY"
+    },
+    {
+      "question_id": "sarabraten_review_quiz_21",
+      "previous_topic": "date range for Sarabråtrennet (1902–1928)",
+      "problem": "Oslo byleksikon dates 1902–1928 but Skiforeningen, Sarabråtens venner and Lokalhistoriewiki say 1900–1928, so quiz start date would not be unambiguous",
+      "replacement_topic": "municipal drinking water protection removed Sarabråten buildings",
+      "new_question": "Hvorfor ble bygningene på Sarabråten etter hvert revet eller forlatt?",
+      "correct_answer": "Nøklevann ble drikkevannskilde",
+      "primary_url": "https://oslobyleksikon.no/side/N%C3%B8klevann",
+      "secondary_url": "https://snl.no/Sarabr%C3%A5ten",
+      "status": "SOURCE_TEXT_MATCHED_CANDIDATE_ONLY"
+    }
+  ],
+  "disputed_sarabraten_ski_race_start": [
+    {
+      "source": "https://oslobyleksikon.no/side/Sarabr%C3%A5ten",
+      "reported_start": 1902,
+      "reported_end": 1928
+    },
+    {
+      "source": "https://www.skiforeningen.no/utimarka/omrader/ostmarka/steder/sarabraten/",
+      "reported_start": 1900,
+      "reported_end": 1928
+    },
+    {
+      "source": "https://sarabraaten.wordpress.com/sarabraten-ar-for-ar/",
+      "reported_start": 1900,
+      "reported_end": 1928
+    },
+    {
+      "source": "https://lokalhistoriewiki.no/wiki/Sarabr%C3%A5ten",
+      "reported_start": 1900,
+      "reported_end": 1928
+    }
+  ],
+  "release_hold": {
+    "fullquiz_independently_signed_off": false,
+    "canonical_quiz_registered": false,
+    "quizcard_registered": false,
+    "knowledge_synced": false,
+    "geo_verified": false,
+    "full_history_claim_review_complete": false
+  },
+  "editorial_note": "Avoid turning uncertain opening years into a single correct answer. Both the removed date question and the redundant Sara-boat question were in additional fullquiz questions (positions 16,21), not QuizCard's ten core items.",
+  "status": "TWO_REWRITTEN_CANDIDATES_NOT_PUBLISHED"
+}

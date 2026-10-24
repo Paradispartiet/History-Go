@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.17.4",
     "updated_at": "2026-10-22",
-    "content_sha256": "c9c604df61797b8f9d259e70533765ce518f7ca40262c13012b20f57a896a897"
+    "content_sha256": "ad3ec9305ecfda52b84eae1efb64042651fe905c6b78ab5fcb92d1ebeee3b695"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "206b205c219f8ce580908e66abcd3cd15227ea62cbb07c4833d2e7c580c23742"
+    "content_sha256": "940f57eb130daa99bcf5e332a71cacc3901f5f8e2f9e4ad3ea963346a99be143"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 462,
+    "package_file_count": 468,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1326,
+    "referenced_file_count": 1332,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 99,
+      "package_file_count": 102,
       "required_package_file_count": 4,
-      "optional_package_file_count": 95,
+      "optional_package_file_count": 98,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -199,6 +199,18 @@
           ],
           "exists": true,
           "content_sha256": "0bbf806341a777cac2cddaaa839716623bf9202dca3ba604ed956b1b7501617d"
+        },
+        {
+          "path": "data/quiz/by/ekebergrestauranten_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ekebergrestauranten.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b8b50fbd52b028f1274354f29700d01c6c7567efcbd5a027c42a9f4b66e5c4ae"
         },
         {
           "path": "data/quiz/by/gamle_trikkestallen_sets.json",
@@ -561,6 +573,18 @@
           "content_sha256": "39c221abfd5d9cd96d3d2850152521e7a05a1aac463c6995863dd72a23009672"
         },
         {
+          "path": "data/quiz/production_briefs/by/ekebergrestauranten.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ekebergrestauranten.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "6e70dfb4800051a41b120537044275ea9eb86f4aad2c55c819b16c67af61d63b"
+        },
+        {
           "path": "data/quiz/production_briefs/by/gamle_trikkestallen.json",
           "required": false,
           "fields": [
@@ -921,6 +945,18 @@
           "content_sha256": "22b915731c4c3f0f8cc3c5328e6bd2dc4b019ff3bf0f686087401fe65e5ff6f5"
         },
         {
+          "path": "data/quiz/production_context/by/ekebergrestauranten.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ekebergrestauranten.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "8dac5078e250743fafdf460f1a65f4752fe1b4ca6f1c0526d40dbb36e33e4342"
+        },
+        {
           "path": "data/quiz/production_context/by/gamle_trikkestallen.json",
           "required": false,
           "fields": [
@@ -1269,20 +1305,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "e8800fa056680d3f448ca2e04015623647b0203956f3c3556decfb9531d8ec0f",
+      "package_content_sha256": "aced6b1100227857fd297d84e3dccb4f3272d4862faf8a7f4417729611ccc94d",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "38e5be5259e0aa3d733f4ddeeb46df87769c935ad9dd76cd175f8bb645ee79fa",
-      "referenced_file_count": 201,
+      "referenced_file_count": 204,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "bfd684b6573b59bac1cbdac5a8ffdccd04616db578068bc60c70da42fbed7e27",
-      "content_sha256": "f2382c5f8769fb0867656e13f972807fd59af9d0bb3071938598bf5aa55c72dc",
+      "structure_sha256": "dc92e929a3c572db989336316275f83d6bdb14da8cbaebfade736a5d63aa42a4",
+      "content_sha256": "6b287a1dcefe995f0d8f85234bb69a77e199814d8228504a55f5b7168772847b",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -2596,9 +2632,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 101,
+      "package_file_count": 104,
       "required_package_file_count": 4,
-      "optional_package_file_count": 97,
+      "optional_package_file_count": 100,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2851,6 +2887,18 @@
           ],
           "exists": true,
           "content_sha256": "01dce7a2a362ea55167df83c3e6f8c9540cbf4930627067a12973d9fcfc1db93"
+        },
+        {
+          "path": "data/quiz/historie/frognerseteren_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frognerseteren.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "03540dadaa3f2a4ab0c7a57a1371000281bd45c71002a569548f0fb8dcc89dea"
         },
         {
           "path": "data/quiz/historie/gamle_aker_kirke_sets.json",
@@ -3189,6 +3237,18 @@
           "content_sha256": "63e9866b780d4f6248fe552a43ed41567728791153c6246386b34f826e58a452"
         },
         {
+          "path": "data/quiz/production_briefs/historie/frognerseteren.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frognerseteren.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "8845c1a6d0c8d14e879783a7a50e8e2997735de72899c0549aea8ee7a923c1ee"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/gamle_aker_kirke.json",
           "required": false,
           "fields": [
@@ -3525,6 +3585,18 @@
           "content_sha256": "202539d417d781cc441c8b7aa74336a64f36b6b6759340808ded552e9037f1dc"
         },
         {
+          "path": "data/quiz/production_context/historie/frognerseteren.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frognerseteren.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "c5f3e7a16d6a5a475ebb5aa89cf97db46f723a79aa7f7073a0f4991420fa37a6"
+        },
+        {
           "path": "data/quiz/production_context/historie/gamle_aker_kirke.json",
           "required": false,
           "fields": [
@@ -3813,20 +3885,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "983b1303938818fc5d1b23e8df9acfb88f4cd688b76aa6522d7bc33e3b032774",
+      "package_content_sha256": "f2deb3db8dc046faf4538913c71e0fb690d7d2ecac40ff2207fa17bc45601df3",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 193,
+      "referenced_file_count": 196,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "bbd17e8399dc7fd0d5f0e7dea93cef4ef15e787296322298400e71fda3159466",
-      "content_sha256": "ed321872cedffd59a135d81ec992ee00d5c469c1301d265c0c12816627495a3c",
+      "structure_sha256": "21deb75453f08b3488e5071394d662078750817e528f2906e26c202be2fbc5ee",
+      "content_sha256": "1f6826751b5f23e5a0becd3d6300642cd0d9a28646729097ebe935584c3c158c",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -8265,5 +8337,5 @@
       ]
     }
   },
-  "release_sha256": "086e492b91e39ec6b836cecaae2cdd70410dabfd9f040bd9d3acd2e3cb901e85"
+  "release_sha256": "9a27a104eab16caa5b0bbcf47321d73431743313549f774009265197e46aa918"
 }

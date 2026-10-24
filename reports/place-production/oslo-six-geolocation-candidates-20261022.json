@@ -1,0 +1,123 @@
+{
+  "schema": "history_go_oslo_six_coordinate_candidate_evidence_v1",
+  "as_of": "2026-10-23",
+  "status": "RESEARCH_CANDIDATES_NO_CANONICAL_COORDINATES",
+  "note": "Coordinates from independent map and geotagged image sources are POI/site or photographer locations. They are not inspected public access/entrance points. Never auto-promote to canonical Place, and never derive a playable radius from them.",
+  "places": [
+    {
+      "place_id": "ekebergrestauranten",
+      "identity": "Present restaurant building, Kongsveien 15",
+      "evidence": [
+        {
+          "source": "https://www.visitnordic.com/en/restaurant/ekebergrestauranten",
+          "kind": "tourism_poi_listing",
+          "lat": 59.899434,
+          "lon": 10.761738,
+          "accuracy_statement": "Provider geocoded POI; entrance not independently marked."
+        },
+        {
+          "source": "https://maps.me/catalog/food/amenity-restaurant/ekebergrestauranten-9223372036970677073/",
+          "kind": "osm_derived_venue_poi",
+          "lat": 59.899433,
+          "lon": 10.761722,
+          "accuracy_statement": "Restaurant POI from map listing; does not establish pedestrian entrance."
+        },
+        {
+          "source": "https://en.wikipedia.org/wiki/Ekebergrestauranten",
+          "kind": "encyclopedia_location",
+          "lat": 59.899205,
+          "lon": 10.76167694,
+          "accuracy_statement": "Alternative restaurant coordinates about 26 metres south of other two POIs; unresolved building versus ground/terrace distinction."
+        }
+      ],
+      "provisional_poi": {
+        "lat": 59.8994335,
+        "lon": 10.76173
+      },
+      "provisional_precision": "two agreeing venue POIs, not verified entrance or exact building footprint",
+      "cross_source_agreement_m_max": 5,
+      "public_venue_access_source": "https://www.ekebergrestauranten.com/kontakt",
+      "public_access_supported": true,
+      "public_entrance_coordinate_verified": false,
+      "visitor_radius_m": null,
+      "status": "SITE_POI_CANDIDATE_PENDING_PUBLIC_ENTRANCE_INSPECTION",
+      "building_footprint_candidate": {
+        "source": "https://mapcarta.com/W115901265",
+        "upstream_osm_object_url": "https://www.openstreetmap.org/way/115901265",
+        "upstream_osm_way_id": 115901265,
+        "kind": "osm_derived_commercial_building_centroid_not_a_public_entrance",
+        "lat": 59.89936,
+        "lon": 10.76171,
+        "name": "Ekebergrestauranten",
+        "site_identity": "restaurant building at Kongsveien 15",
+        "verification": "secondary OSM derived centroid, not manual entry-door survey",
+        "usable_as_canonical_visitor_point": false,
+        "usable_as_radius_basis": false
+      },
+      "official_public_approach_evidence": {
+        "source": "https://www.ekebergrestauranten.com/faq",
+        "operator_contact": "https://furset-ekeberg.squarespace.com/kontakt",
+        "route_description": "Tram 13/19 to Ekebergparken and walk to restaurant; commercial restaurant access is public during operation",
+        "never_use_as_permanent_instructions": "Temporary 2026 Kongsveien roadworks or transit frequency",
+        "exact_public_entrance_location": null,
+        "safe_gps_release": false
+      }
+    },
+    {
+      "place_id": "sarabraten",
+      "identity": "Public Sarabråten ruins and memorial landscape near Nøklevann; separate ruin site from Milorg memorial",
+      "evidence": [
+        {
+          "source": "https://lokalhistoriewiki.no/wiki/Sarabr%C3%A5ten",
+          "kind": "historical_site_article_location",
+          "lat": 59.89177,
+          "lon": 10.87884,
+          "accuracy_statement": "Historical place article's site coordinates; not a precisely marked ruin-entry point."
+        },
+        {
+          "source": "https://commons.wikimedia.org/wiki/File:N%C3%B8klevann_Sarabr%C3%A5ten.jpg",
+          "kind": "photographer_viewpoint_landscape_not_target",
+          "lat": 59.891606,
+          "lon": 10.878879,
+          "accuracy_statement": "EXIF camera location for a photo of the lake; NOT the ruin's pin or a visitor entrance."
+        },
+        {
+          "source": "https://commons.wikimedia.org/wiki/File:Milorg-bautaen_ved_Sarabr%C3%A5ten_i_Oslo.jpg",
+          "kind": "photographer_viewpoint_near_memorial",
+          "lat": 59.89219,
+          "lon": 10.879734,
+          "accuracy_statement": "Geotagged camera location near Milorg monument, not a verified location for former villa ruins."
+        }
+      ],
+      "provisional_poi": {
+        "lat": 59.89177,
+        "lon": 10.87884
+      },
+      "provisional_precision": "historical site coordinate, 5 decimals; walking approach and exact ruin coordinate unknown",
+      "public_venue_access_source": "https://lokalhistoriewiki.no/wiki/Sarabr%C3%A5ten",
+      "public_access_supported": true,
+      "public_entrance_coordinate_verified": false,
+      "visitor_radius_m": null,
+      "status": "HISTORIC_SITE_CANDIDATE_SEPARATE_RUINS_AND_MEMORIAL",
+      "documented_walkway_approach": {
+        "source": "https://lokalhistoriewiki.no/wiki/Sarabr%C3%A5tveien",
+        "way_name": "Sarabråtveien",
+        "approach": "From General Ruges vei, shared route with Østmarkveien to Ulsrudvannet, then public trail on east side of Nøklevann towards Sarabråten",
+        "trail_history": "Sarabråtveien established on Heftye initiative in 1854",
+        "exact_ruin_site_trail_waypoint": null,
+        "exact_observation_entrance": null,
+        "safe_gps_release": false,
+        "avoid_confusion": "Sarabråtveien article coordinate describes the road, NOT the ruins, Milorg monument or selected visitor entrance"
+      }
+    }
+  ],
+  "release_constraints": [
+    "Never promote any candidate to active data/places coordinates on these sources alone",
+    "No GPS radius until on-path public observation/wayfinding point is independently checked",
+    "Avoid claiming Sarabråten's Milorg monument is at the ruin-point coordinate",
+    "For Ekebergrestauranten don't confuse the southern alternative with entrance without site geometry or imagery",
+    "Maintain the teglverk's separate address/footprint HARD HOLD",
+    "The OSM Ekeberg building centroid is not a door; its closer correspondence does not remove the public-entrance HOLD",
+    "Sarabråtveien's public trail is documented but has no exact approved ruin observation waypoint or valid play radius"
+  ]
+}

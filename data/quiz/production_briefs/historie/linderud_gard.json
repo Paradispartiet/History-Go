@@ -1,0 +1,560 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "linderud_gard",
+  "scope": "place",
+  "status": "in_review",
+  "reviewed_at": "2026-10-22",
+  "review_note": "Kilde- og påstandsbank for neste Oslo-bolk; publiserte utdrag fra Oslo byleksikon og MiA er kontrollert 22.10.2026, mens direkte fulltekstreview gjenstår. Dette er IKKE et aktivt quizmål, ingen profiler/sett eller Knowledge er generert, og bildeløyve er ikke et fotoimportbevis. Hold byggeår 1713/1714 og lindehallens 180/200 meter utenfor eksakte spørsmål. Oslo-bolk 04 er ikke berørt.",
+  "sources": {
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Linderud_%28g%C3%A5rd%29",
+      "source_type": "reference",
+      "review_status": "pending",
+      "review_note": "Gjennomgått 22.10.2026: kirkegods, eiere, husmenn, bygningsendringer, okkupasjonsbruk, 1950-årene og stiftelsen. Oppgir 1714 som byggeår. Kildeinnhold er kontrollert mot indekserte sideutdrag, men direkte originalvisning er ikke fullført (403/timeout); fulltekstreview kreves før aktiv produksjon."
+    },
+    "mia_eiere": {
+      "url": "https://mia.no/linderud/mogensson-og-mathiesen",
+      "source_type": "institutional",
+      "review_status": "pending",
+      "review_note": "Museets fortelling om handelen i 1679, Erich Mogenssøns overtakelse i 1713, lystgården og den opprinnelige barokkhagen. 1713 gjelder eksplisitt eiendomsovertakelse her, ikke sikker fullføringsdato. Kildeinnhold er kontrollert mot indekserte sideutdrag, men direkte originalvisning er ikke fullført (403/timeout); fulltekstreview kreves før aktiv produksjon."
+    },
+    "mia_hagen": {
+      "url": "https://mia.no/linderud/hagen",
+      "source_type": "institutional",
+      "review_status": "pending",
+      "review_note": "Museets anleggsoversikt og kartnøkler: flere stilperioder, terrasse, hasseltunnel, speilkanal og åpen hage. Oppgir lindehall 180 meter; lengde holdes utenfor quiz. Kildeinnhold er kontrollert mot indekserte sideutdrag, men direkte originalvisning er ikke fullført (403/timeout); fulltekstreview kreves før aktiv produksjon."
+    },
+    "mia_terrasser": {
+      "url": "https://mia.no/linderud/utforsk-det-historiske-hageanlegget",
+      "source_type": "institutional",
+      "review_status": "pending",
+      "review_note": "Museet beskriver 1800-tallets landskapsstil, 1950-talls restaurering, nyere rosebed og 70 m speilkanal. Kildeinnhold er kontrollert mot indekserte sideutdrag, men direkte originalvisning er ikke fullført (403/timeout); fulltekstreview kreves før aktiv produksjon."
+    },
+    "mia_tilgjengelighet": {
+      "url": "https://mia.no/linderud/om/tilgjengelighet",
+      "source_type": "institutional",
+      "review_status": "pending",
+      "review_note": "Museet bekrefter gruslagte offentlige ganglinjer; dette dokumenterer ikke et eksakt gameplay-pin. Oppgir bygningen som fra 1713. Kildeinnhold er kontrollert mot indekserte sideutdrag, men direkte originalvisning er ikke fullført (403/timeout); fulltekstreview kreves før aktiv produksjon."
+    },
+    "commons_foto": {
+      "url": "https://commons.wikimedia.org/wiki/File:Linderud_g%C3%A5rd_hovedbygning2.JPG",
+      "source_type": "media",
+      "review_status": "reviewed",
+      "review_note": "Helge Høifødt, 25.07.2008, CC BY-SA 3.0, original 3872×2592. Ikke importert; beskjæring, ShareAlike, kreditering og bilde-QA gjenstår."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_historiske_lag_i_byrom",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_landskapshistorisk_analyse",
+      "met_sporlesning"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "confirmed": false,
+    "justification": "Tentativ firetrinnsdekning på kildebårne spor: eierskap/trelast; arkitektur/hage; godsets arbeids- og eierstruktur; okkupasjon/byutvikling/bevaring. Ikke confirmed før READ-FIRST+CLI-preflight, endelig claim coverage og fullquiz-kontroll."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/linderud_gard_sets.json",
+      "GitHub code search linderud_gard 22.10.2026"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen aktiv quiz på denne identiteten dokumentert i Stage B-stedskatalog eller GitHub-kodesøket; kontroller manifest/arkiv på nytt i faktisk checkout før import.",
+      "Ikke opprett 1×10 som fullquiz; canonical minimum er 3×7 narrow eller 4×7 normal."
+    ],
+    "knowledge_migration": {
+      "status": "pending",
+      "reason": "Ingen identifisert målquiz; full audit av quizmanifest/arkiv gjenstår før produksjon."
+    }
+  },
+  "held_back_candidates": [
+    "Byggeåret er ikke avklart: MiAs tilgjengelighetsside 1713, Oslo byleksikon 1714. Erichs dokumenterte kjøp i 1713 er en annen hendelse.",
+    "MiA beskriver en lindehall som 180 meter på hagesiden og omtrent 200 meter i historieteksten; ingen quiz om eksakt lengde.",
+    "Ikke framstill hagen/rosebed som uendret fra barokken: 1800-tallets landskapsstil og 1950-årenes restaurering er dokumentert.",
+    "«350 gårder» beskriver 1700-tallets gods, ikke det nåværende museumsanlegget.",
+    "Feltflyplassen knyttes til jordet mot Trondheimsveien under okkupasjonen, ikke til dagens terrassehage.",
+    "Et foto på Wikimedia Commons er dokumentert CC BY-SA 3.0, men ingen binærfil, utsnitt eller lisensmetadata er installert i appen.",
+    "Offentlig gangvei beskrives av museet, men eksakt spillerpin og radius er ikke validert."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_linderud_gard_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stedet har adressen Trondheimsveien 319 i Oslo.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Linderud var kirkegods i middelalderen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kronen overdro gården til Peder Griffenfeld i 1673.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Mogens Lauritssøn kjøpte gården i 1679.",
+      "source_ids": [
+        "byleksikon",
+        "mia_eiere"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museet oppgir kjøpesummen i 1679 til 300 riksdaler.",
+      "source_ids": [
+        "mia_eiere"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_linderud_gard_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Mogens Lauritssøn drev omfattende trelasthandel i Christiania.",
+      "source_ids": [
+        "mia_eiere"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_linderud_gard_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Før oppkjøpet var Linderud et forholdsvis lite bruk drevet av en forpakter.",
+      "source_ids": [
+        "mia_eiere"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_linderud_gard_08",
+      "order": 8,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Erich Mogenssøn kjøpte gården av faren i 1713.",
+      "source_ids": [
+        "mia_eiere"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_09",
+      "order": 9,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Erich Mogenssøn fikk reist en herskapelig hovedbygning tidlig på 1700-tallet.",
+      "source_ids": [
+        "mia_eiere",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_linderud_gard_10",
+      "order": 10,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hovedbygningen ble reist i utmurt bindingsverk.",
+      "source_ids": [
+        "mia_eiere",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_linderud_gard_11",
+      "order": 11,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museet beskriver opprinnelige blyinnfattede vinduer.",
+      "source_ids": [
+        "mia_eiere"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_linderud_gard_12",
+      "order": 12,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Husets opprinnelige fasade var flerfarget, ikke gjennomgående hvit som i dag.",
+      "source_ids": [
+        "mia_eiere",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_linderud_gard_13",
+      "order": 13,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Erich Mogenssøn fikk anlagt en hage i barokk stil nedenfor huset.",
+      "source_ids": [
+        "mia_eiere"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_linderud_gard_14",
+      "order": 14,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den historiske hagen har en hasseltunnel.",
+      "source_ids": [
+        "mia_hagen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_linderud_gard_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Speilkanalen er en sentral del av anleggets hageakse.",
+      "source_ids": [
+        "mia_hagen",
+        "mia_terrasser"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_linderud_gard_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den nåværende hagen rommer trekk fra renessanse, barokk, engelsk landskapsstil og funksjonalisme.",
+      "source_ids": [
+        "mia_hagen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_linderud_gard_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Terrassehagen fikk preg av engelsk landskapsstil på 1800-tallet.",
+      "source_ids": [
+        "mia_terrasser"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_linderud_gard_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Terrassehagens nåværende hovedform knyttes av museet til restaurering på 1950-tallet.",
+      "source_ids": [
+        "mia_terrasser"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_linderud_gard_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De formale rosebedene med buksbom er nyere, ikke urørte anlegg fra 1710-årene.",
+      "source_ids": [
+        "mia_terrasser"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_linderud_gard_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hovedbygningen ble forlenget mot øst i 1809.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_linderud_gard_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bygningen ble panelt og fikk endret tak i 1840-årene.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_linderud_gard_22",
+      "order": 22,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ved utgangen av 1700-tallet omfattet Linderud-godset omkring 350 gårder.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_linderud_gard_23",
+      "order": 23,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Godssamlingen inkluderte omfattende skog og sagbruksvirksomhet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_linderud_gard_24",
+      "order": 24,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I 1771 omtales fire husmannsplasser knyttet til Linderud.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_linderud_gard_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "I 1854 var antallet husmannsplasser 11, ifølge Oslo byleksikon.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_linderud_gard_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Haagen Mathiesen drev gården i perioden 1802–1819.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_linderud_gard_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Godsets hovedsete har vært Eidsvold Værk siden 1894.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Store deler av gårdsanlegget ble rekvirert av tyskerne under okkupasjonen, men ikke våningshuset.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_29",
+      "order": 29,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Under okkupasjonen ble soldater innkvartert i gårdens uthus.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_linderud_gard_30",
+      "order": 30,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et jorde ved Trondheimsveien ble brukt som feltflyplass under okkupasjonen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_31",
+      "order": 31,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Etter frigjøringen ble Milorg-mannskaper forlagt på gården.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_32",
+      "order": 32,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Mye av jordveien ble utparsellert til utbygging i 1950-årene.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_linderud_gard_33",
+      "order": 33,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Gårdens uthus er revet; hovedbygning og park er bevart.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_linderud_gard_34",
+      "order": 34,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Christian Pierre Mathiesens arvinger opprettet Linderud Stiftelse i 1954.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_linderud_gard_35",
+      "order": 35,
+      "planned_phase": "held",
+      "family": "fact",
+      "statement": "Museet opplyser at den historiske hagen er åpen hele året.",
+      "source_ids": [
+        "mia_hagen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    }
+  ],
+  "planned_set_topics": [
+    {
+      "set": 1,
+      "theme": "Fra kirkegods til lystgård",
+      "learning_job": "Identifisere eiere, trelast, eiendom og hovedbygning som separate tidslag"
+    },
+    {
+      "set": 2,
+      "theme": "Bygning og hage i endring",
+      "learning_job": "Skille barokke spor fra senere landskapstil og restaurering"
+    },
+    {
+      "set": 3,
+      "theme": "Godsøkonomi og husmannsliv",
+      "learning_job": "Skille den historiske godssamlingen fra dagens gårdsanlegg"
+    },
+    {
+      "set": 4,
+      "theme": "Krig, byutvikling og bevaring",
+      "learning_job": "Sammenholde okkupasjonsbruk, utparsellering og museumshistorie"
+    }
+  ],
+  "publication_gate": {
+    "place_created": false,
+    "quiz_manifest_registered": false,
+    "quiz_sets_created": false,
+    "knowledge_synced": false,
+    "preflight_cli_run": false,
+    "browser_qa_passed": false
+  }
+}
