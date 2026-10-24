@@ -1,15 +1,24 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { chromium } from "playwright";
+import http from "node:http";
 
 // Run the actual browser bundle, not a VM approximation, through cold start
 // with a zero-sized/hidden map and then a Detaljert style switch.
 const bundle = readFileSync(new URL("../js/map.js", import.meta.url), "utf8");
-const browser = await chromium.launch({ headless: true });
+const fixture = '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;width:100%;height:100%}#map{position:relative;width:100%;height:100%;background:#f3efe5;overflow:hidden}.maplibregl-marker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}</style></head><body><div id="map"></div><div class="map-controls"></div></body></html>';
+const server = http.createServer((_req, res) => {
+  res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
+  res.end(fixture);
+});
+await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
+const address = server.address();
+let browser;
 try {
+  browser = await chromium.launch({ headless: true });
   for (const width of [390, 691, 1024]) {
     const page = await browser.newPage({ viewport: { width, height: 844 } });
-    await page.setContent('<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;width:100%;height:100%}#map{position:relative;width:100%;height:100%;background:#f3efe5;overflow:hidden}.maplibregl-marker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}</style></head><body><div id="map"></div><div class="map-controls"></div></body></html>');
+    await page.goto("http://127.0.0.1:" + address.port + "/");
     await page.evaluate(() => {
       const container = document.getElementById("map");
       window.maplibregl = {
@@ -142,5 +151,6 @@ try {
     await page.close();
   }
 } finally {
-  await browser.close();
+  await browser?.close();
+  await new Promise(resolve => server.close(resolve));
 }
