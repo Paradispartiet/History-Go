@@ -192,22 +192,25 @@
       return MAP;
     }
     function resize() {
-      if (MAP && typeof MAP.resize === "function") MAP.resize();
+      var _a;
+      if (!MAP) return;
+      (_a = MAP.resize) == null ? void 0 : _a.call(MAP);
+      if (lastPlaceMarkerFeatures.length) syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
     }
     function getMap() {
       return MAP;
     }
     function setPlaces(arr) {
       PLACES = Array.isArray(arr) ? arr : [];
-      if (mapReady) drawPlaceMarkers();
+      if (MAP) drawPlaceMarkers();
     }
     function setVisited(obj) {
       visited = obj || {};
-      if (mapReady) drawPlaceMarkers();
+      if (MAP) drawPlaceMarkers();
     }
     function setCatColor(fn) {
       if (typeof fn === "function") catColor = fn;
-      if (mapReady) drawPlaceMarkers();
+      if (MAP) drawPlaceMarkers();
     }
     function setOnPlaceClick(fn) {
       if (typeof fn === "function") onPlaceClick = fn;
@@ -635,7 +638,7 @@
       const center = ((_e = MAP.getCenter) == null ? void 0 : _e.call(MAP)) || { lng: START.lon, lat: START.lat };
       const lon0 = Number((_g = (_f = center.lng) != null ? _f : center.lon) != null ? _g : START.lon);
       const lat0 = Number((_h = center.lat) != null ? _h : START.lat);
-      const visible = features.filter((feature) => {
+      let visible = features.filter((feature) => {
         var _a2, _b2;
         if (((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) !== PLACE_MAP_LOD_DETAIL) return false;
         const coords = (_b2 = feature.geometry) == null ? void 0 : _b2.coordinates;
@@ -646,6 +649,16 @@
         const [bx, by] = b.geometry.coordinates;
         return (ax - lon0) ** 2 + (ay - lat0) ** 2 - ((bx - lon0) ** 2 + (by - lat0) ** 2);
       }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+      if (!visible.length) {
+        visible = features.filter((feature) => {
+          var _a2;
+          return ((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) === PLACE_MAP_LOD_DETAIL;
+        }).sort((a, b) => {
+          const [ax, ay] = a.geometry.coordinates;
+          const [bx, by] = b.geometry.coordinates;
+          return (ax - lon0) ** 2 + (ay - lat0) ** 2 - ((bx - lon0) ** 2 + (by - lat0) ** 2);
+        }).slice(0, MAX_MOBILE_DETAIL_MARKERS);
+      }
       const keep = /* @__PURE__ */ new Set();
       for (const feature of visible) {
         const id = String(feature.properties.id || "").trim();
@@ -673,16 +686,20 @@
             onPlaceClick(id);
           });
           const marker = new maplibregl.Marker({ element, anchor: "center" }).setLngLat(feature.geometry.coordinates).addTo(MAP);
-          entry = { marker, element };
+          entry = { marker, element, lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] };
           placeDetailMarkers.set(id, entry);
-        } else {
+        } else if (entry.lon !== feature.geometry.coordinates[0] || entry.lat !== feature.geometry.coordinates[1]) {
           entry.marker.setLngLat(feature.geometry.coordinates);
+          entry.lon = feature.geometry.coordinates[0];
+          entry.lat = feature.geometry.coordinates[1];
         }
         const diameter = zoom < 12 ? 9 : zoom < 14 ? 10 : 11;
         entry.element.style.width = `${diameter}px`;
         entry.element.style.height = `${diameter}px`;
         entry.element.style.backgroundColor = feature.properties.fill;
-        entry.element.style.borderColor = feature.properties.border;
+        const borderColor = String(feature.properties.border || "").trim();
+        const fillColor = String(feature.properties.fill || "").trim();
+        entry.element.style.borderColor = !borderColor || borderColor.toLowerCase() === fillColor.toLowerCase() ? "#17212a" : borderColor;
         entry.element.style.opacity = feature.properties.coordinateTrust === "invalid" ? "0" : "1";
         entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 5px rgba(0,0,0,.30)";
       }
@@ -838,7 +855,6 @@
       var _a;
       if (!MAP) return;
       if (!Array.isArray(PLACES) || PLACES.length === 0) return;
-      if (!styleReady) return;
       const places = typeof ((_a = window.HG_I18N) == null ? void 0 : _a.localizePlaces) === "function" ? window.HG_I18N.localizePlaces(PLACES) : PLACES;
       const features = [];
       for (const p of places) {
@@ -876,6 +892,7 @@
       lastPlaceMarkerFeatures = features;
       syncPlaceAreaDomMarkers(features);
       syncPlaceDetailDomMarkers(features);
+      if (!styleReady) return;
       const src = MAP.getSource(SRC);
       if (src && REQUIRED_PLACE_LAYERS.every((id) => MAP.getLayer(id))) {
         src.setData(fc);
@@ -886,6 +903,7 @@
       MAP.addSource(SRC, { type: "geojson", data: fc });
       MAP.addLayer({
         id: L_GLOW,
+        layout: { visibility: useNativeMobileDetailMarkers() ? "none" : "visible" },
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
@@ -894,6 +912,7 @@
       });
       MAP.addLayer({
         id: L_DOTS,
+        layout: { visibility: useNativeMobileDetailMarkers() ? "none" : "visible" },
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
