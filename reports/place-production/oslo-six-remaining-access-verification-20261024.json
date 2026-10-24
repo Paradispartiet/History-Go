@@ -33,9 +33,34 @@
           "url": "https://mia.no/linderud/om/tilgjengelighet",
           "publisher": "Museene i Akershus",
           "claim": "Gruslagt gangvei mellom Linderud senter og Sauedalen og frem til gårdsplassen."
+        },
+        {
+          "url": "https://lokalhistoriewiki.no/wiki/Linderud_%28Oslo%29",
+          "publisher": "Lokalhistoriewiki",
+          "claim": "Stedskoordinat 59.94194, 10.83380 er gårds-/anleggsposisjon, ikke verifisert gangvei, dør eller tilgjengelig besøksanker."
+        },
+        {
+          "url": "https://mapcarta.com/W80871207",
+          "publisher": "Mapcarta / OSM",
+          "claim": "Kartbasert bygningsmidtpunkt 59.94189, 10.83378 for museumsbygning; bygningspunkt er ikke et offentlig gang- eller innsjekkingspunkt."
         }
       ],
-      "next_required": "Velg og geografisk verifiser et punkt på offentlig gruslagt ganglinje eller gårdsplass, med stedfestet kilde/visuell kontroll og begrunnet radius. Ikke bruk adresserepresentasjonspunktet som dør."
+      "next_required": "Velg og geografisk verifiser et punkt på offentlig gruslagt ganglinje eller gårdsplass, med stedfestet kilde/visuell kontroll og begrunnet radius. Ikke bruk adresserepresentasjonspunktet som dør.",
+      "geo_research": {
+        "candidate_kind": "historic_site_poi_not_path_waypoint",
+        "research_only_coordinate": {
+          "lat": 59.94194,
+          "lon": 10.8338,
+          "source": "https://lokalhistoriewiki.no/wiki/Linderud_%28Oslo%29",
+          "role": "historic_farm_site_not_visitor_path"
+        },
+        "operator_map_url": "https://mia.no/linderud/finn-oss",
+        "new_evidence": "Museets egen kartillustrasjon viser fotgjengerlinje fra Linderud senter mot anlegget; den gir trasé og gårdsplasskontekst, men ingen presis koordinat for påstigning/innsjekking.",
+        "public_path_verification_method": "Stedfest valgt gårdsplass-/grusgangpunkt mot operatørkart og georeferert kart/ortofoto. Kontroller at GPS-radius kan nås på åpen gangvei og ikke tvinger besøk ved bilport fra RV4.",
+        "usable_as_canonical_waypoint": false,
+        "on_path_waypoint_verified": false,
+        "radius_justified": false
+      }
     },
     {
       "place_id": "sarabraten",
@@ -55,9 +80,39 @@
           "url": "https://ut.no/turforslag/1114082/stmarka-vest-pa-tvers",
           "publisher": "UT.no / privately published route",
           "claim": "Turrute omtaler passering Sarabråten fra Ulsrud gjennom Østmarka; ikke presis ruin- eller minnekoordinat."
+        },
+        {
+          "url": "https://lokalhistoriewiki.no/wiki/Sarabr%C3%A5ten",
+          "publisher": "Lokalhistoriewiki",
+          "claim": "Stedskoordinat 59.89177, 10.87884 gjelder historisk anlegg; artikkelen skiller ruiner etter villaen fra Milorg-minnesmerket."
+        },
+        {
+          "url": "https://www.skiforeningen.no/utimarka/omrader/ostmarka/steder/sarabraten/",
+          "publisher": "Skiforeningen",
+          "claim": "Sarabråten beskrives som ruiner på høydedrag øst for Nøklevann. Ikke dokumentasjon av et bestemt punkt på den offentlige stien."
+        },
+        {
+          "url": "https://sarabraaten.wordpress.com/murrester-og-ruiner/",
+          "publisher": "Sarabråten historieprosjekt / historisk kart",
+          "claim": "Oppmålt historisk ruinoversikt skiller blant annet dragestilvillaens kjellermurer fra kuskebolig og uthus; historiske ruinpunkter er ikke GPS-verifiserte dagens stier."
         }
       ],
-      "next_required": "Verifiser ruinpunkt versus Milorg-minnestein og et eksakt tilgjengelig observasjonspunkt fra sti, uten å flytte fotografiets EXIF-koordinater til en spillpin."
+      "next_required": "Verifiser ruinpunkt versus Milorg-minnestein og et eksakt tilgjengelig observasjonspunkt fra sti, uten å flytte fotografiets EXIF-koordinater til en spillpin.",
+      "geo_research": {
+        "candidate_kind": "historical_site_poi_separate_from_ruins_and_milorg_memorial",
+        "research_only_coordinate": {
+          "lat": 59.89177,
+          "lon": 10.87884,
+          "source": "https://lokalhistoriewiki.no/wiki/Sarabr%C3%A5ten",
+          "role": "historic_site_not_verified_ruin_path"
+        },
+        "route_reference": "https://lokalhistoriewiki.no/wiki/Sarabr%C3%A5tveien",
+        "new_evidence": "Skiforeningen bekrefter ruinområde på høyden øst for Nøklevann; historisk kart skiller flere murfundamenter. Ikke gjør veiartikkelens koordinat eller et kamerageotagg til ruin-innsjekkingspunkt.",
+        "public_path_verification_method": "Velg ett dagens offentlig sti-/observasjonspunkt nær faktiske murrester. Sjekk mot lokalt kart og nåværende ferdselslinje; hold Milorg-bautaen separat.",
+        "usable_as_canonical_waypoint": false,
+        "on_path_waypoint_verified": false,
+        "radius_justified": false
+      }
     },
     {
       "place_id": "saeterhytten_bygdoy",
@@ -82,9 +137,40 @@
           "url": "https://www.tgsmat.no/saeterhytten",
           "publisher": "Caterer / commercial venue page",
           "claim": "Sæterhytten leies ut som selskapslokale; informasjon om arrangementstilgang er ikke fri adgang til interiøret."
+        },
+        {
+          "url": "https://naturvernforbundet.no/naturvernforbundets-bynaturtips/",
+          "publisher": "Naturvernforbundet",
+          "claim": "Turforslag beskriver grusvei fra Dronning Blancas vei inn på Dronningberget og stier til Seterhytta; dette er ruteveiledning, ikke GPS-ankerkvalifikasjon."
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Seterhytten_p%C3%A5_Dronningberget.jpg",
+          "publisher": "Wikimedia Commons",
+          "claim": "Fotografiets kamerageotagg 59.915795, 10.684204 kan være fotografens ståsted, ikke dokumentert offentlig inngang til hytten."
+        },
+        {
+          "url": "https://dh-ibsenstage.hf.uio.no/pages/venue/15081",
+          "publisher": "UiO IbsenStage",
+          "claim": "Database merker 59.915795, 10.684204 som venue-koordinat, identisk med Commons kamerageotagg; numerisk likhet alene er ikke uavhengig kontroll av sti eller inngang."
         }
       ],
-      "next_required": "Kartfest et faktisk offentlig sti-/parkpunkt med trygg sikt til bygningen uten å forutsette åpen selskapslokaleport, privat parkering eller innendørs adgang; verifiser reservatets sti og radius."
+      "next_required": "Kartfest et faktisk offentlig sti-/parkpunkt med trygg sikt til bygningen uten å forutsette åpen selskapslokaleport, privat parkering eller innendørs adgang; verifiser reservatets sti og radius.",
+      "geo_research": {
+        "candidate_kind": "photographer_viewpoint_not_venue_entry",
+        "research_only_coordinate": {
+          "lat": 59.915795,
+          "lon": 10.684204,
+          "source": "https://commons.wikimedia.org/wiki/File:Seterhytten_p%C3%A5_Dronningberget.jpg",
+          "role": "photo_camera_location_not_independently_confirmed_public_waypoint"
+        },
+        "same_coordinate_in_secondary_directory": "https://dh-ibsenstage.hf.uio.no/pages/venue/15081",
+        "coordinate_independence_warning": "UiOs venue-database og Commons oppgir eksakt samme tall som bildets kamerakoordinat; dette er ikke to uavhengig oppmålte offentlige besøksankre.",
+        "new_evidence": "Utleieoperatøren beskriver grusveiadkomst fra Bygdøyveien ved bom og at ferdsel rundt eiendommen kan fortsette når grind stenges for arrangement. Naturvernforbundet gir alternativ gangrute på eksisterende stier.",
+        "public_path_verification_method": "Stedfest et skånsomt offentlig sti-/grusveipunkt med syn til bygningen utenfor lukket arrangementssone; vurder bom, beitegjerder, verneområde og skråninger på kart/felt.",
+        "usable_as_canonical_waypoint": false,
+        "on_path_waypoint_verified": false,
+        "radius_justified": false
+      }
     },
     {
       "place_id": "kristiania_teglverk_bryn",
@@ -109,10 +195,43 @@
           "url": "https://norskbyggedata.no/no/project/ing-og-oppgradering-av-christiania-teglverksbygget-148239706",
           "publisher": "Norsk Byggedata / building project reporting",
           "claim": "Byggesak omtaler rehabilitering i Nils Hansens vei 18; bekrefter ikke hvilken bygningsdel som har ringovn eller offentlig adgang."
+        },
+        {
+          "url": "https://lokalhistoriewiki.no/wiki/Teglverk_i_Oslo_kommune",
+          "publisher": "Lokalhistoriewiki",
+          "claim": "Oversikt plasserer Kristiania teglverk i Nils Hansens vei 18 og skiller det fra andre eldre Bryn-teglverk, men dokumenterer ikke dagens offentlig adgang."
+        },
+        {
+          "url": "https://etterstad.no/2004/06/19/nils-hansens-vei-18-20-bryn/",
+          "publisher": "Etterstad Vel / gjengitt eldre planforslag",
+          "claim": "Eldre planmateriale identifiserer eksisterende teglverksbygning og teglovnselementer som nr. 18. Forslaget og eldre opplysninger beviser ikke gjeldende bygningsfotavtrykk eller adgang."
+        },
+        {
+          "url": "https://www.finn.no/realestate/businessrent/ad.html?finnkode=422708780",
+          "publisher": "Næringsmegler / utleieannonse",
+          "claim": "Næringslokaler i Nils Hansens vei 18 markedsføres på gnr. 137 bnr. 31, som samstemmer med adresseregisteret; annonsering dokumenterer ikke offentlig museumsadgang eller nåværende ringovn."
         }
       ],
-      "next_required": "Avstem eiendomsparsell og fysisk ovnsbygning mot kommunalt kulturminne-/byggesakskart. Deretter dokumenter et eksternt offentlig utsiktspunkt; ingen aktivering før både identitet og adkomst er bevisført."
+      "next_required": "Avstem nåværende ringovnsbygg og matrikkel med kommunalt kulturminne-/bygningskart (adresse 18 er best støttet, 14 fortsatt motkilde). Dokumenter et eksternt lovlig offentlig utsiktspunkt, et GPS-anker på offentlig grunn og begrunnet radius. Ingen aktivering før identitet og adkomst er bevisført.",
+      "geo_research": {
+        "candidate_kind": "industrial_parcel_identity_strongly_supports_18_no_public_waypoint",
+        "research_only_coordinate": null,
+        "address_18_support": [
+          "https://teglverk.no/kristiania-teglverk/",
+          "https://lokalhistoriewiki.no/wiki/Teglverk_i_Oslo_kommune",
+          "https://etterstad.no/2004/06/19/nils-hansens-vei-18-20-bryn/"
+        ],
+        "conflicting_source_14": "https://oslobyleksikon.no/side/Kristiania_Teglverk",
+        "commercial_property_current_reference": "https://www.finn.no/realestate/businessrent/ad.html?finnkode=422708780",
+        "cadastral_reference": "137/31",
+        "new_evidence": "Flere uavhengige industrikilder og eldre planmateriale støtter adresse nr. 18, men Oslo byleksikon oppgir fortsatt nr. 14. Bygningsfotavtrykk og lovlig offentlig observasjonspunkt må kontrolleres; næringsleie er ikke offentlig besøksrett.",
+        "public_path_verification_method": "Avstem ringovnsbyggets nåværende kontur og matrikkel mot Oslo kommunes oppdaterte kulturminne- og bygningskart. Undersøk syn fra offentlig gate/turvei uten innpass på privat industriområde.",
+        "usable_as_canonical_waypoint": false,
+        "on_path_waypoint_verified": false,
+        "radius_justified": false
+      }
     }
   ],
-  "release_rule": "Public exterior access can be confirmed without claiming exact GPS. Every place stays unregistered until actual on-path site coordinates, physical/legal access, justified radius, canonical onboarding and mobile/desktop QA all pass."
+  "release_rule": "Public exterior access can be confirmed without claiming exact GPS. Every place stays unregistered until actual on-path site coordinates, physical/legal access, justified radius, canonical onboarding and mobile/desktop QA all pass.",
+  "research_expansion": "2026-10-24: source-specific POI/route candidates and address corroboration only. Raw map/photo coordinates must never substitute for field/map-verified public walking waypoint or a justified GPS radius."
 }
