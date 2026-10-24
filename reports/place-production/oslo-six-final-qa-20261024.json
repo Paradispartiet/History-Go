@@ -3,7 +3,7 @@
   "as_of": "2026-10-24",
   "pr": 6586,
   "branch": "research/oslo-six-culture-institutions-v1-20261023",
-  "status": "CONTENT_INTEGRATED_V1_RELEASE_GATES_STILL_OPEN",
+  "status": "CANONICAL_QUIZ_SYNC_PASSED_FULL_PR_CI_AND_FINAL_EDITORIAL_GATES_OPEN",
   "scope": {
     "independent_of_pr_6579": true,
     "excludes_oslo_batch04": true,
@@ -40,7 +40,7 @@
     "cardQuestionsTotal": 60,
     "verifiedNewPortraitCrops": 5,
     "existingEldoradoImage": true,
-    "storyAndChronologyFinalReview": "pending"
+    "storyAndChronologyFinalReview": "pending, not represented as passed"
   },
   "passedChecksFromDirectedRuns": [
     "Five new canonical quiz production contexts rebuilt and checked",
@@ -53,13 +53,20 @@
     "Epoch viewer coverage expected counts updated and independently passed on earlier commit"
   ],
   "openGates": [
-    "Run complete existing PR CI on a user-authored commit; bot-authored heads may be action_required",
-    "Review and resolve any remaining Data checks or quiz governance failures",
+    "Run full PR CI on current user-authored head, including dedicated six-place browser QA",
     "Review all source links and claim distinctions including dated sources and superlatives",
     "Manual browser review on mobile and desktop of PlaceCard, QuizCard, Knowledge feedback, Fagverk and photo framing",
     "Independently editorial-review each question, its plausible distractors and knowledge explanation",
     "Politikk chronologyStories G remains N/A pending evidence and editorial evaluation",
     "Check all six places for sufficient standalone photo and runtime visual quality"
   ],
-  "releasePolicy": "Remain draft until all required checks are green and editorial/mobile review is evidenced. This report does not self-certify v1."
+  "releasePolicy": "Remain draft until all required checks are green and editorial/mobile review is evidenced. This report does not self-certify v1.",
+  "lastValidated": {
+    "as_of": "2026-10-24",
+    "commit": "de7cdd377d09fad66a04569e6d689cfe91a67b6b",
+    "canonicalSyncRun": "https://github.com/Paradispartiet/History-Go/actions/runs/40088761589",
+    "result": "success",
+    "scope": "source-first quiz contexts for five places, 105/105 canonical Knowledge links, 50 QuizCard parity, deterministic Fagverk release digest, quiz progression and theory-binding checks",
+    "review_limit": "Automated integrity verification only; not human editorial review"
+  }
 }
