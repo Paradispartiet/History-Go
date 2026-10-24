@@ -1,0 +1,70 @@
+name: Oslo sentrum six v1 — real app and quiz QA
+on:
+  pull_request:
+    paths:
+      - 'data/places/**'
+      - 'data/quiz/**'
+      - 'data/quizcards/**'
+      - 'data/runtime/place-open/**'
+      - 'data/fagverk/**'
+      - 'tests/oslo-sentrum-six-6586-*'
+      - '.github/workflows/oslo-sentrum-six-v1-6586-qa.yml'
+  push:
+    branches:
+      - research/oslo-six-culture-institutions-v1-20261023
+    paths:
+      - '.github/workflows/oslo-sentrum-six-v1-6586-qa.yml'
+permissions:
+  contents: read
+concurrency:
+  group: oslo-sentrum-six-v1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  static:
+    name: 140 fullquiz + 60 QuizCard + Knowledge integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Verify all six canonical place and question contracts
+        run: node --test tests/oslo-sentrum-six-6586-integrity.test.mjs
+      - name: Audit source-first quiz production and category manifest
+        run: |
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run test:quiz-production
+          npm run test:politikk-place-production
+          npm run audit:politikk-place-production
+  browser:
+    name: ${{ matrix.place }} — mobile + desktop Playwright
+    strategy:
+      fail-fast: false
+      matrix:
+        place: [arbeidersamfunnets_plass, politihuset_gronland, statsministerboligen, nobels_fredssenter, vikaterrassen, eldorado_bokhandel]
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Run actual History GO routes and real flipped QuizCard
+        env:
+          HG_PLACE_ID: ${{ matrix.place }}
+        run: node tests/oslo-sentrum-six-6586-real-app-browser.mjs
+      - name: Attach screenshots to review and diagnose failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-sentrum-six-6586-${{ matrix.place }}
+          path: artifacts/oslo-sentrum-six-6586/${{ matrix.place }}/
+          if-no-files-found: warn
+          retention-days: 14
