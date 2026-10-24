@@ -66,7 +66,21 @@ try{
       matchedPlaceId:el.closest('#placeCard')?.dataset.currentPlaceId,
       rowClass:el.parentElement.className,
       heroClass:el.closest('.pc-heading-hero')?.className,
-      declaredStylesheets:[...document.styleSheets].map(ss=>ss.href).filter(Boolean).filter(h=>h.includes('placeCard'))
+      declaredStylesheets:[...document.styleSheets].map(ss=>ss.href).filter(Boolean).filter(h=>h.includes('placeCard')),
+      inlineStyle: el.getAttribute('style'),
+      bodyClasses: document.body.className,
+      viewportWidth: window.innerWidth,
+      media520: window.matchMedia('(max-width: 520px)').matches,
+      matchingFontRules: [...document.styleSheets].flatMap(ss => {
+       const out = [];
+       const walk = rules => { for(const rule of rules) {
+        if(rule.cssRules) { walk(rule.cssRules); continue; }
+        if(!rule.selectorText || !rule.style?.getPropertyValue('font-size')) continue;
+        try { if(el.matches(rule.selectorText)) out.push({selector:rule.selectorText,font:rule.style.getPropertyValue('font-size'),priority:rule.style.getPropertyPriority('font-size')}); } catch {}
+       }};
+       try {walk(ss.cssRules);} catch {}
+       return out;
+      }).slice(-12)
      };
     });
     assert.equal(wordLayout.fragments,1,target+'/'+width+': PlaceCard splits first word mid-word: '+JSON.stringify(wordLayout));
