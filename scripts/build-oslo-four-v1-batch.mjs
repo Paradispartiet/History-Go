@@ -102,7 +102,11 @@ for(const id of IDS){
    coordType:'site_reference',coordSourceUrl:geo.source,coordVerifiedAt:'2026-10-24',
    coordNote:geo.role+'. Kartpunkt og nærhetsradius er foreløpige; de gir ikke tilgang til private, fredede eller avsperrede områder. '+EXTRA_NOTICE[id],
    underbadge_ids:geo.underbadge_ids,emne_ids:p.fagverk_preview.emne_ids,
-   desc:s.proposed_canonical_fields.desc,popupDesc:s.proposed_canonical_fields.popupDesc,
+   desc:s.proposed_canonical_fields.desc,
+   popupDesc:id==='kristiania_teglverk_bryn'?
+    s.proposed_canonical_fields.popupDesc.replace('Inntil eiendom og offentlig besøksankring er avklart, skal denne teksten bare være et redaksjonelt utkast uten nytt kartpunkt eller løfte om adgang til ringovnen.',
+      'Bygningen ligger på privat industriområde. Besøkende må holde seg på offentlig gangareal; de har ikke fri adgang til ringovnen eller fabrikkbygningen.'):
+    s.proposed_canonical_fields.popupDesc,
    image,frontImage,cardImage,imageMeta:right,frontImageMeta:fRight,
    externalLinks:[...new Map([
      ...access.decisions.find(x=>x.place_id===id).sources.map(x=>[x.url,{label:x.publisher,url:x.url}]),
