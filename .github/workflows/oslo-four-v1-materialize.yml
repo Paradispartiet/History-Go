@@ -1,6 +1,12 @@
 name: Oslo four v1 candidate materialization
 
 on:
+  push:
+    branches:
+      - feat/oslo-four-places-canonical-20261024
+    paths:
+      - scripts/build-oslo-four-description-packets.mjs
+      - .github/workflows/oslo-four-v1-materialize.yml
   workflow_dispatch:
 
 permissions:
@@ -31,22 +37,29 @@ jobs:
         run: node scripts/build-oslo-four-v1-batch.mjs --write
       - name: Register Place, quiz, QuizCard and Fagverk entries on PR branch
         run: node scripts/onboard-oslo-four-v1.mjs --write
+      - name: Generate source-traced description production packets
+        run: node scripts/build-oslo-four-description-packets.mjs --write
       - name: Install build dependencies
         run: npm ci --ignore-scripts
       - name: Generate canonical Knowledge links
         run: npm run knowledge:canonical:write
       - name: Synchronize QuizCards to Knowledge units
         run: node scripts/onboard-oslo-four-v1.mjs --sync-knowledge
-      - name: Build Place-open app payloads
-        run: npm run place-open:build
-      - name: Build mapped Place index
+      - name: Synchronize Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --write
+      - name: Build mapped Place index before Place-open
         run: npm run places:index:build
+      - name: Build Place-open app payloads from updated index
+        run: npm run place-open:build
       - name: Commit generated candidate files back to the same PR branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/places/historie/oslo/places data/places/naeringsliv/oslo/places data/quiz/historie data/quiz/naeringsliv data/quizcards/historie/oslo_four_20261024.json data/quizcards/naeringsliv/oslo_four_20261024.json bilder/places/auto/kristiania_teglverk_bryn__historical_illustration.svg bilder/places/auto/kristiania_teglverk_bryn__front_illustration.svg bilder/places/auto/kristiania_teglverk_bryn__card_illustration.svg reports/place-production/oslo-four-release-candidate-20261024.json reports/place-production/linderud_gard-workcard-current.json reports/place-production/sarabraten-workcard-current.json reports/place-production/saeterhytten_bygdoy-workcard-current.json reports/place-production/kristiania_teglverk_bryn-workcard-current.json
-          git add data/places/manifest.json data/quiz/manifest.json data/quizcards/historie/manifest.json data/quizcards/naeringsliv/manifest.json data/fagverk/fagverk_registry.json data/knowledge data/runtime reports/knowledge-id-backfill.json reports/knowledge-contract-audit.json reports/place-production/oslo-four-onboarding-state-20261024.json || true
+          git add data/places/production/linderud_gard.json data/places/production/sarabraten.json data/places/production/saeterhytten_bygdoy.json data/places/production/kristiania_teglverk_bryn.json data/fagverk/fagverk_release.json data/runtime/place-open/linderud_gard.json data/runtime/place-open/sarabraten.json data/runtime/place-open/saeterhytten_bygdoy.json data/runtime/place-open/kristiania_teglverk_bryn.json
+          git rm -f --cached reports/knowledge-contract-audit.json || true
+          rm -f reports/knowledge-contract-audit.json
+          git add data/places/manifest.json data/quiz/manifest.json data/quizcards/historie/manifest.json data/quizcards/naeringsliv/manifest.json data/fagverk/fagverk_registry.json data/knowledge data/runtime reports/knowledge-id-backfill.json reports/place-production/oslo-four-onboarding-state-20261024.json || true
           if ! git diff --cached --quiet; then
             git commit -m "data(oslo): materialize 4 Place, 91 quiz and 40 QuizCard candidates"
             git push origin HEAD:feat/oslo-four-places-canonical-20261024
