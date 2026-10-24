@@ -485,7 +485,7 @@ body.hg-app.map-only .map-controls {
   position: absolute;
   overflow: visible;
 }
-#map .hg-place-detail-marker .hg-place-detail-label {
+body.hg-app #map .hg-place-detail-marker .hg-place-detail-label {
   position: absolute;
   display: block;
   left: 50%;
@@ -496,19 +496,18 @@ body.hg-app.map-only .map-controls {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #27323b;
+  color: #000;
   font-size: 11px;
   font-weight: 650;
   line-height: 16px;
   letter-spacing: -.08px;
   text-align: center;
-  text-shadow:
-    -1px -1px 1px rgba(255,255,255,.97),
-     1px -1px 1px rgba(255,255,255,.97),
-    -1px  1px 1px rgba(255,255,255,.97),
-     1px  1px 1px rgba(255,255,255,.97),
-     0px  0px 3px rgba(255,255,255,.95);
-  background: transparent;
+  /* Solid black letters instead of a white halo that made names look white.
+     A subtle light backdrop preserves readability over satellite imagery. */
+  text-shadow: none;
+  background: rgba(255,255,255,.78);
+  border-radius: 2px;
+  padding: 0 2px;
   border: 0;
   box-shadow: none;
   pointer-events: none;
