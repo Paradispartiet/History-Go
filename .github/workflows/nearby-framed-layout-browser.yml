@@ -53,7 +53,7 @@ jobs:
       - name: Verify all footer action runtimes and real save flows
         run: node --test tests/footer-actions-runtime.test.mjs
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium webkit
       - name: Verify footer geometry contract
         run: node --test tests/mobile-footer-layout.test.mjs
       - name: Audit footer layout on phone and tablet
