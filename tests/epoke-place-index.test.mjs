@@ -167,7 +167,7 @@ test("every indexed milestone is dated, inspectable and sourced from an approved
           assert.equal(milestone.title, claim.claim);
           assert.equal(milestone.sources.length, 1);
           assert.equal(milestone.sources[0].url, claim.sourceUrl);
-          assert.equal(milestone.sources[0].title, claim.sourceLocation || claim.sourceType || claim.sourceUrl);
+          assert.equal(milestone.sources[0].title, String(claim.sourceLocation || claim.sourceType || claim.sourceUrl).trim());
           assert.equal(milestone.sources[0].verifiedAt, claim.verifiedAt || "");
           if (claim.timelineYear !== undefined) assert.equal(milestone.year, claim.timelineYear);
           const anchorMatch = milestone.title.match(new RegExp(`(^|[^0-9])${milestone.year}(?![0-9])`));
