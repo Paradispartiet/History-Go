@@ -56,6 +56,6 @@ test('candidate files exist as separate Place and quiz JSON, without silent live
    const quiz=JSON.parse(fs.readFileSync(entry.quizPath,'utf8'));
    assert.equal(place.id,entry.id);
    assert.equal(quiz.sets.flatMap(set=>set.questions).length,entry.quiz.sets.flatMap(set=>set.questions).length);
-   assert.ok(!manifest.files.includes(entry.placePath.replace(/^data\\//,'')),entry.id+' unexpectedly published');
+   assert.ok(!manifest.files.includes(entry.placePath.replace('data/','')),entry.id+' unexpectedly published');
  }
 });
