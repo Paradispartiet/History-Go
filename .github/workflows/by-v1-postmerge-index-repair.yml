@@ -1,0 +1,41 @@
+name: By v1 post-merge place index repair
+on:
+  push:
+    branches:
+      - fix/by-v1-postmerge-place-index-20261024
+    paths:
+      - '.github/workflows/by-v1-postmerge-index-repair.yml'
+permissions:
+  contents: write
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/by-v1-postmerge-place-index-20261024
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical place index and verify exact parity
+        run: |
+          npm run places:index:build
+          npm run places:index:check
+      - name: Commit the regenerated index only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/places_index.json
+          if git diff --cached --quiet; then
+            echo "Place index already current."
+            exit 0
+          fi
+          git diff --cached --stat
+          git commit -m "fix(by): synchronize merged place image pointers in index"
+          git push origin HEAD:refs/heads/fix/by-v1-postmerge-place-index-20261024
