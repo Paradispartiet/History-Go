@@ -157,6 +157,11 @@ async function run() {
   await build(startupOptions);
   await build(compactStartupOptions);
   console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length + COMPACT_STARTUP_ENTRIES.length} entry/entries -> dist/web`);
+  // Temporary CI trace of the exact generated browser bundle; remove before merge.
+  const { readFile } = await import("node:fs/promises");
+  console.log("HG_NATIVE_LABEL_BUNDLE_B64_BEGIN");
+  console.log((await readFile(path.join(OUT_DIR, "map.js"))).toString("base64"));
+  console.log("HG_NATIVE_LABEL_BUNDLE_B64_END");
 }
 
 run().catch((err) => {
