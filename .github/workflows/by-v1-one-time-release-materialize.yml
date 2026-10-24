@@ -1,0 +1,45 @@
+name: Oslo By one-shot post-main sync
+on:
+  push:
+    branches:
+      - content/by-v1-twenty-20261024
+    paths:
+      - '.github/workflows/by-v1-one-time-release-materialize.yml'
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/by-v1-twenty-20261024
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical release and runtime artifacts
+        run: |
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run epoker:places:check
+          npm run place-open:check
+      - name: Commit generated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json data/epoker/epoke-place-index.json data/runtime/place-open/
+          if git diff --cached --quiet; then
+            echo "Already synchronized"
+            exit 0
+          fi
+          git diff --cached --stat
+          git commit -m "chore(by): rebuild Fagverk and Place runtime after merging main"
+          git push origin HEAD:refs/heads/content/by-v1-twenty-20261024
