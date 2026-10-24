@@ -1,0 +1,547 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "politikk",
+  "targetId": "politihuset_gronland",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1431,
+    "selection_sha256": "96c38c8fcc7130510a90452befc306e1c9d3612911113b5190ec7c7e591aaa2b",
+    "category_id": "politikk",
+    "target_id": "politihuset_gronland"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "bytes": 106999,
+      "sha256": "391418e064d0d6c01e25c8ceb605fe1ae48d9fae3e9ccdd5e3091897e185a5a0",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "bytes": 1205851,
+      "sha256": "0711d942ab833490f4914d7ed472a99741021bb5fce76dfb90fea573794aaa1f",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "bytes": 1099481,
+      "sha256": "5a81d0d09ac89093705b6343f8de09d2565ca00e2086a354caa7f652f0ef63c7",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "bytes": 665205,
+      "sha256": "92e56fa6afe941245a6caef1a5e1ca51cca9372cc49f29b003c3e549a6359b62",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "bytes": 17236,
+      "sha256": "47609c9599cdffdf53702152ca3ebf071571cbfa131e1f9a89703964546476de",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/politikk/politihuset_gronland.json",
+      "bytes": 12091,
+      "sha256": "a80171c41cc685564df82895ded3af417cb5a5bb86837f24e440abc667f322fd"
+    },
+    "target": {
+      "path": "data/places/politikk/oslo/places_politikk/politihuset_gronland.json",
+      "bytes": 12443,
+      "sha256": "90f792850a15667782976b490a832e48004b503b4eeda1ba35f8e079f5d874b3"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1681,
+      "selection_sha256": "9170eeea5986f1904b3eb929f6c46e39e0f884f945a835d7d94cb2df0c9b2de4"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/politikk/politihuset_gronland_sets.json",
+  "source_registry": {
+    "source_politihuset_gronland_01": {
+      "url": "https://oslobyleksikon.no/side/Politihuset",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Kildetekst og tidsfesting sammenholdt med stedets eksisterende kildebelagte v4.2-pakke og faglig kontroll 24.10.2026."
+    },
+    "source_politihuset_gronland_02": {
+      "url": "https://oslobyleksikon.no/side/Grønland_politistasjon",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Kildetekst og tidsfesting sammenholdt med stedets eksisterende kildebelagte v4.2-pakke og faglig kontroll 24.10.2026."
+    },
+    "source_politihuset_gronland_03": {
+      "url": "https://oslobyleksikon.no/side/Gr%C3%B8nland_politistasjon",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Kildetekst og tidsfesting sammenholdt med stedets eksisterende kildebelagte v4.2-pakke og faglig kontroll 24.10.2026."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/politikk/",
+      "data/places/politikk/oslo/places_politikk/politihuset_gronland.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv fullquiz med targetId=politihuset_gronland i manifestet per 24.10.2026."
+    },
+    "decisions": [
+      "Produksjon fra kontrollerte kilder; ti opprinnelige spørsmål redigert og bevart.",
+      "Elleve nye spørsmål for stedsspesifikk historisk dybde.",
+      "Tre sett à sju spørsmål fordi kildene bærer 21 distinkte faktiske læringsoppgaver; ikke fyll med generiske eller teoretiske spørsmål."
+    ],
+    "knowledge_migration": "Ingen tidligere canonical quiz-eier; genereres fra fullquiz med Knowledge canonical generator."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Avgrenset by- eller institusjonshistorie med 21 særskilte kildebelagte spørsmål om opphav, historiske endringer og institusjonell funksjon. Rich-profil ville kreve mer uavhengig primærmateriale."
+  },
+  "held_back_candidates": [
+    "Uverifiserte fortolkninger av sosiale og økonomiske effekter.",
+    "Oppgaver om andre bygg uten presis stedsrelasjon.",
+    "Generiske teori- og metodeoppgaver uten kildegrunnlag."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 13,
+      "emner": 123,
+      "topic_hooks": 152,
+      "methods": 71
+    },
+    "candidate_emner": [
+      {
+        "id": "em_pol_institusjoner_styring",
+        "title": "Institusjoner og styring",
+        "score": 100
+      },
+      {
+        "id": "em_pol_maktbegrensning",
+        "title": "Maktbegrensning",
+        "score": 100
+      },
+      {
+        "id": "em_pol_rettsstat_rettssikkerhet",
+        "title": "Rettsstat og rettssikkerhet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "migrasjon",
+        "title": "Migrasjon",
+        "category_id": "normer_identitet_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "domstoler",
+        "title": "Domstoler",
+        "category_id": "rett_lov_rettssikkerhet",
+        "score": 10
+      },
+      {
+        "id": "institusjon_som_maktform",
+        "title": "Institusjon som maktform",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 10
+      },
+      {
+        "id": "legitimitet_i_systemet",
+        "title": "Legitimitet i systemet",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 10
+      },
+      {
+        "id": "parlamentarisme",
+        "title": "Parlamentarisme",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "rettsstat",
+        "title": "Rettsstat",
+        "category_id": "rett_lov_rettssikkerhet",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "styring_institusjoner_forvaltning",
+      "rett_lov_rettssikkerhet"
+    ],
+    "emne_ids": [
+      "em_pol_institusjoner_styring",
+      "em_pol_rettsstat_rettssikkerhet",
+      "em_pol_maktbegrensning"
+    ],
+    "topic_hook_ids": [
+      "migrasjon",
+      "domstoler",
+      "institusjon_som_maktform",
+      "legitimitet_i_systemet"
+    ],
+    "method_ids": [
+      "met_pol_integreringsanalyse",
+      "met_pol_statistikk_og_fordelingsanalyse",
+      "met_pol_rettighetsanalyse",
+      "met_pol_institusjonsanalyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Politihuset i Grønlandsleiret 44 stod ferdig i 1978 som hovedkontor for Oslo politidistrikt, etter tegninger av Telje–Torp–Aasen.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Politihuset i Grønlandsleiret 44 stod ferdig i 1978 som hovedkontor for Oslo politidistrikt, etter tegninger av Telje–Torp–Aasen.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Politihuset i Grønlandsleiret 44 stod ferdig i 1978 som hovedkontor for Oslo politidistrikt, etter tegninger av Telje–Torp–Aasen.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Politihuset i Grønlandsleiret 44 stod ferdig i 1978 som hovedkontor for Oslo politidistrikt, etter tegninger av Telje–Torp–Aasen.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grønland politistasjon ble opprettet i 1859, lenge før dagens politihus ble bygget.",
+      "source_ids": [
+        "source_politihuset_gronland_02"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "I 1866 fikk politiet lokaler sammen med Grønland brannstasjon i Grønlandsleiret 32.",
+      "source_ids": [
+        "source_politihuset_gronland_02"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "I 1902 flyttet politistasjonen til et nybygg ved det som nå er Tøyenbekken 5.",
+      "source_ids": [
+        "source_politihuset_gronland_02"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_institusjoner_styring"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Dette eldre bygget ble senere brukt blant annet av Interkulturelt museum.",
+      "source_ids": [
+        "source_politihuset_gronland_02"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_rettsstat_rettssikkerhet"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Anlegget ble tegnet av arkitektkontoret Telje–Torp–Aasen og fikk Houens diplom i 1982.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_rettsstat_rettssikkerhet"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "I sentralhallen finnes kunstverket «Kilden» av Kari Christensen.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_rettsstat_rettssikkerhet"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Politihuset har to lange kontorfløyer som rammer inn sentralhallen.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_rettsstat_rettssikkerhet"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir en kontorfløy på sju etasjer og en på ni.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_rettsstat_rettssikkerhet"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "De to fløyene har synlige fasader av stål og glass.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_rettsstat_rettssikkerhet"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Politihuset fra 1978 er i Grønlandsleiret 44; den eldre politistasjonen lå ved Tøyenbekken 5.",
+      "source_ids": [
+        "source_politihuset_gronland_02"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_rettsstat_rettssikkerhet"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Grønland politistasjon ble opprettet i 1859 og flyttet inn i dagens Politihus i 1978.",
+      "source_ids": [
+        "source_politihuset_gronland_02"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_maktbegrensning"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Grønlandsleiret 44 rommer både den lokale politistasjonen og hovedkontorfunksjoner for politidistriktet.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_maktbegrensning"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Bygningen har to lange fløyer med stål- og glassfasader som er knyttet sammen av en sentralhall.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_maktbegrensning"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Houens diplom ble gitt for bygningens arkitektur; en arkitekturpris sier ikke hvordan politiinngrep har virket.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_maktbegrensning"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historiske beskrivelser viser hvordan et institusjonsbygg må skilles fra politidistriktet som utøver offentlig myndighet.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_maktbegrensning"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En arkitektonisk utmerkelse gir ikke alene belegg for rettssikkerhet eller kvalitet i politiets myndighetsutøvelse.",
+      "source_ids": [
+        "source_politihuset_gronland_01"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_maktbegrensning"
+    },
+    {
+      "claim_id": "claim_politihuset_gronland_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kilder om adresser og bygningshistorie beskriver lokaler, men kan ikke alene forklare kriminalitetsutviklingen.",
+      "source_ids": [
+        "source_politihuset_gronland_02"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_maktbegrensning"
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "politikk_politihuset_gronland_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_politihuset_gronland_quiz_01",
+        "claim_politihuset_gronland_quiz_02",
+        "claim_politihuset_gronland_quiz_03",
+        "claim_politihuset_gronland_quiz_04",
+        "claim_politihuset_gronland_quiz_05",
+        "claim_politihuset_gronland_quiz_06",
+        "claim_politihuset_gronland_quiz_07"
+      ]
+    },
+    {
+      "set_id": "politikk_politihuset_gronland_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_politihuset_gronland_quiz_08",
+        "claim_politihuset_gronland_quiz_09",
+        "claim_politihuset_gronland_quiz_10",
+        "claim_politihuset_gronland_quiz_11",
+        "claim_politihuset_gronland_quiz_12",
+        "claim_politihuset_gronland_quiz_13",
+        "claim_politihuset_gronland_quiz_14"
+      ]
+    },
+    {
+      "set_id": "politikk_politihuset_gronland_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_politihuset_gronland_quiz_15",
+        "claim_politihuset_gronland_quiz_16",
+        "claim_politihuset_gronland_quiz_17",
+        "claim_politihuset_gronland_quiz_18",
+        "claim_politihuset_gronland_quiz_19",
+        "claim_politihuset_gronland_quiz_20",
+        "claim_politihuset_gronland_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 13,
+      "context": 5,
+      "concept_theory": 3
+    },
+    "ratios": {
+      "fact": 0.619,
+      "context": 0.238,
+      "concept_theory": 0.143
+    }
+  }
+}
