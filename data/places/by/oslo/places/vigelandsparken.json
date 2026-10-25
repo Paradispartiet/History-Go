@@ -199,5 +199,82 @@
   "sourceProvider": "municipality",
   "sourceObjectId": "vigelandmuseet:vigeland-park",
   "geocodeAccuracy": "semantic_anchor",
-  "coordRole": "area_anchor"
+  "coordRole": "area_anchor",
+  "fagverk": {
+    "schema": "history_go_place_fagverk_v2",
+    "level": "standard",
+    "status": "curated",
+    "intro": "Vigelandsparken er et komponert skulpturanlegg innenfor det større landskapet Frognerparken.",
+    "article": [
+      "I 1924 ble areal i Frognerparken avsatt til Vigelands prosjekt. Broen åpnet i 1940, Monolitten var ferdighugget i 1942 og Fontenen kom i drift i 1947. Anlegget ble ikke bygget på én dag.",
+      "Over 200 skulpturer i bronse, granitt og smijern er organisert i en akse med tydelige romlige overganger. Samspillet mellom materialer og vandring er like viktig som de enkeltstående figurene.",
+      "Vigelandsparken er ikke identisk med Frognerparken, som også har vann, idrett, natur og kulturminner. Sammenlign den planlagte skulpturaksen med dagens faktiske ferdsel uten å anta at alle går samme rute."
+    ],
+    "subject_ids": [
+      "by"
+    ],
+    "emne_ids": [
+      "em_by_romlig_orden",
+      "em_by_offentlige_rom_motesteder",
+      "em_by_materialitet_og_sanseerfaring"
+    ],
+    "chapter_ids": [
+      "byliv-offentlige-rom",
+      "urbanisme-idealer-forbindelser-fortetting"
+    ],
+    "lenses": [
+      {
+        "id": "vigelandsparken-lens-1",
+        "title": "Aksen",
+        "prompt": "Hvordan leder anlegget besøkende fra bro til Monolitten?",
+        "subject_id": "by",
+        "emne_id": "em_by_romlig_orden",
+        "evidence": "Følg de historisk planlagte rommene."
+      },
+      {
+        "id": "vigelandsparken-lens-2",
+        "title": "Materialer",
+        "prompt": "Hvordan skiller granitt, bronse og smijern seg?",
+        "subject_id": "by",
+        "emne_id": "em_by_offentlige_rom_motesteder",
+        "evidence": "Kontroller materialene mot museets dokumentasjon."
+      },
+      {
+        "id": "vigelandsparken-lens-3",
+        "title": "Parkgrenser",
+        "prompt": "Hvorfor er ikke Frognerparken og Vigelandsparken samme sted?",
+        "subject_id": "by",
+        "emne_id": "em_by_materialitet_og_sanseerfaring",
+        "evidence": "Sammenlign anlegg og større park i kart."
+      }
+    ],
+    "guiding_questions": [
+      "Hvordan leder anlegget besøkende fra bro til Monolitten?",
+      "Hvordan skiller granitt, bronse og smijern seg?",
+      "Hvorfor er ikke Frognerparken og Vigelandsparken samme sted?",
+      "Hva kan dokumenteres om Vigelandsparken med daterte kilder?"
+    ],
+    "concepts": [
+      "form",
+      "materialitet",
+      "institusjon",
+      "bruk"
+    ],
+    "observable_traces": [
+      {
+        "title": "Aksen",
+        "observation": "I 1924 ble areal i Frognerparken avsatt til Vigelands prosjekt. Broen åpnet i 1940, Monolitten var ferdighugget i 1942 og Fontenen kom i drift i 1947. Anlegget ble ikke bygget på én dag.",
+        "interpretation_boundary": "Observasjon alene dokumenterer ikke eldre bruk; hold kart, kilder og tidsperioder fra hverandre.",
+        "source_urls": [
+          "https://vigeland.museum.no/vigelandsparken",
+          "https://vigeland.museum.no/vigelandsparken/tidslinje"
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://vigeland.museum.no/vigelandsparken",
+      "https://vigeland.museum.no/vigelandsparken/tidslinje"
+    ],
+    "verified_at": "2026-10-25"
+  }
 }
