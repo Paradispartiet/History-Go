@@ -152,7 +152,7 @@ const fullQuiz=read(fullQuizPath);
 const cardPreview=read(cardPath);
 assert.equal(fullQuiz.targetId,'garmanngarden');
 assert.equal(fullQuiz.categoryId,'historie');
-assert.equal(fullQuiz.production_status,'manifested_knowledge_linked_pending_browser_qa');
+assert.equal(fullQuiz.production_status,'manifested_knowledge_linked_browser_qa_passed');
 assert.deepEqual(fullQuiz.sets.map(s=>s.questions.length),[7,7,7]);
 assert.deepEqual(fullQuiz.sets.map(s=>s.phase),['opening','bridge','final']);
 const fullQuestions=fullQuiz.sets.flatMap(s=>s.questions);
@@ -190,7 +190,7 @@ for(const [i,q] of fullQuestions.entries()){
   assert.ok(q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id),'Primary Knowledge unit not in IDs');
   assert.equal(q.knowledge_contract_version,1);
 }
-assert.equal(cardPreview.production_status,'knowledge_linked_pending_browser_qa');
+assert.equal(cardPreview.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
 assert.equal(cardPreview.cards.length,1);
 const preview=cardPreview.cards[0];
 assert.equal(preview.targetId,'garmanngarden');
