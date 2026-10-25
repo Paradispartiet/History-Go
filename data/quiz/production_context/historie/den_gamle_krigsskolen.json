@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/historie/den_gamle_krigsskolen.json",
-      "bytes": 13906,
-      "sha256": "bcdebdbc4bdceaf13f78cb4066068891e504295fd7d3840af11e80c40ea32ba1"
+      "bytes": 14055,
+      "sha256": "e1bc0afe5290803866dd13de29009051e6171f4040a4e44385251a4c463382cb"
     },
     "target": {
       "path": "data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01/den_gamle_krigsskolen.json",
@@ -158,6 +158,11 @@
         "score": 100
       },
       {
+        "id": "em_his_kildekritikk_arkiv_spor",
+        "title": "Kildekritikk, arkiv og spor",
+        "score": 100
+      },
+      {
         "id": "em_his_kulturminner_bevaring",
         "title": "Kulturminner, utvelgelse og bevaring",
         "score": 100
@@ -174,6 +179,12 @@
       }
     ],
     "candidate_topic_hooks": [
+      {
+        "id": "his_kildekritikk",
+        "title": "Kildekritikk, opphav og formål",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
       {
         "id": "his_kulturminneutvelgelse_verdi",
         "title": "Kulturminneutvelgelse og verdi",
@@ -202,7 +213,8 @@
     "emne_ids": [
       "em_his_spor_materialitet",
       "em_his_historiske_lag_i_byrom",
-      "em_his_kulturminner_bevaring"
+      "em_his_kulturminner_bevaring",
+      "em_his_kildekritikk_arkiv_spor"
     ],
     "topic_hook_ids": [
       "his_kildekritikk"
@@ -261,7 +273,7 @@
       "claim_id": "claim_den_gamle_krigsskolen_quiz_04",
       "order": 4,
       "planned_phase": "opening",
-      "family": "concept_theory",
+      "family": "context",
       "statement": "Det kan finnes eldre bygningsrester, mens hovedformen fikk betydelige endringer ved en senere ombygging. Bygningshistorie består av flere lag.",
       "source_ids": [
         "oppdag_kvadraturen",
@@ -299,7 +311,7 @@
       "claim_id": "claim_den_gamle_krigsskolen_quiz_07",
       "order": 7,
       "planned_phase": "opening",
-      "family": "concept_theory",
+      "family": "fact",
       "statement": "Forsvarsbygg beskriver sidebygningen som en tidligere stall, senere tatt i bruk som ordre- og eksersersal.",
       "source_ids": [
         "forsvarsbygg"
@@ -426,8 +438,8 @@
       "claim_id": "claim_den_gamle_krigsskolen_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Etter krigen kom militær undervisning tilbake, men den ble flyttet til Linderud i 1969. Gården fortsatte å ha tilknytning til Forsvaret.",
+      "family": "concept_theory",
+      "statement": "Krigsskolen flyttet ordinær undervisning til Linderud, men den gamle bygningen i Tollbugata ble videre brukt til møter og representasjon. En institusjon kan dermed fortsette på et nytt sted, mens den opprinnelige bygningen får andre oppgaver.",
       "source_ids": [
         "forsvarsbygg",
         "snl"
@@ -439,7 +451,7 @@
       "claim_id": "claim_den_gamle_krigsskolen_quiz_18",
       "order": 18,
       "planned_phase": "final",
-      "family": "context",
+      "family": "fact",
       "statement": "Under okkupasjonen var Hirden knyttet til lokalene, et dramatisk brudd med bygningens vanlige rolle i norsk militær utdanning.",
       "source_ids": [
         "forsvarsbygg",
@@ -464,7 +476,7 @@
       "claim_id": "claim_den_gamle_krigsskolen_quiz_20",
       "order": 20,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Restaureringene under antikvarisk tilsyn tok utgangspunkt i spor etter eldre farger, veggdekor og tapeter. Restaurering betyr å undersøke og velge hva som skal bevares.",
       "source_ids": [
         "forsvarsbygg"
@@ -484,7 +496,7 @@
         "oslo_byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_his_kulturminner_bevaring",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
       "method_id": "met_kildekritikk",
       "topic_hook_id": "his_kildekritikk",
       "thinker_id": "marc_bloch",
