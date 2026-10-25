@@ -53,10 +53,18 @@ const quizCandidates=read('reports/place-production/oslo-sentrum-kvadraturen-fir
 assert.equal(quizCandidates.schema,'history_go_oslo_kvadraturen_quiz_candidates_v1');
 assert.equal(quizCandidates.status,'editorial_candidates_not_manifested');
 assert.equal(quizCandidates.places.length,2);
+const additionalQuizCandidates=read('reports/place-production/oslo-sentrum-kvadraturen-next40-quiz-candidates-20261025.json');
+assert.equal(additionalQuizCandidates.schema,'history_go_oslo_kvadraturen_quiz_candidates_v1');
+assert.equal(additionalQuizCandidates.status,'editorial_candidates_not_manifested');
+assert.equal(additionalQuizCandidates.places.length,4);
+const candidateGroups=[...quizCandidates.places,...additionalQuizCandidates.places];
+const candidatePlaceIds=candidateGroups.map(g=>g.place_id);
+assert.equal(new Set(candidatePlaceIds).size,6,'missing or repeated place groups');
+assert.deepEqual(new Set(candidatePlaceIds),new Set(ledger.places.map(p=>p.place_id)));
 const allClaims=new Map(ledger.places.flatMap(p=>p.claims.map(c=>[c.claim_id,p.place_id])));
 const allCandidateIds=new Set();
 let candidateCount=0;
-for(const group of quizCandidates.places){
+for(const group of candidateGroups){
   assert.ok(ledger.places.some(p=>p.place_id===group.place_id),group.place_id+': outside approved scope');
   assert.equal(group.questions.length,10,group.place_id+': not 10 candidates');
   for(const q of group.questions){
@@ -64,6 +72,8 @@ for(const group of quizCandidates.places){
     assert.ok(!allCandidateIds.has(q.candidate_id),'Repeated candidate ID');
     allCandidateIds.add(q.candidate_id);
     assert.equal(q.options.length,4,q.candidate_id+': options');
+    assert.ok(q.options.every(o=>typeof o==='string'&&o.trim().length>2),q.candidate_id+': empty options');
+    assert.ok(Number.isInteger(q.answer_index)&&q.answer_index>=0&&q.answer_index<4,q.candidate_id+': invalid answer index');
     assert.equal(new Set(q.options).size,4,q.candidate_id+': duplicate distractor');
     assert.equal(q.options[q.answer_index],q.answer,q.candidate_id+': wrong answer mapping');
     assert.ok(q.question.length>25&&q.claim_ids.length>=1,q.candidate_id+': no question or source claim');
@@ -71,5 +81,5 @@ for(const group of quizCandidates.places){
     assert.equal(q.status,'source_led_editorial_candidate',q.candidate_id+': falsely approved candidate');
   }
 }
-assert.equal(candidateCount,20);
+assert.equal(candidateCount,60);
 console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',candidateCount,records:report},null,2));
