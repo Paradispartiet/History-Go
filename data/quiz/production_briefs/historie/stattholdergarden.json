@@ -5,7 +5,7 @@
   "targetId": "stattholdergarden",
   "profile_hint": "narrow",
   "reviewed_at": "2026-10-25",
-  "review_note": "Kilder kontrollert for dokumenterte bygningslag, stattholderfunksjon, navnebruk, myntproduksjon og restaurantflytting. 21 ulike stedsforankrede valgoppgaver; detaljer om Engebret skilles i tid og sted.",
+  "review_note": "Kilder kontrollert for dokumenterte bygningslag, stattholderfunksjon, navnebruk, myntproduksjon og restaurantflytting. 21 ulike stedsforankrede valgoppgaver; detaljer om Engebret skilles i tid og sted. Redaksjonell fordeling 12 fakta, fem sammenhenger og fire konkrete begrepsoppgaver; teori først i tredje sett. Kildelenken til Oslo byleksikon bruker publisert produksjonsdomene.",
   "scope": {
     "place": "Stattholdergården",
     "production_profile": "narrow",
@@ -28,7 +28,7 @@
       "review_note": "Lest Stattholdergården: byggherre, Gyldenløve, Calmeyer, serveringshistorie fra 1836, Engebret-flytting til Bankplassen, navneendring 1957 og Bent Stiansen fra 1994."
     },
     "oslo_byleksikon": {
-      "url": "https://staging.oslobyleksikon.no/side/Calmeyerg%C3%A5rden",
+      "url": "https://oslobyleksikon.no/side/Calmeyerg%C3%A5rden",
       "source_type": "institutional_reference",
       "review_status": "reviewed",
       "review_note": "Lest byleksikonets historikk: eldre saltak, lavere valmtak ved reparasjon etter 1716, røde teglfasader og bindingsverksfløyer, karnapp og mansardtak 1916."
@@ -44,10 +44,18 @@
       "em_his_kulturminner_bevaring",
       "em_his_kildekritikk_arkiv_spor"
     ],
-    "topic_hook_ids": [],
-    "method_ids": [],
-    "thinker_ids": [],
-    "works": []
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ]
   },
   "existing_quiz_audit": {
     "searched_paths": [
@@ -278,7 +286,7 @@
       "claim_id": "claim_stattholdergarden_quiz_16",
       "order": 16,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "context",
       "statement": "Oppdag Kvadraturen oppgir at Friederich Grüner kjøpte Nedre Foss mølle i 1672, som knytter slekten til byens mølle- og næringshistorie.",
       "source_ids": [
         "oppdag_kvadraturen"
@@ -290,7 +298,7 @@
       "claim_id": "claim_stattholdergarden_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Slektens navn er bevart i Grünerløkka. En slik navnekobling forteller om ettermæle, men er ikke bevis for alle hendelser i strøkets senere historie.",
       "source_ids": [
         "oppdag_kvadraturen"
@@ -315,7 +323,7 @@
       "claim_id": "claim_stattholdergarden_quiz_19",
       "order": 19,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Serveringshistorien er et nytt bruks- og samfunnslag etter bypalé og embetsbolig. Den opprinnelige funksjonen kan ikke utledes av dagens restaurant.",
       "source_ids": [
         "snl",
@@ -328,7 +336,7 @@
       "claim_id": "claim_stattholdergarden_quiz_20",
       "order": 20,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Etter ulike restaurantnavn skiftet virksomheten navn til Statholdergaarden i 1957. Navnet kan derfor ikke brukes som bevis for at selve restaurantvirksomheten stammer fra 1600-tallet.",
       "source_ids": [
         "snl",
@@ -341,14 +349,22 @@
       "claim_id": "claim_stattholdergarden_quiz_21",
       "order": 21,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Kilder om beleiringen, takombyggingen og bevarte ankerjern og karnapp må sammenholdes. Et synlig bygg gir ikke alene en entydig datering av alle deler.",
       "source_ids": [
         "oslo_byleksikon",
         "oppdag_kvadraturen"
       ],
       "source_origin": "external",
-      "emne_id": "em_his_kildekritikk_arkiv_spor"
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "method_id": "met_kildekritikk",
+      "topic_hook_id": "his_kildekritikk",
+      "thinker_id": "marc_bloch",
+      "work": "The Historian's Craft",
+      "guidance_basis": [
+        "Kildene må skille opprinnelig saltak, reparasjoner og nyere mansardtak",
+        "met_kildekritikk"
+      ]
     }
   ]
 }
