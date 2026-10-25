@@ -315,6 +315,36 @@ for(const [i,q] of stattholderItems.entries()){
   if(i<14)assert.ok(['fact','context'].includes(q.question_type),q.id+': advanced pedagogy in normal opening');
 }
 assert.equal(stattholderItems.some(q=>/1862|1863/u.test(q.question)),false,'Conflicting Engebret transfer dates must not become single answer');
+// Hotel du Nord has a source-reviewed 21-question quiz preparation bank,
+// with 2025 as the END of the documented heritage-office period, not today.
+const hotelId='hotel_du_nord';
+const hotelBrief=read('data/quiz/production_briefs/naeringsliv/'+hotelId+'.json');
+const hotelReview=read('reports/place-production/oslo-kvadraturen-hotel-du-nord-21-fullquiz-review-20261025.json');
+assert.equal(hotelBrief.status,'reviewed');
+assert.equal(hotelBrief.targetId,hotelId);
+assert.equal(hotelBrief.claims.length,21);
+assert.equal(hotelReview.targetId,hotelId);
+assert.equal(hotelReview.status.includes('unmanifested'),true);
+assert.equal(hotelReview.profile,'narrow_3x7');
+assert.deepEqual(hotelReview.sections.map(s=>s.questions.length),[7,7,7]);
+assert.deepEqual(hotelReview.sections.map(s=>s.phase),['opening','bridge','final']);
+const hotelItems=hotelReview.sections.flatMap(s=>s.questions);
+assert.equal(hotelItems.filter(isDirectYearRecall).length,0,'Hotel du Nord focuses on change, people and place rather than isolated date recall');
+assert.equal(new Set(hotelItems.map(q=>q.question)).size,21,'Hotel du Nord duplicate questions');
+assert.equal(new Set(hotelItems.map(q=>q.answerIndex)).size,4,'Hotel du Nord missing varied correct options');
+for(const [i,q] of hotelItems.entries()){
+  assert.equal(q.id,hotelId+'_quiz_'+String(i+1).padStart(2,'0'));
+  assert.equal(q.options.length,4);
+  assert.equal(new Set(q.options).size,4);
+  assert.equal(q.options[q.answerIndex],q.answer);
+  assert.ok(q.knowledge.length>=55);
+  assert.equal(q.claim_id,hotelBrief.claims[i].claim_id);
+  assert.equal(q.knowledge,hotelBrief.claims[i].statement);
+  assert.deepEqual(q.source,hotelBrief.claims[i].source_ids);
+  for(const src of q.source)assert.equal(hotelBrief.sources[src]?.review_status,'reviewed');
+  if(i<14)assert.ok(['fact','context'].includes(q.question_type));
+}
+assert.ok(hotelItems[20].knowledge.includes('1991–2025'),'Hotel du Nord needs time-bounded former-office context');
 // Four remaining places are still research/QuizCard candidates, not v1 quizzes.
 for(const p of ledger.places.filter(p=>!['garmanngarden','den_gamle_krigsskolen'].includes(p.place_id))){
   assert.equal(quizRefs.some(r=>r.targetId===p.place_id),false,p.place_id+': remaining place published prematurely');
