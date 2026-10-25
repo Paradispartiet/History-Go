@@ -105,3 +105,14 @@ test('Stensparken QuizCard uses original local history, not generic park filler'
   assert.equal(entries.length, 3, 'one registration per historical set');
   assert.deepEqual(entries.map((row) => row.set_id).sort(), quiz.sets.map((set) => set.set_id).sort());
 });
+
+test('Fagverk release carries the current canonical registry version', () => {
+  const registry = read('data/fagverk/fagverk_registry.json');
+  const release = read('data/fagverk/fagverk_release.json');
+  assert.equal(release.registry.path, 'data/fagverk/fagverk_registry.json');
+  assert.equal(release.registry.version, registry.version);
+  assert.equal(release.registry.updated_at, registry.updatedAt);
+  for (const id of ids) {
+    assert.equal(registry.placeLinks?.[id]?.status, 'curated', id + ': Fagverk registry status');
+  }
+});
