@@ -165,4 +165,5 @@ test('By-bolk 02 presents 80 substantive, synchronized editorial explanations', 
 test('Quiz result review prefers specific editorial explanations over generic Knowledge legacy text', () => {
   const source = fs.readFileSync('js/quizzes.js', 'utf8');
   assert.match(source, /explanation\.textContent = question\.explanation \|\| question\.knowledge_payload\?\.explanation \|\| question\.knowledge/);
+  assert.match(source, /knowledge: q\.explanation \|\| q\.knowledge/);
 });
