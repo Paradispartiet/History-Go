@@ -1,8 +1,9 @@
-name: By-bolk 02 content contracts
+name: By content contracts 02–03
 on:
   pull_request:
     paths:
       - 'tests/by-bolk02-quiz-contract.test.mjs'
+      - 'tests/by-bolk03-quizcard-source-contract.test.mjs'
       - '.github/workflows/by-bolk02-quiz-contract.yml'
       - 'data/places/by/oslo/**'
       - 'data/quiz/by/*_oslo_v1_sets.json'
@@ -24,4 +25,4 @@ jobs:
         with:
           node-version: '22'
       - name: Check canonical By-bolk 02 data contracts
-        run: node --test tests/by-bolk02-quiz-contract.test.mjs
+        run: node --test tests/by-bolk02-quiz-contract.test.mjs tests/by-bolk03-quizcard-source-contract.test.mjs
