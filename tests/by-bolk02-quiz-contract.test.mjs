@@ -85,6 +85,14 @@ test('All 16 new By fullquiz sets are uniquely registered with exactly 10 source
       assert.equal(cq.sourceQuestionId, q.id);
       assert.equal(cq.sourceQuizId, q.quiz_id);
       assert.equal(cq.sourceQuizFile, file);
+      assert.equal(q.knowledge_link_status, 'linked', id + ': fullquiz not linked to Knowledge');
+      assert.ok(q.knowledge_unit_ids?.length > 0, id + ': no canonical Knowledge units');
+      assert.ok(q.knowledge_unit_ids.includes(q.primary_knowledge_unit_id), id + ': invalid primary Knowledge unit');
+      assert.equal(q.knowledge_contract_version, 1, id + ': Knowledge contract mismatch');
+      assert.equal(cq.knowledge_link_status, q.knowledge_link_status, id + ': QuizCard Knowledge status mismatch');
+      assert.deepEqual(cq.knowledge_unit_ids, q.knowledge_unit_ids, id + ': QuizCard Knowledge units mismatch');
+      assert.equal(cq.primary_knowledge_unit_id, q.primary_knowledge_unit_id, id + ': QuizCard primary Knowledge mismatch');
+      assert.equal(cq.knowledge_contract_version, q.knowledge_contract_version, id + ': QuizCard Knowledge version mismatch');
     }
     assert.equal(questions.size, 10);
     assert.equal(answers.size, 10, id + ': answers should not repeat');
