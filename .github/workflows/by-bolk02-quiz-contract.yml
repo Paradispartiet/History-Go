@@ -11,6 +11,9 @@ on:
       - 'data/quizcards/by/**'
 permissions:
   contents: read
+concurrency:
+  group: by-bolk02-content-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   by02-content:
     runs-on: ubuntu-latest
