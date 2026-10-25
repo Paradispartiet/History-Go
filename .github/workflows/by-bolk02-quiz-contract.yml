@@ -1,0 +1,24 @@
+name: By-bolk 02 content contracts
+on:
+  pull_request:
+    paths:
+      - 'tests/by-bolk02-quiz-contract.test.mjs'
+      - '.github/workflows/by-bolk02-quiz-contract.yml'
+      - 'data/places/by/oslo/**'
+      - 'data/quiz/by/*_oslo_v1_sets.json'
+      - 'data/quiz/by/stensparken_sets.json'
+      - 'data/quiz/manifest.json'
+      - 'data/quizcards/by/**'
+permissions:
+  contents: read
+jobs:
+  by02-content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check canonical By-bolk 02 data contracts
+        run: node --test tests/by-bolk02-quiz-contract.test.mjs
