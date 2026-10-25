@@ -1,0 +1,129 @@
+name: Kvadraturen Stattholdergarden one-time canonical quiz production
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-kvadraturen-v1-six-20261023
+    paths:
+      - '.github/workflows/kvadraturen-stattholdergarden-produce-temp.yml'
+permissions:
+  contents: write
+concurrency:
+  group: kvadraturen-stattholdergarden-production
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-kvadraturen-v1-six-20261023
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install canonical quiz generator
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build:scripts
+      - name: Build official context and publish only Stattholdergarden 21-question quiz
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          import {buildQuizProductionContext} from './scripts/quiz-production-lib.mjs';
+          const id='stattholdergarden',mPath='data/fag/fag_manifest.json',qmPath='data/quiz/manifest.json';
+          const m=JSON.parse(await fs.readFile(mPath,'utf8'));
+          assert.equal(m.historie.quizProduction.targets[id],undefined);
+          m.historie.quizProduction.targets[id]={
+            source_brief:'../quiz/production_briefs/historie/'+id+'.json',
+            context_artifact:'../quiz/production_context/historie/'+id+'.json',
+            quiz_file:'../quiz/historie/'+id+'_sets.json'
+          };
+          await fs.writeFile(mPath,JSON.stringify(m,null,2)+'\n');
+          const ctx=await buildQuizProductionContext({categoryId:'historie',targetId:id});
+          assert.equal(ctx.profile,'narrow_3x7');
+          assert.equal(ctx.claim_bank.length,21);
+          assert.deepEqual(ctx.question_balance.counts,{fact:12,context:5,concept_theory:4});
+          assert.deepEqual(ctx.set_plan.map(x=>x.planned_questions),[7,7,7]);
+          await fs.writeFile('data/quiz/production_context/historie/'+id+'.json',JSON.stringify(ctx,null,2)+'\n');
+          const qPath='data/quiz/historie/'+id+'_sets.json',q=JSON.parse(await fs.readFile(qPath,'utf8'));
+          q.production_context.resolved_files=Object.fromEntries(Object.entries(ctx.resolved_files).map(([k,v])=>[k,v.path]));
+          q.production_context.required_inputs_loaded=ctx.required_inputs_loaded;
+          q.production_context.existing_quiz_audit=ctx.existing_quiz_audit;
+          const qs=q.sets.flatMap(s=>s.questions);
+          assert.equal(qs.length,21);
+          assert.ok(qs.slice(0,14).every(x=>['fact','context'].includes(x.question_type)));
+          assert.ok(qs.every(x=>x.answer===x.options[x.answerIndex]));
+          await fs.writeFile(qPath,JSON.stringify(q,null,2)+'\n');
+          const qm=JSON.parse(await fs.readFile(qmPath,'utf8'));
+          assert.ok(!qm.sets.some(x=>x.targetId===id));
+          qm.sets.push({targetId:id,file:qPath});
+          qm.sets.sort((a,b)=>a.targetId.localeCompare(b.targetId,'en'));
+          await fs.writeFile(qmPath,JSON.stringify(qm,null,2)+'\n');
+          console.log('Stattholdergården context and 21-question registration complete');
+          NODE
+          node dist/scripts/knowledge-canonical-data.mjs --write
+          node dist/scripts/knowledge-canonical-data.mjs --check
+      - name: Link derived QuizCard to canonical Knowledge units
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          const id='stattholdergarden',qp='data/quiz/historie/'+id+'_sets.json',cp='data/quizcards/historie/'+id+'_quizkort_v1.json';
+          const q=JSON.parse(await fs.readFile(qp,'utf8'));
+          const c=JSON.parse(await fs.readFile(cp,'utf8'));
+          const all=q.sets.flatMap(s=>s.questions),byId=new Map(all.map(x=>[x.id,x]));
+          assert.equal(all.length,21);
+          assert.ok(all.every(x=>x.knowledge_link_status==='linked'&&x.primary_knowledge_unit_id?.startsWith('ku_historie_')&&x.knowledge_unit_ids?.includes(x.primary_knowledge_unit_id)));
+          assert.equal(c.cards[0].questions.length,10);
+          for(const [i,item] of c.cards[0].questions.entries()){
+            const src=byId.get(item.sourceQuestionId);
+            assert.ok(src,'source question missing');
+            for(const field of ['question','options','answer','answerIndex','knowledge','emne_id','claim_id']){
+              assert.deepEqual(item[field],src[field],'quizcard drift '+field);
+            }
+            for(const field of ['primary_knowledge_unit_id','knowledge_unit_ids','concept_ids','term_ids','knowledge_contract_version','knowledge_link_status']){
+              item[field]=src[field];
+            }
+            assert.equal(c.cards[0].answerKey[i].answer,src.answer);
+          }
+          q.production_status='manifested_knowledge_linked_pending_browser_qa';
+          c.production_status='knowledge_linked_fullquiz_browser_pending';
+          c.sourceBasis='Ten linked questions derived from canonical Stattholdergarden fullquiz; separate browser and visual QA pending.';
+          await fs.writeFile(qp,JSON.stringify(q,null,2)+'\n');
+          await fs.writeFile(cp,JSON.stringify(c,null,2)+'\n');
+          const cm='data/quizcards/historie/manifest.json',man=JSON.parse(await fs.readFile(cm,'utf8'));
+          assert.ok(!man.collections.includes(id+'_quizkort_v1.json'));
+          man.collections.push(id+'_quizkort_v1.json');
+          await fs.writeFile(cm,JSON.stringify(man,null,2)+'\n');
+          const qm=JSON.parse(await fs.readFile('data/quiz/manifest.json','utf8'));
+          for(const other of ['hotel_du_nord','cafe_engebret','treschowgarden']){
+            assert.ok(!qm.sets.some(x=>x.targetId===other),'Another place published prematurely: '+other);
+          }
+          console.log('Stattholdergården 21 fullquiz and 10 QuizCard Knowledge links verified');
+          NODE
+      - name: Run existing production progression and theory audits
+        run: |
+          node scripts/audit-quiz-production-context.mjs
+          node scripts/audit-quiz-progression.mjs
+          node scripts/audit-quiz-theory-binding.mjs
+      - name: Regenerate official Fagverk release
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit only scoped canonical changes and generated registries
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only >/tmp/changed
+          cat /tmp/changed
+          grep -Ev '^(data/fag/fag_manifest.json|data/quiz/manifest.json|data/quiz/historie/stattholdergarden_sets.json|data/quizcards/historie/stattholdergarden_quizkort_v1.json|data/quizcards/historie/manifest.json|data/knowledge/knowledge_units.generated.json|reports/knowledge-id-backfill.json|data/fagverk/fagverk_release.json)$' /tmp/changed >/tmp/unrelated || true
+          test ! -s /tmp/unrelated || { cat /tmp/unrelated; exit 1; }
+          git add data/fag/fag_manifest.json data/quiz/manifest.json data/quiz/historie/stattholdergarden_sets.json data/quizcards/historie/stattholdergarden_quizkort_v1.json data/quizcards/historie/manifest.json data/quiz/production_context/historie/stattholdergarden.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then echo 'Canonical data unchanged'; exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Publish Stattholdergarden 21x3 quiz and 10 QuizCards with canonical Knowledge'
+          git push origin HEAD:research/oslo-sentrum-kvadraturen-v1-six-20261023
