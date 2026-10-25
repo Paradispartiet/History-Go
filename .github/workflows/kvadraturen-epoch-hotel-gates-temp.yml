@@ -1,0 +1,49 @@
+name: Kvadraturen one-time Hotel du Nord and epoch gates
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-kvadraturen-v1-six-20261023
+    paths:
+      - '.github/workflows/kvadraturen-epoch-hotel-gates-temp.yml'
+permissions:
+  contents: write
+concurrency:
+  group: kvadraturen-hotel-epoch-once
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-kvadraturen-v1-six-20261023
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install canonical toolchain
+        run: npm ci --no-audit --no-fund
+      - name: Validate Hotel du Nord economic and description reports
+        run: |
+          node scripts/audit-naeringsliv-place-production.mjs --all
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report /tmp/kvadraturen-description-report.json
+          BASE="$(git merge-base origin/main HEAD)"
+          node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base "$BASE" --head HEAD
+      - name: Build official epoch/place index and check exact version
+        run: |
+          npm run epoker:places:build
+          npm run epoker:places:check
+      - name: Commit only generated epoch index
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only >/tmp/changed
+          cat /tmp/changed
+          grep -Ev '^data/epoker/epoke-place-index.json$' /tmp/changed >/tmp/unexpected || true
+          test ! -s /tmp/unexpected || { cat /tmp/unexpected; exit 1; }
+          git add data/epoker/epoke-place-index.json
+          if git diff --cached --quiet; then echo 'Epoch index already current'; exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Regenerate canonical epoch-place index for Kvadraturen branch'
+          git push origin HEAD:research/oslo-sentrum-kvadraturen-v1-six-20261023
