@@ -60,6 +60,13 @@ for(const p of ledger.places){
   }
   const runtimePlace=read('data/runtime/place-open/'+p.place_id+'.json').place;
   assert.deepEqual(runtimePlace.fagverk,place.fagverk,p.place_id+': runtime place-open Fagverk out of sync');
+  assert.match(place.image||'',/^https:\/\//,p.place_id+': missing documentary image');
+  assert.match(place.imageSourceUrl||'',/^https:\/\//,p.place_id+': missing image source');
+  assert.ok(place.imageCredit&&place.imageLicense,p.place_id+': missing copyright credit or license');
+  assert.equal(place.imageMeta?.sourcePage,place.imageSourceUrl,p.place_id+': image metadata source mismatch');
+  assert.equal(place.imageMeta?.license,place.imageLicense,p.place_id+': image metadata license mismatch');
+  assert.equal(runtimePlace.image,place.image,p.place_id+': runtime image mismatch');
+  assert.deepEqual(runtimePlace.imageMeta,place.imageMeta,p.place_id+': runtime image rights mismatch');
   const visualReady=Boolean(place.frontImage&&place.image&&place.cardImage);
   report.push({id:p.place_id,canonical:true,sourceClaims:p.claims.length,quizSetFiles:relevantQuiz.map(z=>z.file),quizCardCollections:categoryQuizCardMatches,missingLegacyQuizCardFiles,fagverkReady:articleReady,visualFieldsReady:visualReady,notYetV1:!(relevantQuiz.length&&categoryQuizCardMatches.length&&articleReady&&visualReady)});
 }
