@@ -237,7 +237,7 @@ const krigCard=read(krigCardPath);
 const krigBrief=read('data/quiz/production_briefs/historie/'+krigId+'.json');
 const krigContext=read('data/quiz/production_context/historie/'+krigId+'.json');
 assert.equal(krigQuiz.targetId,krigId);
-assert.equal(krigQuiz.production_status,'manifested_knowledge_linked_pending_browser_qa');
+assert.equal(krigQuiz.production_status,'manifested_knowledge_linked_browser_qa_passed');
 assert.equal(krigContext.profile,'narrow_3x7');
 assert.equal(krigContext.source_review_status,'reviewed');
 assert.equal(krigContext.claim_bank.length,21);
@@ -264,6 +264,7 @@ for(const [i,q] of krigQuestions.entries()){
 }
 assert.equal(quizRefs.filter(r=>r.targetId===krigId&&r.file===krigQuizPath).length,1,'Krigsskolen quiz not registered once');
 assert.equal(quizCardSources.historie.collections.filter(x=>x===krigId+'_quizkort_v1.json').length,1,'Krigsskolen QuizCard not registered once');
+assert.equal(krigCard.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
 assert.equal(krigCard.cards[0].questionCount,10);
 assert.equal(krigCard.cards[0].questions.length,10);
 assert.equal(krigCard.cards[0].questions.filter(q=>q.knowledge_link_status==='linked').length,10);
