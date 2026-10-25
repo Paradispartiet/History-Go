@@ -167,3 +167,42 @@ test('Quiz result review prefers specific editorial explanations over generic Kn
   assert.match(source, /explanation\.textContent = question\.explanation \|\| question\.knowledge_payload\?\.explanation \|\| question\.knowledge/);
   assert.match(source, /knowledge: q\.explanation \|\| q\.knowledge/);
 });
+
+test('All 160 new By-bolk 02 questions have specific explanations and identical QuizCard records', () => {
+  for (const id of fresh) {
+    const fullquiz = read('data/quiz/by/' + id + '_oslo_v1_sets.json');
+    const questions = fullquiz.sets.flatMap((set) => set.questions);
+    const card = cards.find((entry) => entry.targetId === id);
+    assert.equal(questions.length, 10, id);
+    assert.equal(card?.questions?.length, 10, id);
+    for (let index = 0; index < questions.length; index++) {
+      const question = questions[index];
+      const cardQuestion = card.questions[index];
+      const explanation = question.explanation || question.knowledge;
+      assert.ok(explanation?.length >= 65, question.id + ': missing contextual explanation');
+      assert.doesNotMatch(explanation, /Spørsmålet bygger på|Historisk fakta knyttet til|Basert på stedets kanoniske/i, question.id);
+      assert.equal(cardQuestion.question, question.question, question.id + ': question text drift');
+      assert.equal(cardQuestion.answer, question.answer, question.id + ': answer drift');
+      assert.equal(cardQuestion.explanation || cardQuestion.knowledge, explanation, question.id + ': explanation drift');
+      assert.ok(question.source_urls?.some((url) => url.startsWith('https://')), question.id + ': missing external source');
+    }
+  }
+});
+
+test('Rudolf Nilsens plass and Kampen gård do not confuse Oslo neighborhoods with administrative boroughs', () => {
+  for (const id of ['rudolf_nilsens_plass', 'kampen_okologiske_barnebondegard']) {
+    const quiz = read('data/quiz/by/' + id + '_oslo_v1_sets.json');
+    const location = quiz.sets[0].questions.find((question) => question.question.includes('strøk i Oslo'));
+    assert.ok(location, id + ': neighborhood question missing');
+    assert.doesNotMatch(location.question, /bydel/, id);
+  }
+});
+
+
+test('Each new By-bolk 02 QuizCard has at most two direct year-answer questions', () => {
+  for (const id of fresh) {
+    const questions = read('data/quiz/by/' + id + '_oslo_v1_sets.json').sets.flatMap(s => s.questions);
+    const directYears = questions.filter(q => /^(?:i\s+)?(?:1[0-9]{3}|20[0-9]{2})(?:-årene)?$/i.test(String(q.answer).trim()));
+    assert.ok(directYears.length <= 2, id + ': too many direct year questions: ' + directYears.length);
+  }
+});
