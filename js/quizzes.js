@@ -731,7 +731,7 @@ if (canTag) {
         ? window.saveKnowledgeFromQuiz
         : null;
 
-  if (saveKnowledge && q.knowledge && !captureCanonicalOnly) {
+  if (saveKnowledge && (q.explanation || q.knowledge) && !captureCanonicalOnly) {
     try {
       saveKnowledge(
         {
@@ -740,7 +740,7 @@ if (canTag) {
           dimension: q.dimension,
           topic: q.topic,
           question: q.question,
-          knowledge: q.knowledge,
+          knowledge: q.explanation || q.knowledge,
           answer: q.answer,
           chosenAnswer: chosenAnswer,
           core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
@@ -934,7 +934,7 @@ if (canTag) {
               const title = document.createElement("h5");
               title.textContent = `${index + 1}. ${question.question}`;
               const explanation = document.createElement("p");
-              explanation.textContent = question.knowledge_payload?.explanation || question.knowledge;
+              explanation.textContent = question.explanation || question.knowledge_payload?.explanation || question.knowledge;
               const sources = document.createElement("p");
               sources.textContent = "Kilder: ";
               (Array.isArray(question.source) ? question.source : []).forEach((source, sourceIndex) => {

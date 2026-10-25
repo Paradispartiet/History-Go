@@ -138,3 +138,32 @@ test('By-bolk 02 indexed image pointers mirror canonical places', () => {
     assert.equal(indexed.cardImage, place.cardImage, id + ': central index card image is stale');
   }
 });
+
+const churchAndIslandIds = [
+  'fagerborg_kirke', 'frogner_kirke', 'holmenkollen_kapell', 'uranienborg_kirke',
+  'lindoya', 'nakholmen', 'ormoya', 'ulvoya'
+];
+
+test('By-bolk 02 presents 80 substantive, synchronized editorial explanations', () => {
+  for (const id of churchAndIslandIds) {
+    const quiz = read('data/quiz/by/' + id + '_oslo_v1_sets.json');
+    const questions = quiz.sets.flatMap(set => set.questions);
+    const card = cards.find(entry => entry.targetId === id);
+    assert.equal(questions.length, 10, id);
+    assert.equal(card.questions.length, 10, id);
+    for (let index = 0; index < questions.length; index++) {
+      const question = questions[index];
+      const cardQuestion = card.questions[index];
+      assert.ok(question.explanation?.length >= 65, question.id + ': substantive explanation missing');
+      assert.doesNotMatch(question.explanation, /Spørsmålet bygger på|Historisk fakta knyttet til|Basert på stedets kanoniske/i);
+      assert.equal(cardQuestion.explanation, question.explanation, question.id + ': QuizCard/fullquiz explanation mismatch');
+      assert.ok(question.source_urls?.[0]?.startsWith('https://'), question.id + ': source missing');
+    }
+  }
+});
+
+test('Quiz result review prefers specific editorial explanations over generic Knowledge legacy text', () => {
+  const source = fs.readFileSync('js/quizzes.js', 'utf8');
+  assert.match(source, /explanation\.textContent = question\.explanation \|\| question\.knowledge_payload\?\.explanation \|\| question\.knowledge/);
+  assert.match(source, /knowledge: q\.explanation \|\| q\.knowledge/);
+});
