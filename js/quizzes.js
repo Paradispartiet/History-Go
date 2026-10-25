@@ -934,7 +934,7 @@ if (canTag) {
               const title = document.createElement("h5");
               title.textContent = `${index + 1}. ${question.question}`;
               const explanation = document.createElement("p");
-              explanation.textContent = question.knowledge_payload?.explanation || question.knowledge;
+              explanation.textContent = question.explanation || question.knowledge_payload?.explanation || question.knowledge;
               const sources = document.createElement("p");
               sources.textContent = "Kilder: ";
               (Array.isArray(question.source) ? question.source : []).forEach((source, sourceIndex) => {
