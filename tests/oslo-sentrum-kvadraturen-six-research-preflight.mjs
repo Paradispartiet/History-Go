@@ -104,4 +104,37 @@ for(const group of candidateGroups){
   }
 }
 assert.equal(candidateCount,60);
+
+// Garmanngården has 21 editorially reviewed draft questions, but is NOT
+// registered as a fullquiz/QuizCard until its Knowledge and production-context gates pass.
+const garmannDraft=read('reports/place-production/garmanngarden-21-question-editorial-review-20261025.json');
+const garmannBrief=read('data/quiz/production_briefs/historie/garmanngarden.json');
+assert.equal(garmannDraft.status,'editorial_review_not_manifested');
+assert.equal(garmannDraft.targetId,'garmanngarden');
+assert.equal(garmannDraft.questions.length,21);
+assert.deepEqual(garmannDraft.sets.map(s=>s.count),[7,7,7]);
+assert.deepEqual(garmannDraft.sets.map(s=>s.phase),['opening','bridge','final']);
+assert.equal(garmannBrief.targetId,garmannDraft.targetId);
+assert.equal(garmannBrief.status,'reviewed');
+assert.equal(garmannBrief.claims.length,21);
+assert.equal(garmannBrief.profile_decision.set_count,3);
+assert.equal(garmannBrief.profile_decision.questions_per_set,7);
+assert.equal(garmannDraft.questions.some(q=>/1807|1811/u.test(q.question)),false,'conflicting Hauge years must not be answer questions');
+assert.equal(garmannDraft.questions.filter(q=>q.phase==='opening').length,7);
+assert.equal(garmannDraft.questions.filter(q=>q.phase==='bridge').length,7);
+assert.equal(garmannDraft.questions.filter(q=>q.phase==='final').length,7);
+const draftQuestionIds=new Set();
+for(const [i,q] of garmannDraft.questions.entries()){
+  assert.equal(q.number,i+1,'Non-sequential Garmanngården question');
+  assert.equal(q.answer,q.options[q.answerIndex],'Garmanngården incorrect answer index');
+  assert.equal(new Set(q.options).size,4,'Garmanngården repeated answer options');
+  assert.ok(!draftQuestionIds.has(q.question),'Garmanngården duplicate question');
+  draftQuestionIds.add(q.question);
+  assert.ok(q.knowledge.length>=30,'Garmanngården missing pedagogical explanation');
+  assert.equal(q.claim_id,garmannBrief.claims[i].claim_id,'Garmanngården claim mismatch');
+  assert.deepEqual(q.source_ids,garmannBrief.claims[i].source_ids,'Garmanngården source mismatch');
+  for(const sid of q.source_ids)assert.equal(garmannBrief.sources[sid].review_status,'reviewed');
+}
+assert.equal(garmannDraft.questions[20].question.includes('ulike sluttår'),true,'Missing source-conflict question');
+assert.equal(garmannDraft.status.includes('manifested'),true);
 console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',candidateCount,records:report},null,2));
