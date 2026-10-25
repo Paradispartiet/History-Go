@@ -3,1722 +3,2537 @@
   "categoryId": "by",
   "title": "By – topp 10 quizkort – batch 4",
   "cardFormatRule": "Ett kort per sted. Alle 10 spørsmål vises på samme side. Fasit ligger nederst i liten tekst.",
-  "sourceBasis": [
-    "places_by (25).json",
-    "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-    "emner_by_canonical_v4_5.json",
-    "methods_by_canonical_v4_5.json"
-  ],
+  "sourceBasis": "By-bolk 03: sju eksisterende QuizCards bruker nå spørsmål, svar, forklaringer og kildereferanser fra manifestregistrert kanonisk fullquiz. Kildeidentifikator beholdes der ekstern URL ikke finnes.",
   "cards": [
     {
       "card_id": "by_quizkort_topp10_batch4_vinderen",
       "categoryId": "by",
       "targetId": "vinderen",
       "title": "Vinderen",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 1,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva slags byområde er Vinderen i steddataene?",
+          "id": "vinderen_quiz_01",
+          "question": "Hvilken bydel ligger Vinderen i?",
           "options": [
-            "Et bolig- og lokalsenterområde i Oslo vest",
-            "Et havneområde med skipsverft",
-            "En bussterminal ved Oslo S"
+            "Bydel Vestre Aker",
+            "Bydel Gamle Oslo",
+            "Bydel Grünerløkka"
           ],
-          "answer": "Et bolig- og lokalsenterområde i Oslo vest",
+          "answer": "Bydel Vestre Aker",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q01",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
+          "sourceQuestionId": "vinderen_quiz_01",
+          "sourceQuizId": "by_vinderen_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
           "difficulty": 1,
-          "topic": "stedstype",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "SNL og Lokalhistoriewiki beskriver Vinderen som et boligområde/strøk i bydel Vestre Aker.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_vinderen_quiz_01",
+          "claim_basis": "SNL og Lokalhistoriewiki beskriver Vinderen som et boligområde/strøk i bydel Vestre Aker.",
+          "emne_id": "em_by_boligstruktur",
+          "primary_knowledge_unit_id": "ku_by_vinderen_01",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_01"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "vinderen",
-            "stedstype"
+            "vestre_aker",
+            "plassering",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hvilke byemner er særlig knyttet til Vinderen?",
+          "id": "vinderen_quiz_08",
+          "question": "Hvilket gårdsnavn ligger bak strøksnavnet Vinderen?",
           "options": [
-            "Bydelsforskjeller og boligstruktur",
-            "Fjordpromenader og havneomforming",
-            "Trafikkmaskiner og motorveikryss"
+            "Gården Romsås",
+            "Gården Vinderen",
+            "Gården Ullevål"
           ],
-          "answer": "Bydelsforskjeller og boligstruktur",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q02",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
+          "answer": "Gården Vinderen",
+          "answerIndex": 1,
+          "sourceQuestionId": "vinderen_quiz_08",
+          "sourceQuizId": "by_vinderen_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
           "difficulty": 1,
-          "topic": "emne",
-          "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki oppgir at Vinderen har navn etter gården Vinderen.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_vinderen_quiz_08",
+          "claim_basis": "Oslo byleksikon og Lokalhistoriewiki oppgir at Vinderen har navn etter gården Vinderen.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_vinderen_08",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_08"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
+            "gård",
+            "navn",
             "vinderen",
-            "emne"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hva gjør Vinderen relevant for sosial geografi?",
+          "id": "vinderen_quiz_15",
+          "question": "Hva oppsto ved Vinderen stasjon rundt 1900?",
           "options": [
-            "Området kan brukes til å lese boligstandard, vestkantstruktur og bydelsforskjeller",
-            "Området er uten boliger",
-            "Området er først og fremst et industrielt verft"
+            "En cruiseterminal",
+            "Et middelalderkloster",
+            "Et forretningssentrum"
           ],
-          "answer": "Området kan brukes til å lese boligstandard, vestkantstruktur og bydelsforskjeller",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q03",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
+          "answer": "Et forretningssentrum",
+          "answerIndex": 2,
+          "sourceQuestionId": "vinderen_quiz_15",
+          "sourceQuizId": "by_vinderen_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
           "difficulty": 1,
-          "topic": "sosial_geografi",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki beskriver et forretningssentrum som oppsto ved Vinderen stasjon rundt 1900.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_vinderen_quiz_15",
+          "claim_basis": "Oslo byleksikon og Lokalhistoriewiki beskriver et forretningssentrum som oppsto ved Vinderen stasjon rundt 1900.",
+          "emne_id": "em_by_kommersielle_gater",
+          "primary_knowledge_unit_id": "ku_by_vinderen_15",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_15"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "vinderen",
-            "sosial_geografi"
+            "stasjon",
+            "handel",
+            "sentrum",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hva betyr boligstruktur i byanalyse?",
+          "id": "vinderen_quiz_22",
+          "question": "Når åpnet Vinderen stasjon?",
           "options": [
-            "Hvordan boliger, gater, tetthet og eiendomsform organiserer hverdagslivet",
-            "Hvordan busser nummereres",
-            "Hvordan en statue plasseres på et torg"
+            "1898",
+            "1912",
+            "1971"
           ],
-          "answer": "Hvordan boliger, gater, tetthet og eiendomsform organiserer hverdagslivet",
+          "answer": "1898",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q04",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
-          "difficulty": 1,
-          "topic": "begrep",
-          "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "vinderen_quiz_22",
+          "sourceQuizId": "by_vinderen_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
+          "difficulty": 2,
+          "question_type": "context",
+          "knowledge": "Lokalhistoriewiki oppgir at Vinderen stasjon åpnet i 1898.",
+          "source": [
+            "station"
+          ],
+          "claim_id": "claim_vinderen_quiz_22",
+          "claim_basis": "Lokalhistoriewiki oppgir at Vinderen stasjon åpnet i 1898.",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_vinderen_22",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_22"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "vinderen",
-            "begrep"
+            "stasjon",
+            "1898",
+            "holmenkollbanen",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hva kan man observere på Vinderen?",
+          "id": "vinderen_quiz_29",
+          "question": "Hvilken kollektivforbindelse beskriver SNL som den viktigste til sentrum?",
           "options": [
-            "Boligtyper, lokale handelspunkter, gatepreg og forbindelser til kollektivtransport",
-            "Kun havnekraner og lagerbygg",
-            "Bare nasjonale paradefunksjoner"
+            "Flytoget",
+            "Holmenkollbanen",
+            "Oslo bussterminal"
           ],
-          "answer": "Boligtyper, lokale handelspunkter, gatepreg og forbindelser til kollektivtransport",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q05",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
-          "difficulty": 1,
-          "topic": "observasjon",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "answer": "Holmenkollbanen",
+          "answerIndex": 1,
+          "sourceQuestionId": "vinderen_quiz_29",
+          "sourceQuizId": "by_vinderen_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
+          "difficulty": 3,
+          "question_type": "concept",
+          "knowledge": "SNL beskriver Holmenkollbanen som den viktigste kollektivforbindelsen fra Vinderen til sentrum.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_vinderen_quiz_29",
+          "claim_basis": "SNL beskriver Holmenkollbanen som den viktigste kollektivforbindelsen fra Vinderen til sentrum.",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_vinderen_29",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_29"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "vinderen",
-            "observasjon"
+            "sentrum",
+            "bane",
+            "kollektiv",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hva er en relevant kontrast mellom Vinderen og tettere sentrumsgater?",
+          "id": "vinderen_quiz_09",
+          "question": "Hvilken eldre skrivemåte nevnes for Vinderen?",
           "options": [
-            "Vinderen har mer bolig- og lokalsenterpreg enn høyintens handlegate",
-            "Vinderen er uten bebyggelse",
-            "Vinderen er et fjordbad"
+            "Vålerengen",
+            "Vågeby",
+            "Vindern"
           ],
-          "answer": "Vinderen har mer bolig- og lokalsenterpreg enn høyintens handlegate",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q06",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
+          "answer": "Vindern",
+          "answerIndex": 2,
+          "sourceQuestionId": "vinderen_quiz_09",
+          "sourceQuizId": "by_vinderen_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
           "difficulty": 1,
-          "topic": "kontrast",
-          "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki oppgir at navnet også har vært skrevet Vindern.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_vinderen_quiz_09",
+          "claim_basis": "Oslo byleksikon og Lokalhistoriewiki oppgir at navnet også har vært skrevet Vindern.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_vinderen_09",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_09"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "vinderen",
-            "kontrast"
+            "vindern",
+            "navn",
+            "skrivemåte",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hva viser Vinderen om bydelers ulikhet?",
+          "id": "vinderen_quiz_16",
+          "question": "Hvilken bygning ved Vinderen stasjon ble oppført like etter 1900?",
           "options": [
-            "At byområder kan ha ulike boligformer, ressurser og sosial lesbarhet",
-            "At alle bydeler har helt lik struktur",
-            "At boligområder aldri viser sosiale forskjeller"
+            "Conditorigården",
+            "Botsfengselet",
+            "Oslo rådhus"
           ],
-          "answer": "At byområder kan ha ulike boligformer, ressurser og sosial lesbarhet",
+          "answer": "Conditorigården",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q07",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
-          "difficulty": 2,
-          "topic": "analyse",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "vinderen_quiz_16",
+          "sourceQuizId": "by_vinderen_set_3_q2",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
+          "difficulty": 1,
+          "question_type": "fact",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki oppgir at Conditorigården ved stasjonen ble oppført like etter 1900.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_vinderen_quiz_16",
+          "claim_basis": "Oslo byleksikon og Lokalhistoriewiki oppgir at Conditorigården ved stasjonen ble oppført like etter 1900.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_vinderen_16",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_16"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "vinderen",
-            "analyse"
+            "conditorigården",
+            "stasjon",
+            "handel",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hva er en god feltobservasjon på Vinderen?",
+          "id": "vinderen_quiz_23",
+          "question": "Hvilket navn hadde Vinderen stasjon opprinnelig?",
           "options": [
-            "Å se hvordan bolig, lokal handel og transport henger sammen i hverdagsrommet",
-            "Å telle skip ved en kai",
-            "Å analysere en treplans motorveimaskin"
+            "Vålerengen",
+            "Winderen",
+            "Rodeløkka"
           ],
-          "answer": "Å se hvordan bolig, lokal handel og transport henger sammen i hverdagsrommet",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q08",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
+          "answer": "Winderen",
+          "answerIndex": 1,
+          "sourceQuestionId": "vinderen_quiz_23",
+          "sourceQuizId": "by_vinderen_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
           "difficulty": 2,
-          "topic": "metode",
-          "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "question_type": "context",
+          "knowledge": "Lokalhistoriewiki oppgir at Vinderen stasjon opprinnelig het Winderen.",
+          "source": [
+            "station"
+          ],
+          "claim_id": "claim_vinderen_quiz_23",
+          "claim_basis": "Lokalhistoriewiki oppgir at Vinderen stasjon opprinnelig het Winderen.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_vinderen_23",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_23"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "vinderen",
-            "metode"
+            "winderen",
+            "stasjon",
+            "navn",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hvorfor er lokalsenterfunksjon viktig i boligområder?",
+          "id": "vinderen_quiz_30",
+          "question": "Hvilken planovergang beskrives som blant de mest trafikkerte langs Holmenkollbanen?",
           "options": [
-            "Den gir hverdagslige tjenester og møtepunkter nær boligene",
-            "Den gjør området helt utilgjengelig",
-            "Den fjerner all sosial bruk"
+            "Planovergangen ved Oslo S",
+            "Planovergangen ved Bygdøy allé",
+            "Planovergangen ved Vinderen stasjon"
           ],
-          "answer": "Den gir hverdagslige tjenester og møtepunkter nær boligene",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q09",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
-          "difficulty": 2,
-          "topic": "funksjon",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "answer": "Planovergangen ved Vinderen stasjon",
+          "answerIndex": 2,
+          "sourceQuestionId": "vinderen_quiz_30",
+          "sourceQuizId": "by_vinderen_set_5_q2",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
+          "difficulty": 3,
+          "question_type": "concept",
+          "knowledge": "Lokalhistoriewiki beskriver krysset ved Vinderen stasjon som blant de mest trafikkerte planovergangene langs Holmenkollbanen.",
+          "source": [
+            "station"
+          ],
+          "claim_id": "claim_vinderen_quiz_30",
+          "claim_basis": "Lokalhistoriewiki beskriver krysset ved Vinderen stasjon som blant de mest trafikkerte planovergangene langs Holmenkollbanen.",
+          "emne_id": "em_by_flaskehalser_kryss_friksjon",
+          "primary_knowledge_unit_id": "ku_by_vinderen_30",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_30"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "vinderen",
-            "funksjon"
+            "planovergang",
+            "trafikk",
+            "stasjon",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Vinderen?",
+          "id": "vinderen_quiz_10",
+          "question": "Hvilket norrønt navneledd forklarer SNL som 'naturlig eng'?",
           "options": [
-            "1920",
-            "2008",
-            "1854"
+            "vin",
+            "ås",
+            "vik"
           ],
-          "answer": "1920",
+          "answer": "vin",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_vinderen_q10",
-          "sourceQuizId": "by_quizkort_batch4_vinderen",
-          "difficulty": 2,
-          "topic": "årstall",
-          "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "vinderen_quiz_10",
+          "sourceQuizId": "by_vinderen_set_2_q3",
+          "sourceQuizFile": "data/quiz/by/vinderen_sets.json",
+          "difficulty": 1,
+          "question_type": "fact",
+          "knowledge": "SNL forklarer sisteleddet i Vindarin som vin, med betydningen naturlig eng.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_vinderen_quiz_10",
+          "claim_basis": "SNL forklarer sisteleddet i Vindarin som vin, med betydningen naturlig eng.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_vinderen_10",
+          "knowledge_unit_ids": [
+            "ku_by_vinderen_10"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "vinderen",
-            "årstall"
+            "norrønt",
+            "vin",
+            "navn",
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "Et bolig- og lokalsenterområde i Oslo vest"
+          "answer": "Bydel Vestre Aker",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Bydelsforskjeller og boligstruktur"
+          "answer": "Gården Vinderen",
+          "answerIndex": 1
         },
         {
           "number": 3,
-          "answer": "Området kan brukes til å lese boligstandard, vestkantstruktur og bydelsforskjeller"
+          "answer": "Et forretningssentrum",
+          "answerIndex": 2
         },
         {
           "number": 4,
-          "answer": "Hvordan boliger, gater, tetthet og eiendomsform organiserer hverdagslivet"
+          "answer": "1898",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Boligtyper, lokale handelspunkter, gatepreg og forbindelser til kollektivtransport"
+          "answer": "Holmenkollbanen",
+          "answerIndex": 1
         },
         {
           "number": 6,
-          "answer": "Vinderen har mer bolig- og lokalsenterpreg enn høyintens handlegate"
+          "answer": "Vindern",
+          "answerIndex": 2
         },
         {
           "number": 7,
-          "answer": "At byområder kan ha ulike boligformer, ressurser og sosial lesbarhet"
+          "answer": "Conditorigården",
+          "answerIndex": 0
         },
         {
           "number": 8,
-          "answer": "Å se hvordan bolig, lokal handel og transport henger sammen i hverdagsrommet"
+          "answer": "Winderen",
+          "answerIndex": 1
         },
         {
           "number": 9,
-          "answer": "Den gir hverdagslige tjenester og møtepunkter nær boligene"
+          "answer": "Planovergangen ved Vinderen stasjon",
+          "answerIndex": 2
         },
         {
           "number": 10,
-          "answer": "1920"
+          "answer": "vin",
+          "answerIndex": 0
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/vinderen_sets.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch4_ullern",
       "categoryId": "by",
       "targetId": "ullern",
       "title": "Ullern",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 2,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva slags byområde er Ullern i steddataene?",
+          "id": "ullern_quiz_01",
+          "question": "Hvor kommer navnet Ullern fra?",
           "options": [
-            "Et boligområde i Oslo vest",
-            "Et historisk havneområde",
-            "En terminal for langdistansebusser"
+            "Ullern-gårdene",
+            "Røabanen",
+            "Radiumhospitalet"
           ],
-          "answer": "Et boligområde i Oslo vest",
+          "answer": "Ullern-gårdene",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q01",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
+          "sourceQuestionId": "ullern_quiz_01",
+          "sourceQuizId": "by_ullern_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
           "difficulty": 1,
-          "topic": "stedstype",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Ullern har navn etter Ullern-gårdene.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_ullern_quiz_01",
+          "claim_basis": "Ullern har navn etter Ullern-gårdene.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_ullern_01",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_01"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "stedstype"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hvilke byemner knyttes til Ullern?",
+          "id": "ullern_quiz_08",
+          "question": "Når åpnet Smestadbanen til Smestad?",
           "options": [
-            "Bydelsforskjeller og boligstruktur",
-            "Skjult energiinfrastruktur",
-            "Basararkitektur"
+            "1903",
+            "1912",
+            "1942"
           ],
-          "answer": "Bydelsforskjeller og boligstruktur",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q02",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
-          "difficulty": 1,
-          "topic": "emne",
-          "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "answer": "1912",
+          "answerIndex": 1,
+          "sourceQuestionId": "ullern_quiz_08",
+          "sourceQuizId": "by_ullern_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Smestadbanen mellom Majorstuen og Smestad åpnet i 1912.",
+          "source": [
+            "smestadbanen"
+          ],
+          "claim_id": "claim_ullern_quiz_08",
+          "claim_basis": "Smestadbanen mellom Majorstuen og Smestad åpnet i 1912.",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_ullern_08",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_08"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "emne"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hva gjør Ullern relevant for analyse av bydelsforskjeller?",
+          "id": "ullern_quiz_15",
+          "question": "Når kom Ullern videregående skole i gang?",
           "options": [
-            "Boligformer, beliggenhet og sosial geografi kan leses i bystrukturen",
-            "Ullern er uten sosialt mønster",
-            "Ullern er bare et transportknutepunkt"
+            "1903",
+            "1960",
+            "1931"
           ],
-          "answer": "Boligformer, beliggenhet og sosial geografi kan leses i bystrukturen",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q03",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
-          "difficulty": 1,
-          "topic": "analyse",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "answer": "1931",
+          "answerIndex": 2,
+          "sourceQuestionId": "ullern_quiz_15",
+          "sourceQuizId": "by_ullern_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
+          "difficulty": 3,
+          "question_type": "fact",
+          "knowledge": "Ullern videregående skole kom i gang i 1931.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_ullern_quiz_15",
+          "claim_basis": "Ullern videregående skole kom i gang i 1931.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_ullern_15",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_15"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "analyse"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hva betyr bydelsforskjeller i denne sammenhengen?",
+          "id": "ullern_quiz_22",
+          "question": "Hva er den sikreste koblingen mellom banene og boligveksten?",
           "options": [
-            "At ulike deler av byen har ulike ressurser, boligformer, status og hverdagsrom",
-            "At alle bydeler er nøyaktig like",
-            "At bydeler bare finnes på kart, ikke i praksis"
+            "Banene gjorde nye områder lettere tilgjengelige for daglige reiser",
+            "Banene beviser hvem som hadde høy inntekt",
+            "Alle boliger ble bygget av baneselskapene"
           ],
-          "answer": "At ulike deler av byen har ulike ressurser, boligformer, status og hverdagsrom",
+          "answer": "Banene gjorde nye områder lettere tilgjengelige for daglige reiser",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q04",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
-          "difficulty": 1,
-          "topic": "begrep",
-          "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "ullern_quiz_22",
+          "sourceQuizId": "by_ullern_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
+          "difficulty": 4,
+          "question_type": "context",
+          "knowledge": "Transporttilgjengelighet kan knyttes til utbygging uten å gjøre banen til eneste årsak.",
+          "source": [
+            "bydel",
+            "smestadbanen"
+          ],
+          "claim_id": "claim_ullern_quiz_22",
+          "claim_basis": "Transporttilgjengelighet kan knyttes til utbygging uten å gjøre banen til eneste årsak.",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_ullern_22",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_22"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "begrep"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hva kan man observere i Ullern?",
+          "id": "ullern_quiz_29",
+          "question": "Hva betyr transportorientert byvekst i Ullern-sammenheng?",
           "options": [
-            "Boligskala, grønt preg, gatebredde og forholdet mellom privat og offentlig rom",
-            "Kun industriell havnebruk",
-            "Bare jernbaneplattformer"
+            "At alle bygg må ligge på en stasjon",
+            "At tilgjengelighet langs baner påvirker hvor boliger og funksjoner kan utvikles",
+            "At veier ikke spiller noen rolle"
           ],
-          "answer": "Boligskala, grønt preg, gatebredde og forholdet mellom privat og offentlig rom",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q05",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
-          "difficulty": 1,
-          "topic": "observasjon",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "answer": "At tilgjengelighet langs baner påvirker hvor boliger og funksjoner kan utvikles",
+          "answerIndex": 1,
+          "sourceQuestionId": "ullern_quiz_29",
+          "sourceQuizId": "by_ullern_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
+          "difficulty": 5,
+          "question_type": "concept",
+          "knowledge": "Transportorientert vekst beskriver samspillet mellom forbindelser og arealbruk.",
+          "source": [
+            "bydel",
+            "smestadbanen"
+          ],
+          "claim_id": "claim_ullern_quiz_29",
+          "claim_basis": "Transportorientert vekst beskriver samspillet mellom forbindelser og arealbruk.",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_ullern_29",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_29"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "observasjon"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hva er en sentral kontrast mellom Ullern og indre østlige handlegater?",
+          "id": "ullern_quiz_23",
+          "question": "Hva kan villaer og store tomter dokumentere direkte?",
           "options": [
-            "Ullern har mer bolig- og ressurssterkt villapreg",
-            "Ullern er mer havnepreget enn Bjørvika",
-            "Ullern er et renodlet fjordbad"
+            "Beboernes nøyaktige inntekt",
+            "Byform og tetthet",
+            "Politiske holdninger"
           ],
-          "answer": "Ullern har mer bolig- og ressurssterkt villapreg",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q06",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
-          "difficulty": 1,
-          "topic": "kontrast",
+          "answer": "Byform og tetthet",
+          "answerIndex": 1,
+          "sourceQuestionId": "ullern_quiz_23",
+          "sourceQuizId": "by_ullern_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
+          "difficulty": 4,
+          "question_type": "context",
+          "knowledge": "Morfologi kan observeres direkte; sosiale egenskaper krever andre data.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_ullern_quiz_23",
+          "claim_basis": "Morfologi kan observeres direkte; sosiale egenskaper krever andre data.",
           "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_ullern_23",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_23"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "kontrast"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hva viser Ullern om boligstruktur?",
+          "id": "ullern_quiz_30",
+          "question": "Hva er morfologi i en stedsanalyse?",
           "options": [
-            "Boligområder kan forme sosial erfaring og bydelens identitet",
-            "Boliger påvirker aldri byliv",
-            "Boligstruktur finnes bare i sentrum"
+            "Måling av inntekt alene",
+            "En liste over kjente personer",
+            "Analyse av fysisk form, tomter, bygg og gatenett"
           ],
-          "answer": "Boligområder kan forme sosial erfaring og bydelens identitet",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q07",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
-          "difficulty": 2,
-          "topic": "boligstruktur",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "answer": "Analyse av fysisk form, tomter, bygg og gatenett",
+          "answerIndex": 2,
+          "sourceQuestionId": "ullern_quiz_30",
+          "sourceQuizId": "by_ullern_set_5_q2",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
+          "difficulty": 5,
+          "question_type": "concept",
+          "knowledge": "Morfologi handler om den fysiske organiseringen av byen.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_ullern_quiz_30",
+          "claim_basis": "Morfologi handler om den fysiske organiseringen av byen.",
+          "emne_id": "em_by_boligstruktur",
+          "primary_knowledge_unit_id": "ku_by_ullern_30",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_30"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "boligstruktur"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hva er en relevant metode for å forstå Ullern?",
+          "id": "ullern_quiz_17",
+          "question": "Hva slags kirkeplan har Ullern kirke?",
           "options": [
-            "Feltobservasjon av boliger, gatestruktur, grøntarealer og lokalt hverdagsliv",
-            "Analyse av skipstrafikk",
-            "Telling av bibliotekutlån"
+            "Ren langkirke uten tverrskip",
+            "Korsplan",
+            "Sirkulær rotunde"
           ],
-          "answer": "Feltobservasjon av boliger, gatestruktur, grøntarealer og lokalt hverdagsliv",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q08",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
-          "difficulty": 2,
-          "topic": "metode",
-          "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "answer": "Korsplan",
+          "answerIndex": 1,
+          "sourceQuestionId": "ullern_quiz_17",
+          "sourceQuizId": "by_ullern_set_3_q3",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
+          "difficulty": 3,
+          "question_type": "fact",
+          "knowledge": "Ullern kirke har korsplan med sentraltårn.",
+          "source": [
+            "church"
+          ],
+          "claim_id": "claim_ullern_quiz_17",
+          "claim_basis": "Ullern kirke har korsplan med sentraltårn.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_ullern_17",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_17"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "metode"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hvorfor er grønt preg viktig i noen boligområder?",
+          "id": "ullern_quiz_24",
+          "question": "Hvorfor gjør Radiumhospitalet og skolene Ullern til mer enn et boligområde?",
           "options": [
-            "Det påvirker opplevelse av rom, avstand, status og hverdagskvalitet",
-            "Det gjør området til terminal",
-            "Det fjerner all boligbruk"
+            "De gjør alle boliger offentlige",
+            "De fjerner behovet for kollektivtransport",
+            "De skaper reiser for behandling, arbeid og undervisning"
           ],
-          "answer": "Det påvirker opplevelse av rom, avstand, status og hverdagskvalitet",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q09",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
-          "difficulty": 2,
-          "topic": "rom",
-          "emne_id": "em_by_bydelsforskjeller_segregering",
-          "method_id": "met_feltobservasjon",
+          "answer": "De skaper reiser for behandling, arbeid og undervisning",
+          "answerIndex": 2,
+          "sourceQuestionId": "ullern_quiz_24",
+          "sourceQuizId": "by_ullern_set_4_q3",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
+          "difficulty": 4,
+          "question_type": "context",
+          "knowledge": "Institusjoner gir stedet funksjoner for både beboere og besøkende.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_ullern_quiz_24",
+          "claim_basis": "Institusjoner gir stedet funksjoner for både beboere og besøkende.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_ullern_24",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_24"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "rom"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Ullern?",
+          "id": "ullern_quiz_31",
+          "question": "Hva er en viktig kildekritisk grense ved sosial lesning av Ullern?",
           "options": [
-            "1930",
-            "1860",
-            "2020"
+            "Byform alene beviser ikke inntekt eller segregasjon",
+            "Historiske kilder er alltid unødvendige",
+            "Villaer beviser identisk livsstil"
           ],
-          "answer": "1930",
+          "answer": "Byform alene beviser ikke inntekt eller segregasjon",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_ullern_q10",
-          "sourceQuizId": "by_quizkort_batch4_ullern",
-          "difficulty": 2,
-          "topic": "årstall",
-          "emne_id": "em_by_boligstruktur",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "ullern_quiz_31",
+          "sourceQuizId": "by_ullern_set_5_q3",
+          "sourceQuizFile": "data/quiz/by/ullern_sets.json",
+          "difficulty": 5,
+          "question_type": "concept",
+          "knowledge": "Sosiale påstander krever egne data utover visuell morfologi.",
+          "source": [
+            "byleksikon",
+            "bydel"
+          ],
+          "claim_id": "claim_ullern_quiz_31",
+          "claim_basis": "Sosiale påstander krever egne data utover visuell morfologi.",
+          "emne_id": "em_by_bydelsforskjeller_segregering",
+          "primary_knowledge_unit_id": "ku_by_ullern_31",
+          "knowledge_unit_ids": [
+            "ku_by_ullern_31"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "ullern",
-            "årstall"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "Et boligområde i Oslo vest"
+          "answer": "Ullern-gårdene",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Bydelsforskjeller og boligstruktur"
+          "answer": "1912",
+          "answerIndex": 1
         },
         {
           "number": 3,
-          "answer": "Boligformer, beliggenhet og sosial geografi kan leses i bystrukturen"
+          "answer": "1931",
+          "answerIndex": 2
         },
         {
           "number": 4,
-          "answer": "At ulike deler av byen har ulike ressurser, boligformer, status og hverdagsrom"
+          "answer": "Banene gjorde nye områder lettere tilgjengelige for daglige reiser",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Boligskala, grønt preg, gatebredde og forholdet mellom privat og offentlig rom"
+          "answer": "At tilgjengelighet langs baner påvirker hvor boliger og funksjoner kan utvikles",
+          "answerIndex": 1
         },
         {
           "number": 6,
-          "answer": "Ullern har mer bolig- og ressurssterkt villapreg"
+          "answer": "Byform og tetthet",
+          "answerIndex": 1
         },
         {
           "number": 7,
-          "answer": "Boligområder kan forme sosial erfaring og bydelens identitet"
+          "answer": "Analyse av fysisk form, tomter, bygg og gatenett",
+          "answerIndex": 2
         },
         {
           "number": 8,
-          "answer": "Feltobservasjon av boliger, gatestruktur, grøntarealer og lokalt hverdagsliv"
+          "answer": "Korsplan",
+          "answerIndex": 1
         },
         {
           "number": 9,
-          "answer": "Det påvirker opplevelse av rom, avstand, status og hverdagskvalitet"
+          "answer": "De skaper reiser for behandling, arbeid og undervisning",
+          "answerIndex": 2
         },
         {
           "number": 10,
-          "answer": "1930"
+          "answer": "Byform alene beviser ikke inntekt eller segregasjon",
+          "answerIndex": 0
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/ullern_sets.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch4_spikersuppa",
       "categoryId": "by",
       "targetId": "spikersuppa",
       "title": "Spikersuppa",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 3,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva slags byrom er Spikersuppa?",
+          "id": "spikersuppa_quiz_01",
+          "question": "Hvor ligger Spikersuppa?",
           "options": [
-            "Et sentralt offentlig rom/parkdrag i sentrum",
-            "Et boligfelt på Romsås",
-            "Et verfts- og industriområde"
+            "På Eidsvolls plass",
+            "På Bankplassen",
+            "På Youngstorget"
           ],
-          "answer": "Et sentralt offentlig rom/parkdrag i sentrum",
+          "answer": "På Eidsvolls plass",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q01",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
+          "sourceQuestionId": "spikersuppa_quiz_01",
+          "sourceQuizId": "by_spikersuppa_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
           "difficulty": 1,
-          "topic": "stedstype",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Spikersuppa er den vestlige bassengdelen av Eidsvolls plass.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_01",
+          "claim_basis": "Spikersuppa er den vestlige bassengdelen av Eidsvolls plass.",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_01",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_01"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "stedstype"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hvilket byemne passer særlig til Spikersuppa?",
+          "id": "spikersuppa_quiz_08",
+          "question": "Når ble Hjortegruppe og Lekende barn satt opp?",
           "options": [
-            "Torg og plasser som scene",
-            "Modernistisk boligplanlegging",
-            "Langdistansebuss"
+            "1881",
+            "1958",
+            "2008"
           ],
-          "answer": "Torg og plasser som scene",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q02",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
-          "difficulty": 1,
-          "topic": "emne",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "answer": "1958",
+          "answerIndex": 1,
+          "sourceQuestionId": "spikersuppa_quiz_08",
+          "sourceQuizId": "by_spikersuppa_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Begge skulpturene ble satt opp i 1958.",
+          "source": [
+            "localwiki"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_08",
+          "claim_basis": "Begge skulpturene ble satt opp i 1958.",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_08",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_08"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "emne"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hva brukes Spikersuppa ofte til i bylivet?",
+          "id": "spikersuppa_quiz_15",
+          "question": "Hva er Narvisen?",
           "options": [
-            "Opphold, arrangementer, vinteraktivitet og sentrumsferdsel",
-            "Skipsbygging",
-            "Bussterminaldrift"
+            "Et kallenavn på skøytebanen",
+            "Navnet på Hjortegruppe",
+            "En T-banestasjon"
           ],
-          "answer": "Opphold, arrangementer, vinteraktivitet og sentrumsferdsel",
+          "answer": "Et kallenavn på skøytebanen",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q03",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
-          "difficulty": 1,
-          "topic": "bruk",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "spikersuppa_quiz_15",
+          "sourceQuizId": "by_spikersuppa_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Narvisen er kallenavnet som knyttes til Narvesens finansiering av skøytebanen.",
+          "source": [
+            "municipality"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_15",
+          "claim_basis": "Narvisen er kallenavnet som knyttes til Narvesens finansiering av skøytebanen.",
+          "emne_id": "em_by_sesongbruk_uteomrader",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_15",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_15"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "bruk"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hva betyr at et byrom fungerer som scene?",
+          "id": "spikersuppa_quiz_22",
+          "question": "Hvorfor må 1956-planen og dagens basseng skilles kildekritisk?",
           "options": [
-            "At det kan fylles med aktivitet, publikum, arrangement og synlig offentlig liv",
-            "At det bare er et privat lager",
-            "At ingen kan bruke det"
+            "Tunnelarbeidene medførte riving og gjenoppføring/endring",
+            "Fordi bassenget aldri har eksistert",
+            "Fordi Arneberg tegnet T-banen i 1994"
           ],
-          "answer": "At det kan fylles med aktivitet, publikum, arrangement og synlig offentlig liv",
+          "answer": "Tunnelarbeidene medførte riving og gjenoppføring/endring",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q04",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
-          "difficulty": 1,
-          "topic": "begrep",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "spikersuppa_quiz_22",
+          "sourceQuizId": "by_spikersuppa_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
+          "difficulty": 3,
+          "question_type": "context",
+          "knowledge": "Et dokumentert brudd i 1970-årene gjør kontinuitet og endring til separate spørsmål.",
+          "source": [
+            "localwiki"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_22",
+          "claim_basis": "Et dokumentert brudd i 1970-årene gjør kontinuitet og endring til separate spørsmål.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_22",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_22"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "begrep"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hva kan man observere i Spikersuppa?",
+          "id": "spikersuppa_quiz_29",
+          "question": "Hva undersøker feltobservasjon best i Spikersuppa?",
           "options": [
-            "Sitteplasser, ferdsel, sesongbruk, arrangement og møtepunkter",
-            "Kun biltrafikk på ringvei",
-            "Bare industriproduksjon"
+            "Synlige materialer, ganglinjer, kanter og bruk på observasjonstidspunktet",
+            "Hemmelig finansiering i 1956",
+            "Alle tidligere publikums meninger"
           ],
-          "answer": "Sitteplasser, ferdsel, sesongbruk, arrangement og møtepunkter",
+          "answer": "Synlige materialer, ganglinjer, kanter og bruk på observasjonstidspunktet",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q05",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
-          "difficulty": 1,
-          "topic": "observasjon",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "spikersuppa_quiz_29",
+          "sourceQuizId": "by_spikersuppa_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
+          "difficulty": 4,
+          "question_type": "concept",
+          "knowledge": "Feltobservasjon dokumenterer dagens synlige forhold og må suppleres med historiske kilder.",
+          "source": [
+            "municipality"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_29",
+          "claim_basis": "Feltobservasjon dokumenterer dagens synlige forhold og må suppleres med historiske kilder.",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_29",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_29"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "observasjon"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hva gjør Spikersuppa viktig i sentrum?",
+          "id": "spikersuppa_quiz_02",
+          "question": "Hvilken hovedgate ligger langs nordsiden av byrommet?",
           "options": [
-            "Det gir et åpent oppholdsrom midt i et tett kommersielt og representativt bylandskap",
-            "Det stenger sentrum for fotgjengere",
-            "Det er bare et lukket kontorområde"
+            "Grønlandsleiret",
+            "Karl Johans gate",
+            "Bogstadveien"
           ],
-          "answer": "Det gir et åpent oppholdsrom midt i et tett kommersielt og representativt bylandskap",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q06",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
+          "answer": "Karl Johans gate",
+          "answerIndex": 1,
+          "sourceQuestionId": "spikersuppa_quiz_02",
+          "sourceQuizId": "by_spikersuppa_set_1_q2",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
           "difficulty": 1,
-          "topic": "funksjon",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Spikersuppa ligger langs Karl Johans gate i den sentrale institutionsaksen.",
+          "source": [
+            "snl"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_02",
+          "claim_basis": "Spikersuppa ligger langs Karl Johans gate i den sentrale institutionsaksen.",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_02",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_02"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "funksjon"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hva er en typisk sesongforskjell i slike sentrumsrom?",
+          "id": "spikersuppa_quiz_09",
+          "question": "Hvem laget Hjortegruppe?",
           "options": [
-            "Bruken kan skifte mellom sommeropphold, arrangementer og vinteraktivitet",
-            "Stedet brukes aldri forskjellig gjennom året",
-            "Sesonger påvirker bare motorveier"
+            "Arne N. Vigeland",
+            "Arne Durban",
+            "Arnstein Arneberg"
           ],
-          "answer": "Bruken kan skifte mellom sommeropphold, arrangementer og vinteraktivitet",
+          "answer": "Arne N. Vigeland",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q07",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
+          "sourceQuestionId": "spikersuppa_quiz_09",
+          "sourceQuizId": "by_spikersuppa_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
           "difficulty": 2,
-          "topic": "sesong",
+          "question_type": "fact",
+          "knowledge": "Arne N. Vigeland laget Hjortegruppe.",
+          "source": [
+            "oslo_hjort"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_09",
+          "claim_basis": "Arne N. Vigeland laget Hjortegruppe.",
           "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_09",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_09"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "sesong"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hva er kontrasten mellom Spikersuppa og en ren transportgate?",
+          "id": "spikersuppa_quiz_16",
+          "question": "Hva er den viktigste sesongforskjellen i bruken?",
           "options": [
-            "Spikersuppa gir mer opphold og sosialt byliv",
-            "Spikersuppa er uten mennesker",
-            "Spikersuppa brukes bare til togbytte"
+            "Plassen er stengt hele sommeren",
+            "Basseng/opphold i varm årstid og skøytebruk om vinteren",
+            "Bassenget brukes som parkeringshus"
           ],
-          "answer": "Spikersuppa gir mer opphold og sosialt byliv",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q08",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
+          "answer": "Basseng/opphold i varm årstid og skøytebruk om vinteren",
+          "answerIndex": 1,
+          "sourceQuestionId": "spikersuppa_quiz_16",
+          "sourceQuizId": "by_spikersuppa_set_3_q2",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
           "difficulty": 2,
-          "topic": "kontrast",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Stedet har en tydelig årstidsrytme mellom vann-/oppholdsrom og skøytebruk.",
+          "source": [
+            "municipality"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_16",
+          "claim_basis": "Stedet har en tydelig årstidsrytme mellom vann-/oppholdsrom og skøytebruk.",
+          "emne_id": "em_by_sesongbruk_uteomrader",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_16",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_16"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "kontrast"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hva viser Spikersuppa om offentlige rom?",
+          "id": "spikersuppa_quiz_23",
+          "question": "Hva kan ikke kallenavnet Spikersuppa alene bevise?",
           "options": [
-            "Små sentrumsrom kan ha stor sosial og symbolsk betydning",
-            "Offentlige rom er alltid tomme",
-            "Parker kan ikke brukes som møteplass"
+            "Den nøyaktige juridiske finansierings- eller eierstrukturen",
+            "At navnet brukes om stedet",
+            "At ordet har en forbindelse til Spigerverket"
           ],
-          "answer": "Små sentrumsrom kan ha stor sosial og symbolsk betydning",
+          "answer": "Den nøyaktige juridiske finansierings- eller eierstrukturen",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q09",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
-          "difficulty": 2,
-          "topic": "analyse",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "spikersuppa_quiz_23",
+          "sourceQuizId": "by_spikersuppa_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
+          "difficulty": 3,
+          "question_type": "context",
+          "knowledge": "Et kallenavn er et språkspor og må kobles til kilder for institusjonelle forhold.",
+          "source": [
+            "byleksikon"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_23",
+          "claim_basis": "Et kallenavn er et språkspor og må kobles til kilder for institusjonelle forhold.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_23",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_23"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "analyse"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Spikersuppa?",
+          "id": "spikersuppa_quiz_30",
+          "question": "Hva undersøker før–etter-analyse her?",
           "options": [
-            "1930",
-            "1987",
-            "2016"
+            "Dokumenterte forskjeller mellom daterte lag før og etter tunnelinngrepet",
+            "Om ett foto er penest",
+            "Hva arkitekten privat tenkte"
           ],
-          "answer": "1930",
+          "answer": "Dokumenterte forskjeller mellom daterte lag før og etter tunnelinngrepet",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_spikersuppa_q10",
-          "sourceQuizId": "by_quizkort_batch4_spikersuppa",
-          "difficulty": 2,
-          "topic": "årstall",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "spikersuppa_quiz_30",
+          "sourceQuizId": "by_spikersuppa_set_5_q2",
+          "sourceQuizFile": "data/quiz/by/spikersuppa_sets.json",
+          "difficulty": 4,
+          "question_type": "concept",
+          "knowledge": "Før–etter-analyse kan teste dokumenterte endringer uten å gjøre kameraulikheter til historisk bevis.",
+          "source": [
+            "localwiki"
+          ],
+          "claim_id": "claim_spikersuppa_quiz_30",
+          "claim_basis": "Før–etter-analyse kan teste dokumenterte endringer uten å gjøre kameraulikheter til historisk bevis.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_spikersuppa_30",
+          "knowledge_unit_ids": [
+            "ku_by_spikersuppa_30"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "spikersuppa",
-            "årstall"
+            "oslo",
+            "by",
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "Et sentralt offentlig rom/parkdrag i sentrum"
+          "answer": "På Eidsvolls plass",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Torg og plasser som scene"
+          "answer": "1958",
+          "answerIndex": 1
         },
         {
           "number": 3,
-          "answer": "Opphold, arrangementer, vinteraktivitet og sentrumsferdsel"
+          "answer": "Et kallenavn på skøytebanen",
+          "answerIndex": 0
         },
         {
           "number": 4,
-          "answer": "At det kan fylles med aktivitet, publikum, arrangement og synlig offentlig liv"
+          "answer": "Tunnelarbeidene medførte riving og gjenoppføring/endring",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Sitteplasser, ferdsel, sesongbruk, arrangement og møtepunkter"
+          "answer": "Synlige materialer, ganglinjer, kanter og bruk på observasjonstidspunktet",
+          "answerIndex": 0
         },
         {
           "number": 6,
-          "answer": "Det gir et åpent oppholdsrom midt i et tett kommersielt og representativt bylandskap"
+          "answer": "Karl Johans gate",
+          "answerIndex": 1
         },
         {
           "number": 7,
-          "answer": "Bruken kan skifte mellom sommeropphold, arrangementer og vinteraktivitet"
+          "answer": "Arne N. Vigeland",
+          "answerIndex": 0
         },
         {
           "number": 8,
-          "answer": "Spikersuppa gir mer opphold og sosialt byliv"
+          "answer": "Basseng/opphold i varm årstid og skøytebruk om vinteren",
+          "answerIndex": 1
         },
         {
           "number": 9,
-          "answer": "Små sentrumsrom kan ha stor sosial og symbolsk betydning"
+          "answer": "Den nøyaktige juridiske finansierings- eller eierstrukturen",
+          "answerIndex": 0
         },
         {
           "number": 10,
-          "answer": "1930"
+          "answer": "Dokumenterte forskjeller mellom daterte lag før og etter tunnelinngrepet",
+          "answerIndex": 0
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/spikersuppa_sets.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch4_bankplassen",
       "categoryId": "by",
       "targetId": "bankplassen",
       "title": "Bankplassen",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 4,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva slags byrom er Bankplassen?",
+          "id": "bankplassen_quiz_1",
+          "question": "Hvor ligger Bankplassen?",
           "options": [
-            "En historisk plass i sentrum",
-            "Et moderne drabantbyfelt",
-            "En ringvei rundt indre by"
+            "Mellom Kirkegata, Kongens gate og Myntgata",
+            "Mellom Karl Johans gate, Rosenkrantz' gate og Stortingsgata",
+            "Mellom Torggata, Hausmanns gate og Møllergata"
           ],
-          "answer": "En historisk plass i sentrum",
+          "answer": "Mellom Kirkegata, Kongens gate og Myntgata",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q01",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
+          "sourceQuestionId": "bankplassen_quiz_1",
+          "sourceQuizId": "by_bankplassen_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
           "difficulty": 1,
-          "topic": "stedstype",
+          "question_type": "fact",
+          "knowledge": "Bankplassen ligger mellom Kirkegata, Kongens gate og Myntgata i Kvadraturen.",
+          "source": [
+            "bank_byleksikon",
+            "bank_osm"
+          ],
+          "claim_id": "claim_bankplassen_quiz_1",
+          "claim_basis": "Bankplassen ligger mellom Kirkegata, Kongens gate og Myntgata i Kvadraturen.",
           "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_bankplassen_ligger_mello_4aef60e00e",
+          "knowledge_unit_ids": [
+            "ku_by_bankplassen_ligger_mello_4aef60e00e"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "stedstype"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hvilket byemne passer særlig godt til Bankplassen?",
+          "id": "bankplassen_quiz_8",
+          "question": "Hvilken kulturinstitusjon åpnet ved Bankplassen i 1837?",
           "options": [
-            "Offentlige rom og torg/plasser som scene",
-            "Fjordbad og vannpromenade",
-            "Modernistisk boligplanlegging"
+            "Christiania Theater",
+            "Nationaltheatret",
+            "Den Norske Opera"
           ],
-          "answer": "Offentlige rom og torg/plasser som scene",
+          "answer": "Christiania Theater",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q02",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
+          "sourceQuestionId": "bankplassen_quiz_8",
+          "sourceQuizId": "by_bankplassen_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
           "difficulty": 1,
-          "topic": "emne",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Christiania Theater åpnet ved Bankplassen i 1837.",
+          "source": [
+            "bank_theater",
+            "bank_snl_theater"
+          ],
+          "claim_id": "claim_bankplassen_quiz_8",
+          "claim_basis": "Christiania Theater åpnet ved Bankplassen i 1837.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_christiania_theater_apne_b75c3c00d9",
+          "knowledge_unit_ids": [
+            "ku_by_christiania_theater_apne_b75c3c00d9"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "emne"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hva gjør Bankplassen historisk interessant?",
+          "id": "bankplassen_quiz_15",
+          "question": "Hvem tegnet paviljongen ved Nasjonalmuseet – Arkitektur?",
           "options": [
-            "Plassen viser eldre sentrumsstruktur og institusjonelt byrom",
-            "Den er bare et nytt høyhusfelt",
-            "Den er et teknisk energianlegg"
+            "Sverre Fehn",
+            "Christian Heinrich Grosch",
+            "Kjell Lund"
           ],
-          "answer": "Plassen viser eldre sentrumsstruktur og institusjonelt byrom",
+          "answer": "Sverre Fehn",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q03",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
-          "difficulty": 1,
-          "topic": "historie",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "bankplassen_quiz_15",
+          "sourceQuizId": "by_bankplassen_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Sverre Fehn tegnet paviljongen ved Nasjonalmuseet – Arkitektur.",
+          "source": [
+            "bank_nasjonalmuseet"
+          ],
+          "claim_id": "claim_bankplassen_quiz_15",
+          "claim_basis": "Sverre Fehn tegnet paviljongen ved Nasjonalmuseet – Arkitektur.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_sverre_fehn_tegnet_pavil_ea0afea042",
+          "knowledge_unit_ids": [
+            "ku_by_sverre_fehn_tegnet_pavil_ea0afea042"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "historie"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hva betyr institusjonelt byrom?",
+          "id": "bankplassen_quiz_22",
+          "question": "Hvorfor kunne Bankplassen utvikles på 1820-tallet?",
           "options": [
-            "Et byrom preget av viktige bygg, offentlige funksjoner og symbolsk tyngde",
-            "Et sted uten bygninger",
-            "Et rom som bare brukes til private hager"
+            "Fjerningen av de nedre festningsverkene frigjorde arealet",
+            "Teateret ble flyttet til Nationaltheatret",
+            "Hovedsetet ble flyttet fra Trondheim"
           ],
-          "answer": "Et byrom preget av viktige bygg, offentlige funksjoner og symbolsk tyngde",
+          "answer": "Fjerningen av de nedre festningsverkene frigjorde arealet",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q04",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
-          "difficulty": 1,
-          "topic": "begrep",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "bankplassen_quiz_22",
+          "sourceQuizId": "by_bankplassen_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
+          "difficulty": 2,
+          "question_type": "context",
+          "knowledge": "Fjerningen av de nedre festningsverkene frigjorde arealet som Bankplassen ble utviklet på.",
+          "source": [
+            "bank_byleksikon",
+            "bank_oppdag"
+          ],
+          "claim_id": "claim_bankplassen_quiz_22",
+          "claim_basis": "Fjerningen av de nedre festningsverkene frigjorde arealet som Bankplassen ble utviklet på.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_fjerningen_av_de_nedre_f_b7149dd237",
+          "knowledge_unit_ids": [
+            "ku_by_fjerningen_av_de_nedre_f_b7149dd237"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "begrep"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hva kan man observere på Bankplassen?",
+          "id": "bankplassen_quiz_29",
+          "question": "Hva betyr det at Bankplassen har historiske lag?",
           "options": [
-            "Bygningskanter, plassrom, ferdsel, opphold og forholdet mellom arkitektur og offentlig bruk",
-            "Kun fjordbad og badetrapp",
-            "Bare bussholdeplasser i terminal"
+            "At spor fra festning, bank, teater, museum og offentlig kunst kan leses i samme plassrom",
+            "At alle bygningene er oppført i samme stil",
+            "At plassen aldri har skiftet funksjon"
           ],
-          "answer": "Bygningskanter, plassrom, ferdsel, opphold og forholdet mellom arkitektur og offentlig bruk",
+          "answer": "At spor fra festning, bank, teater, museum og offentlig kunst kan leses i samme plassrom",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q05",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
-          "difficulty": 1,
-          "topic": "observasjon",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "bankplassen_quiz_29",
+          "sourceQuizId": "by_bankplassen_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
+          "difficulty": 3,
+          "question_type": "concept",
+          "knowledge": "Historiske lag på Bankplassen betyr at spor fra skiftende institusjoner, former og bruk kan leses i samme plassrom.",
+          "source": [
+            "bank_byleksikon",
+            "bank_oppdag"
+          ],
+          "claim_id": "claim_bankplassen_quiz_29",
+          "claim_basis": "Historiske lag på Bankplassen betyr at spor fra skiftende institusjoner, former og bruk kan leses i samme plassrom.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_historiske_lag_pa_bankpl_0289f69e09",
+          "knowledge_unit_ids": [
+            "ku_by_historiske_lag_pa_bankpl_0289f69e09"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "observasjon"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hva er en viktig kvalitet ved små historiske plasser?",
+          "id": "bankplassen_quiz_2",
+          "question": "Hva er Bankplassen oppkalt etter?",
           "options": [
-            "De kan samle byhistorie, institusjoner og hverdagsbruk i et oversiktlig rom",
-            "De fungerer aldri som møtepunkt",
-            "De er alltid uten offentlig betydning"
+            "Norges Bank",
+            "Christiania Theater",
+            "Akershus festning"
           ],
-          "answer": "De kan samle byhistorie, institusjoner og hverdagsbruk i et oversiktlig rom",
+          "answer": "Norges Bank",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q06",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
+          "sourceQuestionId": "bankplassen_quiz_2",
+          "sourceQuizId": "by_bankplassen_set_1_q2",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
           "difficulty": 1,
-          "topic": "analyse",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Bankplassen fikk navn etter Norges Bank.",
+          "source": [
+            "bank_byleksikon"
+          ],
+          "claim_id": "claim_bankplassen_quiz_2",
+          "claim_basis": "Bankplassen fikk navn etter Norges Bank.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_bankplassen_fikk_navn_et_2515ce3de4",
+          "knowledge_unit_ids": [
+            "ku_by_bankplassen_fikk_navn_et_2515ce3de4"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "analyse"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hva skiller Bankplassen fra en kommersiell handlegate?",
+          "id": "bankplassen_quiz_9",
+          "question": "Når ble Christiania Theater-bygningen revet?",
           "options": [
-            "Plassen har tydeligere institusjons- og plassromspreg",
-            "Bankplassen mangler byrom",
-            "Bankplassen er en drabantby"
+            "1899",
+            "1860",
+            "1937"
           ],
-          "answer": "Plassen har tydeligere institusjons- og plassromspreg",
+          "answer": "1899",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q07",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
-          "difficulty": 2,
-          "topic": "kontrast",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "bankplassen_quiz_9",
+          "sourceQuizId": "by_bankplassen_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
+          "difficulty": 1,
+          "question_type": "fact",
+          "knowledge": "Christiania Theater-bygningen ble revet i 1899.",
+          "source": [
+            "bank_theater",
+            "bank_snl_theater"
+          ],
+          "claim_id": "claim_bankplassen_quiz_9",
+          "claim_basis": "Christiania Theater-bygningen ble revet i 1899.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_christiania_theater_bygn_f16f719658",
+          "knowledge_unit_ids": [
+            "ku_by_christiania_theater_bygn_f16f719658"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "kontrast"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hva er et relevant spørsmål å stille i felt på Bankplassen?",
+          "id": "bankplassen_quiz_16",
+          "question": "Når åpnet anlegget som Nasjonalmuseet – Arkitektur?",
           "options": [
-            "Hvordan plassens form og omkringliggende bygg styrer opphold og ferdsel",
-            "Hvor mange skip ligger ved kaia",
-            "Hvor fort en trikk kjører"
+            "2008",
+            "1986",
+            "2017"
           ],
-          "answer": "Hvordan plassens form og omkringliggende bygg styrer opphold og ferdsel",
+          "answer": "2008",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q08",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
+          "sourceQuestionId": "bankplassen_quiz_16",
+          "sourceQuizId": "by_bankplassen_set_3_q2",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
           "difficulty": 2,
-          "topic": "metode",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Anlegget åpnet som Nasjonalmuseet – Arkitektur i 2008.",
+          "source": [
+            "bank_nasjonalmuseet"
+          ],
+          "claim_id": "claim_bankplassen_quiz_16",
+          "claim_basis": "Anlegget åpnet som Nasjonalmuseet – Arkitektur i 2008.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_anlegget_apnet_som_nasjo_591b3e794a",
+          "knowledge_unit_ids": [
+            "ku_by_anlegget_apnet_som_nasjo_591b3e794a"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "metode"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hva viser Bankplassen om byens eldre sentrum?",
+          "id": "bankplassen_quiz_23",
+          "question": "Hva førte rivingen av Christiania Theater til på tomten?",
           "options": [
-            "At små plasser kan bevare lesbare historiske og arkitektoniske lag",
-            "At sentrum mangler historie",
-            "At historiske plasser bare finnes i parker"
+            "Norges Banks hovedsete fra 1906 ble reist der",
+            "Plassen ble gjort om til havn",
+            "Groschs bygning ble flyttet dit"
           ],
-          "answer": "At små plasser kan bevare lesbare historiske og arkitektoniske lag",
+          "answer": "Norges Banks hovedsete fra 1906 ble reist der",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q09",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
+          "sourceQuestionId": "bankplassen_quiz_23",
+          "sourceQuizId": "by_bankplassen_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
           "difficulty": 2,
-          "topic": "byhistorie",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "question_type": "context",
+          "knowledge": "Rivingen av Christiania Theater åpnet tomten for Norges Banks hovedsete fra 1906.",
+          "source": [
+            "bank_theater",
+            "bank_nb_history"
+          ],
+          "claim_id": "claim_bankplassen_quiz_23",
+          "claim_basis": "Rivingen av Christiania Theater åpnet tomten for Norges Banks hovedsete fra 1906.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_rivingen_av_christiania__cb424a3cc0",
+          "knowledge_unit_ids": [
+            "ku_by_rivingen_av_christiania__cb424a3cc0"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "byhistorie"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Bankplassen?",
+          "id": "bankplassen_quiz_30",
+          "question": "Hva kjennetegner et flerfunksjonelt offentlig rom på Bankplassen?",
           "options": [
-            "1800",
-            "1970",
-            "2020"
+            "Institusjoner, ferdsel, opphold og kunst møtes rundt samme plassflate",
+            "Én privat virksomhet bestemmer all bruk",
+            "Alle spor fra tidligere perioder er fjernet"
           ],
-          "answer": "1800",
+          "answer": "Institusjoner, ferdsel, opphold og kunst møtes rundt samme plassflate",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_bankplassen_q10",
-          "sourceQuizId": "by_quizkort_batch4_bankplassen",
-          "difficulty": 2,
-          "topic": "årstall",
+          "sourceQuestionId": "bankplassen_quiz_30",
+          "sourceQuizId": "by_bankplassen_set_5_q2",
+          "sourceQuizFile": "data/quiz/by/bankplassen_sets_merged.json",
+          "difficulty": 3,
+          "question_type": "concept",
+          "knowledge": "Bankplassen er flerfunksjonell fordi institusjoner, ferdsel, opphold og offentlig kunst møtes rundt samme plassflate.",
+          "source": [
+            "bank_oppdag",
+            "bank_art_pike"
+          ],
+          "claim_id": "claim_bankplassen_quiz_30",
+          "claim_basis": "Bankplassen er flerfunksjonell fordi institusjoner, ferdsel, opphold og offentlig kunst møtes rundt samme plassflate.",
           "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_bankplassen_er_flerfunks_15cae0ff81",
+          "knowledge_unit_ids": [
+            "ku_by_bankplassen_er_flerfunks_15cae0ff81"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "bankplassen",
-            "årstall"
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "En historisk plass i sentrum"
+          "answer": "Mellom Kirkegata, Kongens gate og Myntgata",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Offentlige rom og torg/plasser som scene"
+          "answer": "Christiania Theater",
+          "answerIndex": 0
         },
         {
           "number": 3,
-          "answer": "Plassen viser eldre sentrumsstruktur og institusjonelt byrom"
+          "answer": "Sverre Fehn",
+          "answerIndex": 0
         },
         {
           "number": 4,
-          "answer": "Et byrom preget av viktige bygg, offentlige funksjoner og symbolsk tyngde"
+          "answer": "Fjerningen av de nedre festningsverkene frigjorde arealet",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Bygningskanter, plassrom, ferdsel, opphold og forholdet mellom arkitektur og offentlig bruk"
+          "answer": "At spor fra festning, bank, teater, museum og offentlig kunst kan leses i samme plassrom",
+          "answerIndex": 0
         },
         {
           "number": 6,
-          "answer": "De kan samle byhistorie, institusjoner og hverdagsbruk i et oversiktlig rom"
+          "answer": "Norges Bank",
+          "answerIndex": 0
         },
         {
           "number": 7,
-          "answer": "Plassen har tydeligere institusjons- og plassromspreg"
+          "answer": "1899",
+          "answerIndex": 0
         },
         {
           "number": 8,
-          "answer": "Hvordan plassens form og omkringliggende bygg styrer opphold og ferdsel"
+          "answer": "2008",
+          "answerIndex": 0
         },
         {
           "number": 9,
-          "answer": "At små plasser kan bevare lesbare historiske og arkitektoniske lag"
+          "answer": "Norges Banks hovedsete fra 1906 ble reist der",
+          "answerIndex": 0
         },
         {
           "number": 10,
-          "answer": "1800"
+          "answer": "Institusjoner, ferdsel, opphold og kunst møtes rundt samme plassflate",
+          "answerIndex": 0
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/bankplassen_sets_merged.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch4_christiania_torv",
       "categoryId": "by",
       "targetId": "christiania_torv",
       "title": "Christiania Torv",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 5,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva slags sted er Christiania Torv?",
+          "id": "christiania_torv_quiz_1",
+          "question": "Hva bestemte Christian IV etter storbrannen i 1624?",
           "options": [
-            "Et historisk torg i Kvadraturen",
-            "Et moderne kontorhøyhusfelt",
-            "Et kollektivknutepunkt på østkanten"
+            "Byen skulle flyttes til området ved Akershus festning",
+            "Byen skulle flyttes til Bygdøy",
+            "Byen skulle gjenreises uendret i middelalderbyen"
           ],
-          "answer": "Et historisk torg i Kvadraturen",
+          "answer": "Byen skulle flyttes til området ved Akershus festning",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q01",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
+          "sourceQuestionId": "christiania_torv_quiz_1",
+          "sourceQuizId": "by_christiania_torv_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
           "difficulty": 1,
-          "topic": "stedstype",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Byflyttingen etter brannen endret Oslos bygeografi og la grunnlaget for Christiania ved festningen.",
+          "source": [
+            "ct_history",
+            "ct_oppdag"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_1",
+          "claim_basis": "Etter storbrannen i 1624 bestemte Christian IV at byen skulle flyttes vestover til området ved Akershus festning og bygges som Christiania.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_byflyttingen_etter_brann_4f113dcac9",
+          "knowledge_unit_ids": [
+            "ku_by_byflyttingen_etter_brann_4f113dcac9"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "stedstype"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hvilket byemne passer særlig til Christiania Torv?",
+          "id": "christiania_torv_quiz_8",
+          "question": "Hva skjedde med Hellig Trefoldighets kirke i 1686?",
           "options": [
-            "Torg og plasser som scene",
-            "Skjult energiinfrastruktur",
-            "Kommersielle høyhus"
+            "Den ble rådhus",
+            "Den brant ned",
+            "Den ble flyttet hel til Stortorvet"
           ],
-          "answer": "Torg og plasser som scene",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q02",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
+          "answer": "Den brant ned",
+          "answerIndex": 1,
+          "sourceQuestionId": "christiania_torv_quiz_8",
+          "sourceQuizId": "by_christiania_torv_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
           "difficulty": 1,
-          "topic": "emne",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Kirkebrannen i 1686 bidro til at en ny domkirke senere ble reist ved Stortorvet.",
+          "source": [
+            "ct_byleksikon",
+            "ct_oppdag"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_8",
+          "claim_basis": "Hellig Trefoldighets kirke brant ned i 1686.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_kirkebrannen_i_1686_bidr_6cb3e1e40a",
+          "knowledge_unit_ids": [
+            "ku_by_kirkebrannen_i_1686_bidr_6cb3e1e40a"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "emne"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hva gjør Christiania Torv viktig i Oslos byhistorie?",
+          "id": "christiania_torv_quiz_15",
+          "question": "Hva ble torgets utforming tildelt i 2003?",
           "options": [
-            "Det knytter seg til den eldre Christiania-byens sentrum og planlagte bystruktur",
-            "Det er bare en nyere bussterminal",
-            "Det ble først etablert som fjordbad i 2015"
+            "Oslo bys arkitekturpris",
+            "Houens fonds diplom",
+            "Sundts premie"
           ],
-          "answer": "Det knytter seg til den eldre Christiania-byens sentrum og planlagte bystruktur",
+          "answer": "Oslo bys arkitekturpris",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q03",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
-          "difficulty": 1,
-          "topic": "historie",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "christiania_torv_quiz_15",
+          "sourceQuizId": "by_christiania_torv_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Arkitekturprisen kom etter rehabiliteringen i 1990-årene og fontenen fra 1997.",
+          "source": [
+            "ct_byleksikon"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_15",
+          "claim_basis": "Utformingen av Christiania Torv ble tildelt Oslo bys arkitekturpris i 2003.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_arkitekturprisen_kom_ett_6b88877b1d",
+          "knowledge_unit_ids": [
+            "ku_by_arkitekturprisen_kom_ett_6b88877b1d"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "historie"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hva betyr Kvadraturen i Oslo-historien?",
+          "id": "christiania_torv_quiz_22",
+          "question": "Hva skiller Christiania Torvs historiske opphav tydeligst fra Bankplassens?",
           "options": [
-            "Det planlagte byområdet fra Christiania-perioden",
-            "En moderne drabantby",
-            "En skogssti i marka"
+            "Christiania Torv hører til 1624-byen, mens Bankplassen vokste fram etter fjerning av festningsverk på 1800-tallet",
+            "Begge ble anlagt samtidig i 1624",
+            "Bankplassen er middelalderens hovedtorg"
           ],
-          "answer": "Det planlagte byområdet fra Christiania-perioden",
+          "answer": "Christiania Torv hører til 1624-byen, mens Bankplassen vokste fram etter fjerning av festningsverk på 1800-tallet",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q04",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
-          "difficulty": 1,
-          "topic": "begrep",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "christiania_torv_quiz_22",
+          "sourceQuizId": "by_christiania_torv_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
+          "difficulty": 3,
+          "question_type": "comparison",
+          "knowledge": "De to plassene ligger nær hverandre, men tilhører ulike faser av byutviklingen og skal ikke slås sammen som én historisk flate.",
+          "source": [
+            "ct_oppdag",
+            "bank_byleksikon"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_22",
+          "claim_basis": "Christiania Torv inngår i byplanen etter 1624, mens Bankplassen vokste fram på frigjort areal etter fjerning av festningsverk fra 1820-årene.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_de_to_plassene_ligger_n__93f7577d67",
+          "knowledge_unit_ids": [
+            "ku_by_de_to_plassene_ligger_n__93f7577d67"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "begrep"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hva kan man observere på Christiania Torv?",
+          "id": "christiania_torv_quiz_29",
+          "question": "Hva menes med å lese Christiania Torv som et byrom med historiske lag?",
           "options": [
-            "Torgform, historiske bygg, plassrom og hvordan folk bruker et gammelt sentrumspunkt",
-            "Bare høyhustårn i Barcode",
-            "Kun langdistansebusser"
+            "At ulike funksjoner fra ulike perioder kan spores i samme plassrom",
+            "At alle bygninger er fra samme år",
+            "At torget aldri har endret bruk"
           ],
-          "answer": "Torgform, historiske bygg, plassrom og hvordan folk bruker et gammelt sentrumspunkt",
+          "answer": "At ulike funksjoner fra ulike perioder kan spores i samme plassrom",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q05",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
-          "difficulty": 1,
-          "topic": "observasjon",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "christiania_torv_quiz_29",
+          "sourceQuizId": "by_christiania_torv_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
+          "difficulty": 3,
+          "question_type": "concept",
+          "knowledge": "Historiske lag handler om at samme sted kan romme spor etter skiftende funksjoner, former og institusjoner.",
+          "source": [
+            "ct_byleksikon",
+            "ct_oppdag"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_29",
+          "claim_basis": "Christiania Torv har historiske lag fra civic sentrum, marked og myndighet til trafikk, rehabilitering og offentlig kunst.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_historiske_lag_handler_o_caa546acc7",
+          "knowledge_unit_ids": [
+            "ku_by_historiske_lag_handler_o_caa546acc7"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "observasjon"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hva er en sentral kontrast ved Christiania Torv?",
+          "id": "christiania_torv_quiz_2",
+          "question": "Hva het den nye byen som ble anlagt ved festningen?",
           "options": [
-            "Mellom historisk byplan og dagens hverdagsbruk",
-            "Mellom ringvei og motorveirampe",
-            "Mellom terminal og flyplass"
+            "Oslo Nova",
+            "Christiania",
+            "Akersborg"
           ],
-          "answer": "Mellom historisk byplan og dagens hverdagsbruk",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q06",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
+          "answer": "Christiania",
+          "answerIndex": 1,
+          "sourceQuestionId": "christiania_torv_quiz_2",
+          "sourceQuizId": "by_christiania_torv_set_1_q2",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
           "difficulty": 1,
-          "topic": "kontrast",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Navnet Christiania ble brukt om byen som ble anlagt etter flyttevedtaket i 1624.",
+          "source": [
+            "ct_history"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_2",
+          "claim_basis": "Den flyttede byen fikk navnet Christiania.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_navnet_christiania_ble_b_a60d1d6d5c",
+          "knowledge_unit_ids": [
+            "ku_by_navnet_christiania_ble_b_a60d1d6d5c"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "kontrast"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hvorfor er torg viktige i byanalyse?",
+          "id": "christiania_torv_quiz_9",
+          "question": "Hvor sto den nye domkirken ferdig i 1697?",
           "options": [
-            "De samler ferdsel, opphold, symbolikk og offentlighet",
-            "De gjør byen usynlig",
-            "De er bare tekniske rom"
+            "Ved Stortorvet",
+            "På Bankplassen",
+            "Ved Youngstorget"
           ],
-          "answer": "De samler ferdsel, opphold, symbolikk og offentlighet",
+          "answer": "Ved Stortorvet",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q07",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
-          "difficulty": 2,
-          "topic": "analyse",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "christiania_torv_quiz_9",
+          "sourceQuizId": "by_christiania_torv_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
+          "difficulty": 1,
+          "question_type": "fact",
+          "knowledge": "Den nye domkirken ved Stortorvet var et viktig ledd i forskyvningen av byens sentrum.",
+          "source": [
+            "ct_oppdag",
+            "stortorvet_byleksikon"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_9",
+          "claim_basis": "Den nye domkirken sto ferdig ved Stortorvet i 1697.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_den_nye_domkirken_ved_st_774c58392d",
+          "knowledge_unit_ids": [
+            "ku_by_den_nye_domkirken_ved_st_774c58392d"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "analyse"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hva kan Christiania Torv lære om romlig orden?",
+          "id": "christiania_torv_quiz_16",
+          "question": "Hvilke gater møtes ved Christiania Torv?",
           "options": [
-            "Historisk planlegging kan fortsatt styre opplevelsen av gater og plasser",
-            "Gamle byplaner forsvinner alltid helt",
-            "Romlig orden finnes bare i kjøpesentre"
+            "Rådhusgata og Øvre Slottsgate",
+            "Karl Johans gate og Akersgata",
+            "Torggata og Storgata"
           ],
-          "answer": "Historisk planlegging kan fortsatt styre opplevelsen av gater og plasser",
+          "answer": "Rådhusgata og Øvre Slottsgate",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q08",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
+          "sourceQuestionId": "christiania_torv_quiz_16",
+          "sourceQuizId": "by_christiania_torv_set_3_q2",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
           "difficulty": 2,
-          "topic": "romlig_orden",
-          "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Gatekrysset er en konkret del av den regulerte Kvadraturens lesbare geometri.",
+          "source": [
+            "ct_byleksikon",
+            "ct_osm"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_16",
+          "claim_basis": "Rådhusgata og Øvre Slottsgate møtes ved Christiania Torv.",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "primary_knowledge_unit_id": "ku_by_gatekrysset_er_en_konkre_af2b076e43",
+          "knowledge_unit_ids": [
+            "ku_by_gatekrysset_er_en_konkre_af2b076e43"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "romlig_orden"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hva er en god feltmetode her?",
+          "id": "christiania_torv_quiz_23",
+          "question": "Hvilken rolle fikk Stortorvet i forhold til Christiania Torv?",
           "options": [
-            "Se hvordan torgrommet rammes inn av bygg og brukes av folk i dag",
-            "Bare lese rutetabeller",
-            "Kun telle biler på Ring 3"
+            "Det overtok sentrale kirke- og markedsfunksjoner",
+            "Det ble et militært fort",
+            "Det ble underjordisk vannreservoar"
           ],
-          "answer": "Se hvordan torgrommet rammes inn av bygg og brukes av folk i dag",
+          "answer": "Det overtok sentrale kirke- og markedsfunksjoner",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q09",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
-          "difficulty": 2,
-          "topic": "metode",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "christiania_torv_quiz_23",
+          "sourceQuizId": "by_christiania_torv_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
+          "difficulty": 3,
+          "question_type": "context",
+          "knowledge": "Stortorvet ble nytt tyngdepunkt for domkirke og marked, mens Christiania Torv senere ble omtalt som Gammel-Torvet.",
+          "source": [
+            "ct_oppdag",
+            "stortorvet_byleksikon"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_23",
+          "claim_basis": "Stortorvet overtok sentrale kirke- og markedsfunksjoner som tidligere var knyttet til Christiania Torv.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_stortorvet_ble_nytt_tyng_55bad3afe8",
+          "knowledge_unit_ids": [
+            "ku_by_stortorvet_ble_nytt_tyng_55bad3afe8"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "metode"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Christiania Torv?",
+          "id": "christiania_torv_quiz_30",
+          "question": "Hva gjør Christiania Torv til et godt eksempel på et flerfunksjonelt offentlig rom?",
           "options": [
-            "1648",
-            "1930",
-            "2008"
+            "Handel, religion, infrastruktur og myndighet har vært samlet rundt samme plass",
+            "Plassen har alltid hatt én eneste funksjon",
+            "Plassen mangler dokumenterte offentlige funksjoner"
           ],
-          "answer": "1648",
+          "answer": "Handel, religion, infrastruktur og myndighet har vært samlet rundt samme plass",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_christiania_torv_q10",
-          "sourceQuizId": "by_quizkort_batch4_christiania_torv",
-          "difficulty": 2,
-          "topic": "årstall",
+          "sourceQuestionId": "christiania_torv_quiz_30",
+          "sourceQuizId": "by_christiania_torv_set_5_q2",
+          "sourceQuizFile": "data/quiz/by/christiania_torv_sets.json",
+          "difficulty": 3,
+          "question_type": "concept",
+          "knowledge": "Et offentlig rom kan ha flere funksjoner samtidig og skifte tyngde over tid.",
+          "source": [
+            "ct_byleksikon",
+            "ct_oppdag"
+          ],
+          "claim_id": "claim_christiania_torv_quiz_30",
+          "claim_basis": "Christiania Torv samlet flere offentlige og hverdagslige funksjoner i samme plassrom.",
           "emne_id": "em_by_offentlige_rom_motesteder",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_et_offentlig_rom_kan_ha__6412fc7055",
+          "knowledge_unit_ids": [
+            "ku_by_et_offentlig_rom_kan_ha__6412fc7055"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "christiania_torv",
-            "årstall"
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "Et historisk torg i Kvadraturen"
+          "answer": "Byen skulle flyttes til området ved Akershus festning",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Torg og plasser som scene"
+          "answer": "Den brant ned",
+          "answerIndex": 1
         },
         {
           "number": 3,
-          "answer": "Det knytter seg til den eldre Christiania-byens sentrum og planlagte bystruktur"
+          "answer": "Oslo bys arkitekturpris",
+          "answerIndex": 0
         },
         {
           "number": 4,
-          "answer": "Det planlagte byområdet fra Christiania-perioden"
+          "answer": "Christiania Torv hører til 1624-byen, mens Bankplassen vokste fram etter fjerning av festningsverk på 1800-tallet",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Torgform, historiske bygg, plassrom og hvordan folk bruker et gammelt sentrumspunkt"
+          "answer": "At ulike funksjoner fra ulike perioder kan spores i samme plassrom",
+          "answerIndex": 0
         },
         {
           "number": 6,
-          "answer": "Mellom historisk byplan og dagens hverdagsbruk"
+          "answer": "Christiania",
+          "answerIndex": 1
         },
         {
           "number": 7,
-          "answer": "De samler ferdsel, opphold, symbolikk og offentlighet"
+          "answer": "Ved Stortorvet",
+          "answerIndex": 0
         },
         {
           "number": 8,
-          "answer": "Historisk planlegging kan fortsatt styre opplevelsen av gater og plasser"
+          "answer": "Rådhusgata og Øvre Slottsgate",
+          "answerIndex": 0
         },
         {
           "number": 9,
-          "answer": "Se hvordan torgrommet rammes inn av bygg og brukes av folk i dag"
+          "answer": "Det overtok sentrale kirke- og markedsfunksjoner",
+          "answerIndex": 0
         },
         {
           "number": 10,
-          "answer": "1648"
+          "answer": "Handel, religion, infrastruktur og myndighet har vært samlet rundt samme plass",
+          "answerIndex": 0
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/christiania_torv_sets.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch4_slottsparken",
       "categoryId": "by",
       "targetId": "slottsparken",
       "title": "Slottsparken",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 6,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva slags sted er Slottsparken?",
+          "id": "slottsparken_quiz_01",
+          "question": "Hva er det som gjør Slottsparken annerledes enn de fleste andre parker i Oslo?",
           "options": [
-            "En stor park rundt Slottet",
-            "En bussterminal",
-            "Et tidligere skipsverft"
+            "Den rammer inn Slottet og fungerer både som representativ park og hverdagspark",
+            "Den er først og fremst en botanisk samling med sjeldne arter",
+            "Den ble anlagt som idrettspark for organiserte konkurranser"
           ],
-          "answer": "En stor park rundt Slottet",
+          "answer": "Den rammer inn Slottet og fungerer både som representativ park og hverdagspark",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q01",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
+          "sourceQuestionId": "slottsparken_quiz_01",
+          "sourceQuizId": "by_slottsparken_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
           "difficulty": 1,
-          "topic": "stedstype",
+          "question_type": "fact",
+          "knowledge": "Slottsparken er ikke bare et grøntområde. Den ligger rundt landets viktigste kongebolig og er del av et nasjonalt representasjonslandskap, men brukes samtidig helt hverdagslig som snarvei, pausepark og turrom midt i sentrum. Det er blandingen av høytid og hverdag som gjør stedet spesielt.",
+          "source": [
+            "park",
+            "bylex"
+          ],
+          "claim_id": "claim_slottsparken_quiz_01",
+          "claim_basis": "Slottsparken er ikke bare et grøntområde. Den ligger rundt landets viktigste kongebolig og er del av et nasjonalt representasjonslandskap, men brukes samtidig helt hverdagslig som snarvei, pausepark og turrom midt i sentrum. Det er blandingen av høytid og hverdag som gjør stedet spesielt.",
           "emne_id": "em_by_parker_som_sosial_infrastruktur",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_slottsparken_er_ikke_bar_377b554d99",
+          "knowledge_unit_ids": [
+            "ku_by_slottsparken_er_ikke_bar_377b554d99",
+            "ku_by_den_ligger_rundt_landets_a249240275",
+            "ku_by_det_er_blandingen_av_h_y_bf5d0c909b"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "stedstype"
+            "park",
+            "slottet",
+            "saertrekk",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hvilken institusjon ligger Slottsparken rundt?",
+          "id": "slottsparken_quiz_08",
+          "question": "Når ble grunnen til Slottsparken kjøpt inn av Slottskommisjonen?",
           "options": [
-            "Det kongelige slott",
-            "Oslo S",
-            "Deichman Bjørvika"
+            "1838",
+            "1849",
+            "1824"
           ],
-          "answer": "Det kongelige slott",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q02",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
-          "difficulty": 1,
-          "topic": "institusjon",
-          "emne_id": "em_by_opphold_vs_gjennomgang",
-          "method_id": "met_feltobservasjon",
+          "answer": "1824",
+          "answerIndex": 2,
+          "sourceQuestionId": "slottsparken_quiz_08",
+          "sourceQuizId": "by_slottsparken_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Grunnen til Slottsparken ble kjøpt inn i 1824 fra flere løkkeeiendommer. Det er et nøkkelår fordi parken ikke vokste fram tilfeldig, men ble del av et planlagt kongelig prosjekt i den unge hovedstaden.",
+          "source": [
+            "bylex",
+            "history"
+          ],
+          "claim_id": "claim_slottsparken_quiz_08",
+          "claim_basis": "Grunnen til Slottsparken ble kjøpt inn i 1824 fra flere løkkeeiendommer. Det er et nøkkelår fordi parken ikke vokste fram tilfeldig, men ble del av et planlagt kongelig prosjekt i den unge hovedstaden.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_grunnen_til_slottsparken_a8b6e9272a",
+          "knowledge_unit_ids": [
+            "ku_by_grunnen_til_slottsparken_a8b6e9272a",
+            "ku_by_det_er_et_n_kkelar_fordi_f276175602"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "institusjon"
+            "1824",
+            "slottskommisjonen",
+            "historie",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hvilket byemne passer særlig til Slottsparken?",
+          "id": "slottsparken_quiz_15",
+          "question": "Hvilket emne beskriver best at mange bruker Slottsparken både til å oppholde seg og til å gå tvers gjennom sentrum?",
           "options": [
-            "Parker som sosial infrastruktur",
-            "Fjordpromenader",
-            "Basararkitektur"
+            "Industri og havn logistikk",
+            "Opphold vs gjennomgang",
+            "Tetthet og fortetting"
           ],
-          "answer": "Parker som sosial infrastruktur",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q03",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
-          "difficulty": 1,
-          "topic": "emne",
-          "emne_id": "em_by_parker_som_sosial_infrastruktur",
-          "method_id": "met_feltobservasjon",
+          "answer": "Opphold vs gjennomgang",
+          "answerIndex": 1,
+          "sourceQuestionId": "slottsparken_quiz_15",
+          "sourceQuizId": "by_slottsparken_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Emnet «opphold vs gjennomgang» handler om forskjellen mellom steder man blir værende i og steder man først og fremst passerer gjennom. Slottsparken er interessant fordi den rommer begge logikkene samtidig.",
+          "source": [
+            "bylex"
+          ],
+          "claim_id": "claim_slottsparken_quiz_15",
+          "claim_basis": "Emnet «opphold vs gjennomgang» handler om forskjellen mellom steder man blir værende i og steder man først og fremst passerer gjennom. Slottsparken er interessant fordi den rommer begge logikkene samtidig.",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
+          "primary_knowledge_unit_id": "ku_by_emnet_opphold_vs_gjennom_76e7ce3217",
+          "knowledge_unit_ids": [
+            "ku_by_emnet_opphold_vs_gjennom_76e7ce3217",
+            "ku_by_slottsparken_er_interess_7c417f1551"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "emne"
+            "emne",
+            "opphold_vs_gjennomgang",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hva gjør Slottsparken spesiell som park?",
+          "id": "slottsparken_quiz_22",
+          "question": "Hva merker man når man går fra den åpne Slottsplassen og inn i selve Slottsparken?",
           "options": [
-            "Den kombinerer grønt oppholdsrom med kongelig symbolmakt",
-            "Den er bare et lukket industriområde",
-            "Den er en trafikkmaskin i tre nivåer"
+            "At rommet skifter fra monumental forplass til mykere landskapspark med slyngende stier",
+            "At man går rett inn i en tett handlegate",
+            "At terrenget blir helt lukket og underjordisk"
           ],
-          "answer": "Den kombinerer grønt oppholdsrom med kongelig symbolmakt",
+          "answer": "At rommet skifter fra monumental forplass til mykere landskapspark med slyngende stier",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q04",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
-          "difficulty": 1,
-          "topic": "analyse",
-          "emne_id": "em_by_opphold_vs_gjennomgang",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "slottsparken_quiz_22",
+          "sourceQuizId": "by_slottsparken_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
+          "difficulty": 2,
+          "question_type": "context",
+          "knowledge": "Overgangen fra Slottsplassen til Slottsparken er viktig fordi den viser to forskjellige offentlige rom: først en mer seremoniell og arkitektonisk forplass, så et mykere parkrom som inviterer til vandring, pauser og mer uformell bruk.",
+          "source": [
+            "park",
+            "bylex"
+          ],
+          "claim_id": "claim_slottsparken_quiz_22",
+          "claim_basis": "Overgangen fra Slottsplassen til Slottsparken er viktig fordi den viser to forskjellige offentlige rom: først en mer seremoniell og arkitektonisk forplass, så et mykere parkrom som inviterer til vandring, pauser og mer uformell bruk.",
+          "emne_id": "em_by_materialitet_og_sanseerfaring",
+          "primary_knowledge_unit_id": "ku_by_overgangen_fra_slottspla_50eeb0e6e1",
+          "knowledge_unit_ids": [
+            "ku_by_overgangen_fra_slottspla_50eeb0e6e1"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "analyse"
+            "slottsplassen",
+            "overgang",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hva kan man observere i Slottsparken?",
+          "id": "slottsparken_quiz_29",
+          "question": "Hvilken spenning er mest grunnleggende når Slottsparken analyseres som byrom?",
           "options": [
-            "Opphold, gjennomgang, tur, utsikt, monumenter og forholdet til Slottet",
-            "Kun varelevering og terminaldrift",
-            "Bare høyhusfasader"
+            "Jordbruk versus gruvedrift",
+            "Fergeforbindelse versus flyplass",
+            "Åpen offentlig bruk versus institusjonell kontroll og representasjon"
           ],
-          "answer": "Opphold, gjennomgang, tur, utsikt, monumenter og forholdet til Slottet",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q05",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
-          "difficulty": 1,
-          "topic": "observasjon",
-          "emne_id": "em_by_parker_som_sosial_infrastruktur",
-          "method_id": "met_feltobservasjon",
+          "answer": "Åpen offentlig bruk versus institusjonell kontroll og representasjon",
+          "answerIndex": 2,
+          "sourceQuestionId": "slottsparken_quiz_29",
+          "sourceQuizId": "by_slottsparken_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
+          "difficulty": 3,
+          "question_type": "concept",
+          "knowledge": "Slottsparken virker åpen og tilgjengelig, men den er samtidig formet rundt en nasjonal institusjon med egne regler, symboler og avgrensede soner. Det er denne spenningen som gjør stedet analytisk interessant.",
+          "source": [
+            "park",
+            "queen"
+          ],
+          "claim_id": "claim_slottsparken_quiz_29",
+          "claim_basis": "Slottsparken virker åpen og tilgjengelig, men den er samtidig formet rundt en nasjonal institusjon med egne regler, symboler og avgrensede soner. Det er denne spenningen som gjør stedet analytisk interessant.",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
+          "primary_knowledge_unit_id": "ku_by_slottsparken_virker_apen_a1f2181f84",
+          "knowledge_unit_ids": [
+            "ku_by_slottsparken_virker_apen_a1f2181f84",
+            "ku_by_det_er_denne_spenningen__91f185f03e"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "observasjon"
+            "analyse",
+            "symbolsk_makt",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hva betyr park som sosial infrastruktur?",
+          "id": "slottsparken_quiz_02",
+          "question": "Hvilken parkstil ble Slottsparken anlagt i?",
           "options": [
-            "Et grønt rom som gir rekreasjon, opphold og møteplasser i byen",
-            "Et sted bare for teknisk drift",
-            "Et rom uten offentlig bruk"
+            "En streng fransk barokkstil med rette akser overalt",
+            "En modernistisk parkstil med åpne betongflater",
+            "En engelskinspirert romantisk landskapsstil"
           ],
-          "answer": "Et grønt rom som gir rekreasjon, opphold og møteplasser i byen",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q06",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
+          "answer": "En engelskinspirert romantisk landskapsstil",
+          "answerIndex": 2,
+          "sourceQuestionId": "slottsparken_quiz_02",
+          "sourceQuizId": "by_slottsparken_set_1_q2",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
           "difficulty": 1,
-          "topic": "begrep",
-          "emne_id": "em_by_opphold_vs_gjennomgang",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Slottsparken ble opparbeidet som en romantisk landskapspark med bølgende plener, store løvtrær og vannflater. Dermed ble den en mykere og mer naturpreget motvekt til Slottsplassen og slottets mer formelle fasade.",
+          "source": [
+            "bylex",
+            "history"
+          ],
+          "claim_id": "claim_slottsparken_quiz_02",
+          "claim_basis": "Slottsparken ble opparbeidet som en romantisk landskapspark med bølgende plener, store løvtrær og vannflater. Dermed ble den en mykere og mer naturpreget motvekt til Slottsplassen og slottets mer formelle fasade.",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "primary_knowledge_unit_id": "ku_by_slottsparken_ble_opparbe_efab5ec437",
+          "knowledge_unit_ids": [
+            "ku_by_slottsparken_ble_opparbe_efab5ec437",
+            "ku_by_dermed_ble_den_en_mykere_eff0fd1447"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "begrep"
+            "parkstil",
+            "1800-tall",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hva er en viktig kontrast i Slottsparken?",
+          "id": "slottsparken_quiz_09",
+          "question": "Fra hvilket år ble Slottsparken opparbeidet?",
           "options": [
-            "Mellom hverdagslig parkbruk og kongelig representasjon",
-            "Mellom busstrafikk og langdistanseplattform",
-            "Mellom verft og promenade"
+            "1854",
+            "1838",
+            "1825"
           ],
-          "answer": "Mellom hverdagslig parkbruk og kongelig representasjon",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q07",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
+          "answer": "1838",
+          "answerIndex": 1,
+          "sourceQuestionId": "slottsparken_quiz_09",
+          "sourceQuizId": "by_slottsparken_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
           "difficulty": 2,
-          "topic": "kontrast",
-          "emne_id": "em_by_parker_som_sosial_infrastruktur",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Selve opparbeidelsen av parken startet i 1838. Det forteller at landskapet rundt Slottet ikke bare kom etter bygningen, men var del av hvordan institusjonen skulle oppleves i byen: grønn, kontrollert og samtidig romantisk.",
+          "source": [
+            "history",
+            "bylex"
+          ],
+          "claim_id": "claim_slottsparken_quiz_09",
+          "claim_basis": "Selve opparbeidelsen av parken startet i 1838. Det forteller at landskapet rundt Slottet ikke bare kom etter bygningen, men var del av hvordan institusjonen skulle oppleves i byen: grønn, kontrollert og samtidig romantisk.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_selve_opparbeidelsen_av__899fc51b10",
+          "knowledge_unit_ids": [
+            "ku_by_selve_opparbeidelsen_av__899fc51b10",
+            "ku_by_det_forteller_at_landska_6776427f41"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "kontrast"
+            "1838",
+            "parkanlegg",
+            "historie",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hva viser Slottsparken om offentlig tilgang?",
+          "id": "slottsparken_quiz_16",
+          "question": "Hvorfor er Slottsparken et godt eksempel på «parker som sosial infrastruktur»?",
           "options": [
-            "Et symboltungt område kan samtidig brukes av mange som hverdagspark",
-            "Alle symbolområder er alltid stengt",
-            "Parker kan ikke ha politisk betydning"
+            "Fordi den støtter pauser, turer, møtepunkter og daglig ferdsel rundt en viktig institusjon",
+            "Fordi den bare er til pynt og ikke brukes i hverdagen",
+            "Fordi den først og fremst er et lukket privat anlegg"
           ],
-          "answer": "Et symboltungt område kan samtidig brukes av mange som hverdagspark",
+          "answer": "Fordi den støtter pauser, turer, møtepunkter og daglig ferdsel rundt en viktig institusjon",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q08",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
+          "sourceQuestionId": "slottsparken_quiz_16",
+          "sourceQuizId": "by_slottsparken_set_3_q2",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
           "difficulty": 2,
-          "topic": "offentlighet",
-          "emne_id": "em_by_opphold_vs_gjennomgang",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Sosial infrastruktur handler om steder som gjør hverdagsliv mulig: gåturer, pauser, møter og lavterskel opphold. Slottsparken gjør nettopp dette, selv om den samtidig har en representativ og institusjonell rolle.",
+          "source": [
+            "park",
+            "bylex",
+            "whyte"
+          ],
+          "claim_id": "claim_slottsparken_quiz_16",
+          "claim_basis": "Sosial infrastruktur handler om steder som gjør hverdagsliv mulig: gåturer, pauser, møter og lavterskel opphold. Slottsparken gjør nettopp dette, selv om den samtidig har en representativ og institusjonell rolle.",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "primary_knowledge_unit_id": "ku_by_sosial_infrastruktur_han_71f67de131",
+          "knowledge_unit_ids": [
+            "ku_by_sosial_infrastruktur_han_71f67de131",
+            "ku_by_slottsparken_gj_r_nettop_e6a9d0d0da"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "offentlighet"
+            "park",
+            "sosial_infrastruktur",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hva bør et godt feltspørsmål om Slottsparken handle om?",
+          "id": "slottsparken_quiz_23",
+          "question": "Hva ved Slottsparken gjør at den aldri føles helt anonym, selv når den er full av vanlige hverdagsbrukere?",
           "options": [
-            "Hvordan landskap, stier, opphold og symbolmakt virker sammen",
-            "Bare hvor mange butikkvinduer som finnes",
-            "Kun hvordan busser snur"
+            "At hele parken er fylt av høye reklameskjermer",
+            "At det ikke finnes andre bygninger i nærheten",
+            "Nærværet av Slottet og den representative rammen rundt det"
           ],
-          "answer": "Hvordan landskap, stier, opphold og symbolmakt virker sammen",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q09",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
+          "answer": "Nærværet av Slottet og den representative rammen rundt det",
+          "answerIndex": 2,
+          "sourceQuestionId": "slottsparken_quiz_23",
+          "sourceQuizId": "by_slottsparken_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
           "difficulty": 2,
-          "topic": "metode",
-          "emne_id": "em_by_parker_som_sosial_infrastruktur",
-          "method_id": "met_feltobservasjon",
+          "question_type": "context",
+          "knowledge": "Selv når folk lufter hunden, spiser lunsj eller går tvers gjennom parken, ligger Slottet som en tydelig institusjon i bakgrunnen. Det gjør at stedet hele tiden leses både som hverdagspark og som del av et nasjonalt representasjonsrom.",
+          "source": [
+            "park"
+          ],
+          "claim_id": "claim_slottsparken_quiz_23",
+          "claim_basis": "Selv når folk lufter hunden, spiser lunsj eller går tvers gjennom parken, ligger Slottet som en tydelig institusjon i bakgrunnen. Det gjør at stedet hele tiden leses både som hverdagspark og som del av et nasjonalt representasjonsrom.",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
+          "primary_knowledge_unit_id": "ku_by_selv_nar_folk_lufter_hun_c83adee07e",
+          "knowledge_unit_ids": [
+            "ku_by_selv_nar_folk_lufter_hun_c83adee07e",
+            "ku_by_det_gj_r_at_stedet_hele__6a5ef34c65"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "metode"
+            "slottet",
+            "institusjon",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Slottsparken?",
+          "id": "slottsparken_quiz_30",
+          "question": "Hvordan kan landskapet i Slottsparken formidle makt uten at stedet er lukket med murer og porter hele veien rundt?",
           "options": [
-            "1840",
-            "1980",
-            "2015"
+            "Ved at bare offiserer får bruke stiene",
+            "Gjennom plassering, siktlinjer, parkform og nærheten til Slottet",
+            "Ved at alle må kjøpe billett for å gå inn"
           ],
-          "answer": "1840",
-          "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch4_slottsparken_q10",
-          "sourceQuizId": "by_quizkort_batch4_slottsparken",
-          "difficulty": 2,
-          "topic": "årstall",
-          "emne_id": "em_by_opphold_vs_gjennomgang",
-          "method_id": "met_feltobservasjon",
+          "answer": "Gjennom plassering, siktlinjer, parkform og nærheten til Slottet",
+          "answerIndex": 1,
+          "sourceQuestionId": "slottsparken_quiz_30",
+          "sourceQuizId": "by_slottsparken_set_5_q2",
+          "sourceQuizFile": "data/quiz/by/slottsparken_sets.json",
+          "difficulty": 3,
+          "question_type": "concept",
+          "knowledge": "Symbolsk makt trenger ikke bare stengsler. I Slottsparken ligger makten også i hvordan Slottet får en grønn ramme og en tydelig plass i byen, slik at landskapet i seg selv kommuniserer statlig tyngde.",
+          "source": [
+            "park",
+            "history"
+          ],
+          "claim_id": "claim_slottsparken_quiz_30",
+          "claim_basis": "Symbolsk makt trenger ikke bare stengsler. I Slottsparken ligger makten også i hvordan Slottet får en grønn ramme og en tydelig plass i byen, slik at landskapet i seg selv kommuniserer statlig tyngde.",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
+          "primary_knowledge_unit_id": "ku_by_symbolsk_makt_trenger_ik_2a15f39aea",
+          "knowledge_unit_ids": [
+            "ku_by_symbolsk_makt_trenger_ik_2a15f39aea",
+            "ku_by_i_slottsparken_ligger_ma_4825af5a4b"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
             "slottsparken",
-            "årstall"
+            "maktlandskap",
+            "siktlinjer",
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "En stor park rundt Slottet"
+          "answer": "Den rammer inn Slottet og fungerer både som representativ park og hverdagspark",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Det kongelige slott"
+          "answer": "1824",
+          "answerIndex": 2
         },
         {
           "number": 3,
-          "answer": "Parker som sosial infrastruktur"
+          "answer": "Opphold vs gjennomgang",
+          "answerIndex": 1
         },
         {
           "number": 4,
-          "answer": "Den kombinerer grønt oppholdsrom med kongelig symbolmakt"
+          "answer": "At rommet skifter fra monumental forplass til mykere landskapspark med slyngende stier",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Opphold, gjennomgang, tur, utsikt, monumenter og forholdet til Slottet"
+          "answer": "Åpen offentlig bruk versus institusjonell kontroll og representasjon",
+          "answerIndex": 2
         },
         {
           "number": 6,
-          "answer": "Et grønt rom som gir rekreasjon, opphold og møteplasser i byen"
+          "answer": "En engelskinspirert romantisk landskapsstil",
+          "answerIndex": 2
         },
         {
           "number": 7,
-          "answer": "Mellom hverdagslig parkbruk og kongelig representasjon"
+          "answer": "1838",
+          "answerIndex": 1
         },
         {
           "number": 8,
-          "answer": "Et symboltungt område kan samtidig brukes av mange som hverdagspark"
+          "answer": "Fordi den støtter pauser, turer, møtepunkter og daglig ferdsel rundt en viktig institusjon",
+          "answerIndex": 0
         },
         {
           "number": 9,
-          "answer": "Hvordan landskap, stier, opphold og symbolmakt virker sammen"
+          "answer": "Nærværet av Slottet og den representative rammen rundt det",
+          "answerIndex": 2
         },
         {
           "number": 10,
-          "answer": "1840"
+          "answer": "Gjennom plassering, siktlinjer, parkform og nærheten til Slottet",
+          "answerIndex": 1
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/slottsparken_sets.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch4_botsparken",
@@ -3523,13 +4338,14 @@
       "categoryId": "by",
       "targetId": "nydalen",
       "title": "Nydalen",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 9,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
+          "id": "nydalen_quiz_1",
           "question": "I hvilken bydel ligger Nydalen?",
           "options": [
             "Bydel Nordre Aker",
@@ -3540,59 +4356,31 @@
           "answerIndex": 0,
           "sourceQuestionId": "nydalen_quiz_1",
           "sourceQuizId": "by_nydalen_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
           "difficulty": 1,
-          "topic": "transformasjon_ombruk",
-          "emne_id": "em_by_transformasjon_ombruk",
-          "tags": [
-            "by",
-            "sted",
+          "question_type": "fact",
+          "knowledge": "Nydalen ligger i bydel Nordre Aker.",
+          "source": [
             "nydalen"
+          ],
+          "claim_id": "claim_nydalen_quiz_01",
+          "claim_basis": "Nydalen ligger i bydel Nordre Aker.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_nydalen_ligger_i_bydel_n_852e1e0795",
+          "knowledge_unit_ids": [
+            "ku_by_nydalen_ligger_i_bydel_n_852e1e0795"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
+          "tags": [
+            "nydalen",
+            "transformasjon_ombruk",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hva er Nydalen kortform av?",
-          "options": [
-            "Nydalsmarka",
-            "Nordre dal",
-            "Nygårdsdalen"
-          ],
-          "answer": "Nygårdsdalen",
-          "answerIndex": 2,
-          "sourceQuestionId": "nydalen_quiz_3",
-          "sourceQuizId": "by_nydalen_set_1_q3",
-          "difficulty": 1,
-          "topic": "historiske_lag_i_hverdagsrom",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "tags": [
-            "by",
-            "sted",
-            "nydalen"
-          ]
-        },
-        {
-          "number": 3,
-          "question": "Hvilken tekstilbedrift ble etablert i Nydalen i 1845?",
-          "options": [
-            "Hjula Væveri",
-            "Nydalens Bomuldsspinderi",
-            "Christiania Seildugsfabrik"
-          ],
-          "answer": "Nydalens Bomuldsspinderi",
-          "answerIndex": 1,
-          "sourceQuestionId": "nydalen_quiz_5",
-          "sourceQuizId": "by_nydalen_set_1_q5",
-          "difficulty": 2,
-          "topic": "industri_havn_logistikk",
-          "emne_id": "em_by_industri_havn_logistikk",
-          "tags": [
-            "by",
-            "sted",
-            "nydalen"
-          ]
-        },
-        {
-          "number": 4,
+          "id": "nydalen_quiz_8",
           "question": "Når ble Christiania Spiger- og Valseværk etablert i Nydalen?",
           "options": [
             "1847",
@@ -3603,38 +4391,31 @@
           "answerIndex": 1,
           "sourceQuestionId": "nydalen_quiz_8",
           "sourceQuizId": "by_nydalen_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
           "difficulty": 1,
-          "topic": "industri_havn_logistikk",
-          "emne_id": "em_by_industri_havn_logistikk",
-          "tags": [
-            "by",
-            "sted",
-            "nydalen"
-          ]
-        },
-        {
-          "number": 5,
-          "question": "Hva produserte Christiania Spigerverk i starten?",
-          "options": [
-            "Spiker og smigods",
-            "Jernbanevogner og lokomotiver",
-            "Tekstiler og tauverk"
+          "question_type": "fact",
+          "knowledge": "Christiania Spiger- og Valseværk ble etablert i 1853.",
+          "source": [
+            "spiger"
           ],
-          "answer": "Spiker og smigods",
-          "answerIndex": 0,
-          "sourceQuestionId": "nydalen_quiz_10",
-          "sourceQuizId": "by_nydalen_set_2_q3",
-          "difficulty": 1,
-          "topic": "industri_havn_logistikk",
+          "claim_id": "claim_nydalen_quiz_08",
+          "claim_basis": "Christiania Spiger- og Valseværk ble etablert i 1853.",
           "emne_id": "em_by_industri_havn_logistikk",
+          "primary_knowledge_unit_id": "ku_by_christiania_spiger_og_va_77b49c7381",
+          "knowledge_unit_ids": [
+            "ku_by_christiania_spiger_og_va_77b49c7381"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "nydalen"
+            "nydalen",
+            "industri_havn_logistikk",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
-          "number": 6,
+          "number": 3,
+          "id": "nydalen_quiz_15",
           "question": "Hva skjedde med flere eldre teglbygg i Nydalen i 1986–88?",
           "options": [
             "De ble alle revet samtidig",
@@ -3645,59 +4426,31 @@
           "answerIndex": 2,
           "sourceQuestionId": "nydalen_quiz_15",
           "sourceQuizId": "by_nydalen_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
           "difficulty": 2,
-          "topic": "transformasjon_ombruk",
-          "emne_id": "em_by_transformasjon_ombruk",
-          "tags": [
-            "by",
-            "sted",
-            "nydalen"
-          ]
-        },
-        {
-          "number": 7,
-          "question": "Når ble kommunedelplanen for Nydalens omforming vedtatt?",
-          "options": [
-            "1986",
-            "1990",
-            "2003"
+          "question_type": "fact",
+          "knowledge": "Oslo kommune beskriver rehabilitering av eldre teglbygg i 1986–88 som en tidlig del av omformingen.",
+          "source": [
+            "kommune"
           ],
-          "answer": "1990",
-          "answerIndex": 1,
-          "sourceQuestionId": "nydalen_quiz_17",
-          "sourceQuizId": "by_nydalen_set_3_q3",
-          "difficulty": 2,
-          "topic": "transformasjon_ombruk",
+          "claim_id": "claim_nydalen_quiz_15",
+          "claim_basis": "Oslo kommune beskriver rehabilitering av eldre teglbygg i 1986–88 som en tidlig del av omformingen.",
           "emne_id": "em_by_transformasjon_ombruk",
-          "tags": [
-            "by",
-            "sted",
-            "nydalen"
-          ]
-        },
-        {
-          "number": 8,
-          "question": "Når åpnet Nydalen T-banestasjon?",
-          "options": [
-            "2003",
-            "1990",
-            "2006"
+          "primary_knowledge_unit_id": "ku_by_oslo_kommune_beskriver_r_98ef82136e",
+          "knowledge_unit_ids": [
+            "ku_by_oslo_kommune_beskriver_r_98ef82136e"
           ],
-          "answer": "2003",
-          "answerIndex": 0,
-          "sourceQuestionId": "nydalen_quiz_19",
-          "sourceQuizId": "by_nydalen_set_3_q5",
-          "difficulty": 2,
-          "topic": "infrastruktur_mobilitet",
-          "emne_id": "em_by_infrastruktur_mobilitet",
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "nydalen"
+            "nydalen",
+            "transformasjon_ombruk",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
-          "number": 9,
+          "number": 4,
+          "id": "nydalen_quiz_22",
           "question": "Hvilken stor utdanningsinstitusjon etablerte seg i Nydalen i 2005?",
           "options": [
             "Handelshøyskolen BI",
@@ -3708,17 +4461,31 @@
           "answerIndex": 0,
           "sourceQuestionId": "nydalen_quiz_22",
           "sourceQuizId": "by_nydalen_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
           "difficulty": 2,
-          "topic": "transformasjon_ombruk",
-          "emne_id": "em_by_transformasjon_ombruk",
-          "tags": [
-            "by",
-            "sted",
+          "question_type": "fact",
+          "knowledge": "Handelshøyskolen BI etablerte seg i Nydalen i 2005.",
+          "source": [
             "nydalen"
+          ],
+          "claim_id": "claim_nydalen_quiz_22",
+          "claim_basis": "Handelshøyskolen BI etablerte seg i Nydalen i 2005.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_handelsh_yskolen_bi_etab_a6677eaff1",
+          "knowledge_unit_ids": [
+            "ku_by_handelsh_yskolen_bi_etab_a6677eaff1"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
+          "tags": [
+            "nydalen",
+            "transformasjon_ombruk",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
-          "number": 10,
+          "number": 5,
+          "id": "nydalen_quiz_29",
           "question": "Hvem prosjekterte Vertikal Nydalen?",
           "options": [
             "Kristin Jarmund Arkitekter",
@@ -3729,56 +4496,254 @@
           "answerIndex": 1,
           "sourceQuestionId": "nydalen_quiz_29",
           "sourceQuizId": "by_nydalen_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
           "difficulty": 3,
-          "topic": "transformasjon_ombruk",
+          "question_type": "fact",
+          "knowledge": "Snøhetta er arkitekt for Vertikal Nydalen.",
+          "source": [
+            "snohetta"
+          ],
+          "claim_id": "claim_nydalen_quiz_29",
+          "claim_basis": "Snøhetta er arkitekt for Vertikal Nydalen.",
           "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_sn_hetta_er_arkitekt_for_e50efe66d3",
+          "knowledge_unit_ids": [
+            "ku_by_sn_hetta_er_arkitekt_for_e50efe66d3"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
+            "nydalen",
+            "transformasjon_ombruk",
+            "by_bolk03_kildekoblet_v1"
+          ]
+        },
+        {
+          "number": 6,
+          "id": "nydalen_quiz_2",
+          "question": "Hvilket dalføre ligger Nydalen i?",
+          "options": [
+            "Alnas dalføre",
+            "Akerselvas dalføre",
+            "Lysakerelvas dalføre"
+          ],
+          "answer": "Akerselvas dalføre",
+          "answerIndex": 1,
+          "sourceQuestionId": "nydalen_quiz_2",
+          "sourceQuizId": "by_nydalen_set_1_q2",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
+          "difficulty": 1,
+          "question_type": "fact",
+          "knowledge": "Nydalen ligger langs Akerselva, og elva ble senere en hovedressurs for industrien.",
+          "source": [
             "nydalen"
+          ],
+          "claim_id": "claim_nydalen_quiz_02",
+          "claim_basis": "Nydalen ligger langs Akerselva, og elva ble senere en hovedressurs for industrien.",
+          "emne_id": "em_by_industri_havn_logistikk",
+          "primary_knowledge_unit_id": "ku_by_nydalen_ligger_langs_ake_59164b309a",
+          "knowledge_unit_ids": [
+            "ku_by_nydalen_ligger_langs_ake_59164b309a"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
+          "tags": [
+            "nydalen",
+            "industri_havn_logistikk",
+            "by_bolk03_kildekoblet_v1"
+          ]
+        },
+        {
+          "number": 7,
+          "id": "nydalen_quiz_9",
+          "question": "Hvem var initiativtaker og medeier da Christiania Spigerverk ble anlagt?",
+          "options": [
+            "Adam Severin Hiorth",
+            "Oluf Nicolai Roll",
+            "Oluf Onsum"
+          ],
+          "answer": "Oluf Onsum",
+          "answerIndex": 2,
+          "sourceQuestionId": "nydalen_quiz_9",
+          "sourceQuizId": "by_nydalen_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
+          "difficulty": 1,
+          "question_type": "fact",
+          "knowledge": "Oluf Onsum var initiativtaker og medeier ved etableringen av Christiania Spiger- og Valseværk.",
+          "source": [
+            "spiger"
+          ],
+          "claim_id": "claim_nydalen_quiz_09",
+          "claim_basis": "Oluf Onsum var initiativtaker og medeier ved etableringen av Christiania Spiger- og Valseværk.",
+          "emne_id": "em_by_industri_havn_logistikk",
+          "primary_knowledge_unit_id": "ku_by_oluf_onsum_var_initiativ_51459bb906",
+          "knowledge_unit_ids": [
+            "ku_by_oluf_onsum_var_initiativ_51459bb906"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
+          "tags": [
+            "nydalen",
+            "industri_havn_logistikk",
+            "by_bolk03_kildekoblet_v1"
+          ]
+        },
+        {
+          "number": 8,
+          "id": "nydalen_quiz_16",
+          "question": "Når startet arbeidet med kommunedelplanen som skulle styre omformingen av Nydalen?",
+          "options": [
+            "1988",
+            "1998",
+            "2008"
+          ],
+          "answer": "1988",
+          "answerIndex": 0,
+          "sourceQuestionId": "nydalen_quiz_16",
+          "sourceQuizId": "by_nydalen_set_3_q2",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Oslo kommune beskriver at planarbeidet som ledet til kommunedelplanen ble satt i gang i 1988.",
+          "source": [
+            "kommune"
+          ],
+          "claim_id": "claim_nydalen_quiz_16",
+          "claim_basis": "Oslo kommune beskriver at planarbeidet som ledet til kommunedelplanen ble satt i gang i 1988.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_oslo_kommune_beskriver_a_3f1a14c159",
+          "knowledge_unit_ids": [
+            "ku_by_oslo_kommune_beskriver_a_3f1a14c159"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
+          "tags": [
+            "nydalen",
+            "transformasjon_ombruk",
+            "by_bolk03_kildekoblet_v1"
+          ]
+        },
+        {
+          "number": 9,
+          "id": "nydalen_quiz_23",
+          "question": "Hvilken større veiforbindelse gjennom Nydalen ble ferdigstilt i 2006?",
+          "options": [
+            "E18-tunnelen",
+            "Ring 3-forbindelsen",
+            "E6 over Manglerud"
+          ],
+          "answer": "Ring 3-forbindelsen",
+          "answerIndex": 1,
+          "sourceQuestionId": "nydalen_quiz_23",
+          "sourceQuizId": "by_nydalen_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Oslo byleksikon knytter 2006 til den nye Ring 3-forbindelsen gjennom området.",
+          "source": [
+            "nydalen"
+          ],
+          "claim_id": "claim_nydalen_quiz_23",
+          "claim_basis": "Oslo byleksikon knytter 2006 til den nye Ring 3-forbindelsen gjennom området.",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_oslo_byleksikon_knytter__0386990288",
+          "knowledge_unit_ids": [
+            "ku_by_oslo_byleksikon_knytter__0386990288"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
+          "tags": [
+            "nydalen",
+            "infrastruktur_mobilitet",
+            "by_bolk03_kildekoblet_v1"
+          ]
+        },
+        {
+          "number": 10,
+          "id": "nydalen_quiz_30",
+          "question": "Hva viser Snøhettas beskrivelse av et offentlig og bilfritt torgmiljø rundt Vertikal Nydalen?",
+          "options": [
+            "At bygget er planlagt som del av et offentlig uterom",
+            "At uterommet er en lukket industrikai",
+            "At området er planlagt uten fotgjengertilgang"
+          ],
+          "answer": "At bygget er planlagt som del av et offentlig uterom",
+          "answerIndex": 0,
+          "sourceQuestionId": "nydalen_quiz_30",
+          "sourceQuizId": "by_nydalen_set_5_q2",
+          "sourceQuizFile": "data/quiz/by/nydalen_sets_merged.json",
+          "difficulty": 3,
+          "question_type": "context",
+          "knowledge": "Snøhetta beskriver prosjektet som del av et offentlig, bilfritt byrom rundt bygget.",
+          "source": [
+            "snohetta"
+          ],
+          "claim_id": "claim_nydalen_quiz_30",
+          "claim_basis": "Snøhetta beskriver Vertikal Nydalen som del av et offentlig, bilfritt byrom rundt bygget.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_sn_hetta_beskriver_prosj_98ca41e9e7",
+          "knowledge_unit_ids": [
+            "ku_by_sn_hetta_beskriver_prosj_98ca41e9e7"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
+          "tags": [
+            "nydalen",
+            "transformasjon_ombruk",
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "Bydel Nordre Aker"
+          "answer": "Bydel Nordre Aker",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Nygårdsdalen"
+          "answer": "1853",
+          "answerIndex": 1
         },
         {
           "number": 3,
-          "answer": "Nydalens Bomuldsspinderi"
+          "answer": "De ble rehabilitert for videre bruk",
+          "answerIndex": 2
         },
         {
           "number": 4,
-          "answer": "1853"
+          "answer": "Handelshøyskolen BI",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Spiker og smigods"
+          "answer": "Snøhetta",
+          "answerIndex": 1
         },
         {
           "number": 6,
-          "answer": "De ble rehabilitert for videre bruk"
+          "answer": "Akerselvas dalføre",
+          "answerIndex": 1
         },
         {
           "number": 7,
-          "answer": "1990"
+          "answer": "Oluf Onsum",
+          "answerIndex": 2
         },
         {
           "number": 8,
-          "answer": "2003"
+          "answer": "1988",
+          "answerIndex": 0
         },
         {
           "number": 9,
-          "answer": "Handelshøyskolen BI"
+          "answer": "Ring 3-forbindelsen",
+          "answerIndex": 1
         },
         {
           "number": 10,
-          "answer": "Snøhetta"
+          "answer": "At bygget er planlagt som del av et offentlig uterom",
+          "answerIndex": 0
         }
       ],
       "sourceFile": "data/quiz/by/nydalen_sets_merged.json"
