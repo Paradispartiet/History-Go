@@ -58,6 +58,8 @@ for(const p of ledger.places){
       assert.ok(place.fagverk.emne_ids.includes(lens.emne_id),p.place_id+': unknown lens emne');
     }
   }
+  const runtimePlace=read('data/runtime/place-open/'+p.place_id+'.json').place;
+  assert.deepEqual(runtimePlace.fagverk,place.fagverk,p.place_id+': runtime place-open Fagverk out of sync');
   const visualReady=Boolean(place.frontImage&&place.image&&place.cardImage);
   report.push({id:p.place_id,canonical:true,sourceClaims:p.claims.length,quizSetFiles:relevantQuiz.map(z=>z.file),quizCardCollections:categoryQuizCardMatches,missingLegacyQuizCardFiles,fagverkReady:articleReady,visualFieldsReady:visualReady,notYetV1:!(relevantQuiz.length&&categoryQuizCardMatches.length&&articleReady&&visualReady)});
 }
