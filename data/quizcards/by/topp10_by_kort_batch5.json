@@ -3,12 +3,7 @@
   "categoryId": "by",
   "title": "By – topp 10 quizkort – batch 5",
   "cardFormatRule": "Ett kort per sted. Alle 10 spørsmål vises på samme side. Fasit ligger nederst i liten tekst.",
-  "sourceBasis": [
-    "places_by (25).json",
-    "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-    "emner_by_canonical_v4_5.json",
-    "methods_by_canonical_v4_5.json"
-  ],
+  "sourceBasis": "By-bolk 03 redaksjonell variasjon: maksimalt to rene årstallsvar; de nye spørsmålene og kildehenvisningene er hentet fra stedets kanoniske fullquiz.",
   "cards": [
     {
       "card_id": "by_quizkort_topp10_batch5_sorenga",
@@ -1575,7 +1570,7 @@
       "categoryId": "by",
       "targetId": "birkelunden",
       "title": "Birkelunden",
-      "subtitle": "10 konkrete spørsmål om stedets historie",
+      "subtitle": "Ti historiske spørsmål med variasjon utover årstall",
       "order": 6,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
@@ -1754,30 +1749,46 @@
         },
         {
           "number": 7,
-          "question": "Når ble den nåværende musikkpaviljongen i Birkelunden reist?",
+          "question": "Hvilken gate ligger langs østsiden av Birkelunden?",
           "options": [
-            "1882",
-            "1926",
-            "1989"
+            "Pilestredet",
+            "Thorvald Meyers gate",
+            "Torggata"
           ],
-          "answer": "1926",
+          "answer": "Thorvald Meyers gate",
           "answerIndex": 1,
-          "sourceQuestionId": "birkelunden_quiz_9",
-          "sourceQuizId": "by_birkelunden_set_2_q2",
-          "difficulty": 1,
+          "sourceQuestionId": "birkelunden_quiz_6",
+          "sourceQuizId": "by_birkelunden_set_1_q6",
+          "difficulty": 2,
           "source_urls": [
-            "https://oslobyleksikon.no/side/Birkelunden"
+            "https://oslobyleksikon.no/side/Birkelunden",
+            "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-grontomrader/birkelunden/"
           ],
           "source_refs": [
-            "oslo_byleksikon"
+            "oslo_byleksikon",
+            "oslo_kommune"
           ],
-          "knowledge": "Den nåværende musikkpaviljongen ble reist i 1926.",
+          "knowledge": "Thorvald Meyers gate danner parkens østside; parkens øvrige avgrensning følger Toftes gate, Seilduksgata og Schleppegrells gate.",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "tags": [
-            "by",
             "birkelunden",
-            "kildebasert_v1"
-          ]
+            "place_specific",
+            "canonical_v3_3",
+            "by_bolk03_aarstall_variert"
+          ],
+          "sourceQuizFile": "data/quiz/by/birkelunden_sets.json",
+          "source": [
+            "oslo_byleksikon",
+            "oslo_kommune"
+          ],
+          "claim_id": "claim_birkelunden_q06",
+          "claim_basis": "Thorvald Meyers gate danner parkens østside; parkens øvrige avgrensning følger Toftes gate, Seilduksgata og Schleppegrells gate.",
+          "primary_knowledge_unit_id": "ku_by_thorvald_meyers_gate_dan_9f858680c8",
+          "knowledge_unit_ids": [
+            "ku_by_thorvald_meyers_gate_dan_9f858680c8"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "number": 8,
@@ -1808,30 +1819,47 @@
         },
         {
           "number": 9,
-          "question": "Når ble vannbassenget ved paviljongen anlagt?",
+          "question": "Hvorfor skal ikke 116 dekar brukes som størrelse på Birkelunden park?",
           "options": [
-            "1927–1928",
-            "1953–1955",
-            "2005–2006"
+            "Fordi det er arealet til det større kulturmiljøet rundt parken",
+            "Fordi tallet gjelder bare paviljongen",
+            "Fordi parkens areal er ukjent"
           ],
-          "answer": "1927–1928",
+          "answer": "Fordi det er arealet til det større kulturmiljøet rundt parken",
           "answerIndex": 0,
-          "sourceQuestionId": "birkelunden_quiz_11",
-          "sourceQuizId": "by_birkelunden_set_2_q4",
+          "sourceQuestionId": "birkelunden_quiz_23",
+          "sourceQuizId": "by_birkelunden_set_4_q2",
           "difficulty": 2,
           "source_urls": [
-            "https://oslobyleksikon.no/side/Birkelunden"
+            "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-grontomrader/birkelunden/",
+            "https://www.riksantikvaren.no/kulturhistorie/birkelunden-murbyens-hjerte/"
           ],
           "source_refs": [
-            "oslo_byleksikon"
+            "oslo_kommune",
+            "riksantikvaren"
           ],
-          "knowledge": "Vannbassenget ble anlagt i 1927–1928, kort tid etter den nåværende paviljongen.",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "knowledge": "Parken er 16,3 dekar. Omtrent 116 dekar gjelder en større fredet bystruktur som også omfatter bebyggelse og andre elementer rundt parken.",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
           "tags": [
-            "by",
             "birkelunden",
-            "kildebasert_v1"
-          ]
+            "place_specific",
+            "canonical_v3_3",
+            "by_bolk03_aarstall_variert"
+          ],
+          "sourceQuizFile": "data/quiz/by/birkelunden_sets.json",
+          "source": [
+            "oslo_kommune",
+            "riksantikvaren"
+          ],
+          "claim_id": "claim_birkelunden_q23",
+          "claim_basis": "Parken er 16,3 dekar. Omtrent 116 dekar gjelder en større fredet bystruktur som også omfatter bebyggelse og andre elementer rundt parken.",
+          "primary_knowledge_unit_id": "ku_by_parken_er_16_3_dekar_706fb22eb8",
+          "knowledge_unit_ids": [
+            "ku_by_parken_er_16_3_dekar_706fb22eb8",
+            "ku_by_omtrent_116_dekar_gjelde_343ffd6b3b"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "number": 10,
@@ -1896,7 +1924,7 @@
         },
         {
           "number": 7,
-          "answer": "1926",
+          "answer": "Thorvald Meyers gate",
           "answerIndex": 1
         },
         {
@@ -1906,7 +1934,7 @@
         },
         {
           "number": 9,
-          "answer": "1927–1928",
+          "answer": "Fordi det er arealet til det større kulturmiljøet rundt parken",
           "answerIndex": 0
         },
         {
