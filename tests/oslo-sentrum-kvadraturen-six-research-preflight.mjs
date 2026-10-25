@@ -160,6 +160,21 @@ const fullQuestions=fullQuiz.sets.flatMap(s=>s.questions);
 assert.equal(fullQuestions.length,21);
 assert.equal(new Set(fullQuestions.map(q=>q.id)).size,21);
 assert.ok(fullQuestions.filter(isDirectYearRecall).length<=2,'Fullquiz requires too much date memorization');
+const garmannClassifications=fullQuestions.reduce((out,q)=>{
+  const type=(q.question_type==='concept'||q.topic_hook_id)?'concept_theory':(['analysis','context','comparison'].includes(q.question_type)?'context':'fact');
+  out[type]=(out[type]||0)+1;
+  return out;
+},{fact:0,context:0,concept_theory:0});
+assert.deepEqual(garmannClassifications,{fact:12,context:5,concept_theory:4},'Lopsided Garmanngården content; must teach more than isolated facts');
+const methodQuestion=fullQuestions.find(q=>q.id==='garmanngarden_quiz_21');
+assert.equal(methodQuestion.method_id,'met_kildekritikk');
+assert.equal(methodQuestion.topic_hook_id,'his_kildekritikk');
+assert.equal(methodQuestion.thinker_id,'marc_bloch');
+assert.equal(methodQuestion.theory_ref?.topic_hook_id,methodQuestion.topic_hook_id);
+assert.ok(methodQuestion.theory_ref?.why_it_helps?.length>50);
+assert.equal(garmannBrief.claims[20].family,'concept_theory');
+assert.equal(garmannBrief.claims[20].method_id,methodQuestion.method_id);
+
 for(const [i,q] of fullQuestions.entries()){
   const claim=garmannBrief.claims[i];
   const draft=garmannDraft.questions[i];
