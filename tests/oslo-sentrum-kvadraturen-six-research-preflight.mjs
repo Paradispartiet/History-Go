@@ -379,8 +379,48 @@ for(const targetId of ['cafe_engebret','treschowgarden']){
   }
   assert.equal(quizRefs.some(r=>r.targetId===targetId),false,targetId+': prematurely activated unlinked MCQ');
 }
-// Four remaining places are still research/QuizCard candidates, not v1 quizzes.
-for(const p of ledger.places.filter(p=>!['garmanngarden','den_gamle_krigsskolen'].includes(p.place_id))){
+// Stattholdergården is the third active source-backed quiz, not a completed v1 Place.
+const statQuizPath='data/quiz/historie/stattholdergarden_sets.json';
+const statCardPath='data/quizcards/historie/stattholdergarden_quizkort_v1.json';
+const statQuiz=read(statQuizPath);
+const statCard=read(statCardPath);
+const statContext=read('data/quiz/production_context/historie/stattholdergarden.json');
+const statQuestions=statQuiz.sets.flatMap(s=>s.questions);
+assert.equal(statQuiz.production_status,'manifested_knowledge_linked_pending_browser_qa');
+assert.equal(statContext.profile,'narrow_3x7');
+assert.deepEqual(statContext.set_plan.map(s=>s.planned_questions),[7,7,7]);
+assert.deepEqual(statContext.question_balance.counts,{fact:12,context:5,concept_theory:4});
+assert.equal(statQuestions.length,21);
+assert.deepEqual(statQuiz.sets.map(s=>s.questions.length),[7,7,7]);
+assert.equal(statQuestions.filter(isDirectYearRecall).length,0);
+assert.ok(statQuestions.slice(0,14).every(q=>['fact','context'].includes(q.question_type)));
+for(const [i,q] of statQuestions.entries()){
+  const claim=stattholderBrief.claims[i];
+  assert.equal(q.claim_id,claim.claim_id);
+  assert.equal(q.claim_basis,claim.statement);
+  assert.deepEqual(q.source,claim.source_ids);
+  assert.equal(q.answer,q.options[q.answerIndex]);
+  assert.equal(q.knowledge_link_status,'linked');
+  assert.ok(q.primary_knowledge_unit_id?.startsWith('ku_historie_'));
+  assert.ok(q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id));
+}
+assert.equal(quizRefs.filter(x=>x.targetId==='stattholdergarden'&&x.file===statQuizPath).length,1);
+assert.equal(quizCardSources.historie.collections.filter(x=>x==='stattholdergarden_quizkort_v1.json').length,1);
+assert.equal(statCard.cards[0].questions.length,10);
+const statById=new Map(statQuestions.map(q=>[q.id,q]));
+for(const item of statCard.cards[0].questions){
+  const src=statById.get(item.sourceQuestionId);
+  assert.ok(src);
+  assert.equal(item.question,src.question);
+  assert.deepEqual(item.options,src.options);
+  assert.equal(item.answerIndex,src.answerIndex);
+  assert.deepEqual(item.source_refs,src.source);
+  assert.equal(item.knowledge_link_status,'linked');
+  assert.equal(item.primary_knowledge_unit_id,src.primary_knowledge_unit_id);
+  assert.deepEqual(item.knowledge_unit_ids,src.knowledge_unit_ids);
+}
+// Other three Places remain research candidates; no changes to another account's Oslo 04.
+for(const p of ledger.places.filter(p=>!['garmanngarden','den_gamle_krigsskolen','stattholdergarden'].includes(p.place_id))){
   assert.equal(quizRefs.some(r=>r.targetId===p.place_id),false,p.place_id+': remaining place published prematurely');
 }
 
