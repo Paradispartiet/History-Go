@@ -111,8 +111,8 @@ for(const group of candidateGroups){
 }
 assert.equal(candidateCount,60);
 
-// Garmanngården has 21 editorially reviewed draft questions, but is NOT
-// registered as a fullquiz/QuizCard until its Knowledge and production-context gates pass.
+// The editorial source draft remains independent of runtime publication. Garmanngården
+// is the first activated quiz of the six; the other five remain candidates.
 const garmannDraft=read('reports/place-production/garmanngarden-21-question-editorial-review-20261025.json');
 const garmannBrief=read('data/quiz/production_briefs/historie/garmanngarden.json');
 assert.equal(garmannDraft.status,'editorial_review_not_manifested');
@@ -145,15 +145,14 @@ for(const [i,q] of garmannDraft.questions.entries()){
 assert.ok(/kildene|kilder/.test(garmannDraft.questions[20].question.toLowerCase())&&/ulike sluttår/.test(garmannDraft.questions[20].knowledge.toLowerCase()),'Missing evidence-driven source-conflict question');
 assert.equal(garmannDraft.status.includes('manifested'),true);
 
-// Canonical-format files exist for Garmanngården, but publishing them requires
-// generated Knowledge IDs and the deterministic quiz production context.
+// Canonical fullquiz, linked QuizCard and deterministic production context must agree.
 const fullQuizPath='data/quiz/historie/garmanngarden_sets.json';
 const cardPath='data/quizcards/historie/garmanngarden_quizkort_v1.json';
 const fullQuiz=read(fullQuizPath);
 const cardPreview=read(cardPath);
 assert.equal(fullQuiz.targetId,'garmanngarden');
 assert.equal(fullQuiz.categoryId,'historie');
-assert.equal(fullQuiz.production_status,'unmanifested_awaiting_deterministic_context_and_knowledge');
+assert.equal(fullQuiz.production_status,'manifested_knowledge_linked_pending_browser_qa');
 assert.deepEqual(fullQuiz.sets.map(s=>s.questions.length),[7,7,7]);
 assert.deepEqual(fullQuiz.sets.map(s=>s.phase),['opening','bridge','final']);
 const fullQuestions=fullQuiz.sets.flatMap(s=>s.questions);
@@ -186,10 +185,12 @@ for(const [i,q] of fullQuestions.entries()){
   assert.equal(q.claim_basis,claim.statement);
   assert.deepEqual(q.source,claim.source_ids);
   assert.equal(q.knowledge,draft.knowledge);
-  assert.equal(q.knowledge_link_status,'pending_canonical_generation');
-  assert.ok(!q.primary_knowledge_unit_id,'Unverified Knowledge ID cannot be declared linked');
+  assert.equal(q.knowledge_link_status,'linked');
+  assert.ok(q.primary_knowledge_unit_id?.startsWith('ku_historie_'),'Missing canonical Knowledge unit');
+  assert.ok(q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id),'Primary Knowledge unit not in IDs');
+  assert.equal(q.knowledge_contract_version,1);
 }
-assert.equal(cardPreview.production_status,'unmanifested_awaiting_knowledge_parity');
+assert.equal(cardPreview.production_status,'knowledge_linked_pending_browser_qa');
 assert.equal(cardPreview.cards.length,1);
 const preview=cardPreview.cards[0];
 assert.equal(preview.targetId,'garmanngarden');
@@ -209,8 +210,25 @@ for(const [i,item] of preview.questions.entries()){
   assert.deepEqual(item.source_urls,q.source.map(ref=>fullQuiz.sources[ref]));
   assert.equal(item.knowledge,q.knowledge);
   assert.equal(preview.answerKey[i].answer,q.answer);
+  assert.equal(item.knowledge_link_status,'linked');
+  assert.equal(item.primary_knowledge_unit_id,q.primary_knowledge_unit_id);
+  assert.deepEqual(item.knowledge_unit_ids,q.knowledge_unit_ids);
+  assert.equal(item.knowledge_contract_version,q.knowledge_contract_version);
 }
-assert.equal((quizManifest.sets||[]).some(s=>s.targetId==='garmanngarden'),false,'Pending Knowledge fullquiz must not be activated');
-assert.equal(quizCardSources.historie.collections.includes('garmanngarden_quizkort_v1.json'),false,'Unlinked QuizCard must not be activated');
+assert.equal((quizManifest.sets||[]).filter(s=>s.targetId==='garmanngarden'&&s.file===fullQuizPath).length,1,'Garmanngården fullquiz not registered exactly once');
+assert.equal(quizCardSources.historie.collections.filter(f=>f==='garmanngarden_quizkort_v1.json').length,1,'Linked QuizCard must be registered exactly once');
+const canonicalKnowledge=read('data/knowledge/knowledge_units.generated.json');
+const knowledgeIds=new Set((canonicalKnowledge.units||[]).map(u=>u.knowledge_unit_id));
+for(const q of fullQuestions)for(const id of q.knowledge_unit_ids){
+  assert.ok(knowledgeIds.has(id),'Missing unit '+id+' in generated canonical Knowledge registry');
+}
+const persistedContext=read('data/quiz/production_context/historie/garmanngarden.json');
+assert.equal(persistedContext.targetId,'garmanngarden');
+assert.equal(persistedContext.claim_bank.length,21);
+assert.equal(persistedContext.question_balance.counts.concept_theory,4);
+assert.deepEqual(persistedContext.set_plan.map(x=>x.planned_questions),[7,7,7]);
+for(const p of ledger.places.filter(p=>p.place_id!=='garmanngarden')){
+  assert.equal(quizRefs.some(r=>r.targetId===p.place_id),false,p.place_id+': other place published prematurely');
+}
 
 console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',candidateCount,records:report},null,2));
