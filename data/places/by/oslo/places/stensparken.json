@@ -471,5 +471,80 @@
   "sourceProvider": "municipality",
   "sourceObjectId": "oslo-kommune:parks:stensparken",
   "geocodeAccuracy": "semantic_anchor",
-  "coordRole": "area_anchor"
+  "coordRole": "area_anchor",
+  "fagverk": {
+    "schema": "history_go_place_fagverk_v2",
+    "level": "standard",
+    "status": "curated",
+    "intro": "Stensparken viser hvordan et høydedrag med skiftende bruk ble et grønt offentlig rom.",
+    "article": [
+      "Parken følger en langstrakt rygg på Fagerborg. Området har hatt ulike formål før det ble park, blant annet jordbruk, og Blåsen gir utsyn over en større del av byen.",
+      "Fagerborg kirke fra 1903 ligger ved kanten av parken, men er et eget bygg og sted. Stier, monumenter og senere anlegg representerer forskjellige historiske lag innenfor grøntområdet.",
+      "Undersøk stigning, siktlinjer og forbindelser til boliggatene. Et besøk viser dagens terreng og bruksmuligheter, mens eldre arealbruk må belegges med kommunale kilder og daterte kart."
+    ],
+    "subject_ids": [
+      "by"
+    ],
+    "emne_ids": [
+      "em_by_parker_som_sosial_infrastruktur",
+      "em_by_opphold_vs_gjennomgang"
+    ],
+    "chapter_ids": [
+      "byliv-offentlige-rom",
+      "urbanisme-idealer-forbindelser-fortetting"
+    ],
+    "lenses": [
+      {
+        "id": "stensparken-lens-1",
+        "title": "Høyden",
+        "prompt": "Hvordan påvirker Blåsen ferdsel og utsikt?",
+        "subject_id": "by",
+        "emne_id": "em_by_parker_som_sosial_infrastruktur",
+        "evidence": "Observer stier og siktlinjer."
+      },
+      {
+        "id": "stensparken-lens-2",
+        "title": "Før park",
+        "prompt": "Hvilke eldre arealformål kan dokumenteres?",
+        "subject_id": "by",
+        "emne_id": "em_by_opphold_vs_gjennomgang",
+        "evidence": "Bruk kommunens historikk."
+      },
+      {
+        "id": "stensparken-lens-3",
+        "title": "Kirken",
+        "prompt": "Hvordan virker park og kirkebygg sammen?",
+        "subject_id": "by",
+        "emne_id": "em_by_parker_som_sosial_infrastruktur",
+        "evidence": "Skill den offentlige parken fra kirkens bygningshistorie."
+      }
+    ],
+    "guiding_questions": [
+      "Hvordan påvirker Blåsen ferdsel og utsikt?",
+      "Hvilke eldre arealformål kan dokumenteres?",
+      "Hvordan virker park og kirkebygg sammen?",
+      "Hva kan dokumenteres om Stensparken med daterte kilder?"
+    ],
+    "concepts": [
+      "topografi",
+      "bruk",
+      "utsyn_orientering",
+      "historie",
+      "parkhistorie"
+    ],
+    "observable_traces": [
+      {
+        "title": "Høyden",
+        "observation": "Parken følger en langstrakt rygg på Fagerborg. Området har hatt ulike formål før det ble park, blant annet jordbruk, og Blåsen gir utsyn over en større del av byen.",
+        "interpretation_boundary": "Observasjon alene dokumenterer ikke eldre bruk; hold kart, kilder og tidsperioder fra hverandre.",
+        "source_urls": [
+          "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/stensparken"
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/stensparken"
+    ],
+    "verified_at": "2026-10-25"
+  }
 }
