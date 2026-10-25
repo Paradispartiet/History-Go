@@ -1,0 +1,53 @@
+name: By-bolk 02 — 20 Places real-app QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/by-bolk02-app-qa.yml'
+      - 'tests/by-bolk02-real-app-browser-20261025.mjs'
+      - 'data/places/by/oslo/**'
+      - 'data/quiz/by/**'
+      - 'data/quizcards/by/**'
+      - 'data/fagverk/**'
+      - 'data/runtime/place-open/**'
+      - 'data/knowledge/knowledge_units.generated.json'
+      - 'data/epoker/epoke-place-index.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: by-bolk02-app-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    name: By-bolk02 app — shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install app and Chromium dependencies
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Verify Fagverk and runtime generation are in sync
+        run: |
+          npm run place-open:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Open 5 real places at 390 px and 1440 px
+        env:
+          HG_BY_SHARD: ${{ matrix.shard }}
+        run: node tests/by-bolk02-real-app-browser-20261025.mjs
+      - name: Archive screenshots and explicit image-pending statuses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: by-bolk02-app-shard-${{ matrix.shard }}
+          path: artifacts/by-bolk02-browser/shard-${{ matrix.shard }}/
+          if-no-files-found: warn
