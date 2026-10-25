@@ -63,3 +63,4 @@ jobs:
           if git diff --cached --quiet; then echo 'Already synchronized'; exit 0; fi
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Rebuild canonical Knowledge and Fagverk release after Krigsskolen taxonomy QA'
           git push origin HEAD:research/oslo-sentrum-kvadraturen-v1-six-20261023
+# Rerun with canonical source-critical emne binding for question 21
