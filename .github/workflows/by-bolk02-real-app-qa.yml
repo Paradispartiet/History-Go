@@ -1,0 +1,49 @@
+name: By-bolk 02 real app QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/by-bolk02-real-app-qa.yml'
+      - 'tests/by-bolk02-real-app-browser-20261025.mjs'
+      - 'data/places/by/oslo/**'
+      - 'data/runtime/place-open/**'
+      - 'data/quiz/by/**'
+      - 'data/quizcards/by/**'
+      - 'data/knowledge/knowledge_units.generated.json'
+      - 'js/ui/place-card.js'
+      - 'css/placeCard.css'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: by-bolk02-real-app-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    name: By-bolk 02 app — shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install app and browser dependencies
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Test 20 By-bolk02 places on 390px and 1440px
+        env:
+          HG_BY_SHARD: ${{ matrix.shard }}
+        run: node tests/by-bolk02-real-app-browser-20261025.mjs
+      - name: Keep screenshots and per-Place audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: by-bolk02-real-app-shard-${{ matrix.shard }}
+          path: artifacts/by-bolk02-browser/shard-${{ matrix.shard }}/
+          if-no-files-found: warn
