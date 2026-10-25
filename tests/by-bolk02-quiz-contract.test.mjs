@@ -197,3 +197,12 @@ test('Rudolf Nilsens plass and Kampen gård do not confuse Oslo neighborhoods wi
     assert.doesNotMatch(location.question, /bydel/, id);
   }
 });
+
+
+test('Each new By-bolk 02 QuizCard has at most two direct year-answer questions', () => {
+  for (const id of fresh) {
+    const questions = read('data/quiz/by/' + id + '_oslo_v1_sets.json').sets.flatMap(s => s.questions);
+    const directYears = questions.filter(q => /^(?:i\s+)?(?:1[0-9]{3}|20[0-9]{2})(?:-årene)?$/i.test(String(q.answer).trim()));
+    assert.ok(directYears.length <= 2, id + ': too many direct year questions: ' + directYears.length);
+  }
+});
