@@ -144,4 +144,58 @@ for(const [i,q] of garmannDraft.questions.entries()){
 }
 assert.ok(/kildene|kilder/.test(garmannDraft.questions[20].question.toLowerCase())&&/ulike sluttår/.test(garmannDraft.questions[20].knowledge.toLowerCase()),'Missing evidence-driven source-conflict question');
 assert.equal(garmannDraft.status.includes('manifested'),true);
+
+// Canonical-format files exist for Garmanngården, but publishing them requires
+// generated Knowledge IDs and the deterministic quiz production context.
+const fullQuizPath='data/quiz/historie/garmanngarden_sets.json';
+const cardPath='data/quizcards/historie/garmanngarden_quizkort_v1.json';
+const fullQuiz=read(fullQuizPath);
+const cardPreview=read(cardPath);
+assert.equal(fullQuiz.targetId,'garmanngarden');
+assert.equal(fullQuiz.categoryId,'historie');
+assert.equal(fullQuiz.production_status,'unmanifested_awaiting_deterministic_context_and_knowledge');
+assert.deepEqual(fullQuiz.sets.map(s=>s.questions.length),[7,7,7]);
+assert.deepEqual(fullQuiz.sets.map(s=>s.phase),['opening','bridge','final']);
+const fullQuestions=fullQuiz.sets.flatMap(s=>s.questions);
+assert.equal(fullQuestions.length,21);
+assert.equal(new Set(fullQuestions.map(q=>q.id)).size,21);
+assert.ok(fullQuestions.filter(isDirectYearRecall).length<=2,'Fullquiz requires too much date memorization');
+for(const [i,q] of fullQuestions.entries()){
+  const claim=garmannBrief.claims[i];
+  const draft=garmannDraft.questions[i];
+  assert.equal(q.id,'garmanngarden_quiz_'+String(i+1).padStart(2,'0'));
+  assert.equal(q.question,draft.question);
+  assert.equal(q.answer,draft.answer);
+  assert.equal(q.answer,q.options[q.answerIndex]);
+  assert.equal(q.claim_id,claim.claim_id);
+  assert.equal(q.claim_basis,claim.statement);
+  assert.deepEqual(q.source,claim.source_ids);
+  assert.equal(q.knowledge,draft.knowledge);
+  assert.equal(q.knowledge_link_status,'pending_canonical_generation');
+  assert.ok(!q.primary_knowledge_unit_id,'Unverified Knowledge ID cannot be declared linked');
+}
+assert.equal(cardPreview.production_status,'unmanifested_awaiting_knowledge_parity');
+assert.equal(cardPreview.cards.length,1);
+const preview=cardPreview.cards[0];
+assert.equal(preview.targetId,'garmanngarden');
+assert.equal(preview.questionCount,10);
+assert.equal(preview.questions.length,10);
+assert.equal(preview.answerKey.length,10);
+for(const [i,item] of preview.questions.entries()){
+  const q=fullQuestions.find(x=>x.id===item.sourceQuestionId);
+  assert.ok(q,'QuizCard question is not backed by fullquiz');
+  assert.equal(item.question,q.question);
+  assert.deepEqual(item.options,q.options);
+  assert.equal(item.answerIndex,q.answerIndex);
+  assert.equal(item.answer,q.answer);
+  assert.equal(item.sourceQuizId,q.quiz_id);
+  assert.equal(item.sourceQuizFile,fullQuizPath);
+  assert.deepEqual(item.source_refs,q.source);
+  assert.deepEqual(item.source_urls,q.source.map(ref=>fullQuiz.sources[ref]));
+  assert.equal(item.knowledge,q.knowledge);
+  assert.equal(preview.answerKey[i].answer,q.answer);
+}
+assert.equal((quizManifest.sets||[]).some(s=>s.targetId==='garmanngarden'),false,'Pending Knowledge fullquiz must not be activated');
+assert.equal(quizCardSources.historie.collections.includes('garmanngarden_quizkort_v1.json'),false,'Unlinked QuizCard must not be activated');
+
 console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',candidateCount,records:report},null,2));
