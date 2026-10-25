@@ -1,0 +1,45 @@
+name: By-bolk 02 synchronize Knowledge once
+on:
+  push:
+    branches:
+      - feature/by-bolk02-20-v1-20261025
+    paths:
+      - '.github/workflows/by-bolk02-sync-knowledge-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: by-bolk02-knowledge-once
+  cancel-in-progress: false
+jobs:
+  update-knowledge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/by-bolk02-20-v1-20261025
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install canonical tooling
+        run: npm ci --no-audit --no-fund
+      - name: Rebuild and verify Knowledge through existing canonical pipeline
+        run: |
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+      - name: Commit only canonically generated Knowledge/quiz data; remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/by-bolk02-sync-knowledge-once.yml
+          git add -A data/knowledge data/quiz data/quizcards
+          git add -u .github/workflows/by-bolk02-sync-knowledge-once.yml
+          if git diff --cached --quiet; then
+            echo "No generated differences"
+            exit 0
+          fi
+          git commit -m "chore(by): sync canonical Knowledge for By-bolk 02 and remove generator"
+          git pull --rebase origin feature/by-bolk02-20-v1-20261025
+          git push origin HEAD:feature/by-bolk02-20-v1-20261025
