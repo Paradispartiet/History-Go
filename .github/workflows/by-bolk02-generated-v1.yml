@@ -1,0 +1,53 @@
+name: By-bolk 02 generated v1 data
+on:
+  push:
+    branches:
+      - agent/by-bolk02-v1-20261025
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: by-bolk02-v1-generate
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    name: Synchronize canonical generated data
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out the existing By-bolk 02 branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install reproducible dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate existing canonical Knowledge data
+        run: npm run knowledge:canonical:write
+      - name: Regenerate existing place-open payloads
+        run: npm run place-open:build
+      - name: Regenerate existing era/place index
+        run: npm run epoker:places:build
+      - name: Refresh existing Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Commit generated data on the SAME PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A -- data/knowledge data/runtime data/epoker/epoke-place-index.json data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then
+            echo "Generated files already synchronized"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(by): synchronize derived Knowledge, place-open, epoker and Fagverk v1 data"
+          git push origin "HEAD:agent/by-bolk02-v1-20261025"
