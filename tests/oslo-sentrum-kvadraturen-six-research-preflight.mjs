@@ -45,6 +45,19 @@ for(const p of ledger.places){
   const articleReady=place.fagverk?.schema==='history_go_place_fagverk_v2' &&
     place.fagverk?.status==='curated' &&
     Array.isArray(place.fagverk?.article)&&place.fagverk.article.length>0;
+  if(articleReady){
+    assert.equal(place.fagverk.subject_ids?.includes(p.category),true,p.place_id+': Fagverk subject/category mismatch');
+    assert.ok(place.fagverk.article.length>=4,p.place_id+': Fagverk article too short');
+    assert.ok(place.fagverk.lenses?.length>=4,p.place_id+': missing Fagverk lenses');
+    assert.ok(place.fagverk.guiding_questions?.length>=5,p.place_id+': missing Fagverk questions');
+    assert.ok(place.fagverk.observable_traces?.length>=2,p.place_id+': missing observable traces');
+    assert.ok(place.fagverk.source_urls?.length>=1,p.place_id+': missing Fagverk sources');
+    assert.ok(place.fagverk.source_urls.every(u=>p.sources.includes(u)),p.place_id+': Fagverk source not in research ledger');
+    for(const lens of place.fagverk.lenses){
+      assert.equal(lens.subject_id,p.category,p.place_id+': lens domain mismatch');
+      assert.ok(place.fagverk.emne_ids.includes(lens.emne_id),p.place_id+': unknown lens emne');
+    }
+  }
   const visualReady=Boolean(place.frontImage&&place.image&&place.cardImage);
   report.push({id:p.place_id,canonical:true,sourceClaims:p.claims.length,quizSetFiles:relevantQuiz.map(z=>z.file),quizCardCollections:categoryQuizCardMatches,missingLegacyQuizCardFiles,fagverkReady:articleReady,visualFieldsReady:visualReady,notYetV1:!(relevantQuiz.length&&categoryQuizCardMatches.length&&articleReady&&visualReady)});
 }
