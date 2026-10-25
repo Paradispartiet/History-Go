@@ -210,3 +210,14 @@ test('Each new By-bolk 02 QuizCard has at most two direct year-answer questions'
       id + ': at most two direct year-answer questions per ten; found ' + directYears.length);
   }
 });
+
+test('By-bolk 02 avoids year-heavy quizzes (at most two standalone year answers in ten)', () => {
+  const standaloneYear = /^(?:I\\s+)?(?:1[5-9]\\d{2}|20\\d{2})(?:-årene)?$/i;
+  for (const id of fresh) {
+    const quiz = read('data/quiz/by/' + id + '_oslo_v1_sets.json');
+    const questions = quiz.sets.flatMap(set => set.questions);
+    const yearAnswers = questions.filter(q => standaloneYear.test(String(q.answer || '').trim()));
+    assert.ok(yearAnswers.length <= 2,
+      id + ': year-trivia overload (' + yearAnswers.length + '/10); emphasize people, places, events, reasons and consequences');
+  }
+});
