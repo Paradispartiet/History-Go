@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "2489c23be21592e460df539cdcf1cf7ed2b264e077f25d991d5e0c8c5a3bd1a1"
+    "content_sha256": "d9afc8969840992797fa10bdaf87f2e37fd28dfd431f9cc86c96d1efe2614cd6"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 474,
+    "package_file_count": 477,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1338,
+    "referenced_file_count": 1341,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2668,9 +2668,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 107,
+      "package_file_count": 110,
       "required_package_file_count": 4,
-      "optional_package_file_count": 103,
+      "optional_package_file_count": 106,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2959,6 +2959,18 @@
           ],
           "exists": true,
           "content_sha256": "366ff6cc597c4fe21227b51b310dde9bf5a3f2e64514aaff340199bff327b05c"
+        },
+        {
+          "path": "data/quiz/historie/garmanngarden_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.garmanngarden.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "e1e6b1e7c916be336c4ff8ce93dd0b759320fbce0a9867eefc988e7c7d3fcb76"
         },
         {
           "path": "data/quiz/historie/grindheim_runestein_sets.json",
@@ -3321,6 +3333,18 @@
           "content_sha256": "47b813e6676e707419a02cee04a97623f95899ff9acaaa1be9ac72f38a152d92"
         },
         {
+          "path": "data/quiz/production_briefs/historie/garmanngarden.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.garmanngarden.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "3d37cc88742f35addf9c395187177fef23fea772751a89f9c5e5c5c5a51289b8"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/grindheim_runestein.json",
           "required": false,
           "fields": [
@@ -3681,6 +3705,18 @@
           "content_sha256": "76c9a17113643355757bd696874177c4afba21d95c8fb417ff3150f54dfd9a04"
         },
         {
+          "path": "data/quiz/production_context/historie/garmanngarden.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.garmanngarden.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "5b92fcc0ea06e0a2f9b2422c6e47550fae3b42ec3d01b2bb99f6a90f2dd8bf70"
+        },
+        {
           "path": "data/quiz/production_context/historie/grindheim_runestein.json",
           "required": false,
           "fields": [
@@ -3957,20 +3993,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "26893c7932524b2f5f9166aab1f198ceb03bd52b7ecefa1a3415478e3cc0b1f5",
+      "package_content_sha256": "f8bd84dfcc55a9882d5b394d076868893877856c1a78566aec19a758922468ad",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 199,
+      "referenced_file_count": 202,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "b413c37e7534bc053301f82073c91fc7ab0f2bd25002e7449fdf406c88c3e677",
-      "content_sha256": "12fd1484329af6e3647ac41414f0bd7e9f695d80d854f39155617837fe14bc29",
+      "structure_sha256": "54bcbc2717bc2f5a0ba0ea0a3eb5c7d405e68b7659a632c2cb99cb249fa4a845",
+      "content_sha256": "74063018a1a26a919dcd00043707084bd5c7dc1f46001d6f205f7d5b86e2642c",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -8409,5 +8445,5 @@
       ]
     }
   },
-  "release_sha256": "b83dbfe5feaf73b88f99d11498e3523639caf106198f447fdf9457c725802382"
+  "release_sha256": "47ffcdf01bb0b3201b46b29a08bf0810a1697b8688e0f047aedd2b9ac895aa67"
 }
