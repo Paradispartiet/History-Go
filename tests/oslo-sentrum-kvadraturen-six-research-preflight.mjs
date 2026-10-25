@@ -227,8 +227,61 @@ assert.equal(persistedContext.targetId,'garmanngarden');
 assert.equal(persistedContext.claim_bank.length,21);
 assert.equal(persistedContext.question_balance.counts.concept_theory,4);
 assert.deepEqual(persistedContext.set_plan.map(x=>x.planned_questions),[7,7,7]);
-for(const p of ledger.places.filter(p=>p.place_id!=='garmanngarden')){
-  assert.equal(quizRefs.some(r=>r.targetId===p.place_id),false,p.place_id+': other place published prematurely');
+// Krigsskolen is the second active quiz, with canonical Knowledge linking,
+// but visual place/front-card QA is a separate release decision.
+const krigId='den_gamle_krigsskolen';
+const krigQuizPath='data/quiz/historie/'+krigId+'_sets.json';
+const krigCardPath='data/quizcards/historie/'+krigId+'_quizkort_v1.json';
+const krigQuiz=read(krigQuizPath);
+const krigCard=read(krigCardPath);
+const krigBrief=read('data/quiz/production_briefs/historie/'+krigId+'.json');
+const krigContext=read('data/quiz/production_context/historie/'+krigId+'.json');
+assert.equal(krigQuiz.targetId,krigId);
+assert.equal(krigQuiz.production_status,'manifested_knowledge_linked_pending_browser_qa');
+assert.equal(krigContext.profile,'narrow_3x7');
+assert.equal(krigContext.source_review_status,'reviewed');
+assert.equal(krigContext.claim_bank.length,21);
+assert.deepEqual(krigContext.question_balance.counts,{fact:12,context:5,concept_theory:4});
+assert.deepEqual(krigContext.set_plan.map(s=>s.planned_questions),[7,7,7]);
+assert.deepEqual(krigQuiz.sets.map(s=>s.questions.length),[7,7,7]);
+const krigQuestions=krigQuiz.sets.flatMap(s=>s.questions);
+assert.equal(krigQuestions.length,21);
+assert.equal(krigBrief.claims.length,21);
+assert.equal(krigQuestions.filter(isDirectYearRecall).length,0,'Krigsskolen must not turn into date trivia');
+const krigIds=new Set();
+for(const [i,q] of krigQuestions.entries()){
+  assert.equal(q.id,'den_gamle_krigsskolen_quiz_'+String(i+1).padStart(2,'0'));
+  assert.ok(!krigIds.has(q.id),'Duplicate Krigsskolen quiz ID');
+  krigIds.add(q.id);
+  assert.equal(q.answer,q.options[q.answerIndex]);
+  assert.equal(new Set(q.options).size,4);
+  assert.equal(q.claim_id,krigBrief.claims[i].claim_id);
+  assert.equal(q.knowledge,krigBrief.claims[i].statement);
+  assert.deepEqual(q.source,krigBrief.claims[i].source_ids);
+  assert.equal(q.knowledge_link_status,'linked');
+  assert.ok(q.primary_knowledge_unit_id?.startsWith('ku_historie_'));
+  assert.ok(q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id));
+}
+assert.equal(quizRefs.filter(r=>r.targetId===krigId&&r.file===krigQuizPath).length,1,'Krigsskolen quiz not registered once');
+assert.equal(quizCardSources.historie.collections.filter(x=>x===krigId+'_quizkort_v1.json').length,1,'Krigsskolen QuizCard not registered once');
+assert.equal(krigCard.cards[0].questionCount,10);
+assert.equal(krigCard.cards[0].questions.length,10);
+assert.equal(krigCard.cards[0].questions.filter(q=>q.knowledge_link_status==='linked').length,10);
+for(const [i,item] of krigCard.cards[0].questions.entries()){
+  const orig=krigQuestions.find(q=>q.id===item.sourceQuestionId);
+  assert.ok(orig,'QuizCard refers to a missing fullquiz question');
+  assert.equal(item.question,orig.question);
+  assert.deepEqual(item.options,orig.options);
+  assert.equal(item.answer,orig.answer);
+  assert.equal(item.answerIndex,orig.answerIndex);
+  assert.deepEqual(item.source_refs,orig.source);
+  assert.equal(item.primary_knowledge_unit_id,orig.primary_knowledge_unit_id);
+  assert.deepEqual(item.knowledge_unit_ids,orig.knowledge_unit_ids);
+  assert.equal(krigCard.cards[0].answerKey[i].answer,orig.answer);
+}
+// Four remaining places are still research/QuizCard candidates, not v1 quizzes.
+for(const p of ledger.places.filter(p=>!['garmanngarden','den_gamle_krigsskolen'].includes(p.place_id))){
+  assert.equal(quizRefs.some(r=>r.targetId===p.place_id),false,p.place_id+': remaining place published prematurely');
 }
 
 console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',candidateCount,records:report},null,2));
