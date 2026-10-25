@@ -142,6 +142,6 @@ for(const [i,q] of garmannDraft.questions.entries()){
   assert.deepEqual(q.source_ids,garmannBrief.claims[i].source_ids,'Garmanngården source mismatch');
   for(const sid of q.source_ids)assert.equal(garmannBrief.sources[sid].review_status,'reviewed');
 }
-assert.equal(garmannDraft.questions[20].question.includes('ulike sluttår'),true,'Missing source-conflict question');
+assert.ok(/kildene|kilder/.test(garmannDraft.questions[20].question.toLowerCase())&&/ulike sluttår/.test(garmannDraft.questions[20].knowledge.toLowerCase()),'Missing evidence-driven source-conflict question');
 assert.equal(garmannDraft.status.includes('manifested'),true);
 console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',candidateCount,records:report},null,2));
