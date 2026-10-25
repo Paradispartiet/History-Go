@@ -5,7 +5,7 @@
   "targetId": "garmanngarden",
   "profile_hint": "narrow",
   "reviewed_at": "2026-10-25",
-  "review_note": "21 stedsforankrede kildepåstander er sammenholdt med Oslo kommunes eiendomsside og Oslo byleksikons Rådhusgata 7, med særskilt forbehold om Hauges sluttår og kommunens feilaktige kongenavn for hendelsen i 1624. Quizdesignet er oppdatert 25.10 etter redaksjonell prioritet: flere fortellende og stedlige spørsmål, langt mindre årstallsretrieval. Påstandsfamilier er normalisert til eksisterende produksjonskontrakt (fact/context); faglig observasjon ligger i spørsmålets question_type, ikke som en ukjent påstandsfamilie.",
+  "review_note": "21 stedsforankrede kildepåstander er sammenholdt med Oslo kommunes eiendomsside og Oslo byleksikons Rådhusgata 7, med særskilt forbehold om Hauges sluttår og kommunens feilaktige kongenavn for hendelsen i 1624. Quizdesignet er oppdatert 25.10 etter redaksjonell prioritet: flere fortellende og stedlige spørsmål, langt mindre årstallsretrieval. Påstandsfamilier er normalisert til eksisterende produksjonskontrakt (fact/context); faglig observasjon ligger i spørsmålets question_type, ikke som en ukjent påstandsfamilie. Kildekonflikten om Hauge er nå en stedsspesifikk kildekritisk oppgave bundet til Marc Bloch, The Historian's Craft og den eksisterende metoden met_kildekritikk (ikke teorinavn som fasit).",
   "scope": {
     "place": "Garmanngården",
     "production_profile": "narrow",
@@ -29,15 +29,26 @@
     }
   },
   "selected_curriculum": {
-    "module_ids": [],
+    "module_ids": [
+      "his_kilder_arkiv_spor"
+    ],
     "emne_ids": [
       "em_his_spor_materialitet",
-      "em_his_historiske_lag_i_byrom"
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor"
     ],
-    "topic_hook_ids": [],
-    "method_ids": [],
-    "thinker_ids": [],
-    "works": []
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ]
   },
   "existing_quiz_audit": {
     "searched_paths": [
@@ -318,14 +329,22 @@
       "claim_id": "claim_garmanngarden_quiz_21",
       "order": 21,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Oslo kommune og Oslo byleksikon gir ulike sluttår for Hauges fengsling. Kildekritikk betyr å vise forskjellen og undersøke primærmateriale fremfor å late som om årstallet er avklart.",
       "source_ids": [
         "oslo_kommune",
         "oslo_byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_his_spor_materialitet"
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "method_id": "met_kildekritikk",
+      "topic_hook_id": "his_kildekritikk",
+      "thinker_id": "marc_bloch",
+      "work": "The Historian's Craft",
+      "guidance_basis": [
+        "Oslo kommune og Oslo byleksikon oppgir ulike sluttår for Hauges fengsling ved Garmanngården",
+        "met_kildekritikk"
+      ]
     }
   ]
 }
