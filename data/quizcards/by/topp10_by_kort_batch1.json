@@ -3,12 +3,7 @@
   "categoryId": "by",
   "title": "By – topp 10 quizkort – batch 1",
   "cardFormatRule": "Ett kort per sted. Alle 10 spørsmål vises på samme side. Fasit ligger nederst i liten tekst.",
-  "sourceBasis": [
-    "places_by (25).json",
-    "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-    "emner_by_canonical_v4_5.json",
-    "methods_by_canonical_v4_5.json"
-  ],
+  "sourceBasis": "By-bolk 03: valgte eksisterende stedsspørsmål, Knowledge og kildereferanser følger kanoniske fullquizer. Karl Johans gates eldre fullquiz mangler direkte ekstern kilde per spørsmål og krever separat redaksjonell kildekontroll.",
   "cards": [
     {
       "card_id": "by_quizkort_topp10_batch1_aker_brygge",
@@ -1175,285 +1170,429 @@
       "categoryId": "by",
       "targetId": "torggata",
       "title": "Torggata",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 5,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva slags byrom er Torggata i steddataene?",
+          "id": "torggata_quiz_1",
+          "question": "Hvilke to hovedpunkter binder Torggata sammen i den canonicale gateidentiteten?",
           "options": [
-            "En historisk sentrumsgate som er blitt kommersiell kultur- og utelivsakse",
-            "Et rent boligfelt i marka",
-            "Et havneområde uten gateliv"
+            "Stortorvet og Ankertorget",
+            "Jernbanetorget og Bislett",
+            "Slottet og Majorstuen"
           ],
-          "answer": "En historisk sentrumsgate som er blitt kommersiell kultur- og utelivsakse",
+          "answer": "Stortorvet og Ankertorget",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q01",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
+          "sourceQuestionId": "torggata_quiz_1",
+          "sourceQuizId": "by_torggata_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
           "difficulty": 1,
-          "topic": "stedstype",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Torggata går gjennom flere historiske bylag fra Stortorvet via Youngstorget mot Ankertorget/Ankerbrua-området.",
+          "source": [
+            "torggata_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/index.php/Torggata"
+          ],
+          "claim_id": "claim_torggata_quiz_1",
+          "claim_basis": "Torggata er den navngitte gaten fra Stortorvet til Ankertorget, med videre historisk tilknytning mot Ankerbrua.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_torggata_gar_gjennom_fle_51ebb565a3",
+          "knowledge_unit_ids": [
+            "ku_by_torggata_gar_gjennom_fle_51ebb565a3"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "stedstype"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hva har skjedd med Torggata over tid?",
+          "id": "torggata_quiz_8",
+          "question": "Hva ble oppført i Torggata 16 i 1861?",
           "options": [
-            "Den er oppgradert fra slitt/nedprioritert bygate til mer kuratert kommersiell akse",
-            "Den er gjort om fra park til skog",
-            "Den er flyttet fra sentrum til Groruddalen"
+            "Bade- og Vadskeanstalten",
+            "Fahlstrøms Theater",
+            "Strøget"
           ],
-          "answer": "Den er oppgradert fra slitt/nedprioritert bygate til mer kuratert kommersiell akse",
+          "answer": "Bade- og Vadskeanstalten",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q02",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
-          "difficulty": 1,
-          "topic": "transformasjon",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "torggata_quiz_8",
+          "sourceQuizId": "by_torggata_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Det første badet kom flere tiår før den nåværende nyklassisistiske bygningen.",
+          "source": [
+            "torggata_bad_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Torggata_bad"
+          ],
+          "claim_id": "claim_torggata_quiz_8",
+          "claim_basis": "Thorvald Meyer lot Thøger Binneballe oppføre Bade- og Vadskeanstalten i Torggata 16 i 1861.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_det_f_rste_badet_kom_fle_d569db2761",
+          "knowledge_unit_ids": [
+            "ku_by_det_f_rste_badet_kom_fle_d569db2761"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "transformasjon"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hva er et sentralt konfliktpunkt i Torggata?",
+          "id": "torggata_quiz_15",
+          "question": "Når ble John Dee etablert i Rockefeller-komplekset?",
           "options": [
-            "Gentrifisering, leienivå og hvem som får plass",
-            "Skogsdrift og jordvern",
-            "Middelalderruiner og klosterliv"
+            "1997",
+            "1986",
+            "2014"
           ],
-          "answer": "Gentrifisering, leienivå og hvem som får plass",
+          "answer": "1997",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q03",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
-          "difficulty": 1,
-          "topic": "kritikk",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "torggata_quiz_15",
+          "sourceQuizId": "by_torggata_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
+          "difficulty": 3,
+          "question_type": "fact",
+          "knowledge": "John Dee kom elleve år etter Rockefeller og viser hvordan scenevirksomheten i komplekset ble utvidet.",
+          "source": [
+            "rockefeller_booking"
+          ],
+          "source_urls": [
+            "https://www.rockefeller.no/booking-utleie"
+          ],
+          "claim_id": "claim_torggata_quiz_15",
+          "claim_basis": "John Dee ble etablert i 1997 som en mindre klubbscene i Rockefeller-systemet.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_john_dee_kom_elleve_ar_e_380c06cb62",
+          "knowledge_unit_ids": [
+            "ku_by_john_dee_kom_elleve_ar_e_380c06cb62"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "kritikk"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hva betyr gateprofil i Torggata-sammenheng?",
+          "id": "torggata_quiz_22",
+          "question": "Hva beskriver Oslo-studien at en stor eiendomsaktør ønsket å påvirke i Torggata?",
           "options": [
-            "Hvordan fysisk utforming, oppgradering og bruk gjør gaten mer attraktiv og styrt",
-            "Hvordan fjelltopper måles",
-            "Hvordan togspor bygges under bakken"
+            "Tenant-miks og leie-/eiendomsverdier",
+            "Elveløpet gjennom gaten",
+            "Byens kommunegrenser"
           ],
-          "answer": "Hvordan fysisk utforming, oppgradering og bruk gjør gaten mer attraktiv og styrt",
+          "answer": "Tenant-miks og leie-/eiendomsverdier",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q04",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
-          "difficulty": 1,
-          "topic": "begrep",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "torggata_quiz_22",
+          "sourceQuizId": "by_torggata_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
+          "difficulty": 4,
+          "question_type": "context",
+          "knowledge": "Aktørstrategi er dokumentert, men dette er ikke det samme som direkte dokumentasjon av at bestemte personer eller virksomheter faktisk ble fortrengt.",
+          "source": [
+            "urban_transformation_article"
+          ],
+          "source_urls": [
+            "https://journals.sagepub.com/doi/10.1177/0269094220988714"
+          ],
+          "claim_id": "claim_torggata_quiz_22",
+          "claim_basis": "Den fagfellevurderte studien beskriver strategisk tenant-miks og høyere leie-/eiendomsverdier som mål eller virkemidler hos en anonymisert stor eiendomsaktør i Torggata.",
+          "emne_id": "em_by_gentrifisering_eiendom",
+          "primary_knowledge_unit_id": "ku_by_akt_rstrategi_er_dokumen_c960707519",
+          "knowledge_unit_ids": [
+            "ku_by_akt_rstrategi_er_dokumen_c960707519"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "begrep"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hvilke virksomheter preger den nye Torggata-profilen?",
+          "id": "torggata_quiz_29",
+          "question": "Hva skjedde med Eldorado etter at kinodriften sluttet i 2012?",
           "options": [
-            "Servering, uteliv, konsepter og kommersielle tilbud",
-            "Skipsverft og tungindustri",
-            "Gårdsbruk og seterdrift"
+            "Lokalene ble omgjort til bokhandel i 2013",
+            "Bygningen ble revet samme år",
+            "Det kommunale badet flyttet inn"
           ],
-          "answer": "Servering, uteliv, konsepter og kommersielle tilbud",
+          "answer": "Lokalene ble omgjort til bokhandel i 2013",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q05",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
-          "difficulty": 1,
-          "topic": "bruk",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "torggata_quiz_29",
+          "sourceQuizId": "by_torggata_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
+          "difficulty": 4,
+          "question_type": "fact",
+          "knowledge": "Eldorado er derfor et sted der varieté, teater, kino og bokhandel har avløst hverandre.",
+          "source": [
+            "eldorado_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/index.php?title=Eldorado"
+          ],
+          "claim_id": "claim_torggata_quiz_29",
+          "claim_basis": "Kinodriften i Eldorado varte til 2012, og lokalene ble omgjort til bokhandel i 2013.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_eldorado_er_derfor_et_st_60996d6607",
+          "knowledge_unit_ids": [
+            "ku_by_eldorado_er_derfor_et_st_60996d6607"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "bruk"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hva gjør Torggata relevant for eiendomsanalyse?",
+          "id": "torggata_quiz_2",
+          "question": "I hvilket år ble den første delen fra Stortorvet til Youngstorget opparbeidet?",
           "options": [
-            "Økt attraktivitet kan endre leienivåer, butikkmiks og sosial sammensetning",
-            "Gaten mangler bygninger",
-            "Den er eid av én gårdbruker"
+            "1846",
+            "1857",
+            "1876"
           ],
-          "answer": "Økt attraktivitet kan endre leienivåer, butikkmiks og sosial sammensetning",
+          "answer": "1846",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q06",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
+          "sourceQuestionId": "torggata_quiz_2",
+          "sourceQuizId": "by_torggata_set_1_q2",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
           "difficulty": 1,
-          "topic": "analyse",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "1846 er startpunktet for den dokumenterte etappevise opparbeidingen, ikke et år der hele dagens gateløp plutselig var ferdig.",
+          "source": [
+            "torggata_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/index.php/Torggata"
+          ],
+          "claim_id": "claim_torggata_quiz_2",
+          "claim_basis": "Strekningen fra Stortorvet til Youngstorget ble opparbeidet som Øvre Torvegade i 1846.",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_1846_er_startpunktet_for_61df993bec",
+          "knowledge_unit_ids": [
+            "ku_by_1846_er_startpunktet_for_61df993bec"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "analyse"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hvilket byemne passer særlig godt til Torggata?",
+          "id": "torggata_quiz_9",
+          "question": "Hva skjedde med badeanlegget året etter at det ble oppført?",
           "options": [
-            "Gentrifisering og eiendom",
-            "Fjordliv og badeplasser",
-            "Klosterhistorie"
+            "Det ble gitt til Christiania kommune",
+            "Det ble flyttet til Bygdøy",
+            "Det ble gjort om til kino"
           ],
-          "answer": "Gentrifisering og eiendom",
+          "answer": "Det ble gitt til Christiania kommune",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q07",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
+          "sourceQuestionId": "torggata_quiz_9",
+          "sourceQuizId": "by_torggata_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
           "difficulty": 2,
-          "topic": "emne",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Gaven gjorde badeanlegget til en kommunal institusjon i byen.",
+          "source": [
+            "torggata_bad_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Torggata_bad"
+          ],
+          "claim_id": "claim_torggata_quiz_9",
+          "claim_basis": "Thorvald Meyer ga Bade- og Vadskeanstalten til Christiania kommune i 1862.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_gaven_gjorde_badeanlegge_03e0582cb8",
+          "knowledge_unit_ids": [
+            "ku_by_gaven_gjorde_badeanlegge_03e0582cb8"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "emne"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hva er kontrasten steddataene vil at man skal lese i Torggata?",
+          "id": "torggata_quiz_16",
+          "question": "Hva heter den bilfrie passasjen mellom Torggata og Storgata?",
           "options": [
-            "Mellom råere fortid og mer kuratert nåtid",
-            "Mellom skog og fjell",
-            "Mellom kirkerom og gravlund"
+            "Strøget",
+            "Akersgangen",
+            "Torvpassasjen"
           ],
-          "answer": "Mellom råere fortid og mer kuratert nåtid",
+          "answer": "Strøget",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q08",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
-          "difficulty": 2,
-          "topic": "kontrast",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "torggata_quiz_16",
+          "sourceQuizId": "by_torggata_set_3_q2",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
+          "difficulty": 3,
+          "question_type": "fact",
+          "knowledge": "Strøget åpnet rundt årsskiftet 1969–1970 og er et eget byrom knyttet til Torggata, ikke selve Torggata.",
+          "source": [
+            "stroget_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Str%C3%B8get"
+          ],
+          "claim_id": "claim_torggata_quiz_16",
+          "claim_basis": "Strøget er den bilfrie passasjen mellom Torggata og Storgata.",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
+          "primary_knowledge_unit_id": "ku_by_str_get_apnet_rundt_arss_60bf1aed81",
+          "knowledge_unit_ids": [
+            "ku_by_str_get_apnet_rundt_arss_60bf1aed81"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "kontrast"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hva sier Torggata om planmakt?",
+          "id": "torggata_quiz_23",
+          "question": "Hva kan kildene ikke alene bevise om Torggatas ombygging?",
           "options": [
-            "Regulering og investeringer kan styre hvilke typer byliv som vokser fram",
-            "Planmakt handler bare om værvarsel",
-            "Planmakt finnes bare i nasjonalparker"
+            "At ombyggingen alene presset ut bestemte tidligere brukere og virksomheter",
+            "At gaten fikk ny utforming i 2014",
+            "At Torggata har en lang handelshistorie"
           ],
-          "answer": "Regulering og investeringer kan styre hvilke typer byliv som vokser fram",
+          "answer": "At ombyggingen alene presset ut bestemte tidligere brukere og virksomheter",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q09",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
-          "difficulty": 2,
-          "topic": "styring",
+          "sourceQuestionId": "torggata_quiz_23",
+          "sourceQuizId": "by_torggata_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
+          "difficulty": 4,
+          "question_type": "context",
+          "knowledge": "Torggata-kildebasen krever at gentrifisering og kommersialisering beskrives med inferensgrense, ikke som enkel årsakskjede.",
+          "source": [
+            "urban_transformation_article",
+            "uib_torggata"
+          ],
+          "source_urls": [
+            "https://journals.sagepub.com/doi/10.1177/0269094220988714",
+            "https://www4.uib.no/forskning/forskergrupper/samfunnsgeografi-og-baerekraftig-utvikling/endringer-i-det-offentlige-rom-torggata-i-oslo"
+          ],
+          "claim_id": "claim_torggata_quiz_23",
+          "claim_basis": "Kildene gir ikke grunnlag for å hevde at én gateombygging alene forårsaket direkte fortrengning av bestemte tidligere virksomheter eller brukergrupper.",
           "emne_id": "em_by_gentrifisering_eiendom",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_torggata_kildebasen_krev_48024c7db1",
+          "knowledge_unit_ids": [
+            "ku_by_torggata_kildebasen_krev_48024c7db1"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "styring"
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Torggata i steddataene?",
+          "id": "torggata_quiz_30",
+          "question": "Hva lærer sammenstillingen av Torggata bad i 1861, 1980 og 1986 oss?",
           "options": [
-            "1850",
-            "2012",
-            "1972"
+            "At samme sted kan skifte fra offentlig velferdsfunksjon til kultur- og arrangementsbruk",
+            "At bygningen alltid var en konsertscene",
+            "At badet først åpnet etter Rockefeller"
           ],
-          "answer": "1850",
+          "answer": "At samme sted kan skifte fra offentlig velferdsfunksjon til kultur- og arrangementsbruk",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_torggata_q10",
-          "sourceQuizId": "by_quizkort_batch1_torggata",
-          "difficulty": 2,
-          "topic": "årstall",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "torggata_quiz_30",
+          "sourceQuizId": "by_torggata_set_5_q2",
+          "sourceQuizFile": "data/quiz/by/torggata_sets.json",
+          "difficulty": 4,
+          "question_type": "context",
+          "knowledge": "Sammenligningen gjør transformasjonen konkret uten å late som alle mellomliggende bruksendringer skjedde samtidig.",
+          "source": [
+            "torggata_bad_byleksikon",
+            "rockefeller_booking"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Torggata_bad",
+            "https://www.rockefeller.no/booking-utleie"
+          ],
+          "claim_id": "claim_torggata_quiz_30",
+          "claim_basis": "Tidslinjen fra badeanstalt via badeavslutning i 1980 til Rockefeller i 1986 viser en tydelig funksjonsendring fra offentlig bad til kultur- og arrangementsbruk.",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "primary_knowledge_unit_id": "ku_by_sammenligningen_gj_r_tra_69e3ea842b",
+          "knowledge_unit_ids": [
+            "ku_by_sammenligningen_gj_r_tra_69e3ea842b"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "torggata",
-            "årstall"
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "En historisk sentrumsgate som er blitt kommersiell kultur- og utelivsakse"
+          "answer": "Stortorvet og Ankertorget",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Den er oppgradert fra slitt/nedprioritert bygate til mer kuratert kommersiell akse"
+          "answer": "Bade- og Vadskeanstalten",
+          "answerIndex": 0
         },
         {
           "number": 3,
-          "answer": "Gentrifisering, leienivå og hvem som får plass"
+          "answer": "1997",
+          "answerIndex": 0
         },
         {
           "number": 4,
-          "answer": "Hvordan fysisk utforming, oppgradering og bruk gjør gaten mer attraktiv og styrt"
+          "answer": "Tenant-miks og leie-/eiendomsverdier",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Servering, uteliv, konsepter og kommersielle tilbud"
+          "answer": "Lokalene ble omgjort til bokhandel i 2013",
+          "answerIndex": 0
         },
         {
           "number": 6,
-          "answer": "Økt attraktivitet kan endre leienivåer, butikkmiks og sosial sammensetning"
+          "answer": "1846",
+          "answerIndex": 0
         },
         {
           "number": 7,
-          "answer": "Gentrifisering og eiendom"
+          "answer": "Det ble gitt til Christiania kommune",
+          "answerIndex": 0
         },
         {
           "number": 8,
-          "answer": "Mellom råere fortid og mer kuratert nåtid"
+          "answer": "Strøget",
+          "answerIndex": 0
         },
         {
           "number": 9,
-          "answer": "Regulering og investeringer kan styre hvilke typer byliv som vokser fram"
+          "answer": "At ombyggingen alene presset ut bestemte tidligere brukere og virksomheter",
+          "answerIndex": 0
         },
         {
           "number": 10,
-          "answer": "1850"
+          "answer": "At samme sted kan skifte fra offentlig velferdsfunksjon til kultur- og arrangementsbruk",
+          "answerIndex": 0
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/torggata_sets.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch1_gronland_basarene",
@@ -1745,285 +1884,374 @@
       "categoryId": "by",
       "targetId": "karl_johan",
       "title": "Karl Johans gate",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 7,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva er Karl Johans gate i Oslo?",
+          "id": "karl_johan_quiz_1",
+          "question": "Hvilket symbol representerer Karl Johans gate i byens struktur?",
           "options": [
-            "Hovedgate og nasjonal paradeakse",
-            "Et havneområde i Bjørvika",
-            "Et lokalt nabolagstorg på Tøyen"
+            "Akse mellom monarkiet og folket",
+            "Grensen mellom øst og vest",
+            "Tidligere vollgrav"
           ],
-          "answer": "Hovedgate og nasjonal paradeakse",
+          "answer": "Akse mellom monarkiet og folket",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q01",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
+          "sourceQuestionId": "karl_johan_quiz_1",
+          "sourceQuizId": "by_karl_johans_gate_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
           "difficulty": 1,
-          "topic": "stedstype",
-          "emne_id": "em_by_hendelsesbasert_byliv_hoytider",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Karl Johans gate er byens hovedakse, som symbolsk binder Slottet og Stortinget sammen.",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "primary_knowledge_unit_id": "ku_by_karl_johans_gate_er_byen_36d3c2b940",
+          "knowledge_unit_ids": [
+            "ku_by_karl_johans_gate_er_byen_36d3c2b940"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
+            "fakta",
             "sted",
-            "karl_johan",
-            "stedstype"
+            "byforståelse",
+            "byakse",
+            "symbolsk_geografi",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hvilke endepunkter binder Karl Johans gate særlig sammen?",
+          "id": "karl_johan_quiz_8",
+          "question": "Hvilken jernbanestasjon markerer den østlige enden av Karl Johans gate i dag?",
           "options": [
-            "Jernbanetorget/sentrum og Slottet",
-            "Aker Brygge og Nesodden",
-            "Tøyen og Helsfyr"
+            "Oslo S",
+            "Nationaltheatret stasjon",
+            "Skøyen stasjon"
           ],
-          "answer": "Jernbanetorget/sentrum og Slottet",
+          "answer": "Oslo S",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q02",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
+          "sourceQuestionId": "karl_johan_quiz_8",
+          "sourceQuizId": "by_karl_johans_gate_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
           "difficulty": 1,
-          "topic": "romlig_akse",
-          "emne_id": "em_by_publikum_deltakelse_tilskuere",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Karl Johans gate leder i dag ned mot Jernbanetorget og Oslo S, som markerer den østlige enden av den sentrale aksen. ",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "primary_knowledge_unit_id": "ku_by_karl_johans_gate_leder_i_f243f81d9f",
+          "knowledge_unit_ids": [
+            "ku_by_karl_johans_gate_leder_i_f243f81d9f"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "karl_johan",
-            "romlig_akse"
+            "fakta",
+            "østende",
+            "oslo_s",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hvilke institusjoner ligger langs eller nær Karl Johan-aksen?",
+          "id": "karl_johan_quiz_15",
+          "question": "Hvilket begrep passer best når Karl Johans gate midlertidig forvandles av 17. mai, Pride eller markeringer?",
           "options": [
-            "Stortinget, universitetet, Nationaltheatret og Slottet",
-            "Vulkan energisentral og Bispelokket",
-            "Ullevål stadion og Holmenkollen"
+            "Hendelsesbasert byliv",
+            "Lavintensiv bakgatebruk",
+            "Privatisert bakrom"
           ],
-          "answer": "Stortinget, universitetet, Nationaltheatret og Slottet",
+          "answer": "Hendelsesbasert byliv",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q03",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
-          "difficulty": 1,
-          "topic": "institusjoner",
-          "emne_id": "em_by_symbolsk_makt_og_representasjon",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "karl_johan_quiz_15",
+          "sourceQuizId": "by_karl_johans_gate_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
+          "difficulty": 3,
+          "question_type": "concept",
+          "knowledge": "Karl Johans gate er et lærested for hendelsesbasert byliv fordi høytider og markeringer midlertidig omformer bruk, symbolikk og bevegelse i gata. ",
+          "emne_id": "em_by_hendelsesbasert_byliv_hoytider",
+          "primary_knowledge_unit_id": "ku_by_karl_johans_gate_er_et_l_c8861d5ab4",
+          "knowledge_unit_ids": [
+            "ku_by_karl_johans_gate_er_et_l_c8861d5ab4"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "karl_johan",
-            "institusjoner"
+            "emne",
+            "hendelsesbasert_byliv",
+            "17_mai",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hvorfor er Karl Johan viktig på 17. mai?",
+          "id": "karl_johan_quiz_22",
+          "question": "Hvilken arkitekt tegnet Slottet, som danner vestenden av Karl Johans gate?",
           "options": [
-            "Gaten fungerer som parade- og publikumsrom for barnetog og nasjonale ritualer",
-            "Gaten brukes som lukket lagerområde",
-            "Gaten er bare en motorvei"
+            "Hans Ditlev Franciscus Linstow",
+            "Christian Heinrich Grosch",
+            "Arnstein Arneberg"
           ],
-          "answer": "Gaten fungerer som parade- og publikumsrom for barnetog og nasjonale ritualer",
+          "answer": "Hans Ditlev Franciscus Linstow",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q04",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
-          "difficulty": 1,
-          "topic": "ritual",
-          "emne_id": "em_by_hendelsesbasert_byliv_hoytider",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "karl_johan_quiz_22",
+          "sourceQuizId": "by_karl_johans_gate_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
+          "difficulty": 3,
+          "question_type": "fact",
+          "knowledge": "Linstow tegnet Slottet og spilte også en avgjørende rolle i den overordnede planideen som ga Karl Johans gate dens representative løp. ",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
+          "primary_knowledge_unit_id": "ku_by_linstow_tegnet_slottet_o_cbaaf29f5c",
+          "knowledge_unit_ids": [
+            "ku_by_linstow_tegnet_slottet_o_cbaaf29f5c"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "karl_johan",
-            "ritual"
+            "linstow",
+            "slottet",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hva gjør Karl Johan til offentlig teater?",
+          "id": "karl_johan_quiz_29",
+          "question": "Hva er den viktigste forskjellen mellom symbolsk makt og fysisk kontroll i Karl Johans gate?",
           "options": [
-            "Folk blir både publikum og deltakere i markeringer, feiringer og hverdagsliv",
-            "Ingen mennesker kan oppholde seg der",
-            "Gaten mangler all symbolsk bruk"
+            "Symbolsk makt virker gjennom ritualer, arkitektur og representasjon mer enn gjennom murer og porter",
+            "Det finnes ingen forskjell; begge betyr bare politi til stede",
+            "Fysisk kontroll er alltid usynlig, symbolsk makt alltid materiell"
           ],
-          "answer": "Folk blir både publikum og deltakere i markeringer, feiringer og hverdagsliv",
+          "answer": "Symbolsk makt virker gjennom ritualer, arkitektur og representasjon mer enn gjennom murer og porter",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q05",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
-          "difficulty": 1,
-          "topic": "offentlighet",
-          "emne_id": "em_by_publikum_deltakelse_tilskuere",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "karl_johan_quiz_29",
+          "sourceQuizId": "by_karl_johans_gate_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "knowledge": "I Karl Johans gate uttrykkes makt først og fremst gjennom iscenesettelse, akser, navn, institusjoner og seremonier, ikke gjennom befestning. ",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
+          "primary_knowledge_unit_id": "ku_by_i_karl_johans_gate_uttry_59bf7fa146",
+          "knowledge_unit_ids": [
+            "ku_by_i_karl_johans_gate_uttry_59bf7fa146"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "karl_johan",
-            "offentlighet"
+            "teori",
+            "symbolsk_makt",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hva slags makt blir synlig langs Karl Johan?",
+          "id": "karl_johan_quiz_36",
+          "question": "Hvilket begrep passer best for en gate som brukes til nasjonaldag, protester og store markeringer?",
           "options": [
-            "Statlig, kongelig, kulturell og offentlig symbolmakt",
-            "Bare privat hagebruk",
-            "Bare havneteknikk"
+            "Symbolsk byrom",
+            "Driftskorridor",
+            "Baksideareal"
           ],
-          "answer": "Statlig, kongelig, kulturell og offentlig symbolmakt",
+          "answer": "Symbolsk byrom",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q06",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
-          "difficulty": 1,
-          "topic": "symbolikk",
-          "emne_id": "em_by_symbolsk_makt_og_representasjon",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "karl_johan_quiz_36",
+          "sourceQuizId": "by_karl_johans_gate_set_6_q1",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
+          "difficulty": 2,
+          "question_type": "concept",
+          "knowledge": "Et symbolsk byrom er et sted der politiske, nasjonale eller kulturelle betydninger er sterkt knyttet til selve rommet. ",
+          "emne_id": "em_by_hendelsesbasert_byliv_hoytider",
+          "primary_knowledge_unit_id": "ku_by_et_symbolsk_byrom_er_et__4c7ee601de",
+          "knowledge_unit_ids": [
+            "ku_by_et_symbolsk_byrom_er_et__4c7ee601de"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "karl_johan",
-            "symbolikk"
+            "begrep",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hva er en god kontrast til å forstå Karl Johan?",
+          "id": "karl_johan_quiz_2",
+          "question": "Når fikk gaten sitt nåværende navn til ære for kong Karl Johan?",
           "options": [
-            "Mellom hverdagsgate og seremoniell nasjonal scene",
-            "Mellom skog og myr",
-            "Mellom jordbruk og fiske"
+            "1852",
+            "1814",
+            "1905"
           ],
-          "answer": "Mellom hverdagsgate og seremoniell nasjonal scene",
+          "answer": "1852",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q07",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
-          "difficulty": 2,
-          "topic": "kontrast",
-          "emne_id": "em_by_hendelsesbasert_byliv_hoytider",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "karl_johan_quiz_2",
+          "sourceQuizId": "by_karl_johans_gate_set_1_q2",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
+          "difficulty": 1,
+          "question_type": "fact",
+          "knowledge": "Gaten fikk navnet ‘Karl Johans gate’ i 1852 til minne om kong Karl III Johan.",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "primary_knowledge_unit_id": "ku_by_gaten_fikk_navnet_karl_j_7752b0d2f6",
+          "knowledge_unit_ids": [
+            "ku_by_gaten_fikk_navnet_karl_j_7752b0d2f6"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
+            "fakta",
             "sted",
-            "karl_johan",
-            "kontrast"
+            "navnehistorikk",
+            "gatenavn",
+            "kong_karl_johan",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hvilket byemne passer særlig til Karl Johan?",
+          "id": "karl_johan_quiz_9",
+          "question": "Hvilken bygning langs Karl Johans gate er kjent for aulaen med Edvard Munchs monumentale malerier?",
           "options": [
-            "Symbolsk makt og representasjon",
-            "Geobrønner og energilagring",
-            "Trehusvern i småskala boligstrøk"
+            "Universitetet i Oslo",
+            "Stortinget",
+            "Grand Hotel"
           ],
-          "answer": "Symbolsk makt og representasjon",
+          "answer": "Universitetet i Oslo",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q08",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
+          "sourceQuestionId": "karl_johan_quiz_9",
+          "sourceQuizId": "by_karl_johans_gate_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
           "difficulty": 2,
-          "topic": "emne",
-          "emne_id": "em_by_publikum_deltakelse_tilskuere",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Universitetets gamle bygninger langs Karl Johans gate rommer Aulaen, kjent for Edvard Munchs store utsmykninger. ",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
+          "primary_knowledge_unit_id": "ku_by_universitetets_gamle_byg_3113eea3b6",
+          "knowledge_unit_ids": [
+            "ku_by_universitetets_gamle_byg_3113eea3b6"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "karl_johan",
-            "emne"
+            "institusjon",
+            "aula",
+            "munch",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hva betyr det at publikum ikke er helt passivt på Karl Johan?",
+          "id": "karl_johan_quiz_16",
+          "question": "Hva beskriver best emnet publikum, deltakelse og tilskuere slik det kan leses i Karl Johans gate?",
           "options": [
-            "Folk fyller gaten og blir del av bildet og seremonien",
-            "Folk er forbudt å gå der",
-            "Gaten brukes bare av tog"
+            "At mennesker samles som tilskuere og deltakere i et offentlig scenerom",
+            "At gata først og fremst er et lukket ekspertrom uten publikum",
+            "At brukerne alltid er rene forbipasserende uten felles opplevelse"
           ],
-          "answer": "Folk fyller gaten og blir del av bildet og seremonien",
+          "answer": "At mennesker samles som tilskuere og deltakere i et offentlig scenerom",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q09",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
-          "difficulty": 2,
-          "topic": "publikum",
-          "emne_id": "em_by_symbolsk_makt_og_representasjon",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "karl_johan_quiz_16",
+          "sourceQuizId": "by_karl_johans_gate_set_3_q2",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "knowledge": "Karl Johans gate fungerer ofte som en urban scene der mennesker opptrer både som publikum, deltakere og synlige aktører for hverandre. ",
+          "emne_id": "em_by_publikum_deltakelse_tilskuere",
+          "primary_knowledge_unit_id": "ku_by_karl_johans_gate_fungere_9d7a01f25e",
+          "knowledge_unit_ids": [
+            "ku_by_karl_johans_gate_fungere_9d7a01f25e"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "karl_johan",
-            "publikum"
+            "emne",
+            "publikum",
+            "urban_scene",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Karl Johans gate i steddataene?",
+          "id": "karl_johan_quiz_23",
+          "question": "Hvilken bygning langs Karl Johans gate forbindes særlig med studentliv, seremonier og Munchs aula-malerier?",
           "options": [
-            "1848",
-            "2008",
-            "1966"
+            "Universitetets gamle aula",
+            "Nationaltheatret",
+            "Oslo domkirke"
           ],
-          "answer": "1848",
+          "answer": "Universitetets gamle aula",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch1_karl_johan_q10",
-          "sourceQuizId": "by_quizkort_batch1_karl_johan",
+          "sourceQuestionId": "karl_johan_quiz_23",
+          "sourceQuizId": "by_karl_johans_gate_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/karl_johans_gate_sets.json",
           "difficulty": 2,
-          "topic": "årstall",
-          "emne_id": "em_by_hendelsesbasert_byliv_hoytider",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Universitetets aula er et av de mest markante kultur- og kunnskapsrommene langs Karl Johans gate. ",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
+          "primary_knowledge_unit_id": "ku_by_universitetets_aula_er_e_e3c96d779b",
+          "knowledge_unit_ids": [
+            "ku_by_universitetets_aula_er_e_e3c96d779b"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "karl_johan",
-            "årstall"
+            "aula",
+            "universitetet",
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "Hovedgate og nasjonal paradeakse"
+          "answer": "Akse mellom monarkiet og folket",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Jernbanetorget/sentrum og Slottet"
+          "answer": "Oslo S",
+          "answerIndex": 0
         },
         {
           "number": 3,
-          "answer": "Stortinget, universitetet, Nationaltheatret og Slottet"
+          "answer": "Hendelsesbasert byliv",
+          "answerIndex": 0
         },
         {
           "number": 4,
-          "answer": "Gaten fungerer som parade- og publikumsrom for barnetog og nasjonale ritualer"
+          "answer": "Hans Ditlev Franciscus Linstow",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Folk blir både publikum og deltakere i markeringer, feiringer og hverdagsliv"
+          "answer": "Symbolsk makt virker gjennom ritualer, arkitektur og representasjon mer enn gjennom murer og porter",
+          "answerIndex": 0
         },
         {
           "number": 6,
-          "answer": "Statlig, kongelig, kulturell og offentlig symbolmakt"
+          "answer": "Symbolsk byrom",
+          "answerIndex": 0
         },
         {
           "number": 7,
-          "answer": "Mellom hverdagsgate og seremoniell nasjonal scene"
+          "answer": "1852",
+          "answerIndex": 0
         },
         {
           "number": 8,
-          "answer": "Symbolsk makt og representasjon"
+          "answer": "Universitetet i Oslo",
+          "answerIndex": 0
         },
         {
           "number": 9,
-          "answer": "Folk fyller gaten og blir del av bildet og seremonien"
+          "answer": "At mennesker samles som tilskuere og deltakere i et offentlig scenerom",
+          "answerIndex": 0
         },
         {
           "number": 10,
-          "answer": "1848"
+          "answer": "Universitetets gamle aula",
+          "answerIndex": 0
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/karl_johans_gate_sets.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch1_toyen_torg",
