@@ -23,3 +23,29 @@ jobs:
         with:
           node-version: '22'
       - run: node tests/oslo-sentrum-kvadraturen-six-research-preflight.mjs
+      - name: Generate canonical Garmanngården context (not published)
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          import { buildQuizProductionContext } from './scripts/quiz-production-lib.mjs';
+          const manifestPath='data/fag/fag_manifest.json';
+          const manifest=JSON.parse(await fs.readFile(manifestPath,'utf8'));
+          assert.equal(manifest.historie.quizProduction.targets.garmanngarden,undefined,'Garmanngården must still be unmanifested at this stage');
+          manifest.historie.quizProduction.targets.garmanngarden={
+            source_brief:'../quiz/production_briefs/historie/garmanngarden.json',
+            context_artifact:'../quiz/production_context/historie/garmanngarden.json',
+            quiz_file:'../quiz/historie/garmanngarden_sets.json'
+          };
+          await fs.writeFile(manifestPath,JSON.stringify(manifest,null,2)+'\n');
+          const ctx=await buildQuizProductionContext({categoryId:'historie',targetId:'garmanngarden'});
+          assert.equal(ctx.profile,'narrow_3x7');
+          assert.equal(ctx.claim_bank.length,21);
+          assert.deepEqual(ctx.set_plan.map(set=>set.planned_questions),[7,7,7]);
+          assert.deepEqual(ctx.set_plan.map(set=>set.phase),['opening','bridge','final']);
+          assert.equal(ctx.source_review_status,'reviewed');
+          assert.equal(ctx.planned_quiz_file,'data/quiz/historie/garmanngarden_sets.json');
+          console.log('GARMANN_CONTEXT_JSON='+JSON.stringify(ctx));
+          console.log('Generated canonical Garmanngården context with 21 claims; branch manifests remain unchanged.');
+          NODE
