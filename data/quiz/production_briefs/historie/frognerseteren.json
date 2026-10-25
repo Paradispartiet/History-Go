@@ -1,0 +1,322 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "historie",
+  "targetId": "frognerseteren",
+  "reviewed_at": "2026-10-23",
+  "sources": {
+    "historikk": {
+      "url": "https://www.frognerseteren.no/mer-historie-",
+      "source_type": "primary",
+      "review_status": "reviewed",
+      "review_note": "Full operatørhistorikk lest; 21 enkeltspørsmål kontrollert, dekor og ombygging holdt adskilt."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Frognerseteren",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Full originalartikkel lest 23.10.2026; eierskap, Munthe, oppføring og ombyggingsår kontrollert."
+    },
+    "operator": {
+      "url": "https://www.frognerseteren.no/kontakt-booking",
+      "source_type": "primary",
+      "review_status": "reviewed",
+      "review_note": "Adresse og skiltet gangadkomst kontrollert; ingen åpningstider eller permanent innendørs adgang lovet."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_byhistorie_stedsendring",
+      "his_industri_arbeid_sosialhistorie"
+    ],
+    "emne_ids": [
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [],
+    "thinker_ids": [],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/historie/manifest.json",
+      "scripts/build-oslo-six-fullquiz-review.mjs"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen aktiv målquiz. Gjenbruk 21 kandidater; rett seks distraktorsett og kildeattribuer ombyggingsår."
+    ],
+    "knowledge_migration": "Ingen tidligere målquiz å migrere."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Avgrenset restaurantbygning med 21 unike faktaspørsmål om finansiering, arkitektur, gjester og rombruk. Nærliggende bygg er bare nødvendig kontekst. Faglig fortolkning ligger på egen Fagverk-side."
+  },
+  "held_back_candidates": [
+    "Eksakt år for Heftyes kjøp utelatt på grunn av sprik mellom kilder.",
+    "Stasjon, Roseslottet og nabobyggenes selvstendige historie holdes utenfor."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_frognerseteren_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Frognerseteren var opprinnelig seter i Trevollskogen, som hørte til Frogner hovedgård.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Thomas Heftye kjøpte skogeiendommen på 1860-tallet. Kristiania kommune overtok i 1889.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hovedrestaurantens byggetømmer kom fra kommunens egen skog ifølge restauratørens publiserte bygningshistorie.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kristiania kommune kjøpte eiendommen i 1889, noe som la grunnlag for videre offentlig utfartstilrettelegging.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Byarkitekt Christian Heiberg innredet Styrerommet. Rommets dekorative malerier ble utført av Ulrik Hendriksen.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hovedrestauranten ble oppført i 1891 og senere utvidet. Heftyevillaen fra 1867 er en annen bygning.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Holm Munthe tegnet både hovedrestauranten og Sportshallen i dragestil. Han var ikke arkitekt for Heftyevillaen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_8",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Dragestilen viste romantiske forbilder fra norsk trearkitektur, blant annet gjennom takformer og utskjæringer.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_9",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo byleksikon daterer om- og tilbyggingen til 1909. Restaurantens egen historikk oppgir at Storstua sto ferdig i 1910.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Restaurantens stedsidentitet knyttes til Holmenkollveien 200, ikke Heftyevillaen i nummer 201 eller T-banestasjonen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Restaurantens egen historikk forteller at overskudd fra Christiania Brændevinssamlag bidro til oppføringen av hovedrestauranten i 1891.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Restaurantens egen historikk oppgir byggekostnaden til 85 000 kroner da hovedrestauranten sto ferdig i 1891.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Restaurantens historikk forteller at hovedhuset straks ble fylt av byens velstående herrer, slik at sportsfolket ikke fikk plass; dermed ble en egen sportskafé planlagt.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Storstua hører til selve hovedrestauranten og sto ifølge restaurantens historikk ferdig i 1910; Sportshallen fra 1896 var et eget bygg.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Restaurantens historikk beskriver at verandaen ble lukket inn slik at huset fikk mer serveringsareal.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Ulrik Hendriksen malte Styrerommet. Holm Munthe var arkitekten for hovedrestaurantens opprinnelige bygg, ikke kunstneren bak denne romdekorasjonen.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Styrerommet fikk ifølge restaurantens historikk dekorasjon i norsk bonderokokko, med malte visdomsord og ornamenter. Dette er en interiørstil, ikke husets ytre dragestil.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Peisestua i andre etasje er beskrevet som dekorert med romansk ornamentikk og viser et annet estetisk lag enn eksteriørets dragestil.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Kvisten ble ifølge restaurantens egen historikk omgjort fra herretoalett til møterom i 1994. Det viser hvordan romfunksjoner har endret seg i huset.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Finstua var opprinnelig veranda og ble del av den videreutviklede hovedrestauranten. Det er ikke et separat historisk bygg på området.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_frognerseteren_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Restaurantens historikk oppgir at Skjenkestuas koksovn ble byttet med en vedovn i 1932, som et konkret spor av endringer i rommets bruk og interiør.",
+      "source_ids": [
+        "historikk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    }
+  ]
+}

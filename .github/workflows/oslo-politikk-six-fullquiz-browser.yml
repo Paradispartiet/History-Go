@@ -1,0 +1,58 @@
+name: Oslo sentrum Politikk six – fullquiz live browser playthrough
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/politikk/hoyesteretts_hus_sets.json'
+      - 'data/quiz/politikk/folkets_hus_oslo_sets.json'
+      - 'data/quiz/politikk/hoyres_hus_sets.json'
+      - 'data/quiz/politikk/hoyblokka_sets.json'
+      - 'data/quiz/politikk/victoria_terrasse_sets.json'
+      - 'data/quiz/politikk/y_blokka_sets.json'
+      - '.github/workflows/oslo-politikk-six-fullquiz-browser.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: oslo-politikk-six-fullquiz-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  canonical-playthrough:
+    name: Fullquiz – ${{ matrix.place }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        place:
+          - hoyesteretts_hus
+          - folkets_hus_oslo
+          - hoyres_hus
+          - hoyblokka
+          - victoria_terrasse
+          - y_blokka
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Find installed Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Play all 21 questions through all three sets on desktop and mobile
+        env:
+          PLACE_ID: ${{ matrix.place }}
+        run: node scripts/verify-place-quiz-browser.mjs "$PLACE_ID"
+      - name: Upload real browser screenshots and progress summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-politikk-six-fullquiz-${{ matrix.place }}
+          path: artifacts/place-quiz/${{ matrix.place }}/
+          if-no-files-found: ignore
+          retention-days: 14

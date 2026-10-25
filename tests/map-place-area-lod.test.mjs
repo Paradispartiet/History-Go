@@ -49,9 +49,9 @@ test("places_index bevarer placeScope og materialiserer mapLod for områder", ()
 test("kartet har separate område- og detaljlag med gradvis detaljövergang", () => {
   assert.match(source, /L_AREA_DOTS\s*=\s*"hg-place-areas-dots"/);
   assert.match(source, /L_AREA_LAB\s*=\s*"hg-place-areas-label"/);
-  assert.match(source, /PLACE_DETAIL_MIN_ZOOM\s*=\s*11\.8/);
-  assert.match(source, /PLACE_DETAIL_HIT_MIN_ZOOM\s*=\s*12\.35/);
-  assert.match(source, /PLACE_DETAIL_LABEL_MIN_ZOOM\s*=\s*13\.15/);
+  assert.match(source, /PLACE_DETAIL_MIN_ZOOM\s*=\s*9\.8/);
+  assert.match(source, /PLACE_DETAIL_HIT_MIN_ZOOM\s*=\s*9\.8/);
+  assert.match(source, /PLACE_DETAIL_LABEL_MIN_ZOOM\s*=\s*12\.7/);
   assert.match(source, /getPlaceDetailVisibility/);
   assert.match(source, /PLACE_DETAIL_FULL_ZOOM, 1\.0/);
   assert.match(source, /filter: PLACE_AREA_LOD_FILTER/);
@@ -74,7 +74,7 @@ test("TypeScript source og committed runtime-builds inneholder LOD v2", () => {
   for (const [name, code] of [["source", source], ["legacy", legacy], ["dist", dist]]) {
     assert.match(code, /hg-place-areas-dots/, name + ": mangler områdeprikker");
     assert.match(code, /mapLod/, name + ": mangler mapLod");
-    assert.match(code, /11\.8/, name + ": mangler detaljfade-start");
+    assert.match(code, /9\.8/, name + ": mangler detaljfade-start");
   }
 });
 
@@ -82,9 +82,9 @@ test("detaljprikker beholdes sammen med stedsnavn og er mindre enn gammel profil
   const dotFn = source.match(/function getPlaceDotPaint\(isArea = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
   assert.ok(dotFn, "mangler getPlaceDotPaint");
   assert.doesNotMatch(dotFn, /getPlaceDetailVisibility/, "selve detaljprikken skal ikke fades bort av LOD-overgangen");
-  assert.match(dotFn, /10, \["\+", 1\.6/);
-  assert.match(dotFn, /14, \["\+", 3\.0/);
-  assert.match(dotFn, /18, \["\+", 5\.6/);
+  assert.match(dotFn, /9\.8, \["\+", 3\.1/);
+  assert.match(dotFn, /14, \["\+", 4\.2/);
+  assert.match(dotFn, /18, \["\+", 6\.0/);
   assert.match(dotFn, /getPlaceMarkerStrokeWidth\(false\)/);
 
   assert.match(source, /function getPlaceMarkerStrokeWidth\(isArea = false\)/);
@@ -113,7 +113,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20260824-area-square-dom3"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261024-native-place-names1"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);

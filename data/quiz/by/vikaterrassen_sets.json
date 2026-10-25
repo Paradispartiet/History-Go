@@ -1,0 +1,865 @@
+{
+  "targetId": "vikaterrassen",
+  "categoryId": "by",
+  "sources": {
+    "source_vikaterrassen_01": "https://oslobyleksikon.no/side/Vikaterrassen",
+    "source_vikaterrassen_02": "https://www.fokusraad.no/prosjekter/ruselokkveien-gatelop-under-arbeid",
+    "source_vikaterrassen_03": "https://www.mynewsdesk.com/no/storebrand-asa/pressreleases/byggestart-for-et-nytt-byrom-i-oslo-1037312"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "narrow_3x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/by/vikaterrassen.json",
+    "context_artifact": "data/quiz/production_context/by/vikaterrassen.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_06_makt_symboler_og_representasjon"
+    ],
+    "emne_ids": [
+      "em_by_transformasjon_ombruk",
+      "em_by_gateliv_kantsoner",
+      "em_by_styring_forvaltning_planmakt",
+      "em_by_barrierer_forbindelser"
+    ],
+    "topic_hook_ids": [
+      "arb_industri_havn",
+      "arb_transformasjon",
+      "ark_fasade_inngang",
+      "ark_makt"
+    ],
+    "method_ids": [
+      "met_gaanalyse",
+      "met_dataanalyse",
+      "met_arkiv_minne_spor",
+      "met_gis_romlig_analyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/by/",
+        "data/places/by/oslo/places/vikaterrassen.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen aktiv fullquiz med targetId=vikaterrassen i manifestet per 24.10.2026."
+      },
+      "decisions": [
+        "Produksjon fra kontrollerte kilder; ti opprinnelige spørsmål redigert og bevart.",
+        "Elleve nye spørsmål for stedsspesifikk historisk dybde.",
+        "Tre sett à sju spørsmål fordi kildene bærer 21 distinkte faktiske læringsoppgaver; ikke fyll med generiske eller teoretiske spørsmål."
+      ],
+      "knowledge_migration": "Ingen tidligere canonical quiz-eier; genereres fra fullquiz med Knowledge canonical generator."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Avgrenset by- eller institusjonshistorie med 21 særskilte kildebelagte spørsmål om opphav, historiske endringer og institusjonell funksjon. Rich-profil ville kreve mer uavhengig primærmateriale."
+    },
+    "held_back_candidates": [
+      "Uverifiserte fortolkninger av sosiale og økonomiske effekter.",
+      "Oppgaver om andre bygg uten presis stedsrelasjon.",
+      "Generiske teori- og metodeoppgaver uten kildegrunnlag."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "by_vikaterrassen_set_1",
+      "title": "Stedet og bakgrunnen",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "vikaterrassen_quiz_01",
+          "quiz_id": "by_vikaterrassen_set_1_q1",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hvilken gateadresse er knyttet til Vikaterrassen?",
+          "options": [
+            "Grønlandsleiret 44",
+            "Torggata 9",
+            "Ruseløkkveien 3–5"
+          ],
+          "answer": "Ruseløkkveien 3–5",
+          "answerIndex": 2,
+          "knowledge": "Vikaterrassen i Ruseløkkveien 3–5 ble reist i tre byggetrinn fra 1964 til 1972 på stedet der Ruseløkkbasarene tidligere lå.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vikaterrassen i Ruseløkkveien 3–5 ble reist i tre byggetrinn fra 1964 til 1972 på stedet der Ruseløkkbasarene tidligere lå.",
+          "claim_id": "claim_vikaterrassen_quiz_01",
+          "primary_knowledge_unit_id": "ku_by_vikaterrassen_i_rusel_kk_4da24789fb",
+          "knowledge_unit_ids": [
+            "ku_by_vikaterrassen_i_rusel_kk_4da24789fb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_02",
+          "quiz_id": "by_vikaterrassen_set_1_q2",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hva lå på stedet før Vikaterrassen ble bygd?",
+          "options": [
+            "Fahlstrøms Theater",
+            "Ruseløkkbasarene",
+            "Vestbanestasjonen"
+          ],
+          "answer": "Ruseløkkbasarene",
+          "answerIndex": 1,
+          "knowledge": "Vikaterrassen i Ruseløkkveien 3–5 ble reist i tre byggetrinn fra 1964 til 1972 på stedet der Ruseløkkbasarene tidligere lå.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vikaterrassen i Ruseløkkveien 3–5 ble reist i tre byggetrinn fra 1964 til 1972 på stedet der Ruseløkkbasarene tidligere lå.",
+          "claim_id": "claim_vikaterrassen_quiz_02",
+          "primary_knowledge_unit_id": "ku_by_vikaterrassen_i_rusel_kk_4da24789fb",
+          "knowledge_unit_ids": [
+            "ku_by_vikaterrassen_i_rusel_kk_4da24789fb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_03",
+          "quiz_id": "by_vikaterrassen_set_1_q3",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Når ble Ruseløkkbasarene reist?",
+          "options": [
+            "1964–1968",
+            "1881–1883",
+            "1903–1911"
+          ],
+          "answer": "1881–1883",
+          "answerIndex": 1,
+          "knowledge": "Basarene ble reist i tegl mellom 1881 og 1883 etter tegninger av arkitekt Henrik Thrap-Meyer.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Basarene ble reist i tegl mellom 1881 og 1883 etter tegninger av arkitekt Henrik Thrap-Meyer.",
+          "claim_id": "claim_vikaterrassen_quiz_03",
+          "primary_knowledge_unit_id": "ku_by_basarene_ble_reist_i_teg_bb6e07f41e",
+          "knowledge_unit_ids": [
+            "ku_by_basarene_ble_reist_i_teg_bb6e07f41e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_04",
+          "quiz_id": "by_vikaterrassen_set_1_q4",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hvem tegnet de eldre Ruseløkkbasarene?",
+          "options": [
+            "Henrik Thrap-Meyer",
+            "Georg Andreas Bull",
+            "Ove Bang"
+          ],
+          "answer": "Henrik Thrap-Meyer",
+          "answerIndex": 0,
+          "knowledge": "Basarene ble reist i tegl mellom 1881 og 1883 etter tegninger av arkitekt Henrik Thrap-Meyer.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Basarene ble reist i tegl mellom 1881 og 1883 etter tegninger av arkitekt Henrik Thrap-Meyer.",
+          "claim_id": "claim_vikaterrassen_quiz_04",
+          "primary_knowledge_unit_id": "ku_by_basarene_ble_reist_i_teg_bb6e07f41e",
+          "knowledge_unit_ids": [
+            "ku_by_basarene_ble_reist_i_teg_bb6e07f41e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_05",
+          "quiz_id": "by_vikaterrassen_set_1_q5",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hvilket arkitektpar vant konkurransen om 7. juni-plassen i 1960?",
+          "options": [
+            "Arne Korsmo og Christian Norberg-Schulz",
+            "Arnstein Arneberg og Magnus Poulsson",
+            "Einar Arnborg og Robert Jensen"
+          ],
+          "answer": "Einar Arnborg og Robert Jensen",
+          "answerIndex": 2,
+          "knowledge": "Arkitektene Einar Arnborg og Robert Jensen vant i 1960 en konkurranse knyttet til utformingen av 7. juni-plassen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arkitektene Einar Arnborg og Robert Jensen vant i 1960 en konkurranse knyttet til utformingen av 7. juni-plassen.",
+          "claim_id": "claim_vikaterrassen_quiz_05",
+          "primary_knowledge_unit_id": "ku_by_arkitektene_einar_arnbor_a96308480a",
+          "knowledge_unit_ids": [
+            "ku_by_arkitektene_einar_arnbor_a96308480a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_06",
+          "quiz_id": "by_vikaterrassen_set_1_q6",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Når åpnet første byggetrinn av Vikaterrassen?",
+          "options": [
+            "1950",
+            "1978",
+            "1964"
+          ],
+          "answer": "1964",
+          "answerIndex": 2,
+          "knowledge": "Første byggetrinn i Ruseløkkveien 3 åpnet i 1964.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Første byggetrinn i Ruseløkkveien 3 åpnet i 1964.",
+          "claim_id": "claim_vikaterrassen_quiz_06",
+          "primary_knowledge_unit_id": "ku_by_f_rste_byggetrinn_i_ruse_6f8d276aa9",
+          "knowledge_unit_ids": [
+            "ku_by_f_rste_byggetrinn_i_ruse_6f8d276aa9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_07",
+          "quiz_id": "by_vikaterrassen_set_1_q7",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hvilken arkitekturpris fikk første byggetrinn av Vikaterrassen?",
+          "options": [
+            "Houens diplom",
+            "Sundts premie",
+            "Statens byggeskikkpris"
+          ],
+          "answer": "Sundts premie",
+          "answerIndex": 1,
+          "knowledge": "Bygget ble tildelt Sundts premie for perioden 1964–1965.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygget ble tildelt Sundts premie for perioden 1964–1965.",
+          "claim_id": "claim_vikaterrassen_quiz_07",
+          "primary_knowledge_unit_id": "ku_by_bygget_ble_tildelt_sundt_ab686e881a",
+          "knowledge_unit_ids": [
+            "ku_by_bygget_ble_tildelt_sundt_ab686e881a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_vikaterrassen_set_2",
+      "title": "Mennesker og tidslag",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "vikaterrassen_quiz_08",
+          "quiz_id": "by_vikaterrassen_set_2_q1",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Når stod andre byggetrinn i Ruseløkkveien 5 ferdig?",
+          "options": [
+            "1968",
+            "1960",
+            "2016"
+          ],
+          "answer": "1968",
+          "answerIndex": 0,
+          "knowledge": "Neste byggetrinn i Ruseløkkveien 5 stod ferdig i 1968.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_gateliv_kantsoner",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Neste byggetrinn i Ruseløkkveien 5 stod ferdig i 1968.",
+          "claim_id": "claim_vikaterrassen_quiz_08",
+          "primary_knowledge_unit_id": "ku_by_neste_byggetrinn_i_rusel_a1a827e92b",
+          "knowledge_unit_ids": [
+            "ku_by_neste_byggetrinn_i_rusel_a1a827e92b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_09",
+          "quiz_id": "by_vikaterrassen_set_2_q2",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Når ble arbeidet med 7. juni-plassen fullført?",
+          "options": [
+            "1972",
+            "1964",
+            "2018"
+          ],
+          "answer": "1972",
+          "answerIndex": 0,
+          "knowledge": "Arbeidet med den tilknyttede 7. juni-plassen ble fullført i 1972.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_gateliv_kantsoner",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidet med den tilknyttede 7. juni-plassen ble fullført i 1972.",
+          "claim_id": "claim_vikaterrassen_quiz_09",
+          "primary_knowledge_unit_id": "ku_by_arbeidet_med_den_tilknyt_1861860c61",
+          "knowledge_unit_ids": [
+            "ku_by_arbeidet_med_den_tilknyt_1861860c61"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_10",
+          "quiz_id": "by_vikaterrassen_set_2_q3",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hva skjedde med Ruseløkkveien gjennom Vikaterrassen ved ombyggingen i 2016?",
+          "options": [
+            "Den ble ny hovedvei for biltrafikk",
+            "Den ble stengt permanent for all ferdsel",
+            "Den ble omgjort til gågate"
+          ],
+          "answer": "Den ble omgjort til gågate",
+          "answerIndex": 2,
+          "knowledge": "I 2016 var Ruseløkkveien gjennom Vikaterrassen omformet til gågate og deler av anlegget oppgradert.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_gateliv_kantsoner",
+          "source": [
+            "source_vikaterrassen_02"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I 2016 var Ruseløkkveien gjennom Vikaterrassen omformet til gågate og deler av anlegget oppgradert.",
+          "claim_id": "claim_vikaterrassen_quiz_10",
+          "primary_knowledge_unit_id": "ku_by_i_2016_var_rusel_kkveien_079af39121",
+          "knowledge_unit_ids": [
+            "ku_by_i_2016_var_rusel_kkveien_079af39121"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_11",
+          "quiz_id": "by_vikaterrassen_set_2_q4",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hvilket anlegg ligger rett over Vikaterrassen?",
+          "options": [
+            "Aker Brygge",
+            "Victoria terrasse",
+            "Rådhuspassasjen"
+          ],
+          "answer": "Victoria terrasse",
+          "answerIndex": 1,
+          "knowledge": "Vikaterrassen ligger lavere i terrenget enn den eldre Victoria terrasse.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_gateliv_kantsoner",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vikaterrassen ligger lavere i terrenget enn den eldre Victoria terrasse.",
+          "claim_id": "claim_vikaterrassen_quiz_11",
+          "primary_knowledge_unit_id": "ku_by_vikaterrassen_ligger_lav_3bec141963",
+          "knowledge_unit_ids": [
+            "ku_by_vikaterrassen_ligger_lav_3bec141963"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_12",
+          "quiz_id": "by_vikaterrassen_set_2_q5",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hvilket byggemateriale ble brukt i de gamle Ruseløkkbasarene?",
+          "options": [
+            "Stål og glass",
+            "Tegl",
+            "Tømmer"
+          ],
+          "answer": "Tegl",
+          "answerIndex": 1,
+          "knowledge": "Ruseløkkbasarene ble bygd i tegl 1881–83.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_gateliv_kantsoner",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ruseløkkbasarene ble bygd i tegl 1881–83.",
+          "claim_id": "claim_vikaterrassen_quiz_12",
+          "primary_knowledge_unit_id": "ku_by_rusel_kkbasarene_ble_byg_455a106719",
+          "knowledge_unit_ids": [
+            "ku_by_rusel_kkbasarene_ble_byg_455a106719"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_13",
+          "quiz_id": "by_vikaterrassen_set_2_q6",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hva ble resultatet for Ruseløkkbasarene etter arkitektkonkurransen i 1960?",
+          "options": [
+            "De gamle basarene ble stående bak Vikaterrassens nye fasade",
+            "Basarene ble innlemmet som første etasje i nybygget",
+            "Basarene ble revet før Vikaterrassen ble bygget"
+          ],
+          "answer": "Basarene ble revet før Vikaterrassen ble bygget",
+          "answerIndex": 2,
+          "knowledge": "Arkitektkonkurransen i 1960 ble fulgt av riving av de gamle Ruseløkkbasarene i starten av 1960-årene.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_gateliv_kantsoner",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arkitektkonkurransen i 1960 ble fulgt av riving av de gamle Ruseløkkbasarene i starten av 1960-årene.",
+          "claim_id": "claim_vikaterrassen_quiz_13",
+          "primary_knowledge_unit_id": "ku_by_arkitektkonkurransen_i_1_1c3e64eb8a",
+          "knowledge_unit_ids": [
+            "ku_by_arkitektkonkurransen_i_1_1c3e64eb8a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_14",
+          "quiz_id": "by_vikaterrassen_set_2_q7",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hvordan inngikk 7. juni-plassen i utbyggingen av Vikaterrassen?",
+          "options": [
+            "Som en siste fase fullført i 1972",
+            "Som første byggetrinn fullført før 1964",
+            "Som egen fase ferdig før arkitektkonkurransen i 1960"
+          ],
+          "answer": "Som en siste fase fullført i 1972",
+          "answerIndex": 0,
+          "knowledge": "Utbyggingen hadde trinn i 1964 og 1968 før 7. juni-plassen ble ferdigstilt i 1972.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_gateliv_kantsoner",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Utbyggingen hadde trinn i 1964 og 1968 før 7. juni-plassen ble ferdigstilt i 1972.",
+          "claim_id": "claim_vikaterrassen_quiz_14",
+          "primary_knowledge_unit_id": "ku_by_utbyggingen_hadde_trinn__0ade148716",
+          "knowledge_unit_ids": [
+            "ku_by_utbyggingen_hadde_trinn__0ade148716"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_vikaterrassen_set_3",
+      "title": "Endring og betydning",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "vikaterrassen_quiz_15",
+          "quiz_id": "by_vikaterrassen_set_3_q1",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hvordan endret handelsområdet seg fra 1880-årene til 1960-årene?",
+          "options": [
+            "Basarene ble bevart og påbygd i 1960-årene",
+            "De gamle teglbasarene ble erstattet av et moderne handelskvarter",
+            "Handelsfunksjonen forsvant helt fra området etter rivingen"
+          ],
+          "answer": "De gamle teglbasarene ble erstattet av et moderne handelskvarter",
+          "answerIndex": 1,
+          "knowledge": "Ruseløkkbasarene fra 1881–83 ble revet før Vikaterrassen ble oppført fra 1964.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_styring_forvaltning_planmakt",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ruseløkkbasarene fra 1881–83 ble revet før Vikaterrassen ble oppført fra 1964.",
+          "claim_id": "claim_vikaterrassen_quiz_15",
+          "primary_knowledge_unit_id": "ku_by_rusel_kkbasarene_fra_188_48e57c3ce1",
+          "knowledge_unit_ids": [
+            "ku_by_rusel_kkbasarene_fra_188_48e57c3ce1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_16",
+          "quiz_id": "by_vikaterrassen_set_3_q2",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hva var forskjellen mellom første og andre byggetrinn av Vikaterrassen?",
+          "options": [
+            "Ruseløkkveien 5 åpnet i 1964 og nr. 3 i 1968",
+            "Begge byggetrinn sto ferdige samtidig i 1972",
+            "Ruseløkkveien 3 åpnet i 1964, mens nummer 5 stod ferdig i 1968"
+          ],
+          "answer": "Ruseløkkveien 3 åpnet i 1964, mens nummer 5 stod ferdig i 1968",
+          "answerIndex": 2,
+          "knowledge": "Første byggetrinn var Ruseløkkveien 3 fra 1964, deretter kom Ruseløkkveien 5 i 1968.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_styring_forvaltning_planmakt",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Første byggetrinn var Ruseløkkveien 3 fra 1964, deretter kom Ruseløkkveien 5 i 1968.",
+          "claim_id": "claim_vikaterrassen_quiz_16",
+          "primary_knowledge_unit_id": "ku_by_f_rste_byggetrinn_var_ru_316897df06",
+          "knowledge_unit_ids": [
+            "ku_by_f_rste_byggetrinn_var_ru_316897df06"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_17",
+          "quiz_id": "by_vikaterrassen_set_3_q3",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hvordan henger rehabiliteringen fra 2014 sammen med endringen i 2016?",
+          "options": [
+            "Handelsområdet ble oppgradert, og gaten ble lagt om til gågate",
+            "Gågaten sto ferdig før rehabiliteringen startet",
+            "Arbeidet avbrøt planene om gågate i 2016"
+          ],
+          "answer": "Handelsområdet ble oppgradert, og gaten ble lagt om til gågate",
+          "answerIndex": 0,
+          "knowledge": "Arbeidet startet i 2014 og resulterte blant annet i en oppgradert gågate gjennom Vikaterrassen i 2016.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_styring_forvaltning_planmakt",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidet startet i 2014 og resulterte blant annet i en oppgradert gågate gjennom Vikaterrassen i 2016.",
+          "claim_id": "claim_vikaterrassen_quiz_17",
+          "primary_knowledge_unit_id": "ku_by_arbeidet_startet_i_2014__4badf196dc",
+          "knowledge_unit_ids": [
+            "ku_by_arbeidet_startet_i_2014__4badf196dc"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vikaterrassen_quiz_18",
+          "quiz_id": "by_vikaterrassen_set_3_q4",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hva viser overgangen fra Ruseløkkbasarene til Vikaterrassen om byomforming?",
+          "options": [
+            "Basarene ble integrert uten riving og beholdt samme funksjon",
+            "Bygninger og byrom endrer funksjon og utseende over tid",
+            "Bygningene fikk sin nåværende form allerede i 1883"
+          ],
+          "answer": "Bygninger og byrom endrer funksjon og utseende over tid",
+          "answerIndex": 1,
+          "knowledge": "Riving av basarene og oppføring av Vikaterrassen viser en dokumentert fysisk omforming av byområdet.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_by_styring_forvaltning_planmakt",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Riving av basarene og oppføring av Vikaterrassen viser en dokumentert fysisk omforming av byområdet.",
+          "claim_id": "claim_vikaterrassen_quiz_18",
+          "primary_knowledge_unit_id": "ku_by_riving_av_basarene_og_op_7cc911e418",
+          "knowledge_unit_ids": [
+            "ku_by_riving_av_basarene_og_op_7cc911e418"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_arkiv_minne_spor",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://oslobyleksikon.no/side/Vikaterrassen",
+            "Bruk met_arkiv_minne_spor til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        },
+        {
+          "id": "vikaterrassen_quiz_19",
+          "quiz_id": "by_vikaterrassen_set_3_q5",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hva viser samarbeidet mellom Storebrand Eiendom og Oslo kommune?",
+          "options": [
+            "Alle endringene ble gjennomført av kommunen alene",
+            "Gågaten ble ferdigstilt uten kommunal deltagelse",
+            "Private eiendomsaktører og kommunal gateforvaltning kan samarbeide"
+          ],
+          "answer": "Private eiendomsaktører og kommunal gateforvaltning kan samarbeide",
+          "answerIndex": 2,
+          "knowledge": "Arbeidene fra 2014 kombinerte private bygningstiltak og kommunalt arbeid med byrom og gateløp.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_by_styring_forvaltning_planmakt",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidene fra 2014 kombinerte private bygningstiltak og kommunalt arbeid med byrom og gateløp.",
+          "claim_id": "claim_vikaterrassen_quiz_19",
+          "primary_knowledge_unit_id": "ku_by_arbeidene_fra_2014_kombi_9595e11ec1",
+          "knowledge_unit_ids": [
+            "ku_by_arbeidene_fra_2014_kombi_9595e11ec1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_arkiv_minne_spor",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://oslobyleksikon.no/side/Vikaterrassen",
+            "Bruk met_arkiv_minne_spor til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        },
+        {
+          "id": "vikaterrassen_quiz_20",
+          "quiz_id": "by_vikaterrassen_set_3_q6",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hva innebar omgjøringen av Ruseløkkveien til gågate?",
+          "options": [
+            "Fotgjengere fikk prioritert ferdsel gjennom handelsområdet",
+            "Biltrafikk fikk prioritet gjennom handelsområdet",
+            "Ruseløkkveien ble en trasé med togtrafikk"
+          ],
+          "answer": "Fotgjengere fikk prioritert ferdsel gjennom handelsområdet",
+          "answerIndex": 0,
+          "knowledge": "Ruseløkkveien gjennom Vikaterrassen ble omgjort til gågate ved oppgraderingen i 2016.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_by_styring_forvaltning_planmakt",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ruseløkkveien gjennom Vikaterrassen ble omgjort til gågate ved oppgraderingen i 2016.",
+          "claim_id": "claim_vikaterrassen_quiz_20",
+          "primary_knowledge_unit_id": "ku_by_rusel_kkveien_gjennom_vi_ab52f44b3c",
+          "knowledge_unit_ids": [
+            "ku_by_rusel_kkveien_gjennom_vi_ab52f44b3c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_gaanalyse",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://oslobyleksikon.no/side/Vikaterrassen",
+            "Bruk met_gaanalyse til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ],
+          "topic_hook_id": "urb_planmodeller",
+          "thinker_id": "jan_gehl",
+          "work": "Life Between Buildings",
+          "theory_ref": {
+            "topic_hook_id": "urb_planmodeller",
+            "why_it_helps": "Gehls bylivsperspektiv hjelper å formulere hva man kunne undersøke ved en omgjøring til gågate. Plan- og historikkilden dokumenterer selve ombyggingen, ikke en målt gevinst for bylivet."
+          }
+        },
+        {
+          "id": "vikaterrassen_quiz_21",
+          "quiz_id": "by_vikaterrassen_set_3_q7",
+          "categoryId": "by",
+          "placeId": "vikaterrassen",
+          "targetId": "vikaterrassen",
+          "question_scope": "place",
+          "question": "Hva tilfører Jens Evensen-statuen fra 2018 til historien om stedet?",
+          "options": [
+            "Statuen er en opprinnelig del av Ruseløkkbasarene fra 1880-årene",
+            "Et nyere minnespor i et område med eldre bygningslag",
+            "Statuen ble reist som del av første byggetrinn i 1964"
+          ],
+          "answer": "Et nyere minnespor i et område med eldre bygningslag",
+          "answerIndex": 1,
+          "knowledge": "Statuen av Jens Evensen, utført av Harald Wårvik, ble avduket i 2018 og føyer et nyere minnespor til byrommet.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_by_styring_forvaltning_planmakt",
+          "source": [
+            "source_vikaterrassen_01"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Statuen av Jens Evensen, utført av Harald Wårvik, ble avduket i 2018 og føyer et nyere minnespor til byrommet.",
+          "claim_id": "claim_vikaterrassen_quiz_21",
+          "primary_knowledge_unit_id": "ku_by_statuen_av_jens_evensen__627ac27d20",
+          "knowledge_unit_ids": [
+            "ku_by_statuen_av_jens_evensen__627ac27d20"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_arkiv_minne_spor",
+          "guidance_basis": [
+            "Dokumentert stedshistorie og kildegrunnlag: https://oslobyleksikon.no/side/Vikaterrassen",
+            "Bruk met_arkiv_minne_spor til å avgrense hva den dokumenterte opplysningen viser og hva den ikke viser."
+          ]
+        }
+      ]
+    }
+  ]
+}

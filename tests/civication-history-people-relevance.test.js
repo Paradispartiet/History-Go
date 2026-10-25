@@ -30,6 +30,9 @@ class Element {
   getAttribute(key) { return this.attrs[key] ?? null; }
   addEventListener(type, fn) { this.listeners[type] = fn; }
   querySelectorAll() { return []; }
+  // NextAction keeps an existing queued button stable in a real DOM.
+  // This minimal test DOM has no parsed children, so no queued element matches.
+  querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
   contains(child) { return child === this || this.children.some(row => row.contains(child)); }
   closest(selector) { return this.attrs[selector.slice(1, -1)] != null ? this : null; }
   get classList() { return { add: key => this.classes.add(key), remove: key => this.classes.delete(key), contains: key => this.classes.has(key) }; }

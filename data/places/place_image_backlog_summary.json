@@ -1,27 +1,27 @@
 {
   "schema": "history_go_place_image_backlog_summary_v1",
-  "generatedAt": "2026-10-21",
-  "generatedFromCommit": "d66651676f9d5aaf3f660f5ce63d880ae6e26149",
-  "totalPlaces": 1534,
+  "generatedAt": "2026-10-24",
+  "generatedFromCommit": "eb477ab92ad88b7d62417f96c7bc2cab04dfadfd",
+  "totalPlaces": 1540,
   "summary": {
-    "validLocal": 162,
-    "validRemote": 59,
+    "validLocal": 174,
+    "validRemote": 78,
     "optionalMissing": 79,
-    "missing": 1225,
-    "invalidLocalPath": 9,
-    "remaining": 1234
+    "missing": 1205,
+    "invalidLocalPath": 4,
+    "remaining": 1209
   },
   "byCategory": {
     "by": {
-      "total": 253,
-      "valid": 67,
+      "total": 254,
+      "valid": 83,
       "optional": 2,
-      "missing": 175,
-      "invalid": 9
+      "missing": 165,
+      "invalid": 4
     },
     "naeringsliv": {
-      "total": 155,
-      "valid": 29,
+      "total": 156,
+      "valid": 30,
       "optional": 2,
       "missing": 124,
       "invalid": 0
@@ -41,17 +41,17 @@
       "invalid": 0
     },
     "historie": {
-      "total": 524,
-      "valid": 27,
+      "total": 528,
+      "valid": 32,
       "optional": 8,
-      "missing": 489,
+      "missing": 488,
       "invalid": 0
     },
     "politikk": {
       "total": 45,
-      "valid": 9,
+      "valid": 18,
       "optional": 7,
-      "missing": 29,
+      "missing": 20,
       "invalid": 0
     },
     "natur": {
@@ -140,11 +140,11 @@
     }
   },
   "productionOrder": [
-    "repair_31_invalid_local_paths",
+    "repair_remaining_invalid_local_paths",
     "politikk_and_current_fagverk_places",
     "places_with_existing_popupdesc_and_no_image",
     "nature_and_scenekunst",
     "remaining_categories_by_verified_source_availability"
   ],
-  "note": "Dette er en materialisert status, ikke en allowlist. Nye og endrede standardsteder stoppes av CI dersom de mangler gyldig stedsbilde. Canonical Micro Places kan mangle bilde etter den eksplisitte Micro Place-kontrakten; oppgitte, ugyldige bilder er fortsatt blokkerende. Full rapport med place-id-er regenereres av scripts/audit-place-images.mjs."
+  "note": "Materialisert status fra uendret bildevalidator. By-bolk 20/20 har nå gyldig bildepeker; eksisterende standardsteder uten gyldig bilde forblir i backlog og blokkeres ved endring."
 }

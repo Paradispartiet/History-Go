@@ -155,18 +155,19 @@ vm.runInThisContext(read("js/Civication/ui/CivicationDashboardUI.js"), {
   filename: "js/Civication/ui/CivicationDashboardUI.js"
 });
 
-// Life Story has a separate narrative money scale; the product header must use
-// canonical ParadiseCoin even when a story has a different money value.
+// The compact header no longer displays monetary values. The dedicated
+// wallet widget must still use canonical ParadiseCoin, not story money.
 global.getPCWallet = () => ({ pc: 37 });
 const headerStatus = global.CivicationDashboardUI.renderCivicationHeaderStatus({
   state: { dag: 3, fase: "morgen", meters: { psyke: 60, energi: 70, penger: 999 } },
   view: { dagFerdig: false }
 });
-assert.ok(headerStatus.includes("37 PC"), "header reads canonical wallet: " + headerStatus);
+assert.ok(headerStatus.includes("Dag 3"), "header retains the day: " + headerStatus);
+assert.ok(!headerStatus.includes("PC"), "the compact header leaves wallet values to their dedicated widget");
 assert.ok(!headerStatus.includes("999 PC"), "narrative story meter cannot masquerade as wallet");
 global.CivicationDashboardUI.render();
 assert.strictEqual(global.document.getElementById("civiDashWallet").textContent, "37 PC",
-  "dashboard and header show the same real PC balance");
+  "dashboard still displays the real PC balance");
 
 assert(events.listeners.has("civi:travelStateUpdated"), "dashboard listens to civi:travelStateUpdated");
 assert(events.listeners.has("civi:travelDestinationSet"), "dashboard listens to civi:travelDestinationSet");

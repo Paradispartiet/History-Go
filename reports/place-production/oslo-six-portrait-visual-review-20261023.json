@@ -1,0 +1,88 @@
+{
+  "schema": "history_go_oslo_six_portrait_visual_decisions_v1",
+  "date": "2026-10-23",
+  "method": "Direct visual inspection of both pixel-distinct 900x1350 WebPs for each place in the CI portrait contact sheet, cross-checked against verified original source metadata and SHA-256 list.",
+  "workflow_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40013589745",
+  "artifact_id": 12527566850,
+  "artifact_name": "oslo-six-commons-image-review",
+  "status": "SELECTED_CANDIDATES_IN_ARTIFACT_ONLY_ZERO_FRONTIMAGE_REGISTERED",
+  "constraints": {
+    "candidates_checked_into_repository": false,
+    "actual_app_visual_qa": false,
+    "credits_rendered_in_actual_app": false,
+    "release_allowed": false,
+    "note": "A candidate with PASS_FRAMING is visually selected, not a published frontImage; copy the reviewed artifact bytes, preserve author/licence/source and check PlaceCard/browser before raising release gate."
+  },
+  "per_place": [
+    {
+      "place_id": "linderud_gard",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Linderud_g%C3%A5rd_hovedbygning2.JPG",
+      "author": "Helge Høifødt",
+      "license": "CC BY-SA 3.0",
+      "candidate_sha256": {
+        "center_original": "593a62a8a203b5cd48a48e4b20066ff4f730f7f284dd320fb0c47ec161b8016d",
+        "offset_original": "2cb9ded70072f7aa8aeb7418891e1ebdd1760b3793a11cead1b056af21786484"
+      },
+      "preferred_mode": "offset_original",
+      "visual_decision": "PASS_FRAMING",
+      "finding": "Horizontal offset recovers more of the historic white facade and reduces the tree's dominance; garden and building remain clearly identifiable."
+    },
+    {
+      "place_id": "ekebergrestauranten",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ekebergrestauranten_fra_nord.JPG",
+      "author": "Helge Høifødt",
+      "license": "CC BY-SA 3.0",
+      "candidate_sha256": {
+        "center_original": "361c9e3ed91c9424bcc5d0dd05a0d66574e789cae0b5a5910856948371e27760",
+        "offset_original": "e206312704d0bdc0a7553f42989c91cdc0ebabfb61dde7653308472e38edd816"
+      },
+      "preferred_mode": null,
+      "visual_decision": "HOLD_ALTERNATIVE_SOURCE_OR_COMPOSITION",
+      "finding": "Both portraits devote too much space to sky/pavement and show a foreground car. Building recognizable, but editorial PlaceCard portrait is not satisfactory. Seek closer appropriately licensed facade image."
+    },
+    {
+      "place_id": "frognerseteren",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Frogners%C3%A6teren_restaurant.jpg",
+      "author": "Bjørn Erik Pedersen",
+      "license": "CC BY 2.5",
+      "candidate_sha256": {
+        "center_original": "da40b8ffc35527c39cd2dd816eec59a1bda6887f30f3286bc8f4b34b70321e29",
+        "offset_original": "e6831f3adb41cc7607f2068a3444837383097eb2307e921d5c88fdd35c621da0"
+      },
+      "preferred_mode": null,
+      "visual_decision": "HOLD_ALTERNATIVE_SOURCE_OR_COMPOSITION",
+      "finding": "Even shifted candidate displays disproportionately large empty blue sky, making the historic restaurant too small in the standing card. Evaluate the Commons 2025 Ssu CC BY-SA 4.0 alternative."
+    },
+    {
+      "place_id": "sarabraten",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Sarabr%C3%A5ten_-_2012-08-12_at_13-36-42.jpg",
+      "author": "Kjetil Ree",
+      "license": "CC BY-SA 3.0",
+      "candidate_sha256": {
+        "center_original": "9aaa22a8823ffba2163c4a477be2fa9500f6e77dc6e575ad173515c89a2cfb6f",
+        "offset_original": "c5ded8496acaa88f651ca29e4a93434add461bc3c3b442c62facdf932b2110c0"
+      },
+      "preferred_mode": "offset_original",
+      "visual_decision": "PASS_FRAMING",
+      "finding": "Existing low ruin masonry is clear; offset brings additional stone wall into the portrait while retaining forest setting. Does not depict a still-standing Heftye villa or confuse Milorg memorial."
+    },
+    {
+      "place_id": "saeterhytten_bygdoy",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Seterhytten_pa_Dronningberget.JPG",
+      "author": "Helge Høifødt",
+      "license": "public_domain_dedication_by_author",
+      "candidate_sha256": {
+        "center_original": "761fc5c1e4281b89816d2aea5b86a02934c4da8ed194e4a6ce17873929c3db8e",
+        "offset_original": "a90e9c3aa1f3d2cd17d4f08627375c25e5d446881f40d6529af1d62e753c80b0"
+      },
+      "preferred_mode": "center_original",
+      "visual_decision": "PASS_FRAMING",
+      "finding": "Standing centered frame retains full distinctive gable and main glazing; shifted candidate clips more of the right side. Verified image depicts Sæterhytten, not Oscarshall."
+    }
+  ],
+  "rejected_industrial_place": {
+    "place_id": "kristiania_teglverk_bryn",
+    "status": "NO_VERIFIED_SOURCE_BUILDING_IDENTITY",
+    "portrait_candidate_created": false
+  }
+}

@@ -5,8 +5,10 @@
 
   let MAP = null;
   let mapReady = false;
+  let styleReady = false;
   let mapStyleMode = "standard";
   let pendingStyleMode = null;
+  let queuedStyleMode = null;
   let isApplyingStyle = false;
 
   let START = { lat: 59.9139, lon: 10.7522, zoom: 13 };
@@ -19,6 +21,12 @@
   let userMarker = null;
   const placeAreaMarkers = new Map();
   let placeAreaMarkerZoomBound = false;
+  // Touchscreen phones and iPads can render area squares while dropping
+  // WebGL detail circles. Use one native detail-dot renderer on those devices.
+  const placeDetailMarkers = new Map();
+  let placeDetailMarkerEventsBound = false;
+  let lastPlaceMarkerFeatures = [];
+  const MAX_TOUCH_DETAIL_MARKERS = 240;
   const STYLE_STORAGE_KEY = "hg_map_style_mode";
   const STYLE_MODE_STANDARD = "standard";
   const STYLE_MODE_SATELLITE = "satellite";
@@ -36,10 +44,10 @@
   const L_AREA_LAB = "hg-place-areas-label";
   const PLACE_AREA_MARKER_CLASS = "hg-place-area-marker";
   const PLACE_AREA_LABEL_MIN_ZOOM = 9.5;
-  const PLACE_DETAIL_MIN_ZOOM = 11.8;
-  const PLACE_DETAIL_HIT_MIN_ZOOM = 12.35;
-  const PLACE_DETAIL_LABEL_MIN_ZOOM = 13.15;
-  const PLACE_DETAIL_FULL_ZOOM = 13.0;
+  const PLACE_DETAIL_MIN_ZOOM = 9.8;
+  const PLACE_DETAIL_HIT_MIN_ZOOM = 9.8;
+  const PLACE_DETAIL_LABEL_MIN_ZOOM = 12.7;
+  const PLACE_DETAIL_FULL_ZOOM = 12.7;
   const PLACE_SCOPE_AREA = "area";
   const PLACE_MAP_LOD_OVERVIEW = "overview";
   const PLACE_MAP_LOD_AREA = "area";
@@ -48,6 +56,9 @@
   const PLACE_DETAIL_LOD_FILTER: any = ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL];
   const PLACE_HIT_LAYERS = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
   const PLACE_HIT_PRIORITY = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
+  // MapLibre can retain the GeoJSON source while removing individual style layers.
+  // A source alone is not proof that the user can see or tap the place dots.
+  const REQUIRED_PLACE_LAYERS = [L_GLOW, L_DOTS, L_LAB, L_AREA_LAB, L_HIT, L_AREA_HIT];
   const PLACE_TAP_TOLERANCE_PX = 12;
   const PLACE_POINTER_MOVE_TOLERANCE_PX = 7;
   const PLACE_GESTURE_COOLDOWN_MS = 180;
@@ -166,18 +177,47 @@
     } catch (error) {
       MAP = null;
       mapReady = false;
+      styleReady = false;
       el.dataset.mapUnavailable = "1";
       el.setAttribute("aria-label", "Kart utilgjengelig – innhold kan fortsatt brukes");
       console.warn("[HGMap] WebGL-kart utilgjengelig; fortsetter uten kart.", error);
       return null;
     }
 
-    MAP.addControl(
-      new maplibregl.NavigationControl({ showCompass: false }),
-      "bottom-right"
-    );
+    // Mobile already has touch/pinch gestures and the compact History GO dock.
+    // Do not stack MapLibre's white +/- zoom toolbar on top of these controls.
+    if (!useNativeTouchDetailMarkers()) {
+      MAP.addControl(
+        new maplibregl.NavigationControl({ showCompass: false }),
+        "bottom-right"
+      );
+    }
+
+    // Rebuilding the base style removes custom GeoJSON layers. Restore place
+    // dots whenever the new style loads, not only after a later "idle" event.
+    MAP.on("style.load", restorePlaceLayersAfterStyleLoad);
+    // Remote "Detaljert" style/network errors must not strand users on an
+    // empty map. Keep the reliable default cartography available.
+    MAP.on("error", (event) => {
+      if (!isApplyingStyle || pendingStyleMode !== STYLE_MODE_SATELLITE) return;
+      console.warn("[HGMap] Detaljert kartstil kunne ikke lastes; går tilbake til Kart.", event?.error);
+      queuedStyleMode = null;
+      pendingStyleMode = STYLE_MODE_STANDARD;
+      try {
+        MAP.setStyle(STYLE_URL_STANDARD);
+      } catch (error) {
+        isApplyingStyle = false;
+        pendingStyleMode = null;
+        console.warn("[HGMap] Kunne ikke gjenopprette standardkart", error);
+      }
+    });
+    MAP.on("idle", () => {
+      if (isApplyingStyle) restorePlaceLayersAfterStyleLoad();
+      else ensureMarkers();
+    });
 
     MAP.on("load", () => {
+      styleReady = true;
       mapReady = true;
       ensureMapStyleToggle(containerId);
       MAP.resize();
@@ -190,7 +230,11 @@
   }
 
   function resize() {
-    if (MAP && typeof MAP.resize === "function") MAP.resize();
+    if (!MAP) return;
+    MAP.resize?.();
+    // Map bounds can be stale while the app header, PlaceCard and map mode
+    // change visibility. Resync DOM dots after the real viewport is measured.
+    if (lastPlaceMarkerFeatures.length) syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
   }
 
   function getMap() {
@@ -199,17 +243,17 @@
 
   function setPlaces(arr) {
     PLACES = Array.isArray(arr) ? arr : [];
-    if (mapReady) drawPlaceMarkers();
+    if (MAP) drawPlaceMarkers();
   }
 
   function setVisited(obj) {
     visited = obj || {};
-    if (mapReady) drawPlaceMarkers();
+    if (MAP) drawPlaceMarkers();
   }
 
   function setCatColor(fn) {
     if (typeof fn === "function") catColor = fn;
-    if (mapReady) drawPlaceMarkers();
+    if (MAP) drawPlaceMarkers();
   }
 
   function setOnPlaceClick(fn) {
@@ -221,9 +265,13 @@
   }
 
   function getSavedMapStyleMode() {
+    // Always boot into the reliable default basemap. A persisted remote
+    // "Detaljert" style could fail during startup and leave all markers
+    // invisible until the user manually toggled styles.
     try {
-      const raw = localStorage.getItem(STYLE_STORAGE_KEY);
-      if (raw === STYLE_MODE_STANDARD || raw === STYLE_MODE_SATELLITE) return raw;
+      if (localStorage.getItem(STYLE_STORAGE_KEY) !== STYLE_MODE_STANDARD) {
+        localStorage.setItem(STYLE_STORAGE_KEY, STYLE_MODE_STANDARD);
+      }
     } catch {}
     return STYLE_MODE_STANDARD;
   }
@@ -253,117 +301,73 @@
     return `https://api.maptiler.com/maps/${encodeURIComponent(styleId)}/style.json?key=${encodeURIComponent(key)}`;
   }
 
-  function runWhenStyleReady(fn) {
-    if (!MAP || typeof fn !== "function") return;
-    if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
-      fn();
-      return;
+  // MapLibre's isStyleLoaded() can remain false while map tiles, glyphs or
+  // sprites are loading AFTER "style.load" has already fired. Listening once
+  // for a second "style.load" then deadlocks until Kart/Detaljert switches
+  // styles. Track the actual style.load event independently of tile loading.
+  // Marker layers only need the parsed style, not a fully idle map.
+
+  function restorePlaceLayersAfterStyleLoad() {
+    if (!MAP) return;
+    styleReady = true;
+
+    // Resolve the requested style before painting its marker colors.
+    if (pendingStyleMode) {
+      mapStyleMode = pendingStyleMode;
+      pendingStyleMode = null;
+      isApplyingStyle = false;
+      saveMapStyleMode(mapStyleMode);
     }
-    MAP.once("style.load", () => {
-      if (typeof MAP.once === "function") MAP.once("idle", fn);
-      else fn();
-    });
+
+    mapReady = true;
+    applyStandardMapPalette();
+    drawPlaceMarkers();
+    moveMarkersOnTop();
+    MAP.resize();
+    renderMapStyleToggle();
+
+    // Honor the latest mobile press even if it happened during a style load.
+    const queued = queuedStyleMode;
+    queuedStyleMode = null;
+    if (queued && queued !== mapStyleMode) applyMapStyle(queued);
   }
 
   function applyMapStyle(nextMode) {
-    console.debug("[HGMap] set style start", nextMode);
-    if (!MAP || typeof MAP.setStyle !== "function") {
-      console.warn("[HGMap] MapLibre map not ready for style switch");
-      return;
-    }
+    if (!MAP || typeof MAP.setStyle !== "function") return;
 
     const desired = nextMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
     if (isApplyingStyle) {
-      console.debug("[HGMap] style switch already in progress");
+      queuedStyleMode = desired;
       return;
     }
-
-    if (desired === mapStyleMode && !isApplyingStyle) {
-      console.debug("[HGMap] style already active", desired);
+    if (desired === mapStyleMode) {
+      ensureMarkers();
       renderMapStyleToggle();
-      drawPlaceMarkers();
       return;
     }
 
-    const key = getMapTilerKey();
-    console.debug("[HGMap] key present", Boolean(key));
     const styleUrl = getStyleUrlForMode(desired);
-    console.debug("[HGMap] style url", styleUrl);
     if (!styleUrl) {
-      if (desired === STYLE_MODE_SATELLITE) {
-        console.warn("[HGMap] Naturtro kart krever window.HG_MAPTILER_KEY. Beholder standardkart.");
-      }
+      console.warn("[HGMap] Detaljert kart er ikke konfigurert; behold kartvisning.");
       renderMapStyleToggle();
       return;
     }
 
     isApplyingStyle = true;
+    styleReady = false;
     pendingStyleMode = desired;
-
-    const onStyleReady = () => {
-      if (!MAP) return;
-      const resolvedMode = pendingStyleMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
-      mapStyleMode = resolvedMode;
-      pendingStyleMode = null;
-      isApplyingStyle = false;
-      saveMapStyleMode(mapStyleMode);
-      mapReady = true;
-      applyStandardMapPalette();
-      drawPlaceMarkers();
-      moveMarkersOnTop();
-      MAP.resize();
-      renderMapStyleToggle();
-      console.debug("[HGMap] place layers restored", {
-        source: Boolean(MAP.getSource(SRC)),
-        glow: Boolean(MAP.getLayer(L_GLOW)),
-        hit: Boolean(MAP.getLayer(L_HIT)),
-        dots: Boolean(MAP.getLayer(L_DOTS)),
-        label: Boolean(MAP.getLayer(L_LAB))
-      });
-    };
-
     try {
       MAP.setStyle(styleUrl);
-      runWhenStyleReady(onStyleReady);
-      console.debug("[HGMap] setStyle called");
+      // style.load (with idle as fallback) owns the marker restoration.
     } catch (error) {
-      const message = error?.message || "unknown error";
-      console.warn("[HGMap] Naturtro style failed", message, error);
+      console.warn("[HGMap] Kartstil kunne ikke lastes", error);
       isApplyingStyle = false;
       pendingStyleMode = null;
+      queuedStyleMode = null;
+      styleReady = Boolean(MAP.getStyle?.());
       renderMapStyleToggle();
+      ensureMarkers();
     }
-  }
-
-  function redrawPlacesAfterStyleLoad(mode) {
-    if (!MAP) return;
-    const resolvedMode = mode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
-    const run = () => {
-      mapStyleMode = resolvedMode;
-      pendingStyleMode = null;
-      isApplyingStyle = false;
-      saveMapStyleMode(mapStyleMode);
-      mapReady = true;
-      console.debug("[HGMap] redrawing place markers after style switch");
-      applyStandardMapPalette();
-      drawPlaceMarkers();
-      moveMarkersOnTop();
-      MAP.resize();
-      renderMapStyleToggle();
-      console.debug("[HGMap] place layers restored");
-    };
-
-    if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
-      if (typeof MAP.once === "function") MAP.once("idle", run);
-      else run();
-      return;
-    }
-
-    MAP.once("style.load", () => {
-      console.debug("[HGMap] style loaded", resolvedMode);
-      if (typeof MAP.once === "function") MAP.once("idle", run);
-      else run();
-    });
   }
 
   function ensureMapStyleToggle(containerId) {
@@ -388,10 +392,9 @@
       applyMapStyle(btn.dataset.mode);
     };
 
+    // Mobile browsers already synthesize click from a tap. Binding touchend
+    // as well caused two style actions for one physical press.
     wrap.addEventListener("click", onStyleTogglePress);
-    wrap.querySelectorAll(".hg-map-style-btn").forEach((/** @type {HTMLElement} */ btn) => {
-      btn.addEventListener("touchend", onStyleTogglePress, { passive: false });
-    });
 
     controls.insertBefore(wrap, controls.firstChild);
     renderMapStyleToggle();
@@ -585,10 +588,7 @@
 
   function applyStandardMapPalette() {
     if (!MAP || mapStyleMode !== STYLE_MODE_STANDARD) return;
-    if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
-      runWhenStyleReady(applyStandardMapPalette);
-      return;
-    }
+    if (!styleReady) return;
 
     tuneStandardBaseMapStyle();
     moveMarkersOnTop();
@@ -739,6 +739,192 @@
     updatePlaceAreaDomMarkerSizes();
   }
 
+  function useNativeTouchDetailMarkers() {
+    // iPad (including desktop-mode Safari and large landscape models) must
+    // use the same reliable native dots as phones, not fragile WebGL circles.
+    const width = Number(window.innerWidth || 0);
+    if (Number(window.navigator?.maxTouchPoints || 0) >= 1) return true;
+    if (typeof window.matchMedia === "function") {
+      return window.matchMedia("(max-width: 1199px), (pointer: coarse)").matches;
+    }
+    return width > 0 && width <= 1199;
+  }
+
+  function nativeDetailDotDiameter(zoom) {
+    // Pixel diameter, interpolated continuously instead of stepwise size
+    // jumps. Zooming OUT visibly reduces the dots on both phone and iPad.
+    return Math.max(3.5, Math.min(8.5, 3.5 + (zoom - PLACE_DETAIL_MIN_ZOOM) * 0.78));
+  }
+
+  function updateNativeDetailLabelVisibility() {
+    if (!MAP || !placeDetailMarkers.size) return;
+    const zoom = Number(MAP.getZoom?.() ?? START.zoom ?? 13);
+    const labelsAllowed = zoom >= PLACE_DETAIL_LABEL_MIN_ZOOM;
+    const maxLabels = zoom < 13.8 ? 24 : zoom < 15.5 ? 48 : 90;
+    const occupied = [];
+    let shown = 0;
+    const canvas = MAP.getCanvas?.();
+    // Zero-sized startup maps must not suppress every label.
+    const hasViewport = Number(canvas?.clientWidth || 0) > 100 &&
+      Number(canvas?.clientHeight || 0) > 100;
+
+    for (const entry of placeDetailMarkers.values()) {
+      const label = entry.label;
+      if (!label) continue;
+      label.style.display = "none";
+      if (!labelsAllowed || !entry.name || shown >= maxLabels) continue;
+
+      if (hasViewport && typeof MAP.project === "function") {
+        let point;
+        try { point = MAP.project([entry.lon, entry.lat]); } catch { point = null; }
+        if (point && Number.isFinite(point.x) && Number.isFinite(point.y)) {
+          const width = Math.min(146, Math.max(34, entry.name.length * 6.3));
+          const left = point.x - width / 2;
+          const top = point.y + nativeDetailDotDiameter(zoom) / 2 + 3;
+          const rect = { left, right: left + width, top, bottom: top + 16 };
+          if (occupied.some(other =>
+            rect.left < other.right + 6 && rect.right > other.left - 6 &&
+            rect.top < other.bottom + 3 && rect.bottom > other.top - 3)) continue;
+          occupied.push(rect);
+        }
+      }
+      label.style.display = "block";
+      shown++;
+    }
+  }
+
+  function updateNativeDetailDotSizes() {
+    if (!MAP || !placeDetailMarkers.size) return;
+    const zoom = Number(MAP.getZoom?.() ?? START.zoom ?? 13);
+    const diameter = nativeDetailDotDiameter(zoom);
+    const width = Math.max(0.9, Math.min(1.4, diameter * 0.2));
+    for (const entry of placeDetailMarkers.values()) {
+      entry.element.style.width = `${diameter.toFixed(2)}px`;
+      entry.element.style.height = `${diameter.toFixed(2)}px`;
+      entry.element.style.borderWidth = `${width.toFixed(2)}px`;
+    }
+    updateNativeDetailLabelVisibility();
+  }
+
+  function syncPlaceDetailDomMarkers(features) {
+    if (!MAP || typeof maplibregl?.Marker !== "function") return;
+    const zoom = Number(MAP.getZoom?.() ?? START.zoom ?? 13);
+    if (!useNativeTouchDetailMarkers() || zoom < PLACE_DETAIL_MIN_ZOOM) {
+      for (const entry of placeDetailMarkers.values()) entry.marker.remove();
+      placeDetailMarkers.clear();
+      return;
+    }
+
+    // Limit DOM nodes to the current visible viewport: the canonical vector
+    // layers still represent all places, including those outside this window.
+    const bounds = MAP.getBounds?.();
+    const center = MAP.getCenter?.() || { lng: START.lon, lat: START.lat };
+    const lon0 = Number(center.lng ?? center.lon ?? START.lon);
+    const lat0 = Number(center.lat ?? START.lat);
+    let visible = features.filter(feature => {
+      if (feature?.properties?.mapLod !== PLACE_MAP_LOD_DETAIL) return false;
+      const coords = feature.geometry?.coordinates;
+      if (!Array.isArray(coords) || coords.length < 2) return false;
+      return typeof bounds?.contains !== "function" || bounds.contains(coords);
+    }).sort((a, b) => {
+      const [ax, ay] = a.geometry.coordinates;
+      const [bx, by] = b.geometry.coordinates;
+      return ((ax - lon0) ** 2 + (ay - lat0) ** 2)
+        - ((bx - lon0) ** 2 + (by - lat0) ** 2);
+    }).slice(0, MAX_TOUCH_DETAIL_MARKERS);
+
+    // During a cold mobile boot MapLibre can report bounds from an invisible
+    // or zero-sized map container. Never interpret an empty first bounds
+    // calculation as proof that there are no places to display.
+    if (!visible.length) {
+      visible = features.filter(feature => feature?.properties?.mapLod === PLACE_MAP_LOD_DETAIL)
+        .sort((a, b) => {
+          const [ax, ay] = a.geometry.coordinates;
+          const [bx, by] = b.geometry.coordinates;
+          return ((ax - lon0) ** 2 + (ay - lat0) ** 2)
+            - ((bx - lon0) ** 2 + (by - lat0) ** 2);
+        }).slice(0, MAX_TOUCH_DETAIL_MARKERS);
+    }
+
+    const keep = new Set();
+    for (const feature of visible) {
+      const id = String(feature.properties.id || "").trim();
+      if (!id) continue;
+      keep.add(id);
+      let entry = placeDetailMarkers.get(id);
+      if (!entry) {
+        const element = document.createElement("div");
+        element.className = "hg-place-detail-marker";
+        element.dataset.placeId = id;
+        element.setAttribute("role", "button");
+        element.setAttribute("aria-label", String(feature.properties.name || id));
+        element.style.boxSizing = "border-box";
+        element.style.borderRadius = "50%";
+        element.style.borderStyle = "solid";
+        element.style.borderWidth = "1px";
+        element.style.pointerEvents = "auto";
+        element.style.cursor = "pointer";
+        element.style.touchAction = "manipulation";
+        element.style.zIndex = "8";
+        // Native touch markers must own visible place names: the separate
+        // WebGL text layer previously vanished on some iPads.
+        const label = document.createElement("span");
+        label.className = "hg-place-detail-label";
+        label.setAttribute("aria-hidden", "true");
+        label.textContent = String(feature.properties.name || id);
+        label.style.display = "none";
+        element.appendChild(label);
+        element.addEventListener("click", event => {
+          event.preventDefault?.();
+          event.stopPropagation?.();
+          onPlaceClick(id);
+        });
+        const marker = new maplibregl.Marker({ element, anchor: "center" })
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(MAP);
+        entry = { marker, element, label, name: String(feature.properties.name || id),
+          lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] };
+        placeDetailMarkers.set(id, entry);
+      } else if (entry.lon !== feature.geometry.coordinates[0] || entry.lat !== feature.geometry.coordinates[1]) {
+        // Repeating setLngLat for an unchanged dot can cause needless DOM
+        // projection/repaint and visible flashing during background updates.
+        entry.marker.setLngLat(feature.geometry.coordinates);
+        entry.lon = feature.geometry.coordinates[0];
+        entry.lat = feature.geometry.coordinates[1];
+      }
+      const name = String(feature.properties.name || id);
+      if (name !== entry.name) {
+        entry.name = name;
+        entry.label.textContent = name;
+        entry.element.setAttribute("aria-label", name);
+      }
+      entry.element.style.backgroundColor = feature.properties.fill;
+      const borderColor = String(feature.properties.border || "").trim();
+      const fillColor = String(feature.properties.fill || "").trim();
+      // A missing category palette used to produce white fill AND white
+      // outline on CARTO's pale basemap, rendering first-boot dots invisible.
+      entry.element.style.borderColor = !borderColor || borderColor.toLowerCase() === fillColor.toLowerCase()
+        ? "#17212a" : borderColor;
+      entry.element.style.opacity = feature.properties.coordinateTrust === "invalid" ? "0" : "1";
+      entry.element.style.boxShadow = "0 0 0 .45px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.28)";
+    }
+    for (const [id, entry] of placeDetailMarkers) {
+      if (keep.has(id)) continue;
+      entry.marker.remove();
+      placeDetailMarkers.delete(id);
+    }
+
+    updateNativeDetailDotSizes();
+    if (!placeDetailMarkerEventsBound) {
+      const onViewportChanged = () => syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
+      // Continuous zoom changes size without replacing marker elements.
+      MAP.on("zoom", updateNativeDetailDotSizes);
+      MAP.on("moveend", onViewportChanged);
+      MAP.on("zoomend", onViewportChanged);
+      placeDetailMarkerEventsBound = true;
+    }
+  }
+
   function getPlaceGlowPaint(isArea = false) {
     const radius = isArea
       ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15]
@@ -819,11 +1005,11 @@
           ]
         : [
             "interpolate", ["linear"], ["zoom"],
-            10, ["+", 1.6, ["*", 0.2, ["get", "visited"]]],
-            12, ["+", 2.2, ["*", 0.3, ["get", "visited"]]],
-            14, ["+", 3.0, ["*", 0.4, ["get", "visited"]]],
-            16, ["+", 4.0, ["*", 0.6, ["get", "visited"]]],
-            18, ["+", 5.6, ["*", 0.8, ["get", "visited"]]]
+            9.8, ["+", 3.1, ["*", 0.3, ["get", "visited"]]],
+            12, ["+", 3.5, ["*", 0.4, ["get", "visited"]]],
+            14, ["+", 4.2, ["*", 0.5, ["get", "visited"]]],
+            16, ["+", 5.0, ["*", 0.7, ["get", "visited"]]],
+            18, ["+", 6.0, ["*", 0.8, ["get", "visited"]]]
           ],
       "circle-color": ["get", "fill"],
       "circle-stroke-color": ["get", "border"],
@@ -876,11 +1062,8 @@
     if (!MAP) return;
     if (!Array.isArray(PLACES) || PLACES.length === 0) return;
 
-    if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
-      runWhenStyleReady(drawPlaceMarkers);
-      return;
-    }
-
+    // Native mobile dots must not wait for the map style, glyphs or tiles.
+    // WebGL layers below are optional and are installed once style.load fires.
     const places = (typeof window.HG_I18N?.localizePlaces === "function")
       ? window.HG_I18N.localizePlaces(PLACES)
       : PLACES;
@@ -923,19 +1106,27 @@
 
     const fc = { type: "FeatureCollection", features };
     applyStandardMapPalette();
+    lastPlaceMarkerFeatures = features;
     syncPlaceAreaDomMarkers(features);
+    // Native mobile detail dots do not depend on WebGL circle rendering.
+    // They are created before the GeoJSON layers so they survive style errors.
+    syncPlaceDetailDomMarkers(features);
+    if (!styleReady) return;
     const src = MAP.getSource(SRC);
-    if (src) {
+    if (src && REQUIRED_PLACE_LAYERS.every(id => MAP.getLayer(id))) {
       src.setData(fc);
       moveMarkersOnTop();
       return;
     }
 
+    // Recover an incomplete style reload: removing only the stale source
+    // cannot restore any missing layers, so rebuild the whole marker stack.
     removeIfExists();
     MAP.addSource(SRC, { type: "geojson", data: fc });
 
     MAP.addLayer({
       id: L_GLOW,
+      layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
       minzoom: PLACE_DETAIL_MIN_ZOOM,
       filter: PLACE_DETAIL_LOD_FILTER,
       type: "circle",
@@ -945,6 +1136,7 @@
 
     MAP.addLayer({
       id: L_DOTS,
+      layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
       minzoom: PLACE_DETAIL_MIN_ZOOM,
       filter: PLACE_DETAIL_LOD_FILTER,
       type: "circle",
@@ -954,11 +1146,15 @@
 
     MAP.addLayer({
       id: L_LAB,
+      // Touch text follows stable native dots; desktop keeps WebGL labels.
       minzoom: PLACE_DETAIL_LABEL_MIN_ZOOM,
       filter: PLACE_DETAIL_LOD_FILTER,
       type: "symbol",
       source: SRC,
-      layout: getPlaceLabelLayout(false),
+      layout: {
+        ...getPlaceLabelLayout(false),
+        visibility: useNativeTouchDetailMarkers() ? "none" : "visible"
+      },
       paint: getPlaceLabelPaint(false)
     });
 
@@ -1056,7 +1252,6 @@
         MAP.off("mouseleave", layerId, prev.clearPointer);
       }
       MAP.off("click", prev.handlePlaceClick);
-      MAP.off("touchend", prev.handlePlaceClick);
       MAP.off("dragstart", prev.markMapGesture);
       MAP.off("zoomstart", prev.markMapGesture);
       MAP.off("rotatestart", prev.markMapGesture);
@@ -1179,7 +1374,7 @@
     MAP.on("zoomend", finishMapGesture);
     MAP.on("rotateend", finishMapGesture);
     MAP.on("click", handlePlaceClick);
-    MAP.on("touchend", handlePlaceClick);
+    // A MapLibre tap dispatches click; touchend would fire a duplicate route.
   }
 
   function moveMarkersOnTop() {
@@ -1189,7 +1384,14 @@
     });
   }
 
-  function maybeDrawMarkers() { drawPlaceMarkers(); }
+  function ensureMarkers() {
+    if (!MAP || !styleReady || !mapReady || isApplyingStyle) return;
+    if (!MAP.getSource(SRC) || !REQUIRED_PLACE_LAYERS.every(id => MAP.getLayer(id))) {
+      drawPlaceMarkers();
+    }
+  }
+
+  function maybeDrawMarkers() { ensureMarkers(); }
   function refreshMarkers() { drawPlaceMarkers(); }
 
   window.HGCoordinateTrust = { getCoordinateTrust };
@@ -1212,6 +1414,7 @@
     getMapLod,
 
     maybeDrawMarkers,
+    ensureMarkers,
     refreshMarkers
   };
 })();

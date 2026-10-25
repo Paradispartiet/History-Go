@@ -203,4 +203,57 @@ function setup({ activeCareer = 'handel', startDay = 1, oldWallet = null, withCl
   assert.equal(s.wallet().balance, 0);
 }
 
+
+{
+  // One continuous 21-played-day payroll history. The jobs below are explicit
+  // economic test fixtures, not fabricated History Go merits or UI offers.
+  // A separate organic browser test covers earned merits and job acceptance.
+  const s = setup({ activeCareer: null });
+  s.tick(); // initialize on game day 1; no retroactive wages
+  assert.equal(s.wallet().balance, 0);
+  const checkpoints = [];
+  for (let completedDay = 1; completedDay <= 21; completedDay++) {
+    if (completedDay === 8) s.career('handel');
+    if (completedDay === 15) s.career('service');
+    s.recordDay(completedDay);
+    s.recordDay(completedDay); // duplicated day-complete event must be inert
+    const expectedCareer = completedDay <= 7 ? '' : completedDay <= 14 ? 'handel' : 'service';
+    assert.equal(s.wallet().completed_game_days_v1.at(-1).careerId, expectedCareer,
+      'daily employment snapshot must follow the job held on that actual day');
+    // Salary must not arrive partway through a game week.
+    const before = s.wallet().balance;
+    s.day(completedDay + 1);
+    s.tick();
+    if (completedDay % 7 !== 0) {
+      assert.equal(s.wallet().balance, before,
+        'no payment before seven completed game days');
+    } else {
+      const expected = completedDay === 7 ? 50 : completedDay === 14 ? 130 : 300;
+      assert.equal(s.wallet().balance, expected,
+        'day ' + completedDay + ' settles only that completed week');
+      assert.equal(s.wallet().last_tick_day_index, completedDay + 1);
+      assert.deepEqual(s.wallet().completed_game_days_v1, [],
+        'settled daily salary records must be cleared');
+      checkpoints.push({ completedDay, balance: s.wallet().balance });
+    }
+    const once = s.wallet().balance;
+    s.tick(); // reload / repeated render must not duplicate a settlement
+    assert.equal(s.wallet().balance, once, 'weekly tick remains idempotent');
+  }
+  assert.deepEqual(checkpoints, [
+    { completedDay: 7, balance: 50 },  // eligible NAV, zero job salary
+    { completedDay: 14, balance: 130 }, // 80 net from seven actual Handel days
+    { completedDay: 21, balance: 300 }  // 170 net from seven Service days
+  ], 'three consecutive week settlements follow actual earned periods');
+  const persisted = JSON.parse(JSON.stringify(s.wallet()));
+  const restored = setup({ activeCareer: 'service', startDay: 22, oldWallet: persisted });
+  restored.tick();
+  assert.equal(restored.wallet().balance, 300,
+    'serialized wallet reload must not duplicate the third settlement');
+  restored.day(23);
+  restored.tick();
+  assert.equal(restored.wallet().balance, 300,
+    'wall-clock change or reopening on day 23 cannot create an extra payment');
+}
+
 console.log('Civication canonical game-week economy regression passed');

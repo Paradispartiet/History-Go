@@ -167,7 +167,7 @@ test("every indexed milestone is dated, inspectable and sourced from an approved
           assert.equal(milestone.title, claim.claim);
           assert.equal(milestone.sources.length, 1);
           assert.equal(milestone.sources[0].url, claim.sourceUrl);
-          assert.equal(milestone.sources[0].title, claim.sourceLocation || claim.sourceType || claim.sourceUrl);
+          assert.equal(milestone.sources[0].title, String(claim.sourceLocation || claim.sourceType || claim.sourceUrl).trim());
           assert.equal(milestone.sources[0].verifiedAt, claim.verifiedAt || "");
           if (claim.timelineYear !== undefined) assert.equal(milestone.year, claim.timelineYear);
           const anchorMatch = milestone.title.match(new RegExp(`(^|[^0-9])${milestone.year}(?![0-9])`));
@@ -222,10 +222,21 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   // Østensjøvannet enriched an already dated place; Bogstadvannet, Skraperudtjern, Sognsvann, Mærradalen and Vettakollen now add verified source-backed History coverage.
-  assert.equal(coverage.canonical_place_count, 587);
-  assert.equal(coverage.dated_evidence_place_count, 271);
+  assert.equal(coverage.canonical_place_count, osloPlaceIds.length);
+  assert.equal(coverage.dated_evidence_place_count, coverage.places.filter(place => place.status === 'dated_evidence').length);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 314);
+  const idsInCoverage = coverage.places.map(place => place.place_id);
+  assert.deepEqual([...idsInCoverage].sort(), osloPlaceIds, "coverage must classify each canonical Oslo place once");
+  assert.equal(
+    coverage.awaiting_source_backed_history_count,
+    coverage.places.filter(place => place.status === "awaiting_source_backed_history").length,
+    "the unverified count must reflect actual source-backed classification"
+  );
+  assert.equal(
+    coverage.dated_evidence_place_count + coverage.documented_case_place_count + coverage.awaiting_source_backed_history_count,
+    coverage.canonical_place_count,
+    "every Oslo place must belong to exactly one history-evidence class"
+  );
   for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "dramatikkens_hus", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset", "museumsleiligheten_grabein", "teater_manu", "black_box_teater", "vippetangen_fisketorg", "sentrum_scene", "vulkan_industriomrade", "blaa", "rockefeller", "john_dee", "salt", "noklevann", "ostensjovannet", "bogstadvannet", "skraperudtjern", "sognsvann", "vettakollen"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,

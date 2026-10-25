@@ -28,6 +28,14 @@ function run() {
           <aside class="civi-lifestory-panels"><section><h4>Tråder</h4></section></aside>
         </div>
       </section>
+      <section id="activeJobSection">
+        <div id="activeJobCard">
+          <strong>Rolle: Testrolle</strong>
+          <p>Ingen aktive jobbtilbud.</p>
+          <label>Hverdagsstatus <select><option>Arbeidssøker / arbeidsledig</option></select></label>
+          <button type="button">Rediger livsprofil</button>
+        </div>
+      </section>
       <section id="civiHomeStatus">
         <div id="homeStatusContent">
           <p>Du bor på Sagene.</p>
@@ -64,6 +72,10 @@ function run() {
     }
   };
   window.CivicationMailEngine = { getInbox() { return []; } };
+  let activePosition = { title: "Testrolle", career_id: "naeringsliv" };
+  let pendingOffer = null;
+  window.CivicationState = { getActivePosition() { return activePosition; } };
+  window.CivicationJobs = { getLatestPendingOffer() { return pendingOffer; } };
 
   loadScript("js/Civication/ui/CivicationMiniSectionsUI.js");
 
@@ -88,6 +100,30 @@ function run() {
   assert.ok(!section.classList.contains("needs-feedback"), "settled home section should not have needs-feedback class");
   assert.ok(section.textContent.includes("Bytt nabolag"), "ordinary change-district button should remain rendered");
   assert.ok(section.textContent.includes("Betal husleie"), "ordinary rent button should remain rendered");
+
+  // The active role card has editable profile controls, but these are not
+  // unanswered offers. The same card must become urgent for a real offer only.
+  const activeSection = document.getElementById("activeJobSection");
+  const activeStatus = activeSection.querySelector("[data-civi-mini-status]");
+  const activeButton = activeSection.querySelector("[data-civi-mini-open]");
+  assert.ok(!activeSection.classList.contains("needs-feedback"), "accepted job must not appear as unanswered offer");
+  assert.notStrictEqual(activeStatus.textContent, "Krever tilbakemelding", "life-profile selectors do not demand offer feedback");
+  assert.strictEqual(activeButton.textContent, "Åpne rolle", "accepted job returns to ordinary role action");
+
+  activePosition = null;
+  pendingOffer = { offer_key: "naeringsliv:2", status: "pending", title: "Testrolle" };
+  window.CivicationMiniSectionsUI.refresh();
+  assert.ok(activeSection.classList.contains("needs-feedback"), "unanswered job offer should be urgent");
+  assert.strictEqual(activeStatus.textContent, "Krever tilbakemelding", "pending offer should require a response");
+  assert.strictEqual(activeButton.textContent, "Svar på tilbud", "pending offer should allow a response");
+
+  pendingOffer = null;
+  activePosition = { title: "Testrolle", career_id: "naeringsliv" };
+  window.CivicationMiniSectionsUI.refresh();
+  assert.ok(!activeSection.classList.contains("needs-feedback"), "accepting the offer clears urgency");
+  assert.notStrictEqual(activeStatus.textContent, "Krever tilbakemelding", "accepted offer clears feedback badge");
+  assert.strictEqual(activeButton.textContent, "Åpne rolle", "accepted offer clears response CTA");
+  assert.ok(activeSection.textContent.includes("Ingen aktive jobbtilbud."), "the detail view remains unchanged");
 
   const lifestorySection = document.getElementById("civiLifestorySection");
   const lifestoryPanel = document.getElementById("civiLifestoryPanel");
@@ -130,7 +166,7 @@ function run() {
     "mini CSS should hide Life Story only through the category filter class"
   );
 
-  console.log("PASS: Civication mini home settled actions are not urgent.");
+  console.log("PASS: Civication mini sections distinguish life-profile controls from pending job offers.");
 }
 
 run();

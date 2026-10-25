@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "statsministerboligen",
+  "placeFile": "data/places/politikk/oslo/places_politikk/statsministerboligen.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Statsministerboligen i Inkognitogata 18 er den offisielle boligen for den som til enhver tid er Norges statsminister.",
+    "placeObjectDistinction": "Den konkrete boligen er ikke det samme som statsministerembetet, Regjeringens representasjonsanlegg eller hele Parkveien 45-kvartalet.",
+    "sourceIds": [
+      "source_historie",
+      "source_plan"
+    ]
+  },
+  "politicsTopics": [],
+  "sources": [
+    {
+      "id": "source_historie",
+      "url": "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1905-1945/1908-Statsministerboliger/id759072/",
+      "sourceLocation": "Regjeringens historikk om fast bolig 1873–1908, Jens Stoltenberg 2008 og 2013-skifte",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-24",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_plan",
+      "url": "https://www.regjeringen.no/no/dokumenter/Stmeld-nr-22-2003-2004-/id135996/?ch=2",
+      "sourceLocation": "Regjeringens representasjonsanlegg og boligfunksjon i planmeldingen 2004",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-24",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_bygg",
+      "url": "https://www.regjeringen.no/no/dokumenter/stprp-nr-1-20082009-/id529604/?ch=2",
+      "sourceLocation": "Statlig byggeprosjekt og representasjonsanlegg i budsjettomtalen",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-24",
+      "temporalStatus": "historical"
+    }
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_statsministerboligen",
+      "claim": "Statlig beslutning om representasjonsanlegg ble gjennomført i Inkognitogata 18, som ble tatt i bruk til statsministerbolig i 2008.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Regjeringen la fram planen om statsministerbolig som del av et samlet statlig representasjonsanlegg.",
+          "sourceIds": [
+            "source_historie"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Statsministeren disponerer boligen i kraft av embetet, ikke som privat eier av eiendommen.",
+          "sourceIds": [
+            "source_historie"
+          ]
+        },
+        "ruleDecision": {
+          "status": "not_applicable",
+          "rationale": "Stedsbeskrivelsens kildegrunnlag dokumenterer ikke et enkelt lovvedtak som avgjør den samlede stedsfunksjonen."
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Inkognitogata 18 inngår i den dokumenterte statlige eiendoms- og representasjonsløsningen.",
+          "sourceIds": [
+            "source_historie"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Den nye boligen ble tatt i bruk av statsministeren høsten 2008.",
+          "sourceIds": [
+            "source_historie"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Jens Stoltenberg flyttet inn høsten 2008, og Erna Solberg overtok boligen etter regjeringsskiftet i 2013.",
+          "sourceIds": [
+            "source_historie"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "De registrerte historiske hendelsene dokumenterer ikke i seg selv en målt samfunnseffekt eller årsakssammenheng."
+        }
+      }
+    }
+  ],
+  "currentVerification": {
+    "status": "N/A",
+    "rationale": "Rapporten dokumenterer historiske funksjoner og daterte institusjonsforhold, ingen ubekreftede nåtidskrav."
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "statsministerboligen",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/statsministerboligen.json",
+    "productionContext": "data/quiz/production_context/politikk/statsministerboligen.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Kontrollert institusjonskronologi 1873–2013 mot regjeringens planmelding, kanonisk stedstekst og gjeldende epoke- og story-manifest: ingen selvstendig chronology-post eller story-id for Inkognitogata 18. Dateringer finnes i quiz/Fagverk; ingen separat story kreves for denne leveransen."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "primaryFunction"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "politicsTopics",
+        "primaryFunction"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "evidenceChains"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "currentVerification"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/statsministerboligen_sets.json",
+        "data/quiz/production_briefs/politikk/statsministerboligen.json",
+        "data/quiz/production_context/politikk/statsministerboligen.json"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Kronologi og fortellinger kontrollert i eksisterende registre. Ingen egen chronology-post eller Story er knyttet til Place-ID-en; gate G er dokumentert N/A."
+    }
+  },
+  "review": {
+    "reviewer": "History GO assisted source trace; final editorial approval outstanding",
+    "reviewedAt": "2026-10-24",
+    "notes": "Historiske stedsfakta og eksplisitte avgrensninger dokumentert fra åpne kilder. F og G står bevisst N/A. Ingen falsk påstand om v1- eller menneskelig endelig godkjenning. Quizåpningen har nå 14 historiske, kildebelagte spørsmål knyttet til fullquiz og produksjonskontekst."
+  }
+}

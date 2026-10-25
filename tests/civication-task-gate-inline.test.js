@@ -39,7 +39,7 @@ const gateEvent = {
   ]
 };
 
-const action = {
+let action = {
   source: 'day_phase',
   id: gateEvent.id,
   subject: gateEvent.subject,
@@ -52,10 +52,20 @@ const action = {
 };
 
 const answerCalls = [];
+let firstAnswerRejected = true;
+let generatedMailReply = { ok: false, reason: 'not_found' };
 win.CivicationNextActionSelector = { getCurrent: () => action };
 win.CivicationMailEngine = {
   getInbox: () => [{ status: 'pending', event: gateEvent }],
-  answerMail(mailId, choiceId) { answerCalls.push({ mailId, choiceId }); return Promise.resolve({ ok: true }); }
+  answerMail(mailId, choiceId) {
+    answerCalls.push({ mailId, choiceId });
+    if (mailId === 'generated-workday-decision') return Promise.resolve(generatedMailReply);
+    if (firstAnswerRejected) {
+      firstAnswerRejected = false;
+      return Promise.resolve({ ok: false, reason: 'task_requires_contract' });
+    }
+    return Promise.resolve({ ok: true });
+  }
 };
 win.CivicationTaskEngine = {
   getTaskByMailId: (mailId) => (mailId === gateEvent.id
@@ -105,6 +115,96 @@ vm.runInContext(
   assert.strictEqual(answerCalls.length, 1, 'ett svar registrert');
   assert.strictEqual(answerCalls[0].mailId, gateEvent.id, 'svaret gjelder gate-mailen');
   assert.strictEqual(answerCalls[0].choiceId, 'A', 'valgt leveranse sendes som choice');
+  // The first attempt was rejected by the mail engine. A cache of identical
+  // markup must not leave the task's only real answer buttons disabled forever.
+  const retryBtn = bodyEl.querySelector('[data-civi-next-action-answer][data-choice-id="A"]');
+  assert(retryBtn, 'same actionable task remains visible after rejection');
+  assert.strictEqual(retryBtn.disabled, false, 'failed mail submission unlocks a genuine retry');
+  retryBtn.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true }));
+  await new Promise((r) => setTimeout(r, 50));
+  assert.strictEqual(answerCalls.length, 2, 'second real submission reaches mail engine');
+  assert.strictEqual(answerCalls[1].choiceId, 'A', 'retry keeps original choice');
+
+  // A daily_generated fallback occupies the task_gate program slot, but has
+  // no TaskEngine task or task payload. Its actual A/B decision must be
+  // playable and recorded even if the inbox projection returns not_found.
+  const generatedEvent = {
+    id: 'generated-workday-decision', source_type: 'daily_generated',
+    mail_type: 'phase', choices: [
+      { id: 'A', label: 'Ta saken ryddig nå' },
+      { id: 'B', label: 'La saken vente til hovedarbeidet er gjort' }
+    ]
+  };
+  const generatedRow = { status: 'delivered', slot: 'task_gate', phase: 'workday', event: generatedEvent };
+  win.CivicationDailyMailBuilder = {
+    inspect: () => ({ runtime: { items: [generatedRow] } }),
+    markHandled: async (id, choiceId) => {
+      assert.strictEqual(id, generatedEvent.id);
+      assert.ok(generatedEvent.choices.some(c => c.id === choiceId), 'must be an actual authored choice');
+      generatedRow.status = 'answered';
+      generatedRow.choice_id = choiceId;
+      action = null;
+      return { items: [generatedRow] };
+    }
+  };
+  const generatedAction = {
+    source: 'day_phase', id: generatedEvent.id, subject: 'Arbeidsdag: neste avklaring',
+    phase: 'workday', mail_type: 'phase', slot: 'task_gate',
+    status: 'delivered', taskId: '', isTaskGate: true, choices: generatedEvent.choices
+  };
+  action = generatedAction;
+  ui.render();
+  assert(!bodyEl.innerHTML.includes('data-civi-next-action-task'),
+    'generated decision is not falsely presented as a real task gate');
+  const generatedChoice = bodyEl.querySelector('[data-civi-next-action-answer][data-choice-id="B"]');
+  assert(generatedChoice, 'real fallback decision shows its choices');
+  generatedChoice.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true }));
+  await new Promise(resolve => setTimeout(resolve, 50));
+  assert.strictEqual(generatedRow.status, 'answered', 'generated decision is completed in the canonical runtime');
+  assert.strictEqual(generatedRow.choice_id, 'B', 'the actual selected choice is preserved');
+  assert.strictEqual(answerCalls.at(-1).mailId, generatedEvent.id,
+    'the mail engine receives the choice before the fallback');
+  // The legacy task-contract middleware may reject a generated phase choice
+  // merely because it lives in the task_gate schedule slot. This row has no
+  // actual task id, payload or TaskEngine task. It still needs a real choice.
+  generatedMailReply = { ok: false, reason: 'task_requires_contract' };
+  generatedRow.status = 'delivered';
+  generatedRow.choice_id = null;
+  action = generatedAction;
+  ui.render();
+  const contractMisclassification = bodyEl.querySelector('[data-civi-next-action-answer][data-choice-id="A"]');
+  assert(contractMisclassification, 'generated phase decision remains playable');
+  contractMisclassification.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true }));
+  await new Promise(resolve => setTimeout(resolve, 50));
+  assert.strictEqual(generatedRow.status, 'answered', 'non-task decision rejected as task is recorded');
+  assert.strictEqual(generatedRow.choice_id, 'A', 'contract mismatch preserves the player choice');
+
+  // A real browser run may report success without persisting the generated
+  // choice in the day runtime. Reconcile that drift, not just not_found.
+  generatedMailReply = { ok: true, dailyRuntimeAnswered: true };
+  generatedRow.status = 'delivered';
+  generatedRow.choice_id = null;
+  action = generatedAction;
+  ui.render();
+  const successfulButUnpersisted = bodyEl.querySelector('[data-civi-next-action-answer][data-choice-id="A"]');
+  assert(successfulButUnpersisted, 'generated choice stays playable on a stale success');
+  successfulButUnpersisted.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true }));
+  await new Promise(resolve => setTimeout(resolve, 50));
+  assert.strictEqual(generatedRow.status, 'answered', 'successful reply must also persist its canonical row');
+  assert.strictEqual(generatedRow.choice_id, 'A', 'successful reply preserves the exact player choice');
+
+  // A rejected answer for a reason other than a missing inbox projection
+  // must not be silently converted to a completed day decision.
+  generatedMailReply = { ok: false, reason: 'validation_failed' };
+  generatedRow.status = 'delivered';
+  generatedRow.choice_id = null;
+  action = generatedAction;
+  ui.render();
+  const invalidReply = bodyEl.querySelector('[data-civi-next-action-answer][data-choice-id="B"]');
+  assert(invalidReply, 'failed generated decision remains answerable');
+  invalidReply.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true }));
+  await new Promise(resolve => setTimeout(resolve, 50));
+  assert.strictEqual(generatedRow.status, 'delivered', 'real answer validation failure must remain blocked');
 
   console.log('civication-task-gate-inline.test.js passed');
   win.close();
