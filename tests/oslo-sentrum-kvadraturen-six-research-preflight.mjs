@@ -84,11 +84,17 @@ const candidatePlaceIds=candidateGroups.map(g=>g.place_id);
 assert.equal(new Set(candidatePlaceIds).size,6,'missing or repeated place groups');
 assert.deepEqual(new Set(candidatePlaceIds),new Set(ledger.places.map(p=>p.place_id)));
 const allClaims=new Map(ledger.places.flatMap(p=>p.claims.map(c=>[c.claim_id,p.place_id])));
+// A historical quiz should teach people, place changes and consequences, not a list of dates.
+// Allow at most one direct year/date-answer per ten questions; dates remain in
+// explanations and source evidence when they matter.
+const isDirectYearRecall=q=>/^(?:til\s*)?\d{3,4}(?:[-–](?:tallet|årene))?$/.test(String(q.answer).trim()) ||
+  /^(?:når\b|i hvilket år\b|hvilket år\b|hvilket århundre\b|hvor lenge\b)/i.test(String(q.question).trim());
 const allCandidateIds=new Set();
 let candidateCount=0;
 for(const group of candidateGroups){
   assert.ok(ledger.places.some(p=>p.place_id===group.place_id),group.place_id+': outside approved scope');
   assert.equal(group.questions.length,10,group.place_id+': not 10 candidates');
+  assert.ok(group.questions.filter(isDirectYearRecall).length<=1,group.place_id+': too much date memorization in candidate quiz');
   for(const q of group.questions){
     candidateCount++;
     assert.ok(!allCandidateIds.has(q.candidate_id),'Repeated candidate ID');
@@ -112,6 +118,7 @@ const garmannBrief=read('data/quiz/production_briefs/historie/garmanngarden.json
 assert.equal(garmannDraft.status,'editorial_review_not_manifested');
 assert.equal(garmannDraft.targetId,'garmanngarden');
 assert.equal(garmannDraft.questions.length,21);
+assert.ok(garmannDraft.questions.filter(isDirectYearRecall).length<=2,'Garmanngården draft relies too heavily on exact year memorization');
 assert.deepEqual(garmannDraft.sets.map(s=>s.count),[7,7,7]);
 assert.deepEqual(garmannDraft.sets.map(s=>s.phase),['opening','bridge','final']);
 assert.equal(garmannBrief.targetId,garmannDraft.targetId);
