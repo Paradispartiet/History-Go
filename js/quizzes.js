@@ -731,7 +731,7 @@ if (canTag) {
         ? window.saveKnowledgeFromQuiz
         : null;
 
-  if (saveKnowledge && q.knowledge && !captureCanonicalOnly) {
+  if (saveKnowledge && (q.explanation || q.knowledge) && !captureCanonicalOnly) {
     try {
       saveKnowledge(
         {
@@ -740,7 +740,7 @@ if (canTag) {
           dimension: q.dimension,
           topic: q.topic,
           question: q.question,
-          knowledge: q.knowledge,
+          knowledge: q.explanation || q.knowledge,
           answer: q.answer,
           chosenAnswer: chosenAnswer,
           core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
