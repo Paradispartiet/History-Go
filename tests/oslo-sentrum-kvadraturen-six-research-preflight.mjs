@@ -345,6 +345,40 @@ for(const [i,q] of hotelItems.entries()){
   if(i<14)assert.ok(['fact','context'].includes(q.question_type));
 }
 assert.ok(hotelItems[20].knowledge.includes('1991–2025'),'Hotel du Nord needs time-bounded former-office context');
+// The remaining two Næringsliv source packages use the same existing
+// canonical production contract. These banks are reviewed editorial inputs,
+// not independently registered playable quiz files.
+for(const targetId of ['cafe_engebret','treschowgarden']){
+  const bankName='reports/place-production/oslo-kvadraturen-'+targetId.replaceAll('_','-')+'-21-fullquiz-review-20261025.json';
+  const productionBrief=read('data/quiz/production_briefs/naeringsliv/'+targetId+'.json');
+  const bank=read(bankName);
+  assert.equal(productionBrief.status,'reviewed');
+  assert.equal(productionBrief.targetId,targetId);
+  assert.equal(productionBrief.categoryId,'naeringsliv');
+  assert.equal(productionBrief.claims.length,21);
+  assert.equal(bank.targetId,targetId);
+  assert.equal(bank.profile,'narrow_3x7');
+  assert.equal(bank.status.includes('unmanifested'),true);
+  assert.deepEqual(bank.sections.map(s=>s.questions.length),[7,7,7]);
+  assert.deepEqual(bank.sections.map(s=>s.phase),['opening','bridge','final']);
+  const list=bank.sections.flatMap(s=>s.questions);
+  assert.equal(new Set(list.map(q=>q.question)).size,21,targetId+': duplicated question');
+  assert.equal(new Set(list.map(q=>q.answerIndex)).size,4,targetId+': missing answer-index variety');
+  assert.equal(list.filter(isDirectYearRecall).length,0,targetId+': unwanted isolated date recall');
+  for(const [i,q] of list.entries()){
+    assert.equal(q.id,targetId+'_quiz_'+String(i+1).padStart(2,'0'));
+    assert.equal(q.options.length,4);
+    assert.equal(new Set(q.options).size,4);
+    assert.equal(q.answer,q.options[q.answerIndex]);
+    assert.ok(q.knowledge.length>=45);
+    assert.equal(q.claim_id,productionBrief.claims[i].claim_id);
+    assert.equal(q.knowledge,productionBrief.claims[i].statement);
+    assert.deepEqual(q.source,productionBrief.claims[i].source_ids);
+    for(const src of q.source) assert.equal(productionBrief.sources[src]?.review_status,'reviewed',q.id+': unreviewed source '+src);
+    if(i<14) assert.ok(['fact','context'].includes(q.question_type),q.id+': specialized method before two normal sets');
+  }
+  assert.equal(quizRefs.some(r=>r.targetId===targetId),false,targetId+': prematurely activated unlinked MCQ');
+}
 // Four remaining places are still research/QuizCard candidates, not v1 quizzes.
 for(const p of ledger.places.filter(p=>!['garmanngarden','den_gamle_krigsskolen'].includes(p.place_id))){
   assert.equal(quizRefs.some(r=>r.targetId===p.place_id),false,p.place_id+': remaining place published prematurely');
