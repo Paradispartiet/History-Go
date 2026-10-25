@@ -124,3 +124,17 @@ test('Fagverk release carries the current canonical registry version', () => {
     assert.equal(registry.placeLinks?.[id]?.status, 'curated', id + ': Fagverk registry status');
   }
 });
+
+test('By-bolk 02 indexed image pointers mirror canonical places', () => {
+  const index = read('data/places/places_index.json');
+  for (const id of ids) {
+    const place = read(placePath(id));
+    const matches = index.filter((entry) => entry.id === id);
+    assert.equal(matches.length, 1, id + ': missing or duplicate central index entry');
+    const indexed = matches[0];
+    assert.ok(place.image, id + ': missing canonical Place image');
+    assert.ok(place.cardImage, id + ': missing canonical card image');
+    assert.equal(indexed.image, place.image, id + ': central index image is stale');
+    assert.equal(indexed.cardImage, place.cardImage, id + ': central index card image is stale');
+  }
+});
