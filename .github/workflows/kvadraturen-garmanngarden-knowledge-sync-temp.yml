@@ -1,0 +1,77 @@
+name: Kvadraturen temporary canonical Knowledge backfill
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-kvadraturen-v1-six-20261023
+    paths:
+      - .github/workflows/kvadraturen-garmanngarden-knowledge-sync-temp.yml
+permissions:
+  contents: write
+concurrency:
+  group: kvadraturen-garmanngarden-knowledge-oneoff
+  cancel-in-progress: false
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-kvadraturen-v1-six-20261023
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install canonical generator
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build:scripts
+      - name: Register just this reviewed fullquiz and run canonical Knowledge generator
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          const path='data/quiz/manifest.json';
+          const m=JSON.parse(await fs.readFile(path,'utf8'));
+          assert.equal(m.sets.some(x=>x.targetId==='garmanngarden'),false,'Already registered');
+          m.sets.push({targetId:'garmanngarden',file:'data/quiz/historie/garmanngarden_sets.json'});
+          m.sets.sort((a,b)=>a.targetId.localeCompare(b.targetId,'en'));
+          await fs.writeFile(path,JSON.stringify(m,null,2)+'\n');
+          NODE
+          node dist/scripts/knowledge-canonical-data.mjs --write
+          node dist/scripts/knowledge-canonical-data.mjs --check
+      - name: Strictly limit changes to Knowledge outputs and Garmanngården fullquiz
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only > /tmp/kvadraturen-changes
+          echo 'Canonical Knowledge changed paths:'
+          cat /tmp/kvadraturen-changes
+          grep -Ev '^(data/quiz/manifest.json|data/quiz/historie/garmanngarden_sets.json|data/knowledge/[^/]+\.generated\.json|data/knowledge/knowledge_emne_review_queue\.generated\.json|reports/knowledge-id-backfill.json|reports/knowledge-contract-audit.json)$' /tmp/kvadraturen-changes > /tmp/kvadraturen-unexpected || true
+          if test -s /tmp/kvadraturen-unexpected; then
+            echo 'Unrelated output detected; refusing to commit'
+            cat /tmp/kvadraturen-unexpected
+            exit 1
+          fi
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          const m=JSON.parse(await fs.readFile('data/quiz/manifest.json','utf8'));
+          const q=JSON.parse(await fs.readFile('data/quiz/historie/garmanngarden_sets.json','utf8'));
+          const qs=q.sets.flatMap(s=>s.questions);
+          assert.equal(m.sets.filter(x=>x.targetId==='garmanngarden').length,1);
+          assert.equal(qs.length,21);
+          assert.ok(qs.every(x=>x.knowledge_link_status==='linked'&&x.primary_knowledge_unit_id?.startsWith('ku_historie_')));
+          assert.ok(qs.every(x=>x.knowledge_unit_ids?.includes(x.primary_knowledge_unit_id)));
+          assert.ok(qs.every(x=>!/^(?:når|hvilket år|i hvilket år)/i.test(x.question)));
+          console.log('Validated 21 Garmanngården linked Knowledge questions');
+          NODE
+          git add data/quiz/manifest.json data/quiz/historie/garmanngarden_sets.json data/knowledge/ reports/knowledge-id-backfill.json reports/knowledge-contract-audit.json
+          if git diff --cached --quiet; then
+            echo 'No canonical changes'
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Generate canonical Knowledge links for 21 Garmanngården fullquiz questions'
+          git push origin HEAD:research/oslo-sentrum-kvadraturen-v1-six-20261023
