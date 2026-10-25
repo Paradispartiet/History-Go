@@ -386,7 +386,7 @@ const statQuiz=read(statQuizPath);
 const statCard=read(statCardPath);
 const statContext=read('data/quiz/production_context/historie/stattholdergarden.json');
 const statQuestions=statQuiz.sets.flatMap(s=>s.questions);
-assert.equal(statQuiz.production_status,'manifested_knowledge_linked_pending_browser_qa');
+assert.equal(statQuiz.production_status,'manifested_knowledge_linked_browser_qa_passed');
 assert.equal(statContext.profile,'narrow_3x7');
 assert.deepEqual(statContext.set_plan.map(s=>s.planned_questions),[7,7,7]);
 assert.deepEqual(statContext.question_balance.counts,{fact:12,context:5,concept_theory:4});
@@ -406,6 +406,7 @@ for(const [i,q] of statQuestions.entries()){
 }
 assert.equal(quizRefs.filter(x=>x.targetId==='stattholdergarden'&&x.file===statQuizPath).length,1);
 assert.equal(quizCardSources.historie.collections.filter(x=>x==='stattholdergarden_quizkort_v1.json').length,1);
+assert.equal(statCard.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
 assert.equal(statCard.cards[0].questions.length,10);
 const statById=new Map(statQuestions.map(q=>[q.id,q]));
 for(const item of statCard.cards[0].questions){
