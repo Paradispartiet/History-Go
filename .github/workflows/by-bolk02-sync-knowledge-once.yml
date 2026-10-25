@@ -34,7 +34,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           rm .github/workflows/by-bolk02-sync-knowledge-once.yml
-          git add -A data/knowledge data/quiz data/quizcards
+          git add -A data/knowledge data/quiz data/quizcards reports/knowledge-id-backfill.json
           git add -u .github/workflows/by-bolk02-sync-knowledge-once.yml
           if git diff --cached --quiet; then
             echo "No generated differences"
