@@ -281,6 +281,40 @@ for(const [i,item] of krigCard.cards[0].questions.entries()){
   assert.deepEqual(item.knowledge_unit_ids,orig.knowledge_unit_ids);
   assert.equal(krigCard.cards[0].answerKey[i].answer,orig.answer);
 }
+// Stattholdergården has a reviewed, 21-question production source brief and
+// a fully answered MCQ review bank. It must remain out of runtime manifests
+// until the existing context builder and Knowledge synchronizer have run.
+const stattholderId='stattholdergarden';
+const stattholderBrief=read('data/quiz/production_briefs/historie/'+stattholderId+'.json');
+const stattholderReview=read('reports/place-production/oslo-kvadraturen-stattholdergarden-21-fullquiz-review-20261025.json');
+assert.equal(stattholderBrief.targetId,stattholderId);
+assert.equal(stattholderBrief.status,'reviewed');
+assert.equal(stattholderBrief.claims.length,21);
+assert.equal(stattholderBrief.profile_decision.profile,'narrow');
+assert.equal(stattholderBrief.profile_decision.set_count,3);
+assert.deepEqual(stattholderReview.sections.map(s=>s.questions.length),[7,7,7]);
+assert.deepEqual(stattholderReview.sections.map(s=>s.phase),['opening','bridge','final']);
+assert.equal(stattholderReview.status.includes('unmanifested'),true);
+const stattholderItems=stattholderReview.sections.flatMap(s=>s.questions);
+assert.equal(stattholderItems.filter(isDirectYearRecall).length,0,'Stattholdergården should prioritize people and building layers, not date recall');
+assert.equal(new Set(stattholderItems.map(q=>q.question)).size,21,'Stattholdergården duplicate questions');
+assert.ok(new Set(stattholderItems.map(q=>q.answerIndex)).size===4,'Stattholdergården answer positions lack variety');
+for(const [i,q] of stattholderItems.entries()){
+  assert.equal(q.id,stattholderId+'_quiz_'+String(i+1).padStart(2,'0'));
+  assert.equal(q.options.length,4);
+  assert.equal(new Set(q.options).size,4);
+  assert.equal(q.answer,q.options[q.answerIndex]);
+  assert.ok(q.knowledge.length>=55,'Missing source explanation for '+q.id);
+  assert.equal(q.claim_id,stattholderBrief.claims[i].claim_id);
+  assert.equal(q.knowledge,stattholderBrief.claims[i].statement);
+  assert.deepEqual(q.source,stattholderBrief.claims[i].source_ids);
+  assert.ok(q.source.length>=1);
+  for(const ref of q.source){
+    assert.equal(stattholderBrief.sources[ref]?.review_status,'reviewed',q.id+': unreviewed source '+ref);
+  }
+  if(i<14)assert.ok(['fact','context'].includes(q.question_type),q.id+': advanced pedagogy in normal opening');
+}
+assert.equal(stattholderItems.some(q=>/1862|1863/u.test(q.question)),false,'Conflicting Engebret transfer dates must not become single answer');
 // Four remaining places are still research/QuizCard candidates, not v1 quizzes.
 for(const p of ledger.places.filter(p=>!['garmanngarden','den_gamle_krigsskolen'].includes(p.place_id))){
   assert.equal(quizRefs.some(r=>r.targetId===p.place_id),false,p.place_id+': remaining place published prematurely');
