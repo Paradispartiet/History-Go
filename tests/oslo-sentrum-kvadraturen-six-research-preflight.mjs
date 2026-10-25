@@ -248,6 +248,7 @@ const krigQuestions=krigQuiz.sets.flatMap(s=>s.questions);
 assert.equal(krigQuestions.length,21);
 assert.equal(krigBrief.claims.length,21);
 assert.equal(krigQuestions.filter(isDirectYearRecall).length,0,'Krigsskolen must not turn into date trivia');
+assert.ok(krigQuestions.slice(0,14).every(q=>q.question_type!=='concept'),'First two Krigsskolen sets must be ordinary place/history questions');
 const krigIds=new Set();
 for(const [i,q] of krigQuestions.entries()){
   assert.equal(q.id,'den_gamle_krigsskolen_quiz_'+String(i+1).padStart(2,'0'));
