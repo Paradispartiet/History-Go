@@ -1,0 +1,288 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "hotel_du_nord",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02/hotel_du_nord.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Hotel du Nord er et tidligere hotell og handelspakkhus i Dronningens gate 13, senere statlige kontorer og nå et planlagt ombruksprosjekt.",
+    "anchorType": "mixed_economic_site",
+    "placeObjectDistinction": "Denne analysen gjelder Dronningens gate 13 med hotellhistorie, pakkhusanlegg og senere kontorer, ikke en nåværende virksomhet ved navn Hotel du Nord eller hele Kvadraturens handel.",
+    "temporalScope": {
+      "start": "1828",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Analyseperioden følger historisk hotellbruk, senere pakkhus- og kontorbruk frem til dagens rehabiliteringsplaner."
+    },
+    "sourceIds": [
+      "source_hotel_du_nord_byleksikon",
+      "source_hotel_du_nord_riksantikvaren",
+      "source_hotel_du_nord_selvaag"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_felt_arbeid_verdiskaping",
+      "siteSpecificRationale": "Stedet rommet hotellservice, lager- og handelsfunksjoner og senere kontorarbeidsplasser. Vi skiller aktivitetene fra hverandre og unngår å påstå tallfestet verdiskaping.",
+      "caseIds": [
+        "case_hotel_du_nord_functions"
+      ]
+    },
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Nærhet til Christianias havn forklarer pakkhusfunksjonens lokalisering. Et historisk bygningskompleks gjenbrukes i ny kontorøkonomi innenfor samme kvartal.",
+      "caseIds": [
+        "case_hotel_du_nord_functions"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_hotel_du_nord_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Dronningens_gate",
+      "sourceLocation": "Dronningens gate 13: bypalé, hotell, gjenoppbygging, Riksantikvaren",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-25",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo byleksikons historiske og redaksjonelle beskrivelse av den konkrete bygården i Dronningens gate 13.",
+      "limitations": "Dokumenterer epoker og funksjoner, men ikke hotellbelegg, næringsomsetning, lønnsforhold eller kontorers økonomiske avkastning."
+    },
+    {
+      "id": "source_hotel_du_nord_riksantikvaren",
+      "url": "https://riksantikvaren.no/kommet-i-hus-pa-gronland/",
+      "sourceLocation": "Riksantikvarens flytting fra Dronningens gate 13 til Schweigaards gate 28",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-25",
+      "temporalCoverage": "current",
+      "provenance": "Kulturminnemyndighetens egen bekreftelse på at den forlot de tidligere lokalene etter langvarig kontorbruk siden 1991.",
+      "limitations": "Kilde til virksomhetens egen flytting og lokalkrav, ikke en uavhengig vurdering av utleieprosjektets fremtidige verdi."
+    },
+    {
+      "id": "source_hotel_du_nord_selvaag",
+      "url": "https://dunordoslo.no/",
+      "sourceLocation": "Du Nord, Dronningens gate 13 – eiendomsutvikling, planlagt kontor- og publikumsbruk",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-10-25",
+      "temporalCoverage": "current",
+      "provenance": "Prosjekteiers egen presentasjon av eiendommen, historisk hotellidentitet og planlagt rehabilitering.",
+      "limitations": "Markedsføring og fremtidige leieplaner dokumenterer ambisjoner, ikke fullført byggeprosjekt, garantert innflytting eller samfunnsøkonomiske effekter."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_hotel_du_nord_functions",
+      "claim": "Eiendommen i Dronningens gate 13 har gått gjennom flere stedlige økonomiske funksjoner: overnatting, handel og lagring, offentlig kontorbruk og planlagt gjenbruk som arbeidsplass.",
+      "unitOfAnalysis": {
+        "unit": "Bygården og bakgårdsanlegget i Dronningens gate 13",
+        "boundary": "Hotel du Nord som historisk hotellbruk og samme gårds senere handels- og kontorbruk; ikke alle hoteller, lager eller byens næringsliv.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1828",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Analyseperioden følger historisk hotellbruk, senere pakkhus- og kontorbruk frem til dagens rehabiliteringsplaner."
+        },
+        "sourceIds": [
+          "source_hotel_du_nord_byleksikon",
+          "source_hotel_du_nord_riksantikvaren",
+          "source_hotel_du_nord_selvaag"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Hotellvert, ansatte og tilreisende gjester",
+          "roleOrInterest": "Hotellvirksomheten solgte overnatting og serveringsrelaterte tjenester, og gjestene brukte stedet som et oppholdssted i Christiania.",
+          "economicPosition": "Tjenestetilbydere og brukere av reise- og overnattingstjenester knyttet til gården.",
+          "sourceIds": [
+            "source_hotel_du_nord_byleksikon",
+            "source_hotel_du_nord_selvaag"
+          ]
+        },
+        {
+          "name": "Lager- og handelsaktører i den senere pakkhusperioden",
+          "roleOrInterest": "Bakgård og pakkhus ble brukt til varer, verksteder og næring etter hotellfasen.",
+          "economicPosition": "Brukere av lagringsplass og bygningens handelsinfrastruktur, med endrede oppgaver over tid.",
+          "sourceIds": [
+            "source_hotel_du_nord_byleksikon",
+            "source_hotel_du_nord_selvaag"
+          ]
+        },
+        {
+          "name": "Riksantikvaren og senere eiendomsutvikler",
+          "roleOrInterest": "Riksantikvaren benyttet lokalene til kontorer; etter fraflytting planlegges et nytt kontor- og utadrettet prosjekt.",
+          "economicPosition": "Tidligere kontorleietaker og dagens eier-/prosjektaktører, med ulike rettigheter og risikoforhold.",
+          "sourceIds": [
+            "source_hotel_du_nord_riksantikvaren",
+            "source_hotel_du_nord_selvaag"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Bygårdens rom, arbeidskraft, tilreisendes betalingsvilje og lokalisering i handelsbyen.",
+            "sourceIds": [
+              "source_hotel_du_nord_byleksikon",
+              "source_hotel_du_nord_selvaag"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Overnatting og servering i hotellperioden; senere lager-, produksjons- og handelsbruk og kontorarbeid i et vernet bygningskompleks.",
+          "sourceIds": [
+            "source_hotel_du_nord_byleksikon",
+            "source_hotel_du_nord_selvaag"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Hotellopphold, plass for varehåndtering og senere arbeidsplasser eller kontorarealer; volumene er ikke tallfestet i disse kildene.",
+            "sourceIds": [
+              "source_hotel_du_nord_byleksikon",
+              "source_hotel_du_nord_riksantikvaren",
+              "source_hotel_du_nord_selvaag"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Dokumenterte bruksformer viser konkret økonomisk aktivitet på stedet, men tilgjengelige åpne kilder bærer ikke tallfesting av produktivitet, lønnsutbetalinger eller samlet samfunnsøkonomisk nettoverdi.",
+          "sourceIds": [
+            "source_hotel_du_nord_byleksikon",
+            "source_hotel_du_nord_riksantikvaren",
+            "source_hotel_du_nord_selvaag"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Skift fra hotell til vare-/pakkhusfunksjoner, offentlig kontorbruk og en senere ombruksplan.",
+        "unit": "beskrevne funksjonsskift ved bygningen",
+        "period": "1828–2026",
+        "comparability": "Bygningsbruk og eier-/brukerroller kan sammenlignes over tid, men historiske tjenester, lagerdrift og moderne kontorleie er ikke like økonomiske måleenheter.",
+        "dataLimitations": "Vi har ikke serier for beleggsprosent, godsvolum, lønn, omsetning, avkastning eller leiepriser som isolerer eiendommens årsakseffekt.",
+        "sourceIds": [
+          "source_hotel_du_nord_byleksikon",
+          "source_hotel_du_nord_riksantikvaren",
+          "source_hotel_du_nord_selvaag"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Hotelleiere og senere eiendomsaktører kontrollerte bruken innenfor ulike historiske rammer; Riksantikvaren var en kontorbruker, ikke den opprinnelige hotelloperatøren.",
+        "laborPosition": "Hotellansatte, varehåndterere og kontoransatte hadde ulike arbeidsoppgaver i forskjellige perioder; kildene dokumenterer ikke detaljerte arbeidsvilkår.",
+        "beneficiaries": [
+          "Gjester og handelsaktører som brukte tjenestene og lokalene i eldre perioder.",
+          "Kontorbrukere og eiendomsutviklere som kan benytte eller tilby rehabiliterte arealer senere."
+        ],
+        "costRiskBearers": [
+          "Eiendomsaktører bærer investerings- og utleierisiko i et eldre, vernet anlegg.",
+          "Arbeidstakere og leietakere kan bli påvirket av funksjonsskift, uten at kildene måler fordelingen."
+        ],
+        "sourceIds": [
+          "source_hotel_du_nord_byleksikon",
+          "source_hotel_du_nord_riksantikvaren",
+          "source_hotel_du_nord_selvaag"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Brannhistorie, bevaringsforpliktelser og skiftende etterspørsel etter hotell-, lager- og kontorarealer viser kvalitative risikoer, uten dokumentert sannsynlighets- eller kostnadsberegning.",
+          "sourceIds": [
+            "source_hotel_du_nord_byleksikon",
+            "source_hotel_du_nord_riksantikvaren",
+            "source_hotel_du_nord_selvaag"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Det foreligger ikke kildeført, stedsspesifikk måling av miljøgevinster, støy, transport eller fordelingsvirkninger som kan tilskrives dette ombruksprosjektet."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Byhistorisk leksikon dokumenterer de eldre bruksfasene, Riksantikvaren dokumenterer sin egen flytting, og eierens prosjektside viser fremtidige planer.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Rekkefølgen av funksjonsskiftene er dokumentert, men kildene isolerer verken årsaken til hver flytting eller den økonomiske effekten av planlagt rehabilitering.",
+        "alternativeExplanations": [
+          "Andre eiere, markedsetterspørsel, regulering, tekniske tilpasninger og byens transportmønster kan ha bidratt til ulike bruksvalg."
+        ],
+        "uncertainty": "Fremtidig kontorbruk og eventuell utadrettet virksomhet er planer og må ikke beskrives som ferdig realisert i 2026.",
+        "sourceIds": [
+          "source_hotel_du_nord_byleksikon",
+          "source_hotel_du_nord_riksantikvaren",
+          "source_hotel_du_nord_selvaag"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "mixed",
+    "statement": "Riksantikvaren har flyttet fra Dronningens gate 13, og eiendommen er i et rehabiliterings- og utviklingsløp med planlagt kontorbruk.",
+    "originalEconomicRoleRelationship": "Det opprinnelige hotellet er ikke gjenåpnet som historisk Hotel du Nord. Eldre hotell- og handelslag videreføres som kulturhistorisk identitet mens arealbruk planlegges endret.",
+    "checkedAt": "2026-10-25",
+    "sourceIds": [
+      "source_hotel_du_nord_riksantikvaren",
+      "source_hotel_du_nord_selvaag"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Endringen gjelder kildekontrollert popuptekst; fullquizproduksjon for Hotel du Nord er ikke klar og holdes separat i samme PR."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Stedets historie og kildekonflikter er gjennomgått; separat kronologi-/storypublisering er ikke del av denne endringen."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Ingen Hotel du Nord-fullquiz eller tilhørende QuizCard registreres gjennom denne popuptekst-revisjonen."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ingen separate kronologier eller storyfiler skrives i denne popuptekst-revisjonen."
+    }
+  },
+  "review": {
+    "reviewer": "History GO Kvadraturen Næringsliv editorial review",
+    "reviewedAt": "2026-10-25",
+    "notes": "Kontrollert stedet mot Oslo byleksikon, Riksantikvarens fraflytting og eiendomsutviklers fremtidsplaner. Skiller historie, nåtid og uferdige planer. Ingen tallfestet kausal effekt."
+  }
+}
