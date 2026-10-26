@@ -1,0 +1,69 @@
+name: By 03 regional Places browser QA
+
+on:
+  push:
+    branches:
+      - feature/by-bolk03-regional-20-20261025
+    paths:
+      - '.github/workflows/by03-regional-app-qa.yml'
+      - 'tests/by-bolk03-regional-real-app-browser.mjs'
+      - 'data/places/by/akershus/**'
+      - 'data/places/by/ostfold/**'
+      - 'data/places/by/buskerud/**'
+      - 'data/places/by/innlandet/**'
+      - 'data/quiz/by/**'
+      - 'data/quizcards/by/**'
+      - 'data/runtime/place-open/**'
+      - 'data/knowledge/**'
+  pull_request:
+    paths:
+      - '.github/workflows/by03-regional-app-qa.yml'
+      - 'tests/by-bolk03-regional-real-app-browser.mjs'
+      - 'data/places/by/akershus/**'
+      - 'data/places/by/ostfold/**'
+      - 'data/places/by/buskerud/**'
+      - 'data/places/by/innlandet/**'
+      - 'data/quiz/by/**'
+      - 'data/quizcards/by/**'
+      - 'data/runtime/place-open/**'
+      - 'data/knowledge/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: by03-regional-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regional-places-browser:
+    name: Five regional Places app (shard ${{ matrix.shard }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    env:
+      HG_REGIONAL_BY_SHARD: ${{ matrix.shard }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies and Chromium
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Validate regional quiz and Knowledge contracts
+        run: node --test tests/by-bolk03-quizcard-source-contract.test.mjs
+      - name: Verify five regional PlaceCards on mobile and desktop
+        run: node tests/by-bolk03-regional-real-app-browser.mjs
+      - name: Save screenshots and browser results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: by03-regional-app-shard-${{ matrix.shard }}
+          path: artifacts/by03-regional-browser/shard-${{ matrix.shard }}/
+          if-no-files-found: ignore
