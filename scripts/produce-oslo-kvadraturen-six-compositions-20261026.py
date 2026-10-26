@@ -13,7 +13,7 @@ ITEMS={
 "garmanngarden":("data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/garmanngarden.json", (0.47,0.54),(0.46,0.56),(0.50,0.54)),
 "stattholdergarden":("data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/stattholdergarden.json", (0.50,0.50),(0.52,0.52),(0.50,0.52)),
 "hotel_du_nord":("data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02/hotel_du_nord.json", (0.50,0.50),(0.52,0.53),(0.50,0.53)),
-"cafe_engebret":("data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02/cafe_engebret.json", (0.50,0.45),(0.50,0.50),(0.50,0.52)),
+"cafe_engebret":("data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02/cafe_engebret.json", (0.61,0.50),(0.76,0.52),(0.70,0.50)),
 "treschowgarden":("data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01/treschowgarden.json", (0.51,0.50),(0.51,0.52),(0.51,0.52)),
 }
 ALLOWED={"CC BY-SA 4.0","CC BY 4.0","CC BY 3.0","CC BY-SA 3.0","CC0","Public domain"}
