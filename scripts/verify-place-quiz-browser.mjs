@@ -11,8 +11,13 @@ assert.match(placeId || '', /^[a-z0-9_]+$/, 'Require a canonical place ID');
 const root = process.cwd();
 const manifest = JSON.parse(fs.readFileSync('data/quiz/manifest.json', 'utf8'));
 const entries = manifest.sets.filter(entry => entry.targetId === placeId);
-assert.equal(entries.length, 1, 'Exactly one active quiz manifest target');
-const quiz = JSON.parse(fs.readFileSync(entries[0].file, 'utf8'));
+assert.ok(entries.length > 0, 'No active fullquiz manifest rows for target');
+const files = [...new Set(entries.map(entry => entry.file))];
+assert.equal(files.length, 1, 'One canonical fullquiz file per target, even with multiple set rows');
+const quiz = JSON.parse(fs.readFileSync(files[0], 'utf8'));
+if (entries.some(entry => entry.set_id)) {
+  assert.deepEqual(entries.map(entry => entry.set_id), quiz.sets.map(set => set.set_id), 'Manifest and canonical set ordering differ');
+}
 assert.equal(quiz.targetId, placeId);
 const questions = quiz.sets.flatMap(set => set.questions);
 assert.equal(new Set(questions.map(q => q.question)).size, questions.length);
@@ -80,7 +85,45 @@ try {
           await page.waitForFunction(expected => document.querySelector('#quizQuestion')?.textContent?.trim() === expected,
             q.question,{timeout:20000});
           assert.equal(await page.locator('#quizChoices button').count(),q.options.length,set.set_id + ':' + qi);
-          await page.locator('#quizChoices').getByRole('button',{name:q.answer,exact:true}).click({timeout:20000});
+          // The engine shuffles the visible answer buttons independently of
+          // the source file's answerIndex. Match the exact rendered answer.
+          const correct = page.locator('#quizChoices').getByRole('button',{name:q.answer,exact:true});
+          assert.equal(await correct.count(),1,q.id+': correct answer must occur exactly once');
+          assert.equal((await correct.innerText()).trim(),q.answer,q.id+': rendered answer diverges');
+          if (profile.isMobile) {
+            // Keep the acceptance test faithful to an actual phone: touch the
+            // rendered choice, rather than force-clicking an animated element.
+            // Long mobile labels may animate as they wrap; retry only if the
+            // actual quiz view does not advance after a real touch.
+            let advanced = false;
+            for (let attempt=0;attempt<3&&!advanced;attempt++) {
+              await correct.evaluate(el=>el.scrollIntoView({behavior:'instant',block:'center',inline:'nearest'}));
+              await page.waitForTimeout(150);
+              const box=await correct.boundingBox();
+              assert.ok(box && box.width>30 && box.height>18,q.id+': untappable answer box');
+              const x=Math.min(profile.viewport.width-8,Math.max(8,box.x+box.width/2));
+              const y=Math.min(profile.viewport.height-8,Math.max(8,box.y+box.height/2));
+              const visibleButtonIndex=await correct.getAttribute('data-idx');
+              const hit=await page.evaluate(({x,y})=>{
+                const element=document.elementFromPoint(x,y);
+                return {target:element?.tagName||null,choice:element?.closest?.('#quizChoices button')?.getAttribute('data-idx')||null};
+              },{x,y});
+              const tapped=hit.choice===visibleButtonIndex;
+              if (!tapped) {
+                await page.waitForTimeout(200);
+                continue;
+              }
+              await page.touchscreen.tap(x,y);
+              advanced=await page.waitForFunction(previous=>{
+                const current=document.querySelector('#quizQuestion')?.textContent?.trim();
+                const summary=document.querySelector('#quizSummaryPrimary');
+                return current!==previous || (summary&&!summary.hidden&&summary.offsetParent!==null);
+              },q.question,{timeout:3500}).then(()=>true).catch(()=>false);
+            }
+            assert.ok(advanced,q.id+': mobile tap did not advance the real quiz');
+          } else {
+            await correct.click({timeout:20000});
+          }
         }
         await page.waitForFunction(id => JSON.parse(localStorage.getItem('hg_quiz_sets_v1')||'{}')[id]?.completed === true,
           set.set_id,{timeout:20000});

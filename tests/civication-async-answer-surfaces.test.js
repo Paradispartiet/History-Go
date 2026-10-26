@@ -101,7 +101,12 @@ function testNextActionAndInboxContractsStillRender() {
   global.document = {
     readyState: 'complete',
     addEventListener() {},
-    getElementById(id) { if (!elements.has(id)) elements.set(id, makeEl(id)); return elements.get(id); },
+    // No Civication inbox section in this profile-style fake DOM. The real
+    // single-inbox DOM contract is covered by civication-unified-inbox-no-next-action.
+    getElementById(id) {
+      if (['civiInboxSection', 'civiNextActionModal', 'civiNextActionModalBody'].includes(id)) return null;
+      if (!elements.has(id)) elements.set(id, makeEl(id)); return elements.get(id);
+    },
     querySelector() { return null; },
     querySelectorAll() { return []; }
   };

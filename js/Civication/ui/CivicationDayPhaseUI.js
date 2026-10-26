@@ -249,10 +249,8 @@
     return panel;
   }
 
-  // The day phase panel is a read-only status card. Answering happens only on the
-  // NextAction surface, so this opens CivicationNextActionUI — the single authoritative
-  // answer surface — instead of rendering any answer choices here or opening the inbox
-  // archive. The inbox top action is kept only as a defensive fallback.
+  // The day phase panel is read-only. Its button opens the existing unified
+  // inbox, where today's actionable mail and message history share one surface.
   function goToNextAction() {
     if (typeof window.CivicationNextActionUI?.open === "function") {
       return window.CivicationNextActionUI.open();
@@ -339,7 +337,7 @@
 
     const status = mail.isAdvance
       ? "Fasen er klar for videreføring."
-      : (mail.isQueued ? "Klar til å åpnes i dagens fase." : "Håndteres i «Neste handling».");
+      : (mail.isQueued ? "Klar til å åpnes i dagens fase." : "Svar i innboksen.");
 
     const metaLabel = formatMailMeta(mail.meta);
 
@@ -384,7 +382,7 @@
       + learningBanner
       + phaseMailHtml
       + "<div class=\"civi-day-phase-actions\">"
-      + "<button class=\"civi-btn primary\" type=\"button\" data-civi-day-phase-next-action>Gå til neste handling</button>"
+      + "<button class=\"civi-btn primary\" type=\"button\" data-civi-day-phase-next-action>Åpne innboksen</button>"
       + "</div>";
 
     bindPanelDelegation(panel);

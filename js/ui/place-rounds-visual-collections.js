@@ -117,6 +117,13 @@
       title,
       description:s(item.description || item.desc || item.summary || item.placeSpecificDetail || item.whatToNotice || item.whereToFind || item.why_here || item.why),
       image:imageFor(item),
+      imageAlt:s(item.imageAlt || title),
+      imageKind:s(item.imageKind || item.imageMeta?.kind),
+      imageCredit:s(item.imageMeta?.credit),
+      imageLicense:s(item.imageMeta?.license),
+      imageDisclosure:s(item.imageMeta?.disclosure),
+      imageSource:s(item.imageMeta?.sourceUrl),
+      sourceUrls:arr(item.source_urls).filter(url => /^https:\/\//i.test(s(url))),
       sourceKind
     };
   }
@@ -445,6 +452,26 @@
   }
 
   function renderRows(items, def) {
+    if (def.id === "objects" && items.length) {
+      // A verified physical Object owns its story, sources and image disclosure.
+      // The same popup works for all places; nothing is hard-coded to the theatre.
+      return items.map(item => {
+        const kind = item.imageKind === "illustration" ? "illustration" : "photo";
+        const disclosure = kind === "illustration" ? "Illustrasjon – ikke fotografi" : "Dokumentarfotografi";
+        const source = [item.imageSource, ...item.sourceUrls].find(url => /^https:\/\//i.test(url));
+        return `<article class="pc-visual-round-item pc-object-member" data-visual-round-item="${esc(item.id)}" data-image-kind="${kind}">
+          ${item.image ? `<img src="${esc(item.image)}" class="pc-person-img pc-object-member-image" alt="${esc(item.imageAlt)}" loading="lazy" decoding="async">` : ""}
+          <div class="pc-person-meta pc-object-member-copy">
+            <strong class="pc-person-name">${esc(item.title)}</strong>
+            <span class="pc-object-disclosure">${disclosure}</span>
+            ${item.description ? `<p class="pc-person-desc">${esc(item.description)}</p>` : ""}
+            ${item.imageDisclosure ? `<p class="pc-object-context">${esc(item.imageDisclosure)}</p>` : ""}
+            ${item.imageCredit ? `<p class="pc-object-credit">Bilde: ${esc(item.imageCredit)}${item.imageLicense ? ` · ${esc(item.imageLicense)}` : ""}</p>` : ""}
+            ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">Se historisk kilde og bildeopphav</a>` : ""}
+          </div>
+        </article>`;
+      }).join("");
+    }
     return items.length
       ? items.map(item => `<button type="button" class="pc-person pc-visual-round-item" data-visual-round-item="${esc(item.id)}">${item.image ? `<img src="${esc(item.image)}" class="pc-person-img" alt="">` : ""}<span class="pc-person-meta"><span class="pc-person-name">${esc(item.title)}</span>${item.description ? `<span class="pc-person-desc">${esc(item.description)}</span>` : ""}</span></button>`).join("")
       : `<div class="pc-empty">Ingen ${esc(def.label.toLowerCase())} registrert ennå</div>`;
@@ -465,11 +492,13 @@
   function renderCollectionPreview(icon, preview, def, count) {
     icon.dataset.collectionItemCount = String(Number(count) || 0);
     const fallback = fallbackCollectionHtml(def, count);
+    const illustrated = def.id === "objects" && preview?.imageKind === "illustration";
     const visualPreviewSignature = preview?.image
-      ? `member-image|${s(preview.id)}|${s(preview.image)}|${s(preview.title)}`
+      ? `member-image|${s(preview.id)}|${s(preview.image)}|${s(preview.title)}|${illustrated}`
       : `fallback|${s(def.id)}|${Number(count) || 0}`;
     const previewDomMatches = preview?.image
       ? Boolean(icon.querySelector(":scope > img.pc-person-img"))
+          && Boolean(icon.querySelector(":scope > .pc-object-preview-disclosure")) === illustrated
       : Boolean(icon.querySelector(":scope > .pc-round-label"));
     if (icon.dataset.visualPreviewSignature === visualPreviewSignature && previewDomMatches) return;
     icon.dataset.visualPreviewSignature = visualPreviewSignature;
@@ -478,7 +507,8 @@
       icon.dataset.previewStatus = "missing";
       return;
     }
-    icon.innerHTML = `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(preview.title)}">`;
+    const alt = s(preview.imageAlt || preview.title);
+    icon.innerHTML = `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(alt)}">${illustrated ? '<span class="pc-object-preview-disclosure">Illustrasjon – ikke fotografi</span>' : ""}`;
     icon.dataset.previewStatus = "member-image";
     icon.querySelector("img")?.addEventListener("error", () => {
       icon.innerHTML = fallback;

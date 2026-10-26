@@ -1,0 +1,292 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "tollbukaia",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/tollbukaia.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Tollbukaia betegner et konkret historisk kaiområde innerst i Bjørvika, brukt ved Oslos sjøhandel.",
+    "anchorType": "harbor",
+    "placeObjectDistinction": "Stedet er kaia mellom Langkaia og Palékaia; det er ikke Tollboden, Tollpakkhuset eller nabobrygga Tollbubrygga.",
+    "temporalScope": {
+      "start": "1800",
+      "end": "1960",
+      "precision": "period",
+      "rationale": "Kai- og sjøbodmiljøet før omleggingene av strandlinjen under etterkrigstidens havneutbygging."
+    },
+    "sourceIds": [
+      "source_tollbukaia_byleksikon",
+      "source_tollbubrygga_byleksikon",
+      "source_tollbukaia_1938_photo"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_havn_transport",
+      "siteSpecificRationale": "Tollbukaia knytter stedets historiske varehandel til konkret sjøtransport ved kaia.",
+      "caseIds": [
+        "case_tollbukaia_quay_and_trade"
+      ]
+    },
+    {
+      "emneId": "em_naering_logistikk_verdikjeder",
+      "siteSpecificRationale": "Sjøbodene langs Tollbukaia dokumenterer fysisk lagerinfrastruktur ved den eldre havnefronten.",
+      "caseIds": [
+        "case_tollbukaia_quay_and_trade"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_tollbukaia_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Tollbukaia",
+      "sourceLocation": "Stedets navn og historisk avgrensning",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo byleksikon, stedshistorisk oppslag om Tollbukaia.",
+      "limitations": "Gir ikke direkte tallserier for godsvolum, inntekter, sysselsetting eller varepriser."
+    },
+    {
+      "id": "source_tollbubrygga_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Tollbubrygga",
+      "sourceLocation": "Nærliggende brygge og områdets etterkrigsendring",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo byleksikon, eget stedshistorisk oppslag om nabobrygga Tollbubrygga.",
+      "limitations": "Historiske datoer for Tollbubrygga gjelder ikke automatisk Tollbukaia."
+    },
+    {
+      "id": "source_tollbukaia_1938_photo",
+      "url": "https://commons.wikimedia.org/wiki/File:Sj%C3%B8boder_Tollbukaia_1938.png",
+      "sourceLocation": "Fotografi av sjøboder ved Tollbukaia i 1938",
+      "sourceType": "archive",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo Museum / Wikimedia Commons, CC BY-SA 4.0.",
+      "limitations": "Fotografiet dokumenterer stedets utseende, ikke omsetning eller økonomisk fordeling."
+    },
+    {
+      "id": "source_langkaia_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Langkaia",
+      "sourceLocation": "Nåværende Langkaia og omtalen av tidligere Tollbukaia mellom Langkaia og Palékaia",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Oslo byleksikon, oppslag om Langkaia og den nåværende gate- og kaifronten.",
+      "limitations": "Artikkelen viser nåværende kai og at Tollbukaia var et eldre sted; den gir ikke data om dagens lønnsomhet eller havnedrift på Tollbukaia."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_tollbukaia_quay_and_trade",
+      "claim": "De dokumenterte sjøbodene og kaia viser en fysisk del av den eldre vareflyten innerst i Bjørvika; økonomisk avkastning kan ikke beregnes fra disse kildene.",
+      "unitOfAnalysis": {
+        "unit": "Tollbukaia mellom Langkaia og Palékaia",
+        "boundary": "Selve kaiområdet og sjøbodmiljøet; Tollboden, Tollpakkhuset og Tollbubrygga er avgrensede andre steder.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1800",
+          "end": "1960",
+          "precision": "period",
+          "rationale": "Kai- og sjøbodmiljøet før omleggingene av strandlinjen under etterkrigstidens havneutbygging."
+        },
+        "sourceIds": [
+          "source_tollbukaia_byleksikon",
+          "source_tollbubrygga_byleksikon",
+          "source_tollbukaia_1938_photo"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Kjøpmenn og vareeiere",
+          "roleOrInterest": "Brukere av skipsfrakt og nærliggende sjøboder for inn- og utførsel av varer.",
+          "economicPosition": "Handelsaktører som etterspurte havneadkomst.",
+          "sourceIds": [
+            "source_tollbukaia_byleksikon",
+            "source_tollbukaia_1938_photo"
+          ]
+        },
+        {
+          "name": "Transportører og havnearbeidere",
+          "roleOrInterest": "Håndtering og transport fra skip mot brygge og lager var en del av havnemiljøet.",
+          "economicPosition": "Utøvere av arbeid og transport uten dokumenterte lønnsserier for stedet.",
+          "sourceIds": [
+            "source_tollbukaia_byleksikon",
+            "source_tollbukaia_1938_photo"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Skip, kaiplass, sjøboder og arbeid med vareflyt var konkrete ressurser ved havnefronten.",
+            "sourceIds": [
+              "source_tollbukaia_byleksikon",
+              "source_tollbukaia_1938_photo"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Sjøtransporterte varer kunne tas i land og bringes videre fra sjøbodene og kaiområdet.",
+          "sourceIds": [
+            "source_tollbukaia_byleksikon",
+            "source_tollbukaia_1938_photo"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Havnen hadde adkomst mellom sjøtransport, lager og lokal varehandel.",
+            "sourceIds": [
+              "source_tollbukaia_byleksikon",
+              "source_tollbukaia_1938_photo"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Stedets dokumenterte infrastruktur støtter en kvalitativ funksjonsanalyse, ikke tallfestet produktivitet.",
+          "sourceIds": [
+            "source_tollbukaia_byleksikon",
+            "source_tollbukaia_1938_photo"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_infrastrukturanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Stedfestede sjøboder i 1938 og leksikonets geografiske avgrensning av kaia.",
+        "unit": "kaiområde og historiske sjøboder",
+        "period": "1800-tallet–1960",
+        "comparability": "Foto og leksikon skildrer forskjellige sider av havnefunksjonen; ikke en årlig økonomisk tidsserie.",
+        "dataLimitations": "Ingen dokumenterte data for gods, gjennomløpstid, lønn, bemanning, verdi eller miljøkostnad spesifikt for Tollbukaia.",
+        "sourceIds": [
+          "source_tollbukaia_byleksikon",
+          "source_tollbubrygga_byleksikon",
+          "source_tollbukaia_1938_photo"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Kildene beskriver stedets identitet og havnefunksjon, men gir ikke en full eierskaps- eller forvaltningsserie.",
+        "laborPosition": "Arbeid knyttet til havnefunksjonene kan omtales, men kildene gir ikke detaljer om lønn eller individuelle arbeidsforhold.",
+        "beneficiaries": [
+          "Brukere av sjøtransport og kaiadkomst.",
+          "Virksomheter som benyttet lager- og handelstjenester ved havnefronten."
+        ],
+        "costRiskBearers": [
+          "Vareeiere og transportører kunne bære risiko ved transport og lagring.",
+          "Kilder til stedsspesifikke arbeidsskader eller miljøutgifter finnes ikke i materialet."
+        ],
+        "sourceIds": [
+          "source_tollbukaia_byleksikon",
+          "source_tollbukaia_1938_photo"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Havnearbeidet forutsatte skipstilgang, plass og håndtering av varer, men dokumenterer ikke risiko i tall.",
+          "sourceIds": [
+            "source_tollbukaia_byleksikon",
+            "source_tollbukaia_1938_photo"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene gir ingen stedsspesifikk, tallfestet eksternalitet for Tollbukaia."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Historisk kai- og sjøbodmiljø sammenholdt med leksikonets beskrivelse av omforming ved nabobrygga.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "De historiske endringene kan tidfestes og beskrives, men uten bevis for isolerte produktivitetseffekter.",
+        "alternativeExplanations": [
+          "Endret sjøtransport, veiutbygging, arealbehov og byplanlegging kan ha samvirket."
+        ],
+        "uncertainty": "Stedsspesifikt godsvolum eller økonomiske tidsserier mangler.",
+        "sourceIds": [
+          "source_tollbukaia_byleksikon",
+          "source_tollbubrygga_byleksikon",
+          "source_tollbukaia_1938_photo"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Oslo byleksikon omtaler Tollbukaia som et tidligere kaiområde mellom Langkaia og Palékaia; dagens Langkaia er et annet kaianlegg og gateløp.",
+    "originalEconomicRoleRelationship": "Historiske sjøboder og varehavn må skilles fra dagens gate og kaianlegg langs Langkaia.",
+    "checkedAt": "2026-10-19",
+    "sourceIds": [
+      "source_tollbukaia_byleksikon",
+      "source_tollbubrygga_byleksikon",
+      "source_langkaia_byleksikon"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Eksisterende QuizCards videreføres; denne produksjonsrunden gjelder kun stedsbeskrivelse."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Kronologien er vurdert, men ingen nye Stories eller kronologipunkter produseres i denne tekstbolken."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/tollbukaia.json",
+        "source_tollbukaia_byleksikon"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/tollbukaia.json",
+        "source_tollbukaia_byleksikon"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/tollbukaia.json",
+        "source_tollbukaia_byleksikon"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/tollbukaia.json",
+        "source_tollbukaia_byleksikon"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/tollbukaia.json",
+        "source_tollbukaia_byleksikon"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/production/tollbukaia.json",
+        "source_tollbukaia_byleksikon"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Eksisterende QuizCards, historier og tilhørende kilder endres ikke i denne leveransen."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Eksisterende QuizCards, historier og tilhørende kilder endres ikke i denne leveransen."
+    }
+  },
+  "review": {
+    "reviewer": "History Go Oslo Tollbukaia Næringsliv review",
+    "reviewedAt": "2026-10-19",
+    "notes": "Stedet vurderes som kai, ikke tollkontor. Nærliggende Tollbubrygga er egen identitet. Ingen oppdiktede godstall, lønnstall eller årsakssammenhenger."
+  }
+}

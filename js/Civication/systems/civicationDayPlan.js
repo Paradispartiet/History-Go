@@ -24,6 +24,13 @@
 
   function nowIso() { return new Date().toISOString(); }
   function todayKey() { return new Date().toISOString().slice(0, 10); }
+  // A player may finish several in-game days during one real-world date.
+  // Completion therefore follows the game's dayIndex, not the UTC clock.
+  function gameDayKey() {
+    const index = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+    return Number.isInteger(index) && index > 0 ? "calendar-day:" + index : todayKey();
+  }
+  function isRecurring(activity) { return activity.repeat !== "once"; }
   function norm(v) { return String(v || "").trim(); }
   function uid(prefix) { return `${prefix || "activity"}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`; }
   function clone(v) { return JSON.parse(JSON.stringify(v)); }
@@ -57,6 +64,7 @@
       startTime: norm(raw.startTime),
       endTime: norm(raw.endTime),
       repeat: Array.isArray(raw.repeat) ? raw.repeat.map(norm).filter(Boolean) : (norm(raw.repeat) || "once"),
+      date: norm(raw.date),
       category: CATEGORIES.has(norm(raw.category)) ? norm(raw.category) : "praktisk",
       effects,
       isFixed: raw.isFixed === true,
@@ -64,7 +72,8 @@
       source: norm(raw.source) || "player",
       createdAt: norm(raw.createdAt) || at,
       updatedAt: norm(raw.updatedAt) || at,
-      completedAt: norm(raw.completedAt)
+      completedAt: norm(raw.completedAt),
+      completedDayKey: norm(raw.completedDayKey)
     };
   }
 
@@ -73,6 +82,12 @@
     if (!Array.isArray(data.activities)) data.activities = DEFAULT_ACTIVITIES.map(normalizeActivity);
     if (!data.carryover || typeof data.carryover !== "object") data.carryover = {};
     if (!Array.isArray(data.appliedEffects)) data.appliedEffects = [];
+    // For legacy saves, do not replay a recurring activity immediately on
+    // upgrade. Treat its existing completion as belonging to the current day.
+    data.activities = data.activities.map(activity =>
+      activity.status === "completed" && isRecurring(activity) && !activity.completedDayKey
+        ? { ...activity, completedDayKey: gameDayKey() }
+        : activity);
     return write(data);
   }
 
@@ -84,13 +99,18 @@
     if (repeat === "weekdays") return weekday;
     if (repeat === "weekend") return !weekday;
     if (Array.isArray(repeat)) return repeat.map(norm).includes(day);
-    if (repeat === "once") return !activity.date || activity.date === todayKey();
+    if (repeat === "once") return !activity.date || activity.date === date.toISOString().slice(0, 10);
     return true;
   }
 
   function getTodayPlan(date = new Date()) {
     const data = ensureStore();
-    const activities = data.activities.map(normalizeActivity).filter((a) => matchesRepeat(a, date));
+    const dayKey = gameDayKey();
+    const activities = data.activities.map(normalizeActivity).filter((a) => matchesRepeat(a, date))
+      .map(activity => isRecurring(activity) && activity.status === "completed"
+        && activity.completedDayKey !== dayKey
+          ? { ...activity, status: "planned", completedAt: "" }
+          : activity);
     const phases = getPhaseOrder();
     const byPhase = Object.fromEntries(phases.map((phase) => [phase, activities.filter((a) => a.phase === phase)]));
     const nextActivity = activities.find((a) => a.status !== "completed") || null;
@@ -109,6 +129,11 @@
     const data = ensureStore();
     const activity = data.activities.find((a) => a.id === activityId);
     if (!activity) return { ok: false, reason: "missing_activity" };
+    const dayKey = isRecurring(activity) ? gameDayKey() : "once";
+    if (data.appliedEffects.some(entry => entry.activityId === activityId
+      && (!isRecurring(activity) || entry.dayKey === dayKey))) {
+      return { ok: false, reason: "already_applied" };
+    }
     const effects = activity.effects || {};
     /** @type {Record<string, any>} */
     const state = window.CivicationState?.getState?.() || {};
@@ -119,12 +144,23 @@
     if (activity.phase === "evening") carryover.plannedTomorrow = carryover.plannedTomorrow || /planlegg/i.test(activity.title);
     carryover.sleepQuality = Number(carryover.sleepQuality || 0) + Number(effects.sleepQuality || 0);
     data.carryover = carryover;
-    data.appliedEffects.push({ activityId, effects, at: nowIso() });
+    data.appliedEffects.push({ activityId, effects, at: nowIso(), dayKey });
     write(data);
     window.CivicationState?.setState?.({ day_plan_stats: stats, day_plan_carryover: carryover });
     return { ok: true, activityId, effects, stats, carryover };
   }
-  function completeActivity(id) { const updated = updateActivity(id, { status: "completed", completedAt: nowIso() }); const applied = updated ? applyActivityEffects(id) : null; return { ok: !!updated, activity: updated, applied }; }
+  function completeActivity(id) {
+    const existing = ensureStore().activities.find(activity => activity.id === id);
+    if (!existing) return { ok: false, activity: null, applied: null };
+    const dayKey = gameDayKey();
+    if (existing.status === "completed" &&
+      (!isRecurring(existing) || existing.completedDayKey === dayKey)) {
+      return { ok: true, activity: normalizeActivity(existing), applied: null, alreadyCompleted: true };
+    }
+    const updated = updateActivity(id, { status: "completed", completedAt: nowIso(), completedDayKey: dayKey });
+    const applied = updated ? applyActivityEffects(id) : null;
+    return { ok: !!updated, activity: updated, applied, alreadyCompleted: false };
+  }
   function inspect() { const data = ensureStore(); const plan = getTodayPlan(); return { key: KEY, today: plan, activities_per_phase: plan.byPhase, next_activity: plan.nextActivity, empty_phases: plan.emptyPhases, evening_suggestions: getSuggestionsForPhase("evening"), effects_preview: plan.activities.map((a) => previewEffects(a.id)).filter(Boolean), applied_effects: data.appliedEffects || [], carryover: data.carryover || {} }; }
 
   window.CivicationDayPlan = { inspect, getTodayPlan, getActivitiesForPhase, addActivity, updateActivity, removeActivity, completeActivity, getSuggestionsForPhase, applyActivityEffects, previewEffects };

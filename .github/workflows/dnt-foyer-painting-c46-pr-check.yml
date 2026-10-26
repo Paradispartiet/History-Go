@@ -1,0 +1,41 @@
+name: DNT C46 foyer source-only PR validation
+on:
+  pull_request:
+    paths:
+      - 'reports/place-production/det-norske-teatret/20261021/foyer-paintings-c46-research.json'
+      - 'reports/place-production/det-norske-teatret/20261021/painting-photo-intake-c46.json'
+      - 'reports/place-production/det-norske-teatret-workcard-current.json'
+      - 'scripts/place-production/stage-dnt-foyer-painting-c46.mjs'
+      - 'tests/det-norske-teatret-foyer-painting-c46.test.mjs'
+      - '.github/workflows/dnt-foyer-painting-c46.yml'
+      - '.github/workflows/dnt-foyer-painting-c46-pr-check.yml'
+      - 'tests/det-norske-teatret-foyer-asset-c46.test.mjs'
+      - 'reports/place-production/det-norske-teatret/20261021/painting-photo-c46-visual-qa.json'
+permissions:
+  contents: read
+concurrency:
+  group: dnt-c46-pr-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node-npm
+      - name: Check exact source and asset-lock syntax
+        run: |
+          node --check scripts/place-production/stage-dnt-foyer-painting-c46.mjs
+          node --test tests/det-norske-teatret-foyer-painting-c46.test.mjs tests/det-norske-teatret-foyer-asset-c46.test.mjs
+      - name: Validate live Commons Artwork author and CC license on pre-staging PR only
+        if: ${{ hashFiles('bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp') == '' }}
+        run: node scripts/place-production/stage-dnt-foyer-painting-c46.mjs
+      - name: Save unpublished test render for visual review
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dnt-c46-foyer-painting-pr-preview
+          path: |
+            bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp
+            reports/place-production/det-norske-teatret/20261021/painting-photo-c46-generated.json
+          retention-days: 14

@@ -115,6 +115,10 @@ async function main() {
   };
   window.CivicationLifestoryUI.render();
   assert.ok(panel.querySelector("[data-lifestory-next-action]"), "pending mail reachable from Min dag");
+  assert.equal(panel.querySelector("[data-lifestory-next-day]")?.disabled, true,
+    "Start neste dag is disabled while a current mail needs an answer");
+  assert.match(panel.textContent, /Åpne innboksen og fullfør/,
+    "the player sees why the next day is blocked");
   panel.querySelector("[data-lifestory-next-action]").click();
   assert.equal(openedAnswerSurface, 1);
   assert.equal(calendar.getClock().dayIndex, 1);

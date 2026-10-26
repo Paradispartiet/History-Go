@@ -1,0 +1,49 @@
+name: DNT costume Object image staging
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'reports/place-production/det-norske-teatret/20261020/object-image-intake-c32.json'
+      - 'scripts/place-production/stage-dnt-object-image-c32.mjs'
+concurrency:
+  group: dnt-object-media-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  stage-asset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node-npm
+      - name: Test exact source intake and reject unsafe variants
+        run: node --test tests/det-norske-teatret-object-image-c32.test.mjs
+      - name: Validate live Wikimedia rights and render 800px WebP
+        run: node scripts/place-production/stage-dnt-object-image-c32.mjs
+      - name: Ensure changes stay inside one draft-only asset and provenance record
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s bilder/objects/det_norske_teatret/madame_de_sade_1989_tm01641.webp
+          test -s reports/place-production/det-norske-teatret/20261020/object-image-c32-generated.json
+          test "$(git status --porcelain | wc -l)" -eq 2
+          test -z "$(git status --porcelain -- data/places data/people data/quiz)"
+      - name: Push isolated image branch and open draft review
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="automation/dnt-object-image-${{ github.run_id }}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$branch"
+          git add bilder/objects/det_norske_teatret/madame_de_sade_1989_tm01641.webp
+          git add reports/place-production/det-norske-teatret/20261020/object-image-c32-generated.json
+          git commit -m 'DNT C32: prepare verified costume object asset for review'
+          git push origin "HEAD:$branch"
+          gh pr create --draft --head "$branch" --base main \
+            --title 'DNT: Madame de Sade 1989 object photo (draft asset only)' \
+            --body 'Kilde- og lisenskontrollert lokal WebP av Oslo Museum TM.01641.A-C og SHA256-proveniens. Dette er ingen canonical Object- eller PlaceCard-publisering. Undersøk bilde og annet uavhengig objekt før Objects-samlingen kan fullføres.'

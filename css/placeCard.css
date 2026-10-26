@@ -147,10 +147,14 @@
   cursor: pointer;
 }
 
+/* The parent uses aspect-ratio with an auto height. Position the flip layer
+   against that containing block: percentage height on a relative child can
+   otherwise collapse to zero and leave the quiz's reverse face invisible. */
 .pc-card-flip-inner{
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  position: relative;
   transform-style: preserve-3d;
   transition: transform .42s ease;
 }
@@ -2319,5 +2323,33 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   }
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-section-nav{
     margin: 8px 0 10px;
+  }
+}
+
+/* Keep historical photo dates next to the image, also on narrow screens. */
+#placeCard .pc-heading-content .pc-photo-caption {
+  order: -1;
+  margin: 4px 0 0;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: left;
+  text-shadow: 0 1px 3px #000;
+}
+
+/* On narrow PlaceCards, keep these long Norwegian place names as whole words.
+   Other place headings retain the standard typography. */
+@media (max-width: 520px) {
+  #placeCard[data-current-place-id="arbeidersamfunnets_plass"] .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle,
+  #placeCard[data-current-place-id="statsministerboligen"] .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle {
+    grid-column: 1 / -1;
+    box-sizing: border-box;
+    padding-right: 40px;
+    font-size: clamp(16px, 4.5vw, 20px);
+    line-height: 1.12;
+    letter-spacing: -.045em;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: manual;
   }
 }

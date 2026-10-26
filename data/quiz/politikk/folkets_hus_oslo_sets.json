@@ -1,29 +1,96 @@
 {
   "targetId": "folkets_hus_oslo",
   "categoryId": "politikk",
-  "generator_version": "chatgpt_history_go_manual_v1",
-  "generated_from": [
-    "data/places/politikk/oslo/places_politikk/folkets_hus_oslo.json",
-    "data/stories/stories_folkets_hus_oslo.json",
-    "data/leksikon/places/oslo/politikk/leksikon_folkets_hus_oslo.json",
-    "data/quiz/regler/SET_MAL_README_v3.md"
-  ],
-  "manual_production_notes": {
-    "quality_direction": "sted → observasjon → emne → forståelse",
-    "hold_back": [
-      "Folkets Hus skal ikke reduseres til et generisk konferansesenter.",
-      "Skill organisasjonsarbeidet inne i huset fra mobiliseringen ute på Youngstorget.",
-      "Overvåkingsfunnet skal omtales kildekritisk uten å dikte detaljer."
-    ]
+  "sources": {
+    "src_bfd4ff52aa97": "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm",
+    "src_12ba4a4af38f": "https://snl.no/Folkets_hus_-_Oslo",
+    "src_528c08f06703": "https://oslobyleksikon.no/side/Folkets_hus",
+    "src_9ff3673835f4": "https://oslobyleksikon.no/side/Youngstorget"
+  },
+  "production_context": {
+    "manifest_category": "politikk",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/politikk/folkets_hus_oslo.json",
+    "context_artifact": "data/quiz/production_context/politikk/folkets_hus_oslo.json",
+    "resolved_files": {
+      "pensum": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "emner": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "fagkart": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "methods": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "konflikt_makt_sivilsamfunn"
+    ],
+    "emne_ids": [
+      "em_pol_arbeidsliv_kollektiv_kamp",
+      "em_pol_mediert_offentlighet"
+    ],
+    "topic_hook_ids": [
+      "offentlighet"
+    ],
+    "method_ids": [
+      "met_pol_offentlighetsanalyse"
+    ],
+    "thinker_ids": [
+      "nancy_fraser"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/politikk/folkets_hus_oslo_sets.json",
+        "data/quizcards/politikk/manifest.json",
+        "data/quizcards/politikk/topp10_politikk_oslo_v1_batch1.json",
+        "reports/place-production/oslo-sentrum-politikk-six-quiz-sourcebank-20261023.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/politikk/folkets_hus_oslo_sets.json",
+        "set_count": 1,
+        "question_count": 5,
+        "finding": "Fem eksisterende koblede spørsmål; ett fasadespørsmål krever omskriving på samme ID."
+      },
+      "decisions": [
+        "Behold alle fem identiteter for eksisterende spørsmål; revider misvisende vindusfasade-påstand i s1_q1.",
+        "Benytt 21 egne påstander fra 23. oktober-banken uten de eksplisitte HOLD-kandidatene.",
+        "Sluttreview 2026-10-23: konkrete finansierings-, overvåkings-, organisasjons-, verne- og bevaringsspørsmål erstatter generelle/metapregede eller dupliserte oppgaver; kildestøttet ramme og begrensninger er beholdt."
+      ],
+      "knowledge_migration": "Behold fem historiske spørsmåls-ID-er; regenerer de kanoniske Knowledge-koblingene etter omskrevet påstandsinnhold."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Arbeiderbevegelsens arkiv gir egen byggehistorie, finansiering, kontorfunksjoner og skillet mellom organisering inne og offentlig mobilisering ute. Tre konkrete, kildestøttede sett er avgrenset til stedshistorie, dokumentert endring og avsluttende institusjonell sammenligning; øvrige kandidater er ikke selvstendig dokumenterte ekstra sett."
+    },
+    "held_back_candidates": [
+      "folkets_hus_fullquiz_research_25",
+      "Spørsmål og svaralternativer med utilstrekkelig kildestøtte, tidspresisjon eller pedagogisk relevans beholdes utenfor denne narrow-profilen."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
   },
   "sets": [
     {
       "set_id": "politikk_folkets_hus_oslo_set_1",
-      "title": "Organisasjonsapparatet bak torget",
+      "title": "Stedet og historien",
       "level": 1,
       "order": 1,
+      "phase": "opening",
       "xp": 50,
-      "mode": "place_observation_understanding",
       "questions": [
         {
           "id": "folkets_hus_oslo_s1_q1",
@@ -32,50 +99,38 @@
           "placeId": "folkets_hus_oslo",
           "targetId": "folkets_hus_oslo",
           "question_scope": "place",
-          "question": "Hva forteller den lange, repeterende vindusfasaden best om Folkets Hus?",
+          "question": "Hva rommet Folkets Hus da organisasjonskvartalet var fullført i 1962?",
           "options": [
-            "At bygget rommer et stort apparat av kontorer, møterom og fellesfunksjoner",
-            "At hele bygget først og fremst er én stor teatersal",
-            "At fasaden skjuler et tidligere jernbaneanlegg"
+            "Et samlet anlegg med kontorer, møterom og saler",
+            "Et forsamlingsanlegg uten egne organisasjonskontorer",
+            "Et kontorkompleks uten møterom eller forsamlingssaler"
           ],
-          "answer": "At bygget rommer et stort apparat av kontorer, møterom og fellesfunksjoner",
+          "answer": "Et samlet anlegg med kontorer, møterom og saler",
           "answerIndex": 0,
-          "dimension": "stedlesning",
-          "topic": "institusjonsarkitektur",
-          "knowledge": "Den regelmessige fasaden til Knut Knutsens Folkets Hus uttrykker et stort og sammensatt organisasjonsbygg med mange kontorer, saler og møtefunksjoner.",
+          "knowledge": "Da arbeidet var fullført i 1962, hadde fagbevegelsen fått et sammensatt kvartal for kontorer, møter og forsamlingslokaler.",
           "difficulty": 1,
-          "question_type": "observation",
-          "question_layer": "place_intro",
-          "emne_id": "em_pol_institusjoner_styring",
-          "related_emner": [
-            "em_pol_arbeidsliv_kollektiv_kamp"
-          ],
-          "core_concepts": [
-            "institusjon",
-            "organisasjonsapparat",
-            "arkitektur"
-          ],
-          "tags": [
-            "folkets_hus_oslo",
-            "fasade",
-            "knut_knutsen",
-            "stedlesning"
-          ],
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
           "source": [
-            "data/places/politikk/oslo/places_politikk/folkets_hus_oslo.json",
-            "https://snl.no/Knut_Knutsen"
+            "src_bfd4ff52aa97"
           ],
-          "question_family": "arkitektur_og_institusjon",
-          "angle": "fasaden_som_organisasjonskart",
-          "primary_knowledge_unit_id": "ku_politikk_den_regelmessige_fasaden_d4ceda1efa",
+          "source_origin": "external",
+          "claim_basis": "Da arbeidet var fullført i 1962, hadde fagbevegelsen fått et sammensatt kvartal for kontorer, møter og forsamlingslokaler.",
+          "claim_id": "claim_oslo_six_folkets_hus_oslo_s1_q1",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_da_arbeidet_var_fullf_rt_22b17aad01",
           "knowledge_unit_ids": [
-            "ku_politikk_den_regelmessige_fasaden_d4ceda1efa"
+            "ku_politikk_da_arbeidet_var_fullf_rt_22b17aad01"
           ],
-          "concept_ids": [
-            "co_politikk_institusjon_4c2ef5b80b",
-            "co_politikk_organisasjonsapparat_b41423b432",
-            "co_politikk_arkitektur_361f7db46b"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -89,49 +144,37 @@
           "question_scope": "place",
           "question": "Hva er den viktigste historiske forskjellen mellom Folkets Hus fra 1907 og dagens anlegg?",
           "options": [
+            "Begge anleggene stod ferdig i 1962, men fikk ulike funksjoner",
             "Det første var et mer avgrenset forsamlingshus, mens dagens bygg er et stort organisasjons- og møtekompleks",
-            "Det første var et regjeringsbygg, mens dagens bygg er et privat bolighus",
-            "Det første lå på Eidsvolls plass, mens dagens bygg ble flyttet til Youngstorget"
+            "Det første var et rent kontorbygg, mens dagens anlegg bare brukes til offentlige arrangementer"
           ],
           "answer": "Det første var et mer avgrenset forsamlingshus, mens dagens bygg er et stort organisasjons- og møtekompleks",
-          "answerIndex": 0,
-          "dimension": "historisk_transformasjon",
-          "topic": "fra forsamlingshus til kvartalsanlegg",
+          "answerIndex": 1,
           "knowledge": "Det første Folkets Hus åpnet i 1907. Dagens anlegg ble reist i flere byggetrinn og samlet langt flere kontor-, arkiv- og møtefunksjoner.",
           "difficulty": 1,
-          "question_type": "before_after",
-          "question_layer": "place_intro",
+          "question_type": "fact",
           "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
-          "related_emner": [
-            "em_pol_institusjoner_styring"
-          ],
-          "core_concepts": [
-            "forsamlingshus",
-            "institusjonsbygging",
-            "organisasjonsvekst"
-          ],
-          "tags": [
-            "1907",
-            "1962",
-            "for_na",
-            "folkets_hus"
-          ],
           "source": [
-            "data/places/politikk/oslo/places_politikk/folkets_hus_oslo.json",
-            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+            "src_bfd4ff52aa97"
           ],
-          "question_family": "sted_og_forvandling",
-          "angle": "ett_hus_til_organisasjonskvartal",
+          "source_origin": "external",
+          "claim_basis": "Det første Folkets Hus åpnet i 1907. Dagens anlegg ble reist i flere byggetrinn og samlet langt flere kontor-, arkiv- og møtefunksjoner.",
+          "claim_id": "claim_oslo_six_folkets_hus_oslo_s1_q2",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
           "primary_knowledge_unit_id": "ku_politikk_det_f_rste_folkets_hus_a_c42114c8b4",
           "knowledge_unit_ids": [
             "ku_politikk_det_f_rste_folkets_hus_a_c42114c8b4",
             "ku_politikk_dagens_anlegg_ble_reist__934007bab7"
           ],
-          "concept_ids": [
-            "co_politikk_forsamlingshus_709ff12b13",
-            "co_politikk_institusjonsbygging_e7f3a8862f",
-            "co_politikk_organisasjonsvekst_3d47378ab6"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -143,163 +186,852 @@
           "placeId": "folkets_hus_oslo",
           "targetId": "folkets_hus_oslo",
           "question_scope": "place",
-          "question": "Hvorfor er historien om ekstrakontingenten på 25 øre viktig?",
+          "question": "Hvilket ekstra bidrag ble foreslått for fagorganiserte for å finansiere byggingen av Folkets Hus?",
           "options": [
-            "Den viser at huset ble finansiert som et kollektivt organisasjonsprosjekt",
-            "Den viser at inngangsbilletten til Youngstorget kostet 25 øre",
-            "Den var en bot for å holde politiske møter uten tillatelse"
+            "En engangsinnbetaling på 25 kroner",
+            "En ekstra månedskontingent på 25 øre",
+            "En ekstra ukekontingent på 25 øre"
           ],
-          "answer": "Den viser at huset ble finansiert som et kollektivt organisasjonsprosjekt",
-          "answerIndex": 0,
-          "dimension": "politisk_forstaelse",
-          "topic": "kollektiv finansiering",
-          "knowledge": "Fagorganiserte ble oppfordret til å bidra gjennom en ekstra ukentlig kontingent. Finansieringen gjorde selve byggeprosjektet til en del av arbeiderbevegelsens organisering.",
-          "difficulty": 2,
-          "question_type": "understanding",
-          "question_layer": "place_meaning",
+          "answer": "En ekstra ukekontingent på 25 øre",
+          "answerIndex": 2,
+          "knowledge": "Det ble foreslått 25 øre ekstra i ukekontingent for å finansiere byggeprosjektet. Bidrag fra fagorganiserte skulle gjøre et kostbart felles hus mulig.",
+          "difficulty": 1,
+          "question_type": "fact",
           "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
-          "related_emner": [
-            "em_pol_institusjoner_styring"
-          ],
-          "core_concepts": [
-            "kollektiv handling",
-            "medlemsorganisasjon",
-            "finansiering"
-          ],
-          "tags": [
-            "25_ore",
-            "kollektiv_finansiering",
-            "fagbevegelse"
-          ],
           "source": [
-            "data/stories/stories_folkets_hus_oslo.json",
-            "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm"
+            "src_bfd4ff52aa97"
           ],
-          "question_family": "organisering_i_praksis",
-          "angle": "huset_ma_reises_i_fellesskap",
-          "primary_knowledge_unit_id": "ku_politikk_fagorganiserte_ble_oppfo_5bfe7980fa",
+          "source_origin": "external",
+          "claim_basis": "Det ble foreslått 25 øre ekstra i ukekontingent for å finansiere byggeprosjektet. Bidrag fra fagorganiserte skulle gjøre et kostbart felles hus mulig.",
+          "claim_id": "claim_oslo_six_folkets_hus_oslo_s1_q3",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
           "knowledge_unit_ids": [
-            "ku_politikk_fagorganiserte_ble_oppfo_5bfe7980fa",
-            "ku_politikk_finansieringen_gjorde_se_86fe54b059"
+            "ku_politikk_det_ble_foreslatt_25_re__179d0174f0",
+            "ku_politikk_bidrag_fra_fagorganisert_db8ee2ced3"
           ],
-          "concept_ids": [
-            "co_politikk_kollektiv_handling_b774b6156d",
-            "co_politikk_medlemsorganisasjon_734ee5bf06",
-            "co_politikk_finansiering_94d23c3703"
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_politikk_det_ble_foreslatt_25_re__179d0174f0"
+        },
+        {
+          "id": "folkets_hus_oslo_s1_q5",
+          "quiz_id": "politikk_folkets_hus_oslo_set_1_q4",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hva ble funnet under moderniseringen av Folkets Hus rundt 1990?",
+          "options": [
+            "Et avlyttings- og overvåkingsanlegg fra den kalde krigen",
+            "Et sentralbordanlegg som bare betjente husets interne telefoner",
+            "Et lager med ubrukte radiosendere fra okkupasjonstiden"
           ],
+          "answer": "Et avlyttings- og overvåkingsanlegg fra den kalde krigen",
+          "answerIndex": 0,
+          "knowledge": "Under moderniseringen rundt 1990 ble det funnet et avlyttings- og overvåkingsanlegg fra den kalde krigen. Funnet dokumenterer skjult overvåking i bygningen; kilden navngir ikke ansvarlige i denne omtalen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_12ba4a4af38f"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Under moderniseringen rundt 1990 ble det funnet et avlyttings- og overvåkingsanlegg fra den kalde krigen. Funnet dokumenterer skjult overvåking i bygningen; kilden navngir ikke ansvarlige i denne omtalen.",
+          "claim_id": "claim_oslo_six_folkets_hus_oslo_s1_q5",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "knowledge_unit_ids": [
+            "ku_politikk_under_moderniseringen_ru_18ffc030b1",
+            "ku_politikk_funnet_dokumenterer_skju_4f27b78b2d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_politikk_under_moderniseringen_ru_18ffc030b1"
+        },
+        {
+          "id": "folkets_hus_card_06",
+          "quiz_id": "politikk_folkets_hus_oslo_set_1_q5",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hvilket år åpnet det første Folkets Hus ved Youngstorget?",
+          "options": [
+            "1962",
+            "1907",
+            "1958"
+          ],
+          "answer": "1907",
+          "answerIndex": 1,
+          "knowledge": "Det første Folkets Hus på stedet åpnet i 1907, før etterkrigstidens nye bygningskompleks.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97",
+            "src_12ba4a4af38f"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det første Folkets Hus på stedet åpnet i 1907, før etterkrigstidens nye bygningskompleks.",
+          "claim_id": "claim_oslo_six_folkets_hus_card_06",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_det_f_rste_folkets_hus_p_d055b44d15",
+          "knowledge_unit_ids": [
+            "ku_politikk_det_f_rste_folkets_hus_p_d055b44d15"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_card_07",
+          "quiz_id": "politikk_folkets_hus_oslo_set_1_q6",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hvilken arkitekt tegnet dagens hovedanlegg ved Youngstorget?",
+          "options": [
+            "Erling Viksjø",
+            "Hans Jacob Sparre",
+            "Knut Knutsen"
+          ],
+          "answer": "Knut Knutsen",
+          "answerIndex": 2,
+          "knowledge": "Knut Knutsen tegnet det moderne Folkets Hus som ble oppført i byggetrinn fram til 1962.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97",
+            "src_12ba4a4af38f"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Knut Knutsen tegnet det moderne Folkets Hus som ble oppført i byggetrinn fram til 1962.",
+          "claim_id": "claim_oslo_six_folkets_hus_card_07",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_knut_knutsen_tegnet_det__f986cf0d20",
+          "knowledge_unit_ids": [
+            "ku_politikk_knut_knutsen_tegnet_det__f986cf0d20"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_card_08",
+          "quiz_id": "politikk_folkets_hus_oslo_set_1_q7",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Når stod det nåværende Folkets Hus-anlegget i hovedsak ferdig?",
+          "options": [
+            "1962",
+            "1907",
+            "1935"
+          ],
+          "answer": "1962",
+          "answerIndex": 0,
+          "knowledge": "Dagens Folkets Hus ble oppført i etapper i etterkrigstiden og stod i hovedsak ferdig i 1962.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97",
+            "src_12ba4a4af38f"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Dagens Folkets Hus ble oppført i etapper i etterkrigstiden og stod i hovedsak ferdig i 1962.",
+          "claim_id": "claim_oslo_six_folkets_hus_card_08",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_dagens_folkets_hus_ble_o_98b78e852b",
+          "knowledge_unit_ids": [
+            "ku_politikk_dagens_folkets_hus_ble_o_98b78e852b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_folkets_hus_oslo_set_2",
+      "title": "Institusjoner og forandring",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "folkets_hus_card_09",
+          "quiz_id": "politikk_folkets_hus_oslo_set_2_q1",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hvilken organisasjon har en sentral tilknytning til Folkets Hus i Oslo?",
+          "options": [
+            "Norges Bank",
+            "Landsorganisasjonen (LO)",
+            "Norges Høyesterett"
+          ],
+          "answer": "Landsorganisasjonen (LO)",
+          "answerIndex": 1,
+          "knowledge": "Folkets Hus rommer organisasjonsarbeid knyttet til LO og fagbevegelsen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_12ba4a4af38f",
+            "src_528c08f06703"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Folkets Hus rommer organisasjonsarbeid knyttet til LO og fagbevegelsen.",
+          "claim_id": "claim_oslo_six_folkets_hus_card_09",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_folkets_hus_rommer_organ_a1af6cae23",
+          "knowledge_unit_ids": [
+            "ku_politikk_folkets_hus_rommer_organ_a1af6cae23"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_card_10",
+          "quiz_id": "politikk_folkets_hus_oslo_set_2_q2",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hvilken dokumentasjonsinstitusjon er knyttet til Folkets Hus?",
+          "options": [
+            "Norsk Folkemuseum",
+            "Nasjonalbibliotekets musikksamling",
+            "Arbeiderbevegelsens arkiv og bibliotek"
+          ],
+          "answer": "Arbeiderbevegelsens arkiv og bibliotek",
+          "answerIndex": 2,
+          "knowledge": "Arbeiderbevegelsens arkiv og bibliotek dokumenterer blant annet organisasjonenes og fagbevegelsens historie.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_12ba4a4af38f",
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeiderbevegelsens arkiv og bibliotek dokumenterer blant annet organisasjonenes og fagbevegelsens historie.",
+          "claim_id": "claim_oslo_six_folkets_hus_card_10",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_arbeiderbevegelsens_arki_a6b5e291e4",
+          "knowledge_unit_ids": [
+            "ku_politikk_arbeiderbevegelsens_arki_a6b5e291e4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_11",
+          "quiz_id": "politikk_folkets_hus_oslo_set_2_q3",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hva skjedde med Folkets Hus-eiendommene allerede i 1911?",
+          "options": [
+            "Naboeiendommer ble kjøpt for videre utvikling",
+            "Den første bygningen ble allerede erstattet av dagens etterkrigskompleks",
+            "Eiendommene ble solgt, slik at organisasjonen måtte flytte til andre lokaler"
+          ],
+          "answer": "Naboeiendommer ble kjøpt for videre utvikling",
+          "answerIndex": 0,
+          "knowledge": "Arbeiderbevegelsens arkiv beskriver kjøp av naboeiendommer i 1911 som del av den gradvise utvidelsen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeiderbevegelsens arkiv beskriver kjøp av naboeiendommer i 1911 som del av den gradvise utvidelsen.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_11",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_arbeiderbevegelsens_arki_d59e5eec6c",
+          "knowledge_unit_ids": [
+            "ku_politikk_arbeiderbevegelsens_arki_d59e5eec6c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_12",
+          "quiz_id": "politikk_folkets_hus_oslo_set_2_q4",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hvilken del ble bygd ved Folkets Hus i 1935–1936?",
+          "options": [
+            "En ny kontorfløy mot Youngstorget",
+            "En ny storsal mot daværende Henrik Ibsens gate",
+            "Et nytt arkivbygg mot Møllergata"
+          ],
+          "answer": "En ny storsal mot daværende Henrik Ibsens gate",
+          "answerIndex": 1,
+          "knowledge": "Et nytt bygg med storsal kom i 1935–1936 mot gaten som senere ble Hammersborggata.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et nytt bygg med storsal kom i 1935–1936 mot gaten som senere ble Hammersborggata.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_12",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_et_nytt_bygg_med_storsal_1c77e8bfdf",
+          "knowledge_unit_ids": [
+            "ku_politikk_et_nytt_bygg_med_storsal_1c77e8bfdf"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_13",
+          "quiz_id": "politikk_folkets_hus_oslo_set_2_q5",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hva ble laget for Folkets Hus-kvartalet i 1938?",
+          "options": [
+            "En plan om å flytte Youngstorget",
+            "Et fredningsvedtak for hele torget",
+            "En samlet generalplan for kvartalet"
+          ],
+          "answer": "En samlet generalplan for kvartalet",
+          "answerIndex": 2,
+          "knowledge": "I 1938 forelå en samlet plan for utbygging av hele Folkets Hus-kvartalet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I 1938 forelå en samlet plan for utbygging av hele Folkets Hus-kvartalet.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_13",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_i_1938_forela_en_samlet__8f7e096745",
+          "knowledge_unit_ids": [
+            "ku_politikk_i_1938_forela_en_samlet__8f7e096745"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_14",
+          "quiz_id": "politikk_folkets_hus_oslo_set_2_q6",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hvorfor ble ikke Knut Knutsens utbyggingsplan fra 1939 gjennomført straks?",
+          "options": [
+            "Andre verdenskrig stanset planleggingen",
+            "Kommunen avviste planen fordi tomten skulle brukes til et offentlig administrasjonsbygg",
+            "Hele eiendommen ble fredet før byggearbeidet kunne begynne"
+          ],
+          "answer": "Andre verdenskrig stanset planleggingen",
+          "answerIndex": 0,
+          "knowledge": "Knutsens forslag ble valgt i 1939, men krigen avbrøt videre planlegging.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Knutsens forslag ble valgt i 1939, men krigen avbrøt videre planlegging.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_14",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_knutsens_forslag_ble_val_ad77fec0ec",
+          "knowledge_unit_ids": [
+            "ku_politikk_knutsens_forslag_ble_val_ad77fec0ec"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_15",
+          "quiz_id": "politikk_folkets_hus_oslo_set_2_q7",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hvilket år kom den store etterkrigsutbyggingen av Folkets Hus i gang?",
+          "options": [
+            "1962",
+            "1954",
+            "1939"
+          ],
+          "answer": "1954",
+          "answerIndex": 1,
+          "knowledge": "Arbeidet kunne først settes i gang i 1954, etter at planleggingen hadde stoppet under krigen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidet kunne først settes i gang i 1954, etter at planleggingen hadde stoppet under krigen.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_15",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_arbeidet_kunne_f_rst_set_ca5dd330f9",
+          "knowledge_unit_ids": [
+            "ku_politikk_arbeidet_kunne_f_rst_set_ca5dd330f9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_folkets_hus_oslo_set_3",
+      "title": "Kilder, ansvar og sammenheng",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "folkets_hus_fullquiz_research_16",
+          "quiz_id": "politikk_folkets_hus_oslo_set_3_q1",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hva skjedde med den gamle bygningen i Youngs gate 11 i 1954?",
+          "options": [
+            "Den ble fredet og bevart som del av det nye anlegget",
+            "Den ble ombygget til kontorfløy uten at den opprinnelige bygningen ble revet",
+            "Den ble revet for å gi plass til et nytt byggeprosjekt"
+          ],
+          "answer": "Den ble revet for å gi plass til et nytt byggeprosjekt",
+          "answerIndex": 2,
+          "knowledge": "Arbeiderbevegelsens arkiv dokumenterer at den gamle Youngs gate 11-bygningen var revet da arbeidet startet høsten 1954.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeiderbevegelsens arkiv dokumenterer at den gamle Youngs gate 11-bygningen var revet da arbeidet startet høsten 1954.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_16",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_arbeiderbevegelsens_arki_2c1a972cf9",
+          "knowledge_unit_ids": [
+            "ku_politikk_arbeiderbevegelsens_arki_2c1a972cf9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_17",
+          "quiz_id": "politikk_folkets_hus_oslo_set_3_q2",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hva ble markert ved Folkets Hus 1. mai 1955?",
+          "options": [
+            "Høytidelig nedleggelse av grunnsteinen",
+            "Innvielsen av første byggetrinn",
+            "Åpningen av den nye storsalen"
+          ],
+          "answer": "Høytidelig nedleggelse av grunnsteinen",
+          "answerIndex": 0,
+          "knowledge": "Grunnsteinen ble lagt ned 1. mai 1955, og et skrin med historikk, tegninger og avis ble murt inn.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Grunnsteinen ble lagt ned 1. mai 1955, og et skrin med historikk, tegninger og avis ble murt inn.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_17",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_grunnsteinen_ble_lagt_ne_f57edbe63c",
+          "knowledge_unit_ids": [
+            "ku_politikk_grunnsteinen_ble_lagt_ne_f57edbe63c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_18",
+          "quiz_id": "politikk_folkets_hus_oslo_set_3_q3",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Når flyttet LO inn i det nye Folkets Hus før første byggetrinn var helt ferdig?",
+          "options": [
+            "April 1958",
+            "Desember 1957",
+            "Juni 1962"
+          ],
+          "answer": "Desember 1957",
+          "answerIndex": 1,
+          "knowledge": "LO flyttet inn i desember 1957, mens første byggetrinn ble ferdigstilt i april 1958.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "LO flyttet inn i desember 1957, mens første byggetrinn ble ferdigstilt i april 1958.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_18",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "primary_knowledge_unit_id": "ku_politikk_lo_flyttet_inn_i_desembe_d3958071e7",
+          "knowledge_unit_ids": [
+            "ku_politikk_lo_flyttet_inn_i_desembe_d3958071e7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_19",
+          "quiz_id": "politikk_folkets_hus_oslo_set_3_q4",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Når ble første byggetrinn av dagens Folkets Hus ferdig?",
+          "options": [
+            "Juni 1962",
+            "Oktober 1954",
+            "April 1958"
+          ],
+          "answer": "April 1958",
+          "answerIndex": 2,
+          "knowledge": "Første byggetrinn var ferdig i april 1958; senere byggetrinn fortsatte fram til 1962.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Første byggetrinn var ferdig i april 1958; senere byggetrinn fortsatte fram til 1962.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_19",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "method_id": "met_pol_offentlighetsanalyse",
+          "primary_knowledge_unit_id": "ku_politikk_f_rste_byggetrinn_var_fe_746c76ec9e",
+          "knowledge_unit_ids": [
+            "ku_politikk_f_rste_byggetrinn_var_fe_746c76ec9e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_20",
+          "quiz_id": "politikk_folkets_hus_oslo_set_3_q5",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hvilken eiendom ble revet da andre byggetrinn startet?",
+          "options": [
+            "Møllergata 18",
+            "Youngstorget 2",
+            "Møllergata 20"
+          ],
+          "answer": "Møllergata 18",
+          "answerIndex": 0,
+          "knowledge": "Møllergata 18 ble revet i forbindelse med andre byggetrinn i 1958–1959.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Møllergata 18 ble revet i forbindelse med andre byggetrinn i 1958–1959.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_20",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "method_id": "met_pol_offentlighetsanalyse",
+          "primary_knowledge_unit_id": "ku_politikk_m_llergata_18_ble_revet__5fd3a380de",
+          "knowledge_unit_ids": [
+            "ku_politikk_m_llergata_18_ble_revet__5fd3a380de"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "folkets_hus_fullquiz_research_21",
+          "quiz_id": "politikk_folkets_hus_oslo_set_3_q6",
+          "categoryId": "politikk",
+          "placeId": "folkets_hus_oslo",
+          "targetId": "folkets_hus_oslo",
+          "question_scope": "place",
+          "question": "Hvilken eiendom ble innlemmet i Folkets Hus først i 1985?",
+          "options": [
+            "Youngstorget 2",
+            "Møllergata 20",
+            "Torggata 14"
+          ],
+          "answer": "Møllergata 20",
+          "answerIndex": 1,
+          "knowledge": "Møllergata 20 ble del av anlegget ved utbyggingen i 1985.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+          "source": [
+            "src_bfd4ff52aa97",
+            "src_528c08f06703"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Møllergata 20 ble del av anlegget ved utbyggingen i 1985.",
+          "claim_id": "claim_oslo_six_folkets_hus_fullquiz_research_21",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "method_id": "met_pol_offentlighetsanalyse",
+          "primary_knowledge_unit_id": "ku_politikk_m_llergata_20_ble_del_av_2e14abd6eb",
+          "knowledge_unit_ids": [
+            "ku_politikk_m_llergata_20_ble_del_av_2e14abd6eb"
+          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
           "id": "folkets_hus_oslo_s1_q4",
-          "quiz_id": "politikk_folkets_hus_oslo_set_1_q4",
+          "quiz_id": "politikk_folkets_hus_oslo_set_3_q7",
           "categoryId": "politikk",
           "placeId": "folkets_hus_oslo",
           "targetId": "folkets_hus_oslo",
           "question_scope": "place",
           "question": "Hva er den viktigste forskjellen mellom Folkets Hus og Youngstorget som politiske rom?",
           "options": [
-            "Folkets Hus rommer organisasjonsarbeidet, mens Youngstorget gjør krav og mobilisering synlig ute i offentligheten",
-            "Folkets Hus vedtar lover, mens Youngstorget fungerer som domstol",
-            "Folkets Hus er et privat hjem, mens Youngstorget er et departement"
+            "Folkets Hus brukes først og fremst til demonstrasjoner ute, mens Youngstorget huser organisasjonskontorene",
+            "Begge stedene er først og fremst administrative kontorlokaler uten offentlige markeringer",
+            "Folkets Hus rommer organisasjonsarbeidet, mens Youngstorget gjør krav og mobilisering synlig ute i offentligheten"
           ],
           "answer": "Folkets Hus rommer organisasjonsarbeidet, mens Youngstorget gjør krav og mobilisering synlig ute i offentligheten",
-          "answerIndex": 0,
-          "dimension": "sammenligning",
-          "topic": "institusjon og offentlig mobilisering",
+          "answerIndex": 2,
           "knowledge": "Huset gir bevegelsen kontorer, møterom og arkiv. Torget gir den en synlig scene for taler, demonstrasjoner og folkemengder.",
-          "difficulty": 2,
-          "question_type": "comparison",
-          "question_layer": "foundation",
-          "emne_id": "em_pol_offentlighet_debatt",
-          "related_emner": [
-            "em_pol_arbeidsliv_kollektiv_kamp",
-            "em_pol_demonstrasjoner_protest"
-          ],
-          "core_concepts": [
-            "organisasjonsmakt",
-            "offentlighet",
-            "mobilisering"
-          ],
-          "tags": [
-            "folkets_hus_oslo",
-            "youngstorget",
-            "inne_og_ute",
-            "politisk_rom"
-          ],
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_pol_mediert_offentlighet",
           "source": [
-            "data/places/politikk/oslo/places_politikk/folkets_hus_oslo.json",
-            "data/places/politikk/oslo/places_politikk/youngstorget.json"
+            "src_9ff3673835f4",
+            "src_12ba4a4af38f"
           ],
-          "question_family": "politisk_rom",
-          "angle": "organisasjon_inne_mobilisering_ute",
+          "source_origin": "external",
+          "claim_basis": "Huset gir bevegelsen kontorer, møterom og arkiv. Torget gir den en synlig scene for taler, demonstrasjoner og folkemengder.",
+          "claim_id": "claim_oslo_six_folkets_hus_oslo_s1_q4",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "core_concepts": [],
+          "tags": [
+            "oslo_sentrum_politikk_six",
+            "multiple_choice"
+          ],
+          "method_id": "met_pol_offentlighetsanalyse",
+          "topic_hook_id": "offentlighet",
+          "thinker_id": "nancy_fraser",
+          "theory_ref": {
+            "topic_hook_id": "offentlighet",
+            "why_it_helps": "Perspektivet gir et prøvbart skille mellom den dokumenterte institusjonelle/historiske handlingen ved dette stedet og videre politiske virkninger som krever egne kilder."
+          },
           "primary_knowledge_unit_id": "ku_politikk_huset_gir_bevegelsen_kon_d30ad814b0",
           "knowledge_unit_ids": [
             "ku_politikk_huset_gir_bevegelsen_kon_d30ad814b0",
             "ku_politikk_torget_gir_den_en_synlig_eaa4551225"
           ],
-          "concept_ids": [
-            "co_politikk_organisasjonsmakt_487ee5f8ad",
-            "co_politikk_offentlighet_53c695a61f",
-            "co_politikk_mobilisering_ba8276988a"
-          ],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "folkets_hus_oslo_s1_q5",
-          "quiz_id": "politikk_folkets_hus_oslo_set_1_q5",
-          "categoryId": "politikk",
-          "placeId": "folkets_hus_oslo",
-          "targetId": "folkets_hus_oslo",
-          "question_scope": "place",
-          "question": "Hvorfor er funnet av et overvåkingsanlegg fra den kalde krigen politisk interessant?",
-          "options": [
-            "Det viser at et demokratisk organisasjonsbygg også kunne bli mål for skjult kontroll",
-            "Det beviser at alle møter i bygget ble sendt direkte på TV",
-            "Det viser at huset opprinnelig var bygget som politistasjon"
-          ],
-          "answer": "Det viser at et demokratisk organisasjonsbygg også kunne bli mål for skjult kontroll",
-          "answerIndex": 0,
-          "dimension": "kildekritisk_forstaelse",
-          "topic": "overvåking og organisasjonsfrihet",
-          "knowledge": "Ved modernisering rundt 1990 ble det funnet et avlyttings- og overvåkingsanlegg fra den kalde krigens tid. Funnet må omtales uten å dikte detaljer, men viser spenningen mellom organisasjonsfrihet og kontroll.",
-          "difficulty": 2,
-          "question_type": "source_interpretation",
-          "question_layer": "place_meaning",
-          "emne_id": "em_pol_politi_sikkerhet_makt",
-          "related_emner": [
-            "em_pol_institusjoner_styring"
-          ],
-          "core_concepts": [
-            "overvåking",
-            "organisasjonsfrihet",
-            "kald krig"
-          ],
-          "tags": [
-            "overvaking",
-            "kald_krig",
-            "folkets_hus_oslo",
-            "kildekritikk"
-          ],
-          "source": [
-            "data/stories/stories_folkets_hus_oslo.json",
-            "https://snl.no/Folkets_hus_-_Oslo"
-          ],
-          "question_family": "institusjon_og_kontroll",
-          "angle": "da_veggene_lyttet",
-          "primary_knowledge_unit_id": "ku_politikk_ved_modernisering_rundt__e7de538594",
-          "knowledge_unit_ids": [
-            "ku_politikk_ved_modernisering_rundt__e7de538594",
-            "ku_politikk_funnet_ma_omtales_uten_a_b42d5dc524"
-          ],
-          "concept_ids": [
-            "co_politikk_overvaking_2313554c82",
-            "co_politikk_organisasjonsfrihet_787633e0f7",
-            "co_politikk_kald_krig_7f747231d3"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"

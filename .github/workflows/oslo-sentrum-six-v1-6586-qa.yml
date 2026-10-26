@@ -1,0 +1,73 @@
+name: Oslo sentrum six v1 — real app and quiz QA
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/politikk/arbeidersamfunnets_plass_sets.json'
+      - 'data/quiz/politikk/politihuset_gronland_sets.json'
+      - 'data/quiz/politikk/statsministerboligen_sets.json'
+      - 'data/quiz/historie/nobels_fredssenter_sets.json'
+      - 'data/quiz/by/vikaterrassen_sets.json'
+      - 'data/quiz/litteratur/eldorado_bokhandel_sets_merged.json'
+      - 'data/quizcards/politikk/*_quizkort_v1.json'
+      - 'data/quizcards/historie/nobels_fredssenter_quizkort_v1.json'
+      - 'data/quizcards/by/vikaterrassen_quizkort_v1.json'
+      - 'data/quizcards/litteratur/topp10_lit_kort_batch3.json'
+      - 'tests/oslo-sentrum-six-6586-*'
+      - '.github/workflows/oslo-sentrum-six-v1-6586-qa.yml'
+permissions:
+  contents: read
+concurrency:
+  group: oslo-sentrum-six-v1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  static:
+    name: 140 fullquiz + 60 QuizCard + Knowledge integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Verify all six canonical place and question contracts
+        run: node --test tests/oslo-sentrum-six-6586-integrity.test.mjs
+      - name: Audit source-first quiz production and category manifest
+        run: |
+          npm run audit:quiz-manifest:v2 || {
+            node -e "const x=require('./reports/quiz_manifest_v2_audit_report.json');console.log(JSON.stringify({notes:x.notes,missingFiles:x.missingFiles,missingSetIds:x.missingSetIds,invalidQuestions:x.invalidQuestions,targetMismatchQuestions:x.targetMismatchQuestions,duplicateQuizItemIds:x.duplicateQuizItemIds,duplicateSetKeys:x.duplicateSetKeys},null,2))"
+            exit 1
+          }
+          npm run audit:quiz-production-context
+          npm run test:quiz-production
+          npm run test:politikk-place-production
+          npm run audit:politikk-place-production
+  browser:
+    name: ${{ matrix.place }} — mobile + desktop Playwright
+    strategy:
+      fail-fast: false
+      matrix:
+        place: [arbeidersamfunnets_plass, politihuset_gronland, statsministerboligen, nobels_fredssenter, vikaterrassen, eldorado_bokhandel]
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Run actual History GO routes and real flipped QuizCard
+        env:
+          HG_PLACE_ID: ${{ matrix.place }}
+        run: node tests/oslo-sentrum-six-6586-real-app-browser.mjs
+      - name: Attach screenshots to review and diagnose failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-sentrum-six-6586-${{ matrix.place }}
+          path: artifacts/oslo-sentrum-six-6586/${{ matrix.place }}/
+          if-no-files-found: warn
+          retention-days: 14

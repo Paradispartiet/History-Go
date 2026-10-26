@@ -226,6 +226,14 @@ jobs:
             reports/typescript-ci/dist-web.diff
           if-no-files-found: error
 
+      - name: Mobile GPS passive discovery regression
+        if: needs.scope.outputs.web == 'true'
+        run: node --test tests/mobile-gps-passive-location.test.mjs
+
+      - name: Mobile map style and PlaceCard navigation regression
+        if: needs.scope.outputs.web == 'true'
+        run: node --test tests/mobile-map-style-placecard-regression.test.mjs
+
       - name: Typecheck scripts
         if: needs.scope.outputs.scripts == 'true'
         run: npm run typecheck:scripts

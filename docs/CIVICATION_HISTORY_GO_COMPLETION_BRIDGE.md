@@ -223,6 +223,16 @@ det relaterte Civication-svaret — uten at broen tar gameplay-beslutninger selv
   `emne_ids`; leksikon-artiklene selv bærer ikke emne-id.
 - **Eksakt testmodus-flagg** i Civication må verifiseres mot `CivicationState` ved implementasjon.
 
+## Oppdragstoast kontra bred livsprogresjon (2026-10-21)
+
+For normativt produktmål om seks ferdigheter, frivillige livsposisjoner og situert streetkred, se [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md). Det er ikke en utvidelse av denne broens skriverettigheter.
+
+Den eksisterende Civication→History Go-sesjonen og `js/ui/toast.js` er en **veiviser og returflate**, ikke en ny kilde til fullføringer. Et valgfritt livsposisjonsoppdrag etter Life Story-dag 7 kan vise dokumentert `badge_id` + `threshold`, eller utforskingsmodus uten terskel. Terskeloppdraget skal kun vise ferdig når **faktisk persistert** `merits_by_category[badge_id].points` når terskelen. En kategori-utforsking uten poengterskel skal ikke selv erklæres fullført. Retur til Civication innebærer ingen automatisk aktivering av livsposisjon, jobb eller et ferdig nytt kapittel. Private Life Stories forblir spillbare uavhengig av toasten.
+
+**Ikke bland task-completion og personlig utvikling:** Når TaskEngine markerer History Go-evidens, er det ikke i seg selv en generell tildeling av visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling, handlekraft, streetkred eller sosial kapital. Disse foreslåtte ferdighetene krever egne kanoniske handlinger og konsekvenser; miljøomdømme krever faktisk møte/reaksjon hos et bestemt miljø. Se `CIVICATION_DATA_LAYERS.md` og `CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md`. Ingen ekstra stateeier eller lokal completion-flagg innføres gjennom dette dokumentet.
+
+**Kryss-side og gjenoppretting:** `index.html` og `Civication.html` må fortsette å reconciles mot lagret History Go-state, også etter reload/kontogjenoppretting. Midlertidig toast eller deep-link skal ikke fungere som bevis når kanonisk state mangler. Test identitets-/kategoriisolasjon, duplikatvern og retur uten tap av Life Story-valg.
+
 ## 13. Utenfor scope
 
 - Deep-link UI fra Civication til History Go (companion-PR 1 fra schema-doc; «Gå til History Go»).

@@ -32,6 +32,19 @@ Min samling oppretter ingen ny localStorage-key eller collection-store.
 
 Presentasjonslaget kan telle, gruppere og vise relasjoner som allerede finnes i canonical data. Det skal ikke konstruere nye faglige påstander.
 
+## Min samling som evidens i Civications livsverden (2026-10-21)
+
+Samlingen skal ikke bare vises på profilen. Den er en **kanonisk kilde til interesser, tidligere opplevelser og relevante kunnskapsbevis** som Civication kan bruke gjennom `js/Civication/systems/civicationProfileSignalBridge.js` og eksisterende History Go/task-/kunnskapsbroer.
+
+- **Steder:** `visited_places` viser faktisk registrerte besøk, `places_collected` quiz-/samleprogresjon. De er ulike akser. Besøk kan gi nye samtaleemner, invitasjoner, stedsminner og byrelaterte Life Stories; aldri automatisk en fullført fagquiz.
+- **Kunnskap:** Knowledge V2, learning log, quizhistorikk og `merits_by_category` kan støtte dokumentert innsikt, mer kvalifiserte dialogvalg og frivillige livsposisjoner. Det må kontrolleres *hvilket* emne spilleren behersker, ikke bare totalsummen i samlingen.
+- **People:** `people_collected` dokumenterer en del av History Go-samlingen; en historisk person må ikke bli en fiktiv relasjon eller en NPC som spilleren automatisk kjenner. Fiktive vennskap i Civication krever ekte opplevde scener og separat lagret relasjon.
+- **Notater, observasjoner og bidrag:** kan gi sporbar historie for refleksjoner, formidling eller senere dialog når aktivitetstypen har riktig proveniens. Et enkelt lagret notat gir ikke automatisk «visdom».
+- **Streetkred/miljøer:** kan bare bygges gjennom konkrete handlinger og omdømme i et bestemt fiktivt miljø. Samling av gatekunst eller musikksteder gir tematisk interesse, ikke automatisk respekt fra alle miljøer.
+- **Frivillige roller:** tilstrekkelige fagmeritter kan låse opp *valgbare* livsposisjoner. Verken besøket, toasten, profilen eller merket aktiverer identiteten på spillerens vegne; ingen jobb eller lønn tildeles.
+
+Planlagte, langsiktige ferdighetsmål (visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling og handlekraft) spesifiseres i [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md) og følges opp i [CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md](CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md). De er ikke implementert som ferdige skillpoints. Ingen ny samlingsstore, dobbel XP-opptjening eller UI-eid fullføring skal introduseres.
+
 ## Next Up — hard produktregel
 
 Den autoritative Next Up-handlingsflaten er fortsatt footer-popupen på hovedkartet:

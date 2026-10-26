@@ -1,0 +1,60 @@
+import assert from "node:assert/strict";
+import crypto from "node:crypto";
+import fs from "node:fs";
+import test from "node:test";
+import sharp from "sharp";
+
+const read=p=>JSON.parse(fs.readFileSync(p,"utf8"));
+const place=read("data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json");
+const production=read("data/places/production/det_norske_teatret.json");
+const runtime=read("data/runtime/place-open/det_norske_teatret.json");
+const report=read("reports/place-production/det-norske-teatret/20261021/foyer-painting-kilder-c47.json");
+const provenance=read("reports/place-production/det-norske-teatret/20261021/painting-photo-c46-generated.json");
+const c46review=read("reports/place-production/det-norske-teatret/20261021/painting-photo-c46-visual-qa.json");
+const card=read("reports/place-production/det-norske-teatret-workcard-current.json");
+const digest=bytes=>crypto.createHash("sha256").update(bytes).digest("hex");
+
+test("C47 has canonical source links synced to production and Place-open with two uniquely credited images",()=>{
+ assert.equal(place.id,report.place_id);
+ assert.deepEqual(place.externalLinks,production.metadataSnapshot.externalLinks);
+ assert.deepEqual(place.externalLinks,runtime.place.externalLinks);
+ const images=place.externalLinks.filter(x=>x.type==="image_source"&&x.previewImage);
+ assert.equal(images.length,2);
+ const painting=images.find(x=>x.previewImage===report.new_photo.asset);
+ const costume=images.find(x=>x.previewImage===report.existing_source_photo_preserved);
+ assert.ok(costume,"1989 museum costume photo must be retained");
+ assert.ok(painting,"2017 foyer painting photo must be present");
+ assert.equal(painting.url,provenance.source_page);
+ assert.equal(painting.license,"CC BY-SA 4.0");
+ assert.equal(painting.credit,"Wolfmann / Wikimedia Commons");
+ assert.match(painting.label,/Kirkegårdsgravere/);
+ assert.match(painting.label,/Kirkegårdsgraveren/);
+ assert.match(painting.previewAlt,/på skrå/);
+ assert.ok(place.externalLinks.some(x=>x.url===report.new_photo.theatre_context && !x.previewImage));
+ const publisher=place.externalLinks.find(x=>x.url.includes("Hulda-bunaden_OHA-9.jpg"));
+ assert.ok(publisher);
+ assert.equal(publisher.type,"image_source");
+ assert.equal(publisher.previewImage,undefined);
+ assert.equal(new Set(place.externalLinks.map(x=>x.url)).size,place.externalLinks.length);
+});
+test("C47 exactly matches the staged, reviewed 800px Wolfmann WebP byte-for-byte",async()=>{
+ const photo=place.externalLinks.find(x=>x.previewImage===report.new_photo.asset);
+ const bytes=fs.readFileSync(photo.previewImage);
+ const info=await sharp(bytes).metadata();
+ assert.equal(info.format,"webp");
+ assert.equal(info.width,800);
+ assert.equal(info.height,800);
+ assert.equal(digest(bytes),report.new_photo.asset_sha256);
+ assert.equal(digest(bytes),provenance.asset_sha256);
+ assert.equal(digest(bytes),c46review.asset_sha256);
+});
+test("C47 is documentary source publication only and never unblocks Objects",()=>{
+ assert.equal(card.status,"in_progress");
+ assert.equal(card.collections.objects.status,"PASS");
+ assert.deepEqual(card.placecard_collections_publishable_now,["objects"]);
+ assert.equal(place.objects?.length??0,2);
+ assert.equal(report.status_boundaries.canonical_object_members,0);
+ assert.equal(report.status_boundaries.canonical_placecard_objects_preview,false);
+ assert.equal(report.third_party_juleroser_source_remains_external,true);
+ assert.ok(card.checkpoints.some(x=>x.id==="foyer_painting_kilder_c47"));
+});

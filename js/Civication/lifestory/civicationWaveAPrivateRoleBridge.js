@@ -156,11 +156,52 @@
     const scene = Runner.getCandidateScenes(current, content)
       .find(row => row.id === event.lifestory_scene_id && isPrivateScene(row, content) && phaseAllows(row));
     if (!scene) return { ok: false, reason: "story_scene_not_current" };
+    const choice = (scene.valg || []).find(row => row.id === choiceId);
+    const beforeMeters = { ...(current.meters || {}) };
+    const beforeRelations = { ...(current.relasjoner || {}) };
     try {
+      // An inactive job snapshot has its own story day, but any newly played
+      // private event belongs to the player's current shared life day.
+      current.livsdag = newest.livsdag || current.livsdag || current.dag;
       Runner.applyChoice(current, content, scene.id, choiceId);
-      State.save(newest); // Same key; preserve active job's player state.
+      if (/^wave_[abcde]_c0[15]_/.test(scene.id)) {
+        // C01/C05 are the player's private history, not the former employer's.
+        // Share only the actual choice effects and the private archive; never
+        // copy the inactive role's job scenes or entire relationship snapshot.
+        for (const key of ["venn", "familie"]) {
+          const delta = Number(current.relasjoner?.[key]) - Number(beforeRelations[key]);
+          if (Number.isFinite(delta) && delta && typeof newest.relasjoner?.[key] === "number") {
+            newest.relasjoner[key] = Math.max(0, Math.min(100, newest.relasjoner[key] + delta));
+          }
+        }
+        for (const [key, value] of Object.entries(choice?.effekter?.flagg || {})) {
+          if (!/^wa_(?:[bcde]_)?c0[15]_/.test(key)) continue;
+          newest.tidligereValg ||= {};
+          newest.tidligereValg[key] = value;
+          newest.privatHistorie ||= { flagg: {}, flaggDager: {}, spilteScener: [], arkiv: [], relasjoner: {} };
+          newest.privatHistorie.flagg ||= {};
+          newest.privatHistorie.flaggDager ||= {};
+          newest.privatHistorie.flagg[key] = value;
+          const day = current.privatHistorie?.flaggDager?.[key];
+          if (Number.isInteger(day)) newest.privatHistorie.flaggDager[key] = day;
+        }
+        State.capturePrivateStory(newest);
+      }
+      State.save(newest); // Preserve the active job and all role snapshots.
     } catch (error) {
       return { ok: false, reason: "runner_rejected_choice" };
+    }
+    // The same shell consequence bridge as an active Min dag choice; the
+    // narrative money meter is still never converted to wallet currency.
+    const shell = window.CivicationLifestoryShellBridge;
+    if (shell) {
+      const meterDeltas = {};
+      for (const [key, value] of Object.entries(current.meters || {})) {
+        const delta = Number(value) - Number(beforeMeters[key]);
+        if (Number.isFinite(delta) && delta) meterDeltas[key] = delta;
+      }
+      shell.applyMeterDeltasToShell?.(meterDeltas);
+      if (Array.isArray(choice?.livsstil)) shell.applyLifestyleTagsToShell?.(choice.livsstil);
     }
     pending = null;
     window.CivicationMailEngine?.markResolved?.(eventId, eventId, choiceId);

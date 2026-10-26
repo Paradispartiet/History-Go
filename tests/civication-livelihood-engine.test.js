@@ -25,7 +25,9 @@ function setup({ employed = false, lifeState = null } = {}) {
   global.weekKey = () => '2026-W33';
 
   let activePosition = employed ? { career_id: 'handel', title: 'Butikkmedarbeider' } : null;
-  let wallet = { balance: 100, last_tick_iso: null };
+  let dayIndex = 1;
+  let wallet = { balance: 100, last_tick_iso: null, last_tick_day_index: 1 };
+  global.CivicationCalendar = { getClock: () => ({ dayIndex }) };
   global.CivicationState = {
     getActivePosition: () => activePosition,
     setActivePosition: (next) => { activePosition = next; },
@@ -37,8 +39,11 @@ function setup({ employed = false, lifeState = null } = {}) {
   };
   global.CivicationEconomyEngine = {
     tickWeekly() {
-      if (wallet.last_tick_iso === '2026-W33') return;
-      wallet = { ...wallet, balance: wallet.balance + (activePosition ? 10 : 0), last_tick_iso: '2026-W33' };
+      // Mirror the canonical economic gate: never settle until seven played
+      // days have elapsed, then advance exactly one seven-day checkpoint.
+      if (dayIndex - wallet.last_tick_day_index < 7) return;
+      wallet = { ...wallet, balance: wallet.balance + (activePosition ? 10 : 0),
+        last_tick_day_index: wallet.last_tick_day_index + 7 };
     },
     getEconomySnapshot() {
       return { balance: wallet.balance, estimatedNetAfterHome: activePosition ? 10 : 0 };
@@ -51,7 +56,9 @@ function setup({ employed = false, lifeState = null } = {}) {
     api: global.CivicationLivelihoods,
     getWallet: () => wallet,
     getActive: () => activePosition,
-    setActive: (next) => { activePosition = next; }
+    setActive: (next) => { activePosition = next; },
+    setDay: (day) => { dayIndex = day; },
+    setWallet: (next) => { wallet = { ...next }; }
   };
 }
 
@@ -138,14 +145,29 @@ assert.strictEqual(result.opportunity.cadence, 'one_time');
 assert.strictEqual(env.api.acceptOpportunity('sideoppdrag_1').ok, true);
 const jobBefore = env.getWallet().balance;
 global.CivicationEconomyEngine.tickWeekly();
-assert.strictEqual(env.getWallet().balance, jobBefore + 10 + 4, 'weekly bridge combines job salary and livelihood net in same wallet');
+assert.strictEqual(env.getWallet().balance, jobBefore,
+  'no livelihood or job settlement on boot without seven completed days');
+env.setDay(7);
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, jobBefore,
+  'the sixth completed day must not settle livelihood');
+env.setDay(8);
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, jobBefore + 10 + 4,
+  'seven completed game days combine job salary and livelihood net in the same wallet');
+assert.strictEqual(env.api.getState().ledger[0].week, 'game-week-000001',
+  'ledger uses the played game week, not the wall clock');
 assert.strictEqual(env.api.getState().streams[0].status, 'closed', 'the gig does not silently become a perpetual weekly salary');
 const bridgedBalance = env.getWallet().balance;
 global.CivicationEconomyEngine.tickWeekly();
 assert.strictEqual(env.getWallet().balance, bridgedBalance, 'second weekly tick cannot duplicate salary or livelihood in test harness');
 const economySnapshot = global.CivicationEconomyEngine.getEconomySnapshot();
-assert.strictEqual(economySnapshot.weeklyLivelihoodProjectedNet, 4, 'economy snapshot retains this week livelihood result after settlement');
-assert.strictEqual(economySnapshot.estimatedNetAfterHome, 14, 'economy snapshot combines formal and livelihood result');
+assert.strictEqual(economySnapshot.livelihood.week, 'game-week-000002',
+  'the current projection moves to the next game week after settlement');
+assert.strictEqual(economySnapshot.weeklyLivelihoodProjectedNet, 0,
+  'one-time gig is closed and does not project income into the next game week');
+assert.strictEqual(economySnapshot.estimatedNetAfterHome, 10,
+  'economy snapshot does not repeat last week gig income');
 
 // A zero canonical balance must not fall back to a stale legacy pc alias.
 env = setup();
@@ -198,5 +220,85 @@ assert.strictEqual(env.api.acceptOpportunity('royalty_1').ok, true);
 const royaltyA = env.api.computeStreamWeek(env.api.getState().streams[0], '2026-W33', { employed: false });
 const royaltyB = env.api.computeStreamWeek(env.api.getState().streams[0], '2026-W33', { employed: false });
 assert.deepStrictEqual(royaltyA, royaltyB, 'occasional income cannot be rerolled by reload');
+
+// A recurring income stream pays once per seven *played* days, even when
+// every game day occurs during the same wall-clock ISO week.
+env = setup();
+assert.strictEqual(env.api.createOpportunity({
+  id: 'recurring_royalty',
+  kind_id: 'royalty_income',
+  label: 'Royalty med kontrakt',
+  source: { type: 'contract', id: 'royalty_contract_2', label: 'Forlag' },
+  income: { model: 'fixed', amount: 12 },
+  cadence: 'recurring'
+}).ok, true);
+assert.strictEqual(env.api.acceptOpportunity('recurring_royalty').ok, true);
+env.setDay(1);
+global.CivicationEconomyEngine.tickWeekly();
+env.setDay(4);
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 100, 'midweek / reload must never pay royalties');
+env.setDay(8);
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 112, 'first completed game week pays royalty');
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 112, 'same-day retry cannot pay a second time');
+env.setDay(14);
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 112, 'week two is not complete until game day fifteen');
+env.setDay(15);
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 124, 'second game week pays the next royalty despite fixed wall time');
+assert.deepStrictEqual(env.api.getState().ledger.map(row => row.week),
+  ['game-week-000002', 'game-week-000001']);
+assert.strictEqual(env.api.getSnapshot().week, 'game-week-000003');
+
+// A new one-time gig accepted after day 7 belongs to the second game
+// week, even if the first week's payroll was not processed until day 8.
+env = setup();
+env.setDay(8);
+assert.strictEqual(env.api.createOpportunity({
+  id: 'late_gig',
+  kind_id: 'gig_honorarium',
+  source: { type: 'booking', id: 'late_booking', label: 'Konsert dag åtte' },
+  income: { model: 'fixed', amount: 9 }
+}).ok, true);
+assert.strictEqual(env.api.acceptOpportunity('late_gig').ok, true);
+assert.strictEqual(env.api.getState().streams[0].accepted_game_week, 'game-week-000002');
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 100,
+  'day eight acceptance cannot be back-paid for days one to seven');
+assert.strictEqual(env.api.getState().ledger[0].items[0].reason, 'outside_schedule');
+assert.strictEqual(env.api.getState().streams[0].status, 'active',
+  'a not-yet-earned one-time gig must remain active');
+env.setDay(15);
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 109,
+  'the gig is paid once at the end of its actual game week');
+assert.strictEqual(env.api.getState().streams[0].status, 'closed');
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 109, 'same day reload cannot duplicate late gig');
+
+// Old wallet migration / incomplete calendar: no retroactive livelihood pay.
+env = setup();
+assert.strictEqual(env.api.createOpportunity({
+  id: 'migration_royalty',
+  kind_id: 'royalty_income',
+  source: { type: 'contract', id: 'migration_contract', label: 'Forlag' },
+  income: { model: 'fixed', amount: 7 }, cadence: 'recurring'
+}).ok, true);
+assert.strictEqual(env.api.acceptOpportunity('migration_royalty').ok, true);
+env.setWallet({ balance: 100, last_tick_iso: '2026-10-01T00:00:00Z' });
+env.setDay(8);
+global.CivicationEconomyEngine.tickWeekly();
+assert.strictEqual(env.getWallet().balance, 100, 'missing canonical checkpoint must not back-pay royalty');
+assert.strictEqual(env.api.getState().ledger.length, 0);
+
+// Without the canonical calendar, a livelihood tick or projection fails closed.
+delete global.CivicationCalendar;
+const snapshotWithoutCalendar = env.api.getSnapshot();
+assert.strictEqual(snapshotWithoutCalendar.week, null);
+assert.strictEqual(snapshotWithoutCalendar.current_week_projection.net, 0);
+assert.strictEqual(env.api.settleWeekToWallet().reason, 'game_clock_unavailable');
 
 console.log('civication livelihood engine tests passed');

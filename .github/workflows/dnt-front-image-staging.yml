@@ -1,0 +1,48 @@
+name: DNT separate-source portrait frontImage staging
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'reports/place-production/det-norske-teatret/20261020/front-image-intake-c34.json'
+concurrency:
+  group: dnt-front-image-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  stage-media-draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node-npm
+      - name: Check independent source/rights gate
+        run: node --test tests/det-norske-teatret-front-image-c34.test.mjs
+      - name: Produce real 900x1350 photograph with traceable crop
+        run: node scripts/place-production/stage-dnt-front-image-c34.mjs
+      - name: Verify staged image only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s bilder/places/det_norske_teatret_front_bjoertvedt_2013.webp
+          test -s reports/place-production/det-norske-teatret/20261020/front-image-c34-generated.json
+          test "$(git status --porcelain | wc -l)" -eq 2
+          test -z "$(git status --porcelain -- data/places data/people data/quiz)"
+      - name: Open isolated draft photo-review PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="automation/dnt-front-image-${{ github.run_id }}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$branch"
+          git add bilder/places/det_norske_teatret_front_bjoertvedt_2013.webp
+          git add reports/place-production/det-norske-teatret/20261020/front-image-c34-generated.json
+          git commit -m 'DNT: stage separately licensed portrait facade photograph for visual review'
+          git push origin "HEAD:$branch"
+          gh pr create --draft --head "$branch" --base main \
+            --title 'DNT frontImage: Bjoertvedt 2013 portrait crop (photo-review draft)' \
+            --body 'Separate CC BY-SA 3.0 Commons photograph (not based on current 2006 Place image), portrait 900x1350 real WebP with 2013 facade and full crop provenance. Asset-only and visual review required; not yet published as canonical frontImage.'

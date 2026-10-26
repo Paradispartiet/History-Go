@@ -93,6 +93,12 @@
           "id": "svar_aerlig",
           "tekst": "Svare ærlig, selv om det koster krefter",
           "tone": "ærlig",
+          "skills_practice": {
+            "skill_id": "social_awareness",
+            "activity_type": "honest_relationship_communication",
+            "evidence_flag": "svarte_aerlig_privat",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 5,
@@ -208,6 +214,12 @@
           "id": "endre_maaten",
           "tekst": "Endre noe konkret i morgen",
           "tone": "reflektert",
+          "skills_practice": {
+            "skill_id": "agency",
+            "activity_type": "prepare_new_daily_routine",
+            "evidence_flag": "vil_endre_arbeidsmaate",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -464,6 +476,12 @@
           "id": "legg_en_plan",
           "tekst": "Legge en enkel plan for uka og sove på det",
           "tone": "ansvarlig",
+          "skills_practice": {
+            "skill_id": "wisdom_judgement",
+            "activity_type": "build_weekly_budget_plan",
+            "evidence_flag": "dag2_la_oekonomiplan",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 4,
@@ -1216,6 +1234,12 @@
           "id": "del_det",
           "tekst": "Dele det du lærte med noen som vil like det",
           "tone": "raus",
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "explain_lesson_to_friend",
+            "evidence_flag": "delte_det_du_laerte",
+            "delta": 2
+          },
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -1654,6 +1678,12 @@
           "id": "ta_praten",
           "tekst": "Ta praten ordentlig — hverdagslige ting er aldri bare hverdagslige",
           "tone": "nær",
+          "skills_practice": {
+            "skill_id": "social_awareness",
+            "activity_type": "hold_family_conversation",
+            "evidence_flag": "tok_familiepraten",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
               "familie": 6
@@ -2319,6 +2349,12 @@
           "id": "sette_gjerde_naa",
           "tekst": "Gjøre én konkret ting nå: en tur ut, en økt, et kvarter med noe du liker",
           "tone": "bevisst",
+          "skills_practice": {
+            "skill_id": "agency",
+            "activity_type": "take_deliberate_break",
+            "evidence_flag": "satte_gjerde",
+            "delta": 1
+          },
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -4443,6 +4479,1496 @@
             "meters": {
               "energi": -1
             }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d8_foerste_spor",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 8,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En uke senere ligger dagen fortsatt foran deg",
+      "tekst": "Den første uka handlet om å få hodet over vannet. I dag står det en tom ettermiddag i kalenderen. Du har ikke fått en ny jobb av den grunn, men du kan velge hva timene skal brukes til.",
+      "valg": [
+        {
+          "id": "skape",
+          "tekst": "Sett av en time til å lage noe som ikke fantes i morges",
+          "konsekvensTekst": "Du setter fram det du trenger og påbegynner et utkast. Det er ditt arbeid, ikke en publisert prestasjon.",
+          "effekter": {
+            "flagg": {
+              "life21_initial_focus": "skape"
+            },
+            "meters": {
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "narmiljo",
+          "tekst": "Gå en konkret runde i nabolaget og se etter noe du ikke har lagt merke til",
+          "konsekvensTekst": "Du går til fots, ser hvor folk møtes og noterer ett sted du vil undersøke. Ingen hevder å kjenne deg ennå.",
+          "effekter": {
+            "flagg": {
+              "life21_initial_focus": "narmiljo"
+            },
+            "meters": {
+              "energi": -1
+            }
+          }
+        },
+        {
+          "id": "relasjoner",
+          "tekst": "Skriv en ærlig melding til noen du faktisk kjenner",
+          "konsekvensTekst": "Du sender et spørsmål om hvordan vedkommende har det. Du har tatt kontakt; et svar er ikke garantert.",
+          "effekter": {
+            "flagg": {
+              "life21_initial_focus": "relasjoner"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "rytme",
+          "tekst": "Bestem én overkommelig oppgave og én time fri",
+          "konsekvensTekst": "Du skriver en realistisk dagsplan og fullfører den første lille oppgaven. Du har ikke løst hele livet.",
+          "effekter": {
+            "flagg": {
+              "life21_initial_focus": "rytme"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        },
+        {
+          "id": "se_jobber",
+          "tekst": "Se hvilke faktiske jobber og kvalifikasjonskrav som er tilgjengelige",
+          "konsekvensTekst": "Du åpner karrierepanelet. Du kan undersøke reelle tilbud og krav; dette er ikke en ansettelse eller lovnad om jobb.",
+          "effekter": {
+            "flagg": {
+              "life21_career_interest": true,
+              "life21_initial_focus": "jobb"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d9_utkastet",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Det første utkastet tåler dagslys",
+      "tekst": "Du åpner arbeidet du startet i går. Det er uferdig, og nettopp derfor kan du gjøre noe konkret med det.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "skape"
+        }
+      },
+      "valg": [
+        {
+          "id": "revider",
+          "tekst": "Lag én ny versjon med en tydelig forbedring",
+          "konsekvensTekst": "Du reviderer en liten del og tar vare på begge versjonene. Forskjellen kan senere vises fram.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "revider"
+            },
+            "meters": {
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "behold",
+          "tekst": "Noter hva som ikke fungerer før du gjør mer",
+          "konsekvensTekst": "Du skriver tre konkrete problemer ved utkastet. Å se feilene er ikke det samme som å ha løst dem.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "behold"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d9_runden",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Et kjent sted ser annerledes ut",
+      "tekst": "Fra gårsdagens runde husker du et sted der noen hadde satt opp en plakat om aktivitet i nærmiljøet. Du vet ikke om arrangementet passer deg.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "narmiljo"
+        }
+      },
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Les informasjonen og finn ut når og hvor det skjer",
+          "konsekvensTekst": "Du finner tidspunkt og sted og legger det i egne notater. Ingen deltakelse eller sosial kontakt er registrert ennå.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "undersok"
+            },
+            "meters": {
+              "energi": -1
+            }
+          }
+        },
+        {
+          "id": "ny_runde",
+          "tekst": "Ta en annen gate og tegn et enkelt nærmiljøkart",
+          "konsekvensTekst": "Du skriver ned tre steder du faktisk passerte. Kartet er foreløpig bare ditt eget.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "ny_runde"
+            },
+            "meters": {
+              "energi": -2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d9_meldingen",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En melding er ikke et vennskap på autopilot",
+      "tekst": "Det du sendte i går, står fortsatt i samtalen. Du kan ikke bestemme når noen svarer, men du kan velge hvordan du håndterer ventingen.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "relasjoner"
+        }
+      },
+      "valg": [
+        {
+          "id": "rom",
+          "tekst": "La mottakeren få tid og gjør noe annet med dagen",
+          "konsekvensTekst": "Du lar meldingen stå uten å mase og retter oppmerksomheten mot en vanlig oppgave. Relasjonen er fortsatt åpen.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "rom"
+            },
+            "meters": {
+              "psyke": 2
+            }
+          }
+        },
+        {
+          "id": "avklar",
+          "tekst": "Skriv ned hva du egentlig ønsket å snakke om",
+          "konsekvensTekst": "Du sorterer tankene før en eventuell samtale. Det skapes ingen oppdiktet tilbakemelding.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "avklar"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d9_planen",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En plan møter den virkelige morgenen",
+      "tekst": "Du ser på lappen fra i går. Det meste er fortsatt mulig, men ikke alt haster like mye.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "rytme"
+        }
+      },
+      "valg": [
+        {
+          "id": "fullfor",
+          "tekst": "Gjør den ene oppgaven du faktisk satte opp",
+          "konsekvensTekst": "Du fullfører en avgrenset oppgave og stryker den fra listen. Resten av dagen er fortsatt åpen.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "fullfor"
+            },
+            "meters": {
+              "energi": -1,
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "juster",
+          "tekst": "Flytt en urealistisk oppgave og behold pausen",
+          "konsekvensTekst": "Du endrer planen før den blir et nytt nederlag. En realistisk rytme krever også avgrensninger.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "juster"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d10_friksjon",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 10,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Det tar tid før en retning blir et liv",
+      "tekst": "Et praktisk gjøremål og en ny bekymring spiser av tiden. Det du prøvde de to siste dagene kan enten forsvinne mellom kravene eller få en liten plass i en vanlig tirsdag.",
+      "valg": [
+        {
+          "id": "hold_fast",
+          "tekst": "Sett av en halvtime til å følge opp sporet ditt",
+          "konsekvensTekst": "Du gjennomfører en kort økt. Det er lite, men dagens valg bekrefter at dette er mer enn en idé.",
+          "effekter": {
+            "flagg": {
+              "life21_day10_response": "hold_fast"
+            },
+            "meters": {
+              "energi": -1,
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "be_om_rom",
+          "tekst": "Si nei til noe du ikke har kapasitet til i dag",
+          "konsekvensTekst": "Du prioriterer hvile og setter en konkret grense. En retning må kunne eksistere også på krevende dager.",
+          "effekter": {
+            "flagg": {
+              "life21_day10_response": "be_om_rom"
+            },
+            "meters": {
+              "psyke": 2
+            }
+          }
+        },
+        {
+          "id": "utsett",
+          "tekst": "La det ligge og noter hvorfor dagen forsvant",
+          "konsekvensTekst": "Du gjennomfører ikke det planlagte, men skriver ned hva som kom i veien. Neste dag må bygge på dette i stedet for et falskt fremskritt.",
+          "effekter": {
+            "flagg": {
+              "life21_day10_response": "utsett"
+            },
+            "meters": {
+              "psyke": -1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d11_en_praktisk_test",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 11,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En liten prøve betyr mer enn et stort løfte",
+      "tekst": "På vei hjem ser du igjen dagens gjøremål. Det er fristende å vente til alt passer, men du har en mulighet til å teste noe av det du har tenkt på.",
+      "valg": [
+        {
+          "id": "gjor",
+          "tekst": "Gjennomfør en konkret oppgave på under en time",
+          "konsekvensTekst": "Du gjør jobben ferdig og noterer resultatet. Det gir erfaring, ikke automatisk lønn, attest eller offentlig anerkjennelse.",
+          "effekter": {
+            "flagg": {
+              "life21_day11_test": "gjor"
+            },
+            "meters": {
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "snakk",
+          "tekst": "Fortell noen du kjenner hva du vurderer, uten å kreve svar",
+          "konsekvensTekst": "Du formulerer tanken tydelig i en melding. Den andre personen velger selv om og når vedkommende svarer.",
+          "effekter": {
+            "flagg": {
+              "life21_day11_test": "snakk"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "observer",
+          "tekst": "Bruk tiden på å undersøke hva som faktisk trengs",
+          "konsekvensTekst": "Du lager en kort liste over krav og usikkerheter. Du skiller kunnskap fra ønsketenkning.",
+          "effekter": {
+            "flagg": {
+              "life21_day11_test": "observer"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d12_mellomrom",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 12,
+      "fase": "morgen",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Du kan ha en sak gående og samtidig leve",
+      "tekst": "Det finnes fortsatt ubesvarte spørsmål fra første uke. Ingen saksbehandling blir ferdig fordi du åpner innboksen, og du trenger heller ikke bruke hele dagen på å vente.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Kontroller det du kan kontrollere, og lukk saken for i dag",
+          "konsekvensTekst": "Du sjekker egne dokumenter én gang og bestemmer når du skal følge opp igjen. Du har ikke mottatt et vedtak.",
+          "effekter": {
+            "flagg": {
+              "life21_day12_balance": "avgrens"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "gi_plass",
+          "tekst": "Bruk formiddagen på et privat prosjekt eller en relasjon",
+          "konsekvensTekst": "Du prioriterer noe annet enn papirarbeid. En åpen sak er fortsatt åpen, men får ikke eie dagen.",
+          "effekter": {
+            "flagg": {
+              "life21_day12_balance": "gi_plass"
+            },
+            "meters": {
+              "energi": -1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d13_vise_arbeid",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Det som er laget, kan få en neste versjon",
+      "tekst": "Arbeidet fra forrige uke ligger der fortsatt. Det er mer nyttig å se hva du faktisk har fått til enn å kalle deg kunstner etter ett forsøk.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "skape"
+        }
+      },
+      "valg": [
+        {
+          "id": "ferdigstill",
+          "tekst": "Fullfør én avgrenset del av utkastet",
+          "konsekvensTekst": "Du sitter igjen med en konkret del som kan vises fram senere. Ingen andre har vurdert den ennå.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "ferdigstill"
+            },
+            "meters": {
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "omarbeid",
+          "tekst": "Forkast en svak del og lag en bedre løsning",
+          "konsekvensTekst": "Du velger kvalitet framfor å samle ferdige ting. Endringen er lagret i ditt eget arbeid.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "omarbeid"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d13_aktivitet",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Nærmiljøet har plass, men ingen reserverte roller",
+      "tekst": "Du har sett hvor en åpen aktivitet finner sted. En plakat betyr ikke at du er medlem, og du kan møte opp eller fortsette å observere.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "narmiljo"
+        }
+      },
+      "valg": [
+        {
+          "id": "mott_opp",
+          "tekst": "Gå til den annonserte åpne aktiviteten som besøkende",
+          "konsekvensTekst": "Du møter opp og orienterer deg. Du har deltatt som besøkende, ikke fått ansvar, tillit eller nytt nettverk uten samtaler.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "mott_opp"
+            },
+            "meters": {
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "kartlegg",
+          "tekst": "Undersøk hvem som arrangerer og hvilke oppgaver som finnes",
+          "konsekvensTekst": "Du får oversikt over den offentlige informasjonen. Et bidrag krever fortsatt en konkret henvendelse.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "kartlegg"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d13_samtalen",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Å være tilgjengelig er også et valg",
+      "tekst": "Du har tenkt over hvem du vil ha kontakt med. Det er forskjell på å invitere til en samtale og å få et vennskap bekreftet.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "relasjoner"
+        }
+      },
+      "valg": [
+        {
+          "id": "inviter",
+          "tekst": "Foreslå en kort samtale på et bestemt tidspunkt",
+          "konsekvensTekst": "Du sender en konkret invitasjon. Tiden blir ikke en avtale før den andre har svart.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "inviter"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "lytt",
+          "tekst": "Spør hvordan den andre har det, uten å styre samtalen",
+          "konsekvensTekst": "Du stiller et åpent spørsmål. Det du gjør er å åpne for kontakt, ikke å skrive den andres svar.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "lytt"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d13_rytmen",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Hverdagen tåler ikke en uendelig gjøreliste",
+      "tekst": "Du ser tydeligere hvilken del av uken som faktisk ga overskudd. En rutine fungerer bare hvis den kan brukes igjen.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "rytme"
+        }
+      },
+      "valg": [
+        {
+          "id": "gjenta",
+          "tekst": "Gjør samme overkommelige oppgave en gang til",
+          "konsekvensTekst": "Du fullfører oppgaven uten å øke kravene. Det gir et lite, gjentatt holdepunkt.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "gjenta"
+            },
+            "meters": {
+              "energi": -1,
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "dropp",
+          "tekst": "Ta bort én plikt som ikke må gjøres nå",
+          "konsekvensTekst": "Du stryker noe unødvendig og beholder rom til å leve. Dette er et bevisst valg, ikke et tegn på latskap.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "dropp"
+            },
+            "meters": {
+              "psyke": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d14_to_uker",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 14,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "To uker: hva finnes det spor av?",
+      "tekst": "Du blar tilbake i egne valg. Ingen jobb eller livsposisjon er tildelt deg, men du har begynt å se forskjell på det du sier at du vil og det du faktisk gjør.",
+      "valg": [
+        {
+          "id": "se_resultat",
+          "tekst": "Skriv ned to handlinger og én konsekvens du kan dokumentere",
+          "konsekvensTekst": "Du lager et ærlig sammendrag av arbeidet ditt. Uferdige prosjekter får ikke betegnelsen fullført.",
+          "effekter": {
+            "flagg": {
+              "life21_day14_assessment": "se_resultat"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "snakk_om_det",
+          "tekst": "Formuler for deg selv hva du ønsker mer av neste uke",
+          "konsekvensTekst": "Du velger en foreløpig retning. Den kan fortsatt endres når du prøver noe nytt.",
+          "effekter": {
+            "flagg": {
+              "life21_day14_assessment": "snakk_om_det"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "erkjenn_pause",
+          "tekst": "Erkjenn at det meste har stått stille, og velg ett lite nytt grep",
+          "konsekvensTekst": "Du skjuler ikke de passive dagene, men lager en enkel avtale med deg selv for neste uke.",
+          "effekter": {
+            "flagg": {
+              "life21_day14_assessment": "erkjenn_pause"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d15_tredje_uke",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 15,
+      "fase": "morgen",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tre uker er lenge nok til å prøve noe ordentlig",
+      "tekst": "Det er mulig å fortsette å undersøke arbeidsmuligheter og samtidig forme et annet liv. Du må ikke gi deg selv en tittel i dag; du må velge hva du faktisk vil bruke tid på.",
+      "valg": [
+        {
+          "id": "skape",
+          "tekst": "Arbeid videre med en ting du kan vise til",
+          "konsekvensTekst": "Du reserverer konkret tid til å lage og forbedre noe. Resultatet må fortsatt skapes av deg.",
+          "effekter": {
+            "flagg": {
+              "life21_week3_focus": "skape"
+            },
+            "meters": {
+              "energi": -1
+            }
+          }
+        },
+        {
+          "id": "narmiljo",
+          "tekst": "Finn en lokal aktivitet der du faktisk kan bidra",
+          "konsekvensTekst": "Du undersøker en åpen mulighet og skriver ned hvordan du kan spørre om å delta. Ingen oppgave er lovet.",
+          "effekter": {
+            "flagg": {
+              "life21_week3_focus": "narmiljo"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "relasjoner",
+          "tekst": "Ta initiativ til kontakt og vær åpen for et nei",
+          "konsekvensTekst": "Du sender en respektfull forespørsel. Dine intensjoner er tydelige, men et gjensidig forhold kan ikke simuleres.",
+          "effekter": {
+            "flagg": {
+              "life21_week3_focus": "relasjoner"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "rytme",
+          "tekst": "Bygg en realistisk uke med både plikter, interesse og hvile",
+          "konsekvensTekst": "Du fordeler de neste dagene uten å overselge kapasiteten din. Dette er en plan som må prøves.",
+          "effekter": {
+            "flagg": {
+              "life21_week3_focus": "rytme"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "jobbmulighet",
+          "tekst": "Undersøk konkrete jobbmuligheter samtidig som du følger dine egne interesser",
+          "konsekvensTekst": "Du åpner karrierepanelet for å sjekke eksisterende tilbud og hva du eventuelt må dokumentere. Du beholder alle private spor. En søknad og et tilbud er ikke det samme.",
+          "effekter": {
+            "flagg": {
+              "life21_career_interest": true,
+              "life21_week3_focus": "jobb"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d16_arbeidsro",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En time uten applaus",
+      "tekst": "Arbeidet venter fremdeles. Nå må du gjøre den delen som ikke er spennende, men som avgjør om ideen får form.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "skape"
+        }
+      },
+      "valg": [
+        {
+          "id": "fullfor_del",
+          "tekst": "Ferdigstill ett konkret avsnitt, skisse eller utkast",
+          "konsekvensTekst": "Du har et nytt arbeidsresultat i eget arkiv. Det er ikke offentlig publisert eller vurdert ennå.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "fullfor_del"
+            },
+            "meters": {
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "test",
+          "tekst": "Prøv om en del fungerer, og noter feilene",
+          "konsekvensTekst": "Du gjennomfører en enkel test. Du kan nå begrunne hva som bør revideres.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "test"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d16_kontaktpunkt",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Å møte opp er ikke det samme som å høre til",
+      "tekst": "Du vet hvor du kan møte folk i nærmiljøet. Spørsmålet er om du vil møte opp eller undersøke en mindre forpliktende inngang.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "narmiljo"
+        }
+      },
+      "valg": [
+        {
+          "id": "mott",
+          "tekst": "Oppsøk en offentlig aktivitet som besøkende",
+          "konsekvensTekst": "Du deltar i den åpne delen. Å bli kjent eller få ansvar vil kreve flere virkelige møter og valg.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "mott"
+            },
+            "meters": {
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "sporr",
+          "tekst": "Send en konkret forespørsel til arrangøren om en liten oppgave",
+          "konsekvensTekst": "Du sender spørsmålet og noterer tidspunktet. Det er ikke et ja, en jobb eller en avtale.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "sporr"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d16_ta_kontakt",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Det er modigere å spørre enn å anta",
+      "tekst": "Du vil skape kontakt, men en annen person er ikke en premie for at du har lært sosial teft.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "relasjoner"
+        }
+      },
+      "valg": [
+        {
+          "id": "sporr",
+          "tekst": "Foreslå en kort prat med rom for å takke nei",
+          "konsekvensTekst": "Du sender en tydelig, vennlig invitasjon. Den andre har full rett til å takke nei eller svare senere.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "sporr"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "lytt_foerst",
+          "tekst": "Send et spørsmål uten å kreve oppmerksomhet tilbake",
+          "konsekvensTekst": "Du åpner for at den andre kan fortelle, men finner ikke opp hva vedkommende føler.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "lytt_foerst"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d16_holde_rytmen",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Planen møter nok en virkelig dag",
+      "tekst": "En uventet praktisk oppgave tar tid. Du kan holde planen fleksibel i stedet for å velge mellom alt og ingenting.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "rytme"
+        }
+      },
+      "valg": [
+        {
+          "id": "omprioriter",
+          "tekst": "Fullfør én nødvendig oppgave og behold en planlagt pause",
+          "konsekvensTekst": "Du får gjort noe viktig uten å bruke opp hele dagen. Rytmen tåler at planen endres.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "omprioriter"
+            },
+            "meters": {
+              "energi": 1,
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "sorter",
+          "tekst": "Skriv hvilke krav som kommer utenfra og hvilke du selv har satt",
+          "konsekvensTekst": "Du fjerner et selvpålagt krav som ikke hjelper deg. Ingen ytelser eller inntekt endres av dette.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "sorter"
+            },
+            "meters": {
+              "psyke": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d17_kostnaden",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 17,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Du kan ikke gjøre alt på samme tid",
+      "tekst": "Det du har valgt, konkurrerer med penger, praktiske oppgaver og behovet for pause. Du ser nå tydeligere hva som koster tid og hva som gir noe tilbake.",
+      "valg": [
+        {
+          "id": "prioriter",
+          "tekst": "Velg ett spor og la en mindre viktig oppgave ligge",
+          "konsekvensTekst": "Du gjør plass til det du vil fortsette med. Du bærer også konsekvensen av å utsette noe annet.",
+          "effekter": {
+            "flagg": {
+              "life21_day17_balance": "prioriter"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "bevare_ro",
+          "tekst": "Reduser ambisjonen for i dag, men behold en konkret neste handling",
+          "konsekvensTekst": "Du unngår å gjøre et feilskjær til et totalt nederlag. Neste skritt er mindre, men klart.",
+          "effekter": {
+            "flagg": {
+              "life21_day17_balance": "bevare_ro"
+            },
+            "meters": {
+              "psyke": 2
+            }
+          }
+        },
+        {
+          "id": "overless",
+          "tekst": "Prøv å få inn enda en ting før du tar pause",
+          "konsekvensTekst": "Du kommer litt videre, men blir sliten av å presse inn alt. I morgen må du ta hensyn til det.",
+          "effekter": {
+            "flagg": {
+              "life21_day17_balance": "overless"
+            },
+            "meters": {
+              "energi": -3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d18_andre_mennesker",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 18,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Du eksisterer ikke alene i historien",
+      "tekst": "Du tenker på menneskene rundt deg, både dem du har kontakt med og dem du bare ser. Å bygge et liv betyr også å sette grenser og vise hensyn.",
+      "valg": [
+        {
+          "id": "gi_tid",
+          "tekst": "Sett av faktisk tid til å høre på noen du allerede kjenner",
+          "konsekvensTekst": "Du tilbyr en samtale og viser at du kan lytte dersom personen ønsker det. Ingen vennskapspoeng oppstår av selve invitasjonen.",
+          "effekter": {
+            "flagg": {
+              "life21_day18_social": "gi_tid"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "si_nei",
+          "tekst": "Sett en ærlig grense for noe du ikke har kapasitet til",
+          "konsekvensTekst": "Du sier fra uten å angripe andre. Relasjonen blir ikke automatisk bedre eller dårligere.",
+          "effekter": {
+            "flagg": {
+              "life21_day18_social": "si_nei"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Velg en kveld alene uten å forsvinne fra kontaktene dine",
+          "konsekvensTekst": "Du gir deg selv hvile og lar eksisterende kontakt være åpen. Du gjør ikke ensomhet til en personlighet.",
+          "effekter": {
+            "flagg": {
+              "life21_day18_social": "egen_tid"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d19_spor",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 19,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Det du har gjort, etterlater spor",
+      "tekst": "Du ser på notater, oppgaver og samtaler fra de siste ukene. Noe har du gjort, noe er bare påbegynt, og noe har du valgt bort.",
+      "valg": [
+        {
+          "id": "samle",
+          "tekst": "Lag en enkel oversikt over tre faktisk gjennomførte handlinger",
+          "konsekvensTekst": "Du skriver ned konkrete spor fra historien din uten å fylle inn det som ennå ikke har skjedd.",
+          "effekter": {
+            "flagg": {
+              "life21_day19_evidence": "samle"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "prove",
+          "tekst": "Velg én uferdig ting og jobb med den i en kort økt",
+          "konsekvensTekst": "Du gjennomfører en liten ny del. Prosjektet er fortsatt ditt ansvar og ikke et systemgenerert bevis.",
+          "effekter": {
+            "flagg": {
+              "life21_day19_evidence": "prove"
+            },
+            "meters": {
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "rydd",
+          "tekst": "Legg bort en idé du ikke vil følge opp",
+          "konsekvensTekst": "Du frigjør tid og erkjenner at dette sporet ikke passer akkurat nå. Du mister ikke retten til å prøve noe annet.",
+          "effekter": {
+            "flagg": {
+              "life21_day19_evidence": "rydd"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "oppfolg_jobber",
+          "tekst": "Følg opp jobbmuligheter som faktisk finnes i karrierepanelet",
+          "konsekvensTekst": "Du undersøker om det finnes et reelt jobbtilbud du kan svare på. Ingen jobb, lønn eller kvalifikasjon blir opprettet av dette valget.",
+          "effekter": {
+            "flagg": {
+              "life21_career_followup": true
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d20_valget_narmer_seg",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 20,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En retning er mer enn en merkelapp",
+      "tekst": "Du kan se mønstre i valgene dine: hva du vender tilbake til når ingen krever det, og hva som bare ble med ett forsøk. En livsposisjon bør handle om et liv du kjenner igjen.",
+      "valg": [
+        {
+          "id": "ta_stilling",
+          "tekst": "Velg den interessen du faktisk vil bruke tid på videre",
+          "konsekvensTekst": "Du formulerer et foreløpig løfte til deg selv, forankret i det du allerede har prøvd.",
+          "effekter": {
+            "flagg": {
+              "life21_day20_intent": "ta_stilling"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "sok_mer",
+          "tekst": "Si tydelig at du fortsatt undersøker flere retninger",
+          "konsekvensTekst": "Du nekter å ta en tittel bare for å komme videre. Et bevisst søk er også en legitim livsretning.",
+          "effekter": {
+            "flagg": {
+              "life21_day20_intent": "sok_mer"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d21_skape_veien",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tre uker: Det skapende sporet",
+      "tekst": "Du har vendt tilbake til et arbeid flere ganger, eller i det minste forsøkt å gjøre plass til det. Det kan bli en del av livsprofilen, men spillet skal ikke erklære deg kunstner eller gi deg meritter uten innsats.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "skape"
+        }
+      },
+      "valg": [
+        {
+          "id": "skaper",
+          "tekst": "Velg «Skaper» som retning du vil undersøke videre",
+          "konsekvensTekst": "Du erkjenner at skapende arbeid er viktig for deg. Du kan nå velge en selvvalgt livsposisjon i livsprofilen; ingen yrkestittel eller kulturmeritter er tildelt.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "skaper"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "utforsker",
+          "tekst": "Hold livsretningen åpen og prøv en annen form neste gang",
+          "konsekvensTekst": "Du bestemmer deg for å undersøke mer før du velger en fast tittel. Tre ukers valg og erfaringer blir beholdt.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "utforsker"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d21_narmiljo_veien",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tre uker: Menneskene og stedene rundt deg",
+      "tekst": "Du har brukt tid på å forstå hvordan nærmiljøet fungerer. Det er en retning, men medlemskap, tillit og ansvar må komme fra virkelige møter og oppfølging.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "narmiljo"
+        }
+      },
+      "valg": [
+        {
+          "id": "narmiljobygger",
+          "tekst": "Velg «Nærmiljøbygger» som retning du vil arbeide videre med",
+          "konsekvensTekst": "Du velger å gjøre lokalt engasjement til en del av livsprofilen. Dette gir ikke automatisk verv, rolle, jobb eller streetkred.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "narmiljobygger"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "utforsker",
+          "tekst": "Fortsett å besøke nye steder før du velger en tittel",
+          "konsekvensTekst": "Du prioriterer nysgjerrighet framfor medlemskap. Det du har gjort til nå er fortsatt dokumentert.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "utforsker"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d21_relasjon_veien",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tre uker: Hvordan du vil være sammen med andre",
+      "tekst": "Du har gjort flere valg om kontakt, grenser og å gi rom til andre. Ingen andre har automatisk bekreftet en relasjon, men du har valgt hva slags omgang du ønsker.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "relasjoner"
+        }
+      },
+      "valg": [
+        {
+          "id": "relasjonsbygger",
+          "tekst": "Velg «Relasjonsbygger» som foreløpig livsretning",
+          "konsekvensTekst": "Du forplikter deg til en mer bevisst måte å skape kontakt på. Dette er ikke en sosial rating eller bevis på andres tillit.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "relasjonsbygger"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "utforsker",
+          "tekst": "Fortsett å finne ut hvilke relasjoner som fungerer",
+          "konsekvensTekst": "Du lar vennskap og grenser utvikle seg på egne premisser, uten å låse hele identiteten til ett valg.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "utforsker"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d21_rytme_veien",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tre uker: Hverdagen du faktisk kan leve i",
+      "tekst": "Du har arbeidet med hva du rekker, hva du vil og når du trenger pause. En god rytme er ikke en jobb eller en diagnose, men et mønster du kan fortsette å øve på.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "rytme"
+        }
+      },
+      "valg": [
+        {
+          "id": "hverdagsbygger",
+          "tekst": "Velg «Hverdagsbygger» som retning for den neste tiden",
+          "konsekvensTekst": "Du tar utgangspunkt i det du har erfart, uten å late som at alle problemer er løst. Retningen kan endres.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "hverdagsbygger"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "utforsker",
+          "tekst": "Hold identiteten åpen mens du prøver ut andre vaner",
+          "konsekvensTekst": "Du bestemmer deg for å fortsette å undersøke hva som gir hverdagen innhold. Valgene du allerede har tatt forsvinner ikke.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "utforsker"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d9_realistisk_krav",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 9,
+      "fase": "formiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "En jobb er mer enn en overskrift",
+      "tekst": "Et tilbud må eksistere før du kan takke ja. Du bestemmer om du vil forberede deg eller undersøke faktiske muligheter.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "krav",
+          "tekst": "Undersøk et kvalifikasjonskrav",
+          "konsekvensTekst": "Du noterer hva du faktisk kan dokumentere og hva du mangler.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "krav"
+            }
+          }
+        },
+        {
+          "id": "se_tilbud",
+          "tekst": "Se etter reelle jobbtilbud",
+          "konsekvensTekst": "Du åpner karrierepanelet. Ingen ansettelse oppstår av å se.",
+          "effekter": {
+            "flagg": {
+              "life21_first_followup": "se_tilbud"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d13_folgebrev",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 13,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Det du kan vise fram",
+      "tekst": "Du trenger ett konkret eksempel på erfaringen din, ikke en lang liste med udokumenterte egenskaper.",
+      "conditions": {
+        "flagg": {
+          "life21_initial_focus": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "konkret",
+          "tekst": "Beskriv én handling og resultatet",
+          "konsekvensTekst": "Du noterer en faktisk erfaring uten å finne opp attester.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "konkret"
+            }
+          }
+        },
+        {
+          "id": "tilbud",
+          "tekst": "Undersøk om et nytt tilbud finnes",
+          "konsekvensTekst": "Du ser etter reelle tilbud. Søknad er ikke det samme som ansettelse.",
+          "effekter": {
+            "flagg": {
+              "life21_day13_action": "tilbud"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d16_kompetanse_eller_jobb",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 16,
+      "fase": "ettermiddag",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Neste steg krever en faktisk mulighet",
+      "tekst": "Vil du arbeide, må du enten vurdere et reelt tilbud eller arbeide videre med relevante ferdigheter. Ingen automatisk jobb venter.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Forbered ett eksempel til en samtale",
+          "konsekvensTekst": "Du lager et ærlig eksempel. Ingen innkalling er opprettet.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "forbered"
+            }
+          }
+        },
+        {
+          "id": "se_karriere",
+          "tekst": "Åpne Karriere og vurder reelle tilbud",
+          "konsekvensTekst": "Karrierepanelet viser eksisterende tilbud og krav. Bare jobbens akseptregler kan ansette deg.",
+          "effekter": {
+            "flagg": {
+              "life21_day16_proof": "se_karriere"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_life21_d21_jobb_veien",
+      "threadId": "wave_e_life21",
+      "dag": 1,
+      "livsdagFra": 21,
+      "fase": "kveld",
+      "visningstype": "privat hendelse",
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Tre uker: Jobb kan være en vei videre",
+      "tekst": "Du har undersøkt jobbmuligheter uten å gi opp privatlivet. Et jobbtilbud og en livsposisjon er forskjellige ting.",
+      "conditions": {
+        "flagg": {
+          "life21_week3_focus": "jobb"
+        }
+      },
+      "valg": [
+        {
+          "id": "utforsker",
+          "tekst": "Undersøk jobbmuligheter og interesser videre",
+          "konsekvensTekst": "Du fortsetter å utforske. Ingen jobb blir opprettet.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "utforsker"
+            }
+          },
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "hverdagsbygger",
+          "tekst": "Velg en bærekraftig retning med eller uten jobb",
+          "konsekvensTekst": "Du velger en mulig livsretning som kan kombineres med arbeid.",
+          "effekter": {
+            "flagg": {
+              "life21_direction": "hverdagsbygger"
+            }
+          },
+          "handling": {
+            "type": "aapne_livsposisjoner"
           }
         }
       ]

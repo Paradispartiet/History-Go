@@ -45,6 +45,7 @@ function atWaveScene(role, type) {
 }
 
 const scripts = [
+  'js/Civication/systems/civicationCareerRoleResolver.js',
   'js/Civication/lifestory/lifestoryContent.js',
   'js/Civication/lifestory/lifestoryState.js',
   'js/Civication/lifestory/lifestoryRunner.js',
@@ -75,7 +76,8 @@ async function harness(role, type) {
   const dayIndex = initial.dag;
   window.CivicationCalendar = { getClock: () => ({ dayIndex }) };
   window.CivicationState = {
-    getState: () => ({}), getActivePosition: () => null,
+    getState: () => ({}), getActivePosition: () => role === 'arealplanlegger'
+      ? { career_id: 'by', role_key: 'by_radgiver_plan', title: 'Arealplanlegger' } : null,
     getInbox: () => window.CivicationMailEngine?.getInbox?.() || []
   };
   window.fetch = async resource => {
@@ -162,20 +164,24 @@ test('pause and return preserve a private wave-A agreement and pending envelope'
 test('an eligible private scene survives role change and answers into the inactive snapshot only', async () => {
   const h = await harness('arbeidsledig', 'c01');
   try {
-    const { window } = h;
+    const { window, panel } = h;
     const State = window.CivicationLifestoryState;
     const roleContent = await window.CivicationLifestoryContent.loadContent('arealplanlegger');
     const before = State.selectRole(State.load(), roleContent);
-    const activeArchive = clone(before.arkiv);
-    const inactiveArchive = clone(before.rolleTilstander.arbeidsledig.arkiv);
+    before.livsdag += 4; // Time has passed since the inactive job was held.
     State.save(before);
     const ui = window.CivicationLifestoryUI;
-    const original = ui.getPendingWaveAEvent;
-    // UI role adoption is asynchronous; simulate the moment it has adopted
-    // the new active role, so the old role is only represented by its save.
-    ui.getPendingWaveAEvent = () => null;
+    // Adopt the new job in the actual mounted UI, not only in storage.
+    window.CivicationState.getActivePosition = () => ({
+      career_id: 'by', role_key: 'by_radgiver_plan', title: 'Arealplanlegger'
+    });
+    window.dispatchEvent(new window.Event('updateProfile'));
+    await waitFor(() => ui.getDaySyncState()?.rolle === 'arealplanlegger'
+      && ui.getCurrentSceneInfo()?.sceneId, 'mounted new-job scene');
+    const activeArchive = clone(State.load().arkiv);
+    const inactiveArchive = clone(State.load().rolleTilstander.arbeidsledig.arkiv);
+    await window.CivicationWaveAPrivateRoleBridge.refresh();
     try {
-      await window.CivicationWaveAPrivateRoleBridge.refresh();
       await waitFor(() => window.CivicationWaveAPrivateRoleBridge.getPendingEvent(), 'inactive private story');
       const privateEvent = window.CivicationWaveAPrivateRoleBridge.getPendingEvent();
       assert.ok(privateEvent, 'qualifying personal scene from inactive role is still playable');
@@ -191,10 +197,82 @@ test('an eligible private scene survives role change and answers into the inacti
       assert.deepEqual(clone(after.arkiv), activeArchive, 'job-role archive is unchanged');
       assert.equal(after.rolleTilstander.arbeidsledig.arkiv.length, inactiveArchive.length + 1);
       assert.equal(after.rolleTilstander.arbeidsledig.arkiv.at(-1).sceneId, privateEvent.lifestory_scene_id);
+      assert.equal(after.rolleTilstander.arbeidsledig.arkiv.at(-1).livsdag, before.livsdag,
+        'a private event in an inactive role uses the current shared life day');
+      const inactiveContent = await window.CivicationLifestoryContent.loadContent('arbeidsledig');
+      const authored = inactiveContent.scenes.find(scene => scene.id === privateEvent.lifestory_scene_id)
+        .valg.find(choice => choice.id === privateEvent.choices[0].id);
+      const sharedFlags = Object.entries(authored.effekter?.flagg || {})
+        .filter(([key]) => /^wa_(?:[bcde]_)?c0[15]_/.test(key));
+      assert.ok(sharedFlags.length, 'the real C01 choice contains a private consequence');
+      for (const [key, value] of sharedFlags) {
+        assert.equal(after.tidligereValg[key], value, 'the active role knows about the actual private choice');
+        assert.equal(after.privatHistorie.flagg[key], value, 'shared private memory retains the choice');
+        assert.equal(after.privatHistorie.flaggDager[key], before.livsdag, 'private time anchor follows the player');
+      }
+      assert.ok(after.privatHistorie.arkiv.some(entry => entry.sceneId === privateEvent.lifestory_scene_id),
+        'the private event enters shared history without copying into the new job archive');
       assert.equal(window.CivicationMailEngine.getMail(privateEvent.id).resolved, true);
       assert.equal((await window.CivicationMailEngine.answerMail(
         privateEvent.id, privateEvent.choices[0].id)).ok, false, 'cannot answer inactive scene twice');
-    } finally { ui.getPendingWaveAEvent = original; }
+
+      // Continue the ordinary job story without remounting the UI. Previously
+      // this next save overwrote the private answer with cached top-level data.
+      const jobChoice = panel.querySelector('[data-lifestory-scene][data-lifestory-choice]');
+      assert.ok(jobChoice, 'the current job scene is playable in Min dag');
+      const jobSceneId = jobChoice.getAttribute('data-lifestory-scene');
+      assert.notEqual(jobSceneId, privateEvent.lifestory_scene_id, 'a job scene is not a former-role private scene');
+      jobChoice.click();
+      const continued = State.load();
+      assert.ok(continued.spilteScener.includes(jobSceneId), 'ordinary job-day choice was saved');
+      assert.notEqual(ui.getCurrentSceneInfo()?.sceneId, jobSceneId, 'the next story event can be reached');
+      assert.equal(continued.rolle, 'arealplanlegger');
+      for (const [key, value] of sharedFlags) {
+        assert.equal(continued.tidligereValg[key], value, 'the private flag survives normal work');
+        assert.equal(continued.privatHistorie.flagg[key], value, 'shared memory survives normal work');
+        assert.equal(continued.privatHistorie.flaggDager[key], before.livsdag, 'private choice keeps its life-day anchor');
+      }
+      assert.ok(continued.privatHistorie.arkiv.some(entry => entry.sceneId === privateEvent.lifestory_scene_id),
+        'the private event remains available to later stories');
+      assert.equal(continued.rolleTilstander.arbeidsledig.arkiv.at(-1).sceneId,
+        privateEvent.lifestory_scene_id, 'the inactive-role archive remains intact');
+
+      // Follow the player through two further *mounted* job transitions. The
+      // first return must not replay the private answer, and the second must
+      // retain both the new job's own progress and the shared private memory.
+      const playedWorkId = jobSceneId;
+      window.CivicationState.getActivePosition = () => null;
+      window.dispatchEvent(new window.Event('updateProfile'));
+      await waitFor(() => ui.getDaySyncState()?.rolle === 'arbeidsledig'
+        && State.load()?.rolle === 'arbeidsledig', 'return to former job');
+      const returned = State.load();
+      assert.equal(returned.livsdag, before.livsdag, 'changing jobs does not create a life day');
+      assert.equal(returned.arkiv.filter(entry =>
+        entry.sceneId === privateEvent.lifestory_scene_id).length, 1,
+        'returning to the original role does not replay or duplicate a private scene');
+      assert.ok(returned.rolleTilstander.arealplanlegger.spilteScener.includes(playedWorkId),
+        'the planning job retains its actual completed work');
+      for (const [key, value] of sharedFlags) {
+        assert.equal(returned.tidligereValg[key], value, 'private choice survives return to former job');
+        assert.equal(returned.privatHistorie.flaggDager[key], before.livsdag,
+          'the life-day anchor survives a second role adoption');
+      }
+
+      window.CivicationState.getActivePosition = () => ({
+        career_id: 'by', role_key: 'by_radgiver_plan', title: 'Arealplanlegger'
+      });
+      window.dispatchEvent(new window.Event('updateProfile'));
+      await waitFor(() => ui.getDaySyncState()?.rolle === 'arealplanlegger'
+        && State.load()?.rolle === 'arealplanlegger', 'return to planning job');
+      const resumed = State.load();
+      assert.ok(resumed.spilteScener.includes(playedWorkId),
+        'the original job choice remains completed after the round trip');
+      assert.equal(resumed.livsdag, before.livsdag);
+      for (const [key, value] of sharedFlags) {
+        assert.equal(resumed.tidligereValg[key], value, 'private choice survives a third active job');
+        assert.equal(resumed.privatHistorie.flaggDager[key], before.livsdag);
+      }
+    } finally { /* No test-only UI override to restore. */ }
   } finally { h.dom.window.close(); }
 });
 
@@ -218,4 +296,67 @@ test('all eight wave-A stories retain their canonical scene and source bindings'
   }
   assert.equal(scenes, 74);
   assert.equal(choices, 148);
+});
+
+
+test('a witnessed Wave D private choice reaches its exact Wave E follow-up after a job change', () => {
+  // Play the published unemployment story, including actual Wave A-D choices,
+  // instead of seeding fictional flags or a fabricated earlier encounter.
+  const oldContent = makeContent('arbeidsledig');
+  const nextContent = makeContent('arealplanlegger');
+  let state = S.createInitialState(oldContent);
+  let steps = 0;
+  while (state.dag <= 7) {
+    while (!state.dagFerdig) {
+      const scene = R.selectNextScene(state, oldContent);
+      if (scene) R.applyChoice(state, oldContent, scene.id, scene.valg[0].id);
+      else R.advance(state, oldContent);
+      assert.ok(++steps < 900, 'the authored seven-day player journey terminates');
+    }
+    if (state.dag === 7) break;
+    R.startNextDay(state, oldContent);
+  }
+
+  const witnessed = state.arkiv.find(entry => /^wave_d_c01_/.test(entry.sceneId));
+  assert.ok(witnessed, 'the Wave D relationship choice actually happened');
+  const status = state.tidligereValg.wa_d_c01_status;
+  assert.ok(status, 'the witnessed event recorded a concrete relationship outcome');
+  const anchor = state.privatHistorie?.flaggDager?.wa_d_c01_status;
+  assert.equal(anchor, 7, 'the Wave D follow-up starts from the witnessed life day');
+
+  const planning = S.selectRole(clone(state), nextContent);
+  assert.equal(planning.rolle, 'arealplanlegger');
+  assert.equal(planning.tidligereValg.wa_d_c01_status, status);
+  const eligibleBranches = nextContent.scenes.filter(scene =>
+    /^wave_e_c01_dag9_/.test(scene.id) && R.conditionsMet(planning, scene));
+  assert.equal(eligibleBranches.length, 1,
+    'earlier relationship outcome selects exactly one authored follow-up');
+  const followup = eligibleBranches[0];
+  assert.equal(followup.livsdagFra, 9);
+  planning.fase = followup.fase;
+
+  // A job has its own local chapter day; the shared life clock must still
+  // release this scene only after two *elapsed* days from the prior choice.
+  planning.livsdag = 8;
+  assert.ok(!R.getCandidateScenes(planning, nextContent).some(s => s.id === followup.id),
+    'the private continuation cannot appear a day too early');
+  planning.livsdag = 9;
+  assert.ok(R.getCandidateScenes(planning, nextContent).some(s => s.id === followup.id),
+    'the later private event appears while working at a different job');
+
+  R.applyChoice(planning, nextContent, followup.id, followup.valg[0].id);
+  assert.equal(planning.arkiv.filter(e => e.sceneId === followup.id).length, 1);
+  assert.equal(planning.arkiv.find(e => e.sceneId === followup.id)?.livsdag, 9);
+  assert.equal(planning.privatHistorie.arkiv.filter(e => e.sceneId === followup.id).length, 1,
+    'the witnessed later consequence belongs to the shared private archive');
+
+  const returned = S.selectRole(clone(planning), oldContent);
+  assert.equal(returned.tidligereValg.wa_d_c01_status, status);
+  assert.equal(returned.privatHistorie.flaggDager.wa_d_c01_status, anchor);
+  assert.equal(returned.arkiv.filter(e => e.sceneId === followup.id).length, 1,
+    'the follow-up is preserved exactly once on returning to the old job');
+  const resumed = S.selectRole(returned, nextContent);
+  assert.ok(resumed.spilteScener.includes(followup.id));
+  assert.equal(resumed.privatHistorie.arkiv.filter(e => e.sceneId === followup.id).length, 1,
+    'later choices survive a full round trip without duplicate history');
 });

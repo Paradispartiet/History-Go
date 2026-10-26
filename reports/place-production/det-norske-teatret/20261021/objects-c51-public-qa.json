@@ -1,0 +1,72 @@
+{
+  "schema": "history_go_dnt_c51_public_objects_qa_v1",
+  "place_id": "det_norske_teatret",
+  "verified_at": "2026-10-21",
+  "status": "PUBLIC_OBJECTS_MOBILE_DESKTOP_PASS",
+  "site": "https://paradispartiet.github.io/History-Go/",
+  "merge_dependency": "C50 PR #6517 merged at main 556df01c18fab01b2d61e756f604470e231bda3b",
+  "test": "tests/det-norske-teatret-public-objects-c51.mjs",
+  "workflow": ".github/workflows/dnt-public-objects-c51.yml",
+  "actions_run_id": 39604980279,
+  "actions_url": "https://github.com/Paradispartiet/History-Go/actions/runs/39604980279",
+  "screenshot_artifact_id": 12347682520,
+  "screenshot_artifact": "dnt-c51-public-objects-evidence",
+  "actual_deployment_checked": true,
+  "public_http_checks": {
+    "canonical_place": true,
+    "place_open_sync": true,
+    "two_canonical_members": true,
+    "public_costume_sha256": "a4c04b491558f65551385f3e98651e599319e5e6a576f80ae33c105bef57c31f",
+    "public_curtain_illustration_sha256": "c605b40e2fde7be138eb2545a24d43478867d4f43fad2777d17f059c5752a7d2",
+    "public_foyer_documentary_photo_sha256": "8066f849c6bc4c1b244bcc3c67dda94e25d05a25c29833dafd9e64abe276a141",
+    "public_objects_renderer_matches_repository": true,
+    "public_objects_css_matches_repository": true
+  },
+  "browser_cases": [
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": "PASS",
+      "screenshots": [
+        "mobile-public-objects-preview.png",
+        "mobile-public-objects-members.png"
+      ],
+      "two_member_images_decoded": true,
+      "photo_credit": "Lone Lunde / Oslo Museum / Wikimedia Commons",
+      "illustration_disclosure": "Illustrasjon – ikke fotografi",
+      "original_links": true,
+      "console_page_errors": 0
+    },
+    {
+      "viewport": "desktop",
+      "width": 1280,
+      "height": 900,
+      "status": "PASS",
+      "screenshots": [
+        "desktop-public-objects-preview.png",
+        "desktop-public-objects-members.png"
+      ],
+      "two_member_images_decoded": true,
+      "photo_credit": "Lone Lunde / Oslo Museum / Wikimedia Commons",
+      "illustration_disclosure": "Illustrasjon – ikke fotografi",
+      "original_links": true,
+      "console_page_errors": 0
+    }
+  ],
+  "manual_screenshot_review": {
+    "status": "PASS",
+    "method": "Reviewed actual four Actions screenshots after successful deployed-site browser run",
+    "findings": "At both widths the canonical Objects member popup shows costume and stage curtain with readable descriptions, original media, explicit documentary/illustration distinction and source links. No visible horizontal media clipping. Phone popup is vertically scrollable; do not infer simultaneous visibility of both rows without scrolling."
+  },
+  "remaining_scope": {
+    "place_status": "in_progress",
+    "objects": "PASS",
+    "people": "BLOCKED – 57/87 portraits",
+    "productions": "BLOCKED – eight source-linked productions, collection not published",
+    "brands": "BLOCKED",
+    "physical_mobile_device_test": false,
+    "literal_map_marker_tap_test": false,
+    "next": "C52 extend separately verified Objects and other scene-art collections, then C53 final place closeout"
+  }
+}

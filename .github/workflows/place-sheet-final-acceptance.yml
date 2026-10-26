@@ -81,3 +81,14 @@ jobs:
 
       - name: Verify final Place Sheet browser performance
         run: node tests/place-sheet-final-performance-browser-audit.test.mjs
+
+      - name: Verify image credits for all 17 Oslo places at mobile and desktop widths
+        run: node tests/place-sheet-image-credits-browser.test.mjs
+      - name: Preserve image credit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: place-image-credits
+          path: artifacts/place-image-credits/
+          if-no-files-found: warn
+          retention-days: 7

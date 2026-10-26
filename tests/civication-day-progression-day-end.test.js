@@ -51,7 +51,11 @@ function setup() {
   };
 
   // Spioner på ukesavslutningen.
-  global.__weekly = { savedSummaries: [], finalizeCareerIds: [] };
+  global.__weekly = { savedSummaries: [], finalizeCareerIds: [], economyTickDays: [], economyRecordedDays: [], order: [] };
+  global.CivicationEconomyEngine = {
+    recordCompletedDay: (day) => { global.__weekly.economyRecordedDays.push(day); global.__weekly.order.push('record'); },
+    tickWeekly: () => { global.__weekly.economyTickDays.push(dayIndex); global.__weekly.order.push('settle'); }
+  };
   global.saveDailySummaryToWeek = (summary) => { global.__weekly.savedSummaries.push(summary); return summary; };
   global.finalizeWeekIfNeeded = (careerId) => { global.__weekly.finalizeCareerIds.push(careerId); return null; };
 
@@ -80,6 +84,9 @@ async function run() {
   assert.strictEqual(global.__weekly.savedSummaries[0]?.dayIndex, 7, 'the captured summary should be the day_end day (before reset)');
   assert.strictEqual(global.__weekly.savedSummaries[0]?.quality, 'sterk', 'the full summary should be passed to the week');
   assert.deepStrictEqual(global.__weekly.finalizeCareerIds, ['naeringsliv'], 'day_end rollover should finalize the week for the active career');
+  assert.deepStrictEqual(global.__weekly.economyRecordedDays, [7], 'day end records prior day employment');
+  assert.deepStrictEqual(global.__weekly.order, ['record', 'settle'], 'snapshot must precede weekly settlement');
+  assert.deepStrictEqual(global.__weekly.economyTickDays, [8], 'real day-end rollover calls the wallet engine after the calendar advances');
 
   console.log('civication day progression day_end rollover ok');
 }

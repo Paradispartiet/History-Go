@@ -258,11 +258,51 @@
     }
   }
 
+  // Life Story's chapter gate is not a daily task. Reuse the existing
+  // History Go Civication-mode toast for a voluntary learning journey,
+  // without marking a task complete or granting badge points in Civication.
+  function startLifePositionGuidance(bridge) {
+    const badgeId = clean(bridge?.badge_id);
+    const requiredPoints = Number(bridge?.threshold);
+    const hasPointGate = !!badgeId && Number.isFinite(requiredPoints) && requiredPoints > 0;
+    const label = clean(bridge?.navn) || "nye livsposisjoner";
+    const now = Date.now();
+    const session = {
+      version: 1,
+      active: true,
+      session_id: `civi_hg_lifestory_${badgeId}_${now}`,
+      source: "lifestory_continuation",
+      started_at: new Date(now).toISOString(),
+      started_ts: now,
+      title: `Bygg kunnskap for ${label}`,
+      description: hasPointGate
+        ? `Ta relevante quizer i History Go. Når du har nok poeng, gå tilbake til Civication og velg ${label} blant livsposisjonene. Et kapittel åpnes ikke automatisk.`
+        : `Utforsk relevante steder og quizer i History Go. Se de faktiske kravene til ${label} i Civication. Kapittelet åpnes ikke automatisk.`,
+      life_role_label: label,
+      target_type: "knowledge",
+      category_id: badgeId,
+      completion_mode: hasPointGate ? "badge_points" : "explore_category",
+      required_points: hasPointGate ? requiredPoints : null,
+      expanded: true,
+      return_href: currentCivicationHref(),
+      payload: { target_type: "knowledge", category_id: badgeId,
+        completion_mode: hasPointGate ? "badge_points" : "explore_category",
+        required_points: hasPointGate ? requiredPoints : null }
+    };
+    try {
+      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      return session;
+    } catch {
+      return null;
+    }
+  }
+
   window.CivicationHistoryGoDeepLink = {
     SESSION_KEY,
     resolve,
     go,
     startSession,
+    startLifePositionGuidance,
     clearSession,
     actionHtml,
     pickPendingTask

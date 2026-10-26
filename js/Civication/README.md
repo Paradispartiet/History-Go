@@ -134,6 +134,14 @@ Neste innholdsproduksjon er `naeringsliv/ekspeditor`.
 
 Ekspeditør har allerede tekniske og redaksjonelle byggesteiner. Arbeidet er å reconcile dem til en 14-dagers sosial serie, ikke å bygge ny Scene Pipeline.
 
+## Helhetlig livsverden og History Go-samling (21.10.2026)
+
+«Min dag» er ikke bare arbeidsdagen. **Arbeidsledig er jobbstatus**, og private Life Stories må kunne fortsette etter dag 7 og gjennom dag 14 uten at spilleren tvinges til å skaffe seg et Badge, en livsposisjon eller en jobb. Valgfrie ekstra kapitler kan fortsatt ha dokumenterte livsposisjonsgater.
+
+History Go-signaler går via eksisterende `systems/civicationProfileSignalBridge.js`, `systems/day/dayKnowledge.js`, `systems/civicationHistoryGoTaskBridge.js` og eksisterende oppdragstoast/retur. Samling/observasjoner, kunnskap, fagmeritter, personer og besøk er forskjellige akser; brukerens handlinger kan åpne konkrete dialoger, privatlivshistorier, miljøer og selvvalgte posisjoner, men ikke automatisk jobb, vennskap eller generelle ferdighetspoeng.
+
+Skille mellom dagens **psyke/energi**, **sju kapitalakser**, **relasjoner/miljøomdømme**, **History Go-meritter** og seks **Skills-skalaer**: visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling og handlekraft (foreslått 0–100). `streetkred` er anseelse hos bestemte aktører/miljøer, ikke én ny global poengsum. `CivicationSkills` gir en additiv, kildeavgrenset `skills_v1`-slice i eksisterende CivicationState, uten egen localStorage-nøkkel. Full authored progresjon og balanse gjenstår. Les [`../../docs/CIVICATION_README.md`](../../docs/CIVICATION_README.md), [`../../docs/CIVICATION_DATA_LAYERS.md`](../../docs/CIVICATION_DATA_LAYERS.md) og [`../../docs/CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md`](../../docs/CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md).
+
 ## 13. Dokumenteierskap
 
 - Runtime: [`../../data/Civication/SCENE_PIPELINE_V1.md`](../../data/Civication/SCENE_PIPELINE_V1.md)

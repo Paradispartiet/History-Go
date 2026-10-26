@@ -1,0 +1,305 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "oslo_mek",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/oslo_mek.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Akers mekaniske Verksteds tidligere skipsverft ved Holmen i Pipervika, på tomten som senere ble Aker Brygge, ikke verkstedets første anlegg ved Øvre Foss.",
+    "anchorType": "production_site",
+    "placeObjectDistinction": "Denne lokasjonen er avgrenset til historisk anlegg eller bygning, ikke lignende virksomheter andre steder.",
+    "temporalScope": {
+      "start": "1854",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Historisk driftsfase og dokumentert overgang til dagens stedsbruk innenfor samme sted."
+    },
+    "sourceIds": [
+      "source_oslo_mek_byleksikon",
+      "source_oslo_mek_archive",
+      "source_oslo_mek_museum",
+      "source_oslo_mek_snl"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_felt_arbeid_verdiskaping",
+      "siteSpecificRationale": "Arbeidsdeling, investeringer og infrastruktur har konkret endret dette næringsstedets produksjon og senere anvendelse.",
+      "caseIds": [
+        "case_oslo_mek_site_economy"
+      ]
+    },
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Arbeidsdeling, investeringer og infrastruktur har konkret endret dette næringsstedets produksjon og senere anvendelse.",
+      "caseIds": [
+        "case_oslo_mek_site_economy"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oslo_mek_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+      "sourceLocation": "Utbygging 1854, skipsbygging, motorer, dokk, krig og nedleggelse",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo byleksikons detaljerte verkstedhistorie.",
+      "limitations": "Inneholder ikke fullstendige arbeids- eller økonomiregnskap."
+    },
+    {
+      "id": "source_oslo_mek_archive",
+      "url": "https://www.tekniskmuseum.no/samlinger/arkivoversikt",
+      "sourceLocation": "Registrert arkiv etter Aker mekaniske Verksted",
+      "sourceType": "archive",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Norsk Teknisk Museums oversikt over bevarte bedriftsarkiver.",
+      "limitations": "Full arkivgjennomgang av kontrakter er ikke utført."
+    },
+    {
+      "id": "source_oslo_mek_museum",
+      "url": "https://www.tekniskmuseum.no/samlinger/akers-mekaniske-verksted",
+      "sourceLocation": "Verftets industrihistorie, arkivomfang og 1982-nedleggelsen",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Museets egen oppdaterte beskrivelse av industriarkivet.",
+      "limitations": "Kort samlingsartikkel, ikke detaljert økonomisk studie."
+    },
+    {
+      "id": "source_oslo_mek_snl",
+      "url": "https://snl.no/Akers_mekaniske_Verksted",
+      "sourceLocation": "SNL-artikkel om tidligere verft og bevarte bygg på Aker Brygge",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Fagartikkel skrevet av konservator ved Norsk Teknisk Museum, oppdatert 2026.",
+      "limitations": "Ikke en komplett registrering av alle tekniske endringer."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_oslo_mek_site_economy",
+      "claim": "Verftet ved Pipervika utviklet skip, dieselmotorer og dokker før nedleggelsen i 1982 og ombruk til Aker Brygge.",
+      "unitOfAnalysis": {
+        "unit": "Skipsverft, dokk og verkstedbygninger i Pipervika",
+        "boundary": "Akers mekaniske Verksteds tidligere skipsverft ved Holmen i Pipervika, på tomten som senere ble Aker Brygge, ikke verkstedets første anlegg ved Øvre Foss.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1854",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Historisk driftsfase og dokumentert overgang til dagens stedsbruk innenfor samme sted."
+        },
+        "sourceIds": [
+          "source_oslo_mek_byleksikon",
+          "source_oslo_mek_archive",
+          "source_oslo_mek_museum",
+          "source_oslo_mek_snl"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Akers mekaniske Verksteds eiere og bedriftsledelse",
+          "roleOrInterest": "Forvaltet virksomheten, kapitalen, stedets utstyr og de nødvendige driftsbeslutningene.",
+          "economicPosition": "Rådde over anlegg, investeringer og organisering av arbeidet.",
+          "sourceIds": [
+            "source_oslo_mek_byleksikon",
+            "source_oslo_mek_archive",
+            "source_oslo_mek_museum",
+            "source_oslo_mek_snl"
+          ]
+        },
+        {
+          "name": "Verftsarbeidere, mekanikere, dokk- og skipsbyggingsfagfolk",
+          "roleOrInterest": "Utførte det praktiske arbeidet som virksomhetens produkter eller tjenester var avhengige av.",
+          "economicPosition": "Var avhengig av arbeidsplassen og hadde ikke alene kontroll over økonomiske investeringer.",
+          "sourceIds": [
+            "source_oslo_mek_byleksikon",
+            "source_oslo_mek_archive",
+            "source_oslo_mek_museum",
+            "source_oslo_mek_snl"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Verftstomt, maskiner, jern og stål, dokker, kraner og fagarbeidskraft.",
+            "sourceIds": [
+              "source_oslo_mek_byleksikon",
+              "source_oslo_mek_archive",
+              "source_oslo_mek_museum",
+              "source_oslo_mek_snl"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Bygging, reparasjon og utrustning av skip og motorer gjennom flere tekniske epoker.",
+          "sourceIds": [
+            "source_oslo_mek_byleksikon",
+            "source_oslo_mek_archive",
+            "source_oslo_mek_museum",
+            "source_oslo_mek_snl"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Skip, motorer, reparasjonstjenester og senere tilknyttet offshoreutstyr.",
+            "sourceIds": [
+              "source_oslo_mek_byleksikon",
+              "source_oslo_mek_archive",
+              "source_oslo_mek_museum",
+              "source_oslo_mek_snl"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene beskriver konkret virksomhet og stedsbruk, men gir ikke et tilstrekkelig tallgrunnlag for å beregne netto økonomisk verdi.",
+          "sourceIds": [
+            "source_oslo_mek_byleksikon",
+            "source_oslo_mek_archive",
+            "source_oslo_mek_museum",
+            "source_oslo_mek_snl"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Verftet ved Pipervika utviklet skip, dieselmotorer og dokker før nedleggelsen i 1982 og ombruk til Aker Brygge.",
+        "unit": "dokumentert produksjons- og bruksendring",
+        "period": "1854–2026",
+        "comparability": "Hendelser og endret funksjon kan sammenholdes historisk, men ikke som direkte sammenlignbare økonomiske årsserier.",
+        "dataLimitations": "Kildene er historiske og institusjonelle oversikter uten fullstendige lønns-, utgifts- og inntektsregnskaper.",
+        "sourceIds": [
+          "source_oslo_mek_byleksikon",
+          "source_oslo_mek_archive",
+          "source_oslo_mek_museum",
+          "source_oslo_mek_snl"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Institusjonenes og virksomhetens ledelse avgjorde investering og driftsorganisering.",
+        "laborPosition": "Personell utførte praktiske oppgaver, men individuelle vilkår og fordeling er ikke tallfestet.",
+        "beneficiaries": [
+          "Virksomheten og brukerne av tjenestene eller varene.",
+          "Ansatte og lokalsamfunn knyttet til arbeidsplasser og tjenester."
+        ],
+        "costRiskBearers": [
+          "Eiere og forvaltere med ansvar for anleggsinvesteringer.",
+          "Arbeidskraft og nærmiljø som kunne berøres av omstilling."
+        ],
+        "sourceIds": [
+          "source_oslo_mek_byleksikon",
+          "source_oslo_mek_archive",
+          "source_oslo_mek_museum",
+          "source_oslo_mek_snl"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Markedsforhold, endret teknisk utstyr, investeringer og lokale arealbehov kunne påvirke virksomhetens utvikling over tid.",
+          "sourceIds": [
+            "source_oslo_mek_byleksikon",
+            "source_oslo_mek_archive",
+            "source_oslo_mek_museum",
+            "source_oslo_mek_snl"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildeutvalget gir ikke stedsspesifikke kvantitative data for å beregne miljø- eller arbeidshelseeffekter."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Historisk stedsleksikon og institusjonelt kildemateriale om samme navngitte sted er sammenholdt.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Opplysningene dokumenterer kronologi og endret drift, men identifiserer ikke en kausal økonomisk effekt isolert fra andre endringer.",
+        "alternativeExplanations": [
+          "Teknologi, markedsforhold, investeringer, offentlige prioriteringer og endret arealbruk kan ha påvirket utviklingen."
+        ],
+        "uncertainty": "Utviklingen er kildebelagt på stedsnivå, men regnskap, lønnsnivå og nøyaktig økonomisk fordeling er ikke dokumentert.",
+        "sourceIds": [
+          "source_oslo_mek_byleksikon",
+          "source_oslo_mek_archive",
+          "source_oslo_mek_museum",
+          "source_oslo_mek_snl"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Verftet er nedlagt; Aker Brygge ligger på samme tomt og eldre verkstedsbygninger og dokk er gjenbrukt.",
+    "originalEconomicRoleRelationship": "Dagens funksjon må skilles fra opprinnelig drift, og gjenbruk eller kontinuitet er begrenset til det dokumenterte stedet.",
+    "checkedAt": "2026-10-19",
+    "sourceIds": [
+      "source_oslo_mek_museum",
+      "source_oslo_mek_snl"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "QuizCards finnes allerede, men denne bolken endrer ikke første to sett eller den fagspesifikke quizproduksjonen."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Historiske steder og stedsbeskrivelser er gjennomgått; separat Story- eller kronologiproduksjon er ikke del av denne teksten."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    }
+  },
+  "review": {
+    "reviewer": "Oslo-20 stedsspesifikk Næringsliv-redaksjon",
+    "reviewedAt": "2026-10-19",
+    "notes": "Gjennomgått historisk næringsidentitet, arbeidsdeling, innsatsfaktorer, kildenes økonomiske begrensninger og nåværende bruk. Eksisterende quiz forblir uendret."
+  }
+}

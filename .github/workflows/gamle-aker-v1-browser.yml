@@ -1,0 +1,57 @@
+name: Gamle Aker v1 real browser acceptance
+on:
+  pull_request:
+    paths:
+      - 'data/quizcards/historie/topp10_historie_sted_kort_batch1.json'
+      - 'data/quiz/historie/gamle_aker_kirke_sets.json'
+      - 'data/places/historie/oslo/places_historie/gamle_aker_kirke.json'
+      - 'data/runtime/place-open/gamle_aker_kirke.json'
+      - 'tests/gamle-aker-v1-quizcard-parity.test.mjs'
+      - 'tests/gamle-aker-quizcard-placecard-runtime.test.mjs'
+      - 'tests/gamle-aker-v1-real-browser.mjs'
+      - 'reports/place-production/gamle-aker-kirke-v1-qa-20261021.md'
+      - '.github/workflows/gamle-aker-v1-browser.yml'
+  workflow_dispatch:
+concurrency:
+  group: gamle-aker-v1-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify fullquiz/QuizCard parity and real PlaceCard controller
+        run: node --test tests/gamle-aker-v1-quizcard-parity.test.mjs tests/gamle-aker-quizcard-placecard-runtime.test.mjs
+      - name: Check mobile and desktop real-app card flip and Fagverk
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node tests/gamle-aker-v1-real-browser.mjs
+      - name: Complete all 21 fullquiz questions at 390 and 1440 px
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-place-quiz-browser.mjs gamle_aker_kirke
+      - name: Upload app evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamle-aker-v1-real-browser-evidence
+          path: |
+            artifacts/gamle_aker_kirke-browser/**
+            artifacts/place-quiz/gamle_aker_kirke/**
+          if-no-files-found: ignore
+          retention-days: 14

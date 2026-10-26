@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "oslo_mek",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/oslo_mek.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Akers mekaniske Verksteds skipsverft ved Holmen i Pipervika, i området som senere ble Aker Brygge; ikke det opprinnelige anlegget ved Øvre Foss.",
+    "placeRelationType": "historical_landscape",
+    "placeRelationStatement": "Kortet gjelder det tidligere skipsverftets sted ved Pipervika og de bevarte fysiske sporene, ikke hele Aker-konsernets etterfølgende virksomhet.",
+    "temporalScope": {
+      "start": "1854",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Stedets verftsfase begynte med tomtekjøpet ved Pipervika i 1854 og etterbruk som Aker Brygge fortsetter i dag."
+    },
+    "sourceIds": [
+      "source_oslo_mek_byleksikon",
+      "source_oslo_mek_tekniskmuseum"
+    ]
+  },
+  "historyTopics": [
+    {
+      "emneId": "em_his_industriby_1900",
+      "siteSpecificRationale": "Pipervika hadde en arbeidsintensiv skipsindustri med tørrdokk, motorverksteder, omstilling og nedleggelse før området ble omformet til byrom.",
+      "caseIds": [
+        "case_oslo_mek_shipyard_to_aker_brygge"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oslo_mek_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+      "sourceLocation": "Verftets kronologi, Øvre Foss, Pipervika, D/S Færdesmanden, 1912, dokk 1920, sabotasje 1944 og nedleggelse 1982",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "retrospective",
+      "provenance": "Oslo byleksikons redigerte lokalhistoriske oppslagsartikkel for Akers mek. Verksted.",
+      "limitations": "Leksikonet sammenfatter lang industridrift; det erstatter ikke bedriftsarkivets dokumentasjon av individuelle arbeidere eller hendelser."
+    },
+    {
+      "id": "source_oslo_mek_tekniskmuseum",
+      "url": "https://www.tekniskmuseum.no/samlinger/akers-mekaniske-verksted",
+      "sourceLocation": "Norsk Teknisk Museums samlingsomtale om bedriftsarkivet 1841–1982, arbeidsfoto, skips- og plattformtegninger og senere Aker Brygge",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Museets egen katalog- og samlingsbeskrivelse basert på virksomhetens bevarte arkiv.",
+      "limitations": "Museet beskriver hovedperiodene og arkivomfanget, men oppføringen verifiserer ikke hvert enkelt historisk byggs vernestatus i dag."
+    },
+    {
+      "id": "source_oslo_mek_snl",
+      "url": "https://snl.no/Akers_mekaniske_Verksted",
+      "sourceLocation": "Historikk og gjenbruk av eldre verkstedbygg og tørrdokker ved Aker Brygge",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Store norske leksikon, fagartikkel av Dag Andreassen, førstekonservator ved Norsk Teknisk Museum, oppdatert 10. september 2026.",
+      "limitations": "En syntetiserende fagartikkel; detaljene om enkeltarbeideres erfaringer og alle krigsårshendelser er ikke uttømmende."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_oslo_mek_shipyard_to_aker_brygge",
+      "claim": "Verftet ved Pipervika gikk fra stor mekanisk skipsproduksjon og dokkarbeid til nedleggelse i 1982 og videre til dagens Aker Brygge, der flere gamle verkstedspor er bevart.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1854",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Kronologien følger samme verftstomt fra flyttingen til Pipervika til senere bygningsombruk."
+        },
+        "startPoint": "Akers mekaniske Verksted flyttet fra Øvre Foss til Holmen ved Pipervika i 1854 for å bygge og reparere større skip.",
+        "endPoint": "Området fungerer som Aker Brygge med gjenbruk av historiske bygninger og en tørrdokk fra verftsperioden.",
+        "breaks": [
+          "I 1912 begynte bedriften lisensproduksjon av dieselmotorer, og en stor tørrdokk sto klar i 1920.",
+          "Pelle-gruppas sabotasjeaksjon i november 1944 skadet skip og dokkanlegg ved verftet.",
+          "I 1982 ble den gjenværende Oslo-verftsvirksomheten nedlagt og det tidligere industriområdet omformet til en ny bydel."
+        ],
+        "continuities": [
+          "Verftets plassering mot sjøen og enkelte bevarte industribygg og tørrdokken gjør det gamle produksjonsstedet fysisk gjenkjennelig."
+        ],
+        "sourceIds": [
+          "source_oslo_mek_byleksikon",
+          "source_oslo_mek_tekniskmuseum",
+          "source_oslo_mek_snl"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Akers mekaniske Verksteds ledelse og eiere",
+          "roleOrInterest": "Investerte i anlegget, drev skips- og motorproduksjon og tilpasset virksomheten til større fartøy og nye markeder.",
+          "powerPosition": "Hadde beslutningsmakt over produksjon, utbygging og virksomhetens organisering.",
+          "sourceIds": [
+            "source_oslo_mek_byleksikon",
+            "source_oslo_mek_tekniskmuseum"
+          ]
+        },
+        {
+          "name": "Verftsarbeidere og håndverksfagene",
+          "roleOrInterest": "Bygde og reparerte skip, arbeidet i dokker og maskinverksteder og ga området et stort industrielt arbeidsmiljø.",
+          "powerPosition": "Utførte det praktiske arbeidet, men bestemte ikke alene over investeringer eller nedleggelsen av verftet.",
+          "sourceIds": [
+            "source_oslo_mek_byleksikon",
+            "source_oslo_mek_tekniskmuseum"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Verftets behov for dokker, maskiner og arbeidsplasser ble etter nedleggelsen erstattet av en utbygging for bolig, kontor, handel og ferdsel på samme sjøfront.",
+        "sourceIds": [
+          "source_oslo_mek_byleksikon",
+          "source_oslo_mek_tekniskmuseum",
+          "source_oslo_mek_snl"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_oslo_mek_byleksikon",
+          "source_oslo_mek_tekniskmuseum"
+        ],
+        "comparison": "Oslo byleksikon gir en detaljert kronologi med flyttingen i 1854, motorproduksjon, tørrdokk, krigshendelser og nedleggelse. Norsk Teknisk Museum viser arkivets omfang og verftets bredere utvikling fram til 1982 og dagens Aker Brygge.",
+        "contradictionsOrSilences": "Kildene motsier ikke hovedkronologien, men de korte nettartiklene gjengir ikke bedriftsarkivets mange personlige erfaringer, arbeidskonflikter eller alle enkeltprosjekter.",
+        "conclusionLimits": "Kildene dokumenterer verftets hovedhistorie og arkivspor; de kan ikke brukes til å tilskrive konkrete ikke-dokumenterte tanker eller dialog til arbeidere."
+      },
+      "comparativeScale": {
+        "localFinding": "Verftsindustrien satte et kraftig preg på Pipervika gjennom arbeidsbygninger, dokker og motorproduksjon; området ble etter 1982 del av Aker Brygge.",
+        "widerContext": "Verftets omstilling og nedleggelse illustrerer hvordan norsk skipsindustri og sentrale industrihavner skiftet funksjon mot slutten av det 20. århundret.",
+        "scale": "national",
+        "sourceIds": [
+          "source_oslo_mek_byleksikon",
+          "source_oslo_mek_tekniskmuseum",
+          "source_oslo_mek_snl"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Behovet for sjøtilgang og dokkareal forklarer flyttingen til Pipervika; senere krevde større skip og plattformproduksjon mer areal enn det tette Oslo-verftet hadde tilgjengelig.",
+        "alternativeExplanations": [
+          "Eiendomsverdi, endret industriell organisering og internasjonal skipsfartskonkurranse kan også ha påvirket tidspunktet og formen på omstillingen."
+        ],
+        "uncertainty": "Kildene gir hovedfasene, men avklarer ikke all intern beslutningstaking rundt 1982-nedleggelsen eller detaljer om hvert bevart bygg.",
+        "sourceIds": [
+          "source_oslo_mek_byleksikon",
+          "source_oslo_mek_tekniskmuseum",
+          "source_oslo_mek_snl"
+        ]
+      }
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Dagens Aker Brygge ligger på det gamle verftsområdet; maskinverksted, dieselmotorverksted og deler av dokkanlegg er bevart eller gjenbrukt ifølge en fagartikkel oppdatert i september 2026.",
+    "originalSiteRelationship": "De fysiske sporene tilhører Pipervika-verftet, men dagens utbygging og arealbruk er vesentlig annerledes enn produksjonsanlegget før 1982.",
+    "sourceIds": [
+      "source_oslo_mek_snl",
+      "source_oslo_mek_tekniskmuseum"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Eksisterende QuizCard-samling bevares; den historiske åpningsquizens første to sett er ikke produsert i denne tekstbolken."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Canonical Place-filen er inspisert. Ingen egen fullført Story eller historisk milepælsserie produseres i denne redaksjonelle tekstendringen."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historyTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].temporalSequence"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].actors"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].sourceComparison"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].comparativeScale"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Ikke del av den redaksjonelle tekstbolken; eksisterende QuizCard og eventuelle andre moduler beholdes."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ikke del av den redaksjonelle tekstbolken; eksisterende QuizCard og eventuelle andre moduler beholdes."
+    }
+  },
+  "review": {
+    "reviewer": "Oslo-20 industrial history source review",
+    "reviewedAt": "2026-10-19",
+    "notes": "Kontrollert lokalt skipsverft, kilder fra Oslo byleksikon, Norsk Teknisk Museum og SNL. Tidslinje, aktører, kildeperspektiv og dagens bevarede spor avgrenset uten å endre stedets QuizCard."
+  }
+}

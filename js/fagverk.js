@@ -415,6 +415,23 @@
         ${curriculum.editorial_introduction.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}
         <p class="fagverk-curriculum-reading-guide"><strong>Leseguide:</strong> ${escapeHtml(curriculum.editorial_introduction.reading_guide)}</p>
       </section>
+      <section id="politikk-polen-2023" class="fagverk-curriculum-introduction" aria-labelledby="politikk-polen-title">
+        <p class="fagverk-kicker">Kildebasert øvelse · fem trinn</p>
+        <h3 id="politikk-polen-title">Valgintegritet og demokratisk tilbakegang: Polen 2023</h3>
+        <p>Undersøk hva valgobservatørene fant, hvilke konklusjoner kildene støtter, og hvilke reformer som kan begrunnes. Etter oppgavene får du forklaringer og lenker til originalkildene.</p>
+        <button type="button" id="politikkPolandPathwayStart">Start femtrinnsforløpet</button>
+        <p id="politikkPolandPathwayError" role="alert" hidden></p>
+        <div id="politikkPolandPathwayReview" hidden aria-live="polite"></div>
+        <h4>Ungarn 2022 og Polen 2023 – komparativ øvelse</h4>
+        <p>Sammenlign valgadministrasjon, statsressurser, mediedekning, finansiering og kildebelegg i begge land.</p>
+        <button type="button" id="politikkHungaryPolandPathwayStart">Start sammenligningen</button>
+        <p id="politikkHungaryPolandPathwayError" role="alert" hidden></p>
+        <div id="politikkHungaryPolandPathwayReview" hidden aria-live="polite"></div>
+        <h4>Bevisverksted: bygg din egen sammenligning</h4>
+        <p>Bruk to observatørrapporter som belegg, skill mekanisme fra årsaksbevis og skriv en begrunnet vurdering uten automatisk mestringspoeng.</p>
+        <button type="button" id="politikkEvidenceWorkshopStart">Åpne bevisverkstedet</button>
+        <div id="politikkEvidenceWorkshop" hidden aria-live="polite"></div>
+      </section>
       <div class="fagverk-general-summary" aria-label="Politikkfagets oppbygning">
         <div><strong>${model.summary.domainCount}</strong><span>fagområder</span></div>
         <div><strong>${model.summary.emneCount}</strong><span>emner</span></div>
@@ -436,6 +453,39 @@
       </section>
       <section><details class="fagverk-method-registry"><summary>Åpne komplett canonicalt fagregister</summary><p class="fagverk-section-intro">Registeret inneholder alle ${model.summary.domainCount} tekniske fagområder, ${model.summary.emneCount} emner og ${model.summary.methodCount} metoder. Det bevares for quizer, evidens og stedskoblinger, men styrer ikke lenger hovedoversikten.</p><div class="fagverk-general-domain-grid">${model.domains.map((domain) => domainCard(model, domain, new Map(progress.domainProgress.map((row) => [row.domainId, row])), placeId)).join('')}</div></details></section>
     `;
+    const pathwayStart = document.getElementById('politikkPolandPathwayStart');
+    pathwayStart?.addEventListener('click', async () => {
+      const errorBox = document.getElementById('politikkPolandPathwayError');
+      if (errorBox) { errorBox.hidden = true; errorBox.textContent = ''; }
+      pathwayStart.disabled = true;
+      try {
+        const started = await global.QuizEngine?.startSubjectPathway?.('politikk');
+        if (!started && errorBox) {
+          errorBox.textContent = 'Fagområdeforløpet kunne ikke åpnes. Prøv igjen senere.';
+          errorBox.hidden = false;
+        }
+      } finally { pathwayStart.disabled = false; }
+    });
+    const compareStart = document.getElementById('politikkHungaryPolandPathwayStart');
+    compareStart?.addEventListener('click', async () => {
+      const errorBox = document.getElementById('politikkHungaryPolandPathwayError');
+      if (errorBox) { errorBox.hidden = true; errorBox.textContent = ''; }
+      compareStart.disabled = true;
+      try {
+        const started = await global.QuizEngine?.startSubjectPathway?.('politikk', 'pathway_politikk_valgintegritet_ungarn_2022_polen_2023');
+        if (!started && errorBox) {
+          errorBox.textContent = 'Sammenligningen kunne ikke åpnes. Prøv igjen senere.';
+          errorBox.hidden = false;
+        }
+      } finally { compareStart.disabled = false; }
+    });
+    const workshopStart = document.getElementById('politikkEvidenceWorkshopStart');
+    workshopStart?.addEventListener('click', async () => {
+      const workshop = document.getElementById('politikkEvidenceWorkshop');
+      workshopStart.disabled = true;
+      try { await global.HGPolitikkEvidenceWorkshop?.start?.(workshop); }
+      finally { workshopStart.disabled = false; }
+    });
     const search = document.getElementById('politikkConceptSearch');
     const domainFilter = document.getElementById('politikkConceptDomain');
     const count = document.getElementById('politikkConceptCount');

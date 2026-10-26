@@ -1,0 +1,198 @@
+name: Oslo six Commons crop QA artifacts
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/oslo-six-commons-images.yml'
+      - 'scripts/prepare-oslo-six-commons-webp.py'
+      - 'scripts/build-oslo-six-portrait-review.py'
+      - 'scripts/build-oslo-six-portrait-alternates.py'
+      - 'reports/place-production/oslo-six-image-rights-shortlist-20261022.json'
+      - 'reports/place-production/oslo-six-generated-image-attribution-20261022.json'
+      - 'bilder/places/auto/*__commons_*.webp'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-six-commons-crops-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prepare:
+    permissions:
+      contents: write
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 6563 && github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out pull request head for deterministic source-image verification
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install locked crop dependency
+        run: python -m pip install --disable-pip-version-check "Pillow==11.3.0"
+      - name: Regenerate five licensed Commons originals into fifteen WebP crops
+        run: python scripts/prepare-oslo-six-commons-webp.py
+      - name: Verify committed binary images are exactly reproducible
+        run: |
+          git diff --exit-code -- bilder/places/auto/*__commons_*.webp reports/place-production/oslo-six-generated-image-attribution-20261022.json
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          doc=json.loads(Path('reports/place-production/oslo-six-generated-image-attribution-20261022.json').read_text(encoding='utf-8'))
+          expected={'linderud_gard','ekebergrestauranten','frognerseteren','sarabraten','saeterhytten_bygdoy'}
+          assert {p['place_id'] for p in doc['places']}==expected
+          files=[v for p in doc['places'] for v in p['variants']]
+          assert len(files)==15
+          assert len({v['path'] for v in files})==15
+          for p in doc['places']:
+            assert p['canonical_place_bound'] is False
+            assert p['attribution_display_checked'] is False
+          for v in files:
+            assert hashlib.sha256(Path(v['path']).read_bytes()).hexdigest()==v['sha256']
+          print('15 reproducible SHA-256-checked WebPs / 5 sources / zero live Place bindings')
+          PY
+      - name: Self-test independent portrait crop from original photographs
+        run: python scripts/build-oslo-six-portrait-review.py --self-test
+      - name: Generate portrait frontImage candidates from original credited JPEGs
+        run: python scripts/build-oslo-six-portrait-review.py
+      - name: Validate portrait candidates remain separate from approved Place assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          root=Path('tmp/oslo-six-portrait-review')
+          doc=json.loads((root/'review.json').read_text(encoding='utf-8'))
+          assert doc['schema']=='history_go_oslo_six_frontimage_review_candidates_v2'
+          assert doc['status']=='ORIGINAL_SOURCE_CROPS_ARTIFACT_ONLY_VISUAL_REVIEW_REQUIRED'
+          entries=doc['candidates']
+          assert len(entries)==10
+          assert len({(x['place_id'],x['mode']) for x in entries})==10
+          assert {x['mode'] for x in entries}=={'center_original','offset_original'}
+          assert len({x['place_id'] for x in entries})==5
+          assert doc['pair_distinct_sha256'] is True
+          for pid in {x['place_id'] for x in entries}:
+            sha256s={x['sha256'] for x in entries if x['place_id']==pid}
+            assert len(sha256s)==2, f'{pid}: portrait review candidates are identical'
+          for row in entries:
+            assert not row['visually_approved'] and not row['runtime_registered']
+            assert row['width']==900 and row['height']==1350
+            assert row['source_provenance']=='VERIFIED_ORIGINAL_COMMONS_JPEG'
+            assert row['derived_from_lead_or_card_image'] is False
+            assert len(row['original_sha1'])>=30
+            assert row['source_original_dimensions'][0]>0
+            assert row['path'].startswith('tmp/oslo-six-portrait-review/')
+            assert row['author'] and row['license'] and row['source_page']
+            assert hashlib.sha256(Path(row['path']).read_bytes()).hexdigest()==row['sha256']
+          assert (root/'portrait-contact-sheet.jpg').is_file()
+          print('10 original JPEG-derived standing candidates / contact sheet / zero live bindings')
+          PY
+      - name: Generate read-only new-source alternative portrait candidates
+        run: python scripts/build-oslo-six-portrait-alternates.py
+      - name: Verify alternative portraits are safe, distinct and not promoted
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('tmp/oslo-six-portrait-alternates/review.json')
+          data=json.loads(p.read_text(encoding='utf-8'))
+          assert data['status']=='ARTIFACT_ONLY_UNREVIEWED_NEVER_RUNTIME'
+          assert data['count']==3 and data['visual_approval_count']==0 and data['active_place_bindings']==0
+          assert set(data['places'])=={'ekebergrestauranten','frognerseteren'}
+          rows=data['proposals']
+          assert len(rows)==3
+          assert len({x['sha256'] for x in rows})==3
+          for row in rows:
+            f=Path(row['path'])
+            assert f.is_file() and f.suffix=='.webp'
+            assert row['width']==900 and row['height']==1350
+            assert not row['visual_approved'] and not row['committed_to_runtime']
+            assert row['author'] and row['license'] and row['source_page']
+            assert hashlib.sha256(f.read_bytes()).hexdigest()==row['sha256']
+          assert Path('tmp/oslo-six-portrait-alternates/alternate-contact-sheet.jpg').is_file()
+          PY
+      - name: Upload image QA bundle with source credits
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-six-commons-image-review
+          path: |
+            bilder/places/auto/*__commons_*.webp
+            reports/place-production/oslo-six-generated-image-attribution-20261022.json
+            tmp/oslo-six-portrait-review/*.webp
+            tmp/oslo-six-portrait-review/review.json
+            tmp/oslo-six-portrait-review/portrait-contact-sheet.jpg
+            tmp/oslo-six-portrait-alternates/*.webp
+            tmp/oslo-six-portrait-alternates/review.json
+            tmp/oslo-six-portrait-alternates/alternate-contact-sheet.jpg
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Commit five verified portrait candidate assets to PR branch
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 6563 && github.event.pull_request.head.repo.full_name == github.repository }}
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          python - <<'PY'
+          import hashlib, json, shutil
+          from pathlib import Path
+          from PIL import Image
+          target=Path('bilder/places/auto')
+          source1=json.loads(Path('tmp/oslo-six-portrait-review/review.json').read_text(encoding='utf-8'))
+          source2=json.loads(Path('tmp/oslo-six-portrait-alternates/review.json').read_text(encoding='utf-8'))
+          # Explicitly inspected compositions; no guesswork during publication.
+          selected={
+            'linderud_gard':('offset_original','2cb9ded70072f7aa8aeb7418891e1ebdd1760b3793a11cead1b056af21786484'),
+            'ekebergrestauranten':('original_aspect_centered','4fe4bbd5d19caef27f34085f56a88817bcce21dc11b82ad62c065a4c5b689de3'),
+            'frognerseteren':('center_original','8e153e47a7f94d9f93d30bd92262fe3c64effba2a079a90ba1ac9f10e2f21557'),
+            'sarabraten':('offset_original','c5ded8496acaa88f651ca29e4a93434add461bc3c3b442c62facdf932b2110c0'),
+            'saeterhytten_bygdoy':('center_original','761fc5c1e4281b89816d2aea5b86a02934c4da8ed194e4a6ce17873929c3db8e')
+          }
+          a={(row['place_id'],row['mode']):row for row in source1['candidates']}
+          b={(row['place_id'],row['mode']):row for row in source2['proposals']}
+          rows=[]
+          for place_id,(mode,expected) in selected.items():
+            row=(b if place_id in {'ekebergrestauranten','frognerseteren'} else a).get((place_id,mode))
+            assert row is not None,place_id
+            src=Path(row['path'])
+            assert src.is_file(),src
+            actual=hashlib.sha256(src.read_bytes()).hexdigest()
+            assert expected==row['sha256']==actual,place_id
+            with Image.open(src) as im:
+              assert im.size==(900,1350) and im.format=='WEBP',place_id
+            dst=target/(place_id+'__front_portrait.webp')
+            if dst.exists():
+              assert hashlib.sha256(dst.read_bytes()).hexdigest()==expected,place_id+' asset drift'
+            else:
+              shutil.copyfile(src,dst)
+            rows.append({
+              'place_id':place_id,'path':dst.as_posix(),'source_page':row['source_page'],
+              'author':row['author'],'license':row['license'],'license_url':row['license_url'],
+              'sha256':expected,'width':900,'height':1350,
+              'role':'portrait_frontImage_candidate','canonical_place_bound':False,
+              'source_credit_rendered_in_app':False,'app_browser_qa_passed':False
+            })
+          release={
+            'schema':'history_go_oslo_six_portrait_candidate_assets_v1',
+            'date':'2026-10-23',
+            'status':'BINARY_IN_REPO_NOT_REGISTERED_IN_CANONICAL_PLACE',
+            'count':len(rows),'sites':rows,
+            'note':'These are genuine separate portrait WebP images, not active frontImage bindings. Exact GPS anchors, credit rendering, live app browser QA and approved source claims are still mandatory.'
+          }
+          assert len(rows)==5
+          Path('reports/place-production/oslo-six-frontimage-candidate-assets-20261023.json').write_text(
+            json.dumps(release,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          print('Five original-source portraits staged, matched SHA-256 and ready for PR review.')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/places/auto/*__front_portrait.webp reports/place-production/oslo-six-frontimage-candidate-assets-20261023.json
+          if ! git diff --cached --quiet; then
+            git commit -m "History Go: check in five source-verified standing portrait image candidates"
+            git push origin "HEAD:refs/heads/${TARGET_BRANCH}"
+          fi

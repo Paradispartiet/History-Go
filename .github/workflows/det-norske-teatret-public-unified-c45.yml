@@ -1,0 +1,40 @@
+name: Det Norske Teatret C45 public unified Kilder QA
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/det-norske-teatret-public-unified-c45.yml'
+      - 'tests/det-norske-teatret-public-unified-c45.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dnt-c45-public-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deployed-unified-kilder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify PUBLIC GitHub Pages C44 unified PlaceCard Kilder
+        run: node tests/det-norske-teatret-public-unified-c45.mjs
+      - name: Preserve screenshot and provenance evidence, including on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dnt-c45-public-unified-evidence
+          path: artifacts/dnt-c45/*
+          if-no-files-found: warn
+          retention-days: 7

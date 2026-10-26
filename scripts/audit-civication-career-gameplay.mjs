@@ -225,7 +225,15 @@ const testFiles = walk('tests').filter((rel) =>
   // Wave-A narrative integration verifies the shared inbox and historical
   // personal choices. Mentions of a career in its fixture are not evidence
   // that the career's workday or competency gameplay is implemented.
-  !/^tests\/civication-wave-a-(inbox-integration|transition-safety)\.test\.js$/.test(rel)
+  !/^tests\/civication-wave-a-(inbox-integration|transition-safety)\.test\.js$/.test(rel) &&
+  // Life Story UI recovery exercises narrative saves and job selection,
+  // not the role's workday/competency engine. Keep that boundary explicit.
+  rel !== 'tests/civication-lifestory-player-journey.test.js' &&
+  // Narrative ending tests cover epilogues, not a role's daily career gameplay.
+  // Incidental role mentions must not become career-test evidence.
+  rel !== 'tests/civication-lifestory-endings.test.js' &&
+  // Vitality narrative tests are not proof of independent career workday gameplay.
+  !/^tests\/civication-lifestory-vitality-/.test(rel)
 );
 const testTexts = testFiles.map((rel) => ({ rel, text: fs.readFileSync(abs(rel), 'utf8') }));
 const globalRuntimeTests = [
@@ -612,6 +620,32 @@ if (write) {
   for (const [rel, expected] of [[MATRIX_PATH, matrixText], [REPORT_PATH, reportText]]) {
     if (!exists(rel) || fs.readFileSync(abs(rel), 'utf8') !== expected) {
       console.error(`${rel} is stale. Run node scripts/audit-civication-career-gameplay.mjs --write.`);
+      if (rel === MATRIX_PATH && exists(rel)) {
+        const changes = [];
+        function showDiff(before, after, prefix) {
+          if (changes.length >= 70 || JSON.stringify(before) === JSON.stringify(after)) return;
+          if (Array.isArray(before) && Array.isArray(after)) {
+            if (before.every((x) => x === null || typeof x !== 'object') &&
+                after.every((x) => x === null || typeof x !== 'object')) {
+              changes.push({
+                path: prefix, from: before.length, to: after.length,
+                removed: before.filter((item) => !after.includes(item)).slice(0, 6),
+                added: after.filter((item) => !before.includes(item)).slice(0, 6)
+              });
+            } else {
+              if (before.length !== after.length) changes.push({ path: prefix + '.length', from: before.length, to: after.length });
+              for (let i = 0; i < Math.max(before.length, after.length); i++)
+                showDiff(before[i], after[i], prefix + '[' + i + ']');
+            }
+          } else if (before && after && typeof before === 'object' && typeof after === 'object') {
+            for (const key of new Set([...Object.keys(before), ...Object.keys(after)])) {
+              showDiff(before[key], after[key], prefix ? prefix + '.' + key : key);
+            }
+          } else changes.push({ path: prefix, from: before, to: after });
+        }
+        showDiff(JSON.parse(fs.readFileSync(abs(rel), 'utf8')), matrix, '');
+        console.error('Generated matrix differences:', JSON.stringify(changes));
+      }
       process.exit(1);
     }
   }
@@ -619,3 +653,4 @@ if (write) {
 } else {
   console.log(JSON.stringify(matrix.summary, null, 2));
 }
+

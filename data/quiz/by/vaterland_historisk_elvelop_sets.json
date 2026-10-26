@@ -1,7 +1,7 @@
 {
   "targetId": "vaterland_historisk_elvelop",
   "categoryId": "by",
-  "generator_version": "history_go_manual_v2_source_backed_42q",
+  "generator_version": "history_go_source_verified_narrow_3x7_20261021",
   "generated_from": [
     "data/places/natur/oslo/places_oslo_natur_akerselvarute/vaterland_historisk_elvelop.json",
     "data/stories/stories_vaterland.json",
@@ -13,7 +13,22 @@
       "Ingen påstand om at hele Akerselva ligger i tunnel.",
       "Ingen plan om gjenåpning presenteres som gjennomført.",
       "Ingen arter eller økologiske tilstander inne i kulverten hardkodes."
-    ]
+    ],
+    "editorialReview": {
+      "reviewedAt": "2026-10-21",
+      "format": "narrow_3x7",
+      "previousQuestions": 42,
+      "activeQuestions": 21,
+      "retainedFirstSets": 2,
+      "focus": "verified site-specific history and geography; retire generic terminology and meta questions",
+      "sourcePackets": [
+        "data/places/production/vaterland_historisk_elvelop.json"
+      ],
+      "quizCardsPreserved": true,
+      "furtherReviewedAt": "2026-10-21",
+      "additionalSourceRewrites": 3,
+      "notes": "Erstattet interne stedsankre og vurderingsspørsmål med lokalhistoriske faktaspørsmål; eksisterende QuizCard-ID-er urørt."
+    }
   },
   "sets": [
     {
@@ -30,15 +45,15 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva representerer dette History Go-stedet?",
+          "question": "Hvilken strekning av Akerselva lå tidligere åpen nedenfor Vaterlands bru?",
           "options": [
-            "Det historiske åpne elveløpet fra Vaterlands bru mot Bjørvika",
-            "Bare Vaterlandsparken",
-            "Bare Nybrua"
+            "Elveløpet sørover mot Bjørvika",
+            "Strekningen mellom Nydalen og Frysja",
+            "Elven rundt Maridalsvannet"
           ],
-          "answer": "Det historiske åpne elveløpet fra Vaterlands bru mot Bjørvika",
+          "answer": "Elveløpet sørover mot Bjørvika",
           "answerIndex": 0,
-          "knowledge": "Stedet modellerer en historisk elvestrekning, ikke parken eller en enkelt bro.",
+          "knowledge": "Akerselvas nedre elveløp gikk tidligere åpent fra Vaterlands bru mot Bjørvika.",
           "difficulty": 1,
           "question_type": "identity",
           "tags": [
@@ -47,8 +62,8 @@
             "identitet"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
+            "https://snl.no/Akerselva",
+            "https://oslobyleksikon.no/side/Akerselva"
           ],
           "claim_basis": "source_backed_identity",
           "primary_knowledge_unit_id": "ku_by_stedet_modellerer_en_his_b97a3708d3",
@@ -58,25 +73,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_barrierer_forbindelser",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_offentlige_rom_motesteder",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_parker_som_sosial_infrastruktur",
-                "score": 3
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q2",
@@ -85,7 +89,7 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hvilket fysisk punkt brukes som startanker for den historiske linjen?",
+          "question": "Hvilken bru krysser Akerselva mellom Brugata og Grønland?",
           "options": [
             "Vaterlands bru",
             "Nybrua",
@@ -93,44 +97,38 @@
           ],
           "answer": "Vaterlands bru",
           "answerIndex": 0,
-          "knowledge": "Vaterlands bru er det kildebelagte startankeret, ikke et påstått sentrum for hele den gamle elvestrekningen.",
+          "knowledge": "Vaterlands bru forbinder Brugata og Grønland. Herfra fortsatte Akerselva tidligere i et åpent elveløp mot Bjørvika.",
           "difficulty": 1,
-          "question_type": "anchor",
+          "question_type": "stedskonkret",
           "tags": [
             "Vaterlands bru",
             "historical_anchor"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://www.openstreetmap.org/way/381749953"
+            "https://oslobyleksikon.no/side/Vaterlands_bru"
           ],
-          "claim_basis": "source_backed_anchor",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_by_vaterlands_bru_er_det_ki_be425db4aa",
           "knowledge_unit_ids": [
-            "ku_by_vaterlands_bru_er_det_ki_be425db4aa"
+            "ku_by_vaterlands_bru_er_det_ki_be425db4aa",
+            "ku_by_herfra_fortsatte_akersel_ca98711887"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_bygningstyper_og_typologier",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_dodt_vs_aktivt_gateniva",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_estetikk_vs_funksjon",
-                "score": 3
-              }
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.8200000000000001,
+            "score": 7,
+            "matched": [
+              "tid",
+              "kryss"
             ]
-          }
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q3",
@@ -167,21 +165,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_bygningstyper_og_typologier",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_planjuss_styringsverktoy",
-                "score": 1
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q4",
@@ -217,25 +208,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_sosiale_knutepunkt",
-                "score": 2
-              },
-              {
-                "emne_id": "em_by_mikroklima_og_var",
-                "score": 1
-              },
-              {
-                "emne_id": "em_by_prisniva_kjededominans_tomme_lokaler",
-                "score": 1
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q5",
@@ -244,26 +224,25 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva er den viktigste forskjellen mellom dette stedet og Vaterlandsparken?",
+          "question": "Hva het de sju små smugene fra Elvegata ned til elva og sjøbuene?",
           "options": [
-            "Dette er en historisk elvelinje; parken er et eget grøntområde",
-            "De er samme fysiske objekt",
-            "Elvelinjen ligger nord for Nydalen"
+            "Elvegangene",
+            "Fossesmuget",
+            "Sagstiene"
           ],
-          "answer": "Dette er en historisk elvelinje; parken er et eget grøntområde",
+          "answer": "Elvegangene",
           "answerIndex": 0,
-          "knowledge": "Historisk elveløp og park er separate steder med ulike koordinater, historier og fysiske roller.",
+          "knowledge": "Elvegangene var sju små forbindelser mellom Elvegata og vannet, med sjøbuer ved den gamle elvefronten.",
           "difficulty": 1,
-          "question_type": "contrast",
+          "question_type": "stedskonkret",
           "tags": [
             "Vaterlandsparken",
             "modellering"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://oslobyleksikon.no/side/Vaterland"
+            "https://oslobyleksikon.no/side/Elvegata"
           ],
-          "claim_basis": "canonical_place_split",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_by_historisk_elvel_p_og_par_d8f8b66aa6",
           "knowledge_unit_ids": [
             "ku_by_historisk_elvel_p_og_par_d8f8b66aa6"
@@ -271,25 +250,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_navneskilt_plaketter_minner",
-                "score": 5
-              },
-              {
-                "emne_id": "em_by_offentlige_rom_motesteder",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_parker_som_sosial_infrastruktur",
-                "score": 3
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q6",
@@ -298,26 +266,25 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva kan du faktisk observere fra ankerpunktet i dag?",
+          "question": "Hvilken gate fulgte den gamle elvekanten ved Vaterland?",
           "options": [
-            "Overgangen mellom synlig elverom og retningen vannet fortsetter under byen",
-            "Hele tunnelens innside",
-            "Et urørt naturlandskap"
+            "Elvegata",
+            "Sagveien",
+            "Akersgata"
           ],
-          "answer": "Overgangen mellom synlig elverom og retningen vannet fortsetter under byen",
+          "answer": "Elvegata",
           "answerIndex": 0,
-          "knowledge": "Stedet kan leses gjennom bro, terreng, vannretning og overflaten over den skjulte infrastrukturen.",
+          "knowledge": "Elvegata gikk langs den gamle elvestrekningen mellom området ved Schweigaards bru og Lilletorget.",
           "difficulty": 1,
-          "question_type": "observation",
+          "question_type": "stedskonkret",
           "tags": [
             "synlig_vann",
             "skjult_vann"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
+            "https://oslobyleksikon.no/side/Elvegata"
           ],
-          "claim_basis": "observable_and_source_backed",
+          "claim_basis": "verified_sources",
           "primary_knowledge_unit_id": "ku_by_stedet_kan_leses_gjennom_64c023304c",
           "knowledge_unit_ids": [
             "ku_by_stedet_kan_leses_gjennom_64c023304c"
@@ -325,25 +292,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_barrierer_forbindelser",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_urban_metabolisme_vann_energi_avfall_mat",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_klima_blagronn_klimatilpasning",
-                "score": 5
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         },
         {
           "id": "vaterland_elvelop_s1_q7",
@@ -352,15 +308,15 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hvilket år brukes som canonical år for stedsposten?",
+          "question": "Hva skjedde med Elvegata og Elvegangene ved Vaterland i 1989?",
           "options": [
-            "1964",
-            "1654",
-            "1959"
+            "De ble bortregulert",
+            "De ble opprettet som nye gangveier",
+            "De ble omdøpt til Akerselvpromenaden"
           ],
-          "answer": "1964",
+          "answer": "De ble bortregulert",
           "answerIndex": 0,
-          "knowledge": "1964 markerer starten på overgangen fra åpent elveløp til tunnelert vannløp; 1654 og 1959 beholdes i tidslinjen.",
+          "knowledge": "Oslo byleksikon oppgir at Elvegata og Elvegangene ble bortregulert i 1989.",
           "difficulty": 1,
           "question_type": "modeling",
           "tags": [
@@ -368,8 +324,7 @@
             "1964"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
+            "https://oslobyleksikon.no/side/Elvegata"
           ],
           "claim_basis": "modeling_decision_from_source",
           "primary_knowledge_unit_id": "ku_by_1964_markerer_starten_pa_aa55e4d372",
@@ -379,25 +334,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_flaskehalser_kryss_friksjon",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_funksjonsdeling_vs_blandet_by",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_gangstrommer_snarveier",
-                "score": 6
-              }
-            ]
-          }
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "emne_ids": [
+            "em_by_flaskehalser_kryss_friksjon"
+          ]
         }
       ]
     },
@@ -713,15 +657,15 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva er en presis måte å bruke broåret 1654 på?",
+          "question": "Hvilken bru kom i 1827 og avsluttet Vaterlands brus rolle som eneste bru til østlige forsteder?",
           "options": [
-            "Som et tidslag for startankeret, ikke som år for tunneleringen",
-            "Som år for Vaterlandsparken",
-            "Som år for Oslo S"
+            "Nybrua",
+            "Ankerbrua",
+            "Hausmanns bru"
           ],
-          "answer": "Som et tidslag for startankeret, ikke som år for tunneleringen",
+          "answer": "Nybrua",
           "answerIndex": 0,
-          "knowledge": "1654 beskriver brohistorien, mens 1964 brukes som canonical år for overgang til skjult elveløp.",
+          "knowledge": "Vaterlands bru hadde fra 1654 til 1827 vært den eneste brua mellom Christiania og forstedene på østsiden av Akerselva.",
           "difficulty": 2,
           "question_type": "source_modeling",
           "tags": [
@@ -729,8 +673,7 @@
             "1964"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Vaterland"
+            "https://oslobyleksikon.no/side/Vaterlands_bru"
           ],
           "claim_basis": "chronology_modeling",
           "emne_ids": [
@@ -854,15 +797,15 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hvorfor er maleriet og fotografiet viktige?",
+          "question": "Når begynte den omfattende saneringen av Vaterland?",
           "options": [
-            "De dokumenterer et bymiljø som senere forsvant",
-            "De viser tunnelens innside",
-            "De er kart over Nydalen"
+            "1959",
+            "1654",
+            "1989"
           ],
-          "answer": "De dokumenterer et bymiljø som senere forsvant",
+          "answer": "1959",
           "answerIndex": 0,
-          "knowledge": "Visuelle kilder gjør den tapte elvekanten, bebyggelsen og gaten lesbare.",
+          "knowledge": "Saneringen begynte i 1959 og fjernet store deler av den eldre bebyggelsen.",
           "difficulty": 2,
           "question_type": "source_use",
           "tags": [
@@ -870,7 +813,7 @@
             "tapte_miljøer"
           ],
           "source": [
-            "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)"
+            "https://oslobyleksikon.no/side/Vaterland"
           ],
           "claim_basis": "source_backed_interpretation",
           "emne_ids": [
@@ -896,15 +839,15 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva kan et historisk bilde ikke alene bevise?",
+          "question": "Hva skjedde med mye av den eldre bebyggelsen i Vaterland under saneringen?",
           "options": [
-            "Hele elveløpets nøyaktige tekniske geometri",
-            "At Elvegata fantes",
-            "At bygninger stod langs gaten"
+            "Den ble revet",
+            "Den ble flyttet samlet til Grünerløkka",
+            "Den ble stående uendret"
           ],
-          "answer": "Hele elveløpets nøyaktige tekniske geometri",
+          "answer": "Den ble revet",
           "answerIndex": 0,
-          "knowledge": "Bilder dokumenterer motiver og miljøer, men må kombineres med kart og andre kilder for presis geometri.",
+          "knowledge": "Saneringen fra 1959 førte til at store deler av den eldre bygningsmassen i Vaterland forsvant.",
           "difficulty": 2,
           "question_type": "source_criticism",
           "tags": [
@@ -912,8 +855,7 @@
             "geometri"
           ],
           "source": [
-            "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)",
-            "https://www.openstreetmap.org/way/381749953"
+            "https://oslobyleksikon.no/side/Vaterland"
           ],
           "claim_basis": "source_criticism",
           "emne_ids": [
@@ -939,15 +881,15 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hva bør spilleren sammenligne med de historiske bildene?",
+          "question": "Hva er den viktigste forskjellen mellom gamle bilder av Elvegata og byrommet i dag?",
           "options": [
-            "Dagens overflater, ferdselslinjer og fraværet av den gamle elvegaten",
-            "Aktuelle butikkpriser",
-            "Været i 1895"
+            "Elvegata og den åpne elvekanten er ikke lenger synlige som før",
+            "Elveløpet er nå bredere og helt åpent gjennom Vaterland",
+            "Alle bygningene står på samme sted"
           ],
-          "answer": "Dagens overflater, ferdselslinjer og fraværet av den gamle elvegaten",
+          "answer": "Elvegata og den åpne elvekanten er ikke lenger synlige som før",
           "answerIndex": 0,
-          "knowledge": "Før/nå-lesningen kobler dokumenterte motiv til dagens omformede byrom.",
+          "knowledge": "Det historiske gatenettet og den åpne elvekanten ble endret gjennom sanering og tunnelføring.",
           "difficulty": 2,
           "question_type": "observation",
           "tags": [
@@ -955,8 +897,9 @@
             "stedlesning"
           ],
           "source": [
-            "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)",
-            "https://oslobyleksikon.no/side/Vaterland"
+            "https://oslobyleksikon.no/side/Elvegata",
+            "https://oslobyleksikon.no/side/Vaterland",
+            "https://snl.no/Akerselva"
           ],
           "claim_basis": "place_observation",
           "emne_ids": [
@@ -982,15 +925,15 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hvilken type verk er Blix-motivet i stedets works-runding?",
+          "question": "Hvilken kunstform ble brukt til å dokumentere gårdsplassen i Elvegata i 1895?",
           "options": [
-            "Historisk dokumentasjon gjennom maleri",
-            "Brofundament",
-            "Moderne reklameskilt"
+            "Maleri",
+            "Luftfotografi",
+            "Filmopptak"
           ],
-          "answer": "Historisk dokumentasjon gjennom maleri",
+          "answer": "Maleri",
           "answerIndex": 0,
-          "knowledge": "Maleri kan være et historisk dokument når det viser et konkret, senere tapt miljø.",
+          "knowledge": "Peter Andreas Blix dokumenterte en gårdsplass i Elvegata gjennom et maleri fra 1895.",
           "difficulty": 2,
           "question_type": "works",
           "tags": [
@@ -1028,15 +971,15 @@
           "placeId": "vaterland_historisk_elvelop",
           "targetId": "vaterland_historisk_elvelop",
           "question_scope": "place",
-          "question": "Hvilken type verk er Raabe-motivet?",
+          "question": "Hva viser Ruth Raabes fotografi fra 1931?",
           "options": [
-            "Historisk fotografi",
-            "Skulpturgruppe",
-            "Musikkverk"
+            "Elvegata sett fra Lilletorget før saneringen",
+            "Byggingen av Akerselvakulverten i 1969",
+            "Nybrua ved Nydalen i 1848"
           ],
-          "answer": "Historisk fotografi",
+          "answer": "Elvegata sett fra Lilletorget før saneringen",
           "answerIndex": 0,
-          "knowledge": "Fotografiet fra 1931 dokumenterer Elvegata før den store omformingen.",
+          "knowledge": "Fotografiet fra 1931 dokumenterer Elvegata sett fra Lilletorget før etterkrigstidens sanering.",
           "difficulty": 2,
           "question_type": "works",
           "tags": [
@@ -1062,1056 +1005,6 @@
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "by_vaterland_historisk_elvelop_set_4",
-      "level": 4,
-      "order": 4,
-      "xp": 80,
-      "mode": "sanering_and_tunnel",
-      "questions": [
-        {
-          "id": "vaterland_elvelop_s4_q1",
-          "quiz_id": "vaterland_elvelop_s4_q1",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Når begynte den omfattende saneringen av Vaterland?",
-          "options": [
-            "1959",
-            "1658",
-            "1993"
-          ],
-          "answer": "1959",
-          "answerIndex": 0,
-          "knowledge": "Rivingen av det eldre Vaterland begynte i 1959.",
-          "difficulty": 1,
-          "question_type": "chronology",
-          "tags": [
-            "sanering",
-            "1959"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Vaterland",
-            "https://snl.no/Vaterland"
-          ],
-          "claim_basis": "source_backed_date",
-          "primary_knowledge_unit_id": "ku_by_rivingen_av_det_eldre_va_d274a14cc3",
-          "knowledge_unit_ids": [
-            "ku_by_rivingen_av_det_eldre_va_d274a14cc3"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s4_q2",
-          "quiz_id": "vaterland_elvelop_s4_q2",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva skjedde med det eldre bymiljøet under saneringen?",
-          "options": [
-            "Nesten all eldre bebyggelse forsvant",
-            "Alt ble bevart uendret",
-            "Bare én parkbenk ble flyttet"
-          ],
-          "answer": "Nesten all eldre bebyggelse forsvant",
-          "answerIndex": 0,
-          "knowledge": "Saneringen fjernet nesten hele det eldre bystrøket.",
-          "difficulty": 2,
-          "question_type": "urban_change",
-          "tags": [
-            "sanering",
-            "tap"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Vaterland",
-            "https://snl.no/Vaterland"
-          ],
-          "claim_basis": "source_backed_change",
-          "primary_knowledge_unit_id": "ku_by_saneringen_fjernet_neste_09a11b517d",
-          "knowledge_unit_ids": [
-            "ku_by_saneringen_fjernet_neste_09a11b517d"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_urban_helse_miljo",
-                "score": 5
-              },
-              {
-                "emne_id": "em_by_urban_metabolisme_vann_energi_avfall_mat",
-                "score": 5
-              },
-              {
-                "emne_id": "em_by_mikroklima_og_var",
-                "score": 3
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s4_q3",
-          "quiz_id": "vaterland_elvelop_s4_q3",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva endret tunnelføringen ved elva?",
-          "options": [
-            "Et åpent elverom ble skjult vanninfrastruktur",
-            "Elva ble flyttet til Maridalen",
-            "Vannet sluttet å renne"
-          ],
-          "answer": "Et åpent elverom ble skjult vanninfrastruktur",
-          "answerIndex": 0,
-          "knowledge": "Vannet fortsatte, men kontakten mellom byrom og elv ble kraftig endret.",
-          "difficulty": 2,
-          "question_type": "infrastructure",
-          "tags": [
-            "kulvert",
-            "skjult_vann"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
-          ],
-          "claim_basis": "source_backed_transformation",
-          "primary_knowledge_unit_id": "ku_by_vannet_fortsatte_men_kon_ddbf5605e7",
-          "knowledge_unit_ids": [
-            "ku_by_vannet_fortsatte_men_kon_ddbf5605e7"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_midlertidig_handel_pop_up",
-                "score": 7
-              },
-              {
-                "emne_id": "em_by_sosiale_knutepunkt",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_stemning_lyd_lys_tetthet",
-                "score": 6
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s4_q4",
-          "quiz_id": "vaterland_elvelop_s4_q4",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hvorfor kan stedet beskrives som et dobbelt usynlig landskap?",
-          "options": [
-            "Både mye av gatenettet og den åpne elva forsvant fra overflaten",
-            "Det ligger to innsjøer under parken",
-            "Området har ingen historie"
-          ],
-          "answer": "Både mye av gatenettet og den åpne elva forsvant fra overflaten",
-          "answerIndex": 0,
-          "knowledge": "Saneringen fjernet bymiljøet, og kulverten skjulte elva.",
-          "difficulty": 3,
-          "question_type": "analysis",
-          "tags": [
-            "historiske_lag",
-            "dobbelt_tap"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Vaterland",
-            "https://oslobyleksikon.no/side/Akerselva"
-          ],
-          "claim_basis": "source_synthesis",
-          "primary_knowledge_unit_id": "ku_by_saneringen_fjernet_bymil_bf463fb0ba",
-          "knowledge_unit_ids": [
-            "ku_by_saneringen_fjernet_bymil_bf463fb0ba"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-                "score": 8
-              },
-              {
-                "emne_id": "em_by_stemning_lyd_lys_tetthet",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_materialitet_og_sanseerfaring",
-                "score": 3
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s4_q5",
-          "quiz_id": "vaterland_elvelop_s4_q5",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva er feil å si om tunnelen?",
-          "options": [
-            "At hele Akerselva ligger i tunnel",
-            "At strekningen mot Bjørvika ble lagt i tunnel",
-            "At arbeidet skjedde 1964–1969"
-          ],
-          "answer": "At hele Akerselva ligger i tunnel",
-          "answerIndex": 0,
-          "knowledge": "Bare den nedre strekningen fra Vaterlands bru mot Bjørvika beskrives her som tunnelert.",
-          "difficulty": 2,
-          "question_type": "precision",
-          "tags": [
-            "avgrensning",
-            "kildepresisjon"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
-          ],
-          "claim_basis": "scope_precision",
-          "primary_knowledge_unit_id": "ku_by_bare_den_nedre_strekning_cf9ae0557e",
-          "knowledge_unit_ids": [
-            "ku_by_bare_den_nedre_strekning_cf9ae0557e"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_estetikk_vs_funksjon",
-                "score": 2
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s4_q6",
-          "quiz_id": "vaterland_elvelop_s4_q6",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva bør ikke hardkodes som gjennomført?",
-          "options": [
-            "Planer om å gjenåpne elva",
-            "At Vaterlands bru finnes",
-            "At tunnelperioden var 1964–1969"
-          ],
-          "answer": "Planer om å gjenåpne elva",
-          "answerIndex": 0,
-          "knowledge": "Planer og forslag må ikke presenteres som ferdige tiltak uten aktuell dokumentasjon.",
-          "difficulty": 2,
-          "question_type": "holdback",
-          "tags": [
-            "gjenåpning",
-            "holdback"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva"
-          ],
-          "claim_basis": "time_sensitive_holdback",
-          "primary_knowledge_unit_id": "ku_by_planer_og_forslag_ma_ikk_1dbdd5349d",
-          "knowledge_unit_ids": [
-            "ku_by_planer_og_forslag_ma_ikk_1dbdd5349d"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_planjuss_styringsverktoy",
-                "score": 1
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s4_q7",
-          "quiz_id": "vaterland_elvelop_s4_q7",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva er den sikreste før/nå-sammenligningen?",
-          "options": [
-            "Åpent elveløp og elvenært gatenett mot dagens skjulte vannlinje og infrastruktur",
-            "Skog mot åker",
-            "Havn mot flyplass"
-          ],
-          "answer": "Åpent elveløp og elvenært gatenett mot dagens skjulte vannlinje og infrastruktur",
-          "answerIndex": 0,
-          "knowledge": "Stedets hovedendring er tapet av synlig elv og eldre hverdagsby.",
-          "difficulty": 2,
-          "question_type": "before_after",
-          "tags": [
-            "før_nå",
-            "byomforming"
-          ],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)",
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://oslobyleksikon.no/side/Vaterland"
-          ],
-          "claim_basis": "source_synthesis",
-          "primary_knowledge_unit_id": "ku_by_stedets_hovedendring_er__9e228f4e14",
-          "knowledge_unit_ids": [
-            "ku_by_stedets_hovedendring_er__9e228f4e14"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_dag_vs_natt",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_estetikk_vs_funksjon",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_gangstrommer_snarveier",
-                "score": 3
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "set_id": "by_vaterland_historisk_elvelop_set_5",
-      "level": 5,
-      "order": 5,
-      "xp": 90,
-      "mode": "urban_hydrology",
-      "questions": [
-        {
-          "id": "vaterland_elvelop_s5_q1",
-          "quiz_id": "vaterland_elvelop_s5_q1",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva betyr urban hydrologi ved dette stedet?",
-          "options": [
-            "Hvordan vannets løp styres og skjules av byens konstruksjoner",
-            "Bare artsregistrering i skog",
-            "Hvordan tog rutetabellføres"
-          ],
-          "answer": "Hvordan vannets løp styres og skjules av byens konstruksjoner",
-          "answerIndex": 0,
-          "knowledge": "Bro, kulvert, overflate og terreng bestemmer hvordan vannet oppleves i byen.",
-          "difficulty": 2,
-          "question_type": "concept",
-          "tags": [
-            "urban_hydrologi",
-            "infrastruktur"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
-          ],
-          "claim_basis": "conceptual_from_place",
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_bro_kulvert_overflate_og_4525631b5c",
-          "knowledge_unit_ids": [
-            "ku_by_bro_kulvert_overflate_og_4525631b5c"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "vaterland_elvelop_s5_q2",
-          "quiz_id": "vaterland_elvelop_s5_q2",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva er en kulvert?",
-          "options": [
-            "En lukket konstruksjon som fører vann under terreng eller anlegg",
-            "En åpen parkdam",
-            "En type trebro"
-          ],
-          "answer": "En lukket konstruksjon som fører vann under terreng eller anlegg",
-          "answerIndex": 0,
-          "knowledge": "Kulverten fører elva videre under den bygde overflaten.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "tags": [
-            "kulvert",
-            "vanninfrastruktur"
-          ],
-          "source": [
-            "https://snl.no/Akerselva"
-          ],
-          "claim_basis": "conceptual_definition",
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_kulverten_f_rer_elva_vid_cb57db69e1",
-          "knowledge_unit_ids": [
-            "ku_by_kulverten_f_rer_elva_vid_cb57db69e1"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "vaterland_elvelop_s5_q3",
-          "quiz_id": "vaterland_elvelop_s5_q3",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hvorfor er broen et godt anker for et linjested?",
-          "options": [
-            "Den er et presist, fysisk punkt ved starten av den dokumenterte strekningen",
-            "Den markerer hele tunnelens sentrum",
-            "Den ligger ved Maridalsvannet"
-          ],
-          "answer": "Den er et presist, fysisk punkt ved starten av den dokumenterte strekningen",
-          "answerIndex": 0,
-          "knowledge": "Et historisk linjested trenger et presist startpunkt uten å late som hele linjen er ett punkt.",
-          "difficulty": 3,
-          "question_type": "modeling",
-          "tags": [
-            "line_anchor",
-            "Vaterlands bru"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://www.openstreetmap.org/way/381749953"
-          ],
-          "claim_basis": "coordinate_modeling",
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_et_historisk_linjested_t_cb5c1a4031",
-          "knowledge_unit_ids": [
-            "ku_by_et_historisk_linjested_t_cb5c1a4031"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "vaterland_elvelop_s5_q4",
-          "quiz_id": "vaterland_elvelop_s5_q4",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva kan terrengfallet hjelpe deg å forstå?",
-          "options": [
-            "Retningen vannet fortsetter mot Bjørvika",
-            "Hvilken buss som kommer først",
-            "Hvem som eide en butikk i går"
-          ],
-          "answer": "Retningen vannet fortsetter mot Bjørvika",
-          "answerIndex": 0,
-          "knowledge": "Terreng, vannretning og broens plassering gjør den historiske linjen lettere å lese.",
-          "difficulty": 2,
-          "question_type": "observation",
-          "tags": [
-            "terreng",
-            "strømretning"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva"
-          ],
-          "claim_basis": "observable_inference",
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_terreng_vannretning_og_b_00a799db45",
-          "knowledge_unit_ids": [
-            "ku_by_terreng_vannretning_og_b_00a799db45"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "vaterland_elvelop_s5_q5",
-          "quiz_id": "vaterland_elvelop_s5_q5",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva skjer med en forbindelse når elva legges i tunnel?",
-          "options": [
-            "Vannet fortsetter, men den synlige kontakten og tilgangen endres",
-            "Vannet forsvinner fysisk",
-            "Broer blir automatisk parker"
-          ],
-          "answer": "Vannet fortsetter, men den synlige kontakten og tilgangen endres",
-          "answerIndex": 0,
-          "knowledge": "Kulverten opprettholder vannløpet, men forandrer det som byrom og sanseerfaring.",
-          "difficulty": 3,
-          "question_type": "barrier_connection",
-          "tags": [
-            "barrierer",
-            "forbindelser"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
-          ],
-          "claim_basis": "source_synthesis",
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_kulverten_opprettholder__d09e2fcf14",
-          "knowledge_unit_ids": [
-            "ku_by_kulverten_opprettholder__d09e2fcf14"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "vaterland_elvelop_s5_q6",
-          "quiz_id": "vaterland_elvelop_s5_q6",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hvorfor hardkodes ingen arter inne i kulverten?",
-          "options": [
-            "Det finnes ikke stedsspesifikk dokumentasjon i kildene som brukes",
-            "Fordi vann aldri har liv",
-            "Fordi arter bare finnes i parker"
-          ],
-          "answer": "Det finnes ikke stedsspesifikk dokumentasjon i kildene som brukes",
-          "answerIndex": 0,
-          "knowledge": "Nature-rundingen skal være presis og bygge på dokumenterte eller observerbare forhold.",
-          "difficulty": 2,
-          "question_type": "holdback",
-          "tags": [
-            "arter",
-            "kildekrav"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
-          ],
-          "claim_basis": "evidence_holdback",
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.81,
-            "score": 6,
-            "matched": [
-              "v r"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_by_nature_rundingen_skal_v__83533dfb36",
-          "knowledge_unit_ids": [
-            "ku_by_nature_rundingen_skal_v__83533dfb36"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "vaterland_elvelop_s5_q7",
-          "quiz_id": "vaterland_elvelop_s5_q7",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva er en god nature-observasjon her?",
-          "options": [
-            "Sammenligne synlig vann nord for brua med overflaten over den skjulte retningen sørover",
-            "Gjette arter i tunnelen",
-            "Måle en tilfeldig bygning"
-          ],
-          "answer": "Sammenligne synlig vann nord for brua med overflaten over den skjulte retningen sørover",
-          "answerIndex": 0,
-          "knowledge": "Kontrasten mellom åpent og skjult vann er stedets viktigste natur- og infrastrukturobservasjon.",
-          "difficulty": 2,
-          "question_type": "observation",
-          "tags": [
-            "nature",
-            "synlig_skjult"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
-          ],
-          "claim_basis": "observable_and_source_backed",
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_kontrasten_mellom_apent__6f2ea67531",
-          "knowledge_unit_ids": [
-            "ku_by_kontrasten_mellom_apent__6f2ea67531"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "by_vaterland_historisk_elvelop_set_6",
-      "level": 6,
-      "order": 6,
-      "xp": 100,
-      "mode": "advanced_synthesis",
-      "questions": [
-        {
-          "id": "vaterland_elvelop_s6_q1",
-          "quiz_id": "vaterland_elvelop_s6_q1",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva er den mest presise samlefortellingen om stedet?",
-          "options": [
-            "Et åpent elve- og hverdagsrom ble sanert og lagt under moderne infrastruktur",
-            "En park ble bygget i 1654",
-            "Nybrua ble flyttet til Bjørvika"
-          ],
-          "answer": "Et åpent elve- og hverdagsrom ble sanert og lagt under moderne infrastruktur",
-          "answerIndex": 0,
-          "knowledge": "Vaterland viser hvordan både vannlandskap og bymiljø kan bli skjult av store bygrep.",
-          "difficulty": 3,
-          "question_type": "synthesis",
-          "tags": [
-            "sanering",
-            "kulvert",
-            "historiske_lag"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Vaterland",
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)"
-          ],
-          "claim_basis": "multi_source_synthesis",
-          "primary_knowledge_unit_id": "ku_by_vaterland_viser_hvordan__82d229603a",
-          "knowledge_unit_ids": [
-            "ku_by_vaterland_viser_hvordan__82d229603a"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-                "score": 8
-              },
-              {
-                "emne_id": "em_by_urban_metabolisme_vann_energi_avfall_mat",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_mikroklima_og_var",
-                "score": 3
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s6_q2",
-          "quiz_id": "vaterland_elvelop_s6_q2",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hvorfor er 1964 bedre som canonical år enn 1654 for akkurat denne posten?",
-          "options": [
-            "Posten handler om overgangen fra åpent til skjult elveløp",
-            "1654 er feil broår",
-            "1964 er året Vaterlandsparken åpnet"
-          ],
-          "answer": "Posten handler om overgangen fra åpent til skjult elveløp",
-          "answerIndex": 0,
-          "knowledge": "1654 er et viktig tidslag for broen; 1964 markerer begynnelsen på stedets definerende transformasjon.",
-          "difficulty": 3,
-          "question_type": "modeling",
-          "tags": [
-            "canonical_year",
-            "chronology"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Vaterland"
-          ],
-          "claim_basis": "curatorial_modeling",
-          "primary_knowledge_unit_id": "ku_by_1654_er_et_viktig_tidsla_ab1c93a0a0",
-          "knowledge_unit_ids": [
-            "ku_by_1654_er_et_viktig_tidsla_ab1c93a0a0"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_transformasjon_ombruk",
-                "score": 4
-              },
-              {
-                "emne_id": "em_by_barrierer_forbindelser",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_bydelsforskjeller_segregering",
-                "score": 3
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s6_q3",
-          "quiz_id": "vaterland_elvelop_s6_q3",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hvordan bør historiske bilder brukes sammen med koordinater?",
-          "options": [
-            "Bildene viser miljøet; brogeometrien gir et presist fysisk anker",
-            "Bildene erstatter all kartkontroll",
-            "Koordinater gjør bilder unødvendige"
-          ],
-          "answer": "Bildene viser miljøet; brogeometrien gir et presist fysisk anker",
-          "answerIndex": 0,
-          "knowledge": "Ulike kildetyper løser ulike problemer: identitet, utseende, tid og geometri.",
-          "difficulty": 3,
-          "question_type": "source_method",
-          "tags": [
-            "kildetyper",
-            "geometri"
-          ],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)",
-            "https://www.openstreetmap.org/way/381749953"
-          ],
-          "claim_basis": "source_method",
-          "primary_knowledge_unit_id": "ku_by_ulike_kildetyper_l_ser_u_146faad204",
-          "knowledge_unit_ids": [
-            "ku_by_ulike_kildetyper_l_ser_u_146faad204"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_funksjonsdeling_vs_blandet_by",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_materialitet_og_sanseerfaring",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_opphold_vs_gjennomgang",
-                "score": 6
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s6_q4",
-          "quiz_id": "vaterland_elvelop_s6_q4",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva skiller dette stedet fra Akerselvas utløp i Bjørvika?",
-          "options": [
-            "Dette er den historiske skjulte strekningen; utløpet er endepunktet mot fjorden",
-            "De er samme koordinat",
-            "Utløpet ligger ved Nydalsdammen"
-          ],
-          "answer": "Dette er den historiske skjulte strekningen; utløpet er endepunktet mot fjorden",
-          "answerIndex": 0,
-          "knowledge": "Ruten går fra et historisk startanker gjennom en skjult strekning til et eget utløpssted.",
-          "difficulty": 3,
-          "question_type": "route_contrast",
-          "tags": [
-            "Bjørvika",
-            "rute"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
-          ],
-          "claim_basis": "route_modeling",
-          "primary_knowledge_unit_id": "ku_by_ruten_gar_fra_et_histori_6cbdf891ed",
-          "knowledge_unit_ids": [
-            "ku_by_ruten_gar_fra_et_histori_6cbdf891ed"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_navneskilt_plaketter_minner",
-                "score": 2
-              },
-              {
-                "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-                "score": 1
-              },
-              {
-                "emne_id": "em_by_ruiner_tomrom_restar",
-                "score": 1
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s6_q5",
-          "quiz_id": "vaterland_elvelop_s6_q5",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva viser Elvegangene om byens finmaskede forbindelser?",
-          "options": [
-            "Små passasjer kunne knytte hverdagsgaten direkte til vannet",
-            "Bare hovedveier hadde betydning",
-            "Elva var utilgjengelig i alle perioder"
-          ],
-          "answer": "Små passasjer kunne knytte hverdagsgaten direkte til vannet",
-          "answerIndex": 0,
-          "knowledge": "De små forbindelsene viser en annen nærhet til elva enn dagens store infrastruktursystem.",
-          "difficulty": 3,
-          "question_type": "urban_morphology",
-          "tags": [
-            "Elvegangene",
-            "hverdagsby"
-          ],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)"
-          ],
-          "claim_basis": "source_backed_interpretation",
-          "primary_knowledge_unit_id": "ku_by_de_sma_forbindelsene_vis_9c01b6c4bb",
-          "knowledge_unit_ids": [
-            "ku_by_de_sma_forbindelsene_vis_9c01b6c4bb"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_funksjonsdeling_vs_blandet_by",
-                "score": 9
-              },
-              {
-                "emne_id": "em_by_barrierer_forbindelser",
-                "score": 7
-              },
-              {
-                "emne_id": "em_by_infrastruktur_mobilitet",
-                "score": 7
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s6_q6",
-          "quiz_id": "vaterland_elvelop_s6_q6",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hva er den viktigste kildekritiske regelen for dette stedet?",
-          "options": [
-            "Skille dokumentert historisk linje fra påstander om nøyaktig tunnelgeometri og dagens økologi",
-            "Anta at alle planer er ferdige",
-            "Bruke bare ett bilde som hele historien"
-          ],
-          "answer": "Skille dokumentert historisk linje fra påstander om nøyaktig tunnelgeometri og dagens økologi",
-          "answerIndex": 0,
-          "knowledge": "Stedet må modelleres med tydelig skille mellom sikre fakta, ankerpunkt og holdbacks.",
-          "difficulty": 3,
-          "question_type": "source_criticism",
-          "tags": [
-            "kildekritikk",
-            "holdback"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva",
-            "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)"
-          ],
-          "claim_basis": "source_criticism",
-          "primary_knowledge_unit_id": "ku_by_stedet_ma_modelleres_med_dc404e4e54",
-          "knowledge_unit_ids": [
-            "ku_by_stedet_ma_modelleres_med_dc404e4e54"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_risiko_beredskap_robusthet",
-                "score": 1
-              }
-            ]
-          }
-        },
-        {
-          "id": "vaterland_elvelop_s6_q7",
-          "quiz_id": "vaterland_elvelop_s6_q7",
-          "categoryId": "by",
-          "placeId": "vaterland_historisk_elvelop",
-          "targetId": "vaterland_historisk_elvelop",
-          "question_scope": "place",
-          "question": "Hvilket neste sted fullfører den nedre elvefortellingen?",
-          "options": [
-            "Akerselvas utløp mot fjorden i Bjørvika",
-            "Frysjadammen",
-            "Vøienvolden gård"
-          ],
-          "answer": "Akerselvas utløp mot fjorden i Bjørvika",
-          "answerIndex": 0,
-          "knowledge": "Etter den skjulte strekningen følger ruten til Akerselvas utløp mot fjorden.",
-          "difficulty": 3,
-          "question_type": "next_scene",
-          "tags": [
-            "akerselva_utlop_bjorvika",
-            "rute"
-          ],
-          "source": [
-            "https://oslobyleksikon.no/side/Akerselva",
-            "https://snl.no/Akerselva"
-          ],
-          "claim_basis": "route_sequence",
-          "primary_knowledge_unit_id": "ku_by_etter_den_skjulte_strekn_b32cf9c3a5",
-          "knowledge_unit_ids": [
-            "ku_by_etter_den_skjulte_strekn_b32cf9c3a5"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_torg_plasser_som_scene",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_publikum_deltakelse_tilskuere",
-                "score": 5
-              },
-              {
-                "emne_id": "em_by_festivaler_arrangementer",
-                "score": 3
-              }
-            ]
-          }
         }
       ]
     }

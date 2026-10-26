@@ -82,6 +82,7 @@ function getGroundhopperStats() {
  */
 function saveGroundhopperStats(stats) {
   localStorage.setItem(GROUNDHOPPER_STATS_KEY, JSON.stringify(stats));
+  window.HistoryGoAHAAuth?.scheduleAutosave?.();
 }
 
 /**
@@ -230,6 +231,7 @@ function saveVisited() {
     "visited_places",
     JSON.stringify(window.visited)
   );
+  window.HistoryGoAHAAuth?.scheduleAutosave?.();
 
   renderCollection();
 
@@ -262,6 +264,7 @@ function savePeople() {
     "people_collected",
     JSON.stringify(peopleCollected)
   );
+  window.HistoryGoAHAAuth?.scheduleAutosave?.();
   // Refresh the people gallery if a renderer is present. Guarded like the
   // other call sites (boot.js, openmode.js); the function is optional and
   // is not defined when the gallery view is inactive.
@@ -273,6 +276,7 @@ function saveMerits() {
   const prevRaw = localStorage.getItem("merits_by_category");
   if (prevRaw === nextRaw) return;
   localStorage.setItem("merits_by_category", nextRaw);
+  window.HistoryGoAHAAuth?.scheduleAutosave?.();
   window.dispatchEvent(new Event("updateProfile"));
 }
 

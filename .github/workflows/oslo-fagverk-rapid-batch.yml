@@ -1,0 +1,47 @@
+name: Oslo Fagverk — multi-Place production batch
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/oslo-fagverk-rapid-batch.yml'
+      - 'tests/oslo-three-places-fagverk-batch-20261021.test.mjs'
+      - 'tests/oslo-batch04-fagverk-20261021.test.mjs'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv/*.json'
+      - 'data/places/historie/oslo/places_historie/sagene_skole.json'
+      - 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json'
+      - 'data/runtime/place-open/*.json'
+      - 'reports/place-production/det-norske-teatret-workcard-current.json'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json'
+      - 'data/runtime/place-open/havnelageret.json'
+      - 'data/quiz/production_context/naeringsliv/havnelageret.json'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv/tollbukaia.json'
+      - 'data/runtime/place-open/tollbukaia.json'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json'
+      - 'data/runtime/place-open/jernbaneverkstedet_lodalen.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: oslo-fagverk-batch-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate-batch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Check three real Fagverk Places, registry, release and Objects freeze
+        run: node --test tests/oslo-three-places-fagverk-batch-20261021.test.mjs
+      - name: Check 17 Oslo batch 04 canonical Fagverk Places
+        run: node --test tests/oslo-batch04-fagverk-20261021.test.mjs
+      - name: Canonical Fagverk release sync
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Place-open runtime sync
+        run: npm run place-open:check
+      - name: Existing Place Fagverk contracts
+        run: node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-substance-audit.test.mjs

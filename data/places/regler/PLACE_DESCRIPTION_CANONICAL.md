@@ -212,6 +212,38 @@ Teksten skal normalt:
 
 Lengden skal aldri oppnås gjennom gjentakelse, generell analyse, oppramsing uten sammenheng eller interne produksjonsforklaringer.
 
+## 9A. Fortellingen om stedet er den redaksjonelle hovedoppgaven
+
+**Bindende fra 2026-10-21:** En stedsbeskrivelse skal ikke være en administrativ oversikt forkledd som historie. Den skal gi leseren en etterprøvbar og levende forståelse av **hva stedet var, hvem som handlet der, hva som skjedde, hva som stod på spill, hvordan det endret seg, og hvorfor de materielle sporene betyr noe**. Denne regelen gjelder både nye steder og enhver innholdsbolk som reviderer eksisterende tekster.
+
+### Prioritering av stoff
+
+1. **Begynn med stedets egen historie og særpreg:** en faktisk virksomhet, hendelse, konflikt, person, handling, oppfinnelse, levemåte eller endring. Skriv om konkrete mennesker og steder før overordnede kategorier.
+2. **Fortell hendelsesforløp, ikke registerhistorie:** når kildene tillater det, vis hvem som gjorde hva, under hvilke vilkår, hvilke problemer eller valg som oppstod, og hva som fulgte. La det historiske forløpet gi artikkelen retning.
+3. **Forklar hva stedet representerer gjennom handling og fakta:** industrihistorie kan handle om vannkraft, arbeid, fabrikker, eierskap og nye maskiner; et byrom kan handle om møteplasser, ferdsel, fortrengning, protest eller handel. Ikke nøye deg med abstrakter som «stedet representerer industriell transformasjon».
+4. **Gi leseren noe å se for seg:** fysiske forhold, hvordan mennesker brukte bygningen/området, konkrete produkter, dokumenterte hendelser og spor som faktisk finnes eller har forsvunnet. Skill historisk miljø fra dagens utsikt.
+5. **Sett bare inn årstall når de driver fortellingen:** viktige vendepunkter og nødvendige kronologiske skiller hører med; eierskifter, bygningsår, vedtaksår og restaureringsår som ikke gjør historien tydeligere, flyttes til kronologi/epoker eller utelates fra prosaen. Det finnes ingen kunstig dato- eller personkvote.
+6. **Skriv vanlig, levende norsk sakprosa:** bruk aktive verb og konkrete substantiv. Forklar fagord bare der de hjelper leseren. Fjern tunge nominaliseringer og passiver som skjuler hvem som handlet.
+7. **Vær historieforteller, ikke romanforfatter:** aldri dikt opp dialog, indre tanker, motiv, dramatikk, øyenvitneskildringer, årsaksforhold eller hendelser. En engasjerende tekst kan være helt sann; alle faktiske påstander er fortsatt underlagt claim-, kilde- og faktareview i seksjonene over.
+8. **Utvikle et stedlig perspektiv:** teksten skal ikke kunne flyttes til et annet sted ved navnebytte. Når et sted har dokumenterte konflikter, menneskeskjebner eller særlige episoder, skal de vurderes foran lange rekker av tekniske og administrative fakta.
+
+### Redaksjonell feilport – omskriv hvis disse problemene finnes
+
+- Artikkelen er først og fremst en rekke årstall, eiere, adresser, vedtak, endrede navn eller bygningsfaser.
+- Teksten er full av abstrakte formuleringer som «representerer», «utgjør», «fremstår som», «har betydning for», «brukes som inngang til», uten konkrete scener, handlinger eller virkninger.
+- Det mangler en forståelig hovedfortelling, til tross for at kildene dokumenterer hendelser, mennesker, arbeid, kultur eller konflikt.
+- De samme faktaene gjentas mellom `desc` og `popupDesc` i stedet for å bli utviklet.
+- Språket høres ut som et internt notat, byråkratisk rapport, datamodell, planbeskrivelse eller quizproduksjon.
+- Teksten er kildekorrekt, men lite interessant å lese; teknisk og faktuell PASS oppveier aldri en svak redaksjonell vurdering.
+
+### Slik gjennomføres revisjon
+
+- **Også eksisterende «ferdige» tekster skal vurderes redaksjonelt i nye produksjonsbolker.** Gjenbruk faktisk gode tekster, men ikke behold en svak tekst bare fordi kildepakken, schemaet eller en tidligere PR er godkjent. Dokumenter den konkrete svakheten; slik innholdsforbedring er reelt nytt arbeid etter tidligere-arbeid-gaten, ikke en anledning til å gjenta forskningen uten grunn.
+- Les kildepakke, tekst og dokumenterte hendelser før omskriving. Velg én bærende fortelling for `desc` og en mer fullstendig, organisk fortelling for `popupDesc`. Ikke press begge inn i en kronologisk huskeliste.
+- Gjør egen **fortellerkontroll**: Kan en leser etterpå gjenfortelle hva som faktisk skjedde her, hvem det gjaldt, og hvorfor stedet er særegent? Er det en konkret episode eller et tydelig dokumentert handlingsforløp når kildegrunnlaget gir rom for det? Vil leseren forstå stedet bedre ved å stå der?
+- Mangler kildene et interessant hendelsesforløp, skriv en konsis, presis historie om det som faktisk er kjent. Ikke kompensér med oppdiktede scener eller generiske fortellinger.
+- **Etter hver faktisk tekstendring:** oppdater claims og setning–claim-koblinger, tekstdigest/hash, separat fakta- og redaksjonell review, quiz-readiness og avledet runtime/oversettelser. Følg PR-isolasjonen i §16. Regler og stedstekster endres normalt i separate PR-er.
+
 ## 10. Stoffgrunnlaget overstyrer ordtall
 
 Når kildene gir lite, skal teksten være kort og presis. Når kildene gir mye, skal den få nødvendig plass.

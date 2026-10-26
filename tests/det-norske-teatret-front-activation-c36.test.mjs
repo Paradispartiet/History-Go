@@ -1,0 +1,47 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import crypto from "node:crypto";
+import test from "node:test";
+import sharp from "sharp";
+const read=p=>JSON.parse(fs.readFileSync(p,"utf8"));
+const source="data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json";
+const front="bilder/places/det_norske_teatret_front_bjoertvedt_2013.webp";
+const src=read(source), index=read("data/places/places_index.json");
+const open=read("data/runtime/place-open/det_norske_teatret.json");
+const report=read("reports/place-production/det-norske-teatret/20261020/front-image-c36-visual-review.json");
+const provenance=read("reports/place-production/det-norske-teatret/20261020/front-image-c34-generated.json");
+const workcard=read("reports/place-production/det-norske-teatret-workcard-current.json");
+test("DNT C36 genuine portrait WebP passes direct-media and rights gates",async()=>{
+  const buf=fs.readFileSync(front), m=await sharp(buf).metadata();
+  assert.equal(m.format,"webp");assert.equal(m.width,900);assert.equal(m.height,1350);
+  assert.equal(crypto.createHash("sha256").update(buf).digest("hex"),provenance.asset_sha256);
+  assert.equal(report.asset_sha256,provenance.asset_sha256);
+  assert.equal(report.decision,"APPROVE_PHOTO_FOR_CANONICAL_FRONTIMAGE_BINDING");
+  assert.equal(report.ui_status,"PENDING_REAL_BROWSER_MOBILE_DESKTOP_AND_LIVE_ASSET_LOADING");
+  assert.equal(src.frontImageMeta.author,"Bjoertvedt");
+  assert.equal(src.frontImageMeta.licenseShortName,"CC BY-SA 3.0");
+  assert.equal(src.frontImageMeta.pageUrl,report.source_page);
+  assert.ok(src.externalLinks.some(x=>x.url===report.source_page));
+  assert.notEqual(src.image,src.frontImage);
+  assert.equal(src.imageMeta.author,"Hans A. Rosbach");
+  assert.ok(!Object.hasOwn(src,"cardImage"),"Never create legacy Place cardImage");
+});
+test("DNT C36 exactly one canonical source, map index and open payload all bind portrait",()=>{
+  const row=index.filter(p=>p.id==="det_norske_teatret");
+  assert.equal(row.length,1);
+  assert.equal(row[0].frontImage,front);
+  assert.equal(src.frontImage,front);
+  assert.equal(open.place.frontImage,front);
+  assert.equal(open.place.frontImageMeta.assetSha256,provenance.asset_sha256);
+  assert.equal(open.place.image,src.image);
+  assert.equal(open.people.length,87);
+  assert.equal(workcard.status,"in_progress");
+  assert.equal(workcard.collections.objects.status,"PASS");
+  assert.deepEqual(workcard.placecard_collections_publishable_now,["objects"]);
+  assert.ok(workcard.checkpoints.some(x=>x.id==="front_facade_visual_qa_and_binding_c36"));
+});
+test("DNT C36 existing PlaceCard front selects frontImage, landscape hero stays separate",()=>{
+ const ui=fs.readFileSync("js/ui/place-card.js","utf8");
+ assert.match(ui,/setPlaceCardImgSrcStable\(frontImgEl, place\.frontImage \|\| place\.cardImage \|\| place\.image \|\| ""\)/);
+ assert.match(ui,/place\.image/);
+});

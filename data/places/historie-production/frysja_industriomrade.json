@@ -1,0 +1,217 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "frysja_industriomrade",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/frysja_industriomrade.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Frysja industriområde ved Kjelsås Bruk og Akerselva, med fabrikkbygninger som senere ble kunstnersenter.",
+    "placeRelationType": "historical_landscape",
+    "placeRelationStatement": "Dette Place-kortet dekker et presist navngitt industrimiljø og ikke andre nabolag eller beslektede fabrikker.",
+    "temporalScope": {
+      "start": "1855",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden spenner fra lokal industrietablering til senere bygnings- og bruksendringer på samme sted."
+    },
+    "sourceIds": [
+      "source_frysja_industriomrade_byleksikon",
+      "source_frysja_industriomrade_kommune"
+    ]
+  },
+  "historyTopics": [
+    {
+      "emneId": "em_his_industriby_1900",
+      "siteSpecificRationale": "Stedet viser en konkret sammenheng mellom fabrikkarbeid, transport og hvordan industribyen endret seg.",
+      "caseIds": [
+        "case_frysja_industriomrade_industrial_reuse"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_frysja_industriomrade_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Frysja_senter",
+      "sourceLocation": "Kjelsås Bruk, ombyggingen 1972–1983 og kunstneratelierer",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "retrospective",
+      "provenance": "Oslo byleksikons lokalhistoriske oversikt over Frysja senter.",
+      "limitations": "Kortfattet om arbeidsliv før Mustad og årsakene til beslutningene."
+    },
+    {
+      "id": "source_frysja_industriomrade_kommune",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/frysja-kunstnersenter",
+      "sourceLocation": "Om kultureiendommen og leiemuligheter",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Oslo kommunes eier- og forvalterinformasjon om dagens Frysja kunstnersenter.",
+      "limitations": "Offentlig forvalterperspektiv belyser ikke alle konfliktpartenes egne synspunkter."
+    },
+    {
+      "id": "source_frysja_industriomrade_kultur",
+      "url": "https://www.norskekunsthandverkere.no/tidslinjer/milepaeler-fra-nk",
+      "sourceLocation": "Verkstedene på Frysja i 1975",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "retrospective",
+      "provenance": "Fagorganisasjonens historiske tidslinje og atelierhistorie.",
+      "limitations": "Beskriver særlig kunstnernes senere bruk og ikke hele fabrikkhistorien."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_frysja_industriomrade_industrial_reuse",
+      "claim": "Et produksjonsområde for tråd og fiskeutstyr er omdannet til atelierer og kunstnerarbeidsplasser ved samme elv.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1855",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Perioden spenner fra lokal industrietablering til senere bygnings- og bruksendringer på samme sted."
+        },
+        "startPoint": "Kjelsås Bruk ble etablert på midten av 1850-tallet med produksjon av spiker og ståltråd.",
+        "endPoint": "De tidligere industribygningene ved Kjelsåsveien 145 brukes som kommunalt forvaltet kunstnersenter.",
+        "breaks": [
+          "Mustad tok over industriområdet og produserte blant annet fiskekroker.",
+          "Mustad la ned produksjonen i begynnelsen av 1960-årene.",
+          "Oslo kommune tok over stedet og etablerte verksteder i de tidligere fabrikkbyggene."
+        ],
+        "continuities": [
+          "Akerselva, fabrikkbygningenes plassering og den praktiske bruken av arbeidsrom binder sammen gammel industri og dagens kunstnerarbeid."
+        ],
+        "sourceIds": [
+          "source_frysja_industriomrade_byleksikon",
+          "source_frysja_industriomrade_kommune"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Kjelsås Bruk og O. Mustad & Sønn",
+          "roleOrInterest": "Etablerte og videreførte industri for ståltråd, spiker og senere fiskeutstyr.",
+          "powerPosition": "Bedriftene kontrollerte produksjonsanlegg og sysselsetting ved elva.",
+          "sourceIds": [
+            "source_frysja_industriomrade_byleksikon",
+            "source_frysja_industriomrade_kommune"
+          ]
+        },
+        {
+          "name": "Oslo kommune og lokale kunstnere",
+          "roleOrInterest": "Overtok og tok i bruk tidligere industrilokaler til arbeidsrom for kunstnere.",
+          "powerPosition": "Kommunen ble eiendomsforvalter, mens kunstnere fikk arbeidsplasser gjennom tildeling.",
+          "sourceIds": [
+            "source_frysja_industriomrade_byleksikon",
+            "source_frysja_industriomrade_kommune"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Mustad ønsket boligbygging etter nedleggelsen, men Oslo kommune avslo planene; bygningene ble senere beholdt til kunstnerverksteder.",
+        "sourceIds": [
+          "source_frysja_industriomrade_byleksikon",
+          "source_frysja_industriomrade_kommune"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_frysja_industriomrade_byleksikon",
+          "source_frysja_industriomrade_kommune"
+        ],
+        "comparison": "Oslo kommune beskriver eierskifter, nedleggelsen og den kommunale ombruken. Oslo byleksikon dokumenterer 70 atelierer etter ombyggingen 1972–1983 og TV-serien Fredrikssons Fabrikk.",
+        "contradictionsOrSilences": "Kildene er mer detaljerte om selskap og bygninger enn om verkstedarbeidernes egne erfaringer og de økonomiske beslutningene.",
+        "conclusionLimits": "Det historiske industrimiljøet og dagens kunstbruk er dokumentert; alle utviklingstrinn og produksjonens eksakte volum er ikke verifisert her."
+      },
+      "comparativeScale": {
+        "localFinding": "Et produksjonsområde for tråd og fiskeutstyr er omdannet til atelierer og kunstnerarbeidsplasser ved samme elv.",
+        "widerContext": "Dette illustrerer hvordan norske kommuner har funnet nye offentlige formål for gamle industribygg etter produksjonsnedleggelse.",
+        "scale": "national",
+        "sourceIds": [
+          "source_frysja_industriomrade_byleksikon",
+          "source_frysja_industriomrade_kommune"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Endringer i industriens lokalisering og den kommunale beslutningen om å beholde området muliggjorde ny kunstnerbruk.",
+        "alternativeExplanations": [
+          "Økonomi, eiendomsplanlegging, kulturpolitikk og lokal bevaringsinnsats bidro hver for seg til omformingen."
+        ],
+        "uncertainty": "Kildene oppgir noe ulikt oppstartsår for Kjelsås Bruk; eksakt tidligste produksjonsdato er ikke brukt som ubestridt dato.",
+        "sourceIds": [
+          "source_frysja_industriomrade_byleksikon",
+          "source_frysja_industriomrade_kommune"
+        ]
+      }
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Oslo kommune oppgir at verneverdige fabrikkbygninger etter Mustad brukes som Frysja kunstnersenter med atelierer og verksteder.",
+    "originalSiteRelationship": "Det nåværende området er det samme historiske industrimiljøet, men dagens bygg og bruk er ikke identisk med den eldre fabrikken.",
+    "sourceIds": [
+      "source_frysja_industriomrade_byleksikon",
+      "source_frysja_industriomrade_kommune"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Eksisterende QuizCard-samling bevares; den historiske åpningsquizens første to sett er ikke produsert i denne tekstbolken."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Canonical Place-filen er inspisert. Ingen egen fullført Story eller historisk milepælsserie produseres i denne redaksjonelle tekstendringen."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historyTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].temporalSequence"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].actors"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].sourceComparison"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].comparativeScale"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Ikke del av den redaksjonelle tekstbolken; eksisterende QuizCard og eventuelle andre moduler beholdes."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ikke del av den redaksjonelle tekstbolken; eksisterende QuizCard og eventuelle andre moduler beholdes."
+    }
+  },
+  "review": {
+    "reviewer": "History Go Oslo industrial place source review",
+    "reviewedAt": "2026-10-19",
+    "notes": "Kilder og stedet er gjennomgått: sentrale historiske endringer, aktørperspektiv, mulige brudd i datering og grensene for hva kildene tillater er eksplisitt angitt."
+  }
+}

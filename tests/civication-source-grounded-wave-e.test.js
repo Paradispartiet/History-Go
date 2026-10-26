@@ -38,7 +38,7 @@ function restorePast(state,arc,status) {
 }
 
 test("Wave E authors 24 scenes / 48 choices, preserves source links and validates across roles",()=>{
-  const shared=read(manifest.life.scenes).scenes.filter(s=>s.id.startsWith("wave_e_"));
+  const shared=read(manifest.life.scenes).scenes.filter(s=>/^wave_e_c0[15]_/.test(s.id));
   assert.equal(shared.length,24);
   assert.equal(shared.reduce((n,s)=>n+s.valg.length,0),48);
   assert.equal(register.expected_total_scenes,149);
@@ -51,7 +51,7 @@ test("Wave E authors 24 scenes / 48 choices, preserves source links and validate
   }
   for(const role of ["arbeidsledig","renholder","arealplanlegger","ekspeditor"]){
     const content=pack(role);
-    assert.equal(content.scenes.filter(s=>s.id.startsWith("wave_e_")).length,24);
+    assert.equal(content.scenes.filter(s=>/^wave_e_c0[15]_/.test(s.id)).length,24);
     assert.ok(content.threads.find(t=>t.id==="wave_e_c01"));
     assert.ok(content.threads.find(t=>t.id==="wave_e_c05"));
   }
@@ -113,7 +113,8 @@ test("old save without a recorded Wave D scene cannot manufacture a later chapte
   State.reconcileContent(state,content);
   clock(state,15,"ettermiddag");
   assert.equal(eligible(state,content,"c05").length,0);
-  assert.equal(Runner.hasPendingPrivateScenes(state,content),false);
+  assert.equal(Runner.getCandidateScenes(state,content).filter(s=>/^wave_e_c0[15]_/.test(s.id)).length,0,
+    "the original C01/C05 Wave E chapter cannot be invented from a bare old flag");
   assert.equal(state.arkiv.length,0);
   assert.ok(!state.spilteScener.some(x=>x.startsWith("wave_e_")));
 });

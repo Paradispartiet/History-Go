@@ -233,6 +233,7 @@ export function exactProductionClaimYears(statement) {
       !APPROXIMATE_YEAR_CONTEXT.test(value.slice(Math.max(0, yearPosition - 45), yearPosition)) &&
       !/\brema\s*$/i.test(beforeYear) &&
       !/^\s+(?:nummererte\s+)?eksemplarer?\b/i.test(afterYear) &&
+      !/^\s+(?:mennesker|personer|publikummere|besøkende|tilskuere|deltakere)\b/i.test(afterYear) &&
       !(/,\s*$/.test(beforeYear) && /^\s+oslo\b/i.test(afterYear))
     ) years.push(year);
   }

@@ -11,6 +11,7 @@ on:
       - 'docs/CIVICATION_FWG_GOVERNANCE.md'
       - 'js/Civication/**'
       - 'tests/civication-*.test.js'
+      - 'tests/acceptance-civication-*.test.js'
       # Pure theory/read-only coverage has its own focused workflow.
       - '!tests/civication-psychology-room-theory.test.js'
       - '!tests/civication-psychology-room-coverage.test.js'
@@ -57,6 +58,27 @@ jobs:
 
       - name: Verify compiled scene registry is synchronized
         run: node scripts/build-civication-scene-registry.mjs --check
+
+      - name: Validate career matrix before full suite
+        run: node scripts/audit-civication-career-gameplay.mjs --check
+
+      - name: Validate Role World readiness before full suite
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+
+      - name: Verify legacy cloud role migration
+        run: node tests/civication-lifestory-shell-role-bridge.test.js
+
+      - name: Verify livelihood game-week settlement
+        run: node tests/civication-livelihood-engine.test.js
+
+      - name: Verify network offers follow game weeks
+        run: node tests/civication-livelihood-opportunity-bridge.test.js
+
+      - name: Verify continuous 21-day private life across work changes
+        run: node tests/acceptance-civication-three-week-private-employment.test.js
+
+      - name: Verify 21-day calendar, earnings and account recovery
+        run: node tests/acceptance-civication-21day-economy-cloud-journey.test.js
 
       - name: Run complete Civication suite
         run: npm run test:civication

@@ -113,6 +113,35 @@
   padding: 14px 2px 2px;
 }
 
+
+/* One-click quiz completion, available in all play modes. */
+#quizModal .quiz-test-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 2px;
+}
+
+#quizTestComplete {
+  min-height: 42px;
+  padding: 8px 14px;
+  border: 1px dashed rgba(246, 200, 0, .64);
+  border-radius: 12px;
+  background: rgba(246, 200, 0, .11);
+  color: #ffe36a;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 720;
+  cursor: pointer;
+}
+
+#quizTestComplete:hover:not(:disabled),
+#quizTestComplete:focus-visible:not(:disabled) {
+  background: rgba(246, 200, 0, .20);
+}
+
+#quizTestComplete[hidden] { display: none !important; }
+#quizTestComplete:disabled { cursor: default; opacity: .6; }
+
 /* ===================================================== */
 /* QUIZ CORE                                             */
 /* ===================================================== */

@@ -39,51 +39,68 @@
   "collections": {
     "people": {
       "status": "BLOCKED",
-      "reason": "C9 har kildegjennomgått alle 87 teaterkoblingene. C15–C21 har publisert 40 kildeførte Commons-personbilder i canonical People med lokale bildefiler, bildemetadata og synkroniserte runtime-data. 47 av 87 mangler fortsatt portrett.",
-      "plan": "Fortsett fotoarbeidet med dokumenterte enkeltpersoner og godkjente Commons-lisenser; 47 gjenstår, hvorav flere trenger nye kildebilder. Unngå navnforveksling, gruppefoto som personportrett og uklar public-domain-status. Publiser i større endringsavgrensede batcher med runtime i samme PR.",
+      "reason": "C9 har kildegjennomgått alle 87 teaterkoblingene. C29-audit 20. oktober 2026 fant 57 canonical People med manuelt godkjente, lokalt registrerte portretter, kilde-/lisensmetadata og genererte Place-open-visningsdata. 30 av 87 mangler fortsatt portrett. Dette er ikke full Place-closeout.",
+      "plan": "Fortsett bildeklarering kun for de 30 dokumentert manglende personene. Bevar 57 eksisterende lokale bilder og provenance ved ny publisering. Kontroller hvert konkret bilde for personidentitet, fotograf, kilde, lisens og faktisk fil før People/Place-open-runtime oppdateres; oppdater denne inventarlisten fra canonical runtime i samme produksjon. C31 dokumenterer to bestemte nye vurderingsspor uten publisering: Rolf Just Nilsen har Commons NKNCR mot SNL/Digitalarkivet CC BY-SA 4.0 og krever originalkildekontroll; Ola B. Johannessens kjente CC BY-SA 4.0-to-personersbilde er 252×408 og krever identitet/utsnitt- og kvalitetsvurdering. Se reports/place-production/det-norske-teatret/20261020/portrait-rights-c31.json.",
       "portrait_review_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json",
       "portrait_batch_request": "data/people/portrait_image_batch_request.json",
-      "portraits_published_count": 40,
-      "portraits_remaining_count": 47,
+      "portraits_published_count": 57,
+      "portraits_remaining_count": 30,
       "portraits_published_ids": [
+        "agnes_mowinckel",
         "alfred_maurstad",
+        "amund_rydland",
+        "andrea_braein_hovig",
         "ane_dahl_torp",
         "anne_marit_jacobsen",
         "anton_heiberg",
         "arild_brinchmann",
+        "arne_garborg",
         "astrid_folstad",
+        "bab_christensen",
+        "bjarne_andersen",
+        "bjorn_skagestad",
         "bjorn_sundquist",
         "cally_monrad",
         "carl_fredrik_engelstad",
         "charlotte_frogner",
         "edvard_drablos",
+        "egil_monn_iversen",
         "elsa_lystad",
         "frank_kjosas",
         "gisle_straume",
         "hans_jacob_nilsen",
         "harald_saeverud",
         "henny_moan",
+        "hulda_garborg",
         "ingjald_haaland",
         "ingrid_bolso_berdal",
         "iren_reppen",
         "jan_gronli",
+        "jannike_kruse",
         "knut_hergel_det_norske_teatret",
         "lars_tvinde",
+        "lasse_kolstad",
         "lise_fjeldstad",
         "merete_skavlan",
+        "mimmi_tamba",
         "monna_tandberg_det_norske_teatret",
         "nils_ole_oftebro",
         "nils_sletbak",
         "oddgeir_thune",
+        "olav_hoprekstad",
         "pal_sverre_hagen",
+        "per_sunderland",
         "pia_tjelta",
         "ragnhild_hald",
         "rasmus_rasmussen",
         "reidar_sorensen",
         "renate_reinsve",
         "rut_tellefsen",
+        "sigurd_eldegard",
         "svein_erik_brodal",
         "svein_tindberg",
+        "tom_tellefsen",
+        "tordis_maurstad",
         "tore_segelcke",
         "tormod_skagestad"
       ],
@@ -99,12 +116,68 @@
         6325,
         6329,
         6331
-      ]
+      ],
+      "portraits_missing_ids": [
+        "anne_marie_ottersen",
+        "anneke_von_der_lippe",
+        "arne_lygre",
+        "bjorn_floberg",
+        "britt_langlie",
+        "ellen_dorrit_petersen",
+        "erik_ulfsby",
+        "gudrun_waadeland",
+        "heidi_gjermundsen_broch",
+        "jon_eikemo",
+        "jorunn_kjellsby",
+        "kjersti_horn",
+        "lena_kristin_ellingsen",
+        "marie_blokhus",
+        "morten_svartveit",
+        "nils_sletta",
+        "ola_b_johannessen",
+        "ole_barman",
+        "ole_jorgen_nilsen",
+        "otto_homlung",
+        "per_jansen",
+        "ragnhild_hilt",
+        "ragnhild_nygaard",
+        "rolf_just_nilsen",
+        "silje_storstein",
+        "sossen_krohg_det_norske_teatret",
+        "sverre_solberg",
+        "ulrikke_hansen_dovigen",
+        "vidar_magnussen",
+        "vidar_sandem"
+      ],
+      "portrait_inventory_audit": "reports/place-production/det-norske-teatret/20261020/portrait-inventory-c29.md",
+      "portrait_inventory_source_sha": "5a134917c176dda5968bda5aa345889afb26518a",
+      "portrait_inventory_reviewed_at": "2026-10-20"
     },
     "objects": {
-      "status": "BLOCKED",
-      "reason": "Juleroser-kjolen er en konkret scenekostymekandidat. Datering, fysisk status, medlemsbilde og naturlig gjenstandsgruppe mangler.",
-      "plan": "Research rekvisitter, kostymer, scenemodeller, teatermaskineri og fysiske program-/billett-eksemplarer. Hulda-drakten er sekundært kulturspor. Groths verk blir ikke automatisk et Object."
+      "status": "PASS",
+      "reason": "C50: To ulike fysiske gjenstander er registrert i canonical Place og synkronisert til Place-open: Oslo Museums bevarte 1989-kostyme fra Madame de Sade (foto Lone Lunde, CC BY-SA 4.0) og Jan Groths sceneteppe til 1985-huset (original, eksplisitt merket skjematisk illustrasjon). Begge har historisk forklaring, uavhengig kilde, stedstilknytning og lokalt medlemsbilde. C50-kontrollene dekker medlemsdata og PlaceCard-renderer; C51 bekrefter dessuten offentlig distribuert Objects-popup på Chromium mobil 390×844 og PC 1280×900, korrekt fotografikreditering, skjematisk illustrasjonsmerking og originale kildelenker.",
+      "plan": "FERDIG OG FROSSET 21.10.2026: To publiserte, offentlig mobil-/PC-verifiserte Objects er tilstrekkelig. Ingen C52-gjenstandsjakt, ingen nye illustrasjoner, ingen nye Objects-PR-er eller ytterligere objektresearch nå. Gjenåpning kun ved konkret feil i eksisterende publisert innhold, aldri som forsinkende port for andre steder.",
+      "published_member_ids": [
+        "dnt_costume_madame_de_sade_1989_tm01641",
+        "dnt_jan_groth_strekkomposisjon_sceneteppe_1985"
+      ],
+      "published_member_count": 2,
+      "member_image_kinds": [
+        "photo",
+        "illustration"
+      ],
+      "representative_member_preview": "bilder/objects/det_norske_teatret/madame_de_sade_1989_tm01641.webp",
+      "canonical_source": "data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json",
+      "runtime_mirror": "data/runtime/place-open/det_norske_teatret.json",
+      "public_browser_verification": {
+        "status": "PUBLIC_OBJECTS_MOBILE_DESKTOP_PASS",
+        "checked_at": "2026-10-21",
+        "report": "reports/place-production/det-norske-teatret/20261021/objects-c51-public-qa.json",
+        "workflow_run_id": 39604980279,
+        "artifact_id": 12347682520,
+        "tested": "Actual GitHub Pages at 390x844 and 1280x900 (Chromium), onboading dismissed, canonical Object icon and both member rows",
+        "limits": "Not a physical handset test or literal map marker tap"
+      }
     },
     "brands": {
       "status": "BLOCKED",
@@ -135,7 +208,7 @@
     "productions": {
       "status": "BLOCKED",
       "label": "Forestillinger",
-      "reason": "C10 har eit arkivforankra register over åtte produksjonar: sju med identifisert scene i dagens hus og éin som treng sceneavklaring. Ingen har lisensklarerte medlemsbilde; publisering er blokkert.",
+      "reason": "C30 har kildeverifisert fysisk scene i dagens hus for alle åtte produksjonene, inkludert Prøvesalen for KLAAR....EN...TOO....KJØØØØR (1989). Ingen har lisensklarerte produksjonsbilder, derfor er runtime-/PlaceCard-publisering fortsatt blokkert.",
       "candidates": [
         "Romeo og Julie (1985)",
         "Cats (1985)",
@@ -146,11 +219,13 @@
         "Sterk vind (2021)",
         "Tid for glede (2022)"
       ],
-      "plan": "Bruk C10-registeret som konkret produksjonskø. Kvar oppsetning må få eit ekte rettigheitsklarert produksjonsbilde før samlingsmedlemskap blir materialisert; ikkje bruk fasadefoto eller eldre spelestad som erstatning.",
+      "plan": "Bevar de åtte oppsetningene i C10-registeret (C30: 8/8 stedfestet i Kristian IVs gate 8). Undersøk konkrete forestillingsbilder og avklar fotograf/opphavsrett, identitet, kilde og bruksrett før materialisering. Sceneweb-bilder av Sterk vind og Tid for glede er eksplisitt merket opphavsrett, og kan ikke behandles som åpne bilder.",
       "candidate_register": "reports/place-production/det-norske-teatret/20261013/productions-c10.json"
     }
   },
-  "placecard_collections_publishable_now": [],
+  "placecard_collections_publishable_now": [
+    "objects"
+  ],
   "objects_category_expression_boundary": "Forestillinger eier oppsetningen; Objects eier identifiserbare fysiske rekvisitter/kostymer/eksemplarer. Sceneteppet som kunstverk og fysisk funksjon avklares hos riktig eier uten duplisering.",
   "content_plan": {
     "description_and_fagverk": "PRODUSERT i checkpoint B: historisk ingress/artikkel og selvstendig full Fagverk; Scenekunst-emner/kapitler løst. Full Place er fortsatt BLOCKED.",
@@ -161,8 +236,8 @@
     "news": "RESEARCH ferske, daterte institusjonsnotiser; aktivt teater skal ikke få N/A ut fra tomt datasett.",
     "reading_trails": "PRODUSER fordypningsspor fra tilgjengelige institusjonsartikler/arkiv med riktig leseeier; avklar rettigheter før tekst vises.",
     "quiz": "SEPARAT QUIZLØP: 5 eksisterende sett med 6 spørsmål og etablerte Knowledge-ID-er. Svaralternativene stokkes i runtime; answerIndex=0 i kildefilen krever ingen omorganisering. Konsentrer senere revisjon om kildefakta, scenekunstfaglig innhold og QuizCard, ikke svarrekkefølge.",
-    "quizcard": "BLOCKED: faktisk live PlaceCard sier Quizkort mangler. Produser og bind kortet etter quiz-audit.",
-    "images": "HOVEDFOTO PRODUSERT: uendret fasadefoto fra 2006 med CC BY-SA 3.0-kreditering. Separat stående frontImage gjenstår.",
+    "quizcard": "KANDIDAT PRODUSERT, BINDING IKKE VERIFISERT: PR #6357 (merget 18. oktober 2026) registrerte 10 kildeavledede spørsmål for det_norske_teatret i data/quizcards/scenekunst/scenekunst_oslo_v1_batch1.json. Quizkilden er i musikk-kategorien, mens QuizCard ligger under scenekunst; live PlaceCard, kategori/target-binding, fasit og mobilvisning må kontrolleres. Baseline 13. oktober viste at Quizkort manglet; dette er historisk UI-observasjon, ikke en ny live-verifikasjon.",
+    "images": "2006-fasadefoto beholdt som Place.image. C36: særskilt lisensiert 2013-foto visuelt kontrollert og koblet som ekte stående Place.frontImage med kildeproveniens; runtime bildeinnlasting og mobil/desktop-slutt-QA gjenstår.",
     "relations": "REVIEW canonical eldre spillesteder og Rommen. Bruk relasjoner, ikke lånt samlingsinnhold.",
     "translations": "PRODUSERT en/es/pt med seksavsnittsartikkel og aktuell _sourceHash.",
     "player_status": "REVIEW besøk, favoritt, quiz og profillesing ved integrasjon. Ingen ny state-eier."
@@ -217,8 +292,8 @@
     },
     {
       "id": "quiz_revision",
-      "status": "NOT_STARTED",
-      "scope": "Separat kildeledet quizproduksjon, Knowledge-paritet og QuizCard."
+      "status": "QUIZCARD_CANDIDATE_REGISTERED_AUDIT_PENDING",
+      "scope": "Ti kildeavledede quizkortspørsmål for det_norske_teatret finnes etter PR #6357, men quizkategori musikk vs QuizCard-kategori scenekunst, Knowledge-paritet og faktisk PlaceCard-visning står uverifisert. Ingen quiz-closeout."
     },
     {
       "id": "integration_closeout",
@@ -227,8 +302,8 @@
     },
     {
       "id": "productions_source_register_c10",
-      "status": "SOURCE_REGISTER_PREPARED_MEDIA_BLOCKED",
-      "scope": "Åtte dokumenterte oppsetningar med premieredato, scene/eigaravgrensing, kjeldeadresser og People-ID-koplingar. Ingen bilde eller runtime-/PlaceCard-samling publisert.",
+      "status": "EIGHT_VENUES_CONFIRMED_MEDIA_BLOCKED",
+      "scope": "Alle åtte arkivbaserte oppsetninger er stedfestet til huset i Kristian IVs gate 8 etter at FOREST og Sceneweb identifiserte Prøvesalen (senere Scene 3) for 1989-oppsetningen. 0/8 lisensklarerte produksjonsbilder; ingen Forestillinger-samling publisert.",
       "report": "reports/place-production/det-norske-teatret/20261013/productions-c10.json"
     },
     {
@@ -281,6 +356,199 @@
         "data/runtime/stories-all/part-001.json",
         "data/runtime/place-open/det_norske_teatret.json"
       ]
+    },
+    {
+      "id": "people_portrait_inventory_c29",
+      "status": "RUNTIME_AND_LOCAL_MEDIA_VERIFIED",
+      "scope": "57 av 87 canonical People har hver lokale image/cardImage-filer, manuelt godkjent imageMeta med lisens og kildekreditering og samsvarende Place-open-payload. 30 personer har ikke bilde. Eldre C21: 40/87 er historisk checkpoint, ikke gjeldende status. Ingen ny bildefil eller publisering i denne kontrollen.",
+      "report": "reports/place-production/det-norske-teatret/20261020/portrait-inventory-c29.md"
+    },
+    {
+      "id": "productions_venue_and_media_c30",
+      "status": "VENUES_8_OF_8_VERIFIED_IMAGES_0_OF_8_CLEARED",
+      "scope": "1989-Prøvesalen dokumentert som scene i 1985-huset; fotografier fra Sterk vind og Tid for glede er identifisert som copyright-beskyttet, ikke fri gjenbruk. Separat scenekunst-QuizCard fra #6357 finnes som kandidat, ikke live-verifisert.",
+      "report": "reports/place-production/det-norske-teatret/20261020/productions-c30-venue-and-image-rights.md"
+    },
+    {
+      "id": "objects_and_portraits_source_rights_c31",
+      "status": "THREE_OBJECT_CANDIDATES_ONE_CC_PHOTO_SOURCE_NO_PUBLICATION",
+      "scope": "Tre konkrete fysiske Objects-kandidater; to Commons-foto av samme 1989-kostyme teller som ett objekt. Historisk spillested for 1971/1983 holdes avgrenset. To portrettsporer dokumenterer NKNCR/CC-uenighet og lavoppløst gruppemotiv, uten bildepåføring.",
+      "reports": [
+        "reports/place-production/det-norske-teatret/20261020/objects-c31-candidates.json",
+        "reports/place-production/det-norske-teatret/20261020/portrait-rights-c31.json",
+        "reports/place-production/det-norske-teatret/20261020/objects-and-portrait-rights-c31.md"
+      ]
+    },
+    {
+      "id": "madame_de_sade_object_media_draft_c32",
+      "status": "EXACT_SOURCE_VERIFIED_AUTOMATED_DRAFT_STAGING_REQUESTED",
+      "scope": "Kildeklarert CC BY-SA 4.0/Oslo Museum TM.01641.A-C fotografering av Lone Lunde; script verifiserer metadata på nytt, produserer lokalt 800px bilde og separat draft PR. Objects forblir BLOCKED til full samling, bilde- og runtime-gate.",
+      "request": "reports/place-production/det-norske-teatret/20261020/object-image-intake-c32.json",
+      "script": "scripts/place-production/stage-dnt-object-image-c32.mjs",
+      "workflow": ".github/workflows/dnt-object-image-stage.yml"
+    },
+    {
+      "id": "costume_source_asset_materialized_c33",
+      "status": "RIGHTS_CHECKED_ASSET_IN_REPO_NOT_CANONICAL",
+      "scope": "Verified source and 800x800 WebP file with SHA256 and attribution from bot draft PR #6435 reused byte-for-byte through Git blob SHA. No object/PlaceCard member created. Canonical Objects remains BLOCKED.",
+      "original_draft_pr": 6435,
+      "image": "bilder/objects/det_norske_teatret/madame_de_sade_1989_tm01641.webp",
+      "provenance": "reports/place-production/det-norske-teatret/20261020/object-image-c32-generated.json",
+      "test": "tests/det-norske-teatret-costume-asset-c33.test.mjs"
+    },
+    {
+      "id": "front_image_distinct_source_intake_c34",
+      "status": "EXACT_CC_SOURCE_VERIFIED_DRAFT_MEDIA_REQUESTED",
+      "scope": "Separate Bjoertvedt 2013 Wikimedia photo of 1985 DNT house (5184x3456, CC BY-SA 3.0) staged via fail-closed Commons metadata gate as real 900x1350 vertical preview, not sourced from 2006 Place image. Separate draft visual review before canonical frontImage. Objects unchanged.",
+      "request": "reports/place-production/det-norske-teatret/20261020/front-image-intake-c34.json",
+      "workflow": ".github/workflows/dnt-front-image-staging.yml",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Oslo_Det_norske_teatret_IMG_0553.JPG"
+    },
+    {
+      "id": "front_facade_media_staged_c35",
+      "status": "VERTICAL_LICENSED_ASSET_READY_FOR_VISUAL_QA_NOT_CANONICAL",
+      "scope": "Separate 2013 Commons photo by Bjoertvedt generated 900x1350 WebP with pixel-defined crop and SHA-256 verified, distinct original photographer/file from existing 2006 Place image. Local asset in repository; no frontImage bound until visual and PlaceCard UI QA.",
+      "source_draft_pr": 6442,
+      "asset": "bilder/places/det_norske_teatret_front_bjoertvedt_2013.webp",
+      "provenance": "reports/place-production/det-norske-teatret/20261020/front-image-c34-generated.json"
+    },
+    {
+      "id": "front_facade_visual_qa_and_binding_c36",
+      "status": "PHOTO_REVIEW_PASSED_CANONICAL_FRONTIMAGE_BOUND_UI_CLOSEOUT_PENDING",
+      "scope": "Faktisk WebP visuelt inspisert: teglfasade, inngang og 100-årsbanner; liten teaterskilttekst i utsnittet. Separat fotograf fra 2006-foto. Canonical frontImage, indeks og place-open synkroniseres; ingen statusendring for Objects/Brands/Productions eller ferdigmelding.",
+      "asset": "bilder/places/det_norske_teatret_front_bjoertvedt_2013.webp",
+      "visual_report": "reports/place-production/det-norske-teatret/20261020/front-image-c36-visual-review.json",
+      "test": "tests/det-norske-teatret-front-activation-c36.test.mjs"
+    },
+    {
+      "id": "objects_second_source_and_photo_rights_c37",
+      "status": "SECOND_OBJECT_IDENTIFIED_BUT_PHOTO_RIGHTS_UNCLEARED",
+      "scope": "Separat kilde støtter utstilt Hulda-bunad, ingen identifisert gjenbruksfoto; Juleroser-bilder på teatrets artikkel er ikke gjenbruksklarert; Commons historisk personportrett er ikke identifisert som objektbilde. C33 museale kostymeasset beholdt; Objects fortsatt BLOCKED.",
+      "report": "reports/place-production/det-norske-teatret/20261020/objects-c37-rights-adjudication.json",
+      "test": "tests/det-norske-teatret-objects-rights-c37.test.mjs"
+    },
+    {
+      "id": "costume_actual_asset_visual_qa_c38",
+      "status": "SINGLE_COSTUME_IMAGE_VISUAL_QA_PASSED_OBJECTS_COLLECTION_BLOCKED",
+      "scope": "C33 originalt reelt musealt kostymefoto åpnet og vurdert fra GitHub-bytes: full drakt, grønnlig silkekostyme, ingen kritisk crop, mørk sidepadding, museumsmiljø, ikke produksjonsstill. Finner ikke dermed et andre Object/medlem.",
+      "asset": "bilder/objects/det_norske_teatret/madame_de_sade_1989_tm01641.webp",
+      "report": "reports/place-production/det-norske-teatret/20261020/object-costume-visual-review-c38.json",
+      "test": "tests/det-norske-teatret-costume-visual-review-c38.test.mjs"
+    },
+    {
+      "id": "second_object_rights_route_c39",
+      "status": "NO_SECOND_CLEARED_PHOTO_OUTREACH_DRAFT_NOT_SENT",
+      "scope": "Ekskludert 1977-/1983-kostyme som ikkje er stadfesta i huset frå 1985; ekskludert 1937-scenegruppefoto. Eigne rettighetshenvendelser om bunaden/Juleroser-kjolen førebudde på bakgrunn av teatrets offisielle presseregel. Ingen ny fil, Object eller PlaceCard-publisering.",
+      "report": "reports/place-production/det-norske-teatret/20261020/objects-c39-rights-routing.json",
+      "outreach": "reports/place-production/det-norske-teatret/20261020/objects-c39-rights-request-DRAFT.md",
+      "test": "tests/det-norske-teatret-rights-routing-c39.test.mjs"
+    },
+    {
+      "id": "original_publisher_photo_links_c40",
+      "status": "ORIGINAL_SOURCE_PHOTO_LINKS_IN_PLACE_DATA_OBJECTS_NOT_PUBLISHED",
+      "scope": "Juleroser-kjolen under tilpassing, foto Ole Herman Andersen, tilgjengelig som direkte HTTPS-lenke til teatrets originalpublisering samt kildeartikkel i Place-popupens Kilder-fane. Canonical Place, metadataSnapshot og Place-open-synk. Ingen ny fil på History GO-server, ingen ubegrunnet åpen lisens, ingen ekstern e-post eller Objects-publisering. Live nettleser og mobil QA gjenstår.",
+      "report": "reports/place-production/det-norske-teatret/20261020/objects-c40-source-image-links.json",
+      "test": "tests/det-norske-teatret-source-image-links-c40.test.mjs"
+    },
+    {
+      "id": "licensed_costume_inline_source_photo_c41",
+      "status": "LICENSED_DOCUMENTARY_PHOTO_IN_SOURCE_TAB_OBJECTS_BLOCKED",
+      "scope": "Verifisert lokalt 800x800 WebP av det identifiserte Madame de Sade-museumskostymet vises i Kilder-fanen med åpen CC BY-SA 4.0-kreditering og Commons-lenke. Eksternt Juleroser-foto åpnes hos utgiver uten innbygging eller nykopiering. DOM-test og filintegritet sikres, mens live mobil-/desktop-kontroll fortsatt gjenstår. Ingen canonical Objects eller Place-closeout.",
+      "report": "reports/place-production/det-norske-teatret/20261020/object-photo-inline-source-c41.json",
+      "test": "tests/det-norske-teatret-source-photo-inline-c41.test.mjs"
+    },
+    {
+      "id": "public_deployed_image_browser_c43",
+      "status": "LIVE_GITHUB_PAGES_SOURCE_PHOTO_MOBILE_DESKTOP_PASS_OBJECTS_BLOCKED",
+      "scope": "C43 faktisk offentlig GitHub Pages-verifikasjon: 200-responser og korrekt SHA256 for Madame de Sade-kostyme og 2013-fasade; shipping Kilder-fane og original- og krediteringslenker kontrollert i Chromium 390 og 1280 px, uten registrerte JS-sidefeil. Dette er ikke full kart-til-PlaceCard-brukerreise og ikke fysisk Android/iOS; et førstegangs-overlay kan ligge under den programmatisk åpnete popupen. Kildeundersøkelse av Hulda Garborgs bunad (foajé) og Juleroser-kjolen er oppdatert; ingen nye canonical Objects, ingen ekstern fotokopiering eller tillatelsesforespørsel.",
+      "site": "https://paradispartiet.github.io/History-Go/",
+      "report": "reports/place-production/det-norske-teatret/20261021/objects-and-live-photo-c43.json",
+      "test": "tests/det-norske-teatret-live-browser-c43.mjs",
+      "workflow": ".github/workflows/det-norske-teatret-live-c43.yml",
+      "run_id": 39564326678,
+      "screenshot_artifact": "dnt-c43-public-browser-evidence"
+    },
+    {
+      "id": "canonical_unified_source_photo_real_route_c44",
+      "status": "NATIVE_UNIFIED_PLACECARD_SOURCE_PHOTO_BROWSER_PASSED_OBJECTS_BLOCKED",
+      "scope": "Rettet faktisk canonical PlaceCard Kilder-renderer i TypeScript (js/ui/place-sheet/sections/sources.ts), regenerert dist/web/place-unified-surface.js og .map. DNT-lisensiert dokumentarfoto av Madame de Sade i Kilder med CC BY-SA 4.0, Lone Lunde / Oslo Museum og Commons-kildelenke; Juleroser-foto fortsatt eksternt og ingen nye canonical Objects. C44 Chromium test åpner ekte index.html, lukker reell onboarding, går via HGAppRouter.toPlace til Det Norske Teatret, velger eksisterende samlet Kilder-nav, dekoder kostymebildet på 390 og 1280 px, sikrer attribusjon og kildeadresse uten pageerrors. Faktisk distribuert ny C44-kode og fysisk telefon ikke ennå bekreftet. Bruk originalbunadsregister C44 for særskilte fortsatt blokkerte Object-bilder.",
+      "report": "reports/place-production/det-norske-teatret/20261021/foyer-bunad-image-c44.json",
+      "test": "tests/det-norske-teatret-real-placecard-sources-c44.mjs",
+      "workflow": ".github/workflows/det-norske-teatret-real-route-c44.yml",
+      "first_pass_run": 39574423676
+    },
+    {
+      "id": "live_unified_sources_c45",
+      "status": "PASS_PUBLIC_GITHUB_PAGES_UNIFIED_KILDER_MOBILE_DESKTOP_OBJECTS_BLOCKED",
+      "scope": "C45 production-deployed canonical unified PlaceCard: compiled bundle and CSS live, exact public vs canonical compiled bundle bytes equal (SHA-256 dafa...17ec), licensed Lone Lunde 800x800 Madame de Sade WebP and Bjoertvedt facade each hash validated; actual app onboarding dismissed and HGAppRouter.toPlace + existing Kilder jump clicked in GitHub Actions Chromium on 390x844 and 1280x900. Source photo fits, photographer/licence/Commons link visible, Juleroser remains original external link, no JS pageerrors. New physical Jan Groth stage curtain (1985 commissioning, original theatre article photo by Ylva Catodotter Fyllingsnes) documented as 4th independent candidate only. Original bunad and costume-dress image limitations remain. No new canonical Objects or published status. Not physical phone or literal map marker click.",
+      "test": "tests/det-norske-teatret-public-unified-c45.mjs",
+      "workflow": ".github/workflows/det-norske-teatret-public-unified-c45.yml",
+      "github_actions_run": 39578403086,
+      "screenshots_artifact": "dnt-c45-public-unified-evidence",
+      "report": "reports/place-production/det-norske-teatret/20261021/scene-curtain-c45-research.json",
+      "site": "https://paradispartiet.github.io/History-Go/"
+    },
+    {
+      "id": "foyer_painting_image_research_c46",
+      "status": "LICENSED_FOYER_PAINTING_IMAGE_IN_REPO_VISUAL_QA_PASSED_OBJECTS_BLOCKED",
+      "scope": "C46 har dokumentert fem distinkte gjenstandskandidatar, inkludert Johannessens identifiserte fysiske kirkegårdsmaleri i foajeen. 2017-foto (Wolfmann / Wikimedia Commons, CC BY-SA 4.0) er maskinverifisert mot Commons wikitext som skil målar frå fotograf, framstilt som 800×800 WebP, visuelt gjennomgått og merget som lokal, dokumentarisk **kandidatfil** i PR #6485. Ekte bilethash i provenance, utan cropp av motivet; Commons oppgir svak perspektivforvrenging. Tittelvarianten Kirkegårdsgravere (teatret) / Kirkegårdsgraveren (Commons) treng framleis katalogkontroll. Ikkje gjenbruk privat-samling Kortspillere som teatermåleri. Sceneteppet i 1985-huset står utan lokal lisensiert fil. Ingen canonical Objects/Preview/publiserte medlemmer; Objects BLOCKED, Place in_progress.",
+      "report": "reports/place-production/det-norske-teatret/20261021/foyer-paintings-c46-research.json",
+      "intake": "reports/place-production/det-norske-teatret/20261021/painting-photo-intake-c46.json",
+      "script": "scripts/place-production/stage-dnt-foyer-painting-c46.mjs",
+      "workflow": ".github/workflows/dnt-foyer-painting-c46.yml",
+      "test": "tests/det-norske-teatret-foyer-painting-c46.test.mjs",
+      "asset": "bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp",
+      "provenance": "reports/place-production/det-norske-teatret/20261021/painting-photo-c46-generated.json",
+      "visual_qa": "reports/place-production/det-norske-teatret/20261021/painting-photo-c46-visual-qa.json",
+      "asset_pr": 6485,
+      "metadata_fix_pr": 6482,
+      "asset_sha256": "8066f849c6bc4c1b244bcc3c67dda94e25d05a25c29833dafd9e64abe276a141",
+      "test_asset": "tests/det-norske-teatret-foyer-asset-c46.test.mjs"
+    },
+    {
+      "id": "foyer_painting_kilder_c47",
+      "status": "NATIVE_MOBILE_DESKTOP_SOURCES_PASS_DEPLOY_CHECK_PENDING_OBJECTS_BLOCKED",
+      "scope": "Lisensiert dokumentarfoto av Johannessens kirkegårdsmaleri, fotograf Wolfmann 2017 CC BY-SA 4.0, registrert i Kilder ved siden av det eksisterende Madame de Sade-museumsfotoet. Begge eksisterende lokale WebP-evidensbilder er dokumentarfoto, ikke canonical Objects. Kilde oppgir skrå bildevinkel. Den dokumenterte navnevarianten Kirkegårdsgravere (DNT) og Kirkegårdsgraveren (Commons) beholdes åpent. Teatrets opprinnelige foajéutstillingsartikkel er egen lenke. Juleroser-bildet holdes eksternt. Oppdatert canonical Place, metadataSnapshot og Place-open er verifisert. Eksakt PR-head Playwright rute og Kilder-visning bestått på mobil (390×844) og PC (1280×900), skjermbilete manuelt vurdert frå artefakt: begge foto har synlege krediteringar, originalkjelder og ikkje-beskåra motiv. Offentleg Pages-deploy og fysisk telefon står att. Ingen full Place/Objects-publisering.",
+      "report": "reports/place-production/det-norske-teatret/20261021/foyer-painting-kilder-c47.json",
+      "test": "tests/det-norske-teatret-foyer-sources-c47.test.mjs",
+      "browser_test": "tests/det-norske-teatret-real-placecard-sources-c44.mjs",
+      "source": "https://commons.wikimedia.org/wiki/File:Axel_Waldemar_Johannessen_Kirkeg%C3%A5rdsgraveren_Det_norske_teatret_Oslo,_Norway_(slightly_distorted).jpg",
+      "source_context": "https://www.detnorsketeatret.no/notisar/utstillingsopning-aksel-waldemar-johannessen",
+      "image": "bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp",
+      "photo_sha256": "8066f849c6bc4c1b244bcc3c67dda94e25d05a25c29833dafd9e64abe276a141",
+      "native_browser_run": 39585544001,
+      "screenshot_artifact": "dnt-c44-real-route-evidence",
+      "public_test": "tests/det-norske-teatret-public-unified-c47.mjs",
+      "public_workflow": ".github/workflows/det-norske-teatret-public-c47.yml"
+    },
+    {
+      "id": "objects_c50_canonical",
+      "status": "OBJECT_MEMBERS_AND_RENDERER_IMPLEMENTED_PENDING_ACTIONS_AND_BROWSER_QA",
+      "scope": "To fysiske og dokumenterte scenekunstgjenstander er registrert som canonical Objects med mediebilde og egen historisk tekst. Originalfoto og skjematisk illustrasjon skilles i alle Objects-kort. C50 er kun Objects-publisering, ikke full stedslukking; C51 og øvrige samlinger gjenstår.",
+      "files": [
+        "data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json",
+        "data/runtime/place-open/det_norske_teatret.json",
+        "js/ui/place-rounds-visual-collections.js",
+        "css/place-rounds-fill-layout.css"
+      ],
+      "test": "tests/det-norske-teatret-objects-c50.test.mjs",
+      "browser_test": "tests/det-norske-teatret-real-objects-c50.mjs"
+    },
+    {
+      "id": "objects_c51_public_published_qa",
+      "status": "PASS_DEPLOYED_OBJECTS_TWO_MEMBERS_MOBILE_DESKTOP",
+      "scope": "Etter C50 merge er produksjons-GitHub-Pages lest og revidert i ekte Chromium 390×844 og 1280×900. Canonical Place og Place-open i samsvar, to publiserte Objects-kort, mediefiler og renderer/CSS bitverifisert mot main, foto og kildebasert illustrasjon dekodet, attribusjon og lenker kontrollerte. Manuell gjennomgang av faktiske skjermbilder bestått. Ikke fysisk telefon eller fysisk kartmarkør, øvrige samlinger fremdeles blokkert.",
+      "report": "reports/place-production/det-norske-teatret/20261021/objects-c51-public-qa.json",
+      "workflow": ".github/workflows/dnt-public-objects-c51.yml",
+      "test": "tests/det-norske-teatret-public-objects-c51.mjs",
+      "github_actions_run": 39604980279,
+      "evidence_artifact_id": 12347682520
+    },
+    {
+      "id": "c52_objects_closed_throughput_pivot",
+      "status": "OBJECTS_FROZEN_TAKE_NEXT_20_PLACE_BATCH",
+      "scope": "Redaksjonell beslutning 21.10.2026: Objects er tilstrekkelig, to publiserte og bekreftet i realt GitHub Pages. Ingen C52-objektutvidelse eller mer bildeleting. Neste produksjon skal flytte 20-steds Oslo-bolken videre gjennom eksisterende stedsproduksjonsporter, og ikke starte flere ene-steds-/ene-objekt-PRer.",
+      "next_batch": "data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json"
     }
   ],
   "rule_preflight": {
@@ -288,12 +556,12 @@
     "status": "PASS",
     "place_id": "det_norske_teatret",
     "category": "scenekunst",
-    "recorded_at": "2026-10-13T11:44:44.271Z",
+    "recorded_at": "2026-10-21T12:32:32.589Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
         "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
-        "sha256": "21ef6553dcccf9a6c74fc0a33bf61d3df6c39b5064108b7110211ae232c95df6"
+        "sha256": "eacaec225d5a1c61e43ed6cbe9754bc007ecff3818dfd630940dd4f4870ba7f5"
       },
       {
         "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
@@ -321,7 +589,7 @@
       },
       {
         "path": "docs/PLACE_OBJECTS_CANONICAL.md",
-        "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
+        "sha256": "fbd5e39905942e116c1fef9e375253c54f93d292b82bac03379d011f38fe93c6"
       },
       {
         "path": "data/brands/brand_rules_v1_1.json",
@@ -366,5 +634,22 @@
     ],
     "total": 27,
     "report": "reports/place-production/det-norske-teatret/20261013/content-checkpoint.md"
+  },
+  "production_throughput_handoff": {
+    "decision_date": "2026-10-21",
+    "editorial_instruction": "Stopp Objects-sporet ved Det Norske Teatret etter C51. Stedsproduksjon går videre i 20–50-stedsbolker. Ikke bygg én ny PR per objekt/foto; gjenbruk eksisterende bildeklarerte stedspakker, tekst, quiz, QuizCard og Fagverk.",
+    "objects_frozen": true,
+    "objects_status": "PASS_AND_PUBLIC_MOBILE_DESKTOP_VERIFIED",
+    "theater_state": "in_progress_until_independent_remaining_gates_are_met",
+    "no_more_theater_objects_tasks": true,
+    "no_research_for_perfect_photo": true,
+    "next_actual_batch": "data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json",
+    "batch_size": 20,
+    "priority": "Fagverk/quiz/QuizCard/runtime/QA for the five venues with already authored Fagverk; prepare remaining fifteen in parallel instead of serial micro-PRs",
+    "truthfulness": "Do not mark v1 or vFerdig without passing existing canonical QA; do not mislabel People, Productions or Brands PASS.",
+    "source_docs": [
+      "docs/PLACE_PRODUCTION_MINIMUM_V1.md",
+      "docs/PLACE_PRODUCTION_V3.md"
+    ]
   }
 }

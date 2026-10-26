@@ -24,6 +24,50 @@ En person kan samtidig være arbeidstaker, bror, venn og fotballinteressert. Dis
 
 Eksisterende [klassifikasjon av ikke-karriere-roller](CIVICATION_NONCAREER_ROLE_TAXONOMY.md) gjelder: formell jobb, valgt livsposisjon, livsomstendighet og relasjon har forskjellige betydninger og eiere. Modellen her samler begrepene for forfatting; den samler ikke lagringen i en ny motor.
 
+## Ferdigheter, dagsform og sosial anseelse – spillerens egen utvikling (2026-10-21)
+
+
+
+Spillfiguren kan utvikles selv om vedkommende er arbeidsledig i lang tid. Life Stories om familie, venner, kjærlighet, et lokalmiljø, økonomi, skapende arbeid, kultur og samfunnsdeltakelse er **ikke underhistorier av en karriererolle**. Arbeidsstatus avgjør arbeidskontekst, ikke spillerens identitet eller adgang til private historier. Samtidig er en faktisk utført handling ikke et bevis på en komplett personlighet.
+
+
+
+En utvidelse med **seks varige ferdighetsskalaer** er besluttet som produktmål, men ikke implementert som felles runtime. Hver ferdighet får etter forslag en 0–100-visning og utvikles gjennom *faktisk dokumentert erfaring*:
+
+
+
+| Ferdighet | Hvordan den vises og trenes |
+
+| --- | --- |
+
+| Visdom / dømmekraft | Kildekritikk, forståelse av konsekvenser og velbegrunnede vurderinger i konkrete situasjoner |
+
+| Sosial teft | Lytte, tolke signaler, reparere misforståelser og håndtere ulike personer |
+
+| Kreativitet | Lage originale løsninger, nye forbindelser, kunst eller prototyper |
+
+| Praktisk mestring | Planlegge og faktisk gjennomføre en avgrenset praktisk handling |
+
+| Formidling | Forklare, argumentere, undervise, skrive eller presentere med mottaker og innhold |
+
+| Handlekraft | Ta initiativ og følge en beslutning opp gjennom etterprøvbar handling |
+
+
+
+**Ikke bland disse med** psyke, energi, integritet og handlingsrom (situasjon/dagsform), eksisterende sju kapitaldimensjoner, fagmeritter, eksisterende psykologikompetanse, job learning eller tillit hos en konkret NPC. Ferdighetspoeng krever eksplisitt kilderettet hendelse med unik ID og duplikatvern; besøk alene eller gjentakelse av samme quiz beviser ikke skårvekst. Verken rolle, score eller «sterk» karakter gir automatisk autorisasjon, jobb, nye venner eller kontroll over NPC.
+
+
+
+**Streetkred er situert omdømme**, knyttet til hvem som har sett hvilke handlinger. Det kan for eksempel gjelde et musikk-, gatekunst- eller lokalmiljø, og kan være høyt ett sted og lavt et annet. Det skal bruke/utvide eksisterende anseelsesmodell med tydelige aktør- og miljøreferanser; ingen ekstra universell global score. `subculture`-kapital er en ressursdimensjon, ikke den samme målingen.
+
+
+
+History Go-samlingen gir bakgrunn for *mulige* historier og beslutninger: opplevde steder, fagkunnskap, People-oppføringer, merker, observasjoner og notater. Å eie en People-oppføring skaper ikke en fiktiv NPC-relasjon. Det kreves opplevd scene og konsekvens; tidligere valg og minner må overleve jobbskifte, rollebytte, reload og senere dager.
+
+
+
+Detaljert kilde-, spillerutviklings- og akseptansekontrakt: [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md).
+
 ## Hva rollen sier om personen
 
 Jobbrollen beskriver oppgaver, forventninger og ansvar. Den kan stille krav til kompetanse uten å bevise at innehaveren oppfyller dem.

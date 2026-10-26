@@ -26,17 +26,11 @@
     return (hash >>> 0) / 4294967295;
   }
 
+  // Livelihood owns the canonical game-week identifier, derived from the
+  // CivicationCalendar. Never reroll offers when the real calendar changes.
   function currentWeekKey() {
-    try {
-      if (typeof window.weekKey === "function") return String(window.weekKey(new Date()));
-    } catch {}
-    const date = new Date();
-    const utc = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-    const dayNum = utc.getUTCDay() || 7;
-    utc.setUTCDate(utc.getUTCDate() + 4 - dayNum);
-    const yearStart = new Date(Date.UTC(utc.getUTCFullYear(), 0, 1));
-    const weekNo = Math.ceil((((utc.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
-    return `${utc.getUTCFullYear()}-W${String(weekNo).padStart(2, "0")}`;
+    const week = window.CivicationLivelihoods?.getSnapshot?.()?.week;
+    return typeof week === "string" && /^game-week-[0-9]{6}$/.test(week) ? week : null;
   }
 
   async function ensureTemplatesLoaded() {
@@ -199,11 +193,14 @@
 
   async function produceWeeklyLifePositionOpportunities() {
     if (!window.CivicationLivelihoods?.createOpportunity) return { produced: 0, results: [] };
+    // Determine week before async loading: do not attribute an old offer to
+    // a later game week if the player advances while templates are loading.
+    const week = currentWeekKey();
+    if (!week) return { produced: 0, results: [], reason: "game_clock_unavailable" };
     await window.CivicationLivelihoods.ensureCatalogLoaded?.();
     const catalog = await ensureTemplatesLoaded();
     const templates = Array.isArray(catalog?.templates) ? catalog.templates : [];
     const active = getActiveLifePositions();
-    const week = currentWeekKey();
     const results = [];
 
     for (const template of templates) {
@@ -246,11 +243,20 @@
     return { produced: results.filter((entry) => entry?.ok).length, results };
   }
 
-  function init(engine) {
-    attachToEngine(engine || window.HG_CiviEngine);
+  let observedGameWeek = null;
+  function refreshWeeklyNetworkOffers() {
+    const week = currentWeekKey();
+    if (!week || week === observedGameWeek) return;
+    observedGameWeek = week;
     produceWeeklyLifePositionOpportunities().catch((error) => {
+      observedGameWeek = null; // allow a later phase to retry
       console.warn("[CivicationLivelihoodOpportunityBridge] weekly producer failed", error);
     });
+  }
+
+  function init(engine) {
+    attachToEngine(engine || window.HG_CiviEngine);
+    refreshWeeklyNetworkOffers();
   }
 
   window.CivicationLivelihoodOpportunityBridge = {
@@ -264,6 +270,9 @@
   window.addEventListener?.("civi:lifePositionChanged", () => {
     produceWeeklyLifePositionOpportunities().catch(() => {});
   });
+  // day_end advances CivicationCalendar first and then emits this event.
+  // Recheck once on entering a new game week, regardless of wall-clock date.
+  window.addEventListener?.("civi:dayPhaseChanged", refreshWeeklyNetworkOffers);
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = window.CivicationLivelihoodOpportunityBridge;

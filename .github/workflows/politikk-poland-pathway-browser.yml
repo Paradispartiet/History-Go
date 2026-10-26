@@ -1,0 +1,51 @@
+name: Politikk Poland subject pathway browser
+
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/politikk/politikk_subject_pathways_v1.json'
+      - 'data/quiz/manifest.json'
+      - 'data/knowledge/knowledge_manifest.json'
+      - 'js/quizzes.js'
+      - 'js/fagverk.js'
+      - 'js/fagverk-ia-v3.js'
+      - 'fagverk.html'
+      - 'tests/politikk-poland-pathway-browser.test.mjs'
+      - 'tests/politikk-hungary-poland-pathway-browser.test.mjs'
+      - 'tests/politikk-comparative-evidence-lab-browser.test.mjs'
+      - 'js/politikk-evidence-workshop.js'
+      - 'css/politikk-curriculum.css'
+      - '.github/workflows/politikk-poland-pathway-browser.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: politikk-poland-pathway-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Check shared quiz and Fagverk entrypoint syntax
+        run: |
+          node --check js/quizzes.js
+          node --check js/fagverk.js
+          node --check js/politikk-evidence-workshop.js
+          node --check js/fagverk-ia-v3.js
+      - name: Verify five-stage Politics package
+        run: node --test tests/politikk-advanced-political-science-subject-pathway-v6.test.mjs
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Test actual Fagverk quiz and Knowledge on mobile and desktop
+        run: |
+          node tests/politikk-poland-pathway-browser.test.mjs
+          node tests/politikk-hungary-poland-pathway-browser.test.mjs
+          node tests/politikk-comparative-evidence-lab-browser.test.mjs

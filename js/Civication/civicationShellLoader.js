@@ -79,6 +79,7 @@
     "js/Civication/systems/civicationNPCs.js",
     "js/Civication/systems/civicationEventChannels.js",
     "js/Civication/ui/CivicationUI.js",
+    "js/Civication/ui/CivicationScoreUI.js",
     "js/Civication/ui/CivicationDashboardUI.js",
     "js/Civication/ui/CivicationMiniSectionsUI.js",
     "js/Civication/ui/CivicationEmptyPanels.js",
@@ -159,6 +160,7 @@
     "js/Civication/ui/CivicationMilestoneHighlight.js",
     "js/Civication/systems/civicationLifeMailRuntime.js",
     "js/Civication/systems/day/dayChoiceDirector.js",
+    "js/Civication/systems/civicationSkillsPracticeBridge.js",
     "js/Civication/systems/day/dayConsequences.js",
     "js/Civication/systems/day/dayConsequencesUI.js",
     "js/Civication/systems/day/dayNarrativeConsequencesUI.js",
@@ -405,6 +407,8 @@
   }
 
   async function load() {
+    // Hydrate account progress before shell systems read or create local state.
+    await (/** @type {any} */ (globalScope)).CivicationCloudSave?.ready;
     console.info("[CivicationShellLoader] laster Civication-skallet (kart, dashboard, paneler, Min dag-ramme).");
     revealLegacySections();
     const richMap = shouldLoadRichMap();

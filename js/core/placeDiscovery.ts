@@ -16,6 +16,8 @@ type DiscoveryWindow = Window & typeof globalThis & {
   showToast?: (message: string, duration?: number) => unknown;
   renderNearbyPlaces?: () => unknown;
   openPlaceCard?: (place: Place) => unknown;
+  /** Separate explicit opt-in: discovery must not hijack the open card. */
+  HG_AUTODISCOVER_OPEN_PLACE?: boolean;
 };
 
 const win = window as DiscoveryWindow;
@@ -115,7 +117,7 @@ function announceDiscovery(
   win.showToast?.(`${prefix}: ${placeName}${suffix}`, 2600);
   win.renderNearbyPlaces?.();
 
-  if (shouldAutoOpenPlace(place) && win.openPlaceCard) {
+  if (win.HG_AUTODISCOVER_OPEN_PLACE === true && shouldAutoOpenPlace(place) && win.openPlaceCard) {
     window.setTimeout(() => win.openPlaceCard?.(place), 450);
   }
 

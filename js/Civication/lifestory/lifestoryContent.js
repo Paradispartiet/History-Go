@@ -61,6 +61,12 @@
    * Ukjent tag => FAIL FAST (ingen gjetting). Holdes i sync av
    * civication-lifestory-lifestyle-bridge.test.js.
    */
+  // Skills are authored practices, not automatic tags/quiz/visit rewards.
+  const SKILL_IDS = new Set([
+    "wisdom_judgement", "social_awareness", "creativity",
+    "practical_mastery", "communication", "agency"
+  ]);
+
   const LIVSSTIL_TAGS = [
     "avoidance", "budget", "craft", "culture", "debt", "family", "fitness",
     "heritage", "hipster", "legitimacy", "luxury", "maximalist", "minimalist",
@@ -77,6 +83,8 @@
    * @property {string} [konsekvensTekst]
    * @property {string[]} [laaserOpp]
    * @property {string[]} [livsstil] Livsstilstags (se LIVSSTIL_TAGS) — mates til skallets HG_Lifestyle ved valg.
+   * @property {{skill_id:string,activity_type:string,evidence_flag:string,delta:number}} [skills_practice] Dokumentert handling for Skills.
+   * @property {{skill_id:string,min_score:number}} [skills_requirement] Valgfritt Skills-minimum for bonusvalg; grunnvalg skal forbli åpne.
    *
    * @typedef {Object} LifestoryScene
    * @property {string} id
@@ -197,7 +205,7 @@
       if (!faseIds.has(scene.fase)) push(`scene ${sid}: ukjent fase "${scene.fase}"`);
       if (typeof scene.dag !== "number" || scene.dag < 1) push(`scene ${sid}: ugyldig dag`);
       if (scene.livsdagFra !== undefined && (!Number.isInteger(scene.livsdagFra) || scene.livsdagFra < 2 || scene.threadId && !/^wave_[ef]_/.test(scene.threadId))) push(`scene ${sid}: ugyldig privat livsdag`);
-      if (scene.etterValgDager !== undefined && (!scene.livsdagFra || typeof scene.etterValgDager.flagg !== "string" || !/^wa_(?:d_c(?:01|02|03|05|06|07|17|23)_status|e_c0[15]_(?:retning|etterspill))$/.test(scene.etterValgDager.flagg) || !Number.isInteger(scene.etterValgDager.dager) || scene.etterValgDager.dager < 1)) push(`scene ${sid}: ugyldig relativ oppfølging`);
+      if (scene.etterValgDager !== undefined && (!scene.livsdagFra || typeof scene.etterValgDager.flagg !== "string" || !(/^(?:wa_[de]_c0[15]_|wa_d_c(?:02|03|06|07|17|23)_status$)/.test(scene.etterValgDager.flagg)) || !Number.isInteger(scene.etterValgDager.dager) || scene.etterValgDager.dager < 1)) push(`scene ${sid}: ugyldig relativ oppfølging`);
       if (SCENE_TYPES.indexOf(scene.visningstype) === -1) push(`scene ${sid}: ukjent visningstype "${scene.visningstype}"`);
       if (scene.tilgjengelighet !== "start" && scene.tilgjengelighet !== "laast") {
         push(`scene ${sid}: tilgjengelighet må være "start" eller "laast"`);
@@ -222,6 +230,33 @@
           push(`scene ${sid}/${cid}: konsekvensTekst må være en ikke-tom streng`);
         }
         errorsForEffects(scene, choice, startRelasjoner, threadIds, push);
+        // Fail closed: Skills require an authored action with a specific true effect flag.
+        if (choice.skills_practice !== undefined) {
+          const practice = choice.skills_practice;
+          const valid = practice && typeof practice === "object" && !Array.isArray(practice);
+          const keys = valid ? Object.keys(practice) : [];
+          const allowed = ["skill_id", "activity_type", "evidence_flag", "delta"];
+          const isToken = value => typeof value === "string" && /^[a-z][a-z0-9_]{1,99}$/.test(value);
+          if (!valid || keys.length !== 4 || keys.some(key => !allowed.includes(key)) ||
+              !SKILL_IDS.has(practice.skill_id) || !isToken(practice.activity_type) ||
+              !isToken(practice.evidence_flag) || !Number.isInteger(practice.delta) ||
+              practice.delta < 1 || practice.delta > 3 ||
+              choice.effekter?.flagg?.[practice.evidence_flag] !== true) {
+            push(`scene ${sid}/${cid}: skills_practice krever gyldig Skill, aktivitet, delta 1–3 og et true effektflagg`);
+          }
+        }
+        if (choice.skills_requirement !== undefined) {
+          const requirement = choice.skills_requirement;
+          const valid = requirement && typeof requirement === "object" && !Array.isArray(requirement);
+          const keys = valid ? Object.keys(requirement) : [];
+          if (!valid || keys.length !== 2 ||
+              keys.some(key => key !== "skill_id" && key !== "min_score") ||
+              !SKILL_IDS.has(requirement.skill_id) ||
+              !Number.isInteger(requirement.min_score) ||
+              requirement.min_score < 1 || requirement.min_score > 100) {
+            push(`scene ${sid}/${cid}: skills_requirement krever gyldig Skill og min_score 1–100`);
+          }
+        }
         for (const target of choice.laaserOpp || []) {
           if (typeof target !== "string" || !target) push(`scene ${sid}/${cid}: ugyldig laaserOpp-referanse`);
         }
@@ -253,6 +288,9 @@
             }
           }
         }
+      }
+      if (valg.length && valg.every(choice => choice.skills_requirement !== undefined)) {
+        push(`scene ${sid}: minst ett valg må kunne spilles uten Skills-krav`);
       }
     }
 
@@ -592,6 +630,25 @@
     return buildContent({ role, phaseDefinitions, roleThreads, roleScenes, lifeThreads, lifeScenes });
   }
 
+  // For a real shell job without its own Life Story role, keep the player's
+  // personal narrative playable. The published pack is validated BEFORE the
+  // view is filtered; this projection cannot add fictional work events.
+  // The canonical role, current story state and saved role snapshots are not
+  // modified by this read-only content projection.
+  async function makePersonalOnlyContent(fullContent) {
+    const manifest = await fetchJson(MANIFEST_PATH);
+    const life = await fetchJson(manifest.life.scenes);
+    const sharedIds = new Set((life?.scenes || []).map(scene => scene.id));
+    const privateRoleScene = /^wave_[abcd]_c0[15]_/;
+    return {
+      ...fullContent,
+      role: { ...fullContent.role, navn: "Privatlivet ditt" },
+      scenes: (fullContent.scenes || []).filter(scene =>
+        sharedIds.has(scene.id) || privateRoleScene.test(scene.id)),
+      personalOnly: true
+    };
+  }
+
   /**
    * @param {string} path
    * @returns {Promise<any>}
@@ -685,7 +742,7 @@
     return appendContinuation(content, await fetchJson(next.path));
   }
 
-  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, SHELL_CONDITION_KEYS, HANDLING_TYPES, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, appendContinuation, loadContinuation, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
+  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, SHELL_CONDITION_KEYS, HANDLING_TYPES, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, makePersonalOnlyContent, appendContinuation, loadContinuation, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
   /** @type {any} */ (globalScope).CivicationLifestoryContent = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

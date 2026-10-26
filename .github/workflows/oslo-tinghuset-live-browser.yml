@@ -1,0 +1,36 @@
+name: Oslo tinghus – native PlaceCard and Fagverk review
+on:
+  pull_request:
+    paths:
+      - 'data/places/politikk/oslo/places_politikk/tinghuset.json'
+      - 'data/runtime/place-open/tinghuset.json'
+      - 'tests/oslo-tinghuset-live-placecard-browser.mjs'
+      - '.github/workflows/oslo-tinghuset-live-browser.yml'
+  workflow_dispatch:
+concurrency:
+  group: oslo-tinghuset-live-review-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  mobile-desktop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Verify real Tinghus PlaceCard, portrait, QuizCard and Fagverk in mobile and desktop Chromium
+        run: node tests/oslo-tinghuset-live-placecard-browser.mjs
+      - name: Preserve app browser evidence without auto-approving v1
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-tinghuset-native-review
+          path: artifacts/oslo-tinghuset-live-browser/**
+          if-no-files-found: ignore
+          retention-days: 14

@@ -17,10 +17,13 @@ const html = fs.readFileSync(path.join(ROOT, "Civication.html"), "utf8");
 // Min dag-scriptene rendrer primærpanelet raskt og uavhengig; Spatial Day Bridge
 // projiserer samme day/mail-sannhet på kartet; shell-loaderen injiserer resten.
 const STATIC_SCRIPTS = [
+  "js/aha.js",
+  "js/Civication/core/CivicationCloudSave.js",
   "js/Civication/civicationV2Config.js",
   "js/Civication/core/CivicationStorageAdapter.js",
   "js/Civication/core/civicationJsonStore.js",
   "js/Civication/lifestory/lifestoryContent.js",
+  "js/Civication/systems/civicationSkills.js",
   "js/Civication/lifestory/lifestoryState.js",
   "js/Civication/lifestory/lifestoryRunner.js",
   "js/Civication/lifestory/lifestoryEndings.js",
@@ -40,8 +43,11 @@ assert.deepStrictEqual(
   "Civication.html skal laste Min dag + romlig dagsbro + shell-loader, i denne rekkefølgen"
 );
 
-// config står først (setter flagget), shell-loaderen sist.
-assert.strictEqual(loadedScripts[0], "js/Civication/civicationV2Config.js");
+// Konto og skylagring starter før Life Story kan lese lokalt lagret rolle.
+// Config setter deretter flagget; shell-loaderen står sist.
+assert.strictEqual(loadedScripts[0], "js/aha.js");
+assert.strictEqual(loadedScripts[1], "js/Civication/core/CivicationCloudSave.js");
+assert.strictEqual(loadedScripts[2], "js/Civication/civicationV2Config.js");
 assert.strictEqual(loadedScripts[loadedScripts.length - 1], "js/Civication/civicationShellLoader.js");
 
 // --- 2. Skallet er SYNLIG som standard (ikke skjult, ikke merket legacy) ---

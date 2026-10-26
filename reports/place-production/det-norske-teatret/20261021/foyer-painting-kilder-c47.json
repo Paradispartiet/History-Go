@@ -1,0 +1,112 @@
+{
+  "schema": "history_go_dnt_c47_foyer_painting_documentary_kilder_v1",
+  "place_id": "det_norske_teatret",
+  "prepared_at": "2026-10-21",
+  "status": "PUBLIC_GITHUB_PAGES_KILDER_MOBILE_DESKTOP_PASS_OBJECTS_BLOCKED",
+  "purpose": "Expose a verified already locally staged Commons photo as a credited documentary image in the existing unified PlaceCard Kilder section, without canonical Objects collection publication.",
+  "new_photo": {
+    "name": "Foajémaleri av Aksel Waldemar Johannessen",
+    "theatre_source_name": "Kirkegårdsgravere",
+    "commons_source_name": "Kirkegårdsgraveren",
+    "photographer": "Wolfmann",
+    "year_photo": 2017,
+    "source": "https://commons.wikimedia.org/wiki/File:Axel_Waldemar_Johannessen_Kirkeg%C3%A5rdsgraveren_Det_norske_teatret_Oslo,_Norway_(slightly_distorted).jpg",
+    "theatre_context": "https://www.detnorsketeatret.no/notisar/utstillingsopning-aksel-waldemar-johannessen",
+    "asset": "bilder/objects/det_norske_teatret/kirkegardsgraveren_foyer_wolfmann_2017.webp",
+    "asset_sha256": "8066f849c6bc4c1b244bcc3c67dda94e25d05a25c29833dafd9e64abe276a141",
+    "license": "CC BY-SA 4.0",
+    "source_report": "reports/place-production/det-norske-teatret/20261021/painting-photo-c46-generated.json",
+    "visual_review": "reports/place-production/det-norske-teatret/20261021/painting-photo-c46-visual-qa.json",
+    "photographic_limit": "Photographed at a slight angle; not a geometrically exact painting scan. Title spelling and physical accession remain unverified."
+  },
+  "existing_source_photo_preserved": "bilder/objects/det_norske_teatret/madame_de_sade_1989_tm01641.webp",
+  "third_party_juleroser_source_remains_external": true,
+  "data_sync": [
+    "data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json",
+    "data/places/production/det_norske_teatret.json",
+    "data/runtime/place-open/det_norske_teatret.json"
+  ],
+  "rendering_owner": "js/ui/place-sheet/sections/sources.ts",
+  "css_owner": "css/place-sheet-sources.css",
+  "renderer_behavior": "Reuse existing responsive documentary images grid: local credit and Creative Commons license required for inline display. The theatre publisher photo remains an external link.",
+  "test_route": "tests/det-norske-teatret-real-placecard-sources-c44.mjs",
+  "test_guard": "tests/det-norske-teatret-foyer-sources-c47.test.mjs",
+  "expected_browser_cases": [
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "viewport": "desktop",
+      "width": 1280,
+      "height": 900
+    }
+  ],
+  "status_boundaries": {
+    "place": "in_progress",
+    "objects": "BLOCKED",
+    "canonical_object_members": 0,
+    "canonical_placecard_objects_preview": false
+  },
+  "pending": [
+    "Do not change source-image item into canonical Object",
+    "Do not copy Jan Groth's externally published curtain photograph without appropriate rights",
+    "Retain both varying source titles and document perspective distortion",
+    "Physical phone and literal map-marker tap not covered by C47 Chromium QA."
+  ],
+  "native_browser_verification": {
+    "workflow_run_id": 39585544001,
+    "workflow_name": "Det Norske Teatret C44 unified PlaceCard Sources QA",
+    "status": "PASS",
+    "screenshot_artifact": "dnt-c44-real-route-evidence",
+    "artifact_id": 12339605132,
+    "viewports": [
+      {
+        "name": "mobile",
+        "width": 390,
+        "height": 844,
+        "outcome": "PASS",
+        "page_errors": 0
+      },
+      {
+        "name": "desktop",
+        "width": 1280,
+        "height": 900,
+        "outcome": "PASS",
+        "page_errors": 0
+      }
+    ],
+    "method": "Actual index.html local PR app with onboarding dismissed, HGAppRouter.toPlace and unified Kilder navigation; Playwright asserts two 800x800 images decode, credits and licensing, side bounds and original URLs.",
+    "screenshot_review": "Both exact PNG screenshots from Actions artifact manually opened; mobile painting photographed in Kilder card, desktop costume and painting cards display side by side with credits; no obvious image crop or clipping.",
+    "remaining_scope": "No production Pages verification, no physical device and no literal map marker tap."
+  },
+  "public_deployment_verification": {
+    "status": "PUBLIC_KILDER_TWO_DOCUMENTARY_IMAGES_MOBILE_DESKTOP_PASS",
+    "workflow_run_id": 39587062392,
+    "workflow_url": "https://github.com/Paradispartiet/History-Go/actions/runs/39587062392",
+    "workflow_conclusion": "success",
+    "pages_workflow_run_id": 39587061080,
+    "pages_workflow_conclusion": "success",
+    "merge_commit": "0225c68358ffd5360b12de93c44c015d15b903b7",
+    "attempts_to_find_deployed_source": 8,
+    "photo_and_place_json_sha_verified": true,
+    "artifact_id": 12340127164,
+    "artifact_name": "dnt-c47-public-evidence",
+    "cases": [
+      {
+        "name": "mobile",
+        "width": 390,
+        "height": 844,
+        "outcome": "PASS"
+      },
+      {
+        "name": "desktop",
+        "width": 1280,
+        "height": 900,
+        "outcome": "PASS"
+      }
+    ],
+    "scope": "Public GitHub Pages/Chromium unified Kilder, verified two photographs, source credits and links; not a physical phone or literal map marker tap."
+  }
+}

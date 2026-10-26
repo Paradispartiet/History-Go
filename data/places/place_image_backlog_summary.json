@@ -1,29 +1,29 @@
 {
   "schema": "history_go_place_image_backlog_summary_v1",
-  "generatedAt": "2026-10-18",
-  "generatedFromCommit": "4971b76de0a14ea45b85d87fafc88f62449e8f3a",
-  "totalPlaces": 1534,
+  "generatedAt": "2026-10-26",
+  "generatedFromCommit": "aaf53c2e8d8e99b570071b0bd3f6d95d74a7962e",
+  "totalPlaces": 1540,
   "summary": {
-    "validLocal": 139,
-    "validRemote": 57,
+    "validLocal": 175,
+    "validRemote": 137,
     "optionalMissing": 79,
-    "missing": 1250,
-    "invalidLocalPath": 9,
-    "remaining": 1259
+    "missing": 1149,
+    "invalidLocalPath": 0,
+    "remaining": 1149
   },
   "byCategory": {
     "by": {
-      "total": 253,
-      "valid": 67,
+      "total": 254,
+      "valid": 143,
       "optional": 2,
-      "missing": 175,
-      "invalid": 9
+      "missing": 109,
+      "invalid": 0
     },
     "naeringsliv": {
-      "total": 155,
-      "valid": 17,
+      "total": 156,
+      "valid": 30,
       "optional": 2,
-      "missing": 136,
+      "missing": 124,
       "invalid": 0
     },
     "sport": {
@@ -41,24 +41,24 @@
       "invalid": 0
     },
     "historie": {
-      "total": 524,
-      "valid": 26,
+      "total": 528,
+      "valid": 32,
       "optional": 8,
-      "missing": 490,
+      "missing": 488,
       "invalid": 0
     },
     "politikk": {
       "total": 45,
-      "valid": 9,
+      "valid": 18,
       "optional": 7,
-      "missing": 29,
+      "missing": 20,
       "invalid": 0
     },
     "natur": {
       "total": 131,
-      "valid": 7,
+      "valid": 19,
       "optional": 27,
-      "missing": 97,
+      "missing": 85,
       "invalid": 0
     },
     "scenekunst": {
@@ -140,11 +140,11 @@
     }
   },
   "productionOrder": [
-    "repair_31_invalid_local_paths",
+    "repair_remaining_invalid_local_paths",
     "politikk_and_current_fagverk_places",
     "places_with_existing_popupdesc_and_no_image",
     "nature_and_scenekunst",
     "remaining_categories_by_verified_source_availability"
   ],
-  "note": "Dette er en materialisert status, ikke en allowlist. Nye og endrede standardsteder stoppes av CI dersom de mangler gyldig stedsbilde. Canonical Micro Places kan mangle bilde etter den eksplisitte Micro Place-kontrakten; oppgitte, ugyldige bilder er fortsatt blokkerende. Full rapport med place-id-er regenereres av scripts/audit-place-images.mjs."
+  "note": "Oppdatert fra fullstendig place-image-audit etter By-bolk 04; eksterne bildepekere er ikke garanti for reell nettverks- eller lisenskontroll."
 }

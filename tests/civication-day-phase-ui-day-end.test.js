@@ -165,7 +165,7 @@ function run() {
   // inline day-end summary even though getDayEndSummary() is available.
   const html = renderAtDayEnd({}, summary);
   assert(html.includes('data-civi-day-phase-next-action'), 'panel renders the single NextAction routing button');
-  assert(html.includes('Gå til neste handling'), 'routing button uses the NextAction label');
+  assert(html.includes('Åpne innboksen'), 'routing button opens the unified inbox');
   assert(!html.includes('data-civi-day-phase-advance'), 'no phase-advance button on the status card');
   assert(!html.includes('Start ny dag'), 'panel never owns a start-new-day action');
   assert(!html.includes('civi-day-complete'), 'no inline day-end summary on the status card');

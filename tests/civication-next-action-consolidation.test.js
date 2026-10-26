@@ -305,9 +305,9 @@ function testDayPhasePanel() {
   assert.strictEqual(selectorTitle, 'Fasesak A', 'selector title is the active mail subject');
   assert(html.includes('Åpen sak'), 'Dagens fase labels the active phase mail');
   assert(html.includes('Fasesak A'), 'Dagens fase shows the same next-item title as the selector inside the phase mail preview');
-  assert(html.includes('Håndteres i «Neste handling»'), 'Dagens fase hands the active mail over to NextAction');
+  assert(html.includes('Svar i innboksen.'), 'Dagens fase sends active mail to the unified inbox');
   assert(html.includes('data-civi-day-phase-next-action'), 'Dagens fase routes via the NextAction button');
-  assert(html.includes('Gå til neste handling'), 'routing button keeps the NextAction label');
+  assert(html.includes('Åpne innboksen'), 'routing button opens the unified inbox');
 
   // No answer surface on the status card.
   assert(!html.includes('data-civi-next-action-answer'), 'Dagens fase renders no answer choices');

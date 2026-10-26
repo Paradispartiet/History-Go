@@ -35,6 +35,16 @@ Det betyr blant annet:
 - **relasjon** er state mellom spilleren og andre mennesker;
 - **roleModel** er authored fag-/rolleinnhold og er ikke automatisk en spillerrolle.
 
+## Arbeidsledig, dag 7 og frivillige livsposisjoner (produktregel 2026-10-21)
+
+- **Arbeidsledig** betyr at spillfiguren ikke har en formell jobb; arbeidsstatus kan medføre NAV, økonomi, tid, søkeraktivitet og egne hendelser. Det er ikke en tvungen livsidentitet eller et sluttpunkt.
+- **Life Stories** om venner, familie, kjærlighet, kultur, helse, samfunnsliv og daglige konflikter må fungere uavhengig av jobb og livsposisjon. Arbeid kan være én av flere story-tråder, aldri hovednøkkelen til hele livet.
+- **Livsposisjon** kan tilbys ut fra faktisk History Go-progresjon og spillerens interesser, men må aktiveres frivillig. Den åpner alternative rolleverdener/kapitler og forteller ikke at spilleren fikk ansettelse, penger, nettverk eller myndighet.
+- Etter dag 7 kan en bestemt betinget fortsettelse være låst uten at privatlivet låses: behold `Fortsett privatlivet`, og vis samtidig frivillig History Go-veiledning. Hvis ordinært privatliv heller ikke kan fortsette, er dette en spillbarhetsmangel som skal testes, ikke et påskudd for å tvinge fram en identitet.
+- Samling, visdom/ferdigheter og miljøstatus er **uavhengige progresjonsdimensjoner**: quizpoeng er ikke en jobb, besøk er ikke en ferdighet, og streetkred er ikke en generell egenskap ved en arbeidsledig person.
+
+For grenser mellom arbeidsstatus, ferdigheter, kapital og situert streetkred, se [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md).
+
 ## 2. Canonical runtime-eiere
 
 ### Formell jobb
@@ -156,7 +166,7 @@ De ligger bevisst i samme Life Position-runtime, ikke i en ny «fri rolle»-moto
 
 Der en åpen livsbane påvirker housing-context, skjer det gjennom de eksisterende circumstance-feltene.
 
-## 8. Hva kan få en Role World?
+## 8. Hva kan få en Role World
 
 Role World-standarden gjelder både **jobb og livsposisjon**.
 

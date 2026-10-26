@@ -71,10 +71,12 @@ Levevei endrer aldri `hg_active_position_v1`.
 
 Rekkefølgen er:
 
-1. eksisterende jobb-/arbeidsledighetsøkonomi kjøres;
-2. levevei avregnes inn i samme wallet;
-3. wallet lagrer uke-ID i `livelihood_settled_weeks`;
-4. ledger materialiserer brutto, kostnader, netto og arbeidsstatus ved avregning.
+1. eksisterende jobb-/arbeidsledighetsøkonomi kjøres etter **syv faktisk gjennomførte spilldager** (`CivicationCalendar.dayIndex`);
+2. levevei avregnes **bare når** den eksisterende lønnsmotoren flytter `wallet.last_tick_day_index` minst syv dager frem;
+3. levevei føres inn i samme wallet, med `game-week-000001`, `game-week-000002` osv. som stabil uke-ID, uten bruk av ekte kalenderuker;
+4. wallet lagrer uke-ID i `livelihood_settled_weeks`, og ledger materialiserer brutto, kostnader, netto og arbeidsstatus.
+
+Boot, reload, samme dag og manglende/ugyldig spillklokke skal ikke utbetale inntekt. Eldre wallet uten spilldagsanker migreres av lønnsmotoren uten tilbakevirkende utbetaling, og levevei får ingen fiktiv etterbetaling. Variabel inntekt bruker den stabile **spilluke-ID-en** som deterministisk trekkegrunnlag. Nye muligheter får også `accepted_game_week` ved faktisk aksept: et oppdrag godtatt på dag 8 kan ikke regnes inn i oppgjøret for dag 1–7, selv om den første avregningen kjøres forsinket. Inntekts- og kostnadsmodellene er fortsatt de samme, og eldre eksplisitte `starts_week`/`ends_week`-avtaler må vurderes før de eventuelt migreres til spilluker.
 
 Dette gjør avregningen idempotent selv om ukesticken forsøkes flere ganger.
 

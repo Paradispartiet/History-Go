@@ -35,6 +35,11 @@
       empty: "Ingen aktiv rolle ennå.",
       action: "Åpne rolle",
       urgentAction: "Svar på tilbud",
+      // Profile controls are editable even after accepting a job; only a real
+      // pending offer should turn this card into an action requiring a reply.
+      actionRequired: function () {
+        return !!window.CivicationJobs?.getLatestPendingOffer?.();
+      },
       summary: function () {
         const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.());
         if (!active) return "Ingen aktiv rolle ennå.";
@@ -230,6 +235,29 @@
             : "Resiliens: øv i Psykologrommet for å dempe negative psyke-treff",
           lastEvent ? `Sist dempet: ${lastEvent.metricLabel} ${lastEvent.originalDelta} → ${lastEvent.adjustedDelta}` : null
         ];
+      }
+    },
+
+    civiSkillsSection: {
+      category: "personlig",
+      label: "Skills",
+      accent: "✦",
+      source: "civiSkillsPanel",
+      empty: "Skills blir synlige etter dokumentert praksis.",
+      action: "Se Skills",
+      summary: function () {
+        const snapshot = window.CivicationSkills?.getViewModel?.(window.CivicationState?.getState?.() || {});
+        if (!snapshot) return "Seks Skills under utvikling.";
+        return snapshot.documented_count
+          ? snapshot.documented_count + " av 6 Skills med dokumentert praksis"
+          : "Seks Skills · ingen dokumentert praksis ennå";
+      },
+      details: function () {
+        const snapshot = window.CivicationSkills?.getViewModel?.(window.CivicationState?.getState?.() || {});
+        if (!snapshot) return [];
+        return snapshot.skills.map(function (entry) {
+          return entry.label + ": " + (entry.measured ? entry.score + "/100" : "ikke målt");
+        });
       }
     },
 
@@ -435,7 +463,9 @@
     if (!item) return false;
     if (item.deleted === true || item.archived === true || item.resolved === true) return false;
     const status = normalize(item.status || "pending");
-    return status === "pending" || status === "open";
+    if (status !== "pending" && status !== "open") return false;
+    // Do not show an already answered legacy inbox copy as today's next step.
+    return !window.CivicationDayProgression?.isPreviouslyAnsweredInboxItem?.(item);
   }
 
   function hasChoices(item) {
@@ -588,6 +618,12 @@
   function hasActionRequired(section, config) {
     if (!section) return false;
 
+    // Explicit action state is authoritative for sections containing passive
+    // editing controls (for example the active job life-profile selectors).
+    if (typeof config.actionRequired === "function") {
+      try { return !!config.actionRequired(); } catch { return false; }
+    }
+
     if (typeof config.forceUrgent === "function") {
       try {
         if (config.forceUrgent()) return true;
@@ -613,6 +649,24 @@
   }
 
   function getTopAction() {
+    // The same selector owns the active action in Min dag, the inbox and the
+    // calendar. A queued mail is a "read" action, not yet an answered one.
+    const current = window.CivicationNextActionSelector?.getCurrent?.();
+    if (current?.id) {
+      const isDayEnd = current.canStartNewDay === true;
+      const needsAnswer = current.isAnswerable === true && !isDayEnd;
+      const subject = String(current.subject || "Dagens sak").trim();
+      return {
+        mode: "urgent",
+        title: isDayEnd ? "Dagen er ferdig" : (needsAnswer ? "Melding som krever svar" : "Ny hendelse"),
+        summary: isDayEnd ? "Les dagsoppsummeringen og start neste dag når du er klar."
+          : subject + (current.phaseLabel ? " · " + current.phaseLabel : ""),
+        action: isDayEnd ? "Se dagslutt" : "Åpne innboksen",
+        sectionKey: "civiInboxSection",
+        chip: isDayEnd ? "Dagslutt" : (needsAnswer ? "Krever svar" : "Ny sak")
+      };
+    }
+
     const split = splitInbox();
 
     const milestonePending = (split.milestones || []).find(isOpenInboxItem);
@@ -656,7 +710,7 @@
     if (home?.status !== "settled") {
       return {
         mode: "urgent",
-        title: "Neste handling",
+        title: "Oppgave venter",
         summary: "Du må velge nabolag før hverdagen stabiliseres.",
         action: "Velg nabolag",
         sectionKey: "civiHomeStatus"
@@ -666,7 +720,7 @@
     if (hasBodyAction("civiWorkdaySection")) {
       return {
         mode: "urgent",
-        title: "Neste handling",
+        title: "Oppgave venter",
         summary: "Arbeidsdagen inneholder en oppgave som venter på deg.",
         action: "Åpne oppgave",
         sectionKey: "civiWorkdaySection"
@@ -676,7 +730,7 @@
     if (hasBodyAction("civiDebateSection")) {
       return {
         mode: "urgent",
-        title: "Neste handling",
+        title: "Oppgave venter",
         summary: "Debatten trenger svar for å holde momentum.",
         action: "Åpne hendelse",
         sectionKey: "civiDebateSection"
@@ -686,7 +740,7 @@
     if (hasBodyAction("civiPeopleSection")) {
       return {
         mode: "urgent",
-        title: "Neste handling",
+        title: "Oppgave venter",
         summary: "En relasjon venter på et valg fra deg.",
         action: "Åpne hendelse",
         sectionKey: "civiPeopleSection"
@@ -697,7 +751,7 @@
       mode: "calm",
       title: "Ingen handling krever svar nå",
       summary: "Du kan utforske valgt livsområde i roligere tempo.",
-      action: "Se dashboard",
+      action: "Ingen handling nødvendig",
       sectionKey: null
     };
   }
@@ -770,10 +824,13 @@
 
     card.querySelector(".civi-top-action-title").textContent = next.title;
     card.querySelector(".civi-top-action-summary").textContent = next.summary;
-    card.querySelector(".civi-top-action-chip").textContent = next.tone === "milestone" ? "Milepæl" : (next.mode === "urgent" ? "Krever svar" : "Stabilt");
+    card.querySelector(".civi-top-action-chip").textContent = next.chip
+      || (next.tone === "milestone" ? "Milepæl" : (next.mode === "urgent" ? "Krever svar" : "Stabilt"));
 
     const actionBtn = /** @type {HTMLElement} */ (card.querySelector("[data-civi-top-action]"));
     actionBtn.textContent = next.action;
+    // Never render an enabled button with no destination.
+    actionBtn.disabled = !next.sectionKey;
 
     const openFromTopCard = function () {
       if (!next.sectionKey) return;
@@ -1130,7 +1187,8 @@
     boot: bootMiniSections,
     refresh: refreshSummaries,
     openPopup,
-    closePopup
+    closePopup,
+    ownsTopAction: true
   };
 
   if (document.readyState === "loading") {
@@ -1148,5 +1206,11 @@
     "civi:psychologyCompetence"
   ].forEach(function (eventName) {
     window.addEventListener(eventName, scheduleRefresh);
+  });
+
+  // This module owns the top card. Mail and phase changes also need to
+  // refresh it; the inbox renderer intentionally no longer writes that card.
+  ["civi:inboxChanged", "civi:dayPhaseChanged"].forEach(function (eventName) {
+    window.addEventListener(eventName, refreshTopActionCard);
   });
 })();

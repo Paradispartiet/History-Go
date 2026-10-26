@@ -251,6 +251,32 @@ Ikke:
 - ikke la `mailPlans` eller `jobbmails` eie `job_learning_progress`
 - ikke la History Go task payloads avgjøre career outcome eller job mastery alene
 
+## 8a. Helhetlige skalaer og History Go-evidens (planlagt utvidelse 2026-10-21)
+
+Utdypet design, opptjeningsregler og akseptanse står i [CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md). Her beskrives eksisterende datalag og deres eierskap. Seks **Skills** er nå introdusert med eksplisitt praksisregistrering; full forfatterdekning, balanse og e2e-godkjenning mangler.
+
+**Ikke bygg én ny poengmotor eller parallell sannhetskilde.** Dagens eiere, som en framtidig samlet kompetanse-read-model må koordinere, er:
+
+| Lag | Nåværende eier / kanonisk signal | Ikke forveksle med |
+| --- | --- | --- |
+| Jobb, arbeidsstatus og økonomi | `CivicationState`, `hg_active_position_v1`, livelihood/wallet og kalender | Identitet, kvalifikasjon eller visdom |
+| Life Story og dagstilstand | `civication_lifestory_v1`, `lifestoryState.js` med `psyke`, `energi`, `integritet`, `synlighet`, `handlingsrom` og fortellings-`penger` | Generelle permanente skills; kanonisk wallet |
+| Psyke og psykologikompetanse | `CivicationPsyche`, `hg_psyche_v1`; eksisterende psykologikompetanse i `CivicationState.player.competence.psychology` | Klinisk diagnose eller et nytt parallelt psykesystem |
+| Kapital | `capitalEngine.js` / `hg_capital_v1`: economic, cultural, social, symbolic, political, institutional, subculture | Oppøvde ferdigheter eller faglig dokumentert kunnskap |
+| Livsstil/identitet | `hg_lifestyle_v1`, `hg_identity_v1` | Evneskår eller profesjonell lisens |
+| Relasjon og miljøanseelse | Canonical NPC-/relasjonstilstand og `civicationSocialStanding`; legacy `career.reputation` | Ett globalt streetkred-tall |
+| Faglige meritter | `merits_by_category`, quiz-/læringshendelser og eksisterende job learning | Automatisk ansettelse, ferdighet eller livsposisjon |
+| History Go-samling | `visited_places`, `places_collected`, `people_collected`, Knowledge V2, `hg_learning_log_v1` og notater | Alle samlingstyper er ikke fysiske besøk eller faktiske møter |
+| Bro til private scener | `js/Civication/systems/civicationProfileSignalBridge.js` | Ny fortellingsmotor eller ny collection-store |
+
+**Seks Skills – første runtime-grunnlag (`CivicationSkills`):** `wisdom_judgement` (visdom/dømmekraft), `social_awareness` (sosial teft), `creativity` (kreativitet), `practical_mastery` (praktisk mestring), `communication` (formidling) og `agency` (handlekraft). Foreslått presentasjonsintervall 0–100; eierfeltet `skills_v1` er nå additivt i kanonisk `hg_civi_state_v1`, ingen ekstra localStorage-nøkkel. Skill vises som ikke målt før dokumentert aktivitet. Endelig balanse, authored praksis og e2e-migrasjon er ikke godkjent. Ikke resett `player.competence.psychology`. Eksisterende job learning og psykologikompetanse skal være kompatible kilder, ikke slettes.
+
+**Opptjening:** Bare bekreftede, unike spillhandlinger som krever relevant ferdighet kan gi skårendring; dokumenter `event_id`, aktivitetstype, domene, proveniens, ferdighet, delta og replay-/duplikatvern. Gjentatt quiz, reload eller samme lokasjon må ikke masseprodusere skillpoints. Første besøk kan gi utforskingsprogresjon; læring/quiz kan gi fagmeritter; faktisk bruk av en kilde i en vanskelig beslutning kan eventuelt gi dømmekraft. Ulike utfall må ha forskjellige kausale følger.
+
+**Streetkred:** behandles som anseelse **hos spesifikke miljøer** og relasjoner, ikke synonymt med `subculture`-kapital eller global `career.reputation`. Nåværende `civicationSocialStanding` bruker begrensede `audience_id`-typer, så en fremtidig miljøskala må gjenbruke eller eksplisitt utvide den eierens validerte modell. Ingen uformell `streetcred_v1`-lagring uten gjennomgått migrasjon/kontrakt.
+
+**Kryssapplikasjon:** `index.html` og `Civication.html` er separate runtime-vinduer. Ved retur og kontogjenoppretting må alle reelle History Go-signaler leses/reconciles fra lagret kanonisk state; en companion-toast eller midlertidig deep-link har aldri skriveautoritet til XP, merits, relasjoner eller åpne kapitler. Oppdater skybackup etter at eventuelle nye kanoniske nøkler er vedtatt.
+
 ## 8b. Dual-gate job eligibility og fired category reentry lock
 
 Jobbtilgang vurderes gjennom to porter (eies av `CivicationJobEligibilityRuntime`, ikke av career outcome):

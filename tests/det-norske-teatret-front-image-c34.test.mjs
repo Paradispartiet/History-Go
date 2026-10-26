@@ -1,0 +1,32 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import test from "node:test";
+import {validateRequest,validateCommons} from "../scripts/place-production/stage-dnt-front-image-c34.mjs";
+const read=p=>JSON.parse(fs.readFileSync(p,"utf8"));
+const q=read("reports/place-production/det-norske-teatret/20261020/front-image-intake-c34.json");
+const p=read("data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json");
+const w=read("reports/place-production/det-norske-teatret-workcard-current.json");
+test("DNT C34 original draft/source gate remains fail-closed after explicit C36 activation",()=>{
+ const preActivation={...p};
+ delete preActivation.frontImage;
+ delete preActivation.frontImageMeta;
+ assert.doesNotThrow(()=>validateRequest(q,preActivation));
+ assert.throws(()=>validateRequest(q,p),/Existing frontImage/);
+ assert.notEqual(q.source_file,p.imageMeta.fileTitle);
+ assert.notEqual(q.creator,p.imageMeta.author);
+ assert.notEqual(q.front_image_path,p.image);
+ assert.equal(q.front_image_dimensions.height>q.front_image_dimensions.width,true);
+ assert.equal(w.status,"in_progress");
+ assert.equal(w.collections.objects.status,"PASS");
+ assert.equal(p.frontImage,q.front_image_path);
+ assert.equal(q.review_status,"VISUAL_REVIEW_REQUIRED_DRAFT_ONLY");
+});
+test("Live Commons metadata guard will reject license/artist/title/image substitution",()=>{
+ const page={title:q.source_file};
+ const info={mime:"image/jpeg",width:5184,height:3456,size:3000000,url:"https://upload.wikimedia.org/wikipedia/commons/a/aa/theatre.jpg",extmetadata:{LicenseShortName:{value:"CC BY-SA 3.0"},Artist:{value:"Bjoertvedt"}}};
+ assert.doesNotThrow(()=>validateCommons(page,info,q));
+ assert.throws(()=>validateCommons({...page,title:"File:Other photo.jpg"},info,q));
+ assert.throws(()=>validateCommons(page,{...info,extmetadata:{...info.extmetadata,LicenseShortName:{value:"CC BY-NC"}}},q));
+ assert.throws(()=>validateCommons(page,{...info,extmetadata:{...info.extmetadata,Artist:{value:"Other artist"}}},q));
+ assert.throws(()=>validateCommons(page,{...info,url:"https://example.invalid/photo.jpg"},q));
+});

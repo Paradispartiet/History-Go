@@ -21,6 +21,23 @@ test("generated epoch-place index is deterministic and current", () => {
 });
 
 
+test("Sentrum Scene distinguishes conference and concert milestones", () => {
+  const place = JSON.parse(fs.readFileSync("data/places/musikk/oslo/places_musikk/sentrum_scene.json", "utf8"));
+  const pack = JSON.parse(fs.readFileSync("data/places/production/sentrum_scene.json", "utf8"));
+  const index = buildEpokePlaceIndex();
+  assert.equal(place.year, 2005, "canonical year is the opening of the concert venue, not the conference centre");
+  assert.equal(pack.metadataSnapshot.year, 2005);
+  assert.equal(pack.status, "ready_v4_2");
+  assert.match(place.popupDesc, /1992 åpnet lokalene igjen som konferansesenter/u);
+  assert.match(place.popupDesc, /konsertscene til 2005/u);
+  const milestones = Object.values(index.domains.historie.epochs)
+    .flatMap((epoch) => epoch.places || [])
+    .filter((row) => row.place_id === "sentrum_scene")
+    .flatMap((row) => row.milestones || [])
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.ok(milestones.some((milestone) => milestone.year === 2005), "concert opening must have a dated source-backed milestone");
+});
+
 test("VG-huset contributes eight source-backed, site-scoped chronology anchors", () => {
   const index = buildEpokePlaceIndex();
   const milestones = Object.values(index.domains.historie.epochs)
@@ -150,7 +167,7 @@ test("every indexed milestone is dated, inspectable and sourced from an approved
           assert.equal(milestone.title, claim.claim);
           assert.equal(milestone.sources.length, 1);
           assert.equal(milestone.sources[0].url, claim.sourceUrl);
-          assert.equal(milestone.sources[0].title, claim.sourceLocation || claim.sourceType || claim.sourceUrl);
+          assert.equal(milestone.sources[0].title, String(claim.sourceLocation || claim.sourceType || claim.sourceUrl).trim());
           assert.equal(milestone.sources[0].verifiedAt, claim.verifiedAt || "");
           if (claim.timelineYear !== undefined) assert.equal(milestone.year, claim.timelineYear);
           const anchorMatch = milestone.title.match(new RegExp(`(^|[^0-9])${milestone.year}(?![0-9])`));
@@ -165,6 +182,36 @@ test("every indexed milestone is dated, inspectable and sourced from an approved
   }
 });
 
+test("Fiskehallen's new building enters Oslo's dated timeline without claiming the 1905 predecessor", () => {
+  const index=buildEpokePlaceIndex();
+  const epoch=index.domains.historie.epochs.historie_nasjon_massepolitikk_og_moderne_institusjoner;
+  const fish=epoch.places.find(place=>place.place_id==="vippetangen_fisketorg");
+  assert.ok(fish,"the 1933 building must be on the historic Oslo timeline");
+  const production=fish.milestones.filter(m=>m.evidence_type==="verified_place_production_claim");
+  assert.equal(production.length,4);
+  assert.deepEqual([...new Set(production.map(m=>m.year))].sort((a,b)=>a-b),[1932,1933,1934]);
+  assert.ok(production.every(m=>m.source_file==="data/places/production/vippetangen_fisketorg.json"));
+  assert.ok(production.every(m=>!m.title.includes("I 1905 flyttet")));
+});
+
+test("Fiskehallen's museum photograph has three distinct local WebP assets", () => {
+  const place=JSON.parse(fs.readFileSync("data/places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json", "utf8"));
+  const expected={
+    image: "vippetangen_fisketorg_hero.webp",
+    frontImage: "vippetangen_fisketorg_portrait.webp",
+    cardImage: "vippetangen_fisketorg_card.webp",
+  };
+  const paths=Object.entries(expected).map(([field, filename]) => {
+    const path=place[field];
+    assert.ok(path.startsWith("bilder/places/oslo-20-fiskehallen-20261019/") && path.endsWith(filename), `${field} must reference its own local museum crop`);
+    const header=fs.readFileSync(path).subarray(0, 12);
+    assert.equal(header.subarray(0, 4).toString("ascii"), "RIFF", `${field} must be a WebP file`);
+    assert.equal(header.subarray(8, 12).toString("ascii"), "WEBP", `${field} must be a WebP file`);
+    return path;
+  });
+  assert.equal(new Set(paths).size, 3, "the hero, portrait and card must be separate assets");
+});
+
 test("Oslo coverage classifies every canonical place exactly once without overstating completeness", () => {
   const index = buildEpokePlaceIndex();
   const coverage = index.domains.historie.oslo_coverage;
@@ -174,12 +221,23 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .map(([placeId]) => placeId)
     .sort();
 
-  // Reviewed Oslo places, including the phase-2 blue signs, carry dated, source-backed History evidence.
-  assert.equal(coverage.canonical_place_count, 587);
-  assert.equal(coverage.dated_evidence_place_count, 251);
+  // Østensjøvannet enriched an already dated place; Bogstadvannet, Skraperudtjern, Sognsvann, Mærradalen and Vettakollen now add verified source-backed History coverage.
+  assert.equal(coverage.canonical_place_count, osloPlaceIds.length);
+  assert.equal(coverage.dated_evidence_place_count, coverage.places.filter(place => place.status === 'dated_evidence').length);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 334);
-  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "dramatikkens_hus", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset", "museumsleiligheten_grabein", "teater_manu", "black_box_teater"]) {
+  const idsInCoverage = coverage.places.map(place => place.place_id);
+  assert.deepEqual([...idsInCoverage].sort(), osloPlaceIds, "coverage must classify each canonical Oslo place once");
+  assert.equal(
+    coverage.awaiting_source_backed_history_count,
+    coverage.places.filter(place => place.status === "awaiting_source_backed_history").length,
+    "the unverified count must reflect actual source-backed classification"
+  );
+  assert.equal(
+    coverage.dated_evidence_place_count + coverage.documented_case_place_count + coverage.awaiting_source_backed_history_count,
+    coverage.canonical_place_count,
+    "every Oslo place must belong to exactly one history-evidence class"
+  );
+  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "dramatikkens_hus", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset", "museumsleiligheten_grabein", "teater_manu", "black_box_teater", "vippetangen_fisketorg", "sentrum_scene", "vulkan_industriomrade", "blaa", "rockefeller", "john_dee", "salt", "noklevann", "ostensjovannet", "bogstadvannet", "skraperudtjern", "sognsvann", "vettakollen"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,
       "dated_evidence",
@@ -209,6 +267,24 @@ test("Oslo coverage classifies every canonical place exactly once without overst
   for (const category of coverage.categories) {
     assert.equal(category.dated_evidence + category.documented_case + category.awaiting_source_backed_history, category.total);
   }
+});
+
+test("Rockefeller, John Dee and SALT add only their verified local history anchors", () => {
+  const index = buildEpokePlaceIndex();
+  const milestonesFor = (placeId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+
+  for (const [placeId, expectedCount] of [["rockefeller", 11], ["john_dee", 5], ["salt", 7]]) {
+    const milestones = milestonesFor(placeId);
+    assert.equal(milestones.length, expectedCount, `${placeId} needs exactly its reviewed dated claims`);
+    assert.ok(milestones.every((milestone) => milestone.claim_id && milestone.sources.some((source) => source.url.startsWith("https://") || source.url.startsWith("http://"))));
+  }
+  const salt = milestonesFor("salt");
+  assert.ok(salt.some((milestone) => milestone.year === 2016), "SALT arrived in Oslo in 2016");
+  assert.equal(salt.some((milestone) => milestone.year === 2014), false, "Sandhornøy's 2014 founding is institutional context, not an Oslo event");
 });
 
 test("Gamlebyen leksikon chronology materializes only reviewed exact anchors", () => {
@@ -312,6 +388,21 @@ test("production year extraction rejects commercial names and Oslo postal codes"
   assert.deepEqual(exactProductionClaimYears("Produktsiden oppgir 110 bidragsytere og 1500 nummererte eksemplarer."), []);
   assert.deepEqual(exactProductionClaimYears("Stedet ligger i Sørliveien 1, 1279 Oslo."), []);
   assert.deepEqual(exactProductionClaimYears("Tandbergs Radiofabrikk startet her i 1933."), [1933]);
+  assert.deepEqual(exactProductionClaimYears("Mer enn 1200 mennesker besøkte Blå på åpningskvelden."), []);
+  assert.deepEqual(exactProductionClaimYears("Blå åpnet i 1998 med mer enn 1200 besøkende."), [1998]);
+  assert.deepEqual(exactProductionClaimYears("Et historisk dokument er datert til 1200."), [1200]);
+
+});
+
+test("Blå visitor count must not create a medieval timeline milestone", () => {
+  const milestones = Object.values(buildEpokePlaceIndex().domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === "blaa")
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.ok(milestones.some((milestone) => milestone.claim_id === "claim_blaa_05" && milestone.year === 1998));
+  assert.ok(!milestones.some((milestone) => milestone.claim_id === "claim_blaa_13"));
+  assert.ok(!milestones.some((milestone) => milestone.year === 1200));
 });
 
 test("explicit timeline anchors materialize reviewed multi-year historical claims", () => {

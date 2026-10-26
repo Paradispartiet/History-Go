@@ -220,6 +220,14 @@ Runneren gjør bare dette:
 
 Ikke mer.
 
+### Privatliv, arbeidsledighet og frivillige livsposisjoner etter dag 7
+
+**Normativ retning (21. oktober 2026):** `arbeidsledig` angir arbeidsstatus/livsomstendighet, ikke personens samlede identitet. Private Life Stories skal kunne fortsette uansett ansettelse, og fortsetter gjennom venner, familie, romantikk, fritid, kunnskap, konflikter, økonomi og egne prosjekter. Et særskilt symposium-`fortsettelser`-kapittel kan ha Badge-krav til *en frivillig valgt livsposisjon*, men det er aldri en inngangsport til å leve videre i vanlige private scener.
+
+På dag 7 skal valget om å utforske History Go være frivillig og sideordnet `Fortsett privatlivet`. Valg av interesse via `rollevalgFlagg` er ikke aktivering. Virkelig quiz, samling og besøk kan gi evidens; de kan aldri konstruere jobb, livsposisjon eller meritter. Mangler forfattede dag-8–14-scener, er det et produksjons-/akseptansegap som skal løses i samme Life Story Runner, ikke ved å tvinge spilleren inn i en jobb.
+
+Historiene må også kunne lese allerede eide signaler om psyke, energi, syv kapitaltyper, relasjoner, interessedomener og History Go-samlingen. Målmodellen for seks personlige ferdigheter (visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling, handlekraft) og miljøspesifikk streetkred er dokumentert i [spillerutviklingskontrakten](CIVICATION_PLAYER_GROWTH_AND_HISTORY_GO_CONTRACT.md); dette er ennå ikke seks ferdig implementerte skalaer.
+
 ## 5b. Day progression: neste dag
 
 Når siste fase er tom, avslutter runneren dagen (`completeDay`) og
@@ -696,6 +704,19 @@ ble en kassadifferanse. Dag 3+ er uskrevet; en tom dag avsluttes trygt.
 
 ## 10. Regelen for Civication
 
+### Uavhengig Life Story-progresjon etter dag 7 (produktkrav 21.10.2026)
+
+**Arbeidsledig er arbeidsstatus, ikke et kapittel som må erstattes av en valgt livsposisjon.** Den delte Life Story-runneren må fortsette ordinære private historier uavhengig av karriere, inntekt og Badge-tier. Daglige scener kan handle om venner, dating, relasjoner, familie, helse, fritid, interesser, utgifter, lokalmiljø, valg og konsekvenser. Jobbstatus styrer jobbdelen, ikke om livet fortsetter.
+
+Et forfattet videreføringskapittel kan legitimt kreve et bestemt Badge-tier og frivillig `CivicationLifePositions.activate()`; `Runner.canStartContinuation` eier denne begrensningen. Men et slikt kapittellås er **ikke** en begrensning på hele livet: `Fortsett privatlivet` må vises når private scener venter, også etter dag 7 og uten aktivert livsposisjon. Ingen gratis meritter, jobb eller historiske handlinger skal konstrueres for å omgå porten. Dersom innholdet tar slutt før dag 14 uten valgfrie livsposisjoner, er det et dokumentert innholdshull som må fylles med ekte Life Stories – ikke en tvungen karrieresti.
+
+History Go-veien skal vises som **frivillig parallell progresjon**: `Utforsk History Go` starter eksisterende companion-toast, viser korrekt kategoripoeng/terskel når den finnes, og tilbyr retur til Civication. `Se livsposisjoner` lar spilleren vurdere nye identiteter. Oppdragstoasten eier ingen fullføring; faktisk `visited_places`, kunnskaps-/quiz-state, `merits_by_category` og andre kanoniske bevis avgjør hvilken progresjon som kan utledes. Privatspilleren kan fortsette selv om oppdraget er uferdig.
+
+**Samlingen må brukes narrativt:** besøkte steder gir steder å ha vært og samtaleemner; faktisk læring kan gi flere informerte valg; People og møter kan sette opp *muligheter* til relasjoner; fagmeritter kan åpne livsposisjoner; handlinger i sosiale miljøer kan gi situert rykte/streetkred. Fortellinger må lese kanoniske signaler gjennom `civicationProfileSignalBridge` og eksisterende rolle-/scene-/kunnskapsbroer og la tidligere valg få kausale etterspill. Et besøk alene gir ikke automatisk visdom, vennskap, adgang til miljø, jobb eller lovpålagt kvalifikasjon.
+
+Planlagt ferdighetsmodell (ikke implementert som samlet state ennå): visdom/dømmekraft, sosial teft, kreativitet, praktisk mestring, formidling og handlekraft, hver balansert 0–100. De er **langsiktige evner**, ikke dagens psyke, energi, kapital, fagmeritter eller omdømme. En konkret scene/aktivitet må erklære hvilken faktisk prestasjon som endrer en ferdighet, med idempotent hendelses-ID, rimelig øvre grense og sporbar opprinnelse. UI kan ikke gi skjult XP bare fordi en spiller trykker «besøk». Se planen i `CIVICATION_INTEGRATED_LIFE_ROADMAP_2026_10_20.md` og eiergrensene i `CIVICATION_DATA_LAYERS.md`.
+
+
 ### Arbeidsledig: flere innganger til selvvalgte livsroller
 
 Den første uka har ni kontaktretninger. Musikk, Miljøkontaktens miljø og læring/jobbsøk
@@ -1016,10 +1037,8 @@ C01/C05 kan fortsette på en senere **livsdag**, også om den aktive jobbrollen 
 Når en dokumentert senere privatscene gjenstår, er kapittelet ikke endelig avsluttet bare fordi den aktive rollen har nådd sin `symposium.sisteDag`. Spilleren kan fortsette til neste livsdag eller velge en separat allerede kvalifisert fortsettelse. Dette er ment som privat kontinuitet, ikke som omlegging av jobbrollen eller garanti for at saksbehandling, avtaler eller penger endrer seg automatisk.
 
 
-### Wave F – delt spillerhistorikk i åtte tematiske forløp
+### Wave F – åtte fortellinger på tvers av roller
 
-Fra Wave F bruker C01/C02/C03/C05/C06/C07/C17/C23 samme kildeforankrede `privatHistorie` på tvers av aktive jobbroller. Hver rolle beholder sine egne snapshots, kalenderfase og arbeidstråder. Bare faktiske spillerhandlinger, tilhørende tidsankre og den avgrensede felles historikken tas med ved rollebytte. Eksisterende saves endres ikke bare fordi innholdspakken gjeninnlastes.
+De åtte Wave F-trådene C01/C02/C03/C05/C06/C07/C17/C23 følger dokumenterte valg fra de tidligere bølgene. Hver scene krever riktig tidligere utfall, minst fire forløpte livsdager og en faktisk arkivert hendelse som tidsanker. Nye private valg og arkivoppføringer følger spilleren mellom arbeidsroller, men skaper ikke nye vedtak, arbeidsgivermyndighet, avtaler eller utbetalinger.
 
-Wave F-scener deklareres i felles `data/Civication/lifestory/life/scenes.json` med `threadId: wave_f_cXX`, `livsdagFra` og `etterValgDager`. En kildeverdi `wa_d_cXX_status` eller for C01/C05 `wa_e_cXX_etterspill` må være etablert av et faktisk tidligere valg med tilstrekkelig fortellingsdag. Spillerens globale `livsdag` og datert arkiv styrer åpningen. Aktive, egne role-continuation-pakker holdes fortsatt adskilt fra de senere delte episodene for å bevare gjennomspillingen og de tidligere avslutningene. Etter rollebytte får spilleren tilgang til private oppfølginger uten å omskrive tidligere arbeidshendelser.
-
-Forfatterregister: `data/Civication/lifestory/editorial/inspiration/waveASixthInstallmentsV1.json`. Målrettet kontroll: `tests/civication-source-grounded-wave-f.test.js`. Endringer i delte livsmanifest kan kreve synkronisering av de tre genererte career-/life-position-/role-world-oversiktene gjennom deres opprinnelige audit-skript.
+Rolle- og kalenderstatus håndteres fortsatt av gjeldende Civication-motor. Livsdag 8–21 og Skills-opptjening fra de nyere endringene på main skal bevares. `tests/civication-source-grounded-wave-f.test.js` dekker 68 forgreininger, 136 valg og bevaring av konsekvenser.

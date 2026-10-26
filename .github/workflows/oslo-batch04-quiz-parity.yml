@@ -1,0 +1,63 @@
+name: Oslo batch04 quiz and QuizCard parity
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/oslo-batch04-quiz-parity.yml'
+      - 'tests/oslo-batch04-v1-quiz-parity.test.mjs'
+      - 'tests/oslo-batch04-v1-real-browser.mjs'
+      - 'scripts/verify-place-quiz-browser.mjs'
+      - 'data/quiz/**'
+      - 'data/quizcards/**'
+      - 'reports/place-production/oslo-batch04-v1-quiz-readiness-20261022.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: oslo-batch04-quiz-parity-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  quiz-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Verify 17 canonical fullquizzes and 170 linked QuizCard questions
+        run: node --test tests/oslo-batch04-v1-quiz-parity.test.mjs
+  real-browser:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Real Chromium PlaceCards, portraits, QuizCard, Fagverk, fullquiz
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node tests/oslo-batch04-v1-real-browser.mjs ${{ matrix.shard }}
+      - name: Upload native-app acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-batch04-native-chromium-shard-${{ matrix.shard }}
+          path: |
+            artifacts/oslo-batch04-v1-browser/shard-${{ matrix.shard }}/**
+            artifacts/place-quiz/**
+          if-no-files-found: ignore
+          retention-days: 14

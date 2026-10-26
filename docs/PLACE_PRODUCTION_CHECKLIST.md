@@ -30,11 +30,11 @@ For Places som er migrert til Place Production v3 følger den operative workflow
 
 - `docs/PLACE_PRODUCTION_V3.md`
 
-For **dekning i to trinn** (historisk tekst, publiserbart bilde, ti faktaspørsmål og QuizCard først; deretter komplett produksjon), se også:
+For **dekning i to trinn** (god historisk fortelling, publiserbare bilder, stedsspesifikk Fagverk-side, kildebelagt fullquiz-QA og ti faktaspørsmål på QuizCard før komplett produksjon), se også:
 
 - `docs/PLACE_PRODUCTION_MINIMUM_V1.md`
 
-**v1 er en foreløpig publiserings-/modenhetsmilepæl og ikke et unntak fra canonical fullproduksjon.** `vFerdig` betyr fullført etter hele denne sjekklisten. v1 får aldri V3-`state: complete`, og ti-spørsmålsprofilen må integreres og valideres særskilt før bred publisering.
+**v1 er en foreløpig publiserings-/modenhetsmilepæl og ikke et unntak fra canonical fullproduksjon.** Egen kuratert Fagverk-side, dokumentert hel-fullquiz-QA og faktisk browser-/app-kontroll er obligatoriske v1-porter, ikke bare vFerdig-krav. `vFerdig` betyr fullført etter hele denne sjekklisten. v1 får aldri V3-`state: complete`, og ti-spørsmålsprofilen må integreres og valideres særskilt før bred publisering.
 
 V3 endrer ikke de faglige kravene i denne sjekklisten. `data/places/production/<place_id>.json` beholder factuality-/claim-eierskapet; `data/places/workflow/<place_id>.json` eier bare workflow-state. Workcard og quality-gate for migrerte V3-Places er genererte projeksjoner og skal ikke håndredigeres.
 
@@ -133,6 +133,8 @@ Denne porten gjelder ved nyproduksjon og ved vesentlig revisjon av ethvert Place
 - [ ] **`popupDesc` er en selvstendig historisk stedartikkel**, ikke en gjentakelse av ingressen. Bruk vesentlig flere kildebelagte opplysninger om hendelser, personer, bruk, ombygginger, konflikter og relevante tidslag. La stoffet avgjøre lengden; ingen ordkvote eller seksavsnittsmal.
 - [ ] **Sted og institusjon skilles presist.** Avisens stiftelse er ikke byggeåret; eldre historie om virksomheten er kontekst, ikke automatisk en hendelse i dagens bygning. Historiske adresser og tidligere bygninger omtales med eksplisitt avgrensning.
 - [ ] **Kun historisk/leksikalsk formidling i brukerrettet tekst.** Ingen History Go-/spill-/Quiz-/Badge-/læringslogikk, brukeroppgaver eller produksjonsinstrukser i `desc` eller `popupDesc`. Unngå oppstyltede uttrykk, pedagogiske konklusjoner og abstrakte erstatninger for fakta, eksempelvis «redaksjonsanker», «stedet viser hvordan», «gjør prosesser konkrete» og «representerer en viktig periode».
+- [ ] **Fortellingen kommer før registreringsdata:** Les hele eksisterende tekst, kildepakken og dokumenterte hendelser også når stedet tidligere er merket ferdig. Gjør en konkret kvalitetsaudit: Hva hendte her, hvem handlet, hvordan ble stedet brukt, hva var konfliktene eller vendepunktene, og hva representerer det for byen? Svake, byråkratiske eller årstalltunge tekster skal omskrives med stedsspesifikk fortelling. Behold gode tekster, og dokumenter faktisk nytt forbedringsbehov før rework. Se bindende fortellerport i `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` §9A.
+- [ ] **Årstall og administrative detaljer begrenses redaksjonelt:** Bruk bare datoer som forklarer en viktig endring, og legg øvrig presis kronologi i eide tidslinjer. Opplys om reelle mennesker, arbeid, hendelser og historiske spor med konkrete verb i stedet for å gjenta «representerer», «utgjør» og «har betydning for». Fortellingen skal forbli strengt kildebelagt; ikke dikt opp scener eller motiver.
 - [ ] **Redaksjonell egenart kontrolleres.** Hver setning må tilføre faktisk opplysning om dette stedet, eller være nødvendig for sammenhengen. Teksten skal tåle høytlesning som saklig norsk historieprosa; den skal ikke fungere like godt med et annet stedsnavn.
 - [ ] **Kilde–påstand-paritet og sluttintegrasjon** dokumenteres i stedets produksjonspakke: identitetsport, inspiserte kilder, claim-dekning per setning, hash og separat fakta-/språkreview. Etter tekstendring oppdateres relevante indekser, Place-open-payloads og eksisterende oversettelser med ny `_sourceHash`; relevante tester kjøres. Teksten godkjennes aldri alene fordi CI er grønn.
 

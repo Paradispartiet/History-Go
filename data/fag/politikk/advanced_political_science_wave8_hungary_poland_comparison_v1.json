@@ -1,0 +1,306 @@
+{
+  "schema": "history_go_politikk_comparative_election_evidence_v1",
+  "version": "v1",
+  "wave": 8,
+  "subject_id": "politikk",
+  "created_at": "2026-10-21",
+  "status": "materialized_as_wave9_subject_pathway",
+  "title": "Komparativ valgintegritet: Ungarn 2022 og Polen 2023",
+  "purpose": "Utvid den publiserte Polen-analysen med fem metodisk avgrensede sammenligningsoppgaver før eventuell quiz/Knowledge-materialisering.",
+  "source_review_scope": "Kun offisielle HTML-sammendrag og pressemeldinger fra ODIHR/OSSE er gjennomgått; ingen systematisk fulltekstgjennomgang av sluttrapportenes PDF-er, ingen etterfølgende effektstudie.",
+  "case_pair": [
+    {
+      "country": "Ungarn",
+      "election_date": "2022-04-03",
+      "mission_kind": "Election Observation Mission",
+      "case_id": "hu_parliamentary_election_2022"
+    },
+    {
+      "country": "Polen",
+      "election_date": "2023-10-15",
+      "mission_kind": "Limited Election Observation Mission",
+      "case_id": "pl_parliamentary_election_2023"
+    }
+  ],
+  "canonical_links": {
+    "domain_id": "komparativ_politikk_regimer_institusjoner",
+    "emne_id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+    "method_id": "met_pol_institusjonell_tilbakegangsanalyse",
+    "concept_ids": [
+      "pol_concept_demokratisk_tilbakegang",
+      "pol_concept_institusjonell_kapring",
+      "pol_concept_mediekontroll",
+      "pol_concept_selektiv_handheving"
+    ],
+    "prior_evidence_path": "data/fag/politikk/advanced_political_science_wave6_poland_case_evidence_v1.json",
+    "prior_pathway_path": "data/quiz/politikk/politikk_subject_pathways_v1.json"
+  },
+  "sources": [
+    {
+      "id": "hu_odihr_final_summary_2022",
+      "title": "Hungary parliamentary elections and referendum 2022: ODIHR election observation mission final report",
+      "publisher": "OSCE/ODIHR",
+      "published": "2022-07-29",
+      "url": "https://odihr.osce.org/odihr/elections/523565",
+      "kind": "official_final_report_html_summary",
+      "reviewed_sections": [
+        "main conclusions",
+        "key recommendations"
+      ],
+      "role": "primary_empirical_evidence"
+    },
+    {
+      "id": "hu_joint_observers_2022",
+      "title": "Hungary's parliamentary elections well-run and offered distinct alternatives but undermined by absence of level playing field",
+      "publisher": "OSCE/ODIHR and OSCE PA",
+      "published": "2022-04-04",
+      "url": "https://odihr.osce.org/odihr/elections/hungary/515135",
+      "kind": "official_joint_observation_press_release",
+      "reviewed_sections": [
+        "opening findings",
+        "campaign",
+        "campaign finance",
+        "media",
+        "election administration"
+      ],
+      "role": "primary_empirical_evidence"
+    },
+    {
+      "id": "pl_odihr_final_summary_2024",
+      "title": "Poland parliamentary elections 2023: ODIHR limited election observation mission final report",
+      "publisher": "OSCE/ODIHR",
+      "published": "2024-03-27",
+      "url": "https://odihr.osce.org/odihr/elections/poland/565426",
+      "kind": "official_final_report_html_summary",
+      "reviewed_sections": [
+        "main conclusions",
+        "key recommendations"
+      ],
+      "role": "comparative_empirical_evidence"
+    },
+    {
+      "id": "pl_joint_observers_2023",
+      "title": "Poland's parliamentary elections were competitive but marked by misuse of public resources and public media bias",
+      "publisher": "OSCE/ODIHR, OSCE PA and PACE",
+      "published": "2023-10-17",
+      "url": "https://odihr.osce.org/odihr/elections/poland/555072",
+      "kind": "official_joint_observation_press_release",
+      "reviewed_sections": [
+        "campaign",
+        "election administration",
+        "public media"
+      ],
+      "role": "comparative_empirical_evidence"
+    }
+  ],
+  "claim_bank": [
+    {
+      "id": "claim_pol_hupl_wave8_01_election_vs_level_field",
+      "statement": "ODIHR beskrev Ungarns valg 3. april 2022 som godt organisert med distinkte valgalternativer, samtidig som konkurransevilkårene var skjeve.",
+      "source_ids": [
+        "hu_odihr_final_summary_2022",
+        "hu_joint_observers_2022"
+      ],
+      "locator": "Sluttrapportens nettsammendrag, hovedkonklusjoner; felles uttalelse 4. april 2022, innledning og avsnitt om valgdagen.",
+      "inference_limit": "Beskriver observerte valg- og kampanjeforhold, ikke bekreftet manipulering av opptellingen eller et mål på opposisjonens stemmetap."
+    },
+    {
+      "id": "claim_pol_hupl_wave8_02_party_state_media",
+      "statement": "Den felles observasjonen av Ungarn 2022 beskrev gjennomgripende sammenfall mellom regjeringskommunikasjon og regjeringskoalisjonens valgkamp, statsfinansierte annonser med partipolitisk fordel og partisk mediedekning.",
+      "source_ids": [
+        "hu_joint_observers_2022",
+        "hu_odihr_final_summary_2022"
+      ],
+      "locator": "Felles uttalelse 4. april 2022, avsnittene om kampanje, valgkampfinansiering og mediedekning; ODIHRs nettsammendrag om skjev konkurranse.",
+      "inference_limit": "Dokumenterer observert fordel og svakere informerte valgmuligheter, ikke hvor mange stemmer eller mandater som kan tilskrives hver mekanisme."
+    },
+    {
+      "id": "claim_pol_hupl_wave8_03_finance_remedy",
+      "statement": "ODIHR og OSSEs parlamentarikerobservatører rapporterte i 2022 om mangelfull åpenhet rundt valgkampfinansiering, uregulert tredjepartsbruk av midler og tilfeller uten effektiv rettslig klageadgang.",
+      "source_ids": [
+        "hu_joint_observers_2022"
+      ],
+      "locator": "Felles uttalelse 4. april 2022, avsnittene om campaign finance og election disputes.",
+      "inference_limit": "Dette er observatørenes vurdering av rammeverk og praksis; opplysningene beviser ikke bestemt straffbart forhold eller individuell hensikt."
+    },
+    {
+      "id": "claim_pol_hupl_wave8_04_compare_without_equivalence",
+      "statement": "ODIHR fant både politisk konkurranse og skjeve konkurransevilkår ved Ungarns valg i 2022 og Polens valg i 2023. Kildene beskriver ulike valg, observatørmandater og institusjonelle detaljer.",
+      "source_ids": [
+        "hu_odihr_final_summary_2022",
+        "pl_odihr_final_summary_2024"
+      ],
+      "locator": "Begge offisielle nettsammendrag: hovedkonklusjoner; Ungarn: Election Observation Mission; Polen: Limited Election Observation Mission.",
+      "inference_limit": "Liknende observasjoner gir grunnlag for avgrenset sammenligning, ikke bevis for identisk årsakskjede, regimetype, samme effekt på valgresultat eller samme etterfølgende utvikling."
+    },
+    {
+      "id": "claim_pol_hupl_wave8_05_recommendations_not_effects",
+      "statement": "ODIHR anbefalte for Ungarn tydeligere vern mot misbruk av administrative ressurser, mer upartisk kringkastingsdekning og mulighet for innbyggerobservasjon. For Polen anbefalte ODIHR blant annet åpne valgkommisjonsmøter og mer åpen kringkastingsledelse.",
+      "source_ids": [
+        "hu_odihr_final_summary_2022",
+        "pl_odihr_final_summary_2024"
+      ],
+      "locator": "Ungarn-sammendraget fra 29. juli 2022, listen Key recommendations; Polen-sammendraget fra 27. mars 2024, listen Key recommendations.",
+      "inference_limit": "Anbefalinger er ikke dokumentasjon på at reformene senere er gjennomført eller at de har hatt ønsket virkning."
+    }
+  ],
+  "question_drafts": [
+    {
+      "stage": "observe",
+      "claim_id": "claim_pol_hupl_wave8_01_election_vs_level_field",
+      "question": "Hva er den mest presise beskrivelsen av ODIHRs observasjoner ved Ungarns parlamentsvalg i 2022, og hvorfor må valgavviklingen skilles fra valgkampen?",
+      "options": [
+        "Alle partier hadde fullt like vilkår fordi valgadministrasjonen fungerte.",
+        "Valgobservatørene konkluderte med at stemmeopptellingen over hele landet var manipulert.",
+        "Valget var godt organisert og ga valgalternativer, men konkurransevilkårene var skjeve.",
+        "Ingen opposisjonspartier fikk delta i valget."
+      ],
+      "answerIndex": 2,
+      "feedback": [
+        "Feil: Administrasjon alene sier ikke om valgkampen var rettferdig.",
+        "Feil: Denne slutningen finnes ikke i det kontrollerte nettsammendraget.",
+        "Riktig: Observasjonen skiller velorganisert valgavvikling fra skjev konkurranse.",
+        "Feil: ODIHR beskrev inkluderende kandidatregistrering og distinkte valgalternativer."
+      ],
+      "id": "candidate_politikk_hupl_wave8_q1",
+      "learning_objective_id": "lo_politikk_hupl_wave8_observe",
+      "source_ids": [
+        "hu_odihr_final_summary_2022",
+        "hu_joint_observers_2022"
+      ],
+      "correct_answer": "Valget var godt organisert og ga valgalternativer, men konkurransevilkårene var skjeve.",
+      "status": "materialized_wave9"
+    },
+    {
+      "stage": "explain",
+      "claim_id": "claim_pol_hupl_wave8_02_party_state_media",
+      "question": "Hvordan kunne sammenfallet mellom statlig kommunikasjon og regjeringskoalisjonens valgkamp svekke like konkurransevilkår i Ungarn i 2022?",
+      "options": [
+        "Det demonstrerte med sikkerhet hvor mange ekstra mandater regjeringspartiet fikk.",
+        "Statlig finansiert kommunikasjon kunne forsterke regjeringspartiets budskap og gi konkurransefordel uten å hindre all opposisjonsaktivitet.",
+        "Det beviste at alle velgere fulgte regjeringens budskap og stemte likt.",
+        "Det fjernet enhver forskjell mellom offentlige og private medier."
+      ],
+      "answerIndex": 1,
+      "feedback": [
+        "Feil: Rapporteringen er ikke en kausal mandatberegning.",
+        "Riktig: Observatørene rapporterte overlapp i budskap, statsbetalt annonsering og medieskjevhet.",
+        "Feil: Dokumentert kommunikasjonsfordel beviser ikke alle velgeres atferd.",
+        "Feil: Kildene skiller mellom offentlig og privat mediedekning."
+      ],
+      "id": "candidate_politikk_hupl_wave8_q2",
+      "learning_objective_id": "lo_politikk_hupl_wave8_explain",
+      "source_ids": [
+        "hu_joint_observers_2022",
+        "hu_odihr_final_summary_2022"
+      ],
+      "correct_answer": "Statlig finansiert kommunikasjon kunne forsterke regjeringspartiets budskap og gi konkurransefordel uten å hindre all opposisjonsaktivitet.",
+      "status": "materialized_wave9"
+    },
+    {
+      "stage": "evaluate_evidence",
+      "claim_id": "claim_pol_hupl_wave8_03_finance_remedy",
+      "question": "Hvilket kildegrunnlag støtter best vurderingen av svakheter i Ungarns valgkampfinansiering og klagemuligheter i 2022?",
+      "options": [
+        "En udokumentert påstand om at alle utgifter var ulovlige og alle klager ble avvist.",
+        "Et antatt matematisk estimat på hvor mange stemmer tredjepartsutgifter kostet opposisjonen.",
+        "At valgresultatet alene viser kvaliteten på klageadgangen.",
+        "OSSE-observatørenes omtale av manglende innsyn, tredjepartsutgifter og saker uten effektiv klageadgang."
+      ],
+      "answerIndex": 3,
+      "feedback": [
+        "Feil: En slik universell og rettslig konklusjon støttes ikke.",
+        "Feil: Kilden gir ikke en identifisert stemmeeffekt.",
+        "Feil: Utfallet alene beskriver ikke klageprosesser og finansregler.",
+        "Riktig: Det er disse konkrete observasjonene som finnes i den offisielle fellesuttalelsen."
+      ],
+      "id": "candidate_politikk_hupl_wave8_q3",
+      "learning_objective_id": "lo_politikk_hupl_wave8_evaluate_evidence",
+      "source_ids": [
+        "hu_joint_observers_2022"
+      ],
+      "correct_answer": "OSSE-observatørenes omtale av manglende innsyn, tredjepartsutgifter og saker uten effektiv klageadgang.",
+      "status": "materialized_wave9"
+    },
+    {
+      "stage": "diagnose_failure",
+      "claim_id": "claim_pol_hupl_wave8_04_compare_without_equivalence",
+      "question": "En elev sier at liknende valgkamp-skjevheter i Ungarn 2022 og Polen 2023 beviser at begge land hadde identisk valgfusk og samme regimetype. Hva er hovedfeilen?",
+      "options": [
+        "Observasjoner om kampanjevilkår dokumenterer ikke i seg selv manipulert opptelling, identisk årsaksmekanisme eller samme regimetype.",
+        "Like omtaler i to ODIHR-rapporter betyr at alle institusjonelle forhold var like.",
+        "En effektiv valgadministrasjon innebærer alltid fullstendig like konkurransevilkår.",
+        "To observasjoner er nok til å måle nøyaktig hvor mange mandater som ble påvirket."
+      ],
+      "answerIndex": 0,
+      "feedback": [
+        "Riktig: Kildene tillater sammenligning, men ikke disse sterkere slutningene.",
+        "Feil: Ulike kontekster og observatørmandater må vurderes.",
+        "Feil: Nettopp skillet mellom administrasjon og konkurranse er sentralt.",
+        "Feil: Dette krever mer spesifikk kausal identifikasjon."
+      ],
+      "id": "candidate_politikk_hupl_wave8_q4",
+      "learning_objective_id": "lo_politikk_hupl_wave8_diagnose_failure",
+      "source_ids": [
+        "hu_odihr_final_summary_2022",
+        "pl_odihr_final_summary_2024"
+      ],
+      "correct_answer": "Observasjoner om kampanjevilkår dokumenterer ikke i seg selv manipulert opptelling, identisk årsaksmekanisme eller samme regimetype.",
+      "status": "materialized_wave9"
+    },
+    {
+      "stage": "decide_and_justify",
+      "claim_id": "claim_pol_hupl_wave8_05_recommendations_not_effects",
+      "question": "Hvilken reformvurdering bygger mest presist på ODIHRs anbefalinger for Ungarn 2022 og Polen 2023?",
+      "options": [
+        "Konkluder med at velorganisert valgdag gjør reformer av valgkampen overflødige.",
+        "Slå fast at alle ODIHR-anbefalingene allerede er innført og dokumentert virksomme.",
+        "Undersøk vern mot misbruk av statsressurser og upartisk mediedekning i begge land, men følg også opp landspesifikke tiltak og mål faktisk gjennomføring.",
+        "Bruk én identisk reformpakke uten å undersøke forskjeller i klageadgang og valgadministrasjon."
+      ],
+      "answerIndex": 2,
+      "feedback": [
+        "Feil: Like konkurransevilkår gjelder mer enn valgdagen.",
+        "Feil: Anbefaling er ikke bevis på implementering eller effekt.",
+        "Riktig: Tiltak må knyttes til konkrete funn, og anbefaling må skilles fra dokumentert reformeffekt.",
+        "Feil: Sammenligning må bevare forskjeller mellom de to casene."
+      ],
+      "id": "candidate_politikk_hupl_wave8_q5",
+      "learning_objective_id": "lo_politikk_hupl_wave8_decide_and_justify",
+      "source_ids": [
+        "hu_odihr_final_summary_2022",
+        "pl_odihr_final_summary_2024"
+      ],
+      "correct_answer": "Undersøk vern mot misbruk av statsressurser og upartisk mediedekning i begge land, men følg også opp landspesifikke tiltak og mål faktisk gjennomføring.",
+      "status": "materialized_wave9"
+    }
+  ],
+  "methodological_guards": [
+    "Skille valgadministrasjon fra valgkampens konkurransevilkår.",
+    "Skille observasjon av ressurs- og medieskjevhet fra bevis om stemmeopptelling.",
+    "Skille sammenliknbare indikatorer fra påstand om identiske institusjoner eller regimetype.",
+    "Skille ODIHRs anbefalinger fra dokumentert implementering og effekt.",
+    "Behandle ulike observatørmandater og kildeomfang eksplisitt."
+  ],
+  "new_curricular_units": 0,
+  "new_domain_ids": 0,
+  "new_method_ids": 0,
+  "new_concept_ids": 0,
+  "verified_claims_prepared": 5,
+  "question_drafts_prepared": 5,
+  "published_quiz_items": 5,
+  "publication_gate": {
+    "quiz_runtime_active": true,
+    "knowledge_registry_materialized": true,
+    "manifest_changes_required_before_activation": false,
+    "steps": [
+      "Kilde-/fagredaksjon av påstander og spørsmålsdistraktorer.",
+      "Fullfør eventuelt rapport- og metode-audit der formuleringene krever mer presisjon.",
+      "Tilpass eksisterende subject_pathway-kontrakt, vurder om Polens 1x5 skal utvides eller om separat registrering støttes.",
+      "Tildel og generer kanoniske ku_ og andre Knowledge-ID-er; oppdater manifestene deterministisk.",
+      "Kjør relevante fag-, Quiz- og Knowledge-tester og en virkelig mobil/PC Chromium-kontroll."
+    ]
+  },
+  "materialized_pathway_file": "data/quiz/politikk/politikk_subject_pathways_v1.json",
+  "materialized_set_id": "pathway_politikk_valgintegritet_ungarn_2022_polen_2023"
+}

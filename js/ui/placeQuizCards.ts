@@ -32,6 +32,7 @@ export type PlaceQuizCardsRuntimeWindow = Window & typeof globalThis & {
       options?: { cache?: string }
     ) => unknown;
   };
+  renderPlaceCardQuizData?: (card: QuizCardData) => string;
   HGQuizLoadAccelerator?: {
     prewarm?: () => unknown;
   };
@@ -48,7 +49,9 @@ const QUIZ_CARD_MANIFESTS = Object.freeze([
   "litteratur/manifest.json",
   "scenekunst/manifest.json",
   "media/manifest.json",
-  "naeringsliv/manifest.json"
+  "naeringsliv/manifest.json",
+  "natur/manifest.json",
+  "politikk/manifest.json"
 ]);
 
 const FALLBACK_COLLECTIONS = Object.freeze([
@@ -287,7 +290,12 @@ export function createPlaceQuizCardsController(options: {
     ) as HTMLImageElement | null;
     if (!flipElement || !contentElement || !cardData) return false;
 
-    contentElement.innerHTML = renderQuizCard(cardData);
+    const signature = JSON.stringify(cardData);
+    if (contentElement.dataset.quizCardSignature !== signature || !contentElement.querySelector(".pc-rendered-quiz-card")) {
+      contentElement.innerHTML = runtime.renderPlaceCardQuizData
+        ? runtime.renderPlaceCardQuizData(cardData) : renderQuizCard(cardData);
+      contentElement.dataset.quizCardSignature = signature;
+    }
     contentElement.hidden = false;
 
     if (imageElement) {

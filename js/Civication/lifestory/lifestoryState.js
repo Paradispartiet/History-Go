@@ -44,7 +44,7 @@
    * @property {number} dag
    * @property {number} [livsdag] Felles fortellingsdag; eldre v2-saves mangler feltet
    * @property {number} [kalenderDag] Siste Civication-kalenderdag som Life Story har fulgt
-   * @property {any} [privatHistorie] Felles kildeforankret spillerhistorikk med flagg, tidsankre og relasjoner\n   * @property {Record<string, any>} [rolleTilstander] Snapshots av inaktive roller
+   * @property {any} [privatHistorie] Felles C01/C05-arkiv med flagg, tidsankre og relasjoner\n   * @property {Record<string, any>} [rolleTilstander] Snapshots av inaktive roller
    * @property {Array<{fra: string, til: string, livsdag: number, fraDag: number, tilDag: number}>} [rolleBytter]
    * @property {string} fase
    * @property {Record<string, number>} meters
@@ -69,11 +69,26 @@
    * @returns {LifestoryState}
    */
 
-  // Fortellingene C01/C02/C03/C05/C06/C07/C17/C23 er spillhistorikk, ikke eiendeler til arbeidsgiveren.
-  // Hele rolletilstanden forblir separat; bare disse historienes konkrete
+  // C01 og C05 er privatliv, ikke eiendeler til den siste arbeidsgiveren.
+  // Hele rolletilstanden forblir separat; bare disse to historienes konkrete
   // fakta, scenevalg og arkiv følger spilleren ved jobbbytte.
-  const PRIVATE_FLAG = /^wa_(?:[bcdef]_)?c(?:01|02|03|05|06|07|17|23)_/;
-  const PRIVATE_SCENE = /^wave_[abcdef]_c(?:01|02|03|05|06|07|17|23)_/;
+  // Shared personal trajectories survive employment changes in the existing
+  // private-history snapshot; neither job role owns these actions.
+  const PRIVATE_FLAG = /^(?:wa_(?:[bcdef]_)?c(?:01|02|03|05|06|07|17|23)_|life21_)/;
+  const PRIVATE_SCENE = /^(?:wave_[abcde]_c0[15]_|wave_[abcdef]_c(?:01|02|03|05|06|07|17|23)_|wave_e_life21_)/;
+  // These threads belong to the shared personal pack, across every career.
+  // Their real archived scene choices remain personal even on old saves that
+  // predate the incremental private-history record.
+  const PRIVATE_LIFE_THREADS = new Set([
+    "daarlig_soevn", "stram_oekonomi", "venter_paa_svar", "tviler_paa_jobben",
+    "kroppen_og_kreftene", "folk_rundt_deg", "lysten_til_aa_laere",
+    "byen_og_deg", "natten_og_soevnen", "dine_egne_timer", "uka_videre",
+    "wave_e_c01", "wave_e_c05", "wave_e_life21",
+    "wave_f_c01", "wave_f_c02", "wave_f_c03", "wave_f_c05",
+    "wave_f_c06", "wave_f_c07", "wave_f_c17", "wave_f_c23"
+  ]);
+  const isPrivateEntry = entry => PRIVATE_SCENE.test(entry?.sceneId || "")
+    || PRIVATE_LIFE_THREADS.has(entry?.threadId);
   function emptyPrivateStory() { return { flagg: {}, flaggDager: {}, spilteScener: [], arkiv: [], relasjoner: {} }; }
   function capturePrivateStory(state) {
     const story = emptyPrivateStory();
@@ -83,13 +98,16 @@
       Object.assign(story.flagg, previous.flagg || {});
       Object.assign(story.flaggDager, previous.flaggDager || {});
       Object.assign(story.relasjoner, previous.relasjoner || {});
-      for (const id of previous.spilteScener || []) if (PRIVATE_SCENE.test(id) && !story.spilteScener.includes(id)) story.spilteScener.push(id);
-      for (const e of previous.arkiv || []) if (PRIVATE_SCENE.test(e.sceneId || "") && !story.arkiv.some(x => x.sceneId === e.sceneId)) story.arkiv.push(e);
+      // The private mirror is curated by the runner; preserve every entry,
+      // including older first-week personal scenes without a Wave prefix.
+      for (const id of previous.spilteScener || []) if (!story.spilteScener.includes(id)) story.spilteScener.push(id);
+      for (const e of previous.arkiv || []) if (!story.arkiv.some(x => x.sceneId === e.sceneId)) story.arkiv.push(e);
       for (const [key,value] of Object.entries(source.tidligereValg || {})) if (PRIVATE_FLAG.test(key)) story.flagg[key] = value;
       for (const id of source.spilteScener || []) if (PRIVATE_SCENE.test(id) && !story.spilteScener.includes(id)) story.spilteScener.push(id);
       for (const e of source.arkiv || []) {
-        if (!PRIVATE_SCENE.test(e.sceneId || "")) continue;
+        if (!isPrivateEntry(e)) continue;
         if (!story.arkiv.some(x => x.sceneId === e.sceneId)) story.arkiv.push(e);
+        if (!story.spilteScener.includes(e.sceneId)) story.spilteScener.push(e.sceneId);
         // En lagret, faktisk Wave D-hendelse er et tidsanker. Ikke utled
         // dato fra et flagg uten den tilhørende hendelsen.
         const match = /^wave_d_(c(?:01|02|03|05|06|07|17|23))_/.exec(e.sceneId);
@@ -106,6 +124,30 @@
     state.privatHistorie = story;
     return story;
   }
+  // One newly played Wave E private action is already canonical in state.arkiv.
+  // Append that action incrementally rather than re-scanning every historical
+  // role snapshot on every scene (a quadratic cost in long playthroughs).
+  function recordPrivateScene(state, entry) {
+    if (!isPrivateEntry(entry)) return;
+    const story = state.privatHistorie ||= emptyPrivateStory();
+    story.flagg ||= {};
+    story.flaggDager ||= {};
+    story.spilteScener ||= [];
+    story.arkiv ||= [];
+    story.relasjoner ||= {};
+    for (const [key, value] of Object.entries(state.tidligereValg || {})) {
+      if (PRIVATE_FLAG.test(key)) story.flagg[key] = value;
+    }
+    if (!story.spilteScener.includes(entry.sceneId)) story.spilteScener.push(entry.sceneId);
+    if (!story.arkiv.some(row => row.sceneId === entry.sceneId)) {
+      story.arkiv.push(JSON.parse(JSON.stringify(entry)));
+    }
+    for (const key of ["venn", "familie"]) {
+      if (typeof state.relasjoner?.[key] === "number") story.relasjoner[key] = state.relasjoner[key];
+    }
+    return story;
+  }
+
   function hydratePrivateStory(state, story) {
     state.privatHistorie = JSON.parse(JSON.stringify(story));
     state.tidligereValg ||= {};
@@ -191,6 +233,18 @@
       throw new Error("[LifestoryState] ugyldig lagret rolle: " + roleId);
     }
     const selected = earlier || createInitialState(content);
+    // Energi, psykisk overskudd og personlig integritet tilhører spilleren,
+    // ikke arbeidsplassen. Et jobbskifte er ingen gratis helbredelse.
+    // Arbeidsspesifikk synlighet og handlingsrom forblir rollens egne data.
+    selected.meters ||= {};
+    selected.dagStartMeters ||= {};
+    for (const meter of ["energi", "psyke", "integritet"]) {
+      if (!Number.isFinite(saved.meters?.[meter])) continue;
+      selected.meters[meter] = clamp(saved.meters[meter]);
+      // The first day-summary in a new job must not count a prior job's
+      // accumulated fatigue as if it happened after this role was adopted.
+      selected.dagStartMeters[meter] = selected.meters[meter];
+    }
     delete inactive[roleId];
     selected.rolleTilstander = inactive;
     if (privateStory) hydratePrivateStory(selected, privateStory);
@@ -370,30 +424,14 @@
     return state;
   }
 
-  /** Authored characters can be addressed by full label ("Mira, musiker")
-   * or by first name ("Mira"); technical IDs with underscores are excluded.
-   */
-  function nameVariants(person) {
-    const full = String(person?.navn || "").trim();
-    const short = full.includes(",") ? full.split(",")[0].trim() : "";
-    return short && short !== full ? [full, short] : [full];
-  }
-
-  function nameRegex(name, possessive = false) {
-    const escaped = name.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
-    return new RegExp("(^|[^\\p{L}\\p{N}_])" + escaped +
-      (possessive ? "s" : "") + "(?=$|[^\\p{L}\\p{N}_])", "giu");
-  }
-
   /** @param {any} scene @param {any} person @param {any} [choice] @returns {boolean} */
   function sceneMentionsPerson(scene, person, choice) {
-    if (scene.avsender === person.id) return true;
-    const prose = [scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst]
-      .filter(value => typeof value === "string").join(" ");
-    return nameVariants(person).some(name => name && nameRegex(name).test(prose));
+    return scene.avsender === person.id || JSON.stringify([scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst]).toLowerCase().includes(person.navn.toLowerCase());
   }
 
-  /** Snapshot actual representatives at the time of the scene, not later. */
+  /** Snapshot the types actually present in this scene before archiving it.
+   * @param {any} state @param {any} content @param {any} scene @param {any} choice @returns {any}
+   */
   function lockScenePeople(state, content, scene, choice) {
     const cast = {};
     for (const person of content.role.personer || []) {
@@ -406,23 +444,25 @@
     return cast;
   }
 
-  /** Replace only authored prose, not identifiers or old archive entries. */
+  /** Resolve authored type names, never legacy archive names or technical IDs.
+   * @param {any} state @param {any} content @param {any} value @returns {string}
+   */
   function presentText(state, content, value) {
     let text = String(value == null ? "" : value);
     for (const person of content?.role?.personer || []) {
       const cast = state?.personRepresentanter?.[person.id];
       if (!person.persontype || !cast?.personId) continue;
+      const escaped = person.navn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      // Norwegian type names contain letters outside ASCII \b, so delimit
+      // explicitly. Replace possessives before the plain name.
       const possessive = /[sxz]$/i.test(cast.navn) ? cast.navn + "’" : cast.navn + "s";
-      for (const name of nameVariants(person)) {
-        if (!name) continue;
-        text = text.replace(nameRegex(name, true), (_, prefix) => prefix + possessive)
-          .replace(nameRegex(name), (_, prefix) => prefix + cast.navn);
-      }
+      text = text.replace(new RegExp("(^|[^\\p{L}])" + escaped + "s(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + possessive)
+        .replace(new RegExp("(^|[^\\p{L}])" + escaped + "(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + cast.navn);
     }
     return text;
   }
 
-  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, selectRole, reconcileContent, applyEffects, capturePrivateStory, hydratePrivateStory, snapshotThreadStatus, save, load, reset, bindPersonTypes, lockScenePeople, presentText, sceneMentionsPerson };
+  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, selectRole, reconcileContent, applyEffects, capturePrivateStory, recordPrivateScene, hydratePrivateStory, snapshotThreadStatus, save, load, reset, bindPersonTypes, lockScenePeople, presentText, sceneMentionsPerson };
   /** @type {any} */ (globalScope).CivicationLifestoryState = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

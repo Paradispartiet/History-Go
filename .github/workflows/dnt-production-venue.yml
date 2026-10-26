@@ -1,0 +1,75 @@
+name: DNT production venue guard
+on:
+  pull_request:
+    paths:
+      - 'reports/place-production/det-norske-teatret/20261013/productions-c10.json'
+      - 'reports/place-production/det-norske-teatret/20261020/productions-c30-venue-and-image-rights.md'
+      - 'reports/place-production/det-norske-teatret-workcard-current.json'
+      - 'data/quizcards/scenekunst/**'
+      - 'data/quiz/musikk/det_norske_teatret_sets_merged.json'
+      - 'js/ui/place-card-quizcards-patch.js'
+      - 'tests/det-norske-teatret-quizcard-house-dom.test.mjs'
+      - 'tests/det-norske-teatret-production-venue.test.mjs'
+      - 'tests/det-norske-teatret-objects-rights-c31.test.mjs'
+      - 'tests/det-norske-teatret-objects-rights-c37.test.mjs'
+      - 'tests/det-norske-teatret-costume-visual-review-c38.test.mjs'
+      - 'tests/det-norske-teatret-rights-routing-c39.test.mjs'
+      - 'tests/det-norske-teatret-source-image-links-c40.test.mjs'
+      - 'tests/det-norske-teatret-source-photo-inline-c41.test.mjs'
+      - 'tests/det-norske-teatret-foyer-sources-c47.test.mjs'
+      - 'tests/det-norske-teatret-illustration-fallback-c49.test.mjs'
+      - 'tests/det-norske-teatret-objects-c50.test.mjs'
+      - 'reports/place-production/det-norske-teatret/20261021/objects-c49-illustration-fallback.json'
+      - 'bilder/objects/det_norske_teatret/jan_groth_sceneteppe_1985_konseptillustrasjon.svg'
+      - 'docs/PLACE_OBJECTS_CANONICAL.md'
+      - 'data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json'
+      - 'data/runtime/place-open/det_norske_teatret.json'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'css/place-rounds-fill-layout.css'
+      - 'tests/det-norske-teatret-public-proof-objects-c48.test.mjs'
+      - 'reports/place-production/det-norske-teatret/20261021/objects-c48-public-proof-and-stagecraft-leads.json'
+      - 'reports/place-production/det-norske-teatret/20261021/foyer-painting-kilder-c47.json'
+      - 'reports/place-production/det-norske-teatret/20261020/object-photo-inline-source-c41.json'
+      - 'js/ui/place-popup-tabs.js'
+      - 'css/place-popup-tabs.css'
+      - 'reports/place-production/det-norske-teatret/20261020/objects-c40-source-image-links.json'
+      - 'data/places/production/det_norske_teatret.json'
+      - 'data/runtime/place-open/det_norske_teatret.json'
+      - 'reports/place-production/det-norske-teatret/20261020/objects-c39-rights-routing.json'
+      - 'reports/place-production/det-norske-teatret/20261020/objects-c39-rights-request-DRAFT.md'
+      - 'reports/place-production/det-norske-teatret/20261020/object-costume-visual-review-c38.json'
+      - 'reports/place-production/det-norske-teatret/20261020/objects-c37-rights-adjudication.json'
+      - 'tests/det-norske-teatret-object-image-c32.test.mjs'
+      - 'tests/det-norske-teatret-costume-asset-c33.test.mjs'
+      - 'tests/det-norske-teatret-front-image-c34.test.mjs'
+      - 'tests/det-norske-teatret-front-asset-c35.test.mjs'
+      - 'tests/det-norske-teatret-front-activation-c36.test.mjs'
+      - 'data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json'
+      - 'reports/place-production/det-norske-teatret/20261020/front-image-c36-visual-review.json'
+      - 'bilder/places/det_norske_teatret_front_bjoertvedt_2013.webp'
+      - 'reports/place-production/det-norske-teatret/20261020/front-image-c34-generated.json'
+      - 'scripts/place-production/stage-dnt-front-image-c34.mjs'
+      - 'reports/place-production/det-norske-teatret/20261020/front-image-intake-c34.json'
+      - 'bilder/objects/det_norske_teatret/madame_de_sade_1989_tm01641.webp'
+      - 'reports/place-production/det-norske-teatret/20261020/object-image-c32-generated.json'
+      - 'scripts/place-production/stage-dnt-object-image-c32.mjs'
+      - 'reports/place-production/det-norske-teatret/20261020/object-image-intake-c32.json'
+      - 'reports/place-production/det-norske-teatret/20261020/objects-c31-candidates.json'
+      - 'reports/place-production/det-norske-teatret/20261020/portrait-rights-c31.json'
+      - 'reports/place-production/det-norske-teatret/20261020/objects-and-portrait-rights-c31.md'
+      - '.github/workflows/dnt-production-venue.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  source-venue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node-npm
+      - name: Confirm venue/media guards and place-focused QuizCard source/DOM parity
+        run: node --test tests/det-norske-teatret-production-venue.test.mjs tests/det-norske-teatret-quizcard-house-dom.test.mjs tests/det-norske-teatret-objects-rights-c31.test.mjs tests/det-norske-teatret-objects-rights-c37.test.mjs tests/det-norske-teatret-costume-visual-review-c38.test.mjs tests/det-norske-teatret-rights-routing-c39.test.mjs tests/det-norske-teatret-source-image-links-c40.test.mjs tests/det-norske-teatret-source-photo-inline-c41.test.mjs tests/det-norske-teatret-foyer-sources-c47.test.mjs tests/det-norske-teatret-public-proof-objects-c48.test.mjs tests/det-norske-teatret-illustration-fallback-c49.test.mjs tests/det-norske-teatret-objects-c50.test.mjs tests/det-norske-teatret-object-image-c32.test.mjs tests/det-norske-teatret-costume-asset-c33.test.mjs tests/det-norske-teatret-front-image-c34.test.mjs tests/det-norske-teatret-front-asset-c35.test.mjs tests/det-norske-teatret-front-activation-c36.test.mjs

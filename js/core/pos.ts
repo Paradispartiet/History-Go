@@ -40,6 +40,8 @@ type RuntimeWindow = Window & typeof globalThis & {
     setUser?: (lat: number, lon: number, options?: { fly?: boolean }) => unknown;
   };
   renderNearbyPlaces?: () => unknown;
+  /** Opt-in only: GPS updates must not silently record visits. */
+  HG_AUTODISCOVER_PLACES?: boolean;
 };
 
 const win = window as RuntimeWindow;
@@ -60,7 +62,10 @@ function setPos(lat: unknown, lon: unknown, acc?: unknown): void {
   if (!Number.isFinite(updated.lat) || !Number.isFinite(updated.lon)) return;
 
   win.HGMap?.setUser?.(updated.lat as number, updated.lon as number);
-  autoUnlockPlacesFromPosition(updated.lat as number, updated.lon as number);
+  // GPS updates may refresh nearby places, but visits remain user-controlled by default.
+  if (win.HG_AUTODISCOVER_PLACES === true && !getLocationOverride()) {
+    autoUnlockPlacesFromPosition(updated.lat as number, updated.lon as number);
+  }
   win.renderNearbyPlaces?.();
 }
 
@@ -74,7 +79,7 @@ function setLocationOverride(location: LocationOverrideInput): boolean {
   if (!payload) return false;
 
   emitGeo({ status: "test", mode: "manual", ...payload });
-  autoUnlockPlacesFromPosition(payload.lat, payload.lon);
+  // Picking a virtual location must never award physical visits.
   refreshGeoConsumers({ recenterMap: true });
   return true;
 }

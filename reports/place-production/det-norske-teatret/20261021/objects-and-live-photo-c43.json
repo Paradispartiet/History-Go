@@ -1,0 +1,91 @@
+{
+  "schema": "history_go_dnt_c43_public_visual_and_objects_source_review_v1",
+  "place_id": "det_norske_teatret",
+  "reviewed_on": "2026-10-21",
+  "objective": "Deployed-app verification plus source-grounded inventory of the two outstanding separate physical Objects, without contacting anyone or copying external theatre photographs.",
+  "site": {
+    "url": "https://paradispartiet.github.io/History-Go/",
+    "check": "tests/det-norske-teatret-live-browser-c43.mjs",
+    "result": "PASS_GITHUB_PAGES_LIVE_CHROMIUM_MOBILE_390_AND_DESKTOP_1280_NOT_PHYSICAL_DEVICE",
+    "limits": "Live browser check invokes actual shipped popup with deployed Place JSON; not a user gesture through map or physical phone.",
+    "github_actions_run": 39564326678,
+    "github_actions_artifact": "dnt-c43-public-browser-evidence",
+    "test_evidence": {
+      "origin": "https://paradispartiet.github.io/History-Go/",
+      "assets_http_200": true,
+      "deployed_costume_sha256": "a4c04b491558f65551385f3e98651e599319e5e6a576f80ae33c105bef57c31f",
+      "deployed_facade_sha256": "14a88af025f76ba368fffe89f348e6bf8eb9fcc56cda067aeb1e0df5fb1e46f2",
+      "checks": [
+        "deployed JS and CSS present",
+        "canonical Place data present",
+        "source tab opened via deployed showPlacePopup",
+        "licensed source photo loaded and decoded",
+        "credit and Commons link visible",
+        "original Juleroser source link present",
+        "responsive image contained at 390 and 1280 pixels",
+        "no page JavaScript exceptions recorded"
+      ],
+      "limits": [
+        "The popup is launched programmatically with deployed Place data, not selected by tapping a map marker.",
+        "Automated Chromium viewports do not substitute for physical Android or iOS testing.",
+        "A first-run welcome overlay may remain behind the programmatically opened popup. Check the normal user path separately."
+      ]
+    }
+  },
+  "objects_canonical_status": "BLOCKED",
+  "published_objects": 0,
+  "candidates": [
+    {
+      "id": "dnt_costume_madame_de_sade_1989_tm01641",
+      "physical_object": "1989 Madame de Sade costume held by Oslo Museum",
+      "photo_status": "LOCALLY_LICENSED_SOURCE_PHOTO_IN_KILDER_TAB_NOT_CANONICAL_OBJECT",
+      "asset": "bilder/objects/det_norske_teatret/madame_de_sade_1989_tm01641.webp",
+      "note": "One verified physical object; photographic proof and public source display do not alone fulfill the two-member Objects collection."
+    },
+    {
+      "id": "dnt_hulda_garborg_bunad_foyer",
+      "physical_object": "Hulda Garborg's own bunad publicly described as displayed in Det Norske Teatret foyer",
+      "independent_support": [
+        {
+          "url": "https://www.detnorsketeatret.no/bakgrunnsartiklar/fra-hulda-og-halldis-til-herborg",
+          "finding": "Theatre text states that one of Hulda's own bunads is on display in the foyer; historic photograph is of Hulda wearing a bunad, not a catalogued separate photograph of the currently exhibited artifact."
+        },
+        {
+          "url": "https://www.huldabunader.no/pages/hulda-garborg",
+          "finding": "Bunad maker reports having visited the original on display and using it as a reference for a modern reconstruction."
+        }
+      ],
+      "photo_status": "NO_VERIFIED_PHOTO_OF_IDENTIFIED_FOYER_OBJECT_FOR_CANONICAL_MEMBER",
+      "exclusion": "Public-domain 200×256 portrait of Hulda in a bunad is not demonstrated to depict the separately identifiable foyer artifact: https://commons.wikimedia.org/wiki/File:Hulda_Garborg-bunad.jpg",
+      "needs": "Photo documenting the exact foyer artifact and a stable object identity, not a generic portrait or reconstructed commercial bunad."
+    },
+    {
+      "id": "dnt_juleroser_walstad_dress",
+      "physical_object": "Unni Walstad-designed Juleroser stage dress, with reused embroidery from a disassembled Hulda-inspired garment, made in the theatre costume department",
+      "primary_support": {
+        "url": "https://www.detnorsketeatret.no/bakgrunnsartiklar/fra-hulda-og-halldis-til-herborg",
+        "finding": "Article identifies designer and costume-department work and captions the dress fitting photo with photographer Ole Herman Andersen."
+      },
+      "contextual_support": {
+        "url": "https://www.detnorsketeatret.no/framsyningar/juleroser",
+        "finding": "2026 programme confirms Juleroser on Hovudscenen but does not prove which exact dated garment is worn in 2026."
+      },
+      "public_image": "https://detnorsketeatret.imgix.net/artiklar/fra-hulda-til-herborg/Hulda-bunaden_OHA-9.jpg?auto=format&crop=crop%3Dfocalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=260&ixlib=php-3.3.1&w=355",
+      "photo_status": "EXTERNAL_ORIGINAL_IMAGE_LINK_PUBLISHED_IN_KILDER_TAB_NO_LOCAL_COPY_OR_MEMBER_LICENSE",
+      "needs": "Exact physical garment identity, date and approved distributable member image if later added to canonical Objects; public original-source link alone is not a licensed local member image."
+    }
+  ],
+  "constraints": [
+    "No permissions request or email shall be sent; C39 draft is archived and unsent.",
+    "No invented museum ownership/accession for bunad or Juleroser dress.",
+    "Never represent the portrait as a photograph of an independently identified foyer exhibit.",
+    "Keep historical 1985-house boundary: exclude costumes predating the building without concrete site linkage.",
+    "Do not publish Objects, member images, or claim Place complete until canonical Object contract is satisfied."
+  ],
+  "source_research_extension": {
+    "image": "https://commons.wikimedia.org/wiki/File:BUNADER_Hulda_Garborg-drakten_(etter_h%C3%B8ytidsdrakt_fra_Gol)_ca_1950_kvinnebunad_barnebunad_lue_(privateid)_Norwegian_national_woman%27s_costume_%22Hulda_costume%22._Slottsfjellsmuseet_Regional_Museum_T%C3%B8nsberg,_Norway_2021-11-10_05.jpg",
+    "classification": "NOT_IDENTIFIED_FOYER_BUNAD",
+    "reason": "Wikimedia Commons explicitly describes a later Hulda-inspired outfit from circa 1950 photographed at Slottsfjellsmuseet in Tønsberg, not the original exhibited in Det Norske Teatrets foyer.",
+    "decision": "Do not use as canonical DNT foyer Object preview."
+  }
+}

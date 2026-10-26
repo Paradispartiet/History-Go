@@ -1,0 +1,261 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "gronlikaia",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/gronlikaia.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Grønlikaia mellom Loengkaia og Grønliutstikkeren; ikke hele Sydhavna.",
+    "anchorType": "harbor",
+    "placeObjectDistinction": "Stedsidentiteten gjelder den konkrete bygningen eller det bestemte området, ikke andre anlegg som har lignende funksjon.",
+    "temporalScope": {
+      "start": "1907",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Dekker næringsstedets hovedperiode med etablering, drift og senere endringer i bruk eller lokalisering."
+    },
+    "sourceIds": [
+      "source_gronlikaia_byleksikon",
+      "source_gronlikaia_institution"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Dette emnet belyser stedets konkrete virksomhet, arbeidsdeling, investeringer og forandringer i næringsstrukturen.",
+      "caseIds": [
+        "case_gronlikaia_site_economy"
+      ]
+    },
+    {
+      "emneId": "em_naering_felt_arbeid_verdiskaping",
+      "siteSpecificRationale": "Dette emnet belyser stedets konkrete virksomhet, arbeidsdeling, investeringer og forandringer i næringsstrukturen.",
+      "caseIds": [
+        "case_gronlikaia_site_economy"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_gronlikaia_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Gr%C3%B8nlikaia",
+      "sourceLocation": "Hele stedsartikkelen med historisk hovedkronologi og stedets bruksformer",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Oslo byleksikon, redigert stedsoppføring om denne byens nærings- og bygningshistorie.",
+      "limitations": "Lokalhistorisk leksikon dokumenterer hovedhendelser, ikke komplette økonomiske regnskaper eller årlige produktivitetstall."
+    },
+    {
+      "id": "source_gronlikaia_institution",
+      "url": "https://www.oslohavn.no/no/meny/fjordbyen/havnepromenaden/",
+      "sourceLocation": "Besøks-, sted- eller eiendomsoversikt for lokalets nåværende bruk",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Nåværende ansvarlig institusjon eller stedets offisielle forvalterinformasjon.",
+      "limitations": "Bekrefter bruk og institusjonell identitet, ikke komplette økonomiske historiske utfallsdata."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_gronlikaia_site_economy",
+      "claim": "Havnefunksjoner, jernbane og senere byutviklingsplaner har gitt området skiftende økonomiske bruksformer.",
+      "unitOfAnalysis": {
+        "unit": "Det historiske kaianlegget Grønlikaia",
+        "boundary": "Grønlikaia mellom Loengkaia og Grønliutstikkeren; ikke hele Sydhavna.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1907",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Dekker næringsstedets hovedperiode med etablering, drift og senere endringer i bruk eller lokalisering."
+        },
+        "sourceIds": [
+          "source_gronlikaia_byleksikon",
+          "source_gronlikaia_institution"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Havnevesenet, jernbanen og godseiere",
+          "roleOrInterest": "Havnevesenet styrte kaianlegget, mens transportselskaper og vareeiere brukte infrastrukturen.",
+          "economicPosition": "Styrte eller forvaltet virksomhetens areal og produksjonsbeslutninger.",
+          "sourceIds": [
+            "source_gronlikaia_byleksikon",
+            "source_gronlikaia_institution"
+          ]
+        },
+        {
+          "name": "Lossearbeidere, sjøfolk og transportører",
+          "roleOrInterest": "Arbeidere håndterte varer og transport, uten at kildene gir sammenlignbare lønns- og arbeidsstyrketall.",
+          "economicPosition": "Deltok som arbeidskraft, bruker eller kunde uten samme kontroll over virksomheten.",
+          "sourceIds": [
+            "source_gronlikaia_byleksikon",
+            "source_gronlikaia_institution"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Kaifront, skip, gods, jernbanespor og arbeidskraft",
+            "sourceIds": [
+              "source_gronlikaia_byleksikon",
+              "source_gronlikaia_institution"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Anløp, lossing og omlasting av varer, blant annet jern og annet gods",
+          "sourceIds": [
+            "source_gronlikaia_byleksikon",
+            "source_gronlikaia_institution"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Videreformidlet gods mellom Oslo havn og jernbaneforbindelsen",
+            "sourceIds": [
+              "source_gronlikaia_byleksikon",
+              "source_gronlikaia_institution"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Dette stedets økonomiske aktivitet dokumenteres gjennom konkrete arbeids- og transportfunksjoner, men kan ikke omregnes til en historisk verdi uten pålitelige regnskaper.",
+          "sourceIds": [
+            "source_gronlikaia_byleksikon",
+            "source_gronlikaia_institution"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Havnefunksjoner, jernbane og senere byutviklingsplaner har gitt området skiftende økonomiske bruksformer.",
+        "unit": "dokumentert endring i stedsbruk",
+        "period": "1907–2026",
+        "comparability": "Historiske hendelser og bygningsbruk kan sammenholdes over tid; ulike økonomiske nivåer kan ikke kvantifiseres.",
+        "dataLimitations": "Et foto fra 1937 dokumenterer skip og kai, men ikke nivået på vareomsetning eller påvirkning på nærmiljøet.",
+        "sourceIds": [
+          "source_gronlikaia_byleksikon",
+          "source_gronlikaia_institution"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Havnevesenet styrte kaianlegget, mens transportselskaper og vareeiere brukte infrastrukturen.",
+        "laborPosition": "Arbeidere håndterte varer og transport, uten at kildene gir sammenlignbare lønns- og arbeidsstyrketall.",
+        "beneficiaries": [
+          "Arbeidsgivere, kunder eller brukere av virksomhetens konkrete tjenester.",
+          "Lønnsarbeidere eller lokalsamfunn knyttet til aktiviteten på stedet."
+        ],
+        "costRiskBearers": [
+          "Virksomheten bar investerings- og etterspørselsrisiko.",
+          "Arbeidstakere og nærmiljø kunne bli berørt av endringene, men dette er ikke tallfestet."
+        ],
+        "sourceIds": [
+          "source_gronlikaia_byleksikon",
+          "source_gronlikaia_institution"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Virksomheten var sårbar for endringer i marked, teknologi, transport, eiendomsbruk og etterspørsel, men kildene isolerer ingen enkeltfaktor.",
+          "sourceIds": [
+            "source_gronlikaia_byleksikon",
+            "source_gronlikaia_institution"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene gir ikke et stedsspesifikt målt grunnlag for å beregne arbeidshelse, forurensning eller samfunnsøkonomiske eksternaliteter."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Den redigerte historiske stedsartikkelen sammenholdes med fotografisk dokumentasjon eller institusjonens nåværende stedsinformasjon.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "De dokumenterte hendelsene beskriver økonomisk aktivitet og endring; materialet isolerer ikke en kausal effekt av én enkelt innsatsfaktor.",
+        "alternativeExplanations": [
+          "Markedsetterspørsel, teknologisk endring, lokalisering og beslutninger om eiendom kan ha hatt selvstendige effekter."
+        ],
+        "uncertainty": "Et foto fra 1937 dokumenterer skip og kai, men ikke nivået på vareomsetning eller påvirkning på nærmiljøet.",
+        "sourceIds": [
+          "source_gronlikaia_byleksikon",
+          "source_gronlikaia_institution"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "mixed",
+    "statement": "Grønlikaia er tidligere godskai og inngår i nyere planer for utvikling av Oslos sjøfront.",
+    "originalEconomicRoleRelationship": "Den dokumenterte opprinnelige økonomiske rollen skilles fra dagens bruk av den gamle tomten eller bygningen.",
+    "checkedAt": "2026-10-19",
+    "sourceIds": [
+      "source_gronlikaia_byleksikon",
+      "source_gronlikaia_institution"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "QuizCards finnes allerede, men denne bolken endrer ikke første to sett eller den fagspesifikke quizproduksjonen."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Historiske steder og stedsbeskrivelser er gjennomgått; separat Story- eller kronologiproduksjon er ikke del av denne teksten."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    }
+  },
+  "review": {
+    "reviewer": "History Go Oslo Næringsliv original place review",
+    "reviewedAt": "2026-10-19",
+    "notes": "Stedsspesifikke innganger, aktivitet, utbytte, makt, økonomiske målebegrensninger og dagens bruk er konkret og separat gjennomgått."
+  }
+}

@@ -1,3 +1,18 @@
+/** @param {HTMLElement|null} host @param {unknown} metadata */
+function renderPlaceCardPhotoCaption(host, metadata) {
+  if (!host) return;
+  const photo = metadata && typeof metadata === "object" ? /** @type {Record<string, unknown>} */ (metadata) : {};
+  const text = photo.historicalOnly === true ? String(photo.historicalCaption || "").trim() : "";
+  let caption = host.querySelector(".pc-photo-caption");
+  if (!text) { caption?.remove(); return; }
+  if (!caption) {
+    caption = host.ownerDocument.createElement("p");
+    caption.className = "pc-photo-caption";
+    host.appendChild(caption);
+  }
+  caption.textContent = text;
+}
+
 // ============================================================
 // 5. PLACE CARD (det store kortpanelet) — REN SAMLET VERSJON
 // ============================================================
@@ -17,7 +32,7 @@
  *   image?: string,
  *   frontImage?: string,
  *   cardImage?: string,
- *   imageComposition?: { portraitPosition?: string, heroPosition?: string },
+ *   imageComposition?: { portraitPosition?: string, heroPosition?: string, portraitFit?: string },
  *   quizCardImage?: string,
  *   quizCard?: string,
  *   quiz_card_image?: string,
@@ -821,6 +836,22 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
   }
 
   if (!quizCardImage || !quizImgEl) {
+    // Place-open progressively hydrates and can reopen the same PlaceCard
+    // while the user is viewing its data-rendered QuizCard. The absence of a
+    // legacy *image* is not evidence that a rendered quiz back is unavailable.
+    const renderedBack = document.getElementById("pcQuizCardContent");
+    const placeId = String(place?.id || "").trim();
+    const hasCurrentRenderedBack = Boolean(
+      placeId && renderedBack?.dataset.placeId === placeId &&
+      !renderedBack.hidden && renderedBack.querySelector(".pc-rendered-quiz-card")
+    );
+    if (hasCurrentRenderedBack) {
+      card.classList.add("has-quiz-card");
+      card.setAttribute("aria-label", card.classList.contains("is-flipped")
+        ? tUI("ui.place.showFrontImage", "Vis frontbilde")
+        : tUI("ui.attr.showQuizCard", "Vis quizkort"));
+      return;
+    }
     card.classList.remove("has-quiz-card", "is-flipped");
     card.setAttribute("aria-label", tUI("ui.place.quizCardMissing", "Quizkort mangler"));
     if (quizImgEl) {
@@ -848,7 +879,8 @@ const PLACE_CARD_QUIZ_CARD_MANIFEST_PATHS = Object.freeze([
   "data/quizcards/natur/manifest.json",
   "data/quizcards/musikk/manifest.json",
   "data/quizcards/subkultur/manifest.json",
-  "data/quizcards/naeringsliv/manifest.json"
+  "data/quizcards/naeringsliv/manifest.json",
+  "data/quizcards/politikk/manifest.json"
 ]);
 const PLACE_CARD_QUIZ_CARD_FALLBACK_COLLECTIONS = Object.freeze([
   "by/topp10_by_kort_batch1.json",
@@ -1049,7 +1081,12 @@ async function setPlaceCardQuizBack(card, quizImgEl, quizContentEl, place) {
 
   if (cardData) {
     if (quizContentEl) {
-      quizContentEl.innerHTML = renderPlaceCardQuizData(cardData);
+      const signature = JSON.stringify(cardData);
+      if (quizContentEl.dataset.quizCardSignature !== signature || !quizContentEl.querySelector(".pc-rendered-quiz-card")) {
+        quizContentEl.innerHTML = renderPlaceCardQuizData(cardData);
+        quizContentEl.dataset.quizCardSignature = signature;
+      }
+      quizContentEl.dataset.placeId = requestedPlaceId;
       quizContentEl.hidden = false;
     }
     if (quizImgEl) {
@@ -1065,6 +1102,7 @@ async function setPlaceCardQuizBack(card, quizImgEl, quizContentEl, place) {
   // Fallback: eksisterende bildebaserte quizkort
   if (quizContentEl) {
     quizContentEl.innerHTML = "";
+    delete quizContentEl.dataset.placeId;
     quizContentEl.hidden = true;
   }
   if (quizImgEl) {
@@ -1529,15 +1567,20 @@ if (!card) return;
       headerHeroEl.classList.add("has-image");
     }
   }
+  renderPlaceCardPhotoCaption(headerHeroEl?.querySelector(".pc-heading-content") || null, place.imageMeta);
   // The editor chooses focal points per surface. Never carry one place's
   // inline position into the next place when a player switches cards.
-  const imageComposition = /** @type {{ portraitPosition?: string, heroPosition?: string }} */ (place.imageComposition || {});
+  const imageComposition = /** @type {{ portraitPosition?: string, heroPosition?: string, portraitFit?: string }} */ (place.imageComposition || {});
   const mediaPosition = (position) => {
     const parts = String(position || "").trim().match(/^(\d{1,3})%\s+(\d{1,3})%$/);
     return parts && Number(parts[1]) <= 100 && Number(parts[2]) <= 100
       ? `${parts[1]}% ${parts[2]}%` : "50% 50%";
   };
-  if (frontImgEl) frontImgEl.style.objectPosition = mediaPosition(imageComposition.portraitPosition);
+  if (frontImgEl) {
+    frontImgEl.style.objectPosition = mediaPosition(imageComposition.portraitPosition);
+    // Only opt-in portrait crops use cover. Reset when switching places.
+    frontImgEl.style.objectFit = imageComposition.portraitFit === "cover" ? "cover" : "";
+  }
   if (headerImgEl) headerImgEl.style.objectPosition = mediaPosition(imageComposition.heroPosition);
   setPlaceCardImgSrcStable(frontImgEl, place.frontImage || place.cardImage || place.image || "");
   setPlaceCardQuizImage(frontCardFlipEl, quizCardImgEl, place);
@@ -1549,7 +1592,13 @@ if (!card) return;
   const miniImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcMiniImg"));
   setPlaceCardImgSrcStable(miniImgEl, frontImgEl?.getAttribute("src") || String(place.image ?? ""));
   
-  if (titleEl) titleEl.textContent = String(place.name || "");
+  if (titleEl) {
+    titleEl.textContent = String(place.name || "");
+    const hasLongPhoneTitle = (place.id === "arbeidersamfunnets_plass" || place.id === "statsministerboligen")
+      && window.matchMedia("(max-width: 520px)").matches;
+    titleEl.style.fontSize = hasLongPhoneTitle ? "clamp(16px, 4.5vw, 20px)" : "";
+    titleEl.style.letterSpacing = hasLongPhoneTitle ? "-.045em" : "";
+  }
   if (favoriteBtn) {
     const updatePlaceCardFavorite = () => {
       const active = !!window.HGFavoritePlaces?.has?.(place.id);

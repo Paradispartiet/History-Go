@@ -46,7 +46,7 @@ function playFullWeek(content, pick) {
   return state;
 }
 const foerste = (s) => s.valg[0].id;
-const siste = (s) => s.valg[s.valg.length - 1].id;
+const siste = (s) => s.valg.filter(choice => !choice.skills_requirement).at(-1).id;
 
 const FORVENTET = {
   arbeidsledig: { foerste: "bygget_kompetanse", siste: "kom_i_jobb" },
@@ -54,7 +54,7 @@ const FORVENTET = {
   ekspeditor: { foerste: "trygg_paa_gulvet", siste: "mistet_tilliten" },
   arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" },
   controller: { foerste: "sporbar_styring", siste: "hard_kontroll" },
-  sport_utover: { foerste: "baerekraftig_profesjonell", siste: "presset_for_langt" },
+  sport_utover: { foerste: "baerekraftig_profesjonell", siste: "statusjageren" },
   barnehageassistent: { foerste: "trygg_voksen", siste: "drift_foran_barn" },
   psykologi_miljoarbeid: { foerste: "presis_og_trygg", siste: "for_lukket" },
   psykologi_arbeids_og_karriereveiledning: { foerste: "selvstendig_og_opplyst", siste: "systemet_styrte" },
@@ -88,6 +88,21 @@ for (const roleId of Object.keys(manifest.roles)) {
   assert.strictEqual(endH.id, FORVENTET[roleId].siste,
     `${roleId}: hensynsløst spill => ${FORVENTET[roleId].siste}, fikk ${endH.id} (score ${endH.score})`);
   assert.notStrictEqual(endF.id, endH.id, roleId + ": to mønstre gir to ulike slutter");
+}
+
+// Etter nattlig restitusjon er det ikke gitt at risikovalg alene betyr
+// fysisk utmattelse. Begge sluttene skal fortsatt kunne oppstå.
+{
+  const content = build("sport_utover");
+  const statusDriven = playFullWeek(content, siste);
+  assert.strictEqual(statusDriven.tidligereValg.sport_presset_videre, true,
+    "risikovalget må være tatt før fysisk utmattelse kan vektlegges");
+  assert.strictEqual(Endings.resolveEnding(statusDriven, content).id, "statusjageren",
+    "etter reell hvile er statussøkingen fortsatt en separat slutt");
+  // Isoler energiterskelen; dette er en regeltest, ikke fabrikkert spillerprogresjon.
+  statusDriven.meters.energi = 55;
+  assert.strictEqual(Endings.resolveEnding(statusDriven, content).id, "presset_for_langt",
+    "lav energi pluss presset-videre-valget gir fortsatt utmattelses-slutten");
 }
 
 {

@@ -5,6 +5,8 @@ const vm = require('vm');
 const assert = require('assert');
 function storage(){let d={};return{getItem:k=>d[k]||null,setItem:(k,v)=>{d[k]=String(v)},removeItem:k=>{delete d[k]},dump:()=>d};}
 global.window = global; global.localStorage = storage(); global.Event=function(t){this.type=t}; global.dispatchEvent=function(){};
+let gameDay = 1;
+global.CivicationCalendar = { getClock: () => ({ dayIndex: gameDay }) };
 let state = {};
 global.CivicationState = { getState:()=>state, setState:(p)=>{ state = { ...state, ...p }; return state; } };
 vm.runInThisContext(fs.readFileSync(path.join(__dirname,'..','js/Civication/systems/civicationDayPlan.js'),'utf8'), { filename:'civicationDayPlan.js' });
@@ -27,4 +29,26 @@ const done = global.CivicationDayPlan.completeActivity(sleep.id);
 assert(done.ok, 'can complete activity');
 assert.strictEqual(state.day_plan_stats.energi, 2, 'activity effects applied to state');
 assert.strictEqual(state.day_plan_carryover.nextEnergy, 2, 'sleep/night gives next energy carryover');
+const duplicate = global.CivicationDayPlan.completeActivity(sleep.id);
+assert(duplicate.alreadyCompleted, 'one-time activity cannot be completed twice');
+assert.strictEqual(state.day_plan_stats.energi, 2, 'duplicate completion must not double energy');
+assert.strictEqual(state.day_plan_carryover.nextEnergy, 2, 'duplicate completion must not double carryover');
+assert.strictEqual(global.CivicationDayPlan.applyActivityEffects(sleep.id).reason, 'already_applied', 'direct effects are idempotent');
+
+const daily = global.CivicationDayPlan.addActivity({ id: 'daily-rest', title: 'Daglig hvile', repeat: 'daily', phase: 'evening', effects: { energi: 2 } });
+assert(global.CivicationDayPlan.completeActivity(daily.id).ok);
+assert.strictEqual(state.day_plan_stats.energi, 4);
+assert.strictEqual(global.CivicationDayPlan.getTodayPlan().activities.find(a => a.id === daily.id).status, 'completed');
+assert(global.CivicationDayPlan.completeActivity(daily.id).alreadyCompleted);
+assert.strictEqual(state.day_plan_stats.energi, 4, 'same game day cannot grant twice');
+gameDay = 2;
+assert.strictEqual(global.CivicationDayPlan.getTodayPlan().activities.find(a => a.id === daily.id).status, 'planned', 'daily activity resets in next game day');
+assert(global.CivicationDayPlan.completeActivity(daily.id).ok);
+assert.strictEqual(state.day_plan_stats.energi, 6, 'next game day grants one new effect');
+assert(global.CivicationDayPlan.completeActivity(daily.id).alreadyCompleted);
+assert.strictEqual(state.day_plan_stats.energi, 6);
+
+global.CivicationDayPlan.addActivity({ id: 'dated', title: 'Planlagt dato', repeat: 'once', date: '2099-12-31', phase: 'evening' });
+assert(!global.CivicationDayPlan.getTodayPlan(new Date('2099-12-30T12:00:00Z')).activities.some(a => a.id === 'dated'), 'one-time date must be preserved');
+assert(global.CivicationDayPlan.getTodayPlan(new Date('2099-12-31T12:00:00Z')).activities.some(a => a.id === 'dated'));
 console.log('civication-day-plan ok');

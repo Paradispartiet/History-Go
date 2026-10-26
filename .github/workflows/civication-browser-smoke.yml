@@ -10,6 +10,8 @@ on:
       - 'data/Civication/map/**'
       - 'scripts/verify-civication-boot-smoke.ts'
       - 'scripts/verify-civication-arbeidsledig-browser.ts'
+      - 'scripts/verify-civication-21-day-browser.ts'
+      - 'scripts/verify-civication-organic-player-browser.ts'
       - 'scripts/verify-civication-people-browser.cjs'
       - 'scripts/civication-source-http-gate.cjs'
       - 'tests/civication-*map*.test.js'
@@ -34,6 +36,7 @@ jobs:
   browser:
     name: Civication boot smoke
     runs-on: ubuntu-latest
+    timeout-minutes: 95
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -51,12 +54,56 @@ jobs:
         run: npm run audit:civication-city-map-entries
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
+      - name: Select PR browser acceptance depth
+        id: coverage
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" != "pull_request" ]]; then
+            echo "depth=full" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          changed="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files?per_page=100" --jq '.[].filename')"
+          if grep -Fxq 'scripts/verify-civication-organic-player-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-21-day-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-boot-smoke.ts' <<< "$changed"; then
+            echo "depth=organic" >> "$GITHUB_OUTPUT"
+          else
+            echo "depth=smoke" >> "$GITHUB_OUTPUT"
+          fi
       - name: Run Civication browser boot smoke
         env:
-          # PRs verify boot, People UI and map. Nightly/manual also exercise all 20
-          # multi-day Arbeidsledig scenarios; no scenario is deleted.
-          CIVICATION_BROWSER_DEPTH: ${{ github.event_name == 'pull_request' && 'smoke' || 'full' }}
-        run: npm run civication:boot-smoke
+          # Run the real quiz -> job acceptance journey on PRs touching its
+          # implementation; keep unrelated PR smoke focused and nightly full.
+          CIVICATION_BROWSER_DEPTH: ${{ steps.coverage.outputs.depth }}
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p reports/civication-browser
+          echo "Civication acceptance depth: ${CIVICATION_BROWSER_DEPTH}"
+          echo "Started: $(date -u +%FT%TZ)" | tee reports/civication-browser/run-timing.txt
+          # A bounded run retains the actual Playwright assertions and exits
+          # nonzero on failure or timeout. It cannot consume a runner indefinitely.
+          set +e
+          timeout --signal=TERM --kill-after=60s 85m npm run civication:boot-smoke \
+            2>&1 | tee reports/civication-browser/ci-output.log
+          result=${PIPESTATUS[0]}
+          set -e
+          echo "Finished: $(date -u +%FT%TZ)" | tee -a reports/civication-browser/run-timing.txt
+          echo "Exit code: ${result}" | tee -a reports/civication-browser/run-timing.txt
+          if [[ "${result}" -eq 124 || "${result}" -eq 137 ]]; then
+            echo "::error::Civication browser acceptance timed out after 85 minutes. Inspect the uploaded browser diagnostics and ci-output.log."
+            echo "### Civication browser timeout" >> "$GITHUB_STEP_SUMMARY"
+            echo "The acceptance test exceeded the 85-minute limit. See the diagnostic artifact for the last played day, browser screenshots, and test log." >> "$GITHUB_STEP_SUMMARY"
+          elif [[ "${result}" -ne 0 ]]; then
+            echo "::error::Civication browser acceptance failed with exit code ${result}. See uploaded diagnostics."
+            echo "### Civication browser failure" >> "$GITHUB_STEP_SUMMARY"
+            echo "Acceptance failed (exit ${result}); review the diagnostic artifact and test log." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### Civication browser passed" >> "$GITHUB_STEP_SUMMARY"
+            echo "Acceptance depth: ${CIVICATION_BROWSER_DEPTH}." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "${result}"
       - name: Upload browser diagnostics
         if: always()
         uses: actions/upload-artifact@v4

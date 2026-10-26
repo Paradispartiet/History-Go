@@ -1,0 +1,81 @@
+name: Oslo 20 remaining source-specific photo sets — batch 06
+on:
+  push:
+    branches: [content/oslo-eight-remaining-photos-20261019]
+    paths:
+      - scripts/produce-oslo-remaining-place-photos-batch06-20261019.py
+      - .github/workflows/oslo-place-photo-batch06-20261019.yml
+permissions:
+  contents: write
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install Pillow==11.3.0
+      - name: Materialize five licensed photo triplets and record blocked cases
+        run: python scripts/produce-oslo-remaining-place-photos-batch06-20261019.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild canonical and quiz runtime derived only from changed places
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run place-open:check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Commit real assets and generated dependency files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/oslo-20-media-batch06-20261019
+          git add reports/oslo-20-media-batch06-20261019
+          git add data/places/naeringsliv/oslo/places_naeringsliv/akershus_kaier.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/oslo_mek.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/frysja_industriomrade.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/bryn_industriomrade.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/gronlikaia.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/norges_varemesse.json
+          git add data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json
+          git add data/places/place_image_backlog_summary.json data/places/places_index.json
+          git add data/runtime/place-open data/quiz/production_context
+          git diff --cached --quiet && { echo 'No generated photo output'; exit 1; }
+          git commit -m 'assets(oslo): publish five licensed waterfront and industrial Place photo sets'
+          git push origin HEAD:content/oslo-eight-remaining-photos-20261019
+      - run: npx playwright install --with-deps chromium
+      - name: Verify actual PlaceCard hero, portrait and QuizCard flip at two viewport sizes
+        env:
+          HG_VISUAL_OUT: .tmp/oslo-place-photo-batch06-browser
+          HG_VISUAL_CAPTURES: .tmp/oslo-place-photo-batch06-captures
+        run: |
+          mkdir -p .tmp
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          report=json.loads(Path("reports/oslo-20-media-batch06-20261019/result.json").read_text())
+          ids=[p["place_id"] for p in report["produced"]]
+          if not ids:
+              raise SystemExit("Cannot verify an empty photo set")
+          source=Path("tests/oslo-v1-actual-runtime-visual-browser-audit.mjs").read_text()
+          source=source.replace("const allIds=[", "const allIds="+json.dumps(ids)+".concat([",1)
+          source=source.replace('"john_dee","sentrum_scene"];','"john_dee","sentrum_scene"]);',1)
+          Path(".tmp/oslo-place-photo-batch06-browser-audit.mjs").write_text(source)
+          Path(".tmp/oslo-place-photo-batch06-ids").write_text(",".join(ids))
+          PY
+          HG_VISUAL_PLACES="$(cat .tmp/oslo-place-photo-batch06-ids)" node .tmp/oslo-place-photo-batch06-browser-audit.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-place-batch06-photo-evidence
+          include-hidden-files: true
+          path: |
+            reports/oslo-20-media-batch06-20261019
+            .tmp/oslo-place-photo-batch06-browser
+            .tmp/oslo-place-photo-batch06-captures
+          if-no-files-found: warn

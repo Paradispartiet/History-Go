@@ -151,6 +151,50 @@
     return candidates.slice().sort((a, b) => Number(closers.includes(a.id)) - Number(closers.includes(b.id)) || (b.prioritet || 0) - (a.prioritet || 0))[0];
   }
 
+  // Forutsigbar hverdagsbelastning. De forfattede effektene er fasit;
+  // lavt overskudd kan i tillegg gjøre et allerede krevende valg tyngre.
+  // Ingen tilfeldige straffer, ingen oppdiktede diagnoser eller jobbutfall.
+  function applyCapacityLoad(state, choice, before) {
+    const effort = Number(choice?.effekter?.meters?.energi || 0);
+    const emotionalStrain = Number(choice?.effekter?.meters?.psyke || 0);
+    if (effort <= -2 && before.energi <= 30) {
+      state.meters.psyke = Math.max(0, state.meters.psyke - 1);
+      if (before.psyke <= 30) {
+        state.meters.handlingsrom = Math.max(0, state.meters.handlingsrom - 1);
+        return "Lite energi og lavt psykisk overskudd gjorde det krevende valget tyngre (psyke −1, handlingsrom −1).";
+      }
+      return "Lite energi gjorde det krevende valget tyngre (psyke −1).";
+    }
+    if (emotionalStrain <= -2 && before.psyke <= 30) {
+      state.meters.energi = Math.max(0, state.meters.energi - 1);
+      return "Lavt psykisk overskudd gjorde den belastende situasjonen mer utmattende (energi −1).";
+    }
+    return null;
+  }
+
+  function capacityWarning(state) {
+    const energy = Number(state?.meters?.energi);
+    const psyche = Number(state?.meters?.psyke);
+    if (!Number.isFinite(energy) || !Number.isFinite(psyche)) return "";
+    if (energy <= 30 && psyche <= 30) return "Lav energi og lite psykisk overskudd: krevende valg kan også svekke handlingsrommet.";
+    if (energy <= 30) return "Lite energi: fysisk krevende valg kan tære ekstra på psyken.";
+    if (psyche <= 30) return "Lavt psykisk overskudd: prioriter støtte og restitusjon når du har mulighet.";
+    return "";
+  }
+
+  // A missing Skills engine or unknown score fails closed for the bonus
+  // choice only. The ordinary Life Story alternatives are always available.
+  function getChoiceAvailability(choice) {
+    if (!choice?.skills_requirement) return {
+      available: true, required: 0, score: null, measured: false, label: ""
+    };
+    const skills = /** @type {any} */ (globalScope).CivicationSkills;
+    return skills?.checkRequirement
+      ? skills.checkRequirement(choice.skills_requirement)
+      : { available: false, required: choice.skills_requirement.min_score,
+          score: null, measured: false, label: "Skill" };
+  }
+
   /**
    * Spilleren tar et valg: effekter skrives til Player State, valget
    * arkiveres, nye scener låses opp, scenen markeres spilt, og dagen
@@ -170,15 +214,23 @@
     }
     const choice = (scene.valg || []).find((c) => c.id === choiceId);
     if (!choice) throw new Error(`[LifestoryRunner] ukjent valg "${choiceId}" i scenen "${sceneId}"`);
+    if (!getChoiceAvailability(choice).available) {
+      throw new Error(`[LifestoryRunner] valget "${choiceId}" krever dokumentert Skills-praksis`);
+    }
 
-    // Alle roller krever riktig dag, fase, aktiv tråd og oppfylte vilkår.
-    // Gamle DOM-knapper må aldri registrere en fremtidig scene.
-    if (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId)) {
+    // Symposium-pakken tillater aldri at en fremtidig eller avvist scene
+    // skriver et møte/valg inn i historien (inkludert gamle DOM-knapper).
+    if ((content.role.symposium || /^wave_f_/.test(sceneId)) && (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId))) {
       throw new Error(`[LifestoryRunner] scenen "${sceneId}" er ikke tilgjengelig nå`);
     }
 
     const people = State.lockScenePeople(state, content, scene, choice);
+    const capacityBefore = { energi: state.meters.energi, psyke: state.meters.psyke };
     State.applyEffects(state, choice.effekter);
+    const capacityNote = applyCapacityLoad(state, choice, capacityBefore);
+    const consequenceText = [choice.konsekvensTekst
+      ? State.presentText(state, content, choice.konsekvensTekst) : null, capacityNote]
+      .filter(Boolean).join(" ") || null;
 
     // Runneren fører trådens spor: siste scene. Steg (step) endres kun
     // eksplisitt via effekter.threads.stepDelta — ingen gjetting.
@@ -207,9 +259,13 @@
       valgTekst: State.presentText(state, content, choice.tekst)
     };
     if (Object.keys(people).length) entry.personRepresentanter = people;
-    if (choice.konsekvensTekst) entry.konsekvensTekst = State.presentText(state, content, choice.konsekvensTekst);
+    if (consequenceText) entry.konsekvensTekst = consequenceText;
     state.arkiv.push(entry);
-    if (/^wave_[abcdef]_c(?:01|02|03|05|06|07|17|23)_/.test(scene.id)) State.capturePrivateStory(state);
+    // Personal day-8–21 events are appended directly to their shared private
+    // archive. Full historical reconciliation is still done on role switches,
+    // not after each choice, avoiding repeated work on deep life histories.
+    if (/^wave_[abcde]_c0[15]_/.test(scene.id) || /^wave_f_c(?:01|02|03|05|06|07|17|23)_/.test(scene.id)) State.capturePrivateStory(state);
+    else if (/^wave_e_life21_/.test(scene.id) || content.personalOnly) State.recordPrivateScene(state, entry);
 
     const progress = advance(state, content);
     return {
@@ -217,7 +273,7 @@
       laasteOpp,
       faseSkifte: progress.faseSkifte,
       dagFerdig: state.dagFerdig,
-      konsekvensTekst: choice.konsekvensTekst ? State.presentText(state, content, choice.konsekvensTekst) : null
+      konsekvensTekst: consequenceText
     };
   }
 
@@ -274,6 +330,13 @@
     state.dag += 1;
     state.fase = content.faser[0].id;
     state.dagFerdig = false;
+    // Søvn gir moderat restitusjon, men visker ikke ut flere krevende
+    // dager. Verdier over 85 senkes aldri; direkte valg kan gi mer hvile.
+    const eveningEnergy = Number(state.meters.energi);
+    if (Number.isFinite(eveningEnergy)) {
+      state.meters.energi = Math.max(eveningEnergy, Math.min(85, eveningEnergy + 8));
+      if (eveningEnergy <= 20) state.meters.psyke = Math.max(0, state.meters.psyke - 1);
+    }
     for (const thread of content.threads) {
       const startDag = typeof thread.startDag === "number" ? thread.startDag : 1;
       if (startDag <= state.dag && thread.startVedValg !== true && !state.threadState[thread.id]) {
@@ -452,6 +515,7 @@
   }
 
   const api = {
+    capacityWarning,
     sceneDue,
     hasPendingPrivateScenes,
     getContinuationIds,
@@ -462,6 +526,7 @@
     isThreadPlayable,
     getCandidateScenes,
     selectNextScene,
+    getChoiceAvailability,
     applyChoice,
     advance,
     completeDay,

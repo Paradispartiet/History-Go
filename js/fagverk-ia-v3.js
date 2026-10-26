@@ -307,6 +307,14 @@
       if (!nav || !root) throw new Error('Fagverk IA-verter mangler i fagverk.html');
 
       renderOverview(model, progress);
+      // Politikk's canonical Poland exercise is authored once in the underlying
+      // Fagverk view. Move its existing node (including listeners) into the
+      // visible IA-v3 overview instead of creating a parallel quiz or duplicate.
+      if (subjectId === 'politikk') {
+        const pathway = document.getElementById('politikk-polen-2023');
+        const overview = document.getElementById('fagverkIaOverviewContent');
+        if (pathway && overview) overview.appendChild(pathway);
+      }
       renderEmner(model, progress, placeId);
       renderLaerestoff(model, placeId);
       renderUtforsk(model, progress);

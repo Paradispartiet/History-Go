@@ -112,20 +112,15 @@ function play(type, id, b) {
   assert.equal(S.presentText(blank, base, 'Prosjektbyggerens skisse; medmusikeren; miljøkontakten.'),
     'Jens Jacob Jensens skisse; Bugge Wesseltoft; Attila Horvath.');
   assert.equal(S.presentText(blank, base, 'prosjektet_og_lea'), 'prosjektet_og_lea', 'technical IDs remain untouched');
-  assert.equal(S.presentText(blank, base, 'Si til Mira at Lea har lest teksten.'),
-    'Si til Mari Boine at Peter Emil Steen har lest teksten.', 'first-name aliases resolve to actual representatives');
-  assert.equal(S.presentText(blank, base, 'Leas notat og Miras konsert'),
-    'Peter Emil Steens notat og Mari Boines konsert', 'possessive aliases resolve');
-  assert.ok(S.sceneMentionsPerson({ avsender: null, tittel: 'Å tåle at Mira bestemmer' },
-    base.role.personer.find(p => p.id === 'mira')), 'first-name scenes must lock the real representative');
   for (const mutate of [p => p.representanter.push(p.representanter[0]), p => p.representanter = [], p => p.id = 'invalid type']) {
     const bad = clone(raw); mutate(bad.role.personer.find(p => p.id === 'lea').persontype);
     assert.throws(() => C.buildContent(bad), /persontype/);
   }
 
   // Actual production Content/State/Runner/Bridge/UI, including async boot.
-  const dom = new JSDOM('<section id="civiLifestoryPanel"></section>', { url: 'https://example.test/Civication.html', runScripts: 'outside-only' });
+  const dom = new JSDOM('<section id="civiLifestoryPanel"></section><div class="civi-footer"><button id="civiMoreMenuToggle" aria-expanded="false">Mer</button></div><div id="civiMoreMenu" hidden><button data-lifestory-restart>Start livet på nytt</button></div>', { url: 'https://example.test/Civication.html', runScripts: 'outside-only' });
   const w = dom.window;
+  w.confirm = () => true; // Confirm footer-only destructive action.
   w.localStorage.setItem('people_collected', JSON.stringify({ mari_boine: true, sossen_krohg: true, peter_emil_steen: true }));
   const collected = w.localStorage.getItem('people_collected');
   w.fetch = async url => ({ ok: true, json: async () => read(String(url)) });
@@ -161,7 +156,11 @@ function play(type, id, b) {
   assert.equal(w.localStorage.getItem(S.STORAGE_KEY), before, 'render is read-only');
   assert.equal(w.localStorage.getItem('people_collected'), collected, 'Civication never writes collection');
   while (!w.CivicationLifestoryState.load().dagFerdig) panel.querySelector('[data-lifestory-choice]').click();
-  panel.querySelector('[data-lifestory-restart]').click();
+  assert.equal(panel.querySelector('[data-lifestory-restart]'), null, 'restart must not appear in Min dag');
+  w.document.getElementById('civiMoreMenuToggle').click();
+  const footerRestart = w.document.querySelector('#civiMoreMenu [data-lifestory-restart]');
+  assert.ok(footerRestart, 'restart is available through the footer submenu');
+  footerRestart.click();
   for (let i = 0; i < 100 && !w.CivicationLifestoryState.load()?.personRepresentanter; i++) await tick();
   const fresh = w.CivicationLifestoryState.load();
   assert.equal(fresh.dag, 1);

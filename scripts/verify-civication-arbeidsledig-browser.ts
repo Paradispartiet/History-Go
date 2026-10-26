@@ -5,7 +5,12 @@ import { join } from 'node:path';
 
 // One browser day through real controls. No direct writes to the game clock
 // and no test invocation of the phase-advance API.
-async function nextDayViaUi(page: any, scenarioId: string, day: number) {
+export const queuedPointerFallbacks: { scenario: string; day: number; mailId: string }[] = [];
+
+export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
+  const trace: string[] = [];
+  let lastFingerprint = '';
+  let unchangedSteps = 0;
   for (let step = 0; step < 55; step++) {
     const before = await page.evaluate(() => {
       const app = globalThis as any;
@@ -17,6 +22,93 @@ async function nextDayViaUi(page: any, scenarioId: string, day: number) {
         blocking: app.CivicationDayProgression?.inspect?.()?.blockingReason
       };
     });
+    if (scenarioId === 'earned-museum-21-day' && day >= 9) {
+      // Observe the real engine and rendered controls. Keep a compact trail
+      // without changing mail/day state, and fail on genuine unchanged action
+      // cycles instead of spending 55 UI clicks on the same stale mail.
+      const ui = await page.evaluate(() => {
+        const app = globalThis as any;
+        const inspect = app.CivicationDayProgression?.inspect?.() || {};
+        const panel = app.document.getElementById('civiNextActionModal');
+        return {
+          phase: app.CivicationCalendar?.getPhase?.(),
+          reason: inspect.reason, blockingReason: inspect.blockingReason,
+          openItems: inspect.openItemsInPhase,
+          pendingId: inspect.pendingItem?.id || null,
+          queuedId: inspect.nextQueuedItem?.id || null,
+          activeAction: app.CivicationNextActionSelector?.getCurrent?.(),
+          answerInFlight: app.CivicationNextActionUI?.isAnswerInFlight?.(),
+          lastAnswerOutcome: app.CivicationNextActionUI?.getLastAnswerOutcome?.(),
+          runtimeRow: (() => {
+            const mailId = app.CivicationNextActionSelector?.getCurrent?.()?.id;
+            const row = app.CivicationDailyMailBuilder?.inspect?.()?.runtime?.items?.find(
+              (item: any) => item?.event?.id === mailId
+            );
+            if (!row) return null;
+            return {
+              status: row.status, slot: row.slot,
+              eventSource: row.event?.source_type,
+              eventType: row.event?.mail_type,
+              choiceId: row.choice_id || null,
+              taskPayload: !!row.event?.task_payload,
+              taskId: row.event?.task_id || null,
+              mailStatus: app.CivicationMailEngine?.getMail?.(mailId)?.status || null
+            };
+          })(),
+          buttons: [...(panel?.querySelectorAll?.('button') || [])].filter((b: any) =>
+            [...b.attributes].some((a: any) => a.name.startsWith('data-civi-next-action'))
+          ).slice(0, 5).map((b: any) => ({
+            name: [...b.attributes].find((a: any) => a.name.startsWith('data-civi-next-action'))?.name,
+            disabled: b.disabled,
+            id: b.getAttribute('data-mail-id'),
+            label: b.textContent?.trim()?.slice(0, 60)
+          }))
+        };
+      });
+      const fp = JSON.stringify({
+        phase: ui.phase, reason: ui.reason, blocking: ui.blockingReason,
+        open: ui.openItems, pending: ui.pendingId, queued: ui.queuedId,
+        action: ui.activeAction?.id, status: ui.activeAction?.status
+      });
+      trace.push(fp);
+      unchangedSteps = fp === lastFingerprint ? unchangedSteps + 1 : 0;
+      lastFingerprint = fp;
+      if (step === 0 || step % 5 === 0 || unchangedSteps === 4) {
+        console.warn('Civication museum continuation diagnostic',
+          JSON.stringify({ scenarioId, day, step, unchangedSteps, ui }));
+      }
+      if (unchangedSteps >= 7) {
+        throw Error(`${scenarioId}: unchanged phase/mail loop on day ${day}: ${JSON.stringify({
+          recent: trace.slice(-10), ui
+        })}`);
+      }
+    }
+    // Capture the authentic browser state when a role mail keeps recycling.
+    // This is observation only: no synthetic dispatch, forced phase, or state write.
+    if (scenarioId === 'earned-museum-21-day' && day === 8 &&
+        [0, 2, 4, 8, 12, 18, 25, 40, 50].includes(step)) {
+      const ui = await page.evaluate(() => {
+        const app = globalThis as any;
+        const panel = app.document.getElementById('civiNextActionModal');
+        const pending = app.CivicationDayProgression?.inspect?.();
+        const current = app.CivicationNextActionSelector?.getCurrent?.();
+        const mail = current?.id ? app.CivicationMailEngine?.getMail?.(current.id) : null;
+        return {
+          phase: app.CivicationCalendar?.getPhase?.(),
+          pending: pending?.pendingItem, queued: pending?.nextQueuedItem,
+          inspection: { reason: pending?.reason, blockingReason: pending?.blockingReason,
+            openItemsInPhase: pending?.openItemsInPhase },
+          current,
+          mail: mail && { status: mail.status, resolved: mail.resolved,
+            archived: mail.archived, choiceCount: mail.event?.choices?.length },
+          controls: [...(panel?.querySelectorAll?.('button') || [])].map((b: any) => ({
+            action: [...b.attributes].filter((a: any) => a.name.startsWith('data-civi-next-action')).map((a: any) => a.name),
+            disabled: b.disabled, text: b.textContent?.trim().slice(0, 60)
+          })).slice(0, 8)
+        };
+      });
+      console.warn('Civication museum day-8 action diagnostic', JSON.stringify({step, ui}));
+    }
     if (before.day === day + 1) {
       assert.equal(before.story.kalenderDag, day + 1, `${scenarioId}: calendar/story day remain synchronized`);
       return;
@@ -28,24 +120,100 @@ async function nextDayViaUi(page: any, scenarioId: string, day: number) {
       // Visit the canonical answer surface, including queued mail and task
       // gates. An actual pending mail cannot be bypassed by this helper.
       const modal = page.locator('#civiNextActionModal.is-open');
-      if (!(await modal.count())) {
+      // A prior inbox popup may leave an is-open action card in the DOM
+      // while its parent sheet is hidden. DOM presence is not visibility.
+      // Reopen the real inbox surface before trying to click its controls.
+      if (!(await modal.isVisible().catch(() => false))) {
         await page.locator('[data-lifestory-next-action], #civiTopActionCard [data-civi-top-action], [data-civi-open-next-action]').first().click({ timeout: 12000 });
         await modal.waitFor({ state: 'visible', timeout: 12000 });
       }
       const queued = modal.locator('[data-civi-next-action-open-queued]').first();
       const task = modal.locator('[data-civi-next-action-task]').first();
       const answer = modal.locator('[data-civi-next-action-answer]').first();
-      if (await queued.count()) await queued.click();
+      const acknowledge = modal.locator('[data-civi-next-action-acknowledge]').first();
+      if (await queued.count()) {
+        const mailId = String(await queued.getAttribute('data-mail-id') || '');
+        try {
+          // Playwright retries detached nodes when an inbox render races a click.
+          // Never dispatch a synthetic event or bypass the actual UI.
+          await queued.click({ timeout: 12000 });
+        } catch (error) {
+          const after = await page.evaluate(() => ({
+            day: Number((globalThis as any).CivicationCalendar?.getClock?.().dayIndex),
+            next: (globalThis as any).CivicationNextActionSelector?.getCurrent?.()
+          }));
+          // A queued action can turn into its actual mail/task during
+          // async delivery without changing the mail ID. Re-query real UI
+          // controls rather than clicking a detached node or dispatching
+          // a synthetic event. An unchanged visible queued button that cannot
+          // be clicked after Playwright retries is still a hard failure.
+          const queuedStillPresent = await modal.locator('[data-civi-next-action-open-queued][data-mail-id="' + mailId + '"]').count();
+          console.warn('Civication queued-button rerender', JSON.stringify({
+            scenarioId, day, mailId, queuedStillPresent, next: after.next?.id || null,
+            currentType: after.next?.type || after.next?.source || null
+          }));
+          if (after.day !== before.day ||
+              !after.next ||
+              String(after.next.id || '') !== mailId ||
+              after.next.canStartNewDay ||
+              !queuedStillPresent) continue;
+          // No UI workaround may conceal a genuinely blocked action.
+          throw error;
+        }
+      }
       else if (await task.count()) await task.click();
-      else if (await answer.count()) await answer.click();
+      else if (await acknowledge.count()) {
+        // Real player acknowledgement of the read-only day summary, not a
+        // synthetic progression or test-only bypass of the mail runtime.
+        assert.equal(before.next?.phase, 'day_end');
+        assert.ok(['day_summary', 'score_summary', 'role_progress_summary', 'sleep_or_recovery', 'carryover'].includes(before.next?.slot),
+          'only a known day-end summary can be acknowledged');
+        assert.equal((before.next?.choices || []).length, 0);
+        await acknowledge.click({ timeout: 12000 });
+      }
+      else if (await answer.count()) {
+        await answer.click();
+        // A Playwright click only waits for DOM dispatch, not for the async
+        // Civication mail/day answer to finish. Do not re-click the same
+        // decision while its real engine promise is still in flight.
+        // A permanently hung answer remains a hard timeout, never a waiver.
+        await page.waitForFunction(
+          () => (globalThis as any).CivicationNextActionUI?.isAnswerInFlight?.() !== true,
+          null,
+          { timeout: 30000 }
+        );
+      }
       else throw Error(`${scenarioId}: no player answer for ${JSON.stringify(before.next)}`);
       await page.waitForTimeout(160);
       continue;
     }
 
     const close = page.locator('#civiNextActionModal.is-open button[data-civi-next-action-close]').first();
-    if (await close.count()) await close.click();
-    await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
+    // The next-action modal can disappear during an asynchronous re-render
+    // between DOM lookup and click. An already-dismissed modal is not a gate.
+    if (await close.isVisible().catch(() => false)) {
+      try {
+        await close.click({ timeout: 2000 });
+      } catch (error) {
+        if (await close.isVisible().catch(() => false)) throw error;
+      }
+    }
+    // Next-action resolution can leave the Personlig/Innboks popup over Min dag.
+    // Use its real day-advance action when visible; otherwise close the popup
+    // before clicking the regular day button. Never force-click through overlays.
+    const popupAdvance = page.locator('#civiSectionPopup.is-open [data-civi-next-action-advance]').first();
+    if (await popupAdvance.isVisible().catch(() => false)) {
+      // The real day-advance click can schedule a page navigation on the
+      // final authored day. Do not turn Playwright's navigation wait into a
+      // false failure after the user click has already been dispatched.
+      // The canonical calendar/story rollover is checked below, so this
+      // does not skip a pending mail, task, or day-progress requirement.
+      await popupAdvance.click({ timeout: 12000, noWaitAfter: true });
+    } else {
+      const popupClose = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popupClose.isVisible().catch(() => false)) await popupClose.click({ timeout: 12000 });
+      await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
+    }
     await page.waitForTimeout(180);
     const after = await page.evaluate(() => ({
       day: Number((globalThis as any).CivicationCalendar?.getClock?.().dayIndex),
@@ -58,7 +226,7 @@ async function nextDayViaUi(page: any, scenarioId: string, day: number) {
       throw Error(`${scenarioId}: calendar stuck: ${JSON.stringify({ before: { phase: before.phase, blocking: before.blocking }, after })}`);
     }
   }
-  throw Error(`${scenarioId}: more than 55 real UI actions on calendar day ${day}`);
+  throw Error(`${scenarioId}: more than 55 real UI actions on calendar day ${day}; ${JSON.stringify(trace.slice(-18))}`);
 }
 
 export default async function verifyArbeidsledig(browser: any, origin: string, outputDir: string) {

@@ -274,8 +274,68 @@
     });
   }
 
+  // An authored three-week Life Story may make one *optional* personal path
+  // available. Never infer it from unemployment, time alone or a badge click.
+  // The proof is the archived, played day-21 choice in the existing Life Story.
+  const THREE_WEEK_POSITIONS = Object.freeze({
+    skaper: { label: "Skaper", description: "Du vil videreutvikle noe du har begynt å lage.", hooks: ["skaping", "prosjekt", "egenpraksis"] },
+    narmiljobygger: { label: "Nærmiljøbygger", description: "Du ønsker å delta i og bidra til aktiviteter rundt deg.", hooks: ["nærmiljø", "deltakelse", "fellesskap"] },
+    relasjonsbygger: { label: "Relasjonsbygger", description: "Du ønsker å ta vare på kontakt, grenser og gjensidighet.", hooks: ["relasjoner", "kontakt", "omsorg"] },
+    hverdagsbygger: { label: "Hverdagsbygger", description: "Du arbeider for en holdbar rytme i eget liv.", hooks: ["hverdag", "rytme", "mestring"] },
+    utforsker: { label: "Utforsker", description: "Du vil undersøke flere mulige retninger før du velger én.", hooks: ["nysgjerrighet", "utforskning", "valgfrihet"] }
+  });
+  const THREE_WEEK_SCENE = /^wave_e_life21_d21_(skape_veien|narmiljo_veien|relasjon_veien|rytme_veien|jobb_veien)$/;
+  // A chosen label is a declaration of intent, not proof of prior development.
+  // Require archived participation at the beginning and a concrete practice
+  // during week three. Every focus keeps an ordinary, freely playable route.
+  const THREE_WEEK_PRACTICE_SCENES = Object.freeze({
+    skaper: ["wave_e_life21_d16_arbeidsro"],
+    narmiljobygger: ["wave_e_life21_d16_kontaktpunkt"],
+    relasjonsbygger: ["wave_e_life21_d16_ta_kontakt"],
+    hverdagsbygger: ["wave_e_life21_d16_holde_rytmen", "wave_e_life21_d16_kompetanse_eller_jobb"],
+    utforsker: [
+      "wave_e_life21_d16_arbeidsro", "wave_e_life21_d16_kontaktpunkt",
+      "wave_e_life21_d16_ta_kontakt", "wave_e_life21_d16_holde_rytmen",
+      "wave_e_life21_d16_kompetanse_eller_jobb"
+    ]
+  });
+
+  function getThreeWeekPosition() {
+    const saved = safeParse(localStorage.getItem("civication_lifestory_v1"), null);
+    if (!saved || typeof saved !== "object") return [];
+    const story = saved.privatHistorie && typeof saved.privatHistorie === "object"
+      ? saved.privatHistorie : saved;
+    const result = story.flagg?.life21_direction || saved.tidligereValg?.life21_direction;
+    const def = THREE_WEEK_POSITIONS[result];
+    const entries = [...(Array.isArray(story.arkiv) ? story.arkiv : []),
+      ...(Array.isArray(saved.arkiv) ? saved.arkiv : [])];
+    // Confirm the full choice was actually played at day 21, not merely that
+    // a flag was set by an import, or that the profile was opened.
+    const approved = entries.some((entry) =>
+      THREE_WEEK_SCENE.test(String(entry?.sceneId || "")) &&
+      Number(entry.livsdag) >= 21 && entry.valgId === result &&
+      (result === "utforsker" || ({
+        skape_veien: "skaper", narmiljo_veien: "narmiljobygger",
+        relasjon_veien: "relasjonsbygger", rytme_veien: "hverdagsbygger", jobb_veien: "hverdagsbygger"
+      })[entry.sceneId.replace("wave_e_life21_d21_", "")] === result)
+    );
+    const practiceScenes = THREE_WEEK_PRACTICE_SCENES[result] || [];
+    const hasStart = entries.some(entry =>
+      entry?.sceneId === "wave_e_life21_d8_foerste_spor" && Number(entry.livsdag) === 8);
+    const hasPractice = entries.some(entry =>
+      practiceScenes.includes(String(entry?.sceneId || "")) && Number(entry.livsdag) === 16);
+    if (!def || !approved || !hasStart || !hasPractice) return [];
+    return [{
+      badge_id: "liv_treuker", badge_name: "Tre uker – ditt liv", id: result,
+      label: def.label, threshold: 0, kind: "self_selected_life_path",
+      description: def.description, hooks: def.hooks.slice(),
+      employment_independent: true, source: "authored_life_story_21day"
+    }];
+  }
+
   function getUnlockedPositions(badgeId) {
     const id = String(badgeId || "").trim();
+    if (id === "liv_treuker") return getThreeWeekPosition();
     const open = getOpenPositions(id);
     if (open.length) return open;
 
@@ -294,6 +354,7 @@
       : [];
     return dedupePositions([
       ...getOpenPositions(),
+      ...getThreeWeekPosition(),
       ...badgePositions
     ]);
   }

@@ -48,7 +48,7 @@ function playDay(state, content, pick) {
 }
 
 const foersteValg = (scene) => scene.valg[0].id;
-const sisteValg = (scene) => scene.valg[scene.valg.length - 1].id;
+const sisteValg = (scene) => scene.valg.filter(choice => !choice.skills_requirement).at(-1).id;
 
 // Rolleankeret på dag 3 (levende rolletråd på førstevalg-grenen).
 const ANKER = {

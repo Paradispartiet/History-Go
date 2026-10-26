@@ -1,0 +1,261 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "christiania_seildugsfabrik",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/christiania_seildugsfabrik.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Christiania Seildugsfabriks tidligere produksjonsanlegg i Fossveien 24; ikke andre tekstilfabrikker.",
+    "anchorType": "factory",
+    "placeObjectDistinction": "Stedsidentiteten gjelder den konkrete bygningen eller det bestemte området, ikke andre anlegg som har lignende funksjon.",
+    "temporalScope": {
+      "start": "1856",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Dekker næringsstedets hovedperiode med etablering, drift og senere endringer i bruk eller lokalisering."
+    },
+    "sourceIds": [
+      "source_christiania_seildugsfabrik_byleksikon",
+      "source_christiania_seildugsfabrik_institution"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_felt_arbeid_verdiskaping",
+      "siteSpecificRationale": "Dette emnet belyser stedets konkrete virksomhet, arbeidsdeling, investeringer og forandringer i næringsstrukturen.",
+      "caseIds": [
+        "case_christiania_seildugsfabrik_site_economy"
+      ]
+    },
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Dette emnet belyser stedets konkrete virksomhet, arbeidsdeling, investeringer og forandringer i næringsstrukturen.",
+      "caseIds": [
+        "case_christiania_seildugsfabrik_site_economy"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_christiania_seildugsfabrik_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Christiania_Seildugsfabrik",
+      "sourceLocation": "Hele stedsartikkelen med historisk hovedkronologi og stedets bruksformer",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Oslo byleksikon, redigert stedsoppføring om denne byens nærings- og bygningshistorie.",
+      "limitations": "Lokalhistorisk leksikon dokumenterer hovedhendelser, ikke komplette økonomiske regnskaper eller årlige produktivitetstall."
+    },
+    {
+      "id": "source_christiania_seildugsfabrik_institution",
+      "url": "https://khio.no/om-kunsthogskolen-i-oslo/kontaktinfo",
+      "sourceLocation": "Besøks-, sted- eller eiendomsoversikt for lokalets nåværende bruk",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Nåværende ansvarlig institusjon eller stedets offisielle forvalterinformasjon.",
+      "limitations": "Bekrefter bruk og institusjonell identitet, ikke komplette økonomiske historiske utfallsdata."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_christiania_seildugsfabrik_site_economy",
+      "claim": "Produksjon og eierskap endret seg gjennom Fortex-fusjonen og fabrikkens nedleggelse; lokalene fikk ny bruk.",
+      "unitOfAnalysis": {
+        "unit": "Tekstilfabrikken ved Øvre Foss",
+        "boundary": "Christiania Seildugsfabriks tidligere produksjonsanlegg i Fossveien 24; ikke andre tekstilfabrikker.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1856",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Dekker næringsstedets hovedperiode med etablering, drift og senere endringer i bruk eller lokalisering."
+        },
+        "sourceIds": [
+          "source_christiania_seildugsfabrik_byleksikon",
+          "source_christiania_seildugsfabrik_institution"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Fabrikkeiere og tekstilbedriften",
+          "roleOrInterest": "Bedriften organiserte arbeidsplass og produksjonsmidler, mens ansatte bidro med teknisk og manuelt arbeid.",
+          "economicPosition": "Styrte eller forvaltet virksomhetens areal og produksjonsbeslutninger.",
+          "sourceIds": [
+            "source_christiania_seildugsfabrik_byleksikon",
+            "source_christiania_seildugsfabrik_institution"
+          ]
+        },
+        {
+          "name": "Spinnere, vevere og øvrige fabrikkarbeidere",
+          "roleOrInterest": "Arbeid ved spinnemaskiner og veveri ga inntekt og belastning; materialet dokumenterer ikke lønnsutviklingen.",
+          "economicPosition": "Deltok som arbeidskraft, bruker eller kunde uten samme kontroll over virksomheten.",
+          "sourceIds": [
+            "source_christiania_seildugsfabrik_byleksikon",
+            "source_christiania_seildugsfabrik_institution"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Kapital, bygningsmasse, tekstilfibrene hamp, lin og jute samt maskiner og lønnet arbeid",
+            "sourceIds": [
+              "source_christiania_seildugsfabrik_byleksikon",
+              "source_christiania_seildugsfabrik_institution"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Spinning og veving av seilduk og øvrige tekstilprodukter",
+          "sourceIds": [
+            "source_christiania_seildugsfabrik_byleksikon",
+            "source_christiania_seildugsfabrik_institution"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Seilduk og tekstiler for skipsfart og andre kunder",
+            "sourceIds": [
+              "source_christiania_seildugsfabrik_byleksikon",
+              "source_christiania_seildugsfabrik_institution"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Dette stedets økonomiske aktivitet dokumenteres gjennom konkrete arbeids- og transportfunksjoner, men kan ikke omregnes til en historisk verdi uten pålitelige regnskaper.",
+          "sourceIds": [
+            "source_christiania_seildugsfabrik_byleksikon",
+            "source_christiania_seildugsfabrik_institution"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Produksjon og eierskap endret seg gjennom Fortex-fusjonen og fabrikkens nedleggelse; lokalene fikk ny bruk.",
+        "unit": "dokumentert endring i stedsbruk",
+        "period": "1856–2026",
+        "comparability": "Historiske hendelser og bygningsbruk kan sammenholdes over tid; ulike økonomiske nivåer kan ikke kvantifiseres.",
+        "dataLimitations": "Oslo byleksikon og SNL oppgir avvikende enkelte årstall; økonomiske virkninger og arbeiderperspektiver kan ikke tallfestes sikkert her.",
+        "sourceIds": [
+          "source_christiania_seildugsfabrik_byleksikon",
+          "source_christiania_seildugsfabrik_institution"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Bedriften organiserte arbeidsplass og produksjonsmidler, mens ansatte bidro med teknisk og manuelt arbeid.",
+        "laborPosition": "Arbeid ved spinnemaskiner og veveri ga inntekt og belastning; materialet dokumenterer ikke lønnsutviklingen.",
+        "beneficiaries": [
+          "Arbeidsgivere, kunder eller brukere av virksomhetens konkrete tjenester.",
+          "Lønnsarbeidere eller lokalsamfunn knyttet til aktiviteten på stedet."
+        ],
+        "costRiskBearers": [
+          "Virksomheten bar investerings- og etterspørselsrisiko.",
+          "Arbeidstakere og nærmiljø kunne bli berørt av endringene, men dette er ikke tallfestet."
+        ],
+        "sourceIds": [
+          "source_christiania_seildugsfabrik_byleksikon",
+          "source_christiania_seildugsfabrik_institution"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Virksomheten var sårbar for endringer i marked, teknologi, transport, eiendomsbruk og etterspørsel, men kildene isolerer ingen enkeltfaktor.",
+          "sourceIds": [
+            "source_christiania_seildugsfabrik_byleksikon",
+            "source_christiania_seildugsfabrik_institution"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene gir ikke et stedsspesifikt målt grunnlag for å beregne arbeidshelse, forurensning eller samfunnsøkonomiske eksternaliteter."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Den redigerte historiske stedsartikkelen sammenholdes med fotografisk dokumentasjon eller institusjonens nåværende stedsinformasjon.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "De dokumenterte hendelsene beskriver økonomisk aktivitet og endring; materialet isolerer ikke en kausal effekt av én enkelt innsatsfaktor.",
+        "alternativeExplanations": [
+          "Markedsetterspørsel, teknologisk endring, lokalisering og beslutninger om eiendom kan ha hatt selvstendige effekter."
+        ],
+        "uncertainty": "Oslo byleksikon og SNL oppgir avvikende enkelte årstall; økonomiske virkninger og arbeiderperspektiver kan ikke tallfestes sikkert her.",
+        "sourceIds": [
+          "source_christiania_seildugsfabrik_byleksikon",
+          "source_christiania_seildugsfabrik_institution"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Anlegget i Fossveien 24 brukes som del av Kunsthøgskolen i Oslo; seilduksproduksjonen er avsluttet.",
+    "originalEconomicRoleRelationship": "Den dokumenterte opprinnelige økonomiske rollen skilles fra dagens bruk av den gamle tomten eller bygningen.",
+    "checkedAt": "2026-10-19",
+    "sourceIds": [
+      "source_christiania_seildugsfabrik_byleksikon",
+      "source_christiania_seildugsfabrik_institution"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "QuizCards finnes allerede, men denne bolken endrer ikke første to sett eller den fagspesifikke quizproduksjonen."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Historiske steder og stedsbeskrivelser er gjennomgått; separat Story- eller kronologiproduksjon er ikke del av denne teksten."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    }
+  },
+  "review": {
+    "reviewer": "History Go Oslo Næringsliv original place review",
+    "reviewedAt": "2026-10-19",
+    "notes": "Stedsspesifikke innganger, aktivitet, utbytte, makt, økonomiske målebegrensninger og dagens bruk er konkret og separat gjennomgått."
+  }
+}

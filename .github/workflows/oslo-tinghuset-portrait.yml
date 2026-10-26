@@ -1,0 +1,69 @@
+name: Oslo tinghus – materialize sourced PlaceCard portrait
+on:
+  push:
+    branches:
+      - production/oslo-sentrum-tinghuset-fagverk-20261022
+    paths:
+      - 'scripts/produce-oslo-tinghuset-portrait-20261022.py'
+      - '.github/workflows/oslo-tinghuset-portrait.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: oslo-tinghuset-portrait-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  make-portrait:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install Pillow==11.3.0
+      - name: Create local attributed portrait from existing public-domain source
+        run: python scripts/produce-oslo-tinghuset-portrait-20261022.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical dependencies and assert deterministic parity
+        run: |
+          npm run places:index:build
+          node scripts/build-quiz-production-context.mjs --category politikk --target tinghuset --output data/quiz/production_context/politikk/tinghuset.json
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+      - name: Review real mobile and desktop PlaceCard and QuizCard
+        run: |
+          npx playwright install --with-deps chromium
+          node tests/oslo-tinghuset-live-placecard-browser.mjs
+      - name: Commit only Oslo tinghus image and deterministic dependencies
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/tinghuset_front_portrait.webp
+          git add data/places/politikk/oslo/places_politikk/tinghuset.json
+          git add data/places/places_index.json
+          git add data/quiz/production_context/politikk/tinghuset.json
+          git add data/runtime/place-open/tinghuset.json
+          git add data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then
+            echo 'Tinghus portrait already synchronized'
+          else
+            git commit -m 'assets(oslo-sentrum): publish licensed Oslo tinghus portrait'
+            git push origin HEAD:production/oslo-sentrum-tinghuset-fagverk-20261022
+          fi
+      - name: Upload live app screenshots for editorial review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-tinghuset-portrait-mobile-desktop
+          path: artifacts/oslo-tinghuset-live-browser/**
+          if-no-files-found: ignore
+          retention-days: 14

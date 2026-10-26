@@ -1,0 +1,34 @@
+name: Historical routes content
+
+on:
+  pull_request:
+    paths:
+      - 'data/routes/historical/**'
+      - 'tests/historical-routes-alna.test.js'
+      - 'tests/historical-routes-oslo-music.test.js'
+      - 'js/historical-routes.js'
+      - 'js/nextUpRuntime.js'
+      - 'tools/audit-historical-routes.mts'
+      - '.github/workflows/historical-routes-content.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: historical-routes-content-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  historical-routes:
+    name: Historical route content integrity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Setup Node workspace
+        uses: ./.github/actions/setup-node-npm
+      - name: Validate new Alna route and online progression
+        run: |
+          node tests/historical-routes-alna.test.js
+          node tests/historical-routes-oslo-music.test.js

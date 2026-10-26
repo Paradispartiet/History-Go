@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/civi-three-map.css" />
   <link rel="stylesheet" href="css/civi-city-layer.css" />
   <link rel="stylesheet" href="css/fixed-shell.css" />
+  <link rel="stylesheet" href="css/civi-skills.css" />
 </head>
 
 <!-- ============================================================
@@ -140,6 +141,13 @@
         </div>
       </section>
 
+      <section id="civiSkillsSection" class="civi-skills" aria-label="Skills">
+        <h2>Skills</h2>
+        <p class="muted">Utvikles gjennom dokumentert praksis i spillet, ikke automatisk av besøk eller quiz.</p>
+        <p id="civiSkillsSummary" class="civi-skills-summary" role="status">0 av 6 Skills med dokumentert praksis</p>
+        <div id="civiSkillsPanel" class="civi-skills-grid" aria-label="Skills-progresjon"></div>
+      </section>
+
       <section id="civiIdentitySection" class="civi-identity">
         <h2>Identitet</h2>
         <div id="identityCompass"></div>
@@ -227,6 +235,7 @@
 
   </main>
 
+  <div id="civiCloudSaveStatus" role="status" aria-live="polite" style="font-size:12px;padding:3px 12px">Civication: sjekker skylagring …</div>
   <div class="civi-footer" aria-label="Civication-navigasjon">
     <button id="btnCiviMap" class="civi-btn civi-map-icon-btn" type="button" aria-label="Kart" title="Kart">🗺️</button>
     <button class="civi-btn civi-category-tab" type="button" data-category="minDag">Min dag</button>
@@ -235,15 +244,28 @@
     <button class="civi-btn civi-category-tab" type="button" data-category="fritid">Fritid</button>
     <button class="civi-btn civi-category-tab" type="button" data-category="kommers">Kommers</button>
     <button class="civi-btn civi-category-tab" type="button" data-category="kultur">Kultur</button>
+    <button id="civiMoreMenuToggle" class="civi-btn civi-footer-more-toggle" type="button"
+      aria-controls="civiMoreMenu" aria-expanded="false" aria-haspopup="true">Mer ⋯</button>
+  </div>
+  <!-- A separate fixed menu cannot be clipped by the footer's horizontal scrolling. -->
+  <div id="civiMoreMenu" class="civi-footer-more-menu" role="group"
+    aria-label="Flere spillvalg" hidden>
+    <div class="civi-footer-more-heading">Flere valg</div>
+    <button class="civi-btn civi-footer-restart" type="button"
+      data-lifestory-restart>Start livet på nytt</button>
   </div>
 
   <!-- ============ MIN DAG (Life Story) — primærpanelet, lastes først ============
        config (canvas/3D-bryter) -> lagring/JSON -> Life Story System -> Min dag-UI.
        Disse rendrer Min dag raskt og uavhengig av resten av skallet. -->
+  <script src="js/aha.js"></script>
+  <script src="js/Civication/core/CivicationCloudSave.js"></script>
   <script src="js/Civication/civicationV2Config.js"></script>
   <script src="js/Civication/core/CivicationStorageAdapter.js"></script>
   <script src="js/Civication/core/civicationJsonStore.js"></script>
   <script src="js/Civication/lifestory/lifestoryContent.js"></script>
+  <!-- Skills må finnes før et Life Story-valg kan besvares. Shell laster kanonisk state. -->
+  <script src="js/Civication/systems/civicationSkills.js"></script>
   <script src="js/Civication/lifestory/lifestoryState.js"></script>
   <script src="js/Civication/lifestory/lifestoryRunner.js"></script>
   <script src="js/Civication/lifestory/lifestoryEndings.js"></script>

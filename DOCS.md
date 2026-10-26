@@ -14,6 +14,7 @@ Det autoritative dokumentasjonskartet ligger i:
 - Produktoversikt: [`README/README.md`](./README/README.md)
 - Produktkart og ferdigstillelse: [`docs/HISTORY_GO_PRODUCT_MAP.md`](./docs/HISTORY_GO_PRODUCT_MAP.md)
 - Dataproduksjon: [`docs/DATA_PRODUCTION_CONTRACT.md`](./docs/DATA_PRODUCTION_CONTRACT.md)
+- Historisk fortelling i `desc` og `popupDesc`: [`data/places/regler/PLACE_DESCRIPTION_CANONICAL.md`](./data/places/regler/PLACE_DESCRIPTION_CANONICAL.md) — bindende fortellerkvalitet, årstallsprioritering, kilder, claims og faktareview
 - Sted-for-sted-produksjon: [`docs/PLACE_PRODUCTION_CHECKLIST.md`](./docs/PLACE_PRODUCTION_CHECKLIST.md)
 - Universelle fagfiler: [`docs/SUBJECT_FILE_CONTRACT.md`](./docs/SUBJECT_FILE_CONTRACT.md)
 - Fagverket og ferdigstilling av alle fagsider: [`docs/FAGVERK.md`](./docs/FAGVERK.md)
