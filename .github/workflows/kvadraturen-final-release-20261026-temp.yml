@@ -1,0 +1,38 @@
+name: Kvadraturen final Fagverk release verification 20261026
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-kvadraturen-v1-six-20261023
+    paths:
+      - '.github/workflows/kvadraturen-final-release-20261026-temp.yml'
+permissions:
+  contents: write
+concurrency:
+  group: kvadraturen-final-release-20261026
+  cancel-in-progress: false
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-kvadraturen-v1-six-20261023
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and verify canonical Fagverk release, no test bypasses
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit solely release manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only | grep -v '^data/fagverk/fagverk_release.json$' > /tmp/other || true
+          test ! -s /tmp/other || { cat /tmp/other; exit 1; }
+          git add data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then echo 'Current Fagverk release'; exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Synchronize Fagverk release with browser-verified Hotel du Nord fullquiz'
+          git push origin HEAD:research/oslo-sentrum-kvadraturen-v1-six-20261023
