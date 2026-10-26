@@ -464,7 +464,15 @@
       const cast = state?.personRepresentanter?.[person.id];
       if (!person.persontype || !cast?.personId) continue;
       const possessive = /[sxz]$/i.test(cast.navn) ? cast.navn + "’" : cast.navn + "s";
-      for (const alias of authoredAliases(person)) {
+      // Generic labels are used before a story contact is selected. Resolve
+      // them for a collected representative in displayed text only, without
+      // treating every offered contact as a person met in the archive.
+      const typeLabels = {
+        medmusiker: ["medmusikeren"],
+        miljokontakt: ["miljøkontakten"],
+        prosjektbygger: ["prosjektbyggeren"]
+      };
+      for (const alias of [...authoredAliases(person), ...(typeLabels[person.persontype.id] || [])]) {
         if (!alias) continue;
         text = text.replace(authoredNameRegex(alias, true), (_, prefix) => prefix + possessive)
           .replace(authoredNameRegex(alias), (_, prefix) => prefix + cast.navn);
