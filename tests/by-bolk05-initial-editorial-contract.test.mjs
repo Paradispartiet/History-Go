@@ -7,7 +7,7 @@ const groups = [
   {region:'vestfold', file:'regional_bolk05_vestfold_v1_20261026.json', ids:['larvik_stasjon_vestfoldbanen','sandefjord_stasjon_vestfoldbanen']},
   {region:'telemark', file:'regional_bolk05_telemark_part1_v1_20261026.json', ids:['bo_stasjon_sorlandsbanen','df_ammonia_mael']}
 ];
-const directYear = q => /^(?:når|hvilket år|i hvilket år|fra hvilket år)\\b/i.test(q.question);
+const directYear = q => /^(?:når|hvilket år|i hvilket år|fra hvilket år)\b/i.test(q.question);
 
 test('By05 first four places retain source-backed Fagverk and licensed images', () => {
   for (const {region, ids} of groups) for (const id of ids) {
