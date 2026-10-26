@@ -1,0 +1,81 @@
+name: Kvadraturen six licensed media composition one-off
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-kvadraturen-v1-six-20261023
+    paths:
+      - '.github/workflows/kvadraturen-six-media-composition-20261026-temp.yml'
+permissions:
+  contents: write
+concurrency:
+  group: kvadraturen-media-20261026-oneoff
+  cancel-in-progress: false
+jobs:
+  media:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-kvadraturen-v1-six-20261023
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image composition dependency
+        run: python -m pip install Pillow==11.3.0
+      - name: Compose source-licensed images without auto-approval
+        run: python scripts/produce-oslo-kvadraturen-six-compositions-20261026.py
+      - name: Validate 18 derived files, rights records and runtime parity
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const r=JSON.parse(fs.readFileSync('reports/place-production/oslo-kvadraturen-six-media-composition-audit-20261026.json','utf8'));
+          assert.equal(r.numberOfPlaces,6);assert.equal(r.derivativeImages,18);assert.equal(r.v1ApprovedPlaces,0);
+          for(const [id,p] of Object.entries(r.places)){
+            for(const key of ['hero','portrait','card']){const x=p[key];assert.ok(fs.statSync(x.path).size>12000);assert.ok(x.width>=900);}
+            const matching=['historie','naeringsliv'].flatMap(()=>[]);
+            const pathCandidates=[
+              'data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01/'+id+'.json',
+              'data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/'+id+'.json',
+              'data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01/'+id+'.json',
+              'data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02/'+id+'.json'
+            ];
+            const pth=pathCandidates.find(p=>fs.existsSync(p));assert.ok(pth,'Missing place '+id);
+            const item=JSON.parse(fs.readFileSync(pth,'utf8')),rt=JSON.parse(fs.readFileSync('data/runtime/place-open/'+id+'.json','utf8')).place;
+            for(const field of ['heroImage','frontImage','cardImage','imageCard']){assert.equal(item[field],rt[field]);assert.ok(fs.existsSync(item[field]));}
+            assert.equal(item.imageMeta.license,p.license);
+            assert.equal(item.imageComposition.reviewStatus,'contact_sheet_generated_visual_device_approval_pending');
+            assert.ok(item.image.startsWith('https://upload.wikimedia.org/'));
+          }
+          console.log('All six Places staged with 18 independently composed local assets and source rights; not v1 approved');
+          NODE
+      - name: Generate and verify Fagverk release for amended Place records
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kvadraturen-six-contact-sheet-and-review
+          path: |
+            reports/place-production/oslo-kvadraturen-six-media-composition-preview-20261026.jpg
+            reports/place-production/oslo-kvadraturen-six-media-composition-audit-20261026.json
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Commit strictly scoped media and canonical site/release files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          git add bilder/places/*_hero.webp bilder/places/*_front_portrait.webp bilder/kort/places/*.webp
+          git add reports/place-production/oslo-kvadraturen-six-media-composition-audit-20261026.json
+          git add reports/place-production/oslo-kvadraturen-six-media-composition-preview-20261026.jpg
+          git add data/fagverk/fagverk_release.json
+          git add data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_0{1,2}/*.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_0{1,2}/*.json
+          git add data/runtime/place-open/{den_gamle_krigsskolen,garmanngarden,stattholdergarden,hotel_du_nord,cafe_engebret,treschowgarden}.json
+          if git diff --cached --quiet; then echo 'Nothing staged'; exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Stage separate licensed hero, card and portrait crops for six Kvadraturen Places; visual QA pending'
+          git push origin HEAD:research/oslo-sentrum-kvadraturen-v1-six-20261023
