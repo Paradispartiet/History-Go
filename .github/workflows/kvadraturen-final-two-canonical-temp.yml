@@ -1,0 +1,139 @@
+name: Kvadraturen final two canonical quiz production
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-kvadraturen-v1-six-20261023
+    paths:
+      - '.github/workflows/kvadraturen-final-two-canonical-temp.yml'
+permissions:
+  contents: write
+concurrency:
+  group: kvadraturen-final-two-oneoff
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-kvadraturen-v1-six-20261023
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install official History GO tooling
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build:scripts
+      - name: Generate canonical QuizProduction context and register 2 scoped targets
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          import {buildQuizProductionContext} from './scripts/quiz-production-lib.mjs';
+          const ids=['cafe_engebret','treschowgarden'], cat='naeringsliv';
+          const fm='data/fag/fag_manifest.json',qm='data/quiz/manifest.json';
+          const m=JSON.parse(await fs.readFile(fm,'utf8')),qmanifest=JSON.parse(await fs.readFile(qm,'utf8'));
+          for(const id of ids) {
+            assert.equal(m[cat].quizProduction.targets[id],undefined,'Already defined target: '+id);
+            assert.ok(!qmanifest.sets.some(s=>s.targetId===id),'Already registered: '+id);
+            m[cat].quizProduction.targets[id]={
+              source_brief:'../quiz/production_briefs/'+cat+'/'+id+'.json',
+              context_artifact:'../quiz/production_context/'+cat+'/'+id+'.json',
+              quiz_file:'../quiz/'+cat+'/'+id+'_sets.json'
+            };
+          }
+          await fs.writeFile(fm,JSON.stringify(m,null,2)+'\n');
+          for(const id of ids){
+            const ctx=await buildQuizProductionContext({categoryId:cat,targetId:id});
+            assert.equal(ctx.profile,'narrow_3x7');
+            assert.equal(ctx.claim_bank.length,21);
+            assert.deepEqual(ctx.set_plan.map(s=>s.planned_questions),[7,7,7]);
+            assert.deepEqual(ctx.question_balance.counts,{fact:12,context:5,concept_theory:4});
+            assert.equal(ctx.source_review_status,'reviewed');
+            const path='data/quiz/production_context/'+cat+'/'+id+'.json';
+            await fs.writeFile(path,JSON.stringify(ctx,null,2)+'\n');
+            const qp='data/quiz/'+cat+'/'+id+'_sets.json';
+            const q=JSON.parse(await fs.readFile(qp,'utf8'));
+            const embedded=q.production_context;
+            embedded.resolved_files=Object.fromEntries(Object.entries(ctx.resolved_files).map(([k,v])=>[k,v.path]));
+            embedded.required_inputs_loaded=ctx.required_inputs_loaded;
+            embedded.existing_quiz_audit=ctx.existing_quiz_audit;
+            embedded.profile_decision=ctx.profile_decision;
+            embedded.pensum_module_ids=ctx.selected_curriculum.module_ids;
+            embedded.emne_ids=ctx.selected_curriculum.emne_ids;
+            embedded.topic_hook_ids=ctx.selected_curriculum.topic_hook_ids;
+            embedded.method_ids=ctx.selected_curriculum.method_ids;
+            embedded.thinker_ids=ctx.selected_curriculum.thinker_ids;
+            embedded.works=ctx.selected_curriculum.works;
+            await fs.writeFile(qp,JSON.stringify(q,null,2)+'\n');
+            qmanifest.sets.push({targetId:id,file:qp});
+          }
+          qmanifest.sets.sort((a,b)=>a.targetId.localeCompare(b.targetId,'en'));
+          await fs.writeFile(qm,JSON.stringify(qmanifest,null,2)+'\n');
+          console.log('Reviewed 42 historical commerce quiz claims registered for official Knowledge generation');
+          NODE
+          node dist/scripts/knowledge-canonical-data.mjs --write
+          node dist/scripts/knowledge-canonical-data.mjs --check
+      - name: Link 20 QuizCard questions to their canonical fullquiz Knowledge
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          const ids=['cafe_engebret','treschowgarden'],cat='naeringsliv';
+          const cp='data/quizcards/naeringsliv/manifest.json';
+          const man=JSON.parse(await fs.readFile(cp,'utf8'));
+          for(const id of ids){
+            const qp='data/quiz/'+cat+'/'+id+'_sets.json';
+            const cardPath='data/quizcards/'+cat+'/'+id+'_quizkort_v1.json';
+            const quiz=JSON.parse(await fs.readFile(qp,'utf8'));
+            const card=JSON.parse(await fs.readFile(cardPath,'utf8'));
+            const all=quiz.sets.flatMap(x=>x.questions);
+            assert.equal(all.length,21);
+            assert.ok(all.every(x=>x.knowledge_link_status==='linked'&&x.primary_knowledge_unit_id?.startsWith('ku_naeringsliv_')&&x.knowledge_unit_ids?.includes(x.primary_knowledge_unit_id)));
+            assert.ok(all.slice(0,14).every(x=>x.question_type!=='concept'));
+            assert.ok(all.every(x=>!(/^(når|hvilket år|i hvilket år)\b/i.test(x.question)||/^\d{4}$/.test(x.answer))));
+            assert.equal(card.cards[0].questions.length,10);
+            const byId=new Map(all.map(x=>[x.id,x]));
+            for(const [i,item] of card.cards[0].questions.entries()){
+              const source=byId.get(item.sourceQuestionId);
+              assert.ok(source);
+              assert.deepEqual(source.options,item.options);
+              assert.equal(item.question,source.question);
+              assert.equal(item.answer,source.answer);
+              assert.deepEqual(item.source_refs,source.source);
+              for(const k of ['primary_knowledge_unit_id','knowledge_unit_ids','concept_ids','term_ids','knowledge_contract_version','knowledge_link_status'])item[k]=source[k];
+              assert.equal(card.cards[0].answerKey[i].answer,source.answer);
+            }
+            quiz.production_status='manifested_knowledge_linked_pending_browser_qa';
+            card.production_status='knowledge_linked_fullquiz_browser_pending';
+            card.sourceBasis='Ten source-checked fullquiz questions with canonical Knowledge parity; mobile/desktop browser playthrough still required.';
+            await fs.writeFile(qp,JSON.stringify(quiz,null,2)+'\n');
+            await fs.writeFile(cardPath,JSON.stringify(card,null,2)+'\n');
+            assert.ok(!man.collections.includes(id+'_quizkort_v1.json'));
+            man.collections.push(id+'_quizkort_v1.json');
+          }
+          await fs.writeFile(cp,JSON.stringify(man,null,2)+'\n');
+          console.log('Knowledge-linked 42 of 42 fullquiz questions and 20 of 20 QuizCard questions');
+          NODE
+      - name: Verify existing quiz content and build Fagverk release
+        run: |
+          node scripts/audit-quiz-production-context.mjs
+          node scripts/audit-quiz-progression.mjs
+          node scripts/audit-quiz-theory-binding.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Refuse edits outside scoped canonical/generated paths and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only >/tmp/change-paths
+          grep -Ev '^(data/fag/fag_manifest.json|data/fagverk/fagverk_release.json|data/quiz/manifest.json|data/quiz/naeringsliv/(cafe_engebret|treschowgarden)_sets.json|data/quizcards/naeringsliv/(cafe_engebret|treschowgarden)_quizkort_v1.json|data/quizcards/naeringsliv/manifest.json|data/knowledge/knowledge_units.generated.json|reports/knowledge-id-backfill.json)$' /tmp/change-paths >/tmp/unexpected || true
+          test ! -s /tmp/unexpected || { cat /tmp/unexpected; exit 1; }
+          git add data/fag/fag_manifest.json data/fagverk/fagverk_release.json data/quiz/manifest.json data/quiz/naeringsliv/cafe_engebret_sets.json data/quiz/naeringsliv/treschowgarden_sets.json data/quizcards/naeringsliv/cafe_engebret_quizkort_v1.json data/quizcards/naeringsliv/treschowgarden_quizkort_v1.json data/quizcards/naeringsliv/manifest.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/quiz/production_context/naeringsliv/cafe_engebret.json data/quiz/production_context/naeringsliv/treschowgarden.json
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Produce canonical Café Engebret and Treschowgården quizzes, Knowledge, QuizCards and release'
+          git push origin HEAD:research/oslo-sentrum-kvadraturen-v1-six-20261023
