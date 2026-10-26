@@ -434,10 +434,21 @@
     const escaped = name.replace(/[.*+?^$()|[\]{}\\]/g, "\\$&");
     return new RegExp("(^|[^\\p{L}\\p{N}_])" + escaped + (possessive ? "s" : "") + "(?=$|[^\\p{L}\\p{N}_])", "giu");
   }
+  function genericPersonTypeAliases(person) {
+    return ({
+      medmusiker: ["medmusikeren"],
+      miljokontakt: ["miljøkontakten"],
+      prosjektbygger: ["prosjektbyggeren"]
+    })[person?.persontype?.id] || [];
+  }
   function sceneMentionsPerson(scene, person, choice) {
     if (scene.avsender === person.id) return true;
     const prose = [scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst].filter(v => typeof v === "string").join(" ");
-    return authoredAliases(person).some(name => name && authoredNameRegex(name).test(prose));
+    if (authoredAliases(person).some(name => name && authoredNameRegex(name).test(prose))) return true;
+    // Generic role labels in a menu do not mean all suggested people were met.
+    // An explicitly chosen option mentioning a type does create that event.
+    const chosenProse = [choice?.tekst, choice?.konsekvensTekst].filter(v => typeof v === "string").join(" ");
+    return !!choice && genericPersonTypeAliases(person).some(name => authoredNameRegex(name).test(chosenProse));
   }
 
   /** Snapshot the types actually present in this scene before archiving it.
@@ -467,12 +478,7 @@
       // Generic labels are used before a story contact is selected. Resolve
       // them for a collected representative in displayed text only, without
       // treating every offered contact as a person met in the archive.
-      const typeLabels = {
-        medmusiker: ["medmusikeren"],
-        miljokontakt: ["miljøkontakten"],
-        prosjektbygger: ["prosjektbyggeren"]
-      };
-      for (const alias of [...authoredAliases(person), ...(typeLabels[person.persontype.id] || [])]) {
+      for (const alias of [...authoredAliases(person), ...genericPersonTypeAliases(person)]) {
         if (!alias) continue;
         text = text.replace(authoredNameRegex(alias, true), (_, prefix) => prefix + possessive)
           .replace(authoredNameRegex(alias), (_, prefix) => prefix + cast.navn);
