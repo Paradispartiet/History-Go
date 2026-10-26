@@ -1,0 +1,45 @@
+name: By03 Knowledge regenerate (temporary)
+on:
+  push:
+    branches:
+      - feature/by-bolk03-regional-20-20261025
+    paths:
+      - .github/workflows/by03-knowledge-regenerate-temporary.yml
+permissions:
+  contents: write
+jobs:
+  generate-knowledge:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out existing PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Generate canonical Knowledge sources
+        id: generate
+        continue-on-error: true
+        run: npm run knowledge:canonical:write
+      - name: Commit only canonical Knowledge changes
+        shell: bash
+        run: |
+          git add data/quiz data/knowledge reports/knowledge-id-backfill.json
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "fix(by03): regenerate canonical Knowledge data for regional quizzes"
+            git push origin HEAD:feature/by-bolk03-regional-20-20261025
+          else
+            echo "No canonical Knowledge changes to commit"
+          fi
+      - name: Verify generated Knowledge
+        run: npm run knowledge:canonical:check
