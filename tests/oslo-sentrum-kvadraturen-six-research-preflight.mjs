@@ -420,8 +420,56 @@ for(const item of statCard.cards[0].questions){
   assert.equal(item.primary_knowledge_unit_id,src.primary_knowledge_unit_id);
   assert.deepEqual(item.knowledge_unit_ids,src.knowledge_unit_ids);
 }
-// Other three Places remain research candidates; no changes to another account's Oslo 04.
-for(const p of ledger.places.filter(p=>!['garmanngarden','den_gamle_krigsskolen','stattholdergarden'].includes(p.place_id))){
+
+// Hotel du Nord is the fourth canonically linked fullquiz, without bypassing
+// the two remaining unmanifested Næringsliv research banks.
+const hotelQuizPath='data/quiz/naeringsliv/hotel_du_nord_sets.json';
+const hotelCardPath='data/quizcards/naeringsliv/hotel_du_nord_quizkort_v1.json';
+const hotelQuiz=read(hotelQuizPath);
+const hotelCard=read(hotelCardPath);
+const hotelContext=read('data/quiz/production_context/naeringsliv/hotel_du_nord.json');
+const hotelQuestions=hotelQuiz.sets.flatMap(x=>x.questions);
+assert.equal(hotelQuiz.production_status,'manifested_knowledge_linked_pending_browser_qa');
+assert.equal(hotelContext.profile,'narrow_3x7');
+assert.deepEqual(hotelContext.question_balance.counts,{fact:12,context:5,concept_theory:4});
+assert.deepEqual(hotelContext.set_plan.map(x=>x.planned_questions),[7,7,7]);
+assert.equal(hotelQuestions.length,21);
+assert.deepEqual(hotelQuiz.sets.map(x=>x.questions.length),[7,7,7]);
+assert.equal(hotelQuestions.filter(isDirectYearRecall).length,0);
+assert.ok(hotelQuestions.slice(0,14).every(q=>['fact','context'].includes(q.question_type)));
+assert.ok(hotelQuestions.slice(14).some(q=>q.method_id));
+assert.ok(hotelQuestions.slice(14).some(q=>q.topic_hook_id));
+assert.equal(quizRefs.filter(x=>x.targetId==='hotel_du_nord'&&x.file===hotelQuizPath).length,1);
+assert.equal(quizCardSources.naeringsliv.collections.filter(x=>x==='hotel_du_nord_quizkort_v1.json').length,1);
+assert.equal(hotelCard.cards[0].questions.length,10);
+assert.equal(hotelCard.production_status,'knowledge_linked_fullquiz_browser_pending');
+const hotelById=new Map(hotelQuestions.map(q=>[q.id,q]));
+for(const [i,item] of hotelCard.cards[0].questions.entries()){
+  const original=hotelById.get(item.sourceQuestionId);
+  assert.ok(original,'Hotel du Nord QuizCard source question not found');
+  assert.equal(item.question,original.question);
+  assert.deepEqual(item.options,original.options);
+  assert.equal(item.answer,original.answer);
+  assert.equal(item.answerIndex,original.answerIndex);
+  assert.deepEqual(item.source_refs,original.source);
+  assert.equal(item.knowledge_link_status,'linked');
+  assert.equal(item.primary_knowledge_unit_id,original.primary_knowledge_unit_id);
+  assert.deepEqual(item.knowledge_unit_ids,original.knowledge_unit_ids);
+  assert.equal(hotelCard.cards[0].answerKey[i].answer,original.answer);
+}
+for(const [i,q] of hotelQuestions.entries()){
+  const claim=hotelBrief.claims[i];
+  assert.equal(q.claim_id,claim.claim_id);
+  assert.equal(q.claim_basis,claim.statement);
+  assert.deepEqual(q.source,claim.source_ids);
+  assert.equal(q.answer,q.options[q.answerIndex]);
+  assert.equal(q.knowledge_link_status,'linked');
+  assert.ok(q.primary_knowledge_unit_id?.startsWith('ku_naeringsliv_'));
+  assert.ok(q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id));
+}
+
+// The two remaining Næringsliv Places stay research candidates; Oslo 04 is untouched.
+for(const p of ledger.places.filter(p=>!['garmanngarden','den_gamle_krigsskolen','stattholdergarden','hotel_du_nord'].includes(p.place_id))){
   assert.equal(quizRefs.some(r=>r.targetId===p.place_id),false,p.place_id+': remaining place published prematurely');
 }
 
