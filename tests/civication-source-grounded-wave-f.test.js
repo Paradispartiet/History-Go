@@ -160,6 +160,8 @@ test('Every Wave F alternative produces its recorded effect and survives later l
         assert.ok(choice);
         const oldMeters={...state.meters},oldRelations={...state.relasjoner};
         Runner.applyChoice(state,base,scene.id,id);
+        assert.equal(options(state,base,arc).length,0,
+          'a resolved Wave F scene must not reappear or jump to another choice branch');
         for (const [key,delta] of Object.entries(choice.effekter.meters||{})) {
           const next=oldMeters[key]+delta;
           assert.equal(state.meters[key],key==='penger'?next:Math.max(0,Math.min(100,next)),scene.id+' / '+id+' / '+key);
@@ -225,4 +227,16 @@ test('Predecessor decisions have enduring personal consequences before Wave F be
     }
   }
   assert.equal(checked,68);
+});
+
+
+test('A booked performance requires an explicit acceptance, not just a request for terms', () => {
+  const unemployment = read(manifest.roles.arbeidsledig.scenes).scenes;
+  const booking = unemployment.find(scene => scene.id === 'd5_booker');
+  const accepted = booking.valg.find(choice => choice.id === 'skriftlig');
+  const declined = booking.valg.find(choice => choice.id === 'avsta');
+  assert.match(accepted.tekst, /^Bekreft at du stiller/);
+  assert.equal(accepted.effekter.flagg.booking_bekreftet, true);
+  assert.equal(declined.effekter.flagg.booking_bekreftet, undefined);
+  assert.equal(declined.effekter.flagg.booking_avslaatt, true);
 });
