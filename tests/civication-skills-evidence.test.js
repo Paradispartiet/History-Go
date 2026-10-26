@@ -296,7 +296,7 @@ async function main() {
     "js/Civication/ui/CivicationLifestoryUI.js"
   ]) w.eval(js(script));
 
-  const buttonSelector = '[data-lifestory-scene="meldekort_01_fristen"][data-lifestory-choice="ring_veilederen"]';
+  const buttonSelector = '[data-lifestory-scene="meldekort_01_fristen"][data-lifestory-choice="send_naa"]';
   let button = null;
   for (let i = 0; i < 150; i++) {
     button = w.document.querySelector(buttonSelector);
@@ -310,13 +310,13 @@ async function main() {
   const snapshot = w.CivicationSkills.getViewModel(civiState);
   assert.equal(snapshot.skills.find(s => s.id === "agency").score, 2);
   assert.equal(snapshot.documented_count, 1);
-  assert.equal(civiState.skills_v1.applied_event_ids["lifestory:meldekort_01_fristen"].evidence_flag, "ryddet_dokumentasjon");
+  assert.equal(civiState.skills_v1.applied_event_ids["lifestory:meldekort_01_fristen"].evidence_flag, "sendte_meldekortet");
   assert.equal(civiState.job_learning_progress.stable.steps, 3, "job learning preserved");
   assert.equal(w.localStorage.getItem("merits_by_category"), null, "no History Go points minted");
   assert.equal(w.CivicationSkills.applyPractice({
     source: "life_story_choice", event_id: "lifestory:meldekort_01_fristen",
-    choice_id: "ring_veilederen", skill_id: "agency",
-    activity_type: "complete_public_documents", evidence_flag: "ryddet_dokumentasjon", delta: 2
+    choice_id: "send_naa", skill_id: "agency",
+    activity_type: "submit_unemployment_report", evidence_flag: "sendte_meldekortet", delta: 2
   }).reason, "already_counted", "replay cannot double award");
 
   const roundTrip = JSON.parse(JSON.stringify(civiState));
