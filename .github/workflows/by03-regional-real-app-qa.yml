@@ -1,4 +1,4 @@
-name: By03 regional 20 Places real app QA
+name: Regional By03+04 Places real app QA
 on:
   pull_request:
     paths:
@@ -8,6 +8,9 @@ on:
       - 'data/places/by/ostfold/**'
       - 'data/places/by/buskerud/**'
       - 'data/places/by/innlandet/**'
+      - 'data/places/by/vestfold/**'
+      - 'tests/by-bolk04-regional-source-contract.test.mjs'
+      - 'data/quizcards/by/regional_bolk04_*'
       - 'data/quiz/by/*_regional_v1_sets.json'
       - 'data/quizcards/by/regional_bolk03_*'
       - 'data/quiz/manifest.json'
@@ -20,12 +23,13 @@ concurrency:
   cancel-in-progress: true
 jobs:
   regional-app-qa:
-    name: Five regional Places real app — shard ${{ matrix.shard }}
+    name: Five regional Places real app — ${{ matrix.batch }} shard ${{ matrix.shard }}
     runs-on: ubuntu-latest
     timeout-minutes: 22
     strategy:
       fail-fast: false
       matrix:
+        batch: [regional03, regional04]
         shard: [0, 1, 2, 3]
     steps:
       - uses: actions/checkout@v4
@@ -37,16 +41,16 @@ jobs:
       - name: Install browser
         run: npx playwright install --with-deps chromium
       - name: Validate regional quiz-source contracts
-        run: node --test tests/by-bolk03-quizcard-source-contract.test.mjs
+        run: node --test tests/by-bolk03-quizcard-source-contract.test.mjs tests/by-bolk04-regional-source-contract.test.mjs
       - name: Test real regional Places on 390px and 1440px
         env:
-          HG_BY_BATCH: regional03
+          HG_BY_BATCH: ${{ matrix.batch }}
           HG_BY_SHARD: ${{ matrix.shard }}
         run: node tests/by-v1-twenty-real-app-browser-20261024.mjs
       - name: Save browser screenshots and results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: by03-regional-app-shard-${{ matrix.shard }}
-          path: artifacts/by03-regional-browser/shard-${{ matrix.shard }}/
+          name: regional-app-${{ matrix.batch }}-shard-${{ matrix.shard }}
+          path: artifacts/by*/shard-${{ matrix.shard }}/
           if-no-files-found: ignore
