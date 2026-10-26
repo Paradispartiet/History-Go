@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "garmanngarden",
+  "placeFile": "data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/garmanngarden.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Garmanngården gjelder eiendommen i Rådhusgata 7 med eldre bygningsdeler, rådhus- og politibruk samt et senere flyttet fengselsbygg.",
+    "placeRelationType": "material_trace",
+    "placeRelationStatement": "Det historiske huset er fortsatt på stedet, mens bakbygningen knyttet til Hauge er flyttet til Norsk Folkemuseum.",
+    "temporalScope": {
+      "start": "1622",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Avgrensningen følger dokumenterte bygningslag, institusjonsbruk og nåværende stedsidentitet."
+    },
+    "sourceIds": [
+      "source_garmanngarden_official",
+      "source_garmanngarden_secondary"
+    ]
+  },
+  "historyTopics": [
+    {
+      "emneId": "em_his_spor_materialitet",
+      "siteSpecificRationale": "Hvelvkjeller og eldre bygningsspor finnes i Garmanngården, men fengselsbakbygningen er ikke bevart på samme tomt.",
+      "caseIds": [
+        "case_garmanngarden_changes"
+      ]
+    },
+    {
+      "emneId": "em_his_historiske_lag_i_byrom",
+      "siteSpecificRationale": "Anlegget vokste fram i flere byggefaser fra 1622 til 1647 før Johan Garmann tok eiendommen i bruk.",
+      "caseIds": [
+        "case_garmanngarden_changes"
+      ]
+    },
+    {
+      "emneId": "em_his_kulturminner_bevaring",
+      "siteSpecificRationale": "Rådhusgata 7 er fortsatt stedet for hovedbygningen, mens flyttet bakbygning må vises som separat materiell historie.",
+      "caseIds": [
+        "case_garmanngarden_changes"
+      ]
+    },
+    {
+      "emneId": "em_his_samtid_ettertid_fortelling",
+      "siteSpecificRationale": "Caset illustrerer framveksten av kommunal styring, politi og straff i den norske byhistorien.",
+      "caseIds": [
+        "case_garmanngarden_changes"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_garmanngarden_official",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/garmannsgarden/",
+      "sourceLocation": "Oslo kommune – Garmannsgården",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-26",
+      "temporalCoverage": "current",
+      "provenance": "Kommunal presentasjon av eiendommen, bygningsfaser og historisk offentlig bruk.",
+      "limitations": "Kommunal framstilling er en kort sammenfatning, med én datering av Hauges fengselsopphold."
+    },
+    {
+      "id": "source_garmanngarden_secondary",
+      "url": "https://www.oslobyleksikon.no/side/R%C3%A5dhusgata_7",
+      "sourceLocation": "Oslo byleksikon – Rådhusgata 7",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-26",
+      "temporalCoverage": "retrospective",
+      "provenance": "Redaksjonelt byhistorisk oppslagsverk med institusjonsbruk og alternative dateringer.",
+      "limitations": "Gir et annet sluttår for Hauges opphold; tidsavviket må beholdes eksplisitt."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_garmanngarden_changes",
+      "claim": "Garmanngården viser hvordan et privat tidligmoderne byhus ble offentlig rådhus, retts- og politiarena med ulik adgang for borgere og frihetsberøvede.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1622",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Avgrensningen følger dokumenterte bygningslag, institusjonsbruk og nåværende stedsidentitet."
+        },
+        "startPoint": "Anlegget vokste fram i flere byggefaser fra 1622 til 1647 før Johan Garmann tok eiendommen i bruk.",
+        "endPoint": "Etter hovedpolitiets flytting fortsatte underpolitistasjonen fram til 1963; de offentlige funksjonene ble etter hvert flyttet.",
+        "breaks": [
+          "Byen overtok eiendommen til rådhus i 1734.",
+          "Hovedpolitistasjonen kom i 1745 og ble flyttet til Møllergata 19 i 1866.",
+          "Bakbygningen med fengselet ble fjernet og flyttet til Norsk Folkemuseum."
+        ],
+        "continuities": [
+          "Den samme gården rommet skiftende former for offentlig styring og rettspleie.",
+          "Rådhus-, teater- og politibruk samlet ulike grupper i det historiske byrommet."
+        ],
+        "sourceIds": [
+          "source_garmanngarden_official",
+          "source_garmanngarden_secondary"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Johan Garmann og gårdens tidlige eiere",
+          "roleOrInterest": "Brukte et representativt byhus som privat bolig og eiendom.",
+          "powerPosition": "Privat eiendomsrett styrte bruken før overtakelsen.",
+          "sourceIds": [
+            "source_garmanngarden_official",
+            "source_garmanngarden_secondary"
+          ]
+        },
+        {
+          "name": "Magistraten og byens politi",
+          "roleOrInterest": "Brukte huset til styring, rettspleie og ordenshåndhevelse.",
+          "powerPosition": "Forvaltningen kontrollerte offentlige rom og fengselslokaler.",
+          "sourceIds": [
+            "source_garmanngarden_official",
+            "source_garmanngarden_secondary"
+          ]
+        },
+        {
+          "name": "Fanger, deriblant Hans Nielsen Hauge",
+          "roleOrInterest": "Var underlagt arrest og overvåking i et anlegg med offentlige institusjoner.",
+          "powerPosition": "Møtte tvangsmakt, men deres egne stemmer er svakere representert i formidlingskildene.",
+          "sourceIds": [
+            "source_garmanngarden_official",
+            "source_garmanngarden_secondary"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Rådhusets offentlige representasjon og fengselets tvangsmakt eksisterte side om side; skiftende rådhus- og politibehov førte til flyttinger.",
+        "sourceIds": [
+          "source_garmanngarden_official",
+          "source_garmanngarden_secondary"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_garmanngarden_official",
+          "source_garmanngarden_secondary"
+        ],
+        "comparison": "Oslo kommune beskriver eiendom, rådhus og fengselsbygning; Oslo byleksikon kompletterer stedshistorien og oppgir et annet sluttår for Hauges fengsling.",
+        "contradictionsOrSilences": "Oslo kommune oppgir 1807 som slutten på Hauges opphold, mens Oslo byleksikon oppgir 1811; dette skal ikke bli en entydig quizfasit.",
+        "conclusionLimits": "Dagens gård er ikke hele det opprinnelige fengselsanlegget; individuelle fangeperspektiver kan ikke rekonstrueres fra oversiktskildene."
+      },
+      "comparativeScale": {
+        "localFinding": "Én gård gikk fra privatbolig til rådhus, fengsel og politistasjon i Christiania.",
+        "widerContext": "Caset illustrerer framveksten av kommunal styring, politi og straff i den norske byhistorien.",
+        "scale": "national",
+        "sourceIds": [
+          "source_garmanngarden_official",
+          "source_garmanngarden_secondary"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Overtakelsen til rådhus var en institusjonell beslutning, mens videre endringer fulgte vekst og differensiering av politiets lokaler.",
+        "alternativeExplanations": [
+          "Plassforhold, administrative reformer og eiendomsbruk kan også forklare overgangene uten en enkelt lineær moderniseringsårsak."
+        ],
+        "uncertainty": "De to kildene er uenige om Hauges sluttår, og få fangevitnesbyrd er gjengitt i stedsoverblikkene.",
+        "sourceIds": [
+          "source_garmanngarden_official",
+          "source_garmanngarden_secondary"
+        ]
+      }
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Hvelvkjeller og eldre bygningsspor finnes i Garmanngården, men fengselsbakbygningen er ikke bevart på samme tomt.",
+    "originalSiteRelationship": "Rådhusgata 7 er fortsatt stedet for hovedbygningen, mens flyttet bakbygning må vises som separat materiell historie.",
+    "sourceIds": [
+      "source_garmanngarden_official"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "garmanngarden",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/historie/garmanngarden.json",
+    "productionContext": "data/quiz/production_context/historie/garmanngarden.json",
+    "requiredInputs": [
+      "data/quiz/historie/garmanngarden_sets.json",
+      "reports/place-production/oslo-sentrum-kvadraturen-six-source-ledger-20261024.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Historisk kronologi og kildetilknyttet stedsfortelling er gjennomgått i case, men ingen særskilt chronology- eller Stories-publisering inngår i leveransen."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historyTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].temporalSequence"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].actors"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].sourceComparison"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].comparativeScale"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ingen særskilt kanonisk chronology-/Stories-produksjon er knyttet til dette stedet; kildeførte tidsfaser er dokumentert i case."
+    }
+  },
+  "review": {
+    "reviewer": "History GO Oslo Kvadraturen source and place-production closeout",
+    "reviewedAt": "2026-10-26",
+    "notes": "Bygningslag, aktører, kildesvakheter og skille mellom eldre hendelser og dagens fysiske spor er dokumentert. Fullquiz og QuizCard ble gjennomspilt i eksisterende QA-kjøring."
+  }
+}

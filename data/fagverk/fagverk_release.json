@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.17.6",
     "updated_at": "2026-10-26",
-    "content_sha256": "2ee8e348aa9a8f2aad872dcf3bcfd7f1396a94a05230a8e16d8cbc3f47a873ae"
+    "content_sha256": "6e17edfb70b7f54ce302c480f1405b23ee9ed1947aec81a18d7ae3f64d1eaa58"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "2489c23be21592e460df539cdcf1cf7ed2b264e077f25d991d5e0c8c5a3bd1a1"
+    "content_sha256": "7e71e487415403a8d0d403cd463be0ab98c3f0fd59d097daffcffb5bc4d8075e"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 474,
+    "package_file_count": 492,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1338,
+    "referenced_file_count": 1356,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2668,9 +2668,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 107,
+      "package_file_count": 116,
       "required_package_file_count": 4,
-      "optional_package_file_count": 103,
+      "optional_package_file_count": 112,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2889,6 +2889,18 @@
           "content_sha256": "032890db095ca6d68bb05afc49e996395a1760efa14faa92f2486187a01ae36c"
         },
         {
+          "path": "data/quiz/historie/den_gamle_krigsskolen_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.den_gamle_krigsskolen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "5a19d906a842060b98f8586b1748132108a19053a425466c10b26a6f79895048"
+        },
+        {
           "path": "data/quiz/historie/ekeberg_helleristninger_sets.json",
           "required": false,
           "fields": [
@@ -2959,6 +2971,18 @@
           ],
           "exists": true,
           "content_sha256": "366ff6cc597c4fe21227b51b310dde9bf5a3f2e64514aaff340199bff327b05c"
+        },
+        {
+          "path": "data/quiz/historie/garmanngarden_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.garmanngarden.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "0e528a8bc6de78a260b98edfe5e8b354c24dbdf486dd3c975825e9320954d5d4"
         },
         {
           "path": "data/quiz/historie/grindheim_runestein_sets.json",
@@ -3153,6 +3177,18 @@
           "content_sha256": "0748de44f180abf3325c26a590dc91741059e64b42bf8305af62cfa57db0d2c9"
         },
         {
+          "path": "data/quiz/historie/stattholdergarden_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.stattholdergarden.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "ac668488a4d940751f0eb0d1a5c8813b0135b27e5017bea2404d1a2a0d31ebad"
+        },
+        {
           "path": "data/quiz/historie/the_mini_bottle_gallery_sets.json",
           "required": false,
           "fields": [
@@ -3249,6 +3285,18 @@
           "content_sha256": "3796103aa364ec4383b277b9f035e2678b568fb3a5015e2b98d46375c3474bb4"
         },
         {
+          "path": "data/quiz/production_briefs/historie/den_gamle_krigsskolen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.den_gamle_krigsskolen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "0839d127c54a60dcad1e8f3d3b2b5fdd6e70ba6e443a838535498140d95d2b65"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/ekeberg_helleristninger.json",
           "required": false,
           "fields": [
@@ -3319,6 +3367,18 @@
           ],
           "exists": true,
           "content_sha256": "47b813e6676e707419a02cee04a97623f95899ff9acaaa1be9ac72f38a152d92"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/garmanngarden.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.garmanngarden.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "3d37cc88742f35addf9c395187177fef23fea772751a89f9c5e5c5c5a51289b8"
         },
         {
           "path": "data/quiz/production_briefs/historie/grindheim_runestein.json",
@@ -3513,6 +3573,18 @@
           "content_sha256": "ed10814e822651ca9d3f74280cc312bf77bae32fd2b1e6468b790d5cfb468d06"
         },
         {
+          "path": "data/quiz/production_briefs/historie/stattholdergarden.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.stattholdergarden.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "5962860dfff7d3d49aae5f704fdcfad3bcfa97d66c0050d87ad7f7592b7c231d"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/the_mini_bottle_gallery.json",
           "required": false,
           "fields": [
@@ -3609,6 +3681,18 @@
           "content_sha256": "006c0b6684f97e2bb10057518dcf2f722b4b1b0a57109bd631d063c6939c0e4e"
         },
         {
+          "path": "data/quiz/production_context/historie/den_gamle_krigsskolen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.den_gamle_krigsskolen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "f29f3aad98e4a23997fb02ad3a50d164ff5757c07247951862152266756b35ed"
+        },
+        {
           "path": "data/quiz/production_context/historie/ekeberg_helleristninger.json",
           "required": false,
           "fields": [
@@ -3679,6 +3763,18 @@
           ],
           "exists": true,
           "content_sha256": "76c9a17113643355757bd696874177c4afba21d95c8fb417ff3150f54dfd9a04"
+        },
+        {
+          "path": "data/quiz/production_context/historie/garmanngarden.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.garmanngarden.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "cbfefabbfd93f69154c065b4e61947d47e9e3341e251eace2c8c1be442da2391"
         },
         {
           "path": "data/quiz/production_context/historie/grindheim_runestein.json",
@@ -3873,6 +3969,18 @@
           "content_sha256": "d25c6f78bb2400354998e56ef5bd24d895faf399f4d5668072a8bd312dbbefd5"
         },
         {
+          "path": "data/quiz/production_context/historie/stattholdergarden.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.stattholdergarden.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "4c9433568bc1d64e16a30c624f138195a446d374304311dd227ffa5c8b708bcb"
+        },
+        {
           "path": "data/quiz/production_context/historie/the_mini_bottle_gallery.json",
           "required": false,
           "fields": [
@@ -3957,20 +4065,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "26893c7932524b2f5f9166aab1f198ceb03bd52b7ecefa1a3415478e3cc0b1f5",
+      "package_content_sha256": "34c780f1287b2bec06adf39ff95b7ccf7e69c0c2b87f8387abb582c655844d97",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 199,
+      "referenced_file_count": 208,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "b413c37e7534bc053301f82073c91fc7ab0f2bd25002e7449fdf406c88c3e677",
-      "content_sha256": "12fd1484329af6e3647ac41414f0bd7e9f695d80d854f39155617837fe14bc29",
+      "structure_sha256": "496c06ef82fb7edc70b41daf0a9558e94ee35bb38cb28de5a68f1b80a2e9ca76",
+      "content_sha256": "3d7b68e27403d95b912f41510b76a71bb3aa0081243b52bd4ed50922bfd948b2",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -5084,9 +5192,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 61,
+      "package_file_count": 70,
       "required_package_file_count": 4,
-      "optional_package_file_count": 57,
+      "optional_package_file_count": 66,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -5293,6 +5401,18 @@
           "content_sha256": "a4d88deb08785c0f2518e137f32ee7e49efc3d6866f27d116580153b85c3cce9"
         },
         {
+          "path": "data/quiz/naeringsliv/cafe_engebret_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.cafe_engebret.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "48f1fed60b290c9314d161110714def395607a960a0845cd031bb855f97e63df"
+        },
+        {
           "path": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
           "required": false,
           "fields": [
@@ -5315,6 +5435,18 @@
           ],
           "exists": true,
           "content_sha256": "9293b6bdc2695f40cbdcc5c7ef35cf5a40b705ef55a18a2ac3f3969f32973cde"
+        },
+        {
+          "path": "data/quiz/naeringsliv/hotel_du_nord_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hotel_du_nord.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "7c2b222b33b04e8ce9825f5f4bbd60b9f060e2973ad64636d0fbd1682063ffea"
         },
         {
           "path": "data/quiz/naeringsliv/lilleborg_fabrikker_sets.json",
@@ -5437,6 +5569,18 @@
           "content_sha256": "e2100a751044d8f234cdfb481c58b4b0abe57a263a6fcd54d4c457538901ed32"
         },
         {
+          "path": "data/quiz/naeringsliv/treschowgarden_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.treschowgarden.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "027f10f25293053f5683326e64da7b5c16387d885a0922b6fbf3046a75ab45e5"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/alunverket.json",
           "required": false,
           "fields": [
@@ -5461,6 +5605,18 @@
           "content_sha256": "358aa30d7fa01e7b6ae23827037e96e6841d824d154cdc664b0bf1963e2973e9"
         },
         {
+          "path": "data/quiz/production_briefs/naeringsliv/cafe_engebret.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.cafe_engebret.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "fe3aa5b33f5c947bdd4b2351efe784cfce02b5e15d89dec4338895ec7979b4e6"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/freia_fabrikken.json",
           "required": false,
           "fields": [
@@ -5483,6 +5639,18 @@
           ],
           "exists": true,
           "content_sha256": "e905ac7285377827dc06624dd0d1dc578b1d003329c9430a7ffd220db7b338c7"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/hotel_du_nord.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hotel_du_nord.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "ffbb00f7f564cf96e568704745af56d7e35e0ff44ce3ac5603b5b49aad93ffef"
         },
         {
           "path": "data/quiz/production_briefs/naeringsliv/lilleborg_fabrikker.json",
@@ -5605,6 +5773,18 @@
           "content_sha256": "942594a3cfffdcc582d56dea9c29c949e9d3bd892d3172e9eeab4347e14bf94b"
         },
         {
+          "path": "data/quiz/production_briefs/naeringsliv/treschowgarden.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.treschowgarden.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "52d7fc0c70a5395a9426b96c518077a08a25ac1371ca7c9ea0fff9f046ff2785"
+        },
+        {
           "path": "data/quiz/production_context/naeringsliv/alunverket.json",
           "required": false,
           "fields": [
@@ -5629,6 +5809,18 @@
           "content_sha256": "9f2e0938fbee5b9ff713e129231d62f9bd91fd5e739fbb378d98516de06143b2"
         },
         {
+          "path": "data/quiz/production_context/naeringsliv/cafe_engebret.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.cafe_engebret.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "4091a9263a5c1961d55f5ebf484c2f3d638c671f27f3bad7797440d80c019127"
+        },
+        {
           "path": "data/quiz/production_context/naeringsliv/freia_fabrikken.json",
           "required": false,
           "fields": [
@@ -5651,6 +5843,18 @@
           ],
           "exists": true,
           "content_sha256": "4f595b9b4c9893c2ab6932f83ffa839441300f4465ec327e6adea8be279949b2"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/hotel_du_nord.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hotel_du_nord.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "d36a338103509ad0158050cf218c4a1e5842ce59953ab6cf30a868f973f2c5ad"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/lilleborg_fabrikker.json",
@@ -5773,6 +5977,18 @@
           "content_sha256": "1972018795028ee2e10155e8df1a500d0b52138d23bdeb1ba1b1d22108ac97de"
         },
         {
+          "path": "data/quiz/production_context/naeringsliv/treschowgarden.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.treschowgarden.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "1134bab3ef5017b8df5d9adaa0f8414ed21eb5ff108206c4aa717f43c89bae15"
+        },
+        {
           "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
           "required": false,
           "fields": [
@@ -5821,20 +6037,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "33a064e9f070365de42b8e5ce9be4fcb55da912c6f80e62c19cb6f2bab03fe60",
+      "package_content_sha256": "3211ed1f22854f2b2c16ee375522b4c9d94d5b7bd371c0571694deb708b11e4b",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 133,
+      "referenced_file_count": 142,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "67d1d3962328fe80812c45ca7891c8097825c7b9fc5c598eafa771ff3ebe0db9",
-      "content_sha256": "c90f90772dbfee3683ecd4fe67bc00d130b57a8f1b1138ab7af22212e171f2ae",
+      "structure_sha256": "6a272e637c4c826b5c851ed9cc0fb27b7f8d5a102460d8aa403219922e3701f7",
+      "content_sha256": "5bd4d5ad0bd7f865f49e7db9977503717dc8eb183afad2fa6eeab30836944dd8",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -8409,5 +8625,5 @@
       ]
     }
   },
-  "release_sha256": "0f2595e31ff4b9aad4cd1cd895a135e530a269a82565c38494bb591b4c581781"
+  "release_sha256": "ae4eba984ac059b513269326bfbb9a0901f6a61dc385ef105dd1c943c11f59e9"
 }

@@ -1,0 +1,350 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "historie",
+  "targetId": "garmanngarden",
+  "profile_hint": "narrow",
+  "reviewed_at": "2026-10-25",
+  "review_note": "21 stedsforankrede kildepåstander er sammenholdt med Oslo kommunes eiendomsside og Oslo byleksikons Rådhusgata 7, med særskilt forbehold om Hauges sluttår og kommunens feilaktige kongenavn for hendelsen i 1624. Quizdesignet er oppdatert 25.10 etter redaksjonell prioritet: flere fortellende og stedlige spørsmål, langt mindre årstallsretrieval. Påstandsfamilier er normalisert til eksisterende produksjonskontrakt (fact/context); faglig observasjon ligger i spørsmålets question_type, ikke som en ukjent påstandsfamilie. Kildekonflikten om Hauge er nå en stedsspesifikk kildekritisk oppgave bundet til Marc Bloch, The Historian's Craft og den eksisterende metoden met_kildekritikk (ikke teorinavn som fasit).",
+  "scope": {
+    "place": "Garmanngården",
+    "production_profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "total_questions": 21,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "oslo_kommune": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/garmannsgarden/",
+      "source_type": "municipal_official",
+      "review_status": "reviewed",
+      "review_note": "Gjennomgått 25.10.2026: oppføringsfaser, eldre funn, Johan Garmann, rådhus, politistasjon, Hauge-bakbygning. Tekstens anachronisme om Christian VI i 1624 brukes ikke."
+    },
+    "oslo_byleksikon": {
+      "url": "https://www.oslobyleksikon.no/side/R%C3%A5dhusgata_7",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Gjennomgått 25.10.2026: bygningsdetaljer, kjeller, svalgang, vinstue, fengselsfunksjoner, ombygging og Hauge. Oppgir 1804–1811 mens kommunen oppgir 1804–1807."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/",
+      "data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/garmanngarden.json",
+      "reports/place-production/oslo-sentrum-kvadraturen-first20-quiz-candidates-20261024.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv Garmanngården-fullquiz eller target i manifestet ved audit 25.10.2026."
+    },
+    "decisions": [
+      "Ti kildeførte kandidatspørsmål videreført med redaksjonelle justeringer.",
+      "Elleve spørsmål om eldre konstruksjon, offentlige funksjoner og kildekritikk lagt til.",
+      "De første 14 beholdes som normalt faktabaserte spørsmål; siste sett har mer historisk sammenligning.",
+      "Redigert Garmanngårdens 21 spørsmål: hendelser, bruksformer, personer og synlige spor prioriteres fremfor memorering av årstall."
+    ],
+    "knowledge_migration": "Ingen eksisterende canonical quiz/Knowledge-eier. Knowledge-kontrakt og referanser skal genereres først fra publiseringsklar fullquiz."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "To undersøkte offentlige kilder med nok avgrensede, stedlige fakta til tre sett à sju. Ikke dokumentert evidensbredde for rich eller major."
+  },
+  "held_back_candidates": [
+    "Hauges eksakte løslatelses- eller sluttår (kommunen 1807, byleksikon 1811) uten primærkontroll.",
+    "Feilaktig 1624-kongenavn i kommunens historikk; byflyttingen fant sted under Christian IV.",
+    "Tolkninger av sosial virkning eller årsak som ikke er dokumentert av kildene."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_garmanngarden_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Garmanngården begynte som en privat bygård, men ble senere brukt som rådhus og politistasjon. Det er skiftet i samfunnsfunksjon som gjør stedet særlig interessant.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Undersøkelser viser rester fra en tidlig bygningsfase omkring 1622. Gården ble utviklet i flere etapper frem til midten av 1600-tallet.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Johan Garmann overtok eiendommen i 1647, og kong Christian VI overlot den til byen til rådhusformål i 1734.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Christian VI overdro eiendommen til byen i 1734. Bruken ble endret fra privatgård til offentlige rådhusfunksjoner.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Garmanngården ble omtalt som Christianias andre rådhus, og ble tatt i bruk til kommunale formål i 1734.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Garmanngården hadde også rettssal og rom for teaterforestillinger og selskapeligheter. Bygningen var mer enn et administrasjonslokale.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Byen brukte etter hvert Garmanngården som hovedpolitistasjon. Senere overtok Møllergata 19 denne rollen, mens Garmanngården fortsatte med politioppgaver.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Rådhusgata 7 var hovedpolitistasjon fra 1745 til Møllergata 19 åpnet i 1866, senere underpolitistasjon fram til 1963.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Etter at hovedpolitistasjonen flyttet, fortsatte Garmanngården som underpolitistasjon frem til 1963.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Hans Nielsen Hauge satt fengslet i en bakbygning som senere ble gjenreist på Norsk Folkemuseum. Dagens gård viser derfor ikke alle de historiske rommene.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Byggets eldste del vender mot Dronningens gate. Sammen med de bevarte bygningsdelene kan dette hjelpe besøkende å lese anleggets ulike faser.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Garmanngården har en bevart hvelvkjeller; den gir et materielt spor etter de historiske byggefaser.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Svalgangen er bevart mot gårdsrommet og er et synlig spor av gårdens eldre arkitektur.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Sidefløyen og mellomfløyen ble oppført lenge etter den eldste delen. Anlegget vokste frem i flere faser; det er ikke én uendret bygning.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Christian VI skjenket eiendommen til byen i 1734.",
+      "source_ids": [
+        "oslo_kommune",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Garmanngården hadde rom for gjeldsfanger på loftet. Dette minner oss om at personer kunne bli fengslet på grunn av gjeld, ikke bare ved forbrytelser som vi forbinder med fengsel i dag.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "En hvelvkjeller ble brukt som vinstue under Johan Piper. Den samme historiske gården har rommet både offentlige og kommersielle funksjoner.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo byleksikon beskriver at karnapper og trappegavler forsvant da gården ble ombygd. En bevart bygning er derfor ikke nødvendigvis et uendret bilde av sin første utforming.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo byleksikon skiller fengselsrom i kjelleren fra rom for gjeldsfanger på loftet. Romfordelingen er et konkret historisk spor etter at ulike former for frihetsberøvelse foregikk i samme bygningsanlegg.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Garmanngården fortsatte som underpolitistasjon etter at hovedpolitistasjonen flyttet til Møllergata 19. Stedet fikk altså en mindre, men fortsatt offentlig funksjon.",
+      "source_ids": [
+        "oslo_kommune",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_garmanngarden_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo kommune og Oslo byleksikon gir ulike sluttår for Hauges fengsling. Kildekritikk betyr å vise forskjellen og undersøke primærmateriale fremfor å late som om årstallet er avklart.",
+      "source_ids": [
+        "oslo_kommune",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "method_id": "met_kildekritikk",
+      "topic_hook_id": "his_kildekritikk",
+      "thinker_id": "marc_bloch",
+      "work": "The Historian's Craft",
+      "guidance_basis": [
+        "Oslo kommune og Oslo byleksikon oppgir ulike sluttår for Hauges fengsling ved Garmanngården",
+        "met_kildekritikk"
+      ]
+    }
+  ]
+}

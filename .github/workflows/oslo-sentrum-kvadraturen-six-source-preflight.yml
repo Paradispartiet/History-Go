@@ -1,0 +1,51 @@
+name: Oslo Kvadraturen six — source research preflight
+on:
+  pull_request:
+    paths:
+      - 'reports/place-production/oslo-sentrum-kvadraturen-six-source-ledger-20261024.json'
+      - 'tests/oslo-sentrum-kvadraturen-six-research-preflight.mjs'
+      - 'reports/place-production/oslo-sentrum-kvadraturen-first20-quiz-candidates-20261024.json'
+      - 'reports/place-production/oslo-sentrum-kvadraturen-next40-quiz-candidates-20261025.json'
+      - '.github/workflows/oslo-sentrum-kvadraturen-six-source-preflight.yml'
+permissions:
+  contents: read
+concurrency:
+  group: oslo-kvadraturen-source-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  research-integrity:
+    name: Six canonical identities and source references (not v1)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/oslo-sentrum-kvadraturen-six-research-preflight.mjs
+      - name: Generate canonical Garmanngården context (not published)
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          import { buildQuizProductionContext } from './scripts/quiz-production-lib.mjs';
+          const manifestPath='data/fag/fag_manifest.json';
+          const manifest=JSON.parse(await fs.readFile(manifestPath,'utf8'));
+          const expected={
+            source_brief:'../quiz/production_briefs/historie/garmanngarden.json',
+            context_artifact:'../quiz/production_context/historie/garmanngarden.json',
+            quiz_file:'../quiz/historie/garmanngarden_sets.json'
+          };
+          assert.deepEqual(manifest.historie.quizProduction.targets.garmanngarden,expected,'Garmanngården production target must use canonical manifest paths');
+          const ctx=await buildQuizProductionContext({categoryId:'historie',targetId:'garmanngarden'});
+          assert.equal(ctx.profile,'narrow_3x7');
+          assert.equal(ctx.claim_bank.length,21);
+          assert.deepEqual(ctx.set_plan.map(set=>set.planned_questions),[7,7,7]);
+          assert.deepEqual(ctx.set_plan.map(set=>set.phase),['opening','bridge','final']);
+          assert.equal(ctx.source_review_status,'reviewed');
+          assert.equal(ctx.planned_quiz_file,'data/quiz/historie/garmanngarden_sets.json');
+          const stored=JSON.parse(await fs.readFile('data/quiz/production_context/historie/garmanngarden.json','utf8'));
+          assert.deepEqual(stored,ctx,'Stored Garmanngården context differs from canonical builder');
+          console.log('Verified stored canonical Garmanngården context with 21 claims; active quiz manifest remains unchanged.');
+          NODE
