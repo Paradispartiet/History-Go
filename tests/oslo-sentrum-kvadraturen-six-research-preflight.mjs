@@ -514,4 +514,24 @@ const targetIds=ledger.places.map(p=>p.place_id);
 assert.equal(new Set(targetIds).size,6);
 for(const placeId of targetIds)assert.equal(quizRefs.filter(r=>r.targetId===placeId).length,1,placeId+': expected one canonical playable quiz');
 
+
+// KVADRATUREN_PEOPLE_MEDIA_PARITY: prevent broken character artwork in Krigsskolen.
+// A genuine Bernt Anker portrait and the Bjelke family's heraldry are distinct media.
+const canonicalPeople=read('data/people/historie/oslo/people_historie_oslo.json');
+const krigsskolenPeople=read('data/runtime/place-open/den_gamle_krigsskolen.json').people;
+for(const id of ['bernt_anker','jens_bjelke']){
+  const source=canonicalPeople.find(p=>p.id===id);
+  const runtime=krigsskolenPeople.find(p=>p.id===id);
+  assert.ok(source&&runtime,id+': missing person source or runtime');
+  assert.match(source.image,/^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\//,id+': missing media must not be published');
+  assert.equal(source.image,source.cardImage,id+': card mismatch');
+  assert.equal(runtime.image,source.image,id+': stale runtime image');
+  assert.equal(runtime.cardImage,source.cardImage,id+': stale runtime card');
+  assert.equal(runtime.imageCaption,source.imageCaption,id+': missing media identification');
+  assert.equal(runtime.imageSourceUrl,source.imageSourceUrl,id+': missing license provenance');
+  assert.equal(runtime.imageLicense,source.imageLicense,id+': missing image license');
+}
+assert.match(krigsskolenPeople.find(p=>p.id==='jens_bjelke').imageCaption,/ikke et portrett/i);
+console.log('KVADRATUREN_PEOPLE_MEDIA_PARITY_PASS_2');
+
 console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',candidateCount,records:report},null,2));
