@@ -119,7 +119,7 @@ const js = p => fs.readFileSync(path.join(ROOT, p), "utf8");
 const manifest = read(Content.MANIFEST_PATH);
 
 const authored = [
-  ["arbeidsledig", "meldekort_01_fristen", "ring_veilederen", "agency"],
+  ["arbeidsledig", "meldekort_01_fristen", "send_naa", "agency"],
   ["arbeidsledig", "rytme_01_dagen_flyter", "eget_prosjekt", "creativity"],
   ["arbeidsledig", "d3_soknad_svar", "les_hva_de_saa_etter", "wisdom_judgement"],
   ["life", "privat_kveld_svar", "svar_aerlig", "social_awareness"],
