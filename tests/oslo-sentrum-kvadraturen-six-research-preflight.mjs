@@ -316,7 +316,7 @@ for(const [i,q] of stattholderItems.entries()){
 }
 assert.equal(stattholderItems.some(q=>/1862|1863/u.test(q.question)),false,'Conflicting Engebret transfer dates must not become single answer');
 // Hotel du Nord has a source-reviewed 21-question quiz preparation bank,
-// with 2025 as the END of the documented heritage-office period, not today.
+// with the primary source dating departure before Christmas 2024, not today.
 const hotelId='hotel_du_nord';
 const hotelBrief=read('data/quiz/production_briefs/naeringsliv/'+hotelId+'.json');
 const hotelReview=read('reports/place-production/oslo-kvadraturen-hotel-du-nord-21-fullquiz-review-20261025.json');
@@ -344,7 +344,9 @@ for(const [i,q] of hotelItems.entries()){
   for(const src of q.source)assert.equal(hotelBrief.sources[src]?.review_status,'reviewed');
   if(i<14)assert.ok(['fact','context'].includes(q.question_type));
 }
-assert.ok(/1991(?:[–-]|\s+til\s+)2025/u.test(hotelItems[20].knowledge),'Hotel du Nord needs time-bounded former-office context');
+assert.match(hotelItems[20].knowledge,/1991.*før jul 2024/u,'Hotel du Nord must use the primary-source departure date');
+assert.equal(hotelBrief.sources.riksantikvaren_flytting.url,'https://riksantikvaren.no/kommet-i-hus-pa-gronland/');
+assert.ok(hotelItems[20].source.includes('riksantikvaren_flytting'),'Departure date needs the primary source');
 // The remaining two Næringsliv source packages use the same existing
 // canonical production contract. These banks are reviewed editorial inputs,
 // not independently registered playable quiz files.

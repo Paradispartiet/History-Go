@@ -68,13 +68,13 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/naeringsliv/hotel_du_nord.json",
-      "bytes": 13835,
-      "sha256": "cf941f4b2353bbb268fe7b05c3e7c7aa3afbab99aee7efa4f3575695792b38b5"
+      "bytes": 14260,
+      "sha256": "f286bb4a589abc9021f79bab3532838d533d3aa9407e72c7bd24e2bf2f59ea4b"
     },
     "target": {
       "path": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02/hotel_du_nord.json",
-      "bytes": 10918,
-      "sha256": "a785d7434243f9191b9d5ba4e239deb8055df856442c3dba9e038670c9d53ab4"
+      "bytes": 11184,
+      "sha256": "dc0c590db1a6ce84404a340a31cc2d88180e6ac6192afb87e51ebc22acb7708d"
     },
     "target_index": {
       "path": "data/places/places_index.json",
@@ -97,13 +97,19 @@
       "url": "https://oslobyleksikon.no/side/Dronningens_gate",
       "source_type": "institutional_reference",
       "review_status": "reviewed",
-      "review_note": "Gjennomgått 25.10.2026: navn Rosenkrantzgården, eldre bygningsmasse, ny frontbygning etter brannen, hotellets periode og Riksantikvarens bruk 1991–2025. Dato 2025 skal hindre en uriktig påstand om at Riksantikvaren fortsatt holder til her."
+      "review_note": "Gjennomgått som sekundærkilde for gårdens eiere, brann og hotellhistorie. Den tidligere periodetolkningen1991–2025 brukes ikke til å datere utflytting; Riksantikvarens egen melding10.01.2025 sier at etaten flyttet ut før jul2024."
     },
     "oslo_byleksikon_hoteller": {
       "url": "https://oslobyleksikon.no/side/Hoteller",
       "source_type": "institutional_reference",
       "review_status": "reviewed",
       "review_note": "Gjennomgått 25.10.2026: Elias Smith åpnet Hotel du Nord i 1828; historisk hotellnæring i Christiania."
+    },
+    "riksantikvaren_flytting": {
+      "url": "https://riksantikvaren.no/kommet-i-hus-pa-gronland/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Lest 26.10.2026. Meldingen er publisert10.01.2025 og sier at utflyttingen var før jul, altså2024. Primærmeldingen prioriteres fremfor leksikonets1991–2025."
     }
   },
   "source_review_status": "reviewed",
@@ -122,7 +128,7 @@
     "decisions": [
       "Narrow-profil (3 x 7); ikke fyll til rich med duplikater.",
       "Stedlig handelshistorie, hotellvirksomhet og bygningsfaser fremfor løs årstallspugging.",
-      "Kildens Riksantikvaren-periode 1991–2025 er fortid; ikke presenter det som nåværende virksomhet."
+      "Kildens Riksantikvaren-periode 1991–2024 er fortid; ikke presenter det som nåværende virksomhet."
     ],
     "knowledge_migration": "Fullquiz skal kobles av eksisterende canonical Knowledge-generator før manifestaktivering."
   },
@@ -595,9 +601,10 @@
       "order": 21,
       "planned_phase": "final",
       "family": "concept_theory",
-      "statement": "Riksantikvaren hadde kontorer på eiendommen fra 1991 til 2025 ifølge Oslo byleksikon. Dette er et eksempel på ombruk av eldre bygningsmasse etter periodene med hotell- og pakkhusdrift.",
+      "statement": "Riksantikvaren hadde kontorer på eiendommen fra 1991 og flyttet ut før jul 2024, ifølge etatens egen melding fra januar 2025. Dette er et eksempel på ombruk av eldre bygningsmasse etter periodene med hotell- og pakkhusdrift.",
       "source_ids": [
-        "oslo_byleksikon_gaten"
+        "riksantikvaren_flytting",
+        "oppdag_kvadraturen"
       ],
       "source_origin": "external",
       "emne_id": "em_naering_omstilling_kriser_skift"

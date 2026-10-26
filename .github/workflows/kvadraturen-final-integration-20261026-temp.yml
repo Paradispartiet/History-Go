@@ -1,0 +1,163 @@
+name: Kvadraturen final source QuizCard and mobile verification
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-kvadraturen-v1-six-20261023
+    paths:
+      - '.github/workflows/kvadraturen-final-integration-20261026-temp.yml'
+permissions:
+  contents: write
+concurrency:
+  group: kvadraturen-final-integration-20261026
+  cancel-in-progress: false
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-kvadraturen-v1-six-20261023
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Merge main and resolve only generated shared artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-commit --no-ff origin/main || {
+            test -f .git/MERGE_HEAD
+            test -n "$(git diff --name-only --diff-filter=U)"
+          }
+          python3 - <<'PY'
+          import json,pathlib,subprocess
+          allowed={'data/fagverk/fagverk_registry.json','data/fagverk/fagverk_release.json','data/places/place_image_backlog_summary.json','reports/knowledge-id-backfill.json'}
+          conflicts=set(subprocess.check_output(['git','diff','--name-only','--diff-filter=U']).decode().splitlines())
+          assert conflicts <= allowed, 'Unexpected conflicts: '+str(conflicts-allowed)
+          def read(ref,p):return json.loads(subprocess.check_output(['git','show',ref+':'+p]))
+          def merge(b,o,t,p=''):
+              if o==t:return o
+              if o==b:return t
+              if t==b:return o
+              if all(isinstance(x,dict) for x in (b,o,t)):
+                  result={};missing=object()
+                  for k in dict.fromkeys([*t,*o]):
+                      bv,ov,tv=b.get(k,missing),o.get(k,missing),t.get(k,missing)
+                      if ov is missing:
+                          assert tv==bv or bv is missing,p+'/'+k
+                          if bv is missing:result[k]=tv
+                      elif tv is missing:
+                          assert ov==bv or bv is missing,p+'/'+k
+                          if bv is missing:result[k]=ov
+                      else:result[k]=merge(bv,ov,tv,p+'/'+k)
+                  return result
+              raise ValueError('Semantic conflict '+p)
+          p='data/fagverk/fagverk_registry.json'
+          if p in conflicts:
+              b=json.loads(subprocess.check_output(['git','show',':1:'+p]));o=read('HEAD',p);t=read('origin/main',p);r=merge(b,o,t)
+              assert all(r['placeLinks'][k]==v for k,v in o['placeLinks'].items())
+              assert all(r['placeLinks'][k]==v for k,v in t['placeLinks'].items())
+              pathlib.Path(p).write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n')
+          for p in conflicts-{'data/fagverk/fagverk_registry.json'}:
+              subprocess.run(['git','checkout','--theirs','--',p],check=True)
+          PY
+      - name: Rebuild deterministic context, Knowledge, runtime and release
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import{buildQuizProductionContext}from'./scripts/quiz-production-lib.mjs';
+          for(const category of ['historie','naeringsliv'])for(const id of category==='historie'?['garmanngarden','den_gamle_krigsskolen','stattholdergarden']:['hotel_du_nord','cafe_engebret','treschowgarden']){
+            const ctx=await buildQuizProductionContext({categoryId:category,targetId:id});
+            fs.writeFileSync('data/quiz/production_context/'+category+'/'+id+'.json',JSON.stringify(ctx,null,2)+'\n');
+          }
+          JS
+          npm run build:scripts
+          node dist/scripts/knowledge-canonical-data.mjs --write
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const qp='data/quiz/naeringsliv/hotel_du_nord_sets.json',cp='data/quizcards/naeringsliv/hotel_du_nord_quizkort_v1.json';
+          const q=JSON.parse(fs.readFileSync(qp)),c=JSON.parse(fs.readFileSync(cp));
+          for(const card of c.cards)for(const cq of card.questions){
+            const src=q.sets.flatMap(s=>s.questions).find(x=>x.id===cq.sourceQuestionId);
+            if(!src)throw Error('Missing fullquiz source for QuizCard');
+            for(const field of ['primary_knowledge_unit_id','knowledge_unit_ids','concept_ids','term_ids','knowledge_contract_version','knowledge_link_status'])cq[field]=src[field];
+          }
+          fs.writeFileSync(cp,JSON.stringify(c,null,2)+'\n');
+          JS
+          node scripts/build-place-open-payloads.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/kvadraturen-image-audit.json
+          python3 - <<'PY'
+          import json,pathlib,subprocess
+          p=pathlib.Path('data/places/place_image_backlog_summary.json');s=json.loads(p.read_text());a=json.loads(pathlib.Path('/tmp/kvadraturen-image-audit.json').read_text());x=a['summary']
+          s.update(generatedAt='2026-10-26',generatedFromCommit=subprocess.check_output(['git','rev-parse','origin/main']).decode().strip(),totalPlaces=a['totalPlaces'],summary=dict(validLocal=x['local'],validRemote=x['remote'],optionalMissing=x['optional'],missing=x['missing'],invalidLocalPath=x['invalid'],remaining=x['missing']+x['invalid']))
+          s['byCategory']={k:dict(total=v['total'],valid=v['local']+v['remote'],optional=v['optional'],missing=v['missing'],invalid=v['invalid']) for k,v in a['byCategory'].items()}
+          s['note']='Rebuilt from canonical image audit after integration; reference validation does not prove remote image availability.'
+          p.write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Verify existing integrity and production contracts
+        run: |
+          set -euo pipefail
+          node tests/oslo-sentrum-kvadraturen-six-research-preflight.mjs
+          node scripts/audit-quiz-production-context.mjs
+          node scripts/audit-quiz-progression.mjs
+          node scripts/audit-quiz-theory-binding.mjs
+          node dist/scripts/knowledge-canonical-data.mjs --check
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all
+          git diff --check
+      - name: Real desktop and two phone widths after editorial corrections
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          export CHROME_BIN
+          # The six full quizzes passed desktop/mobile in run 40318115632.
+          # Require byte-identical quiz content before reusing that playthrough evidence.
+          git diff --exit-code 562e96629b4c31d766e1177ce09600d7b4c1a9ba -- data/quiz/historie/den_gamle_krigsskolen_sets.json data/quiz/historie/garmanngarden_sets.json data/quiz/historie/stattholdergarden_sets.json data/quiz/naeringsliv/cafe_engebret_sets.json data/quiz/naeringsliv/treschowgarden_sets.json
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('scripts/verify-kvadraturen-six-visual-qa-20261026.mjs').read_text()
+          s=s.replace("{name:'mobile',viewport:{width:390,height:844},isMobile:true,hasTouch:true}", "{name:'phone320',viewport:{width:320,height:844},isMobile:true,hasTouch:true},{name:'mobile',viewport:{width:390,height:844},isMobile:true,hasTouch:true}")
+          s=s.replace('report.results.length,12','report.results.length,18')
+          s=s.replace('   await page.close();',"   await page.waitForFunction(()=>document.querySelectorAll('#pcQuizCardContent .pc-rendered-quiz-list > li').length===10,null,{timeout:30000});\n   await page.locator('.pc-frontcard').first().click();\n   await page.waitForFunction(()=>document.querySelector('.pc-frontcard')?.classList.contains('is-flipped'));\n   await page.locator('#pcQuizExpandBtn').click();\n   await page.locator('#pcQuizExpanded').waitFor({state:'visible'});\n   assert.equal(await page.locator('#pcQuizExpandedContent .pc-rendered-quiz-list > li').count(),10);\n   assert.equal(await page.locator('#pcQuizExpandedContent .pc-rendered-quiz-option').count(),40);\n   const expanded=await page.locator('#pcQuizExpandedContent').evaluate(el=>({scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));\n   assert.ok(expanded.scrollWidth<=expanded.clientWidth+2,'QuizCard horizontal overflow '+id+' '+profile.name);\n   await page.screenshot({path:path.join(output,profile.name+'-quizcard-'+id+'.png'),animations:'disabled'});\n   await page.locator('#pcQuizExpandedContent').evaluate(el=>el.scrollTop=el.scrollHeight);\n   await page.screenshot({path:path.join(output,profile.name+'-quizcard-bottom-'+id+'.png'),animations:'disabled'});\n   await page.locator('#pcQuizExpandedClose').click();\n   if(id==='den_gamle_krigsskolen'){\n     const runtime=JSON.parse(fs.readFileSync('data/runtime/place-open/'+id+'.json','utf8'));\n     const sources=runtime.people.filter(x=>['bernt_anker','jens_bjelke'].includes(x.id)).map(x=>({id:x.id,src:x.image}));\n     assert.equal(sources.length,2);\n     const decoded=await page.evaluate(async sources=>Promise.all(sources.map(async x=>{\n       const img=new Image();img.src=x.src;\n       await Promise.race([img.decode(),new Promise((_,reject)=>setTimeout(()=>reject(Error('Person image timeout '+x.id)),20000))]);\n       return {...x,width:img.naturalWidth,height:img.naturalHeight};\n     })),sources);\n     assert.ok(decoded.every(x=>x.width>0&&x.height>0));\n     report.results[report.results.length-1].peopleMedia=decoded;\n   }\n   assert.equal(errors.length,0);\n   console.log('PASS_QUIZCARD_10_QUESTIONS_40_OPTIONS',profile.name,id);\n   await page.close();")
+          Path('.kvadraturen-final-check.mjs').write_text(s)
+          PY
+          node .kvadraturen-final-check.mjs
+          node scripts/verify-place-quiz-browser.mjs hotel_du_nord
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kvadraturen-final-integration-browser-proof
+          path: |
+            artifacts/kvadraturen-six-visuals-20261026/
+            artifacts/place-quiz/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Commit verified integration; editorial and visual approval stays pending
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only > /tmp/kvadraturen-changes
+          cat /tmp/kvadraturen-changes
+          python3 - <<'PY'
+          from pathlib import Path
+          exact={'data/fagverk/fagverk_registry.json','data/fagverk/fagverk_release.json','data/places/place_image_backlog_summary.json','reports/knowledge-id-backfill.json','data/knowledge/knowledge_units.generated.json','data/quiz/manifest.json','data/quiz/naeringsliv/hotel_du_nord_sets.json','data/quizcards/naeringsliv/hotel_du_nord_quizkort_v1.json'}
+          prefixes=('data/quiz/production_context/','data/runtime/')
+          changed=Path('/tmp/kvadraturen-changes').read_text().splitlines()
+          assert all(p in exact or p.startswith(prefixes) for p in changed), 'Unexpected generated changes'
+          PY
+          git add data/quiz/naeringsliv/hotel_du_nord_sets.json data/quizcards/naeringsliv/hotel_du_nord_quizkort_v1.json data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json data/places/place_image_backlog_summary.json reports/knowledge-id-backfill.json data/knowledge/knowledge_units.generated.json data/quiz/manifest.json data/quiz/production_context/ data/runtime/
+          git rm .github/workflows/kvadraturen-final-integration-20261026-temp.yml
+          git diff --cached --check
+          if test -f .git/MERGE_HEAD || ! git diff --cached --quiet; then
+            git commit -m 'Merge current main and verify Kvadraturen editorial and mobile corrections'
+            git push origin HEAD:research/oslo-sentrum-kvadraturen-v1-six-20261023
+          fi
