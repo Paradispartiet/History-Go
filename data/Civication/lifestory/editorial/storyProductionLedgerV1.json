@@ -1,0 +1,1173 @@
+{
+  "schema": "civication_people_story_production_ledger_v1",
+  "version": 1,
+  "as_of": "2026-10-12",
+  "status": "editorial_inventory_not_runtime",
+  "sources": {
+    "role": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+    "narrative_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+    "planning": "data/Civication/lifestory/editorial/peopleStoryPlanningV1.json"
+  },
+  "summary": {
+    "chapters": 45,
+    "stages": 9,
+    "chapters_per_stage": 5,
+    "foundation_chapters": 10,
+    "crosswalk_chapters": 35,
+    "contemporary_story_synopses": 24,
+    "people_examples": 6,
+    "people_migrated_chapters": 0
+  },
+  "chapters": [
+    {
+      "id": "musikk_med_mira",
+      "path": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 7,
+      "scene_days_expected": [
+        8,
+        9,
+        10
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "medmusiker",
+      "first_step_from_thread": "musikken_og_mira",
+      "prerequisite_chapters": [],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F01",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "sideprosjekt_med_lea",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "after_day": 7,
+      "scene_days_expected": [
+        8,
+        9,
+        10
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "prosjektbygger",
+      "first_step_from_thread": "prosjektet_og_lea",
+      "prerequisite_chapters": [],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F02",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "frilans_med_lea",
+      "path": "data/Civication/lifestory/continuations/frilans_med_lea.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 7,
+      "scene_days_expected": [
+        8,
+        9,
+        10
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "prosjektbygger",
+      "first_step_from_thread": "prosjektet_og_lea",
+      "prerequisite_chapters": [],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F03",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "grunder_med_lea",
+      "path": "data/Civication/lifestory/continuations/grunder_med_lea.json",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "after_day": 7,
+      "scene_days_expected": [
+        8,
+        9,
+        10
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "prosjektbygger",
+      "first_step_from_thread": "prosjektet_og_lea",
+      "prerequisite_chapters": [],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F04",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "sideprosjekt_neste_steg",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_neste_steg.json",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "after_day": 10,
+      "scene_days_expected": [
+        11,
+        12,
+        13
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "prosjektbygger",
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F05",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "frilans_neste_steg",
+      "path": "data/Civication/lifestory/continuations/frilans_neste_steg.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 10,
+      "scene_days_expected": [
+        11,
+        12,
+        13
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "prosjektbygger",
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F06",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "grunder_neste_steg",
+      "path": "data/Civication/lifestory/continuations/grunder_neste_steg.json",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "after_day": 10,
+      "scene_days_expected": [
+        11,
+        12,
+        13
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "prosjektbygger",
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F07",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "musikk_foresporselen",
+      "path": "data/Civication/lifestory/continuations/musikk_foresporselen.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 10,
+      "scene_days_expected": [
+        11,
+        12,
+        13
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "prosjektbygger",
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "musikk_med_mira"
+      ],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F08",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "miljo_med_arvid",
+      "path": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 7,
+      "scene_days_expected": [
+        8,
+        9,
+        10
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "miljokontakt",
+      "first_step_from_thread": "miljoet_og_amir",
+      "prerequisite_chapters": [],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F09",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "miljo_navnet_ditt",
+      "path": "data/Civication/lifestory/continuations/miljo_navnet_ditt.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 10,
+      "scene_days_expected": [
+        11,
+        12,
+        13
+      ],
+      "editorial_group": "foundationProduction",
+      "legacy_actor_context": "miljokontakt",
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "miljo_med_arvid"
+      ],
+      "canonical_crosswalk_id": null,
+      "foundational_synopsis_id": "F10",
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "musikk_etter_foresporselen",
+      "path": "data/Civication/lifestory/continuations/musikk_etter_foresporselen.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 13,
+      "scene_days_expected": [
+        14,
+        15,
+        16
+      ],
+      "editorial_group": "continuationProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "musikk_foresporselen"
+      ],
+      "canonical_crosswalk_id": "musikk_etter_foresporselen",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "sideprosjekt_etter_neste_steg",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_etter_neste_steg.json",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "after_day": 13,
+      "scene_days_expected": [
+        14,
+        15,
+        16
+      ],
+      "editorial_group": "continuationProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "sideprosjekt_neste_steg"
+      ],
+      "canonical_crosswalk_id": "sideprosjekt_etter_neste_steg",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "frilans_etter_neste_steg",
+      "path": "data/Civication/lifestory/continuations/frilans_etter_neste_steg.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 13,
+      "scene_days_expected": [
+        14,
+        15,
+        16
+      ],
+      "editorial_group": "continuationProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "frilans_neste_steg"
+      ],
+      "canonical_crosswalk_id": "frilans_etter_neste_steg",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "grunder_etter_neste_steg",
+      "path": "data/Civication/lifestory/continuations/grunder_etter_neste_steg.json",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "after_day": 13,
+      "scene_days_expected": [
+        14,
+        15,
+        16
+      ],
+      "editorial_group": "continuationProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "grunder_neste_steg"
+      ],
+      "canonical_crosswalk_id": "grunder_etter_neste_steg",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "miljo_etter_invitasjonen",
+      "path": "data/Civication/lifestory/continuations/miljo_etter_invitasjonen.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 13,
+      "scene_days_expected": [
+        14,
+        15,
+        16
+      ],
+      "editorial_group": "continuationProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "miljo_navnet_ditt"
+      ],
+      "canonical_crosswalk_id": "miljo_etter_invitasjonen",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "sideprosjekt_kryss_med_mira",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_kryss_med_mira.json",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "after_day": 16,
+      "scene_days_expected": [
+        17,
+        18,
+        19
+      ],
+      "editorial_group": "crossCharacterProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "musikk_etter_foresporselen"
+      ],
+      "canonical_crosswalk_id": "sideprosjekt_kryss_med_mira",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "miljo_kryss_med_lea",
+      "path": "data/Civication/lifestory/continuations/miljo_kryss_med_lea.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 16,
+      "scene_days_expected": [
+        17,
+        18,
+        19
+      ],
+      "editorial_group": "crossCharacterProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "sideprosjekt_etter_neste_steg"
+      ],
+      "canonical_crosswalk_id": "miljo_kryss_med_lea",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "musikk_kryss_med_arvid",
+      "path": "data/Civication/lifestory/continuations/musikk_kryss_med_arvid.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 16,
+      "scene_days_expected": [
+        17,
+        18,
+        19
+      ],
+      "editorial_group": "crossCharacterProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "miljo_etter_invitasjonen"
+      ],
+      "canonical_crosswalk_id": "musikk_kryss_med_arvid",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "miljo_kryss_med_frilans",
+      "path": "data/Civication/lifestory/continuations/miljo_kryss_med_frilans.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 16,
+      "scene_days_expected": [
+        17,
+        18,
+        19
+      ],
+      "editorial_group": "crossCharacterProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "frilans_etter_neste_steg"
+      ],
+      "canonical_crosswalk_id": "miljo_kryss_med_frilans",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "musikk_kryss_med_grunder",
+      "path": "data/Civication/lifestory/continuations/musikk_kryss_med_grunder.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 16,
+      "scene_days_expected": [
+        17,
+        18,
+        19
+      ],
+      "editorial_group": "crossCharacterProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "grunder_etter_neste_steg"
+      ],
+      "canonical_crosswalk_id": "musikk_kryss_med_grunder",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "miljo_etter_leas_program",
+      "path": "data/Civication/lifestory/continuations/miljo_etter_leas_program.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 19,
+      "scene_days_expected": [
+        20,
+        21,
+        22
+      ],
+      "editorial_group": "ensembleProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "sideprosjekt_kryss_med_mira"
+      ],
+      "canonical_crosswalk_id": "miljo_etter_leas_program",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "musikk_etter_arvids_tekst",
+      "path": "data/Civication/lifestory/continuations/musikk_etter_arvids_tekst.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 19,
+      "scene_days_expected": [
+        20,
+        21,
+        22
+      ],
+      "editorial_group": "ensembleProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "miljo_kryss_med_lea"
+      ],
+      "canonical_crosswalk_id": "musikk_etter_arvids_tekst",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "frilans_etter_miras_navn",
+      "path": "data/Civication/lifestory/continuations/frilans_etter_miras_navn.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 19,
+      "scene_days_expected": [
+        20,
+        21,
+        22
+      ],
+      "editorial_group": "ensembleProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "musikk_kryss_med_arvid"
+      ],
+      "canonical_crosswalk_id": "frilans_etter_miras_navn",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "frilans_etter_arvids_kreditering",
+      "path": "data/Civication/lifestory/continuations/frilans_etter_arvids_kreditering.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 19,
+      "scene_days_expected": [
+        20,
+        21,
+        22
+      ],
+      "editorial_group": "ensembleProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "miljo_kryss_med_frilans"
+      ],
+      "canonical_crosswalk_id": "frilans_etter_arvids_kreditering",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "miljo_etter_miras_lyd",
+      "path": "data/Civication/lifestory/continuations/miljo_etter_miras_lyd.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 19,
+      "scene_days_expected": [
+        20,
+        21,
+        22
+      ],
+      "editorial_group": "ensembleProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "musikk_kryss_med_grunder"
+      ],
+      "canonical_crosswalk_id": "miljo_etter_miras_lyd",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_etter_arvids_ansvar",
+      "path": "data/Civication/lifestory/continuations/lea_etter_arvids_ansvar.json",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "after_day": 22,
+      "scene_days_expected": [
+        23,
+        24,
+        25
+      ],
+      "editorial_group": "relationshipProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "miljo_etter_leas_program"
+      ],
+      "canonical_crosswalk_id": "lea_etter_arvids_ansvar",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "mira_etter_samtalen_med_lea",
+      "path": "data/Civication/lifestory/continuations/mira_etter_samtalen_med_lea.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 22,
+      "scene_days_expected": [
+        23,
+        24,
+        25
+      ],
+      "editorial_group": "relationshipProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "musikk_etter_arvids_tekst"
+      ],
+      "canonical_crosswalk_id": "mira_etter_samtalen_med_lea",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "arvid_etter_leas_notat",
+      "path": "data/Civication/lifestory/continuations/arvid_etter_leas_notat.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 22,
+      "scene_days_expected": [
+        23,
+        24,
+        25
+      ],
+      "editorial_group": "relationshipProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "frilans_etter_miras_navn"
+      ],
+      "canonical_crosswalk_id": "arvid_etter_leas_notat",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "arvid_etter_leas_grense",
+      "path": "data/Civication/lifestory/continuations/arvid_etter_leas_grense.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 22,
+      "scene_days_expected": [
+        23,
+        24,
+        25
+      ],
+      "editorial_group": "relationshipProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "frilans_etter_arvids_kreditering"
+      ],
+      "canonical_crosswalk_id": "arvid_etter_leas_grense",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "mira_etter_lydfilens_rykte",
+      "path": "data/Civication/lifestory/continuations/mira_etter_lydfilens_rykte.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 22,
+      "scene_days_expected": [
+        23,
+        24,
+        25
+      ],
+      "editorial_group": "relationshipProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "miljo_etter_miras_lyd"
+      ],
+      "canonical_crosswalk_id": "mira_etter_lydfilens_rykte",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "arvid_etter_leas_tillit",
+      "path": "data/Civication/lifestory/continuations/arvid_etter_leas_tillit.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 25,
+      "scene_days_expected": [
+        26,
+        27,
+        28
+      ],
+      "editorial_group": "consequenceProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "lea_etter_arvids_ansvar"
+      ],
+      "canonical_crosswalk_id": "arvid_etter_leas_tillit",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_etter_miras_vennskap",
+      "path": "data/Civication/lifestory/continuations/lea_etter_miras_vennskap.json",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "after_day": 25,
+      "scene_days_expected": [
+        26,
+        27,
+        28
+      ],
+      "editorial_group": "consequenceProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "mira_etter_samtalen_med_lea"
+      ],
+      "canonical_crosswalk_id": "lea_etter_miras_vennskap",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_etter_arvids_fortelling",
+      "path": "data/Civication/lifestory/continuations/lea_etter_arvids_fortelling.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 25,
+      "scene_days_expected": [
+        26,
+        27,
+        28
+      ],
+      "editorial_group": "consequenceProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "arvid_etter_leas_notat"
+      ],
+      "canonical_crosswalk_id": "lea_etter_arvids_fortelling",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_etter_arvids_avstand",
+      "path": "data/Civication/lifestory/continuations/lea_etter_arvids_avstand.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 25,
+      "scene_days_expected": [
+        26,
+        27,
+        28
+      ],
+      "editorial_group": "consequenceProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "arvid_etter_leas_grense"
+      ],
+      "canonical_crosswalk_id": "lea_etter_arvids_avstand",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "mira_etter_nye_takter",
+      "path": "data/Civication/lifestory/continuations/mira_etter_nye_takter.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 25,
+      "scene_days_expected": [
+        26,
+        27,
+        28
+      ],
+      "editorial_group": "consequenceProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "mira_etter_lydfilens_rykte"
+      ],
+      "canonical_crosswalk_id": "mira_etter_nye_takter",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "arvid_og_det_aapne_lokalet",
+      "path": "data/Civication/lifestory/continuations/arvid_og_det_aapne_lokalet.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 28,
+      "scene_days_expected": [
+        29,
+        30,
+        31
+      ],
+      "editorial_group": "longTermProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "arvid_etter_leas_tillit"
+      ],
+      "canonical_crosswalk_id": "arvid_og_det_aapne_lokalet",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_og_sporsmaalene_som_gjenstaar",
+      "path": "data/Civication/lifestory/continuations/lea_og_sporsmaalene_som_gjenstaar.json",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "after_day": 28,
+      "scene_days_expected": [
+        29,
+        30,
+        31
+      ],
+      "editorial_group": "longTermProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "lea_etter_miras_vennskap"
+      ],
+      "canonical_crosswalk_id": "lea_og_sporsmaalene_som_gjenstaar",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_og_kildene_i_skrivearbeidet",
+      "path": "data/Civication/lifestory/continuations/lea_og_kildene_i_skrivearbeidet.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 28,
+      "scene_days_expected": [
+        29,
+        30,
+        31
+      ],
+      "editorial_group": "longTermProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "lea_etter_arvids_fortelling"
+      ],
+      "canonical_crosswalk_id": "lea_og_kildene_i_skrivearbeidet",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_og_fellesskapet_uten_plikt",
+      "path": "data/Civication/lifestory/continuations/lea_og_fellesskapet_uten_plikt.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 28,
+      "scene_days_expected": [
+        29,
+        30,
+        31
+      ],
+      "editorial_group": "longTermProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "lea_etter_arvids_avstand"
+      ],
+      "canonical_crosswalk_id": "lea_og_fellesskapet_uten_plikt",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "mira_og_musikken_i_hverdagen",
+      "path": "data/Civication/lifestory/continuations/mira_og_musikken_i_hverdagen.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 28,
+      "scene_days_expected": [
+        29,
+        30,
+        31
+      ],
+      "editorial_group": "longTermProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "mira_etter_nye_takter"
+      ],
+      "canonical_crosswalk_id": "mira_og_musikken_i_hverdagen",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "arvid_og_nokkelen_til_lokalet",
+      "path": "data/Civication/lifestory/continuations/arvid_og_nokkelen_til_lokalet.json",
+      "role_scope": "subkultur_gangster",
+      "after_day": 31,
+      "scene_days_expected": [
+        32,
+        33,
+        34
+      ],
+      "editorial_group": "lifeConsequencesProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "arvid_og_det_aapne_lokalet"
+      ],
+      "canonical_crosswalk_id": "arvid_og_nokkelen_til_lokalet",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_og_den_foerste_hypotesen",
+      "path": "data/Civication/lifestory/continuations/lea_og_den_foerste_hypotesen.json",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "after_day": 31,
+      "scene_days_expected": [
+        32,
+        33,
+        34
+      ],
+      "editorial_group": "lifeConsequencesProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "lea_og_sporsmaalene_som_gjenstaar"
+      ],
+      "canonical_crosswalk_id": "lea_og_den_foerste_hypotesen",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_og_foresporselen_om_honorar",
+      "path": "data/Civication/lifestory/continuations/lea_og_foresporselen_om_honorar.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 31,
+      "scene_days_expected": [
+        32,
+        33,
+        34
+      ],
+      "editorial_group": "lifeConsequencesProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "lea_og_kildene_i_skrivearbeidet"
+      ],
+      "canonical_crosswalk_id": "lea_og_foresporselen_om_honorar",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "lea_og_elins_vanskelige_uke",
+      "path": "data/Civication/lifestory/continuations/lea_og_elins_vanskelige_uke.json",
+      "role_scope": "naeringsliv_frilanser",
+      "after_day": 31,
+      "scene_days_expected": [
+        32,
+        33,
+        34
+      ],
+      "editorial_group": "lifeConsequencesProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "lea_og_fellesskapet_uten_plikt"
+      ],
+      "canonical_crosswalk_id": "lea_og_elins_vanskelige_uke",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    },
+    {
+      "id": "mira_og_invitasjonen_fra_musikeren",
+      "path": "data/Civication/lifestory/continuations/mira_og_invitasjonen_fra_musikeren.json",
+      "role_scope": "musikk_frilansmusiker",
+      "after_day": 31,
+      "scene_days_expected": [
+        32,
+        33,
+        34
+      ],
+      "editorial_group": "lifeConsequencesProduction",
+      "legacy_actor_context": null,
+      "first_step_from_thread": null,
+      "prerequisite_chapters": [
+        "mira_og_musikken_i_hverdagen"
+      ],
+      "canonical_crosswalk_id": "mira_og_invitasjonen_fra_musikeren",
+      "foundational_synopsis_id": null,
+      "editorial_status": "legacy_scene_pack_retained",
+      "people_specific_migration": "not_started",
+      "runtime_playability": "not_revalidated_for_new_model"
+    }
+  ],
+  "stages": [
+    {
+      "index": 1,
+      "after_day": 7,
+      "days": [
+        8,
+        10
+      ],
+      "title": "Første fortsettelse",
+      "arc": "Kontaktens første oppfølging",
+      "chapter_ids": [
+        "musikk_med_mira",
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea",
+        "miljo_med_arvid"
+      ],
+      "number": 5
+    },
+    {
+      "index": 2,
+      "after_day": 10,
+      "days": [
+        11,
+        13
+      ],
+      "title": "Ny beslutning",
+      "arc": "Nytt møte, forespørsel eller avgrensning",
+      "chapter_ids": [
+        "sideprosjekt_neste_steg",
+        "frilans_neste_steg",
+        "grunder_neste_steg",
+        "musikk_foresporselen",
+        "miljo_navnet_ditt"
+      ],
+      "number": 5
+    },
+    {
+      "index": 3,
+      "after_day": 13,
+      "days": [
+        14,
+        16
+      ],
+      "title": "Forsinket virkning",
+      "arc": "Den tidligere avgjørelsen vender tilbake",
+      "chapter_ids": [
+        "musikk_etter_foresporselen",
+        "sideprosjekt_etter_neste_steg",
+        "frilans_etter_neste_steg",
+        "grunder_etter_neste_steg",
+        "miljo_etter_invitasjonen"
+      ],
+      "number": 5
+    },
+    {
+      "index": 4,
+      "after_day": 16,
+      "days": [
+        17,
+        19
+      ],
+      "title": "Kryssende tråder",
+      "arc": "To tidligere uavhengige historier påvirker hverandre",
+      "chapter_ids": [
+        "sideprosjekt_kryss_med_mira",
+        "miljo_kryss_med_lea",
+        "musikk_kryss_med_arvid",
+        "miljo_kryss_med_frilans",
+        "musikk_kryss_med_grunder"
+      ],
+      "number": 5
+    },
+    {
+      "index": 5,
+      "after_day": 19,
+      "days": [
+        20,
+        22
+      ],
+      "title": "Flerpersonkapittel",
+      "arc": "Flere interesser og stemmer kommer til",
+      "chapter_ids": [
+        "miljo_etter_leas_program",
+        "musikk_etter_arvids_tekst",
+        "frilans_etter_miras_navn",
+        "frilans_etter_arvids_kreditering",
+        "miljo_etter_miras_lyd"
+      ],
+      "number": 5
+    },
+    {
+      "index": 6,
+      "after_day": 22,
+      "days": [
+        23,
+        25
+      ],
+      "title": "Relasjonelle valg",
+      "arc": "Hvem stoler på hvem og hvorfor?",
+      "chapter_ids": [
+        "lea_etter_arvids_ansvar",
+        "mira_etter_samtalen_med_lea",
+        "arvid_etter_leas_notat",
+        "arvid_etter_leas_grense",
+        "mira_etter_lydfilens_rykte"
+      ],
+      "number": 5
+    },
+    {
+      "index": 7,
+      "after_day": 25,
+      "days": [
+        26,
+        28
+      ],
+      "title": "Relasjonelle konsekvenser",
+      "arc": "Tillit og avstand gir forskjellig resultat",
+      "chapter_ids": [
+        "arvid_etter_leas_tillit",
+        "lea_etter_miras_vennskap",
+        "lea_etter_arvids_fortelling",
+        "lea_etter_arvids_avstand",
+        "mira_etter_nye_takter"
+      ],
+      "number": 5
+    },
+    {
+      "index": 8,
+      "after_day": 28,
+      "days": [
+        29,
+        31
+      ],
+      "title": "Langsiktig spor",
+      "arc": "Tidligere valg får praktiske følger",
+      "chapter_ids": [
+        "arvid_og_det_aapne_lokalet",
+        "lea_og_sporsmaalene_som_gjenstaar",
+        "lea_og_kildene_i_skrivearbeidet",
+        "lea_og_fellesskapet_uten_plikt",
+        "mira_og_musikken_i_hverdagen"
+      ],
+      "number": 5
+    },
+    {
+      "index": 9,
+      "after_day": 31,
+      "days": [
+        32,
+        34
+      ],
+      "title": "Nytt livskapittel",
+      "arc": "Ansvar, prosjekt og fellesskap endrer hverdagen",
+      "chapter_ids": [
+        "arvid_og_nokkelen_til_lokalet",
+        "lea_og_den_foerste_hypotesen",
+        "lea_og_foresporselen_om_honorar",
+        "lea_og_elins_vanskelige_uke",
+        "mira_og_invitasjonen_fra_musikeren"
+      ],
+      "number": 5
+    }
+  ]
+}
