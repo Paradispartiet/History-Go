@@ -344,7 +344,7 @@ for(const [i,q] of hotelItems.entries()){
   for(const src of q.source)assert.equal(hotelBrief.sources[src]?.review_status,'reviewed');
   if(i<14)assert.ok(['fact','context'].includes(q.question_type));
 }
-assert.ok(/1991(?:[–-]|\\s+til\\s+)2025/u.test(hotelItems[20].knowledge),'Hotel du Nord needs time-bounded former-office context');
+assert.ok(/1991(?:[–-]|\s+til\s+)2025/u.test(hotelItems[20].knowledge),'Hotel du Nord needs time-bounded former-office context');
 // The remaining two Næringsliv source packages use the same existing
 // canonical production contract. These banks are reviewed editorial inputs,
 // not independently registered playable quiz files.
