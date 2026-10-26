@@ -1,0 +1,31 @@
+name: Civication Wave F temporary diagnostics
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/civication-wave-f-diagnostics.yml"
+      - "tests/civication-000-generated-diagnostic.test.js"
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Generate canonical readiness delta
+        run: node tests/civication-000-generated-diagnostic.test.js
+      - name: Identify archived names without weakening the assertion
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tests/civication-lifestory-person-types.test.js')
+          s=p.read_text()
+          marker='    assert.ok(!/\\b(?:Lea|Mira|Arvid)\\b/.test(JSON.stringify(state.arkiv)));'
+          assert marker in s
+          diagnose='    for (const entry of state.arkiv.filter(e => /\\b(?:Lea|Mira|Arvid)\\b/.test(JSON.stringify(e)))) console.error("WAVEF_PERSON_DEBUG",type.id,id,JSON.stringify(entry));'
+          p.write_text(s.replace(marker,diagnose+'\n'+marker))
+          PY
+          node tests/civication-lifestory-person-types.test.js
