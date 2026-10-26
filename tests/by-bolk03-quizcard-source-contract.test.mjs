@@ -75,3 +75,61 @@ test('By-bolk 03 QuizCard source IDs, questions, answer keys, and Knowledge agre
     assert.ok(datePrompts <= 2, id + ': too many date trivia questions: ' + datePrompts);
   }
 });
+
+const regionalBy03Groups = {
+  akershus: ['tertitten_urskog_holandsbanen', 'kjeller_flyplass', 'hvitsten_sjobodene', 'son_ladested', 'holen_ladested'],
+  ostfold: ['orje_sluser_haldenkanalen', 'kornsjo_grensestasjon', 'brekke_sluser_haldenkanalen', 'stromsfoss_sluser', 'homlungen_fyr'],
+  buskerud: ['drammen_tollbod_havn', 'gamle_nesbyen', 'kroderbanen_kroderen_stasjon', 'riddergarden_honefoss', 'vikersund_stasjon_randsfjordbanen'],
+  innlandet: ['eina_stasjon_totenbanen', 'fagernes_stasjon_valdresbanen', 'hamar_stasjon_jernbanebyen', 'lillehammer_stasjon', 'skibladner_gjovik']
+};
+
+test('Regional By-bolk 03 has exactly 20 canonical source-backed QuizCards with Knowledge and balanced dates', () => {
+  const expected = Object.values(regionalBy03Groups).flat();
+  assert.equal(expected.length, 20);
+  assert.equal(new Set(expected).size, 20, 'regional place ID duplicated');
+
+  for (const [region, placeIds] of Object.entries(regionalBy03Groups)) {
+    const names = collections.filter(file => file.startsWith('regional_bolk03_' + region + '_v1_'));
+    assert.equal(names.length, 1, region + ': missing/duplicate collection in By manifest');
+    const collection = read('data/quizcards/by/' + names[0]);
+    assert.equal(collection.cards?.length, 5, region + ': should have five cards');
+    for (const placeId of placeIds) {
+      const matches = collection.cards.filter(card => card.targetId === placeId);
+      assert.equal(matches.length, 1, placeId + ': missing or duplicate card');
+      const card = matches[0];
+      const sourceFile = 'data/quiz/by/' + placeId + '_regional_v1_sets.json';
+      assert.equal(card.sourceFile, sourceFile, placeId + ': wrong quiz source');
+      assert.ok(manifest.some(set => set.targetId === placeId && set.file === sourceFile),
+        placeId + ': source missing from canonical quiz manifest');
+      const quiz = read(sourceFile);
+      const sourceQuestions = quiz.sets.flatMap(set => set.questions || []);
+      assert.equal(sourceQuestions.length, 10, placeId + ': quiz does not have ten questions');
+      assert.equal(card.questionCount, 10, placeId + ': card questionCount mismatch');
+      assert.equal(card.questions?.length, 10, placeId + ': card does not have ten questions');
+      assert.equal(card.answerKey?.length, 10, placeId + ': answer key does not have ten entries');
+      const sourceById = new Map(sourceQuestions.map(question => [question.id, question]));
+      const sourceQuestionIds = new Set();
+      let directDates = 0;
+      for (let index = 0; index < 10; index++) {
+        const question = card.questions[index];
+        const source = sourceById.get(question.sourceQuestionId);
+        assert.ok(source, placeId + ': invalid sourceQuestionId');
+        assert.ok(!sourceQuestionIds.has(source.id), placeId + ': repeated question');
+        sourceQuestionIds.add(source.id);
+        assert.equal(question.sourceQuizFile, sourceFile, placeId + ': source filename mismatch');
+        assert.equal(question.question, source.question, placeId + ': prompt differs from fullquiz');
+        assert.deepEqual(question.options, source.options, placeId + ': choices differ from fullquiz');
+        assert.equal(question.answer, source.answer, placeId + ': answer differs from fullquiz');
+        assert.equal(question.answerIndex, source.options.indexOf(source.answer), placeId + ': answerIndex mismatch');
+        assert.equal(question.knowledge, source.knowledge, placeId + ': explanation differs from fullquiz');
+        assert.equal(card.answerKey[index].answer, source.answer, placeId + ': key answer mismatch');
+        assert.ok(source.source_urls?.length, placeId + ': missing source reference');
+        assert.ok(source.knowledge_unit_ids?.length, placeId + ': canonical Knowledge ID is missing');
+        assert.ok(source.emne_id, placeId + ': emne ID is missing');
+        assert.ok(String(source.knowledge || '').length >= 35, placeId + ': explanation too short');
+        if (asksDate(question.question) || isYear(question.answer)) directDates++;
+      }
+      assert.ok(directDates <= 2, placeId + ': too many direct date/year questions (' + directDates + ')');
+    }
+  }
+});
