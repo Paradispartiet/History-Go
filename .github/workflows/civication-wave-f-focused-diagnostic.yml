@@ -36,7 +36,7 @@ jobs:
             for (const k of Object.keys(b)) { const v = changed(a[k], b[k]); if (v !== undefined) out[k] = v; }
             return out;
           }
-          const patch = changed({...before,positions:[]}, {...after,positions:[]});
+          const patch = changed({...before,positions:[]}, {...after,positions:[]}) || {};
           patch.positions = after.positions.flatMap((row, i) => {
             const delta = changed(before.positions[i], row);
             return delta === undefined ? [] : [{key:row.key,delta}];
