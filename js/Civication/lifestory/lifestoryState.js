@@ -424,7 +424,7 @@
     return state;
   }
 
-  /** @param {any} scene @param {any} person @param {any} [choice] @returns {boolean} */
+  /** @param {any} person @returns {string[]} */
   function authoredAliases(person) {
     const full = String(person?.navn || "").trim();
     const first = full.includes(",") ? full.split(",")[0].trim() : "";
