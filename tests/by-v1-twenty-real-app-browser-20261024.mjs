@@ -6,12 +6,22 @@ import http from 'node:http';
 import { chromium } from 'playwright';
 
 const ROOT=process.cwd();
-const IDS=[
+const OSLO_IDS=[
  'bislett','majorstuen_tbanestasjon','nationaltheatret_stasjon','voienvolden','akrobaten_gangbro',
  'barcode','carl_berner_plass','deichman_bjorvika','frogner','grorud',
  'holmlia','losaeter','okern','sagene','skoyen',
  'sorenga','sukkerbiten_badstulandsby','tjuvholmen','torshov','torshovparken'
 ];
+const REGIONAL_GROUPS={
+ akershus:['tertitten_urskog_holandsbanen','kjeller_flyplass','hvitsten_sjobodene','son_ladested','holen_ladested'],
+ ostfold:['orje_sluser_haldenkanalen','kornsjo_grensestasjon','brekke_sluser_haldenkanalen','stromsfoss_sluser','homlungen_fyr'],
+ buskerud:['drammen_tollbod_havn','gamle_nesbyen','kroderbanen_kroderen_stasjon','riddergarden_honefoss','vikersund_stasjon_randsfjordbanen'],
+ innlandet:['eina_stasjon_totenbanen','fagernes_stasjon_valdresbanen','hamar_stasjon_jernbanebyen','lillehammer_stasjon','skibladner_gjovik']
+};
+const BATCH=process.env.HG_BY_BATCH??'oslo';
+assert.ok(BATCH==='oslo'||BATCH==='regional03','HG_BY_BATCH must be oslo or regional03');
+const IDS=BATCH==='regional03'?Object.values(REGIONAL_GROUPS).flat():OSLO_IDS;
+const REGION_BY_ID=new Map(Object.entries(REGIONAL_GROUPS).flatMap(([region,ids])=>ids.map(id=>[id,region])));
 const shard=Number(process.env.HG_BY_SHARD??'0');
 assert.ok(Number.isInteger(shard)&&shard>=0&&shard<4,'HG_BY_SHARD must be 0, 1, 2 or 3');
 const targets=IDS.slice(shard*5,shard*5+5);
@@ -31,7 +41,8 @@ for(const id of targets){
  const rows=(quiz.sets||[]).flatMap(set=>set.questions||[]);
  assert.ok(rows.length>=10,id+' missing a usable fullquiz');
  quizById.set(id,new Map(rows.map(q=>[q.question,q])));
- const place=JSON.parse(fs.readFileSync('data/places/by/oslo/places/'+id+'.json','utf8'));
+ const placeFile=BATCH==='regional03'?'data/places/by/'+REGION_BY_ID.get(id)+'/'+id+'/'+id+'.json':'data/places/by/oslo/places/'+id+'.json';
+ const place=JSON.parse(fs.readFileSync(placeFile,'utf8'));
  const live=JSON.parse(fs.readFileSync('data/runtime/place-open/'+id+'.json','utf8')).place;
  assert.equal(place.id,id);
  assert.equal(live.id,id);
@@ -57,7 +68,7 @@ const server=http.createServer((req,res)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const base='http://127.0.0.1:'+server.address().port;
-const reportDir=path.join(ROOT,'artifacts','by-v1-20-browser','shard-'+shard);
+const reportDir=path.join(ROOT,'artifacts',BATCH==='regional03'?'by03-regional-browser':'by-v1-20-browser','shard-'+shard);
 fs.mkdirSync(reportDir,{recursive:true});
 let browser;
 const results=[];

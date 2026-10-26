@@ -3,12 +3,7 @@
   "categoryId": "by",
   "title": "By – topp 10 quizkort – batch 2",
   "cardFormatRule": "Ett kort per sted. Alle 10 spørsmål vises på samme side. Fasit ligger nederst i liten tekst.",
-  "sourceBasis": [
-    "places_by (25).json",
-    "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-    "emner_by_canonical_v4_5.json",
-    "methods_by_canonical_v4_5.json"
-  ],
+  "sourceBasis": "By-bolk 03: valgte eksisterende stedsspørsmål, Knowledge og kildereferanser følger kanoniske fullquizer. Karl Johans gates eldre fullquiz mangler direkte ekstern kilde per spørsmål og krever separat redaksjonell kildekontroll.",
   "cards": [
     {
       "card_id": "by_quizkort_topp10_batch2_radhusplassen",
@@ -300,285 +295,408 @@
       "categoryId": "by",
       "targetId": "ring_3",
       "title": "Ring 3",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 2,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva er Ring 3 i Oslo?",
+          "id": "ring_3_quiz_1",
+          "question": "Hva er Ring 3 først og fremst i Oslo?",
           "options": [
-            "En stor veiring og trafikkåre rundt indre by",
-            "En park foran Slottet",
-            "En liten handelsgate ved fjorden"
+            "Oslos ytre ringvei",
+            "En gågate i sentrum",
+            "En jernbanelinje gjennom byen"
           ],
-          "answer": "En stor veiring og trafikkåre rundt indre by",
+          "answer": "Oslos ytre ringvei",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q01",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
+          "sourceQuestionId": "ring_3_quiz_1",
+          "sourceQuizId": "by_ring_3_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
           "difficulty": 1,
-          "topic": "stedstype",
+          "question_type": "fact",
+          "knowledge": "Ring 3 er Oslos ytre ringvei og en av byens viktigste trafikkårer.",
+          "source": [
+            "places_by (17).json"
+          ],
           "emne_id": "em_by_infrastruktur_mobilitet",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_ring_3_er_oslos_ytre_rin_b004fad569",
+          "knowledge_unit_ids": [
+            "ku_by_ring_3_er_oslos_ytre_rin_b004fad569"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
+            "fakta",
             "sted",
-            "ring_3",
-            "stedstype"
+            "vei",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hvilket hovedtema passer best for Ring 3?",
+          "id": "ring_3_quiz_8",
+          "question": "I hvilken plantradisjon ble Ring 3 lagt opp som del av Oslos større veisystem?",
           "options": [
-            "Infrastruktur og mobilitet",
-            "Kulturbygg ved fjorden",
-            "Litterære salonger"
+            "Generalplanen for Oslo–Aker–Bærum",
+            "Middelalderbyens gatenett",
+            "Hagebyplanen fra 1915"
           ],
-          "answer": "Infrastruktur og mobilitet",
+          "answer": "Generalplanen for Oslo–Aker–Bærum",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q02",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
-          "difficulty": 1,
-          "topic": "emne",
-          "emne_id": "em_by_barrierer_forbindelser",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "ring_3_quiz_8",
+          "sourceQuizId": "by_ring_3_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Ring 3 ble planlagt i generalplanen for Oslo–Aker–Bærum og var del av en større modernistisk trafikktenkning.",
+          "source": [
+            "Oslo byleksikon"
+          ],
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_ring_3_ble_planlagt_i_ge_d8abe6ff5f",
+          "knowledge_unit_ids": [
+            "ku_by_ring_3_ble_planlagt_i_ge_d8abe6ff5f"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
+            "fakta",
             "sted",
-            "ring_3",
-            "emne"
+            "planhistorie",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hva gjør Ring 3 til en barriere i byen?",
+          "id": "ring_3_quiz_15",
+          "question": "Hva betyr det å si at Ring 3 er et eksempel på infrastruktur og mobilitet som emne?",
           "options": [
-            "Den store trafikkåren kan skille områder og gjøre kryssing vanskeligere",
-            "Den er en gågate uten trafikk",
-            "Den består bare av parker og benker"
+            "At veien organiserer hastighet, tilgang og kobling mellom store deler av byen",
+            "At den først og fremst er et kulturhus",
+            "At den bare er viktig som symbolsk monument"
           ],
-          "answer": "Den store trafikkåren kan skille områder og gjøre kryssing vanskeligere",
+          "answer": "At veien organiserer hastighet, tilgang og kobling mellom store deler av byen",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q03",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
-          "difficulty": 1,
-          "topic": "barriere",
+          "sourceQuestionId": "ring_3_quiz_15",
+          "sourceQuizId": "by_ring_3_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "knowledge": "Ring 3 er et tydelig case for emnet infrastruktur og mobilitet fordi den styrer flyt, kobling og tilgjengelighet i stor skala.",
+          "source": [
+            "emner_by (28).json",
+            "places_by (17).json"
+          ],
           "emne_id": "em_by_infrastruktur_mobilitet",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_ring_3_er_et_tydelig_cas_a04224be3e",
+          "knowledge_unit_ids": [
+            "ku_by_ring_3_er_et_tydelig_cas_a04224be3e"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "ring_3",
-            "barriere"
+            "faglig",
+            "emne",
+            "mobilitet",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hva betyr barriere i byanalyse?",
+          "id": "ring_3_quiz_22",
+          "question": "Hva er den mest kjente trafikale utfordringen ved Ring 3 i praksis?",
           "options": [
-            "En fysisk eller opplevd hindring som påvirker bevegelse og forbindelse",
-            "Et kunstverk i et bibliotek",
-            "En type kafédrift"
+            "At små hendelser og veiarbeid raskt kan skape lange køer",
+            "At veien sjelden brukes",
+            "At den mangler forbindelse til andre hovedveier"
           ],
-          "answer": "En fysisk eller opplevd hindring som påvirker bevegelse og forbindelse",
+          "answer": "At små hendelser og veiarbeid raskt kan skape lange køer",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q04",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
-          "difficulty": 1,
-          "topic": "begrep",
-          "emne_id": "em_by_barrierer_forbindelser",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "ring_3_quiz_22",
+          "sourceQuizId": "by_ring_3_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Ring 3 er så sentral og belastet at selv mindre stenginger eller feltreduksjoner raskt får store følger for trafikkavviklingen.",
+          "source": [
+            "Statens vegvesen"
+          ],
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_ring_3_er_sa_sentral_og__351cfcb914",
+          "knowledge_unit_ids": [
+            "ku_by_ring_3_er_sa_sentral_og__351cfcb914"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
             "sted",
-            "ring_3",
-            "begrep"
+            "bruk",
+            "trafikk",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hva er Ring 3 samtidig, i tillegg til barriere?",
+          "id": "ring_3_quiz_29",
+          "question": "Hva er den mest presise faglige lesningen av Ring 3 som barriere?",
           "options": [
-            "En forbindelse som binder store deler av byen sammen",
-            "En historisk basar",
-            "Et renessansetorg"
+            "At veien kan gi rask flyt for biler samtidig som den øker omvei og separasjon for andre brukere",
+            "At den alltid gjør alle reiser kortere for alle",
+            "At den bare har symbolsk betydning og ingen fysisk effekt"
           ],
-          "answer": "En forbindelse som binder store deler av byen sammen",
+          "answer": "At veien kan gi rask flyt for biler samtidig som den øker omvei og separasjon for andre brukere",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q05",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
-          "difficulty": 1,
-          "topic": "forbindelse",
-          "emne_id": "em_by_infrastruktur_mobilitet",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "ring_3_quiz_29",
+          "sourceQuizId": "by_ring_3_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "knowledge": "Ring 3 illustrerer hvordan samme infrastruktur kan være effektiv i én skala og problematisk i en annen, særlig for kryssing og lokal sammenheng.",
+          "source": [
+            "emner_by (28).json",
+            "places_by (17).json"
+          ],
+          "emne_id": "em_by_barrierer_forbindelser",
+          "primary_knowledge_unit_id": "ku_by_ring_3_illustrerer_hvord_83ea2edd21",
+          "knowledge_unit_ids": [
+            "ku_by_ring_3_illustrerer_hvord_83ea2edd21"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "ring_3",
-            "forbindelse"
+            "faglig",
+            "emne",
+            "konflikt",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hvorfor er Ring 3 viktig for å forstå Oslo?",
+          "id": "ring_3_quiz_36",
+          "question": "Hvilket begrep beskriver best en fysisk struktur som skiller områder fra hverandre og gjør kryssing vanskelig?",
           "options": [
-            "Den viser hvordan bilbasert infrastruktur former byens rom og hverdagsbevegelser",
-            "Den viser bare skulpturhistorie",
-            "Den forklarer først og fremst forlagsbransjen"
+            "Barriere",
+            "Møteplass",
+            "Promenade"
           ],
-          "answer": "Den viser hvordan bilbasert infrastruktur former byens rom og hverdagsbevegelser",
+          "answer": "Barriere",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q06",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
-          "difficulty": 1,
-          "topic": "analyse",
+          "sourceQuestionId": "ring_3_quiz_36",
+          "sourceQuizId": "by_ring_3_set_6_q1",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
+          "difficulty": 2,
+          "question_type": "concept",
+          "knowledge": "I emnet barrierer og forbindelser er barriere et grunnbegrep for strukturer som skaper brudd, omvei eller separasjon.",
+          "source": [
+            "emner_by (28).json"
+          ],
           "emne_id": "em_by_barrierer_forbindelser",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_i_emnet_barrierer_og_for_e8c0557cf6",
+          "knowledge_unit_ids": [
+            "ku_by_i_emnet_barrierer_og_for_e8c0557cf6"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "ring_3",
-            "analyse"
+            "begrep",
+            "terminologi",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hva bør man observere ved Ring 3?",
+          "id": "ring_3_quiz_2",
+          "question": "Hva er et eldre navn på Ring 3?",
           "options": [
-            "Kryssinger, støynivå, ganglinjer og hvor trafikken lager avstand",
-            "Bokhyller og lesesaler",
-            "Uteservering ved fjorden"
+            "Store Ringvei",
+            "Kongeveien",
+            "Industriringen"
           ],
-          "answer": "Kryssinger, støynivå, ganglinjer og hvor trafikken lager avstand",
+          "answer": "Store Ringvei",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q07",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
-          "difficulty": 2,
-          "topic": "observasjon",
+          "sourceQuestionId": "ring_3_quiz_2",
+          "sourceQuizId": "by_ring_3_set_1_q2",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
+          "difficulty": 1,
+          "question_type": "fact",
+          "knowledge": "Ring 3 har også vært kjent som Store Ringvei.",
+          "source": [
+            "Oslo byleksikon"
+          ],
           "emne_id": "em_by_infrastruktur_mobilitet",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_ring_3_har_ogsa_v_rt_kje_442aed25f7",
+          "knowledge_unit_ids": [
+            "ku_by_ring_3_har_ogsa_v_rt_kje_442aed25f7"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
+            "fakta",
             "sted",
-            "ring_3",
-            "observasjon"
+            "navn",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hva er en typisk konflikt rundt store veier som Ring 3?",
+          "id": "ring_3_quiz_9",
+          "question": "Når ble traseen til Ring 3 stukket ut?",
           "options": [
-            "Framkommelighet for trafikk versus nærmiljø, støy og trygg ferdsel",
-            "Bibliotekåpning versus utlån",
-            "Kunstmuseum versus galleri"
+            "1945",
+            "1910",
+            "1978"
           ],
-          "answer": "Framkommelighet for trafikk versus nærmiljø, støy og trygg ferdsel",
+          "answer": "1945",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q08",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
+          "sourceQuestionId": "ring_3_quiz_9",
+          "sourceQuizId": "by_ring_3_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
           "difficulty": 2,
-          "topic": "konflikt",
-          "emne_id": "em_by_barrierer_forbindelser",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Traseen for Ring 3 ble stukket ut i 1945, selv om veien senere ble utbygd over lang tid.",
+          "source": [
+            "Oslo byleksikon"
+          ],
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_traseen_for_ring_3_ble_s_e8fab7b8f8",
+          "knowledge_unit_ids": [
+            "ku_by_traseen_for_ring_3_ble_s_e8fab7b8f8"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
+            "fakta",
             "sted",
-            "ring_3",
-            "konflikt"
+            "historie",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hvilket fagbegrep fra byfilene passer Ring 3 særlig godt til?",
+          "id": "ring_3_quiz_23",
+          "question": "Omtrent hvor mange kjøretøy i døgnet ble det vist til på en sentral Ring 3-strekning ved Gjerdrums vei-brua?",
           "options": [
-            "Barrierer og forbindelser",
-            "Lavterskel møteplasser",
-            "Symbolsk makt og representasjon"
+            "Omtrent 60 000",
+            "Omtrent 8 000",
+            "Omtrent 200 000"
           ],
-          "answer": "Barrierer og forbindelser",
+          "answer": "Omtrent 60 000",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q09",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
-          "difficulty": 2,
-          "topic": "fagbegrep",
+          "sourceQuestionId": "ring_3_quiz_23",
+          "sourceQuizId": "by_ring_3_set_4_q2",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
+          "difficulty": 3,
+          "question_type": "fact",
+          "knowledge": "Statens vegvesen viste til en døgntrafikk på rundt 60 000 kjøretøy på en sentral Ring 3-strekning ved Gjerdrums vei-brua.",
+          "source": [
+            "Statens vegvesen 2024"
+          ],
           "emne_id": "em_by_infrastruktur_mobilitet",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_statens_vegvesen_viste_t_da8e24d8f7",
+          "knowledge_unit_ids": [
+            "ku_by_statens_vegvesen_viste_t_da8e24d8f7"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
             "sted",
-            "ring_3",
-            "fagbegrep"
+            "trafikk",
+            "tall",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Ring 3 i steddataene?",
+          "id": "ring_3_quiz_30",
+          "question": "Når blir Ring 3 et eksempel på at tilgjengelighet bare er formell og ikke reell?",
           "options": [
-            "1970",
-            "1915",
-            "2008"
+            "Når en overgang finnes i teorien, men ligger så langt unna eller er så ubehagelig at mange i praksis ikke bruker den",
+            "Når alle kan krysse rett over hvor som helst",
+            "Når det er gratis å kjøre der"
           ],
-          "answer": "1970",
+          "answer": "Når en overgang finnes i teorien, men ligger så langt unna eller er så ubehagelig at mange i praksis ikke bruker den",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_ring_3_q10",
-          "sourceQuizId": "by_quizkort_batch2_ring_3",
-          "difficulty": 2,
-          "topic": "årstall",
-          "emne_id": "em_by_barrierer_forbindelser",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "ring_3_quiz_30",
+          "sourceQuizId": "by_ring_3_set_5_q2",
+          "sourceQuizFile": "data/quiz/by/ring_3_sets.json",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "knowledge": "Emnet infrastruktur og mobilitet skiller mellom formell og reell tilgjengelighet. Ring 3 kan ha overganger uten at de oppleves som gode eller enkle å bruke.",
+          "source": [
+            "emner_by (24).json",
+            "emner_by (28).json"
+          ],
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_emnet_infrastruktur_og_m_7396641047",
+          "knowledge_unit_ids": [
+            "ku_by_emnet_infrastruktur_og_m_7396641047",
+            "ku_by_ring_3_kan_ha_overganger_090152b31a"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "ring_3",
-            "årstall"
+            "faglig",
+            "emne",
+            "tilgang",
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "En stor veiring og trafikkåre rundt indre by"
+          "answer": "Oslos ytre ringvei",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Infrastruktur og mobilitet"
+          "answer": "Generalplanen for Oslo–Aker–Bærum",
+          "answerIndex": 0
         },
         {
           "number": 3,
-          "answer": "Den store trafikkåren kan skille områder og gjøre kryssing vanskeligere"
+          "answer": "At veien organiserer hastighet, tilgang og kobling mellom store deler av byen",
+          "answerIndex": 0
         },
         {
           "number": 4,
-          "answer": "En fysisk eller opplevd hindring som påvirker bevegelse og forbindelse"
+          "answer": "At små hendelser og veiarbeid raskt kan skape lange køer",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "En forbindelse som binder store deler av byen sammen"
+          "answer": "At veien kan gi rask flyt for biler samtidig som den øker omvei og separasjon for andre brukere",
+          "answerIndex": 0
         },
         {
           "number": 6,
-          "answer": "Den viser hvordan bilbasert infrastruktur former byens rom og hverdagsbevegelser"
+          "answer": "Barriere",
+          "answerIndex": 0
         },
         {
           "number": 7,
-          "answer": "Kryssinger, støynivå, ganglinjer og hvor trafikken lager avstand"
+          "answer": "Store Ringvei",
+          "answerIndex": 0
         },
         {
           "number": 8,
-          "answer": "Framkommelighet for trafikk versus nærmiljø, støy og trygg ferdsel"
+          "answer": "1945",
+          "answerIndex": 0
         },
         {
           "number": 9,
-          "answer": "Barrierer og forbindelser"
+          "answer": "Omtrent 60 000",
+          "answerIndex": 0
         },
         {
           "number": 10,
-          "answer": "1970"
+          "answer": "Når en overgang finnes i teorien, men ligger så langt unna eller er så ubehagelig at mange i praksis ikke bruker den",
+          "answerIndex": 0
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/ring_3_sets.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch2_trikk_17_18",
@@ -1155,285 +1273,467 @@
       "categoryId": "by",
       "targetId": "majorstuen_krysset",
       "title": "Majorstuen krysset",
-      "subtitle": "Topp 10 quizkort",
+      "subtitle": "Ti stedsspesifikke spørsmål fra fullquizen",
       "order": 5,
       "format": "single_surface_top10_with_answer_key",
       "questionCount": 10,
       "questions": [
         {
           "number": 1,
-          "question": "Hva slags byrom er Majorstuen-krysset?",
+          "id": "majorstua_quiz_1_1",
+          "question": "Hvor kommer navnet Majorstua fra?",
           "options": [
-            "Et travelt kryss og transportpunkt",
-            "Et stille klosterområde",
-            "En fjordpromenade"
+            "Løkkehuset Majorstuen under Nedre Blindern",
+            "En militærleir ved Slottsparken",
+            "En eldre stasjon ved Frogner"
           ],
-          "answer": "Et travelt kryss og transportpunkt",
+          "answer": "Løkkehuset Majorstuen under Nedre Blindern",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q01",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
-          "difficulty": 1,
-          "topic": "stedstype",
-          "emne_id": "em_by_flaskehalser_kryss_friksjon",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "majorstua_quiz_1_1",
+          "sourceQuizId": "by_majorstua_set_1_q1",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Navnet stammer fra løkkehuset Majorstuen under Nedre Blindern. Løkken ble knyttet til major Michael Wilhelm Sundt, og huset ga senere navn til hele strøket.",
+          "source": [
+            "https://snl.no/Majorstua",
+            "https://oslobyleksikon.no/side/Majorstuen_%28l%C3%B8kke%29"
+          ],
+          "source_urls": [
+            "https://snl.no/Majorstua",
+            "https://oslobyleksikon.no/side/Majorstuen_%28l%C3%B8kke%29"
+          ],
+          "claim_basis": "external_historical_claim",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_navnet_stammer_fra_l_kke_943e3b6f40",
+          "knowledge_unit_ids": [
+            "ku_by_navnet_stammer_fra_l_kke_943e3b6f40",
+            "ku_by_l_kken_ble_knyttet_til_m_fdd639ff0a"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "stedstype"
+            "majorstua",
+            "navn",
+            "løkke",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 2,
-          "question": "Hvilket byemne passer særlig til Majorstuen-krysset?",
+          "id": "majorstua_quiz_2_1",
+          "question": "Hva lå tidligere der Majorstuhusets søndre fløy står i dag?",
           "options": [
-            "Flaskehalser, kryss og friksjon",
-            "Basararkitektur",
-            "Symbolsk kongemakt"
+            "Det gamle løkkehuset Majorstuen",
+            "En middelalderkirke med kirkegård",
+            "Christianias første rådhus"
           ],
-          "answer": "Flaskehalser, kryss og friksjon",
+          "answer": "Det gamle løkkehuset Majorstuen",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q02",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
-          "difficulty": 1,
-          "topic": "emne",
-          "emne_id": "em_by_gangstrommer_snarveier",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "majorstua_quiz_2_1",
+          "sourceQuizId": "by_majorstua_set_2_q1",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
+          "difficulty": 2,
+          "question_type": "fact",
+          "knowledge": "Det gamle Majorstuen-huset lå omtrent der søndre fløy av Majorstuhuset står i dag. Da huset ble revet i 1913, fant man majorens initialer i vinduslemmene.",
+          "source": [
+            "https://oslobyleksikon.no/side/Majorstuen_%28l%C3%B8kke%29",
+            "https://oslobyleksikon.no/side/Majorstuhuset"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Majorstuen_%28l%C3%B8kke%29",
+            "https://oslobyleksikon.no/side/Majorstuhuset"
+          ],
+          "claim_basis": "external_historical_claim",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_det_gamle_majorstuen_hus_2d178ba4bb",
+          "knowledge_unit_ids": [
+            "ku_by_det_gamle_majorstuen_hus_2d178ba4bb",
+            "ku_by_da_huset_ble_revet_i_191_bab9ca3f7d"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "emne"
+            "majorstua",
+            "majorstuhuset",
+            "løkke",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 3,
-          "question": "Hva betyr friksjon i et bykryss?",
+          "id": "majorstua_quiz_3_1",
+          "question": "Hva preger Majorstua mest i hverdagen?",
           "options": [
-            "At mange bevegelser møtes og kan skape trengsel, venting og konflikter",
-            "At stedet er uten bevegelse",
-            "At bygningene er laget av tre"
+            "Bytte, handel og kontinuerlig gjennomstrømning",
+            "Rolig parkopphold og sammenhengende grøntområder",
+            "Boligliv uten særlig offentlig aktivitet"
           ],
-          "answer": "At mange bevegelser møtes og kan skape trengsel, venting og konflikter",
+          "answer": "Bytte, handel og kontinuerlig gjennomstrømning",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q03",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
-          "difficulty": 1,
-          "topic": "begrep",
-          "emne_id": "em_by_flaskehalser_kryss_friksjon",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "majorstua_quiz_3_1",
+          "sourceQuizId": "by_majorstua_set_3_q1",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
+          "difficulty": 2,
+          "question_type": "usage",
+          "knowledge": "Majorstua fungerer mindre som rolig oppholdsplass enn som et sted der handel, bytte og bevegelse hele tiden ligger oppå hverandre.",
+          "source": [
+            "https://snl.no/Majorstua",
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://oslobyleksikon.no/side/Bogstadveien"
+          ],
+          "source_urls": [
+            "https://snl.no/Majorstua",
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://oslobyleksikon.no/side/Bogstadveien"
+          ],
+          "claim_basis": "external_historical_claim",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
+          "primary_knowledge_unit_id": "ku_by_majorstua_fungerer_mindr_4af0f0c42a",
+          "knowledge_unit_ids": [
+            "ku_by_majorstua_fungerer_mindr_4af0f0c42a"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "begrep"
+            "majorstua",
+            "hverdagsbruk",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 4,
-          "question": "Hva bør man observere i Majorstuen-krysset?",
+          "id": "majorstua_quiz_4_1",
+          "question": "Hva gjør Majorstua til et tydelig orienteringspunkt i byen?",
           "options": [
-            "Gangstrømmer, venting, kryssing, kollektivtrafikk og konfliktpunkter",
-            "Bare utsikten mot fjorden",
-            "Bare inneklimaet i en lesesal"
+            "Flere reiseretninger og transportlinjer møtes i ett knutepunkt",
+            "Alle reisemåter bruker samme plattform og samme retning",
+            "Området mangler forbindelser til resten av byen"
           ],
-          "answer": "Gangstrømmer, venting, kryssing, kollektivtrafikk og konfliktpunkter",
+          "answer": "Flere reiseretninger og transportlinjer møtes i ett knutepunkt",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q04",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
-          "difficulty": 1,
-          "topic": "observasjon",
-          "emne_id": "em_by_gangstrommer_snarveier",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "majorstua_quiz_4_1",
+          "sourceQuizId": "by_majorstua_set_4_q1",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
+          "difficulty": 2,
+          "question_type": "concept",
+          "knowledge": "Lynch er spesielt relevant fordi Majorstua fungerer som node, med sterke linjer, retninger og lett gjenkjennelig struktur i byens mentale kart.",
+          "source": [
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://snl.no/Majorstua"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://snl.no/Majorstua"
+          ],
+          "claim_basis": "external_historical_claim",
+          "emne_id": "em_by_barrierer_forbindelser",
+          "primary_knowledge_unit_id": "ku_by_lynch_er_spesielt_releva_90e6819e36",
+          "knowledge_unit_ids": [
+            "ku_by_lynch_er_spesielt_releva_90e6819e36"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "observasjon"
+            "kevin_lynch",
+            "majorstua",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 5,
-          "question": "Hvorfor er Majorstuen-krysset viktig i hverdagsbyen?",
+          "id": "majorstua_quiz_5_1",
+          "question": "Hvordan skaper Majorstua både forbindelser og barrierer?",
           "options": [
-            "Mange reiser, bytter og ærender samles på ett sted",
-            "Det er stengt for publikum",
-            "Det brukes bare til nasjonaldagsfeiring"
+            "Mange linjer møtes, mens trafikk og kryssinger skaper friksjon",
+            "Alle reisende følger én rett linje uten kryss eller forsinkelser",
+            "Området mangler både kollektivtrafikk og gjennomgangstrafikk"
           ],
-          "answer": "Mange reiser, bytter og ærender samles på ett sted",
+          "answer": "Mange linjer møtes, mens trafikk og kryssinger skaper friksjon",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q05",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
-          "difficulty": 1,
-          "topic": "hverdagsby",
-          "emne_id": "em_by_flaskehalser_kryss_friksjon",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "majorstua_quiz_5_1",
+          "sourceQuizId": "by_majorstua_set_5_q1",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
+          "difficulty": 2,
+          "question_type": "analysis",
+          "knowledge": "Majorstua viser hvordan forbindelser ikke bare er positive. Der systemene møtes, oppstår også friksjon, venting og små barrierer i hverdagen.",
+          "source": [
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://snl.no/Majorstua"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://snl.no/Majorstua"
+          ],
+          "claim_basis": "external_historical_claim",
+          "emne_id": "em_by_barrierer_forbindelser",
+          "primary_knowledge_unit_id": "ku_by_majorstua_viser_hvordan__7948694bcf",
+          "knowledge_unit_ids": [
+            "ku_by_majorstua_viser_hvordan__7948694bcf",
+            "ku_by_der_systemene_m_tes_opps_7e335f8700"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "hverdagsby"
+            "majorstua",
+            "barrierer",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 6,
-          "question": "Hva er et typisk problem i store kryss?",
+          "id": "majorstua_quiz_6_1",
+          "question": "Hva kjennetegner forbindelsene på Majorstua?",
           "options": [
-            "Utydelige ganglinjer, trengsel og konkurranse mellom trafikkformer",
-            "For mange stille lesesoner",
-            "Mangel på all infrastruktur"
+            "Mange transportlinjer møtes, men kryssinger og trengsel skaper friksjon",
+            "Én transportlinje går gjennom området uten overgangsmuligheter",
+            "Fotgjengere er skilt helt fra butikker og kollektivtrafikk"
           ],
-          "answer": "Utydelige ganglinjer, trengsel og konkurranse mellom trafikkformer",
+          "answer": "Mange transportlinjer møtes, men kryssinger og trengsel skaper friksjon",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q06",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
-          "difficulty": 1,
-          "topic": "problem",
-          "emne_id": "em_by_gangstrommer_snarveier",
-          "method_id": "met_feltobservasjon",
+          "sourceQuestionId": "majorstua_quiz_6_1",
+          "sourceQuizId": "by_majorstua_set_6_q1",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
+          "difficulty": 2,
+          "question_type": "comparison",
+          "knowledge": "Majorstua er et klassisk case for barrierer og forbindelser fordi kobling og friksjon opptrer samtidig i samme rom.",
+          "source": [
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://snl.no/Majorstua"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://snl.no/Majorstua"
+          ],
+          "claim_basis": "external_historical_claim",
+          "emne_id": "em_by_barrierer_forbindelser",
+          "primary_knowledge_unit_id": "ku_by_majorstua_er_et_klassisk_10a5229467",
+          "knowledge_unit_ids": [
+            "ku_by_majorstua_er_et_klassisk_10a5229467"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "problem"
+            "majorstua",
+            "emne",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 7,
-          "question": "Hva er samtidig en styrke ved slike kryss?",
+          "id": "majorstua_quiz_7_1",
+          "question": "Hva kjennetegner offentligheten på Majorstua?",
           "options": [
-            "De binder mange ruter, folk og funksjoner sammen",
-            "De hindrer all bevegelse",
-            "De gjør byrom unødvendige"
+            "Mange korte møter mellom fremmede som er på vei videre",
+            "Et lukket miljø der bare fastboende får oppholde seg",
+            "Et stille område uten handel, venting eller gjennomgang"
           ],
-          "answer": "De binder mange ruter, folk og funksjoner sammen",
+          "answer": "Mange korte møter mellom fremmede som er på vei videre",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q07",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
+          "sourceQuestionId": "majorstua_quiz_7_1",
+          "sourceQuizId": "by_majorstua_set_7_q1",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
           "difficulty": 2,
-          "topic": "styrke",
-          "emne_id": "em_by_flaskehalser_kryss_friksjon",
-          "method_id": "met_feltobservasjon",
+          "question_type": "concept",
+          "knowledge": "Sennett er relevant fordi Majorstua samler fremmede i et offentlig rom som ikke er rolig, men fullt av skift, avbrudd og tett samvær.",
+          "source": [
+            "https://snl.no/Majorstua",
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon"
+          ],
+          "source_urls": [
+            "https://snl.no/Majorstua",
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon"
+          ],
+          "claim_basis": "external_historical_claim",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "primary_knowledge_unit_id": "ku_by_sennett_er_relevant_ford_f6b0a18ac3",
+          "knowledge_unit_ids": [
+            "ku_by_sennett_er_relevant_ford_f6b0a18ac3"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "styrke"
+            "richard_sennett",
+            "majorstua",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 8,
-          "question": "Hva betyr snarvei i denne sammenhengen?",
+          "id": "majorstua_quiz_1_2",
+          "question": "Hvordan var området rundt Majorstua før jernbane, trikk og murgårder?",
           "options": [
-            "En praktisk rute folk faktisk bruker for å spare tid eller unngå hindringer",
-            "En type bokhandel",
-            "En fasadetype"
+            "Et åpent utkantsområde med løkkehus og turmål",
+            "Et tett industriområde med fabrikker og kaier",
+            "Et administrativt sentrum med offentlige kontorer"
           ],
-          "answer": "En praktisk rute folk faktisk bruker for å spare tid eller unngå hindringer",
+          "answer": "Et åpent utkantsområde med løkkehus og turmål",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q08",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
+          "sourceQuestionId": "majorstua_quiz_1_2",
+          "sourceQuizId": "by_majorstua_set_1_q2",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
           "difficulty": 2,
-          "topic": "begrep",
-          "emne_id": "em_by_gangstrommer_snarveier",
-          "method_id": "met_feltobservasjon",
+          "question_type": "context",
+          "knowledge": "Løkkehuset Majorstuen var et populært mål for spaserende Kristiania-borgere. Før kollektivutbygging og murgårdsvekst var området mer utkantslig og landskapsnært.",
+          "source": [
+            "https://oslobyleksikon.no/side/Majorstuen_%28l%C3%B8kke%29",
+            "https://snl.no/Majorstua"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Majorstuen_%28l%C3%B8kke%29",
+            "https://snl.no/Majorstua"
+          ],
+          "claim_basis": "external_historical_claim",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "primary_knowledge_unit_id": "ku_by_l_kkehuset_majorstuen_va_ccc846757d",
+          "knowledge_unit_ids": [
+            "ku_by_l_kkehuset_majorstuen_va_ccc846757d",
+            "ku_by_f_r_kollektivutbygging_o_0ce3c489c3"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "begrep"
+            "majorstua",
+            "før",
+            "løkke",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 9,
-          "question": "Hvilken analyse passer Majorstuen-krysset?",
+          "id": "majorstua_quiz_2_2",
+          "question": "Når kom den elektriske sporveien til Majorstuen fra Jernbanetorget?",
           "options": [
-            "Hvordan infrastruktur organiserer kroppslig bevegelse i hverdagen",
-            "Hvordan litterære priser deles ut",
-            "Hvordan havnefronten bygges ut"
+            "1894",
+            "1908",
+            "1928"
           ],
-          "answer": "Hvordan infrastruktur organiserer kroppslig bevegelse i hverdagen",
+          "answer": "1894",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q09",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
+          "sourceQuestionId": "majorstua_quiz_2_2",
+          "sourceQuizId": "by_majorstua_set_2_q2",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
           "difficulty": 2,
-          "topic": "analyse",
-          "emne_id": "em_by_flaskehalser_kryss_friksjon",
-          "method_id": "met_feltobservasjon",
+          "question_type": "fact",
+          "knowledge": "Den første elektriske sporveilinjen i Kristiania gikk i 1894 fra Jernbanetorget via Bogstadveien til Majorstuen. Det var avgjørende for områdets vekst.",
+          "source": [
+            "https://oslobyleksikon.no/index.php/Trikken",
+            "https://oslobyleksikon.no/side/Bogstadveien"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/index.php/Trikken",
+            "https://oslobyleksikon.no/side/Bogstadveien"
+          ],
+          "claim_basis": "external_historical_claim",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "primary_knowledge_unit_id": "ku_by_den_f_rste_elektriske_sp_63fe32701b",
+          "knowledge_unit_ids": [
+            "ku_by_den_f_rste_elektriske_sp_63fe32701b",
+            "ku_by_det_var_avgj_rende_for_o_362e265509"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "analyse"
+            "majorstua",
+            "trikk",
+            "1894",
+            "by_bolk03_kildekoblet_v1"
           ]
         },
         {
           "number": 10,
-          "question": "Hvilket årstall er registrert for Majorstuen-krysset?",
+          "id": "majorstua_quiz_3_2",
+          "question": "Hva merker mange når de bytter mellom trikk, T-bane og fortau på Majorstua?",
           "options": [
-            "1930",
-            "2015",
-            "1848"
+            "De må velge raskt mellom retninger, signaler og folkemengder",
+            "De går gjennom et stille område nesten uten andre mennesker",
+            "De følger én sammenhengende plattform uten kryssinger"
           ],
-          "answer": "1930",
+          "answer": "De må velge raskt mellom retninger, signaler og folkemengder",
           "answerIndex": 0,
-          "sourceQuestionId": "by_quizkort_batch2_majorstuen_krysset_q10",
-          "sourceQuizId": "by_quizkort_batch2_majorstuen_krysset",
+          "sourceQuestionId": "majorstua_quiz_3_2",
+          "sourceQuizId": "by_majorstua_set_3_q2",
+          "sourceQuizFile": "data/quiz/by/majorstua_sets.json",
           "difficulty": 2,
-          "topic": "årstall",
+          "question_type": "observation",
+          "knowledge": "Majorstua er et sted for små beslutninger i fart: plattform, lyskryss, fortau, butikkinngang og ny retning følger tett på hverandre.",
+          "source": [
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://oslobyleksikon.no/side/Bogstadveien"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Majorstuen_stasjon",
+            "https://oslobyleksikon.no/side/Bogstadveien"
+          ],
+          "claim_basis": "external_historical_claim",
           "emne_id": "em_by_gangstrommer_snarveier",
-          "method_id": "met_feltobservasjon",
+          "primary_knowledge_unit_id": "ku_by_majorstua_er_et_sted_for_dd3dee4583",
+          "knowledge_unit_ids": [
+            "ku_by_majorstua_er_et_sted_for_dd3dee4583"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_contract_version": 1,
           "tags": [
-            "by",
-            "sted",
-            "majorstuen_krysset",
-            "årstall"
+            "majorstua",
+            "kropp",
+            "gangstrøm",
+            "by_bolk03_kildekoblet_v1"
           ]
         }
       ],
       "answerKey": [
         {
           "number": 1,
-          "answer": "Et travelt kryss og transportpunkt"
+          "answer": "Løkkehuset Majorstuen under Nedre Blindern",
+          "answerIndex": 0
         },
         {
           "number": 2,
-          "answer": "Flaskehalser, kryss og friksjon"
+          "answer": "Det gamle løkkehuset Majorstuen",
+          "answerIndex": 0
         },
         {
           "number": 3,
-          "answer": "At mange bevegelser møtes og kan skape trengsel, venting og konflikter"
+          "answer": "Bytte, handel og kontinuerlig gjennomstrømning",
+          "answerIndex": 0
         },
         {
           "number": 4,
-          "answer": "Gangstrømmer, venting, kryssing, kollektivtrafikk og konfliktpunkter"
+          "answer": "Flere reiseretninger og transportlinjer møtes i ett knutepunkt",
+          "answerIndex": 0
         },
         {
           "number": 5,
-          "answer": "Mange reiser, bytter og ærender samles på ett sted"
+          "answer": "Mange linjer møtes, mens trafikk og kryssinger skaper friksjon",
+          "answerIndex": 0
         },
         {
           "number": 6,
-          "answer": "Utydelige ganglinjer, trengsel og konkurranse mellom trafikkformer"
+          "answer": "Mange transportlinjer møtes, men kryssinger og trengsel skaper friksjon",
+          "answerIndex": 0
         },
         {
           "number": 7,
-          "answer": "De binder mange ruter, folk og funksjoner sammen"
+          "answer": "Mange korte møter mellom fremmede som er på vei videre",
+          "answerIndex": 0
         },
         {
           "number": 8,
-          "answer": "En praktisk rute folk faktisk bruker for å spare tid eller unngå hindringer"
+          "answer": "Et åpent utkantsområde med løkkehus og turmål",
+          "answerIndex": 0
         },
         {
           "number": 9,
-          "answer": "Hvordan infrastruktur organiserer kroppslig bevegelse i hverdagen"
+          "answer": "1894",
+          "answerIndex": 0
         },
         {
           "number": 10,
-          "answer": "1930"
+          "answer": "De må velge raskt mellom retninger, signaler og folkemengder",
+          "answerIndex": 0
         }
       ],
-      "sourceFile": "places_by (25).json"
+      "sourceFile": "data/quiz/by/majorstua_sets.json"
     },
     {
       "card_id": "by_quizkort_topp10_batch2_st_hanshaugen_park",
