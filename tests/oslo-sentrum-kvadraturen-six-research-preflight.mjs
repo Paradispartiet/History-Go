@@ -429,7 +429,7 @@ const hotelQuiz=read(hotelQuizPath);
 const hotelCard=read(hotelCardPath);
 const hotelContext=read('data/quiz/production_context/naeringsliv/hotel_du_nord.json');
 const hotelQuestions=hotelQuiz.sets.flatMap(x=>x.questions);
-assert.equal(hotelQuiz.production_status,'manifested_knowledge_linked_pending_browser_qa');
+assert.equal(hotelQuiz.production_status,'manifested_knowledge_linked_browser_qa_passed');
 assert.equal(hotelContext.profile,'narrow_3x7');
 assert.deepEqual(hotelContext.question_balance.counts,{fact:12,context:5,concept_theory:4});
 assert.deepEqual(hotelContext.set_plan.map(x=>x.planned_questions),[7,7,7]);
@@ -442,7 +442,7 @@ assert.ok(hotelQuestions.slice(14).some(q=>q.topic_hook_id));
 assert.equal(quizRefs.filter(x=>x.targetId==='hotel_du_nord'&&x.file===hotelQuizPath).length,1);
 assert.equal(quizCardSources.naeringsliv.collections.filter(x=>x==='hotel_du_nord_quizkort_v1.json').length,1);
 assert.equal(hotelCard.cards[0].questions.length,10);
-assert.equal(hotelCard.production_status,'knowledge_linked_fullquiz_browser_pending');
+assert.equal(hotelCard.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
 const hotelById=new Map(hotelQuestions.map(q=>[q.id,q]));
 for(const [i,item] of hotelCard.cards[0].questions.entries()){
   const original=hotelById.get(item.sourceQuestionId);
