@@ -425,8 +425,19 @@
   }
 
   /** @param {any} scene @param {any} person @param {any} [choice] @returns {boolean} */
+  function authoredAliases(person) {
+    const full = String(person?.navn || "").trim();
+    const first = full.includes(",") ? full.split(",")[0].trim() : "";
+    return first && first !== full ? [full, first] : [full];
+  }
+  function authoredNameRegex(name, possessive = false) {
+    const escaped = name.replace(/[.*+?^$()|[\]{}\\]/g, "\\$&");
+    return new RegExp("(^|[^\\p{L}\\p{N}_])" + escaped + (possessive ? "s" : "") + "(?=$|[^\\p{L}\\p{N}_])", "giu");
+  }
   function sceneMentionsPerson(scene, person, choice) {
-    return scene.avsender === person.id || JSON.stringify([scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst]).toLowerCase().includes(person.navn.toLowerCase());
+    if (scene.avsender === person.id) return true;
+    const prose = [scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst].filter(v => typeof v === "string").join(" ");
+    return authoredAliases(person).some(name => name && authoredNameRegex(name).test(prose));
   }
 
   /** Snapshot the types actually present in this scene before archiving it.
@@ -452,12 +463,12 @@
     for (const person of content?.role?.personer || []) {
       const cast = state?.personRepresentanter?.[person.id];
       if (!person.persontype || !cast?.personId) continue;
-      const escaped = person.navn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      // Norwegian type names contain letters outside ASCII \b, so delimit
-      // explicitly. Replace possessives before the plain name.
       const possessive = /[sxz]$/i.test(cast.navn) ? cast.navn + "’" : cast.navn + "s";
-      text = text.replace(new RegExp("(^|[^\\p{L}])" + escaped + "s(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + possessive)
-        .replace(new RegExp("(^|[^\\p{L}])" + escaped + "(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + cast.navn);
+      for (const alias of authoredAliases(person)) {
+        if (!alias) continue;
+        text = text.replace(authoredNameRegex(alias, true), (_, prefix) => prefix + possessive)
+          .replace(authoredNameRegex(alias), (_, prefix) => prefix + cast.navn);
+      }
     }
     return text;
   }
