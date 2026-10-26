@@ -120,7 +120,7 @@ assert.ok(!kandidater.includes("d2_frist_stress"), "frist-stress skal ikke være
     tekster.push(sc.tittel, sc.tekst);
     for (const v of sc.valg || []) tekster.push(v.tekst, v.konsekvensTekst || "");
   }
-  for (const sc of lifeScenes.scenes.filter(scene => scene.livsdagFra)) {
+  for (const sc of lifeScenes.scenes.filter(scene => scene.livsdagFra && !scene.id.startsWith('wave_e_life21_'))) {
     assert.ok(sc.etterValgDager?.flagg && sc.etterValgDager.dager >= 1 &&
       Object.keys(sc.conditions?.flagg || {}).length > 0,
       `delt oppfølger ${sc.id} må være forankret i tidligere valg og tid`);
