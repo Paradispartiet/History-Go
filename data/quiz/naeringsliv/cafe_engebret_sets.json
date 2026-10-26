@@ -35,11 +35,18 @@
       "em_naering_tjenesteyting_og_service",
       "em_naering_handel_butikk_byrom",
       "em_naering_omstilling_kriser_skift",
-      "em_naering_merkevare_og_status"
+      "em_naering_merkevare_og_status",
+      "em_naering_arbeid_verdiskaping"
     ],
-    "topic_hook_ids": [],
-    "method_ids": [],
-    "thinker_ids": [],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_merkevare_og_posisjoneringsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
     "works": [],
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
@@ -641,7 +648,12 @@
           "source_origin": "external",
           "claim_basis": "Restaurantens historikk forteller at en tidligere Venstre-leder betalte en gammel regning i 2008. Episoden er ettertidig historiebruk, ikke selve stiftelsen.",
           "claim_id": "claim_cafe_engebret_quiz_19",
-          "knowledge_link_status": "pending_canonical_generation"
+          "knowledge_link_status": "pending_canonical_generation",
+          "method_id": "met_naering_merkevare_og_posisjoneringsanalyse",
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+          ]
         },
         {
           "id": "cafe_engebret_quiz_20",
@@ -662,7 +674,7 @@
           "knowledge": "Fra teaterfolk og politiske møter til senere restaurantliv viser kafeen kontinuitet, men ingen kilde kan bevise at publikum og interiør alltid var identisk.",
           "difficulty": 3,
           "question_type": "concept",
-          "emne_id": "em_naering_merkevare_og_status",
+          "emne_id": "em_naering_arbeid_verdiskaping",
           "source": [
             "engebret_historien",
             "oppdag_kvadraturen"
@@ -670,7 +682,17 @@
           "source_origin": "external",
           "claim_basis": "Fra teaterfolk og politiske møter til senere restaurantliv viser kafeen kontinuitet, men ingen kilde kan bevise at publikum og interiør alltid var identisk.",
           "claim_id": "claim_cafe_engebret_quiz_20",
-          "knowledge_link_status": "pending_canonical_generation"
+          "knowledge_link_status": "pending_canonical_generation",
+          "topic_hook_id": "arbeid_som_verdiskaping",
+          "thinker_id": "max_weber",
+          "theory_ref": {
+            "topic_hook_id": "arbeid_som_verdiskaping",
+            "why_it_helps": "Webers perspektiv på hvordan arbeid og tjenester organiseres, hjelper oss å skille restaurantens konkrete serveringsarbeid fra det kulturelle og politiske livet som møtestedet også ga rom for."
+          },
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+          ]
         },
         {
           "id": "cafe_engebret_quiz_21",
