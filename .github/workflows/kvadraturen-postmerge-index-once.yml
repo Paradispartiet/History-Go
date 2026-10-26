@@ -1,0 +1,70 @@
+name: Kvadraturen post-merge place index repair (one time)
+on:
+  push:
+    branches:
+      - fix/kvadraturen-postmerge-places-index-20261026
+    paths:
+      - '.github/workflows/kvadraturen-postmerge-index-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: kvadraturen-postmerge-index-once
+  cancel-in-progress: false
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/kvadraturen-postmerge-places-index-20261026
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate index from canonical Places
+        run: npm run places:index:build
+      - name: Verify index and main integrity contracts
+        run: |
+          npm run places:index:check
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run build:web:check
+      - name: Verify all six places are indexed with exact sources
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const manifest=JSON.parse(fs.readFileSync('data/places/manifest.json','utf8'));
+          const index=JSON.parse(fs.readFileSync('data/places/places_index.json','utf8'));
+          const files=(manifest.files||[]).map(x=>x.startsWith('data/')?x:'data/'+x);
+          const ids=['den_gamle_krigsskolen','garmanngarden','stattholdergarden','hotel_du_nord','cafe_engebret','treschowgarden'];
+          const locate=(v)=>Array.isArray(v)?v:Array.isArray(v?.places)?v.places:Array.isArray(v?.items)?v.items:null;
+          const rows=locate(index);
+          assert.ok(rows,'Unknown places index shape');
+          for(const id of ids){
+            const sources=files.filter(file=>fs.readFileSync(file,'utf8').includes('"id": "'+id+'"'));
+            const placeFile=sources.map(file=>({file,data:JSON.parse(fs.readFileSync(file,'utf8'))})).find(x=>x.data.id===id);
+            assert.ok(placeFile,'No canonical source for '+id);
+            const row=rows.find(x=>x.id===id);
+            assert.ok(row,'No index row for '+id);
+            for(const key of ['desc','image','cardImage','frontImage']){
+              assert.equal(row[key],placeFile.data[key],id+' index mismatch '+key);
+            }
+          }
+          console.log('KVADRATUREN_INDEX_PARITY_PASS_6');
+          NODE
+      - name: Remove temporary workflow, commit regenerated index
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm .github/workflows/kvadraturen-postmerge-index-once.yml
+          git add data/places/places_index.json .github/workflows/kvadraturen-postmerge-index-once.yml
+          git diff --cached --check
+          git commit -m 'fix(places): rebuild canonical index after Kvadraturen merge'
+          git push origin HEAD:fix/kvadraturen-postmerge-places-index-20261026
