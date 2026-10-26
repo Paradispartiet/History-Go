@@ -383,8 +383,8 @@ for(const targetId of ['cafe_engebret','treschowgarden']){
   const cards=read('data/quizcards/naeringsliv/'+targetId+'_quizkort_v1.json');
   const context=read('data/quiz/production_context/naeringsliv/'+targetId+'.json');
   assert.equal(q.targetId,targetId);
-  assert.equal(q.production_status,'manifested_knowledge_linked_pending_browser_qa');
-  assert.equal(cards.production_status,'knowledge_linked_fullquiz_browser_pending');
+  assert.equal(q.production_status,'manifested_knowledge_linked_browser_qa_passed');
+  assert.equal(cards.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
   assert.equal(context.profile,'narrow_3x7');
   assert.equal(context.claim_bank.length,21);
   assert.deepEqual(context.question_balance.counts,{fact:12,context:5,concept_theory:4});
