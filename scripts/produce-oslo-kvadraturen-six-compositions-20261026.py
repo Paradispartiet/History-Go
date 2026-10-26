@@ -16,7 +16,7 @@ ITEMS={
 "cafe_engebret":("data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02/cafe_engebret.json", (0.50,0.45),(0.50,0.50),(0.50,0.52)),
 "treschowgarden":("data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01/treschowgarden.json", (0.51,0.50),(0.51,0.52),(0.51,0.52)),
 }
-ALLOWED={"CC BY-SA 4.0","CC BY 4.0","CC BY-SA 3.0","CC0","Public domain"}
+ALLOWED={"CC BY-SA 4.0","CC BY 4.0","CC BY 3.0","CC BY-SA 3.0","CC0","Public domain"}
 AGENT="HistoryGoKvadraturenMediaReview/1.0 (https://github.com/Paradispartiet/History-Go; Commons attribution)"
 def download(url):
     last=None
