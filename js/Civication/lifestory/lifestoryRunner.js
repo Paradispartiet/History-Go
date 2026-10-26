@@ -220,7 +220,7 @@
 
     // Symposium-pakken tillater aldri at en fremtidig eller avvist scene
     // skriver et møte/valg inn i historien (inkludert gamle DOM-knapper).
-    if ((content.role.symposium || /^wave_f_/.test(sceneId)) && (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId))) {
+    if (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId)) {
       throw new Error(`[LifestoryRunner] scenen "${sceneId}" er ikke tilgjengelig nå`);
     }
 
