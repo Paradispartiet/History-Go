@@ -5,7 +5,7 @@
   "targetId": "treschowgarden",
   "profile_hint": "narrow",
   "reviewed_at": "2026-10-25",
-  "review_note": "Gjennomgått to historiske hovedkilder, med vekt på byens havneforskytning, barokkfasaden, byens børs og skole, rederikontoret, handel, industri, tollerembete og interessekonflikt. Skiller byggets bruksfaser. Redaksjonell sluttrunde 26.10: 12 faktaspørsmål, 5 sammenhenger og 4 begrepsoppgaver; de første 14 er normal MCQ. Datoer for kildeavvik gir aldri rene årsfasiter. Etter kontroll mot kanonisk QuizProduction er relative faser normalisert til opening 1–7, bridge 8–14 og final 15–21.",
+  "review_note": "Gjennomgått to historiske hovedkilder, med vekt på byens havneforskytning, barokkfasaden, byens børs og skole, rederikontoret, handel, industri, tollerembete og interessekonflikt. Skiller byggets bruksfaser. Redaksjonell sluttrunde 26.10: 12 faktaspørsmål, 5 sammenhenger og 4 begrepsoppgaver; de første 14 er normal MCQ. Datoer for kildeavvik gir aldri rene årsfasiter. Etter kontroll mot kanonisk QuizProduction er relative faser normalisert til opening 1–7, bridge 8–14 og final 15–21. Sluttsettet har én konkret analysemetode og én stedsforankret teorikobling fra eksisterende Næringsliv-Fagverk; ingen spørsmål krever forskernavn som fasit.",
   "scope": {
     "place": "Treschowgården, Fred. Olsens gate 2",
     "production_profile": "narrow",
@@ -39,9 +39,15 @@
       "em_naering_omstilling_kriser_skift",
       "em_naering_industri_og_mekanisering"
     ],
-    "topic_hook_ids": [],
-    "method_ids": [],
-    "thinker_ids": [],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_eierskaps_og_styringsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
     "works": []
   },
   "existing_quiz_audit": {
@@ -297,7 +303,12 @@
         "oppdag_kvadraturen"
       ],
       "source_origin": "external",
-      "emne_id": "em_naering_eierskap_styring"
+      "emne_id": "em_naering_eierskap_styring",
+      "method_id": "met_naering_eierskaps_og_styringsanalyse",
+      "guidance_basis": [
+        "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+        "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_treschowgarden_quiz_19",
@@ -335,7 +346,13 @@
         "lokalhistoriewiki"
       ],
       "source_origin": "external",
-      "emne_id": "em_naering_arbeid_verdiskaping"
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "topic_hook_id": "arbeid_som_verdiskaping",
+      "thinker_id": "max_weber",
+      "guidance_basis": [
+        "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+        "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+      ]
     }
   ]
 }
