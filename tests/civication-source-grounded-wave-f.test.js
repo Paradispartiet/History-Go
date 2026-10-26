@@ -240,3 +240,35 @@ test('A booked performance requires an explicit acceptance, not just a request f
   assert.equal(declined.effekter.flagg.booking_bekreftet, undefined);
   assert.equal(declined.effekter.flagg.booking_avslaatt, true);
 });
+
+
+test('Wave F workplace memories remain truthful when the player changes jobs', () => {
+  const cases = [
+    { arc: 'c06', priorStatus: 'kontroll_ikke_ferdig', newRole: another,
+      expectedTitle: 'Den ubesvarte fagkontrollen',
+      outdated: /På kontoret snakker Eirik om hvor mange saker som må ut denne uka/ },
+    { arc: 'c17', priorStatus: 'plan_forespurt', newRole: planner,
+      expectedTitle: 'Hylla står der fremdeles',
+      outdated: /Du låser deg inn på jobb og ser for deg lagerdøren/ }
+  ];
+  for (const item of cases) {
+    const prior = possibleStatuses(item.arc).find(row => row.status === item.priorStatus);
+    assert.ok(prior, 'earlier decision must exist for ' + item.arc);
+    const from = State.createInitialState(base);
+    const earlier = sourceEntries.get(item.arc).days[0];
+    seed(from, item.arc, prior, earlier);
+    const changed = State.selectRole(from, item.newRole);
+    changed.fase = 'kveld';
+    changed.livsdag = Math.max(earlier + 4, 22);
+    const candidates = options(changed, item.newRole, item.arc);
+    const scene = candidates.find(row => row.id === 'wave_f_' + item.arc + '_' + item.priorStatus);
+    assert.ok(scene, 'the personal continuation should still be playable after a job change');
+    assert.equal(scene.tittel, item.expectedTitle);
+    assert.doesNotMatch(scene.tekst, item.outdated,
+      'the past workplace must not be narrated as a current job');
+    const choice = scene.valg[0];
+    assert.equal(Runner.applyChoice(changed, item.newRole, scene.id, choice.id).state, changed);
+    assert.equal(changed.arkiv.filter(row => row.sceneId === scene.id).length, 1);
+    assert.equal(changed.privatHistorie.arkiv.filter(row => row.sceneId === scene.id).length, 1);
+  }
+});
