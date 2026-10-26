@@ -1,0 +1,35 @@
+name: By04 temporary canonical place index refresh
+on:
+  push:
+    branches: [feature/by-bolk04-innlandet-vestfold-20-20261026]
+    paths:
+      - .github/workflows/by04-one-time-index-refresh.yml
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Refresh changed canonical places
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Commit generated files to existing PR branch
+        run: |
+          git add data/places/places_index.json data/runtime/place-open
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'fix(by04): synchronize Place-open and index after governed description restoration'
+            git push origin HEAD:feature/by-bolk04-innlandet-vestfold-20-20261026
+          fi
