@@ -377,7 +377,48 @@ for(const targetId of ['cafe_engebret','treschowgarden']){
     for(const src of q.source) assert.equal(productionBrief.sources[src]?.review_status,'reviewed',q.id+': unreviewed source '+src);
     if(i<14) assert.ok(['fact','context'].includes(q.question_type),q.id+': specialized method before two normal sets');
   }
-  assert.equal(quizRefs.some(r=>r.targetId===targetId),false,targetId+': prematurely activated unlinked MCQ');
+  assert.equal(quizRefs.filter(r=>r.targetId===targetId&&r.file==='data/quiz/naeringsliv/'+targetId+'_sets.json').length,1,targetId+': missing linked fullquiz manifest');
+  assert.equal(quizCardSources.naeringsliv.collections.filter(f=>f===targetId+'_quizkort_v1.json').length,1,targetId+': missing QuizCard manifest');
+  const q=read('data/quiz/naeringsliv/'+targetId+'_sets.json');
+  const cards=read('data/quizcards/naeringsliv/'+targetId+'_quizkort_v1.json');
+  const context=read('data/quiz/production_context/naeringsliv/'+targetId+'.json');
+  assert.equal(q.targetId,targetId);
+  assert.equal(q.production_status,'manifested_knowledge_linked_pending_browser_qa');
+  assert.equal(cards.production_status,'knowledge_linked_fullquiz_browser_pending');
+  assert.equal(context.profile,'narrow_3x7');
+  assert.equal(context.claim_bank.length,21);
+  assert.deepEqual(context.question_balance.counts,{fact:12,context:5,concept_theory:4});
+  assert.deepEqual(q.sets.map(x=>x.questions.length),[7,7,7]);
+  assert.ok(q.sets.slice(0,2).every(set=>set.questions.every(x=>x.question_type!=='concept')),'Specialized theory before final set');
+  const qs=q.sets.flatMap(set=>set.questions);
+  assert.equal(qs.filter(isDirectYearRecall).length,0,'Date memorization in '+targetId);
+  assert.equal(qs.length,21);
+  for(const [i,item] of qs.entries()){
+    const claim=productionBrief.claims[i];
+    assert.equal(item.claim_id,claim.claim_id);
+    assert.equal(item.claim_basis,claim.statement);
+    assert.deepEqual(item.source,claim.source_ids);
+    assert.equal(item.answer,item.options[item.answerIndex]);
+    assert.equal(new Set(item.options).size,4);
+    assert.equal(item.knowledge_link_status,'linked');
+    assert.ok(item.primary_knowledge_unit_id?.startsWith('ku_naeringsliv_'));
+    assert.ok(item.knowledge_unit_ids?.includes(item.primary_knowledge_unit_id));
+  }
+  assert.equal(cards.cards[0].questions.length,10);
+  const byId=new Map(qs.map(x=>[x.id,x]));
+  for(const [i,item] of cards.cards[0].questions.entries()){
+    const source=byId.get(item.sourceQuestionId);
+    assert.ok(source,targetId+': QuizCard source not found');
+    assert.equal(item.question,source.question);
+    assert.deepEqual(item.options,source.options);
+    assert.equal(item.answer,source.answer);
+    assert.equal(item.answerIndex,source.answerIndex);
+    assert.deepEqual(item.source_refs,source.source);
+    assert.equal(item.knowledge_link_status,'linked');
+    assert.equal(item.primary_knowledge_unit_id,source.primary_knowledge_unit_id);
+    assert.deepEqual(item.knowledge_unit_ids,source.knowledge_unit_ids);
+    assert.equal(cards.cards[0].answerKey[i].answer,source.answer);
+  }
 }
 // Stattholdergården is the third active source-backed quiz, not a completed v1 Place.
 const statQuizPath='data/quiz/historie/stattholdergarden_sets.json';
@@ -468,9 +509,9 @@ for(const [i,q] of hotelQuestions.entries()){
   assert.ok(q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id));
 }
 
-// The two remaining Næringsliv Places stay research candidates; Oslo 04 is untouched.
-for(const p of ledger.places.filter(p=>!['garmanngarden','den_gamle_krigsskolen','stattholdergarden','hotel_du_nord'].includes(p.place_id))){
-  assert.equal(quizRefs.some(r=>r.targetId===p.place_id),false,p.place_id+': remaining place published prematurely');
-}
+// All six fullquizzes are now Knowledge-linked; v1 Place/image QA remains distinct.
+const targetIds=ledger.places.map(p=>p.place_id);
+assert.equal(new Set(targetIds).size,6);
+for(const placeId of targetIds)assert.equal(quizRefs.filter(r=>r.targetId===placeId).length,1,placeId+': expected one canonical playable quiz');
 
 console.log(JSON.stringify({schema:'oslo_six_research_preflight_v1',status:'PASS_RESEARCH_IDENTITY_ONLY_NOT_V1',candidateCount,records:report},null,2));
