@@ -4,6 +4,9 @@ on:
     branches: [feature/by-bolk04-innlandet-vestfold-20-20261026]
     paths:
       - .github/workflows/by04-final-place-open-refresh.yml
+concurrency:
+  group: by04-final-place-open-refresh
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -35,3 +38,4 @@ jobs:
             git commit -m 'fix(by04): finalize all 20 Fagverk place-open source snapshots'
             git push origin HEAD:feature/by-bolk04-innlandet-vestfold-20-20261026
           fi
+# Rebuild from the final 20 curated Fagverk introductions.
