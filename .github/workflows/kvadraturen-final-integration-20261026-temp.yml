@@ -1,4 +1,4 @@
-name: Kvadraturen final integration and real browser verification
+name: Kvadraturen final editorial and mobile verification
 on:
   push:
     branches:
@@ -101,16 +101,24 @@ jobs:
           node dist/scripts/knowledge-canonical-data.mjs --check
           node scripts/build-place-open-payloads.mjs --check
           node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all
           git diff --check
-      - name: Real desktop and mobile app rendering and all six full quizzes
+      - name: Real desktop and two phone widths after editorial corrections
         run: |
           set -euo pipefail
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           export CHROME_BIN
-          node scripts/verify-kvadraturen-six-visual-qa-20261026.mjs
-          for id in den_gamle_krigsskolen garmanngarden stattholdergarden hotel_du_nord cafe_engebret treschowgarden; do
-            node scripts/verify-place-quiz-browser.mjs "$id"
-          done
+          # The six full quizzes passed desktop/mobile in run 40318115632.
+          # Require byte-identical quiz content before reusing that playthrough evidence.
+          git diff --exit-code 562e96629b4c31d766e1177ce09600d7b4c1a9ba -- data/quiz/historie/den_gamle_krigsskolen_sets.json data/quiz/historie/garmanngarden_sets.json data/quiz/historie/stattholdergarden_sets.json data/quiz/naeringsliv/hotel_du_nord_sets.json data/quiz/naeringsliv/cafe_engebret_sets.json data/quiz/naeringsliv/treschowgarden_sets.json
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('scripts/verify-kvadraturen-six-visual-qa-20261026.mjs').read_text()
+          s=s.replace("{name:'mobile',viewport:{width:390,height:844},isMobile:true,hasTouch:true}", "{name:'phone320',viewport:{width:320,height:844},isMobile:true,hasTouch:true},{name:'mobile',viewport:{width:390,height:844},isMobile:true,hasTouch:true}")
+          s=s.replace('report.results.length,12','report.results.length,18')
+          Path('.kvadraturen-final-check.mjs').write_text(s)
+          PY
+          node .kvadraturen-final-check.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -134,8 +142,9 @@ jobs:
           assert all(p in exact or p.startswith(prefixes) for p in changed), 'Unexpected generated changes'
           PY
           git add data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json data/places/place_image_backlog_summary.json reports/knowledge-id-backfill.json data/knowledge/knowledge_units.generated.json data/quiz/manifest.json data/quiz/production_context/ data/runtime/
+          git rm .github/workflows/kvadraturen-final-integration-20261026-temp.yml
           git diff --cached --check
           if test -f .git/MERGE_HEAD || ! git diff --cached --quiet; then
-            git commit -m 'Merge current main and verify all six Kvadraturen quizzes and runtime'
+            git commit -m 'Merge current main and verify Kvadraturen editorial and mobile corrections'
             git push origin HEAD:research/oslo-sentrum-kvadraturen-v1-six-20261023
           fi

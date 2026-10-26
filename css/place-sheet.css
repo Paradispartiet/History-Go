@@ -876,3 +876,16 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-cop
   border:0;
   overflow:visible;
 }
+
+/* Keep the single-word Kvadraturen title intact above its existing controls. */
+@media (max-width: 520px){
+  body.hg-app #placeCard[data-current-place-id="treschowgarden"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
+    grid-column:1 / -1;
+    box-sizing:border-box;
+    padding-right:44px;
+    font-size:clamp(24px,7vw,30px);
+    overflow-wrap:normal;
+    word-break:normal;
+    hyphens:none;
+  }
+}
