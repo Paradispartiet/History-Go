@@ -1152,6 +1152,7 @@
         })[p.persontype?.id] || p.navn;
         return "<li><strong>" + escapeLiteral(typeLabel) + "</strong>"
           + (p.persontype ? " <small>· Type: " + escapeLiteral(typeLabel) + "</small>" : "")
+          + (p.persontype && cast?.personId ? " <span class=\"muted\">· " + escapeLiteral(cast.navn) + "</span>" : "")
           + ": " + escapeHtml(p.beskrivelse)
           + (cast?.personId && cast.beskrivelse ? "<p>Fra History Go: " + escapeLiteral(cast.beskrivelse) + "</p>" : "")
           + (p.persontype && !cast ? '<p class="muted">Denne typen kan representeres av en relevant person du har samlet i History Go.</p>' : "")
