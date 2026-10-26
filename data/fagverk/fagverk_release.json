@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "a935ab9b24170b4cd9d0faebbcfa8f1551735f413fac7d9ac47c2bf32ceca304"
+    "content_sha256": "a6960a52dd46e96ebf5c002132164f121ce03ce7611a15f3b3408b36eb3475de"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 483,
+    "package_file_count": 486,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1347,
+    "referenced_file_count": 1350,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -5192,9 +5192,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 61,
+      "package_file_count": 64,
       "required_package_file_count": 4,
-      "optional_package_file_count": 57,
+      "optional_package_file_count": 60,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -5425,6 +5425,18 @@
           "content_sha256": "9293b6bdc2695f40cbdcc5c7ef35cf5a40b705ef55a18a2ac3f3969f32973cde"
         },
         {
+          "path": "data/quiz/naeringsliv/hotel_du_nord_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hotel_du_nord.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "930b89efbb664e08499ea2e0d23a30e95ed59a21baa0150d9bcc321e460675fd"
+        },
+        {
           "path": "data/quiz/naeringsliv/lilleborg_fabrikker_sets.json",
           "required": false,
           "fields": [
@@ -5591,6 +5603,18 @@
           ],
           "exists": true,
           "content_sha256": "e905ac7285377827dc06624dd0d1dc578b1d003329c9430a7ffd220db7b338c7"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/hotel_du_nord.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hotel_du_nord.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "0d65170b15f418fc255430614add2241469fc272b55bb9b524612520d419ff29"
         },
         {
           "path": "data/quiz/production_briefs/naeringsliv/lilleborg_fabrikker.json",
@@ -5761,6 +5785,18 @@
           "content_sha256": "4f595b9b4c9893c2ab6932f83ffa839441300f4465ec327e6adea8be279949b2"
         },
         {
+          "path": "data/quiz/production_context/naeringsliv/hotel_du_nord.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hotel_du_nord.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "66cbefc6e78e9cff43f39a2f7802f9de300203cf8e3b25a4b5a37b24bae6bd4e"
+        },
+        {
           "path": "data/quiz/production_context/naeringsliv/lilleborg_fabrikker.json",
           "required": false,
           "fields": [
@@ -5929,20 +5965,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "33a064e9f070365de42b8e5ce9be4fcb55da912c6f80e62c19cb6f2bab03fe60",
+      "package_content_sha256": "2dc2dc738cf30102cd11cf80c6ba8587d8ccb333b7b1bf0568d6e225263f44c8",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 133,
+      "referenced_file_count": 136,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "67d1d3962328fe80812c45ca7891c8097825c7b9fc5c598eafa771ff3ebe0db9",
-      "content_sha256": "c90f90772dbfee3683ecd4fe67bc00d130b57a8f1b1138ab7af22212e171f2ae",
+      "structure_sha256": "61d944e7ff1c65644e3ead4a299cd6cbfe9de8e178d9a860b1fe1132881404b0",
+      "content_sha256": "db2536fe114222b32d3caa31818fc13963cf14e3e3a1b807eddc599a4a4c7856",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -8517,5 +8553,5 @@
       ]
     }
   },
-  "release_sha256": "cf85373c67e611c65977b7e03b5d99ccb4e4ee5bd1dae74c7dd668d7289acc82"
+  "release_sha256": "df4caa7a3352af879413efdd174ee5538c462303919b97666885ee6d8973a402"
 }
