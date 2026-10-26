@@ -190,7 +190,7 @@ for(const [i,q] of fullQuestions.entries()){
   assert.ok(q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id),'Primary Knowledge unit not in IDs');
   assert.equal(q.knowledge_contract_version,1);
 }
-assert.equal(cardPreview.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
+assert.equal(cardPreview.production_status,'knowledge_linked_fullquiz_browser_passed_visual_reviewed');
 assert.equal(cardPreview.cards.length,1);
 const preview=cardPreview.cards[0];
 assert.equal(preview.targetId,'garmanngarden');
@@ -265,7 +265,7 @@ for(const [i,q] of krigQuestions.entries()){
 }
 assert.equal(quizRefs.filter(r=>r.targetId===krigId&&r.file===krigQuizPath).length,1,'Krigsskolen quiz not registered once');
 assert.equal(quizCardSources.historie.collections.filter(x=>x===krigId+'_quizkort_v1.json').length,1,'Krigsskolen QuizCard not registered once');
-assert.equal(krigCard.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
+assert.equal(krigCard.production_status,'knowledge_linked_fullquiz_browser_passed_visual_reviewed');
 assert.equal(krigCard.cards[0].questionCount,10);
 assert.equal(krigCard.cards[0].questions.length,10);
 assert.equal(krigCard.cards[0].questions.filter(q=>q.knowledge_link_status==='linked').length,10);
@@ -386,7 +386,7 @@ for(const targetId of ['cafe_engebret','treschowgarden']){
   const context=read('data/quiz/production_context/naeringsliv/'+targetId+'.json');
   assert.equal(q.targetId,targetId);
   assert.equal(q.production_status,'manifested_knowledge_linked_browser_qa_passed');
-  assert.equal(cards.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
+  assert.equal(cards.production_status,'knowledge_linked_fullquiz_browser_passed_visual_reviewed');
   assert.equal(context.profile,'narrow_3x7');
   assert.equal(context.claim_bank.length,21);
   assert.deepEqual(context.question_balance.counts,{fact:12,context:5,concept_theory:4});
@@ -449,7 +449,7 @@ for(const [i,q] of statQuestions.entries()){
 }
 assert.equal(quizRefs.filter(x=>x.targetId==='stattholdergarden'&&x.file===statQuizPath).length,1);
 assert.equal(quizCardSources.historie.collections.filter(x=>x==='stattholdergarden_quizkort_v1.json').length,1);
-assert.equal(statCard.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
+assert.equal(statCard.production_status,'knowledge_linked_fullquiz_browser_passed_visual_reviewed');
 assert.equal(statCard.cards[0].questions.length,10);
 const statById=new Map(statQuestions.map(q=>[q.id,q]));
 for(const item of statCard.cards[0].questions){
@@ -485,7 +485,7 @@ assert.ok(hotelQuestions.slice(14).some(q=>q.topic_hook_id));
 assert.equal(quizRefs.filter(x=>x.targetId==='hotel_du_nord'&&x.file===hotelQuizPath).length,1);
 assert.equal(quizCardSources.naeringsliv.collections.filter(x=>x==='hotel_du_nord_quizkort_v1.json').length,1);
 assert.equal(hotelCard.cards[0].questions.length,10);
-assert.equal(hotelCard.production_status,'knowledge_linked_fullquiz_browser_passed_visual_pending');
+assert.equal(hotelCard.production_status,'knowledge_linked_fullquiz_browser_passed_visual_reviewed');
 const hotelById=new Map(hotelQuestions.map(q=>[q.id,q]));
 for(const [i,item] of hotelCard.cards[0].questions.entries()){
   const original=hotelById.get(item.sourceQuestionId);
