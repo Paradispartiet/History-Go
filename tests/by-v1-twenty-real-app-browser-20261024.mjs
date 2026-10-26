@@ -18,10 +18,14 @@ const REGIONAL_GROUPS={
  buskerud:['drammen_tollbod_havn','gamle_nesbyen','kroderbanen_kroderen_stasjon','riddergarden_honefoss','vikersund_stasjon_randsfjordbanen'],
  innlandet:['eina_stasjon_totenbanen','fagernes_stasjon_valdresbanen','hamar_stasjon_jernbanebyen','lillehammer_stasjon','skibladner_gjovik']
 };
+const REGIONAL04_GROUPS={
+ innlandet:['dombas_stasjon_jernbaneknutepunkt','otta_stasjon_gudbrandsdalen','kongsvinger_stasjon_grensebanen','elverum_stasjon_jernbanemiljo','tynset_stasjon_rorosbanen','moelv_stasjon_mjoslinjen','stange_stasjon_dovrebanen','gran_stasjon_gjovikbanen','lena_stasjon_totenbanen','reinsvoll_stasjon_totenbanen','dokka_stasjon_valdresbanen','skarnes_stasjon_kongsvingerbanen','skreia_stasjon_totenbanen','flisa_stasjon_solorbanen','os_stasjon_rorosbanen'],
+ vestfold:['faerder_fyr','sandefjord_kurbad','tollerodden_larvik','horten_stasjon_vestfoldbanen','tonsberg_stasjon_vestfoldbanen']
+};
 const BATCH=process.env.HG_BY_BATCH??'oslo';
-assert.ok(BATCH==='oslo'||BATCH==='regional03','HG_BY_BATCH must be oslo or regional03');
-const IDS=BATCH==='regional03'?Object.values(REGIONAL_GROUPS).flat():OSLO_IDS;
-const REGION_BY_ID=new Map(Object.entries(REGIONAL_GROUPS).flatMap(([region,ids])=>ids.map(id=>[id,region])));
+assert.ok(['oslo','regional03','regional04'].includes(BATCH),'HG_BY_BATCH must be oslo, regional03 or regional04');
+const IDS=BATCH==='regional03'?Object.values(REGIONAL_GROUPS).flat():(BATCH==='regional04'?Object.values(REGIONAL04_GROUPS).flat():OSLO_IDS);
+const REGION_BY_ID=new Map([...Object.entries(REGIONAL_GROUPS),...Object.entries(REGIONAL04_GROUPS)].flatMap(([region,ids])=>ids.map(id=>[id,region])));
 const shard=Number(process.env.HG_BY_SHARD??'0');
 assert.ok(Number.isInteger(shard)&&shard>=0&&shard<4,'HG_BY_SHARD must be 0, 1, 2 or 3');
 const targets=IDS.slice(shard*5,shard*5+5);
@@ -41,7 +45,7 @@ for(const id of targets){
  const rows=(quiz.sets||[]).flatMap(set=>set.questions||[]);
  assert.ok(rows.length>=10,id+' missing a usable fullquiz');
  quizById.set(id,new Map(rows.map(q=>[q.question,q])));
- const placeFile=BATCH==='regional03'?'data/places/by/'+REGION_BY_ID.get(id)+'/'+id+'/'+id+'.json':'data/places/by/oslo/places/'+id+'.json';
+ const placeFile=BATCH.startsWith('regional')?'data/places/by/'+REGION_BY_ID.get(id)+'/'+id+'/'+id+'.json':'data/places/by/oslo/places/'+id+'.json';
  const place=JSON.parse(fs.readFileSync(placeFile,'utf8'));
  const live=JSON.parse(fs.readFileSync('data/runtime/place-open/'+id+'.json','utf8')).place;
  assert.equal(place.id,id);
@@ -68,7 +72,7 @@ const server=http.createServer((req,res)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const base='http://127.0.0.1:'+server.address().port;
-const reportDir=path.join(ROOT,'artifacts',BATCH==='regional03'?'by03-regional-browser':'by-v1-20-browser','shard-'+shard);
+const reportDir=path.join(ROOT,'artifacts',BATCH==='regional04'?'by04-regional-browser':(BATCH==='regional03'?'by03-regional-browser':'by-v1-20-browser'),'shard-'+shard);
 fs.mkdirSync(reportDir,{recursive:true});
 let browser;
 const results=[];
