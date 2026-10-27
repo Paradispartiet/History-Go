@@ -24,6 +24,10 @@ assert.match(stories, /async openAll\(\)/);
 assert.match(stories, /hgWelcomeStoriesSearch/);
 assert.match(stories, /index.html#\/place\//);
 assert.match(psychology, /HGPsychologyRoomEntry = \{ open: openRoom \}/);
+assert.match(welcome, /async function openPsychologyRoom\\(\\)/);
+assert.match(welcome, /script\\.src = "js\\/ui\\/psychology-room-entry\\.js"/);
+assert.doesNotMatch(read("js/app.js"), /loadPsychologyRoomEntry/,
+  "Keep the psychology-room entry deferred to avoid changing map boot timing");
 assert.match(css, /hg-onb-card-link/);
 assert.match(workflow, /history-go-onboarding-destination-links\.test\.js/);
 
