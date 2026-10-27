@@ -71,8 +71,17 @@ jobs:
           npm run quiz:context -- --category by --target wessels_plass --output data/quiz/production_context/by/wessels_plass.json --check
           npm run audit:quiz-production-context
           npm run audit:quiz-manifest:v2
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
+          node --input-type=module <<'NODE'
+          import {auditQuizProgression} from './scripts/audit-quiz-progression.mjs';
+          import {auditQuizTheoryBinding} from './scripts/audit-quiz-theory-binding.mjs';
+          for (const [name, fn] of [['quiz-progression', auditQuizProgression], ['quiz-theory-binding', auditQuizTheoryBinding]]) {
+            const result = await fn();
+            const own = result.failures.filter(f => String(f.file || '').includes('wessels_plass'));
+            const other = result.failures.filter(f => !String(f.file || '').includes('wessels_plass'));
+            console.log(name, JSON.stringify({wessels_failures:own, preexisting_other_target_failures:other.map(f=>({file:f.file,reason:f.reason}))}));
+            if (own.length) process.exitCode = 1;
+          }
+          NODE
           npm run knowledge:canonical:check
       - name: Full actual-app quiz playthrough, mobile and desktop
         run: |
