@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 const read = (file) => JSON.parse(readFileSync(new URL("../" + file, import.meta.url), "utf8"));
 const quiz = read("data/quiz/kunst/villa_romsli_sets.json");
 const card = read("data/quizcards/kunst/villa_romsli_quizcard_v1.json");
@@ -45,4 +45,17 @@ test("Villa Romsli: three-part Fagverk and verified existing coordinates", () =>
   assert.equal(place.fagverk?.article?.length,3);
   assert.equal(place.fagverk?.lenses?.length,3);
   assert.ok(place.fagverk.source_urls.some((url) => url.includes("oslo.kommune.no")));
+});
+
+test("Villa Romsli: both original vector illustrations are available and labeled as illustrations", () => {
+  assert.ok(place.image.endsWith(".svg"));
+  assert.ok(place.frontImage.endsWith(".svg"));
+  assert.equal(place.imageLicense, "CC0 1.0");
+  assert.match(place.imageCaption, /illustrasjon/i);
+  for (const relative of [place.image, place.frontImage]) {
+    assert.ok(existsSync(new URL("../" + relative, import.meta.url)), "missing image asset: " + relative);
+    const svg = readFileSync(new URL("../" + relative, import.meta.url), "utf8");
+    assert.match(svg, /<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
+    assert.match(svg, /ikke fotografi/);
+  }
 });
