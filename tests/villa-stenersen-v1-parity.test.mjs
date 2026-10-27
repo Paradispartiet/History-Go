@@ -64,3 +64,13 @@ test("Villa Stenersen: canonical production context matches the released quiz", 
   assert.equal(context.profile_decision?.set_count, full.sets.length);
   assert.equal(context.profile_decision?.questions_per_set, 7);
 });
+
+test("Villa Stenersen: generated production context matches the 21 reviewed source claims", () => {
+  const context = read("data/quiz/production_context/historie/villa_stenersen.json");
+  assert.equal(context.targetId, "villa_stenersen");
+  assert.equal(context.categoryId, "historie");
+  assert.equal(context.source_review_status, "reviewed");
+  assert.equal(context.claim_bank.length, 21);
+  assert.equal(context.set_plan.length, 3);
+  assert.equal(context.question_balance.total, 21);
+});
