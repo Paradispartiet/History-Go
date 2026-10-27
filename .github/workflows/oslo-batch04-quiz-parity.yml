@@ -97,3 +97,32 @@ jobs:
           path: artifacts/place-quiz/vinmonopolet_lager/**
           if-no-files-found: ignore
           retention-days: 14
+
+  vinmonopolet-epoch-rebuild:
+    if: github.event_name == 'pull_request' && github.event.pull_request.number == 6655 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate source-backed epoch index without changing source evidence
+        run: node scripts/build-epoke-place-index.mjs
+      - name: Commit generated epoch index only when changed
+        run: |
+          set -euo pipefail
+          git add -- data/epoker/epoke-place-index.json
+          if git diff --cached --quiet; then
+            echo "Epoch index is already synchronized"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Regenerate source-backed epoch index for Vinmonopolet Hasle"
+          git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
