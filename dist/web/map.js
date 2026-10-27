@@ -706,13 +706,13 @@
       }
     }
     function updateNativeDetailDotSizes() {
-      var _a, _b, _c;
+      var _a, _b, _c, _d;
       if (!MAP || !placeDetailMarkers.size) return;
       const zoom = Number((_c = (_b = (_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) != null ? _b : START.zoom) != null ? _c : 13);
       const diameter = nativeDetailDotDiameter(zoom);
       const width = Math.max(0.9, Math.min(1.4, diameter * 0.2));
       for (const entry of placeDetailMarkers.values()) {
-        const showBadge = zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM && entry.badgeImage?.complete && entry.badgeImage.naturalWidth > 0;
+        const showBadge = zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM && ((_d = entry.badgeImage) == null ? void 0 : _d.complete) && entry.badgeImage.naturalWidth > 0;
         const size = showBadge ? nativeDetailBadgeDiameter(zoom) : diameter;
         entry.hasCategoryBadge = !!showBadge;
         entry.element.classList.toggle("has-category-badge", !!showBadge);
@@ -723,7 +723,7 @@
       updateNativeDetailLabelVisibility();
     }
     function syncPlaceDetailDomMarkers(features) {
-      var _a, _b, _c, _d, _e, _f, _g, _h;
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i;
       if (!MAP || typeof (maplibregl == null ? void 0 : maplibregl.Marker) !== "function") return;
       const zoom = Number((_c = (_b = (_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) != null ? _b : START.zoom) != null ? _c : 13);
       if (!placeDetailMarkerEventsBound) {
@@ -733,7 +733,7 @@
         MAP.on("zoomend", onViewportChanged);
         placeDetailMarkerEventsBound = true;
       }
-      if (zoom < PLACE_DETAIL_MIN_ZOOM || (!useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM)) {
+      if (zoom < PLACE_DETAIL_MIN_ZOOM || !useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM) {
         for (const entry of placeDetailMarkers.values()) entry.marker.remove();
         placeDetailMarkers.clear();
         return;
@@ -819,10 +819,9 @@
           entry.label.textContent = name;
           entry.element.setAttribute("aria-label", name);
         }
-        const badgeSrc = zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM
-          ? (placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "") : entry.badgeSrc;
+        const badgeSrc = zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM ? placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "" : entry.badgeSrc;
         if (badgeSrc !== entry.badgeSrc) {
-          entry.badgeImage?.remove();
+          (_i = entry.badgeImage) == null ? void 0 : _i.remove();
           entry.badgeSrc = badgeSrc;
           entry.badgeImage = null;
           if (badgeSrc) {
