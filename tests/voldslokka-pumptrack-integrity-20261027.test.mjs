@@ -84,3 +84,16 @@ test("Voldsløkka: lokal illustrasjon er merket og beholdes i canonical Place", 
   assert.match(svg, /ILLUSTRASJON/u);
   assert.ok(!svg.includes("<image"), "Ingen innlastede eksterne bilder");
 });
+
+
+test("Voldsløkka: regenerert quiz-kontekst speiler fullquizens 3×7-sett", () => {
+  const context = read("data/quiz/production_context/sport/voldslokka_pumptrack.json");
+  assert.equal(context.targetId, id);
+  assert.equal(context.categoryId, "sport");
+  assert.equal(context.source_review_status, "reviewed");
+  assert.equal(context.claim_bank.length, 21);
+  assert.equal(context.set_plan.length, 3);
+  assert.equal(context.question_balance.total, questions.length);
+  assert.equal(context.profile_decision.set_count, quiz.sets.length);
+  assert.equal(context.profile_decision.questions_per_set, 7);
+});
