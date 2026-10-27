@@ -446,8 +446,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Sendt er fortsatt ikke lest",
-      "tekst": "Prosjektbyggeren viser samtalen om utkast 0.2. Rettelsen gikk til begge verksteddeltakerne, men bare den ene har bekreftet å ha forstått at «mulig prøve fredag» ikke var en ferdig levering. Den andre har ikke svart. At tiden går, fyller ikke inn det manglende svaret.",
+      "tittel": "Rettelsen ingen svarte på",
+      "tekst": "Lea viser deg to sendte meldinger. Begge forklarer at modellen ikke blir levert fredag, men bare én deltaker har svart. «Skal jeg skrive igjen?» spør hun. Du forstår at hun vil være sikker på at den andre ikke møter forgjeves. Samtidig kan hun ikke kreve at noen skal være takknemlige for rettelsen, eller svare straks.",
       "conditions": {
         "flagg": {
           "wa_c23_rettelse": "begge"
@@ -456,8 +456,8 @@
       "valg": [
         {
           "id": "sjekk_sammen",
-          "tekst": "Be om å se en konkret oppfølging til den eller dem som mangler svar.",
-          "konsekvensTekst": "Prosjektbyggeren åpner mottakerlisten og sender nå en tydelig presisering til dem som mangler avklaring: Ingen ferdig levering er avtalt. Du ser utsendingen på skjermen. Dere har ennå ikke fått nye svar.",
+          "tekst": "Foreslå én kort presisering til den som ikke har svart",
+          "konsekvensTekst": "Lea sender en ny beskjed om at ingen fredagslevering er avtalt. Mottakeren har fortsatt ikke bekreftet forståelse eller tilgivelse.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "fulgt_opp",
@@ -467,8 +467,8 @@
         },
         {
           "id": "overlat",
-          "tekst": "La Prosjektbyggeren følge opp selv uten mer bistand fra deg.",
-          "konsekvensTekst": "Du sier at du ikke kan følge mottakerrunden videre. Prosjektbyggeren har ansvaret for egne meldinger. Du får ingen ny bekreftelse og vet ikke om saken blir avklart.",
+          "tekst": "La Lea avgjøre om hun kontakter personen mer, uten å kreve svar",
+          "konsekvensTekst": "Du sier at det også kan være riktig å gi mottakeren rom. Lea har ansvaret, og dere vet ennå ikke om beskjeden er forstått.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "overlatt"
@@ -487,8 +487,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Den andre har den gamle teksten",
-      "tekst": "Prosjektbyggeren åpner meldingshistorikken om utkast 0.2. Bare den første mottakeren fikk presiseringen og svarte. Hos den andre ligger fortsatt skissen med «mulig prøve fredag». Du vet hvem som mangler rettelsen, men ikke hva vedkommende har rukket å planlegge.",
+      "tittel": "Fredagen den andre fortsatt tror på",
+      "tekst": "Lea åpner den gamle meldingen. Én deltaker har fått vite at modellen ikke blir levert fredag. Den andre har fortsatt bare skissen med formuleringen som kunne høres ut som et løfte. «Tenk om de holder av formiddagen», sier Lea. Hun har rett: Å la være å skuffe noen akkurat nå kan ende med å skuffe dem mer senere.",
       "conditions": {
         "flagg": {
           "wa_c23_rettelse": "en"
@@ -497,8 +497,8 @@
       "valg": [
         {
           "id": "sjekk_sammen",
-          "tekst": "Be om å se en konkret oppfølging til den eller dem som mangler svar.",
-          "konsekvensTekst": "Prosjektbyggeren åpner mottakerlisten og sender nå en tydelig presisering til dem som mangler avklaring: Ingen ferdig levering er avtalt. Du ser utsendingen på skjermen. Dere har ennå ikke fått nye svar.",
+          "tekst": "Bli hos Lea mens hun sender rettelsen til den andre",
+          "konsekvensTekst": "Dere finner riktig samtale, og Lea skriver at ingen levering er avtalt. Meldingen er sendt, men dere vet ikke om den er lest.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "fulgt_opp",
@@ -508,8 +508,8 @@
         },
         {
           "id": "overlat",
-          "tekst": "La Prosjektbyggeren følge opp selv uten mer bistand fra deg.",
-          "konsekvensTekst": "Du sier at du ikke kan følge mottakerrunden videre. Prosjektbyggeren har ansvaret for egne meldinger. Du får ingen ny bekreftelse og vet ikke om saken blir avklart.",
+          "tekst": "Be Lea ta ansvar for den manglende meldingen selv",
+          "konsekvensTekst": "Du sier tydelig at den andre fortsatt trenger riktig informasjon. Lea må selv sende; du har ikke sett at det er gjort.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "overlatt"
@@ -528,8 +528,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ingen synlig utsending",
-      "tekst": "Du får en ny melding fra Prosjektbyggeren om utkast 0.2: «Jeg finner ikke igjen at jeg sendte presiseringen. Må rydde opp i dette.» Det du vet fra før er fortsatt begrenset: Du har ikke sett en utsending av rettelsen. Den første misforståelsen er ikke dokumentert løst.",
+      "tittel": "Den tomme sendt-mappen",
+      "tekst": "«Jeg finner ikke rettelsen», sier Lea. På telefonen ligger den opprinnelige skissen, men ingen melding som tydelig avklarer fredagen. Kanskje har hun søkt feil. Kanskje trykket hun aldri send. Du vet ikke. I mellomtiden kan to mennesker tro at en ferdig modell er på vei til dem.",
       "conditions": {
         "flagg": {
           "wa_c23_rettelse": "ikke_bekreftet"
@@ -538,8 +538,8 @@
       "valg": [
         {
           "id": "sjekk_sammen",
-          "tekst": "Be om å se en konkret oppfølging til den eller dem som mangler svar.",
-          "konsekvensTekst": "Prosjektbyggeren åpner mottakerlisten og sender nå en tydelig presisering til dem som mangler avklaring: Ingen ferdig levering er avtalt. Du ser utsendingen på skjermen. Dere har ennå ikke fått nye svar.",
+          "tekst": "Gå gjennom mottakerne med Lea og se at hun sender rettelsen nå",
+          "konsekvensTekst": "Dere sjekker adressene, og Lea sender en tydelig beskjed om at ingen levering er avtalt. Ingen mottaker har svart ennå.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "fulgt_opp",
@@ -549,8 +549,8 @@
         },
         {
           "id": "overlat",
-          "tekst": "La Prosjektbyggeren følge opp selv uten mer bistand fra deg.",
-          "konsekvensTekst": "Du sier at du ikke kan følge mottakerrunden videre. Prosjektbyggeren har ansvaret for egne meldinger. Du får ingen ny bekreftelse og vet ikke om saken blir avklart.",
+          "tekst": "Be Lea undersøke utsendingen og hold saken åpen inntil videre",
+          "konsekvensTekst": "Du sier hva dere ikke kan dokumentere. Du har ikke sett noen bekreftelse og kaller ikke saken avklart.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "overlatt"
@@ -569,8 +569,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ingen levering, men en tapt formiddag",
-      "tekst": "Prosjektbyggeren viser svarene etter gårsdagens utsending. Begge mottakerne har nå svart at de forstår at ingen ferdig levering er avtalt. Den ene skriver også: «Jeg hadde holdt av fredag formiddag og bedt en kollega komme. Det burde stått tydeligere fra starten.» En misforståelse er avklart, men tidskostnaden er allerede oppstått. Det finnes ikke noe krav om betaling i meldingene.",
+      "tittel": "«Jeg hadde tatt fri på fredag»",
+      "tekst": "Lea viser deg svarene fra begge mottakerne. Begge har forstått at modellen ikke kommer fredag. Men én skriver: «Jeg holdt av formiddagen og ba en kollega komme. Det burde stått tydeligere.» Du kjenner skammen komme, fordi dette ikke bare var en misforstått setning. Noen har faktisk brukt tid på løftet dere aldri mente å gi. Ingen har krevd penger.",
       "conditions": {
         "flagg": {
           "wa_b_c23_spor": "fulgt_opp"
@@ -579,8 +579,8 @@
       "valg": [
         {
           "id": "anerkjenn",
-          "tekst": "Foreslå at svaret anerkjenner den bortkastede planleggingen.",
-          "konsekvensTekst": "Prosjektbyggeren velger å beklage den uklare teksten og at den andre holdt av tid. Avklaringen lover ingen erstatningslevering. Du har sett forståelsesbekreftelsene, ikke mottakerens reaksjon på beklagelsen.",
+          "tekst": "Foreslå at Lea beklager tiden mottakeren allerede har tapt",
+          "konsekvensTekst": "Hun sender en tydelig beklagelse for den uklare ordlyden og planleggingen den førte til. Dere lover ingen erstatningslevering og vet ennå ikke hvordan beklagelsen blir mottatt.",
           "effekter": {
             "flagg": {
               "wa_b_c23_utfall": "avklart_med_kostnad",
@@ -590,8 +590,8 @@
         },
         {
           "id": "ny_merking",
-          "tekst": "Foreslå tydelig merking og egen bekreftelse i framtidige skisser.",
-          "konsekvensTekst": "Prosjektbyggeren velger å skille «utkast» fra «avtalt prøve» i en ny tom mal. Det kan hjelpe neste gang. Det endrer ikke at en mottaker allerede satte av tid på grunn av den gamle teksten.",
+          "tekst": "Foreslå en ny mal som skiller skisse fra avtalt levering",
+          "konsekvensTekst": "Lea lager en tom mal med klarere ord for «utkast» og «avtalt prøve». Det kan hjelpe videre, men ingen mal gir mottakeren fredagen tilbake.",
           "effekter": {
             "flagg": {
               "wa_b_c23_utfall": "avklart_ny_praksis",
@@ -611,8 +611,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Det du ikke lenger følger",
-      "tekst": "Du avsluttet bistanden til oppfølgingen av utkast 0.2. Du har ikke fått noen ny melding om mottakernes forståelse. Det er fristende å tenke at noen sikkert har ordnet det, men din egen oversikt kan bare skille det du så fra det du ikke har fulgt videre.",
+      "tittel": "Spørsmålet ved butikkdøra",
+      "tekst": "En bekjent stopper deg utenfor butikken. «Ble det ordnet med modellen dere lovet?» spør han. Du kjenner trang til å si at Lea sikkert har kontroll. Du trakk deg fra oppfølgingen før du visste hva mottakerne hadde forstått. Kanskje har Lea ryddet opp. Kanskje ikke. Du kan ikke fortelle en penere historie enn den du faktisk kjenner.",
       "conditions": {
         "flagg": {
           "wa_b_c23_spor": "overlatt"
@@ -621,8 +621,8 @@
       "valg": [
         {
           "id": "noter_grense",
-          "tekst": "Noter hvor din egen kunnskap stopper.",
-          "konsekvensTekst": "Du skriver at du ikke har bekreftet en samlet avklaring. Notatet er privat og sender ingen ny påminnelse til Prosjektbyggeren.",
+          "tekst": "Skriv ned for deg selv hvor oppfølgingen din sluttet",
+          "konsekvensTekst": "Du samler det du faktisk så, uten å erklære saken løst. Notatet endrer ingen mottakers situasjon.",
           "effekter": {
             "flagg": {
               "wa_b_c23_utfall": "uavklart_uten_innsyn"
@@ -631,8 +631,8 @@
         },
         {
           "id": "spor_kort",
-          "tekst": "Send ett spørsmål om det nå er avklart hos begge.",
-          "konsekvensTekst": "Du sender spørsmålet uten å ta på deg en ny mottakerrunde. Det er ikke kommet svar ennå, og du registrerer ikke saken som løst.",
+          "tekst": "Spør Lea én gang hvordan det står til, uten å overta saken",
+          "konsekvensTekst": "Du sender et kort spørsmål. Hun har ikke svart, og du har ingen ny bekreftelse på utfallet.",
           "effekter": {
             "flagg": {
               "wa_b_c23_utfall": "status_forespurt"
@@ -650,8 +650,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Rettelsen er forstått, men ikke glemt",
-      "tekst": "Begge mottakerne har nå bekreftet at de forstår rettelsen. Den ene sier likevel at den første feilaktige formuleringen gjorde et viktig møte vanskelig. Prosjektbyggeren spør om dere skal skrive at saken er løst. Feilinformasjonen er korrigert; virkningen på tilliten kan dere ikke erklære borte.",
+      "tittel": "Fredagen ingen får tilbake",
+      "tekst": "Lea viser deg svarene. Begge deltakerne forstår nå at modellen ikke kommer fredag. Én forteller at en kollega allerede var bedt om å møte og formiddagen var holdt av forgjeves. «Da er det vel rettet?» spør Lea. Du ser at hun er sliten. Du skjønner henne, men timene som ble brukt, kommer ikke tilbake bare fordi misforståelsen er avklart.",
       "conditions": {
         "flagg": {
           "wa_b_c23_utfall": "avklart_med_kostnad"
@@ -660,8 +660,8 @@
       "valg": [
         {
           "id": "erkjenn_kostnaden",
-          "tekst": "Skriv at rettelsen er mottatt, men at tillitsbruddet ikke kan avskrives",
-          "konsekvensTekst": "Dere dokumenterer hva begge har forstått og hva den ene opplever som tap. Dere lover ikke at relasjonen er reparert.",
+          "tekst": "Skriv at rettelsen er forstått, men at ulempen fortsatt finnes",
+          "konsekvensTekst": "Dere beholder begge opplysningene: informasjonen er korrigert, og noen mistet tid. Ingen tillit eller erstatning blir erklært gjenopprettet.",
           "effekter": {
             "flagg": {
               "wa_c_c23_etterspill": "kostnad_erkjent"
@@ -670,8 +670,8 @@
         },
         {
           "id": "behold_ansvaret",
-          "tekst": "Be Lea beholde saken åpen for eventuell videre dialog, uten å kreve svar",
-          "konsekvensTekst": "Prosjektbyggeren noterer et mulig nytt kontaktpunkt, men sender ingen ny henvendelse uten grunn. Bekreftet rettelse står fast; tilgivelse er ikke krevd.",
+          "tekst": "Gi rom for en senere samtale uten å kreve ny respons",
+          "konsekvensTekst": "Lea lar muligheten stå åpen, men sender ingen purring. Mottakernes forståelse betyr ikke at de ønsker mer kontakt.",
           "effekter": {
             "flagg": {
               "wa_c_c23_etterspill": "dialog_aapen"
@@ -690,8 +690,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Malen som kom for sent",
-      "tekst": "Prosjektbyggeren har nå satt «Utkast – ingen levering avtalt» øverst i den nye prosjektmalen. Den ene mottakeren har tidligere bekreftet at rettelsen er forstått, men forteller at tid likevel ble brukt på den gamle teksten. Prosjektbyggeren spør om den nye malen betyr at feilen er ferdig håndtert. En bedre arbeidsrutine kan forebygge nye misforståelser, men ikke fjerne konsekvensen av den gamle.",
+      "tittel": "En pen mal gjør ikke fredag om",
+      "tekst": "Lea legger en ny prosjektmal på bordet. Øverst står det «Utkast – ingen levering avtalt». Hun ser fornøyd ut, og det gjør du også et øyeblikk. Så husker du kollegaen som hadde holdt av fredagen. Malen kan forebygge en ny misforståelse; den gir ingen tid tilbake til den som allerede stolte på dere. «Hva kan vi egentlig si er ordnet?» spør Lea.",
       "conditions": {
         "flagg": {
           "wa_b_c23_utfall": "avklart_ny_praksis"
@@ -700,8 +700,8 @@
       "valg": [
         {
           "id": "skill_ny_praksis",
-          "tekst": "Skill den nye rutinen fra mottakerens allerede brukte tid",
-          "konsekvensTekst": "Prosjektbyggeren fører to separate punkter: ny mal tatt i bruk og tidligere feil rettet. Hun hevder ikke at mottakeren har fått tida tilbake eller at tilliten er gjenopprettet.",
+          "tekst": "Skill den nye rutinen fra den gamle feilens konsekvenser",
+          "konsekvensTekst": "Lea noterer dem hver for seg. Malen er laget, men dere påstår ikke at tidligere ulemper eller tap av tillit er borte.",
           "effekter": {
             "flagg": {
               "wa_c_c23_etterspill": "ny_praksis_med_forbehold"
@@ -710,8 +710,8 @@
         },
         {
           "id": "be_om_evaluering",
-          "tekst": "Be Lea evaluere om malen blir brukt neste gang, uten å love utfallet nå",
-          "konsekvensTekst": "Prosjektbyggeren noterer at den nye malen skal kontrolleres ved neste utsending. Ingen ny skisse er sendt ennå, og det er ikke dokumentert at rutinen fungerer i praksis.",
+          "tekst": "Foreslå at dere sjekker faktisk bruk av malen ved neste utsending",
+          "konsekvensTekst": "Lea noterer en senere kontroll. Ingen ny melding er sendt, og malen har ennå ikke dokumentert virkning.",
           "effekter": {
             "flagg": {
               "wa_c_c23_etterspill": "evaluering_foreslaatt"
@@ -730,8 +730,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Et spørsmål uten svar",
-      "tekst": "Du sendte ett avgrenset spørsmål om begge mottakerne har forstått rettelsen. Det står fortsatt som sendt i tråden, uten svar. Du har ikke tilgang til mottakernes egne samtaler, og Prosjektbyggeren har ikke gitt deg ny dokumentasjon. Å vente er ubehagelig, men du kan ikke fylle hullet med et antatt ja.",
+      "tittel": "Det ubesvarte spørsmålet",
+      "tekst": "Du har spurt Lea om begge mottakerne faktisk forsto rettelsen. Det er fortsatt stille i tråden. Du ser på skjermen mens du burde gjøre noe annet. Det vanskeligste er ikke å mangle én melding, men å tåle at din del av historien kan stoppe før du vet hvordan alt gikk. Du har gitt ansvaret tilbake til henne, men ikke usikkerheten fra deg selv.",
       "conditions": {
         "flagg": {
           "wa_b_c23_utfall": "status_forespurt"
@@ -740,8 +740,8 @@
       "valg": [
         {
           "id": "marker_ubekreftet",
-          "tekst": "Marker oppfølgingen som sendt, men ikke bekreftet",
-          "konsekvensTekst": "Du fører en nøktern status: spørsmål sendt, avklaring ikke dokumentert. Du lar mottakernes forståelse stå som ukjent.",
+          "tekst": "Merk spørsmålet som sendt, men fortsatt ubesvart",
+          "konsekvensTekst": "Du skriver en nøktern status. Ingen mottakerbekreftelse oppstår fordi du laget et notat.",
           "effekter": {
             "flagg": {
               "wa_c_c23_etterspill": "svar_mangler"
@@ -750,8 +750,8 @@
         },
         {
           "id": "la_ansvaret_ligge",
-          "tekst": "La Lea eie videre oppfølging, uten å purre igjen i dag",
-          "konsekvensTekst": "Du avgrenser din egen rolle. Prosjektbyggeren har ansvaret for kommunikasjonen videre, men du påstår ikke at noen ny bekreftelse er kommet.",
+          "tekst": "La Lea følge opp, og legg telefonen bort i dag",
+          "konsekvensTekst": "Du velger å ikke purre igjen. Det er mulig å gi fra seg oppgaven uten å påstå at noen andre allerede har gjort den.",
           "effekter": {
             "flagg": {
               "wa_c_c23_etterspill": "ansvar_avgrenset"
@@ -770,26 +770,33 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "En unnskyldning får ikke tiden tilbake",
-      "tekst": "Neste dag forteller Lea at mottakeren har lest erkjennelsen. Vedkommende vil ikke bruke mer tid på en ny samtale nå. Det er et svar, ikke en forsoning.",
+      "tittel": "Svaret Lea helst ville gjort godt igjen",
+      "tekst": "Lea har fått beskjed om at mottakeren leste erkjennelsen, men ikke vil bruke mer tid på en samtale nå. «Jeg skjønner det», sier hun, selv om ansiktet sier noe annet. Dere har rettet ordlyden som kunne oppfattes som et løfte. Det gir ingen tilbake den tiden de brukte på å forvente noe dere ikke kunne levere.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Respekter at mottakeren ikke ønsker ny dialog",
-          "konsekvensTekst": "Du og Lea lar være å kreve mer svar. Den tidligere merkostnaden forsvinner ikke.",
+          "tekst": "Respekter at mottakeren ikke ønsker en ny samtale",
+          "konsekvensTekst": "Du sier til Lea at dere får tåle ubehaget uten å be om flere svar. Rettelsen står, og mottakerens grense står også.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "grense_respektert"
+            },
+            "meters": {
+              "integritet": 2
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Be Lea oppbevare rettelsen sammen med opprinnelig melding",
-          "konsekvensTekst": "Dokumentasjonen blir sporbar. Arkivering er ikke det samme som gjenopprettet tillit.",
+          "tekst": "Bevar både den første teksten og rettelsen sammen",
+          "konsekvensTekst": "Du sørger for at begge versjonene kan finnes igjen. Det gjør feilen etterprøvbar, ikke tilgitt.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "spor_bevart"
+            },
+            "meters": {
+              "energi": -1,
+              "integritet": 1
             }
           }
         }
@@ -810,26 +817,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Åpen dialog uten purring",
-      "tekst": "Lea har beholdt kontaktmuligheten åpen, men mottakeren har ikke sendt mer. Du vet ikke om vedkommende vil svare senere.",
+      "tittel": "Lea stanser ved sendeknappen",
+      "tekst": "Lea har åpnet samtalen med den som mistet en formiddag på prosjektets feilaktige løfte. Hun stirrer på det tomme svarfeltet og sukker. «Jeg vil bare forklare én gang til», sier hun. Men mottakeren har ikke bedt om flere forklaringer. Du skjønner ønsket hennes om å reparere noe, og hvor lett en ny melding kan bli enda en byrde for den andre.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Foreslå å vente uten ny purring",
-          "konsekvensTekst": "Du lar mottakeren styre om samtalen fortsetter. Stillhet registreres ikke som samtykke.",
+          "tekst": "Foreslå at dere lar mottakeren velge om kontakten tas opp igjen",
+          "konsekvensTekst": "Du hjelper Lea med å tåle stillheten. Det er ikke et samtykke eller en forsoning.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "purring_utsatt"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Oppsummer hva dere faktisk har rettet",
-          "konsekvensTekst": "Dere legger fakta i eget notat. Notatet gir ikke et nytt bekreftet svar fra mottakeren.",
+          "tekst": "Samle den gamle teksten og rettelsen internt",
+          "konsekvensTekst": "Dere tar ansvar for hva som faktisk ble skrevet, uten å bruke dokumentasjonen til å kreve svar.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "rettelse_oppsummert"
+            },
+            "meters": {
+              "integritet": 2
             }
           }
         }
@@ -850,26 +863,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Ny mal, gammel regning",
-      "tekst": "Lea viser den nye malen til en samarbeidspartner. Samarbeidspartneren sier at formuleringen er tydeligere, men vet ikke om den ville hindret den første feilen.",
+      "tittel": "Samarbeidspartneren peker på overskriften",
+      "tekst": "Lea viser fram den nye malen. En samarbeidspartner leser første linje og sier: «Dette er tydeligere.» Lea smiler og ser bort på deg. Du vil gjerne dele lettelsen, men husker personen som hadde satt av fredagen forgjeves. Dere kan lære å skrive annerledes uten at den tapte tiden kommer tilbake.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Beskriv malen som forebyggende forsøk",
-          "konsekvensTekst": "Du fremhever at rutinen kan prøves, ikke at fortiden er reparert.",
+          "tekst": "Beskriv malen som noe dere vil prøve videre",
+          "konsekvensTekst": "Du anerkjenner forbedringen uten å påstå at den allerede har hindret en feil.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "forebygging_uten_garanti"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Be Lea registrere når malen faktisk brukes",
-          "konsekvensTekst": "Dere lager et felt for bruk, men har ennå ikke dokumentert et nytt tilfelle.",
+          "tekst": "Be Lea føre opp når malen faktisk blir brukt",
+          "konsekvensTekst": "Dere får et sted å notere erfaringer. Ingen ny prosjektmelding er sendt på grunn av dette valget.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "bruk_ikke_dokumentert"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         }
@@ -890,26 +909,33 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Evalueringen har en eier",
-      "tekst": "Lea aksepterer å evaluere malen ved neste prosjektmelding. Ingen slik melding er sendt ennå. Du kan hjelpe med kriteriene uten å rapportere et oppdiktet resultat.",
+      "tittel": "Et blankt felt i den nye malen",
+      "tekst": "Lea har tatt ansvaret for å evaluere malen. Hun viser deg arket, der feltet «fungerte dette?» står tomt. «Hvordan skal jeg vite det?» spør hun. Dere har brukt mye tid på å rette en misforståelse, men har ennå ingen ny utsending å lære av. Nå må dere velge om planen skal være enkel nok til å brukes.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Avtal hvilke tegn som vil vise om malen fungerer",
-          "konsekvensTekst": "Dere velger konkrete vurderingspunkter. Evalueringen er planlagt, ikke gjennomført.",
+          "tekst": "Foreslå to konkrete spørsmål hun kan sjekke ved neste bruk",
+          "konsekvensTekst": "Dere bestemmer hva dere ønsker å undersøke senere. Ingen evaluering er gjennomført.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "kriterier_valgt"
+            },
+            "meters": {
+              "energi": -1,
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "La Lea eie vurderingen og be om resultat senere",
-          "konsekvensTekst": "Lea har ansvar for sin egen prosess. Du har verken målt eller godkjent den.",
+          "tekst": "Si at Lea kan gjøre vurderingen selv, og gi deg beskjed",
+          "konsekvensTekst": "Du overlater arbeidet til henne uten å registrere et svar eller et resultat som ikke finnes.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "evaluering_overlatt"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         }
@@ -930,26 +956,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Sendt er fremdeles ikke besvart",
-      "tekst": "Påfølgende dag står spørsmålet fortsatt som sendt. Lea spør om dere skal markere begge mottakere som informert. Det finnes ennå ingen kvittering fra dem.",
+      "tittel": "De to navnene ved siden av hverandre",
+      "tekst": "Lea viser deg mottakerlista på skjermen. Begge navn står der, og ved siden av dem står «sendt». «Det ser jo ut som de vet det», sier hun. Du husker hvor mye én tvetydig setning kostet sist. Nå handler uenigheten mellom dere om et lite ord, men du vet hvor stor forskjellen kan være for den som leser statusen senere.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Behold status «sendt, ikke bekreftet»",
-          "konsekvensTekst": "Du hindrer at et ubekreftet spørsmål blir til dokumentert forståelse.",
+          "tekst": "Behold «sendt» uten å kalle det forstått",
+          "konsekvensTekst": "Du velger en status som tåler å bli lest av andre. Svar fra mottakerne er ikke kommet.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "uten_bekreftelse"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Foreslå at Lea kontrollerer egne sendelogger",
-          "konsekvensTekst": "Hun kan undersøke loggene, men du registrerer ikke nye svar før de finnes.",
+          "tekst": "Be Lea sammenligne mottakerlista med sendeloggen",
+          "konsekvensTekst": "Du ber om kontroll av utsendingen, ikke om å finne på bekreftelser eller tilgivelse.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "loggkontroll_foreslaatt"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }
@@ -970,26 +1002,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Et ansvar som fortsatt ligger hos Lea",
-      "tekst": "Lea sier hun vil håndtere eventuell videre oppfølging. Du mottar ingen kopi av nye svar. At du har gitt ansvaret videre, er ikke bevis for at mottakerne er orientert.",
+      "tittel": "Den delen Lea tar videre alene",
+      "tekst": "Lea sier at hun følger opp det som eventuelt kommer av nye spørsmål. Du nikker, men kjenner også en lettelse som får deg til å lure på om du gir fra deg for mye. Du har ikke tilgang til svarene hun kan få senere. Du kan fortsatt stå for ditt arbeid, men ikke fortelle andre at noe er avklart bare fordi hun har tatt over.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Noter at du ikke lenger har innsyn",
-          "konsekvensTekst": "Du beskriver grensen for egen kunnskap. Rettelsens mottaksstatus forblir uavklart for deg.",
+          "tekst": "Noter at du ikke lenger vet hvem som har svart Lea",
+          "konsekvensTekst": "Du skiller mellom det du selv kjenner til, og det Lea følger opp. Status hos mottakerne er fortsatt uavklart for deg.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "innsyn_avgrenset"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Tilby en faktasjekk hvis Lea ber om det senere",
-          "konsekvensTekst": "Tilbudet er betinget. Du tar ikke over utsending eller erklærer saken avsluttet.",
+          "tekst": "Si at Lea kan be deg om en faktasjekk hvis hun ønsker det",
+          "konsekvensTekst": "Du tilbyr hjelp på hennes premisser. Du utfører ingen kontroll og overtar ingen utsending nå.",
           "effekter": {
             "flagg": {
               "wa_d_c23_status": "faktasjekk_betinget"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }

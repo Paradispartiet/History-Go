@@ -1,0 +1,898 @@
+{
+  "targetId": "stattholdergarden",
+  "categoryId": "historie",
+  "sources": {
+    "oppdag_kvadraturen": "https://www.oppdagkvadraturen.no/stoppesteder/stattholdergarden",
+    "snl": "https://snl.no/Stattholderg%C3%A5rden",
+    "oslo_byleksikon": "https://oslobyleksikon.no/side/Calmeyerg%C3%A5rden"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/historie/stattholdergarden.json",
+    "context_artifact": "data/quiz/production_context/historie/stattholdergarden.json",
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ],
+    "source_review_status": "reviewed",
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "21 konkret kildebelagte spørsmål om byggherre, myntembetet, stattholderboligen, arkitekturens tidslag, Calmeyer og ombruk; større profil ville gi repetisjon."
+    },
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/",
+        "reports/place-production/oslo-sentrum-kvadraturen-next40-quiz-candidates-20261025.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen aktiv quiz for stattholdergarden på PR-grenen kontrollert 25.10.2026."
+      },
+      "decisions": [
+        "21 distinkte spørsmål i tre sett med normal åpning (2 x 7).",
+        "Opprinnelig tak, mellomliggende valmtak og dagens mansardtak skilles; restaurantnavn og flytting behandles kildekritisk.",
+        "Ingen generisk teoripugging i åpningen."
+      ],
+      "knowledge_migration": "Ingen tidligere canonical quiz-eier; generator må koble Knowledge fra fullt revidert quiz før manifest-registrering."
+    },
+    "held_back_candidates": [
+      "Eksakte flytteår for Café Engebret i ulike kilder.",
+      "Dateringspåstander om nåværende tak fra før ombygging.",
+      "Påstander om Gyldenløves permanente opphold.",
+      "Ukjente motiv hos tidligere eiere."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "historie_stattholdergarden_set_1",
+      "title": "Menneskene og huset",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "stattholdergarden_quiz_01",
+          "quiz_id": "historie_stattholdergarden_set_1_q1",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvem fikk oppført gården som vi kaller Stattholdergården?",
+          "options": [
+            "Johan Garmann",
+            "Bernt Anker",
+            "Peter Grüner",
+            "Mathias Calmeyer"
+          ],
+          "answer": "Peter Grüner",
+          "answerIndex": 2,
+          "knowledge": "Peter Grüner var myntmester i Christiania og fikk reist gården på 1640-tallet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oppdag_kvadraturen",
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Peter Grüner var myntmester i Christiania og fikk reist gården på 1640-tallet.",
+          "claim_id": "claim_stattholdergarden_quiz_01",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_peter_gruner_var_myntmes_a7cc6018c9",
+          "knowledge_unit_ids": [
+            "ku_historie_peter_gruner_var_myntmes_a7cc6018c9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_02",
+          "quiz_id": "historie_stattholdergarden_set_1_q2",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva danner ankerjernene på fasaden mot Rådhusgata?",
+          "options": [
+            "Navnet til Peter Grüner",
+            "En kongelig krone",
+            "Et gammelt gatenummer",
+            "Et våpenskjold for havnen"
+          ],
+          "answer": "Navnet til Peter Grüner",
+          "answerIndex": 0,
+          "knowledge": "Fasadens ankerjern er formet som navnet Peter Grüner. Slike bygningsdetaljer er materielle kilder til gårdens historie.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fasadens ankerjern er formet som navnet Peter Grüner. Slike bygningsdetaljer er materielle kilder til gårdens historie.",
+          "claim_id": "claim_stattholdergarden_quiz_02",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_fasadens_ankerjern_er_fo_519002204d",
+          "knowledge_unit_ids": [
+            "ku_historie_fasadens_ankerjern_er_fo_519002204d",
+            "ku_historie_slike_bygningsdetaljer_e_ebd2981962"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_03",
+          "quiz_id": "historie_stattholdergarden_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvilken oppgave hadde Peter Grüner for kongen?",
+          "options": [
+            "Militær skolesjef",
+            "Byens politimester",
+            "Stattholder",
+            "Myntmester"
+          ],
+          "answer": "Myntmester",
+          "answerIndex": 3,
+          "knowledge": "Grüner var myntmester, en embetsmann knyttet til kongens produksjon av mynter.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Grüner var myntmester, en embetsmann knyttet til kongens produksjon av mynter.",
+          "claim_id": "claim_stattholdergarden_quiz_03",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_gruner_var_myntmester_en_f4bc297ef9",
+          "knowledge_unit_ids": [
+            "ku_historie_gruner_var_myntmester_en_f4bc297ef9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_04",
+          "quiz_id": "historie_stattholdergarden_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvem brukte gården som bolig når han var i Christiania?",
+          "options": [
+            "Caspar Herman Storm",
+            "Ulrik Frederik Gyldenløve",
+            "Jens Bjelke",
+            "Diderich Hegermann"
+          ],
+          "answer": "Ulrik Frederik Gyldenløve",
+          "answerIndex": 1,
+          "knowledge": "Gyldenløve var stattholder i Norge og brukte gården som bolig da han var i Christiania fra 1680.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gyldenløve var stattholder i Norge og brukte gården som bolig da han var i Christiania fra 1680.",
+          "claim_id": "claim_stattholdergarden_quiz_04",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_gyldenl_ve_var_statthold_de9f1d41d0",
+          "knowledge_unit_ids": [
+            "ku_historie_gyldenl_ve_var_statthold_de9f1d41d0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_05",
+          "quiz_id": "historie_stattholdergarden_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva skiller Gyldenløves embete fra bruken av selve gården?",
+          "options": [
+            "Han var kongens representant, men brukte gården som bolig under opphold",
+            "Han var myntmester og eide alle restauranter",
+            "Han var professor ved Krigsskolen",
+            "Han hadde bare ansvar for varelagrene ved havnen"
+          ],
+          "answer": "Han var kongens representant, men brukte gården som bolig under opphold",
+          "answerIndex": 0,
+          "knowledge": "Gyldenløve hadde sterk politisk myndighet som kongens representant, men gården var et boligsted ved opphold i byen, ikke en krigsskole.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gyldenløve hadde sterk politisk myndighet som kongens representant, men gården var et boligsted ved opphold i byen, ikke en krigsskole.",
+          "claim_id": "claim_stattholdergarden_quiz_05",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_gyldenl_ve_hadde_sterk_p_8568dcdb61",
+          "knowledge_unit_ids": [
+            "ku_historie_gyldenl_ve_hadde_sterk_p_8568dcdb61"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_06",
+          "quiz_id": "historie_stattholdergarden_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva skadet bygningen under Karl XIIs beleiring?",
+          "options": [
+            "En eksplosjon i jernbanetunnelen",
+            "Et ras i havnen",
+            "Artilleriild fra festningen",
+            "En brann etter et kinobesøk"
+          ],
+          "answer": "Artilleriild fra festningen",
+          "answerIndex": 2,
+          "knowledge": "Kanonild under Karl XIIs beleiring skadet bygningen; reparasjonene ble en del av dens senere bygningshistorie.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kanonild under Karl XIIs beleiring skadet bygningen; reparasjonene ble en del av dens senere bygningshistorie.",
+          "claim_id": "claim_stattholdergarden_quiz_06",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_kanonild_under_karl_xiis_020299e739",
+          "knowledge_unit_ids": [
+            "ku_historie_kanonild_under_karl_xiis_020299e739"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_07",
+          "quiz_id": "historie_stattholdergarden_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva forteller mansardtaket om Stattholdergården?",
+          "options": [
+            "Det ble reist før bygningen",
+            "Det kom ved en langt senere ombygging",
+            "Det er samme takform som på den aller første gården",
+            "Det er et moderne tak fra Oslo rådhus"
+          ],
+          "answer": "Det kom ved en langt senere ombygging",
+          "answerIndex": 1,
+          "knowledge": "Dagens mansardtak skriver seg fra en ombygging i 1916 og må ikke forveksles med takformen fra 1600-tallet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Dagens mansardtak skriver seg fra en ombygging i 1916 og må ikke forveksles med takformen fra 1600-tallet.",
+          "claim_id": "claim_stattholdergarden_quiz_07",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_dagens_mansardtak_skrive_ff17891ef9",
+          "knowledge_unit_ids": [
+            "ku_historie_dagens_mansardtak_skrive_ff17891ef9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        }
+      ]
+    },
+    {
+      "set_id": "historie_stattholdergarden_set_2",
+      "title": "Makten og bygningssporene",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "stattholdergarden_quiz_08",
+          "quiz_id": "historie_stattholdergarden_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva viser forskjellen mellom det gamle karnappet og taket?",
+          "options": [
+            "At alle fasadedelene er fra én byggeperiode",
+            "At huset ble flyttet fra Bankplassen",
+            "At fasaden ikke har historisk verdi",
+            "At bygningen har både eldre og nyere bygningslag"
+          ],
+          "answer": "At bygningen har både eldre og nyere bygningslag",
+          "answerIndex": 3,
+          "knowledge": "Karnappet er eldre mens mansardtaket er nyere. Den synlige fasaden bærer flere historiske lag.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Karnappet er eldre mens mansardtaket er nyere. Den synlige fasaden bærer flere historiske lag.",
+          "claim_id": "claim_stattholdergarden_quiz_08",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_karnappet_er_eldre_mens__753e370c40",
+          "knowledge_unit_ids": [
+            "ku_historie_karnappet_er_eldre_mens__753e370c40",
+            "ku_historie_den_synlige_fasaden_b_re_9f38e0f7fd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_09",
+          "quiz_id": "historie_stattholdergarden_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvorfor blir huset også kalt Calmeyergården?",
+          "options": [
+            "Trelasthandlerfamilien Calmeyer eide det senere",
+            "Det var et kjent hotellnavn",
+            "Myntmesteren het Calmeyer",
+            "Det var oppført ved Calmeyers plass"
+          ],
+          "answer": "Trelasthandlerfamilien Calmeyer eide det senere",
+          "answerIndex": 0,
+          "knowledge": "Calmeyer-familiens eierskap på slutten av 1700- og begynnelsen av 1800-tallet ga bygningen et annet historisk navn.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "snl",
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Calmeyer-familiens eierskap på slutten av 1700- og begynnelsen av 1800-tallet ga bygningen et annet historisk navn.",
+          "claim_id": "claim_stattholdergarden_quiz_09",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_calmeyer_familiens_eiers_07cae110f5",
+          "knowledge_unit_ids": [
+            "ku_historie_calmeyer_familiens_eiers_07cae110f5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_10",
+          "quiz_id": "historie_stattholdergarden_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvordan skal vi forstå koblingen mellom Engebret Café og gården?",
+          "options": [
+            "Gården var hele tiden restaurantens eneste adresse",
+            "Kafeen ble først åpnet i dagens Riksantikvarbygg",
+            "Restauranten hadde tidlige lokaler her før flyttingen til Bankplassen",
+            "Restauranten flyttet til Akershus festning"
+          ],
+          "answer": "Restauranten hadde tidlige lokaler her før flyttingen til Bankplassen",
+          "answerIndex": 2,
+          "knowledge": "Engebret Café har eldre tilknytning til serveringsmiljøet i Rådhusgata, men flyttet senere til Bankplassen. Historiske virksomhetsnavn og nåværende steder må skilles.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "snl",
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Engebret Café har eldre tilknytning til serveringsmiljøet i Rådhusgata, men flyttet senere til Bankplassen. Historiske virksomhetsnavn og nåværende steder må skilles.",
+          "claim_id": "claim_stattholdergarden_quiz_10",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_engebret_cafe_har_eldre__e1fd3f4441",
+          "knowledge_unit_ids": [
+            "ku_historie_engebret_cafe_har_eldre__e1fd3f4441",
+            "ku_historie_historiske_virksomhetsna_3e172a133a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_11",
+          "quiz_id": "historie_stattholdergarden_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvilken takform hadde bygningen i sin eldste dokumenterte fase?",
+          "options": [
+            "Et flatt tak",
+            "Et høyt saltak med renessansegavler",
+            "Et glasstak over gården",
+            "Et tak formet som en kuppel"
+          ],
+          "answer": "Et høyt saltak med renessansegavler",
+          "answerIndex": 1,
+          "knowledge": "Kildene beskriver et høyt saltak med renessansegavler i den opprinnelige fasen. Taket er senere endret flere ganger.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oslo_byleksikon",
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kildene beskriver et høyt saltak med renessansegavler i den opprinnelige fasen. Taket er senere endret flere ganger.",
+          "claim_id": "claim_stattholdergarden_quiz_11",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_kildene_beskriver_et_h_y_3186c0f3dd",
+          "knowledge_unit_ids": [
+            "ku_historie_kildene_beskriver_et_h_y_3186c0f3dd",
+            "ku_historie_taket_er_senere_endret_f_1c81321df0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_12",
+          "quiz_id": "historie_stattholdergarden_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva beskriver Oslo byleksikon at ble endret etter beleiringen?",
+          "options": [
+            "Huset ble flyttet til en ny adresse",
+            "Det ble oppført et nytt rådhus på stedet",
+            "Hele fasaden ble erstattet med glass",
+            "Det opprinnelige taket ble reparert og fikk en lavere takform"
+          ],
+          "answer": "Det opprinnelige taket ble reparert og fikk en lavere takform",
+          "answerIndex": 3,
+          "knowledge": "Oslo byleksikon skiller det opprinnelige saltaket fra et lavere valmtak etter 1716. Dagens mansardtak kom enda senere.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon skiller det opprinnelige saltaket fra et lavere valmtak etter 1716. Dagens mansardtak kom enda senere.",
+          "claim_id": "claim_stattholdergarden_quiz_12",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_oslo_byleksikon_skiller__87f0a70270",
+          "knowledge_unit_ids": [
+            "ku_historie_oslo_byleksikon_skiller__87f0a70270",
+            "ku_historie_dagens_mansardtak_kom_en_ee82c99944"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_13",
+          "quiz_id": "historie_stattholdergarden_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvilken detalj er et eldre fremspring i fasaden mot Rådhusgata?",
+          "options": [
+            "En takark",
+            "En fabrikkpipe",
+            "Et karnapp",
+            "Et portårn fra jernbanen"
+          ],
+          "answer": "Et karnapp",
+          "answerIndex": 2,
+          "knowledge": "Karnappet er et karakteristisk eldre fremspring i gaten. Slike karnapper ble senere forbudt å bygge i Christiania.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Karnappet er et karakteristisk eldre fremspring i gaten. Slike karnapper ble senere forbudt å bygge i Christiania.",
+          "claim_id": "claim_stattholdergarden_quiz_13",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_karnappet_er_et_karakter_a2eb74d5c1",
+          "knowledge_unit_ids": [
+            "ku_historie_karnappet_er_et_karakter_a2eb74d5c1",
+            "ku_historie_slike_karnapper_ble_sene_24a2b02eda"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_14",
+          "quiz_id": "historie_stattholdergarden_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvorfor er det opprinnelige karnappet kulturhistorisk interessant?",
+          "options": [
+            "Det viser en gammel byggeskikk som senere ble regulert bort",
+            "Det er en helt ny etterligning uten historie",
+            "Det ble bygget som militært skytefelt",
+            "Det viser hvor restauranten hadde kassadisken"
+          ],
+          "answer": "Det viser en gammel byggeskikk som senere ble regulert bort",
+          "answerIndex": 0,
+          "knowledge": "Det bevarte karnappet vitner om en byggeskikk som senere ble regulert og i stor grad forsvant fra byen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det bevarte karnappet vitner om en byggeskikk som senere ble regulert og i stor grad forsvant fra byen.",
+          "claim_id": "claim_stattholdergarden_quiz_14",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_det_bevarte_karnappet_vi_4c97a80a6f",
+          "knowledge_unit_ids": [
+            "ku_historie_det_bevarte_karnappet_vi_4c97a80a6f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        }
+      ]
+    },
+    {
+      "set_id": "historie_stattholdergarden_set_3",
+      "title": "Navn, næringsliv og kilder",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "stattholdergarden_quiz_15",
+          "quiz_id": "historie_stattholdergarden_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvem fortsatte i farens spor som myntmester og arvet gården?",
+          "options": [
+            "Ulrik Frederik Gyldenløve",
+            "Friederich Grüner",
+            "Gerhard Treschow",
+            "Hans Nielsen Hauge"
+          ],
+          "answer": "Friederich Grüner",
+          "answerIndex": 1,
+          "knowledge": "Friederich Grüner fortsatte i farens spor og overtok eiendommen; slik knytter huset to generasjoner til myntembetet.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Friederich Grüner fortsatte i farens spor og overtok eiendommen; slik knytter huset to generasjoner til myntembetet.",
+          "claim_id": "claim_stattholdergarden_quiz_15",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_friederich_gruner_fortsa_0422dcdde3",
+          "knowledge_unit_ids": [
+            "ku_historie_friederich_gruner_fortsa_0422dcdde3"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_16",
+          "quiz_id": "historie_stattholdergarden_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvilken eiendom knyttet Friederich Grüner også til slektens næringsliv?",
+          "options": [
+            "Hotel du Nord",
+            "Akershus slott",
+            "Garmanngården",
+            "Nedre Foss mølle"
+          ],
+          "answer": "Nedre Foss mølle",
+          "answerIndex": 3,
+          "knowledge": "Oppdag Kvadraturen oppgir at Friederich Grüner kjøpte Nedre Foss mølle i 1672, som knytter slekten til byens mølle- og næringshistorie.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oppdag Kvadraturen oppgir at Friederich Grüner kjøpte Nedre Foss mølle i 1672, som knytter slekten til byens mølle- og næringshistorie.",
+          "claim_id": "claim_stattholdergarden_quiz_16",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_oppdag_kvadraturen_oppgi_3baf62f5df",
+          "knowledge_unit_ids": [
+            "ku_historie_oppdag_kvadraturen_oppgi_3baf62f5df"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_17",
+          "quiz_id": "historie_stattholdergarden_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva kan navnet Grünerløkka fortelle om byhistorien?",
+          "options": [
+            "At alle hus i bydelen ble oppført av samme mann",
+            "At et slektsnavn kan leve videre som stedsnavn uten å forklare alle senere hendelser",
+            "At bydelen var et myntverk",
+            "At navnet stammer fra restaurantens meny"
+          ],
+          "answer": "At et slektsnavn kan leve videre som stedsnavn uten å forklare alle senere hendelser",
+          "answerIndex": 1,
+          "knowledge": "Slektens navn er bevart i Grünerløkka. En slik navnekobling forteller om ettermæle, men er ikke bevis for alle hendelser i strøkets senere historie.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Slektens navn er bevart i Grünerløkka. En slik navnekobling forteller om ettermæle, men er ikke bevis for alle hendelser i strøkets senere historie.",
+          "claim_id": "claim_stattholdergarden_quiz_17",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_slektens_navn_er_bevart__597e59ce3c",
+          "knowledge_unit_ids": [
+            "ku_historie_slektens_navn_er_bevart__597e59ce3c",
+            "ku_historie_en_slik_navnekobling_for_191e164bb9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_18",
+          "quiz_id": "historie_stattholdergarden_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva drev Calmeyer-familien med da de var knyttet til gården?",
+          "options": [
+            "Trelasthandel",
+            "Myntproduksjon for kongen",
+            "Militær utdanning",
+            "Jernbanedrift"
+          ],
+          "answer": "Trelasthandel",
+          "answerIndex": 0,
+          "knowledge": "Calmeyer-familien var knyttet til trelasthandel og eide gården i en senere periode, noe som forklarer navnet Calmeyergården.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Calmeyer-familien var knyttet til trelasthandel og eide gården i en senere periode, noe som forklarer navnet Calmeyergården.",
+          "claim_id": "claim_stattholdergarden_quiz_18",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_calmeyer_familien_var_kn_d5e331e57a",
+          "knowledge_unit_ids": [
+            "ku_historie_calmeyer_familien_var_kn_d5e331e57a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_19",
+          "quiz_id": "historie_stattholdergarden_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva bør vi skille mellom når dagens restaurant forteller stedets historie?",
+          "options": [
+            "At bygningen alltid har vært samme restaurant",
+            "At bygningen ikke har vært en embetsbolig",
+            "Virksomhetenes skiftende bruk og bygningens eldre funksjoner",
+            "At alt inventar stammer fra 1640-tallet"
+          ],
+          "answer": "Virksomhetenes skiftende bruk og bygningens eldre funksjoner",
+          "answerIndex": 2,
+          "knowledge": "Serveringshistorien er et nytt bruks- og samfunnslag etter bypalé og embetsbolig. Den opprinnelige funksjonen kan ikke utledes av dagens restaurant.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "snl",
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Serveringshistorien er et nytt bruks- og samfunnslag etter bypalé og embetsbolig. Den opprinnelige funksjonen kan ikke utledes av dagens restaurant.",
+          "claim_id": "claim_stattholdergarden_quiz_19",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_serveringshistorien_er_e_3c33758604",
+          "knowledge_unit_ids": [
+            "ku_historie_serveringshistorien_er_e_3c33758604",
+            "ku_historie_den_opprinnelige_funksjo_f26b2c3bef"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_20",
+          "quiz_id": "historie_stattholdergarden_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hva betyr det at restauranten tok et nytt navn langt etter bygningens oppføring?",
+          "options": [
+            "At restauranten dermed må ha startet på 1600-tallet",
+            "At alle eierne var stattholdere",
+            "At bygningen ble revet ved navneskiftet",
+            "At nyere virksomhetsnavn ikke daterer bygningens opprinnelige funksjon"
+          ],
+          "answer": "At nyere virksomhetsnavn ikke daterer bygningens opprinnelige funksjon",
+          "answerIndex": 3,
+          "knowledge": "Etter ulike restaurantnavn skiftet virksomheten navn til Statholdergaarden i 1957. Navnet kan derfor ikke brukes som bevis for at selve restaurantvirksomheten stammer fra 1600-tallet.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "snl",
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Etter ulike restaurantnavn skiftet virksomheten navn til Statholdergaarden i 1957. Navnet kan derfor ikke brukes som bevis for at selve restaurantvirksomheten stammer fra 1600-tallet.",
+          "claim_id": "claim_stattholdergarden_quiz_20",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_etter_ulike_restaurantna_077b32d7ed",
+          "knowledge_unit_ids": [
+            "ku_historie_etter_ulike_restaurantna_077b32d7ed",
+            "ku_historie_navnet_kan_derfor_ikke_b_b2208ab8a6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "stattholdergarden_quiz_21",
+          "quiz_id": "historie_stattholdergarden_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "stattholdergarden",
+          "targetId": "stattholdergarden",
+          "question_scope": "place",
+          "question": "Hvordan bør vi undersøke gårdens skiftende takformer?",
+          "options": [
+            "Velge det høyeste årstallet vi finner og bruke det som hele husets byggeår",
+            "Sammenligne kilder og skille opprinnelig tak, skadereparasjon og senere ombygging",
+            "Se bort fra skader og restaureringer",
+            "Anta at karnappet og mansardtaket er samtidige"
+          ],
+          "answer": "Sammenligne kilder og skille opprinnelig tak, skadereparasjon og senere ombygging",
+          "answerIndex": 1,
+          "knowledge": "Kilder om beleiringen, takombyggingen og bevarte ankerjern og karnapp må sammenholdes. Et synlig bygg gir ikke alene en entydig datering av alle deler.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "oslo_byleksikon",
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kilder om beleiringen, takombyggingen og bevarte ankerjern og karnapp må sammenholdes. Et synlig bygg gir ikke alene en entydig datering av alle deler.",
+          "claim_id": "claim_stattholdergarden_quiz_21",
+          "knowledge_link_status": "linked",
+          "method_id": "met_kildekritikk",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "work": "The Historian's Craft",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Historisk kildekritikk skiller samtidige observasjoner, senere reparasjoner og nyere ombygginger før vi trekker slutninger fra byggespor."
+          },
+          "guidance_basis": [
+            "Kildene må skille opprinnelig saltak, reparasjoner og nyere mansardtak",
+            "met_kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kilder_om_beleiringen_ta_fcba9481d6",
+          "knowledge_unit_ids": [
+            "ku_historie_kilder_om_beleiringen_ta_fcba9481d6",
+            "ku_historie_et_synlig_bygg_gir_ikke__f3927b7901"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        }
+      ]
+    }
+  ],
+  "production_status": "manifested_knowledge_linked_browser_qa_passed"
+}

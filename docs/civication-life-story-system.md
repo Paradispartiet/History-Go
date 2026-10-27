@@ -1035,3 +1035,10 @@ C01/C05 kan fortsette på en senere **livsdag**, også om den aktive jobbrollen 
 `state.privatHistorie` inneholder kun C01/C05 sine delte valg, tidsankre, spilte scene-ID-er, faktisk arkiv og grunnrelasjonene til venn/familie; øvrige rollelagringer består urørt. Ved rollebytte rehydreres disse uten duplikater. Gamle lagringer gjenbruker kun faktiske Wave D-arkivlinjer som tidsankre, og manglende arkiv gir ikke fiktive senere episoder. Tidsankrene kommer fra `livsdag`, ikke PC-klokke, app-åpning eller et gjettet møtetidspunkt.
 
 Når en dokumentert senere privatscene gjenstår, er kapittelet ikke endelig avsluttet bare fordi den aktive rollen har nådd sin `symposium.sisteDag`. Spilleren kan fortsette til neste livsdag eller velge en separat allerede kvalifisert fortsettelse. Dette er ment som privat kontinuitet, ikke som omlegging av jobbrollen eller garanti for at saksbehandling, avtaler eller penger endrer seg automatisk.
+
+
+### Wave F – åtte fortellinger på tvers av roller
+
+De åtte Wave F-trådene C01/C02/C03/C05/C06/C07/C17/C23 følger dokumenterte valg fra de tidligere bølgene. Hver scene krever riktig tidligere utfall, minst fire forløpte livsdager og en faktisk arkivert hendelse som tidsanker. Nye private valg og arkivoppføringer følger spilleren mellom arbeidsroller, men skaper ikke nye vedtak, arbeidsgivermyndighet, avtaler eller utbetalinger.
+
+Rolle- og kalenderstatus håndteres fortsatt av gjeldende Civication-motor. Livsdag 8–21 og Skills-opptjening fra de nyere endringene på main skal bevares. `tests/civication-source-grounded-wave-f.test.js` dekker 68 forgreininger, 136 valg og bevaring av konsekvenser.

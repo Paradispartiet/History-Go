@@ -46,7 +46,7 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Navnet ditt på invitasjonen",
-      "tekst": "Miljøkontakten sender utkastet til invitasjonen for undergrunnskvelden på dag 16. Nederst er det et tomt felt: «Kontakt». «Kan jeg sette deg der?» spør miljøkontakten. Ingen oppgave eller arbeidstid er avtalt.",
+      "tekst": "Miljøkontakten sender utkastet til invitasjonen for undergrunnskvelden om fem dager. Nederst er det et tomt felt: «Kontakt». «Kan jeg sette deg der?» spør miljøkontakten. Ingen oppgave eller arbeidstid er avtalt.",
       "valg": [
         {
           "id": "avklar",
@@ -105,7 +105,7 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Lista er ikke avklart",
-      "tekst": "Bekjenten sa nei også da du ba ham komme likevel. Miljøkontakten har ikke fjernet navnet hans fra arbeidslista. Nå sender miljøkontakten et nytt spørsmål: Kan navnet ditt stå som kontakt på invitasjonen for dag 16? Det er et annet løfte enn det du ga om bekjenten.",
+      "tekst": "Bekjenten sa nei også da du ba ham komme likevel. Miljøkontakten har ikke fjernet navnet hans fra arbeidslista. Nå sender miljøkontakten et nytt spørsmål: Kan navnet ditt stå som kontakt på invitasjonen om fem dager? Det er et annet løfte enn det du ga om bekjenten.",
       "valg": [
         {
           "id": "avklar",
@@ -169,7 +169,7 @@
         {
           "id": "kontakt",
           "tekst": "Spør hvordan det går med neste kveld",
-          "konsekvensTekst": "Du skriver selv. Miljøkontakten sender et utkast til invitasjonen for dag 16 og spør om navnet ditt kan stå som kontakt. Du ber miljøkontakten forklare hva det innebærer først.",
+          "konsekvensTekst": "Du skriver selv. Miljøkontakten sender et utkast til invitasjonen om fem dager og spør om navnet ditt kan stå som kontakt. Du ber miljøkontakten forklare hva det innebærer først.",
           "effekter": {
             "flagg": {
               "arvid_valg11": "avklar"
@@ -258,7 +258,7 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Folk har lest invitasjonen",
-      "tekst": "Invitasjonen er publisert med navnet ditt som kontakt. En person du ikke kjenner skriver: «Miljøkontakten sier du ordner navn. Kan du få oss inn på dag 16?» Du har ikke fått noe mandat fra arrangøren.",
+      "tekst": "Invitasjonen er publisert med navnet ditt som kontakt. En person du ikke kjenner skriver: «Miljøkontakten sier du ordner navn. Kan du få oss inn om fire dager?» Du har ikke fått noe mandat fra arrangøren.",
       "valg": [
         {
           "id": "rett",
@@ -447,7 +447,7 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Invitasjonen uten deg",
-      "tekst": "Miljøkontakten sender den publiserte invitasjonen. Navnet ditt er utelatt slik du ba om. «Da tar arrangøren spørsmålene», skriver miljøkontakten. Det er ingen avtale om at du skal møte på dag 16.",
+      "tekst": "Miljøkontakten sender den publiserte invitasjonen. Navnet ditt er utelatt slik du ba om. «Da tar arrangøren spørsmålene», skriver miljøkontakten. Det er ingen avtale om at du skal møte om tre dager.",
       "valg": [
         {
           "id": "kontakt",
@@ -466,7 +466,7 @@
         {
           "id": "avstand",
           "tekst": "Si at du vil la kontakten ligge nå",
-          "konsekvensTekst": "Du sier fra om en pause. Miljøkontakten svarer at miljøkontakten lar deg være.",
+          "konsekvensTekst": "Du sier fra om en pause. Miljøkontakten svarer at han lar deg være.",
           "effekter": {
             "flagg": {
               "arvid_retning13": "avstand",
@@ -620,8 +620,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Den timen som faktisk var din",
-      "tekst": "Du tenker tilbake på gårsdagens vakt fra 18 til 19. Miljøkontakten tok over da timen var ute. Nå kjenner du både lyst til å komme tilbake og behov for tid uten oppgaver. Erfaringen gjelder den ene vakten; den svarer ikke automatisk på de nye spørsmålene om navnet ditt og kommende arrangementer.",
+      "tittel": "Gaffateipen i jakkelomma",
+      "tekst": "Du finner en bit gaffateip i lomma etter gårsdagens vakt. Miljøkontakten tok over klokka sju, akkurat som dere hadde avtalt. Du likte å hjelpe til, særlig praten mens dere ryddet. Men da du kom hjem, var du utslitt. Du vil gjerne høre til blant disse menneskene uten at hver hyggelig kveld blir starten på en ny vakt.",
       "conditions": {
         "flagg": {
           "wa_c07_vakt_gjennomfort": true
@@ -630,8 +630,8 @@
       "valg": [
         {
           "id": "sosialt_rom",
-          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
-          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "tekst": "Fortell miljøkontakten at du gjerne kommer som gjest neste gang",
+          "konsekvensTekst": "Du sier hva du setter pris på ved miljøet. Du har bedt om en sosial plass, ikke sagt ja til enda en oppgave.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "sosialt"
@@ -640,8 +640,8 @@
         },
         {
           "id": "egen_avstand",
-          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
-          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "tekst": "Takk for vakta, og be om noen dager uten nye oppgaver",
+          "konsekvensTekst": "Du skriver en vennlig takk og ber om ro. Miljøkontakten har fått beskjeden; du vet ennå ikke hvordan han vil følge den opp.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "avstand"
@@ -659,8 +659,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En plass uten vaktliste",
-      "tekst": "Du var innom som gjest i går uten å ta en vakt. Når du tenker på et nytt besøk, merker du at ønsket om å høre til og ønsket om å bestemme over egen tid fortsatt trekker i hver sin retning. Besøket har ikke etablert en ny forpliktelse, og det avgjør ikke dagens andre spørsmål om framtidig kontakt.",
+      "tittel": "Teen var varm, og du fikk sitte",
+      "tekst": "Du tenker tilbake på kvelden i lokalet: koppen med te, gitaren som stadig måtte stemmes, miljøkontakten som satte seg ned ved siden av deg uten å be om hjelp. Du fikk faktisk være gjest. Det burde gjøre det lett å dra tilbake, men du vet hvor raskt gamle forventninger kan komme igjen. Du vil ta vare på den gode kvelden uten å love at du alltid er tilgjengelig.",
       "conditions": {
         "flagg": {
           "wa_c07_gjest_gjennomfort": true
@@ -669,8 +669,8 @@
       "valg": [
         {
           "id": "sosialt_rom",
-          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
-          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "tekst": "Fortell miljøkontakten at du gjerne kommer som gjest igjen",
+          "konsekvensTekst": "Du takker for praten og musikken. Ingen ny vakt er avtalt, og et nytt besøk må fortsatt passe.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "sosialt"
@@ -679,8 +679,8 @@
         },
         {
           "id": "egen_avstand",
-          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
-          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "tekst": "Takk for kvelden og be om en pause fra nye invitasjoner",
+          "konsekvensTekst": "Du skriver varmt, men tydelig. Det koster litt å be om avstand fra et sted du også liker.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "avstand"
@@ -698,8 +698,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et ja som ble trukket tilbake",
-      "tekst": "Du avlyste den avtalte vakten. Du vet ikke hvordan de løste bemanningen etterpå. Du kan ønske deg kontakt og samtidig erkjenne at et ja skapte en forventning du senere endret. Dagens spørsmål om framtidig kontakt er en annen avtale enn den vakten som ikke ble gjennomført.",
+      "tittel": "Miljøkontaktens ene ord",
+      "tekst": "Miljøkontakten svarte bare «ok» da du avlyste vakta sent. Du vet ikke om noen andre måtte bli igjen og rydde, men du vet at du sa fra for sent. Du prøver å skrive en unnskyldning uten å begynne å forsvare deg. Samtidig savner du menneskene i lokalet. Kanskje finnes det en vei tilbake som ikke krever at du lover bort neste helg.",
       "conditions": {
         "flagg": {
           "wa_c07_vakt_avlyst": true
@@ -708,8 +708,8 @@
       "valg": [
         {
           "id": "sosialt_rom",
-          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
-          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "tekst": "Beklag avlysningen, og spør om du kan komme som gjest senere",
+          "konsekvensTekst": "Du tar ansvar for den sene beskjeden og forteller at du savner folkene. Du lover ingen ny vakt og vet fortsatt ikke hvem som ryddet.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "sosialt"
@@ -718,8 +718,8 @@
         },
         {
           "id": "egen_avstand",
-          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
-          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "tekst": "Beklag avlysningen og be om avstand fra nye oppgaver",
+          "konsekvensTekst": "Du sender en ordentlig unnskyldning og ber om en pause. Det gjør ikke ulempen ugjort, men du legger ikke til et nytt løfte.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "avstand"
@@ -737,8 +737,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Du ble hjemme",
-      "tekst": "Du takket ja til informasjon som gjest, men ble hjemme da kvelden kom. Du vet ikke hvem som møttes eller hvordan det ble. Den stillheten kan kjennes både god og ensom. En ny preferanse for kontakt er noe du kan formulere nå, uten å gjøre gårsdagen om til et besøk.",
+      "tittel": "Lydene fra gata under vinduet",
+      "tekst": "Du valgte å bli hjemme da miljøkontakten inviterte gruppa. Nå hører du noen le nede ved busstoppet. Du vet ikke hvem de er eller hva de har vært med på, men lyden minner deg om samtalene i lokalet. Du hadde behov for en kveld uten oppgaver og beskjeder. Likevel savner du menneskene. Du er usikker på om miljøkontakten vil forstå forskjellen.",
       "conditions": {
         "flagg": {
           "wa_c07_gjest_gjennomfort": false
@@ -747,8 +747,8 @@
       "valg": [
         {
           "id": "sosialt_rom",
-          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
-          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "tekst": "Spør miljøkontakten om du kan komme som gjest en annen gang",
+          "konsekvensTekst": "Du tar kontakt for å være sammen med folk, ikke for å melde deg til en oppgave. Ingen ny samling er avtalt.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "sosialt"
@@ -757,8 +757,8 @@
         },
         {
           "id": "egen_avstand",
-          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
-          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "tekst": "Si at du trenger pause fra invitasjonene til du tar initiativ",
+          "konsekvensTekst": "Du setter en grense for kontakten. Du har verken lovet å møte opp eller tatt på deg en vakt.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "avstand"
@@ -776,8 +776,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Invitasjonen du avslo",
-      "tekst": "Du sa nei til invitasjonen. Det finnes ingen avtalt vakt og ikke noe besøk å ta æren eller skylden for. Likevel kan miljøet oppta plass i tankene: Var det oppgavene du ville slippe, eller selve samlingen? Du trenger ikke gi noen andre et svar denne kvelden.",
+      "tittel": "Det var ikke menneskene du sa nei til",
+      "tekst": "Du takket nei til miljøkontaktens invitasjon og ble hjemme. Nå ser du meldingen igjen og tenker på gitaren i lokalet og folkene som pleier å sitte rundt bordet. Det var ikke dem du ville slippe. Det var følelsen av å bli stående med stolene når alle andre gikk. Neste gang vil du være tydeligere før du sier ja til noe.",
       "conditions": {
         "flagg": {
           "wa_c07_invitasjon": "nei"
@@ -786,8 +786,8 @@
       "valg": [
         {
           "id": "sosialt_rom",
-          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
-          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "tekst": "Si at du gjerne møter folk, men ikke vil stå på vakt",
+          "konsekvensTekst": "Du forteller miljøkontakten hva som frister og hvor grensen går. Ingen besøk eller oppgave er avtalt.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "sosialt"
@@ -796,8 +796,8 @@
         },
         {
           "id": "egen_avstand",
-          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
-          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "tekst": "Takk for invitasjonen og be om en pause fra flere forespørsler",
+          "konsekvensTekst": "Du setter en grense for en stund uten å avvise fellesskapet for alltid.",
           "effekter": {
             "flagg": {
               "wa_b_c07_onske": "avstand"
@@ -815,8 +815,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Å være med uten å stå på vakt",
-      "tekst": "Du har sagt at du gjerne vil ha mer av det sosiale rundt Miljøkontakten og gruppa. Miljøkontakten skriver: «Det er hyggelig. Vi møtes ofte på tirsdager, men noen må også rigge.» Han har ikke spurt deg om en konkret oppgave. Du ønsker tilhørighet, men vil unngå at alle besøk etter hvert blir en usagt forpliktelse.",
+      "tittel": "Må tilhørighet betales med arbeid?",
+      "tekst": "Miljøkontakten skriver at han gjerne vil se deg på en tirsdag. «Det er alltid litt rigging også», legger han til. Du tenker på samtalene etter musikken og på den gangen du ble stående med stolene. Du vil gjerne høre til, men du vil ikke betale inngang med arbeid. Nå kan du be miljøkontakten si hva han faktisk inviterer deg til.",
       "conditions": {
         "flagg": {
           "wa_b_c07_onske": "sosialt"
@@ -825,8 +825,8 @@
       "valg": [
         {
           "id": "sporramme",
-          "tekst": "Spør om det er greit å komme uten å påta deg rigging",
-          "konsekvensTekst": "Miljøkontakten skriver at det er greit å komme innom bare for å prate. Du har fått en avklaring, ikke påtatt deg en vakt.",
+          "tekst": "Spør om det er greit å komme som gjest uten riggevakt",
+          "konsekvensTekst": "Miljøkontakten skriver at det er greit å komme bare for å prate. Rollen er avklart, men ingen dag eller klokkeslett er avtalt.",
           "effekter": {
             "flagg": {
               "wa_c_c07_grense": "besok_uten_vakt"
@@ -835,8 +835,8 @@
         },
         {
           "id": "tilby_en_gang",
-          "tekst": "Si at du kan vurdere én avgrenset oppgave etter at du vet tidspunktet",
-          "konsekvensTekst": "Miljøkontakten svarer at han vil spørre om dato og oppgave senere. Du har ikke lovet å møte eller gjøre arbeidet.",
+          "tekst": "Si at du kan vurdere én bestemt oppgave når du vet hva og når",
+          "konsekvensTekst": "Miljøkontakten sier at han kan spørre senere. Du har ikke tatt en vakt, og kalenderen din er fri.",
           "effekter": {
             "flagg": {
               "wa_c_c07_grense": "oppgave_betinget"
@@ -855,8 +855,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "En grense som andre må få høre",
-      "tekst": "Du har valgt større avstand fra miljøet, men Miljøkontakten sender en gruppeinvitasjon likevel. Han skriver at alle kan bidra litt hvis de vil. Det er ikke en direkte trussel, men du er usikker på om han har forstått at du ønsker en pause fra forventningene.",
+      "tittel": "Invitasjonen du trodde var stoppet",
+      "tekst": "En ny gruppeinvitasjon blinker på telefonen. Du hadde bedt om avstand. Miljøkontakten skriver at alle kan hjelpe litt om de vil, uten å nevne deg spesielt. Kanskje er det bare en automatisk utsending. Likevel kjenner du hvordan skuldrene spenner seg. Du vil ikke bruke enda en kveld på å overbevise folk om at fritiden din er din.",
       "conditions": {
         "flagg": {
           "wa_b_c07_onske": "avstand"
@@ -865,8 +865,8 @@
       "valg": [
         {
           "id": "si_det_tydelig",
-          "tekst": "Si at du gjerne vil være bekjent, men ikke bli regnet med på oppgavelister",
-          "konsekvensTekst": "Miljøkontakten svarer «skjønner» og sier han vil spørre før navnet ditt settes på en liste. Ingen vakt er avtalt.",
+          "tekst": "Si at du vil kjenne folkene, men ikke stå på oppgavelister",
+          "konsekvensTekst": "Miljøkontakten sier han vil spørre før han eventuelt fører navnet ditt på en liste. Du har forklart grensen, ikke avtalt en vakt.",
           "effekter": {
             "flagg": {
               "wa_c_c07_grense": "ikke_pa_liste"
@@ -876,7 +876,7 @@
         {
           "id": "stopp_varsel",
           "tekst": "Be om å stå utenfor gruppeinvitasjoner en stund",
-          "konsekvensTekst": "Miljøkontakten tar deg ut av denne invitasjonslisten. Den sosiale kontakten er ikke dermed avsluttet for alltid.",
+          "konsekvensTekst": "Miljøkontakten tar deg ut av denne lista. Du får ro fra meldingene, men den sosiale kontakten er ikke dermed avsluttet.",
           "effekter": {
             "flagg": {
               "wa_c_c07_grense": "gruppepause"
@@ -895,26 +895,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Invitasjonen uten oppgaveliste",
-      "tekst": "Dagen etter skriver Miljøkontakten at du gjerne kan komme for å prate, men det er uklart om vertene forventer riggehjelp. Du har ikke sagt ja til en vakt.",
+      "tittel": "En invitasjon uten et tydelig ja",
+      "tekst": "Miljøkontakten skriver at du kan komme innom lokalet for å prate. Du blir glad av å høre fra ham, men husker hvordan forrige besøk endte med at du ble bedt om å hjelpe til med rigging. Denne gangen vil du komme som venn. Du vil heller ikke anklage ham for å ha bedt om noe han ikke har nevnt ennå.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Be om å bli invitert som gjest, ikke frivillig",
-          "konsekvensTekst": "Du formulerer forventningen din tydelig. Et besøk må fortsatt avtales med tidspunkt.",
+          "tekst": "Spør miljøkontakten om du kan komme som gjest, uten arbeidsoppgaver",
+          "konsekvensTekst": "Du gjør ønsket tydelig. Ingen vakt er avtalt, og dere har ennå ikke bestemt når du eventuelt kommer.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "gjesterolle_forklart"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Avvent til noen bekrefter at besøket er uten oppgave",
-          "konsekvensTekst": "Du lar invitasjonen stå åpen. Ingen vakt eller oppmøte er akseptert.",
+          "tekst": "Vent med å planlegge besøket til det er klart hva han mener",
+          "konsekvensTekst": "Du lar invitasjonen ligge. Det er mulig å ønske seg fellesskapet uten å godta uklare forpliktelser.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "bekreftelse_avventes"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }
@@ -935,26 +941,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "En oppgave uten tidspunkt",
-      "tekst": "Miljøkontakten spør om du kan bære utstyr «en gang neste uke». Det er ikke oppgitt sted, varighet eller ansvarlig person. Du har bare sagt at du kan vurdere noe avgrenset.",
+      "tittel": "«En gang neste uke»",
+      "tekst": "Miljøkontakten sender en melding mens du står med handleposene i oppgangen: «Kan du kanskje bære litt utstyr en gang neste uke?» Du har sagt at du kan vurdere å hjelpe én gang. Men ordene «en gang» minner deg om hvor lett små oppgaver pleide å spise opp en kveld. Du savner miljøet, ikke den dårlige samvittigheten.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Be om sted, varighet og ansvarlig før du svarer",
-          "konsekvensTekst": "Du stiller konkrete spørsmål uten å binde deg. En vakt er fortsatt ikke avtalt.",
+          "tekst": "Spør hva som skal bæres, hvor og hvor lenge",
+          "konsekvensTekst": "Du ber om rammene før du bestemmer deg. Ingen vakt er avtalt.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "rammer_etterspurt"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Si at tilbudet bortfaller uten en tydelig ramme",
-          "konsekvensTekst": "Du gjør det klart at åpne forespørsler ikke automatisk blir ditt ansvar.",
+          "tekst": "Si at du bare kan vurdere hjelp hvis oppgaven blir konkret",
+          "konsekvensTekst": "Du avgrenser tilbudet. En ubestemt forespørsel blir ikke automatisk ditt ansvar.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "ubundet_tilbud"
+            },
+            "meters": {
+              "psyke": 2
             }
           }
         }
@@ -975,26 +987,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Bekjentskap uten innkalling",
-      "tekst": "Miljøkontakten svarer at han ikke skal føre deg på oppgavelister. Likevel ligger du fortsatt i gruppesamtalen, og invitasjoner kan dukke opp.",
+      "tittel": "Navnet ditt står fortsatt i gruppa",
+      "tekst": "Miljøkontakten har svart at han ikke vil sette deg på vaktliste. Likevel ser du gruppesamtalen mellom familiebildene og meldingene fra venner. Du vil gjerne kunne møte folk der igjen, men blir sliten bare av å tenke på varsler om rigging og opprydding. En del av deg vil slette alt. En annen vil beholde fellesskapet.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Takk for svaret og behold sosial kontakt",
-          "konsekvensTekst": "Du anerkjenner beskjeden. Du har ikke akseptert noen oppgave eller neste samling.",
+          "tekst": "Takk miljøkontakten og si at du gjerne vil høre om sosiale treff",
+          "konsekvensTekst": "Du holder kontakten varm uten å takke ja til en ny oppgave.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "bekjentskap_beholdt"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Be om å bli fjernet fra praktiske vaktmeldinger",
-          "konsekvensTekst": "Du ber om færre oppgavevarsler. Selve fjerningen er ikke bekreftet.",
+          "tekst": "Be om å slippe praktiske vaktmeldinger framover",
+          "konsekvensTekst": "Du sier tydelig hva du trenger. Du har ikke fått bekreftet at varslene er stoppet.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "vaktvarsler_stopp_forespurt"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }
@@ -1015,26 +1033,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Pausen skal gjelde i praksis",
-      "tekst": "Etter ønsket om gruppepause får du én ny automatisk invitasjon. Det er uklart om den ble sendt før beskjeden ble lest.",
+      "tittel": "Varslet etter beskjeden",
+      "tekst": "Telefonen blinker med en automatisk invitasjon til gruppa. Du har allerede bedt om pause, men vet ikke om invitasjonen gikk ut før noen rakk å lese meldingen din. Du kjenner irritasjonen komme, så stopper du. Du vil ikke krangle for å bevise at du har lov til å være i fred.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Gjenta kort at du ønsker pause fra invitasjoner",
-          "konsekvensTekst": "Du sender én tydelig beskjed. Ingen ny avtale eller plikt følger av svaret.",
+          "tekst": "Gjenta rolig at du ønsker pause fra invitasjonene",
+          "konsekvensTekst": "Du sender en kort beskjed om grensen din. Du sier ingenting om hvorfor varselet kom, for det vet du ikke.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "gruppepause_gjentatt"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Skru av varsler lokalt og la samtalen ligge",
-          "konsekvensTekst": "Du styrer dine egne varsler. Det betyr ikke at andre har slettet deg fra gruppen.",
+          "tekst": "Demp gruppevarslene på telefonen og fortsett kvelden",
+          "konsekvensTekst": "Du styrer din egen skjerm og får ro. Det betyr ikke at du er slettet fra gruppa, og det har du heller ikke bedt noen bekrefte.",
           "effekter": {
             "flagg": {
               "wa_d_c07_status": "lokal_varselro"
+            },
+            "meters": {
+              "psyke": 2
             }
           }
         }

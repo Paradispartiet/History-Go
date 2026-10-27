@@ -74,8 +74,8 @@
   // fakta, scenevalg og arkiv følger spilleren ved jobbbytte.
   // Shared personal trajectories survive employment changes in the existing
   // private-history snapshot; neither job role owns these actions.
-  const PRIVATE_FLAG = /^(?:wa_(?:[bcde]_)?c0[15]_|life21_)/;
-  const PRIVATE_SCENE = /^(?:wave_[abcde]_c0[15]_|wave_e_life21_)/;
+  const PRIVATE_FLAG = /^(?:wa_(?:[bcdef]_)?c(?:01|02|03|05|06|07|17|23)_|life21_)/;
+  const PRIVATE_SCENE = /^(?:wave_[abcde]_c0[15]_|wave_[abcdef]_c(?:01|02|03|05|06|07|17|23)_|wave_e_life21_)/;
   // These threads belong to the shared personal pack, across every career.
   // Their real archived scene choices remain personal even on old saves that
   // predate the incremental private-history record.
@@ -83,7 +83,9 @@
     "daarlig_soevn", "stram_oekonomi", "venter_paa_svar", "tviler_paa_jobben",
     "kroppen_og_kreftene", "folk_rundt_deg", "lysten_til_aa_laere",
     "byen_og_deg", "natten_og_soevnen", "dine_egne_timer", "uka_videre",
-    "wave_e_c01", "wave_e_c05", "wave_e_life21"
+    "wave_e_c01", "wave_e_c05", "wave_e_life21",
+    "wave_f_c01", "wave_f_c02", "wave_f_c03", "wave_f_c05",
+    "wave_f_c06", "wave_f_c07", "wave_f_c17", "wave_f_c23"
   ]);
   const isPrivateEntry = entry => PRIVATE_SCENE.test(entry?.sceneId || "")
     || PRIVATE_LIFE_THREADS.has(entry?.threadId);
@@ -108,7 +110,7 @@
         if (!story.spilteScener.includes(e.sceneId)) story.spilteScener.push(e.sceneId);
         // En lagret, faktisk Wave D-hendelse er et tidsanker. Ikke utled
         // dato fra et flagg uten den tilhørende hendelsen.
-        const match = /^wave_d_(c0[15])_/.exec(e.sceneId);
+        const match = /^wave_d_(c(?:01|02|03|05|06|07|17|23))_/.exec(e.sceneId);
         if (match && Number.isInteger(e.livsdag || e.dag)) story.flaggDager["wa_d_" + match[1] + "_status"] = e.livsdag || e.dag;
       }
       for (const key of ["venn","familie"]) {
@@ -422,9 +424,31 @@
     return state;
   }
 
-  /** @param {any} scene @param {any} person @param {any} [choice] @returns {boolean} */
+  /** @param {any} person @returns {string[]} */
+  function authoredAliases(person) {
+    const full = String(person?.navn || "").trim();
+    const first = full.includes(",") ? full.split(",")[0].trim() : "";
+    return first && first !== full ? [full, first] : [full];
+  }
+  function authoredNameRegex(name, possessive = false) {
+    const escaped = name.replace(/[.*+?^$()|[\]{}\\]/g, "\\$&");
+    return new RegExp("(^|[^\\p{L}\\p{N}_])" + escaped + (possessive ? "s" : "") + "(?=$|[^\\p{L}\\p{N}_])", "giu");
+  }
+  function genericPersonTypeAliases(person) {
+    return ({
+      medmusiker: ["medmusikeren"],
+      miljokontakt: ["miljøkontakten"],
+      prosjektbygger: ["prosjektbyggeren"]
+    })[person?.persontype?.id] || [];
+  }
   function sceneMentionsPerson(scene, person, choice) {
-    return scene.avsender === person.id || JSON.stringify([scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst]).toLowerCase().includes(person.navn.toLowerCase());
+    if (scene.avsender === person.id) return true;
+    const prose = [scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst].filter(v => typeof v === "string").join(" ");
+    if (authoredAliases(person).some(name => name && authoredNameRegex(name).test(prose))) return true;
+    // Generic role labels in a menu do not mean all suggested people were met.
+    // An explicitly chosen option mentioning a type does create that event.
+    const chosenProse = [choice?.tekst, choice?.konsekvensTekst].filter(v => typeof v === "string").join(" ");
+    return !!choice && genericPersonTypeAliases(person).some(name => authoredNameRegex(name).test(chosenProse));
   }
 
   /** Snapshot the types actually present in this scene before archiving it.
@@ -450,12 +474,15 @@
     for (const person of content?.role?.personer || []) {
       const cast = state?.personRepresentanter?.[person.id];
       if (!person.persontype || !cast?.personId) continue;
-      const escaped = person.navn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      // Norwegian type names contain letters outside ASCII \b, so delimit
-      // explicitly. Replace possessives before the plain name.
       const possessive = /[sxz]$/i.test(cast.navn) ? cast.navn + "’" : cast.navn + "s";
-      text = text.replace(new RegExp("(^|[^\\p{L}])" + escaped + "s(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + possessive)
-        .replace(new RegExp("(^|[^\\p{L}])" + escaped + "(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + cast.navn);
+      // Generic labels are used before a story contact is selected. Resolve
+      // them for a collected representative in displayed text only, without
+      // treating every offered contact as a person met in the archive.
+      for (const alias of [...authoredAliases(person), ...genericPersonTypeAliases(person)]) {
+        if (!alias) continue;
+        text = text.replace(authoredNameRegex(alias, true), (_, prefix) => prefix + possessive)
+          .replace(authoredNameRegex(alias), (_, prefix) => prefix + cast.navn);
+      }
     }
     return text;
   }

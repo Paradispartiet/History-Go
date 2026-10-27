@@ -1,0 +1,154 @@
+{
+  "scope": "Real app historical text rendering; fullquiz, Fagverk and v1 not approved",
+  "checks": [
+    {
+      "id": "ostbanestasjonen",
+      "mode": "mobile",
+      "front": {
+        "src": "bilder/places/oslo-aav-20261026/ostbanestasjonen_portrait.webp",
+        "width": 900,
+        "height": 1350,
+        "box": {
+          "x": 7,
+          "y": 633.539306640625,
+          "width": 148.875,
+          "height": 223.3125,
+          "top": 633.539306640625,
+          "right": 155.875,
+          "bottom": 856.851806640625,
+          "left": 7
+        }
+      },
+      "hero": {
+        "width": 1400,
+        "height": 900
+      },
+      "cardVisible": true,
+      "descMatches": true,
+      "popupMatches": true,
+      "appReady": true,
+      "status": "PASS"
+    },
+    {
+      "id": "wessels_plass",
+      "mode": "mobile",
+      "front": {
+        "src": "bilder/places/oslo-aav-20261026/wessels_plass_portrait.webp",
+        "width": 900,
+        "height": 1350,
+        "box": {
+          "x": 7,
+          "y": 553.2332763671875,
+          "width": 148.875,
+          "height": 223.3125,
+          "top": 553.2332763671875,
+          "right": 155.875,
+          "bottom": 776.5457763671875,
+          "left": 7
+        }
+      },
+      "hero": {
+        "width": 1400,
+        "height": 900
+      },
+      "cardVisible": true,
+      "descMatches": true,
+      "popupMatches": true,
+      "appReady": true,
+      "status": "PASS"
+    },
+    {
+      "id": "ostbanestasjonen",
+      "mode": "desktop",
+      "front": {
+        "src": "bilder/places/oslo-aav-20261026/ostbanestasjonen_portrait.webp",
+        "width": 900,
+        "height": 1350,
+        "box": {
+          "x": 231,
+          "y": 554.0625,
+          "width": 328,
+          "height": 492,
+          "top": 554.0625,
+          "right": 559,
+          "bottom": 1046.0625,
+          "left": 231
+        }
+      },
+      "hero": {
+        "width": 1400,
+        "height": 900
+      },
+      "cardVisible": true,
+      "descMatches": true,
+      "popupMatches": true,
+      "appReady": true,
+      "status": "PASS"
+    },
+    {
+      "id": "wessels_plass",
+      "mode": "desktop",
+      "front": {
+        "src": "bilder/places/oslo-aav-20261026/wessels_plass_portrait.webp",
+        "width": 900,
+        "height": 1350,
+        "box": {
+          "x": 231,
+          "y": 522.296875,
+          "width": 328,
+          "height": 492,
+          "top": 522.296875,
+          "right": 559,
+          "bottom": 1014.296875,
+          "left": 231
+        }
+      },
+      "hero": {
+        "width": 1400,
+        "height": 900
+      },
+      "cardVisible": true,
+      "descMatches": true,
+      "popupMatches": true,
+      "appReady": true,
+      "status": "PASS"
+    }
+  ],
+  "schema": "history_go_oslo_aav_description_phase_review_v1",
+  "date": "2026-10-26",
+  "base_commit": "1ce2186504ee884c65628d6d30e18c5a379ab31e",
+  "phase": "Two historical place articles and canonical 4.2 claim packets",
+  "counts": {
+    "places": 2,
+    "claims": 36,
+    "readiness_questions": 20,
+    "runtime_questions_added": 0,
+    "new_v1": 0
+  },
+  "quality_review": {
+    "scope": "Two-place description phase only",
+    "scores": {
+      "correctness_and_evidence": 4,
+      "coverage": 5,
+      "editorial_quality": 4,
+      "technical_integrity": 5,
+      "responsibility": 5,
+      "maintainability": 4
+    },
+    "total": 27,
+    "evidence": [
+      "36 claims individually checked against five inspected sources; current identities use official/institutional sources.",
+      "All desc/popupDesc sentences mapped to verified claims; hashes and metadata snapshots match.",
+      "Changed-description policy gate against locked base: zero blockers. Two READ-FIRST workcards pass.",
+      "Four real-app Chromium views: exact ingress, visible complete Om article, correct photo binding, mobile/desktop.",
+      "Both texts separately reviewed for narrative, unsupported causality, repetition and internal game prose.",
+      "Generated places_index and all 1540 place-open payloads are synchronized.",
+      "No existing translation entry for either ID in en/es/pt; canonical article fallback remains the current source."
+    ],
+    "limits": [
+      "No new runtime fullquiz or QuizCard is published by this phase. Fagverk and whole-place v1 remain incomplete.",
+      "Ordinary CI on final remote head is still a merge prerequisite."
+    ],
+    "conclusion": "Local description-phase quality gate passes. New v1 remains zero."
+  }
+}

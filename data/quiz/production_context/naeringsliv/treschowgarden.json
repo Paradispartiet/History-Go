@@ -1,0 +1,702 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "naeringsliv",
+  "targetId": "treschowgarden",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1958,
+    "selection_sha256": "6e39e10ee76f82b0aaa24a71c0e8ff3c86ef88eeddc28654439381e51fa7c2ea",
+    "category_id": "naeringsliv",
+    "target_id": "treschowgarden"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "bytes": 33041,
+      "sha256": "d9ceba9645ed472e0448e274cac37ff09bb2de84c54abe44d99d59c7a260f2fd",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "bytes": 383560,
+      "sha256": "6c7c48150ebdb77d07177d015bbfe104d0eb5d206c6a9104f4bc52a7e0ee0bbe",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "bytes": 305981,
+      "sha256": "40a00fa3910248b779763d7746760140509741410aa046d4f694c367e7c6e345",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "bytes": 89971,
+      "sha256": "a109a5e6eaab0f96fdb0b14aa8139a35714b67473efa860a3f1a8448a204cad3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "bytes": 17470,
+      "sha256": "f6c4a94ebfa99cff3042ae3398ab92d633150d8fc6f4bd16d7b71679540c9585",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/naeringsliv/treschowgarden.json",
+      "bytes": 13966,
+      "sha256": "7b9342de855b94974232d5af40d86f937163f5ce2b80e55a8b39624d56f4545a"
+    },
+    "target": {
+      "path": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01/treschowgarden.json",
+      "bytes": 10641,
+      "sha256": "3d9f02f8fa4e48fae4ae45a9e1582fd2cdeeef94c652fb7ba88ff4e704da633b"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 942,
+      "selection_sha256": "8517237c3852481413d695fe8cf443e8c51e8e80a4dcbcbdf6d8d60b37ff730d"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/treschowgarden_sets.json",
+  "source_registry": {
+    "oppdag_kvadraturen": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/treschowgarden-fred-olsens-gate-2",
+      "source_type": "local_cultural_heritage",
+      "review_status": "reviewed",
+      "review_note": "Gjennomgått 25.10.2026: byggherre, nær havna i 1710, barokkfasade, handels- og industriaktivitet, tollerembete og interessekonflikt, teglverk og sagbruk, papirmølle, børs, skole, hotell og Fred. Olsen."
+    },
+    "lokalhistoriewiki": {
+      "url": "https://lokalhistoriewiki.no/Treschowg%C3%A5rden",
+      "source_type": "local_history_reference",
+      "review_status": "reviewed",
+      "review_note": "Gjennomgått 25.10.2026: byggeår, adresse og fasadeårstall, Børsens og Katedralskolens år, Hotel Britannia samt restaurering 1919 ved arkitekt Ole Sverre og skipsrederikontor."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/naeringsliv/",
+      "reports/place-production/oslo-sentrum-kvadraturen-next40-quiz-candidates-20261025.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv fullquiz for treschowgarden i PR-grenen under redaksjonell gjennomgang."
+    },
+    "decisions": [
+      "Narrow 3 x 7; det rike stoffet fordeles mellom bygning, havn, virksomhet og historisk ombruk.",
+      "Åpningen er normal stedsquiz, ikke begrepsprøve.",
+      "Ingen sammenblanding med den separate nåværende Oslo Børs-bygningen."
+    ],
+    "knowledge_migration": "Bruk canonical Knowledge-generator før aktivering i manifest."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "21 distinkte kildebelagte stedsoppgaver om Gerhard Treschow, handel, embeter, institusjonsbruk og ombruk uten generiske fyllspørsmål."
+  },
+  "held_back_candidates": [
+    "Tall på Treschows formue som ikke er dokumentert av økonomiske kilder.",
+    "Påstander om at dagens børs holder til i bygget.",
+    "Udokumenterte motiv bak formue, priviliger eller skattevedtak.",
+    "Eksakte byggeår som rene fasitspørsmål."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 38,
+      "topic_hooks": 60,
+      "methods": 27
+    },
+    "candidate_emner": [
+      {
+        "id": "em_naering_arbeid_verdiskaping",
+        "title": "Arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_eierskap_styring",
+        "title": "Eierskap og styring",
+        "score": 100
+      },
+      {
+        "id": "em_naering_felt_arbeid_verdiskaping",
+        "title": "Næringsliv som arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_geografi_infrastruktur",
+        "title": "Økonomiens geografi og infrastruktur",
+        "score": 100
+      },
+      {
+        "id": "em_naering_handel_butikk_byrom",
+        "title": "Handel, butikk og byrom",
+        "score": 100
+      },
+      {
+        "id": "em_naering_havn_transport",
+        "title": "Havn og transport",
+        "score": 100
+      },
+      {
+        "id": "em_naering_industri_og_mekanisering",
+        "title": "Industri og mekanisering",
+        "score": 100
+      },
+      {
+        "id": "em_naering_omstilling_kriser_skift",
+        "title": "Omstilling, kriser og skift",
+        "score": 100
+      },
+      {
+        "id": "em_naering_tjenesteyting_og_service",
+        "title": "Tjenesteyting og service",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "ansvarlig_naeringsliv",
+        "title": "Ansvarlig næringsliv",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "arbeid_som_verdiskaping",
+        "title": "Arbeid som verdiskaping",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidslivets_omstilling",
+        "title": "Arbeidslivets omstilling",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "automatisering_arbeid",
+        "title": "Automatisering og arbeid",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "byrom_som_marked",
+        "title": "Byrom som marked",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "eierskap_og_styring",
+        "title": "Eierskap og styring",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "handel_som_bystruktur",
+        "title": "Handel som bystruktur",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handelens_arbeid",
+        "title": "Handelens arbeid",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "havn_og_varestrommer",
+        "title": "Havn og varestrømmer",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "industriell_bystruktur",
+        "title": "Industriell bystruktur",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "kapitalmakt",
+        "title": "Kapitalmakt",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "kontorby_og_tjenester",
+        "title": "Kontorby og tjenester",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "lager_og_distribusjon",
+        "title": "Lager og distribusjon",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "lokalhandel_og_kjeder",
+        "title": "Lokalhandel og kjeder",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "maskin_menneske_produksjon",
+        "title": "Maskin, menneske og produksjon",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "miljokostnader",
+        "title": "Miljøkostnader og eksternaliteter",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "omstilling_av_naeringsrom",
+        "title": "Omstilling av næringsrom",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "produksjonsprosess",
+        "title": "Produksjonsprosess",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "profesjon_kompetanse",
+        "title": "Profesjon og kompetanse",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "servering_opplevelsesokonomi",
+        "title": "Servering og opplevelsesøkonomi",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "teknologisk_omstilling",
+        "title": "Teknologisk omstilling",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "tjenester_og_servicearbeid",
+        "title": "Tjenester og servicearbeid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "transport_og_arbeid",
+        "title": "Transport og arbeid",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "varehus_og_kjopesenter",
+        "title": "Varehus og kjøpesenter",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "kapital_eierskap_finans",
+      "handel_forbruk_marked",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_havn_transport",
+      "em_naering_handel_butikk_byrom",
+      "em_naering_tjenesteyting_og_service",
+      "em_naering_eierskap_styring",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_industri_og_mekanisering"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_eierskaps_og_styringsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_treschowgarden_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Gerhard Treschow lot oppføre den store gården i 1710. Han var både handelsmann, næringsgründer og embetsmann.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "I 1710 lå gården nær den daværende havna, før utfyllinger endret avstanden mellom bygningen og sjøen.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Treschowgården er et av Kvadraturens tydelige barokkanlegg, med en symmetrisk hovedfasade og markert inngang.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hovedfasaden viser barokkens symmetri og representasjon. Den vendte opprinnelig mot havnebassenget.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Bjørvikas havneområde ble fylt ut og bygget om. Den historiske beliggenheten kan ikke leses bare fra dagens gatekart.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Treschow fikk tollerembetet i Christiania i 1683. Han drev samtidig privat handel, noe som senere reiste spørsmål om interessekonflikt.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Treschow drev blant annet innen trelast og sagbruk, som var viktige deler av Christianias havneøkonomi.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Børsvirksomhet holdt til i Treschowgården 1819–1823 før dagens separate Oslo Børs-bygning. Steder med historisk børsbruk er ikke samme institusjonsbygning.",
+      "source_ids": [
+        "lokalhistoriewiki",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Christiania Katedralskole brukte bygningen fra 1823 til 1869. Ombruk fra privat gård til undervisning illustrerer endrede funksjoner.",
+      "source_ids": [
+        "lokalhistoriewiki",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Hotel Britannia var en av virksomhetene som brukte huset etter katedralskoleperioden. Det må ikke forveksles med Hotel du Nord i Dronningens gate 13.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Børs, utdanning og overnatting er ulike bruksfaser. Fysisk bevaring betyr ikke at bygningens økonomiske og offentlige rolle står stille.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fred. Olsen tok bygningen i bruk som rederikontor etter restaureringen i 1919. Det ga et nytt kapittel i gårdens tilknytning til sjøfart.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Fred. Olsen restaurerte gården og tok den i bruk for rederiet. Arbeidet endret bruken uten å fjerne alle eldre bygningsspor.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki knytter restaureringen i 1919 til arkitekt Ole Sverre. Det er en senere fase enn barokkbygningen fra 1710.",
+      "source_ids": [
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Gerhard Treschows teglverk leverte teglstein til Domkirken i Christiania. Dette var en del av hans virksomhet utenfor selve gården.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Treschow eide blant annet sagbruk ved Akerselva, deriblant Bjølsen sag. Det viser forbindelsen mellom elvas produksjon og havnens handel.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Gerhard Treschow og Ole Bentsen stod bak en papirmølle som senere ble knyttet til Bentse Brug. Bedriften var del av Christianias tidlige industri.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tolleren skulle føre offentlig kontroll med handel, mens privat trelast- og sjøfartsvirksomhet ga Treschow egne kommersielle interesser. Han måtte senere fratre tollerembetet.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring",
+      "method_id": "met_naering_eierskaps_og_styringsanalyse",
+      "guidance_basis": [
+        "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+        "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+      ]
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Papirmøllen fikk privilegier fra 1698 og en særstilling i salg av papir til sentraladministrasjonen i København. Næring var tett knyttet til kongelig regulering.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fasaden bærer 1710, men Børsen, Katedralskolen, hotellet og rederiet brukte huset i ulike senere perioder. Det krever også kilder til institusjonene.",
+      "source_ids": [
+        "lokalhistoriewiki",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_treschowgarden_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bygningens form og plassering er kilder til representasjon og havnebeliggenhet, men antall ansatte, produksjonsvolum og kongelige privilegier må undersøkes i skriftlig materiale.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "topic_hook_id": "arbeid_som_verdiskaping",
+      "thinker_id": "max_weber",
+      "guidance_basis": [
+        "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+        "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+      ]
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "naeringsliv_treschowgarden_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_treschowgarden_quiz_01",
+        "claim_treschowgarden_quiz_02",
+        "claim_treschowgarden_quiz_03",
+        "claim_treschowgarden_quiz_04",
+        "claim_treschowgarden_quiz_05",
+        "claim_treschowgarden_quiz_06",
+        "claim_treschowgarden_quiz_07"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_treschowgarden_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_treschowgarden_quiz_08",
+        "claim_treschowgarden_quiz_09",
+        "claim_treschowgarden_quiz_10",
+        "claim_treschowgarden_quiz_11",
+        "claim_treschowgarden_quiz_12",
+        "claim_treschowgarden_quiz_13",
+        "claim_treschowgarden_quiz_14"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_treschowgarden_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_treschowgarden_quiz_15",
+        "claim_treschowgarden_quiz_16",
+        "claim_treschowgarden_quiz_17",
+        "claim_treschowgarden_quiz_18",
+        "claim_treschowgarden_quiz_19",
+        "claim_treschowgarden_quiz_20",
+        "claim_treschowgarden_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
+    }
+  }
+}

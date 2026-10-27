@@ -1,0 +1,658 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "naeringsliv",
+  "targetId": "cafe_engebret",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1954,
+    "selection_sha256": "388c3b28157050f36528b4908abe4d9c19af08af10a2813a0d88ffc877d66a96",
+    "category_id": "naeringsliv",
+    "target_id": "cafe_engebret"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "bytes": 33041,
+      "sha256": "d9ceba9645ed472e0448e274cac37ff09bb2de84c54abe44d99d59c7a260f2fd",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "bytes": 383560,
+      "sha256": "6c7c48150ebdb77d07177d015bbfe104d0eb5d206c6a9104f4bc52a7e0ee0bbe",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "bytes": 305981,
+      "sha256": "40a00fa3910248b779763d7746760140509741410aa046d4f694c367e7c6e345",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "bytes": 89971,
+      "sha256": "a109a5e6eaab0f96fdb0b14aa8139a35714b67473efa860a3f1a8448a204cad3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "bytes": 17470,
+      "sha256": "f6c4a94ebfa99cff3042ae3398ab92d633150d8fc6f4bd16d7b71679540c9585",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/naeringsliv/cafe_engebret.json",
+      "bytes": 14160,
+      "sha256": "11a80c008c26150318742246d6521328bd20b520afa2daee69ae4a09fcfc7e6f"
+    },
+    "target": {
+      "path": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02/cafe_engebret.json",
+      "bytes": 11800,
+      "sha256": "4b370c2a93718c565e1f30de555ef3500e2e5970fdc78e5999649c80142da0af"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1013,
+      "selection_sha256": "6218bd338de245eac79cccda9b79dcc3d37cfec9b9328ab5b6ec97c749b325c9"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/cafe_engebret_sets.json",
+  "source_registry": {
+    "oppdag_kvadraturen": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/bankplassen-1-cafe-engebret",
+      "source_type": "local_cultural_heritage",
+      "review_status": "reviewed",
+      "review_note": "Gjennomgått 25.10.2026: etablering i Kirkegaten 1857, Bankplassen 1862, teatertilknytning, Venstre-stiftelsen med Sverdrup i 1884, regning og senere symbolsk tilbakebetaling."
+    },
+    "engebret_historien": {
+      "url": "https://www.engebret-cafe.no/historien",
+      "source_type": "official_primary",
+      "review_status": "reviewed",
+      "review_note": "Gjennomgått 25.10.2026: Christophersens bakgrunn, arbeid ved Stortorvet og Gamle Logen, kjøp av Bankplassen 1 i 1862, publikumsgrupper, menyhistorie, brannen 1921 og gjenåpningen. Egen historikk omtaler både 1862 og 1863, så intet entydig flytteårsvar."
+    },
+    "snl": {
+      "url": "https://snl.no/Engebret_Caf%C3%A9",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Kilde fra allerede gjennomgått Kvadraturen-ledger; oppgir 1863 som flytting til Bankplassen. Brukes til å synliggjøre uenigheten og ikke til eksakt-årsfasit."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/naeringsliv/",
+      "reports/place-production/oslo-sentrum-kvadraturen-next40-quiz-candidates-20261025.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv fullquiz for cafe_engebret i PR-grenen da denne redaksjonelle kilden ble opprettet."
+    },
+    "decisions": [
+      "Narrow 3 x 7 med konkrete stedsspørsmål og mindre årstallspugging.",
+      "Skille virksomhetens grunnleggelse, eiendomskjøp og faktisk drift på Bankplassen.",
+      "Styrke økonomisk og institusjonell forståelse fremfor løs biografisk kunnskap."
+    ],
+    "knowledge_migration": "Canonical Knowledge generator må kjøres på godkjent quiz før aktivering."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Dokumenterte 21 distinkte læringsoppgaver om gründer, servicearbeid, kultur, politikk, brann, drift og kildekritikk."
+  },
+  "held_back_candidates": [
+    "Eksakt flytteår som om kildene var samstemte.",
+    "Antatte inntekter, fortjeneste eller eierkapital uten økonomiske kilder.",
+    "Udokumenterte personlige motiv for stiftelsen av Venstre.",
+    "Samme Ibsen-anekdote gjentatt flere ganger."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 38,
+      "topic_hooks": 60,
+      "methods": 27
+    },
+    "candidate_emner": [
+      {
+        "id": "em_naering_arbeid_verdiskaping",
+        "title": "Arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_felt_arbeid_verdiskaping",
+        "title": "Næringsliv som arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_geografi_infrastruktur",
+        "title": "Økonomiens geografi og infrastruktur",
+        "score": 100
+      },
+      {
+        "id": "em_naering_handel_butikk_byrom",
+        "title": "Handel, butikk og byrom",
+        "score": 100
+      },
+      {
+        "id": "em_naering_merkevare_og_status",
+        "title": "Merkevare og status",
+        "score": 100
+      },
+      {
+        "id": "em_naering_omstilling_kriser_skift",
+        "title": "Omstilling, kriser og skift",
+        "score": 100
+      },
+      {
+        "id": "em_naering_tjenesteyting_og_service",
+        "title": "Tjenesteyting og service",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arbeid_som_verdiskaping",
+        "title": "Arbeid som verdiskaping",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidslivets_omstilling",
+        "title": "Arbeidslivets omstilling",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "automatisering_arbeid",
+        "title": "Automatisering og arbeid",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "byrom_som_marked",
+        "title": "Byrom som marked",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "forbrukeradferd",
+        "title": "Forbrukeradferd",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handel_som_bystruktur",
+        "title": "Handel som bystruktur",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handelens_arbeid",
+        "title": "Handelens arbeid",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "kontorby_og_tjenester",
+        "title": "Kontorby og tjenester",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "lager_og_distribusjon",
+        "title": "Lager og distribusjon",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "lokalhandel_og_kjeder",
+        "title": "Lokalhandel og kjeder",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "merkevare_status",
+        "title": "Merkevare og status",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "omstilling_av_naeringsrom",
+        "title": "Omstilling av næringsrom",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "profesjon_kompetanse",
+        "title": "Profesjon og kompetanse",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "servering_opplevelsesokonomi",
+        "title": "Servering og opplevelsesøkonomi",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "teknologisk_omstilling",
+        "title": "Teknologisk omstilling",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "tjenester_og_servicearbeid",
+        "title": "Tjenester og servicearbeid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "transport_og_arbeid",
+        "title": "Transport og arbeid",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "varehus_og_kjopesenter",
+        "title": "Varehus og kjøpesenter",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "handel_forbruk_marked"
+    ],
+    "emne_ids": [
+      "em_naering_tjenesteyting_og_service",
+      "em_naering_handel_butikk_byrom",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_merkevare_og_status",
+      "em_naering_arbeid_verdiskaping"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_merkevare_og_posisjoneringsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_cafe_engebret_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christophersen begynte sin egen serveringsvirksomhet i et lite lokale i Kirkegaten i 1857, før etableringen på Bankplassen.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Restauranten er oppkalt etter gründeren Engebret Christophersen, som bygde virksomheten fra arbeid i serveringsbransjen.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Virksomheten flyttet fra de første lokalene i Kirkegaten til Bankplassen 1 på begynnelsen av 1860-tallet.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Teateret på Bankplassen lå tett ved restauranten. Kunstnere og skuespillere fikk en naturlig møteplass i nabolaget.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kafeen ble kjent som et offentlig møtested der kultur, journalistikk og politikk krysset hverandre.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christophersen kjøpte eiendommen på Bankplassen i 1862. Kjøpet og det nøyaktige året for faktisk flytting må skilles.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Venstre ble stiftet her i 1884. Det viser at restauranten kunne fungere som politisk møtested uten å være et formelt regjeringskontor.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Johan Sverdrup var en sentral person ved Venstres stiftelse i 1884, og ble samme år statsminister.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Johannes Brun tilhørte teatermiljøet som brukte kafeen. Hans tilknytning viser nærheten mellom restauranten og Christiania Theater.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "En restaurant solgte mat og drikke, men tilbød også et sted å møtes for folk fra ulike yrker og offentlige miljøer.",
+      "source_ids": [
+        "engebret_historien",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Christophersen arbeidet ved kafeen på Stortorvet og senere som kelner i Sumpen i Gamle Logen før han bygde opp sitt eget sted.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Restaurantens egen historikk beskriver hvordan Christophersen arbeidet i serveringsbransjen og la til side drikkepenger før han åpnet egen virksomhet.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "En historisk prisliste fra 1938 dokumenterer smørbrødservering. Menyen er en kilde til forbruk og serveringsvaner, ikke bare til prisnivå.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "En meny og prisliste er en konkret historisk kilde til tilbud og priser i én periode, men ikke en full oversikt over økonomien.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Brannen rammet begge fløyenes tak, men anlegget kunne restaureres. Bygningens fysiske kontinuitet er derfor ikke uforandret.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Gjenåpningen etter restaureringen viser forskjellen mellom fysisk ombygging og kontinuitet i en institusjon eller virksomhet.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Restaurantens egen fortelling nevner både kjøpet i 1862 og bruk ved Bankplassen siden 1863. Den presise tidsangivelsen må behandles kildekritisk.",
+      "source_ids": [
+        "engebret_historien",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Henrik Ibsen er knyttet til kafeens miljø rundt Christiania Theater. Kilden beskriver et fast bord og omtale i Ibsens tekster.",
+      "source_ids": [
+        "engebret_historien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Restaurantens historikk forteller at en tidligere Venstre-leder betalte en gammel regning i 2008. Episoden er ettertidig historiebruk, ikke selve stiftelsen.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_merkevare_og_status",
+      "method_id": "met_naering_merkevare_og_posisjoneringsanalyse",
+      "guidance_basis": [
+        "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+        "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+      ]
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fra teaterfolk og politiske møter til senere restaurantliv viser kafeen kontinuitet, men ingen kilde kan bevise at publikum og interiør alltid var identisk.",
+      "source_ids": [
+        "engebret_historien",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "topic_hook_id": "arbeid_som_verdiskaping",
+      "thinker_id": "max_weber",
+      "guidance_basis": [
+        "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+        "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+      ]
+    },
+    {
+      "claim_id": "claim_cafe_engebret_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Året for kjøpet og tidspunktet for restaurantens faktiske åpning kan omtales forskjellig. En kildekritisk rekonstruksjon skiller hendelsene.",
+      "source_ids": [
+        "engebret_historien",
+        "snl",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "naeringsliv_cafe_engebret_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_cafe_engebret_quiz_01",
+        "claim_cafe_engebret_quiz_02",
+        "claim_cafe_engebret_quiz_03",
+        "claim_cafe_engebret_quiz_04",
+        "claim_cafe_engebret_quiz_05",
+        "claim_cafe_engebret_quiz_06",
+        "claim_cafe_engebret_quiz_07"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_cafe_engebret_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_cafe_engebret_quiz_08",
+        "claim_cafe_engebret_quiz_09",
+        "claim_cafe_engebret_quiz_10",
+        "claim_cafe_engebret_quiz_11",
+        "claim_cafe_engebret_quiz_12",
+        "claim_cafe_engebret_quiz_13",
+        "claim_cafe_engebret_quiz_14"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_cafe_engebret_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_cafe_engebret_quiz_15",
+        "claim_cafe_engebret_quiz_16",
+        "claim_cafe_engebret_quiz_17",
+        "claim_cafe_engebret_quiz_18",
+        "claim_cafe_engebret_quiz_19",
+        "claim_cafe_engebret_quiz_20",
+        "claim_cafe_engebret_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
+    }
+  }
+}

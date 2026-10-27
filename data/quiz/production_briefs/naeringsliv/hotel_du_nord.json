@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "hotel_du_nord",
+  "profile_hint": "narrow",
+  "reviewed_at": "2026-10-26",
+  "review_note": "Originalkilden Oppdag Kvadraturen sammenholdt med Oslo byleksikon. Huset har eier-, brann-, hotell-, lager- og kontorhistorie. Unngår at Riksantikvarens bruk 1991–2024 feilaktig skrives som nåværende kontor. Innholdsbalanse revidert 26.10: 12 fakta, 5 kontekst og 4 stedlige begrepsspørsmål; første 14 normale, siste 7 med konkreterte spørsmål om logistikk og ombruk.",
+  "scope": {
+    "place": "Hotel du Nord – Dronningens gate 13",
+    "production_profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "total_questions": 21,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "oppdag_kvadraturen": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/dronningensgate-13-hotel-du-nord",
+      "source_type": "local_cultural_heritage",
+      "review_status": "reviewed",
+      "review_note": "Gjennomgått 25.10.2026: borgermester Stockfleth 1643, eierkjede Holter, Maren Juel og Rosenkrantz, grunnlegger Elias Smith, brann 1859, pakkhusutvidelse 1899, arkitekt Ove Ekman, lysgårder, riving 1954 og Riksantikvarens kontorhistorie."
+    },
+    "oslo_byleksikon_gaten": {
+      "url": "https://oslobyleksikon.no/side/Dronningens_gate",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Gjennomgått som sekundærkilde for gårdens eiere, brann og hotellhistorie. Den tidligere periodetolkningen 1991–2025 brukes ikke til å datere utflytting; Riksantikvarens egen melding 10.01.2025 sier at etaten flyttet ut før jul 2024."
+    },
+    "oslo_byleksikon_hoteller": {
+      "url": "https://oslobyleksikon.no/side/Hoteller",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Gjennomgått 25.10.2026: Elias Smith åpnet Hotel du Nord i 1828; historisk hotellnæring i Christiania."
+    },
+    "riksantikvaren_flytting": {
+      "url": "https://riksantikvaren.no/kommet-i-hus-pa-gronland/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Lest 26.10.2026. Meldingen er publisert 10.01.2025 og sier at utflyttingen var før jul, altså 2024. Primærmeldingen prioriteres fremfor den tidligere periodetolkningen 1991–2025."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_naering_tjenesteyting_og_service",
+      "em_naering_havn_transport",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_handel_butikk_byrom",
+      "em_naering_arbeid_verdiskaping"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_infrastrukturanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/naeringsliv/",
+      "reports/place-production/oslo-sentrum-kvadraturen-next40-quiz-candidates-20261025.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv fullquiz med denne Place-ID per kontrollen på PR-grenen."
+    },
+    "decisions": [
+      "Narrow-profil (3 x 7); ikke fyll til rich med duplikater.",
+      "Stedlig handelshistorie, hotellvirksomhet og bygningsfaser fremfor løs årstallspugging.",
+      "Kildens Riksantikvaren-periode 1991–2024 er fortid; ikke presenter det som nåværende virksomhet."
+    ],
+    "knowledge_migration": "Fullquiz skal kobles av eksisterende canonical Knowledge-generator før manifestaktivering."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "21 distinkte kildebelagte kunnskapsoppgaver om eiere, hotell, handel, pakkhus, havn og ombruk."
+  },
+  "held_back_candidates": [
+    "Spekulasjoner om hotellgjesters bakgrunn eller ansatte.",
+    "Nøyaktig nedleggelsesår som kildene beskriver ulikt.",
+    "Nåværende Riksantikvaren-tilhold uten kildekontroll i 2026.",
+    "Generisk økonomiteori uten konkret stedsbelegg."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "På Dronningens gate 13 lå opprinnelig en representativ bygård fra 1643, lenge før hotelldriften startet.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon_gaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Borgermester Hans Eggertsen Stockfleth fikk reist huset i 1643. Han var også knyttet til sagbruk og trelasteksport.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon_gaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stockfleth var borgermester og en velstående næringsaktør, noe som forklarer hvorfor han kunne reise et representativt byhus.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Eiendommen lå mot datidens havneområde. Avstand til lasting, sjøtransport og kjøpmannsgårder var viktig for handel i byen.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon omtaler et enetasjes murhus. Flere påbygg og en brann endret anlegget betydelig etterpå.",
+      "source_ids": [
+        "oslo_byleksikon_gaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Peder Holter kjøpte gården i 1762. Senere eiere moderniserte byhuset før det ble hotell.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Maren Juel arvet gården etter Peder Holter i 1786. Eierhistorien er en del av eiendommens senere navn og ombygginger.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Marcus Gjøe Rosenkrantz var en senere eier i perioden da paléet ble modernisert. Navnet viser et eierlag, ikke hotellets grunnleggelse.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon_gaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Elias Smith etablerte hotellet i 1828. Hotellvirksomheten representerte en annen tjenestenæring enn den opprinnelige privatboligen.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon_hoteller"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hotelldriften gjorde det tidligere paléet til en del av den voksende byens tjenestetilbud for tilreisende.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon_hoteller"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Brannen i 1859 førte til oppføring av en ny frontbygning, mens enkelte eldre deler kan være bevart i første etasje og kjeller.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon_gaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bygningshistorien omfatter eldre kjeller- og etasjespor og en ny forbygning etter 1859. En eiendom kan ha eldre deler enn den synlige fasaden.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon_gaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Hotel du Nord ble nedlagt omkring 1870, før utbyggingen for handel og lagerdrift i 1899.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon_gaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Eiendommen ble bygget ut for ulike næringsvirksomheter, med kontorer mot gaten og omfattende pakkhus bak.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Ove Ekman tegnet pakkhusutbyggingen i bakgården som del av den omfattende næringsutvidelsen i 1899.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Eiendommen fikk kontorlokaler mot gaten og pakkhus i bakgården. Slik kunne publikumsrettet arbeid og varehåndtering få forskjellige rom i et tett bykvartal.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder",
+      "method_id": "met_naering_infrastrukturanalyse",
+      "guidance_basis": [
+        "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+        "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+      ]
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Pakkhusene ble ordnet rundt tre små lysgårder. Dette viser hvordan et tett handelsanlegg trengte både bruksareal og lys mellom bygningene.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Pakkhusene hadde lager, verksteder og produksjonsanlegg. Begrepet verdikjede hjelper oss å se at oppbevaring, bearbeiding og handel var knyttet sammen.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "topic_hook_id": "arbeid_som_verdiskaping",
+      "thinker_id": "max_weber",
+      "guidance_basis": [
+        "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+        "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+      ]
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Bjørvika var en sentral havn for import og eksport. Pakkhusanlegget er et eldre uttrykk for det logistikkbehovet som senere førte til Havnelageret.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Brann og riving rammet deler av pakkhuset i 1954. Andre deler av den eldre lagerstrukturen ble bevart gjennom senere kontorbruk.",
+      "source_ids": [
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_hotel_du_nord_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Riksantikvaren hadde kontorer på eiendommen fra 1991 og flyttet ut før jul 2024, ifølge etatens egen melding fra januar 2025. Dette er et eksempel på ombruk av eldre bygningsmasse etter periodene med hotell- og pakkhusdrift.",
+      "source_ids": [
+        "riksantikvaren_flytting",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    }
+  ]
+}
