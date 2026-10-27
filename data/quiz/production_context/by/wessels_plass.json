@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/by/wessels_plass.json",
-      "bytes": 11464,
-      "sha256": "f23822402528f52dc5b7d6b2335fd2f40ba9a7837c46f538b13cfe3c985f9cd9"
+      "bytes": 11744,
+      "sha256": "be3e855b9687d7d0db2580e7f4fe7fe32017f71030a670033fe024bcd4428c68"
     },
     "target": {
       "path": "data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/wessels_plass.json",
@@ -228,7 +228,9 @@
       "met_morfologisk_analyse",
       "met_for_etter"
     ],
-    "thinker_ids": [],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
     "works": []
   },
   "claim_bank": [
@@ -327,8 +329,8 @@
       "claim_id": "claim_wessels_plass_quiz_08",
       "order": 8,
       "planned_phase": "bridge",
-      "family": "context",
-      "statement": "Plassen har egen topografi, navnehistorie og bruk ved siden av Stortingets historie.",
+      "family": "fact",
+      "statement": "Wessels plass var tidligere et viktig knutepunkt for både buss- og sporvognsruter.",
       "source_ids": [
         "oppdag_kvadraturen",
         "oslo_byleksikon"
@@ -340,7 +342,7 @@
       "claim_id": "claim_wessels_plass_quiz_09",
       "order": 9,
       "planned_phase": "bridge",
-      "family": "context",
+      "family": "fact",
       "statement": "Terrenget ble endret da området ble omgjort til plass.",
       "source_ids": [
         "oppdag_kvadraturen",
@@ -353,7 +355,7 @@
       "claim_id": "claim_wessels_plass_quiz_10",
       "order": 10,
       "planned_phase": "bridge",
-      "family": "context",
+      "family": "fact",
       "statement": "Navnevalget er et senere minne- og identitetslag.",
       "source_ids": [
         "oppdag_kvadraturen",
@@ -366,7 +368,7 @@
       "claim_id": "claim_wessels_plass_quiz_11",
       "order": 11,
       "planned_phase": "bridge",
-      "family": "context",
+      "family": "fact",
       "statement": "Wessel ga navnet, men planleggingen av plassen er en annen historie.",
       "source_ids": [
         "oppdag_kvadraturen",
@@ -443,7 +445,7 @@
       "claim_id": "claim_wessels_plass_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Kommunalt oppkjøp og fysisk omforming endret bruken av arealet.",
       "source_ids": [
         "oppdag_kvadraturen",
@@ -456,20 +458,21 @@
       "claim_id": "claim_wessels_plass_quiz_18",
       "order": 18,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Et forsvunnet landskapselement krever historiske kilder for å bli forstått.",
       "source_ids": [
         "oppdag_kvadraturen",
         "oslo_byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_id": "met_for_etter"
     },
     {
       "claim_id": "claim_wessels_plass_quiz_19",
       "order": 19,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Historisk betydning oppstår både i bygninger og rommene som binder dem sammen.",
       "source_ids": [
         "oppdag_kvadraturen",
@@ -482,7 +485,7 @@
       "claim_id": "claim_wessels_plass_quiz_20",
       "order": 20,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Flere bruksformer kan avleses ved å sammenholde kilder og dagens rom.",
       "source_ids": [
         "oppdag_kvadraturen",
@@ -495,14 +498,17 @@
       "claim_id": "claim_wessels_plass_quiz_21",
       "order": 21,
       "planned_phase": "final",
-      "family": "context",
-      "statement": "Stedets egen fysiske organisering er utgangspunktet for å forstå rommet.",
+      "family": "concept_theory",
+      "statement": "Ferdsel og opphold kan observeres på selve plassen. Det viser hvordan et offentlig byrom faktisk brukes, ikke bare hvordan det er tegnet på et kart.",
       "source_ids": [
         "oppdag_kvadraturen",
         "oslo_byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+      "emne_id": "em_by_torg_plasser_som_scene",
+      "topic_hook_id": "byliv_aapne_rom",
+      "thinker_id": "william_h_whyte",
+      "method_id": "met_feltobservasjon"
     }
   ],
   "story_units": [],
@@ -559,14 +565,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 7,
-      "context": 14,
-      "concept_theory": 0
+      "fact": 11,
+      "context": 5,
+      "concept_theory": 5
     },
     "ratios": {
-      "fact": 0.333,
-      "context": 0.667,
-      "concept_theory": 0
+      "fact": 0.524,
+      "context": 0.238,
+      "concept_theory": 0.238
     }
   }
 }
