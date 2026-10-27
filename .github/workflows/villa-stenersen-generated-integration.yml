@@ -5,6 +5,7 @@ on:
       - 'data/quiz/manifest.json'
       - 'data/quiz/historie/villa_stenersen_sets.json'
       - 'data/quiz/production_briefs/historie/villa_stenersen.json'
+      - 'scripts/sync-villa-stenersen-quizcard-knowledge.mjs'
       - '.github/workflows/villa-stenersen-generated-integration.yml'
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -41,6 +42,8 @@ jobs:
         run: node scripts/build-quiz-production-context.mjs --category historie --target villa_stenersen --output data/quiz/production_context/historie/villa_stenersen.json
       - name: Build canonical Knowledge links
         run: npm run knowledge:canonical:write
+      - name: Synchronize QuizCard canonical Knowledge IDs
+        run: node scripts/sync-villa-stenersen-quizcard-knowledge.mjs
       - name: Materialize canonical Natur registry before Fagverk release
         run: node scripts/materialize-natur-final-registry.mjs
       - name: Rebuild Fagverk release manifest
@@ -55,6 +58,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/fagverk/fagverk_registry.json data/fagverk/subject_status.json data/fagverk/fagverk_release.json
           git add data/quiz/production_context/historie/villa_stenersen.json
+          git add data/quiz/historie/villa_stenersen_sets.json data/quizcards/historie/villa_stenersen_quizcard_v1.json
           git add -u data/knowledge/ reports/knowledge-id-backfill.json
           if ! git diff --cached --quiet; then
             git commit -m "Villa Stenersen: regenerate canonical quiz context and Knowledge"
