@@ -23,7 +23,7 @@ const placePaths={
 const targets=IDS;
 const manifest=JSON.parse(fs.readFileSync('data/quiz/manifest.json','utf8'));
 assert.equal(IDS.length,5);
-assert.equal(new Set(IDS).size,20);
+assert.equal(new Set(IDS).size,5);
 
 const quizById=new Map();
 for(const id of targets){
