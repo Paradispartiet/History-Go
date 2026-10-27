@@ -50,6 +50,7 @@ jobs:
           git add data/quiz/sport/voldslokka_pumptrack_sets.json data/quizcards/sport/voldslokka_pumptrack_quizcard_v1.json data/quiz/production_context/sport/voldslokka_pumptrack.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
           if ! git diff --cached --quiet; then
             git commit -m "Generate Voldsløkka canonical context, Knowledge and QuizCard"
+            git pull --rebase origin content/voldslokka-pumptrack-quiz-v1-20261027
             git push
           fi
       - name: Audit full canon and relative progression
@@ -75,4 +76,5 @@ jobs:
         run: |
           git rm .github/workflows/voldslokka-pumptrack-quiz-v1-20261027.yml
           git commit -m "Remove temporary Voldsløkka quiz production workflow"
+          git pull --rebase origin content/voldslokka-pumptrack-quiz-v1-20261027
           git push
