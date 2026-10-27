@@ -73,13 +73,6 @@
       "url": "https://oslobyleksikon.no/side/Wessels_plass",
       "lang": "nb",
       "verifiedAt": "2026-10-26"
-    },
-    {
-      "type": "reference",
-      "label": "Oslo byleksikon – Wessels plass",
-      "url": "https://oslobyleksikon.no/index.php/Wessels_plass",
-      "lang": "nb",
-      "verifiedAt": "2026-10-27"
     }
   ],
   "image": "bilder/places/oslo-aav-20261026/wessels_plass_hero.webp",
@@ -135,12 +128,11 @@
     "schema": "history_go_place_fagverk_v2",
     "level": "standard",
     "status": "curated",
-    "intro": "Wessels plass er et lite, men sammensatt offentlig rom der spor etter festningsby, privat hage, park, trikk og nasjonale institusjoner møter dagens ferdsel. Plassen må analyseres som eget byrom, ikke som en del av Stortingsbygningen.",
+    "intro": "Wessels plass viser hvordan en by kan omforme et tidligere festnings- og hageområde til et offentlig rom, og hvordan både monumenter, sporveier og Stortingets byggearbeid har endret bruken.",
     "article": [
-      "Før det åpne plassrommet ble anlagt, lå fjellknausen Bukkebjerget her som del av Christianias eldre forsvarslandskap. Senere omfattet området Huitfeldts hus og hage. Disse funksjonene er ikke synlige i dagens park på samme måte, men historiske kart og skriftlige kilder viser hvordan terreng og eierskap forandret seg.",
-      "Kommunens oppkjøp og omforming av området førte til et parkanlegg, først kjent som Stortingspladsen. Navnet Wessels plass kom senere og viser at stedsnavn kan være egne historiske lag. Dikteren Johan Herman Wessel ga navn til plassen uten at han dermed var en aktør i selve opparbeidelsen.",
-      "Fire gater møtes på et lite område mellom store institusjoner og forretningsgårder. Stortinget, Frimurerlogen og Schiøllgården er viktige naboer, men de er andre fysiske steder med egne historier. Det er forbindelsene, bevegelsen og det åpne rommet mellom husene som er denne plassens kjerne.",
-      "Trikk, gangtrafikk og opphold har konkurrert om arealet over tid. Historiske fotografier kan vise transport og gatebruk på en bestemt dag, men ikke alene fortelle hvem som fikk tilgang eller hvor lenge folk oppholdt seg der. Å lese Wessels plass krever derfor både romlig observasjon og kildekritisk sammenligning."
+      "Før det fantes en plass, lå Bukkebjerget som del av det eldre befestede bylandskapet. Huitfeldts hus og hage var et privat anlegg på tomten. Da kommunen overtok eiendommen, ble huset revet og terrenget bearbeidet før et offentlig parkanlegg kunne opparbeides. Historien handler dermed ikke om en park som alltid har ligget her, men om at en knaus, et gårdsanlegg og en hage ble erstattet av et nytt byrom. En vandrer kan se dagens åpne plass, men ikke uten videre rekonstruere den forsvunne topografien.",
+      "Plassen fikk først navnet Stortingspladsen. Senere ble den knyttet til dikteren Johan Herman Wessel gjennom navn og portrettbyste. Samtidig fungerte den som en del av byens trafikknett med buss og sporvogn. Monumenter og holdeplasser har flyttet, mens gatene rundt plassen fortsatt binder sammen institusjoner, handel og ferdsel. Den skiftende bruken viser at et torg eller en park ikke har én fast funksjon: minne, gjennomreise og opphold kan fylle det samme arealet til ulike tider.",
+      "Under plassen finnes også en mindre synlig byhistorie. Stortingets gangforbindelse og senere anleggsarbeider la nye funksjoner under parkanlegget og førte til perioder med avsperring og rehabilitering. Det som framstår som en liten, åpen grønn plass, er derfor også et sted for omfattende teknisk infrastruktur og institusjonell planlegging. Gamle kart og historiske kilder må brukes for å skille dagens dekke fra tidligere tomtegrenser, monumentplasseringer og underjordiske inngrep."
     ],
     "subject_ids": [
       "by"
@@ -155,79 +147,59 @@
     ],
     "lenses": [
       {
-        "id": "wessels_plass-terreng",
-        "title": "Hva skjedde med Bukkebjerget?",
-        "prompt": "Hvordan viser plassen overgangen fra festningsnært terreng til planlagt park og kryss?",
+        "id": "wessels-plass-aav-lens-1",
+        "title": "Fra hage til byrom",
+        "prompt": "Hvordan kan vi skille den tidligere private hagen og festningsknausen fra det offentlige parkanlegget som kom etterpå?",
         "subject_id": "by",
         "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-        "evidence": "Kommunens stedstekst skiller Bukkebjerget fra dagens opparbeidede byrom."
+        "evidence": "Kommunens overtakelse, rivingen av Huitfeldts hus og bearbeidingen av Bukkebjerget er dokumentert i lokalhistoriske kilder."
       },
       {
-        "id": "wessels_plass-navn",
-        "title": "Et navn som følger etter plassdannelsen",
-        "prompt": "Hvordan kan et nytt navn forandre forståelsen av et sted uten å ha skapt det?",
+        "id": "wessels-plass-aav-lens-2",
+        "title": "Monument og trafikk",
+        "prompt": "Hva sier navneendringen, den flyttede statuen og nedlagte trikkeholdeplassen om skiftende bruk av Wessels plass?",
+        "subject_id": "by",
+        "emne_id": "em_by_torg_plasser_som_scene",
+        "evidence": "Navnehistorie, Wessel-bysten, Sverdrup-statuen og holdeplassens historie beskrives i kildene."
+      },
+      {
+        "id": "wessels-plass-aav-lens-3",
+        "title": "Byrom over anlegg",
+        "prompt": "Hvorfor er det utilstrekkelig å forklare Wessels plass bare ved å se på parken og bygningene på bakken?",
         "subject_id": "by",
         "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-        "evidence": "Wessels plass het tidligere Stortingspladsen; dagens navn kom etter etableringen."
-      },
-      {
-        "id": "wessels_plass-naboer",
-        "title": "Byrommet mellom institusjonene",
-        "prompt": "Hvorfor bør vi skille plassens funksjon fra historien om Stortinget og de andre bygningene rundt?",
-        "subject_id": "by",
-        "emne_id": "em_by_torg_plasser_som_scene",
-        "evidence": "Fire gater og flere ulike institusjoner former plassens omgivelser."
-      },
-      {
-        "id": "wessels_plass-bruk",
-        "title": "Ferdsel og opphold",
-        "prompt": "Hvordan kan en liten park også fungere som trafikkrom?",
-        "subject_id": "by",
-        "emne_id": "em_by_torg_plasser_som_scene",
-        "evidence": "Kryssende gater og dokumentert trikketrafikk viser sammensatt offentlig bruk."
+        "evidence": "Stortingets tunnel og underjordiske arbeider viser at viktige funksjoner ikke er synlige i parkens overflate."
       }
     ],
     "guiding_questions": [
-      "Hva forteller Bukkebjerget om hva som lå her før den åpne plassen?",
-      "Hvorfor er et steds nåværende navn ikke alltid et godt holdepunkt for når stedet ble skapt?",
-      "Hvordan gjør møtepunktet mellom fire gater plassen til mer enn en liten park?",
-      "Hva er forskjellen på Wessels plass og institusjonsbyggene som omgir den?",
-      "Hva kan et gammelt trikkefotografi fortelle om byrommet, og hva kan det ikke bevise?"
+      "Hvilke synlige trekk ved Wessels plass forteller om dagens ferdselslinjer mellom gatene rundt parken?",
+      "Hvorfor trenger vi gamle kilder for å lokalisere Bukkebjerget og den tidligere hagen?",
+      "Hvordan endret navnet og dikterbysten plassens rolle som offentlig minnested?",
+      "Hvilke forskjeller er det mellom det som ses fra parken og den dokumenterte tunnelhistorien under bakken?"
     ],
     "concepts": [
-      "festningsvoll",
-      "terrenginngrep",
-      "offentlig park",
-      "stedsnavn",
-      "gatekryss",
-      "gjennomgangsrom",
-      "institusjonsnærhet",
-      "historisk fotografi"
+      "byrom",
+      "terrengendring",
+      "minnemonument",
+      "kollektivtransport",
+      "historiske kart",
+      "underjordisk infrastruktur"
     ],
     "observable_traces": [
       {
-        "title": "Fire gateløp rundt den åpne plassen",
-        "observation": "Følg hvordan Akersgata, Stortingsgata, Prinsens gate og Nedre Vollgate leder ferdsel inn mot stedet.",
-        "interpretation_boundary": "Gatenes møte gir dagens organisering, ikke en direkte kopi av fortidens festningsvoll eller privat hage.",
+        "title": "Plassens gatemøter",
+        "observation": "Fra plassen kan man se hvordan Stortingsgata, Akersgata, Prinsens gate og Nedre Vollgate avgrenser og forbinder det offentlige arealet.",
+        "interpretation_boundary": "Gatebildet alene dokumenterer ikke hvordan Bukkebjerget så ut, når parken ble opparbeidet eller hvor de tidligere holdeplassene sto.",
         "source_urls": [
           "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
-          "https://oslobyleksikon.no/index.php/Wessels_plass"
-        ]
-      },
-      {
-        "title": "Plassens forhold til nabobygningene",
-        "observation": "Se på avstandene mellom den åpne flaten, Stortinget og bygårdene som vender mot plassen.",
-        "interpretation_boundary": "Nabobygningene gir kontekst, men skal ikke slås sammen med plassens egen stedsidentitet.",
-        "source_urls": [
-          "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
-          "https://oslobyleksikon.no/index.php/Wessels_plass"
+          "https://oslobyleksikon.no/side/Wessels_plass"
         ]
       }
     ],
     "source_urls": [
       "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
-      "https://oslobyleksikon.no/index.php/Wessels_plass"
+      "https://oslobyleksikon.no/side/Wessels_plass"
     ],
-    "verified_at": "2026-10-27"
+    "verified_at": "2026-10-26"
   }
 }
