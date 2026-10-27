@@ -118,12 +118,13 @@ advance(600);
 const api = window.HGCivicationMode;
 const mission = {
   active: true, title: "Finn historien", target_type: "knowledge",
-  completion_mode: "quiz_completed", quiz_id: "q-42",
+  completion_mode: "quiz_completed", quiz_id: "q-42", category_id: "historie",
   started_ts: Date.now() - 5 * 86400000, return_href: "Civication.html"
 };
 assert.equal(api.saveSession(mission), true);
 assert.equal(api.getSession().quiz_id, "q-42");
 storage.set("quiz_progress", JSON.stringify({ "q-42": { opened: true, answered: 2 } }));
+storage.set("merits_by_category", JSON.stringify({ historie: { points: 200 } }));
 assert.equal(api.evaluateCompletion(mission).completed, false,
   "a partially answered quiz must not count as completed");
 storage.set("hg_unlocks_v1", JSON.stringify({ byQuiz: { "q-42": { quizId: "q-42" } } }));
