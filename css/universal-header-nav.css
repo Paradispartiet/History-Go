@@ -1,13 +1,15 @@
 /* Common navigation slot; module-specific header controls remain intact. */
 .hg-universal-back {
   display: inline-flex;
-  flex: 0 0 auto;
+  flex: 0 0 38px;
   align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
+  justify-content: center;
+  width: 38px;
+  min-width: 38px;
+  max-width: 38px;
+  height: 38px;
   min-height: 38px;
-  max-width: 160px;
-  padding: 7px 9px;
+  padding: 0;
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 9px;
   background: rgba(255,255,255,.045);
@@ -18,7 +20,6 @@
   touch-action: manipulation;
 }
 .hg-universal-back-arrow { color: #ffe34c; font-size: 18px; line-height: 1; }
-.hg-universal-back-text { overflow: hidden; text-overflow: ellipsis; }
 .hg-universal-back:hover { background: rgba(255,227,76,.08); border-color: rgba(255,227,76,.32); }
 .hg-universal-back:focus-visible { outline: 2px solid #ffe34c; outline-offset: 2px; }
 body.hg-app .site-header > .hg-universal-back { margin-right: 6px; }
@@ -28,22 +29,17 @@ body.hg-app .site-header > .hg-universal-back { margin-right: 6px; }
 .emner-header-nav > .hg-universal-back { align-self: flex-start; }
 main.main > header > .hg-universal-back { margin-bottom: 8px; }
 @media (max-width: 460px) {
-  .hg-universal-back { max-width: 128px; padding: 6px 7px; font-size: 11px; }
   .topbar-left > .hg-universal-back { margin-right: 7px; }
 }
 
-/* The map header keeps its original right-hand tools. On a return visit the
-   contextual link occupies the logo slot, avoiding collisions on phones. */
+/* Keep the History Go logo at the left; the icon-only back link fits in the
+   existing space between its right edge and the header controls. */
 body.hg-app header.site-header > .hg-universal-back {
   position: absolute;
-  top: calc(env(safe-area-inset-top, 0px) + 7px);
-  left: calc(env(safe-area-inset-left, 0px) + 6px);
+  top: calc(env(safe-area-inset-top, 0px) + 18px);
+  left: calc(env(safe-area-inset-left, 0px) + 78px);
   z-index: 22;
-  max-width: 106px;
   margin: 0;
-}
-body.hg-app header.site-header:has(> .hg-universal-back) > .hg-brand {
-  visibility: hidden;
 }
 
 /* Keep the return affordance available while long subpages scroll. */
