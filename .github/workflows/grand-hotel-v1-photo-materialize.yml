@@ -70,6 +70,10 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m 'Grand Hotel: activate canonical quiz, Knowledge and Place runtime'
           fi
+          # CI creates extra unselected derived files; discard only uncommitted working-tree changes.
+          # The intentional Grand Hotel artifacts are already safely committed above.
+          git status --short
+          git restore --worktree .
           # Refuse force-push. Rebase onto any concurrent branch updates before uploading.
           git fetch origin content/grand-hotel-sentrum-v1-20261027
           git rebase origin/content/grand-hotel-sentrum-v1-20261027
