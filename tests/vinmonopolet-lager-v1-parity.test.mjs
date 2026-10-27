@@ -16,7 +16,8 @@ const qs = quiz.sets.flatMap(set => set.questions);
 test('same 1933 opening across canonical place, index and runtime', () => {
   assert.equal(place.year, 1933);
   assert.equal(runtime.place.year, 1933);
-  const indexed = Array.isArray(index) ? index.find(p => p.id === id) : Object.values(index).find(p => p?.id === id);
+  const list = Array.isArray(index) ? index : (Array.isArray(index.places) ? index.places : Object.values(index).flatMap(value => Array.isArray(value) ? value : [value]));
+  const indexed = list.find(p => p?.id === id);
   assert.ok(indexed, 'place index is missing canonical Hasle site');
   assert.equal(indexed.year, 1933);
   assert.match(place.desc, /1933/);
@@ -31,7 +32,7 @@ test('30 source-linked fullquiz questions, 5 sets, fewer year-only answers', () 
   assert.equal(qs.length, 30);
   assert.equal(new Set(qs.map(q => q.id)).size, 30);
   assert.equal(new Set(qs.map(q => q.question)).size, 30);
-  assert.equal(qs.filter(q => /^\\s*(?:18|19|20)\\d{2}\\s*$/.test(q.answer)).length, 1);
+  assert.equal(qs.filter(q => /^\s*(?:18|19|20)\d{2}\s*$/.test(q.answer)).length, 1);
   for (const q of qs) {
     assert.equal(q.targetId, id, q.id);
     assert.equal(q.options[q.answerIndex], q.answer, q.id);
