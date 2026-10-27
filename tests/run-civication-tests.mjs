@@ -1,5 +1,5 @@
 // tests/run-civication-tests.mjs
-// Kjører ALLE tests/civication-*.test.js (glob, ikke håndvedlikeholdt liste) og
+// Kjører alle tests/civication-*.test.js og to målrettede History Go UI-smoketester, og
 // rapporterer samtlige feil før den exiter. Erstatter den gamle &&-kjeden i
 // package.json som stoppet ved første feil og lot 61 testfiler stå uregistrert.
 //
@@ -16,7 +16,7 @@ const TESTS_DIR = path.dirname(fileURLToPath(import.meta.url));
 const filters = process.argv.slice(2).filter((a) => !a.startsWith("-"));
 
 const files = fs.readdirSync(TESTS_DIR)
-  .filter((f) => /^civication-.*\.test\.js$/.test(f))
+  .filter((f) => /^civication-.*\.test\.js$/.test(f) || ["history-go-toast-queue.test.js", "onboarding-touch-guard.test.js"].includes(f))
   .filter((f) => !filters.length || filters.some((q) => f.includes(q)))
   .sort();
 
