@@ -16,5 +16,6 @@ for (const q of questions) {
   q.knowledge_unit_ids = [...source.knowledge_unit_ids];
   q.knowledge_link_status = source.knowledge_link_status;
 }
+card.production_status = "knowledge_linked";
 fs.writeFileSync(cardPath, JSON.stringify(card, null, 2) + "\n");
 console.log("Villa Stenersen QuizCard: 10/10 canonical Knowledge links synchronized.");
