@@ -1,4 +1,4 @@
-name: Oslo next six canonical Knowledge materialization
+name: Oslo remaining five canonical quiz and Knowledge materialization
 on:
   push:
     branches: [research/oslo-sentrum-v1-six-next-20261027]
@@ -34,9 +34,17 @@ jobs:
             echo "Quiz recovery checkpoint has not been uploaded yet."
             exit 0
           fi
-          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          # This PR owns five remaining places only. Wessels plass is already merged.
+          node scripts/materialize-oslo-next-six-quizcards-20261027.mjs
           node --experimental-strip-types scripts/knowledge-canonical-data.mts --check
-          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          node --test tests/oslo-next-six-quiz-parity.test.mjs
+          git add data/fag/fag_manifest.json data/quiz/manifest.json data/quiz/production_context \
+            data/quiz/by/egertorget_sets.json \
+            data/quiz/historie/kontraskjaeret_sets.json \
+            data/quiz/historie/palehaven_paleet_sets.json \
+            data/quiz/historie/avisen_tiden_radhusgata_10_sets.json \
+            data/quiz/historie/mustadgarden_kongens_gate_3_sets.json \
+            data/quizcards data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
           if git diff --cached --quiet; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
