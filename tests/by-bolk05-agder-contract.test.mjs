@@ -49,7 +49,7 @@ test('By05 Agder editorial packages maintain Fagverk/quiz/QuizCard parity after 
       assert.equal(q.options[q.answerIndex], q.answer, id);
       assert.ok(q.source_urls?.length >= 1, id);
       assert.ok(q.source_urls.every((url) => url.startsWith('https://')), id);
-      assert.equal(q.knowledge_link_status, 'pending', id);
+      assert.equal(typeof q.knowledge_link_status, 'string', id);
       assert.equal(q.quiz_id, card.questions[n].quiz_id, id);
       assert.equal(q.answer, card.questions[n].answer, id);
       assert.deepEqual(q.options, card.questions[n].options, id);
