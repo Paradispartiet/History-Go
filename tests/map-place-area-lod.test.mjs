@@ -51,8 +51,9 @@ test("kartet har separate område- og detaljlag med gradvis detaljövergang", ()
   assert.match(source, /L_AREA_LAB\s*=\s*"hg-place-areas-label"/);
   assert.match(source, /PLACE_DETAIL_MIN_ZOOM\s*=\s*9\.8/);
   assert.match(source, /PLACE_DETAIL_HIT_MIN_ZOOM\s*=\s*9\.8/);
-  assert.match(source, /PLACE_DETAIL_LABEL_MIN_ZOOM\s*=\s*16\.0/);
-  assert.match(source, /PLACE_AREA_LABEL_MIN_ZOOM\s*=\s*16\.0/);
+  assert.match(source, /PLACE_DETAIL_LABEL_MIN_ZOOM\s*=\s*15\.0/);
+  assert.match(source, /PLACE_AREA_LABEL_MIN_ZOOM\s*=\s*15\.0/);
+  assert.match(source, /PLACE_DETAIL_BADGE_MIN_ZOOM\s*=\s*15\.8/);
   assert.match(source, /getPlaceDetailVisibility/);
   assert.match(source, /PLACE_DETAIL_FULL_ZOOM, 1\.0/);
   assert.match(source, /filter: PLACE_AREA_LOD_FILTER/);
@@ -120,7 +121,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261027-map-labels-area-squares1"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261027-early-labels-category-badges1"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
