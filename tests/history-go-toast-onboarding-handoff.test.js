@@ -184,9 +184,21 @@ for (const file of ["nature-unlock-toast.js", "badge-unlock-toast.js", "person-p
   assert.match(source, /onFinished\?\.\(\)/, file);
 }
 
-assert.match(welcome, /Besøk stedet og samle stedskortet/);
-assert.match(welcome, /En perfekt quiz låser opp quizkortet/);
-assert.match(welcome, /Civication/);
+// Welcome copy reflects the main game, not the test-only mode or card system.
+assert.match(welcome, /<ul class="hg-onb-steps">/);
+assert.equal([...welcome.matchAll(/<li(?:\\s|>)/g)].length, 6, "six unnumbered onboarding panels");
+for (const heading of [
+  "Utforsk kartet", "Besøk steder", "Oppdag historiene",
+  "Ta quiz og samle merker", "Se hva du har samlet", "Opplev Civication"
+]) assert.ok(welcome.includes(heading), heading);
+assert.doesNotMatch(welcome, /stedskort|quizkort|testmodus/i);
+assert.match(welcome, /lister over steder du har besøkt/);
+assert.match(welcome, /interaktivt læringsmiljø/);
+assert.match(welcome, /simulert livsverden/);
+assert.match(welcome, /Oppdrag kan ta deg videre til History Go/);
+assert.match(styles, /background:[\\s\\S]*?#1b281f/);
+assert.match(styles, /grid-template-columns: repeat\\(2, minmax\\(0, 1fr\\)\\)/);
+assert.match(styles, /@media \\(max-width: 700px\\)/);
 assert.match(welcome, /hg:onboardingClosed/);
 assert.match(welcome, /mission && mission.active === true/);
 assert.match(styles, /safe-area-inset-bottom/);
