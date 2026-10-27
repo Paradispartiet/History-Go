@@ -1,0 +1,78 @@
+name: Voldsløkka pumptrack canonical quiz materialization
+on:
+  push:
+    branches:
+      - content/voldslokka-pumptrack-quiz-v1-20261027
+    paths:
+      - .github/workflows/voldslokka-pumptrack-quiz-v1-20261027.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/voldslokka-pumptrack-quiz-v1-20261027
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Generate canonical sport context
+        run: npm run quiz:context -- --category sport --target voldslokka_pumptrack --output data/quiz/production_context/sport/voldslokka_pumptrack.json
+      - name: Generate real Knowledge IDs
+        run: npm run knowledge:canonical:write
+      - name: Align QuizCard with generated Knowledge
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const path='data/quiz/sport/voldslokka_pumptrack_sets.json',cp='data/quizcards/sport/voldslokka_pumptrack_quizcard_v1.json';
+          const quiz=JSON.parse(fs.readFileSync(path,'utf8')),card=JSON.parse(fs.readFileSync(cp,'utf8')),questions=quiz.sets.flatMap(s=>s.questions);
+          assert.deepEqual(quiz.sets.map(s=>s.questions.length),[7,7,7]);
+          assert.equal(questions.length,21);
+          for(const q of questions){assert.equal(q.options[q.answerIndex],q.answer);assert.ok(q.primary_knowledge_unit_id&&q.knowledge_unit_ids?.length);assert.ok(!/^\d{4}$/.test(q.answer));}
+          card.cards[0].questions=card.cards[0].questions.map((x,i)=>{const q=questions.find(q=>q.id===x.id);assert.ok(q);return {...q,number:i+1,sourceQuestionId:q.id,sourceQuizId:q.quiz_id,sourceQuizFile:path}});
+          card.cards[0].answerKey=card.cards[0].questions.map((q,i)=>({number:i+1,answer:q.answer,answerIndex:q.answerIndex}));
+          assert.equal(card.cards[0].questions.length,10);
+          fs.writeFileSync(cp,JSON.stringify(card,null,2)+'\n');
+          console.log('PASS 21 questions, 10 QuizCard and 21 canonical Knowledge links');
+          NODE
+      - name: Commit generated artifacts
+        run: |
+          git restore --source=HEAD -- reports/knowledge-contract-audit.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/sport/voldslokka_pumptrack_sets.json data/quizcards/sport/voldslokka_pumptrack_quizcard_v1.json data/quiz/production_context/sport/voldslokka_pumptrack.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate Voldsløkka canonical context, Knowledge and QuizCard"
+            git push
+          fi
+      - name: Audit full canon and relative progression
+        run: |
+          npm run quiz:context -- --category sport --target voldslokka_pumptrack --output data/quiz/production_context/sport/voldslokka_pumptrack.json --check
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run knowledge:canonical:check
+      - name: Complete 21 questions in actual desktop and mobile app
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          export CHROME_BIN
+          node scripts/verify-place-quiz-browser.mjs voldslokka_pumptrack
+      - uses: actions/upload-artifact@v4
+        with:
+          name: voldslokka-pumptrack-mobile-desktop-quiz
+          path: artifacts/place-quiz/voldslokka_pumptrack/
+          retention-days: 14
+      - name: Remove one-time workflow after successful QA
+        run: |
+          git rm .github/workflows/voldslokka-pumptrack-quiz-v1-20261027.yml
+          git commit -m "Remove temporary Voldsløkka quiz production workflow"
+          git push
