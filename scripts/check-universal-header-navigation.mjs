@@ -29,11 +29,17 @@ function node() {
 }
 function boot(page, referrer = "", storage = new Map()) {
   const location = new URL(root + page), host = node(), events = {};
+  const nature = page.startsWith("finn-");
+  const natureBack = nature ? node() : null;
+  if (natureBack) { natureBack.parentElement = host; host.children.push(natureBack); }
   const history = { length: 2, calls: 0, back() { this.calls++; } };
   const document = {
     currentScript: { src: root + "js/ui/universal-header-nav.js" }, referrer,
     createElement: node, addEventListener(name, cb) { events["doc:" + name] = cb; },
-    querySelector(selector) { return selector.startsWith("body.hg-app >") ? host : null; }
+    querySelector(selector) {
+      if (nature && selector.includes(".ne-header > .ne-back")) return natureBack;
+      return selector.startsWith("body.hg-app >") ? host : null;
+    }
   };
   const sessionStorage = { getItem: k => storage.get(k) || null, setItem: (k, v) => storage.set(k, v) };
   const window = { addEventListener(name, cb) { events[name] = cb; } };
@@ -80,4 +86,12 @@ const civi = boot("Civication.html", root + "profile.html", store);
 assert.equal(civi.link.href, root + "profile.html#spill");
 assert.equal(civi.label, "Tilbake til min samling");
 assert.equal(boot("sprakatlas.html", root + "index.html").label, "Tilbake til kartet");
-process.stdout.write("9/9 History Go header navigation checks passed\n");
+const fauna = boot("finn-fauna.html");
+assert.equal(fauna.label, "Tilbake til kartet");
+assert.equal(fauna.link.href, root + "index.html");
+assert.equal(fauna.link.children.length, 1, "nature page back link is an icon only");
+const flora = boot("finn-flora.html", root + "finn-fauna.html");
+assert.equal(flora.label, "Tilbake til finn fauna");
+assert.equal(flora.link.click().defaultPrevented, true);
+assert.equal(flora.history.calls, 1);
+process.stdout.write("11/11 History Go header navigation checks passed\n");

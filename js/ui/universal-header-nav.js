@@ -13,7 +13,9 @@
     "fagverk-forside.html": "Fagverket",
     "emner.html": "Min læring",
     "notater.html": "Mine notater",
-    "sprakatlas.html": "Språkatlas"
+    "sprakatlas.html": "Språkatlas",
+    "finn-fauna.html": "Finn fauna",
+    "finn-flora.html": "Finn flora"
   });
 
   function parsed(url) {
@@ -110,17 +112,17 @@
   const existing = document.querySelector(
     ".profile-header-left > .back-link, .topbar-right > .back-link, " +
     ".emner-header-nav > .back-link:first-child, main.main > header > a[href='profile.html'], " +
-    ".sprakatlas-topbar > .sprakatlas-back"
+    ".sprakatlas-topbar > .sprakatlas-back, .ne-header > .ne-back"
   );
   const host = document.querySelector(
     "body.hg-app > .site-header, .profile-header-left, .topbar-left, " +
-    ".kv2-appbar, .fagverk-topbar, .sprakatlas-topbar, " +
+    ".kv2-appbar, .fagverk-topbar, .sprakatlas-topbar, .ne-header, " +
     ".emner-header-nav, main.main > header"
   );
   if (!host) return;
   const link = /** @type {HTMLAnchorElement} */ (existing || document.createElement("a"));
   if (existing && existing.parentElement !== host) existing.remove();
-  link.classList.remove("back-link");
+  link.classList.remove("back-link", "ne-back");
   link.classList.add("hg-universal-back");
   link.setAttribute("data-hg-nav-back", "");
 

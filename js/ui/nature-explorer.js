@@ -121,11 +121,7 @@ const closeMenu=()=>{nav.hidden=true;toggle.setAttribute("aria-expanded","false"
 toggle.addEventListener("click",()=>{nav.hidden=!nav.hidden;toggle.setAttribute("aria-expanded",String(!nav.hidden));});
 document.addEventListener("click",e=>{if (!(e.target instanceof Element) || !e.target.closest(".ne-menu-wrap")) closeMenu();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu();});
-document.getElementById("natureBack").addEventListener("click",()=>{
- try{if(document.referrer&&new URL(document.referrer).origin===location.origin&&history.length>1){history.back();return;}}
- catch{}
- location.href="index.html";
-});
+// Back navigation is owned by the shared header module on nature pages.
 window.addEventListener("pageshow",()=>{if(all.length)render();});
 load();
 })();
