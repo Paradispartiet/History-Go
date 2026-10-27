@@ -15,7 +15,21 @@ const content = C.buildContent({
   phaseDefinitions: read(manifest.shared.phaseDefinitions),
   lifeThreads: read(manifest.life.threads), lifeScenes: read(manifest.life.scenes)
 });
-const scenes = content.scenes.filter(s => s.id.startsWith('wave_g_'));
+// Keep the regression for the first production batch scoped to its original
+// sixteen outcomes when later Wave G continuations are added.
+const firstOutcomes = {
+  c01: ['vennskap_pa_egne_vilkar', 'nytt_samtaleforslag'],
+  c02: ['spilletid_eget_valg', 'fridager_uten_binding'],
+  c03: ['anonymisering_vurderes', 'eksempel_internt'],
+  c05: ['skille_dokumentert', 'oversikt_klar'],
+  c06: ['utvalg_begrenset', 'dataoversikt_etterspurt'],
+  c07: ['bare_gjest', 'besoksramme'],
+  c17: ['lager_ikke_ferdig', 'tilkomst_adskilt'],
+  c23: ['ingen_ny_kontakt', 'intern_laerdom']
+};
+const scenes = content.scenes.filter(s => s.id.startsWith('wave_g_') &&
+  firstOutcomes[s.threadId.slice('wave_g_'.length)]?.includes(
+    s.conditions?.flagg?.['wa_f_' + s.threadId.slice('wave_g_'.length) + '_status']));
 const waveF = content.scenes.filter(s => s.id.startsWith('wave_f_'));
 const stories = ['c01','c02','c03','c05','c06','c07','c17','c23'];
 assert.equal(scenes.length, 16);
