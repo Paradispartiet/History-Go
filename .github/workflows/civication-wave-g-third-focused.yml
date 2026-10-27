@@ -1,0 +1,63 @@
+name: Civication Wave G third batch focused check (temporary)
+
+on:
+  push:
+    branches:
+      - civication/wave-g-continuations-third-16-20261027
+
+permissions:
+  contents: read
+
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Verify real Wave G paths
+        run: |
+          node tests/civication-lifestory-wave-g-first-16.test.js
+          node tests/civication-lifestory-wave-g-second-16.test.js
+          node tests/civication-lifestory-wave-g-third-16.test.js
+      - name: Extract generator-derived evidence changes
+        if: always()
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs'),cp=require('node:child_process');
+          const files=[
+            'data/Civication/lifePositionRoleWorldReadiness.json',
+            'data/Civication/careerGameplayMatrix.json',
+            'data/Civication/roleWorldRolloutReadiness.json'
+          ];
+          const before=files.map(p=>JSON.parse(fs.readFileSync(p,'utf8')));
+          for(const script of [
+            'scripts/audit-civication-life-position-role-world-readiness.mjs',
+            'scripts/audit-civication-career-gameplay.mjs',
+            'scripts/audit-civication-role-world-rollout-readiness.mjs'
+          ])cp.execFileSync(process.execPath,[script,'--write'],{stdio:'pipe',timeout:120000});
+          const after=files.map(p=>JSON.parse(fs.readFileSync(p,'utf8')));
+          const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+          function delta(a,b){
+            if(eq(a,b))return undefined;
+            if(a===null||b===null||Array.isArray(a)||Array.isArray(b)||typeof a!=='object'||typeof b!=='object')return b;
+            const out={};
+            for(const k of Object.keys(b)){const v=delta(a[k],b[k]);if(v!==undefined)out[k]=v}
+            return out;
+          }
+          const positions=after[0].positions.flatMap((row,i)=>{
+            const patch=delta(before[0].positions[i],row);return patch===undefined?[]:[{key:row.key,patch}]
+          });
+          const careers=after[1].worlds.flatMap((row,i)=>{
+            const patch=delta(before[1].worlds[i],row);return patch===undefined?[]:[{key:row.key,patch}]
+          });
+          const roles=after[2].roles.flatMap((row,i)=>{
+            const patch=delta(before[2].roles[i],row);return patch===undefined?[]:[{index:i,patch}]
+          });
+          const packet=JSON.stringify({positions,careers,roles});
+          const n=Math.ceil(packet.length/6000);
+          for(let i=0;i<n;i++)console.log('WAVEG3_DIFF_'+String(i+1).padStart(2,'0')+'_'+String(n).padStart(2,'0')+'='+packet.slice(i*6000,(i+1)*6000));
+          console.log('WAVEG3_SUMMARY='+JSON.stringify({parts:n,length:packet.length,positions:positions.length,careers:careers.length,roles:roles.length}));
+          NODE
