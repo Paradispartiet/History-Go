@@ -29,8 +29,8 @@ const nextStatuses = {
   c23: ['versjoner_bevart', 'lesere_ukjente']
 };
 const all = base.scenes.filter(s => s.id.startsWith('wave_g_'));
-assert.equal(all.length, 32, 'Wave G first two batches: 32 scenes');
-assert.equal(all.reduce((sum,s) => sum+s.valg.length,0),64,'64 authored choices');
+assert.equal(all.length, 48, 'Wave G first three batches: 48 scenes');
+assert.equal(all.reduce((sum,s) => sum+s.valg.length,0),96,'96 authored choices');
 const second = all.filter(s => {
   const story = s.threadId.slice('wave_g_'.length);
   return nextStatuses[story]?.includes(s.conditions?.flagg?.['wa_f_'+story+'_status']);
