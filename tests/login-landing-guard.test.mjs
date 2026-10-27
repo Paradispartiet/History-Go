@@ -26,12 +26,12 @@ test("all main app entries require login and remain hidden until verification", 
 
 test("service worker cannot serve stale unauthenticated HTML from its offline cache", () => {
   const sw = readFileSync("sw.js", "utf8");
-  const precache = sw.match(/const PRECACHE_URLS = \\[([\\s\\S]*?)\\];/);
+  const precache = sw.split("const PRECACHE_URLS = [")[1]?.split("];")[0];
   assert.ok(precache, "precache declaration is present");
-  assert.doesNotMatch(precache[1], /["'](?:\\.\\/|[^"']*\\.html)["']/);
-  assert.match(sw, /if \\(req\\.mode === "navigate"\\)/);
-  assert.match(sw, /return await fetchWithTimeout\\(req, 4500\\)/);
-  assert.doesNotMatch(sw, /event\\.respondWith\\(networkFirst\\(req, CACHE_STATIC\\)\\)/);
+  assert.doesNotMatch(precache, /["'](?:\.\/|[^"']*\.html)["']/);
+  assert.match(sw, /if \(req\.mode === "navigate"\)/);
+  assert.match(sw, /return await fetchWithTimeout\(req, 4500\)/);
+  assert.ok(!sw.includes("event.respondWith(networkFirst(req, CACHE_STATIC))"));
 });
 
 test("legacy redirect pages only forward to the guarded knowledge page", () => {
