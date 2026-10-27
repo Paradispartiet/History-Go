@@ -4,7 +4,6 @@ on:
     branches: [research/oslo-sentrum-v1-six-next-20261027]
     paths:
       - 'data/quiz/by/egertorget_sets.json'
-      - 'data/quiz/by/wessels_plass_sets.json'
       - 'data/quiz/historie/kontraskjaeret_sets.json'
       - 'data/quiz/historie/palehaven_paleet_sets.json'
       - 'data/quiz/historie/avisen_tiden_radhusgata_10_sets.json'
@@ -26,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Regenerate Knowledge with the existing canonical builder
+      - name: Materialize remaining five quizzes, QuizCards and canonical Knowledge
         shell: bash
         run: |
           set -euo pipefail
