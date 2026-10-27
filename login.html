@@ -26,6 +26,9 @@
     input:focus{border-color:var(--yellow)}
     .primary{width:100%;height:48px;border:0;border-radius:10px;background:var(--yellow);color:#080808;font-size:15px;font-weight:800;cursor:pointer}
     .primary:hover{background:#ffe54d}.primary:disabled{opacity:.7;cursor:wait}
+    .google{width:100%;height:48px;border:1px solid #54575b;border-radius:10px;background:#232527;color:#fff;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px}
+    .google:hover{background:#303235}.google:disabled{opacity:.7;cursor:wait}
+    [hidden]{display:none!important}
     .message{min-height:0;color:#ffcfcb;font-size:13px;line-height:1.5;margin:0}
     .message:not(:empty){margin:0 0 16px;padding:10px 12px;border-radius:9px;background:rgba(255,94,94,.09)}
     .message.success{color:#b4ecc0;background:rgba(80,200,118,.11)}
@@ -47,21 +50,24 @@
     <p class="intro">Logg inn for å utforske History Go og fortsette med dine steder, quizer og samlinger.</p>
     <section class="panel" aria-labelledby="formTitle">
       <h2 id="formTitle">Logg inn</h2>
-      <p class="sub" id="formDescription">Bruk kontoen din fra AHA / History Go.</p>
+      <p class="sub" id="formDescription">Bruk e-postlenke eller Google med din AHA-konto.</p>
       <form id="hgLoginForm" autocomplete="on">
         <label for="hgLoginEmail">E-post</label>
         <input id="hgLoginEmail" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="navn@eksempel.no">
-        <label for="hgLoginPassword">Passord</label>
-        <input id="hgLoginPassword" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Passord">
+        <div id="hgPasswordFields" hidden>
+          <label for="hgLoginPassword">Passord</label>
+          <input id="hgLoginPassword" name="password" type="password" autocomplete="current-password" minlength="6" placeholder="Passord">
+        </div>
         <p id="hgLoginStatus" class="message" role="status" aria-live="polite"></p>
-        <button class="primary" id="hgLoginSubmit" type="submit">Logg inn</button>
+        <button class="primary" id="hgLoginSubmit" type="submit">Send innloggingslenke</button>
       </form>
+      <button class="google" type="button" id="hgGoogleLogin">Logg inn med Google</button>
       <div class="links">
-        <button class="link-button" id="hgRegisterToggle" type="button">Opprett konto</button>
-        <button class="link-button" id="hgResetPassword" type="button">Glemt passord?</button>
+        <button class="link-button" id="hgRegisterToggle" type="button">Bruk passord i stedet</button>
+        <button class="link-button" id="hgResetPassword" type="button" hidden>Glemt passord?</button>
       </div>
     </section>
-    <p class="provider">Andre innloggingsmetoder? <a href="https://paradispartiet.github.io/AHA-EchoNet/?auth=login&amp;source=historygo">Logg inn gjennom AHA</a></p>
+    <p class="provider">Trenger du å opprette eller administrere AHA-profilen? <a href="https://paradispartiet.github.io/AHA-EchoNet/?auth=login&amp;source=historygo">Åpne AHA</a></p>
     <p class="footer">Du trenger en konto for å gå videre til History Go.</p>
   </main>
   <script>
@@ -70,13 +76,15 @@
       const form = document.getElementById("hgLoginForm");
       const email = document.getElementById("hgLoginEmail");
       const password = document.getElementById("hgLoginPassword");
+      const passwordFields = document.getElementById("hgPasswordFields");
       const submit = document.getElementById("hgLoginSubmit");
+      const google = document.getElementById("hgGoogleLogin");
       const status = document.getElementById("hgLoginStatus");
       const toggle = document.getElementById("hgRegisterToggle");
       const reset = document.getElementById("hgResetPassword");
       const title = document.getElementById("formTitle");
       const description = document.getElementById("formDescription");
-      let mode = "login";
+      let mode = "email";
       let busy = false;
 
       function destination() {
@@ -97,13 +105,16 @@
       }
       function setMode(next) {
         mode = next;
-        title.textContent = next === "register" ? "Opprett konto" : "Logg inn";
-        description.textContent = next === "register"
-          ? "Registrer en konto. Bekreft e-posten din hvis du får beskjed om det."
-          : "Bruk kontoen din fra AHA / History Go.";
-        submit.textContent = next === "register" ? "Opprett konto" : "Logg inn";
-        toggle.textContent = next === "register" ? "Har du konto? Logg inn" : "Opprett konto";
-        password.autocomplete = next === "register" ? "new-password" : "current-password";
+        const byPassword = next === "password";
+        title.textContent = "Logg inn";
+        description.textContent = byPassword
+          ? "Skriv inn e-post og passord for kontoen din."
+          : "Bruk e-postlenke eller Google med din AHA-konto.";
+        passwordFields.hidden = !byPassword;
+        password.required = byPassword;
+        submit.textContent = byPassword ? "Logg inn" : "Send innloggingslenke";
+        toggle.textContent = byPassword ? "Bruk e-postlenke" : "Bruk passord i stedet";
+        reset.hidden = !byPassword;
         message("");
       }
       function go() { location.replace(destination()); }
@@ -125,36 +136,58 @@
           const auth = await client();
           await verifyAndEnter(auth);
         } catch {
-          // Stay on the login screen if the provider is temporarily unavailable.
+          // Stay on login if authentication provider is temporarily unavailable.
         }
       }
-      toggle.addEventListener("click", () => setMode(mode === "register" ? "login" : "register"));
+      function setBusy(next) {
+        busy = next;
+        submit.disabled = next;
+        google.disabled = next;
+        toggle.disabled = next;
+        reset.disabled = next;
+      }
+      toggle.addEventListener("click", () => setMode(mode === "password" ? "email" : "password"));
       form.addEventListener("submit", async event => {
         event.preventDefault();
         if (busy) return;
-        busy = true;
-        submit.disabled = true;
-        submit.textContent = mode === "register" ? "Oppretter konto …" : "Logger inn …";
+        setBusy(true);
         message("");
         try {
           const auth = await client();
-          const credentials = { email: email.value.trim(), password: password.value };
-          if (mode === "register") {
-            const { data, error } = await auth.auth.signUp(credentials);
-            if (error) throw error;
-            if (data?.session && await verifyAndEnter(auth)) return;
-            message("Sjekk e-posten din for å bekrefte kontoen. Deretter kan du logge inn.", true);
-          } else {
-            const { error } = await auth.auth.signInWithPassword(credentials);
+          const value = email.value.trim();
+          if (mode === "password") {
+            const { error } = await auth.auth.signInWithPassword({ email: value, password: password.value });
             if (error) throw error;
             if (!await verifyAndEnter(auth)) throw new Error("Kunne ikke bekrefte innloggingen.");
+          } else {
+            const { error } = await auth.auth.signInWithOtp({
+              email: value,
+              options: { emailRedirectTo: new URL("login.html", location.href).href }
+            });
+            if (error) throw error;
+            message("Sjekk e-posten for innloggingslenke. Åpne lenken for å logge inn.", true);
           }
         } catch (error) {
           message(error?.message || "Innlogging mislyktes. Prøv igjen.");
-        } finally {
-          busy = false;
-          submit.disabled = false;
-          submit.textContent = mode === "register" ? "Opprett konto" : "Logg inn";
+        } finally { setBusy(false); submit.textContent = mode === "password" ? "Logg inn" : "Send innloggingslenke"; }
+      });
+      google.addEventListener("click", async () => {
+        if (busy) return;
+        setBusy(true);
+        message("");
+        try {
+          const auth = await client();
+          const { error } = await auth.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+              redirectTo: new URL("login.html", location.href).href,
+              queryParams: { prompt: "select_account" }
+            }
+          });
+          if (error) throw error;
+        } catch (error) {
+          message(error?.message || "Kunne ikke starte Google-innlogging.");
+          setBusy(false);
         }
       });
       reset.addEventListener("click", async () => {
@@ -164,20 +197,16 @@
           return;
         }
         if (busy) return;
-        busy = true;
-        reset.disabled = true;
+        setBusy(true);
         try {
           const auth = await client();
           const { error } = await auth.auth.resetPasswordForEmail(email.value.trim());
           if (error) throw error;
           message("Hvis kontoen finnes, får du en e-post med lenke for å endre passord.", true);
-        } catch {
-          message("Kunne ikke sende lenke. Prøv igjen senere.");
-        } finally {
-          reset.disabled = false;
-          busy = false;
-        }
+        } catch { message("Kunne ikke sende lenke. Prøv igjen senere."); }
+        finally { setBusy(false); }
       });
+      setMode("email");
       init();
     })();
   </script>
