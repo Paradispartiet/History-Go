@@ -1,0 +1,81 @@
+name: Grand Hotel v1 – safe main reconciliation and browser QA
+on:
+  push:
+    branches:
+      - content/grand-hotel-sentrum-v1-20261027
+    paths:
+      - '.github/workflows/grand-hotel-main-sync.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: grand-hotel-main-reconcile-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/content/grand-hotel-sentrum-v1-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/grand-hotel-sentrum-v1-20261027
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Merge main into Grand Hotel only; fail closed on unexpected conflict paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          if ! git merge --no-commit --no-ff origin/main; then
+            test -f .git/MERGE_HEAD || { echo 'Not a normal merge conflict'; exit 1; }
+          fi
+          python3 scripts/reconcile-grand-hotel-main.py
+          git commit -m 'Merge latest main while keeping Grand Hotel registrations'
+      - name: Rebuild Grand Hotel canonical context, Knowledge, QuizCard and runtime
+        run: |
+          node scripts/build-quiz-production-context.mjs --category media --target grand_hotel --output data/quiz/production_context/media/grand_hotel.json
+          npm run knowledge:canonical:write
+          node scripts/sync-grand-hotel-quizcard-knowledge.mjs
+          npm run place-open:build
+          npm run places:index:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify exactly the Grand Hotel data package and referenced Knowledge units
+        run: |
+          node --test tests/grand-hotel-v1-fagverk-photo.test.mjs tests/grand-hotel-v1-quiz-parity.test.mjs
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Test actual app on mobile and desktop
+        run: node tests/grand-hotel-real-app-browser-20261027.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: grand-hotel-main-sync-browser
+          path: artifacts/grand-hotel-browser/
+          if-no-files-found: ignore
+      - name: Commit only derived artifacts and push to Grand Hotel branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/quiz/production_context/media/grand_hotel.json
+          git add data/quiz/media/grand_hotel_sets.json data/quizcards/media/grand_hotel_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/grand_hotel.json data/places/places_index.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Grand Hotel: rebuild derived Knowledge and runtime after main sync'
+          fi
+          git status --short
+          git restore --worktree .
+          git fetch origin content/grand-hotel-sentrum-v1-20261027
+          git rebase origin/content/grand-hotel-sentrum-v1-20261027
+          git push origin HEAD:refs/heads/content/grand-hotel-sentrum-v1-20261027
