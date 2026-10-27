@@ -74,8 +74,9 @@
   });
 
   document.addEventListener("click", async event => {
-    const button = event.target?.closest?.("[data-hg-sign-out]");
-    if (!button) return;
+    const button = event.target instanceof Element
+      ? event.target.closest("button[data-hg-sign-out]") : null;
+    if (!(button instanceof HTMLButtonElement)) return;
     event.preventDefault();
     if (button.disabled) return;
     button.disabled = true;
