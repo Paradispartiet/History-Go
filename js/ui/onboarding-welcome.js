@@ -1,7 +1,7 @@
 // @ts-nocheck
 // js/ui/onboarding-welcome.js
 // HGOnboarding — vises én gang per nettleser ved første besøk.
-// Forklarer hovedflyten: kart → besøk → quiz → merke/kort → Civication.
+// Forklarer hovedflyten: kart → besøk → historier → quiz/merker → samling → Civication.
 //
 // Persisterer dismiss via hg_onboarding_shown_v1.
 // Kan også åpnes manuelt via window.openOnboarding().
@@ -41,25 +41,25 @@
     modal.style.touchAction = "manipulation";
 
     modal.innerHTML = `
-      <div class="hg-onb-inner" role="dialog" aria-modal="true">
-        <button class="hg-onb-close" type="button" aria-label="Lukk">✕</button>
+      <div class="hg-onb-inner" role="dialog" aria-modal="true" aria-labelledby="hgOnboardingTitle" aria-describedby="hgOnboardingIntro">
+        <button class="hg-onb-close" type="button" aria-label="Lukk velkomsten">✕</button>
         <header class="hg-onb-head">
-          <div class="hg-onb-kicker">Velkommen til</div>
-          <h2 class="hg-onb-title">History GO</h2>
-          <p class="hg-onb-sub">
-            Utforsk ekte steder og historier. Besøk, lær og løs quizer for å bygge samlingen din – eller ta med et oppdrag fra Civication.
+          <p class="hg-onb-kicker">UTFORSK • OPPDAG • LÆR</p>
+          <h2 class="hg-onb-title" id="hgOnboardingTitle">Velkommen til <span>History Go</span></h2>
+          <p class="hg-onb-sub" id="hgOnboardingIntro">
+            Oppdag historiene rundt deg. Besøk steder, utforsk kunnskap, møt mennesker fra historien og følg med på det du samler.
           </p>
         </header>
-        <ol class="hg-onb-steps">
-          <li><span class="hg-onb-step-icon">🗺️</span><div><strong>Finn et sted på kartet</strong><p>Utforsk parker, bygninger, plasser og historiske spor. Åpne stedets historie, bilder og forbindelser.</p></div></li>
-          <li><span class="hg-onb-step-icon">📍</span><div><strong>Besøk stedet og samle stedskortet</strong><p>Stedskortet krever at du faktisk er ved stedet. Du kan lese om stedene før du drar dit.</p></div></li>
-          <li><span class="hg-onb-step-icon">🎯</span><div><strong>Les og ta quiz</strong><p>Bruk kunnskapen fra stedet. En perfekt quiz låser opp quizkortet; besøk åpner også for personquizer knyttet til stedet.</p></div></li>
-          <li><span class="hg-onb-step-icon">🏅</span><div><strong>Samle merker og bygg profilen</strong><p>Quizer gir fremgang i fagkategoriene. Samle kort, merker og oppdagelser på tvers av byen.</p></div></li>
-          <li><span class="hg-onb-step-icon">🏛️</span><div><strong>Fortsett historien i Civication</strong><p>Valg, jobber og hverdagsliv kan gi deg oppdrag i History Go. Oppdraget følger deg på skjermen, og du kan gå tilbake til Civication.</p></div></li>
-          <li><span class="hg-onb-step-icon">🧪</span><div><strong>Prøv quizer i testmodus</strong><p>I testmodus kan du ta quizer hvor som helst. Stedskort krever fortsatt et fysisk besøk.</p></div></li>
-        </ol>
+        <ul class="hg-onb-steps">
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🗺️</span><div><strong>Utforsk kartet</strong><p>Oppdag historiske bygninger, parker, plasser og andre interessante steder. Se hva som har skjedd der, og hvem som har satt spor.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">📍</span><div><strong>Besøk steder</strong><p>Oppsøk steder i virkeligheten og registrer besøkene dine. Utforsk byen og oppdag stadig nye steder.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">📖</span><div><strong>Oppdag historiene</strong><p>Les om hendelser, historiske personer og samfunnene som har formet verden rundt oss.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🎯</span><div><strong>Ta quiz og samle merker</strong><p>Test kunnskapen din gjennom quizer om steder, personer og ulike fagområder. Oppnå merker og bygg videre på kunnskapen din.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🏆</span><div><strong>Se hva du har samlet</strong><p>Se lister over steder du har besøkt, kunnskap du har tilegnet deg, historiske personer og merker du har samlet. Følg fremgangen din i de ulike kategoriene.</p></div></li>
+          <li class="hg-onb-civication"><span class="hg-onb-step-icon" aria-hidden="true">🏛️</span><div><strong>Opplev Civication</strong><p>Civication er et interaktivt læringsmiljø der du kan utforske interessene dine, ta quizer og kvalifisere deg til spennende roller og jobber. I en simulert livsverden får du prøve ut ulike muligheter, utvikle ferdighetene dine og forme din egen vei. Oppdrag kan ta deg videre til History Go.</p></div></li>
+        </ul>
         <footer class="hg-onb-actions">
-          <button type="button" class="hg-onb-primary" data-action="start">Start History Go</button>
+          <button type="button" class="hg-onb-primary" data-action="start">Start History Go <span aria-hidden="true">→</span></button>
         </footer>
       </div>
     `;
