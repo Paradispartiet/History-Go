@@ -1,0 +1,69 @@
+name: Voldsløkka pumptrack Fagverk materialization
+on:
+  push:
+    branches:
+      - content/voldslokka-pumptrack-fagverk-v1-20261027
+    paths:
+      - .github/workflows/voldslokka-pumptrack-fagverk-v1.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/voldslokka-pumptrack-fagverk-v1-20261027
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Build canonical place index, Place-open and Fagverk release
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Store generated assets on PR branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/places_index.json data/runtime/place-open/ data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Synchronize Voldsløkka pumptrack Place and Fagverk release"
+            git push
+          fi
+      - name: Verify source, registry and runtime without fabricating images
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+          npm run places:index:check
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const path='data/places/sport/oslo/voldslokka_pumptrack/voldslokka_pumptrack.json';
+          const p=JSON.parse(fs.readFileSync(path,'utf8'));
+          const rt=JSON.parse(fs.readFileSync('data/runtime/place-open/voldslokka_pumptrack.json','utf8'));
+          const reg=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));
+          assert.equal(p.id,'voldslokka_pumptrack');
+          assert.equal(p.category,'sport');
+          assert.equal(p.fagverk.status,'curated');
+          assert.equal(p.fagverk.article.length,3);
+          assert.equal(p.fagverk.lenses.length,3);
+          assert.equal(reg.placeLinks.voldslokka_pumptrack.status,'curated');
+          assert.equal(rt.place?.fagverk?.status,'curated');
+          assert(!p.popupDesc.includes('I History Go'));
+          assert.equal(p.lat,59.943145607547194);
+          assert.equal(p.lon,10.754419844962298);
+          assert(!p.image&&!p.frontImage,'Do not pretend missing image is available');
+          console.log('PASS: Voldsløkka source, Fagverk and Place-open; photo and quiz remain separate.');
+          NODE
+      - name: Remove one-time workflow after successful verification
+        run: |
+          git rm .github/workflows/voldslokka-pumptrack-fagverk-v1.yml
+          git commit -m "Remove temporary Voldsløkka Fagverk workflow"
+          git push
