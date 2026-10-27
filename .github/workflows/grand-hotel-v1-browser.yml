@@ -1,0 +1,34 @@
+name: Grand Hotel v1 – real app browser
+permissions:
+  contents: read
+on:
+  pull_request:
+    paths:
+      - 'data/places/media/oslo/grand_hotel.json'
+      - 'data/places/production/grand_hotel.json'
+      - 'data/quiz/media/grand_hotel_sets.json'
+      - 'data/quizcards/media/grand_hotel_quizcard_v1.json'
+      - 'data/runtime/place-open/grand_hotel.json'
+      - 'tests/grand-hotel-real-app-browser-20261027.mjs'
+      - '.github/workflows/grand-hotel-v1-browser.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Full interactive browser checks – iPad-sized mobile and desktop
+        run: node tests/grand-hotel-real-app-browser-20261027.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: grand-hotel-placecard-mobile-desktop
+          path: artifacts/grand-hotel-browser/
+          if-no-files-found: ignore
