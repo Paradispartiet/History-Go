@@ -92,11 +92,12 @@ body.hg-app.hg-load-failed::after {
 .hg-onb-inner {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   background: #fff;
   color: #1c2016;
   border-radius: 18px;
   padding: 28px 26px 24px;
+  margin: auto 0;
   box-shadow: 0 20px 50px rgba(0,0,0,0.4);
   animation: hgOnbRise 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
@@ -129,7 +130,7 @@ body.hg-app.hg-load-failed::after {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #5c6b52;
+  color: #58616b;
 }
 
 .hg-onb-title {
@@ -169,7 +170,8 @@ body.hg-app.hg-load-failed::after {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #eef5e6;
+  background: #ffe15a;
+  border-radius: 11px;
   font-size: 18px;
   flex: 0 0 auto;
 }
@@ -194,8 +196,8 @@ body.hg-app.hg-load-failed::after {
 }
 
 .hg-onb-primary {
-  background: #2d5a1a;
-  color: #fff;
+  background: #ffd52f;
+  color: #171717;
   border: 0;
   border-radius: 10px;
   padding: 12px 22px;
@@ -206,8 +208,44 @@ body.hg-app.hg-load-failed::after {
   transition: background 120ms;
 }
 
-.hg-onb-primary:hover { background: #3a7022; }
+.hg-onb-primary:hover { background: #ffe66b; }
 .hg-onb-primary:active { transform: scale(0.98); }
+
+.hg-onb-flow {
+  display: inline-block;
+  margin: 16px 0 0;
+  padding: 9px 12px;
+  border-radius: 9px;
+  background: #fff2ae;
+  color: #28230d;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+.hg-onb-civication {
+  padding: 13px 15px;
+  margin: 0 0 20px;
+  border-left: 4px solid #ffd52f;
+  border-radius: 9px;
+  background: #f5f6f8;
+}
+.hg-onb-civication strong { font-size: 14px; }
+.hg-onb-civication p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #4b5563;
+}
+@media (max-width: 600px) {
+  .hg-onboarding-modal { padding: max(14px, env(safe-area-inset-top)) 12px max(14px, env(safe-area-inset-bottom)); }
+  .hg-onb-inner { padding: 20px 16px 18px; }
+  .hg-onb-head { margin-bottom: 16px; }
+  .hg-onb-title { font-size: 25px; }
+  .hg-onb-steps { gap: 11px; margin-bottom: 15px; }
+  .hg-onb-flow { font-size: 11px; }
+  .hg-onb-primary { width: 100%; }
+  .hg-onb-actions { justify-content: stretch; }
+}
 
 /* ========== Bedre empty-states i venstre panel ========== */
 
@@ -258,105 +296,91 @@ body.hg-app.hg-load-failed::after {
   background: rgba(255,255,255,0.2);
 }
 
-/* ========== Toast-posisjon og størrelse ========== */
+/* ========== Felles toast-lane med mobiltilpasset størrelse ========== */
 
 body.hg-app #toast {
-  position: absolute;
+  position: fixed;
   top: auto;
   bottom: 130px;
   left: 50%;
   transform: translateX(-50%);
-
-  width: min(760px, 84%);
-  max-height: 369px;
+  width: min(620px, calc(100vw - 24px));
   height: auto;
+  max-height: min(38vh, 260px);
   overflow-y: auto;
-
   display: none;
-  z-index: 30000;
-  padding: 34px 86px 34px 38px;
-  border-radius: 30px;
-
-  background: rgba(8, 8, 8, 0.9);
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 18px 46px rgba(0,0,0,0.45);
+  z-index: 2147481800;
+  padding: 18px 52px 18px 20px;
+  border-radius: 16px;
+  background: rgba(10, 12, 17, .96);
+  border: 1px solid rgba(255,255,255,.2);
+  box-shadow: 0 14px 35px rgba(0,0,0,.4);
   color: #fff;
 }
 
 body.hg-app #toast .toast-body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 38px;
-  line-height: 1.28;
+  font-size: clamp(16px, 2vw, 21px);
+  line-height: 1.35;
   font-weight: 650;
-  letter-spacing: -0.012em;
-  white-space: pre-wrap;
   overflow-wrap: anywhere;
+  white-space: pre-wrap;
 }
 
 body.hg-app #toast .toast-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  transform: none;
-
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.12);
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 9px;
+  background: rgba(255,255,255,.12);
   color: #fff;
-  font-size: 32px;
+  font-size: 22px;
   line-height: 1;
-  font-weight: 650;
   cursor: pointer;
 }
 
 body.hg-app .nature-unlock-stack {
   bottom: 130px;
-  width: min(760px, 84%);
-  max-height: 369px;
-  overflow-y: auto;
+  width: min(620px, calc(100vw - 24px));
+  max-height: min(38vh, 260px);
+  overflow: visible;
+  gap: 0;
+  z-index: 2147481800;
 }
 
 body.hg-app .nature-unlock-card {
-  grid-template-columns: 86px 1fr auto;
-  gap: 18px;
-  padding: 24px 22px 24px 20px;
-  border-radius: 28px;
+  grid-template-columns: 62px minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
 }
 
 body.hg-app .nature-unlock-thumb {
-  width: 86px;
-  height: 86px;
-  border-radius: 18px;
+  width: 62px;
+  height: 62px;
+  border-radius: 10px;
 }
 
-body.hg-app .nature-unlock-kicker {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.25;
-}
-
+body.hg-app .nature-unlock-kicker { font-size: 12px; line-height: 1.25; }
 body.hg-app .nature-unlock-title,
 body.hg-app .nature-unlock-card.is-badge .nature-unlock-title {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 32px;
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.012em;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.25;
 }
-
 body.hg-app .nature-unlock-latin,
 body.hg-app .nature-unlock-card.is-badge .nature-unlock-latin {
-  font-size: 21px;
+  font-size: 13px;
   line-height: 1.3;
-  font-weight: 550;
 }
+body.hg-app .nature-unlock-close { width: 34px; height: 34px; font-size: 18px; }
 
-body.hg-app .nature-unlock-close {
-  width: 48px;
-  height: 48px;
-  font-size: 24px;
-  font-weight: 650;
+@media (max-width: 600px) {
+  body.hg-app #toast { max-height: 34vh; padding: 13px 44px 13px 14px; }
+  body.hg-app #toast .toast-body { font-size: 16px; }
+  body.hg-app .nature-unlock-card { grid-template-columns: 48px minmax(0, 1fr) auto; padding: 10px; }
+  body.hg-app .nature-unlock-thumb { width: 48px; height: 48px; }
+  body.hg-app .nature-unlock-stack { max-height: 34vh; }
 }
