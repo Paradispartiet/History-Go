@@ -13,6 +13,11 @@ on:
       - 'data/quiz/production_briefs/kunst/villa_romsli.json'
       - 'tests/villa-romsli-v1-parity.test.mjs'
       - 'tests/villa-romsli-real-app-browser-20261027.mjs'
+      - 'tests/place-quizcards-category-manifests.test.mjs'
+      - 'js/ui/placeQuizCards.ts'
+      - 'js/ui/place-card-quizcards-patch.js'
+      - 'js/ui/place-card.js'
+      - 'dist/web/place-card-quizcards-patch.js'
       - '.github/workflows/villa-romsli-quiz-parity.yml'
 jobs:
   verify:
@@ -24,7 +29,7 @@ jobs:
           node-version: '24'
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
-      - run: node --test tests/villa-romsli-v1-parity.test.mjs
+      - run: node --test tests/villa-romsli-v1-parity.test.mjs tests/place-quizcards-category-manifests.test.mjs
       - run: node tests/villa-romsli-real-app-browser-20261027.mjs
       - uses: actions/upload-artifact@v4
         if: always()
