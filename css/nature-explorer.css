@@ -5,7 +5,7 @@ button,input{font:inherit}a{color:inherit}button{cursor:pointer}[hidden]{display
 button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #f6d93f;outline-offset:3px}
 .ne-header{z-index:20;position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#080a09;min-height:62px;padding:10px max(14px,env(safe-area-inset-right));border-bottom:1px solid #30372f}
 .ne-back,.ne-menu-toggle{min-height:42px;padding:9px 12px;border:1px solid #394239;border-radius:11px;color:#fff;background:#161c17}
-.ne-brand{display:inline-flex;align-items:center;justify-content:center;margin-right:auto;flex:0 0 auto;text-decoration:none}.ne-brand img{display:block;width:48px;height:48px;object-fit:contain}
+.ne-brand{font-size:20px;font-weight:900;text-decoration:none;letter-spacing:-.05em}.ne-brand strong{color:#f4d941}
 .ne-menu-wrap{position:relative}.ne-menu-toggle{min-width:44px;font-size:20px}
 .ne-menu{position:absolute;right:0;top:calc(100% + 10px);width:min(260px,calc(100vw - 25px));padding:7px;background:#1a201b;border:1px solid #454d44;border-radius:14px;box-shadow:0 14px 34px #000b}
 .ne-menu a{display:block;padding:12px;text-decoration:none;border-radius:8px;font-size:14px}.ne-menu a:hover,.ne-menu a[aria-current=page]{background:#343b30}
@@ -42,3 +42,32 @@ body[data-nature-kind=fauna] .ne-photo{background:#302e22}.ne-photo img{width:10
 .ne-detail-section p,.ne-detail-section li{font-size:14px;color:#d4ded1;line-height:1.55}
 .ne-detail-section ul{padding-left:20px;margin:0}.ne-detail-section a{color:#edda4b}
 @media(max-width:520px){.ne-shell{width:calc(100% - 24px);padding-top:15px}.ne-hero,.ne-toolbar{padding:20px}.ne-back span{display:none}.ne-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.ne-photo{height:105px}.ne-card-body{padding:10px}.ne-card-title{font-size:14px}}
+
+/* Nature atlas: artwork-first cards, clean black shell and mobile refinements. */
+:root,body{background:#080908}
+.ne-header{background:#080908}
+.ne-hero,.ne-toolbar{background:#101210;border-color:#343833}
+.ne-card{background:#151815;border-color:#363c37;transition:border-color .16s,transform .16s,box-shadow .16s}
+.ne-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px #0008}
+.ne-photo{position:relative;height:170px;background:#222c25;font-size:54px}
+.ne-photo img{object-fit:cover;object-position:center;background:#f0f0e7}
+.ne-image-label{position:absolute;right:9px;bottom:9px;font-size:10px;font-weight:850;line-height:1;background:#111a15d9;border:1px solid #ffffff4a;color:#fff;padding:7px 8px;border-radius:7px}
+.ne-image-fallback{display:flex;width:100%;height:100%;align-items:center;justify-content:center}
+.ne-card-title{font-size:16px}
+.ne-card-body{padding:14px}
+.ne-detail-artwork{margin-top:16px;overflow:hidden}
+.ne-dialog-image{display:block;width:100%;max-height:350px;height:auto;aspect-ratio:10/7;object-fit:contain;background:#eeeede;border-radius:12px}
+.ne-image-credit{margin:8px 0 0;color:#aab5a9;font-size:11px;line-height:1.4}
+.ne-dialog{background:#121512;border-color:#4b514a}
+.ne-dialog .ne-image-fallback{font-size:48px;min-height:170px;background:#252e24;border-radius:12px}
+.ne-back{display:inline-flex;align-items:center;justify-content:center;width:42px;min-width:42px;padding:0;font-size:24px}
+.ne-filters button{min-height:42px}
+@media(max-width:520px){
+ .ne-photo{height:130px}
+ .ne-card-title{font-size:14px}
+ .ne-card-body{padding:11px}
+ .ne-image-label{font-size:9px;right:6px;bottom:6px;padding:5px 6px}
+ .ne-header{gap:9px}
+ .ne-dialog{padding:18px}
+}
+@media(prefers-reduced-motion:reduce){.ne-card{transition:none}.ne-card:hover{transform:none}}

@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#080a09">
 <title>Finn flora | History Go</title>
-<meta name="description" content="Utforsk planter, trær, busker og blomster. Lær kjennetegn og se artene du har samlet gjennom quiz.">
-<link rel="stylesheet" href="css/nature-explorer.css?v=20261027-1">
-<script defer src="js/ui/nature-explorer.js?v=20261027-1"></script>
+<meta name="description" content="Et illustrert naturatlas med planter, trær, busker og blomster. Utforsk utseende, kjennetegn, leveområder og arter du har samlet.">
+<link rel="stylesheet" href="css/nature-explorer.css?v=20261027-2">
+<script defer src="js/ui/nature-illustrations.js?v=20261027-1"></script>
+<script defer src="js/ui/nature-explorer.js?v=20261027-2"></script>
 <link rel="stylesheet" href="css/universal-header-nav.css?v=20261027-5">
 <script defer src="js/ui/universal-header-nav.js?v=20261027-5"></script>
 </head>
@@ -38,8 +39,8 @@
  <section class="ne-toolbar" aria-label="Søk i naturen">
  <p id="natureStats" class="ne-stats" role="status" aria-live="polite">Laster artsoversikt …</p>
  <label class="ne-search" for="natureSearch"><span aria-hidden="true">⌕</span><input id="natureSearch" type="search" autocomplete="off" placeholder="Søk etter art eller kjennetegn"></label>
- <div class="ne-filters" role="group" aria-label="Filtrer arter"><button type="button" data-filter="all" aria-pressed="true" class="active">Alle arter</button><button type="button" data-filter="collected" aria-pressed="false">Mine samlede</button></div>
- <p class="ne-help">Arter samles gjennom eksisterende quiz på steder. Å lese om en art registrerer ikke et funn.</p>
+ <div class="ne-filters" role="group" aria-label="Filtrer arter"><button type="button" data-filter="all" aria-pressed="true" class="active">Alle arter</button><button type="button" data-filter="illustrated" aria-pressed="false">Med illustrasjon</button><button type="button" data-filter="collected" aria-pressed="false">Mine samlede</button></div>
+ <p class="ne-help">Arter samles gjennom eksisterende quiz på steder. Illustrasjoner er forenklede og erstatter ikke sikker artsbestemmelse.</p>
  </section>
  <section aria-labelledby="speciesHeading">
  <div class="ne-listheading"><h2 id="speciesHeading">Artsoversikt</h2><span id="natureCount"></span></div>
