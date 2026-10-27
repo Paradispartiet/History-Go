@@ -1,7 +1,7 @@
 // @ts-nocheck
 // js/ui/onboarding-welcome.js
 // HGOnboarding — vises én gang per nettleser ved første besøk.
-// Snarveier til kart/posisjon, Stories, Lesespor, Psykologirommet, profil og Civication.
+// Snarveier til kart/posisjon, Finn fauna, Finn flora, Stories, Lesespor, Psykologirommet, profil og Civication.
 //
 // Persisterer dismiss via hg_onboarding_shown_v1.
 // Kan også åpnes manuelt via window.openOnboarding().
@@ -121,6 +121,8 @@
         </header>
         <ul class="hg-onb-steps">
           <li class="hg-onb-feature"><span class="hg-onb-step-icon" aria-hidden="true">🗺️</span><div><strong><button type="button" class="hg-onb-card-link" data-hg-welcome-action="nearby">Utforsk kartet og besøk steder <span aria-hidden="true">↗</span></button></strong><p>Se hva som har skjedd rundt deg. Finn steder på kartet, dra dit og registrer besøket når du faktisk er på stedet.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🐾</span><div><strong><a class="hg-onb-card-link" href="finn-fauna.html">Finn fauna <span aria-hidden="true">↗</span></a></strong><p>Utforsk dyr, fugler og insekter. Lær å kjenne igjen arter og se hvilke du har samlet gjennom quiz.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🌿</span><div><strong><a class="hg-onb-card-link" href="finn-flora.html">Finn flora <span aria-hidden="true">↗</span></a></strong><p>Utforsk planter, trær og blomster. Se kjennetegn, voksesteder og arter i samlingen din.</p></div></li>
           <li><span class="hg-onb-step-icon" aria-hidden="true">📚</span><div><strong><button type="button" class="hg-onb-card-link" data-hg-welcome-action="stories">Stories <span aria-hidden="true">↗</span></button></strong><p>Les fortellinger om mennesker, hendelser og steder. Utforsk historiene som knytter fortiden til omgivelsene dine.</p></div></li>
           <li><span class="hg-onb-step-icon" aria-hidden="true">📖</span><div><strong><button type="button" class="hg-onb-card-link" data-hg-welcome-action="lesespor">Lesespor <span aria-hidden="true">↗</span></button></strong><p>Finn tekster, artikler og kilder som gir nye perspektiver på historie, steder og samfunn.</p></div></li>
           <li><span class="hg-onb-step-icon" aria-hidden="true">🧠</span><div><strong><button type="button" class="hg-onb-card-link" data-hg-welcome-action="psychology">Psykologirommet <span aria-hidden="true">↗</span></button></strong><p>Utforsk psykologiske temaer, teorier og øvelser. Reflekter over hvordan vi tenker, føler og handler.</p></div></li>

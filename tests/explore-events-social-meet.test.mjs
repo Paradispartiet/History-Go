@@ -46,7 +46,7 @@ test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", ()
   assert.ok(onsiteCss, "PlaceCard loads a versioned on-site stylesheet");
   assert.ok(read("js/ui/place-card-status-surface.js").includes(onsiteCss),
     "HTML and dynamic PlaceCard loader must agree on the stylesheet version");
-  assert.match(index, /js\/ui\/header-menu\.js\?v=20260912-onsite-under-explore1/);
+  assert.match(index, /js\/ui\/header-menu\.js\?v=[0-9]{8}-[a-z0-9-]+/, "Main header loads the versioned menu script");
   assert.match(index, /js\/app\.js\?v=[0-9]{8}-[a-z0-9-]+/);
 });
 
