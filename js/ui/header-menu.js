@@ -203,6 +203,14 @@
       event.stopPropagation();
     });
 
+    // The start menu is the existing onboarding/welcome surface, not a reload.
+    document.getElementById("btnStartMenu")?.addEventListener("click", () => {
+      headerMenuApi.close();
+      const openStartMenu = window.HGOnboarding?.open || window.openOnboarding;
+      if (typeof openStartMenu === "function") openStartMenu();
+      else window.showToast?.("Startmenyen er ikke tilgjengelig ennå.");
+    });
+
     document.getElementById("btnSocialMeet")?.addEventListener("click", () => {
       // Header-snarveien må fungere selv om Utforsk-draweren ikke er initialisert.
       // Social Meet er den canonicale oppfølgingsflaten; Utforsk er kun fallback.
