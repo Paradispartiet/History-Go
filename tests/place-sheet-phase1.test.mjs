@@ -140,6 +140,7 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   // A Place with no distinct longread must still show its own short text
   // alongside the image; the canonical About renderer otherwise hides it.
   standard.popupDesc = "Kort ingress.";
+  standard.desc = "Kort ingress."; // Match the live preview and the canonical Place input.
   await window.openPlaceCard(standard);
   assert.equal(card.querySelector(".pc-sheet-about")?.hidden, false);
   assert.equal(card.querySelector(".pc-sheet-canonical-about > h3")?.textContent, "Om stedet");
