@@ -1,0 +1,40 @@
+name: Civication Wave G derived rollout audit (temporary)
+
+on:
+  push:
+    branches:
+      - civication/wave-g-continuations-second-16-20261027
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Extract canonical rollout audit delta
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs'),cp=require('node:child_process');
+          const path='data/Civication/roleWorldRolloutReadiness.json';
+          const before=JSON.parse(fs.readFileSync(path,'utf8'));
+          cp.execFileSync(process.execPath,['scripts/audit-civication-role-world-rollout-readiness.mjs','--write'],{stdio:'pipe',timeout:120000});
+          const after=JSON.parse(fs.readFileSync(path,'utf8'));
+          const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+          function delta(a,b){
+            if(equal(a,b))return undefined;
+            if(a===null||b===null||Array.isArray(a)||Array.isArray(b)||typeof a!=='object'||typeof b!=='object')return b;
+            const out={};for(const k of Object.keys(b)){const d=delta(a[k],b[k]);if(d!==undefined)out[k]=d}
+            return out;
+          }
+          const patch=delta(before,after)||{};
+          const serialized=JSON.stringify(patch);
+          const n=Math.ceil(serialized.length/6500);
+          for(let i=0;i<n;i++)console.log('WAVEG_ROLLOUT_'+String(i+1).padStart(2,'0')+'_'+String(n).padStart(2,'0')+'='+serialized.slice(i*6500,(i+1)*6500));
+          console.log('WAVEG_ROLLOUT_SUMMARY='+JSON.stringify({parts:n,chars:serialized.length,topKeys:Object.keys(patch)}));
+          NODE
