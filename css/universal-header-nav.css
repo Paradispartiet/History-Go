@@ -42,6 +42,12 @@ body.hg-app header.site-header > .hg-universal-back {
   margin: 0;
 }
 @media (max-width: 860px) {
+  /* Match the compact header logo size with sufficient specificity to beat theme.css. */
+  body.hg-app header.site-header > .hg-brand {
+    width: 54px;
+    height: 54px;
+    top: 1px;
+  }
   body.hg-app header.site-header > .hg-universal-back {
     width: 34px;
     min-width: 34px;
@@ -54,6 +60,11 @@ body.hg-app header.site-header > .hg-universal-back {
   }
 }
 @media (max-width: 380px) {
+  body.hg-app header.site-header > .hg-brand {
+    width: 46px;
+    height: 46px;
+    top: 5px;
+  }
   body.hg-app header.site-header > .hg-universal-back {
     left: calc(env(safe-area-inset-left, 0px) + 55px);
   }
