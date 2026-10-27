@@ -113,6 +113,16 @@ function harness({ ready = true, greeted = true } = {}) {
   assert.equal(t.toastText(), "Etter velkomst");
 }
 
+// An incoming Civication task must not be hidden behind onboarding's welcome flag.
+{
+  const t = harness({greeted:false});
+  t.context.HGOnboarding = { FLAG_KEY:"hg_onboarding_shown_v1" };
+  t.storage.set("hg_civication_mode_v1", JSON.stringify({active:true,title:"Civication-oppdrag"}));
+  t.context.showToast("Synlig med aktivt oppdrag", 2000);
+  t.tick(260);
+  assert.equal(t.toastText(), "Synlig med aktivt oppdrag");
+}
+
 // The Civication mission survives a reload even when older than 24 hours.
 {
   const t = harness();
@@ -128,6 +138,7 @@ assert.match(welcome, /Besøk stedet og samle stedskortet/);
 assert.match(welcome, /En perfekt quiz låser opp quizkortet/);
 assert.match(welcome, /Civication/);
 assert.match(welcome, /hg:onboardingClosed/);
+assert.match(welcome, /mission && mission.active === true/);
 assert.match(styles, /safe-area-inset-bottom/);
 assert.match(styles, /has\(#hgCivicationModeToast\)/);
 console.log("history go toast, welcome and Civication handoff contracts ok");
