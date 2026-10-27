@@ -50,7 +50,9 @@
       "met_morfologisk_analyse",
       "met_for_etter"
     ],
-    "thinker_ids": [],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
     "works": [],
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
@@ -450,17 +452,17 @@
           "targetId": "wessels_plass",
           "placeId": "wessels_plass",
           "question_scope": "place",
-          "question": "Hva gjør Wessels plass til mer enn en forplass til Stortinget?",
+          "question": "Hvilken transportfunksjon hadde Wessels plass tidligere?",
           "options": [
-            "Plassen er inne i stortingssalen",
-            "Den eksisterte bare under møter i nasjonalforsamlingen",
-            "Den har aldri vært åpen for ferdsel",
-            "Det er et eget park- og trafikkområde med eldre byhistoriske lag"
+            "Endestasjon for togtrafikken til Eidsvoll",
+            "Oppstillingsplass for ferger til Bygdøy",
+            "Terminal for flybussen til Fornebu",
+            "Et knutepunkt for buss- og sporvognsruter"
           ],
-          "answer": "Det er et eget park- og trafikkområde med eldre byhistoriske lag",
+          "answer": "Et knutepunkt for buss- og sporvognsruter",
           "answerIndex": 3,
-          "knowledge": "Plassen har egen topografi, navnehistorie og bruk ved siden av Stortingets historie.",
-          "explanation": "Plassen har egen topografi, navnehistorie og bruk ved siden av Stortingets historie.",
+          "knowledge": "Wessels plass var tidligere et viktig knutepunkt for både buss- og sporvognsruter.",
+          "explanation": "Wessels plass var tidligere et viktig knutepunkt for både buss- og sporvognsruter.",
           "difficulty": 2,
           "question_type": "context",
           "emne_id": "em_by_torg_plasser_som_scene",
@@ -474,7 +476,7 @@
           ],
           "source_origin": "external",
           "claim_id": "claim_wessels_plass_quiz_08",
-          "claim_basis": "Plassen har egen topografi, navnehistorie og bruk ved siden av Stortingets historie.",
+          "claim_basis": "Wessels plass var tidligere et viktig knutepunkt for både buss- og sporvognsruter.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
@@ -965,7 +967,11 @@
           "knowledge_unit_ids": [
             "ku_by_et_forsvunnet_landskapse_61a9b292da"
           ],
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ]
         },
         {
           "id": "wessels_plass_development_19",
@@ -1066,20 +1072,20 @@
           "targetId": "wessels_plass",
           "placeId": "wessels_plass",
           "question_scope": "place",
-          "question": "Hva er den mest relevante undersøkelsen av dagens Wessels plass?",
+          "question": "Hva bør man observere for å forstå hvordan Wessels plass brukes i dag?",
           "options": [
-            "Sammenligne gatenes bredde med Oslofjorden",
-            "Undersøke dagens trafikk uten å se på plassens utforming",
-            "Observere møtepunktet mellom gater, ferdsel og den åpne parkflaten",
-            "Studere interiøret i nabobygningene som eneste historiske kilde"
+            "Bare bygningenes oppføringsår",
+            "Kun skiltingen i gatene rundt plassen",
+            "Hvordan folk beveger seg gjennom plassen og hvor de oppholder seg",
+            "Bare hvor mange busser som kjører i byen"
           ],
-          "answer": "Observere møtepunktet mellom gater, ferdsel og den åpne parkflaten",
+          "answer": "Hvordan folk beveger seg gjennom plassen og hvor de oppholder seg",
           "answerIndex": 2,
-          "knowledge": "Stedets egen fysiske organisering er utgangspunktet for å forstå rommet.",
-          "explanation": "Stedets egen fysiske organisering er utgangspunktet for å forstå rommet.",
+          "knowledge": "Ferdsel og opphold kan observeres på selve plassen. Det viser hvordan et offentlig byrom faktisk brukes, ikke bare hvordan det er tegnet på et kart.",
+          "explanation": "Ferdsel og opphold kan observeres på selve plassen. Det viser hvordan et offentlig byrom faktisk brukes, ikke bare hvordan det er tegnet på et kart.",
           "difficulty": 3,
           "question_type": "analysis",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "emne_id": "em_by_torg_plasser_som_scene",
           "source": [
             "oppdag_kvadraturen",
             "oslo_byleksikon"
@@ -1090,7 +1096,7 @@
           ],
           "source_origin": "external",
           "claim_id": "claim_wessels_plass_quiz_21",
-          "claim_basis": "Stedets egen fysiske organisering er utgangspunktet for å forstå rommet.",
+          "claim_basis": "Ferdsel og opphold kan observeres på selve plassen. Det viser hvordan et offentlig byrom faktisk brukes, ikke bare hvordan det er tegnet på et kart.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
@@ -1103,7 +1109,18 @@
           "knowledge_unit_ids": [
             "ku_by_stedets_egen_fysiske_org_afb4e84d80"
           ],
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "william_h_whyte",
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ],
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "william_h_whyte",
+            "why_it_helps": "William H. Whytes studier av åpne byrom forklarer hvorfor faktisk ferdsel og opphold bør observeres, ikke bare planlagt utforming."
+          }
         }
       ]
     }
