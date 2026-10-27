@@ -68,7 +68,7 @@ assert.equal(artist.resolve("unknown"), "");
 assert.equal(new Set(references.map(id=>artist.resolve(id) )).size, 270, "illustration assets must be unique");
 assert.match(read("js/ui/nature-explorer.js"), /const art=drawings\?\.resolve/, "illustrations must take display priority");
 assert.equal(references.filter(id => id.startsWith("emne_fauna_")).length, 135);
-assert.equal(references.filter(id => !id.startsWith("emne_fauna_")).length, 120);
+assert.equal(references.filter(id => !id.startsWith("emne_fauna_")).length, 135);
 for (const kind of ["flora", "fauna"]) {
  const html=read("finn-" + kind + ".html");
  assert(html.includes("js/ui/nature-illustrations.js"));
