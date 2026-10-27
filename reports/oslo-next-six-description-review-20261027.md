@@ -1,0 +1,3 @@
+# Isolated Oslo description correction
+
+Research and claim-first authoring underway for Kontraskjæret, Paléhaven/Paleet, Tiden, Egertorget and Mustadgården, prerequisite for #6622. Wessels plass preserved. Current source inspection confirms genuine conflicts: Eger attribution/cleared house; Freia start date; Paleet testament 1801 vs effective1805; SNL residence1949 is impossible after1942 destruction; Mustad approximate age. Exact dates/identities are bounded or omitted rather than guessed. Only desc/popupDesc, corresponding v4.2packets and this report belong here. No readiness or test success claimed at this checkpoint.
