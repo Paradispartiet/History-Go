@@ -1,0 +1,85 @@
+name: Vika kino v1 targeted integration and real app smoke
+on:
+  push:
+    branches:
+      - content/oslo-aav-vika-kino-v1-20261027
+    paths:
+      - '.github/workflows/vika-kino-v1-integration.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: vika-kino-integration-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/content/oslo-aav-vika-kino-v1-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-aav-vika-kino-v1-20261027
+          fetch-depth: 120
+          persist-credentials: true
+      - name: Incorporate main, preserve other Places
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if ! git merge --no-edit origin/main; then
+            mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+            for file in "${conflicts[@]}"; do
+              case "$file" in
+                data/fag/fag_manifest.json|data/fagverk/fagverk_registry.json|data/quiz/manifest.json|data/quizcards/by/manifest.json)
+                  git checkout --theirs -- "$file" ;;
+                *) echo "Unexpected conflict: $file" >&2; exit 1;;
+              esac
+            done
+            node scripts/reconcile-vika-kino-registries.mjs
+            git add data/fag/fag_manifest.json data/fagverk/fagverk_registry.json data/quiz/manifest.json data/quizcards/by/manifest.json
+            git commit -m "Merge main retaining Vika kino registrations"
+          fi
+          node scripts/reconcile-vika-kino-registries.mjs
+          git add data/fag/fag_manifest.json data/fagverk/fagverk_registry.json data/quiz/manifest.json data/quizcards/by/manifest.json
+          if ! git diff --cached --quiet; then git commit -m "Reconcile Vika kino registrations"; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate source-reviewed quiz context
+        run: node scripts/build-quiz-production-context.mjs --category by --target vika_kino --output data/quiz/production_context/by/vika_kino.json
+      - name: Generate Knowledge IDs
+        run: npm run knowledge:canonical:write
+      - name: Sync QuizCard to fullquiz Knowledge
+        run: node scripts/sync-vika-kino-quizcard-knowledge.mjs
+      - name: Regenerate Place-open and Fagverk release
+        run: |
+          npm run place-open:build
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Targeted data and parity tests
+        run: node --test tests/vika-kino-v1-parity.test.mjs
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Real app on mobile and desktop
+        run: node tests/vika-kino-real-app-browser-20261027.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vika-kino-app-smoke
+          path: artifacts/vika-kino-browser/
+          if-no-files-found: ignore
+      - name: Commit generated artifacts only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/quiz/production_context/by/vika_kino.json
+          git add data/quiz/by/vika_kino_sets.json data/quizcards/by/vika_kino_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/vika_kino.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then git commit -m "Vika kino: activate canonical Knowledge and app runtime"; fi
+          git push origin HEAD:content/oslo-aav-vika-kino-v1-20261027

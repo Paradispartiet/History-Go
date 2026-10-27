@@ -47,6 +47,9 @@ try {
         const brand = page.locator(".ne-header .ne-brand img");
         await brand.waitFor({ state: "visible" });
         const logoRect = await brand.boundingBox();
+        const logoHref = await page.locator(".ne-brand").getAttribute("href");
+        assert.equal(new URL(logoHref, base).searchParams.get("welcome"), "1", pathname + ": logo opens welcome start");
+        assert.ok(logoRect?.width >= 78, pathname + ": enlarged logo");
         const menuRect = await page.locator("#natureMenuToggle").boundingBox();
         assert.ok(logoRect && menuRect && rect, pathname + ": header parts rendered");
         assert.ok(rect.x + rect.width <= logoRect.x + 1, pathname + ": arrow and logo do not overlap");
@@ -70,12 +73,27 @@ try {
     assert.equal(await placeBack.getAttribute("aria-label"), "Tilbake til kartet");
     const logo = page.locator("header.site-header > .hg-brand");
     await logo.waitFor({ state: "visible", timeout: 12000 });
+    assert.equal(await logo.evaluate((el) => el.tagName), "BUTTON", "home logo is a real button");
+    assert.equal(await logo.getAttribute("aria-label"), "Åpne History Go-startsiden");
+    assert.equal(await page.locator("#btnStartMenu").count(), 0, "the old Hurtigmeny shortcut is absent");
     const logoRect = await logo.boundingBox();
+    assert.ok(logoRect && logoRect.width >= (width <= 860 ? 84 : 105), "HG logo is nearly twice its former size at " + width + "px");
+    const headerRect = await page.locator("header.site-header").boundingBox();
+    assert.ok(headerRect && logoRect.y >= headerRect.y - 1,
+      "HG logo stays within the top edge of the header at " + width + "px");
     const backRect = await placeBack.boundingBox();
     const exploreRect = await page.locator("header.site-header #nearbyExploreToggle").boundingBox();
     assert.ok(logoRect && backRect && exploreRect, "header elements are measurable");
     assert.ok(backRect.x >= logoRect.x + logoRect.width - 1, width + "px: back arrow does not cover the logo, " + JSON.stringify({ logoRect, backRect }));
     assert.ok(backRect.x + backRect.width <= exploreRect.x + 1, width + "px: back arrow does not cover Utforsk, " + JSON.stringify({ backRect, exploreRect }));
+    // Use the genuine welcome module even with external map dependencies blocked.
+    if (!(await page.evaluate(() => Boolean(window.HGOnboarding?.open)))) {
+      await page.addScriptTag({ path: "js/ui/onboarding-welcome.js" });
+    }
+    await logo.click();
+    await page.locator("#hgOnboardingModal[aria-hidden='false']").waitFor({ state: "visible" });
+    assert.equal(new URL(page.url()).hash, "#/place/navigation-test", "logo opens welcome without losing current place route");
+    await page.locator(".hg-onb-close").click();
     await placeBack.click();
     await page.waitForFunction(() => location.hash === "#/map");
     await context.close();

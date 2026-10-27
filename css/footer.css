@@ -338,3 +338,26 @@ body.hg-app.hg-phone .app-actions .pc-onsite-footer .pc-onsite-action-icon::befo
 body.hg-app.hg-phone .app-actions .pc-onsite-footer .pc-onsite-action-label{
   font-size: 11px;
 }
+/* Icon-only footer actions: keep the live distance/visit status and Møtes
+   readable. Text remains in the DOM and aria-label/title stay accessible. */
+body.hg-app .app-footer .app-actions :is(#pcQuiz, #pcRoute, #pcObserve, #pcNote){
+  width: 46px;
+  min-width: 46px;
+  padding: 0;
+  gap: 0;
+  font-size: 0;
+}
+body.hg-app.hg-phone .app-footer .app-actions :is(#pcQuiz, #pcRoute, #pcObserve, #pcNote){
+  width: 44px;
+  min-width: 44px;
+  padding: 0;
+  font-size: 0;
+}
+body.hg-app .app-footer .app-actions .pc-onsite-action-events{
+  min-width: 44px;
+  padding: 0 7px;
+  gap: 5px;
+}
+body.hg-app .app-footer .app-actions .pc-onsite-action-events .pc-onsite-action-label{
+  display: none;
+}

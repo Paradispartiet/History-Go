@@ -36,7 +36,7 @@ test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", ()
   assert.match(app, /loadHGSocialMeetProfileBridge[\s\S]*HGSocialMeetProfileBridge\.js\?v=20260913-place-status1/);
   assert.match(app, /loadHGSpotmeetingUI[\s\S]*js\/social\/HGSpotmeetingUI\.js\?v=20260913-place-status1/);
   assert.match(app, /loadEventsRuntime[\s\S]*js\/events\/events_loader\.js\?v=20260912-live-surfaces2/);
-  assert.match(app, /loadPlaceOnsiteSurface[\s\S]*js\/ui\/place-onsite-surface\.js\?v=20261018-footer-actions2/);
+  assert.match(app, /loadPlaceOnsiteSurface[\s\S]*js\/ui\/place-onsite-surface\.js\?v=[0-9]{8}-[a-z0-9-]+/);
   assert.match(app, /loadPlaceCard[\s\S]*js\/ui\/place-card\.js\?v=[0-9]{8}-[a-z0-9-]+/);
   assert.match(app, /dist\/web\/leftPanelMode\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/left-panel\.js\?v=20260912-live-surfaces2/);

@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  // No app state, map, quiz or background boot before authenticated entry.
+  if (!window.HGLoginGate || !(await window.HGLoginGate.ready)) return;
   document.body?.classList.remove("hg-loaded", "hg-load-failed");
 
   const releaseQueuedToasts = gateToastsUntilAppReady();
@@ -64,11 +66,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadViewportManager", () => loadScriptOnce("js/core/viewportManager.js"));
     await safeRun("loadDom", () => loadScriptOnce("js/ui/dom.js"));
     await safeRun("loadToast", () => loadScriptOnce("js/ui/toast.js"));
-    await safeRun("loadOnboardingWelcome", () => loadScriptOnce("js/ui/onboarding-welcome.js?v=20261027-nature-pages1"));
+    await safeRun("loadOnboardingWelcome", () => loadScriptOnce("js/ui/onboarding-welcome.js?v=20261027-logo-home1"));
     await safeRun("loadNatureUnlockToast", () => loadScriptOnce("js/ui/nature-unlock-toast.js"));
     await safeRun("loadPersonPlaceUnlockToast", () => loadScriptOnce("js/ui/person-place-unlock-toast.js"));
     await safeRun("loadBadgeUnlockToast", () => loadScriptOnce("js/ui/badge-unlock-toast.js"));
-    await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20261027-map-labels-area-squares1"));
+    await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20261027-early-labels-category-badges1"));
     await safeRun("loadAhaMusicBridge", () => loadScriptOnce("js/integrations/aha-music.js"));
     await safeRun("loadNearbyPlaceSelector", () => loadScriptOnce("dist/web/nearbyPlaceSelector.js"));
     await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js"));
@@ -119,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261018-footer-actions2"));
     await safeRun("loadPlaceCardReader", () => loadScriptOnce("js/ui/place-card-reader.js?v=20261010-editorial6"));
-    await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20261018-footer-actions2"));
+    await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20261027-about-image-inset1"));
     await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
     await safeRun("loadPlacePopupV2", () => loadScriptOnce("js/ui/place-popup-v2.js"));
     await safeRun("loadPlacePopupTabs", () => loadScriptOnce("js/ui/place-popup-tabs.js"));

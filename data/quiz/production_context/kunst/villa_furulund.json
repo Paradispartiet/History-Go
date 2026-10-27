@@ -1,0 +1,585 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "kunst",
+  "targetId": "villa_furulund",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1085,
+    "selection_sha256": "166a8cdff6ac31d464ff71f7b7cd2b68a2314ecc6d26f147a3c004d1bd4fe6d3",
+    "category_id": "kunst",
+    "target_id": "villa_furulund"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
+      "bytes": 25563,
+      "sha256": "3cf20b4e5db1d66e89288e2ec9f87a32e498a1c2a9c70c7e110317d771293c02",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+      "bytes": 220362,
+      "sha256": "042945bb66c1eb3523f7fe93cbfc30eb7488ac611cfbc4d3f9e33377ed3bc0dd",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
+      "bytes": 287506,
+      "sha256": "08fdccf16746c6ac70f9f7997ce123dd844a1af3dc77aa23394795f05eb2f292",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+      "bytes": 56666,
+      "sha256": "c320cd42f58aeb08cb29ceb8cce458e557ad24bac1c607551d3db1096b3c8156",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/kunst/supersetQUIZMAL_kunst.json",
+      "bytes": 7134,
+      "sha256": "58590863ed5a39bc346142e6dd9ba9d42368ed0eef6701a199d5856cea13708c",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/kunst/villa_furulund.json",
+      "bytes": 27218,
+      "sha256": "c46f5f83f153f1ce10e67cefcb154e8b64ddfd0d96124eba9aa1fa17d8afa52b"
+    },
+    "target": {
+      "path": "data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_05/villa_furulund.json",
+      "bytes": 13566,
+      "sha256": "5c5eeb59c8d3935918bd2f73971d532f728a6fffb81b7c345f34c46097b3ceef"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1024,
+      "selection_sha256": "254c4af3ad5f63dc9987726f7fdf6fa8aface19c2695d558fa408f629c1a1f7d"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/kunst/villa_furulund_sets.json",
+  "source_registry": {
+    "oslo": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/villa-furulund/",
+      "source_type": "municipal_property_authority",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "nbf": {
+      "url": "https://www.norskbilledhoggerforening.no/om-oss-1/project-one-ephnc-55dze",
+      "source_type": "artist_association_primary",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "snl": {
+      "url": "https://snl.no/Norsk_Billedhoggerforening",
+      "source_type": "encyclopedia_context",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "park": {
+      "url": "https://www.blark.no/prosjekter/hekkveien5/",
+      "source_type": "design_project_primary",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "wiki": {
+      "url": "https://lokalhistoriewiki.no/wiki/Villa_Furulund_(Oslo_Hekkveien)",
+      "source_type": "local_historical_reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/kunst/manifest.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "No direct Villa Furulund fullquiz registered in manifest; preserve category kunst.",
+      "Avoid pure date recall and distinguish NBF tenancy, permanent office and new gallery."
+    ],
+    "knowledge_migration": "Build Knowledge IDs using canonical generator."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "The house and property; art associations; exhibition, sculpture and public access."
+  },
+  "held_back_candidates": [
+    "Unsupported claims about specific artwork or artists currently on show.",
+    "Treating the site exclusively as a museum instead of a working association and gallery.",
+    "Incorrectly collapsing the 1967 agreement, 1972 sculpture office and 2018 gallery opening into one event."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 21,
+      "topic_hooks": 60,
+      "methods": 21
+    },
+    "candidate_emner": [
+      {
+        "id": "em_kunst_institusjoner_kanon",
+        "title": "Kunstinstitusjoner og kanondannelse",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arkiv_og_minne",
+        "title": "Arkiv og minne",
+        "category_id": "tid_transformasjon",
+        "score": 10
+      },
+      {
+        "id": "autonomi_vs_avhengighet",
+        "title": "Autonomi vs avhengighet",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "distribusjonsinfrastruktur",
+        "title": "Distribusjonsinfrastruktur",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "epokefortellinger",
+        "title": "Epokefortellinger",
+        "category_id": "tid_transformasjon",
+        "score": 10
+      },
+      {
+        "id": "institusjonell_legitimering",
+        "title": "Institusjonell legitimering",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "institusjonskritikk",
+        "title": "Institusjonskritikk",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "kanonisering",
+        "title": "Kanonisering",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "kuratorisk_makt",
+        "title": "Kuratorisk makt",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "nettverk_og_portvoktere",
+        "title": "Nettverk og portvoktere",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "offentlig_vs_privat_kunststruktur",
+        "title": "Offentlig vs privat kunststruktur",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "regional_vs_sentralisert_kunstfelt",
+        "title": "Regionalt vs sentralisert kunstfelt",
+        "category_id": "felt_institusjon",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "felt_institusjon"
+    ],
+    "emne_ids": [
+      "em_kunst_institusjoner_kanon"
+    ],
+    "topic_hook_ids": [
+      "arkiv_og_minne",
+      "autonomi_vs_avhengighet",
+      "distribusjonsinfrastruktur",
+      "epokefortellinger"
+    ],
+    "method_ids": [
+      "met_kunst_kanon_og_arkivanalyse",
+      "met_kunst_institusjonsanalyse",
+      "met_kunst_kunsthistorisk_kontekstualisering",
+      "met_kunst_kuratorisk_analyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_villa_furulund_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Villa Furulund ligger i Hekkveien 5 ved Carl Berners plass i Oslo.",
+      "source_ids": [
+        "oslo",
+        "nbf"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christian Hiorth fikk oppført den gule villaen i sveitserstil i 1878.",
+      "source_ids": [
+        "nbf",
+        "wiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christian Hiorth fikk reist Villa Furulund på tomten med samme navn.",
+      "source_ids": [
+        "nbf",
+        "wiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Ifølge Norsk Billedhoggerforening hørte området opprinnelig til Frydenberg hovedgård.",
+      "source_ids": [
+        "nbf"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Wilhelm Hiorth oppførte nabovillaen Fagertun, mens Christian Hiorth bygde Furulund.",
+      "source_ids": [
+        "nbf",
+        "wiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Karl Emil Tandberg var direktør ved Christiania bånd- og lissefabrikk og kjøpte eiendommen i 1916.",
+      "source_ids": [
+        "nbf"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Boligutbyggingen med høyblokker endret Villa Furulunds omgivelser, mens den gamle villaen ble bevart.",
+      "source_ids": [
+        "nbf",
+        "wiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo kommune overtok Villa Furulund i 1967.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Norsk Billedhoggerforening inngikk avtale med kommunen høsten 1967.",
+      "source_ids": [
+        "oslo",
+        "nbf"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Norsk Billedhoggerforening ble etablert i 1946 som kunstnerorganisasjon og kompetansemiljø for skulptur.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Foreningen ivaretar billedhuggernes kunstneriske, økonomiske og sosiale interesser.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Økende bestillinger av krigsminnesmerker var blant bakgrunnene for opprettelsen av foreningen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "I 1948 tok foreningen initiativ til A/L Steinskulptur, et verksted for hugging av medlemmenes steinarbeider.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Etter avtalen med kommunen i 1967 gjennomførte foreningen en storstilt oppussing av bygningen.",
+      "source_ids": [
+        "nbf"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Oslo kommune oppgir 1972 som startpunkt for skulpturkontorets faste tilhold.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Norsk Billedhoggerforening åpnet et profesjonelt galleri for tredimensjonal kunst etter oppgradering i 2018.",
+      "source_ids": [
+        "snl",
+        "nbf"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tredimensjonal kunst omfatter blant annet skulptur som tar fysisk plass i rommet.",
+      "source_ids": [
+        "snl",
+        "nbf"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Villa Furulund er omgitt av en skulpturpark som inngår i publikums møte med kunsten.",
+      "source_ids": [
+        "park",
+        "nbf"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Skulptur i uterom gir andre møter mellom verk, besøkende og omgivelser enn et innendørs galleri.",
+      "source_ids": [
+        "park",
+        "nbf"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Landskapsprosjektet i 2019–2022 forbedret adkomst, stier og belysning med fokus på universell tilgjengelighet.",
+      "source_ids": [
+        "park"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_villa_furulund_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Villa Furulund er både foreningshus, visningssted og skulpturpark, ikke bare en tradisjonell museumssamling.",
+      "source_ids": [
+        "snl",
+        "nbf",
+        "park"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "kunst_villa_furulund_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_villa_furulund_quiz_01",
+        "claim_villa_furulund_quiz_02",
+        "claim_villa_furulund_quiz_03",
+        "claim_villa_furulund_quiz_04",
+        "claim_villa_furulund_quiz_05",
+        "claim_villa_furulund_quiz_06",
+        "claim_villa_furulund_quiz_07"
+      ]
+    },
+    {
+      "set_id": "kunst_villa_furulund_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_villa_furulund_quiz_08",
+        "claim_villa_furulund_quiz_09",
+        "claim_villa_furulund_quiz_10",
+        "claim_villa_furulund_quiz_11",
+        "claim_villa_furulund_quiz_12",
+        "claim_villa_furulund_quiz_13",
+        "claim_villa_furulund_quiz_14"
+      ]
+    },
+    {
+      "set_id": "kunst_villa_furulund_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_villa_furulund_quiz_15",
+        "claim_villa_furulund_quiz_16",
+        "claim_villa_furulund_quiz_17",
+        "claim_villa_furulund_quiz_18",
+        "claim_villa_furulund_quiz_19",
+        "claim_villa_furulund_quiz_20",
+        "claim_villa_furulund_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 15,
+      "context": 3,
+      "concept_theory": 3
+    },
+    "ratios": {
+      "fact": 0.714,
+      "context": 0.143,
+      "concept_theory": 0.143
+    }
+  }
+}

@@ -45,8 +45,8 @@ test("place-card quizkort lastes fra stedets by-manifest", async () => {
   await window.openPlaceCard({ id: "olaf_ryes_plass", name: "Olaf Ryes plass" });
 
   assert.deepEqual(
-    requestedPaths.slice(0, 4).sort(),
-    ["by/manifest.json", "historie/manifest.json", "litteratur/manifest.json", "scenekunst/manifest.json"]
+    requestedPaths.slice(0, 5).sort(),
+    ["by/manifest.json", "historie/manifest.json", "kunst/manifest.json", "litteratur/manifest.json", "scenekunst/manifest.json"]
   );
   assert.ok(requestedPaths.includes("by/topp10_by_kort_batch5.json"));
   assert.equal(window.document.getElementById("pcFrontCardFlip").getAttribute("aria-label"), "Vis quizkort");
@@ -105,8 +105,39 @@ test("Dramatikkens hus bruker scenekunst-manifestet og rendrer riktig QuizCard",
 test("canonical PlaceCard-loaderen inkluderer scenekunst og keyboard-flip", () => {
   const source = fs.readFileSync("js/ui/place-card.js", "utf8");
   assert.match(source, /data\/quizcards\/scenekunst\/manifest\.json/);
+  assert.match(source, /data\/quizcards\/kunst\/manifest\.json/);
   assert.match(source, /scenekunst\/dramatikkens_hus_quizkort_v1\.json/);
   assert.match(source, /categoryId === "scenekunst"/);
   assert.match(source, /event\.key === "Enter" \|\| event\.key === " "/);
   assert.match(source, /classList\.toggle\("is-flipped"\)/);
+});
+
+test("Villa Romsli loads QuizCard through the art-category manifest", async () => {
+  const dom = new JSDOM(`<!doctype html><body>
+    <button id="pcFrontCardFlip" aria-label="Quizkort mangler"></button>
+    <div id="pcQuizCardContent" hidden></div>
+    <img id="pcQuizCardImage" alt="">
+  </body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
+  const { window } = dom;
+  const requested = [];
+  const realCard = JSON.parse(fs.readFileSync("data/quizcards/kunst/villa_romsli_quizcard_v1.json","utf8"));
+  window.TEST_MODE = true;
+  window.visited = {};
+  window.HG_I18N = { t: (_key, fallback) => fallback };
+  window.openPlaceCard = async () => true;
+  window.DataHub = {
+    loadQuizCardsCollection: async path => {
+      requested.push(path);
+      if (path === "kunst/manifest.json") return { collections: ["villa_romsli_quizcard_v1.json"] };
+      if (path === "kunst/villa_romsli_quizcard_v1.json") return realCard;
+      return null;
+    }
+  };
+  window.eval(bundle);
+  await window.openPlaceCard({ id:"villa_romsli", name:"Villa Romsli", category:"kunst" });
+  assert.ok(requested.includes("kunst/manifest.json"));
+  assert.ok(requested.includes("kunst/villa_romsli_quizcard_v1.json"));
+  assert.equal(window.document.getElementById("pcQuizCardContent").hidden,false);
+  assert.equal(window.document.querySelectorAll("#pcQuizCardContent .pc-rendered-quiz-card li").length,10);
+  dom.window.close();
 });
