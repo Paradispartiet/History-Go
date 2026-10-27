@@ -7,7 +7,7 @@ const fm=read("data/fag/fag_manifest.json"), qm=read("data/quiz/manifest.json"),
 test("Vega Scene: canonical identity, three sets of seven and sourced answers",()=>{
  assert.equal(p.id,"vega_scene");assert.equal(p.category,"scenekunst");assert.equal(p.coordStatus,"verified");
  assert.deepEqual(q.sets.map(s=>s.questions.length),[7,7,7]);assert.equal(new Set(questions.map(q=>q.id)).size,21);
- assert.equal(b.claims.length,21);assert.equal(qm.sets.filter(s=>s.targetId===p.id).length,3);
+ assert.equal(b.claims.length,21);assert.equal(qm.sets.filter(s=>s.targetId===p.id).length,3);assert.deepEqual(qm.sets.filter(s=>s.targetId===p.id).map(s=>s.set_id).sort(),q.sets.map(s=>s.set_id).sort());assert.ok(fm.scenekunst.quizProduction.targets.vega_scene.source_brief.includes("/scenekunst/"));
  assert.equal(questions.filter(q=>/^(I hvilket år|Hvilken dato|Når ble)/iu.test(q.question)).length,0);
  for(const q of questions){
   assert.equal(q.options.length,4);assert.equal(new Set(q.options).size,4);
