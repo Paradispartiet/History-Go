@@ -1,0 +1,809 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "media",
+  "targetId": "grand_hotel",
+  "reviewed_at": "2026-10-27",
+  "source_review_basis": "Lesning av Oslo byleksikon, Grand Hotels historie og kommunens bevaringsregistrering; skiller observerbare spor fra senere fortellinger.",
+  "sources": {
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Grand_Hotel",
+      "source_type": "local_reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Hotellhistorie, fasade, Grand Café og fredsprisritual"
+    },
+    "hotel": {
+      "url": "https://grand.no/om-grand",
+      "source_type": "institutional_history",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Hotellhistorie, Ibsen, bohem, bankett og kunstneriske framstillinger"
+    },
+    "heritage": {
+      "url": "https://www.oslo.kommune.no/get-file/1124255/b46ce889cb18a785bc396d2b8b5eeee23cc32eca796fe328e956d26dac450dc7",
+      "source_type": "municipal_heritage_registration",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Kommunal beskrivelse av fasade og verneverdi"
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_media_hendelse_og_presse",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_media_pop_ikonisk_persona"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [],
+    "thinker_ids": [],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/media/manifest.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Gjenbruk canonical grand_hotel som media; ikke lag egen Grand Café-Place.",
+      "Ikke still rene dateringsspørsmål; varier mellom personer, historie, materialitet og kildekritikk."
+    ],
+    "knowledge_migration": "Generate canonical Knowledge IDs during activation."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Tre tydelige klynger: Grand Café og kultur, arkitektur og bygningslag, fredspris og offentlig mediebruk."
+  },
+  "held_back_candidates": [
+    "Udokumenterte opplysninger om nåværende gjester, sikkerhetsrutiner og private arrangementer.",
+    "Påstander om at alle personer i Per Krohgs maleri satt samtidig ved samme kafébord."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_grand_hotel_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grand Hotel ligger i Karl Johans gate 31, ved hjørnet av Rosenkrantz' gate.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_hendelse_og_presse"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hotellet ble innredet i den tidligere Heiberggården, et privat bolighus på hjørnet mot Rosenkrantz' gate.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Julius Fritzner var konditor og drev hotellet som åpnet i 1874; broren Nicolai hadde kjøpt gården.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_pop_ikonisk_persona"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Grand Café har vært et serveringssted i hotellets bygning siden 1874, men kaféhistorie og hotelldrift er ikke det samme.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_hendelse_og_presse"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "På slutten av 1800-tallet møttes kunstnere og forfattere ved Grand Café, og stedet ble sentralt i byens offentlige samtaler.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_pop_ikonisk_persona"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Henrik Ibsen hadde sin daglige gang på Grand Café mot slutten av 1890-årene.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_pop_ikonisk_persona"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon opplyser at Ibsens stol med navneplate fra Grand Café er bevart på Bymuseet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_pop_ikonisk_persona"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Arkitekt Ole Sverre tegnet det store ombyggingsarbeidet i 1911–1913 som formet dagens hovedfasade.",
+      "source_ids": [
+        "byleksikon",
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det karakteristiske klokketårnet inngikk i ombyggingen fra 1911–1913; hotellvirksomheten startet i 1874.",
+      "source_ids": [
+        "hotel",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grand Hotel beskriver den lyse granittfasaden og kobbertaket på tårnet som viktige trekk fra ombyggingen.",
+      "source_ids": [
+        "hotel",
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grand Café lå først hevet over gatenivået, og publikum måtte gå opp en bratt utvendig trapp.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Per Krohg skapte maleriene knyttet til Grand Cafés ombygging på slutten av 1920-tallet.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_pop_ikonisk_persona"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Per Krohg malte et miljø fra en tidligere tid. Fremstillingen samler historiske personer og kan ikke leses som et samtidig fotografi.",
+      "source_ids": [
+        "hotel",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_hendelse_og_presse"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Christian Krohg var kunstner, forfatter og del av miljøet som utfordret etablerte samfunnsnormer rundt Grand Café.",
+      "source_ids": [
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_pop_ikonisk_persona"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Grand Hotel forteller at det ble holdt en bankett for Roald Amundsen etter sydpolferden.",
+      "source_ids": [
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_hendelse_og_presse"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Under fredsprisfeiringen har fredsprisvinnere hilst fakkeltoget fra balkongen mot Karl Johans gate.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_hendelse_og_presse"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Oslo byleksikon omtaler hotellets autografalbum med navn fra berømte gjester, blant dem fredsprisvinnere.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_hendelse_og_presse"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Fasade, balkong og gate danner en synlig ramme når publikum og medier følger seremonielle hendelser.",
+      "source_ids": [
+        "byleksikon",
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_hendelse_og_presse"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Forholdet mellom balkong og offentlig gate er synlig på stedet; historiske gjester og hendelser krever skriftlige eller andre dokumentariske kilder.",
+      "source_ids": [
+        "byleksikon",
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Grand Hotel åpnet i en eldre gård i 1874. Ombyggingen i 1911–1913 skapte mye av eksteriøret vi ser nå.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Grand Hotel forbinder kaféoffentlighet, omformet byarkitektur og fredsprisvinnernes møte med publikum fra balkongen.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_hendelse_og_presse"
+    }
+  ],
+  "candidate_questions": [
+    {
+      "number": 1,
+      "claim_id": "claim_grand_hotel_quiz_01",
+      "planned_phase": "opening",
+      "question": "Hvilken gate ligger Grand Hotels hovedfasade mot?",
+      "options": [
+        "Karl Johans gate",
+        "Storgata",
+        "Akersgata",
+        "Dronningens gate"
+      ],
+      "answer": "Karl Johans gate",
+      "answerIndex": 0,
+      "knowledge": "Grand Hotel ligger i Karl Johans gate 31, ved hjørnet av Rosenkrantz' gate.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "emne_id": "em_media_hendelse_og_presse",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 2,
+      "claim_id": "claim_grand_hotel_quiz_02",
+      "planned_phase": "opening",
+      "question": "Hva var bygningen som først ble innredet til Grand Hotel?",
+      "options": [
+        "En tidligere jernbanestasjon",
+        "Professor Heibergs bygård",
+        "Et tidligere teater",
+        "Et rådhus"
+      ],
+      "answer": "Professor Heibergs bygård",
+      "answerIndex": 1,
+      "knowledge": "Hotellet ble innredet i den tidligere Heiberggården, et privat bolighus på hjørnet mot Rosenkrantz' gate.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 3,
+      "claim_id": "claim_grand_hotel_quiz_03",
+      "planned_phase": "opening",
+      "question": "Hvilket yrke hadde Julius Fritzner, som drev Grand Hotel ved åpningen?",
+      "options": [
+        "Arkitekt",
+        "Forfatter",
+        "Konditor",
+        "Skipsreder"
+      ],
+      "answer": "Konditor",
+      "answerIndex": 2,
+      "knowledge": "Julius Fritzner var konditor og drev hotellet som åpnet i 1874; broren Nicolai hadde kjøpt gården.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "emne_id": "em_media_pop_ikonisk_persona",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 4,
+      "claim_id": "claim_grand_hotel_quiz_04",
+      "planned_phase": "opening",
+      "question": "Hva er riktig forhold mellom Grand Hotel og Grand Café?",
+      "options": [
+        "De er to ulike hoteller",
+        "Grand Café er en avisredaksjon",
+        "Kafeen ligger i et annet bykvartal",
+        "Kafeen og hotellet er ulike virksomheter ved samme sted"
+      ],
+      "answer": "Kafeen og hotellet er ulike virksomheter ved samme sted",
+      "answerIndex": 3,
+      "knowledge": "Grand Café har vært et serveringssted i hotellets bygning siden 1874, men kaféhistorie og hotelldrift er ikke det samme.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "emne_id": "em_media_hendelse_og_presse",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 5,
+      "claim_id": "claim_grand_hotel_quiz_05",
+      "planned_phase": "opening",
+      "question": "Hvilken rolle fikk Grand Café i Kristianias kulturliv?",
+      "options": [
+        "Møtested for kunstnere og forfattere",
+        "Permanent rettssal",
+        "Vitenskapelig observatorium",
+        "Jernbaneterminal"
+      ],
+      "answer": "Møtested for kunstnere og forfattere",
+      "answerIndex": 0,
+      "knowledge": "På slutten av 1800-tallet møttes kunstnere og forfattere ved Grand Café, og stedet ble sentralt i byens offentlige samtaler.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "emne_id": "em_media_pop_ikonisk_persona",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 6,
+      "claim_id": "claim_grand_hotel_quiz_06",
+      "planned_phase": "opening",
+      "question": "Hvilken dramatiker ble særlig kjent som fast gjest på Grand Café?",
+      "options": [
+        "Bjørnstjerne Bjørnson",
+        "Henrik Ibsen",
+        "Ludvig Holberg",
+        "Nordahl Grieg"
+      ],
+      "answer": "Henrik Ibsen",
+      "answerIndex": 1,
+      "knowledge": "Henrik Ibsen hadde sin daglige gang på Grand Café mot slutten av 1890-årene.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "emne_id": "em_media_pop_ikonisk_persona",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 7,
+      "claim_id": "claim_grand_hotel_quiz_07",
+      "planned_phase": "opening",
+      "question": "Hva er spesielt med stolen Henrik Ibsen brukte på Grand Café?",
+      "options": [
+        "Den står på Slottet",
+        "Den ble brukt i Stortinget",
+        "Den er bevart ved Bymuseet",
+        "Den var hotellets resepsjonsstol"
+      ],
+      "answer": "Den er bevart ved Bymuseet",
+      "answerIndex": 2,
+      "knowledge": "Oslo byleksikon opplyser at Ibsens stol med navneplate fra Grand Café er bevart på Bymuseet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "emne_id": "em_media_pop_ikonisk_persona",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 8,
+      "claim_id": "claim_grand_hotel_quiz_08",
+      "planned_phase": "bridge",
+      "question": "Hvem tegnet ombyggingen som ga Grand Hotel den karakteristiske hovedfasaden?",
+      "options": [
+        "Jacob Nordan",
+        "Arnstein Arneberg",
+        "Henrik Nissen",
+        "Ole Sverre"
+      ],
+      "answer": "Ole Sverre",
+      "answerIndex": 3,
+      "knowledge": "Arkitekt Ole Sverre tegnet det store ombyggingsarbeidet i 1911–1913 som formet dagens hovedfasade.",
+      "source_ids": [
+        "byleksikon",
+        "heritage"
+      ],
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 9,
+      "claim_id": "claim_grand_hotel_quiz_09",
+      "planned_phase": "bridge",
+      "question": "Hva forteller klokketårnet oss om hotellets historie?",
+      "options": [
+        "At eksteriøret er yngre enn hotellets åpning",
+        "At det var et kirkebygg",
+        "At hotellet var en togstasjon",
+        "At kafeen aldri ble bygd om"
+      ],
+      "answer": "At eksteriøret er yngre enn hotellets åpning",
+      "answerIndex": 0,
+      "knowledge": "Det karakteristiske klokketårnet inngikk i ombyggingen fra 1911–1913; hotellvirksomheten startet i 1874.",
+      "source_ids": [
+        "hotel",
+        "byleksikon"
+      ],
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 10,
+      "claim_id": "claim_grand_hotel_quiz_10",
+      "planned_phase": "bridge",
+      "question": "Hvilket materiale preger Grand Hotels hovedfasade etter ombyggingen?",
+      "options": [
+        "Rød tegl",
+        "Lys granitt",
+        "Ubehandlet tre",
+        "Gul murpuss"
+      ],
+      "answer": "Lys granitt",
+      "answerIndex": 1,
+      "knowledge": "Grand Hotel beskriver den lyse granittfasaden og kobbertaket på tårnet som viktige trekk fra ombyggingen.",
+      "source_ids": [
+        "hotel",
+        "heritage"
+      ],
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 11,
+      "claim_id": "claim_grand_hotel_quiz_11",
+      "planned_phase": "bridge",
+      "question": "Hvordan kom de første gjestene opprinnelig inn i Grand Café?",
+      "options": [
+        "Gjennom hotellrommene",
+        "Via takterrassen",
+        "Opp en utvendig trapp",
+        "Fra en underjordisk tunnel"
+      ],
+      "answer": "Opp en utvendig trapp",
+      "answerIndex": 2,
+      "knowledge": "Grand Café lå først hevet over gatenivået, og publikum måtte gå opp en bratt utvendig trapp.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 12,
+      "claim_id": "claim_grand_hotel_quiz_12",
+      "planned_phase": "bridge",
+      "question": "Hvem laget veggmaleriene som senere preget Grand Café?",
+      "options": [
+        "Christian Krohg",
+        "Edvard Munch",
+        "Harriet Backer",
+        "Per Krohg"
+      ],
+      "answer": "Per Krohg",
+      "answerIndex": 3,
+      "knowledge": "Per Krohg skapte maleriene knyttet til Grand Cafés ombygging på slutten av 1920-tallet.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "emne_id": "em_media_pop_ikonisk_persona",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 13,
+      "claim_id": "claim_grand_hotel_quiz_13",
+      "planned_phase": "bridge",
+      "question": "Hva må vi huske når vi tolker Per Krohgs maleri av kafémiljøet?",
+      "options": [
+        "Det er en senere kunstnerisk framstilling, ikke et øyeblikksfoto fra bohemtiden",
+        "Alle personene er dokumentert til stede samtidig",
+        "Bildet beviser at kafeen var stengt",
+        "Maleriet viser hotellets byggearbeid i 1874"
+      ],
+      "answer": "Det er en senere kunstnerisk framstilling, ikke et øyeblikksfoto fra bohemtiden",
+      "answerIndex": 0,
+      "knowledge": "Per Krohg malte et miljø fra en tidligere tid. Fremstillingen samler historiske personer og kan ikke leses som et samtidig fotografi.",
+      "source_ids": [
+        "hotel",
+        "byleksikon"
+      ],
+      "emne_id": "em_media_hendelse_og_presse",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 14,
+      "claim_id": "claim_grand_hotel_quiz_14",
+      "planned_phase": "bridge",
+      "question": "Hvilken kunstner og forfatter var knyttet til Kristiania-bohemen ved Grand Café?",
+      "options": [
+        "Adolph Tidemand",
+        "Christian Krohg",
+        "Gustav Vigeland",
+        "Theodor Kittelsen"
+      ],
+      "answer": "Christian Krohg",
+      "answerIndex": 1,
+      "knowledge": "Christian Krohg var kunstner, forfatter og del av miljøet som utfordret etablerte samfunnsnormer rundt Grand Café.",
+      "source_ids": [
+        "hotel"
+      ],
+      "emne_id": "em_media_pop_ikonisk_persona",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 15,
+      "claim_id": "claim_grand_hotel_quiz_15",
+      "planned_phase": "final",
+      "question": "Hva skjedde på Grand Hotel etter Roald Amundsens sydpolekspedisjon?",
+      "options": [
+        "Skipet Fram ble stilt ut",
+        "En ny kino åpnet",
+        "Amundsen ble feiret med bankett",
+        "Hotellet ble gjort om til museum"
+      ],
+      "answer": "Amundsen ble feiret med bankett",
+      "answerIndex": 2,
+      "knowledge": "Grand Hotel forteller at det ble holdt en bankett for Roald Amundsen etter sydpolferden.",
+      "source_ids": [
+        "hotel"
+      ],
+      "emne_id": "em_media_hendelse_og_presse",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 16,
+      "claim_id": "claim_grand_hotel_quiz_16",
+      "planned_phase": "final",
+      "question": "Hva gjør Grand Hotels balkong særlig kjent i forbindelse med Nobels fredspris?",
+      "options": [
+        "Den brukes som pressearkiv",
+        "Den er selve prisutdelingssalen",
+        "Den er et fredsprismuseum",
+        "Fredsprisvinnere hilser fakkeltoget derfra"
+      ],
+      "answer": "Fredsprisvinnere hilser fakkeltoget derfra",
+      "answerIndex": 3,
+      "knowledge": "Under fredsprisfeiringen har fredsprisvinnere hilst fakkeltoget fra balkongen mot Karl Johans gate.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "emne_id": "em_media_hendelse_og_presse",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 17,
+      "claim_id": "claim_grand_hotel_quiz_17",
+      "planned_phase": "final",
+      "question": "Hva er hotellets autografalbum et spor etter?",
+      "options": [
+        "Kjente gjester, blant dem fredsprismottakere",
+        "Alle hotellansattes lønn",
+        "Bygningens tekniske tegninger",
+        "Navnelisten over byens ordførere"
+      ],
+      "answer": "Kjente gjester, blant dem fredsprismottakere",
+      "answerIndex": 0,
+      "knowledge": "Oslo byleksikon omtaler hotellets autografalbum med navn fra berømte gjester, blant dem fredsprisvinnere.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "emne_id": "em_media_hendelse_og_presse",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 18,
+      "claim_id": "claim_grand_hotel_quiz_18",
+      "planned_phase": "final",
+      "question": "Hvordan brukes Grand Hotels fasade ved offentlige seremonier?",
+      "options": [
+        "Som juridisk protokoll",
+        "Som et gjenkjennelig bakteppe for publikum og bilder",
+        "Som hovedscene for Stortingets møter",
+        "Som permanent museumsutstilling"
+      ],
+      "answer": "Som et gjenkjennelig bakteppe for publikum og bilder",
+      "answerIndex": 1,
+      "knowledge": "Fasade, balkong og gate danner en synlig ramme når publikum og medier følger seremonielle hendelser.",
+      "source_ids": [
+        "byleksikon",
+        "heritage"
+      ],
+      "emne_id": "em_media_hendelse_og_presse",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 19,
+      "claim_id": "claim_grand_hotel_quiz_19",
+      "planned_phase": "final",
+      "question": "Hva kan du undersøke direkte fra fortauet foran hotellet?",
+      "options": [
+        "Hvem som signerte autografalbumet",
+        "Hva Ibsen sa ved kafébordet",
+        "Hvordan balkong, fasade og gate henger sammen",
+        "Hvem som deltok i alle historiske banketter"
+      ],
+      "answer": "Hvordan balkong, fasade og gate henger sammen",
+      "answerIndex": 2,
+      "knowledge": "Forholdet mellom balkong og offentlig gate er synlig på stedet; historiske gjester og hendelser krever skriftlige eller andre dokumentariske kilder.",
+      "source_ids": [
+        "byleksikon",
+        "heritage"
+      ],
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 20,
+      "claim_id": "claim_grand_hotel_quiz_20",
+      "planned_phase": "final",
+      "question": "Hvorfor er det feil å beskrive hele Grand Hotel som en bygning fra 1913?",
+      "options": [
+        "Fordi hotellet åpnet etter andre verdenskrig",
+        "Fordi hotellet alltid har hatt samme fasade",
+        "Fordi hele bygningen ble revet i 2000",
+        "Fordi hotellet åpnet tidligere og bygningen er endret i flere faser"
+      ],
+      "answer": "Fordi hotellet åpnet tidligere og bygningen er endret i flere faser",
+      "answerIndex": 3,
+      "knowledge": "Grand Hotel åpnet i en eldre gård i 1874. Ombyggingen i 1911–1913 skapte mye av eksteriøret vi ser nå.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 21,
+      "claim_id": "claim_grand_hotel_quiz_21",
+      "planned_phase": "final",
+      "question": "Hva gjør Grand Hotel til et godt sted for å studere både kultur- og mediehistorie?",
+      "options": [
+        "Stedet knytter kaféliv, arkitektur og fredsprisritual sammen",
+        "Stedet ble bygget som avisredaksjon",
+        "Stedet har aldri hatt publikumsarrangementer",
+        "Stedet har ingen historiske bygningsspor"
+      ],
+      "answer": "Stedet knytter kaféliv, arkitektur og fredsprisritual sammen",
+      "answerIndex": 0,
+      "knowledge": "Grand Hotel forbinder kaféoffentlighet, omformet byarkitektur og fredsprisvinnernes møte med publikum fra balkongen.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "emne_id": "em_media_hendelse_og_presse",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    }
+  ],
+  "quizCard_candidate_source_question_numbers": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    9,
+    12,
+    13,
+    16,
+    19
+  ],
+  "note": "21 kildebelagte spørsmål; ingen direkte spørsmål som bare tester eksakte årstall."
+}
