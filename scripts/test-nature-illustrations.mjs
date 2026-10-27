@@ -20,7 +20,7 @@ for (const files of Object.values(index.groups)) {
  }
 }
 const source = read("js/ui/nature-illustrations.js");
-const references = [...source.matchAll(/\bemne_(?:flora|ved|fauna)_[a-zA-Z0-9_]+(?=\s*:)/g)].map(m=>m[0]);
+const references = [...source.matchAll(/\bemne_(?:flora|ved|fauna)_[\p{L}0-9_]+(?=\s*:)/gu)].map(m=>m[0]);
 assert.equal(new Set(references).size, 30);
 for (const id of references) {
  assert(ids.has(id), "illustration references unknown taxon: " + id);
