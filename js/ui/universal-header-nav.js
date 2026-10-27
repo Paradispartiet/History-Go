@@ -96,11 +96,6 @@
     ? "profile.html" : "index.html";
   const fallback = fallbackPage === "index.html" ? MAP_URL : new URL(fallbackPage, APP_ROOT);
   const isMapRoot = fileName(current) === "index.html";
-  // These arrows were originally fixed links home, not browser-history controls.
-  const alwaysBackToMap = new Set([
-    "Civication.html", "profile.html", "sprakatlas.html",
-    "finn-fauna.html", "finn-flora.html"
-  ]).has(fileName(current));
   let lastPlaceUrl = null;
   let changedIndexRoute = false;
 
@@ -111,8 +106,6 @@
   }
   function getDestination() {
     const route = routeType(parsed(location.href));
-    // Preserve the original History Go return arrow (not contextual back).
-    if (alwaysBackToMap) return { url: MAP_URL, label: "Kartet" };
     // The map is the terminal return destination.
     if (isMapRoot && route === "map") return null;
     if (isMapRoot) {
@@ -148,20 +141,15 @@
   home.className = "hg-universal-home";
   home.setAttribute("data-hg-nav-home", "");
   home.href = MAP_URL.href;
-  home.title = "Hjem til kartet";
-  home.setAttribute("aria-label", "Hjem til kartet");
-  const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  icon.setAttribute("viewBox", "0 0 24 24");
-  icon.setAttribute("fill", "none");
-  icon.setAttribute("stroke", "currentColor");
-  icon.setAttribute("stroke-width", "2");
-  icon.setAttribute("stroke-linecap", "round");
-  icon.setAttribute("stroke-linejoin", "round");
-  icon.setAttribute("aria-hidden", "true");
-  const house = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  house.setAttribute("d", "m3 10 9-7 9 7 M5 9v11h14V9 M9 20v-7h6v7");
-  icon.append(house);
-  home.append(icon);
+  home.title = "History GO – hjem til kartet";
+  home.setAttribute("aria-label", "History GO – hjem til kartet");
+  const logo = document.createElement("img");
+  logo.src = new URL("bilder/logo_historygo.PNG", APP_ROOT).href;
+  logo.alt = "";
+  logo.setAttribute("aria-hidden", "true");
+  logo.setAttribute("width", "30");
+  logo.setAttribute("height", "30");
+  home.append(logo);
 
   function mountControls() {
     if (home.parentElement !== host || (!link.hidden && host.firstElementChild !== link)) {
