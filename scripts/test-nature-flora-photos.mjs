@@ -14,14 +14,27 @@ const expected=[
  ["emne_flora_engsoleie","Ranunculus acris"],
  ["emne_flora_engtjaereblom","Viscaria vulgaris"],
  ["emne_flora_prestekrage","Leucanthemum vulgare"],
- ["emne_flora_balderbra","Tripleurospermum inodorum"]
+ ["emne_flora_balderbra","Tripleurospermum inodorum"],
+ ["emne_flora_ballblom","Trollius europaeus"],
+ ["emne_flora_bekkeblom","Caltha palustris"],
+ ["emne_flora_bergmynte","Origanum vulgare"],
+ ["emne_flora_bitterbergknapp","Sedum acre"],
+ ["emne_flora_blaknapp","Succisa pratensis"],
+ ["emne_flora_blaveis","Hepatica nobilis"],
+ ["emne_flora_blodstorkenebb","Geranium sanguineum"],
+ ["emne_flora_burot","Artemisia vulgaris"],
+ ["emne_flora_geitrams","Chamerion angustifolium"],
+ ["emne_flora_hestehov","Tussilago farfara"]
 ];
-assert.equal(photos.count,8);
+assert.equal(photos.count,18);
 const urls=new Set();
 const illustrations=[
  "nature-illustrations.js","nature-illustrations-batch03.js",
  "nature-illustrations-batch04.js","nature-illustrations-batch05.js",
- "nature-illustrations-batch06.js"
+ "nature-illustrations-batch06.js",
+ "nature-illustrations-batch07.js","nature-illustrations-batch08.js",
+ "nature-illustrations-batch09.js","nature-illustrations-batch10.js",
+ "nature-illustrations-batch11.js"
 ].map(name=>read("js/ui/"+name)).join("\n");
 for(const [id,taxon] of expected){
  const p=photos.get(id);
@@ -46,4 +59,4 @@ const flora=read("finn-flora.html"),fauna=read("finn-fauna.html");
 assert(flora.includes('js/ui/nature-flora-photographs.js'),"photo registry not loaded");
 assert(flora.indexOf("nature-flora-photographs.js")<flora.indexOf("nature-explorer.js"),"registry must load first");
 assert(!fauna.includes("nature-flora-photographs.js"),"flora photo registry must not affect fauna");
-console.log("Flora photo pilot: 8 sourced species, 8 credits/licenses, SVG fallback and read-only UI OK.");
+console.log("Flora photos: 18 sourced species, 18 credits/licenses, SVG fallback and read-only UI OK.");
