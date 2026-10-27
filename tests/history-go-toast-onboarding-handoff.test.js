@@ -186,16 +186,16 @@ for (const file of ["nature-unlock-toast.js", "badge-unlock-toast.js", "person-p
 
 // Welcome copy reflects the main game, not the test-only mode or card system.
 assert.match(welcome, /<ul class="hg-onb-steps">/);
-assert.equal((welcome.match(/<li/g) || []).length, 6, "six unnumbered onboarding panels");
+assert.equal((welcome.match(/<li/g) || []).length, 8, "eight unnumbered, linked onboarding panels");
 for (const heading of [
-  "Utforsk kartet", "Besøk steder", "Oppdag historiene",
-  "Ta quiz og samle merker", "Se hva du har samlet", "Opplev Civication"
+  "Utforsk kartet og besøk steder", "Stories", "Lesespor", "Psykologirommet",
+  "Ta quiz og samle merker", "Se hva du har samlet", "Min profil", "Opplev Civication"
 ]) assert.ok(welcome.includes(heading), heading);
 assert.doesNotMatch(welcome, /stedskort|quizkort|testmodus/i);
-assert.match(welcome, /lister over steder du har besøkt/);
+assert.match(welcome, /steder du har besøkt/);
 assert.match(welcome, /interaktivt læringsmiljø/);
 assert.match(welcome, /simulert livsverden/);
-assert.match(welcome, /Oppdrag kan ta deg videre til History Go/);
+assert.match(welcome, /forme din egen vei/);
 assert.ok(styles.includes("#1b281f"), "dark onboarding palette");
 assert.ok(styles.includes("grid-template-columns: repeat(2, minmax(0, 1fr))"), "desktop card grid");
 assert.ok(styles.includes("@media (max-width: 700px)"), "mobile layout");
