@@ -30,19 +30,22 @@ const body = [
   '<div class="pc-heading-content"><div class="pc-title-row"><h2 id="pcTitle">Stortorget</h2>',
   '<div id="pcPeopleIcon" class="pc-round">Personer</div>',
   '<div id="pcBadgesIcon" class="pc-round">Merker</div></div></div></div>',
-  '<p id="pcDesc">Historisk beskrivelse av Stortorget.</p>',
   '</div></div>',
+  '<div class="pc-sheet-intro"><p id="pcDesc">Historisk beskrivelse av Stortorget.</p></div>',
   '<div class="pc-sheet-hero-media">',
   '<div class="pc-frontcard" id="pcFrontCardFlip"><div class="pc-card-flip-inner">',
    '<div class="pc-card-face pc-card-face-front"><img id="pcFrontImage" alt="" /></div>',
    '</div></div>',
+  '<section class="pc-sheet-about"><section class="pc-sheet-canonical-about"><h3>Om stedet</h3>',
+  '<div class="hg-place-longread"><p>Stortorget har vært en sentral møteplass gjennom lang tid. Her handlet innbyggerne og møttes på markedet, og torget fikk en viktig rolle i byens liv. Historien om stedet omfatter handel, byutvikling og mennesker som brukte området. Teksten fortsetter på høyre side av bildet og vil fylle hele bredden nedenfor bildet når den er lang nok. Stortorget har forandret seg flere ganger, men har fortsatt en sentral plass i bybildet.</p></div></section></section>',
+  '</div>',
   '<div class="pc-sheet-explore-grid"><div class="pc-side-stack">',
   '<div class="pc-icons-quad" data-collection-count="4">',
   '<div class="pc-collection" data-collection-id="objects" data-collection-shape="rectangle" aria-label="Gjenstander"></div>',
   '<div class="pc-collection" data-collection-id="brands" data-collection-shape="rectangle" aria-label="Brands"></div>',
   '<div class="pc-collection" data-collection-id="competitions" data-collection-shape="rectangle" aria-label="Kamper og konkurranser"></div>',
    '<div class="pc-collection" data-collection-id="related" data-collection-shape="rectangle" aria-label="Relaterte steder"></div>',
-  '</div></div></div></div>',
+  '</div></div></div>',
   '</section><div class="pc-grid" hidden></div></div></div>',
   '<script>',
   'window.PLACES=[{id:"stortorget",name:"Stortorget",category:"by"}];',
@@ -103,6 +106,10 @@ try {
         events:box('[data-hg-onsite-action="events"]'),
         meet:box('[data-hg-onsite-action="meet"]'),
         rightColumn:box(".pc-sheet-explore-grid"),
+        aboutHeading:box(".pc-sheet-canonical-about > h3"),
+        about:box(".pc-sheet-about"),
+        intro:box(".pc-sheet-intro"),
+        media:box(".pc-sheet-hero-media"),
         parentClass:document.getElementById("pcEventsBox").parentElement.className,
         previousClass:document.getElementById("pcEventsBox").previousElementSibling?.className,
         outsideNav:!document.querySelector(".pc-sheet-section-nav #pcEventsBox"),
@@ -117,36 +124,34 @@ try {
     });
     assert.equal(layout.outsideNav,true,"Events/Møtes must be outside horizontal nav at "+width);
     assert.equal(layout.count,1,"One canonical on-site surface at "+width);
-    assert.equal(layout.parentClass,"pc-sheet-explore-grid","Events/Møtes belong to right-hand grid at "+width);
+    assert.equal(layout.parentClass,"pc-sheet-explore-grid","Events/Møtes belong to the collections section at "+width);
     assert.equal(layout.previousClass,"pc-side-stack","Events/Møtes follow the collection rounds at "+width);
-    assert.ok(layout.front.right <= layout.controls.x + 1,
-      "Events/Møtes stay to the right of frontImage at "+width+": "+JSON.stringify(layout));
+    assert.ok(Math.abs(layout.front.x - layout.rightColumn.x) <= 2,
+      "frontImage and rounds share the same left margin at "+width+": "+JSON.stringify(layout));
+    assert.ok(Math.abs(layout.intro.x - layout.rightColumn.x) <= 2,
+      "media margins match the description at "+width+": "+JSON.stringify(layout));
+    assert.ok(layout.aboutHeading.x >= layout.front.right - 1,
+      "Om stedet begins to the right of frontImage at "+width+": "+JSON.stringify(layout));
+    assert.ok(layout.rightColumn.y >= layout.media.bottom - 1,
+      "rounds follow all of Om stedet at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.competitions.bottom <= layout.controls.y + 1,
       "Events/Møtes directly below Kamper og konkurranser at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.controls.x >= layout.rightColumn.x - 1 &&
       layout.controls.right <= layout.rightColumn.right + 1,
-      "Events/Møtes stay within right column at "+width);
+      "Events/Møtes stay within the rounds section at "+width);
     assert.equal(layout.rightDisplay,"flex","right-hand column stretches as flex at "+width);
     assert.equal(layout.collectionAspect,"auto","Place Sheet collections must not reserve legacy 3:4 empty height at "+width);
     assert.ok(layout.typography.title >= 30 && layout.typography.description >= (width <= 720 ? 16 : 17) &&
       layout.typography.navigation >= 13 && layout.typography.collectionLabel >= 14 &&
       layout.typography.onsiteLabel >= (width <= 700 ? 11 : 13),
       "PlaceCard typography uses the modestly enlarged scale at "+width+": "+JSON.stringify(layout.typography));
-    if (width >= 768) {
-      assert.ok(Math.abs(layout.front.height - layout.front.width * 4 / 3) <= 2,
-        "frontImage must retain its natural 3:4 proportions at "+width+": "+JSON.stringify(layout));
-      assert.ok(Math.abs(layout.frontImage.bottom - layout.front.bottom) <= 2,
-        "visible frontImage must reach the card baseline at "+width+": "+JSON.stringify(layout));
-      assert.ok(Math.abs(layout.controls.bottom - layout.front.bottom) <= 2,
-        "Events/Møtes bottom must align with frontImage bottom at "+width+": "+
-        JSON.stringify({frontBottom:layout.front.bottom,controlsBottom:layout.controls.bottom,roundsBottom:layout.rounds.bottom,rightHeight:layout.rightHeight}));
-      assert.ok(layout.controls.y - layout.lastVisibleCollectionBottom >= 7,
-        "Events/Møtes must not overlap any rendered collection tile at "+width+": "+
-        JSON.stringify({front:layout.front,rounds:layout.rounds,controls:layout.controls,lastVisibleCollectionBottom:layout.lastVisibleCollectionBottom}));
-    }
+    assert.ok(Math.abs(layout.front.height - layout.front.width * 4 / 3) <= 2,
+      "frontImage retains a 3:4 aspect ratio at "+width+": "+JSON.stringify(layout));
+    assert.ok(layout.controls.y >= layout.lastVisibleCollectionBottom - 1,
+      "Events/Møtes follow collection tiles at "+width);
     if (width <= 700) {
       assert.ok(layout.events.bottom <= layout.meet.y + 1,
-        "On narrow screens controls stack to remain readable at "+width);
+        "On narrow screens Events/Møtes stack below rounds at "+width);
     } else {
       assert.ok(layout.events.right <= layout.meet.x + 1 &&
         Math.abs(layout.events.y - layout.meet.y) <= 1,
@@ -174,7 +179,7 @@ try {
     await page.locator('[data-hg-onsite-action="meet"]').click();
     assert.equal(await page.evaluate(() => window.__actions.meet.length),2);
     await page.close();
-    console.log("Events and Møtes below collections beside frontImage OK at "+width+"x"+height);
+    console.log("Front image with About text and rounds below, Events/Møtes preserved at "+width+"x"+height);
   }
 } finally {
   await browser?.close();
