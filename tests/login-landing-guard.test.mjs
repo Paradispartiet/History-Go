@@ -1,15 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { runInNewContext } from "node:vm";
 
 const guardSource = readFileSync("js/auth/require-login.js", "utf8");
 const page = readFileSync("login.html", "utf8");
-const entries = [
-  "index.html", "profile.html", "Civication.html", "finn-fauna.html",
-  "finn-flora.html", "knowledge.html", "notater.html",
-  "sprakatlas.html", "fagverk-forside.html", "emner.html"
-];
+// Automatically cover every root-level app page. Redirect-only shims are
+// checked separately so new HTML pages cannot silently skip authentication.
+const redirectOnly = new Set(["knowledge-profile.html", "knowledge_by.html"]);
+const entries = readdirSync(".").filter(file =>
+  file.endsWith(".html") && file !== "login.html" && !redirectOnly.has(file)
+);
 
 test("all main app entries require login and remain hidden until verification", () => {
   for (const file of entries) {
@@ -21,6 +22,24 @@ test("all main app entries require login and remain hidden until verification", 
     assert.equal((html.match(/src="js\/aha\.js"/g) || []).length, 1, file);
   }
   assert.match(readFileSync("js/app.js", "utf8"), /await window\.HGLoginGate\.ready/);
+});
+
+test("service worker cannot serve stale unauthenticated HTML from its offline cache", () => {
+  const sw = readFileSync("sw.js", "utf8");
+  const precache = sw.split("const PRECACHE_URLS = [")[1]?.split("];")[0];
+  assert.ok(precache, "precache declaration is present");
+  assert.doesNotMatch(precache, /["'](?:\.\/|[^"']*\.html)["']/);
+  assert.match(sw, /if \(req\.mode === "navigate"\)/);
+  assert.match(sw, /return await fetchWithTimeout\(req, 4500\)/);
+  assert.ok(!sw.includes("event.respondWith(networkFirst(req, CACHE_STATIC))"));
+});
+
+test("legacy redirect pages only forward to the guarded knowledge page", () => {
+  for (const file of redirectOnly) {
+    const html = readFileSync(file, "utf8");
+    assert.match(html, /url=knowledge\.html/i, file);
+    assert.doesNotMatch(html, /\bHGLoginGate\b/, file);
+  }
 });
 
 test("login screen uses AHA email link and Google plus optional password, without guest bypass", () => {
@@ -91,4 +110,13 @@ test("a verified, non-anonymous user may enter", async () => {
   assert.equal(value.allowed, true);
   assert.deepEqual(value.redirects, []);
   assert.ok(value.classes.has("hg-auth-verified"));
+});
+
+test("anonymous accounts and expired tokens cannot unlock the app", async () => {
+  const anonymous = await simulate({ token: true, user: { id: "anonymous", is_anonymous: true } });
+  assert.equal(anonymous.allowed, false);
+  assert.equal(anonymous.redirects.length, 1);
+  const expired = await simulate({ token: true, error: { message: "JWT expired" } });
+  assert.equal(expired.allowed, false);
+  assert.equal(expired.redirects.length, 1);
 });
