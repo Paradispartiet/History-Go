@@ -34,7 +34,8 @@ try {
       await page.goto(base + "/" + pathname, { waitUntil: "domcontentloaded", timeout: 30000 });
       const back = page.locator(".hg-universal-back").first();
       await back.waitFor({ state: "visible", timeout: 12000 });
-      assert.match((await back.textContent()).replace(/\s+/g, " ").trim(), new RegExp(label));
+      assert.equal((await back.textContent()).trim(), "←", pathname + ": arrow only");
+      assert.equal(await back.getAttribute("aria-label"), "Tilbake til " + label.replace(/^Til /, ""), pathname + ": accessible destination");
       const href = await back.getAttribute("href");
       assert.ok(href && new URL(href, base).pathname === destination, pathname + ": safe return URL");
       const rect = await back.boundingBox();
@@ -52,7 +53,16 @@ try {
     });
     const placeBack = page.locator(".hg-universal-back").first();
     await placeBack.waitFor({ state: "visible", timeout: 12000 });
-    assert.match((await placeBack.textContent()), /Til kartet/);
+    assert.equal((await placeBack.textContent()).trim(), "←", "map back link shows only the arrow");
+    assert.equal(await placeBack.getAttribute("aria-label"), "Tilbake til kartet");
+    const logo = page.locator("header.site-header > .hg-brand");
+    await logo.waitFor({ state: "visible", timeout: 12000 });
+    const logoRect = await logo.boundingBox();
+    const backRect = await placeBack.boundingBox();
+    const actionsRect = await page.locator("header.site-header .top-actions").boundingBox();
+    assert.ok(logoRect && backRect && actionsRect, "header elements are measurable");
+    assert.ok(backRect.x >= logoRect.x + logoRect.width, width + "px: back arrow does not cover the logo");
+    assert.ok(backRect.x + backRect.width <= actionsRect.x + 1, width + "px: back arrow leaves room for header tools");
     await placeBack.click();
     await page.waitForFunction(() => location.hash === "#/map");
     await context.close();
