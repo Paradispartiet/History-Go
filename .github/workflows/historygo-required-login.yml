@@ -17,15 +17,13 @@ on:
       - "emner.html"
       - "tests/login-landing-guard.test.mjs"
       - ".github/workflows/historygo-required-login.yml"
-  push:
-    branches: [main]
-    paths:
-      - "login.html"
-      - "js/auth/require-login.js"
-      - "tests/login-landing-guard.test.mjs"
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   login-gate:
