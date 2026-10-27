@@ -224,7 +224,7 @@
       <article class="pc-leksikon-article pc-leksikon-lesespor" data-lesespor-mode="${esc(mode)}"${placeId ? ` data-lesespor-place-id="${esc(placeId)}"` : ""}>
         ${mode === "place"
           ? `<button class="pc-leksikon-back pc-leksikon-back-icon" type="button" data-leksikon-back="hub" aria-label="Tilbake til Leksikon" title="Tilbake til Leksikon"><span aria-hidden="true">←</span></button>`
-          : `<button class="pc-leksikon-back pc-leksikon-back-icon" type="button" data-close-popup aria-label="Tilbake til kartet" title="Tilbake til kartet"><span aria-hidden="true">←</span></button>`}
+          : `<button class="pc-leksikon-back pc-leksikon-back-icon" type="button" data-close-popup aria-label="Tilbake til forrige visning" title="Tilbake til forrige visning"><span aria-hidden="true">←</span></button>`}
         <div class="pc-leksikon-kicker">Lesespor</div>
         <h2 class="hg-popup-name">${esc(title)}</h2>
         <p class="pc-leksikon-one-liner">${esc(subtitle)}</p>
