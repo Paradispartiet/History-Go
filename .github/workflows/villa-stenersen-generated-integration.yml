@@ -23,7 +23,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           persist-credentials: true
-          fetch-depth: 0
+          fetch-depth: 120
       - name: Sync current main before regenerating shared artifacts
         shell: bash
         run: |
