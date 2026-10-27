@@ -1,0 +1,40 @@
+name: By05 regenerate derived artifacts (temporary)
+on:
+  push:
+    branches:
+      - feature/by-bolk05-vestfold-telemark-agder-20-20261026
+    paths:
+      - .github/workflows/by05-derived-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate canonical knowledge, place-open payloads and Fagverk release
+        run: |
+          npm run knowledge:canonical:write
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Commit generated results to this PR branch
+        run: |
+          git add -A -- data/quiz data/knowledge data/runtime/place-open data/fagverk/fagverk_release.json reports/knowledge-id-backfill.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "By05: regenerate Knowledge, place-open and Fagverk release"
+          git push origin HEAD:feature/by-bolk05-vestfold-telemark-agder-20-20261026
