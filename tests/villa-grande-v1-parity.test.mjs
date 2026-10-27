@@ -41,3 +41,21 @@ test("Villa Grande: images and place location kept, Fagverk ready",()=>{
  assert.equal(place.fagverk?.lenses?.length,3);
  assert.ok(place.fagverk?.source_urls?.some(url=>url.includes("lovdata.no")));
 });
+
+test("Villa Grande: canonical Knowledge IDs, QuizCard links and runtime Place-open are synchronized",()=>{
+ const live=read("data/runtime/place-open/villa_grande.json").place;
+ assert.equal(live.id,place.id);
+ assert.equal(live.image,place.image);
+ assert.equal(live.frontImage,place.frontImage);
+ for(const item of q){
+  assert.equal(item.knowledge_link_status,"linked");
+  assert.ok(item.primary_knowledge_unit_id);
+  assert.ok(item.knowledge_unit_ids?.includes(item.primary_knowledge_unit_id));
+ }
+ const byId=new Map(q.map(x=>[x.id,x]));
+ for(const item of card.cards[0].questions){
+  const source=byId.get(item.sourceQuestionId);
+  assert.equal(item.primary_knowledge_unit_id,source.primary_knowledge_unit_id);
+  assert.deepEqual(item.knowledge_unit_ids,source.knowledge_unit_ids);
+ }
+});
