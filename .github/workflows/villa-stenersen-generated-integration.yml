@@ -34,13 +34,15 @@ jobs:
           git merge --no-edit origin/main
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           cache: 'npm'
       - run: npm ci --no-audit --no-fund
       - name: Build canonical quiz production context
         run: node scripts/build-quiz-production-context.mjs --category historie --target villa_stenersen --output data/quiz/production_context/historie/villa_stenersen.json
       - name: Build canonical Knowledge links
         run: npm run knowledge:canonical:write
+      - name: Materialize canonical Natur registry before Fagverk release
+        run: node scripts/materialize-natur-final-registry.mjs
       - name: Rebuild Fagverk release manifest
         run: node scripts/build-fagverk-release-manifest.mjs
       - name: Verify target quiz parity
@@ -51,7 +53,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/fagverk/fagverk_release.json
+          git add data/fagverk/fagverk_registry.json data/fagverk/subject_status.json data/fagverk/fagverk_release.json
           git add data/quiz/production_context/historie/villa_stenersen.json
           git add -u data/knowledge/ reports/knowledge-id-backfill.json
           if ! git diff --cached --quiet; then
