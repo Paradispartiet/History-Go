@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  // No app state, map, quiz or background boot before authenticated entry.
+  if (!window.HGLoginGate || !(await window.HGLoginGate.ready)) return;
   document.body?.classList.remove("hg-loaded", "hg-load-failed");
 
   const releaseQueuedToasts = gateToastsUntilAppReady();
