@@ -40,7 +40,7 @@ const FILES=Object.freeze({
  emne_flora_rodjonsokblom:["Silene dioica","SileneDioica.jpg","Christian Fischer","BY-SA-3.0"],
  emne_flora_hvitbergknapp:["Sedum album","Sedum album 01.jpg","Bjoertvedt","BY-SA-3.0"],
  emne_flora_groblad:["Plantago major","Plantago major subsp. major.jpg","Krzysztof Ziarnek, Kenraiz","BY-SA-4.0"],
- emne_flora_ormehode:["Echium vulgare","Echium vulgare.jpeg","Kristian Peters","BY-SA-3.0"],
+ emne_flora_ormehode:["Echium vulgare","Echium vulgare.jpg","Jose381","BY-SA-3.0"],
  emne_flora_skogstorkenebb:["Geranium sylvaticum","Geranium sylvaticum 02 Oslo.jpg","Bjoertvedt","BY-SA-3.0"],
  emne_flora_gullstjerne:["Gagea lutea","Gagea lutea sl2.jpg","Stefan.lefnaer","BY-SA-4.0"],
  emne_flora_markjordbaer:["Fragaria vesca","Fragaria vesca RF.jpg","Robert Flogaus-Faust","BY-4.0"]
@@ -72,7 +72,7 @@ const PHOTO_URLS=Object.freeze({
  "emne_flora_rodjonsokblom": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/SileneDioica.jpg/960px-SileneDioica.jpg",
  "emne_flora_hvitbergknapp": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Sedum_album_01.jpg/960px-Sedum_album_01.jpg",
  "emne_flora_groblad": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Plantago_major_subsp._major.jpg/960px-Plantago_major_subsp._major.jpg",
- "emne_flora_ormehode": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Echium_vulgare.jpeg/960px-Echium_vulgare.jpeg",
+ "emne_flora_ormehode": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Echium_vulgare.jpg/960px-Echium_vulgare.jpg",
  "emne_flora_skogstorkenebb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Geranium_sylvaticum_02_Oslo.jpg/960px-Geranium_sylvaticum_02_Oslo.jpg",
  "emne_flora_gullstjerne": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Gagea_lutea_sl2.jpg/960px-Gagea_lutea_sl2.jpg",
  "emne_flora_markjordbaer": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Fragaria_vesca_RF.jpg/960px-Fragaria_vesca_RF.jpg"
