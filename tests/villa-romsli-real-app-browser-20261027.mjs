@@ -79,6 +79,7 @@ try{
      && document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card'),
      null,{timeout:50000});
    assert.equal(await page.locator('#pcQuizCardContent li').count(),10,id+'/'+width+' QuizCard count');
+   await page.waitForFunction(()=>{const img=document.querySelector('#pcFrontImage');return img?.complete && img.naturalWidth>0;},null,{timeout:20000});
    const title=await page.locator('#pcTitle').innerText();
    assert.ok(title.trim(),id+'/'+width+' missing PlaceCard title');
    if(mobile){
