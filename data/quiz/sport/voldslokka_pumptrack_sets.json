@@ -1,0 +1,1162 @@
+{
+  "generator_version": "source_review_oslo_aav_20261027",
+  "categoryId": "sport",
+  "targetId": "voldslokka_pumptrack",
+  "size_class": "narrow",
+  "sources": {
+    "club": "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack",
+    "opening": "https://sageneif.no/nyheter/voldslokka-pumptrack-er-na-apen",
+    "builder": "https://www.shapers.no/prosjekter/oslo-voldslokka",
+    "idrettspark": "https://sageneif.no/anlegg/voldslokka-idrettspark-1"
+  },
+  "production_context": {
+    "manifest_category": "sport",
+    "profile": "narrow_3x7",
+    "standard_version": "3.3",
+    "resolved_files": {
+      "pensum": "data/fag/sport/sportpensum_canonical_v4_5.json",
+      "emner": "data/fag/sport/emner_sport_canonical_v4_5.json",
+      "fagkart": "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+      "methods": "data/fag/sport/methods_sport_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/sport/supersetQUIZMAL_sport.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "arenaer_steder_groundhopper",
+      "klubber_lag_frivillighet",
+      "regler_spill_konkurranse",
+      "kropp_trening_prestasjon"
+    ],
+    "emne_ids": [
+      "em_sport_idrettsarena_sted",
+      "em_sport_frivillighet_dugnad",
+      "em_sport_kroppslig_laring",
+      "em_sport_breddeidrett",
+      "em_sport_regler_spillrom"
+    ],
+    "topic_hook_ids": [
+      "frivillighet_og_dugnad",
+      "breddeidrett",
+      "kroppslig_laring",
+      "regler_som_spillrom"
+    ],
+    "method_ids": [
+      "met_sport_frivillighetsanalyse",
+      "met_sport_breddeidrettsanalyse",
+      "met_sport_bevegelsesanalyse",
+      "met_sport_regelanalyse"
+    ],
+    "thinker_ids": [
+      "robert_putnam",
+      "marcel_mauss",
+      "roger_caillois"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "source_brief": "data/quiz/production_briefs/sport/voldslokka_pumptrack.json",
+    "context_artifact": "data/quiz/production_context/sport/voldslokka_pumptrack.json",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/fag/fag_manifest.json",
+        "reports/place-production/oslo-aav-20-source-and-editorial-intake-20261026.json"
+      ],
+      "active_before": {
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "Preserve existing canonical Place/Fagverk, photos and coordinates.",
+        "Reuse 10 existing source-reviewed Oslo Å–V question candidates."
+      ],
+      "knowledge_migration": "Use canonical Knowledge generator, never guess IDs."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "21 stedlige, kildeførte spørsmål; start med konkrete anleggsfakta, gå videre til årsak og trygg sambruk, avslutt med læring, regler og frivillighet."
+    },
+    "held_back_candidates": [
+      "No pure-year answer questions.",
+      "Do not present users without basic control as safe on a crowded pumptrack.",
+      "Do not conflate an asphalt pumptrack with a motorcross facility."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "normal_opening": {
+      "set_1_and_2_are_source_led": true,
+      "theory_visible_from_set": 5
+    },
+    "progression": [
+      "public_sports_land",
+      "tournament_origin",
+      "scale_and_layout",
+      "multiple_uses",
+      "methods_and_theory"
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "sport_voldslokka_pumptrack_set_1",
+      "order": 1,
+      "phase": "opening",
+      "level": 1,
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_voldslokka_pumptrack_quiz_01",
+        "claim_voldslokka_pumptrack_quiz_02",
+        "claim_voldslokka_pumptrack_quiz_03",
+        "claim_voldslokka_pumptrack_quiz_04",
+        "claim_voldslokka_pumptrack_quiz_05",
+        "claim_voldslokka_pumptrack_quiz_06",
+        "claim_voldslokka_pumptrack_quiz_07"
+      ],
+      "title": "Frivillige og banens hovedtrekk",
+      "questions": [
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_01",
+          "quiz_id": "sport_voldslokka_pumptrack_set_1_q1",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvem eier Voldsløkka pumptrack?",
+          "options": [
+            "Oslo Skateboardforening",
+            "Norges Cykleforbund",
+            "Sagene IF",
+            "En privat treningskjede"
+          ],
+          "answer": "Sagene IF",
+          "answerIndex": 2,
+          "knowledge": "Sagene IF oppgir at klubben eier anlegget.",
+          "explanation": "Sagene IF oppgir at klubben eier anlegget.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_01",
+          "claim_basis": "Sagene IF oppgir at klubben eier anlegget.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_sagene_if_oppgir_at_klub_f36cb178c3",
+          "knowledge_unit_ids": [
+            "ku_sport_sagene_if_oppgir_at_klub_f36cb178c3"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_02",
+          "quiz_id": "sport_voldslokka_pumptrack_set_1_q2",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvem tok initiativ til at banen kom på plass?",
+          "options": [
+            "Et internasjonalt sykkelforbund",
+            "En kommersiell fornøyelsespark",
+            "En skoleklasse fra en annen by",
+            "Frivillige i nærmiljøet"
+          ],
+          "answer": "Frivillige i nærmiljøet",
+          "answerIndex": 3,
+          "knowledge": "Frivillige planla, skaffet tillatelser og finansiering og fulgte byggearbeidet.",
+          "explanation": "Frivillige planla, skaffet tillatelser og finansiering og fulgte byggearbeidet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_sport_frivillighet_dugnad",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_02",
+          "claim_basis": "Frivillige planla, skaffet tillatelser og finansiering og fulgte byggearbeidet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_frivillige_planla_skaffe_e4b937b1e8",
+          "knowledge_unit_ids": [
+            "ku_sport_frivillige_planla_skaffe_e4b937b1e8"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_03",
+          "quiz_id": "sport_voldslokka_pumptrack_set_1_q3",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hva består kjøreflaten av?",
+          "options": [
+            "Asfalt",
+            "Løs grus",
+            "Tømmerstokker",
+            "Kunstgress"
+          ],
+          "answer": "Asfalt",
+          "answerIndex": 0,
+          "knowledge": "Pumptracken beskrives som en asfaltbane.",
+          "explanation": "Pumptracken beskrives som en asfaltbane.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_03",
+          "claim_basis": "Pumptracken beskrives som en asfaltbane.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_pumptracken_beskrives_so_4afb0805ad",
+          "knowledge_unit_ids": [
+            "ku_sport_pumptracken_beskrives_so_4afb0805ad"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_04",
+          "quiz_id": "sport_voldslokka_pumptrack_set_1_q4",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvordan kan rytterne skape fart uten å tråkke?",
+          "options": [
+            "Ved hjelp av trekkwire",
+            "Ved å pumpe med kroppen",
+            "Med en elektrisk rampe",
+            "Ved å holde seg fast i andre"
+          ],
+          "answer": "Ved å pumpe med kroppen",
+          "answerIndex": 1,
+          "knowledge": "Kroppsbevegelser gjennom kulene og svingene gir fart.",
+          "explanation": "Kroppsbevegelser gjennom kulene og svingene gir fart.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_sport_kroppslig_laring",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_04",
+          "claim_basis": "Kroppsbevegelser gjennom kulene og svingene gir fart.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_kroppsbevegelser_gjennom_fa7dc00d95",
+          "knowledge_unit_ids": [
+            "ku_sport_kroppsbevegelser_gjennom_fa7dc00d95"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_05",
+          "quiz_id": "sport_voldslokka_pumptrack_set_1_q5",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvilken kombinasjon av brukere er banen tilpasset?",
+          "options": [
+            "Bare landeveissykler og rulleski",
+            "Bare BMX og motorsykler",
+            "Sykkel, sparkesykkel, skateboard og rulleskøyter",
+            "Bare skøyter og ski"
+          ],
+          "answer": "Sykkel, sparkesykkel, skateboard og rulleskøyter",
+          "answerIndex": 2,
+          "knowledge": "Flere former for aktivitet på hjul deler anlegget.",
+          "explanation": "Flere former for aktivitet på hjul deler anlegget.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_sport_breddeidrett",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_05",
+          "claim_basis": "Flere former for aktivitet på hjul deler anlegget.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_flere_former_for_aktivit_c22b954d64",
+          "knowledge_unit_ids": [
+            "ku_sport_flere_former_for_aktivit_c22b954d64"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_06",
+          "quiz_id": "sport_voldslokka_pumptrack_set_1_q6",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hva er den viktigste målgruppen etter skoletid?",
+          "options": [
+            "Bare profesjonelle seniorutøvere",
+            "Bare barn som ennå ikke kan sykle",
+            "Bare tilreisende konkurranselag",
+            "Barn og unge"
+          ],
+          "answer": "Barn og unge",
+          "answerIndex": 3,
+          "knowledge": "Lavterskeltilbud til barn og unge er hovedbegrunnelsen.",
+          "explanation": "Lavterskeltilbud til barn og unge er hovedbegrunnelsen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_sport_breddeidrett",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_06",
+          "claim_basis": "Lavterskeltilbud til barn og unge er hovedbegrunnelsen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_lavterskeltilbud_til_bar_8c7af2333a",
+          "knowledge_unit_ids": [
+            "ku_sport_lavterskeltilbud_til_bar_8c7af2333a"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_07",
+          "quiz_id": "sport_voldslokka_pumptrack_set_1_q7",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hva sier banereglene om motorbruk?",
+          "options": [
+            "Motor er forbudt",
+            "Motor er tillatt i helgene",
+            "Motor er tillatt med klubbmedlemskap",
+            "Motor kreves for å delta"
+          ],
+          "answer": "Motor er forbudt",
+          "answerIndex": 0,
+          "knowledge": "Banereglene forbyr motor.",
+          "explanation": "Banereglene forbyr motor.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_sport_regler_spillrom",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_07",
+          "claim_basis": "Banereglene forbyr motor.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_banereglene_forbyr_motor_737d9feb0a",
+          "knowledge_unit_ids": [
+            "ku_sport_banereglene_forbyr_motor_737d9feb0a"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "sport_voldslokka_pumptrack_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "level": 2,
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_voldslokka_pumptrack_quiz_08",
+        "claim_voldslokka_pumptrack_quiz_09",
+        "claim_voldslokka_pumptrack_quiz_10",
+        "claim_voldslokka_pumptrack_quiz_11",
+        "claim_voldslokka_pumptrack_quiz_12",
+        "claim_voldslokka_pumptrack_quiz_13",
+        "claim_voldslokka_pumptrack_quiz_14"
+      ],
+      "title": "Utforming, sambruk og sikkerhet",
+      "questions": [
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_08",
+          "quiz_id": "sport_voldslokka_pumptrack_set_2_q1",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvilken kjøreretning angis i banereglene?",
+          "options": [
+            "Med klokken",
+            "Mot klokken",
+            "Begge retninger samtidig",
+            "Vekslende retning hver runde"
+          ],
+          "answer": "Mot klokken",
+          "answerIndex": 1,
+          "knowledge": "Alle skal følge kjøreretningen mot klokken.",
+          "explanation": "Alle skal følge kjøreretningen mot klokken.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_sport_regler_spillrom",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_08",
+          "claim_basis": "Alle skal følge kjøreretningen mot klokken.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_alle_skal_f_lge_kj_reret_7de766b585",
+          "knowledge_unit_ids": [
+            "ku_sport_alle_skal_f_lge_kj_reret_7de766b585"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_09",
+          "quiz_id": "sport_voldslokka_pumptrack_set_2_q2",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvor skal publikum og foreldre stå?",
+          "options": [
+            "På toppen av kulene",
+            "Midt i svingene",
+            "Utenfor banen",
+            "På kjøreflaten ved innkjøringen"
+          ],
+          "answer": "Utenfor banen",
+          "answerIndex": 2,
+          "knowledge": "Reglene ber foreldre og publikum holde seg utenfor banen.",
+          "explanation": "Reglene ber foreldre og publikum holde seg utenfor banen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_sport_regler_spillrom",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_09",
+          "claim_basis": "Reglene ber foreldre og publikum holde seg utenfor banen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_reglene_ber_foreldre_og__29e0d9b1a9",
+          "knowledge_unit_ids": [
+            "ku_sport_reglene_ber_foreldre_og__29e0d9b1a9"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_10",
+          "quiz_id": "sport_voldslokka_pumptrack_set_2_q3",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvilke finansieringskilder oppgir klubben?",
+          "options": [
+            "Bare medlemskontingent og billettinntekter",
+            "Bare tilskudd fra Norges Cykleforbund",
+            "Bare et kommersielt sponsorat fra sykkelbransjen",
+            "Sparebankstiftelsen, spillemidler og kommunalt tilskudd"
+          ],
+          "answer": "Sparebankstiftelsen, spillemidler og kommunalt tilskudd",
+          "answerIndex": 3,
+          "knowledge": "Klubben nevner stiftelsesmidler, spillemidler og kommunalt tilskudd.",
+          "explanation": "Klubben nevner stiftelsesmidler, spillemidler og kommunalt tilskudd.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_sport_frivillighet_dugnad",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_10",
+          "claim_basis": "Klubben nevner stiftelsesmidler, spillemidler og kommunalt tilskudd.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_klubben_nevner_stiftelse_455f53cb29",
+          "knowledge_unit_ids": [
+            "ku_sport_klubben_nevner_stiftelse_455f53cb29"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_11",
+          "quiz_id": "sport_voldslokka_pumptrack_set_2_q4",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvem bygde pumptracken på Voldsløkka?",
+          "options": [
+            "Betongpark/Shapers",
+            "Jernbaneverket",
+            "Norges Skiforbund",
+            "Sporveien"
+          ],
+          "answer": "Betongpark/Shapers",
+          "answerIndex": 0,
+          "knowledge": "Betongpark/Shapers sto for byggingen av den asfalterte banen.",
+          "explanation": "Betongpark/Shapers sto for byggingen av den asfalterte banen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "opening",
+            "builder"
+          ],
+          "source_urls": [
+            "https://sageneif.no/nyheter/voldslokka-pumptrack-er-na-apen",
+            "https://www.shapers.no/prosjekter/oslo-voldslokka"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_11",
+          "claim_basis": "Betongpark/Shapers sto for byggingen av den asfalterte banen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_betongpark_shapers_sto_f_d7c45802f9",
+          "knowledge_unit_ids": [
+            "ku_sport_betongpark_shapers_sto_f_d7c45802f9"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_12",
+          "quiz_id": "sport_voldslokka_pumptrack_set_2_q5",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvem krediterer Shapers for å ha designet pumptracken?",
+          "options": [
+            "Nico Serey",
+            "Janis Melnis",
+            "Georg Andreas Bull",
+            "Arnstein Arneberg"
+          ],
+          "answer": "Janis Melnis",
+          "answerIndex": 1,
+          "knowledge": "Shapers krediterer Janis Melnis som designer av anlegget.",
+          "explanation": "Shapers krediterer Janis Melnis som designer av anlegget.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "builder"
+          ],
+          "source_urls": [
+            "https://www.shapers.no/prosjekter/oslo-voldslokka"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_12",
+          "claim_basis": "Shapers krediterer Janis Melnis som designer av anlegget.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_shapers_krediterer_janis_58cd3a3e14",
+          "knowledge_unit_ids": [
+            "ku_sport_shapers_krediterer_janis_58cd3a3e14"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_13",
+          "quiz_id": "sport_voldslokka_pumptrack_set_2_q6",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvorfor er de forskjellige linjene i banen viktige for kjøringen?",
+          "options": [
+            "Alle må holde samme fart hele tiden",
+            "Banen er ment kun for motorsport",
+            "Kuler, svinger og linjevalg gir flere måter å bevege seg gjennom løypen på",
+            "Alle må kjøre rett fram på flat asfalt"
+          ],
+          "answer": "Kuler, svinger og linjevalg gir flere måter å bevege seg gjennom løypen på",
+          "answerIndex": 2,
+          "knowledge": "Shapers beskriver et 1500 m² stort anlegg med flere linjevalg, hopp og doserte svinger.",
+          "explanation": "Shapers beskriver et 1500 m² stort anlegg med flere linjevalg, hopp og doserte svinger.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_sport_kroppslig_laring",
+          "source": [
+            "builder"
+          ],
+          "source_urls": [
+            "https://www.shapers.no/prosjekter/oslo-voldslokka"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_13",
+          "claim_basis": "Shapers beskriver et 1500 m² stort anlegg med flere linjevalg, hopp og doserte svinger.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_shapers_beskriver_et_150_c455abe5cd",
+          "knowledge_unit_ids": [
+            "ku_sport_shapers_beskriver_et_150_c455abe5cd"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_14",
+          "quiz_id": "sport_voldslokka_pumptrack_set_2_q7",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvorfor anbefaler Sagene IF at helt ferske syklister øver et annet sted først?",
+          "options": [
+            "Banen er bare for konkurranser",
+            "Det er forbudt å lære nye triks",
+            "Asfalt fungerer ikke for sykler",
+            "Brukerne bør mestre grunnleggende kontroll før de deler en trafikkert bane"
+          ],
+          "answer": "Brukerne bør mestre grunnleggende kontroll før de deler en trafikkert bane",
+          "answerIndex": 3,
+          "knowledge": "Klubben understreker at brukerne må ha kontroll på utstyret og bør lære basisteknikk et roligere sted.",
+          "explanation": "Klubben understreker at brukerne må ha kontroll på utstyret og bør lære basisteknikk et roligere sted.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_sport_breddeidrett",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_14",
+          "claim_basis": "Klubben understreker at brukerne må ha kontroll på utstyret og bør lære basisteknikk et roligere sted.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_klubben_understreker_at__87839d9dfc",
+          "knowledge_unit_ids": [
+            "ku_sport_klubben_understreker_at__87839d9dfc"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "sport_voldslokka_pumptrack_set_3",
+      "order": 3,
+      "phase": "final",
+      "level": 3,
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_voldslokka_pumptrack_quiz_15",
+        "claim_voldslokka_pumptrack_quiz_16",
+        "claim_voldslokka_pumptrack_quiz_17",
+        "claim_voldslokka_pumptrack_quiz_18",
+        "claim_voldslokka_pumptrack_quiz_19",
+        "claim_voldslokka_pumptrack_quiz_20",
+        "claim_voldslokka_pumptrack_quiz_21"
+      ],
+      "title": "Dugnad, læring og regler",
+      "questions": [
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_15",
+          "quiz_id": "sport_voldslokka_pumptrack_set_3_q1",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvorfor setter Sagene IF opp ulike banetider for brukergrupper?",
+          "options": [
+            "For å skape tryggere sambruk ved ulik fart og ferdighet",
+            "For å forby alle voksne",
+            "Fordi banen ikke kan brukes etter skoletid",
+            "For å stenge hele banen i helgene"
+          ],
+          "answer": "For å skape tryggere sambruk ved ulik fart og ferdighet",
+          "answerIndex": 0,
+          "knowledge": "Banetider gir grupper med ulike ferdighetsnivåer bedre mulighet til trygg bruk.",
+          "explanation": "Banetider gir grupper med ulike ferdighetsnivåer bedre mulighet til trygg bruk.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_regler_spillrom",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_15",
+          "claim_basis": "Banetider gir grupper med ulike ferdighetsnivåer bedre mulighet til trygg bruk.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_banetider_gir_grupper_me_fa5864267b",
+          "knowledge_unit_ids": [
+            "ku_sport_banetider_gir_grupper_me_fa5864267b"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_16",
+          "quiz_id": "sport_voldslokka_pumptrack_set_3_q2",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvorfor ber klubben brukerne holde seg unna gresset ved banen?",
+          "options": [
+            "Fordi gresset er for motorsport",
+            "Fordi slitasje er kostbar å reparere",
+            "Fordi alle må hoppe gjennom gresset",
+            "Fordi dette er et separat skianlegg"
+          ],
+          "answer": "Fordi slitasje er kostbar å reparere",
+          "answerIndex": 1,
+          "knowledge": "Sagene IF ber brukerne skåne gresset, som slites raskt og koster penger å utbedre.",
+          "explanation": "Sagene IF ber brukerne skåne gresset, som slites raskt og koster penger å utbedre.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_frivillighet_dugnad",
+          "source": [
+            "club",
+            "opening"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack",
+            "https://sageneif.no/nyheter/voldslokka-pumptrack-er-na-apen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_16",
+          "claim_basis": "Sagene IF ber brukerne skåne gresset, som slites raskt og koster penger å utbedre.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_sagene_if_ber_brukerne_s_9cf42ea26b",
+          "knowledge_unit_ids": [
+            "ku_sport_sagene_if_ber_brukerne_s_9cf42ea26b"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_17",
+          "quiz_id": "sport_voldslokka_pumptrack_set_3_q3",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hva viser at frivillig arbeid fortsatt trengs etter at asfalten var ferdig?",
+          "options": [
+            "At ingen får bruke banen",
+            "At banen skal flyttes til en annen by",
+            "At gjerder, sykkelstativer og vedlikehold fortsatt krever arbeid",
+            "At alle banereglene ble opphevet"
+          ],
+          "answer": "At gjerder, sykkelstativer og vedlikehold fortsatt krever arbeid",
+          "answerIndex": 2,
+          "knowledge": "Klubben etterlyser fortsatt frivillige til vedlikehold, sykkelstativ og grøntområder.",
+          "explanation": "Klubben etterlyser fortsatt frivillige til vedlikehold, sykkelstativ og grøntområder.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_frivillighet_dugnad",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_17",
+          "claim_basis": "Klubben etterlyser fortsatt frivillige til vedlikehold, sykkelstativ og grøntområder.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_sport_klubben_etterlyser_forts_08d4dd4cbd",
+          "knowledge_unit_ids": [
+            "ku_sport_klubben_etterlyser_forts_08d4dd4cbd"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_18",
+          "quiz_id": "sport_voldslokka_pumptrack_set_3_q4",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hva gjorde samarbeidet mellom frivillige og offentlige aktører mulig på Voldsløkka?",
+          "options": [
+            "At idrettsparken ble privatisert",
+            "At alle idretter måtte konkurrere på samme bane",
+            "At motorisert kjøring kunne innføres",
+            "At lokalt initiativ ble kombinert med avtaler og offentlig støtte"
+          ],
+          "answer": "At lokalt initiativ ble kombinert med avtaler og offentlig støtte",
+          "answerIndex": 3,
+          "knowledge": "Sagene IFs frivillige drev fram prosjektet med støtte og avklaringer fra offentlige og private aktører. Putnams perspektiv på samarbeid hjelper å se dette som sosial organisering.",
+          "explanation": "Sagene IFs frivillige drev fram prosjektet med støtte og avklaringer fra offentlige og private aktører. Putnams perspektiv på samarbeid hjelper å se dette som sosial organisering.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_sport_frivillighet_dugnad",
+          "source": [
+            "club",
+            "idrettspark"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack",
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_18",
+          "claim_basis": "Sagene IFs frivillige drev fram prosjektet med støtte og avklaringer fra offentlige og private aktører. Putnams perspektiv på samarbeid hjelper å se dette som sosial organisering.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "topic_hook_id": "frivillighet_og_dugnad",
+          "thinker_id": "robert_putnam",
+          "method_id": "met_sport_frivillighetsanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "theory_ref": {
+            "topic_hook_id": "frivillighet_og_dugnad",
+            "thinker_id": "robert_putnam",
+            "work": "Bowling Alone",
+            "why_it_helps": "Spørsmålet kombinerer dokumentert stedlig praksis med et faglig perspektiv på bevegelse, organisering eller sambruk."
+          },
+          "primary_knowledge_unit_id": "ku_sport_sagene_ifs_frivillige_dr_58028bc466",
+          "knowledge_unit_ids": [
+            "ku_sport_sagene_ifs_frivillige_dr_58028bc466",
+            "ku_sport_putnams_perspektiv_pa_sa_656247bd61"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_19",
+          "quiz_id": "sport_voldslokka_pumptrack_set_3_q5",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvordan kan pumptracken være lavterskel og samtidig kreve kjøreferdigheter?",
+          "options": [
+            "Mange kan delta når de behersker utstyret, men banen er ikke grunnopplæring for helt nye",
+            "Det finnes ingen sikkerhetsregler",
+            "Bare profesjonelle får adgang",
+            "Den er en motorbane med medlemsplikt"
+          ],
+          "answer": "Mange kan delta når de behersker utstyret, men banen er ikke grunnopplæring for helt nye",
+          "answerIndex": 0,
+          "knowledge": "Klubben ønsker mange brukere, men krever grunnleggende kontroll. Breddeidrett dreier seg også om tilpasning av aktivitetsnivå og risiko.",
+          "explanation": "Klubben ønsker mange brukere, men krever grunnleggende kontroll. Breddeidrett dreier seg også om tilpasning av aktivitetsnivå og risiko.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_sport_breddeidrett",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_19",
+          "claim_basis": "Klubben ønsker mange brukere, men krever grunnleggende kontroll. Breddeidrett dreier seg også om tilpasning av aktivitetsnivå og risiko.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "topic_hook_id": "breddeidrett",
+          "thinker_id": "robert_putnam",
+          "method_id": "met_sport_breddeidrettsanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "theory_ref": {
+            "topic_hook_id": "breddeidrett",
+            "thinker_id": "robert_putnam",
+            "work": "Bowling Alone",
+            "why_it_helps": "Spørsmålet kombinerer dokumentert stedlig praksis med et faglig perspektiv på bevegelse, organisering eller sambruk."
+          },
+          "primary_knowledge_unit_id": "ku_sport_klubben_nsker_mange_bruk_a02e556bcc",
+          "knowledge_unit_ids": [
+            "ku_sport_klubben_nsker_mange_bruk_a02e556bcc",
+            "ku_sport_breddeidrett_dreier_seg__50907571f1"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_20",
+          "quiz_id": "sport_voldslokka_pumptrack_set_3_q6",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hva bør observeres for å forstå hvordan pumping skaper fart?",
+          "options": [
+            "Bare klubbens logo",
+            "Hvordan kroppens tyngdepunkt og timing brukes gjennom kuler og doserte svinger",
+            "Hvor mange parkeringsplasser som finnes",
+            "Hvor mange sykler som selges i området"
+          ],
+          "answer": "Hvordan kroppens tyngdepunkt og timing brukes gjennom kuler og doserte svinger",
+          "answerIndex": 1,
+          "knowledge": "Kroppens bevegelser og rytme i banen skaper fart. Marcel Mauss' kroppsteknikk-begrep kan hjelpe til med å beskrive den innlærte bevegelsen.",
+          "explanation": "Kroppens bevegelser og rytme i banen skaper fart. Marcel Mauss' kroppsteknikk-begrep kan hjelpe til med å beskrive den innlærte bevegelsen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_sport_kroppslig_laring",
+          "source": [
+            "club",
+            "builder"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack",
+            "https://www.shapers.no/prosjekter/oslo-voldslokka"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_20",
+          "claim_basis": "Kroppens bevegelser og rytme i banen skaper fart. Marcel Mauss' kroppsteknikk-begrep kan hjelpe til med å beskrive den innlærte bevegelsen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "topic_hook_id": "kroppslig_laring",
+          "thinker_id": "marcel_mauss",
+          "method_id": "met_sport_bevegelsesanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "theory_ref": {
+            "topic_hook_id": "kroppslig_laring",
+            "thinker_id": "marcel_mauss",
+            "work": "Techniques of the Body",
+            "why_it_helps": "Spørsmålet kombinerer dokumentert stedlig praksis med et faglig perspektiv på bevegelse, organisering eller sambruk."
+          },
+          "primary_knowledge_unit_id": "ku_sport_kroppens_bevegelser_og_r_178d33e007",
+          "knowledge_unit_ids": [
+            "ku_sport_kroppens_bevegelser_og_r_178d33e007",
+            "ku_sport_marcel_mauss_kroppstekni_b65ddede8e"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "voldslokka_pumptrack_aav_quiz_21",
+          "quiz_id": "sport_voldslokka_pumptrack_set_3_q7",
+          "categoryId": "sport",
+          "targetId": "voldslokka_pumptrack",
+          "placeId": "voldslokka_pumptrack",
+          "question_scope": "place",
+          "question": "Hvorfor har pumptracken både felles kjøreretning og motorforbud?",
+          "options": [
+            "For å sikre at alle konkurrerer",
+            "For å innføre motorløp på kveldstid",
+            "For mer forutsigbar og trygg sambruk av ulike aktiviteter på hjul",
+            "For å oppmuntre til å kjøre mot strømmen"
+          ],
+          "answer": "For mer forutsigbar og trygg sambruk av ulike aktiviteter på hjul",
+          "answerIndex": 2,
+          "knowledge": "Reglene legger til rette for tryggere sambruk. Caillois' perspektiv på lekens regler gir en inngang til hvordan fri aktivitet også har tydelige rammer.",
+          "explanation": "Reglene legger til rette for tryggere sambruk. Caillois' perspektiv på lekens regler gir en inngang til hvordan fri aktivitet også har tydelige rammer.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_sport_regler_spillrom",
+          "source": [
+            "club"
+          ],
+          "source_urls": [
+            "https://sageneif.no/anlegg/voldslokka-idrettspark-1/voldslokka-pumptrack"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_voldslokka_pumptrack_quiz_21",
+          "claim_basis": "Reglene legger til rette for tryggere sambruk. Caillois' perspektiv på lekens regler gir en inngang til hvordan fri aktivitet også har tydelige rammer.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "sport",
+            "voldslokka_pumptrack",
+            "oslo_aav_v1_20261027"
+          ],
+          "topic_hook_id": "regler_som_spillrom",
+          "thinker_id": "roger_caillois",
+          "method_id": "met_sport_regelanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "theory_ref": {
+            "topic_hook_id": "regler_som_spillrom",
+            "thinker_id": "roger_caillois",
+            "work": "Man, Play and Games",
+            "why_it_helps": "Spørsmålet kombinerer dokumentert stedlig praksis med et faglig perspektiv på bevegelse, organisering eller sambruk."
+          },
+          "primary_knowledge_unit_id": "ku_sport_reglene_legger_til_rette_cff0941046",
+          "knowledge_unit_ids": [
+            "ku_sport_reglene_legger_til_rette_cff0941046",
+            "ku_sport_caillois_perspektiv_pa_l_4430f998f1"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}

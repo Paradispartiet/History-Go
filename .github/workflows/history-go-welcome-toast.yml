@@ -1,0 +1,49 @@
+name: History Go welcome and toast regression
+
+on:
+  pull_request:
+    paths:
+      - 'js/app.js'
+      - 'js/ui/onboarding-welcome.js'
+      - 'js/ui/psychology-room-entry.js'
+      - 'js/stories/stories_loader.js'
+      - 'js/ui/toast.js'
+      - 'js/progress/HGDailyProgressToast.js'
+      - 'css/onboarding.css'
+      - 'tests/history-go-toast-onboarding-handoff.test.js'
+      - 'tests/history-go-onboarding-destination-links.test.js'
+      - 'tests/history-go-daily-progress-toast.test.js'
+      - 'tests/civication-history-go-mode.test.js'
+      - 'tests/civication-history-go-task-bridge.test.js'
+      - 'tests/civication-history-go-mission-badge-points.test.js'
+      - 'js/Civication/systems/civicationHistoryGoTaskBridge.js'
+      - 'tests/onboarding-touch-guard.test.js'
+      - '.github/workflows/history-go-welcome-toast.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  targeted-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify onboarding and Civication toast behavior
+        run: |
+          node tests/history-go-toast-onboarding-handoff.test.js
+          node tests/history-go-onboarding-destination-links.test.js
+          node --check js/ui/onboarding-welcome.js
+          node --check js/ui/psychology-room-entry.js
+          node --check js/stories/stories_loader.js
+          node tests/history-go-daily-progress-toast.test.js
+          node tests/onboarding-touch-guard.test.js
+          node tests/civication-history-go-mode.test.js
+          node tests/civication-history-go-mission-badge-points.test.js
+          node tests/civication-history-go-task-bridge.test.js

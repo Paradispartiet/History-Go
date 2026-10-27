@@ -78,6 +78,12 @@ test("TypeScript source og committed runtime-builds inneholder LOD v2", () => {
   }
 });
 
+test("kartets område- og detaljetiketter vises i blokkbokstaver", () => {
+  for (const [name, code] of [["source", source], ["legacy", legacy], ["dist", dist]]) {
+    assert.match(code, /function getPlaceLabelLayout\(isArea = false\)[\s\S]*?"text-transform": "uppercase"/, name + ": kartetiketter skal være store bokstaver");
+  }
+});
+
 test("detaljprikker beholdes sammen med stedsnavn og er mindre enn gammel profil", () => {
   const dotFn = source.match(/function getPlaceDotPaint\(isArea = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
   assert.ok(dotFn, "mangler getPlaceDotPaint");
@@ -113,7 +119,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261024-native-place-names1"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261027-uppercase-place-names1"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);

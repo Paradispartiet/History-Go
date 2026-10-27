@@ -147,7 +147,7 @@
     });
   }
 
-  function showUnlock(obj, kind) {
+  function showUnlock(obj, kind, onFinished) {
     const stack = ensureStack();
 
     const card = document.createElement("div");
@@ -185,11 +185,16 @@
     // Slide inn på neste frame
     requestAnimationFrame(() => card.classList.add("is-visible"));
 
+    let dismissed = false;
     function dismiss() {
-      if (!card.parentNode) return;
+      if (dismissed) return;
+      dismissed = true;
       card.classList.remove("is-visible");
       card.classList.add("is-leaving");
-      setTimeout(() => card.remove(), 250);
+      setTimeout(() => {
+        card.remove();
+        onFinished?.();
+      }, 250);
     }
 
     card.querySelector(".nature-unlock-close").addEventListener("click", dismiss);
@@ -217,28 +222,34 @@
     for (const id of flora) {
       if (shown >= MAX) break;
       const obj = findEntry(id, "flora") || { id, title: id };
-      showUnlock(obj, "flora");
+      if (window.HGToastRuntime?.enqueueReward) window.HGToastRuntime.enqueueReward(done => showUnlock(obj, "flora", done));
+      else showUnlock(obj, "flora");
       shown++;
     }
     for (const id of fauna) {
       if (shown >= MAX) break;
       const obj = findEntry(id, "fauna") || { id, title: id };
-      showUnlock(obj, "fauna");
+      if (window.HGToastRuntime?.enqueueReward) window.HGToastRuntime.enqueueReward(done => showUnlock(obj, "fauna", done));
+      else showUnlock(obj, "fauna");
       shown++;
     }
 
     const total = flora.length + fauna.length;
     if (total > MAX) {
-      const stack = ensureStack();
-      const more = document.createElement("div");
-      more.className = "nature-unlock-card is-more";
-      more.innerHTML = `<div class="nature-unlock-body"><div class="nature-unlock-title">${escapeHtml(tfUI("ui.nature.unlock.moreCollectedCount", "+{count} til samlet", { count: total - MAX }))}</div></div>`;
-      stack.appendChild(more);
-      requestAnimationFrame(() => more.classList.add("is-visible"));
-      setTimeout(() => {
-        more.classList.remove("is-visible");
-        setTimeout(() => more.remove(), 250);
-      }, AUTO_DISMISS_MS);
+      const showSummary = (done) => {
+        const stack = ensureStack();
+        const more = document.createElement("div");
+        more.className = "nature-unlock-card is-more";
+        more.innerHTML = `<div class="nature-unlock-body"><div class="nature-unlock-title">${escapeHtml(tfUI("ui.nature.unlock.moreCollectedCount", "+{count} til samlet", { count: total - MAX }))}</div></div>`;
+        stack.appendChild(more);
+        requestAnimationFrame(() => more.classList.add("is-visible"));
+        setTimeout(() => {
+          more.classList.remove("is-visible");
+          setTimeout(() => { more.remove(); done?.(); }, 250);
+        }, AUTO_DISMISS_MS);
+      };
+      if (window.HGToastRuntime?.enqueueReward) window.HGToastRuntime.enqueueReward(showSummary);
+      else showSummary();
     }
   }
 

@@ -60,6 +60,7 @@
       visitedPlaces: asSet(safeParse(localStorage.getItem("visited_places"), [])),
       unlockByQuiz: readStore("hg_unlocks_v1", "byQuiz"),
       quizProgress: safeParse(localStorage.getItem("quiz_progress"), {}) || {},
+      quizSets: safeParse(localStorage.getItem("hg_quiz_sets_v1"), {}) || {},
       merits: safeParse(localStorage.getItem("merits_by_category"), {}) || {},
       debateById: readStore("hg_debate_log_v1", "byId"),
       debateByConflict: readStore("hg_debate_log_v1", "byConflict"),
@@ -86,10 +87,11 @@
     return !!state.unlockByQuiz[id];
   }
 
-  function quizHasProgress(state, quizId) {
+  function completedQuizSet(state, quizId) {
     const id = String(quizId || "").trim();
-    if (!id) return false;
-    return !!state.quizProgress[id] || quizIsUnlocked(state, quizId);
+    if (!id) return null;
+    const result = state.quizSets?.[id];
+    return result?.completed === true ? result : null;
   }
 
   function categoryHasPoints(state, categoryId) {
@@ -157,11 +159,14 @@
         if (quizIsUnlocked(state, p.quiz_id)) {
           return { source: "unlock_index", correct: true };
         }
-        if (quizHasProgress(state, p.quiz_id)) {
-          return { source: "quiz_progress", correct: false };
-        }
-        if (categoryHasPoints(state, p.category_id)) {
-          return { source: "merits", correct: true };
+        // Only exact, persisted results for the requested quiz count.
+        // quiz_progress is keyed by category, and merits can come from other quizzes.
+        const result = completedQuizSet(state, p.quiz_id);
+        if (result) {
+          return {
+            source: "quiz_sets",
+            correct: Number(result.score) === Number(result.total) && Number(result.total) > 0
+          };
         }
         return null;
       }

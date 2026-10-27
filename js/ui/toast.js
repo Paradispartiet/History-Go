@@ -1,87 +1,99 @@
+// A single FIFO queue for ordinary messages, including messages emitted during boot.
+// Showing a second toast must never overwrite the first before its own timeout expires.
 const HG_TOAST_READY_DELAY_MS = 260;
-const HG_TOAST_QUEUE_STAGGER_MS = 350;
+const HG_TOAST_NEXT_DELAY_MS = 120;
 const pendingToasts = [];
 let toastReadyListenerBound = false;
-let toastQueueFlushing = false;
+let toastActive = false;
+let toastQueueTimer = null;
 
 function getToastDuration(msg) {
-  const text = String(msg || "").trim();
-  const len = text.length;
-
-  if (len <= 20) return 1400;
-  if (len <= 55) return 2300;
-  if (len <= 110) return 3600;
+  const len = String(msg || "").trim().length;
+  if (len <= 20) return 1800;
+  if (len <= 55) return 2600;
+  if (len <= 110) return 3800;
   return 5200;
 }
 
 function ensureToastElement() {
   let toast = window.el?.toast || document.getElementById("toast");
-
   if (!toast) {
     toast = document.createElement("div");
     toast.id = "toast";
     document.body?.appendChild(toast);
   }
-
   toast.setAttribute("role", "status");
   toast.setAttribute("aria-live", "polite");
   toast.setAttribute("aria-atomic", "true");
-
   window.el = window.el || {};
   window.el.toast = toast;
-
   return toast;
 }
 
 function isWaitingForIndexAppReady() {
-  return !!document.body?.classList.contains("hg-app")
+  if (!document.body) return true;
+  return document.body.classList.contains("hg-app")
     && window.__HG_APP_READY__ !== true
-    && !document.body?.classList.contains("hg-loaded");
+    && !document.body.classList.contains("hg-loaded");
+}
+
+function onboardingBlocksToasts() {
+  const modal = document.getElementById("hgOnboardingModal");
+  if (modal && modal.getAttribute("aria-hidden") !== "true") return true;
+  // An inbound Civication mission bypasses first-visit onboarding.
+  // Do not let the missing welcome flag block notifications forever.
+  try {
+    const mission = JSON.parse(localStorage.getItem("hg_civication_mode_v1") || "null");
+    if (mission && mission.active === true) return false;
+  } catch {}
+  // A first-visit modal is scheduled shortly after appReady. Do not consume
+  // queued messages invisibly behind it before it has had time to open.
+  try {
+    const key = window.HGOnboarding?.FLAG_KEY;
+    return !!key && localStorage.getItem(key) !== "1";
+  } catch {
+    return false;
+  }
 }
 
 function normalizeToastArgs(ms, options) {
   if (ms && typeof ms === "object" && !Array.isArray(ms)) {
     return { ms: null, options: ms };
   }
-
-  return {
-    ms,
-    options: options && typeof options === "object" ? options : {}
-  };
+  return { ms, options: options && typeof options === "object" ? options : {} };
 }
 
 function applyToastPresentation(toast, closeBtn, options = {}) {
   const compact = options.compact === true;
-
   if (compact) {
     toast.style.width = "auto";
-    toast.style.maxWidth = "min(420px, calc(100vw - 32px))";
+    toast.style.maxWidth = "min(420px, calc(100vw - 24px))";
     toast.style.padding = "12px 18px";
-    toast.style.borderRadius = "18px";
-    toast.style.fontSize = "15px";
-    toast.style.fontWeight = "700";
-    toast.style.textAlign = "center";
+    toast.style.borderRadius = "14px";
     closeBtn.style.display = "none";
     return;
   }
-
-  toast.style.removeProperty("width");
-  toast.style.removeProperty("max-width");
-  toast.style.removeProperty("padding");
-  toast.style.removeProperty("border-radius");
-  toast.style.removeProperty("font-size");
-  toast.style.removeProperty("font-weight");
-  toast.style.removeProperty("text-align");
+  for (const property of ["width", "max-width", "padding", "border-radius"]) {
+    toast.style.removeProperty(property);
+  }
   closeBtn.style.removeProperty("display");
+}
+
+function finishToast() {
+  const t = window.el?.toast || document.getElementById("toast");
+  if (t) {
+    clearTimeout(t._hide);
+    t._hide = null;
+    t.style.display = "none";
+  }
+  toastActive = false;
+  flushPendingToasts(HG_TOAST_NEXT_DELAY_MS);
 }
 
 function showToastNow(msg, ms = null, options = {}) {
   const tt = (key, fallback) => window.HG_I18N?.t?.(key, fallback) || fallback;
-  const t = /** @type {HTMLElement & { _hide?: any }} */ (ensureToastElement());
-
+  const t = ensureToastElement();
   clearTimeout(t._hide);
-  t._hide = null;
-
   t.innerHTML = "";
 
   const closeBtn = document.createElement("button");
@@ -89,16 +101,11 @@ function showToastNow(msg, ms = null, options = {}) {
   closeBtn.className = "toast-close";
   closeBtn.setAttribute("aria-label", tt("ui.toast.closeMessage", "Lukk melding"));
   closeBtn.textContent = "×";
-  closeBtn.addEventListener("click", () => {
-    clearTimeout(t._hide);
-    t._hide = null;
-    t.style.display = "none";
-  });
+  closeBtn.addEventListener("click", finishToast);
 
   const body = document.createElement("div");
   body.className = "toast-body";
   body.textContent = String(msg || "");
-
   t.appendChild(closeBtn);
   t.appendChild(body);
 
@@ -110,61 +117,79 @@ function showToastNow(msg, ms = null, options = {}) {
   t.style.display = "block";
 
   const duration = Number.isFinite(ms) ? Number(ms) : getToastDuration(msg);
-
-  if (duration > 0) {
-    t._hide = setTimeout(() => {
-      t.style.display = "none";
-    }, duration);
-  }
-}
-
-function flushPendingToasts() {
-  if (toastQueueFlushing || !pendingToasts.length) return;
-  toastQueueFlushing = true;
-
-  const queue = pendingToasts.splice(0);
-  queue.forEach((item, index) => {
-    setTimeout(() => {
-      showToastNow(item.msg, item.ms, item.options);
-      if (index === queue.length - 1) toastQueueFlushing = false;
-    }, HG_TOAST_READY_DELAY_MS + index * HG_TOAST_QUEUE_STAGGER_MS);
-  });
+  if (duration > 0) t._hide = setTimeout(finishToast, duration);
 }
 
 function ensureToastReadyListener() {
   if (toastReadyListenerBound) return;
   toastReadyListenerBound = true;
+  window.addEventListener("hg:appReady", () => {
+    toastReadyListenerBound = false;
+    flushPendingToasts();
+  }, { once: true });
+}
 
-  window.addEventListener("hg:appReady", flushPendingToasts, { once: true });
+function flushPendingToasts(delay = HG_TOAST_READY_DELAY_MS) {
+  if (toastActive || toastQueueTimer !== null || !pendingToasts.length) return;
+  if (isWaitingForIndexAppReady()) {
+    ensureToastReadyListener();
+    return;
+  }
+  if (onboardingBlocksToasts()) return;
+
+  toastQueueTimer = setTimeout(() => {
+    toastQueueTimer = null;
+    if (isWaitingForIndexAppReady() || onboardingBlocksToasts()) {
+      flushPendingToasts();
+      return;
+    }
+    const item = pendingToasts.shift();
+    if (!item) return;
+    toastActive = true;
+    if (item.kind === "reward") {
+      try { item.render(finishToast); }
+      catch (error) {
+        console.error("[HGToastRuntime] Kunne ikke vise belønning", error);
+        finishToast();
+      }
+      return;
+    }
+    showToastNow(item.msg, item.ms, item.options);
+  }, delay);
 }
 
 function showToast(msg, ms = null, options = null) {
   const normalized = normalizeToastArgs(ms, options);
-
-  if (isWaitingForIndexAppReady()) {
-    pendingToasts.push({
-      msg,
-      ms: normalized.ms,
-      options: normalized.options
-    });
-    ensureToastReadyListener();
-    return;
-  }
-
-  showToastNow(msg, normalized.ms, normalized.options);
+  pendingToasts.push({ msg, ms: normalized.ms, options: normalized.options });
+  flushPendingToasts();
 }
+
+// Reward cards use the same display slot and sequence as ordinary messages.
+// The reward renderer calls done() only after its card has left the screen.
+function enqueueReward(render) {
+  if (typeof render !== "function") return false;
+  pendingToasts.push({ kind: "reward", render });
+  flushPendingToasts();
+  return true;
+}
+
+window.addEventListener?.("hg:onboardingClosed", () => flushPendingToasts());
+window.addEventListener?.("pageshow", () => flushPendingToasts());
 
 const earlyToastQueue = Array.isArray(window.__HG_EARLY_TOAST_QUEUE__)
   ? window.__HG_EARLY_TOAST_QUEUE__.splice(0)
   : [];
 
-// config.js installerer en tidlig bridge før app.js starter. Når den gamle
-// app-køen senere gjenoppretter bridgen, skal den fortsatt delegere hit i stedet
-// for å gjøre den virkelige toast-runtime utilgjengelig igjen.
+// The early config.js bridge must delegate to this runtime after boot.
 window.__HG_REAL_SHOW_TOAST__ = showToast;
 window.showToast = showToast;
 window.API = window.API || {};
 window.API.showToast = showToast;
+window.HGToastRuntime = {
+  getPendingCount: () => pendingToasts.length,
+  isShowing: () => toastActive,
+  enqueueReward
+};
 
 earlyToastQueue.forEach((args) => {
   if (Array.isArray(args)) showToast(...args);
@@ -181,7 +206,8 @@ earlyToastQueue.forEach((args) => {
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[c]);
   function norm(v) {
     if (!v || typeof v !== "object" || v.active === false) return null;
-    const ts = Number(v.started_ts || Date.parse(s(v.started_at)) || 0); if (ts && Date.now() - ts > 86400000) return null;
+    // An active Civication mission is explicit user state; it cannot vanish at a 24h TTL.
+    const ts = Number(v.started_ts || Date.parse(s(v.started_at)) || 0);
     const p = v.payload && typeof v.payload === "object" ? { ...v.payload } : {};
     const x = (k) => s(v[k] || p[k]);
     return { ...v, active:true, started_ts:ts||Date.now(), started_at:s(v.started_at)||new Date().toISOString(), title:x("title")||"Civication-oppdrag", description:x("description"), target_type:x("target_type"), target_id:x("target_id"), place_id:x("place_id"), person_id:x("person_id"), quiz_id:x("quiz_id"), category_id:x("category_id"), emne_id:x("emne_id"), debate_id:x("debate_id"), conflict_id:x("conflict_id"), unlock_id:x("unlock_id"), required_kind:x("required_kind"), completion_mode:x("completion_mode"), return_href:s(v.return_href)||"Civication.html", expanded:v.expanded===true, payload:p };
@@ -191,7 +217,7 @@ earlyToastQueue.forEach((args) => {
   function end() { try { localStorage.removeItem(KEY); } catch {} remove(); return true; }
   const sub = (k,n) => { const x=j(k,{}); return x&&typeof x[n]==="object"?x[n]:{}; };
   const set = (v) => new Set(Array.isArray(v)?v.map(s).filter(Boolean):Object.keys(v||{}).filter(k=>v[k]));
-  function state() { return { visitedPlaces:set(j("visited_places",[])), unlockByQuiz:sub("hg_unlocks_v1","byQuiz"), quizProgress:j("quiz_progress",{}), merits:j("merits_by_category",{}), readLeksikon:sub("hg_reads_v1","leksikon"), readStories:sub("hg_reads_v1","stories"), readPersons:sub("hg_reads_v1","persons"), debateById:sub("hg_debate_log_v1","byId"), debateByConflict:sub("hg_debate_log_v1","byConflict") }; }
+  function state() { return { visitedPlaces:set(j("visited_places",[])), unlockByQuiz:sub("hg_unlocks_v1","byQuiz"), quizProgress:j("quiz_progress",{}), quizSets:j("hg_quiz_sets_v1",{}), merits:j("merits_by_category",{}), readLeksikon:sub("hg_reads_v1","leksikon"), readStories:sub("hg_reads_v1","stories"), readPersons:sub("hg_reads_v1","persons"), debateById:sub("hg_debate_log_v1","byId"), debateByConflict:sub("hg_debate_log_v1","byConflict") }; }
   const has = (b,f,id) => { id=s(id); return !!(id && (b[id] || Object.values(b).some(r=>r&&f&&s(r[f])===id))); };
   function done(v, st=state()) {
     const x=norm(v); if(!x) return {completed:false,correct:false,source:null}; const q=(id)=>!!(s(id)&&st.unlockByQuiz[s(id)]), out=(ok,source,correct=ok)=>({completed:!!ok,correct:!!correct,source:ok?source:null}), m=x.completion_mode;
@@ -199,7 +225,22 @@ earlyToastQueue.forEach((args) => {
     if(x.target_type==="person") { if(m==="person_quiz") return out(q(x.quiz_id),"unlock_index"); return out(has(st.readPersons,null,x.person_id||x.target_id),"reads_person"); }
     if(x.target_type==="knowledge"&&m==="explore_category") return out(false,null);
     if(x.target_type==="knowledge"&&m==="badge_points") { const required=Number(x.required_points||x.payload.required_points),points=Number(st.merits?.[x.category_id]?.points||0); return out(!!x.category_id&&Number.isFinite(required)&&required>0&&points>=required,"merits"); }
-    if(x.target_type==="knowledge") { if(q(x.quiz_id)) return out(true,"unlock_index"); if(m==="quiz_completed"&&x.quiz_id&&st.quizProgress[x.quiz_id]) return out(true,"quiz_progress",false); if(m==="read_leksikon") return out(has(st.readLeksikon,"emneId",x.emne_id)||has(st.readLeksikon,"categoryId",x.category_id)||has(st.readLeksikon,null,x.target_id),"reads_leksikon"); return out(x.category_id&&Number(st.merits?.[x.category_id]?.points||0)>0,"merits"); }
+    if(x.target_type==="knowledge") {
+      if(m==="correct_answer") return out(q(x.quiz_id),"unlock_index");
+      if(m==="quiz_completed") {
+        if(q(x.quiz_id)) return out(true,"unlock_index");
+        const setResult = st.quizSets?.[x.quiz_id];
+        // quiz_progress is category-level, not proof that this exact quiz was completed.
+        // Likewise, unrelated points in the category cannot satisfy the task.
+        return out(setResult?.completed===true,"quiz_sets",
+          setResult?.completed===true && Number(setResult.score)===Number(setResult.total) && Number(setResult.total)>0);
+      }
+      if(m==="read_leksikon") return out(
+        has(st.readLeksikon,"emneId",x.emne_id) ||
+        has(st.readLeksikon,"categoryId",x.category_id) ||
+        has(st.readLeksikon,null,x.target_id), "reads_leksikon");
+      return out(x.category_id&&Number(st.merits?.[x.category_id]?.points||0)>0,"merits");
+    }
     if(x.target_type==="unlock") return out(q(x.unlock_id)||st.visitedPlaces.has(x.unlock_id),"unlock_index");
     if(x.target_type==="debate") { const ids=[x.debate_id,x.conflict_id,x.target_id].filter(Boolean), r=ids.map(id=>st.debateById[id]||st.debateById[st.debateByConflict[id]]).find(Boolean); return out(r&&(m==="position_chosen"?r.position:r.participated),"debate_log"); }
     return out(false,null);
@@ -213,11 +254,20 @@ earlyToastQueue.forEach((args) => {
   const card=()=>document.getElementById("placeCard")||document.querySelector(".place-card"), cardOpen=()=>{const c=card();return!!(c&&c.getAttribute("aria-hidden")!=="true")};
   const goPlace=(id)=>W.HGAppRouter?.toPlace?.(id)??(location.hash=`#/place/${encodeURIComponent(id)}`,true), goQuiz=(id)=>W.HGAppRouter?.toQuiz?.(id)??(location.hash=`#/quiz/${encodeURIComponent(id)}`,true);
   function primary(v){const x=norm(v);if(!x)return false;if(x.place_id)return goPlace(x.place_id);if(x.quiz_id)return goQuiz(x.quiz_id);if(x.debate_id||x.conflict_id)return W.HGAppRouter?.toDebate?.(x.debate_id||x.conflict_id)??false;return W.HGAppRouter?.toMap?.()??false;}
-  function back(){const x=get(),raw=s(x?.return_href)||"Civication.html",href=/^Civication\.html(?:[?#].*)?$/i.test(raw)?raw:"Civication.html";end();location.href=href;return true;}
-  function render(){if(typeof document==="undefined"||!document.body)return null;const x=get();if(!x){remove();return null;}css();const st=state(),d=done(x,st),p=progress(x,st),S=suggestions(x),first=S[0],label=s(x.role_label||x.life_role_label||x.role_id||x.life_role_id)||"oppdrag";let n=document.getElementById(ROOT);if(!n){n=document.createElement("aside");n.id=ROOT;n.setAttribute("aria-label","Civication-modus");document.body.appendChild(n);}n.classList.toggle("open",x.expanded&&!cardOpen());n.classList.toggle("pc",cardOpen());const rows=S.length?S.map(r=>`<button class="place" data-place="${esc(r.place.id)}"><span>${esc(r.place.name||r.place.title||r.place.id)}</span><span class="muted">${esc(fd(r.distance))}</span></button>`).join(""):`<div class="row"><span>Ingen sikre stedsforslag ennå</span><span class="muted">Bruk kartet</span></div>`,next=x.completion_mode==="explore_category"?(x.category_id?`Du har ${Number(st.merits?.[x.category_id]?.points||0)} poeng i ${x.category_id}. Se videre krav i Civication.`:"Utforsk History Go, og se livsposisjoner i Civication.") :x.completion_mode==="badge_points"?(()=>{const points=Number(st.merits?.[x.category_id]?.points||0),needed=Number(x.required_points||x.payload.required_points);return d.completed?`Du har ${points} av ${needed} poeng. Tilbake i Civication kan du velge livsposisjonen.`:`${points} av ${needed} poeng i ${x.category_id}. Ta relevante quizer i History Go.`;})():d.completed?"Oppgaven er registrert. Du kan gå tilbake til Civication.":first?`Neste relevante sted: ${s(first.place.name||first.place.title||first.place.id)}`:"Fortsett oppgaven i History Go.";n.innerHTML=`<div class="top"><button class="toggle" data-toggle><span class="mark">C</span><span class="copy"><small>Civication · ${esc(label)} · ${p.current}/${p.total}</small><strong>${d.completed?"✓ ":""}${esc(x.title)}</strong></span></button><button class="return" data-return>Tilbake til Civication</button></div><div class="body">${x.description?`<p>${esc(x.description)}</p>`:""}<div class="row"><strong>${esc(next)}</strong>${first?`<span class="muted">${esc(fd(first.distance))}</span>`:""}</div><div class="places">${rows}</div><div class="actions">${x.quiz_id?`<button class="action" data-quiz="${esc(x.quiz_id)}">Ta quiz</button>`:""}${x.place_id?`<button class="action" data-primary>Vis målsted</button>`:""}<button class="action" data-map>Vis kart</button></div></div>`;const c=card();n.style.bottom=cardOpen()&&c?`${Math.max(12,Math.round(innerHeight-c.getBoundingClientRect().top+8))}px`:"calc(env(safe-area-inset-bottom,0px) + 86px)";return n;}
+  function back(){const x=get(),raw=s(x?.return_href)||"Civication.html",href=/^Civication\.html(?:[?#].*)?$/i.test(raw)?raw:"Civication.html";location.href=href;return true;}
+  function render(){if(typeof document==="undefined"||!document.body)return null;const x=get();if(!x){remove();return null;}css();const st=state(),d=done(x,st),p=progress(x,st),S=suggestions(x),first=S[0],label=s(x.role_label||x.life_role_label||x.role_id||x.life_role_id)||"oppdrag";let n=document.getElementById(ROOT);if(!n){n=document.createElement("aside");n.id=ROOT;n.setAttribute("aria-label","Civication-modus");document.body.appendChild(n);}n.classList.toggle("open",x.expanded&&!cardOpen());n.classList.toggle("pc",cardOpen());const rows=S.length?S.map(r=>`<button class="place" data-place="${esc(r.place.id)}"><span>${esc(r.place.name||r.place.title||r.place.id)}</span><span class="muted">${esc(fd(r.distance))}</span></button>`).join(""):`<div class="row"><span>Ingen sikre stedsforslag ennå</span><span class="muted">Bruk kartet</span></div>`,next=x.completion_mode==="explore_category"?(x.category_id?`Du har ${Number(st.merits?.[x.category_id]?.points||0)} poeng i ${x.category_id}. Se videre krav i Civication.`:"Utforsk History Go, og se livsposisjoner i Civication.") :x.completion_mode==="badge_points"?(()=>{const points=Number(st.merits?.[x.category_id]?.points||0),needed=Number(x.required_points||x.payload.required_points);return d.completed?`Du har ${points} av ${needed} poeng. Tilbake i Civication kan du velge livsposisjonen.`:`${points} av ${needed} poeng i ${x.category_id}. Ta relevante quizer i History Go.`;})():d.completed?"Oppgaven er registrert. Du kan gå tilbake til Civication.":first?`Neste relevante sted: ${s(first.place.name||first.place.title||first.place.id)}`:"Fortsett oppgaven i History Go.";n.innerHTML=`<div class="top"><button class="toggle" data-toggle><span class="mark">C</span><span class="copy"><small>Civication · ${esc(label)} · ${p.current}/${p.total}</small><strong>${d.completed?"✓ ":""}${esc(x.title)}</strong></span></button><button class="return" data-return>Tilbake til Civication</button></div><div class="body">${x.description?`<p>${esc(x.description)}</p>`:""}<div class="row"><strong>${esc(next)}</strong>${first?`<span class="muted">${esc(fd(first.distance))}</span>`:""}</div><div class="places">${rows}</div><div class="actions">${x.quiz_id?`<button class="action" data-quiz="${esc(x.quiz_id)}">Ta quiz</button>`:""}${x.place_id?`<button class="action" data-primary>Vis målsted</button>`:""}<button class="action" data-map>Vis kart</button></div></div>`;const c=card();// A full-screen PlaceCard must not push the mission strip beyond the viewport.
+  n.style.bottom=cardOpen()&&c?`${Math.min(Math.round(innerHeight*0.55),Math.max(12,Math.round(innerHeight-c.getBoundingClientRect().top+8)))}px`:"calc(env(safe-area-inset-bottom,0px) + 86px)";
+  const top = n.getBoundingClientRect?.().top;
+  if (Number.isFinite(top)) {
+    document.body?.style?.setProperty?.("--hg-mission-notification-bottom", `${Math.ceil(innerHeight - top + 12)}px`);
+  }
+  return n;}
   function click(e){const t=e?.target;if(!t?.closest||!t.closest(`#${ROOT}`))return;if(t.closest("[data-return]")){e.preventDefault();back();return;}if(t.closest("[data-toggle]")){e.preventDefault();const x=get();x.expanded=!x.expanded;save(x);render();return;}const p=t.closest("[data-place]");if(p){e.preventDefault();goPlace(p.getAttribute("data-place"));return;}const q=t.closest("[data-quiz]");if(q){e.preventDefault();goQuiz(q.getAttribute("data-quiz"));return;}if(t.closest("[data-primary]")){e.preventDefault();primary(get());return;}if(t.closest("[data-map]")){e.preventDefault();W.HGAppRouter?.toMap?.();}}
-  function remove(){try{document.getElementById(ROOT)?.remove();}catch{}}
-  let queued=false;function schedule(){if(queued)return;queued=true;setTimeout(()=>{queued=false;try{render();}catch{}},0);}let booted=false;function boot(){if(booted||typeof document==="undefined")return false;booted=true;document.addEventListener("click",click);["hashchange","hg:appReady","hg:routerReady","hg:geo","hg:placeDiscovered","hg:unlocks","updateProfile","resize","storage"].forEach(n=>window.addEventListener(n,schedule));render();setTimeout(schedule,1000);return true;}
+  function remove(){
+    try { document.getElementById(ROOT)?.remove(); } catch {}
+    document.body?.style?.removeProperty?.("--hg-mission-notification-bottom");
+  }
+  let queued=false;function schedule(){if(queued)return;queued=true;setTimeout(()=>{queued=false;try{render();}catch{}},0);}let booted=false;function boot(){if(booted||typeof document==="undefined")return false;booted=true;document.addEventListener("click",click);["hashchange","hg:appReady","hg:routerReady","hg:geo","hg:placeDiscovered","hg:target-unlock","hg:unlocks","hg:debate-participated","updateProfile","resize","storage","pageshow"].forEach(n=>window.addEventListener(n,schedule));render();setTimeout(schedule,1000);return true;}
   W.HGCivicationMode={SESSION_KEY:KEY,normalizeSession:norm,getSession:get,saveSession:save,endSession:end,readHistoryGoState:state,evaluateCompletion:done,getProgress:progress,scorePlace:score,suggestPlaces:suggestions,formatDistance:fd,navigatePrimary:primary,returnToCivication:back,render,boot,remove};
   if(typeof document!=="undefined")document.readyState==="loading"?document.addEventListener("DOMContentLoaded",boot,{once:true}):boot();
 })();

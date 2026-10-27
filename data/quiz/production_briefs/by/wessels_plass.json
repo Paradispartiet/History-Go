@@ -1,0 +1,355 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "wessels_plass",
+  "reviewed_at": "2026-10-27",
+  "source_review_basis": "Direct review of municipality and Oslo Byleksikon sources 2026-10-27; see reports/place-production/wessels-plass-quiz-reviewed-20261027.json",
+  "sources": {
+    "oppdag_kvadraturen": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Oslo kommunes Byantikvaren-formidling: fire gater, Bukkebjerget, huset/hagen, kommunens overtakelse, park og navneendring, trikk og nabobygninger."
+    },
+    "oslo_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Wessels_plass",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Stedsgrenser, minnesmerke, kollektivtrafikk, 2005 endringer og gangtunnel under plassen kontrollert mot oppslaget."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_torg_plasser_som_scene",
+      "em_by_historiske_lag_i_hverdagsrom"
+    ],
+    "topic_hook_ids": [
+      "ark_bygningstyper",
+      "bolig_endring_tid",
+      "byliv_aapne_rom",
+      "his_bevaring"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gis_romlig_analyse",
+      "met_morfologisk_analyse",
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/fag/by/quizProduction.targets",
+      "data/quiz/by/wessels_plass_sets.json",
+      "reports/place-production/wessels-plass-quiz-reviewed-20261027.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "No current target-owned sets in canonical quiz manifest or By production targets; retain unrelated legacy and archival data.",
+      "Use 21 reviewed location-specific candidates and ten selected QuizCard questions; do not overwrite Place data."
+    ],
+    "knowledge_migration": "New target-owned quiz; canonical generator assigns Knowledge links; no fabricated IDs."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Kildene bærer tre distinkte sett: tidligere forsvars-/hageområde og kommunal omforming; navne- og trafikklag; kildegrenser, offentlig rom og Stortingets tunnel. 21 spørsmål uten rene årstallsfasiter."
+  },
+  "held_back_candidates": [
+    "Question stems whose correct answer is merely a year, and trivia about neighboring buildings unrelated to the independent Place.",
+    "Unsourced exact placements of destroyed Bukkebjerget, old stops or tunnels beyond named source assertions."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_wessels_plass_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bukkebjerget og Huitfeldts hus og hage hører til eldre lag av stedet.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kommunalt kjøp og endring av terrenget ga rom for nytt offentlig plassbruk.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Plassen het opprinnelig Stortingspladsen, før den ble kalt Wessels plass i 1891.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Plassen fungerer som møtepunkt mellom Akersgata, Prinsens gate, Nedre Vollgate og Stortingsgata.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Plassen er rommet mellom bygningene; nabobygningene har egne historiske identiteter.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fotografier dokumenterer et avgrenset øyeblikk, ikke all historisk bruk.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Byrommet har hatt flere bruksmåter og transportfunksjoner gjennom tid.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Wessels plass var tidligere et viktig knutepunkt for både buss- og sporvognsruter.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Terrenget ble endret da området ble omgjort til plass.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Navnevalget er et senere minne- og identitetslag.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Wessel ga navnet, men planleggingen av plassen er en annen historie.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Plassen forbinder flere gateløp og må tåle ulike typer byliv.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Stortinget fikk en gangtunnel under plassen til kontorbygningen i Prinsens gate 26.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fotografiets utsnitt og tidspunkt begrenser konklusjonene.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Nærhet gir historisk kontekst uten å oppheve stedets egen identitet.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Wessels plass kombinerer ferdsel og opphold.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Kommunalt oppkjøp og fysisk omforming endret bruken av arealet.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et forsvunnet landskapselement krever historiske kilder for å bli forstått.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_id": "met_for_etter"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historisk betydning oppstår både i bygninger og rommene som binder dem sammen.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Flere bruksformer kan avleses ved å sammenholde kilder og dagens rom.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_wessels_plass_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ferdsel og opphold kan observeres på selve plassen. Det viser hvordan et offentlig byrom faktisk brukes, ikke bare hvordan det er tegnet på et kart.",
+      "source_ids": [
+        "oppdag_kvadraturen",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene",
+      "topic_hook_id": "byliv_aapne_rom",
+      "thinker_id": "william_h_whyte",
+      "method_id": "met_feltobservasjon"
+    }
+  ]
+}
