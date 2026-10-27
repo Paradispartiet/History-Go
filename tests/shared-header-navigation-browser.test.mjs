@@ -59,10 +59,10 @@ try {
     await logo.waitFor({ state: "visible", timeout: 12000 });
     const logoRect = await logo.boundingBox();
     const backRect = await placeBack.boundingBox();
-    const actionsRect = await page.locator("header.site-header .top-actions").boundingBox();
-    assert.ok(logoRect && backRect && actionsRect, "header elements are measurable");
-    assert.ok(backRect.x >= logoRect.x + logoRect.width, width + "px: back arrow does not cover the logo");
-    assert.ok(backRect.x + backRect.width <= actionsRect.x + 1, width + "px: back arrow leaves room for header tools");
+    const exploreRect = await page.locator("header.site-header #nearbyExploreToggle").boundingBox();
+    assert.ok(logoRect && backRect && exploreRect, "header elements are measurable");
+    assert.ok(backRect.x >= logoRect.x + logoRect.width - 1, width + "px: back arrow does not cover the logo, " + JSON.stringify({ logoRect, backRect }));
+    assert.ok(backRect.x + backRect.width <= exploreRect.x + 1, width + "px: back arrow does not cover Utforsk, " + JSON.stringify({ backRect, exploreRect }));
     await placeBack.click();
     await page.waitForFunction(() => location.hash === "#/map");
     await context.close();
