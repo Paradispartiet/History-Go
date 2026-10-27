@@ -1,0 +1,83 @@
+name: Oslo domkirke v1 – main sync and real app final QA
+on:
+  push:
+    branches:
+      - content/oslo-domkirke-v1-people-photo-20261027
+    paths:
+      - '.github/workflows/oslo-domkirke-v1-finalize.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: oslo-domkirke-v1-final-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  closeout:
+    if: github.ref == 'refs/heads/content/oslo-domkirke-v1-people-photo-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-domkirke-v1-people-photo-20261027
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Merge recent main with strict cathedral conflict boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          if ! git merge --no-commit --no-ff origin/main; then
+            test -f .git/MERGE_HEAD || { echo 'Unexpected merge state'; exit 1; }
+          fi
+          python3 scripts/reconcile-oslo-domkirke-main.py
+          git commit -m 'Merge latest main keeping Oslo domkirke v1 registrations'
+      - name: Rebuild canonical Knowledge, quiz and Fagverk integration
+        run: |
+          npm run knowledge:canonical:write
+          node scripts/sync-oslo-domkirke-quizcard-knowledge.mjs
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate all cathedral content and Knowledge parity
+        run: |
+          node --test tests/oslo-domkirke-v1-parity.test.mjs
+          npm run place-open:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Test actual PlaceCard, QuizCard, fullquiz and Fagverk – 390/1440 px
+        run: node tests/oslo-domkirke-real-app-browser-20261027.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-domkirke-mobile-desktop-qa
+          path: artifacts/oslo-domkirke-browser/
+          if-no-files-found: ignore
+      - name: Commit regenerated derived files without rewriting unrelated main changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/knowledge/knowledge_units.generated.json data/knowledge/knowledge_emne_review_queue.generated.json
+          git add reports/knowledge-id-backfill.json
+          git add data/quiz/historie/oslo_domkirke_sets.json data/quizcards/historie/oslo_domkirke_quizkort_v1.json
+          git add data/places/places_index.json data/fagverk/fagverk_release.json data/epoker/epoke-place-index.json
+          git add data/runtime/place-open/ data/runtime/people-all/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Oslo domkirke: regenerate Knowledge, fullquiz, QuizCard and runtime'
+          fi
+          git status --short
+          git restore --worktree .
+          git push origin HEAD:refs/heads/content/oslo-domkirke-v1-people-photo-20261027
