@@ -1,0 +1,1126 @@
+{
+  "targetId": "villa_stenersen",
+  "categoryId": "historie",
+  "generator_version": "source_review_oslo_aav_20261027",
+  "size_class": "narrow",
+  "sources": {
+    "riksantikvaren": "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/",
+    "riksantikvaren_dokumentasjon": "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf",
+    "nasjonalmuseet_plantegning": "https://www.nasjonalmuseet.no/samlingen/objekt/NMK.2016.0063.002.077",
+    "arkitektur_n": "https://old.arkitektur-n.no/prosjekter/villa-stenersen",
+    "visitoslo": "https://www.visitoslo.com/no/attraksjon/villa-stenersen"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/villa_stenersen.json",
+    "context_artifact": "data/quiz/production_context/historie/villa_stenersen.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_samtid_ettertid_fortelling"
+    ],
+    "topic_hook_ids": [
+      "his_spor_materialitet",
+      "his_bevaring_restaurering_autentisitet"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_restaurerings_autentisitetsanalyse"
+    ],
+    "thinker_ids": [
+      "carlo_ginzburg",
+      "alois_riegl"
+    ],
+    "works": [
+      "Clues, Myths, and the Historical Method",
+      "The Modern Cult of Monuments"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/places/historie/oslo/places_historie_added_batch_01/villa_stenersen.json",
+        "data/quizcards/historie/manifest.json"
+      ],
+      "active_before": {
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "No target-owned active quiz in current manifest; do not count candidate questions as published.",
+        "Retain existing licensed hero and portrait image files and all verified coordinates.",
+        "Keep almost all answers about architectural concepts and historical meaning, not exact years."
+      ],
+      "knowledge_migration": "Use the established Knowledge generator during activation; do not invent stable IDs."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Three phases with seven candidates each: building and identity, materiality and collection, preservation and historical method."
+    },
+    "held_back_candidates": [
+      "Repeated bare-date questions.",
+      "Unverified claims about specific guests or precise collection inventory.",
+      "Conflating Villa Stenersen with Stenersenmuseet or Villa Grande."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "historie_villa_stenersen_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_villa_stenersen_quiz_01",
+        "claim_villa_stenersen_quiz_02",
+        "claim_villa_stenersen_quiz_03",
+        "claim_villa_stenersen_quiz_04",
+        "claim_villa_stenersen_quiz_05",
+        "claim_villa_stenersen_quiz_06",
+        "claim_villa_stenersen_quiz_07"
+      ],
+      "title": "Huset, arkitekten og oppdraget",
+      "questions": [
+        {
+          "id": "villa_stenersen_reviewed_01",
+          "quiz_id": "historie_villa_stenersen_set_1_q1",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvem tegnet Villa Stenersen?",
+          "options": [
+            "Arne Korsmo",
+            "Christian H. Grosch",
+            "Arnstein Arneberg",
+            "Henrik Bull"
+          ],
+          "answer": "Arne Korsmo",
+          "answerIndex": 0,
+          "knowledge": "Villa Stenersen er tegnet av Arne Korsmo, som regnes som en sentral skikkelse i norsk modernistisk arkitektur.",
+          "explanation": "Villa Stenersen er tegnet av Arne Korsmo, som regnes som en sentral skikkelse i norsk modernistisk arkitektur.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "riksantikvaren",
+            "nasjonalmuseet_plantegning"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/",
+            "https://www.nasjonalmuseet.no/samlingen/objekt/NMK.2016.0063.002.077"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_01",
+          "claim_basis": "Villa Stenersen er tegnet av Arne Korsmo, som regnes som en sentral skikkelse i norsk modernistisk arkitektur.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_villa_stenersen_er_tegne_2b0bcc9e2b",
+          "knowledge_unit_ids": [
+            "ku_historie_villa_stenersen_er_tegne_2b0bcc9e2b"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_02",
+          "quiz_id": "historie_villa_stenersen_set_1_q2",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvem fikk Villa Stenersen oppført som familiehjem?",
+          "options": [
+            "Gustav Vigeland",
+            "Rolf Stenersen og familien",
+            "Olaf Bull",
+            "Edvard Munch"
+          ],
+          "answer": "Rolf Stenersen og familien",
+          "answerIndex": 1,
+          "knowledge": "Finansmannen, forfatteren og kunstsamleren Rolf Stenersen bestilte huset til seg og sin familie.",
+          "explanation": "Finansmannen, forfatteren og kunstsamleren Rolf Stenersen bestilte huset til seg og sin familie.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_samtid_ettertid_fortelling",
+          "source": [
+            "riksantikvaren",
+            "arkitektur_n"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/",
+            "https://old.arkitektur-n.no/prosjekter/villa-stenersen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_02",
+          "claim_basis": "Finansmannen, forfatteren og kunstsamleren Rolf Stenersen bestilte huset til seg og sin familie.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_finansmannen_forfatteren_5b5868d388",
+          "knowledge_unit_ids": [
+            "ku_historie_finansmannen_forfatteren_5b5868d388"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_03",
+          "quiz_id": "historie_villa_stenersen_set_1_q3",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvilke to hovedbehov formet oppdraget til Korsmo?",
+          "options": [
+            "Kontorer og butikker",
+            "Skole og konsertsal",
+            "Familiebolig og kunstsamling",
+            "Bibliotek og restaurant"
+          ],
+          "answer": "Familiebolig og kunstsamling",
+          "answerIndex": 2,
+          "knowledge": "Korsmo skulle forene et hjem med rom og lysforhold som passet Stenersens store kunstsamling.",
+          "explanation": "Korsmo skulle forene et hjem med rom og lysforhold som passet Stenersens store kunstsamling.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "riksantikvaren_dokumentasjon",
+            "arkitektur_n"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf",
+            "https://old.arkitektur-n.no/prosjekter/villa-stenersen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_03",
+          "claim_basis": "Korsmo skulle forene et hjem med rom og lysforhold som passet Stenersens store kunstsamling.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_korsmo_skulle_forene_et__e969edb77a",
+          "knowledge_unit_ids": [
+            "ku_historie_korsmo_skulle_forene_et__e969edb77a"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_04",
+          "quiz_id": "historie_villa_stenersen_set_1_q4",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvilken arkitektonisk retning er villaen et sentralt norsk eksempel på?",
+          "options": [
+            "Funksjonalisme og internasjonal modernisme",
+            "Nybarokk",
+            "Nasjonalromantikk",
+            "Gotisk historisme"
+          ],
+          "answer": "Funksjonalisme og internasjonal modernisme",
+          "answerIndex": 0,
+          "knowledge": "Riksantikvaren beskriver huset som et hovedverk innen internasjonal modernisme og funksjonalisme.",
+          "explanation": "Riksantikvaren beskriver huset som et hovedverk innen internasjonal modernisme og funksjonalisme.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "riksantikvaren"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_04",
+          "claim_basis": "Riksantikvaren beskriver huset som et hovedverk innen internasjonal modernisme og funksjonalisme.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_riksantikvaren_beskriver_4cabd30a1e",
+          "knowledge_unit_ids": [
+            "ku_historie_riksantikvaren_beskriver_4cabd30a1e"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_05",
+          "quiz_id": "historie_villa_stenersen_set_1_q5",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hva ved Villa Stenersens ytre form er typisk modernistisk?",
+          "options": [
+            "Spisse middelaldertårn",
+            "Flatt tak og synlige søyler",
+            "Laftede stokkevegger",
+            "Kuppel med søylehall"
+          ],
+          "answer": "Flatt tak og synlige søyler",
+          "answerIndex": 1,
+          "knowledge": "Flatt tak, enkle volumer og synlige bærende konstruksjoner inngår i Korsmos moderne arkitektoniske uttrykk.",
+          "explanation": "Flatt tak, enkle volumer og synlige bærende konstruksjoner inngår i Korsmos moderne arkitektoniske uttrykk.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "riksantikvaren_dokumentasjon"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_05",
+          "claim_basis": "Flatt tak, enkle volumer og synlige bærende konstruksjoner inngår i Korsmos moderne arkitektoniske uttrykk.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_flatt_tak_enkle_volumer__a2b1e10341",
+          "knowledge_unit_ids": [
+            "ku_historie_flatt_tak_enkle_volumer__a2b1e10341"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_06",
+          "quiz_id": "historie_villa_stenersen_set_1_q6",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvorfor brukte Korsmo glassbyggestein i den store galleridelen?",
+          "options": [
+            "For å gi et jevnt, diffust lys",
+            "For å skjerme hele rommet fra dagslys",
+            "For å lage utsiktstårn",
+            "For å bære takterrassen alene"
+          ],
+          "answer": "For å gi et jevnt, diffust lys",
+          "answerIndex": 0,
+          "knowledge": "Glassbyggesteinen ga lys til områder som skulle romme kunst og inngikk i planens moderne materialbruk.",
+          "explanation": "Glassbyggesteinen ga lys til områder som skulle romme kunst og inngikk i planens moderne materialbruk.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "riksantikvaren_dokumentasjon"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_06",
+          "claim_basis": "Glassbyggesteinen ga lys til områder som skulle romme kunst og inngikk i planens moderne materialbruk.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_glassbyggesteinen_ga_lys_95a8f222ac",
+          "knowledge_unit_ids": [
+            "ku_historie_glassbyggesteinen_ga_lys_95a8f222ac"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_07",
+          "quiz_id": "historie_villa_stenersen_set_1_q7",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvor ligger Villa Stenersen?",
+          "options": [
+            "Ved Aker Brygge",
+            "På Bygdøy kongsgård",
+            "I Tuengen allé på Vinderen",
+            "Ved Akerselva i Nydalen"
+          ],
+          "answer": "I Tuengen allé på Vinderen",
+          "answerIndex": 2,
+          "knowledge": "Villa Stenersen ligger i Tuengen allé 10C på Vinderen i Oslo.",
+          "explanation": "Villa Stenersen ligger i Tuengen allé 10C på Vinderen i Oslo.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "arkitektur_n",
+            "riksantikvaren"
+          ],
+          "source_urls": [
+            "https://old.arkitektur-n.no/prosjekter/villa-stenersen",
+            "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_07",
+          "claim_basis": "Villa Stenersen ligger i Tuengen allé 10C på Vinderen i Oslo.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_villa_stenersen_ligger_i_86cb4ddf0f",
+          "knowledge_unit_ids": [
+            "ku_historie_villa_stenersen_ligger_i_86cb4ddf0f"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_villa_stenersen_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_villa_stenersen_quiz_08",
+        "claim_villa_stenersen_quiz_09",
+        "claim_villa_stenersen_quiz_10",
+        "claim_villa_stenersen_quiz_11",
+        "claim_villa_stenersen_quiz_12",
+        "claim_villa_stenersen_quiz_13",
+        "claim_villa_stenersen_quiz_14"
+      ],
+      "title": "Lys, materialer og samlingen",
+      "questions": [
+        {
+          "id": "villa_stenersen_reviewed_08",
+          "quiz_id": "historie_villa_stenersen_set_2_q1",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvorfor fikk kunstsamlingen betydning for planløsningen?",
+          "options": [
+            "Den skulle bare oppbevares i kjelleren",
+            "Kunst skulle være del av boligens dagligliv og representasjonsrom",
+            "Alt interiør ble organisert som museumsbutikker",
+            "Boligen ble tegnet uten oppholdsrom"
+          ],
+          "answer": "Kunst skulle være del av boligens dagligliv og representasjonsrom",
+          "answerIndex": 1,
+          "knowledge": "Huset var både privat hjem og ramme for Stenersens samling, noe som påvirket lys, rom og innredning.",
+          "explanation": "Huset var både privat hjem og ramme for Stenersens samling, noe som påvirket lys, rom og innredning.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "arkitektur_n",
+            "riksantikvaren_dokumentasjon"
+          ],
+          "source_urls": [
+            "https://old.arkitektur-n.no/prosjekter/villa-stenersen",
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_08",
+          "claim_basis": "Huset var både privat hjem og ramme for Stenersens samling, noe som påvirket lys, rom og innredning.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_huset_var_bade_privat_hj_263c2deb90",
+          "knowledge_unit_ids": [
+            "ku_historie_huset_var_bade_privat_hj_263c2deb90"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_09",
+          "quiz_id": "historie_villa_stenersen_set_2_q2",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hva gjorde de store vindusflatene særlig viktig?",
+          "options": [
+            "De erstattet alle vegger med murstein",
+            "De stengte utsikten mot hagen",
+            "De knyttet rommene visuelt til hagen",
+            "De gjorde huset til et drivhus"
+          ],
+          "answer": "De knyttet rommene visuelt til hagen",
+          "answerIndex": 2,
+          "knowledge": "Vinduer og glassdører gjorde forholdet mellom oppholdsrom og hage til en del av arkitekturen.",
+          "explanation": "Vinduer og glassdører gjorde forholdet mellom oppholdsrom og hage til en del av arkitekturen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "riksantikvaren_dokumentasjon"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_09",
+          "claim_basis": "Vinduer og glassdører gjorde forholdet mellom oppholdsrom og hage til en del av arkitekturen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_vinduer_og_glassd_rer_gj_dc4612a966",
+          "knowledge_unit_ids": [
+            "ku_historie_vinduer_og_glassd_rer_gj_dc4612a966"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_10",
+          "quiz_id": "historie_villa_stenersen_set_2_q3",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hva muliggjorde armert betong og moderne bæring i huset?",
+          "options": [
+            "Friere og mer åpne romforløp",
+            "Bare små rom med tykke bærevegger",
+            "Fullstendig fravær av vinduer",
+            "En middelaldersk tømmerkonstruksjon"
+          ],
+          "answer": "Friere og mer åpne romforløp",
+          "answerIndex": 0,
+          "knowledge": "Moderne konstruksjonsteknikker ga Korsmo større frihet i plan og fasade.",
+          "explanation": "Moderne konstruksjonsteknikker ga Korsmo større frihet i plan og fasade.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "riksantikvaren_dokumentasjon"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_10",
+          "claim_basis": "Moderne konstruksjonsteknikker ga Korsmo større frihet i plan og fasade.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_moderne_konstruksjonstek_aaf3af54df",
+          "knowledge_unit_ids": [
+            "ku_historie_moderne_konstruksjonstek_aaf3af54df"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_11",
+          "quiz_id": "historie_villa_stenersen_set_2_q4",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hva utformet Korsmo også, i tillegg til bygningens hovedform?",
+          "options": [
+            "Bare takrenner",
+            "Kun hagegjerdet",
+            "Møbler og fast innredning",
+            "En separat kirke"
+          ],
+          "answer": "Møbler og fast innredning",
+          "answerIndex": 2,
+          "knowledge": "Korsmo arbeidet med detaljer, inventar og lys, slik at arkitektur og interiør kunne virke sammen.",
+          "explanation": "Korsmo arbeidet med detaljer, inventar og lys, slik at arkitektur og interiør kunne virke sammen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "riksantikvaren_dokumentasjon"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_11",
+          "claim_basis": "Korsmo arbeidet med detaljer, inventar og lys, slik at arkitektur og interiør kunne virke sammen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_korsmo_arbeidet_med_deta_4e8a88dbe2",
+          "knowledge_unit_ids": [
+            "ku_historie_korsmo_arbeidet_med_deta_4e8a88dbe2"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_12",
+          "quiz_id": "historie_villa_stenersen_set_2_q5",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hva viser plantegningene i Nasjonalmuseets samling?",
+          "options": [
+            "Senere butikkinnredning",
+            "Korsmos opprinnelige planarbeid for huset",
+            "Planer om å flytte villaen til Bergen",
+            "Tegninger av Villa Grande"
+          ],
+          "answer": "Korsmos opprinnelige planarbeid for huset",
+          "answerIndex": 1,
+          "knowledge": "Nasjonalmuseet har arkitekttegninger datert 1937–1939 med Korsmo som arkitekt og Stenersen som oppdragsgiver.",
+          "explanation": "Nasjonalmuseet har arkitekttegninger datert 1937–1939 med Korsmo som arkitekt og Stenersen som oppdragsgiver.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "nasjonalmuseet_plantegning"
+          ],
+          "source_urls": [
+            "https://www.nasjonalmuseet.no/samlingen/objekt/NMK.2016.0063.002.077"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_12",
+          "claim_basis": "Nasjonalmuseet har arkitekttegninger datert 1937–1939 med Korsmo som arkitekt og Stenersen som oppdragsgiver.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_nasjonalmuseet_har_arkit_91044a8fbe",
+          "knowledge_unit_ids": [
+            "ku_historie_nasjonalmuseet_har_arkit_91044a8fbe"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_13",
+          "quiz_id": "historie_villa_stenersen_set_2_q6",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvorfor inngår hagen i forståelsen av Villa Stenersen?",
+          "options": [
+            "Den var planlagt som en del av anleggets arkitektoniske helhet",
+            "Den ble til et selvstendig industrilager",
+            "Den ble først anlagt som parkeringsplass på 2000-tallet",
+            "Den har ingen forbindelse til boligen"
+          ],
+          "answer": "Den var planlagt som en del av anleggets arkitektoniske helhet",
+          "answerIndex": 0,
+          "knowledge": "Hus, utendørsrom, vegetasjon og bevegelsen mellom inne og ute ble sett i sammenheng.",
+          "explanation": "Hus, utendørsrom, vegetasjon og bevegelsen mellom inne og ute ble sett i sammenheng.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "riksantikvaren_dokumentasjon"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_13",
+          "claim_basis": "Hus, utendørsrom, vegetasjon og bevegelsen mellom inne og ute ble sett i sammenheng.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_hus_utend_rsrom_vegetasj_17a1ed9853",
+          "knowledge_unit_ids": [
+            "ku_historie_hus_utend_rsrom_vegetasj_17a1ed9853"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_14",
+          "quiz_id": "historie_villa_stenersen_set_2_q7",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hva kan fasaden alene ikke fortelle sikkert om?",
+          "options": [
+            "Om huset har vinduer",
+            "Om taket er flatt",
+            "Hvem som besøkte familien og hvordan rommene ble brukt",
+            "Om det finnes betongsøyler"
+          ],
+          "answer": "Hvem som besøkte familien og hvordan rommene ble brukt",
+          "answerIndex": 2,
+          "knowledge": "Synlige byggespor kan dokumentere arkitektoniske valg, mens sosial bruk krever skriftlige kilder, fotografier og andre historiske spor.",
+          "explanation": "Synlige byggespor kan dokumentere arkitektoniske valg, mens sosial bruk krever skriftlige kilder, fotografier og andre historiske spor.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "riksantikvaren_dokumentasjon"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_14",
+          "claim_basis": "Synlige byggespor kan dokumentere arkitektoniske valg, mens sosial bruk krever skriftlige kilder, fotografier og andre historiske spor.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_synlige_byggespor_kan_do_9af2c9530c",
+          "knowledge_unit_ids": [
+            "ku_historie_synlige_byggespor_kan_do_9af2c9530c"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_villa_stenersen_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_villa_stenersen_quiz_15",
+        "claim_villa_stenersen_quiz_16",
+        "claim_villa_stenersen_quiz_17",
+        "claim_villa_stenersen_quiz_18",
+        "claim_villa_stenersen_quiz_19",
+        "claim_villa_stenersen_quiz_20",
+        "claim_villa_stenersen_quiz_21"
+      ],
+      "title": "Fredning og historisk bruk",
+      "questions": [
+        {
+          "id": "villa_stenersen_reviewed_15",
+          "quiz_id": "historie_villa_stenersen_set_3_q1",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Når stod Villa Stenersen ferdig?",
+          "options": [
+            "1919",
+            "1968",
+            "1939",
+            "1984"
+          ],
+          "answer": "1939",
+          "answerIndex": 2,
+          "knowledge": "Villa Stenersen stod ferdig i 1939 og er et hovedverk i norsk funksjonalisme.",
+          "explanation": "Villa Stenersen stod ferdig i 1939 og er et hovedverk i norsk funksjonalisme.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "riksantikvaren",
+            "arkitektur_n"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/",
+            "https://old.arkitektur-n.no/prosjekter/villa-stenersen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_15",
+          "claim_basis": "Villa Stenersen stod ferdig i 1939 og er et hovedverk i norsk funksjonalisme.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_villa_stenersen_stod_fer_491385cee5",
+          "knowledge_unit_ids": [
+            "ku_historie_villa_stenersen_stod_fer_491385cee5"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_16",
+          "quiz_id": "historie_villa_stenersen_set_3_q2",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hva skjedde med Villa Stenersen i 1974?",
+          "options": [
+            "Huset ble revet",
+            "Rolf Stenersen ga huset til staten",
+            "Huset ble gjort om til jernbanestasjon",
+            "Det ble flyttet til Bygdøy"
+          ],
+          "answer": "Rolf Stenersen ga huset til staten",
+          "answerIndex": 1,
+          "knowledge": "Stenersen donerte huset til staten i 1974, med tanke på representasjonsbruk eller statsministerbolig.",
+          "explanation": "Stenersen donerte huset til staten i 1974, med tanke på representasjonsbruk eller statsministerbolig.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_samtid_ettertid_fortelling",
+          "source": [
+            "riksantikvaren",
+            "visitoslo"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/",
+            "https://www.visitoslo.com/no/attraksjon/villa-stenersen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_16",
+          "claim_basis": "Stenersen donerte huset til staten i 1974, med tanke på representasjonsbruk eller statsministerbolig.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_stenersen_donerte_huset__11043f2ddc",
+          "knowledge_unit_ids": [
+            "ku_historie_stenersen_donerte_huset__11043f2ddc"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_17",
+          "quiz_id": "historie_villa_stenersen_set_3_q3",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvordan fungerte villaen som statsministerbolig?",
+          "options": [
+            "Som fast bolig for alle statsministre siden 1974",
+            "Som regjeringens eneste kontorbygg",
+            "Den var tenkt til formålet, men ble bare brukt kortvarig",
+            "Som offisiell bolig frem til 2026"
+          ],
+          "answer": "Den var tenkt til formålet, men ble bare brukt kortvarig",
+          "answerIndex": 2,
+          "knowledge": "Villaen ble foreslått brukt som statsministerbolig, men huset fikk ikke varig funksjon som statsministerresidens.",
+          "explanation": "Villaen ble foreslått brukt som statsministerbolig, men huset fikk ikke varig funksjon som statsministerresidens.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_samtid_ettertid_fortelling",
+          "source": [
+            "riksantikvaren"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_17",
+          "claim_basis": "Villaen ble foreslått brukt som statsministerbolig, men huset fikk ikke varig funksjon som statsministerresidens.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_villaen_ble_foreslatt_br_724d0cc51d",
+          "knowledge_unit_ids": [
+            "ku_historie_villaen_ble_foreslatt_br_724d0cc51d"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_18",
+          "quiz_id": "historie_villa_stenersen_set_3_q4",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvilke deler omfattes av fredningen av Villa Stenersen?",
+          "options": [
+            "Bare gatefasaden",
+            "Bare takterrassen",
+            "Bare de gamle kunstverkene",
+            "Eksteriøret, interiøret og hagen"
+          ],
+          "answer": "Eksteriøret, interiøret og hagen",
+          "answerIndex": 3,
+          "knowledge": "Fredningsvedtaket fra Riksantikvaren omfatter både bygningens ytre, indre og hagen.",
+          "explanation": "Fredningsvedtaket fra Riksantikvaren omfatter både bygningens ytre, indre og hagen.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "riksantikvaren"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_18",
+          "claim_basis": "Fredningsvedtaket fra Riksantikvaren omfatter både bygningens ytre, indre og hagen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_fredningsvedtaket_fra_ri_4191284f6c",
+          "knowledge_unit_ids": [
+            "ku_historie_fredningsvedtaket_fra_ri_4191284f6c"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_19",
+          "quiz_id": "historie_villa_stenersen_set_3_q5",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvorfor er originalt inventar viktig for fredningsverdien?",
+          "options": [
+            "Det viser samspillet mellom rom, detaljer og modernistisk helhetsdesign",
+            "Det kan selges separat uten virkning for huset",
+            "Det dokumenterer en middelaldersk byggeskikk",
+            "Det viser at huset opprinnelig var et hotell"
+          ],
+          "answer": "Det viser samspillet mellom rom, detaljer og modernistisk helhetsdesign",
+          "answerIndex": 0,
+          "knowledge": "Korsmos interiør og fast innredning inngår i kulturminnets arkitektoniske helhet.",
+          "explanation": "Korsmos interiør og fast innredning inngår i kulturminnets arkitektoniske helhet.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "riksantikvaren_dokumentasjon"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/content/uploads/2020/11/Villa-Stenersen-Dokumentasjon.pdf"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_19",
+          "claim_basis": "Korsmos interiør og fast innredning inngår i kulturminnets arkitektoniske helhet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "method_id": "met_restaurerings_autentisitetsanalyse",
+          "topic_hook_id": "his_bevaring_restaurering_autentisitet",
+          "thinker_id": "alois_riegl",
+          "work": "The Modern Cult of Monuments",
+          "theory_ref": {
+            "topic_hook_id": "his_bevaring_restaurering_autentisitet",
+            "thinker_id": "alois_riegl",
+            "work": "The Modern Cult of Monuments",
+            "why_it_helps": "Korsmos faste interiør viser at kulturminneverdien omfatter materialer og opprinnelig bruk, ikke bare fasaden."
+          },
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_korsmos_interi_r_og_fast_83514a9b85",
+          "knowledge_unit_ids": [
+            "ku_historie_korsmos_interi_r_og_fast_83514a9b85"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_20",
+          "quiz_id": "historie_villa_stenersen_set_3_q6",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hvilken bruk gjør Villa Stenersen tilgjengelig for publikum i dag?",
+          "options": [
+            "Ny industriell tappevirksomhet",
+            "Arkitektur- og kulturhistorisk formidling og omvisninger",
+            "Ordinær dagligvarehandel",
+            "Stasjon for bybanen"
+          ],
+          "answer": "Arkitektur- og kulturhistorisk formidling og omvisninger",
+          "answerIndex": 1,
+          "knowledge": "Villa Stenersen formidles som et arkitekturhistorisk besøkssted med adgang til å studere rom, detaljer og historie.",
+          "explanation": "Villa Stenersen formidles som et arkitekturhistorisk besøkssted med adgang til å studere rom, detaljer og historie.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_samtid_ettertid_fortelling",
+          "source": [
+            "visitoslo"
+          ],
+          "source_urls": [
+            "https://www.visitoslo.com/no/attraksjon/villa-stenersen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_20",
+          "claim_basis": "Villa Stenersen formidles som et arkitekturhistorisk besøkssted med adgang til å studere rom, detaljer og historie.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_historie_villa_stenersen_formidle_8779d79d9d",
+          "knowledge_unit_ids": [
+            "ku_historie_villa_stenersen_formidle_8779d79d9d"
+          ]
+        },
+        {
+          "id": "villa_stenersen_reviewed_21",
+          "quiz_id": "historie_villa_stenersen_set_3_q7",
+          "categoryId": "historie",
+          "targetId": "villa_stenersen",
+          "placeId": "villa_stenersen",
+          "question_scope": "place",
+          "question": "Hva er den beste historiske tolkningen av Villa Stenersen?",
+          "options": [
+            "En bygning uten sammenheng med kunsthistorien",
+            "Et privat modernistisk hjem formet av kunstsamling, senere bevart som offentlig kulturarv",
+            "Et opprinnelig kommunalt rådhus",
+            "En kopi av en bygning fra middelalderen"
+          ],
+          "answer": "Et privat modernistisk hjem formet av kunstsamling, senere bevart som offentlig kulturarv",
+          "answerIndex": 1,
+          "knowledge": "Villa Stenersen viser samspillet mellom modernistisk arkitektur, privat kunstsamling og senere fredning og formidling.",
+          "explanation": "Villa Stenersen viser samspillet mellom modernistisk arkitektur, privat kunstsamling og senere fredning og formidling.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "riksantikvaren",
+            "arkitektur_n",
+            "visitoslo"
+          ],
+          "source_urls": [
+            "https://riksantikvaren.no/fredninger/villa-stenersen-pa-vindern-i-oslo-er-fredet/",
+            "https://old.arkitektur-n.no/prosjekter/villa-stenersen",
+            "https://www.visitoslo.com/no/attraksjon/villa-stenersen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_villa_stenersen_quiz_21",
+          "claim_basis": "Villa Stenersen viser samspillet mellom modernistisk arkitektur, privat kunstsamling og senere fredning og formidling.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "villa_stenersen",
+            "oslo_aav_v1_20261027"
+          ],
+          "knowledge_link_status": "linked",
+          "method_id": "met_sporlesning",
+          "topic_hook_id": "his_spor_materialitet",
+          "thinker_id": "carlo_ginzburg",
+          "work": "Clues, Myths, and the Historical Method",
+          "theory_ref": {
+            "topic_hook_id": "his_spor_materialitet",
+            "thinker_id": "carlo_ginzburg",
+            "work": "Clues, Myths, and the Historical Method",
+            "why_it_helps": "Husets bevarte spor må tolkes sammen med dokumentasjon om bestilling, bruk og fredning."
+          },
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_villa_stenersen_viser_sa_0e12317b3c",
+          "knowledge_unit_ids": [
+            "ku_historie_villa_stenersen_viser_sa_0e12317b3c"
+          ]
+        }
+      ]
+    }
+  ]
+}
