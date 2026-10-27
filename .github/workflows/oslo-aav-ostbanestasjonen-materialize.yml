@@ -1,0 +1,50 @@
+name: Oslo Å–V – Østbanestasjonen quiz materialization
+on:
+  push:
+    branches:
+      - content/ostbanestasjonen-quiz-v1-20261027
+    paths:
+      - scripts/materialize-ostbanestasjonen-quiz-v1.mjs
+      - .github/workflows/oslo-aav-ostbanestasjonen-materialize.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: oslo-aav-ostbanestasjonen-materialize
+  cancel-in-progress: true
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: ./.github/actions/setup-node-npm
+      - name: Materialize source-bound full quiz and context
+        run: node scripts/materialize-ostbanestasjonen-quiz-v1.mjs --pre
+      - name: Generate canonical Knowledge IDs and registries
+        run: |
+          npm run build:scripts
+          node dist/scripts/knowledge-canonical-data.mjs --write
+      - name: Materialize QuizCard from generated canonical quiz
+        run: node scripts/materialize-ostbanestasjonen-quiz-v1.mjs --post
+      - name: Check quiz production, manifest and Knowledge contracts
+        run: |
+          node scripts/audit-quiz-production-context.mjs
+          npm run audit:quiz-manifest:v2
+          node dist/scripts/knowledge-canonical-data.mjs --audit-only
+      - name: Commit generated source-controlled artifacts
+        run: |
+          git add data/fag/fag_manifest.json
+          git add data/quiz/production_briefs/by/ostbanestasjonen.json
+          git add data/quiz/production_context/by/ostbanestasjonen.json
+          git add data/quiz/by/ostbanestasjonen_sets.json
+          git add data/quiz/manifest.json
+          git add data/quizcards/by/ostbanestasjonen_quizcard_v1.json
+          git add data/quizcards/by/manifest.json
+          git add -u data/knowledge
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Materialize Østbanestasjonen 21-question quiz, 10 QuizCards and Knowledge'
+            git push
+          fi
