@@ -9,6 +9,9 @@ on:
       - 'tests/villa-stenersen-v1-parity.test.mjs'
       - '.github/workflows/villa-stenersen-quiz-parity.yml'
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
