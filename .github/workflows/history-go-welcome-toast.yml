@@ -1,0 +1,33 @@
+name: History Go welcome and toast regression
+
+on:
+  pull_request:
+    paths:
+      - 'js/ui/onboarding-welcome.js'
+      - 'js/ui/toast.js'
+      - 'css/onboarding.css'
+      - 'tests/history-go-toast-onboarding-handoff.test.js'
+      - 'tests/onboarding-touch-guard.test.js'
+      - '.github/workflows/history-go-welcome-toast.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'js/ui/onboarding-welcome.js'
+      - 'js/ui/toast.js'
+      - 'css/onboarding.css'
+      - 'tests/history-go-toast-onboarding-handoff.test.js'
+      - 'tests/onboarding-touch-guard.test.js'
+      - '.github/workflows/history-go-welcome-toast.yml'
+
+jobs:
+  targeted-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify onboarding and Civication toast behavior
+        run: |
+          node tests/history-go-toast-onboarding-handoff.test.js
+          node tests/onboarding-touch-guard.test.js
