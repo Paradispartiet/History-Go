@@ -36,6 +36,11 @@ try {
       await page.goto(base + "/" + pathname, { waitUntil: "domcontentloaded", timeout: 30000 });
       const back = page.locator(".hg-universal-back").first();
       await back.waitFor({ state: "visible", timeout: 12000 });
+      const home = page.locator(".hg-universal-home").first();
+      await home.waitFor({ state: "visible", timeout: 12000 });
+      assert.equal(await home.getAttribute("aria-label"), "History GO – hjem til kartet");
+      assert.equal(new URL(await home.getAttribute("href"), base).hash, "#/map");
+      assert.equal(new URL(await home.locator("img").getAttribute("src"), base).pathname, "/bilder/logo_historygo.PNG");
       assert.equal((await back.textContent()).trim(), "←", pathname + ": arrow only");
       assert.equal(await back.getAttribute("aria-label"), "Tilbake til " + label.replace(/^Til /, ""), pathname + ": accessible destination");
       const href = await back.getAttribute("href");
@@ -48,7 +53,7 @@ try {
         await brand.waitFor({ state: "visible" });
         const logoRect = await brand.boundingBox();
         const logoHref = await page.locator(".ne-brand").getAttribute("href");
-        assert.equal(new URL(logoHref, base).searchParams.get("welcome"), "1", pathname + ": logo opens welcome start");
+        assert.equal(new URL(logoHref, base).hash, "#/map", pathname + ": logo opens History Go map");
         assert.ok(logoRect?.width >= 78, pathname + ": enlarged logo");
         const menuRect = await page.locator("#natureMenuToggle").boundingBox();
         assert.ok(logoRect && menuRect && rect, pathname + ": header parts rendered");
@@ -69,6 +74,9 @@ try {
     });
     const placeBack = page.locator(".hg-universal-back").first();
     await placeBack.waitFor({ state: "visible", timeout: 12000 });
+    const mapHome = page.locator("header.site-header > .hg-universal-home");
+    await mapHome.waitFor({ state: "visible", timeout: 12000 });
+    assert.equal(new URL(await mapHome.getAttribute("href"), base).hash, "#/map");
     assert.equal((await placeBack.textContent()).trim(), "←", "map back link shows only the arrow");
     assert.equal(await placeBack.getAttribute("aria-label"), "Tilbake til kartet");
     const logo = page.locator("header.site-header > .hg-brand");
@@ -82,10 +90,12 @@ try {
     assert.ok(headerRect && logoRect.y >= headerRect.y - 1,
       "HG logo stays within the top edge of the header at " + width + "px");
     const backRect = await placeBack.boundingBox();
+    const homeRect = await mapHome.boundingBox();
     const exploreRect = await page.locator("header.site-header #nearbyExploreToggle").boundingBox();
     assert.ok(logoRect && backRect && exploreRect, "header elements are measurable");
     assert.ok(backRect.x >= logoRect.x + logoRect.width - 1, width + "px: back arrow does not cover the logo, " + JSON.stringify({ logoRect, backRect }));
-    assert.ok(backRect.x + backRect.width <= exploreRect.x + 1, width + "px: back arrow does not cover Utforsk, " + JSON.stringify({ backRect, exploreRect }));
+    assert.ok(backRect.x + backRect.width <= homeRect.x + 1, width + "px: back arrow does not cover small home logo");
+    assert.ok(homeRect.x + homeRect.width <= exploreRect.x + 1, width + "px: small home logo does not cover Utforsk");
     // Use the genuine welcome module even with external map dependencies blocked.
     if (!(await page.evaluate(() => Boolean(window.HGOnboarding?.open)))) {
       await page.addScriptTag({ path: "js/ui/onboarding-welcome.js" });
