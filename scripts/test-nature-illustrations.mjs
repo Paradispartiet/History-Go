@@ -9,7 +9,6 @@ vm.runInNewContext(read("js/ui/nature-illustrations.js"), sandbox, { timeout: 30
 vm.runInNewContext(read("js/ui/nature-illustrations-batch03.js"), sandbox, { timeout: 3000 });
 vm.runInNewContext(read("js/ui/nature-illustrations-batch04.js"), sandbox, { timeout: 3000 });
 vm.runInNewContext(read("js/ui/nature-illustrations-batch05.js"), sandbox, { timeout: 3000 });
-vm.runInNewContext(read("js/ui/nature-illustrations-batch05.js"), sandbox, { timeout: 3000 });
 const artist = sandbox.window.HG_NATURE_ILLUSTRATIONS;
 assert.equal(artist.count, 150, "expected 150 illustrations across five batches");
 const index = JSON.parse(read("data/runtime/nature-all.json"));
@@ -52,7 +51,6 @@ for (const kind of ["flora", "fauna"]) {
  assert(html.includes("js/ui/nature-illustrations.js"));
  assert(html.includes("js/ui/nature-illustrations-batch03.js"));
  assert(html.includes("js/ui/nature-illustrations-batch04.js"));
- assert(html.includes("js/ui/nature-illustrations-batch05.js"));
  assert(html.includes("js/ui/nature-illustrations-batch05.js"));
  assert(html.includes("data-filter=\"illustrated\""));
  assert(html.indexOf("nature-illustrations.js") < html.indexOf("nature-illustrations-batch03.js"));
