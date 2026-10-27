@@ -1,5 +1,8 @@
 name: Oslo batch04 quiz and QuizCard parity
 on:
+  push:
+    branches:
+      - content/vinmonopolet-lager-fagverk-v1-20261027
   pull_request:
     paths:
       - '.github/workflows/oslo-batch04-quiz-parity.yml'
@@ -34,7 +37,7 @@ jobs:
       - name: Vinmonopolet Hasle 30-question and 10-QuizCard parity
         run: node --test tests/vinmonopolet-lager-v1-parity.test.mjs
   real-browser:
-    if: github.event.pull_request.head.ref != 'content/vinmonopolet-lager-fagverk-v1-20261027'
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.ref != 'content/vinmonopolet-lager-fagverk-v1-20261027'
     strategy:
       fail-fast: false
       matrix:
@@ -68,7 +71,7 @@ jobs:
           retention-days: 14
 
   vinmonopolet-browser:
-    if: github.event.pull_request.head.ref == 'content/vinmonopolet-lager-fagverk-v1-20261027'
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'content/vinmonopolet-lager-fagverk-v1-20261027'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
