@@ -15,9 +15,11 @@ on:
       - 'js/ui/nature-illustrations-batch11.js'
       - 'js/ui/nature-botanical-studies.js'
       - 'js/ui/nature-explorer.js'
+      - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
       - 'finn-fauna.html'
       - 'scripts/test-nature-illustrations.mjs'
+      - 'scripts/test-nature-flora-photos.mjs'
       - '.github/workflows/nature-illustrations.yml'
 
 permissions:
@@ -37,3 +39,4 @@ jobs:
         with:
           node-version: '20'
       - run: node scripts/test-nature-illustrations.mjs
+      - run: node scripts/test-nature-flora-photos.mjs
