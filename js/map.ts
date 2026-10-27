@@ -1027,6 +1027,7 @@
   function getPlaceLabelLayout(isArea = false) {
     return {
       "text-field": ["get", "name"],
+      "text-transform": "uppercase",
       "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
       "text-size": isArea
         ? ["interpolate", ["linear"], ["zoom"], 9, 12.5, 12, 14.5, 16, 16.5, 18, 17.5]
