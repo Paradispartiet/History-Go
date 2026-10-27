@@ -28,7 +28,12 @@ jobs:
       - name: Install pinned dependencies
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Produce reviewed quiz, brief, QuizCard and manifests
-        run: node scripts/materialize-valerenga-kirke-quiz-20261027.mjs
+        run: |
+          if test -f data/quiz/historie/valerenga_kirke_sets.json; then
+            echo 'Existing canonical Vålerenga quiz preserved; no regeneration of authored questions'
+          else
+            node scripts/materialize-valerenga-kirke-quiz-20261027.mjs
+          fi
       - name: Generate canonical history production context
         run: npm run quiz:context -- --category historie --target valerenga_kirke --output data/quiz/production_context/historie/valerenga_kirke.json
       - name: Generate canonical Knowledge (no invented IDs)
@@ -74,7 +79,39 @@ jobs:
         run: |
           npm run audit:quiz-manifest:v2
           npm run audit:quiz-production-context
-      - name: Theory and progression audits (including baseline regressions)
+      - name: Progression and theory audits – new regressions forbidden
         run: |
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
+          node --input-type=module <<'NODE'
+          import { auditQuizProgression } from './scripts/audit-quiz-progression.mjs';
+          import { auditQuizTheoryBinding } from './scripts/audit-quiz-theory-binding.mjs';
+          const path='data/quiz/historie/valerenga_kirke_sets.json';
+          const known='data/quiz/by/ostbanestasjonen_sets.json';
+          for(const [label,run] of [['progression',auditQuizProgression],['theory',auditQuizTheoryBinding]]){
+            const report=await run();
+            const target=report.checked.find(x=>x.file===path);
+            if(!target||target.questions!==21)throw Error(label+': Vålerenga quiz not actually checked');
+            const unexpected=report.failures.filter(x=>x.file!==known);
+            const inherited=report.failures.filter(x=>x.file===known);
+            console.log(JSON.stringify({audit:label,global_status:report.status,target,existing_ostbanestasjonen_failures:inherited,unexpected_failures:unexpected},null,2));
+            if(unexpected.length)throw Error(label+': new errors present');
+          }
+          NODE
+      - name: Real application – all 21 quiz questions on desktop and touch mobile
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          export CHROME_BIN
+          node scripts/verify-place-quiz-browser.mjs valerenga_kirke
+      - uses: actions/upload-artifact@v4
+        with:
+          name: valerenga-kirke-mobile-desktop-quiz
+          path: artifacts/place-quiz/valerenga_kirke/
+          retention-days: 14
+      - name: Remove one-time production helpers after successful checks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -- scripts/materialize-valerenga-kirke-quiz-20261027.mjs .github/workflows/valerenga-kirke-quiz-v1.yml
+          git commit -m "Remove one-time Vålerenga quiz producer after app QA"
+          git push
