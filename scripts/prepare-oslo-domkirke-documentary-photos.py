@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PLACE = ROOT / "data/places/by/oslo/oslo_domkirke/oslo_domkirke.json"
 SOURCES = {
     "hero": {
-        "name": "OSLO DOMKIRKE CATHEDRAL Lutheran cruciform korskirke 1697 (restored c 1850 1950 2010) Stortorvet Oslo Norway Fasade mot sør Southern facade Tårn tower nakne trær mars 2022-03-03 IMG 0025.jpg",
+        "name": "OSLO DOMKIRKE CATHEDRAL Lutheran cruciform korskirke 1697 (restored c 1850 1950 2010) Stortorvet Oslo Norway Fasade mot sør Southern facade Tårn tower Nakne trær mars 2022-03-03 IMG 0025.jpg",
         "page": "https://commons.wikimedia.org/wiki/File:OSLO_DOMKIRKE_CATHEDRAL_Lutheran_cruciform_korskirke_1697_(restored_c_1850_1950_2010)_Stortorvet_Oslo_Norway_Fasade_mot_s%C3%B8r_Southern_facade_T%C3%A5rn_tower_Nakne_tr%C3%A6r_mars_2022-03-03_IMG_0025.jpg",
         "author": "Wolfmann",
         "date": "2022-03-03",
