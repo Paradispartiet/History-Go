@@ -66,11 +66,32 @@ def meta(record,source_sha,transformation):
     }
 
 def main():
-    landscape,land_sha=source_image(SOURCES["hero"])
-    portrait,port_sha=source_image(SOURCES["portrait"])
     hero=STEM+"_hero.webp"
     front=STEM+"_portrait.webp"
     card=STEM+"_card.webp"
+    current=json.loads(PLACE.read_text(encoding="utf-8"))
+    if current.get("id")!="grand_hotel":
+        raise ValueError("Canonical Grand Hotel identity changed")
+    # The documentary assets may already have been materialized by a previous run.
+    # Do not redownload or overwrite a valid, credited set just to sync cardImage.
+    if current.get("image")==hero and current.get("frontImage")==front:
+        for path,size in ((hero,(1400,900)),(front,(900,1350)),(card,(900,600))):
+            file=ROOT/path
+            if not file.is_file():
+                raise ValueError("Missing documentary asset: "+path)
+            with Image.open(file) as image:
+                if image.format!="WEBP" or image.size!=size:
+                    raise ValueError("Invalid documentary asset: "+path)
+        if current.get("imageMeta",{}).get("sourcePage")!=SOURCES["hero"]["sourcePage"] or current.get("frontImageMeta",{}).get("sourcePage")!=SOURCES["portrait"]["sourcePage"]:
+            raise ValueError("Existing image metadata differs from reviewed Commons sources")
+        current["cardImage"]=card
+        PLACE.write_text(json.dumps(current,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+        print("Grand Hotel licensed image assets validated; cardImage synchronized")
+        return
+    if current.get("image") or current.get("frontImage") or current.get("cardImage"):
+        raise ValueError("Unexpected pre-existing image pointer; review before importing")
+    landscape,land_sha=source_image(SOURCES["hero"])
+    portrait,port_sha=source_image(SOURCES["portrait"])
     save(landscape,hero,(1400,900),(0.50,0.50))
     save(portrait,front,(900,1350),(0.50,0.50))
     save(landscape,card,(900,600),(0.50,0.50))
@@ -79,6 +100,7 @@ def main():
         raise ValueError("Canonical identity changed or image already set; inspect before overwrite")
     p["image"]=hero
     p["frontImage"]=front
+    p["cardImage"]=card
     p["imageCredit"]=SOURCES["hero"]["creator"]+" / Wikimedia Commons"
     p["imageLicense"]=SOURCES["hero"]["license"]
     p["imageSourceUrl"]=SOURCES["hero"]["sourcePage"]
