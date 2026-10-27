@@ -1,0 +1,64 @@
+name: Vålerenga kirke quiz integration repair
+on:
+  push:
+    branches:
+      - content/valerenga-kirke-quiz-v1-20261027
+    paths:
+      - .github/workflows/valerenga-quiz-integration-repair-20261027.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/valerenga-kirke-quiz-v1-20261027
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Rebuild current place index, place-open and Fagverk release
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Remove oversize generated diagnostic difference from PR
+        run: |
+          git restore --source=origin/main -- reports/knowledge-contract-audit.json
+          git diff --stat
+      - name: Verify deterministic artifacts and named source
+        run: |
+          npm run places:index:check
+          npm run place-open:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run knowledge:canonical:check
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const p=JSON.parse(fs.readFileSync('data/places/historie/oslo/places_historie/valerenga_kirke.json','utf8'));
+          const url='https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke';
+          assert(p.externalLinks.some(l=>l.url===url && l.label));
+          assert(p.fagverk.source_urls.includes(url));
+          console.log('PASS: Vålerenga Fagverk has named Oslo byleksikon source.');
+          NODE
+          git diff --quiet origin/main -- reports/knowledge-contract-audit.json
+      - name: Commit repair artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/places_index.json data/runtime/place-open/ data/fagverk/fagverk_release.json reports/knowledge-contract-audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Synchronize Vålerenga place sources and Fagverk release; restore oversized diagnostics"
+            git push
+          fi
+      - name: Remove one-time repair workflow
+        run: |
+          git rm .github/workflows/valerenga-quiz-integration-repair-20261027.yml
+          git commit -m "Remove one-time Vålerenga integration repair workflow"
+          git push
