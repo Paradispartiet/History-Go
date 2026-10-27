@@ -1,0 +1,72 @@
+name: Villa Furulund v1 canonical integration and browser smoke
+on:
+  push:
+    branches:
+      - content/oslo-aav-villa-furulund-v1-20261027
+    paths:
+      - '.github/workflows/villa-furulund-v1-integration.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: villa-furulund-integration-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/content/oslo-aav-villa-furulund-v1-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-aav-villa-furulund-v1-20261027
+          fetch-depth: 120
+          persist-credentials: true
+      - name: Bring in latest main without discarding work
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate source-review context
+        run: node scripts/build-quiz-production-context.mjs --category kunst --target villa_furulund --output data/quiz/production_context/kunst/villa_furulund.json
+      - name: Generate canonical Knowledge
+        run: npm run knowledge:canonical:write
+      - name: Sync QuizCard Knowledge
+        run: node scripts/sync-villa-furulund-quizcard-knowledge.mjs
+      - name: Build Place-open and Fagverk release
+        run: |
+          npm run place-open:build
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify target data and quiz parity
+        run: node --test tests/villa-furulund-v1-parity.test.mjs
+      - name: Install Chromium for two-screen check
+        run: npx playwright install --with-deps chromium
+      - name: Smoke-test actual app at mobile and desktop widths
+        run: node tests/villa-furulund-real-app-browser-20261027.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: villa-furulund-smoke
+          path: artifacts/villa-furulund-browser/
+          if-no-files-found: ignore
+      - name: Commit and push only target generated artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/quiz/production_context/kunst/villa_furulund.json
+          git add data/quiz/kunst/villa_furulund_sets.json data/quizcards/kunst/villa_furulund_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/villa_furulund.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Villa Furulund: activate canonical Knowledge and app runtime"
+          fi
+          git push origin HEAD:content/oslo-aav-villa-furulund-v1-20261027
