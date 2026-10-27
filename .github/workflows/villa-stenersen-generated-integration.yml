@@ -7,6 +7,9 @@ on:
       - 'data/quiz/historie/villa_stenersen_sets.json'
       - 'data/quiz/production_briefs/historie/villa_stenersen.json'
       - '.github/workflows/villa-stenersen-generated-integration.yml'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
