@@ -29,7 +29,7 @@ for(const [id,taxon] of expected){
  assert.equal(p.scientificName,taxon);
  assert.ok(p.creator.length>2&&p.license.startsWith("CC BY-SA"));
  assert.match(p.source,/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
- assert.match(p.src,/^https:\/\/commons\.wikimedia\.org\/wiki\/Special:FilePath\//);
+ assert.match(p.src,/^https:\/\/(?:upload|thumb)\.wikimedia\.org\/wikipedia\/commons\//);
  assert.match(p.licenseUrl,/^https:\/\/creativecommons\.org\/licenses\//);
  assert(!urls.has(p.source),"duplicate species file "+p.source);
  urls.add(p.source);
