@@ -25,9 +25,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: research/oslo-sentrum-v1-six-next-20261027
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Diagnose conflict paths against current main (non-mutating)
+        shell: bash
+        run: |
+          git fetch origin main
+          set +e
+          git -c user.name=github-actions -c user.email=41898282+github-actions[bot]@users.noreply.github.com merge --no-commit --no-ff origin/main
+          result=$?
+          set -e
+          echo "MERGE_DIAGNOSTIC_EXIT=$result"
+          git diff --name-only --diff-filter=U | sed 's/^/MERGE_CONFLICT_PATH: /'
+          git status --short | tail -100
+          git merge --abort || true
       - name: Materialize remaining five quizzes, QuizCards and canonical Knowledge
         shell: bash
         run: |
