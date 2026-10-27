@@ -385,6 +385,12 @@
   width: min(820px, calc(100vw - 40px));
 }
 
+/* Keep rewards readable while the Civication task guide occupies the bottom lane.
+   The guide sets clearance from its actual height; a collapsed PlaceCard guide sits at top. */
+body:has(#hgCivicationModeToast:not(.pc)) .nature-unlock-stack {
+  bottom: calc(var(--hg-civi-toast-clearance, 160px) + env(safe-area-inset-bottom, 0px));
+}
+
 .nature-unlock-card {
   pointer-events: auto;
   position: relative;
