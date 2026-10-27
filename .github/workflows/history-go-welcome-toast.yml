@@ -5,8 +5,10 @@ on:
     paths:
       - 'js/ui/onboarding-welcome.js'
       - 'js/ui/toast.js'
+      - 'js/progress/HGDailyProgressToast.js'
       - 'css/onboarding.css'
       - 'tests/history-go-toast-onboarding-handoff.test.js'
+      - 'tests/history-go-daily-progress-toast.test.js'
       - 'tests/onboarding-touch-guard.test.js'
       - '.github/workflows/history-go-welcome-toast.yml'
 
@@ -28,4 +30,5 @@ jobs:
       - name: Verify onboarding and Civication toast behavior
         run: |
           node tests/history-go-toast-onboarding-handoff.test.js
+          node tests/history-go-daily-progress-toast.test.js
           node tests/onboarding-touch-guard.test.js
