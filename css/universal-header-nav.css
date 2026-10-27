@@ -41,6 +41,23 @@ body.hg-app header.site-header > .hg-universal-back {
   z-index: 22;
   margin: 0;
 }
+@media (max-width: 860px) {
+  body.hg-app header.site-header > .hg-universal-back {
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    height: 34px;
+    min-height: 34px;
+    left: calc(env(safe-area-inset-left, 0px) + 64px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+@media (max-width: 380px) {
+  body.hg-app header.site-header > .hg-universal-back {
+    left: calc(env(safe-area-inset-left, 0px) + 55px);
+  }
+}
 
 /* Keep the return affordance available while long subpages scroll. */
 body.hg-fagverk-portal-page .fagverk-topbar {
