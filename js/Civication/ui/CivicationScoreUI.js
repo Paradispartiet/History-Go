@@ -92,10 +92,12 @@
       ["Energi", life?.meters?.energi],
       ["Fortellingsøkonomi", currency]
     ].filter(([,value]) => value !== null && value !== undefined && value !== "");
-    const stamp = root.HG_Lifestyle?.getStamp?.();
-    if (stamp && Number(stamp.score) > 0) {
-      status.push(["Livsstil", (stamp.icon ? stamp.icon + " " : "") + stamp.name]);
-    }
+    try {
+      const stamp = root.HG_Lifestyle?.getStamp?.();
+      if (stamp && Number(stamp.score) > 0) {
+        status.push(["Livsstil", (stamp.icon ? stamp.icon + " " : "") + stamp.name]);
+      }
+    } catch { /* Optional lifestyle UI must not block status or gameplay. */ }
     return { score, count: scored.length, groups, status,
       // Money is unbounded and does not belong to an arithmetic mean of capabilities.
       excluded: ["PC-saldo", "Fortellingspenger"],
