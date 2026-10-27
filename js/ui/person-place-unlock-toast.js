@@ -40,7 +40,7 @@
     return stack;
   }
 
-  function showTargetUnlock(detail) {
+  function showTargetUnlock(detail, onDone = () => {}) {
     const kind = detail?.kind === "place" ? "place" : "person";
     const isPlaceQuizReward = kind === "place" && !!detail?.quizId;
     const name = String(detail?.name || "").trim() || (kind === "place" ? tUI("ui.unlock.place", "Sted") : tUI("ui.unlock.newPerson", "Ny person"));
@@ -75,13 +75,16 @@
     card.querySelector(".nature-unlock-title").textContent = name;
 
     stack.appendChild(card);
+    window.HGToastCoordinator?.positionTransientToast?.(stack);
     requestAnimationFrame(() => card.classList.add("is-visible"));
 
+    let dismissing = false;
     function dismiss() {
-      if (!card.parentNode) return;
+      if (dismissing || !card.parentNode) return;
+      dismissing = true;
       card.classList.remove("is-visible");
       card.classList.add("is-leaving");
-      setTimeout(() => card.remove(), 250);
+      setTimeout(() => { card.remove(); onDone(); }, 250);
     }
 
     card.querySelector(".nature-unlock-close").addEventListener("click", dismiss);
@@ -115,7 +118,10 @@
 
   window.addEventListener("hg:target-unlock", (e) => {
     const event = /** @type {CustomEvent} */ (e);
-    try { showTargetUnlock(event.detail); } catch (err) {
+    try {
+      const present = complete => showTargetUnlock(event.detail, complete);
+      if (!window.HGToastCoordinator?.enqueueReward?.(present, 30)) present(() => {});
+    } catch (err) {
       if (window.DEBUG) console.warn("[TargetUnlockToast]", err);
     }
   });
