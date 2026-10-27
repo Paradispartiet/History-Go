@@ -1,0 +1,825 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "historie",
+  "targetId": "vestre_gravlund",
+  "reviewed_at": "2026-10-27",
+  "source_review_basis": "Municipality and City Archive: establishment, current memorial uses, historical chapels, 2025 rehabilitation; Oslo Byleksikon: Oslo's first/Norway's second crematorium; Krigsgraver.no: international WWII graves.",
+  "sources": {
+    "kommune": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/vestre-gravlund/",
+      "source_type": "municipal_primary",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "byleks": {
+      "url": "https://oslobyleksikon.no/side/Vestre_gravlund",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "krig": {
+      "url": "https://krigsgraver.no/nb/graveSite?id=360",
+      "source_type": "war_grave_registry",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "gammel": {
+      "url": "https://oslobyleksikon.no/side/Vestre_gravlund_Gamle_kapell",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "nye": {
+      "url": "https://aktuelt.oslo.kommune.no/gjenapning-av-en-kunst-og-arkitekturhistorisk-perle-vestre-gravlund-nye-kapell",
+      "source_type": "municipal_primary",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "krematorium": {
+      "url": "https://oslobyleksikon.no/side/Vestre_krematorium",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "byarkiv": {
+      "url": "https://www.oslo.kommune.no/OBA/tobias/tobiasartikler/pdf_arkiv/tobias2022.pdf",
+      "source_type": "municipal_primary",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "gov": {
+      "url": "https://www.regjeringen.no/no/tema/kultur-idrett-og-frivillighet/krigsgraver/gravene/id2550357/",
+      "source_type": "war_grave_registry",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_his_minnesteder_historiebruk",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [],
+    "thinker_ids": [],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/historie/manifest.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "A single area-level canonical Place",
+      "Disallow named individual graves as location markers",
+      "Correct crematorium national numbering"
+    ],
+    "knowledge_migration": "Generate canonical ID binding before merge."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "21 distinct sourced questions on urban cemetery history, cremation, chapel art and war memorials."
+  },
+  "held_back_candidates": [
+    "Claims about private grave owners",
+    "Mistaken claim that 1909 was Norway's first crematorium",
+    "Conflating Emanuel Vigeland with Alf Rolfsen",
+    "Treating Kapell access as guaranteed"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_vestre_gravlund_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo kommune omtaler Vestre gravlund som Norges største gravplass.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Vestre gravlund har et areal på om lag 243 dekar.",
+      "source_ids": [
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Besøksadressen ved gravlunden er Sørkedalsveien 66, ikke midtpunktet i området.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Kommunen skaffet ny grunn vest for byens sentrum da gravplassbehovet økte.",
+      "source_ids": [
+        "byleks",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Gravlundskapellet ble oppført i 1902 og var den første seremonibygningen på gravlunden.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Alfred Christian Dahl tegnet Gravlundskapellet, som stod ferdig i 1902.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "concept_theory",
+      "statement": "Utformingen har vokst fram i flere etapper, og landskapet inneholder ulike tidslag.",
+      "source_ids": [
+        "byleks",
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Krematoriet ved Vestre gravlund var Oslos første, men Norges andre krematorium.",
+      "source_ids": [
+        "krematorium",
+        "nye"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Arkitekt Oscar Hoff tegnet krematoriet som senere ble knyttet til Gamle kapell.",
+      "source_ids": [
+        "gammel",
+        "krematorium"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Gamle kapell er bygd i jugendstil, med et karakteristisk monumentalt inngangsparti.",
+      "source_ids": [
+        "gammel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Emanuel Vigeland dekorerte Gamle kapell med fresker i 1923.",
+      "source_ids": [
+        "gammel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Maria Vigeland utførte glassmalerier med barnemotiver i Gamle kapell.",
+      "source_ids": [
+        "gammel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Nye kapell har fresker av Alf Rolfsen fra 1937, ikke Emanuel Vigeland.",
+      "source_ids": [
+        "nye"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo kommune oppgir blant annet nytt skifertak, restaurert terrazzogulv og freskekonservering.",
+      "source_ids": [
+        "nye"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Nye kapell ble oppført som del av den sammenhengende kapell- og krematorieenheten.",
+      "source_ids": [
+        "nye",
+        "gammel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Gravtypene dokumenterer ulike former for gravlegging og minne.",
+      "source_ids": [
+        "kommune",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Kommunen oppgir blant annet anonym minnelund og barneminnelund.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Oslo kommune omtaler krigsgraver fra en rekke land etter andre verdenskrig.",
+      "source_ids": [
+        "kommune",
+        "krig"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Krigsgraver.no oppgir 102 falne fra Samveldestatene på Vestre gravlund.",
+      "source_ids": [
+        "krig"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Cross of Sacrifice ble avduket i november 1949 ved samveldestatenes gravfelt.",
+      "source_ids": [
+        "krig"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_vestre_gravlund_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "På Vestre gravlund ble enkelte monumenter reist flere år etter den andre verdenskrigen.",
+      "source_ids": [
+        "krig",
+        "gov"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    }
+  ],
+  "candidate_questions": [
+    {
+      "number": 1,
+      "claim_id": "claim_vestre_gravlund_01",
+      "planned_phase": "opening",
+      "question": "Hva kjennetegner Vestre gravlund i nasjonal målestokk?",
+      "options": [
+        "Den er Norges største gravplass",
+        "Den er landets eldste middelalderkirkegård",
+        "Den er en militær kirkegård uten familiegraver",
+        "Den er Oslos eneste gravlund"
+      ],
+      "answer": "Den er Norges største gravplass",
+      "answerIndex": 0,
+      "knowledge": "Oslo kommune omtaler Vestre gravlund som Norges største gravplass.",
+      "source_ids": [
+        "kommune"
+      ],
+      "emne_id": "em_his_spor_materialitet",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 2,
+      "claim_id": "claim_vestre_gravlund_02",
+      "planned_phase": "opening",
+      "question": "Omtrent hvor stort areal dekker gravlunden?",
+      "options": [
+        "24 dekar",
+        "243 dekar",
+        "33 dekar",
+        "1100 dekar"
+      ],
+      "answer": "243 dekar",
+      "answerIndex": 1,
+      "knowledge": "Vestre gravlund har et areal på om lag 243 dekar.",
+      "source_ids": [
+        "byleks"
+      ],
+      "emne_id": "em_his_spor_materialitet",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 3,
+      "claim_id": "claim_vestre_gravlund_03",
+      "planned_phase": "opening",
+      "question": "Hvilken vei brukes som besøksadresse til Vestre gravlund?",
+      "options": [
+        "Karl Johans gate",
+        "Kirkeveien 1",
+        "Sørkedalsveien",
+        "Huk aveny"
+      ],
+      "answer": "Sørkedalsveien",
+      "answerIndex": 2,
+      "knowledge": "Besøksadressen ved gravlunden er Sørkedalsveien 66, ikke midtpunktet i området.",
+      "source_ids": [
+        "kommune"
+      ],
+      "emne_id": "em_his_spor_materialitet",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 4,
+      "claim_id": "claim_vestre_gravlund_04",
+      "planned_phase": "opening",
+      "question": "Hvorfor ble Vestre gravlund anlagt rundt starten av 1900-tallet?",
+      "options": [
+        "Det skulle bygges en skipsutstilling",
+        "Gravlunden ble planlagt som fotballstadion",
+        "Alle gamle graver ble samlet i én uke",
+        "Byen trengte gravplasser i takt med befolkningsveksten"
+      ],
+      "answer": "Byen trengte gravplasser i takt med befolkningsveksten",
+      "answerIndex": 3,
+      "knowledge": "Kommunen skaffet ny grunn vest for byens sentrum da gravplassbehovet økte.",
+      "source_ids": [
+        "byleks",
+        "byarkiv"
+      ],
+      "emne_id": "em_his_spor_materialitet",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 5,
+      "claim_id": "claim_vestre_gravlund_05",
+      "planned_phase": "opening",
+      "question": "Hvilket bygg stod klart samtidig med gravlundens etablering?",
+      "options": [
+        "Nye kapell",
+        "Oslo rådhus",
+        "Gravlundskapellet",
+        "Vikingtidsmuseet"
+      ],
+      "answer": "Gravlundskapellet",
+      "answerIndex": 2,
+      "knowledge": "Gravlundskapellet ble oppført i 1902 og var den første seremonibygningen på gravlunden.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "emne_id": "em_his_spor_materialitet",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 6,
+      "claim_id": "claim_vestre_gravlund_06",
+      "planned_phase": "opening",
+      "question": "Hvem tegnet Gravlundskapellet på Vestre gravlund?",
+      "options": [
+        "Alfred Christian Dahl",
+        "Oscar Hoff",
+        "Arnstein Arneberg",
+        "Christian Heinrich Grosch"
+      ],
+      "answer": "Alfred Christian Dahl",
+      "answerIndex": 0,
+      "knowledge": "Alfred Christian Dahl tegnet Gravlundskapellet, som stod ferdig i 1902.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "emne_id": "em_his_spor_materialitet",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 7,
+      "claim_id": "claim_vestre_gravlund_07",
+      "planned_phase": "opening",
+      "question": "Hva kan gravlundens ulike felt og gangsystemer fortelle om?",
+      "options": [
+        "At alle gravene er fra 1902",
+        "At stedet er utvidet og endret gjennom flere perioder",
+        "At hele området er én anonym grav",
+        "At gravlunden bare ble brukt under krigen"
+      ],
+      "answer": "At stedet er utvidet og endret gjennom flere perioder",
+      "answerIndex": 1,
+      "knowledge": "Utformingen har vokst fram i flere etapper, og landskapet inneholder ulike tidslag.",
+      "source_ids": [
+        "byleks",
+        "kommune"
+      ],
+      "emne_id": "em_his_spor_materialitet",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 8,
+      "claim_id": "claim_vestre_gravlund_08",
+      "planned_phase": "bridge",
+      "question": "Hva ble tatt i bruk ved Vestre gravlund i 1909?",
+      "options": [
+        "Det første norske vikingskipsmuseet",
+        "Hovedstadens første kino",
+        "En passasjerjernbane",
+        "Oslos første krematorium"
+      ],
+      "answer": "Oslos første krematorium",
+      "answerIndex": 3,
+      "knowledge": "Krematoriet ved Vestre gravlund var Oslos første, men Norges andre krematorium.",
+      "source_ids": [
+        "krematorium",
+        "nye"
+      ],
+      "emne_id": "em_his_kulturminner_bevaring",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 9,
+      "claim_id": "claim_vestre_gravlund_09",
+      "planned_phase": "bridge",
+      "question": "Hvem tegnet krematoriebygningen fra 1909?",
+      "options": [
+        "Alfred Christian Dahl",
+        "Sverre Fehn",
+        "Oscar Hoff",
+        "Erling Viksjø"
+      ],
+      "answer": "Oscar Hoff",
+      "answerIndex": 2,
+      "knowledge": "Arkitekt Oscar Hoff tegnet krematoriet som senere ble knyttet til Gamle kapell.",
+      "source_ids": [
+        "gammel",
+        "krematorium"
+      ],
+      "emne_id": "em_his_kulturminner_bevaring",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 10,
+      "claim_id": "claim_vestre_gravlund_10",
+      "planned_phase": "bridge",
+      "question": "Hvilken arkitekturstil forbindes med Gamle kapell?",
+      "options": [
+        "Jugendstil",
+        "Brutalisme",
+        "Nygotikk fra 1200-tallet",
+        "Etterkrigstidens funksjonalisme"
+      ],
+      "answer": "Jugendstil",
+      "answerIndex": 0,
+      "knowledge": "Gamle kapell er bygd i jugendstil, med et karakteristisk monumentalt inngangsparti.",
+      "source_ids": [
+        "gammel"
+      ],
+      "emne_id": "em_his_kulturminner_bevaring",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 11,
+      "claim_id": "claim_vestre_gravlund_11",
+      "planned_phase": "bridge",
+      "question": "Hvem utførte freskene i Gamle kapell?",
+      "options": [
+        "Alf Rolfsen",
+        "Gustav Vigeland",
+        "Edvard Munch",
+        "Emanuel Vigeland"
+      ],
+      "answer": "Emanuel Vigeland",
+      "answerIndex": 3,
+      "knowledge": "Emanuel Vigeland dekorerte Gamle kapell med fresker i 1923.",
+      "source_ids": [
+        "gammel"
+      ],
+      "emne_id": "em_his_kulturminner_bevaring",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 12,
+      "claim_id": "claim_vestre_gravlund_12",
+      "planned_phase": "bridge",
+      "question": "Hvem laget glassmaleriene i Gamle kapell?",
+      "options": [
+        "Anna-Eva Bergman",
+        "Maria Vigeland",
+        "Harriet Backer",
+        "Lillebet Foss"
+      ],
+      "answer": "Maria Vigeland",
+      "answerIndex": 1,
+      "knowledge": "Maria Vigeland utførte glassmalerier med barnemotiver i Gamle kapell.",
+      "source_ids": [
+        "gammel"
+      ],
+      "emne_id": "em_his_kulturminner_bevaring",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 13,
+      "claim_id": "claim_vestre_gravlund_13",
+      "planned_phase": "bridge",
+      "question": "Hvilken kunstner malte freskene i Nye kapell?",
+      "options": [
+        "Emanuel Vigeland",
+        "Christian Krohg",
+        "Alf Rolfsen",
+        "Henrik Sørensen"
+      ],
+      "answer": "Alf Rolfsen",
+      "answerIndex": 2,
+      "knowledge": "Nye kapell har fresker av Alf Rolfsen fra 1937, ikke Emanuel Vigeland.",
+      "source_ids": [
+        "nye"
+      ],
+      "emne_id": "em_his_kulturminner_bevaring",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 14,
+      "claim_id": "claim_vestre_gravlund_14",
+      "planned_phase": "bridge",
+      "question": "Hva ble rehabilitert i Nye kapell før gjenåpningen i 2025?",
+      "options": [
+        "Tak, terrazzogulv og deler av freskene",
+        "En helt ny underjordisk togstasjon",
+        "Et drivhus for eksotiske trær",
+        "Hele bygningen ble revet og gjenoppført"
+      ],
+      "answer": "Tak, terrazzogulv og deler av freskene",
+      "answerIndex": 0,
+      "knowledge": "Oslo kommune oppgir blant annet nytt skifertak, restaurert terrazzogulv og freskekonservering.",
+      "source_ids": [
+        "nye"
+      ],
+      "emne_id": "em_his_kulturminner_bevaring",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 15,
+      "claim_id": "claim_vestre_gravlund_15",
+      "planned_phase": "final",
+      "question": "Hva er den historiske forbindelsen mellom Gamle og Nye kapell?",
+      "options": [
+        "De ligger i hver sin by",
+        "Det nye er en kopi av en middelalderkirke",
+        "Det gamle ble flyttet fra Akershus festning",
+        "Nye kapell ble bygd i tilknytning til krematoriet og det eldre kapellet"
+      ],
+      "answer": "Nye kapell ble bygd i tilknytning til krematoriet og det eldre kapellet",
+      "answerIndex": 3,
+      "knowledge": "Nye kapell ble oppført som del av den sammenhengende kapell- og krematorieenheten.",
+      "source_ids": [
+        "nye",
+        "gammel"
+      ],
+      "emne_id": "em_his_kulturminner_bevaring",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 16,
+      "claim_id": "claim_vestre_gravlund_16",
+      "planned_phase": "final",
+      "question": "Hvorfor er både kistegraver og urnegraver viktige historiske spor?",
+      "options": [
+        "De viser at alle tilhørte samme husholdning",
+        "De viser ulike gravskikker og endringer over tid",
+        "De viser bare forskjeller i navn",
+        "De gjør gravlundens kapeller overflødige"
+      ],
+      "answer": "De viser ulike gravskikker og endringer over tid",
+      "answerIndex": 1,
+      "knowledge": "Gravtypene dokumenterer ulike former for gravlegging og minne.",
+      "source_ids": [
+        "kommune",
+        "byleks"
+      ],
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 17,
+      "claim_id": "claim_vestre_gravlund_17",
+      "planned_phase": "final",
+      "question": "Hva er en minnelund på Vestre gravlund?",
+      "options": [
+        "En jernbanestasjon inne på gravplassen",
+        "Et historisk kinorom",
+        "Et eget område for gravlegging og minne",
+        "Et lager for offentlige veiskilt"
+      ],
+      "answer": "Et eget område for gravlegging og minne",
+      "answerIndex": 2,
+      "knowledge": "Kommunen oppgir blant annet anonym minnelund og barneminnelund.",
+      "source_ids": [
+        "kommune"
+      ],
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 18,
+      "claim_id": "claim_vestre_gravlund_18",
+      "planned_phase": "final",
+      "question": "Hva gjør krigsgravfeltene til et internasjonalt minnelandskap?",
+      "options": [
+        "Falne fra flere land er gravlagt og minnet her",
+        "Bare norske generaler er gravlagt her",
+        "Alle krigsgravene er fra Napoleonskrigene",
+        "Feltet er uten minnesmerker"
+      ],
+      "answer": "Falne fra flere land er gravlagt og minnet her",
+      "answerIndex": 0,
+      "knowledge": "Oslo kommune omtaler krigsgraver fra en rekke land etter andre verdenskrig.",
+      "source_ids": [
+        "kommune",
+        "krig"
+      ],
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 19,
+      "claim_id": "claim_vestre_gravlund_19",
+      "planned_phase": "final",
+      "question": "Hvor mange falne fra samveldestatene er registrert i et eget felt?",
+      "options": [
+        "10",
+        "20",
+        "1002",
+        "102"
+      ],
+      "answer": "102",
+      "answerIndex": 3,
+      "knowledge": "Krigsgraver.no oppgir 102 falne fra Samveldestatene på Vestre gravlund.",
+      "source_ids": [
+        "krig"
+      ],
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 20,
+      "claim_id": "claim_vestre_gravlund_20",
+      "planned_phase": "final",
+      "question": "Hva er Cross of Sacrifice ved krigsgravfeltet?",
+      "options": [
+        "Et krematorium",
+        "Et minnekors for falne fra det britiske samveldet",
+        "En minnelund for barn",
+        "Et arkiv for gravregisteret"
+      ],
+      "answer": "Et minnekors for falne fra det britiske samveldet",
+      "answerIndex": 1,
+      "knowledge": "Cross of Sacrifice ble avduket i november 1949 ved samveldestatenes gravfelt.",
+      "source_ids": [
+        "krig"
+      ],
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 21,
+      "claim_id": "claim_vestre_gravlund_21",
+      "planned_phase": "final",
+      "question": "Hvorfor kan et krigsmonument være yngre enn krigen?",
+      "options": [
+        "Fordi alle gravsteder ble anlagt før fødselen",
+        "Fordi monumenter aldri har kjent datering",
+        "Minnesmerket kan være reist gjennom ettertidens minnearbeid",
+        "Fordi selve monumentet beviser dødsdatoen"
+      ],
+      "answer": "Minnesmerket kan være reist gjennom ettertidens minnearbeid",
+      "answerIndex": 2,
+      "knowledge": "På Vestre gravlund ble enkelte monumenter reist flere år etter den andre verdenskrigen.",
+      "source_ids": [
+        "krig",
+        "gov"
+      ],
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    }
+  ],
+  "quizCard_candidate_source_question_numbers": [
+    1,
+    3,
+    4,
+    5,
+    8,
+    11,
+    13,
+    16,
+    18,
+    20
+  ],
+  "note": "Preserve privacy and cemetery visitor etiquette."
+}
