@@ -56,5 +56,6 @@ jobs:
           git add -u data/knowledge/ reports/knowledge-id-backfill.json
           if ! git diff --cached --quiet; then
             git commit -m "Villa Stenersen: regenerate canonical quiz context and Knowledge"
-            git push origin HEAD:${{ github.head_ref }}
           fi
+          # Push the main-sync merge as well, even when generated files were already current.
+          git push origin HEAD:${{ github.head_ref }}
