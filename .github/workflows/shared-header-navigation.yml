@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - "js/ui/universal-header-nav.js"
+      - "js/leksikon/leksikon_loader.js"
+      - "js/ui/header-menu.js"
+      - "css/lesespor.css"
+      - "tests/lesespor-contextual-navigation.test.mjs"
       - "css/universal-header-nav.css"
       - "scripts/check-universal-header-navigation.mjs"
       - "tests/shared-header-navigation-browser.test.mjs"
@@ -33,6 +37,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify contextual back navigation
         run: node scripts/check-universal-header-navigation.mjs
+      - name: Verify Lesespor popup navigation and async isolation
+        run: node --test tests/lesespor-contextual-navigation.test.mjs
 
   browser-navigation:
     runs-on: ubuntu-latest

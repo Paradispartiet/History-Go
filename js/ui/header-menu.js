@@ -19,7 +19,7 @@
   function ensureLesesporStyles() {
     return ensureStylesheet({
       selector: 'link[data-hg-lesespor-styles="1"], link[href*="css/lesespor.css"]',
-      href: "css/lesespor.css?v=20260721-2",
+      href: "css/lesespor.css?v=20261027-contextual-back1",
       dataKey: "hgLesesporStyles"
     });
   }

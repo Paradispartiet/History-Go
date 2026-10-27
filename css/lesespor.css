@@ -43,6 +43,32 @@ body.hg-app .hg-popup.lesespor-entry-popup .hg-popup-close{
   -webkit-backdrop-filter:blur(12px);
 }
 
+/* Same compact back arrow as the other History Go overlays, without
+   stealing the map/page-level back action from the shared header. */
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-back-icon,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-back.pc-leksikon-back-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  min-width:38px;
+  height:38px;
+  min-height:38px;
+  margin:0 0 18px;
+  padding:0;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:9px;
+  background:rgba(255,255,255,.06);
+  color:#ffe34c;
+  font:700 20px/1 system-ui,sans-serif;
+  cursor:pointer;
+}
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-back-icon:focus-visible,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-back-icon:focus-visible{
+  outline:2px solid #ffe34c;
+  outline-offset:3px;
+}
+
 /* Den globale Lesespor-visningen scroller her, ikke i popup-skallet. */
 body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor{
   flex:1 1 auto;
