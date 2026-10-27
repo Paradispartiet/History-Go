@@ -52,7 +52,7 @@ jobs:
           node scripts/build-fagverk-release-manifest.mjs
       - name: Verify QuizCard, Knowledge and canonical data
         run: |
-          node --test tests/villa-stenersen-v1-parity.test.mjs
+          node --test tests/villa-stenersen-v1-parity.test.mjs tests/place-quizcards-category-manifests.test.mjs
           npm run place-open:check
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Install Chromium for actual app QA
