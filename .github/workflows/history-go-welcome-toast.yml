@@ -5,6 +5,12 @@ on:
     paths:
       - 'js/app.js'
       - 'js/ui/onboarding-welcome.js'
+      - 'js/ui/header-menu.js'
+      - 'js/ui/nature-explorer.js'
+      - 'finn-fauna.html'
+      - 'finn-flora.html'
+      - 'css/nature-explorer.css'
+      - 'tests/nature-explorer-entry.test.mjs'
       - 'js/ui/psychology-room-entry.js'
       - 'js/stories/stories_loader.js'
       - 'js/ui/toast.js'
@@ -39,6 +45,8 @@ jobs:
         run: |
           node tests/history-go-toast-onboarding-handoff.test.js
           node tests/history-go-onboarding-destination-links.test.js
+          node --check js/ui/nature-explorer.js
+          node --test tests/nature-explorer-entry.test.mjs
           node --check js/ui/onboarding-welcome.js
           node --check js/ui/psychology-room-entry.js
           node --check js/stories/stories_loader.js

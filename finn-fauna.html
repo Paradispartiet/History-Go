@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080a09">
+<title>Finn fauna | History Go</title>
+<meta name="description" content="Et illustrert naturatlas med dyr, fugler, insekter og livet i vann. Utforsk utseende, kjennetegn, leveområder og arter du har samlet.">
+<link rel="stylesheet" href="css/nature-explorer.css?v=20261027-2">
+<script defer src="js/ui/nature-illustrations.js?v=20261027-1"></script>
+<script defer src="js/ui/nature-explorer.js?v=20261027-2"></script>
+<link rel="stylesheet" href="css/universal-header-nav.css?v=20261027-5">
+<script defer src="js/ui/universal-header-nav.js?v=20261027-5"></script>
+</head>
+<body data-nature-kind="fauna">
+<header class="ne-header">
+ <a class="ne-back" id="natureBack" href="index.html" aria-label="Tilbake til kartet" title="Tilbake til kartet">←</a>
+ <a class="ne-brand" href="index.html" aria-label="History Go – startsiden"><img src="bilder/logo_historygo.PNG" alt="History Go" width="48" height="48"></a>
+ <div class="ne-menu-wrap">
+ <button id="natureMenuToggle" class="ne-menu-toggle" type="button" aria-label="Åpne meny" aria-expanded="false" aria-controls="natureMenu">☰</button>
+ <nav id="natureMenu" class="ne-menu" aria-label="History Go-sider" hidden>
+ <a href="index.html">Kart og steder</a>
+ <a href="finn-fauna.html" aria-current="page">Finn fauna</a>
+ <a href="finn-flora.html">Finn flora</a>
+ <a href="knowledge.html">Kunnskap</a><a href="profile.html">Min profil</a>
+ </nav>
+ </div>
+</header>
+<main class="ne-shell">
+ <section class="ne-hero" aria-labelledby="natureTitle">
+ <span class="ne-kicker">HISTORY GO / NATUR</span>
+ <h1 id="natureTitle"><span aria-hidden="true">🐾</span> Finn fauna</h1>
+ <p>Utforsk dyr, fugler og insekter. Lær kjennetegn og se artene du har samlet gjennom quiz.</p>
+ <div class="ne-quicklinks">
+ <a href="index.html">Utforsk kartet <span aria-hidden="true">↗</span></a>
+ <a href="finn-flora.html">Finn flora <span aria-hidden="true">↗</span></a>
+ </div>
+ </section>
+ <section class="ne-toolbar" aria-label="Søk i naturen">
+ <p id="natureStats" class="ne-stats" role="status" aria-live="polite">Laster artsoversikt …</p>
+ <label class="ne-search" for="natureSearch"><span aria-hidden="true">⌕</span><input id="natureSearch" type="search" autocomplete="off" placeholder="Søk etter art eller kjennetegn"></label>
+ <div class="ne-filters" role="group" aria-label="Filtrer arter"><button type="button" data-filter="all" aria-pressed="true" class="active">Alle arter</button><button type="button" data-filter="illustrated" aria-pressed="false">Med illustrasjon</button><button type="button" data-filter="collected" aria-pressed="false">Mine samlede</button></div>
+ <p class="ne-help">Arter samles gjennom eksisterende quiz på steder. Illustrasjoner er forenklede og erstatter ikke sikker artsbestemmelse.</p>
+ </section>
+ <section aria-labelledby="speciesHeading">
+ <div class="ne-listheading"><h2 id="speciesHeading">Artsoversikt</h2><span id="natureCount"></span></div>
+ <p id="natureMessage" class="ne-message" role="status" aria-live="polite">Laster arter …</p>
+ <div id="natureGrid" class="ne-grid"></div>
+ <button type="button" id="natureMore" class="ne-more" hidden>Vis flere arter</button>
+ </section>
+</main>
+<dialog id="natureDialog" class="ne-dialog" aria-labelledby="natureDetailTitle">
+ <button id="natureClose" type="button" class="ne-close" aria-label="Lukk art">×</button>
+ <div id="natureDetails"></div>
+</dialog>
+</body>
+</html>

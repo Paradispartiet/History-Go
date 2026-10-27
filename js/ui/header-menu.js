@@ -142,6 +142,27 @@
         modifier: "header-menu-action--knowledge"
       }));
     }
+
+    if (!document.getElementById("btnFinnFauna")) {
+      group.appendChild(createLearningLink({
+        id: "btnFinnFauna",
+        href: "finn-fauna.html",
+        iconText: "🐾",
+        labelText: "Finn fauna",
+        description: "Oppdag dyr, fugler og insekter",
+        modifier: "header-menu-action--fauna"
+      }));
+    }
+    if (!document.getElementById("btnFinnFlora")) {
+      group.appendChild(createLearningLink({
+        id: "btnFinnFlora",
+        href: "finn-flora.html",
+        iconText: "🌿",
+        labelText: "Finn flora",
+        description: "Oppdag blomster, trær og planter",
+        modifier: "header-menu-action--flora"
+      }));
+    }
   }
 
   function initHeaderMenu() {
@@ -197,7 +218,7 @@
       headerMenuApi.close();
     });
 
-    ["btnLesespor", "btnFagverk", "btnSprakatlas", "btnKnowledge", "btnSocialMeet"].forEach((id) => {
+    ["btnLesespor", "btnFagverk", "btnSprakatlas", "btnKnowledge", "btnFinnFauna", "btnFinnFlora", "btnSocialMeet"].forEach((id) => {
       document.getElementById(id)?.addEventListener("click", () => headerMenuApi.close());
     });
 

@@ -1,0 +1,87 @@
+/* Common navigation slot; module-specific header controls remain intact. */
+.hg-universal-back {
+  display: inline-flex;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  min-width: 38px;
+  max-width: 38px;
+  height: 38px;
+  min-height: 38px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 9px;
+  background: rgba(255,255,255,.045);
+  color: #f2f3f6;
+  font: 600 12px/1.25 system-ui, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+.hg-universal-back-arrow { color: #ffe34c; font-size: 18px; line-height: 1; }
+.hg-universal-back:hover { background: rgba(255,227,76,.08); border-color: rgba(255,227,76,.32); }
+.hg-universal-back:focus-visible { outline: 2px solid #ffe34c; outline-offset: 2px; }
+body.hg-app .site-header > .hg-universal-back { margin-right: 6px; }
+.topbar-left > .hg-universal-back { margin-right: 12px; }
+.kv2-appbar > .hg-universal-back, .fagverk-topbar > .hg-universal-back { margin-right: 8px; }
+.profile-header-left > .hg-universal-back { margin-right: 2px; }
+.emner-header-nav > .hg-universal-back { align-self: flex-start; }
+main.main > header > .hg-universal-back { margin-bottom: 8px; }
+@media (max-width: 460px) {
+  .topbar-left > .hg-universal-back { margin-right: 7px; }
+}
+
+/* Keep the History Go logo at the left; the icon-only back link fits in the
+   existing space between its right edge and the header controls. */
+body.hg-app header.site-header > .hg-universal-back {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 18px);
+  left: calc(env(safe-area-inset-left, 0px) + 78px);
+  z-index: 22;
+  margin: 0;
+}
+@media (max-width: 860px) {
+  /* Match the compact header logo size with sufficient specificity to beat theme.css. */
+  body.hg-app header.site-header > .hg-brand {
+    width: 54px;
+    height: 54px;
+    top: 1px;
+  }
+  body.hg-app header.site-header > .hg-universal-back {
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    height: 34px;
+    min-height: 34px;
+    left: calc(env(safe-area-inset-left, 0px) + 64px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+@media (max-width: 380px) {
+  body.hg-app header.site-header > .hg-brand {
+    width: 46px;
+    height: 46px;
+    top: 5px;
+  }
+  body.hg-app header.site-header > .hg-universal-back {
+    left: calc(env(safe-area-inset-left, 0px) + 55px);
+  }
+}
+
+/* Keep the return affordance available while long subpages scroll. */
+body.hg-fagverk-portal-page .fagverk-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 120;
+}
+.emner-header-nav > .hg-universal-back,
+main.main > header > .hg-universal-back {
+  position: fixed;
+  top: calc(10px + env(safe-area-inset-top, 0px));
+  left: calc(12px + env(safe-area-inset-left, 0px));
+  z-index: 1100;
+  box-shadow: 0 6px 24px rgba(0,0,0,.45);
+  background: rgba(9,11,16,.95);
+}

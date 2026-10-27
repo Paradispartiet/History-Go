@@ -22,6 +22,16 @@ assert.match(welcome, /\.hg-onb-card-link\[href\]/, "page links must persist wel
 assert.doesNotMatch(welcome, /stedskort|quizkort|testmodus/i);
 assert.match(stories, /async openAll\(\)/);
 assert.match(stories, /hgWelcomeStoriesSearch/);
+assert.match(stories, /class="hg-welcome-stories-back" type="button" data-close-popup/, "Stories arrow uses the canonical popup dismissal");
+assert.match(stories, /aria-label="Tilbake til kartet"/, "Stories return is accessible");
+assert.match(css, /\.hg-welcome-stories-back\s*\{/, "Stories return has compact styling");
+const psychologyRoom = read("js/psychologyRoom.js");
+const psychologyStyles = read("css/psychologyRoom.css");
+assert.match(psychologyRoom, /psychology-room-back psychology-room-back-nav/, "Psychology internal back is arrow-only");
+assert.match(psychologyRoom, /aria-label="Tilbake til 7-dagersløpet"/, "Path back has an accessible destination");
+assert.match(psychologyStyles, /\.psychology-room-back\.psychology-room-back-nav/, "Only navigation buttons are made compact");
+assert.match(psychologyRoom, /data-psych-clear-workbench="1"/, "Other psychology actions are not changed");
+
 assert.match(stories, /index.html#\/place\//);
 assert.match(psychology, /HGPsychologyRoomEntry = \{ open: openRoom \}/);
 assert.ok(welcome.includes("async function openPsychologyRoom()"));
