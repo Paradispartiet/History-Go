@@ -230,7 +230,27 @@
   window.openOnboarding = open;
   window.HGOnboarding = { open, close, maybeShowOnFirstVisit, openNearestPlace, nearestPlace, FLAG_KEY };
 
-  if (document.readyState === "loading") {
+  // The logo replaces the failed Hurtigmeny shortcut. Never navigate away
+  // from the current map/place state just to open the welcome start surface.
+  if (typeof document.getElementById === "function") {
+    document.getElementById("hgHomeLogo")?.addEventListener("click", () => {
+      window.HGHeaderMenu?.close?.();
+      open();
+    });
+  }
+
+  // Other History Go headers can link here and request the same start surface.
+  // Wait for the app router so deep-link handling is not interrupted.
+  const requestedWelcome = typeof window.location?.search === "string" && typeof URLSearchParams === "function"
+    && new URLSearchParams(window.location.search).get("welcome") === "1";
+  if (requestedWelcome) {
+    whenFullyInteractive(() => {
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.searchParams.delete("welcome");
+      window.history.replaceState(window.history.state, "", cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+      open();
+    });
+  } else if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", maybeShowOnFirstVisit);
   } else {
     maybeShowOnFirstVisit();
