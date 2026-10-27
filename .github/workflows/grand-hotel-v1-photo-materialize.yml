@@ -68,4 +68,7 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m 'Grand Hotel: activate canonical quiz, Knowledge and Place runtime'
           fi
+          # Refuse force-push. Rebase onto any concurrent branch updates before uploading.
+          git fetch origin content/grand-hotel-sentrum-v1-20261027
+          git rebase origin/content/grand-hotel-sentrum-v1-20261027
           git push origin HEAD:refs/heads/content/grand-hotel-sentrum-v1-20261027
