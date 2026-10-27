@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const scope={kontraskjaeret:'historie',palehaven_paleet:'historie',avisen_tiden_radhusgata_10:'historie',egertorget:'by',mustadgarden_kongens_gate_3:'historie',wessels_plass:'by'};
+// Wessels plass is already canonical on main via PR #6637; never rematerialize it here.
+const scope={kontraskjaeret:'historie',palehaven_paleet:'historie',avisen_tiden_radhusgata_10:'historie',egertorget:'by',mustadgarden_kongens_gate_3:'historie'};
+// Only test packages authored here; Wessels plass has its own merged v1 QA.
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 for(const [id,category] of Object.entries(scope))test(`${id}: active quiz, source claims, Knowledge and ten fact-only QuizCards agree`,()=>{
  const file=`data/quiz/${category}/${id}_sets.json`;
