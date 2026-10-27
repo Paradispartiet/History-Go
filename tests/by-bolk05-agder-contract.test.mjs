@@ -43,7 +43,7 @@ test('By05 Agder editorial packages maintain Fagverk/quiz/QuizCard parity as add
     assert.equal(card.questionCount, 10, id);
     assert.equal(card.questions.length, 10, id);
     assert.equal(new Set(questions.map((q) => q.question)).size, 10, id);
-    const yearQuestions = questions.filter((q) => /^(?:når|hvilket år|i hvilket år|fra hvilket år)\\b/i.test(q.question));
+    const yearQuestions = questions.filter((q) => /^(?:når|hvilket år|i hvilket år|fra hvilket år)\b/i.test(q.question));
     assert.ok(yearQuestions.length <= 2, id + ': too many year-only questions');
     for (const [n, q] of questions.entries()) {
       assert.equal(q.options[q.answerIndex], q.answer, id);
