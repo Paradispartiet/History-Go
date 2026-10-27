@@ -89,3 +89,15 @@ test("Villa Stenersen: all 21 questions and ten QuizCard entries link to publish
     assert.equal(question.primary_knowledge_unit_id, original.primary_knowledge_unit_id, question.id);
   }
 });
+
+
+test("Villa Stenersen: published manifests and Fagverk registry stay in sync", () => {
+  const manifest = read("data/quiz/manifest.json");
+  const quizRefs = manifest.sets.filter((entry) => entry.targetId === "villa_stenersen");
+  assert.equal(quizRefs.length, 3);
+  assert.deepEqual(quizRefs.map((entry) => entry.set_id).sort(), full.sets.map((set) => set.set_id).sort());
+  const cardManifest = read("data/quizcards/historie/manifest.json");
+  assert.ok(cardManifest.collections.includes("villa_stenersen_quizcard_v1.json"));
+  const fagverk = read("data/fagverk/fagverk_registry.json");
+  assert.equal(fagverk.placeLinks.villa_stenersen?.status, "curated");
+});
