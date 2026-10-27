@@ -1,0 +1,1488 @@
+{
+  "schema": "civication_role_first_story_architecture_v1",
+  "version": 1,
+  "purpose": "Editorial role-driven typology for actually available Civication work roles and life positions. Not runtime, not automatic plot selection or badge grants.",
+  "roleAuthority": {
+    "formal": "data/Civication/lifestory/manifest.json",
+    "life": "data/Civication/lifestory/roles/arbeidsledig/role.json#symposium.rollebroer",
+    "roleSelectedBy": "the canonical active job or selected Life Position, never a fictional character"
+  },
+  "peopleAuthority": {
+    "fictionalCast": "data/Civication/lifestory/roles/*/role.json#personer; social characters and friend records have their own stable IDs",
+    "historyGoPeople": "data/Civication/historyPeople_index.json and people_collected (read-only)",
+    "relationshipTruth": "civication_lifestory_v1.relasjoner is local narrative state; it is not automatically the social friend relationship engine",
+    "policy": "Do not confuse a fictional NPC with a collected historical person. Historical People may provide documented role-specific context, but never become living participants in invented scenes or acquire fictional dialogue by inference.",
+    "existingHybridIssue": "lifestoryState.bindPersonTypes and presentText currently can substitute a collected historical identity for a fictional person-type. This requires a separate, state-compatible migration and test; this editorial registry deliberately does not extend it."
+  },
+  "formalRoles": [
+    {
+      "id": "arbeidsledig",
+      "source": "formal_work_role",
+      "displayName": "Arbeidsledig",
+      "primaryPlot": "P02",
+      "primaryLiteraryTrack": "L03",
+      "primaryContemporaryType": "C01",
+      "dramaticCore": "Jobbsøkerens status og faktiske inntektsmuligheter",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "arealplanlegger",
+      "source": "formal_work_role",
+      "displayName": "arealplanlegger",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L17",
+      "primaryContemporaryType": "C06",
+      "dramaticCore": "Faglig integritet i møte med utbygger, nabo og plansjef",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "renholder",
+      "source": "formal_work_role",
+      "displayName": "renholder",
+      "primaryPlot": "P06",
+      "primaryLiteraryTrack": "L06",
+      "primaryContemporaryType": "C17",
+      "dramaticCore": "Usynlig arbeid, belastning og ansvar når tiden ikke strekker til",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "ekspeditor",
+      "source": "formal_work_role",
+      "displayName": "ekspeditor",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L17",
+      "primaryContemporaryType": "C23",
+      "dramaticCore": "Kundehendelser og kasseavvik som følger spilleren videre",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "psykologi_miljoarbeid",
+      "source": "formal_work_role",
+      "displayName": "psykologi_miljoarbeid",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L11",
+      "primaryContemporaryType": "C12",
+      "dramaticCore": "Nærhet, samtykke og ikke-klinisk myndighet",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "psykologi_arbeids_og_karriereveiledning",
+      "source": "formal_work_role",
+      "displayName": "psykologi_arbeids_og_karriereveiledning",
+      "primaryPlot": "P04",
+      "primaryLiteraryTrack": "L17",
+      "primaryContemporaryType": "C19",
+      "dramaticCore": "Veiledning der den andre eier valget",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "psykolog",
+      "source": "formal_work_role",
+      "displayName": "psykolog",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L17",
+      "primaryContemporaryType": "C06",
+      "dramaticCore": "Vurdering og allianse når grunnlaget er ufullstendig",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "spesialistpsykolog",
+      "source": "formal_work_role",
+      "displayName": "spesialistpsykolog",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L13",
+      "primaryContemporaryType": "C22",
+      "dramaticCore": "Ekspertise under usikkerhet og ulike faglige perspektiver",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "fagansvarlig",
+      "source": "formal_work_role",
+      "displayName": "fagansvarlig",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L19",
+      "primaryContemporaryType": "C22",
+      "dramaticCore": "Faglige standarder mot konkret avvik og ansvar",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "klinikkleder",
+      "source": "formal_work_role",
+      "displayName": "klinikkleder",
+      "primaryPlot": "P06",
+      "primaryLiteraryTrack": "L07",
+      "primaryContemporaryType": "C06",
+      "dramaticCore": "Prioriteringer mellom kapasitet, kvalitet og mennesker",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "forsker_psykologi",
+      "source": "formal_work_role",
+      "displayName": "forsker_psykologi",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L20",
+      "primaryContemporaryType": "C22",
+      "dramaticCore": "Funn, publiseringspress og redelig metode",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "professor_psykologi",
+      "source": "formal_work_role",
+      "displayName": "professor_psykologi",
+      "primaryPlot": "P07",
+      "primaryLiteraryTrack": "L13",
+      "primaryContemporaryType": "C20",
+      "dramaticCore": "Makt, veiledning og å slippe andre fram",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "barnehageassistent",
+      "source": "formal_work_role",
+      "displayName": "barnehageassistent",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L11",
+      "primaryContemporaryType": "C20",
+      "dramaticCore": "Omsorg under bemanningstrykk og barnas trygghet",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "controller",
+      "source": "formal_work_role",
+      "displayName": "controller",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L12",
+      "primaryContemporaryType": "C22",
+      "dramaticCore": "Tall som kan etterprøves mot forventningen om pene rapporter",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    },
+    {
+      "id": "sport_utover",
+      "source": "formal_work_role",
+      "displayName": "sport_utover",
+      "primaryPlot": "P02",
+      "primaryLiteraryTrack": "L15",
+      "primaryContemporaryType": "C19",
+      "dramaticCore": "Idrettslig ambisjon mot kroppen og livet utenfor",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "role package (not newly authored in this change)"
+    }
+  ],
+  "lifePositions": [
+    {
+      "id": "musikk_frilansmusiker",
+      "source": "selected_life_position",
+      "displayName": "Frilansmusiker",
+      "primaryPlot": "P07",
+      "primaryLiteraryTrack": "L15",
+      "primaryContemporaryType": "C19",
+      "dramaticCore": "Kunstnerisk eierskap og sjansen til å finne egen musikalsk stemme",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "musikk",
+      "role_world": "data/Civication/roleWorlds/musikk/musikk_frilansmusiker.json"
+    },
+    {
+      "id": "subkultur_gangster",
+      "source": "selected_life_position",
+      "displayName": "Gangster",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L02",
+      "primaryContemporaryType": "C07",
+      "dramaticCore": "Tilhørighet, gjeld, lojalitet og egen handlefrihet",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "subkultur",
+      "role_world": "data/Civication/roleWorlds/subkultur/subkultur_gangster.json"
+    },
+    {
+      "id": "naeringsliv_sideprosjektbygger",
+      "source": "selected_life_position",
+      "displayName": "Sideprosjektbygger",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L17",
+      "primaryContemporaryType": "C03",
+      "dramaticCore": "Skapertrang mot ubehagelige motbevis og knapp fritid",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "naeringsliv",
+      "role_world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_sideprosjektbygger.json"
+    },
+    {
+      "id": "naeringsliv_frilanser",
+      "source": "selected_life_position",
+      "displayName": "Frilanser",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L20",
+      "primaryContemporaryType": "C04",
+      "dramaticCore": "Oppdragsarbeid, kildeeierskap, tidsbruk og honorar",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "naeringsliv",
+      "role_world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_frilanser.json"
+    },
+    {
+      "id": "naeringsliv_grunderdrommer",
+      "source": "selected_life_position",
+      "displayName": "Gründerdrømmer",
+      "primaryPlot": "P02",
+      "primaryLiteraryTrack": "L06",
+      "primaryContemporaryType": "C03",
+      "dramaticCore": "Ambisjon, risiko, anerkjennelse og mulig sosialt fall",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "naeringsliv",
+      "role_world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_grunderdrommer.json"
+    },
+    {
+      "id": "litteratur_skrivebordspoet",
+      "source": "selected_life_position",
+      "displayName": "Skrivebordspoet",
+      "primaryPlot": "P07",
+      "primaryLiteraryTrack": "L24",
+      "primaryContemporaryType": "C19",
+      "dramaticCore": "Forfatterskap uten lovnad om publisering",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "litteratur",
+      "role_world": "data/Civication/roleWorlds/litteratur/litteratur_skrivebordspoet.json"
+    },
+    {
+      "id": "kunst_ateliermenneske",
+      "source": "selected_life_position",
+      "displayName": "Ateliermenneske",
+      "primaryPlot": "P07",
+      "primaryLiteraryTrack": "L21",
+      "primaryContemporaryType": "C19",
+      "dramaticCore": "Eget uttrykk, materialkostnader og risiko for avvisning",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "kunst",
+      "role_world": "data/Civication/roleWorlds/kunst/kunst_ateliermenneske.json"
+    },
+    {
+      "id": "scenekunst_improentusiast",
+      "source": "selected_life_position",
+      "displayName": "Improentusiast",
+      "primaryPlot": "P05",
+      "primaryLiteraryTrack": "L13",
+      "primaryContemporaryType": "C20",
+      "dramaticCore": "Flerstemmig ensemble der ingen eier scenen alene",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "scenekunst",
+      "role_world": "data/Civication/roleWorlds/scenekunst/scenekunst_improentusiast.json"
+    },
+    {
+      "id": "sport_klubbmenneske",
+      "source": "selected_life_position",
+      "displayName": "Klubbmenneske",
+      "primaryPlot": "P05",
+      "primaryLiteraryTrack": "L11",
+      "primaryContemporaryType": "C20",
+      "dramaticCore": "Laglojalitet og frihet fra uavtalte dugnader",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "sport",
+      "role_world": "data/Civication/roleWorlds/sport/sport_klubbmenneske.json"
+    },
+    {
+      "id": "politikk_grasrotbygger",
+      "source": "selected_life_position",
+      "displayName": "Grasrotbygger",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L19",
+      "primaryContemporaryType": "C20",
+      "dramaticCore": "Kollektiv handling, vedtak og kostnader ved mobilisering",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "politikk",
+      "role_world": "data/Civication/roleWorlds/politikk/politikk_grasrotbygger.json"
+    },
+    {
+      "id": "politikk_organisasjonsmenneske",
+      "source": "selected_life_position",
+      "displayName": "Organisasjonsmenneske",
+      "primaryPlot": "P06",
+      "primaryLiteraryTrack": "L07",
+      "primaryContemporaryType": "C08",
+      "dramaticCore": "Forhandling, posisjon og lojalitet mot egne prinsipper",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "politikk",
+      "role_world": "data/Civication/roleWorlds/politikk/politikk_organisasjonsmenneske.json"
+    },
+    {
+      "id": "by_byvandrer",
+      "source": "selected_life_position",
+      "displayName": "Byvandrer",
+      "primaryPlot": "P04",
+      "primaryLiteraryTrack": "L22",
+      "primaryContemporaryType": "C21",
+      "dramaticCore": "Byen som endres og minner som motsies av steder",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "by",
+      "role_world": "data/Civication/roleWorlds/by/by_byvandrer.json"
+    },
+    {
+      "id": "by_flanor",
+      "source": "selected_life_position",
+      "displayName": "Flanør",
+      "primaryPlot": "P04",
+      "primaryLiteraryTrack": "L09",
+      "primaryContemporaryType": "C21",
+      "dramaticCore": "Den utenforstående observatørens muligheter og begrensninger",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "by",
+      "role_world": "data/Civication/roleWorlds/by/by_flanor.json"
+    },
+    {
+      "id": "historie_lokalhistoriker",
+      "source": "selected_life_position",
+      "displayName": "Lokalhistoriker",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L20",
+      "primaryContemporaryType": "C22",
+      "dramaticCore": "Kildene som utfordrer stedets populære historie",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "historie",
+      "role_world": "data/Civication/roleWorlds/historie/historie_lokalhistoriker.json"
+    },
+    {
+      "id": "natur_fuglekikker",
+      "source": "selected_life_position",
+      "displayName": "Fuglekikker",
+      "primaryPlot": "P04",
+      "primaryLiteraryTrack": "L22",
+      "primaryContemporaryType": "C22",
+      "dramaticCore": "Tålmodig observasjon og verdien av et usikkert funn",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "natur",
+      "role_world": "data/Civication/roleWorlds/natur/natur_fuglekikker.json"
+    },
+    {
+      "id": "natur_sanker",
+      "source": "selected_life_position",
+      "displayName": "Sanker",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L17",
+      "primaryContemporaryType": "C22",
+      "dramaticCore": "Artskunnskap, lovlig tilgang og sikkerhet",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "natur",
+      "role_world": "data/Civication/roleWorlds/natur/natur_sanker.json"
+    },
+    {
+      "id": "vitenskap_folkeforsker",
+      "source": "selected_life_position",
+      "displayName": "Folkeforsker",
+      "primaryPlot": "P03",
+      "primaryLiteraryTrack": "L20",
+      "primaryContemporaryType": "C22",
+      "dramaticCore": "Metode før konklusjon og mulig tap av troverdighet",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "vitenskap",
+      "role_world": "data/Civication/roleWorlds/vitenskap/vitenskap_folkeforsker.json"
+    },
+    {
+      "id": "vitenskap_maker",
+      "source": "selected_life_position",
+      "displayName": "Maker",
+      "primaryPlot": "P02",
+      "primaryLiteraryTrack": "L17",
+      "primaryContemporaryType": "C23",
+      "dramaticCore": "Prototyper, feil og læring under materielle begrensninger",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "vitenskap",
+      "role_world": "data/Civication/roleWorlds/vitenskap/vitenskap_maker.json"
+    },
+    {
+      "id": "film_tv_filmklubbmenneske",
+      "source": "selected_life_position",
+      "displayName": "Filmklubbmenneske",
+      "primaryPlot": "P05",
+      "primaryLiteraryTrack": "L13",
+      "primaryContemporaryType": "C20",
+      "dramaticCore": "Kuratering mot publikums forventninger og gruppens smak",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "film_tv",
+      "role_world": "data/Civication/roleWorlds/film_tv/film_tv_filmklubbmenneske.json"
+    },
+    {
+      "id": "litteratur_bokklubbmenneske",
+      "source": "selected_life_position",
+      "displayName": "Bokklubbmenneske",
+      "primaryPlot": "P05",
+      "primaryLiteraryTrack": "L13",
+      "primaryContemporaryType": "C20",
+      "dramaticCore": "Tolkninger og motstridende stemmer i en gruppe",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "litteratur",
+      "role_world": "data/Civication/roleWorlds/litteratur/litteratur_bokklubbmenneske.json"
+    },
+    {
+      "id": "musikk_konsertgjenger",
+      "source": "selected_life_position",
+      "displayName": "Konsertgjenger",
+      "primaryPlot": "P04",
+      "primaryLiteraryTrack": "L23",
+      "primaryContemporaryType": "C02",
+      "dramaticCore": "Konsertmiljø, sosial adgang og uventede møter",
+      "archetypalFunctionsAreEditorial": true,
+      "producedScenes": "only if a continuation is registered",
+      "badge_id": "musikk",
+      "role_world": "data/Civication/roleWorlds/musikk/musikk_konsertgjenger.json"
+    }
+  ],
+  "existingChapters": [
+    {
+      "id": "frilans_med_lea",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 7,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "grunder_med_lea",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 7,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "miljo_med_arvid",
+      "role_scope": "subkultur_gangster",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 7,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "musikk_med_mira",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 7,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "sideprosjekt_med_lea",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 7,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "frilans_neste_steg",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 10,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "grunder_neste_steg",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 10,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "miljo_navnet_ditt",
+      "role_scope": "subkultur_gangster",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 10,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "musikk_foresporselen",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 10,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "sideprosjekt_neste_steg",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "phase": "initialContinuation",
+      "prior": null,
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [],
+      "originalSuggestedTypes": [],
+      "afterDay": 10,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "frilans_etter_neste_steg",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "continuationProduction",
+      "prior": "frilans_neste_steg",
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [
+        "L12",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C03",
+        "C04",
+        "C23"
+      ],
+      "afterDay": 13,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "grunder_etter_neste_steg",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "phase": "continuationProduction",
+      "prior": "grunder_neste_steg",
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [
+        "L02",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C03",
+        "C04",
+        "C23"
+      ],
+      "afterDay": 13,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "miljo_etter_invitasjonen",
+      "role_scope": "subkultur_gangster",
+      "phase": "continuationProduction",
+      "prior": "miljo_navnet_ditt",
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [
+        "L03",
+        "L17",
+        "L18",
+        "L15"
+      ],
+      "originalSuggestedTypes": [
+        "C07",
+        "C08",
+        "C24"
+      ],
+      "afterDay": 13,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "musikk_etter_foresporselen",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "continuationProduction",
+      "prior": "musikk_foresporselen",
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [
+        "L02",
+        "L09",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C09",
+        "C24"
+      ],
+      "afterDay": 13,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "sideprosjekt_etter_neste_steg",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "phase": "continuationProduction",
+      "prior": "sideprosjekt_neste_steg",
+      "originalSuggestedPlotLenses": [],
+      "originalSuggestedTracks": [
+        "L02",
+        "L11",
+        "L15"
+      ],
+      "originalSuggestedTypes": [
+        "C03",
+        "C04",
+        "C23"
+      ],
+      "afterDay": 13,
+      "parentRole": null,
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "miljo_kryss_med_frilans",
+      "role_scope": "subkultur_gangster",
+      "phase": "crossCharacterProduction",
+      "prior": "frilans_etter_neste_steg",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P06"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L12",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C04",
+        "C07",
+        "C14",
+        "C23"
+      ],
+      "afterDay": 16,
+      "parentRole": "naeringsliv_frilanser",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "miljo_kryss_med_lea",
+      "role_scope": "subkultur_gangster",
+      "phase": "crossCharacterProduction",
+      "prior": "sideprosjekt_etter_neste_steg",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P06"
+      ],
+      "originalSuggestedTracks": [
+        "L02",
+        "L11",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C04",
+        "C07",
+        "C08",
+        "C24"
+      ],
+      "afterDay": 16,
+      "parentRole": "naeringsliv_sideprosjektbygger",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "musikk_kryss_med_arvid",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "crossCharacterProduction",
+      "prior": "miljo_etter_invitasjonen",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L12",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C07",
+        "C14",
+        "C24"
+      ],
+      "afterDay": 16,
+      "parentRole": "subkultur_gangster",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "musikk_kryss_med_grunder",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "crossCharacterProduction",
+      "prior": "grunder_etter_neste_steg",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L02",
+        "L11",
+        "L13",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C03",
+        "C04",
+        "C24"
+      ],
+      "afterDay": 16,
+      "parentRole": "naeringsliv_grunderdrommer",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "sideprosjekt_kryss_med_mira",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "phase": "crossCharacterProduction",
+      "prior": "musikk_etter_foresporselen",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L13",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C03",
+        "C23",
+        "C24"
+      ],
+      "afterDay": 16,
+      "parentRole": "musikk_frilansmusiker",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "frilans_etter_arvids_kreditering",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "ensembleProduction",
+      "prior": "miljo_kryss_med_frilans",
+      "originalSuggestedPlotLenses": [
+        "P05",
+        "P06"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L15",
+        "L17",
+        "L23"
+      ],
+      "originalSuggestedTypes": [
+        "C04",
+        "C07",
+        "C12",
+        "C24"
+      ],
+      "afterDay": 19,
+      "parentRole": "subkultur_gangster",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "frilans_etter_miras_navn",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "ensembleProduction",
+      "prior": "musikk_kryss_med_arvid",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L12",
+        "L17",
+        "L20"
+      ],
+      "originalSuggestedTypes": [
+        "C04",
+        "C14",
+        "C23",
+        "C24"
+      ],
+      "afterDay": 19,
+      "parentRole": "musikk_frilansmusiker",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "miljo_etter_leas_program",
+      "role_scope": "subkultur_gangster",
+      "phase": "ensembleProduction",
+      "prior": "sideprosjekt_kryss_med_mira",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L13",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C07",
+        "C14",
+        "C24"
+      ],
+      "afterDay": 19,
+      "parentRole": "naeringsliv_sideprosjektbygger",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "miljo_etter_miras_lyd",
+      "role_scope": "subkultur_gangster",
+      "phase": "ensembleProduction",
+      "prior": "musikk_kryss_med_grunder",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L12",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C07",
+        "C14",
+        "C24"
+      ],
+      "afterDay": 19,
+      "parentRole": "musikk_frilansmusiker",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "musikk_etter_arvids_tekst",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "ensembleProduction",
+      "prior": "miljo_kryss_med_lea",
+      "originalSuggestedPlotLenses": [
+        "P04",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L12",
+        "L13",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C04",
+        "C09",
+        "C24"
+      ],
+      "afterDay": 19,
+      "parentRole": "subkultur_gangster",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "arvid_etter_leas_grense",
+      "role_scope": "subkultur_gangster",
+      "phase": "relationshipProduction",
+      "prior": "frilans_etter_arvids_kreditering",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L11",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C07",
+        "C08",
+        "C09",
+        "C24"
+      ],
+      "afterDay": 22,
+      "parentRole": "naeringsliv_frilanser",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "arvid_etter_leas_notat",
+      "role_scope": "subkultur_gangster",
+      "phase": "relationshipProduction",
+      "prior": "frilans_etter_miras_navn",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P06"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L12",
+        "L17",
+        "L20"
+      ],
+      "originalSuggestedTypes": [
+        "C07",
+        "C14",
+        "C23",
+        "C24"
+      ],
+      "afterDay": 22,
+      "parentRole": "naeringsliv_frilanser",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "lea_etter_arvids_ansvar",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "phase": "relationshipProduction",
+      "prior": "miljo_etter_leas_program",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L11",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C07",
+        "C09",
+        "C12",
+        "C24"
+      ],
+      "afterDay": 22,
+      "parentRole": "subkultur_gangster",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "mira_etter_lydfilens_rykte",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "relationshipProduction",
+      "prior": "miljo_etter_miras_lyd",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L11",
+        "L15",
+        "L24"
+      ],
+      "originalSuggestedTypes": [
+        "C07",
+        "C09",
+        "C18",
+        "C24"
+      ],
+      "afterDay": 22,
+      "parentRole": "subkultur_gangster",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "mira_etter_samtalen_med_lea",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "relationshipProduction",
+      "prior": "musikk_etter_arvids_tekst",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L10",
+        "L11",
+        "L13"
+      ],
+      "originalSuggestedTypes": [
+        "C09",
+        "C12",
+        "C18",
+        "C24"
+      ],
+      "afterDay": 22,
+      "parentRole": "musikk_frilansmusiker",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "arvid_etter_leas_tillit",
+      "role_scope": "subkultur_gangster",
+      "phase": "consequenceProduction",
+      "prior": "lea_etter_arvids_ansvar",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L02",
+        "L11",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C07",
+        "C08",
+        "C20",
+        "C24"
+      ],
+      "afterDay": 25,
+      "parentRole": "naeringsliv_sideprosjektbygger",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "lea_etter_arvids_avstand",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "consequenceProduction",
+      "prior": "arvid_etter_leas_grense",
+      "originalSuggestedPlotLenses": [
+        "P05",
+        "P06"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L11",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C07",
+        "C09",
+        "C12",
+        "C24"
+      ],
+      "afterDay": 25,
+      "parentRole": "subkultur_gangster",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "lea_etter_arvids_fortelling",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "consequenceProduction",
+      "prior": "arvid_etter_leas_notat",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L12",
+        "L17",
+        "L20"
+      ],
+      "originalSuggestedTypes": [
+        "C04",
+        "C06",
+        "C12",
+        "C24"
+      ],
+      "afterDay": 25,
+      "parentRole": "subkultur_gangster",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "lea_etter_miras_vennskap",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "phase": "consequenceProduction",
+      "prior": "mira_etter_samtalen_med_lea",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L11",
+        "L13",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C03",
+        "C06",
+        "C24"
+      ],
+      "afterDay": 25,
+      "parentRole": "musikk_frilansmusiker",
+      "requiresActualRoleSwitch": true
+    },
+    {
+      "id": "mira_etter_nye_takter",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "consequenceProduction",
+      "prior": "mira_etter_lydfilens_rykte",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L15",
+        "L17",
+        "L24"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C09",
+        "C12",
+        "C19"
+      ],
+      "afterDay": 25,
+      "parentRole": "musikk_frilansmusiker",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "arvid_og_det_aapne_lokalet",
+      "role_scope": "subkultur_gangster",
+      "phase": "longTermProduction",
+      "prior": "arvid_etter_leas_tillit",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L02",
+        "L07",
+        "L11",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C06",
+        "C07",
+        "C08",
+        "C20"
+      ],
+      "afterDay": 28,
+      "parentRole": "subkultur_gangster",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "lea_og_fellesskapet_uten_plikt",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "longTermProduction",
+      "prior": "lea_etter_arvids_avstand",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L03",
+        "L09",
+        "L11",
+        "L23"
+      ],
+      "originalSuggestedTypes": [
+        "C09",
+        "C18",
+        "C19",
+        "C20"
+      ],
+      "afterDay": 28,
+      "parentRole": "naeringsliv_frilanser",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "lea_og_kildene_i_skrivearbeidet",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "longTermProduction",
+      "prior": "lea_etter_arvids_fortelling",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L11",
+        "L17",
+        "L20",
+        "L22"
+      ],
+      "originalSuggestedTypes": [
+        "C04",
+        "C06",
+        "C22",
+        "C24"
+      ],
+      "afterDay": 28,
+      "parentRole": "naeringsliv_frilanser",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "lea_og_sporsmaalene_som_gjenstaar",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "phase": "longTermProduction",
+      "prior": "lea_etter_miras_vennskap",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L11",
+        "L13",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C03",
+        "C06",
+        "C22"
+      ],
+      "afterDay": 28,
+      "parentRole": "naeringsliv_sideprosjektbygger",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "mira_og_musikken_i_hverdagen",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "longTermProduction",
+      "prior": "mira_etter_nye_takter",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L15",
+        "L17",
+        "L24"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C17",
+        "C18",
+        "C19"
+      ],
+      "afterDay": 28,
+      "parentRole": "musikk_frilansmusiker",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "arvid_og_nokkelen_til_lokalet",
+      "role_scope": "subkultur_gangster",
+      "phase": "lifeConsequencesProduction",
+      "prior": "arvid_og_det_aapne_lokalet",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L02",
+        "L11",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C06",
+        "C07",
+        "C08",
+        "C20"
+      ],
+      "afterDay": 31,
+      "parentRole": "subkultur_gangster",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "lea_og_den_foerste_hypotesen",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "phase": "lifeConsequencesProduction",
+      "prior": "lea_og_sporsmaalene_som_gjenstaar",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L11",
+        "L13",
+        "L20"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C03",
+        "C06",
+        "C22"
+      ],
+      "afterDay": 31,
+      "parentRole": "naeringsliv_sideprosjektbygger",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "lea_og_elins_vanskelige_uke",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "lifeConsequencesProduction",
+      "prior": "lea_og_fellesskapet_uten_plikt",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L11",
+        "L17",
+        "L23"
+      ],
+      "originalSuggestedTypes": [
+        "C09",
+        "C18",
+        "C19",
+        "C20"
+      ],
+      "afterDay": 31,
+      "parentRole": "naeringsliv_frilanser",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "lea_og_foresporselen_om_honorar",
+      "role_scope": "naeringsliv_frilanser",
+      "phase": "lifeConsequencesProduction",
+      "prior": "lea_og_kildene_i_skrivearbeidet",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L02",
+        "L11",
+        "L17",
+        "L20"
+      ],
+      "originalSuggestedTypes": [
+        "C03",
+        "C04",
+        "C06",
+        "C22"
+      ],
+      "afterDay": 31,
+      "parentRole": "naeringsliv_frilanser",
+      "requiresActualRoleSwitch": false
+    },
+    {
+      "id": "mira_og_invitasjonen_fra_musikeren",
+      "role_scope": "musikk_frilansmusiker",
+      "phase": "lifeConsequencesProduction",
+      "prior": "mira_og_musikken_i_hverdagen",
+      "originalSuggestedPlotLenses": [
+        "P03",
+        "P05"
+      ],
+      "originalSuggestedTracks": [
+        "L09",
+        "L11",
+        "L15",
+        "L17"
+      ],
+      "originalSuggestedTypes": [
+        "C02",
+        "C09",
+        "C12",
+        "C19"
+      ],
+      "afterDay": 31,
+      "parentRole": "musikk_frilansmusiker",
+      "requiresActualRoleSwitch": false
+    }
+  ],
+  "characterIdentity": {
+    "mira": {
+      "rolePersonId": "mira",
+      "canonicalDisplay": "Medmusikeren",
+      "authorAlias": "Mira",
+      "roleOfCharacter": "fictional companion, never player role",
+      "persontype": "medmusiker",
+      "historyGoExemplars": [
+        "bugge_wesseltoft",
+        "mari_boine"
+      ]
+    },
+    "lea": {
+      "rolePersonId": "lea",
+      "canonicalDisplay": "Prosjektbyggeren",
+      "authorAlias": "Lea",
+      "roleOfCharacter": "fictional companion, never player role",
+      "persontype": "prosjektbygger",
+      "historyGoExemplars": [
+        "jens_jacob_jensen_myrens",
+        "peter_emil_steen"
+      ]
+    },
+    "arvid": {
+      "rolePersonId": "amir",
+      "canonicalDisplay": "Miljøkontakten",
+      "authorAlias": "Arvid",
+      "roleOfCharacter": "fictional companion, never player role",
+      "persontype": "miljokontakt",
+      "historyGoExemplars": [
+        "attila_horvath",
+        "sossen_krohg"
+      ]
+    },
+    "elin": {
+      "rolePersonId": "elin",
+      "canonicalDisplay": "Elin",
+      "roleOfCharacter": "fictional friend",
+      "historyGoExemplars": []
+    },
+    "sara": {
+      "rolePersonId": "sara",
+      "canonicalDisplay": "Sara",
+      "roleOfCharacter": "fictional club contact",
+      "historyGoExemplars": []
+    },
+    "joakim": {
+      "rolePersonId": null,
+      "canonicalDisplay": "Joakim",
+      "roleOfCharacter": "authored supporting figure, not yet registered in the Life Story cast",
+      "historyGoExemplars": []
+    }
+  },
+  "existingCrossRoleRule": "The previously authored chains include role-scope changes. These are not proof the player changes role automatically: a chapter opens only if the player has independently activated that canonical life position. Editorial continuity can be shared across NPCs, but the player's story must remain role-first.",
+  "noGameplayEffects": true
+}
