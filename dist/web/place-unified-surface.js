@@ -2062,7 +2062,7 @@
     return slot2;
   }
   function mountPlaceSheetPhase1(place) {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d;
     if (!place || isMicro2(place)) return null;
     const shell4 = ensureShell(place);
     if (!(shell4 instanceof HTMLElement)) return null;
@@ -2074,7 +2074,7 @@
         aboutSlot.hidden = false;
         aboutOwner = document.createElement("section");
         aboutOwner.className = "hg-section hg-place-section hg-place-about-section";
-      aboutOwner.setAttribute("data-hg-place-sheet-owner", "about");
+        aboutOwner.setAttribute("data-hg-place-sheet-owner", "about");
         const heading2 = document.createElement("h3");
         heading2.textContent = "Om stedet";
         aboutOwner.appendChild(heading2);
@@ -2082,18 +2082,18 @@
       }
       aboutOwner.classList.add("pc-sheet-canonical-about");
       const description = shell4.querySelector("#pcDesc");
-      const heading2 = aboutOwner.querySelector("h3");
-      if (description && heading2) heading2.insertAdjacentElement("afterend", description);
+      const heading = aboutOwner.querySelector("h3");
+      if (description && heading) heading.insertAdjacentElement("afterend", description);
     }
     const historySlot = ensureHistorySlot(shell4);
     if (historySlot) {
-      (_b = mountCanonicalHistory(historySlot, place)) == null ? void 0 : _b.classList.add("pc-sheet-canonical-history");
-      (_c = mountCanonicalChronology(historySlot, place)) == null ? void 0 : _c.classList.add("pc-sheet-canonical-history");
+      (_a = mountCanonicalHistory(historySlot, place)) == null ? void 0 : _a.classList.add("pc-sheet-canonical-history");
+      (_b = mountCanonicalChronology(historySlot, place)) == null ? void 0 : _b.classList.add("pc-sheet-canonical-history");
     }
     const storiesSlot = ensureStoriesSlot(shell4);
-    if (storiesSlot) (_d = mountCanonicalStories(storiesSlot, place)) == null ? void 0 : _d.classList.add("pc-sheet-canonical-stories");
+    if (storiesSlot) (_c = mountCanonicalStories(storiesSlot, place)) == null ? void 0 : _c.classList.add("pc-sheet-canonical-stories");
     const beforeAfterSlot = ensureBeforeAfterSlot(shell4);
-    if (beforeAfterSlot) (_e = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _e.classList.add("pc-sheet-canonical-before-after");
+    if (beforeAfterSlot) (_d = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _d.classList.add("pc-sheet-canonical-before-after");
     syncSectionNav(shell4);
     observeSectionNav(shell4);
     startAutomaticPlaceSheetRender(text16(place.id));
