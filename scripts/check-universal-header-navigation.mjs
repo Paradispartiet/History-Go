@@ -41,7 +41,7 @@ function boot(page, referrer = "", storage = new Map()) {
   return {
     history, location, storage,
     get link() { return host.children[0] || null; },
-    get label() { return host.children[0]?.children[1]?.textContent || null; },
+    get label() { return host.children[0]?.attrs["aria-label"] || null; },
     route(hash) { const oldURL = location.href; location.hash = hash; events.hashchange?.({ oldURL, newURL: location.href }); },
     follow(href) {
       events["doc:click"]?.({
@@ -54,16 +54,18 @@ function boot(page, referrer = "", storage = new Map()) {
 const map = boot("index.html#/map");
 assert.equal(map.link, null);
 map.route("#/place/101");
-assert.equal(map.label, "Til kartet");
+assert.equal(map.label, "Tilbake til kartet");
+assert.equal(map.link.children.length, 1, "the back control contains only the arrow");
+assert.equal(map.link.children[0].textContent, "←");
 assert.equal(map.link.href, root + "index.html#/map");
 map.route("#/quiz/101");
-assert.equal(map.label, "Til stedet");
+assert.equal(map.label, "Tilbake til stedet");
 assert.equal(map.link.href, root + "index.html#/place/101");
 map.route("#/map");
 assert.equal(map.link, null);
 
 const profile = boot("profile.html", root + "index.html#/map");
-assert.equal(profile.label, "Til kartet");
+assert.equal(profile.label, "Tilbake til kartet");
 assert.equal(profile.link.click().defaultPrevented, true);
 assert.equal(profile.history.calls, 1);
 
@@ -76,6 +78,6 @@ const store = new Map();
 boot("profile.html#spill", "", store).follow(root + "Civication.html");
 const civi = boot("Civication.html", root + "profile.html", store);
 assert.equal(civi.link.href, root + "profile.html#spill");
-assert.equal(civi.label, "Til min samling");
-assert.equal(boot("sprakatlas.html", root + "index.html").label, "Til kartet");
+assert.equal(civi.label, "Tilbake til min samling");
+assert.equal(boot("sprakatlas.html", root + "index.html").label, "Tilbake til kartet");
 process.stdout.write("9/9 History Go header navigation checks passed\n");
