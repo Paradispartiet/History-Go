@@ -18,6 +18,7 @@ assert.match(welcome, /href="profile.html"/);
 assert.match(welcome, /href="knowledge.html"/);
 assert.match(welcome, /href="Civication.html"/);
 assert.match(welcome, /<ul class="hg-onb-steps">/);
+assert.match(welcome, /\.hg-onb-card-link\[href\]/, "page links must persist welcome dismissal");
 assert.doesNotMatch(welcome, /stedskort|quizkort|testmodus/i);
 assert.match(stories, /async openAll\(\)/);
 assert.match(stories, /hgWelcomeStoriesSearch/);
@@ -60,6 +61,10 @@ assert.ok(api);
 (async () => {
   assert.equal(api.nearestPlace({lat: 59.913, lon: 10.752}, context.window.PLACES).id, "near");
   assert.equal(api.nearestPlace(null, context.window.PLACES), null);
+  assert.equal(api.nearestPlace({lat:0, lon:0}, [{id:"missing",lat:null,lon:null}]), null,
+    "unmapped places with null coordinates must not be treated as 0,0");
+  assert.equal(api.nearestPlace({lat:0, lon:0}, [{id:"invalid-status",lat:0,lon:0,coordStatus:"invalid"}]), null,
+    "explicitly invalid coordinate records must be excluded");
   assert.equal(await api.openNearestPlace(), true);
   assert.equal(observed.toMap, 1);
   assert.deepEqual(observed.places, ["near"]);
