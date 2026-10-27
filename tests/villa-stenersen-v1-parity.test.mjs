@@ -74,3 +74,18 @@ test("Villa Stenersen: generated production context matches the 21 reviewed sour
   assert.equal(context.set_plan.length, 3);
   assert.equal(context.question_balance.total, 21);
 });
+
+test("Villa Stenersen: all 21 questions and ten QuizCard entries link to published Knowledge units", () => {
+  const units = new Set(read("data/knowledge/knowledge_units.generated.json").units.map((u) => u.knowledge_unit_id));
+  for (const question of all) {
+    assert.equal(question.knowledge_link_status, "linked", question.id);
+    assert.ok(question.primary_knowledge_unit_id, question.id);
+    assert.ok(question.knowledge_unit_ids?.includes(question.primary_knowledge_unit_id), question.id);
+    assert.ok(question.knowledge_unit_ids.every((id) => units.has(id)), question.id);
+  }
+  for (const question of card.cards[0].questions) {
+    const original = byId.get(question.sourceQuestionId);
+    assert.deepEqual(question.knowledge_unit_ids, original.knowledge_unit_ids, question.id);
+    assert.equal(question.primary_knowledge_unit_id, original.primary_knowledge_unit_id, question.id);
+  }
+});
