@@ -27,6 +27,7 @@
         return false;
       }
       document.documentElement.classList.remove("hg-auth-locked");
+      document.documentElement.classList.add("hg-auth-verified");
       return true;
     } catch (error) {
       console.warn("[HG login gate] Session could not be verified", error);
@@ -54,6 +55,7 @@
   window.addEventListener("pageshow", event => {
     if (event.persisted) {
       document.documentElement.classList.add("hg-auth-locked");
+      document.documentElement.classList.remove("hg-auth-verified");
       gate.ready = verify().then(allowed => (gate.allowed = allowed, allowed));
     }
   });
