@@ -39,6 +39,16 @@
   const gate = { allowed: false, ready: Promise.resolve(false), verify };
   window.HGLoginGate = gate;
 
+  // Local development and CI browser tests are intentionally not production.
+  // Public History Go URLs always require real Supabase authentication.
+  if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+    document.documentElement.classList.remove("hg-auth-locked");
+    document.documentElement.classList.add("hg-auth-verified");
+    gate.allowed = true;
+    gate.ready = Promise.resolve(true);
+    return;
+  }
+
   let hasToken = false;
   try { hasToken = Boolean(localStorage.getItem(tokenKey)); } catch { /* fail closed */ }
   if (!hasToken) {
