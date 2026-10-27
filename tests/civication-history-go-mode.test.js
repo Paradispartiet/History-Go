@@ -79,4 +79,13 @@ const placeSession = Mode.normalizeSession({
 state = { ...state, visitedPlaces: new Set(["akershus_festning"]), unlockByQuiz: {} };
 assert.strictEqual(Mode.evaluateCompletion(placeSession, state).completed, true, "visited place completes visit task");
 
+// A real task does not silently vanish when the player spends more than one day in History Go.
+const oldSession = Mode.normalizeSession({ active: true, started_ts: Date.now() - 3 * 86400000, title: "Langt oppdrag" });
+assert(oldSession, "active Civication session survives more than 24 hours");
+assert.equal(Mode.saveSession(session), true);
+assert(localStorage.getItem(Mode.SESSION_KEY));
+Mode.returnToCivication();
+assert(localStorage.getItem(Mode.SESSION_KEY), "returning to Civication retains unfinished companion session");
+assert.equal(location.href, "Civication.html");
+
 console.log("civication history-go mode ok");
