@@ -31,7 +31,15 @@ test("service worker cannot serve stale unauthenticated HTML from its offline ca
   assert.doesNotMatch(precache, /["'](?:\.\/|[^"']*\.html)["']/);
   assert.match(sw, /if \(req\.mode === "navigate"\)/);
   assert.match(sw, /return await fetchWithTimeout\(req, 4500\)/);
-  assert.ok(!sw.includes("event.respondWith(networkFirst(req, CACHE_STATIC))"));
+  // Check only the navigation branch: JS and CSS assets may legitimately use
+  // the static cache, but an HTML navigation must return before asset routing.
+  const navigate = sw.slice(
+    sw.indexOf('if (req.mode === "navigate")'),
+    sw.indexOf("// Same-origin: styr caching per type")
+  );
+  assert.match(navigate, /event\.respondWith\(\(async \(\) => \{/);
+  assert.match(navigate, /\}\)\(\)\);\s*return;/);
+  assert.doesNotMatch(navigate, /networkFirst\(req, CACHE_STATIC\)/);
 });
 
 test("legacy redirect pages only forward to the guarded knowledge page", () => {
