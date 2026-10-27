@@ -117,6 +117,12 @@
         reset.hidden = !byPassword;
         message("");
       }
+      function loginRedirectUrl() {
+        const url = new URL("login.html", location.href);
+        const requested = new URLSearchParams(location.search).get("next");
+        if (requested) url.searchParams.set("next", requested);
+        return url.href;
+      }
       function go() { location.replace(destination()); }
       async function client() {
         const api = window.HistoryGoAHAAuth;
@@ -162,7 +168,7 @@
           } else {
             const { error } = await auth.auth.signInWithOtp({
               email: value,
-              options: { emailRedirectTo: new URL("login.html", location.href).href }
+              options: { emailRedirectTo: loginRedirectUrl() }
             });
             if (error) throw error;
             message("Sjekk e-posten for innloggingslenke. Åpne lenken for å logge inn.", true);
@@ -180,7 +186,7 @@
           const { error } = await auth.auth.signInWithOAuth({
             provider: "google",
             options: {
-              redirectTo: new URL("login.html", location.href).href,
+              redirectTo: loginRedirectUrl(),
               queryParams: { prompt: "select_account" }
             }
           });
