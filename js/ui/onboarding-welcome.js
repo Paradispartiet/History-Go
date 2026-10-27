@@ -47,15 +47,14 @@
           <div class="hg-onb-kicker">Velkommen til</div>
           <h2 class="hg-onb-title">History GO</h2>
           <p class="hg-onb-sub">
-            Byen er ditt spillkart. Oppdag steder, personer, historier, oppgaver og små spill som vokser med det du finner.
+            History Go gjør virkelige steder til et historisk spillkart. Besøk steder, oppdag menneskene og historiene deres, og bruk kunnskapen videre i Civication.
           </p>
         </header>
         <ol class="hg-onb-steps">
-          <li><span class="hg-onb-step-icon">📍</span><div><strong>Utforsk byen</strong><p>Kartet viser parker, plasser, bygninger, scener, stadioner, museer og skjulte spor rundt deg.</p></div></li>
-          <li><span class="hg-onb-step-icon">🧩</span><div><strong>Åpne stedene</strong><p>Hvert sted kan ha historier, personer, bilder, gamle nyheter, sitater, temaer og forbindelser.</p></div></li>
-          <li><span class="hg-onb-step-icon">🎯</span><div><strong>Løs oppgaver</strong><p>Ta quizer og utfordringer innen historie, kunst, litteratur, sport, musikk, natur, politikk og vitenskap.</p></div></li>
-          <li><span class="hg-onb-step-icon">🏅</span><div><strong>Bygg profilen din</strong><p>Samle merker, favoritter, kunnskap og framgang. Bronse, sølv og gull viser hva du mestrer.</p></div></li>
-          <li><span class="hg-onb-step-icon">🎮</span><div><strong>Gå videre i universet</strong><p>Stedene du finner kan brukes i ruter, Min dag, Football Manager, Kunstskolen og Skrivekunstakademiet.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">📍</span><div><strong>Finn og besøk et sted</strong><p>Utforsk kartet og gå til et sted i virkeligheten. Stedskort samles ved fysisk besøk. I testmodus kan du prøve quizene hvor som helst, men stedskort krever fortsatt besøk.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">📖</span><div><strong>Oppdag historien</strong><p>Åpne stedet og les om det som skjedde der, menneskene, bildene og forbindelsene. Personquiz blir tilgjengelig etter at du har besøkt stedet.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🎯</span><div><strong>Ta quiz og samle</strong><p>Svar riktig på alle spørsmålene for å mestre quizen og låse opp quizkortet. Bygg videre på samlingen av kort, merker og kunnskap.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🏛️</span><div><strong>Spill videre i Civication</strong><p>Her spiller du et liv med arbeid, mennesker og valg som får konsekvenser. Noen oppdrag sender deg til History Go for å utforske eller lære, før du vender tilbake.</p></div></li>
         </ol>
         <footer class="hg-onb-actions">
           <button type="button" class="hg-onb-primary" data-action="start">Start History Go</button>
@@ -77,6 +76,7 @@
     m.setAttribute("aria-hidden", "true");
     document.removeEventListener("keydown", onKey);
     try { localStorage.setItem(FLAG_KEY, "1"); } catch {}
+    window.dispatchEvent(new Event("hg:onboardingClosed"));
   }
 
   function onKey(e) { if (e.key === "Escape") close(); }
