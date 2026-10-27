@@ -9,9 +9,9 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "3.17.8",
+    "version": "3.17.9",
     "updated_at": "2026-10-27",
-    "content_sha256": "edf73752be5d186352f81928c2404aacc074c7cce4add0f073b45e934da5ef87"
+    "content_sha256": "62bf294bad678d9dfee0fde7996f6df853aec6b50d779288e3d23d9cec8aac5a"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "46b5331c18ae05f8a719af6f908aa3f92d66a9ee8d3f804a98be4c3537e5d970"
+    "content_sha256": "b3465031b7c89213abb758bb9fda5f79fc015b3a288962b555b657f37fb00a0c"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 519,
+    "package_file_count": 522,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1383,
+    "referenced_file_count": 1386,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2776,9 +2776,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 134,
+      "package_file_count": 137,
       "required_package_file_count": 4,
-      "optional_package_file_count": 130,
+      "optional_package_file_count": 133,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -3381,6 +3381,18 @@
           "content_sha256": "786ad31de8d175c5805640428c00ed5371f1935fbd077ab15bea7ae6f2be5217"
         },
         {
+          "path": "data/quiz/historie/vikingtidsmuseet_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.vikingtidsmuseet.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "5b61483624eab26f9e296c76659c4dd5adcb085d6157e6500c4088d49cc20388"
+        },
+        {
           "path": "data/quiz/historie/villa_grande_sets.json",
           "required": false,
           "fields": [
@@ -3847,6 +3859,18 @@
           ],
           "exists": true,
           "content_sha256": "62489fc800124b1a577dd709b0e554158aa5c31eb718441d67e8bd49024df7e1"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/vikingtidsmuseet.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.vikingtidsmuseet.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "c52bf6f680d00350f3e0bd5387aa8b503e0a435a2598eeea68f7f36036a3f047"
         },
         {
           "path": "data/quiz/production_briefs/historie/villa_grande.json",
@@ -4317,6 +4341,18 @@
           "content_sha256": "b721e27ca39fcebdfb1e511d9f0501f1295938cf41a4db40b5e9ab0486dd73de"
         },
         {
+          "path": "data/quiz/production_context/historie/vikingtidsmuseet.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.vikingtidsmuseet.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "e5b221ceec80194c67a46faecc83adeb85a861152569fb1936655c30123eb97a"
+        },
+        {
           "path": "data/quiz/production_context/historie/villa_grande.json",
           "required": false,
           "fields": [
@@ -4389,20 +4425,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "e92e9ea8305f1ffb534c76d2791f49c889e8aef8a5c4e9a1ecfa7a62ca00bb39",
+      "package_content_sha256": "61b61c91ab99203cf748537f798644721269443ec0b747c77d24cee606b06c76",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 226,
+      "referenced_file_count": 229,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "30ed8576ce4e829b5510f5925528391c129c10195efd30040f59a6a46b6e72e5",
-      "content_sha256": "db61b771c70b23e996a19c6854eb0903313c7c5c16ce80f2741b320e7fa25cf0",
+      "structure_sha256": "cd3c3223d9687e60d9becc110fd6d6dc445d6bf6a702b8af99e3daf22be5db7a",
+      "content_sha256": "200a1c45fe34281de4685b598253909f111b035cefefa0a6705d03c19cc0f3ed",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -8949,5 +8985,5 @@
       ]
     }
   },
-  "release_sha256": "e0da0ca72a08b4ac24e143bec7c19c415af9f3636addd42ca7cf3d86a171012c"
+  "release_sha256": "b57dba86b1f3e34afc3846efb96bf9b46f7df67c03c89a0cf741e52028cb24af"
 }
