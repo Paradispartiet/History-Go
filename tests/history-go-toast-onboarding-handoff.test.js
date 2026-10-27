@@ -196,7 +196,24 @@ assert.match(welcome, /steder du har besøkt/);
 assert.match(welcome, /interaktivt læringsmiljø/);
 assert.match(welcome, /simulert livsverden/);
 assert.match(welcome, /forme din egen vei/);
-assert.ok(styles.includes("#1b281f"), "dark onboarding palette");
+// The onboarding surface is neutral black; yellow remains an accent, not a background wash.
+assert.match(styles, /\.hg-onb-inner\s*\{[\s\S]*?background: #090a0b;/);
+assert.match(styles, /\.hg-onb-steps li\s*\{[\s\S]*?background: #151718;/);
+assert.doesNotMatch(styles, /rgba\(246, 216, 34, 0\.11\)|rgba\(71, 69, 27/);
+
+// Existing navigation targets remain intact, now embedded in the visible headings.
+const cards = welcome.match(/<li\b[^>]*>[\s\S]*?<\/li>/g) || [];
+const linkedHeadings = cards.filter((card) => /<strong><(?:a|button)\b[^>]*class="hg-onb-card-link"/.test(card));
+assert.equal(linkedHeadings.length, 7, "all seven actionable cards link from their heading");
+for (const card of cards) {
+  assert.doesNotMatch(card, /<\/p>\s*<(?:a|button)\b[^>]*class="hg-onb-card-link"/, "no duplicate CTA below text");
+}
+for (const target of ['href="knowledge.html"', 'href="profile.html"', 'href="Civication.html"',
+  'data-hg-welcome-action="nearby"', 'data-hg-welcome-action="stories"',
+  'data-hg-welcome-action="lesespor"', 'data-hg-welcome-action="psychology"']) {
+  assert.ok(linkedHeadings.some((card) => card.includes(target)), target);
+}
+assert.ok(styles.includes(".hg-onb-steps li strong .hg-onb-card-link"), "heading links have dedicated styling");
 assert.ok(styles.includes("grid-template-columns: repeat(2, minmax(0, 1fr))"), "desktop card grid");
 assert.ok(styles.includes("@media (max-width: 700px)"), "mobile layout");
 assert.match(welcome, /hg:onboardingClosed/);
