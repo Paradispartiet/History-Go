@@ -264,7 +264,7 @@
     // Personal day-8–21 events are appended directly to their shared private
     // archive. Full historical reconciliation is still done on role switches,
     // not after each choice, avoiding repeated work on deep life histories.
-    if (/^wave_[abcde]_c0[15]_/.test(scene.id) || /^wave_f_c(?:01|02|03|05|06|07|17|23)_/.test(scene.id)) State.capturePrivateStory(state);
+    if (/^wave_[abcde]_c0[15]_/.test(scene.id) || /^wave_[fg]_c(?:01|02|03|05|06|07|17|23)_/.test(scene.id)) State.capturePrivateStory(state);
     else if (/^wave_e_life21_/.test(scene.id) || content.personalOnly) State.recordPrivateScene(state, entry);
 
     const progress = advance(state, content);
