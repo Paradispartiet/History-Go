@@ -9,11 +9,13 @@ on:
       - 'finn-fauna.html'
       - 'scripts/test-nature-illustrations.mjs'
       - '.github/workflows/nature-illustrations.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'js/ui/nature-illustrations.js'
-      - 'scripts/test-nature-illustrations.mjs'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nature-illustrations-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   illustration-contract:
