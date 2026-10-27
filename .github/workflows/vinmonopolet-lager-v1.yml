@@ -1,0 +1,47 @@
+name: Vinmonopolet Hasle v1 - content and browser
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/vinmonopolet-lager-v1.yml'
+      - 'tests/vinmonopolet-lager-v1-parity.test.mjs'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv/vinmonopolet_lager.json'
+      - 'data/runtime/place-open/vinmonopolet_lager.json'
+      - 'data/places/places_index.json'
+      - 'data/quiz/naeringsliv/vinmonopolet_lager_sets_merged.json'
+      - 'data/quizcards/naeringsliv/vinmonopolet_lager_quizkort_v1.json'
+      - 'data/quizcards/naeringsliv/manifest.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vinmonopolet-hasle-v1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  focused-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: 30 fullquiz questions, 10 QuizCard questions, Knowledge and content parity
+        run: node --test tests/vinmonopolet-lager-v1-parity.test.mjs
+      - name: Full real-app quiz on mobile 390px and desktop 1440px
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-place-quiz-browser.mjs vinmonopolet_lager
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vinmonopolet-hasle-v1-browser
+          path: artifacts/place-quiz/vinmonopolet_lager/**
+          if-no-files-found: ignore
+          retention-days: 14
