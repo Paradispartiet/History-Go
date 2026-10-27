@@ -85,3 +85,99 @@ main.main > header > .hg-universal-back {
   box-shadow: 0 6px 24px rgba(0,0,0,.45);
   background: rgba(9,11,16,.95);
 }
+
+/* The logo opens History Go's start menu. Its top edge must remain inside
+   the header; the enlarged artwork may extend below, never above it. */
+body.hg-app header.site-header > .hg-brand {
+  position: absolute;
+  left: calc(6px + env(safe-area-inset-left, 0px));
+  top: 2px;
+  width: 112px;
+  height: 112px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 21;
+}
+body.hg-app header.site-header > .hg-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+body.hg-app header.site-header > .hg-brand:focus-visible {
+  outline: 2px solid #ffe34c;
+  outline-offset: -8px;
+  border-radius: 12px;
+}
+body.hg-app header.site-header > .hg-brand:hover { filter: brightness(1.1); }
+body.hg-app header.site-header > .hg-universal-back {
+  left: calc(124px + env(safe-area-inset-left, 0px));
+}
+@media (max-width: 860px) {
+  body.hg-app header.site-header > .hg-brand {
+    width: 94px;
+    height: 94px;
+    top: 2px;
+  }
+  body.hg-app header.site-header > .hg-universal-back {
+    left: calc(107px + env(safe-area-inset-left, 0px));
+  }
+}
+@media (max-width: 380px) {
+  body.hg-app header.site-header > .hg-brand {
+    width: 84px;
+    height: 84px;
+    top: 2px;
+  }
+  body.hg-app header.site-header > .hg-universal-back {
+    left: calc(96px + env(safe-area-inset-left, 0px));
+  }
+}
+
+/* When the back arrow is present, the 390px header needs compact controls
+   so the enlarged logo, arrow and first actionable control never overlap. */
+@media (max-width: 520px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions {
+    gap: 2px;
+    padding-left: 0;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 72px;
+    min-width: 72px;
+    max-width: 72px;
+    flex: 0 0 72px;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) #nearbyExploreToggle {
+    width: 32px;
+    min-width: 32px;
+    padding: 0;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) #nearbyExploreToggle .nearby-explore-icon {
+    display: inline;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) #nearbyExploreToggle .nearby-explore-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+@media (max-width: 350px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+    flex: 0 0 44px;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) #geoStatus { display: none; }
+}

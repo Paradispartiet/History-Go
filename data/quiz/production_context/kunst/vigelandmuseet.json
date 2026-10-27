@@ -1,0 +1,616 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "kunst",
+  "targetId": "vigelandmuseet",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1085,
+    "selection_sha256": "8b31dab313b3c26379336475dafa5946ec3e7e7951c66267149b5a580bff9b6e",
+    "category_id": "kunst",
+    "target_id": "vigelandmuseet"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
+      "bytes": 25563,
+      "sha256": "3cf20b4e5db1d66e89288e2ec9f87a32e498a1c2a9c70c7e110317d771293c02",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+      "bytes": 220362,
+      "sha256": "042945bb66c1eb3523f7fe93cbfc30eb7488ac611cfbc4d3f9e33377ed3bc0dd",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
+      "bytes": 287506,
+      "sha256": "08fdccf16746c6ac70f9f7997ce123dd844a1af3dc77aa23394795f05eb2f292",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+      "bytes": 56666,
+      "sha256": "c320cd42f58aeb08cb29ceb8cce458e557ad24bac1c607551d3db1096b3c8156",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/kunst/supersetQUIZMAL_kunst.json",
+      "bytes": 7134,
+      "sha256": "58590863ed5a39bc346142e6dd9ba9d42368ed0eef6701a199d5856cea13708c",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/kunst/vigelandmuseet.json",
+      "bytes": 26742,
+      "sha256": "564823d6092c29e11204fd891ae60d4a97d94f0ca8ecb023123ed12c029e7db5"
+    },
+    "target": {
+      "path": "data/places/kunst/oslo/places_kunst/vigelandmuseet.json",
+      "bytes": 13812,
+      "sha256": "28e2caf4425a53c70d94ef26e1912b4d85212ec314d17783961b021b2aa26a2c"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 990,
+      "selection_sha256": "583595df20d08ebdb616c0cfad0c069cae2c11930df349f47678741a58245456"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/kunst/vigelandmuseet_sets.json",
+  "source_registry": {
+    "museum": {
+      "url": "https://vigeland.museum.no/vigeland-museet",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "history": {
+      "url": "https://vigeland.museum.no/vigeland-museet/historie",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "architecture": {
+      "url": "https://vigeland.museum.no/historie/arkitekturen",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "artist": {
+      "url": "https://vigeland.museum.no/gustav-vigeland/historie",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "snl": {
+      "url": "https://snl.no/Vigelandmuseet",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    },
+    "byleks": {
+      "url": "https://oslobyleksikon.no/side/Vigeland-museet",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/kunst/manifest.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "No directly registered quiz for this Place.",
+      "Do not duplicate Vigelandsparken as a Place.",
+      "Avoid date-only questions."
+    ],
+    "knowledge_migration": "Regenerate canonical Knowledge IDs."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Artist house and contract, architectural processes, sculpture models and collections."
+  },
+  "held_back_candidates": [
+    "Mistaking museum for entire Frognerpark landscape.",
+    "Claiming the building was entirely completed in 1923.",
+    "Confusing floors between English and Norwegian conventions.",
+    "Claiming assistants' work was not needed."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 21,
+      "topic_hooks": 60,
+      "methods": 21
+    },
+    "candidate_emner": [
+      {
+        "id": "em_kunst_hverdagsestetikk",
+        "title": "Hverdagsestetikk",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_institusjoner_kanon",
+        "title": "Kunstinstitusjoner og kanondannelse",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_institusjonskritikk_og_representasjon",
+        "title": "Institusjonskritikk og representasjon",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "title": "Kvalitet, kritikk og symbolsk kapital",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_offentlig_kunst_monumenter",
+        "title": "Offentlig kunst og monumenter",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arkiv_og_minne",
+        "title": "Arkiv og minne",
+        "category_id": "tid_transformasjon",
+        "score": 10
+      },
+      {
+        "id": "autonomi_vs_avhengighet",
+        "title": "Autonomi vs avhengighet",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "distribusjonsinfrastruktur",
+        "title": "Distribusjonsinfrastruktur",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "epokefortellinger",
+        "title": "Epokefortellinger",
+        "category_id": "tid_transformasjon",
+        "score": 10
+      },
+      {
+        "id": "institusjonell_legitimering",
+        "title": "Institusjonell legitimering",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "institusjonskritikk",
+        "title": "Institusjonskritikk",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "kanonisering",
+        "title": "Kanonisering",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "kuratorisk_makt",
+        "title": "Kuratorisk makt",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "nettverk_og_portvoktere",
+        "title": "Nettverk og portvoktere",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "offentlig_vs_privat_kunststruktur",
+        "title": "Offentlig vs privat kunststruktur",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "regional_vs_sentralisert_kunstfelt",
+        "title": "Regionalt vs sentralisert kunstfelt",
+        "category_id": "felt_institusjon",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "felt_institusjon"
+    ],
+    "emne_ids": [
+      "em_kunst_institusjoner_kanon"
+    ],
+    "topic_hook_ids": [
+      "arkiv_og_minne",
+      "autonomi_vs_avhengighet",
+      "distribusjonsinfrastruktur",
+      "epokefortellinger"
+    ],
+    "method_ids": [
+      "met_kunst_kanon_og_arkivanalyse",
+      "met_kunst_institusjonsanalyse",
+      "met_kunst_kunsthistorisk_kontekstualisering",
+      "met_kunst_kuratorisk_analyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Vigelandmuseet ligger i Nobels gate 32 på Frogner i Oslo.",
+      "source_ids": [
+        "byleks",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bygningen var Gustav Vigelands atelier og bolig før den ble museum.",
+      "source_ids": [
+        "history",
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Bygningen ble planlagt som atelier og bolig for Vigeland, men skulle senere bli museum.",
+      "source_ids": [
+        "history",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Avtalen om atelier og kunstsamling ble inngått med kommunen i 1921.",
+      "source_ids": [
+        "history",
+        "artist"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kommunen skulle overta Vigelands kunstverk i bytte mot at han disponerte atelieret livet ut.",
+      "source_ids": [
+        "history",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Vigeland fikk disposisjonsrett over atelieret og bolig i bygget resten av sitt liv.",
+      "source_ids": [
+        "history",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Vigeland begynte å bruke atelieret i 1923 og bodde der fra 1924; museet åpnet først i 1947.",
+      "source_ids": [
+        "history",
+        "artist"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Gustav Vigeland flyttet i 1924 inn i leiligheten sammen med sin kone Ingerid.",
+      "source_ids": [
+        "history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Lorentz Harboe Ree hadde hovedansvaret for museets arkitektur.",
+      "source_ids": [
+        "architecture",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Carl Emil Buch ble Rees samarbeidspartner og var med på tegningene av bygningen.",
+      "source_ids": [
+        "architecture",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Vigelandmuseet er et viktig eksempel på norsk nyklassisistisk arkitektur.",
+      "source_ids": [
+        "architecture",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Vigeland ønsket håndbanket rød tegl i bygningens eksteriør.",
+      "source_ids": [
+        "architecture"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Sydfløyen ble fullført senere og bar preg av funksjonalismens enklere formspråk.",
+      "source_ids": [
+        "architecture"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Ree og Buch mottok Houens fonds diplom for bygningen i 1926.",
+      "source_ids": [
+        "architecture",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Vigeland hadde hjelp fra gipsmakere, steinhuggere og smeder i verkstedene.",
+      "source_ids": [
+        "history",
+        "artist"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Smeder og andre assistenter bygde jernarmaturer som støttet store leiremodeller.",
+      "source_ids": [
+        "history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Museets gipsmodeller er kilder til arbeidsprosessen bak flere skulpturer i parken.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Vigelandmuseet og Vigelandsparken er geografisk og funksjonelt forskjellige steder.",
+      "source_ids": [
+        "museum",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Museet forvalter også et stort materiale av tegninger, tresnitt, brev og fotografier.",
+      "source_ids": [
+        "history",
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Vigelands tidligere leilighet er bevart som et historisk miljø knyttet til kunstnerens liv.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_vigelandmuseet_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Riksantikvaren fredet museumsbygningen i 2015 for å beskytte dens kulturhistoriske verdi.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "kunst_vigelandmuseet_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_vigelandmuseet_quiz_01",
+        "claim_vigelandmuseet_quiz_02",
+        "claim_vigelandmuseet_quiz_03",
+        "claim_vigelandmuseet_quiz_04",
+        "claim_vigelandmuseet_quiz_05",
+        "claim_vigelandmuseet_quiz_06",
+        "claim_vigelandmuseet_quiz_07"
+      ]
+    },
+    {
+      "set_id": "kunst_vigelandmuseet_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_vigelandmuseet_quiz_08",
+        "claim_vigelandmuseet_quiz_09",
+        "claim_vigelandmuseet_quiz_10",
+        "claim_vigelandmuseet_quiz_11",
+        "claim_vigelandmuseet_quiz_12",
+        "claim_vigelandmuseet_quiz_13",
+        "claim_vigelandmuseet_quiz_14"
+      ]
+    },
+    {
+      "set_id": "kunst_vigelandmuseet_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_vigelandmuseet_quiz_15",
+        "claim_vigelandmuseet_quiz_16",
+        "claim_vigelandmuseet_quiz_17",
+        "claim_vigelandmuseet_quiz_18",
+        "claim_vigelandmuseet_quiz_19",
+        "claim_vigelandmuseet_quiz_20",
+        "claim_vigelandmuseet_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 14,
+      "context": 4,
+      "concept_theory": 3
+    },
+    "ratios": {
+      "fact": 0.667,
+      "context": 0.19,
+      "concept_theory": 0.143
+    }
+  }
+}

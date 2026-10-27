@@ -145,7 +145,7 @@ try {
       assert.notEqual(first.outline, "rgb(255, 255, 255)", "contrasting outline");
       assert.equal(first.vector, false, "native renderer does not await vector style");
       assert.equal(first.name, "Torggata", "a visible place name must accompany native dots");
-      assert.equal(first.nameDisplay, "none", "touch name must stay hidden below zoom 16 before style.load");
+      assert.equal(first.nameDisplay, "none", "touch name must stay hidden below zoom 15 before style.load");
       assert.equal(first.nameColor, "rgb(0, 0, 0)", "phone and iPad names must render in actual black, not white");
       assert.equal(first.nameTextTransform, "uppercase", "phone and iPad must render place names in uppercase without changing their stored spelling");
       assert.equal(first.nameShadow, "none", "place name must not have the white halo that made text look white");
@@ -181,8 +181,8 @@ try {
     }));
     assert.equal(firstStyle.detailTextTransform, "uppercase", "detail vector labels must be uppercase on desktop");
     assert.equal(firstStyle.areaTextTransform, "uppercase", "area vector labels must be uppercase");
-    assert.equal(firstStyle.areaMinZoom, 16, "area names hidden until close zoom");
-    assert.equal(firstStyle.detailMinZoom, 16, "detail names hidden until close zoom");
+    assert.equal(firstStyle.areaMinZoom, 15, "area names appear earlier at zoom 15");
+    assert.equal(firstStyle.detailMinZoom, 15, "detail names appear earlier at zoom 15");
     assert.equal(firstStyle.visibility, usesNativeDots ? "none" : "visible");
     assert.equal(firstStyle.dotCount, usesNativeDots ? 1 : 0);
     assert.equal(firstStyle.vectorLabelVisibility, usesNativeDots ? "none" : "visible",
@@ -207,8 +207,8 @@ try {
       assert.ok(zoomSizes.widths[0] < 5 && zoomSizes.widths.at(-1) <= 8.5,
         "dots shrink into smaller points when zoomed out");
       assert.equal(zoomSizes.setCount, 1, "zoom does not reposition or recreate markers");
-      assert.deepEqual(zoomSizes.nameDisplay, ["none", "none", "none", "none", "block", "block"],
-        "place names show only at detail zoom and return without marker recreation");
+      assert.deepEqual(zoomSizes.nameDisplay, ["none", "none", "none", "block", "block", "block"],
+        "place names show from zoom 15 without marker recreation");
 
       await page.evaluate(() => {
         window.HGMap.resize();

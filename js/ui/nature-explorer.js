@@ -6,6 +6,7 @@ const kind = document.body.dataset.natureKind;
 if (!["fauna","flora"].includes(kind)) return;
 const icon = kind === "fauna" ? "🐾" : "🌿";
 const drawings = window.HG_NATURE_ILLUSTRATIONS;
+const floraPhotos = kind === "flora" ? window.HG_NATURE_FLORA_PHOTOS : null;
 const grid=document.getElementById("natureGrid"),stats=document.getElementById("natureStats"),count=document.getElementById("natureCount"),
  search=/** @type {HTMLInputElement} */ (document.getElementById("natureSearch")),message=document.getElementById("natureMessage"),more=document.getElementById("natureMore"),
  dialog=/** @type {HTMLDialogElement} */ (document.getElementById("natureDialog")),details=document.getElementById("natureDetails");
@@ -18,18 +19,30 @@ function collected(){
  try{const db=JSON.parse(localStorage.getItem("hg_nature_unlocks_v2")||"{}");return new Set(list(db?.collected?.[kind]));}
  catch{return new Set();}
 }
-function photo(a){
+function media(a){
+ const documented = floraPhotos?.get(String(a.id));
  const art=drawings?.resolve(String(a.id));
- if(art)return art;
+ if(documented)return {...documented,fallback:art||""};
+ if(art)return {src:art,type:"illustration"};
  const src=a.image || a.imageCard || a.img;
- if(typeof src==="string" && /^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src))return src;
- return "";
+ if(typeof src==="string" && /^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src))return {src,type:"catalog"};
+ return null;
 }
-function illustrated(a){return Boolean(drawings?.has(String(a.id)));}
+function illustrated(a){return Boolean(drawings?.has(String(a.id))||floraPhotos?.get(String(a.id)));}
 function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",icon));}
-function appendImage(parent,src,alt){
- const img=node("img");img.alt=alt;img.loading="lazy";img.src=src;
- img.addEventListener("error",()=>fallback(parent),{once:true});parent.appendChild(img);
+function appendImage(parent,source,alt){
+ const img=node("img");img.alt=alt;img.loading="lazy";
+ let usingFallback=false;
+ img.addEventListener("error",()=>{
+  if(!usingFallback&&source.fallback){
+   usingFallback=true;img.src=source.fallback;img.alt="Forenklet illustrasjon av "+alt;
+   const label=parent.querySelector(".ne-image-label");
+   if(label)label.textContent="Illustrasjon";
+   const credit=parent.querySelector(".ne-image-credit");
+   if(credit)credit.replaceChildren("Artsfoto utilgjengelig. Viser forenklet originalillustrasjon.");
+  }else fallback(parent);
+ });
+ parent.appendChild(img);img.src=source.src;
 }
 function section(title,values){
  const vals=list(values);
@@ -45,10 +58,19 @@ function openArt(a){
  const h=node("h2","",name(a));h.id="natureDetailTitle";details.appendChild(h);
  if(latin(a))details.appendChild(node("p","ne-detail-latin",latin(a)));
  details.appendChild(node("p","ne-detail-status",collected().has(String(a.id))?"✓ Samlet gjennom quiz":"Ikke samlet ennå"));
- if(photo(a)){
-  const wrap=node("div","ne-detail-artwork");appendImage(wrap,photo(a),"Illustrasjon av "+name(a));
+ const imageInfo=media(a);
+ if(imageInfo){
+  const wrap=node("div","ne-detail-artwork");
+  appendImage(wrap,imageInfo,name(a));
   if(wrap.firstChild?.tagName==="IMG")wrap.firstChild.className="ne-dialog-image";
-  if(illustrated(a))wrap.appendChild(node("p","ne-image-credit","Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
+  if(imageInfo.type==="photo"){
+   const credit=node("p","ne-image-credit","Artsfoto: "+imageInfo.creator+" · "+imageInfo.license+" · ");
+   const file=node("a","","Wikimedia Commons");file.href=imageInfo.source;file.target="_blank";file.rel="noopener noreferrer";
+   const lic=node("a","","Lisens");lic.href=imageInfo.licenseUrl;lic.target="_blank";lic.rel="noopener noreferrer";
+   credit.appendChild(file);credit.append(" · ");credit.appendChild(lic);wrap.appendChild(credit);
+  }else if(imageInfo.type==="illustration"){
+   wrap.appendChild(node("p","ne-image-credit","Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
+  }
   details.appendChild(wrap);
  }
  section("Kjennetegn",a.kjennetegn);
@@ -67,8 +89,10 @@ function openArt(a){
 function card(a,have){
  const b=node("button","ne-card");b.type="button";b.setAttribute("aria-label",name(a)+(have?", samlet":", ikke samlet"));
  const image=node("div","ne-photo",icon);
- if(photo(a)){image.textContent="";appendImage(image,photo(a),"");}
- if(illustrated(a))image.appendChild(node("span","ne-image-label","Illustrasjon"));
+ const imageInfo=media(a);
+ if(imageInfo){image.textContent="";appendImage(image,imageInfo,name(a));}
+ if(imageInfo&&(imageInfo.type==="photo"||imageInfo.type==="illustration"))
+  image.appendChild(node("span","ne-image-label",imageInfo.type==="photo"?"Artsfoto":"Illustrasjon"));
  b.appendChild(image);
  const body=node("div","ne-card-body");body.appendChild(node("span","ne-card-title",name(a)));
  if(latin(a))body.appendChild(node("span","ne-latin",latin(a)));
@@ -84,7 +108,7 @@ function render(){
   return !term||[name(a),latin(a),a.taxonomy?.familie,...list(a.kjennetegn),...list(a.habitat?.biotop),...list(a.observasjonstips),...list(a.bykontekst?.typiske_steder)].join(" ").toLocaleLowerCase("nb").includes(term);
  });
  const held=all.filter(a=>unlocked.has(String(a.id))).length;
- stats.textContent=all.length+" oppføringer · "+held+" samlet · "+all.filter(illustrated).length+" illustrert";
+ stats.textContent=all.length+" oppføringer · "+held+" samlet · "+all.filter(illustrated).length+" med bilde";
  count.textContent=matches.length+" treff";
  const fragment=document.createDocumentFragment();
  matches.slice(0,limit).forEach(a=>fragment.appendChild(card(a,unlocked.has(String(a.id)))));

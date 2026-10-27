@@ -7,10 +7,19 @@ on:
       - 'js/ui/nature-illustrations-batch03.js'
       - 'js/ui/nature-illustrations-batch04.js'
       - 'js/ui/nature-illustrations-batch05.js'
+      - 'js/ui/nature-illustrations-batch06.js'
+      - 'js/ui/nature-illustrations-batch07.js'
+      - 'js/ui/nature-illustrations-batch08.js'
+      - 'js/ui/nature-illustrations-batch09.js'
+      - 'js/ui/nature-illustrations-batch10.js'
+      - 'js/ui/nature-illustrations-batch11.js'
+      - 'js/ui/nature-botanical-studies.js'
       - 'js/ui/nature-explorer.js'
+      - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
       - 'finn-fauna.html'
       - 'scripts/test-nature-illustrations.mjs'
+      - 'scripts/test-nature-flora-photos.mjs'
       - '.github/workflows/nature-illustrations.yml'
 
 permissions:
@@ -30,3 +39,4 @@ jobs:
         with:
           node-version: '20'
       - run: node scripts/test-nature-illustrations.mjs
+      - run: node scripts/test-nature-flora-photos.mjs
