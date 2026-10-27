@@ -127,6 +127,7 @@ try {
         nameColor: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).color : null,
         nameShadow: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).textShadow : null,
         nameBackground: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).backgroundColor : null,
+        namePadding: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).padding : null,
         markerCssPosition: css?.position,
         nameCssPosition: el?.querySelector(".hg-place-detail-label")
           ? getComputedStyle(el.querySelector(".hg-place-detail-label")).position : null,
@@ -143,7 +144,8 @@ try {
       assert.equal(first.nameDisplay, "block", "touch name is visible before style.load");
       assert.equal(first.nameColor, "rgb(0, 0, 0)", "phone and iPad names must render in actual black, not white");
       assert.equal(first.nameShadow, "none", "place name must not have the white halo that made text look white");
-      assert.equal(first.nameBackground, "rgba(255, 255, 255, 0.78)", "actual label CSS must be loaded on the app body");
+      assert.equal(first.nameBackground, "rgba(0, 0, 0, 0)", "touch labels must not have a visible background");
+      assert.equal(first.namePadding, "0px", "touch labels must not have a padded box");
       assert.equal(first.nameCssPosition, "absolute", "label is anchored to marker without changing dot size");
       assert.equal(first.markerCssPosition, "absolute", "MapLibre must retain absolute coordinates");
     }
