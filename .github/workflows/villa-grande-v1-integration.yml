@@ -1,0 +1,72 @@
+name: Villa Grande v1 integration and app smoke
+on:
+  push:
+    branches:
+      - content/oslo-aav-villa-grande-v1-20261027
+    paths:
+      - '.github/workflows/villa-grande-v1-integration.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: villa-grande-integration-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/content/oslo-aav-villa-grande-v1-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-aav-villa-grande-v1-20261027
+          fetch-depth: 120
+          persist-credentials: true
+      - name: Sync with current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate source context
+        run: node scripts/build-quiz-production-context.mjs --category historie --target villa_grande --output data/quiz/production_context/historie/villa_grande.json
+      - name: Generate canonical Knowledge
+        run: npm run knowledge:canonical:write
+      - name: Synchronize QuizCard Knowledge
+        run: node scripts/sync-villa-grande-quizcard-knowledge.mjs
+      - name: Build Place-open and Fagverk release
+        run: |
+          npm run place-open:build
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify Villa Grande contracts (targeted)
+        run: node --test tests/villa-grande-v1-parity.test.mjs
+      - name: Install browser for two-screen smoke
+        run: npx playwright install --with-deps chromium
+      - name: Test real app at 390 and 1440 pixels
+        run: node tests/villa-grande-real-app-browser-20261027.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: villa-grande-app-smoke
+          path: artifacts/villa-grande-browser/
+          if-no-files-found: ignore
+      - name: Push generated artifacts to this branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/quiz/production_context/historie/villa_grande.json
+          git add data/quiz/historie/villa_grande_sets.json data/quizcards/historie/villa_grande_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/villa_grande.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Villa Grande: publish canonical Knowledge, QuizCard and runtime"
+          fi
+          git push origin HEAD:content/oslo-aav-villa-grande-v1-20261027
