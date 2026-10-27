@@ -303,7 +303,7 @@
           <div id="hgWelcomeStoriesMatches" aria-live="polite">${renderMatches("")}</div>
         </section>`, "hg-welcome-stories-popup");
 
-      const input = document.getElementById("hgWelcomeStoriesSearch");
+      const input = /** @type {HTMLInputElement | null} */ (document.getElementById("hgWelcomeStoriesSearch"));
       const results = document.getElementById("hgWelcomeStoriesMatches");
       input?.addEventListener("input", () => {
         if (results) results.innerHTML = renderMatches(input.value);
