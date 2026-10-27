@@ -108,6 +108,22 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonica
   text-transform: uppercase;
 }
 
+/* Keep the complete short description in About, beside and below frontImage.
+   The legacy PlaceCard excerpt limits must not truncate editorial reading. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about #pcDesc{
+  display:block;
+  -webkit-line-clamp:unset;
+  -webkit-box-orient:initial;
+  overflow:visible;
+  order:initial;
+  width:auto;
+  max-width:none;
+  margin:0 0 16px;
+  padding:0;
+  font-size:clamp(15px,2vw,19px);
+  line-height:1.6;
+}
+
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about .hg-place-longread{
   max-width: 66ch;
   color: rgba(255,255,255,.82);
