@@ -19,7 +19,7 @@ if(source.quizcard_source_candidate_ids.length!==10||new Set(source.quizcard_sou
 if(fg.historie.quizProduction.targets[target]||mf.sets.some(s=>s.targetId===target)||cm.collections.includes(path.basename(cardPath))||fs.existsSync(quizPath))throw Error("Existing canonical quiz; refusing overwrite");
 const selected={
  module_ids:["his_kilder_arkiv_spor","his_minne_kulturarv_historiebruk"],
- emne_ids:["em_his_historiske_lag_i_byrom","em_his_spor_materialitet","em_his_sosialhistorie_hverdagsliv","em_his_kulturminner_bevaring"],
+ emne_ids:["em_his_historiske_lag_i_byrom","em_his_spor_materialitet","em_his_sosialhistorie_hverdagsliv","em_his_kulturminner_bevaring","em_his_restaurering_autentisitet"],
  topic_hook_ids:["his_spor_materialitet","his_bevaring_restaurering_autentisitet"],
  method_ids:["met_sporlesning","met_restaurerings_autentisitetsanalyse"],
  thinker_ids:["carlo_ginzburg","alois_riegl"],
