@@ -76,6 +76,7 @@ jobs:
           fi
           git status --short
           git restore --worktree .
-          git fetch origin content/grand-hotel-sentrum-v1-20261027
-          git rebase origin/content/grand-hotel-sentrum-v1-20261027
+          # This branch head is the first parent of the merge commit. Do not rebase
+          # a merge commit: default rebase would replay unrelated main commits.
+          # Normal push is fast-forward-only and rejects concurrent branch changes.
           git push origin HEAD:refs/heads/content/grand-hotel-sentrum-v1-20261027
