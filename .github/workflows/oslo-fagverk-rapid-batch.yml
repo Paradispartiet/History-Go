@@ -22,10 +22,6 @@ on:
       - 'data/runtime/place-open/tollbukaia.json'
       - 'data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json'
       - 'data/runtime/place-open/jernbaneverkstedet_lodalen.json'
-  push:
-    branches: [research/oslo-sentrum-v1-six-next-20261027]
-    paths:
-      - '.github/workflows/oslo-fagverk-rapid-batch.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -33,45 +29,6 @@ concurrency:
   group: oslo-fagverk-batch-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
-  repair-oslo-contexts:
-    if: github.event_name == 'push'
-    name: Rebuild five canonical Oslo production contexts (one-time)
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: research/oslo-sentrum-v1-six-next-20261027
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Rebuild exact scoped contexts and verify full context audit
-        shell: bash
-        run: |
-          set -euo pipefail
-          node scripts/build-quiz-production-context.mjs --category by --target egertorget --output data/quiz/production_context/by/egertorget.json
-          for id in kontraskjaeret palehaven_paleet avisen_tiden_radhusgata_10 mustadgarden_kongens_gate_3; do
-            node scripts/build-quiz-production-context.mjs --category historie --target "$id" --output "data/quiz/production_context/historie/$id.json"
-          done
-          npm run audit:quiz-production-context
-          node scripts/build-fagverk-release-manifest.mjs
-          git add data/quiz/production_context/by/egertorget.json \
-            data/quiz/production_context/historie/kontraskjaeret.json \
-            data/quiz/production_context/historie/palehaven_paleet.json \
-            data/quiz/production_context/historie/avisen_tiden_radhusgata_10.json \
-            data/quiz/production_context/historie/mustadgarden_kongens_gate_3.json \
-            data/fagverk/fagverk_release.json
-          git diff --cached --stat
-          if git diff --cached --quiet; then
-            echo "All five contexts already deterministic"
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m "Rebuild five Oslo quiz production contexts deterministically"
-          git push origin HEAD:research/oslo-sentrum-v1-six-next-20261027
   validate-batch:
     runs-on: ubuntu-latest
     timeout-minutes: 15
