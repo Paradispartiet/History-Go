@@ -36,9 +36,19 @@ const expected=[
  ["emne_flora_ormehode","Echium vulgare"],
  ["emne_flora_skogstorkenebb","Geranium sylvaticum"],
  ["emne_flora_gullstjerne","Gagea lutea"],
- ["emne_flora_markjordbaer","Fragaria vesca"]
+ ["emne_flora_markjordbaer","Fragaria vesca"],
+ ["emne_flora_tveskjeggveronika","Veronica chamaedrys"],
+ ["emne_flora_skogfiol","Viola riviniana"],
+ ["emne_flora_prikkperikum","Hypericum perforatum"],
+ ["emne_flora_reinfann","Tanacetum vulgare"],
+ ["emne_flora_rodtvetann","Lamium purpureum"],
+ ["emne_flora_smalkjempe","Plantago lanceolata"],
+ ["emne_flora_gulmaure","Galium verum"],
+ ["emne_flora_penstorkenebb","Geranium robertianum"],
+ ["emne_flora_vassarve","Stellaria media"],
+ ["emne_flora_krypsoleie","Ranunculus repens"]
 ];
-assert.equal(photos.count,30);
+assert.equal(photos.count,40);
 const urls=new Set();
 const illustrations=[
  "nature-illustrations.js","nature-illustrations-batch03.js",
@@ -89,4 +99,17 @@ for (const id of batch3Ids) {
  );
 }
 
-console.log("Flora photos: 30 sourced species, 30 credits/licenses, SVG fallback and read-only UI OK.");
+// Batch 4: Commons file names and 640px thumbnail directory must agree.
+// Source pages, photographer and chosen license have also been checked
+// against Wikimedia Commons file-description pages.
+const batch4Ids=["emne_flora_tveskjeggveronika","emne_flora_skogfiol","emne_flora_prikkperikum","emne_flora_reinfann","emne_flora_rodtvetann","emne_flora_smalkjempe","emne_flora_gulmaure","emne_flora_penstorkenebb","emne_flora_vassarve","emne_flora_krypsoleie"];
+for (const id of batch4Ids) {
+ const photo=photos.get(id);
+ const name=decodeURIComponent(photo.source.split("/wiki/File:")[1]).replace(/ /g,"_");
+ const hash=createHash("md5").update(name).digest("hex");
+ const encoded=encodeURIComponent(name);
+ assert.equal(photo.src,
+  `https://upload.wikimedia.org/wikipedia/commons/thumb/${hash[0]}/${hash.slice(0,2)}/${encoded}/640px-${encoded}`,
+  "bad Wikimedia thumbnail URL: "+id);
+}
+console.log("Flora photos: 40 sourced species, credits/licenses, SVG fallback and read-only UI OK.");
