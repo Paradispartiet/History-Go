@@ -28,11 +28,12 @@ jobs:
           npm run places:index:build
           npm run place-open:build
           node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
       - name: Commit deterministic runtime outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/places/places_index.json data/runtime/place-open/ data/fagverk/fagverk_release.json
+          git add data/places/places_index.json data/runtime/place-open/ data/fagverk/fagverk_release.json data/epoker/epoke-place-index.json
           if ! git diff --cached --quiet; then
             git commit -m "Synchronize Vinmonopolet Fagverk, Place-open and main index"
             git push
@@ -42,6 +43,7 @@ jobs:
           node scripts/build-fagverk-release-manifest.mjs --check
           npm run place-open:check
           npm run places:index:check
+          npm run epoker:places:check
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
           import fs from 'node:fs';
