@@ -224,7 +224,16 @@ test("Oslo coverage classifies every canonical place exactly once without overst
   // Østensjøvannet enriched an already dated place; Bogstadvannet, Skraperudtjern, Sognsvann, Mærradalen and Vettakollen now add verified source-backed History coverage.
   assert.equal(coverage.canonical_place_count, osloPlaceIds.length);
   assert.equal(coverage.dated_evidence_place_count, coverage.places.filter(place => place.status === 'dated_evidence').length);
-  assert.equal(coverage.documented_case_place_count, 2);
+  // The evidence-only documented-case count remains one. The two new Oslo AV
+  // packages have dated source-backed claims and must not remain awaiting review.
+  assert.equal(coverage.documented_case_place_count, 1);
+  for (const placeId of ["wessels_plass", "ostbanestasjonen"]) {
+    assert.equal(
+      coverage.places.find(place => place.place_id === placeId)?.status,
+      "dated_evidence",
+      `${placeId} must be classified from its source-backed dated claims`
+    );
+  }
   const idsInCoverage = coverage.places.map(place => place.place_id);
   assert.deepEqual([...idsInCoverage].sort(), osloPlaceIds, "coverage must classify each canonical Oslo place once");
   assert.equal(

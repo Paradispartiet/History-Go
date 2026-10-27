@@ -74,8 +74,8 @@
   // fakta, scenevalg og arkiv følger spilleren ved jobbbytte.
   // Shared personal trajectories survive employment changes in the existing
   // private-history snapshot; neither job role owns these actions.
-  const PRIVATE_FLAG = /^(?:wa_(?:[bcdef]_)?c(?:01|02|03|05|06|07|17|23)_|life21_)/;
-  const PRIVATE_SCENE = /^(?:wave_[abcde]_c0[15]_|wave_[abcdef]_c(?:01|02|03|05|06|07|17|23)_|wave_e_life21_)/;
+  const PRIVATE_FLAG = /^(?:wa_(?:[bcdefg]_)?c(?:01|02|03|05|06|07|17|23)_|life21_)/;
+  const PRIVATE_SCENE = /^(?:wave_[abcde]_c0[15]_|wave_[abcdefg]_c(?:01|02|03|05|06|07|17|23)_|wave_e_life21_)/;
   // These threads belong to the shared personal pack, across every career.
   // Their real archived scene choices remain personal even on old saves that
   // predate the incremental private-history record.
@@ -85,7 +85,9 @@
     "byen_og_deg", "natten_og_soevnen", "dine_egne_timer", "uka_videre",
     "wave_e_c01", "wave_e_c05", "wave_e_life21",
     "wave_f_c01", "wave_f_c02", "wave_f_c03", "wave_f_c05",
-    "wave_f_c06", "wave_f_c07", "wave_f_c17", "wave_f_c23"
+    "wave_f_c06", "wave_f_c07", "wave_f_c17", "wave_f_c23",
+    "wave_g_c01", "wave_g_c02", "wave_g_c03", "wave_g_c05",
+    "wave_g_c06", "wave_g_c07", "wave_g_c17", "wave_g_c23"
   ]);
   const isPrivateEntry = entry => PRIVATE_SCENE.test(entry?.sceneId || "")
     || PRIVATE_LIFE_THREADS.has(entry?.threadId);
