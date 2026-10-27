@@ -49,7 +49,7 @@ assert.equal(batch07Ids.length, 30, "expected 30 new motifs in batch 07");
 assert.equal(batch07Ids.filter(id => id.startsWith("emne_fauna_")).length, 15);
 assert.equal(batch07Ids.filter(id => id.startsWith("emne_flora_")).length, 15);
 for (const id of batch07Ids) assert(decodeURIComponent(artist.resolve(id).split(",")[1]).length < 100_000, id + ": oversized mobile SVG");
-const batch08Ids = [...read("js/ui/nature-illustrations-batch08.js").matchAll(/\\bemne_(?:flora|fauna)_[a-z0-9_]+(?=\\s*:)/g)].map(match => match[0]);
+const batch08Ids = [...read("js/ui/nature-illustrations-batch08.js").matchAll(/\bemne_(?:flora|fauna)_[a-z0-9_]+(?=\s*:)/g)].map(match => match[0]);
 assert.equal(batch08Ids.length, 30, "expected 30 new motifs in batch 08");
 assert.equal(new Set(batch08Ids).size, 30, "batch 08 must not repeat an illustration ID");
 assert.equal(batch08Ids.filter(id => id.startsWith("emne_fauna_")).length, 15);
