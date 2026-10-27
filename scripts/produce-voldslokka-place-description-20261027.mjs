@@ -31,7 +31,8 @@ const blocks=[
  ],
  [
  ["Betongpark/Shapers bygde anlegget med asfalterte kuler, doserte svinger og små hopp.","shapers","Shapers: utførelse og banens form"],
- ["Shapers krediterer Janis Melnis for utformingen, mens Astrup og Hellern bidro med arkitekt- og søknadsarbeid.","architect","Astrup og Hellern: arkitekt- og søknadsarbeid"],
+ ["Shapers krediterer Janis Melnis for utformingen av banen.","shapers","Shapers: prosjektdesign og kreditert designer"],
+ ["Astrup og Hellern bidro med arkitekt- og søknadsarbeid.","architect","Astrup og Hellern: arkitekt- og søknadsarbeid"],
  ["Pumpingen består i å bruke kroppens bevegelse gjennom banens høydeforskjeller til å skape fart uten motor.","owner","Sagene IF: forklaring av pumptrack-teknikken"],
  ["Den samme banen brukes med sykler og BMX, sparkesykler, skateboard og rulleskøyter.","owner","Sagene IF: tillatte hjulaktiviteter"]
  ],
@@ -69,12 +70,12 @@ const qs=[
  ["Hva slags underlag har banen?","Asfalt","hva",5],
  ["Hvem drev fram planleggingen?","Frivillige i Sagene IF og nærmiljøet","hvem",2],
  ["Hvem bygde pumptracken?","Betongpark/Shapers","hvem",5],
- ["Hva gjør kuler og doserte svinger mulig?","Å skape fart gjennom pumping","hva",7],
- ["Hva skjedde med banen høsten 2025?","Den ble ferdig og tatt i bruk","hva_skjedde",9],
- ["Hvilke aktiviteter deler anlegget?","Sykkel, sparkesykkel, skateboard og rulleskøyter","hva",8],
- ["Hvem er tiltakets målgruppe?","Barn og unge","hvem",10],
- ["Hvilken vei skal man kjøre på banen?","Mot klokken","hva",11],
- ["Hva er forbudt på banen?","Motorbruk","hva",12]
+ ["Hva gjør kuler og doserte svinger mulig?","Å skape fart gjennom pumping","hva",8],
+ ["Hva skjedde med banen høsten 2025?","Den ble ferdig og tatt i bruk","hva_skjedde",10],
+ ["Hvilke aktiviteter deler anlegget?","Sykkel, sparkesykkel, skateboard og rulleskøyter","hva",9],
+ ["Hvem er tiltakets målgruppe?","Barn og unge","hvem",11],
+ ["Hvilken vei skal man kjøre på banen?","Mot klokken","hva",12],
+ ["Hva er forbudt på banen?","Motorbruk","hva",13]
 ];
 const quizReadiness={questions:qs.map(([question,answer,type,claimIndex])=>({question,answer,type,normalKnowledgeQuestion:true,claimIds:[claimIds[claimIndex]]}))};
 const hash=v=>crypto.createHash("sha256").update(v,"utf8").digest("hex");
