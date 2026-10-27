@@ -274,6 +274,7 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
       aboutSlot.hidden = false;
       aboutOwner = document.createElement("section");
       aboutOwner.className = "hg-section hg-place-section hg-place-about-section";
+      aboutOwner.setAttribute("data-hg-place-sheet-owner", "about");
       const heading = document.createElement("h3");
       heading.textContent = "Om stedet";
       aboutOwner.appendChild(heading);
