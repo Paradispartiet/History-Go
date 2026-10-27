@@ -1,0 +1,39 @@
+name: History Go footer label visibility
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "css/footer.css"
+      - "tests/mobile-footer-layout.test.mjs"
+      - "tests/mobile-footer-browser.test.mjs"
+      - ".github/workflows/footer-label-visibility.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  footer-static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - run: node --test tests/mobile-footer-layout.test.mjs
+
+  footer-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/mobile-footer-browser.test.mjs

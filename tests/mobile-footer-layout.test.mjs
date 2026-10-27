@@ -51,7 +51,7 @@ function renderViewport(width, height) {
   return { vars, classes, viewport: window.HGViewport };
 }
 
-test('phone footer stays a single row with 44px icon-and-label buttons', () => {
+test('phone footer stays a single row with 44px tap targets', () => {
   const { vars, classes, viewport } = renderViewport(390, 844);
   assert.equal(classes.has('hg-phone'), true);
   assert.equal(viewport.footerHeight, 60);
@@ -83,7 +83,7 @@ test('footer safe area is counted once and buttons remain in one scrolling row',
   assert.equal((indexHTML.match(/<footer class="site-footer app-footer"/g) || []).length, 1);
 });
 
-test('unframed header/footer icons retain clear labels, seven glyphs and structural dividers', () => {
+test('unframed header/footer icons retain accessible labels, seven glyphs and structural dividers', () => {
   assert.match(indexHTML, /id="pcOnSiteFooter" class="pc-onsite-footer"/);
   assert.match(footerCSS, /--hg-toolbar-yellow:\s*var\(--yellow, #f6c800\)/);
   assert.doesNotMatch(footerCSS, /--hg-toolbar-edge:/);
@@ -104,10 +104,13 @@ test('unframed header/footer icons retain clear labels, seven glyphs and structu
     ['pcRoute','Rute'], ['pcObserve','Observer'], ['pcNote','Notat']
   ]) {
     assert.match(indexHTML, new RegExp('id="' + id + '"[^>]*>' + label + '</button>'),
-      id + ' has visible, meaningful text');
+      id + ' retains its accessible text fallback');
     assert.match(footerCSS, new RegExp('#' + id + '::before\\s*\\{[^}]*background-image:'),
       id + ' has a dedicated icon');
   }
+  assert.match(footerCSS, /\.app-footer \.app-actions :is\(#pcQuiz, #pcRoute, #pcObserve, #pcNote\)\s*\{[^}]*font-size:\s*0;/);
+  assert.match(footerCSS, /\.pc-onsite-action-events \.pc-onsite-action-label\s*\{[^}]*display:\s*none;/);
+  assert.doesNotMatch(footerCSS, /\.pc-onsite-action-meet \.pc-onsite-action-label\s*\{[^}]*display:\s*none;/);
   for (const action of ['events','meet']) {
     assert.match(footerCSS, new RegExp('\\.pc-onsite-action-' + action + ' \\.pc-onsite-action-icon::before\\s*\\{[^}]*background-image:'));
   }
