@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.17.7",
     "updated_at": "2026-10-27",
-    "content_sha256": "4408796601b6c93d61d3159a33f82b3baba08ed5906c8459c144b5e7f80e888e"
+    "content_sha256": "e00fad528d3fd32cf0496d7fcfe44017d71f5a35e26eab1190ee489631bfd4d0"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "301f0434462a65c19a77243a8e8c2de4ce684c77b80dc72858bb9453db41f012"
+    "content_sha256": "6a51eef319b5e4ae9d46094f691e1dbf79815a793d447dd9aa1edcf806fe1b50"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 516,
+    "package_file_count": 519,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1380,
+    "referenced_file_count": 1383,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2776,9 +2776,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 131,
+      "package_file_count": 134,
       "required_package_file_count": 4,
-      "optional_package_file_count": 127,
+      "optional_package_file_count": 130,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -3381,6 +3381,18 @@
           "content_sha256": "786ad31de8d175c5805640428c00ed5371f1935fbd077ab15bea7ae6f2be5217"
         },
         {
+          "path": "data/quiz/historie/villa_grande_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_grande.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "e7a2ac66a2a1528262ef39108d60692eb887d633f8b776188a06787368990273"
+        },
+        {
           "path": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
           "required": false,
           "fields": [
@@ -3835,6 +3847,18 @@
           ],
           "exists": true,
           "content_sha256": "62489fc800124b1a577dd709b0e554158aa5c31eb718441d67e8bd49024df7e1"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/villa_grande.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_grande.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "743d899bbda160a2561d4c05923876a064b9741e605ae72ee146f4e8258aaf2c"
         },
         {
           "path": "data/quiz/production_briefs/historie/waisenhuset_kongens_gate.json",
@@ -4293,6 +4317,18 @@
           "content_sha256": "b721e27ca39fcebdfb1e511d9f0501f1295938cf41a4db40b5e9ab0486dd73de"
         },
         {
+          "path": "data/quiz/production_context/historie/villa_grande.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_grande.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "bc24aab2c01cbb4d9f00e29ad9841f49ffbc802174c1824d0fb443db1aa455cb"
+        },
+        {
           "path": "data/quiz/production_context/historie/waisenhuset_kongens_gate.json",
           "required": false,
           "fields": [
@@ -4353,20 +4389,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "48a43a99a0b0219568b0081e1caee824a6de67ac882a9198d07acff2d3aee298",
+      "package_content_sha256": "e92e9ea8305f1ffb534c76d2791f49c889e8aef8a5c4e9a1ecfa7a62ca00bb39",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 223,
+      "referenced_file_count": 226,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "48404d41cbf98d2fee614bb02a3ff1b4cdf62e8a592723d50d7b20769296b107",
-      "content_sha256": "5f504e8d9e0f70872807bcdf61cdf3965d4bd26b4472df7d760e0888c7ed8eb4",
+      "structure_sha256": "30ed8576ce4e829b5510f5925528391c129c10195efd30040f59a6a46b6e72e5",
+      "content_sha256": "db61b771c70b23e996a19c6854eb0903313c7c5c16ce80f2741b320e7fa25cf0",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -8913,5 +8949,5 @@
       ]
     }
   },
-  "release_sha256": "48d9a06015ab39d959985510c115af22e40709803307418e518bea48c1e4225d"
+  "release_sha256": "c0e3ac782e2bdd2ebbc136891c531a1a39cac46bb1e29b4a41a97575f354f2e2"
 }
