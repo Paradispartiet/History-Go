@@ -31,12 +31,12 @@ const body = [
   '<div id="pcPeopleIcon" class="pc-round">Personer</div>',
   '<div id="pcBadgesIcon" class="pc-round">Merker</div></div></div></div>',
   '</div></div>',
-  '<div class="pc-sheet-intro"><p id="pcDesc">Historisk beskrivelse av Stortorget.</p></div>',
+  '<div class="pc-sheet-intro"></div>',
   '<div class="pc-sheet-hero-media">',
   '<div class="pc-frontcard" id="pcFrontCardFlip"><div class="pc-card-flip-inner">',
    '<div class="pc-card-face pc-card-face-front"><img id="pcFrontImage" alt="" /></div>',
    '</div></div>',
-  '<section class="pc-sheet-about"><section class="pc-sheet-canonical-about"><h3>Om stedet</h3>',
+  '<section class="pc-sheet-about"><section class="pc-sheet-canonical-about"><h3>Om stedet</h3><p id="pcDesc">Historisk beskrivelse av Stortorget.</p>',
   '<div class="hg-place-longread"><p>Stortorget har vært en sentral møteplass gjennom lang tid. Her handlet innbyggerne og møttes på markedet, og torget fikk en viktig rolle i byens liv. Historien om stedet omfatter handel, byutvikling og mennesker som brukte området. Teksten fortsetter på høyre side av bildet og vil fylle hele bredden nedenfor bildet når den er lang nok. Stortorget har forandret seg flere ganger, men har fortsatt en sentral plass i bybildet.</p></div></section></section>',
   '</div>',
   '<div class="pc-sheet-explore-grid"><div class="pc-side-stack">',
@@ -114,7 +114,14 @@ try {
         rightColumn:box(".pc-sheet-explore-grid"),
         aboutHeading:textBox(".pc-sheet-canonical-about > h3"),
         about:box(".pc-sheet-about"),
-        intro:box("#pcDesc"),
+        // The first text fragment, not the full block box: a floated image
+        // allows later text lines to continue underneath at full width.
+        intro:(() => {
+          const range=document.createRange();
+          range.selectNodeContents(document.querySelector("#pcDesc"));
+          const r=range.getClientRects()[0] || range.getBoundingClientRect();
+          return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};
+        })(),
         media:box(".pc-sheet-hero-media"),
         parentClass:document.getElementById("pcEventsBox").parentElement.className,
         previousClass:document.getElementById("pcEventsBox").previousElementSibling?.className,
@@ -134,8 +141,8 @@ try {
     assert.equal(layout.previousClass,"pc-side-stack","Events/Møtes follow the collection rounds at "+width);
     assert.ok(Math.abs(layout.front.x - layout.rounds.x) <= 2,
       "frontImage and rounds share the same left margin at "+width+": "+JSON.stringify(layout));
-    assert.ok(Math.abs(layout.intro.x - layout.front.x) <= 2,
-      "media margins match the description at "+width+": "+JSON.stringify(layout));
+    assert.ok(layout.intro.x >= layout.front.right - 1,
+      "the first description line begins to the right of frontImage at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.aboutHeading.x >= layout.front.right - 1,
       "Om stedet begins to the right of frontImage at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.rightColumn.y >= layout.media.bottom - 1,
