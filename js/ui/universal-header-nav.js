@@ -96,6 +96,11 @@
     ? "profile.html" : "index.html";
   const fallback = fallbackPage === "index.html" ? MAP_URL : new URL(fallbackPage, APP_ROOT);
   const isMapRoot = fileName(current) === "index.html";
+  // These arrows were originally fixed links home, not browser-history controls.
+  const alwaysBackToMap = new Set([
+    "Civication.html", "profile.html", "sprakatlas.html",
+    "finn-fauna.html", "finn-flora.html"
+  ]).has(fileName(current));
   let lastPlaceUrl = null;
   let changedIndexRoute = false;
 
@@ -106,6 +111,8 @@
   }
   function getDestination() {
     const route = routeType(parsed(location.href));
+    // Preserve the original History Go return arrow (not contextual back).
+    if (alwaysBackToMap) return { url: MAP_URL, label: "Kartet" };
     // The map is the terminal return destination.
     if (isMapRoot && route === "map") return null;
     if (isMapRoot) {
