@@ -24,9 +24,21 @@ const expected=[
  ["emne_flora_blodstorkenebb","Geranium sanguineum"],
  ["emne_flora_burot","Artemisia vulgaris"],
  ["emne_flora_geitrams","Chamerion angustifolium"],
- ["emne_flora_hestehov","Tussilago farfara"]
+ ["emne_flora_hestehov","Tussilago farfara"],
+ ["emne_flora_hvitveis","Anemone nemorosa"],
+ ["emne_flora_rodkløver","Trifolium pratense"],
+ ["emne_flora_tiriltunge","Lotus corniculatus"],
+ ["emne_flora_hvitklover","Trifolium repens"],
+ ["emne_flora_hvittvetann","Lamium album"],
+ ["emne_flora_rodjonsokblom","Silene dioica"],
+ ["emne_flora_hvitbergknapp","Sedum album"],
+ ["emne_flora_groblad","Plantago major"],
+ ["emne_flora_ormehode","Echium vulgare"],
+ ["emne_flora_skogstorkenebb","Geranium sylvaticum"],
+ ["emne_flora_gullstjerne","Gagea lutea"],
+ ["emne_flora_markjordbaer","Fragaria vesca"]
 ];
-assert.equal(photos.count,18);
+assert.equal(photos.count,30);
 const urls=new Set();
 const illustrations=[
  "nature-illustrations.js","nature-illustrations-batch03.js",
@@ -40,7 +52,7 @@ for(const [id,taxon] of expected){
  const p=photos.get(id);
  assert.ok(p,"missing documented photo for "+id);
  assert.equal(p.scientificName,taxon);
- assert.ok(p.creator.length>2&&p.license.startsWith("CC BY-SA"));
+ assert.ok(p.creator.length>2&&/^CC BY(?:-SA)? /.test(p.license));
  assert.match(p.source,/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
  assert.match(p.src,/^https:\/\/(?:upload|thumb)\.wikimedia\.org\/wikipedia\/commons\//);
  assert.match(p.licenseUrl,/^https:\/\/creativecommons\.org\/licenses\//);
@@ -59,4 +71,22 @@ const flora=read("finn-flora.html"),fauna=read("finn-fauna.html");
 assert(flora.includes('js/ui/nature-flora-photographs.js'),"photo registry not loaded");
 assert(flora.indexOf("nature-flora-photographs.js")<flora.indexOf("nature-explorer.js"),"registry must load first");
 assert(!fauna.includes("nature-flora-photographs.js"),"flora photo registry must not affect fauna");
-console.log("Flora photos: 18 sourced species, 18 credits/licenses, SVG fallback and read-only UI OK.");
+
+// Batch 3: Verify that each recorded media URL is in the MediaWiki file's
+// content-addressed directory. Existing pilot entries retain their prior contract.
+import { createHash } from "node:crypto";
+const batch3Ids=["emne_flora_hvitveis","emne_flora_rodkløver","emne_flora_tiriltunge","emne_flora_hvitklover","emne_flora_hvittvetann","emne_flora_rodjonsokblom","emne_flora_hvitbergknapp","emne_flora_groblad","emne_flora_ormehode","emne_flora_skogstorkenebb","emne_flora_gullstjerne","emne_flora_markjordbaer"];
+for (const id of batch3Ids) {
+ const photo=photos.get(id);
+ const filename=decodeURIComponent(photo.source.split("/wiki/File:")[1]);
+ const normalized=filename.replace(/ /g,"_");
+ const hash=createHash("md5").update(normalized).digest("hex");
+ const encoded=encodeURIComponent(normalized);
+ assert.equal(
+  photo.src,
+  `https://upload.wikimedia.org/wikipedia/commons/thumb/${hash[0]}/${hash.slice(0,2)}/${encoded}/960px-${encoded}`,
+  "invalid source hash or filename for "+id
+ );
+}
+
+console.log("Flora photos: 30 sourced species, 30 credits/licenses, SVG fallback and read-only UI OK.");
