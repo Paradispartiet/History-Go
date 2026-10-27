@@ -2,6 +2,12 @@ name: Grand Hotel v1 – real app browser
 permissions:
   contents: read
 on:
+  push:
+    branches:
+      - content/grand-hotel-sentrum-v1-20261027
+    paths:
+      - '.github/workflows/grand-hotel-v1-browser.yml'
+      - 'tests/grand-hotel-real-app-browser-20261027.mjs'
   pull_request:
     paths:
       - 'data/places/media/oslo/grand_hotel.json'
