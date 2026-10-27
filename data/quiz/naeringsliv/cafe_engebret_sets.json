@@ -1,0 +1,891 @@
+{
+  "targetId": "cafe_engebret",
+  "categoryId": "naeringsliv",
+  "sources": {
+    "oppdag_kvadraturen": "https://www.oppdagkvadraturen.no/stoppesteder/bankplassen-1-cafe-engebret",
+    "engebret_historien": "https://www.engebret-cafe.no/historien",
+    "snl": "https://snl.no/Engebret_Caf%C3%A9"
+  },
+  "production_context": {
+    "manifest_category": "naeringsliv",
+    "profile": "narrow_3x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/naeringsliv/cafe_engebret.json",
+    "context_artifact": "data/quiz/production_context/naeringsliv/cafe_engebret.json",
+    "resolved_files": {
+      "pensum": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "emner": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "fagkart": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "methods": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "handel_forbruk_marked"
+    ],
+    "emne_ids": [
+      "em_naering_tjenesteyting_og_service",
+      "em_naering_handel_butikk_byrom",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_merkevare_og_status",
+      "em_naering_arbeid_verdiskaping"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_merkevare_og_posisjoneringsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/naeringsliv/",
+        "reports/place-production/oslo-sentrum-kvadraturen-next40-quiz-candidates-20261025.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen aktiv fullquiz for cafe_engebret i PR-grenen da denne redaksjonelle kilden ble opprettet."
+      },
+      "decisions": [
+        "Narrow 3 x 7 med konkrete stedsspørsmål og mindre årstallspugging.",
+        "Skille virksomhetens grunnleggelse, eiendomskjøp og faktisk drift på Bankplassen.",
+        "Styrke økonomisk og institusjonell forståelse fremfor løs biografisk kunnskap."
+      ],
+      "knowledge_migration": "Canonical Knowledge generator må kjøres på godkjent quiz før aktivering."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Dokumenterte 21 distinkte læringsoppgaver om gründer, servicearbeid, kultur, politikk, brann, drift og kildekritikk."
+    },
+    "held_back_candidates": [
+      "Eksakt flytteår som om kildene var samstemte.",
+      "Antatte inntekter, fortjeneste eller eierkapital uten økonomiske kilder.",
+      "Udokumenterte personlige motiv for stiftelsen av Venstre.",
+      "Samme Ibsen-anekdote gjentatt flere ganger."
+    ],
+    "method_start_phase": "final",
+    "theory_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_cafe_engebret_set_1",
+      "title": "Restaurantens begynnelse",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "cafe_engebret_quiz_01",
+          "quiz_id": "naeringsliv_cafe_engebret_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvor startet Engebret Christophersen serveringsvirksomheten sin?",
+          "options": [
+            "På Bankplassen",
+            "I Kirkegaten",
+            "På Akershus festning",
+            "Ved Oslo Børs"
+          ],
+          "answer": "I Kirkegaten",
+          "answerIndex": 1,
+          "knowledge": "Christophersen begynte sin egen serveringsvirksomhet i et lite lokale i Kirkegaten i 1857, før etableringen på Bankplassen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "oppdag_kvadraturen",
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Christophersen begynte sin egen serveringsvirksomhet i et lite lokale i Kirkegaten i 1857, før etableringen på Bankplassen.",
+          "claim_id": "claim_cafe_engebret_quiz_01",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_christophersen_begynte_s_92265b2c71",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_christophersen_begynte_s_92265b2c71"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_02",
+          "quiz_id": "naeringsliv_cafe_engebret_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvem har gitt Café Engebret navn?",
+          "options": [
+            "Engebret Christophersen",
+            "Johan Sverdrup",
+            "Johannes Brun",
+            "Jens Bjelke"
+          ],
+          "answer": "Engebret Christophersen",
+          "answerIndex": 0,
+          "knowledge": "Restauranten er oppkalt etter gründeren Engebret Christophersen, som bygde virksomheten fra arbeid i serveringsbransjen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Restauranten er oppkalt etter gründeren Engebret Christophersen, som bygde virksomheten fra arbeid i serveringsbransjen.",
+          "claim_id": "claim_cafe_engebret_quiz_02",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_restauranten_er_oppkalt__5a1da24824",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_restauranten_er_oppkalt__5a1da24824"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_03",
+          "quiz_id": "naeringsliv_cafe_engebret_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva skjedde med Café Engebrets virksomhet før den fikk adresse på Bankplassen?",
+          "options": [
+            "Den ble et sjøfartsmuseum",
+            "Den var bare en privatbolig",
+            "Den flyttet fra et eldre lokale i Kirkegaten",
+            "Den var del av Krigsskolen"
+          ],
+          "answer": "Den flyttet fra et eldre lokale i Kirkegaten",
+          "answerIndex": 2,
+          "knowledge": "Virksomheten flyttet fra de første lokalene i Kirkegaten til Bankplassen 1 på begynnelsen av 1860-tallet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Virksomheten flyttet fra de første lokalene i Kirkegaten til Bankplassen 1 på begynnelsen av 1860-tallet.",
+          "claim_id": "claim_cafe_engebret_quiz_03",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_virksomheten_flyttet_fra_16c5d6c760",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_virksomheten_flyttet_fra_16c5d6c760"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_04",
+          "quiz_id": "naeringsliv_cafe_engebret_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvorfor ble Café Engebret et samlingspunkt for skuespillere?",
+          "options": [
+            "Fordi de hadde fast undervisning der",
+            "Fordi Christiania Theater lå like ved",
+            "Fordi det var en offentlig teatersal",
+            "Fordi alle skuespillere var eiere"
+          ],
+          "answer": "Fordi Christiania Theater lå like ved",
+          "answerIndex": 1,
+          "knowledge": "Teateret på Bankplassen lå tett ved restauranten. Kunstnere og skuespillere fikk en naturlig møteplass i nabolaget.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Teateret på Bankplassen lå tett ved restauranten. Kunstnere og skuespillere fikk en naturlig møteplass i nabolaget.",
+          "claim_id": "claim_cafe_engebret_quiz_04",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_teateret_pa_bankplassen__12a31ba6ff",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_teateret_pa_bankplassen__12a31ba6ff",
+            "ku_naeringsliv_kunstnere_og_skuespiller_76f82f33c4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_05",
+          "quiz_id": "naeringsliv_cafe_engebret_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva slags rolle hadde Café Engebret utover å servere mat og drikke?",
+          "options": [
+            "Byens hovedpolitistasjon",
+            "Et maritimt tollkontor",
+            "En møtested for kultur og politikk",
+            "Et myntverk"
+          ],
+          "answer": "En møtested for kultur og politikk",
+          "answerIndex": 2,
+          "knowledge": "Kafeen ble kjent som et offentlig møtested der kultur, journalistikk og politikk krysset hverandre.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kafeen ble kjent som et offentlig møtested der kultur, journalistikk og politikk krysset hverandre.",
+          "claim_id": "claim_cafe_engebret_quiz_05",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_kafeen_ble_kjent_som_et__a2245e69fa",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_kafeen_ble_kjent_som_et__a2245e69fa"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_06",
+          "quiz_id": "naeringsliv_cafe_engebret_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva må historikere skille mellom når de undersøker restaurantens flytting?",
+          "options": [
+            "Kjøp av eiendom og faktisk bruk av lokalet",
+            "Rådhus og politistasjon",
+            "Børs og teater",
+            "Stattholder og kjøpmann"
+          ],
+          "answer": "Kjøp av eiendom og faktisk bruk av lokalet",
+          "answerIndex": 0,
+          "knowledge": "Christophersen kjøpte eiendommen på Bankplassen i 1862. Kjøpet og det nøyaktige året for faktisk flytting må skilles.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Christophersen kjøpte eiendommen på Bankplassen i 1862. Kjøpet og det nøyaktige året for faktisk flytting må skilles.",
+          "claim_id": "claim_cafe_engebret_quiz_06",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_christophersen_kj_pte_ei_8b89d0c019",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_christophersen_kj_pte_ei_8b89d0c019",
+            "ku_naeringsliv_kj_pet_og_det_n_yaktige__03c246262c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_07",
+          "quiz_id": "naeringsliv_cafe_engebret_set_1_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvilket parti har en stiftelseshistorie knyttet til Café Engebret?",
+          "options": [
+            "Venstre",
+            "Høyre",
+            "Arbeiderpartiet",
+            "Senterpartiet"
+          ],
+          "answer": "Venstre",
+          "answerIndex": 0,
+          "knowledge": "Venstre ble stiftet her i 1884. Det viser at restauranten kunne fungere som politisk møtested uten å være et formelt regjeringskontor.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Venstre ble stiftet her i 1884. Det viser at restauranten kunne fungere som politisk møtested uten å være et formelt regjeringskontor.",
+          "claim_id": "claim_cafe_engebret_quiz_07",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_venstre_ble_stiftet_her__90d4f41cb8",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_venstre_ble_stiftet_her__90d4f41cb8",
+            "ku_naeringsliv_det_viser_at_restaurante_13490cfa88"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_cafe_engebret_set_2",
+      "title": "Teater og politikk",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "cafe_engebret_quiz_08",
+          "quiz_id": "naeringsliv_cafe_engebret_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvilken politiker spilte en sentral rolle i partistiftelsen her?",
+          "options": [
+            "Johan Sverdrup",
+            "Gerhard Treschow",
+            "Caspar Herman Storm",
+            "Diderich Hegermann"
+          ],
+          "answer": "Johan Sverdrup",
+          "answerIndex": 0,
+          "knowledge": "Johan Sverdrup var en sentral person ved Venstres stiftelse i 1884, og ble samme år statsminister.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Johan Sverdrup var en sentral person ved Venstres stiftelse i 1884, og ble samme år statsminister.",
+          "claim_id": "claim_cafe_engebret_quiz_08",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_johan_sverdrup_var_en_se_32f87097ba",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_johan_sverdrup_var_en_se_32f87097ba"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_09",
+          "quiz_id": "naeringsliv_cafe_engebret_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvilken teaterskuespiller knyttes til det gamle restaurantmiljøet?",
+          "options": [
+            "Edvard Grieg",
+            "Johannes Brun",
+            "Ole Bull",
+            "Bjørnstjerne Bjørnson"
+          ],
+          "answer": "Johannes Brun",
+          "answerIndex": 1,
+          "knowledge": "Johannes Brun tilhørte teatermiljøet som brukte kafeen. Hans tilknytning viser nærheten mellom restauranten og Christiania Theater.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Johannes Brun tilhørte teatermiljøet som brukte kafeen. Hans tilknytning viser nærheten mellom restauranten og Christiania Theater.",
+          "claim_id": "claim_cafe_engebret_quiz_09",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_johannes_brun_tilh_rte_t_96b2cf00de",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_johannes_brun_tilh_rte_t_96b2cf00de",
+            "ku_naeringsliv_hans_tilknytning_viser_n_8ffd94c608"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_10",
+          "quiz_id": "naeringsliv_cafe_engebret_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva ga serveringsvirksomheten bylivet i tillegg til en kommersiell tjeneste?",
+          "options": [
+            "En statlig rettssal",
+            "En offentlig havneterminal",
+            "Et uformelt sted for møter og samtaler",
+            "En militær ekserserplass"
+          ],
+          "answer": "Et uformelt sted for møter og samtaler",
+          "answerIndex": 2,
+          "knowledge": "En restaurant solgte mat og drikke, men tilbød også et sted å møtes for folk fra ulike yrker og offentlige miljøer.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "engebret_historien",
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "En restaurant solgte mat og drikke, men tilbød også et sted å møtes for folk fra ulike yrker og offentlige miljøer.",
+          "claim_id": "claim_cafe_engebret_quiz_10",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_en_restaurant_solgte_mat_66228e0c3d",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_en_restaurant_solgte_mat_66228e0c3d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_11",
+          "quiz_id": "naeringsliv_cafe_engebret_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvilken erfaring hadde Christophersen før han startet egen restaurant?",
+          "options": [
+            "Han arbeidet på serveringssteder ved Stortorvet og i Gamle Logen",
+            "Han var skipsreder",
+            "Han ledet Christiania Theater",
+            "Han var professor i økonomi"
+          ],
+          "answer": "Han arbeidet på serveringssteder ved Stortorvet og i Gamle Logen",
+          "answerIndex": 0,
+          "knowledge": "Christophersen arbeidet ved kafeen på Stortorvet og senere som kelner i Sumpen i Gamle Logen før han bygde opp sitt eget sted.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Christophersen arbeidet ved kafeen på Stortorvet og senere som kelner i Sumpen i Gamle Logen før han bygde opp sitt eget sted.",
+          "claim_id": "claim_cafe_engebret_quiz_11",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_christophersen_arbeidet__895ce8dd86",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_christophersen_arbeidet__895ce8dd86"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_12",
+          "quiz_id": "naeringsliv_cafe_engebret_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvordan bidro Christophersens tidlige arbeid til muligheten for å starte eget sted?",
+          "options": [
+            "Han arvet teatret",
+            "Han opparbeidet erfaring og sparte penger",
+            "Han fikk militært embete",
+            "Han kjøpte hele Bankplassen"
+          ],
+          "answer": "Han opparbeidet erfaring og sparte penger",
+          "answerIndex": 1,
+          "knowledge": "Restaurantens egen historikk beskriver hvordan Christophersen arbeidet i serveringsbransjen og la til side drikkepenger før han åpnet egen virksomhet.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Restaurantens egen historikk beskriver hvordan Christophersen arbeidet i serveringsbransjen og la til side drikkepenger før han åpnet egen virksomhet.",
+          "claim_id": "claim_cafe_engebret_quiz_12",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_restaurantens_egen_histo_3f1efa2498",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_restaurantens_egen_histo_3f1efa2498"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_13",
+          "quiz_id": "naeringsliv_cafe_engebret_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvilken type historisk kilde viser hva Café Engebret tilbød til gjestene?",
+          "options": [
+            "En gammel meny med priser",
+            "Krigsskolens eksamensliste",
+            "Et sjøfartskart",
+            "Et fengselsregister"
+          ],
+          "answer": "En gammel meny med priser",
+          "answerIndex": 0,
+          "knowledge": "En historisk prisliste fra 1938 dokumenterer smørbrødservering. Menyen er en kilde til forbruk og serveringsvaner, ikke bare til prisnivå.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "En historisk prisliste fra 1938 dokumenterer smørbrødservering. Menyen er en kilde til forbruk og serveringsvaner, ikke bare til prisnivå.",
+          "claim_id": "claim_cafe_engebret_quiz_13",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_en_historisk_prisliste_f_f43c6168ab",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_en_historisk_prisliste_f_f43c6168ab",
+            "ku_naeringsliv_menyen_er_en_kilde_til_f_6d1ca4fefa"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_14",
+          "quiz_id": "naeringsliv_cafe_engebret_set_2_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva kan en gammel meny fortelle – og hva kan den ikke alene bevise?",
+          "options": [
+            "Den beviser hele restaurantens overskudd",
+            "Den viser tilbud og priser, men ikke komplett bedriftsøkonomi",
+            "Den viser hvor alle gjestene kom fra",
+            "Den beviser at maten var identisk i alle epoker"
+          ],
+          "answer": "Den viser tilbud og priser, men ikke komplett bedriftsøkonomi",
+          "answerIndex": 1,
+          "knowledge": "En meny og prisliste er en konkret historisk kilde til tilbud og priser i én periode, men ikke en full oversikt over økonomien.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "En meny og prisliste er en konkret historisk kilde til tilbud og priser i én periode, men ikke en full oversikt over økonomien.",
+          "claim_id": "claim_cafe_engebret_quiz_14",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_en_meny_og_prisliste_er__d2eb564995",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_en_meny_og_prisliste_er__d2eb564995"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_cafe_engebret_set_3",
+      "title": "Kilder, drift og kontinuitet",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "cafe_engebret_quiz_15",
+          "quiz_id": "naeringsliv_cafe_engebret_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva gjorde det nødvendig å reparere både tak og deler av Café Engebret?",
+          "options": [
+            "En brann",
+            "En beleiring av Akershus",
+            "En jernbanetunnel",
+            "En storflom i Akerselva"
+          ],
+          "answer": "En brann",
+          "answerIndex": 0,
+          "knowledge": "Brannen rammet begge fløyenes tak, men anlegget kunne restaureres. Bygningens fysiske kontinuitet er derfor ikke uforandret.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Brannen rammet begge fløyenes tak, men anlegget kunne restaureres. Bygningens fysiske kontinuitet er derfor ikke uforandret.",
+          "claim_id": "claim_cafe_engebret_quiz_15",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_brannen_rammet_begge_fl__d2a55745c2",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_brannen_rammet_begge_fl__d2a55745c2",
+            "ku_naeringsliv_bygningens_fysiske_konti_1833bc26e4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_16",
+          "quiz_id": "naeringsliv_cafe_engebret_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva forteller gjenåpningen etter brannen om restaurantens historie?",
+          "options": [
+            "At ingenting ble skadet",
+            "At virksomheten kunne fortsette etter omfattende restaurering",
+            "At alle de gamle rommene var uforandret",
+            "At virksomheten flyttet til Rådhusgata igjen"
+          ],
+          "answer": "At virksomheten kunne fortsette etter omfattende restaurering",
+          "answerIndex": 1,
+          "knowledge": "Gjenåpningen etter restaureringen viser forskjellen mellom fysisk ombygging og kontinuitet i en institusjon eller virksomhet.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gjenåpningen etter restaureringen viser forskjellen mellom fysisk ombygging og kontinuitet i en institusjon eller virksomhet.",
+          "claim_id": "claim_cafe_engebret_quiz_16",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_gjenapningen_etter_resta_32a5949622",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_gjenapningen_etter_resta_32a5949622"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_17",
+          "quiz_id": "naeringsliv_cafe_engebret_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvordan bør vi behandle kilder som ikke er enige om flytteåret?",
+          "options": [
+            "Velge et år uten forklaring",
+            "Skille kjøp fra flytting og oppgi kildeuenigheten",
+            "Slette omtalen av Bankplassen",
+            "Blande restaurantens oppstart med brannen"
+          ],
+          "answer": "Skille kjøp fra flytting og oppgi kildeuenigheten",
+          "answerIndex": 1,
+          "knowledge": "Restaurantens egen fortelling nevner både kjøpet i 1862 og bruk ved Bankplassen siden 1863. Den presise tidsangivelsen må behandles kildekritisk.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "engebret_historien",
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Restaurantens egen fortelling nevner både kjøpet i 1862 og bruk ved Bankplassen siden 1863. Den presise tidsangivelsen må behandles kildekritisk.",
+          "claim_id": "claim_cafe_engebret_quiz_17",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_restaurantens_egen_forte_a6bb6338ba",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_restaurantens_egen_forte_a6bb6338ba",
+            "ku_naeringsliv_den_presise_tidsangivels_14e6051562"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_18",
+          "quiz_id": "naeringsliv_cafe_engebret_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hvilken forfatter blir i restaurantens egen historikk knyttet til stamgjestmiljøet?",
+          "options": [
+            "Knut Hamsun",
+            "Henrik Ibsen",
+            "Johan Borgen",
+            "Amalie Skram"
+          ],
+          "answer": "Henrik Ibsen",
+          "answerIndex": 1,
+          "knowledge": "Henrik Ibsen er knyttet til kafeens miljø rundt Christiania Theater. Kilden beskriver et fast bord og omtale i Ibsens tekster.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "engebret_historien"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Henrik Ibsen er knyttet til kafeens miljø rundt Christiania Theater. Kilden beskriver et fast bord og omtale i Ibsens tekster.",
+          "claim_id": "claim_cafe_engebret_quiz_18",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_henrik_ibsen_er_knyttet__e4803514f4",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_henrik_ibsen_er_knyttet__e4803514f4",
+            "ku_naeringsliv_kilden_beskriver_et_fast_27b81495c4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_19",
+          "quiz_id": "naeringsliv_cafe_engebret_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva illustrerer historien om en gammel Venstre-regning som ble betalt mange år senere?",
+          "options": [
+            "At partistiftelsen fant sted etter betalingen",
+            "At regningen er en offentlig lovtekst",
+            "At ettertiden kan bruke små historier for å minnes politiske hendelser",
+            "At restauranten var bankens avdeling"
+          ],
+          "answer": "At ettertiden kan bruke små historier for å minnes politiske hendelser",
+          "answerIndex": 2,
+          "knowledge": "Restaurantens historikk forteller at en tidligere Venstre-leder betalte en gammel regning i 2008. Episoden er ettertidig historiebruk, ikke selve stiftelsen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_naering_merkevare_og_status",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Restaurantens historikk forteller at en tidligere Venstre-leder betalte en gammel regning i 2008. Episoden er ettertidig historiebruk, ikke selve stiftelsen.",
+          "claim_id": "claim_cafe_engebret_quiz_19",
+          "knowledge_link_status": "linked",
+          "method_id": "met_naering_merkevare_og_posisjoneringsanalyse",
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_naeringsliv_restaurantens_historikk__cb7bf6bc3d",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_restaurantens_historikk__cb7bf6bc3d",
+            "ku_naeringsliv_episoden_er_ettertidig_h_dca25d4a68"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_20",
+          "quiz_id": "naeringsliv_cafe_engebret_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva er en rimelig historisk tolkning av Café Engebrets lange drift?",
+          "options": [
+            "At alle gjestene og hele interiøret har vært uforandret",
+            "At navnet ikke har noen historisk verdi",
+            "At et møtested kan bestå selv om lokaler og publikum endres",
+            "At restauranten alltid var eid av samme person"
+          ],
+          "answer": "At et møtested kan bestå selv om lokaler og publikum endres",
+          "answerIndex": 2,
+          "knowledge": "Fra teaterfolk og politiske møter til senere restaurantliv viser kafeen kontinuitet, men ingen kilde kan bevise at publikum og interiør alltid var identisk.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "engebret_historien",
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fra teaterfolk og politiske møter til senere restaurantliv viser kafeen kontinuitet, men ingen kilde kan bevise at publikum og interiør alltid var identisk.",
+          "claim_id": "claim_cafe_engebret_quiz_20",
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "arbeid_som_verdiskaping",
+          "thinker_id": "max_weber",
+          "theory_ref": {
+            "topic_hook_id": "arbeid_som_verdiskaping",
+            "why_it_helps": "Webers perspektiv på hvordan arbeid og tjenester organiseres, hjelper oss å skille restaurantens konkrete serveringsarbeid fra det kulturelle og politiske livet som møtestedet også ga rom for."
+          },
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_naeringsliv_fra_teaterfolk_og_politi_865979b321",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_fra_teaterfolk_og_politi_865979b321"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "cafe_engebret_quiz_21",
+          "quiz_id": "naeringsliv_cafe_engebret_set_3_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "cafe_engebret",
+          "targetId": "cafe_engebret",
+          "question_scope": "place",
+          "question": "Hva er kildekritisk riktig når eiendomskjøp og flytting dateres ulikt?",
+          "options": [
+            "Dokumentere hvilke hendelser og kilder datoene gjelder",
+            "Velge datoen som forekommer flest ganger",
+            "Behandle begge datoer som oppdiktet",
+            "Bruke dagens adresse som svar på begge spørsmål"
+          ],
+          "answer": "Dokumentere hvilke hendelser og kilder datoene gjelder",
+          "answerIndex": 0,
+          "knowledge": "Året for kjøpet og tidspunktet for restaurantens faktiske åpning kan omtales forskjellig. En kildekritisk rekonstruksjon skiller hendelsene.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "engebret_historien",
+            "snl",
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Året for kjøpet og tidspunktet for restaurantens faktiske åpning kan omtales forskjellig. En kildekritisk rekonstruksjon skiller hendelsene.",
+          "claim_id": "claim_cafe_engebret_quiz_21",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_aret_for_kj_pet_og_tidsp_032f03d888",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_aret_for_kj_pet_og_tidsp_032f03d888",
+            "ku_naeringsliv_en_kildekritisk_rekonstr_ceb834d4c0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        }
+      ]
+    }
+  ],
+  "production_status": "manifested_knowledge_linked_browser_qa_passed"
+}

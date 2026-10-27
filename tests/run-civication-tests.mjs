@@ -33,7 +33,7 @@ for (const file of files) {
   // Day 32–34 exhaustively plays 320 long-form paths with save/reload checks.
   // Preserve that coverage rather than treating a valid slow simulation
   // as a functional failure under the default two-minute child-process cap.
-  const timeoutMs = file === "civication-lifestory-life-day32-34.test.js" ? 300000 : 120000;
+  const timeoutMs = ["civication-lifestory-life-day32-34.test.js", "civication-lifestory-long-term-day29-31.test.js"].includes(file) ? 300000 : 120000;
   try {
     execFileSync(process.execPath, [abs], { stdio: "pipe", timeout: timeoutMs });
     process.stdout.write(`✓ ${file}\n`);

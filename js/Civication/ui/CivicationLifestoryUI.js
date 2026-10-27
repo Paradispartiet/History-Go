@@ -1143,8 +1143,16 @@
       + (book.personer.some(p => p.persontype) ? '<p class="muted">Persontypene beskriver funksjoner i historien. Samlede History Go-personer kan representere dem. Relasjoner, dialog og handling er dramatisert.</p>' : "")
       + "<ul>" + book.personer.map((p) => {
         const cast = state.personRepresentanter?.[p.id];
-        return "<li><strong>" + escapeHtml(p.navn) + "</strong>"
-          + (p.persontype ? " <small>· Type: " + escapeLiteral(p.navn) + "</small>" : "")
+        // Keep a stable, anonymous type label in the person overview.
+        // Story dialogue may resolve to a collected person's name separately.
+        const typeLabel = ({
+          medmusiker: "Medmusikeren",
+          miljokontakt: "Miljøkontakten",
+          prosjektbygger: "Prosjektbyggeren"
+        })[p.persontype?.id] || p.navn;
+        return "<li><strong>" + escapeLiteral(typeLabel) + "</strong>"
+          + (p.persontype ? " <small>· Type: " + escapeLiteral(typeLabel) + "</small>" : "")
+          + (p.persontype && cast?.personId ? " <span class=\"muted\">· " + escapeLiteral(cast.navn) + "</span>" : "")
           + ": " + escapeHtml(p.beskrivelse)
           + (cast?.personId && cast.beskrivelse ? "<p>Fra History Go: " + escapeLiteral(cast.beskrivelse) + "</p>" : "")
           + (p.persontype && !cast ? '<p class="muted">Denne typen kan representeres av en relevant person du har samlet i History Go.</p>' : "")

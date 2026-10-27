@@ -876,3 +876,63 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-cop
   border:0;
   overflow:visible;
 }
+
+/* Keep the single-word Kvadraturen title intact above its existing controls. */
+@media (max-width: 520px){
+  body.hg-app #placeCard[data-current-place-id="treschowgarden"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
+    grid-column:1 / -1;
+    box-sizing:border-box;
+    padding-right:44px;
+    font-size:clamp(24px,7vw,30px);
+    overflow-wrap:normal;
+    word-break:normal;
+    hyphens:none;
+  }
+}
+
+/* Keep the enlarged QuizCard readable within narrow PlaceCards. */
+@media (max-width: 520px){
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-quiz-card-content{
+    min-width:0;
+    max-width:100%;
+    padding:8px;
+  }
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-card{
+    min-width:0;
+    max-width:100%;
+    padding:16px 10px;
+  }
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-head{
+    min-width:0;
+    padding:10px 0 18px;
+  }
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-head h3{
+    font-size:clamp(23px,6.8vw,28px);
+    overflow-wrap:anywhere;
+  }
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-list li{
+    min-width:0;
+    padding-left:30px;
+  }
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-list li::before{
+    width:23px;
+    min-width:23px;
+    height:23px;
+    font-size:14px;
+  }
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-option{
+    gap:8px;
+    padding:8px;
+  }
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-option-label{
+    width:23px;
+    height:23px;
+  }
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-option > span:last-child{
+    min-width:0;
+    overflow-wrap:anywhere;
+  }
+  body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-answer-key{
+    overflow-wrap:anywhere;
+  }
+}

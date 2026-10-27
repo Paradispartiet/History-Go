@@ -58,7 +58,7 @@
         {
           "id": "undersok",
           "tekst": "Se på én konkret brukssituasjon hjemme",
-          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke prosjektbyggeren om en ny test.",
+          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke Lea om en ny test.",
           "effekter": {
             "flagg": {
               "sideprosjekt_neste_valg": "undersok"
@@ -105,7 +105,7 @@
         {
           "id": "undersok",
           "tekst": "Se på én konkret brukssituasjon hjemme",
-          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke prosjektbyggeren om en ny test.",
+          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke Lea om en ny test.",
           "effekter": {
             "flagg": {
               "sideprosjekt_neste_valg": "undersok"
@@ -150,7 +150,7 @@
         {
           "id": "undersok",
           "tekst": "Se på én konkret brukssituasjon hjemme",
-          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke prosjektbyggeren om en ny test.",
+          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke Lea om en ny test.",
           "effekter": {
             "flagg": {
               "sideprosjekt_neste_valg": "undersok"
@@ -235,7 +235,7 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Ingen prosjektavtale i dag",
-      "tekst": "Du valgte å la denne muligheten ligge. Du har ingen ny avtale med prosjektbyggeren eller noen leveranse som venter.",
+      "tekst": "Du valgte å la denne muligheten ligge. Du har ingen ny avtale med Lea eller noen leveranse som venter.",
       "valg": [
         {
           "id": "fri",
@@ -400,13 +400,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Kan dere levere på fredag?",
-      "tekst": "Prosjektbyggeren viser deg en egen skisse, merket «utkast 0.2», som prosjektbyggeren har sendt til to deltakere på verkstedet. Under bildet står «mulig prøve fredag». Én av dem har svart: «Fint, da regner jeg med å få en ferdig modell fredag.» Det er første gang du ser denne skissen. Prosjektbyggeren har verken avtalt pris eller bestemt om modellen skal bygges.",
+      "tittel": "Fredagen de allerede hadde sett for seg",
+      "tekst": "Lea viser deg skissen hun har sendt til to deltakere på verkstedet. Under bildet står det «mulig prøve fredag». Én har svart at han regner med å hente en ferdig modell den dagen. Lea stirrer på ordet «mulig». «Jeg trodde det var tydelig», sier hun. Du forstår hva hun mente, men mottakeren ser ut til å ha hørt et løfte. Det haster å finne ut hva som faktisk er sendt.",
       "valg": [
         {
           "id": "presis_tekst",
-          "tekst": "Tilby å lese en presisering som skiller utkast fra leveringsløfte",
-          "konsekvensTekst": "Du tilbyr å kontrollere ordlyden før prosjektbyggeren sender noe. Prosjektbyggeren ber deg se på et utkast i morgen. Ingen mottaker har fått en rettelse ennå.",
+          "tekst": "Tilby å lese en presisering før Lea svarer",
+          "konsekvensTekst": "Lea ber deg se på et utkast i morgen. Dere har ikke sendt noen rettelse til mottakerne ennå.",
           "effekter": {
             "flagg": {
               "wa_c23_valg": "tekst"
@@ -415,8 +415,8 @@
         },
         {
           "id": "spor_mottak",
-          "tekst": "Tilby å kontrollere de to opprinnelige mottakerne sammen med prosjektbyggeren",
-          "konsekvensTekst": "Du tilbyr å gå gjennom den sendte meldingen. Prosjektbyggeren sier ja til gjennomgangen i morgen. Du har ikke kontaktet noen eller sett bevis for videresending.",
+          "tekst": "Tilby å finne ut hvem som fikk den opprinnelige skissen",
+          "konsekvensTekst": "Lea sier ja til å gå gjennom de to mottakerne sammen i morgen. Ingen er kontaktet som følge av valget nå.",
           "effekter": {
             "flagg": {
               "wa_c23_valg": "mottak"
@@ -435,13 +435,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "En rettelse til begge",
-      "tekst": "Prosjektbyggeren sender tekstutkastet: «Skisse 0.2 var en idé til utprøving, ikke en avtale om ferdig modell fredag. Jeg har ikke satt en leveringsdato.» Prosjektbyggeren viser de to opprinnelige mottakerne. Prosjektbyggeren spør om du vil lese setningene én gang til før prosjektbyggeren sender.",
+      "tittel": "Lea leser den vanskelige setningen høyt",
+      "tekst": "«Skisse 0.2 var en idé til utprøving, ikke en avtale om ferdig modell fredag», leser Lea fra utkastet sitt. Hun stanser ved «ikke». «Høres det ut som om jeg legger skylden på dem?» spør hun. Du ser de to navnene nederst på skjermen. Det er hennes melding og hennes ansvar å sende den. Du kan hjelpe med formuleringen, men ikke love at leserne vil forstå.",
       "valg": [
         {
           "id": "les",
-          "tekst": "Les presiseringen og be prosjektbyggeren beholde versjonsnummeret",
-          "konsekvensTekst": "Du bekrefter at teksten viser hvilken skisse det gjelder. Prosjektbyggeren bestemmer seg for å sende den og viser deg meldingen til begge opprinnelige mottakere. At den er sendt, viser ikke at begge har lest den.",
+          "tekst": "Les teksten og be Lea beholde skissens versjonsnummer",
+          "konsekvensTekst": "Lea viser deg presiseringen hun sender til begge. Den knytter svaret til riktig skisse, men det er ikke bekreftet at begge har lest den.",
           "effekter": {
             "flagg": {
               "wa_c23_rettelse": "begge"
@@ -450,8 +450,8 @@
         },
         {
           "id": "ikke_na",
-          "tekst": "Si at du ikke rekker gjennomlesingen nå",
-          "konsekvensTekst": "Du sier fra om kapasiteten din. Prosjektbyggeren svarer at prosjektbyggeren vil lese selv før prosjektbyggeren sender. Du har ikke sett en sendt rettelse.",
+          "tekst": "Si at du ikke rekker å lese gjennom i dag",
+          "konsekvensTekst": "Lea sier at hun vil se på den selv før utsending. Du har ikke sett noen sendt rettelse.",
           "effekter": {
             "flagg": {
               "wa_c23_rettelse": "ikke_bekreftet"
@@ -475,13 +475,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "To adresser, én misforståelse",
-      "tekst": "Dere går gjennom prosjektbyggerens sendte melding på skjermen. Den har to mottakere. Bare den ene har skrevet at en ferdig modell ventes fredag. Dere finner ingen videresending i materialet prosjektbyggeren viser. Prosjektbyggeren vurderer hvem prosjektbyggeren skal kontakte først.",
+      "tittel": "To navn nederst på skjermen",
+      "tekst": "Lea åpner den opprinnelige meldingen. Det står to navn i mottakerfeltet. Bare den ene har svart at han forventer en ferdig modell fredag. «Skal jeg skrive til ham først?» spør hun. Du ser hvor fort hun vil få saken ut av verden. Men det andre navnet står der også, og dere vet ikke hvordan den personen forsto skissen. Ingen av dere har sett noen videresending.",
       "valg": [
         {
           "id": "den_ene",
-          "tekst": "Foreslå et direkte svar til den som forventer levering",
-          "konsekvensTekst": "Du peker ut det konkrete spørsmålet. Prosjektbyggeren sender selv en presisering til denne personen og viser deg den sendte meldingen. Den andre mottakeren har fortsatt bare originalskissen.",
+          "tekst": "Foreslå at Lea svarer direkte til den som forventer modellen",
+          "konsekvensTekst": "Lea sender en presisering til denne personen og viser deg meldingen. Den andre har fortsatt bare originalskissen.",
           "effekter": {
             "flagg": {
               "wa_c23_rettelse": "en"
@@ -490,8 +490,8 @@
         },
         {
           "id": "begge",
-          "tekst": "Foreslå samme presisering til begge opprinnelige mottakere",
-          "konsekvensTekst": "Prosjektbyggeren velger å sende en presisering til begge og viser meldingen. Dere har fortsatt ikke dokumentasjon på at skissen er delt videre.",
+          "tekst": "Foreslå at Lea sender den samme presiseringen til begge",
+          "konsekvensTekst": "Lea viser deg meldingen hun sender til begge mottakerne. Det er fortsatt ukjent om skissen er delt videre.",
           "effekter": {
             "flagg": {
               "wa_c23_rettelse": "begge"
@@ -515,13 +515,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Den andre vet ikke det samme",
-      "tekst": "Prosjektbyggeren viser svaret fra personen prosjektbyggeren presiserte til: «Takk, da har jeg ingen modell å hente fredag.» Den andre mottakeren har ikke fått presiseringen. At én person har forstått, sier ingenting om den andre.",
+      "tittel": "Den ene kan endre fredagsplanen",
+      "tekst": "«Takk, da har jeg ingen modell å hente fredag», står det i svaret Lea viser deg. Du blir lettet. Så peker hun på det andre navnet i den opprinnelige meldingen. Denne personen har ikke fått presiseringen. Lea lener seg bakover. «Jeg orker nesten ikke begynne på nytt», sier hun. Du skjønner henne, men fredagen ser fortsatt ulik ut for de to mottakerne.",
       "valg": [
         {
           "id": "foresla_andre",
-          "tekst": "Foreslå at prosjektbyggeren avklarer med den andre også",
-          "konsekvensTekst": "Du anbefaler en egen avklaring. Prosjektbyggeren sier at prosjektbyggeren vil følge opp, men har ennå ikke vist en ny sendt melding. Bare det første svaret er bekreftet.",
+          "tekst": "Foreslå at Lea også avklarer med den andre",
+          "konsekvensTekst": "Du minner om den som fortsatt mangler beskjed. Lea sier hun vil følge opp, men du har ikke sett noen ny sendt melding.",
           "effekter": {
             "flagg": {
               "wa_c23_avslutning": "en_avklart"
@@ -530,8 +530,8 @@
         },
         {
           "id": "overlat",
-          "tekst": "La prosjektbyggeren avgjøre resten selv",
-          "konsekvensTekst": "Du avslutter hjelpen. Prosjektbyggeren beholder ansvaret for kontakten med den andre. Hjelpen din stanser ved denne gjennomgangen.",
+          "tekst": "La Lea selv avgjøre og gjennomføre resten",
+          "konsekvensTekst": "Du avslutter din del av hjelpen. Det andre svaret er ikke avklart bare fordi du har trukket deg.",
           "effekter": {
             "flagg": {
               "wa_c23_avslutning": "ansvar_tilbake"
@@ -555,13 +555,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Sendt til to, lest av én",
-      "tekst": "Begge fikk presiseringen fra prosjektbyggeren. Én svarer at det er forstått og at ingen modell ventes fredag. Den andre har ikke svart. Prosjektbyggeren spør om prosjektbyggeren bør omtale misforståelsen som ferdig ryddet.",
+      "tittel": "En bekreftelse og en stillhet",
+      "tekst": "Lea viser deg den sendte presiseringen til begge mottakerne. Den ene har svart at det er forstått. Ved det andre navnet er det stille. «Kan vi slutte å tenke på dette nå?» spør hun. Du hører hvor sliten hun er. Dere har gjort noe viktig ved å rette teksten, men stillhet fra en leser forteller fortsatt ikke hva vedkommende har planlagt for fredag.",
       "valg": [
         {
           "id": "skill",
-          "tekst": "Skill mellom sendt presisering og bekreftet forståelse",
-          "konsekvensTekst": "Du peker på at bare én har bekreftet forståelsen. Prosjektbyggeren noterer den andre som uavklart. Skissen er fortsatt et utkast.",
+          "tekst": "Si at dere kan dokumentere én bekreftelse, ikke to",
+          "konsekvensTekst": "Lea beholder den andre som uavklart. Det er mulig å være ferdig med teksten uten å påstå at alle har forstått.",
           "effekter": {
             "flagg": {
               "wa_c23_avslutning": "en_bekreftet_en_uavklart"
@@ -570,8 +570,8 @@
         },
         {
           "id": "be_lesebekreftelse",
-          "tekst": "Foreslå et kort spørsmål til den som ikke svarte",
-          "konsekvensTekst": "Du foreslår å spørre om presiseringen er lest. Prosjektbyggeren skriver at prosjektbyggeren vil vurdere det. Det finnes fortsatt bare ett bekreftet svar.",
+          "tekst": "Foreslå ett kort spørsmål til den som ikke svarte",
+          "konsekvensTekst": "Lea vil vurdere om hun skal spørre igjen. Det finnes fremdeles bare ett bekreftet svar.",
           "effekter": {
             "flagg": {
               "wa_c23_avslutning": "foreslaatt_oppfolging"
@@ -595,13 +595,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Utkastet ligger fortsatt der",
-      "tekst": "Prosjektbyggeren sier at prosjektbyggeren ennå ikke har sendt presiseringen. Det gamle svaret om fredag står ubesvart. Du takket nei til gjennomlesingen, men det ga verken prosjektbyggeren eller mottakerne en avklaring.",
+      "tittel": "Svaret som aldri ble sendt",
+      "tekst": "Lea legger mobilen ned på bordet. «Jeg har fortsatt bare utkastet», sier hun. Du husker at du ikke rakk å lese gjennom da hun spurte. Nå står meldingen fra deltakeren som forventer en modell fredag fortsatt ubesvart. Du kan ikke gjøre hennes ansvar til ditt eget, men du kan heller ikke late som problemet forsvinner bare fordi dere er slitne av det.",
       "valg": [
         {
           "id": "minn",
-          "tekst": "Minn om det konkrete spørsmålet som fortsatt venter",
-          "konsekvensTekst": "Du minner om at én person venter en modell fredag. Prosjektbyggeren tar ansvaret for å svare. Du har ikke sett en sendt rettelse eller en bekreftet forståelse.",
+          "tekst": "Minn Lea om forventningen hun ennå ikke har svart på",
+          "konsekvensTekst": "Du peker på det konkrete spørsmålet om fredag. Lea tar ansvaret for å svare, men du har ikke sett noen sendt rettelse.",
           "effekter": {
             "flagg": {
               "wa_c23_avslutning": "minnet_om_aapent_sporsmal"
@@ -610,8 +610,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Si at du ikke kan overta korrespondansen",
-          "konsekvensTekst": "Du setter en tydelig grense for hjelpen din. Prosjektbyggeren beholder ansvaret; misforståelsen er fortsatt uavklart.",
+          "tekst": "Si tydelig at du ikke kan overta utsendingen",
+          "konsekvensTekst": "Du setter grensen for ditt bidrag. Lea må selv velge hva hun gjør, og misforståelsen er fortsatt uavklart.",
           "effekter": {
             "flagg": {
               "wa_c23_avslutning": "uavklart"
@@ -636,8 +636,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Samme papp, en annen kant",
-      "tekst": "Prosjektbyggeren sender oppdateringen du ba om etter testen. Et bilde viser den samme pappmodellen, nå med en brettet kant ved hjørnet der kortet satte seg fast. «Har brukt det jeg hadde. Hvis du orker ti minutter på telefon nå, kan vi prøve ett tynt og ett tykt kort. Ikke mer i kveld.» Det er Prosjektbyggerens forsøk, separat fra prosjektet du selv arbeider med.",
+      "tittel": "To kort og en brettet kant",
+      "tekst": "Lea ringer med den lille pappmodellen foran seg. Hun har brettet hjørnet der kortet pleide å sette seg fast. «Jeg har ti minutter før jeg må rydde», sier hun. Hun vil prøve ett tynt og ett tykt kort mens du ser på video. Det er hennes modell, ikke prototypen du arbeider med selv. Du hadde bedt om en oppdatering, men det betyr ikke at du skylder henne en arbeidskveld.",
       "conditions": {
         "flagg": {
           "wa_c03_avslutning": "folg_med"
@@ -646,8 +646,8 @@
       "valg": [
         {
           "id": "test_kort",
-          "tekst": "Ta den avgrensede prøven nå.",
-          "konsekvensTekst": "På video ser du det tynne kortet passere tre ganger. Det tykkere stopper to ganger ved bretten. Prosjektbyggeren skriver resultatene på pappen og avslutter etter ti minutter.",
+          "tekst": "Bruk ti minutter på å se henne prøve begge kortene",
+          "konsekvensTekst": "Det tynne kortet glir gjennom tre ganger. Det tykke stopper to ganger ved bretten. Lea skriver resultatet på pappen. Dere stopper etter ti minutter; én liten prøve er ikke en ferdig modell.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "testet",
@@ -658,8 +658,8 @@
         },
         {
           "id": "ingen_test",
-          "tekst": "Si at du ikke har kapasitet til en ny test nå.",
-          "konsekvensTekst": "Du svarer at du gjerne ser oppdateringen, men ikke kan delta i kveld. Prosjektbyggeren legger ikke en prøve inn i kalenderen din.",
+          "tekst": "Si at du gjerne ser oppdateringen, men ikke kan teste nå",
+          "konsekvensTekst": "Du er ærlig om overskuddet ditt. Lea legger ikke en ny prøve inn i kalenderen din, og det blir ikke gjennomført noen test sammen med deg.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "ingen_test"
@@ -678,8 +678,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En beklagelse er ikke en timeavtale",
-      "tekst": "Du ser meldingen der du beklaget at du avlyste telefonprøven. Prosjektbyggeren har ikke bedt deg prøve igjen. Du kan ta et lite initiativ selv, men du vet ikke om modellen er endret siden forsøket dere aldri gjennomførte.",
+      "tittel": "Leas arbeidsbord etter avlysningen",
+      "tekst": "Du ser for deg pappmodellen som Lea hadde gjort klar da du avlyste telefonprøven. Du har allerede sagt unnskyld. Likevel tar du deg i å åpne samtalen med henne igjen, som om en ny melding kunne gi tilbake tiden hun brukte på å rigge til. Hun har ikke bedt deg prøve noe på nytt. Du har mer overskudd i dag, men du vet ikke hva hun trenger.",
       "conditions": {
         "flagg": {
           "wa_c03_avslutning": "beklaget"
@@ -688,8 +688,8 @@
       "valg": [
         {
           "id": "spor_om_oppdatering",
-          "tekst": "Spør om Prosjektbyggeren vil vise status en annen dag.",
-          "konsekvensTekst": "Du sender spørsmålet med forbehold om kapasitet hos dere begge. Ingen ny prøve har funnet sted, og du har ikke fått svar ennå.",
+          "tekst": "Spør om Lea vil vise deg noe en annen dag",
+          "konsekvensTekst": "Du spør uten å legge en ny time i kalenderen hennes. Ingen prøve er avtalt eller gjennomført.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "spurt"
@@ -698,8 +698,8 @@
         },
         {
           "id": "la_beklagelsen_staa",
-          "tekst": "La beklagelsen stå uten å tilby mer arbeid.",
-          "konsekvensTekst": "Du lukker samtalen. Beklagelsen er fortsatt sendt, men det finnes ingen ny test eller ny avtale mellom dere.",
+          "tekst": "La unnskyldningen stå og slutt å love mer nå",
+          "konsekvensTekst": "Du lukker samtalen. Du kan mene unnskyldningen uten å reparere ubehaget med en avtale du kanskje må bryte igjen.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "avsluttet"
@@ -717,8 +717,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et spørsmål du selv kan stille",
-      "tekst": "Du valgte å spørre om modellen senere da du tok pause fra forsøket. Nå er det senere, men du har fortsatt ikke sett en prøve. Det lille løftet om interesse kan bli en kort hilsen; det trenger ikke bli en arbeidskveld.",
+      "tittel": "Du savner saksa på arbeidsbordet",
+      "tekst": "Du sa at du gjerne ville høre hvordan Leas pappmodell utviklet seg, men du har ikke sett den på en stund. Mens du rydder skuffen, finner du en saks som minner om alle gangene dere lette etter hennes. Du har lyst til å sende en melding. Samtidig husker du hvor fort et lite spørsmål kan bli til et ja til flere timers arbeid.",
       "conditions": {
         "flagg": {
           "wa_c03_avslutning": "hilsen"
@@ -727,8 +727,8 @@
       "valg": [
         {
           "id": "spor_status",
-          "tekst": "Spør hvordan det går, uten å tilby en test.",
-          "konsekvensTekst": "Du spør hvordan modellen utvikler seg og skriver at du ikke kan teste nå. Du har vist interesse uten å opprette en arbeidsavtale.",
+          "tekst": "Send Lea en hilsen uten å tilby ny prøving",
+          "konsekvensTekst": "Du spør hvordan hun har det med prosjektet og sier at du ikke kan teste nå. Det er interesse, ikke en ny avtale.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "spurt"
@@ -737,8 +737,8 @@
         },
         {
           "id": "utsett_hilsen",
-          "tekst": "Vent med å ta kontakt.",
-          "konsekvensTekst": "Du sender ingenting. Prosjektbyggeren har ikke fått en ny frist fra deg, og du har ikke mottatt noen ny status.",
+          "tekst": "Vent med å spørre til du har tid til å høre svaret",
+          "konsekvensTekst": "Du sender ingenting i dag. Du vet fremdeles ikke hvor langt hun har kommet, men lover heller ikke bort tid.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "venter"
@@ -756,8 +756,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et ferdig bidrag, ikke en ferdig modell",
-      "tekst": "Du gjennomførte den første testen og sa så at bidraget ditt var avsluttet. Du vet at modellen satte seg fast ved tredje forsøk den gangen. Du vet ikke hva som har skjedd siden. Du kan notere det du lærte til ditt eget arbeid, uten å hente inn Prosjektbyggeren igjen.",
+      "tittel": "Bildet av kortet som satt fast",
+      "tekst": "Du finner et gammelt bilde av det tykke kortet som satt fast i Leas pappspor. Du husker at dere begge tok tak og lo da det ikke ville løsne. Nå er din del av samarbeidet avsluttet. Du er glad for å ha hjulpet, men du kjenner også et lite stikk av å stå utenfor det hun bygger videre. Et minne kan få være fint uten å bli en ny arbeidsoppgave.",
       "conditions": {
         "flagg": {
           "wa_c03_avslutning": "bidrag_avsluttet"
@@ -766,8 +766,8 @@
       "valg": [
         {
           "id": "hilsen",
-          "tekst": "Send en kort hilsen uten å tilby arbeid.",
-          "konsekvensTekst": "Du sender en personlig hilsen og lar spørsmålet om modellen ligge. Det er ikke kommet svar eller en ny avtale ennå.",
+          "tekst": "Send bildet med en varm lykkeønskning",
+          "konsekvensTekst": "Du sender Lea bildet, men tilbyr ikke flere tester. Hun har ennå ikke svart, og du vet ikke hvordan prosjektet går.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "hilsen"
@@ -776,8 +776,8 @@
         },
         {
           "id": "egen_tid",
-          "tekst": "Behold tiden for deg selv.",
-          "konsekvensTekst": "Du lar samtalen ligge og gjør ingen ny avtale. Det tidligere utfallet blir stående; ingen test fylles inn i ettertid.",
+          "tekst": "Behold bildet og bruk kvelden på ditt eget arbeid",
+          "konsekvensTekst": "Du lar bildet ligge og finner fram det du selv hadde planlagt å gjøre. Du kan savne samarbeidet uten å gå tilbake.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "egen_tid"
@@ -795,8 +795,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Forsøket du ikke var med på",
-      "tekst": "Telefonprøven ble avlyst, og du lot den sene avlysningen stå uten videre forklaring. Du har ikke noe testresultat å bruke. Hvis du vil gjøre noe med kontakten nå, må det begynne med den avlysningen, ikke med råd om en modell du ikke prøvde.",
+      "tittel": "Rigget klart for ingenting",
+      "tekst": "Du ser tidspunktet for telefonprøven du avlyste. Lea hadde allerede rigget modellen da beskjeden kom. Hun svarte bare «greit», og du vet ikke om hun var sint eller bare travel. Du har ingen prøveresultater å gi henne. Det vanskeligste nå er å erkjenne at tiden hennes var ekte selv om forsøket ikke ble noe av.",
       "conditions": {
         "flagg": {
           "wa_c03_avslutning": "avlyst"
@@ -805,8 +805,8 @@
       "valg": [
         {
           "id": "hilsen",
-          "tekst": "Send en kort hilsen uten å tilby arbeid.",
-          "konsekvensTekst": "Du sender en personlig hilsen og lar spørsmålet om modellen ligge. Det er ikke kommet svar eller en ny avtale ennå.",
+          "tekst": "Send en tydelig unnskyldning for den sene avlysningen",
+          "konsekvensTekst": "Du skriver at du forstår at Lea gjorde klart forgjeves. Du ber ikke om tilgivelse på stedet eller lover en ny prøve.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "hilsen"
@@ -815,8 +815,8 @@
         },
         {
           "id": "egen_tid",
-          "tekst": "Behold tiden for deg selv.",
-          "konsekvensTekst": "Du lar samtalen ligge og gjør ingen ny avtale. Det tidligere utfallet blir stående; ingen test fylles inn i ettertid.",
+          "tekst": "Få orden på egne avtaler før du lover hjelp til andre igjen",
+          "konsekvensTekst": "Du rydder opp i en dobbeltbooking i kalenderen. Det gir ikke Lea tiden tilbake, men du har gjort noe med årsaken til at du rotet det til.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "egen_tid"
@@ -834,8 +834,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En pause som fortsatt gjelder",
-      "tekst": "Du beholdt pausen fra Prosjektbyggerens test. Det er ikke kommet noen avtale om et nytt bidrag. Når du ser navnet i meldingslisten, kan du velge en sosial hilsen eller la arbeidsroen vare. Ingen av valgene innebærer at du har sett modellen virke.",
+      "tittel": "Bildet av bordet du savner",
+      "tekst": "Lea sender et bilde av papprester, en kopp te og den saksa dere alltid lette etter. Du hadde bedt om pause fra prøvene og mente det. Likevel savner du den enkle praten som oppsto når dere arbeidet side om side. Du er redd et svar skal høres ut som at du er tilbake i prosjektet. Kanskje kan du savne en person uten å ta på deg oppgaven.",
       "conditions": {
         "flagg": {
           "wa_c03_avslutning": "pause"
@@ -844,8 +844,8 @@
       "valg": [
         {
           "id": "hilsen",
-          "tekst": "Send en kort hilsen uten å tilby arbeid.",
-          "konsekvensTekst": "Du sender en personlig hilsen og lar spørsmålet om modellen ligge. Det er ikke kommet svar eller en ny avtale ennå.",
+          "tekst": "Spør hvordan Lea har det, uten å snakke om modellen",
+          "konsekvensTekst": "Du sender en hilsen om uka hennes. Du har ikke tilbudt en prøve eller satt av en kveld.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "hilsen"
@@ -854,8 +854,8 @@
         },
         {
           "id": "egen_tid",
-          "tekst": "Behold tiden for deg selv.",
-          "konsekvensTekst": "Du lar samtalen ligge og gjør ingen ny avtale. Det tidligere utfallet blir stående; ingen test fylles inn i ettertid.",
+          "tekst": "Gå ut og la prosjekttråden ligge i dag",
+          "konsekvensTekst": "Du lar telefonen bli hjemme og tar en tur. Pausen er virkelig, selv om du fortsatt savner Lea.",
           "effekter": {
             "flagg": {
               "wa_b_c03_spor": "egen_tid"
@@ -873,8 +873,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Hva kan en liten modell være?",
-      "tekst": "Etter gårsdagens prøve sender Prosjektbyggeren to bilder: ett av bretten og ett av en eske med de tynne kortene. «Kunne bare skrive at den er for disse. Men da er den mindre nyttig enn jeg håpet.» Første prøve ga to vellykkede passeringer og én stopp; gårsdagens viste at tykkelsen også spiller inn. Ingen av delene er en ferdig kvalitetskontroll.",
+      "tittel": "Det tykke kortet sitter fast igjen",
+      "tekst": "Lea viser deg et bilde av pappsporet. På den korte telefonprøven gled det tynne kortet gjennom tre ganger, mens det tykke stoppet to ganger. «Jeg ville jo at alle skulle virke», sier hun. Du vet hvor mye hun har gledet seg til å få en vellykket modell. Nå er det nettopp feilen som gjør at dere forstår litt mer.",
       "conditions": {
         "flagg": {
           "wa_b_c03_spor": "testet"
@@ -883,8 +883,8 @@
       "valg": [
         {
           "id": "avgrens_bruk",
-          "tekst": "Foreslå å merke prototypen for tynne kort før flere funksjoner.",
-          "konsekvensTekst": "Prosjektbyggeren velger å merke den «prøve for tynne kort» og legge de tykke til side. Det er en mindre ambisjon, men en beskrivelse som passer det dere faktisk så.",
+          "tekst": "Foreslå å merke modellen tydelig som en prøve for tynne kort",
+          "konsekvensTekst": "Lea skriver en avgrensning på modellen og legger de tykke kortene til side. Hun reduserer ambisjonen uten å late som testen viste noe mer.",
           "effekter": {
             "flagg": {
               "wa_b_c03_utfall": "smal_prototype"
@@ -893,8 +893,8 @@
         },
         {
           "id": "behold_sporsmal",
-          "tekst": "Foreslå å la spørsmålet om tykkelse stå åpent.",
-          "konsekvensTekst": "Prosjektbyggeren velger å skrive begge resultatene på modellen og vente med ny materialbruk. Det finnes et konkret undersøkelsesspørsmål, men ingen ny test eller bestilling.",
+          "tekst": "Foreslå å beholde begge resultatene og undersøke tykkelsen senere",
+          "konsekvensTekst": "Lea noterer begge funnene. Hun bestiller ingen materialer og utfører ingen ny prøve nå; spørsmålet får stå åpent.",
           "effekter": {
             "flagg": {
               "wa_b_c03_utfall": "aapent_forsok"
@@ -913,8 +913,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Det som ikke bestod testen",
-      "tekst": "Du har avgrenset prototypen etter prøven: den enkle varianten virket på én oppgave, mens den større stoppet. Prosjektbyggeren spør om hun kan vise skjermbildet til en venn som vurderer å prøve systemet. Skjermbildet alene viser ikke begrensningen, og dere har ikke hentet samtykke til videre deling.",
+      "tittel": "Bildet som skjuler det som gikk galt",
+      "tekst": "Lea viser et fint skjermbilde av prototypen. Alt ser ut som om det virker. Du husker det tykke kortet som satte seg fast og hvor smal prøven egentlig var. «Kan jeg vise dette til en venn?» spør hun. Du vil at hun skal få være stolt av arbeidet, men vennen kan oppfatte bildet som en anbefaling. Samtykke til videre deling er heller ikke avklart.",
       "conditions": {
         "flagg": {
           "wa_b_c03_utfall": "smal_prototype"
@@ -923,8 +923,8 @@
       "valg": [
         {
           "id": "legg_ved_begrensning",
-          "tekst": "Si ja til å dele bare etter at begrensning og målgruppe står tydelig",
-          "konsekvensTekst": "Prosjektbyggeren svarer at hun vil skrive begrensningen ved siden av skjermbildet og spørre vennen først. Ingen offentlig lansering er gjennomført.",
+          "tekst": "Be Lea få tillatelse og beskrive begrensningene før hun deler noe",
+          "konsekvensTekst": "Lea sier hun vil forklare hva som er uprøvd og spørre først. Ingen fremvisning eller ny brukertest har funnet sted.",
           "effekter": {
             "flagg": {
               "wa_c_c03_deling": "begrenset_foreslaatt"
@@ -933,8 +933,8 @@
         },
         {
           "id": "vent_med_deling",
-          "tekst": "Be Lea holde prøven mellom dere til dere har en ny test",
-          "konsekvensTekst": "Prosjektbyggeren sier hun ikke sender skjermbildet. Dere har ikke mistet arbeidet, men dere har heller ikke dokumentert en bredere prøve.",
+          "tekst": "Be Lea vente med å vise bildet til dere vet mer",
+          "konsekvensTekst": "Lea lar bildet ligge. Det er skuffende å holde tilbake noe dere har arbeidet med, men dere lover ikke mer enn dere kan vise.",
           "effekter": {
             "flagg": {
               "wa_c_c03_deling": "utsatt"
@@ -953,8 +953,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Et forsøk er ikke en anbefaling",
-      "tekst": "Du valgte å holde prototypeforsøket åpent. Prosjektbyggeren skriver at hun ikke vet om den lille funksjonen hjelper noen utenfor arbeidsbordet deres. Hun ber deg velge én ting dere kan måle neste gang, før dere omtaler prosjektet som nyttig.",
+      "tittel": "En mislykket prøve er også et resultat",
+      "tekst": "Lea har notatboka åpen. Dere vet hvilke kort som gled gjennom og hvilke som satte seg fast. «Men hjelper dette egentlig noen?» spør hun. Du kjenner lysten til å si ja bare for å oppmuntre henne. Hun har brukt så mye tid. Likevel kan en god innsats ikke fortelle dere hva andre mennesker trenger.",
       "conditions": {
         "flagg": {
           "wa_b_c03_utfall": "aapent_forsok"
@@ -963,8 +963,8 @@
       "valg": [
         {
           "id": "velg_ett_maal",
-          "tekst": "Velg én konkret oppgave som kan prøves med frivillig deltaker",
-          "konsekvensTekst": "Dere blir enige om å skissere en enkel prøve med samtykke. Ingen deltaker er rekruttert, og nytte er ikke dokumentert.",
+          "tekst": "Planlegg én avgrenset prøve som en frivillig deltaker kan takke nei til",
+          "konsekvensTekst": "Dere skriver et forslag til enkel prøve med samtykke. Ingen person har sagt ja, og nytten er fortsatt ikke dokumentert.",
           "effekter": {
             "flagg": {
               "wa_c_c03_deling": "test_planlagt"
@@ -973,8 +973,8 @@
         },
         {
           "id": "stopp_paastanden",
-          "tekst": "Si at dere ikke skal kalle løsningen nyttig før den er prøvd",
-          "konsekvensTekst": "Prosjektbyggeren stryker formuleringen fra notatet. Prosjektet finnes fortsatt, men påstanden om dokumentert nytte er fjernet.",
+          "tekst": "Be Lea stryke påstanden om at løsningen allerede er nyttig",
+          "konsekvensTekst": "Hun tar ordet ut av notatet. Det svir å gjøre prosjektet mindre imponerende, men det er ikke lenger en påstand uten grunnlag.",
           "effekter": {
             "flagg": {
               "wa_c_c03_deling": "paastand_trukket"
@@ -993,26 +993,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Skjermbildet trenger en ramme",
-      "tekst": "Lea vil lage en bildetekst som viser at bare en enkel funksjon virket i én prøve. Hun har ennå ikke fått samtykke fra noen ny testperson.",
+      "tittel": "Bildet som var penere enn sannheten",
+      "tekst": "Lea viser deg et bilde av prototypen på telefonen. «Dette ser jo nesten ferdig ut», sier hun. Du ser også hvor lett noen kan tro at den lille prøven dere gjorde, betyr at løsningen virker for alle. I tillegg minner detaljene i eksemplet om en virkelig person. Ingen ny deltaker har gitt samtykke til at historien deres brukes.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Foreslå å vise bare et anonymt eksempel først",
-          "konsekvensTekst": "Dere lager et utkast uten personopplysninger. Det er ikke publisert eller delt med en tredjepart.",
+          "tekst": "Lag en intern demonstrasjon med et nøytralt eksempel",
+          "konsekvensTekst": "Dere setter inn en tenkt situasjon i stedet for virkelig informasjon. Skissen blir mindre personlig, men den deles ikke videre som et dokumentert resultat.",
           "effekter": {
             "flagg": {
               "wa_d_c03_status": "anonymt_utkast"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Be om samtykke før en eventuell fremvisning",
-          "konsekvensTekst": "Lea noterer at fremvisning må avklares med den som deltok. Ingen tillatelse er gitt ennå.",
+          "tekst": "Skriv ned at virkelig informasjon krever samtykke før visning",
+          "konsekvensTekst": "Du gjør kravet tydelig for Lea. Ingen ny tillatelse er mottatt, og ingenting blir vist til andre på grunnlag av notatet.",
           "effekter": {
             "flagg": {
               "wa_d_c03_status": "samtykke_etterspurt"
+            },
+            "meters": {
+              "integritet": 2
             }
           }
         }
@@ -1033,26 +1039,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "En test som ikke må bli markedsføring",
-      "tekst": "Lea godtar å vente. En bekjent spør hva dere arbeider med, men skjermbildet ligger fortsatt hos dere. Det kan være fristende å kalle løsningen klar.",
+      "tittel": "Bekjenten spør om å få se",
+      "tekst": "En bekjent lener seg over bordet og spør hva du og Lea har bygget. Telefonen med skjermbildet ligger like ved hånda di. Lea har gått med på å vente med å dele prototypen. Det er fristende å vise noe konkret etter så mye arbeid, men den lille prøven sier ennå lite om nytten, og eksempelopplysningene er ikke klare for visning.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Fortell bare hvilket problem dere undersøker",
-          "konsekvensTekst": "Du beskriver formålet uten å hevde at løsningen virker. Bekjenten har ikke fått programmet.",
+          "tekst": "Forklar problemet dere prøver å løse, uten å vise skjermbildet",
+          "konsekvensTekst": "Bekjenten får høre hva dere arbeider med. Ingen prototype eller personsensitivt eksempel er delt.",
           "effekter": {
             "flagg": {
               "wa_d_c03_status": "formaal_beskrevet"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Behold prototypen helt intern til neste test",
-          "konsekvensTekst": "Du og Lea utsetter fremvisningen. Ingen bruker utenfor prosjektet er registrert.",
+          "tekst": "Legg telefonen bort og vent til neste forsvarlige test",
+          "konsekvensTekst": "Du beholder materialet internt. Det er kjedeligere å fortelle, men du lover ikke resultater dere ikke har.",
           "effekter": {
             "flagg": {
               "wa_d_c03_status": "intern_videre"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         }
@@ -1073,26 +1085,33 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Målingen må kunne mislykkes",
-      "tekst": "Lea har skrevet opp én frivillig testoppgave. Hun spør hvordan dere skal føre et negativt resultat. Ingen har ennå prøvd den nye versjonen.",
+      "tittel": "Det tomme feltet for feil",
+      "tekst": "Lea skyver testarket mot deg. Den frivillige oppgaven er beskrevet, men under «hva gikk galt?» er det bare et tomt felt. Hun ler kort: «Vi har visst skrevet mest om hva vi håper skjer.» Ingen har prøvd den nye versjonen ennå. Hvis testen skal være nyttig, må dere også kunne oppdage at ideen ikke virker.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Skriv inn kriterier for både suksess og feil",
-          "konsekvensTekst": "Dere lager et måleskjema som også rommer avbrudd. Skjemaet er klart, men forsøket er ikke gjennomført.",
+          "tekst": "Skriv hva som skal telle som en feil eller et avbrudd",
+          "konsekvensTekst": "Du gjør det mulig å registrere skuffende resultater senere. Ingen test er utført.",
           "effekter": {
             "flagg": {
               "wa_d_c03_status": "aapne_kriterier"
+            },
+            "meters": {
+              "energi": -1,
+              "integritet": 2
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "La en uavhengig deltaker foreslå hva nytte betyr",
-          "konsekvensTekst": "Lea vil spørre en frivillig før test. Ingen deltaker har samtykket eller svart ennå.",
+          "tekst": "Be om innspill til hva en deltaker selv vil oppleve som nyttig",
+          "konsekvensTekst": "Du foreslår å lytte før dere bestemmer målet. Ingen deltaker har svart eller samtykket ennå.",
           "effekter": {
             "flagg": {
               "wa_d_c03_status": "deltaker_foreslaatt"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }
@@ -1113,26 +1132,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Å trekke en påstand tilbake",
-      "tekst": "Lea fjerner ordet «nyttig» fra beskrivelsen. Hun spør om dere likevel kan dele idéen som et ubekreftet forsøk. Endringen i teksten er gjort; virkningen er uprøvd.",
+      "tittel": "Et ord for mye i Leas presentasjon",
+      "tekst": "Lea har strøket «nyttig» fra skjermen. Hun stirrer på den tomme plassen etter ordet. «Men vi må vel få vise at vi prøver?» spør hun. Du er enig i at arbeidet deres betyr noe. Du vil bare ikke at noen skal tro dere har undersøkt mer enn dere faktisk har gjort. En pen prototype kan bære en påstand uten at noen sier den høyt.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Bruk en tydelig merkelapp med «ikke testet»",
-          "konsekvensTekst": "Dere skriver en intern presentasjon som skiller idé og måling. Den er ikke sendt ut.",
+          "tekst": "Merk den interne presentasjonen tydelig som uprøvd",
+          "konsekvensTekst": "Du setter «ikke testet» på forsiden. Den forklarer statusen ærlig, uten å gjøre en intern framvisning til ekstern dokumentasjon.",
           "effekter": {
             "flagg": {
               "wa_d_c03_status": "ikke_testet_merket"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Vent med en presentasjon til dere har dokumentasjon",
-          "konsekvensTekst": "Lea legger presentasjonen til side. Ingen ekstern anbefaling blir gitt.",
+          "tekst": "Legg presentasjonen bort til dere har bedre grunnlag",
+          "konsekvensTekst": "Lea lukker filen. Det svir litt etter alle arbeidstimene, men dere har ikke lovet publikum en anbefaling dere ikke kan forsvare.",
           "effekter": {
             "flagg": {
               "wa_d_c03_status": "presentasjon_utsatt"
+            },
+            "meters": {
+              "psyke": 2
             }
           }
         }

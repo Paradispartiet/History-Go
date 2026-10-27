@@ -53,11 +53,11 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Etter det korte settet",
-      "tekst": "Du spilte det korte settet på dag 6. Nå sender medmusikeren en melding: «Jeg vil prøve en roligere åpning på en ny idé. Har du lyst til å spille sammen en time på dag 10 klokka 14?»",
+      "tekst": "Du spilte det korte settet på dag 6. Nå sender medmusikeren en melding: «Jeg vil prøve en roligere åpning på en ny idé. Har du lyst til å spille sammen en time om to dager klokka 14?»",
       "valg": [
         {
           "id": "prove",
-          "tekst": "Avtal en ny prøve med medmusikeren på dag 10 klokka 14",
+          "tekst": "Avtal en ny prøve med medmusikeren om to dager klokka 14",
           "konsekvensTekst": "Du svarer ja til en times prøve på dag 10 klokka 14. Medmusikeren bekrefter tidspunktet. Det er ingen booking eller avtale om betaling.",
           "effekter": {
             "flagg": {
@@ -116,11 +116,11 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "En ny forespørsel fra medmusikeren",
-      "tekst": "Det ble ikke noe kort sett for deg i den første uka. Nå sender medmusikeren en ny melding: «Jeg vil prøve en roligere åpning på en idé. Har du lyst til å spille sammen en time på dag 10 klokka 14?» Du kan ta stilling til denne forespørselen uavhengig av det som ikke ble gjennomført.",
+      "tekst": "Det ble ikke noe kort sett for deg i den første uka. Nå sender medmusikeren en ny melding: «Jeg vil prøve en roligere åpning på en idé. Har du lyst til å spille sammen en time om to dager klokka 14?» Du kan ta stilling til denne forespørselen uavhengig av det som ikke ble gjennomført.",
       "valg": [
         {
           "id": "prove",
-          "tekst": "Avtal en ny prøve med medmusikeren på dag 10 klokka 14",
+          "tekst": "Avtal en ny prøve med medmusikeren om to dager klokka 14",
           "konsekvensTekst": "Du svarer ja til en times prøve på dag 10 klokka 14. Medmusikeren bekrefter tidspunktet. Det er ingen booking eller avtale om betaling.",
           "effekter": {
             "flagg": {
@@ -213,7 +213,7 @@
         {
           "id": "avlys",
           "tekst": "Send en melding og avlys prøven",
-          "konsekvensTekst": "Du avlyser før prøvedagen. Medmusikeren svarer at medmusikeren har sett meldingen. Dere lager ingen ny avtale nå.",
+          "konsekvensTekst": "Du avlyser før prøvedagen. Medmusikeren svarer at hun har sett meldingen. Dere lager ingen ny avtale nå.",
           "effekter": {
             "flagg": {
               "mira_ny_prove_avbrutt": true
@@ -527,7 +527,7 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Hva vil du ta med videre?",
-      "tekst": "Det er kveld på dag 10. Du legger bort det du har holdt på med og ser på kalenderen. Vil du notere at du kan ta kontakt med medmusikeren senere, eller fortsette med musikken uten en ny avtale?",
+      "tekst": "Det er kveld i kveld. Du legger bort det du har holdt på med og ser på kalenderen. Vil du notere at du kan ta kontakt med medmusikeren senere, eller fortsette med musikken uten en ny avtale?",
       "valg": [
         {
           "id": "kontakt_senere",
@@ -577,13 +577,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Før noe står i programmet",
-      "tekst": "Medmusikeren videresender et spørsmål fra en lokal arrangør: «Vi vurderer et kort innslag en kveld neste uke. Er dere interesserte hvis det blir plass?» Verken dato eller honorar står i meldingen. Dere har allerede avtalt en prøve på dag 10 klokka 14. Medmusikeren spør hva du selv har kapasitet til.",
+      "tittel": "En scene som ennå ikke finnes",
+      "tekst": "Du og medmusikeren har allerede avtalt å øve om to dager. Nå viser hun deg en melding fra en arrangør: «Vi vurderer et kort innslag neste uke. Er dere interessert?» medmusikeren smiler først, så legger hun telefonen på bordet. «Det står ingenting om dato eller penger. Jeg orker ikke bruke øvinga vår på å vente.» Du kjenner selv hvor lett et kanskje kan fylle en hel kalender.",
       "valg": [
         {
           "id": "avklar_vilkar",
-          "tekst": "Tilby å lese gjennom et spørsmål om dato, svarfrist og honorar",
-          "konsekvensTekst": "Du foreslår tre spørsmål. Medmusikeren svarer at medmusikeren vil sende dem, og viser deg deretter den sendte meldingen. Du har ikke svart ja til en opptreden.",
+          "tekst": "Foreslå at medmusikeren spør om dato, svarfrist og honorar",
+          "konsekvensTekst": "Du hjelper henne med tre konkrete spørsmål. Medmusikeren sender dem og viser deg meldingen etterpå. Dere skal fortsatt øve, men har ingen konsertavtale.",
           "effekter": {
             "flagg": {
               "wa_c02_valg": "sporsmal",
@@ -593,8 +593,8 @@
         },
         {
           "id": "behold_egen_tid",
-          "tekst": "Si at du beholder egne planer til det finnes et konkret tilbud",
-          "konsekvensTekst": "Du sier at du ikke setter av mer tid nå. Medmusikeren svarer at medmusikeren håndterer kontakten med arrangøren. Ingen avtale med deg er endret.",
+          "tekst": "Hold fast ved øvingen, men ikke reserver flere kvelder",
+          "konsekvensTekst": "Medmusikeren skriver at hun tar kontakten med arrangøren selv. Du binder deg ikke til den mulige jobben; prøven dere allerede avtalte, står.",
           "effekter": {
             "flagg": {
               "wa_c02_valg": "egen_tid"
@@ -618,13 +618,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Før noe står i programmet",
-      "tekst": "Medmusikeren videresender et spørsmål fra en lokal arrangør: «Vi vurderer et kort innslag en kveld neste uke. Er dere interesserte hvis det blir plass?» Verken dato eller honorar står i meldingen. Du har valgt å arbeide hjemme. Dere har ikke avtalt en ny prøve. Medmusikeren spør hva du selv har kapasitet til.",
+      "tittel": "Den mulige konserten på skjermen",
+      "tekst": "Du har valgt å arbeide med musikken hjemme. Da kommer meldingen fra medmusikeren med et spørsmål fra en arrangør som kanskje vil ha et kort innslag. Du stopper opptaket du holdt på med. Det ville vært fint å stå på en scene igjen. Men verken dato eller betaling er nevnt, og du har endelig fått en kveld du kan bruke slik du vil.",
       "valg": [
         {
           "id": "avklar_vilkar",
-          "tekst": "Tilby å lese gjennom et spørsmål om dato, svarfrist og honorar",
-          "konsekvensTekst": "Du foreslår tre spørsmål. Medmusikeren svarer at medmusikeren vil sende dem, og viser deg deretter den sendte meldingen. Du har ikke svart ja til en opptreden.",
+          "tekst": "Hjelp medmusikeren å spørre om det dere faktisk må vite",
+          "konsekvensTekst": "Du skriver spørsmål om dato, frist og betaling. Medmusikeren sender dem. Spørsmålene er virkelige; spillejobben er fortsatt bare en mulighet.",
           "effekter": {
             "flagg": {
               "wa_c02_valg": "sporsmal",
@@ -634,8 +634,8 @@
         },
         {
           "id": "behold_egen_tid",
-          "tekst": "Si at du beholder egne planer til det finnes et konkret tilbud",
-          "konsekvensTekst": "Du sier at du ikke setter av mer tid nå. Medmusikeren svarer at medmusikeren håndterer kontakten med arrangøren. Ingen avtale med deg er endret.",
+          "tekst": "Fortsett på egen hånd til det finnes et konkret tilbud",
+          "konsekvensTekst": "Medmusikeren sier at hun kan undersøke saken uten å holde av tiden din. Du går tilbake til opptaket. Dere har ikke avtalt noen ny øving.",
           "effekter": {
             "flagg": {
               "wa_c02_valg": "egen_tid"
@@ -659,13 +659,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Arrangøren vet heller ikke ennå",
-      "tekst": "Medmusikeren viser svaret på spørsmålene dere formulerte: «Programmet er ikke klart. Vi kan ikke bekrefte dato eller honorar nå.» Medmusikeren vil fortsette kontakten. Du må avgjøre om du vil bruke mer av din tid på muligheten.",
+      "tittel": "«Vi vet heller ikke ennå»",
+      "tekst": "Medmusikeren lar telefonen falle ned på pianokrakken. Arrangøren har svart: De vet ennå verken dato eller honorar. «Jeg hadde gledet meg litt allerede», sier hun og ser bort på gitaren din. Du hadde også gjort det. Nå merker du hvor mye plass forventningen har fått uten at noen har tilbudt dere en jobb.",
       "valg": [
         {
           "id": "sett_grense",
-          "tekst": "Be om et konkret tilbud før dere snakker om din deltakelse",
-          "konsekvensTekst": "Du ber medmusikeren ta kontakt hvis det kommer et konkret tilbud. Medmusikeren bekrefter at du ikke står som deltaker.",
+          "tekst": "Be medmusikeren si fra først når tilbudet har dato og vilkår",
+          "konsekvensTekst": "Du forteller hva du trenger for å kunne svare ja eller nei. Medmusikeren lover ikke bort navnet ditt. Konserten er fremdeles ubekreftet.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "avventer_tilbud"
@@ -674,8 +674,8 @@
         },
         {
           "id": "trekk_interessen",
-          "tekst": "Si at du ikke vil være aktuell denne gangen",
-          "konsekvensTekst": "Du trekker din interesse. Medmusikeren sier medmusikeren vil vurdere opplegget på egen hånd. Du bestemmer ikke om medmusikeren skal spille.",
+          "tekst": "Si at du ikke vil være med på denne mulige jobben",
+          "konsekvensTekst": "Du trekker din egen interesse. Medmusikeren må få velge for seg selv om hun vil følge muligheten videre.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "trukket"
@@ -699,13 +699,13 @@
       "visningstype": "melding",
       "stedId": "hjem",
       "prioritet": 6,
-      "tittel": "Din tid er fortsatt din",
-      "tekst": "Medmusikeren sender en kort oppdatering: Arrangøren har fortsatt ikke satt dato. Du tilbød ingen hjelp med spørsmålene og har ikke satt av ny tid. Medmusikeren spør om medmusikeren kan sende et konkret tilbud senere, hvis det kommer et.",
+      "tittel": "En lørdag du allerede hadde gitt bort i hodet",
+      "tekst": "Du har begynt å tenke på hva du skal ha på deg dersom spillejobben blir noe av. Så kommer meldingen fra medmusikeren: Arrangøren har fremdeles ingen dato. «Vil du at jeg skal si fra hvis de noen gang kommer med et ordentlig tilbud?» spør hun. Det går opp for deg at du har latt være å svare på en annen invitasjon, enda ingen har bedt deg holde av kvelden.",
       "valg": [
         {
           "id": "konkret_tilbud",
-          "tekst": "Si at du kan lese et konkret tilbud senere",
-          "konsekvensTekst": "Du sier ja til å motta informasjon. Det er ikke en aksept av en spillejobb eller et nytt tidspunkt.",
+          "tekst": "Be medmusikeren sende dato og honorar hvis et konkret tilbud kommer",
+          "konsekvensTekst": "Du holder muligheten åpen, men legger ingen konsert i kalenderen. Du har ikke lovet å spille.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "informasjon"
@@ -714,8 +714,8 @@
         },
         {
           "id": "ingen_ny_kontakt",
-          "tekst": "Be medmusikeren la denne forespørselen ligge for din del",
-          "konsekvensTekst": "Medmusikeren svarer at medmusikeren ikke følger opp denne muligheten med deg. Musikken ellers kan dere avtale separat.",
+          "tekst": "Si at du ikke vil ha flere oppdateringer om akkurat denne jobben",
+          "konsekvensTekst": "Medmusikeren svarer at hun lar deg slippe denne forespørselen. Det betyr ikke at dere slutter å lage musikk sammen.",
           "effekter": {
             "flagg": {
               "wa_c02_oppfolging": "trukket"
@@ -740,8 +740,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En plass i kalenderen er også noe",
-      "tekst": "Medmusikeren viser en ny beskjed fra arrangøren: De vurderer flere, og vil vite innen klokken tolv om det fortsatt er aktuelt å diskutere en kveld neste måned. Dato og betaling er ennå ikke oppgitt. «Jeg har en annen ting jeg kan gjøre den kvelden», sier Medmusikeren. «Jeg vil ikke sitte klar hele måneden.» Dette er fortsatt forespørselen til Medmusikeren, ikke en jobb dere har fått sammen.",
+      "tittel": "«Jeg kan ikke vente en hel måned»",
+      "tekst": "Medmusikeren viser deg en ny melding: Arrangøren vil vite før klokka tolv om det fortsatt er interessant å diskutere en kveld neste måned. Hvilken kveld og hva den betaler, står fortsatt ikke. Medmusikeren har også en annen mulighet i kalenderen. «Jeg kan ikke sitte klar hele måneden», sier hun. Du kan gi råd, men dette er hennes forespørsel, ikke en jobb dere to har fått.",
       "conditions": {
         "flagg": {
           "wa_c02_oppfolging": "avventer_tilbud"
@@ -750,8 +750,8 @@
       "valg": [
         {
           "id": "foresla_frist",
-          "tekst": "Foreslå en frist for et konkret tilbud.",
-          "konsekvensTekst": "Du foreslår at et konkret tilbud må komme innen i kveld. Medmusikeren sender selv svaret: Interesse er mulig, men ingen kveld holdes av ennå.",
+          "tekst": "Foreslå at hun krever et konkret tilbud innen en tydelig frist",
+          "konsekvensTekst": "Du foreslår at dato og vilkår må komme innen i kveld. Medmusikeren sender selv beskjeden. Ingen kveld er reservert.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "frist"
@@ -760,8 +760,8 @@
         },
         {
           "id": "foresla_slipp",
-          "tekst": "Si at du ville sluppet denne muligheten nå.",
-          "konsekvensTekst": "Du begrunner rådet med den ubestemte datoen. Medmusikeren velger å trekke interessen i denne runden, uten å avvise senere konkrete forespørsler.",
+          "tekst": "Fortell hvorfor du ville sluppet denne muligheten nå",
+          "konsekvensTekst": "Du peker på den ubestemte datoen. Medmusikeren velger å trekke interessen denne gangen. Hun kan fortsatt svare på andre, faktiske tilbud.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "sluppet"
@@ -780,8 +780,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Informasjon uten at du stiller opp",
-      "tekst": "Medmusikeren sender det du ba om: Arrangøren har fortsatt ikke oppgitt dato eller betaling. «Jeg svarer selv. Du trenger ikke forberede noe for min skyld.» Du har ikke tilbudt å spille, men du kan påvirke om denne kontakten skal fortsette å ta oppmerksomhet fra ditt eget arbeid.",
+      "tittel": "Et avbrutt opptak for en jobb som ikke finnes",
+      "tekst": "Du er midt i et opptak hjemme da medmusikeren sender en oppdatering. Arrangøren har fortsatt ingen dato eller honorar. «Jeg ordner dialogen selv», skriver hun. Du stirrer på opptaket du mistet flyten i. Det er rart hvor mye tid en mulighet kan ta uten at noen har bedt deg holde av ett eneste minutt.",
       "conditions": {
         "flagg": {
           "wa_c02_oppfolging": "informasjon"
@@ -790,8 +790,8 @@
       "valg": [
         {
           "id": "ett_svar",
-          "tekst": "Be om én beskjed hvis det kommer et fullstendig tilbud.",
-          "konsekvensTekst": "Du ber om dato, honorar og oppgave i samme beskjed før du vil vurdere noe. Ingen har dermed fått disponere tiden din.",
+          "tekst": "Be om én ny melding først dersom tilbudet får dato og betaling",
+          "konsekvensTekst": "Du svarer at du vil se komplette vilkår før du vurderer noe. Så legger du telefonen bort og fortsetter med musikken.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "ett_tilbud"
@@ -800,8 +800,8 @@
         },
         {
           "id": "stopp_oppdatering",
-          "tekst": "Be om å slippe flere oppdateringer om denne forespørselen.",
-          "konsekvensTekst": "Du takker for informasjonen og stopper oppdateringene om akkurat denne saken. Det sier ingenting om den andre kontakten deres rundt musikk.",
+          "tekst": "Si at du vil slippe flere oppdateringer om akkurat denne forespørselen",
+          "konsekvensTekst": "Du takker medmusikeren og stanser denne strømmen av kanskje. Dere har ikke dermed sluttet å lage musikk sammen.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "ingen_oppdatering"
@@ -821,7 +821,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Arbeidet som ikke venter på en arrangør",
-      "tekst": "Du har trukket deg fra videre involvering i den ubekreftede forespørselen. På telefonen ligger din egen korte musikkskisse. Du kan bruke en halvtime på den nå, eller la også dette få hvile. Ingen av delene er et svar til arrangøren, og dagens eventuelle øvingsavtale står i sin egen samtale.",
+      "tekst": "Du har trukket deg fra den uavklarte spillejobben. På mobilen ligger en liten melodi du spilte inn for deg selv i går. En av tonene låter feil hver gang du hører den. Du har en halvtime før du skal ut; kanskje vil du prøve én ny avslutning, kanskje trenger du å la instrumentet stå.",
       "conditions": {
         "flagg": {
           "wa_c02_oppfolging": "trukket"
@@ -830,8 +830,8 @@
       "valg": [
         {
           "id": "lag_variant",
-          "tekst": "Bruk en halvtime på en annen avslutning i skissen.",
-          "konsekvensTekst": "Du lager en kort variant og lagrer begge avslutningene. Du har et konkret arbeidsresultat, uten publisering, betaling eller respons fra andre.",
+          "tekst": "Prøv én ny avslutning og lagre begge versjonene",
+          "konsekvensTekst": "Du spiller inn en kort variant og beholder den gamle ved siden av. Du har laget noe, uten at noen arrangør eller lytter har bedt om det.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "egen_variant"
@@ -840,8 +840,8 @@
         },
         {
           "id": "fri_formiddag",
-          "tekst": "Ta fri fra musikken denne formiddagen.",
-          "konsekvensTekst": "Du lukker skissen. Du har ikke mistet et bekreftet oppdrag, og du har heller ikke laget en ny versjon i dag.",
+          "tekst": "Ta en formiddag uten musikk og uten dårlig samvittighet",
+          "konsekvensTekst": "Du legger mobilen bort. Den ubekreftede jobben er avsluttet for deg, men du trenger ikke slutte å like musikk.",
           "effekter": {
             "flagg": {
               "wa_b_c02_spor": "fri"
@@ -859,8 +859,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Det kom ikke et tilbud",
-      "tekst": "Fristen Medmusikeren satte i formiddag er ute. En ny beskjed fra arrangøren sier bare at de trenger flere dager. Medmusikeren viser deg svaret og frigjør kvelden som var under vurdering. «Litt surt. Men jeg får gjort den andre tingen.» Muligheten forsvant uten at noen konsert ble avlyst.",
+      "tittel": "Da fristen gikk, kom bare mer venting",
+      "tekst": "Arrangøren ber om flere dager, selv om fristen medmusikeren satte, er passert. Medmusikeren frigjør kvelden i kalenderen. «Jeg hadde faktisk gledet meg», skriver hun. Det er lett å svare at det aldri var en spillejobb, men hun vet jo det. Hun trenger ikke en ny forklaring på forskjellen mellom et håp og en avtale.",
       "conditions": {
         "flagg": {
           "wa_b_c02_spor": "frist"
@@ -869,8 +869,8 @@
       "valg": [
         {
           "id": "snakk_skuffelse",
-          "tekst": "Gi plass til skuffelsen uten å foreslå mer oppfølging.",
-          "konsekvensTekst": "Du sier at det går an å være skuffet selv om det aldri var en avtale. Medmusikeren svarer at det hjelper at du skjønner forskjellen.",
+          "tekst": "Gi plass til at medmusikeren er skuffet, uten å foreslå en ny purring",
+          "konsekvensTekst": "Medmusikeren sier det hjelper at du forstår følelsen. Ingen konsert ble avlyst, men dere håpet begge på noe som ikke skjedde.",
           "effekter": {
             "flagg": {
               "wa_b_c02_utfall": "skuffelse_delt"
@@ -879,8 +879,8 @@
         },
         {
           "id": "snakk_arbeid",
-          "tekst": "Spør hva Medmusikeren vil arbeide med videre.",
-          "konsekvensTekst": "Medmusikeren forteller om en låt som har stått stille. Dere snakker om den, uten å sette opp en ny arbeidsøkt eller gjøre tapet til en karrierelære.",
+          "tekst": "Spør om låten hun nevnte før arrangøren tok all oppmerksomheten",
+          "konsekvensTekst": "Medmusikeren forteller om melodien som står fast. Dere snakker om den uten å gjøre en ny arbeidsøkt til en avtale.",
           "effekter": {
             "flagg": {
               "wa_b_c02_utfall": "samtale_om_arbeid"
@@ -899,8 +899,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Skuffelsen uten en avlyst konsert",
-      "tekst": "Du har sagt til Medmusikeren at det er lov å være skuffet over en mulighet som aldri fikk dato. Medmusikeren sender en ny lydmelding: «Jeg tror jeg ventet for mye på den arrangøren. Men jeg vil fortsatt spille, bare ikke love bort hver kveld.» Du har ikke fått et oppdrag gjennom samtalen.",
+      "tittel": "Det hun savnet var ikke bare scenen",
+      "tekst": "Medmusikeren sender en lydmelding: «Jeg ventet visst mer på den jobben enn jeg skjønte.» Hun ler litt, så blir hun alvorlig. «Jeg vil fortsatt spille. Men jeg vil ikke sitte klar hver gang noen sier kanskje.» Du kjenner igjen skuffelsen. Det handler ikke bare om å miste en scene, men om timer man aldri fikk tilbake.",
       "conditions": {
         "flagg": {
           "wa_b_c02_utfall": "skuffelse_delt"
@@ -909,8 +909,8 @@
       "valg": [
         {
           "id": "del_egen_erfaring",
-          "tekst": "Fortell om en gang du også holdt av tid for lenge",
-          "konsekvensTekst": "Dere snakker om usikkerhet og arbeidstid. Medmusikeren sier det hjelper å dele erfaringen; ingen ny prøve er avtalt.",
+          "tekst": "Fortell om en gang du selv lot et kanskje styre kalenderen",
+          "konsekvensTekst": "Dere deler hver deres litt pinlige erfaring. Det gjør det lettere å snakke sammen, men dere avtaler ingen ny prøve.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "erfaring_delt"
@@ -919,8 +919,8 @@
         },
         {
           "id": "behold_grensen",
-          "tekst": "Si at du støtter grensen mot ubekreftede avtaler",
-          "konsekvensTekst": "Medmusikeren svarer at hun vil vente på konkrete vilkår neste gang. Du har støttet en grense, ikke inngått en musikkavtale.",
+          "tekst": "Si at medmusikeren har rett til å kreve ordentlige vilkår neste gang",
+          "konsekvensTekst": "Du støtter grensen hennes. Medmusikeren vil vente på et faktisk tilbud før hun lover noe; du har ikke bundet dere til en jobb.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "grense_bekreftet"
@@ -939,8 +939,8 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 5,
-      "tittel": "Musikken etter henvendelsen",
-      "tekst": "Etter at dere snakket om arbeidet videre, sender Medmusikeren åtte takter fra en låt hun har stått fast med. «Det er ikke et bestillingsoppdrag», skriver hun. «Vil du si noe om overgangen?» Du får en konkret forespørsel om tilbakemelding, ikke om gratis produksjon.",
+      "tittel": "Da melodien stoppet",
+      "tekst": "Åtte takter fra medmusikeren fyller rommet. Akkurat før refrenget stopper opptaket, som om noen drar ut kontakten. «Hva hører du her?» skriver hun. Du spiller det én gang til, trommer en mulig rytme mot bordkanten og får lyst til å sende en hel liste med forslag. Men hun har bedt om ett øre, ikke om at du skal overta låten hennes.",
       "conditions": {
         "flagg": {
           "wa_b_c02_utfall": "samtale_om_arbeid"
@@ -949,8 +949,8 @@
       "valg": [
         {
           "id": "ett_innspill",
-          "tekst": "Gi ett avgrenset forslag til overgang og la henne eie låten",
-          "konsekvensTekst": "Du svarer med ett forslag. Medmusikeren takker og sier hun vil prøve det selv. Det er ikke en felles ferdiginnspilling.",
+          "tekst": "Foreslå én endring i overgangen og overlat resten til medmusikeren",
+          "konsekvensTekst": "Du foreslår å holde én tone litt lenger. Medmusikeren takker og vil prøve selv. Sangen er fortsatt hennes.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "ett_rad"
@@ -959,8 +959,8 @@
         },
         {
           "id": "be_om_tid",
-          "tekst": "Si at du vil lytte grundigere en annen dag, uten å love tidspunkt",
-          "konsekvensTekst": "Medmusikeren sier hun sender ingen påminnelse før du tar kontakt. Tilbakemeldingen er ikke gitt.",
+          "tekst": "Si at du trenger en annen dag til å lytte ordentlig",
+          "konsekvensTekst": "Du svarer før hun begynner å vente på rådet ditt. Medmusikeren sier at hun ikke vil purre, og dere setter ingen frist.",
           "effekter": {
             "flagg": {
               "wa_c_c02_etterspill": "lytting_utsatt"
@@ -980,25 +980,31 @@
       "tilgjengelighet": "start",
       "prioritet": 4,
       "tittel": "Erfaring uten løfte om jobb",
-      "tekst": "Medmusikeren takker for at du fortalte om å holde av tid forgjeves. Hun sier at det hjelper å høre at hun ikke er alene, men har ingen ny forespørsel fra arrangøren.",
+      "tekst": "Medmusikeren sender et opptak fra øvingsrommet: to takter gitar før noen ler og mister rytmen. «Jeg ble så opphengt i den konserten som aldri fikk dato», sier hun. «Jeg glemte jo hvorfor vi begynte å spille.» Du kjenner deg igjen. Det er mulig å savne scenen og likevel ønske seg fri på lørdag.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Foreslå at dere holder hverandres fridager fri",
-          "konsekvensTekst": "Dere blir enige om å ikke kreve åpne kalenderluker for hypotetiske oppdrag. Det er ingen bestilling eller avtalt prøve.",
+          "tekst": "Foreslå at dere beholder fridagene deres til noen faktisk spør om en spillejobb",
+          "konsekvensTekst": "Medmusikeren svarer at det høres deilig ut. Dere er enige om å slutte å holde av kvelder for ubekreftede forespørsler. Musikken er fortsatt deres.",
           "effekter": {
             "flagg": {
               "wa_d_c02_status": "fritid_respektert"
+            },
+            "meters": {
+              "psyke": 2
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Be henne si fra først dersom et reelt tilbud kommer",
-          "konsekvensTekst": "Hun sier hun kan videresende en konkret henvendelse hvis den kommer. Ingen henvendelse er mottatt nå.",
+          "tekst": "Be medmusikeren kontakte deg når det finnes dato og honorar, ikke flere antydninger",
+          "konsekvensTekst": "Medmusikeren sier hun skal sende et konkret tilbud hvis det kommer. Foreløpig legger dere bort konsertsnakket.",
           "effekter": {
             "flagg": {
               "wa_d_c02_status": "tilbud_avventes"
+            },
+            "meters": {
+              "energi": 1
             }
           }
         }
@@ -1019,26 +1025,33 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Et nei til gratis beredskap",
-      "tekst": "Medmusikeren er enig i at dere ikke kan stå til disposisjon uten rammer. Hun spør om dere skal skrive ned hva dere trenger før en eventuell ny booking.",
+      "tittel": "To musikere og én uavklart jobb",
+      "tekst": "Medmusikeren sitter på gulvet i øvingsrommet og prøver å få en kabel opp i veska. «Jeg vil jo spille», sier hun, «men noen oppfører seg som om vi skal takke for å få lov.» Dere ler litt, før dere blir stille. Du betalte reisen selv sist. Medmusikeren har andre utgifter. Ingen arrangør har kommet med et nytt tilbud, men dere vet allerede at dere ikke kan ta den samme diskusjonen hver gang.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Skriv et kort forslag til honorar- og tidsramme",
-          "konsekvensTekst": "Du noterer vilkårene dere kan diskutere ved en forespørsel. Teksten er ikke en kontrakt.",
+          "tekst": "Regn ut hvilke timer og kostnader du selv må få dekket",
+          "konsekvensTekst": "Du skriver et forslag til øvingstid, reise og honorar. Ingen har bestilt en konsert, men du kjenner din egen grense bedre.",
           "effekter": {
             "flagg": {
               "wa_d_c02_status": "vilkar_utkast"
+            },
+            "meters": {
+              "energi": -1,
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "La henne formulere egne grenser først",
-          "konsekvensTekst": "Du ber henne tenke over egne behov. Hverken hun eller du har lovet en opptreden.",
+          "tekst": "Spør medmusikeren hva som må til for at hun skal si ja",
+          "konsekvensTekst": "Du spør uten å legge svaret i munnen hennes. Dere får fram at grensene er forskjellige, og samtalen kan fortsette uten at noen binder seg til en jobb.",
           "effekter": {
             "flagg": {
               "wa_d_c02_status": "hver_sin_grense"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         }
@@ -1060,25 +1073,31 @@
       "tilgjengelighet": "start",
       "prioritet": 4,
       "tittel": "Ett råd, ikke medforfatterskap",
-      "tekst": "Du har gitt ett avgrenset råd om overgangen. Medmusikeren takker og sier hun skal prøve det når hun øver alene. Du har ikke fått innsyn i noen ferdig låt.",
+      "tekst": "Medmusikeren har sendt en ny lydmelding med den vanskelige overgangen i låta. Du har allerede foreslått å la gitaren stoppe et slag før refrenget. Nå spiller du overgangen for deg selv på kjøkkenet og merker at ditt forslag kanskje er forutsigbart. Det er hennes låt, og hun må få bestemme hva den skal være.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Presiser at rådet er et uforpliktende innspill",
-          "konsekvensTekst": "Du gjør det klart at hun står fritt til å bruke eller forkaste rådet. Ingen oppgave om produksjon blir lagt til deg.",
+          "tekst": "Skriv til medmusikeren at forslaget bare var én idé hun gjerne kan forkaste",
+          "konsekvensTekst": "Du sender en kort beskjed om at hun står fritt til å velge. Du har bidratt med et råd, ikke blitt medprodusent.",
           "effekter": {
             "flagg": {
               "wa_d_c02_status": "rad_avgrenset"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Spør om hun vil gi beskjed dersom rådet blir nyttig",
-          "konsekvensTekst": "Hun sier hun kan fortelle senere hvordan det gikk. Du registrerer ikke fremtidig tilbakemelding som mottatt.",
+          "tekst": "Spør om hun vil fortelle hva hun synes når hun selv har prøvd det",
+          "konsekvensTekst": "Du spør nysgjerrig, uten å be om lydfil eller frist. Medmusikeren har ennå ikke sendt noen vurdering.",
           "effekter": {
             "flagg": {
               "wa_d_c02_status": "tilbakemelding_uavklart"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }
@@ -1099,26 +1118,32 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 4,
-      "tittel": "Tid til å lytte er ikke et oppdrag",
-      "tekst": "Medmusikeren skriver at hun kan la lydfilen ligge til du får tid. Den er fremdeles hennes skisse, og ingen har avtalt frist eller betaling.",
+      "tittel": "Lydfilen du ikke rakk å høre",
+      "tekst": "Medmusikeren har sendt en skisse hun gjerne vil høre hva du synes om. Hun skriver at det ikke haster. Du står i gangen med instrumentet over skulderen og vet at kvelden allerede er brukt opp. Før hadde du svart ja uten å tenke. Nå prøver du å skille mellom lysten til å hjelpe en venn og det å love bort enda en time.",
       "valg": [
         {
           "id": "forankre",
-          "tekst": "Legg lydfilen til side uten dato",
-          "konsekvensTekst": "Du beholder filen uten å love gjennomlytting. Hun vet at du ikke er tilgjengelig på bestilling.",
+          "tekst": "Si at du tar vare på filen, men ikke kan love når du lytter",
+          "konsekvensTekst": "Du beholder lydfilen uten å sette en frist. Medmusikeren må ikke planlegge arbeidet sitt etter en time du ennå ikke har.",
           "effekter": {
             "flagg": {
               "wa_d_c02_status": "ingen_lyttefrist"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrense",
-          "tekst": "Avklar at hun kan gå videre uten å vente på deg",
-          "konsekvensTekst": "Hun sier at hun gjerne fortsetter på egen hånd. Du har ikke hindret arbeidet eller bestilt en ny økt.",
+          "tekst": "Fortell medmusikeren at hun står fritt til å jobbe videre uten deg",
+          "konsekvensTekst": "Du gir henne frihet til å bruke sine egne ideer. Hun kan gå videre med låten uten at du har avtalt noen ny arbeidsøkt.",
           "effekter": {
             "flagg": {
               "wa_d_c02_status": "hun_gar_videre"
+            },
+            "meters": {
+              "psyke": 2
             }
           }
         }

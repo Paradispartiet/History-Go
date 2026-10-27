@@ -220,7 +220,7 @@
 
     // Symposium-pakken tillater aldri at en fremtidig eller avvist scene
     // skriver et møte/valg inn i historien (inkludert gamle DOM-knapper).
-    if (content.role.symposium && (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId))) {
+    if (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId)) {
       throw new Error(`[LifestoryRunner] scenen "${sceneId}" er ikke tilgjengelig nå`);
     }
 
@@ -264,7 +264,7 @@
     // Personal day-8–21 events are appended directly to their shared private
     // archive. Full historical reconciliation is still done on role switches,
     // not after each choice, avoiding repeated work on deep life histories.
-    if (/^wave_[abcde]_c0[15]_/.test(scene.id)) State.capturePrivateStory(state);
+    if (/^wave_[abcde]_c0[15]_/.test(scene.id) || /^wave_f_c(?:01|02|03|05|06|07|17|23)_/.test(scene.id)) State.capturePrivateStory(state);
     else if (/^wave_e_life21_/.test(scene.id) || content.personalOnly) State.recordPrivateScene(state, entry);
 
     const progress = advance(state, content);

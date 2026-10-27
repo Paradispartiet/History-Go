@@ -1,0 +1,898 @@
+{
+  "targetId": "hotel_du_nord",
+  "categoryId": "naeringsliv",
+  "sources": {
+    "oppdag_kvadraturen": "https://www.oppdagkvadraturen.no/stoppesteder/dronningensgate-13-hotel-du-nord",
+    "oslo_byleksikon_gaten": "https://oslobyleksikon.no/side/Dronningens_gate",
+    "oslo_byleksikon_hoteller": "https://oslobyleksikon.no/side/Hoteller",
+    "riksantikvaren_flytting": "https://riksantikvaren.no/kommet-i-hus-pa-gronland/"
+  },
+  "production_context": {
+    "manifest_category": "naeringsliv",
+    "profile": "narrow_3x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/naeringsliv/hotel_du_nord.json",
+    "context_artifact": "data/quiz/production_context/naeringsliv/hotel_du_nord.json",
+    "resolved_files": {
+      "pensum": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "emner": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "fagkart": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "methods": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "handel_forbruk_marked",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_tjenesteyting_og_service",
+      "em_naering_havn_transport",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_handel_butikk_byrom",
+      "em_naering_arbeid_verdiskaping"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_infrastrukturanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/naeringsliv/",
+        "reports/place-production/oslo-sentrum-kvadraturen-next40-quiz-candidates-20261025.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen aktiv fullquiz med denne Place-ID per kontrollen på PR-grenen."
+      },
+      "decisions": [
+        "Narrow-profil (3 x 7); ikke fyll til rich med duplikater.",
+        "Stedlig handelshistorie, hotellvirksomhet og bygningsfaser fremfor løs årstallspugging.",
+        "Kildens Riksantikvaren-periode 1991–2024 er fortid; ikke presenter det som nåværende virksomhet."
+      ],
+      "knowledge_migration": "Fullquiz skal kobles av eksisterende canonical Knowledge-generator før manifestaktivering."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "21 distinkte kildebelagte kunnskapsoppgaver om eiere, hotell, handel, pakkhus, havn og ombruk."
+    },
+    "held_back_candidates": [
+      "Spekulasjoner om hotellgjesters bakgrunn eller ansatte.",
+      "Nøyaktig nedleggelsesår som kildene beskriver ulikt.",
+      "Nåværende Riksantikvaren-tilhold uten kildekontroll i 2026.",
+      "Generisk økonomiteori uten konkret stedsbelegg."
+    ],
+    "method_start_phase": "final",
+    "theory_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_hotel_du_nord_set_1",
+      "title": "Handelshus ved havnen",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "hotel_du_nord_quiz_01",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hva slags bygning var på eiendommen før Hotel du Nord åpnet?",
+          "options": [
+            "En fornem privat bygård",
+            "En politistasjon",
+            "En postterminal",
+            "En militær kaserne"
+          ],
+          "answer": "En fornem privat bygård",
+          "answerIndex": 0,
+          "knowledge": "På Dronningens gate 13 lå opprinnelig en representativ bygård fra 1643, lenge før hotelldriften startet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon_gaten"
+          ],
+          "source_origin": "external",
+          "claim_basis": "På Dronningens gate 13 lå opprinnelig en representativ bygård fra 1643, lenge før hotelldriften startet.",
+          "claim_id": "claim_hotel_du_nord_quiz_01",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_pa_dronningens_gate_13_l_b800bc473d",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_pa_dronningens_gate_13_l_b800bc473d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_02",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvem fikk den eldste gården på eiendommen oppført?",
+          "options": [
+            "Arkitekt Ove Ekman",
+            "Hotelldirektør Elias Smith",
+            "Riksantikvarens første direktør",
+            "Borgermester Hans Eggertsen Stockfleth"
+          ],
+          "answer": "Borgermester Hans Eggertsen Stockfleth",
+          "answerIndex": 3,
+          "knowledge": "Borgermester Hans Eggertsen Stockfleth fikk reist huset i 1643. Han var også knyttet til sagbruk og trelasteksport.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon_gaten"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Borgermester Hans Eggertsen Stockfleth fikk reist huset i 1643. Han var også knyttet til sagbruk og trelasteksport.",
+          "claim_id": "claim_hotel_du_nord_quiz_02",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_borgermester_hans_eggert_3ef96bdd81",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_borgermester_hans_eggert_3ef96bdd81",
+            "ku_naeringsliv_han_var_ogsa_knyttet_til_943b312c01"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_03",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvilken rolle hadde Hans Eggertsen Stockfleth i Christiania?",
+          "options": [
+            "Lærer ved Krigsskolen",
+            "Hotellresepsjonist",
+            "Borgermester",
+            "Stattholder"
+          ],
+          "answer": "Borgermester",
+          "answerIndex": 2,
+          "knowledge": "Stockfleth var borgermester og en velstående næringsaktør, noe som forklarer hvorfor han kunne reise et representativt byhus.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Stockfleth var borgermester og en velstående næringsaktør, noe som forklarer hvorfor han kunne reise et representativt byhus.",
+          "claim_id": "claim_hotel_du_nord_quiz_03",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_stockfleth_var_borgermes_c4d63e8ddb",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_stockfleth_var_borgermes_c4d63e8ddb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_04",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvorfor var beliggenheten i Dronningens gate viktig for tidlig handel?",
+          "options": [
+            "Gaten lå langt utenfor Christiania",
+            "Gaten lå nær datidens havn",
+            "Gaten lå ved den nye jernbanestasjonen",
+            "Gaten var byens eneste bilvei"
+          ],
+          "answer": "Gaten lå nær datidens havn",
+          "answerIndex": 1,
+          "knowledge": "Eiendommen lå mot datidens havneområde. Avstand til lasting, sjøtransport og kjøpmannsgårder var viktig for handel i byen.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_naering_havn_transport",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Eiendommen lå mot datidens havneområde. Avstand til lasting, sjøtransport og kjøpmannsgårder var viktig for handel i byen.",
+          "claim_id": "claim_hotel_du_nord_quiz_04",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_eiendommen_la_mot_datide_a499626134",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_eiendommen_la_mot_datide_a499626134",
+            "ku_naeringsliv_avstand_til_lasting_sj_t_c8eda838a1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_05",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvordan var gården fra 1643 opprinnelig utformet?",
+          "options": [
+            "Som et enetasjes murhus",
+            "Som et høyt betonglager",
+            "Som et moderne kontortårn",
+            "Som en jernbanehall"
+          ],
+          "answer": "Som et enetasjes murhus",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon omtaler et enetasjes murhus. Flere påbygg og en brann endret anlegget betydelig etterpå.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oslo_byleksikon_gaten"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon omtaler et enetasjes murhus. Flere påbygg og en brann endret anlegget betydelig etterpå.",
+          "claim_id": "claim_hotel_du_nord_quiz_05",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_oslo_byleksikon_omtaler__798fcfe87d",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_oslo_byleksikon_omtaler__798fcfe87d",
+            "ku_naeringsliv_flere_pabygg_og_en_brann_6bb2dafabe"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_06",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvilken stor eiendomsbesitter kjøpte gården på 1700-tallet?",
+          "options": [
+            "Bernt Anker",
+            "Gerhard Treschow",
+            "Hans Nielsen Hauge",
+            "Peder Holter"
+          ],
+          "answer": "Peder Holter",
+          "answerIndex": 3,
+          "knowledge": "Peder Holter kjøpte gården i 1762. Senere eiere moderniserte byhuset før det ble hotell.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Peder Holter kjøpte gården i 1762. Senere eiere moderniserte byhuset før det ble hotell.",
+          "claim_id": "claim_hotel_du_nord_quiz_06",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_peder_holter_kj_pte_gard_184432b0d6",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_peder_holter_kj_pte_gard_184432b0d6",
+            "ku_naeringsliv_senere_eiere_modernisert_bbe492c97a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_07",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_1_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvem arvet gården etter Peder Holters død?",
+          "options": [
+            "Martha Garmann",
+            "Kirsten Heiberg",
+            "Maren Juel",
+            "Anna Collett"
+          ],
+          "answer": "Maren Juel",
+          "answerIndex": 2,
+          "knowledge": "Maren Juel arvet gården etter Peder Holter i 1786. Eierhistorien er en del av eiendommens senere navn og ombygginger.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Maren Juel arvet gården etter Peder Holter i 1786. Eierhistorien er en del av eiendommens senere navn og ombygginger.",
+          "claim_id": "claim_hotel_du_nord_quiz_07",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_maren_juel_arvet_garden__8c1c3679e4",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_maren_juel_arvet_garden__8c1c3679e4",
+            "ku_naeringsliv_eierhistorien_er_en_del__0833009536"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_hotel_du_nord_set_2",
+      "title": "Bypalé og hotelldrift",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "hotel_du_nord_quiz_08",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvilket familienavn ga bygningen navnet Rosenkrantzgården?",
+          "options": [
+            "Garmann",
+            "Rosenkrantz",
+            "Gyldenløve",
+            "Calmeyer"
+          ],
+          "answer": "Rosenkrantz",
+          "answerIndex": 1,
+          "knowledge": "Marcus Gjøe Rosenkrantz var en senere eier i perioden da paléet ble modernisert. Navnet viser et eierlag, ikke hotellets grunnleggelse.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon_gaten"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Marcus Gjøe Rosenkrantz var en senere eier i perioden da paléet ble modernisert. Navnet viser et eierlag, ikke hotellets grunnleggelse.",
+          "claim_id": "claim_hotel_du_nord_quiz_08",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_marcus_gj_e_rosenkrantz__33fc924885",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_marcus_gj_e_rosenkrantz__33fc924885",
+            "ku_naeringsliv_navnet_viser_et_eierlag__14ae32e0cb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_09",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvem startet Hotel du Nord i det tidligere paléet?",
+          "options": [
+            "Danske Elias Smith",
+            "Borgermester Hans Stockfleth",
+            "Arkitekt Ove Ekman",
+            "Skipsreder Fred. Olsen"
+          ],
+          "answer": "Danske Elias Smith",
+          "answerIndex": 0,
+          "knowledge": "Elias Smith etablerte hotellet i 1828. Hotellvirksomheten representerte en annen tjenestenæring enn den opprinnelige privatboligen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon_hoteller"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Elias Smith etablerte hotellet i 1828. Hotellvirksomheten representerte en annen tjenestenæring enn den opprinnelige privatboligen.",
+          "claim_id": "claim_hotel_du_nord_quiz_09",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_elias_smith_etablerte_ho_1143e7f481",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_elias_smith_etablerte_ho_1143e7f481",
+            "ku_naeringsliv_hotellvirksomheten_repre_f49a258a05"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_10",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvordan endret eiendommens funksjon seg da Hotel du Nord åpnet?",
+          "options": [
+            "Fra skole til teater",
+            "Fra havnelager til politistasjon",
+            "Fra restaurant til militærleir",
+            "Fra privat bolig til overnatting for reisende"
+          ],
+          "answer": "Fra privat bolig til overnatting for reisende",
+          "answerIndex": 3,
+          "knowledge": "Hotelldriften gjorde det tidligere paléet til en del av den voksende byens tjenestetilbud for tilreisende.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon_hoteller"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hotelldriften gjorde det tidligere paléet til en del av den voksende byens tjenestetilbud for tilreisende.",
+          "claim_id": "claim_hotel_du_nord_quiz_10",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_hotelldriften_gjorde_det_da04f4d66a",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_hotelldriften_gjorde_det_da04f4d66a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_11",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hva skjedde med gården under den store brannen på 1800-tallet?",
+          "options": [
+            "Den ble gjort om til kirke",
+            "Bygningen fikk en ny havnekanal",
+            "Den gamle frontbygningen ble brannskadet og gjenoppført",
+            "Hele gården ble fraktet til Bygdøy"
+          ],
+          "answer": "Den gamle frontbygningen ble brannskadet og gjenoppført",
+          "answerIndex": 2,
+          "knowledge": "Brannen i 1859 førte til oppføring av en ny frontbygning, mens enkelte eldre deler kan være bevart i første etasje og kjeller.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon_gaten"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Brannen i 1859 førte til oppføring av en ny frontbygning, mens enkelte eldre deler kan være bevart i første etasje og kjeller.",
+          "claim_id": "claim_hotel_du_nord_quiz_11",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_brannen_i_1859_f_rte_til_7e4ce94252",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_brannen_i_1859_f_rte_til_7e4ce94252"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_12",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvorfor kan dagens gatefasade ikke dateres som en uendret bygning fra 1643?",
+          "options": [
+            "Gården var først et skip",
+            "Frontbygningen ble gjenoppført etter en senere brann",
+            "Hotellet hadde aldri en gatefasade",
+            "Hele gården ble revet før 1700"
+          ],
+          "answer": "Frontbygningen ble gjenoppført etter en senere brann",
+          "answerIndex": 1,
+          "knowledge": "Bygningshistorien omfatter eldre kjeller- og etasjespor og en ny forbygning etter 1859. En eiendom kan ha eldre deler enn den synlige fasaden.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon_gaten"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningshistorien omfatter eldre kjeller- og etasjespor og en ny forbygning etter 1859. En eiendom kan ha eldre deler enn den synlige fasaden.",
+          "claim_id": "claim_hotel_du_nord_quiz_12",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_bygningshistorien_omfatt_3c68d92406",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_bygningshistorien_omfatt_3c68d92406",
+            "ku_naeringsliv_en_eiendom_kan_ha_eldre__67bcb60069"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_13",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hva skjedde med hotellvirksomheten før den store pakkhusutbyggingen?",
+          "options": [
+            "Hotellvirksomheten opphørte",
+            "Hotellet flyttet til Akershus",
+            "Hotellet ble landets nye stortingsbygning",
+            "Hotellet ble omdøpt til Krigsskolen"
+          ],
+          "answer": "Hotellvirksomheten opphørte",
+          "answerIndex": 0,
+          "knowledge": "Hotel du Nord ble nedlagt omkring 1870, før utbyggingen for handel og lagerdrift i 1899.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_tjenesteyting_og_service",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon_gaten"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hotel du Nord ble nedlagt omkring 1870, før utbyggingen for handel og lagerdrift i 1899.",
+          "claim_id": "claim_hotel_du_nord_quiz_13",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_hotel_du_nord_ble_nedlag_e018813576",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_hotel_du_nord_ble_nedlag_e018813576"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_14",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_2_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hva var formålet med den store ombyggingen i 1899?",
+          "options": [
+            "Å bygge et kongelig palass",
+            "Å lage en ny militær kaserne",
+            "Å erstatte havnehandelen med en park",
+            "Lokaler for handel, kontorarbeid, lager og verksteder"
+          ],
+          "answer": "Lokaler for handel, kontorarbeid, lager og verksteder",
+          "answerIndex": 3,
+          "knowledge": "Eiendommen ble bygget ut for ulike næringsvirksomheter, med kontorer mot gaten og omfattende pakkhus bak.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_handel_butikk_byrom",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Eiendommen ble bygget ut for ulike næringsvirksomheter, med kontorer mot gaten og omfattende pakkhus bak.",
+          "claim_id": "claim_hotel_du_nord_quiz_14",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_eiendommen_ble_bygget_ut_8710f19bb2",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_eiendommen_ble_bygget_ut_8710f19bb2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_hotel_du_nord_set_3",
+      "title": "Pakkhus og ombruk",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "hotel_du_nord_quiz_15",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvem tegnet utbyggingen av pakkhusanlegget?",
+          "options": [
+            "Arkitekt Georg Andreas Bull",
+            "Byggherren Peter Grüner",
+            "Arkitekt Ove Ekman",
+            "Murermester Reichen"
+          ],
+          "answer": "Arkitekt Ove Ekman",
+          "answerIndex": 2,
+          "knowledge": "Ove Ekman tegnet pakkhusutbyggingen i bakgården som del av den omfattende næringsutvidelsen i 1899.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ove Ekman tegnet pakkhusutbyggingen i bakgården som del av den omfattende næringsutvidelsen i 1899.",
+          "claim_id": "claim_hotel_du_nord_quiz_15",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ove_ekman_tegnet_pakkhus_4844811076",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ove_ekman_tegnet_pakkhus_4844811076"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_16",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvorfor fikk gatebygningen kontorer mens pakkhusene lå i bakgården?",
+          "options": [
+            "Byggherren kunne samle kontorarbeid mot gaten og varehåndtering lenger inne",
+            "Varer måtte alltid håndteres inne på kontorene",
+            "Bakgården var bare dekorativ hage uten virksomhet",
+            "Havnehandelen hadde ikke behov for lagringsplass"
+          ],
+          "answer": "Byggherren kunne samle kontorarbeid mot gaten og varehåndtering lenger inne",
+          "answerIndex": 0,
+          "knowledge": "Eiendommen fikk kontorlokaler mot gaten og pakkhus i bakgården. Slik kunne publikumsrettet arbeid og varehåndtering få forskjellige rom i et tett bykvartal.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Eiendommen fikk kontorlokaler mot gaten og pakkhus i bakgården. Slik kunne publikumsrettet arbeid og varehåndtering få forskjellige rom i et tett bykvartal.",
+          "claim_id": "claim_hotel_du_nord_quiz_16",
+          "knowledge_link_status": "linked",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_naeringsliv_eiendommen_fikk_kontorlo_ea5798e2cb",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_eiendommen_fikk_kontorlo_ea5798e2cb",
+            "ku_naeringsliv_slik_kunne_publikumsrett_f85d170717"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_17",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hva forteller de små lysgårdene om et tett pakkhusanlegg?",
+          "options": [
+            "At lagerdrift alltid foregikk utendørs",
+            "At bygget ikke hadde noen arbeidsplasser",
+            "At man organiserte lys og rom mellom mange sammenbygde arealer",
+            "At huset var tegnet som et offentlig parklandskap"
+          ],
+          "answer": "At man organiserte lys og rom mellom mange sammenbygde arealer",
+          "answerIndex": 2,
+          "knowledge": "Pakkhusene ble ordnet rundt tre små lysgårder. Dette viser hvordan et tett handelsanlegg trengte både bruksareal og lys mellom bygningene.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Pakkhusene ble ordnet rundt tre små lysgårder. Dette viser hvordan et tett handelsanlegg trengte både bruksareal og lys mellom bygningene.",
+          "claim_id": "claim_hotel_du_nord_quiz_17",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_pakkhusene_ble_ordnet_ru_22c76d18c6",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_pakkhusene_ble_ordnet_ru_22c76d18c6",
+            "ku_naeringsliv_dette_viser_hvordan_et_t_4155123f10"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_18",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvorfor er det misvisende å omtale pakkhusene som bare lagringsrom?",
+          "options": [
+            "De var utelukkende hotellrom",
+            "De rommet også verksteder og produksjon",
+            "De ble bygget for militære tropper",
+            "Det foregikk aldri varehåndtering på eiendommen"
+          ],
+          "answer": "De rommet også verksteder og produksjon",
+          "answerIndex": 1,
+          "knowledge": "Pakkhusene hadde lager, verksteder og produksjonsanlegg. Begrepet verdikjede hjelper oss å se at oppbevaring, bearbeiding og handel var knyttet sammen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Pakkhusene hadde lager, verksteder og produksjonsanlegg. Begrepet verdikjede hjelper oss å se at oppbevaring, bearbeiding og handel var knyttet sammen.",
+          "claim_id": "claim_hotel_du_nord_quiz_18",
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "arbeid_som_verdiskaping",
+          "thinker_id": "max_weber",
+          "theory_ref": {
+            "topic_hook_id": "arbeid_som_verdiskaping",
+            "why_it_helps": "Webers perspektiv på organisering av arbeid og rasjonalisering hjelper oss å se hvordan varelagring, verksteder og produksjon ble samordnet på samme eiendom."
+          },
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_naeringsliv_pakkhusene_hadde_lager_v_86a6bdd922",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_pakkhusene_hadde_lager_v_86a6bdd922",
+            "ku_naeringsliv_begrepet_verdikjede_hjel_6da4212b08"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_19",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hvorfor ble pakkhusene knyttet til Christianias havneøkonomi?",
+          "options": [
+            "Byen hadde sluttet med skipsfart",
+            "Pakkhusene lå inne på en flyplass",
+            "Varer og produksjon kunne samles nær import- og eksporthavnen",
+            "De var bygd utelukkende for turister"
+          ],
+          "answer": "Varer og produksjon kunne samles nær import- og eksporthavnen",
+          "answerIndex": 2,
+          "knowledge": "Bjørvika var en sentral havn for import og eksport. Pakkhusanlegget er et eldre uttrykk for det logistikkbehovet som senere førte til Havnelageret.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_havn_transport",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bjørvika var en sentral havn for import og eksport. Pakkhusanlegget er et eldre uttrykk for det logistikkbehovet som senere førte til Havnelageret.",
+          "claim_id": "claim_hotel_du_nord_quiz_19",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_bj_rvika_var_en_sentral__328adba9f0",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_bj_rvika_var_en_sentral__328adba9f0",
+            "ku_naeringsliv_pakkhusanlegget_er_et_el_71b5cac4bf"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_20",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hva skjedde med deler av pakkhusfløyen i 1954?",
+          "options": [
+            "De ble gjenbrukt som jernbanestasjon",
+            "De brant og ble revet, mens andre deler stod igjen",
+            "Hele gården ble flyttet til Folkemuseet",
+            "De ble ombygd til rådhus samme dag"
+          ],
+          "answer": "De brant og ble revet, mens andre deler stod igjen",
+          "answerIndex": 1,
+          "knowledge": "Brann og riving rammet deler av pakkhuset i 1954. Andre deler av den eldre lagerstrukturen ble bevart gjennom senere kontorbruk.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Brann og riving rammet deler av pakkhuset i 1954. Andre deler av den eldre lagerstrukturen ble bevart gjennom senere kontorbruk.",
+          "claim_id": "claim_hotel_du_nord_quiz_20",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_brann_og_riving_rammet_d_05338913d2",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_brann_og_riving_rammet_d_05338913d2",
+            "ku_naeringsliv_andre_deler_av_den_eldre_2394b899b4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        },
+        {
+          "id": "hotel_du_nord_quiz_21",
+          "quiz_id": "naeringsliv_hotel_du_nord_set_3_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "hotel_du_nord",
+          "targetId": "hotel_du_nord",
+          "question_scope": "place",
+          "question": "Hva viser bygningens senere bruk som kontorer for Riksantikvaren?",
+          "options": [
+            "At all eldre bygningsmasse er erstattet av moderne materialer",
+            "At gården ikke tidligere hadde noen næringsvirksomhet",
+            "At bygningen var hotelldrift helt frem til vår tid",
+            "At en tidligere hotell- og handelsgård kan tas i bruk til andre formål"
+          ],
+          "answer": "At en tidligere hotell- og handelsgård kan tas i bruk til andre formål",
+          "answerIndex": 3,
+          "knowledge": "Riksantikvaren hadde kontorer på eiendommen fra 1991 og flyttet ut før jul 2024, ifølge etatens egen melding fra januar 2025. Dette er et eksempel på ombruk av eldre bygningsmasse etter periodene med hotell- og pakkhusdrift.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "riksantikvaren_flytting",
+            "oppdag_kvadraturen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Riksantikvaren hadde kontorer på eiendommen fra 1991 og flyttet ut før jul 2024, ifølge etatens egen melding fra januar 2025. Dette er et eksempel på ombruk av eldre bygningsmasse etter periodene med hotell- og pakkhusdrift.",
+          "claim_id": "claim_hotel_du_nord_quiz_21",
+          "knowledge_link_status": "linked",
+          "primary_knowledge_unit_id": "ku_naeringsliv_riksantikvaren_hadde_kon_a136ea47fc",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_riksantikvaren_hadde_kon_a136ea47fc",
+            "ku_naeringsliv_dette_er_et_eksempel_pa__b487e6847f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1
+        }
+      ]
+    }
+  ],
+  "production_status": "manifested_knowledge_linked_browser_qa_passed"
+}
