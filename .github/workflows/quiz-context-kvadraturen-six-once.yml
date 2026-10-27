@@ -1,0 +1,39 @@
+name: One-time regenerate Kvadraturen quiz contexts
+on:
+  push:
+    branches:
+      - fix/quiz-context-kvadraturen-six-20261027
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Regenerate only six stale contexts
+        shell: bash
+        run: |
+          set -euo pipefail
+          for id in garmanngarden den_gamle_krigsskolen stattholdergarden; do
+            node scripts/build-quiz-production-context.mjs --category historie --target "$id" --output "data/quiz/production_context/historie/$id.json"
+          done
+          for id in hotel_du_nord cafe_engebret treschowgarden; do
+            node scripts/build-quiz-production-context.mjs --category naeringsliv --target "$id" --output "data/quiz/production_context/naeringsliv/$id.json"
+          done
+          node scripts/audit-quiz-production-context.mjs
+          git diff --name-only -- data/quiz/production_context
+      - name: Commit generated contexts and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/historie/garmanngarden.json data/quiz/production_context/historie/den_gamle_krigsskolen.json data/quiz/production_context/historie/stattholdergarden.json data/quiz/production_context/naeringsliv/hotel_du_nord.json data/quiz/production_context/naeringsliv/cafe_engebret.json data/quiz/production_context/naeringsliv/treschowgarden.json
+          git rm .github/workflows/quiz-context-kvadraturen-six-once.yml
+          git diff --cached --check
+          git commit -m "fix(quiz): regenerate six Oslo source-backed production contexts"
+          git push origin HEAD:refs/heads/fix/quiz-context-kvadraturen-six-20261027
