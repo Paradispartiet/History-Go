@@ -1,8 +1,9 @@
-// Scoped data integration for the six existing Oslo places. Uses the canonical builders.
+// Scoped data integration for the five remaining Oslo places. Uses the canonical builders.
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {runBuildQuizProductionContext} from './build-quiz-production-context.mjs';
-const scope={kontraskjaeret:'historie',palehaven_paleet:'historie',avisen_tiden_radhusgata_10:'historie',egertorget:'by',mustadgarden_kongens_gate_3:'historie',wessels_plass:'by'};
+// Wessels plass is already canonical on main via PR #6637; never rematerialize it here.
+const scope={kontraskjaeret:'historie',palehaven_paleet:'historie',avisen_tiden_radhusgata_10:'historie',egertorget:'by',mustadgarden_kongens_gate_3:'historie'};
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const write=(p,d)=>fs.writeFileSync(p,JSON.stringify(d,null,2)+'\n');
 const manifest=read('data/fag/fag_manifest.json');
@@ -38,4 +39,4 @@ for(const [id,cat] of Object.entries(scope)){
  write(`data/quizcards/${cat}/${cardFile}`,{collection_id:`${cat}_${id}_quizcards_20261027`,categoryId:cat,title:name+' – QuizCard',cardFormatRule:'single_surface_top10_with_answer_key',sourceBasis:'Ti kildekontrollerte faktaspørsmål fra stedets fullquiz, med canonical Knowledge-paritet.',production_status:'knowledge_linked_browser_review_pending',cards:[card]});
  const mp=`data/quizcards/${cat}/manifest.json`,m=read(mp);if(!m.collections.includes(cardFile))m.collections.push(cardFile);write(mp,m);
 }
-console.log('Materialized six fullquiz packages, 18 sets and 60 Knowledge-linked factual QuizCards. Browser QA remains a separate gate.');
+console.log('Materialized five fullquiz packages, 15 sets and 50 Knowledge-linked factual QuizCards. Browser QA remains a separate gate.');
