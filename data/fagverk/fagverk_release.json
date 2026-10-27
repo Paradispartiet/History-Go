@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.17.11",
     "updated_at": "2026-10-27",
-    "content_sha256": "f49402916c0722bdcb015c85f94c5dd39fdf457adf5ab4d38474b60cb7d0c5c2"
+    "content_sha256": "a40b9499a55e0646d127da85b236dd6527ebd076261af1debb1b32fa28594482"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "3f808a05d793b34a4af97f07e5a97f242df425c4817841d805eddafb585b4581"
+    "content_sha256": "7bedb7291e23edcb519450c587d30514f20a67d3ee684f729c900584dce2773e"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 525,
+    "package_file_count": 528,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1389,
+    "referenced_file_count": 1392,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2812,9 +2812,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 137,
+      "package_file_count": 140,
       "required_package_file_count": 4,
-      "optional_package_file_count": 133,
+      "optional_package_file_count": 136,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -3441,6 +3441,18 @@
           "content_sha256": "e7a2ac66a2a1528262ef39108d60692eb887d633f8b776188a06787368990273"
         },
         {
+          "path": "data/quiz/historie/villa_stenersen_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_stenersen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "1076b422a5784c969664328960eea9ae835414ab75ac64576e5483c88965db71"
+        },
+        {
           "path": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
           "required": false,
           "fields": [
@@ -3919,6 +3931,18 @@
           ],
           "exists": true,
           "content_sha256": "743d899bbda160a2561d4c05923876a064b9741e605ae72ee146f4e8258aaf2c"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/villa_stenersen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_stenersen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "bddd2cc40a0571ac8a71c881b0666db0e96696af6aa71ef84753aa536d09f6a6"
         },
         {
           "path": "data/quiz/production_briefs/historie/waisenhuset_kongens_gate.json",
@@ -4401,6 +4425,18 @@
           "content_sha256": "bc24aab2c01cbb4d9f00e29ad9841f49ffbc802174c1824d0fb443db1aa455cb"
         },
         {
+          "path": "data/quiz/production_context/historie/villa_stenersen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_stenersen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "bef04ad67576cf493130e64f7c8db9736b1224c48951e715b0d14107c5181255"
+        },
+        {
           "path": "data/quiz/production_context/historie/waisenhuset_kongens_gate.json",
           "required": false,
           "fields": [
@@ -4461,20 +4497,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "61b61c91ab99203cf748537f798644721269443ec0b747c77d24cee606b06c76",
+      "package_content_sha256": "11f7d3d8a681c01a4b2777b9057568201bbc492da7456b77cf02eb2d21b23dc4",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 229,
+      "referenced_file_count": 232,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "cd3c3223d9687e60d9becc110fd6d6dc445d6bf6a702b8af99e3daf22be5db7a",
-      "content_sha256": "200a1c45fe34281de4685b598253909f111b035cefefa0a6705d03c19cc0f3ed",
+      "structure_sha256": "f4eacc41a03a3e7d9747b5b3964335458a9979d14919437c86008ed520792de3",
+      "content_sha256": "f7533418c644b537614cb9285f768b585cc6cc1989de7bdeccc9988fd0e61dc7",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -9021,5 +9057,5 @@
       ]
     }
   },
-  "release_sha256": "3ab1589e5aa47ccacb33dda1f6fcc10f8dc005dc88d2737484e3fb68c4dfa235"
+  "release_sha256": "4facf282fa9f73c5195c22933db44d947c72477915a50508bda44fbd86d2f5c2"
 }
