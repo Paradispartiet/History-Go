@@ -41,7 +41,7 @@ const C=(x,y,r,fill,attrs="")=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+
 const L=(x,y,X,Y,col="#63795e",w=4)=>P("M"+x+" "+y+"L"+X+" "+Y,"none",'stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"');
 const leaf=(x,y,r,c,rot=0)=>E(x,y,r*.58,r,c,rot,'stroke="#4d7559" stroke-width="1"');
 function flower(x,y,n,size,c,center="#d6a83e"){let s="";for(let i=0;i<n;i++){const a=i*Math.PI*2/n;s+=E(x+Math.sin(a)*size*.72,y-Math.cos(a)*size*.72,size*.37,size*.72,c,a*180/Math.PI);}return s+C(x,y,size*.32,center);}
-function umbel(x,y,scale,c){let a=L(x,y+46*scale,x,y+4*scale,"#7d9969",4);for(let i=-4;i<=4;i++){const xx=x+i*14*scale, yy=y+Math.abs(i)*3*scale;a+=L(x,y+3*scale,xx,yy-9*scale,"#739768",2);for(let j=0;j<3;j++)a+=flower(xx+(j-1)*5*scale,yy-(j%2)*5*scale,5,4*scale,c,"#d5c17d");}return a;}
+function umbel(x,y,scale,c){let a=L(x,y+46*scale,x,y+4*scale,"#7d9969",4);for(let i=-4;i<=4;i++){const xx=x+i*14*scale, yy=y+Math.abs(i)*3*scale;a+=L(x,y+3*scale,xx,yy-9*scale,"#739768",2);for(let j=0;j<3;j++)a+=C(xx+(j-1)*5*scale,yy-(j%2)*5*scale,3.5*scale,c);}return a;}
 function shrub(k,col){
  let a=P("M295 389Q287 258 295 169M297 294Q223 234 159 201M300 276Q370 230 442 175","none",'stroke="#796c53" stroke-width="10"');
  if(k==="sitka"||k==="thuja"){
@@ -63,7 +63,7 @@ function shrub(k,col){
   else if(k==="barberry"){a+=leaf(x,y,15,i%3?"#9f7352":"#bb5354",i*35);if(i%2===0)a+=E(x+8,y+11,4,9,col,20);}
   else if(k==="mahonia"){a+=leaf(x,y,22,i%3?"#345e57":"#4a7764",i*26);if(i%3===0)a+=C(x+8,y+8,5,"#344c7b");if(i%5===0)a+=flower(x-7,y-8,5,9,col);}
   else if(k==="cinquefoil"){a+=leaf(x,y,16,"#769f6c",i*24);if(i%3===0)a+=flower(x,y,5,13,col);}
-  else if(k==="laburnum"){a+=leaf(x,y,17,"#659763",i*22);if(i%4===0){for(let t=0;t<6;t++)a+=flower(x+4,y+6+t*12,5,7,col);}}
+  else if(k==="laburnum"){a+=leaf(x,y,17,"#659763",i*22);if(i%4===0){for(let t=0;t<6;t++)a+=E(x+4,y+6+t*12,6,9,col,22);}}
  }
  if(k==="barberry")for(let j=0;j<12;j++)a+=P("M"+(179+j*19)+" "+(224+j%4*17)+"l-7 -12 12 7Z","#66533e");
  return a;
@@ -79,7 +79,7 @@ function tallPlant(k,col){
    for(let t=0;t<12;t++){const yy=top+t*13;const rr=21-(t*.9);for(let h=-1;h<=1;h++)a+=E(x+h*rr,yy,6+(t%3),9+(t%2),t%4?"#807ac7":"#e2a2c9",h*29);}
    for(let t=0;t<3;t++){const y=282+t*31;for(let h=0;h<7;h++){const v=h*6.28/7;a+=leaf(x+Math.cos(v)*30,y+Math.sin(v)*16,19,"#74a274",v*57.3);}}
   } else if(k==="goldenrod"){
-   for(let t=0;t<11;t++){const yy=top+20+t*12,w=45-t*2;for(let h=-1;h<=1;h++){a+=L(x,yy,x+h*w,yy-12,"#6b935e",2);for(let m=0;m<4;m++)a+=flower(x+h*w*(m/4),yy-10-(m%2)*5,5,4,col);}}
+   for(let t=0;t<11;t++){const yy=top+20+t*12,w=45-t*2;for(let h=-1;h<=1;h++){a+=L(x,yy,x+h*w,yy-12,"#6b935e",2);for(let m=0;m<3;m++)a+=C(x+h*w*(m/3),yy-10-(m%2)*5,3.5,col);}}
    for(let t=0;t<5;t++)a+=leaf(x+(t%2?28:-27),255+t*24,24,"#709a68",t%2?48:-48);
   } else if(k==="balsam"){
    for(let t=0;t<7;t++){const yy=top+24+t*30;const xx=x+(t%2?24:-23);a+=leaf(xx,yy+13,25,"#6f9d75",t%2?58:-58);
@@ -88,7 +88,7 @@ function tallPlant(k,col){
   else if(k==="hogweed"){a+=umbel(x,top,1.9*sc,col);for(let t=0;t<3;t++){const yy=257+t*42;a+=P("M"+x+" "+yy+"Q"+(x-100)+" "+(yy-82)+" "+(x-62)+" "+(yy+22)+"Q"+x+" "+(yy+37)+" "+(x+61)+" "+(yy+16)+"Q"+(x+91)+" "+(yy-71)+" "+x+" "+yy+"Z","#74a26d",'stroke="#497850" stroke-width="2"');}}
   else if(k==="knotweed"){
    for(let t=0;t<6;t++){const yy=top+38+t*38;const dir=t%2?1:-1; a+=L(x-5,yy,x+6,yy,"#9e655c",5);a+=P("M"+x+" "+yy+"Q"+(x+dir*75)+" "+(yy-46)+" "+(x+dir*67)+" "+(yy+28)+"Q"+(x+dir*25)+" "+(yy+58)+" "+x+" "+yy+"Z","#6e9d70");}
-   for(let t=0;t<8;t++)a+=flower(x+(t%2?23:-21),top+20+t*16,5,5,col);
+   for(let t=0;t<8;t++)a+=C(x+(t%2?23:-21),top+20+t*16,5,col);
   }
  }
  return a;
