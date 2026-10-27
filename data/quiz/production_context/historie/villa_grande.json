@@ -1,0 +1,784 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "villa_grande",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1773,
+    "selection_sha256": "5226f5b55a141a40a685f2f609d5ab06599a4450f1c8210ce536747ae5441b3f",
+    "category_id": "historie",
+    "target_id": "villa_grande"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/villa_grande.json",
+      "bytes": 28249,
+      "sha256": "b766b572d045023897fb133d20c4ff4631d18bd933b189ed518c8455be203b89"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/villa_grande.json",
+      "bytes": 13805,
+      "sha256": "55ca02913a5ac8e607d06520f07643db94315017c87de4e0e7490bad42bb4b8d"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1309,
+      "selection_sha256": "790a82e539a80319af82c2dcb15d696b8ccdd9bee9933eeb0d959f5b64e6bfa4"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_villa_grande.json",
+        "matches": 1,
+        "selection_bytes": 2035,
+        "selection_sha256": "a260fea934d3440624acd1fda25d750df11f02626245577a08092c82c8952f04"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/villa_grande_sets.json",
+  "source_registry": {
+    "hl": {
+      "url": "https://www.hlsenteret.no/utstillinger/qr/artikler/introduction.html",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Source used for specific historically stated facts; not for undocumented reconstruction."
+    },
+    "bunker": {
+      "url": "https://www.hlsenteret.no/utstillinger/bunker/",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Source used for specific historically stated facts; not for undocumented reconstruction."
+    },
+    "oslo": {
+      "url": "https://oslobyleksikon.no/side/Villa_Grande",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Source used for specific historically stated facts; not for undocumented reconstruction."
+    },
+    "snl": {
+      "url": "https://snl.no/Villa_Grande",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Source used for specific historically stated facts; not for undocumented reconstruction."
+    },
+    "fredning": {
+      "url": "https://lovdata.no/dokument/LF/forskrift/2005-01-03-175/KAPITTEL_8",
+      "source_type": "legal_protection_record",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Source used for specific historically stated facts; not for undocumented reconstruction."
+    },
+    "arkitekt": {
+      "url": "https://lmr-arkitektur.no/prosjekter/interior/hl-senteret-villa-grande",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Source used for specific historically stated facts; not for undocumented reconstruction."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/villa_grande_sets.json",
+      "data/quizcards/historie/manifest.json"
+    ],
+    "active_before": {
+      "set_count": 1,
+      "question_count": 3
+    },
+    "decisions": [
+      "Preserve the original three question IDs and core facts.",
+      "Expand 3 to 21 with historically distinct claims, each sourced.",
+      "Use no date-only questions."
+    ],
+    "knowledge_migration": "Rebuild canonical Knowledge IDs with the repository generator."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Origin and occupation; physical historical evidence; postwar reuse, memorial institution and source criticism."
+  },
+  "held_back_candidates": [
+    "Speculative dialogue involving Quisling, unverified room usage and sensational descriptions of Holocaust.",
+    "Exact attribution of motives or private actions not documented in the sources."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_minnesteder_historiebruk",
+        "title": "Minnesteder, ritual og offentlig historiebruk",
+        "score": 100
+      },
+      {
+        "id": "em_his_minoritetshistorie",
+        "title": "Minoritetspolitikk og minoritetshistorie",
+        "score": 100
+      },
+      {
+        "id": "em_his_okkupasjon_motstand",
+        "title": "Okkupasjon og motstand",
+        "score": 100
+      },
+      {
+        "id": "em_his_riving_ombruk_bevaring",
+        "title": "Riving, ombruk og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_krig_okkupasjon_okkupasjon_og_motstand",
+        "title": "Okkupasjon og motstand: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 33
+      },
+      {
+        "id": "his_minnested_ritual_offentlig_sorg",
+        "title": "Minnested, ritual og offentlig sorg",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 33
+      },
+      {
+        "id": "his_minoritetspolitikk_kategorisering_registrering",
+        "title": "Minoritetspolitikk, kategorisering og registrering",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 33
+      },
+      {
+        "id": "his_okkupasjon_byrom_kontroll",
+        "title": "Okkupasjon som byrom og kontroll",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 33
+      },
+      {
+        "id": "his_statsborgerskap_status_rettigheter",
+        "title": "Statsborgerskap, juridisk status og rettigheter",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 33
+      },
+      {
+        "id": "his_bevaring_restaurering_autentisitet",
+        "title": "Bevaring, restaurering og autentisitet",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_digital_kulturarv_formidling",
+        "title": "Digital kulturarv og formidling",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_diskriminering_rasisme_ekskludering",
+        "title": "Diskriminering, rasisme og ekskludering",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 23
+      },
+      {
+        "id": "his_familie_transnasjonale_band",
+        "title": "Familie, livsløp og transnasjonale bånd",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 23
+      },
+      {
+        "id": "his_fravaer_taushet_motminne",
+        "title": "Fravær, taushet og motminne",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+        "title": "Avkolonisering og utviklingspolitikk: forklarings- og kildebane",
+        "category_id": "his_global_kolonial_transnasjonal",
+        "score": 23
+      },
+      {
+        "id": "his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+        "title": "Globale kriger og internasjonale organisasjoner: forklarings- og kildebane",
+        "category_id": "his_global_kolonial_transnasjonal",
+        "score": 23
+      },
+      {
+        "id": "his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+        "title": "Migrasjon, diaspora og transnasjonale nettverk: forklarings- og kildebane",
+        "category_id": "his_global_kolonial_transnasjonal",
+        "score": 23
+      },
+      {
+        "id": "his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+        "title": "Misjon, kunnskap og kulturelle møter: forklarings- og kildebane",
+        "category_id": "his_global_kolonial_transnasjonal",
+        "score": 23
+      },
+      {
+        "id": "his_jubileum_seremoni_historiebruk",
+        "title": "Jubileum, seremoni og historiebruk",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_kontrovers_fjerning_omtolking",
+        "title": "Kontrovers, fjerning og omtolking",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat",
+        "title": "Kald krig, beredskap og sikkerhetsstat: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_motstand_samarbeid_tilpasning_og_grasoner",
+        "title": "Motstand, samarbeid, tilpasning og gråsoner: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+        "title": "Okkupasjon, samarbeid, tilpasning og motstand: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_rettsoppgjor_og_etterkrig",
+        "title": "Rettsoppgjør og etterkrig: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_monument_symbol_makt",
+        "title": "Monument, symbol og makt",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_museum_samling_kanon",
+        "title": "Museum, samling og kanon",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_rettsoppgjor_legitimitet_minne",
+        "title": "Rettsoppgjør, legitimitet og minne",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "category_id": "his_tid_periodisering",
+        "score": 23
+      },
+      {
+        "id": "his_sprak_religion_institusjoner",
+        "title": "Språk, religion og minoritetsinstitusjoner",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 23
+      },
+      {
+        "id": "his_stedsnavn_navnepolitikk",
+        "title": "Stedsnavn og navnepolitikk",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_taushet_fravaer",
+        "title": "Taushet, fravær og blindsoner",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 23
+      },
+      {
+        "id": "his_tilhorighet_identitet_minne",
+        "title": "Tilhørighet, identitet og minne",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 23
+      },
+      {
+        "id": "his_ankomst_bosetting_bolig",
+        "title": "Ankomst, bosetting og bolig",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 10
+      },
+      {
+        "id": "his_bevaring_ombruk_kulturmiljo",
+        "title": "Bevaring, ombruk og kulturmiljø",
+        "category_id": "his_byhistorie_stedsendring",
+        "score": 10
+      },
+      {
+        "id": "his_gatenett_tomtestruktur_infrastruktur",
+        "title": "Gatenett, tomtestruktur og infrastruktur",
+        "category_id": "his_byhistorie_stedsendring",
+        "score": 10
+      },
+      {
+        "id": "his_organisering_motstand_offentlighet",
+        "title": "Organisering, motstand og offentlighet",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 10
+      },
+      {
+        "id": "his_sanering_riving_fortrengning",
+        "title": "Sanering, riving og fortrengning",
+        "category_id": "his_byhistorie_stedsendring",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_okkupasjon_motstand",
+      "em_his_minnesteder_historiebruk",
+      "em_his_minoritetshistorie",
+      "em_his_riving_ombruk_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_krig_okkupasjon_okkupasjon_og_motstand",
+      "his_minnested_ritual_offentlig_sorg",
+      "his_minoritetspolitikk_kategorisering_registrering",
+      "his_okkupasjon_byrom_kontroll"
+    ],
+    "method_ids": [
+      "met_muntlig_historie",
+      "met_institusjonshistorisk_analyse",
+      "met_prosopografi",
+      "met_minnesteds_og_ritualanalyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_villa_grande_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Villa Grande ble under okkupasjonen knyttet til Quisling og Nasjonal Samling og fikk navnet Gimle.",
+      "source_ids": [
+        "hl",
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Villa Grande har senere fått en ny rolle gjennom HL-senteret, som arbeider med Holocaust, minoriteter og menneskerettigheter.",
+      "source_ids": [
+        "hl",
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "concept_theory",
+      "statement": "Villa Grande viser hvordan et bygg kan få ny moralsk og historisk betydning når bruken endres over tid.",
+      "source_ids": [
+        "hl",
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_riving_ombruk_bevaring"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Sam Eyde var byggherre for det opprinnelige prosjektet på Bygdøy.",
+      "source_ids": [
+        "snl",
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Villaen stod lenge uferdig gjennom flere eierskifter før okkupasjonstidens ombygging.",
+      "source_ids": [
+        "hl",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Navnet Gimle viste til norrøn mytologi og inngikk i regimets symbolbruk.",
+      "source_ids": [
+        "oslo",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Tårn og monumentale bygningsformer gjorde den gamle villaen til en iscenesatt residens.",
+      "source_ids": [
+        "oslo",
+        "arkitekt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "HL-senteret dokumenterer at bunkeren ble bygd til Quisling som et personlig tilfluktsrom.",
+      "source_ids": [
+        "bunker"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "De omfattende tekniske sikkerhetstiltakene viser bunkerens funksjon som tilfluktsrom.",
+      "source_ids": [
+        "bunker"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Fredningsforskriften angir både bygningens ytre, utvalgte rom og hagen.",
+      "source_ids": [
+        "fredning"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_riving_ombruk_bevaring"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Fredningsvedtaket omfatter blant annet Quislings kontor, hirdsalen og tårnrom.",
+      "source_ids": [
+        "fredning"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_riving_ombruk_bevaring"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Bevaring gjør det mulig å undersøke regimets maktuttrykk uten å slutte seg til ideologien.",
+      "source_ids": [
+        "fredning",
+        "hl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Den britiske generalen Andrew Thorne og hans stab brukte villaen i 1945.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Huset hadde blant annet en periode som Frankrikes ambassade etter andre verdenskrig.",
+      "source_ids": [
+        "oslo",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Villa Grande har hatt flere funksjoner; bruken som forsknings- og minneinstitusjon kom etter flere andre institusjoner.",
+      "source_ids": [
+        "oslo",
+        "hl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "HL-senteret arbeider med forskning, dokumentasjon og undervisning om Holocaust og religiøse minoriteter.",
+      "source_ids": [
+        "hl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minoritetshistorie"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Historien krever kritisk formidling av regimets egen selvframstilling og de historiske konsekvensene.",
+      "source_ids": [
+        "hl",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materielle spor kan dokumentere rom og inventar, men påstander om hendelser krever andre kilder.",
+      "source_ids": [
+        "fredning",
+        "arkitekt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Den offisielle forskriften angir omfanget av den juridiske fredningen.",
+      "source_ids": [
+        "fredning"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_riving_ombruk_bevaring"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bunkeren er en materiell kilde til tekniske løsninger, ikke en fullstendig beretning om hendelser.",
+      "source_ids": [
+        "bunker"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_villa_grande_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Institusjonens presentasjon dokumenterer mandatet til forskning, undervisning og formidling.",
+      "source_ids": [
+        "hl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minoritetshistorie"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_villa_grande_gimle_hl_senteret_1941",
+      "source_file": "data/stories/stories_villa_grande.json",
+      "summary": "Villa Grande gikk fra uferdig storvilla til Quislings residens under navnet Gimle, deretter alliert hovedkvarter og til slutt HL-senterets kunnskaps- og minnested."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_villa_grande_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_villa_grande_quiz_01",
+        "claim_villa_grande_quiz_02",
+        "claim_villa_grande_quiz_03",
+        "claim_villa_grande_quiz_04",
+        "claim_villa_grande_quiz_05",
+        "claim_villa_grande_quiz_06",
+        "claim_villa_grande_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_villa_grande_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_villa_grande_quiz_08",
+        "claim_villa_grande_quiz_09",
+        "claim_villa_grande_quiz_10",
+        "claim_villa_grande_quiz_11",
+        "claim_villa_grande_quiz_12",
+        "claim_villa_grande_quiz_13",
+        "claim_villa_grande_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_villa_grande_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_villa_grande_quiz_15",
+        "claim_villa_grande_quiz_16",
+        "claim_villa_grande_quiz_17",
+        "claim_villa_grande_quiz_18",
+        "claim_villa_grande_quiz_19",
+        "claim_villa_grande_quiz_20",
+        "claim_villa_grande_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 11,
+      "context": 4,
+      "concept_theory": 6
+    },
+    "ratios": {
+      "fact": 0.524,
+      "context": 0.19,
+      "concept_theory": 0.286
+    }
+  }
+}
