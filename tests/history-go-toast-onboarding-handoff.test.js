@@ -123,6 +123,30 @@ function harness({ ready = true, greeted = true } = {}) {
   assert.equal(t.toastText(), "Synlig med aktivt oppdrag");
 }
 
+// Reward cards and ordinary messages must use the same display slot.
+{
+  const t = harness();
+  const events = [];
+  t.context.showToast("Før belønning", 1000);
+  t.context.HGToastRuntime.enqueueReward((done) => {
+    events.push("reward-shown");
+    t.context.setTimeout(() => { events.push("reward-closed"); done(); }, 800);
+  });
+  t.context.showToast("Etter belønning", 1000);
+  t.tick(260);
+  assert.equal(t.toastText(), "Før belønning");
+  t.tick(1000);
+  assert.equal(events.length, 0, "reward cannot cover an active ordinary toast");
+  t.tick(120);
+  assert.equal(events[0], "reward-shown");
+  assert.equal(t.context.HGToastRuntime.isShowing(), true);
+  t.tick(800);
+  assert.equal(events[1], "reward-closed");
+  t.tick(120);
+  assert.equal(t.toastText(), "Etter belønning");
+  assert.equal(t.context.HGToastRuntime.getPendingCount(), 0);
+}
+
 // The Civication mission survives a reload even when older than 24 hours.
 {
   const t = harness();
@@ -132,6 +156,14 @@ function harness({ ready = true, greeted = true } = {}) {
   }), true);
   assert.equal(t.context.HGCivicationMode.getSession().title, "Oppdrag fra Civication");
   assert.equal(t.context.HGCivicationMode.getSession().place_id, "akershus_festning");
+  // Returning to Civication must not destroy the ongoing mission.
+  t.context.HGCivicationMode.returnToCivication();
+  assert.equal(t.context.location.href, "Civication.html");
+  assert.equal(t.context.HGCivicationMode.getSession().place_id, "akershus_festning");
+  assert.equal(t.storage.has("hg_civication_mode_v1"), true);
+  // An explicit end remains the only operation that discards the session.
+  t.context.HGCivicationMode.endSession();
+  assert.equal(t.storage.has("hg_civication_mode_v1"), false);
 }
 
 assert.match(welcome, /Besøk stedet og samle stedskortet/);
