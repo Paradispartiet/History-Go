@@ -6,8 +6,8 @@ const kind = document.body.dataset.natureKind;
 if (!["fauna","flora"].includes(kind)) return;
 const icon = kind === "fauna" ? "🐾" : "🌿";
 const grid=document.getElementById("natureGrid"),stats=document.getElementById("natureStats"),count=document.getElementById("natureCount"),
- search=document.getElementById("natureSearch"),message=document.getElementById("natureMessage"),more=document.getElementById("natureMore"),
- dialog=document.getElementById("natureDialog"),details=document.getElementById("natureDetails");
+ search=/** @type {HTMLInputElement} */ (document.getElementById("natureSearch")),message=document.getElementById("natureMessage"),more=document.getElementById("natureMore"),
+ dialog=/** @type {HTMLDialogElement} */ (document.getElementById("natureDialog")),details=document.getElementById("natureDetails");
 let all=[],activeFilter="all",limit=36;
 const node=(tag,cls,txt)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(txt!=null)x.textContent=String(txt);return x;};
 const list=(v)=>Array.isArray(v)?v.filter(Boolean).map(String):v?[String(v)]:[];
@@ -119,7 +119,7 @@ dialog.addEventListener("click",e=>{if(e.target===dialog)closeDialog();});
 const toggle=document.getElementById("natureMenuToggle"),nav=document.getElementById("natureMenu");
 const closeMenu=()=>{nav.hidden=true;toggle.setAttribute("aria-expanded","false");};
 toggle.addEventListener("click",()=>{nav.hidden=!nav.hidden;toggle.setAttribute("aria-expanded",String(!nav.hidden));});
-document.addEventListener("click",e=>{if(!e.target.closest(".ne-menu-wrap"))closeMenu();});
+document.addEventListener("click",e=>{if (!(e.target instanceof Element) || !e.target.closest(".ne-menu-wrap")) closeMenu();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu();});
 document.getElementById("natureBack").addEventListener("click",()=>{
  try{if(document.referrer&&new URL(document.referrer).origin===location.origin&&history.length>1){history.back();return;}}
