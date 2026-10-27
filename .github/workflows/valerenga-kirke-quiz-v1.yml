@@ -1,0 +1,79 @@
+name: Vålerenga kirke canonical quiz materialization
+on:
+  push:
+    branches:
+      - content/valerenga-kirke-quiz-v1-20261027
+    paths:
+      - .github/workflows/valerenga-kirke-quiz-v1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/valerenga-kirke-quiz-v1-20261027
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Produce reviewed quiz, brief, QuizCard and manifests
+        run: node scripts/materialize-valerenga-kirke-quiz-20261027.mjs
+      - name: Generate canonical history production context
+        run: npm run quiz:context -- --category historie --target valerenga_kirke --output data/quiz/production_context/historie/valerenga_kirke.json
+      - name: Generate canonical Knowledge (no invented IDs)
+        run: npm run knowledge:canonical:write
+      - name: Synchronize linked QuizCard questions and check target contract
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const quizPath='data/quiz/historie/valerenga_kirke_sets.json';
+          const cardPath='data/quizcards/historie/valerenga_kirke_quizcard_v1.json';
+          const quiz=JSON.parse(fs.readFileSync(quizPath,'utf8'));
+          const card=JSON.parse(fs.readFileSync(cardPath,'utf8'));
+          const qs=quiz.sets.flatMap(s=>s.questions);
+          const originals=card.cards[0].questions;
+          if(quiz.sets.length!==3 || quiz.sets.some(s=>s.questions.length!==7) || qs.length!==21 || originals.length!==10)throw Error('3x7 and QuizCard10 contract violation');
+          if(new Set(qs.map(q=>q.id)).size!==21)throw Error('Duplicate quiz ID');
+          if(qs.some(q=>!q.primary_knowledge_unit_id || !q.knowledge_unit_ids?.length || q.answer!==q.options[q.answerIndex]))throw Error('Invalid knowledge link or answer');
+          if(qs.some(q=>/^\d{4}$/.test(q.answer)))throw Error('Unwanted exact-year answer');
+          if(qs.slice(0,14).some(q=>q.method_id||q.topic_hook_id||q.thinker_id||q.theory_ref||!['fact','context','observation','analysis','comparison'].includes(q.question_type)))throw Error('Invalid normal opening');
+          card.cards[0].questions=originals.map((prev,i)=>{
+            const linked=qs.find(q=>q.id===prev.id);
+            if(!linked)throw Error('QuizCard source not in quiz');
+            return {...linked,number:i+1,sourceQuestionId:linked.id,sourceQuizId:linked.quiz_id,sourceQuizFile:quizPath};
+          });
+          card.cards[0].answerKey=card.cards[0].questions.map((q,i)=>({number:i+1,answer:q.answer,answerIndex:q.answerIndex}));
+          fs.writeFileSync(cardPath,JSON.stringify(card,null,2)+'\n');
+          console.log('PASS: 21 questions, 3x7, 10 linked QuizCard items, 0 exact-year answers, 21 Knowledge links');
+          NODE
+      - name: Commit canonical artifacts on branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fag/fag_manifest.json data/quiz/manifest.json data/quiz/historie/valerenga_kirke_sets.json data/quiz/production_briefs/historie/valerenga_kirke.json data/quiz/production_context/historie/valerenga_kirke.json data/quizcards/historie/manifest.json data/quizcards/historie/valerenga_kirke_quizcard_v1.json data/knowledge reports/knowledge-id-backfill.json reports/knowledge-contract-audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Produce Vålerenga kirke canonical 3x7 quiz, QuizCard and Knowledge"
+            git push
+          fi
+      - name: Target context validation
+        run: npm run quiz:context -- --category historie --target valerenga_kirke --output data/quiz/production_context/historie/valerenga_kirke.json --check
+      - name: Canonical Knowledge audit
+        run: npm run knowledge:canonical:check
+      - name: Quiz production and manifest audits
+        run: |
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+      - name: Theory and progression audits (including baseline regressions)
+        run: |
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
