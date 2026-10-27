@@ -24,6 +24,16 @@ test("all main app entries require login and remain hidden until verification", 
   assert.match(readFileSync("js/app.js", "utf8"), /await window\.HGLoginGate\.ready/);
 });
 
+test("service worker cannot serve stale unauthenticated HTML from its offline cache", () => {
+  const sw = readFileSync("sw.js", "utf8");
+  const precache = sw.match(/const PRECACHE_URLS = \\[([\\s\\S]*?)\\];/);
+  assert.ok(precache, "precache declaration is present");
+  assert.doesNotMatch(precache[1], /["'](?:\\.\\/|[^"']*\\.html)["']/);
+  assert.match(sw, /if \\(req\\.mode === "navigate"\\)/);
+  assert.match(sw, /return await fetchWithTimeout\\(req, 4500\\)/);
+  assert.doesNotMatch(sw, /event\\.respondWith\\(networkFirst\\(req, CACHE_STATIC\\)\\)/);
+});
+
 test("legacy redirect pages only forward to the guarded knowledge page", () => {
   for (const file of redirectOnly) {
     const html = readFileSync(file, "utf8");
