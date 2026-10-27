@@ -17,22 +17,33 @@ const digest = data => crypto.createHash('sha256').update(data).digest('hex');
 const imageRoot = 'bilder/places/oslo-sentrum-next-six-20261027';
 const sourcesRoot = 'reports/place-production/oslo-sentrum-next-six-media-provenance-20261027.json';
 const output = [];
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const body = async (url) => {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 80000);
-  try {
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: { 'User-Agent':'HistoryGoOsloEditorial/1.0 (GitHub Paradispartiet/History-Go; licensed documentary images)', Accept:'image/jpeg,image/png,image/webp' },
-      redirect: 'follow'
-    });
-    if (!res.ok) throw new Error('Source HTTP '+res.status+' for '+url);
-    const type = String(res.headers.get('content-type')||'');
-    if (!type.startsWith('image/')) throw new Error('Not an image response: '+type);
-    const data = Buffer.from(await res.arrayBuffer());
-    if (data.length < 20000 || data.length > 40*1024*1024) throw new Error('Unexpected image file size '+data.length);
-    return data;
-  } finally { clearTimeout(timeout); }
+  for (let attempt = 0; attempt < 5; attempt++) {
+    if (attempt) {
+      const backoff = [0, 16000, 35000, 58000, 86000][attempt];
+      console.log('WIKIMEDIA_SOURCE_RETRY', attempt, backoff, url);
+      await sleep(backoff);
+    }
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 80000);
+    try {
+      const res = await fetch(url, {
+        signal: controller.signal,
+        headers: { 'User-Agent':'HistoryGoOsloEditorial/1.0 (GitHub Paradispartiet/History-Go; licensed documentary images)', Accept:'image/jpeg,image/png,image/webp' },
+        redirect: 'follow'
+      });
+      if ((res.status === 429 || res.status >= 500) && attempt < 4) continue;
+      if (!res.ok) throw new Error('Source HTTP '+res.status+' for '+url);
+      const type = String(res.headers.get('content-type')||'');
+      if (!type.startsWith('image/')) throw new Error('Not an image response: '+type);
+      const data = Buffer.from(await res.arrayBuffer());
+      if (data.length < 20000 || data.length > 40*1024*1024) throw new Error('Unexpected image file size '+data.length);
+      await sleep(14000); // respect Commons rate limits between consecutive originals
+      return data;
+    } finally { clearTimeout(timeout); }
+  }
+  throw new Error('Wikimedia source refused after retry budget: '+url);
 };
 for(const item of manifest.images){
   if (!item.sourcePage.startsWith('https://commons.wikimedia.org/wiki/File:') ||
