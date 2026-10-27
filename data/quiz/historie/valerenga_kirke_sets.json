@@ -1,0 +1,1164 @@
+{
+  "targetId": "valerenga_kirke",
+  "categoryId": "historie",
+  "generator_version": "source_review_oslo_aav_20261027",
+  "size_class": "narrow",
+  "sources": {
+    "valerenga_kirken": "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+    "oslo_byleksikon": "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/valerenga_kirke.json",
+    "context_artifact": "data/quiz/production_context/historie/valerenga_kirke.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_historiske_lag_i_byrom",
+      "em_his_spor_materialitet",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_kulturminner_bevaring",
+      "em_his_restaurering_autentisitet"
+    ],
+    "topic_hook_ids": [
+      "his_spor_materialitet",
+      "his_bevaring_restaurering_autentisitet"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_restaurerings_autentisitetsanalyse"
+    ],
+    "thinker_ids": [
+      "carlo_ginzburg",
+      "alois_riegl"
+    ],
+    "works": [
+      "Clues, Myths, and the Historical Method",
+      "The Modern Cult of Monuments"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/fag/fag_manifest.json",
+        "data/quiz/historie/valerenga_kirke_sets.json",
+        "reports/place-production/valerenga-kirke-quiz-reviewed-20261027.json"
+      ],
+      "active_before": {
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "No active target-owned quiz in canonical manifest or source category before production.",
+        "Keep canonical Place/Fagverk/photos intact and convert reviewed source candidates into the production bank."
+      ],
+      "knowledge_migration": "Canonical Knowledge generator assigns stable IDs, never construct guessed IDs."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Three distinct source-supported stages: 1902 church, fire and loss, 1984 rebuilding and conservation/interpretation. 21 verified questions, no pure-year answers."
+    },
+    "held_back_candidates": [
+      "Pure-year answer questions.",
+      "Unsupported exact restoration or organ attribution; two external references disagree about number of organ stops.",
+      "Treating Paulus-deposited Vigeland frieze as saved original frescoes.",
+      "Conflating shared competition designers with single executing architect."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "historie_valerenga_kirke_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_valerenga_kirke_quiz_01",
+        "claim_valerenga_kirke_quiz_02",
+        "claim_valerenga_kirke_quiz_03",
+        "claim_valerenga_kirke_quiz_04",
+        "claim_valerenga_kirke_quiz_05",
+        "claim_valerenga_kirke_quiz_06",
+        "claim_valerenga_kirke_quiz_07"
+      ],
+      "title": "Byggingen og kirkens særpreg",
+      "questions": [
+        {
+          "id": "valerenga_kirke_reviewed_01",
+          "quiz_id": "historie_valerenga_kirke_set_1_q1",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvilken gård kom kirketomten opprinnelig fra?",
+          "options": [
+            "Vaalerengen hovedgård",
+            "Hovedøya klostergods",
+            "Frogner hovedgård",
+            "Bogstad gård"
+          ],
+          "answer": "Vaalerengen hovedgård",
+          "answerIndex": 0,
+          "knowledge": "Bystyret vedtok å kjøpe Vaalerengen hovedgård som kirketomt før kirken ble reist.",
+          "explanation": "Bystyret vedtok å kjøpe Vaalerengen hovedgård som kirketomt før kirken ble reist.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_01",
+          "claim_basis": "Kirketomten ble hentet fra Vaalerengen hovedgård.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bystyret_vedtok_a_kj_pe__d95785410b",
+          "knowledge_unit_ids": [
+            "ku_historie_bystyret_vedtok_a_kj_pe__d95785410b"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_02",
+          "quiz_id": "historie_valerenga_kirke_set_1_q2",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvilken arkitekt nevner Vålerenga menighet i sin historikk om den opprinnelige kirken?",
+          "options": [
+            "Asbjørn Stein",
+            "Holger Sinding-Larsen",
+            "Arnstein Arneberg",
+            "Georg Andreas Bull"
+          ],
+          "answer": "Holger Sinding-Larsen",
+          "answerIndex": 1,
+          "knowledge": "Menigheten oppgir Holger Sinding-Larsen. Oslo byleksikon nevner også Heinrich Jürgensen som arkitekt etter konkurranse, så kildeattribusjonen er presisert.",
+          "explanation": "Menigheten oppgir Holger Sinding-Larsen. Oslo byleksikon nevner også Heinrich Jürgensen som arkitekt etter konkurranse, så kildeattribusjonen er presisert.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_02",
+          "claim_basis": "Vålerenga menighets historikk oppgir Holger Sinding-Larsen som arkitekt; Oslo byleksikon nevner også Heinrich Jürgensen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_menigheten_oppgir_holger_dec5e8c8c2",
+          "knowledge_unit_ids": [
+            "ku_historie_menigheten_oppgir_holger_dec5e8c8c2",
+            "ku_historie_oslo_byleksikon_nevner_o_9f479ef350"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_03",
+          "quiz_id": "historie_valerenga_kirke_set_1_q3",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvilken stein preger kirkens hovedmurer?",
+          "options": [
+            "Iddefjordsgranitt",
+            "Larvikitt",
+            "Sandstein",
+            "Marmor"
+          ],
+          "answer": "Iddefjordsgranitt",
+          "answerIndex": 0,
+          "knowledge": "De massive hovedmurene er bygd i iddefjordsgranitt. De ble stående etter brannen og utgjør et viktig eldre bygningslag.",
+          "explanation": "De massive hovedmurene er bygd i iddefjordsgranitt. De ble stående etter brannen og utgjør et viktig eldre bygningslag.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_03",
+          "claim_basis": "Hovedmurene ble oppført i iddefjordsgranitt.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_de_massive_hovedmurene_e_799bb83f0a",
+          "knowledge_unit_ids": [
+            "ku_historie_de_massive_hovedmurene_e_799bb83f0a",
+            "ku_historie_de_ble_staende_etter_bra_949dfe6512"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_04",
+          "quiz_id": "historie_valerenga_kirke_set_1_q4",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvilket materiale ble blant annet brukt i kirkens hjørner og innfatninger?",
+          "options": [
+            "Kalkstein",
+            "Kleberstein",
+            "Glassert tegl",
+            "Porselen"
+          ],
+          "answer": "Kleberstein",
+          "answerIndex": 1,
+          "knowledge": "Kleberstein ble brukt i hjørner, innfatninger og deler av den opprinnelige innredningen, som døpefonten.",
+          "explanation": "Kleberstein ble brukt i hjørner, innfatninger og deler av den opprinnelige innredningen, som døpefonten.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_04",
+          "claim_basis": "Kleberstein preget hjørner og innfatninger.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kleberstein_ble_brukt_i__9116fe6b42",
+          "knowledge_unit_ids": [
+            "ku_historie_kleberstein_ble_brukt_i__9116fe6b42"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_05",
+          "quiz_id": "historie_valerenga_kirke_set_1_q5",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hva er særpreget ved plasseringen av kirkens tårn?",
+          "options": [
+            "Det står midt over koret",
+            "Det er frittstående i parken",
+            "Det står asymmetrisk",
+            "Det er bygd under bakken"
+          ],
+          "answer": "Det står asymmetrisk",
+          "answerIndex": 2,
+          "knowledge": "Tårnet er asymmetrisk plassert og gjør granittkirken lett å kjenne igjen fra Vålerenga park.",
+          "explanation": "Tårnet er asymmetrisk plassert og gjør granittkirken lett å kjenne igjen fra Vålerenga park.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_05",
+          "claim_basis": "Kirketårnet er asymmetrisk plassert.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_tarnet_er_asymmetrisk_pl_d1df626b1b",
+          "knowledge_unit_ids": [
+            "ku_historie_tarnet_er_asymmetrisk_pl_d1df626b1b"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_06",
+          "quiz_id": "historie_valerenga_kirke_set_1_q6",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Fra hvilken himmelretning kommer hovedinngangen til Vålerenga kirke?",
+          "options": [
+            "Nord",
+            "Vest",
+            "Sør",
+            "Øst"
+          ],
+          "answer": "Øst",
+          "answerIndex": 3,
+          "knowledge": "Hovedinngangen ligger mot øst, i motsetning til den vanlige kirkeorienteringen med alter mot øst.",
+          "explanation": "Hovedinngangen ligger mot øst, i motsetning til den vanlige kirkeorienteringen med alter mot øst.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_06",
+          "claim_basis": "Kirkens hovedinngang ligger mot øst.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_hovedinngangen_ligger_mo_6cae828ad4",
+          "knowledge_unit_ids": [
+            "ku_historie_hovedinngangen_ligger_mo_6cae828ad4"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_07",
+          "quiz_id": "historie_valerenga_kirke_set_1_q7",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvorfor ble kirken orientert slik at inngangen vendte mot øst?",
+          "options": [
+            "For å vende fasaden mot fjorden",
+            "For at kirken og skolen skulle ligge overfor hverandre",
+            "Fordi granitt bare kunne fraktes inn fra øst",
+            "For å følge en eldre middelalderkirke"
+          ],
+          "answer": "For at kirken og skolen skulle ligge overfor hverandre",
+          "answerIndex": 1,
+          "knowledge": "Kirken og Vålerenga skole ble bevisst plassert i forhold til hverandre. Orienteringen viser hvordan kirkens plassering hang sammen med det nye strøkets institusjoner.",
+          "explanation": "Kirken og Vålerenga skole ble bevisst plassert i forhold til hverandre. Orienteringen viser hvordan kirkens plassering hang sammen med det nye strøkets institusjoner.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_07",
+          "claim_basis": "Kirkens orientering ble valgt for å møte skolen overfor.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kirken_og_valerenga_skol_3fd1378da5",
+          "knowledge_unit_ids": [
+            "ku_historie_kirken_og_valerenga_skol_3fd1378da5",
+            "ku_historie_orienteringen_viser_hvor_1d05325418"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_valerenga_kirke_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_valerenga_kirke_quiz_08",
+        "claim_valerenga_kirke_quiz_09",
+        "claim_valerenga_kirke_quiz_10",
+        "claim_valerenga_kirke_quiz_11",
+        "claim_valerenga_kirke_quiz_12",
+        "claim_valerenga_kirke_quiz_13",
+        "claim_valerenga_kirke_quiz_14"
+      ],
+      "title": "Brannen og den tapte kunsten",
+      "questions": [
+        {
+          "id": "valerenga_kirke_reviewed_08",
+          "quiz_id": "historie_valerenga_kirke_set_2_q1",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hva slags arbeid førte til brannen som ødela kirken?",
+          "options": [
+            "Reparasjonsarbeid på taket",
+            "Elektrisk arbeid på orgelet",
+            "Sprengning i et tunnelløp",
+            "Oppussing av kirkekjelleren"
+          ],
+          "answer": "Reparasjonsarbeid på taket",
+          "answerIndex": 0,
+          "knowledge": "Brannen oppsto under blikkenslagerarbeid på taket i september 1979, ikke under vanlig gudstjeneste.",
+          "explanation": "Brannen oppsto under blikkenslagerarbeid på taket i september 1979, ikke under vanlig gudstjeneste.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_08",
+          "claim_basis": "Takreparasjon med blikkenslagere var brannårsaken.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_brannen_oppsto_under_bli_8a6ab7c683",
+          "knowledge_unit_ids": [
+            "ku_historie_brannen_oppsto_under_bli_8a6ab7c683"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_09",
+          "quiz_id": "historie_valerenga_kirke_set_2_q2",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvilken annen lokal bygning ble skadet av kirkebrannen?",
+          "options": [
+            "Vålerenga skole",
+            "Gamlebyen kirke",
+            "Helsfyr brannstasjon",
+            "Kampen kirke"
+          ],
+          "answer": "Vålerenga skole",
+          "answerIndex": 0,
+          "knowledge": "Også Vålerenga skole ble antent og skadet. Brannen fikk følger utover selve kirkerommet.",
+          "explanation": "Også Vålerenga skole ble antent og skadet. Brannen fikk følger utover selve kirkerommet.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_09",
+          "claim_basis": "Vålerenga skole ble også skadet under brannen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_ogsa_valerenga_skole_ble_b570f42294",
+          "knowledge_unit_ids": [
+            "ku_historie_ogsa_valerenga_skole_ble_b570f42294",
+            "ku_historie_brannen_fikk_f_lger_utov_32ba54ff6b"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_10",
+          "quiz_id": "historie_valerenga_kirke_set_2_q3",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hva stod i hovedsak igjen av Vålerenga kirke etter brannen?",
+          "options": [
+            "Murveggene",
+            "Den opprinnelige takstolen",
+            "Det store orgelet",
+            "De opprinnelige glassmaleriene"
+          ],
+          "answer": "Murveggene",
+          "answerIndex": 0,
+          "knowledge": "Steinmurene overlevde, mens tak, inventar og store deler av kunsten forsvant. Derfor er utsiden og innsiden ulike historiske lag.",
+          "explanation": "Steinmurene overlevde, mens tak, inventar og store deler av kunsten forsvant. Derfor er utsiden og innsiden ulike historiske lag.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_10",
+          "claim_basis": "I hovedsak ble kirkens murvegger stående etter brannen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_steinmurene_overlevde_me_8a346c93a6",
+          "knowledge_unit_ids": [
+            "ku_historie_steinmurene_overlevde_me_8a346c93a6",
+            "ku_historie_derfor_er_utsiden_og_inn_daceb8214f"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_11",
+          "quiz_id": "historie_valerenga_kirke_set_2_q4",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvem hadde laget kirkens opprinnelige fresker og glassmalerier?",
+          "options": [
+            "Gustav Vigeland",
+            "Emanuel Vigeland",
+            "Edvard Munch",
+            "Per Krohg"
+          ],
+          "answer": "Emanuel Vigeland",
+          "answerIndex": 1,
+          "knowledge": "Emanuel Vigeland utsmykket kirken med blant annet fresker og glassmalerier. Brannen ødela glassmaleriene og nesten alle freskene.",
+          "explanation": "Emanuel Vigeland utsmykket kirken med blant annet fresker og glassmalerier. Brannen ødela glassmaleriene og nesten alle freskene.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_11",
+          "claim_basis": "Emanuel Vigeland sto bak den opprinnelige store utsmykningen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_emanuel_vigeland_utsmykk_5ee1cf546c",
+          "knowledge_unit_ids": [
+            "ku_historie_emanuel_vigeland_utsmykk_5ee1cf546c",
+            "ku_historie_brannen_dela_glassmaleri_a84c50ce3b"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_12",
+          "quiz_id": "historie_valerenga_kirke_set_2_q5",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvilke bibelske motiver malte Emanuel Vigeland i det opprinnelige kirkerommet?",
+          "options": [
+            "Korsfestelsen og nattverden",
+            "Noahs ark og Babels tårn",
+            "Skapelsen og dommedag",
+            "Jesu fødsel og oppstandelsen"
+          ],
+          "answer": "Korsfestelsen og nattverden",
+          "answerIndex": 0,
+          "knowledge": "Korsfestelsen og nattverden var sentrale freskomotiver. De opprinnelige arbeidene kan ikke forveksles med kunst som senere kom inn i kirken.",
+          "explanation": "Korsfestelsen og nattverden var sentrale freskomotiver. De opprinnelige arbeidene kan ikke forveksles med kunst som senere kom inn i kirken.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_12",
+          "claim_basis": "Emanuel Vigelands fresker omfattet korsfestelsen og nattverden.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_korsfestelsen_og_nattver_1bc7af507e",
+          "knowledge_unit_ids": [
+            "ku_historie_korsfestelsen_og_nattver_1bc7af507e",
+            "ku_historie_de_opprinnelige_arbeiden_c16ae12d2b"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_13",
+          "quiz_id": "historie_valerenga_kirke_set_2_q6",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hva skjedde med den opprinnelige glasskunsten under brannen?",
+          "options": [
+            "Den ble flyttet til et museum før brannen",
+            "Den overlevde uskadd i koret",
+            "Glassmaleriene gikk tapt",
+            "Den ble byttet ut flere tiår før brannen"
+          ],
+          "answer": "Glassmaleriene gikk tapt",
+          "answerIndex": 2,
+          "knowledge": "De opprinnelige glassmaleriene ble ødelagt. Dagens glasskunst representerer derfor en senere fase av kirkens historie.",
+          "explanation": "De opprinnelige glassmaleriene ble ødelagt. Dagens glasskunst representerer derfor en senere fase av kirkens historie.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_13",
+          "claim_basis": "De opprinnelige glassmaleriene gikk tapt i brannen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_de_opprinnelige_glassmal_0fccb32584",
+          "knowledge_unit_ids": [
+            "ku_historie_de_opprinnelige_glassmal_0fccb32584",
+            "ku_historie_dagens_glasskunst_repres_b249b57de3"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_14",
+          "quiz_id": "historie_valerenga_kirke_set_2_q7",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvilken sang har blitt et lokalt minne om kirkebrannen?",
+          "options": [
+            "Vålerenga kjerke",
+            "Akerselva",
+            "Gamle Oslo",
+            "Tanta til Beate"
+          ],
+          "answer": "Vålerenga kjerke",
+          "answerIndex": 0,
+          "knowledge": "«Vålerenga kjerke» knytter tapet av kirken til følelsen av tilhørighet i bydelen, og synges også i fotballmiljøet.",
+          "explanation": "«Vålerenga kjerke» knytter tapet av kirken til følelsen av tilhørighet i bydelen, og synges også i fotballmiljøet.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_14",
+          "claim_basis": "Sangen Vålerenga kjerke er knyttet til brannen og lokal tilhørighet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_valerenga_kjerke_knytter_79d8065296",
+          "knowledge_unit_ids": [
+            "ku_historie_valerenga_kjerke_knytter_79d8065296"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_valerenga_kirke_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_valerenga_kirke_quiz_15",
+        "claim_valerenga_kirke_quiz_16",
+        "claim_valerenga_kirke_quiz_17",
+        "claim_valerenga_kirke_quiz_18",
+        "claim_valerenga_kirke_quiz_19",
+        "claim_valerenga_kirke_quiz_20",
+        "claim_valerenga_kirke_quiz_21"
+      ],
+      "title": "Gjenreisning, kunst og historiske spor",
+      "questions": [
+        {
+          "id": "valerenga_kirke_reviewed_15",
+          "quiz_id": "historie_valerenga_kirke_set_3_q1",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvem utformet den nye planløsningen da kirken ble gjenreist?",
+          "options": [
+            "Arne Korsmo",
+            "Lars Backer",
+            "Sverre Fehn",
+            "Asbjørn Stein"
+          ],
+          "answer": "Asbjørn Stein",
+          "answerIndex": 3,
+          "knowledge": "Asbjørn Stein tegnet den nye planløsningen. Den gjenreiste kirken fikk andre romløsninger enn den opprinnelige.",
+          "explanation": "Asbjørn Stein tegnet den nye planløsningen. Den gjenreiste kirken fikk andre romløsninger enn den opprinnelige.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_15",
+          "claim_basis": "Asbjørn Stein sto for den nye planløsningen ved gjenreisningen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_asbj_rn_stein_tegnet_den_e7154686e5",
+          "knowledge_unit_ids": [
+            "ku_historie_asbj_rn_stein_tegnet_den_e7154686e5",
+            "ku_historie_den_gjenreiste_kirken_fi_f5e4d3411a"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_16",
+          "quiz_id": "historie_valerenga_kirke_set_3_q2",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hva ble det tidligere koret brukt til etter gjenreisningen?",
+          "options": [
+            "Det ble stående som utendørs ruin",
+            "Det ble omgjort til et rom for jernbanehistorie",
+            "Det ble delt i etasjer med menighetsrom og andre funksjoner",
+            "Det ble fylt igjen med granitt"
+          ],
+          "answer": "Det ble delt i etasjer med menighetsrom og andre funksjoner",
+          "answerIndex": 2,
+          "knowledge": "Den tidligere kordelen ble delt i tre etasjer med blant annet menighetssal, kirkestue og kontorer. Endringen gjorde kirken til et mer sammensatt aktivitetsbygg.",
+          "explanation": "Den tidligere kordelen ble delt i tre etasjer med blant annet menighetssal, kirkestue og kontorer. Endringen gjorde kirken til et mer sammensatt aktivitetsbygg.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_16",
+          "claim_basis": "Den tidligere kordelen fikk flere etasjer og menighetsfunksjoner.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_den_tidligere_kordelen_b_52ed83fc3b",
+          "knowledge_unit_ids": [
+            "ku_historie_den_tidligere_kordelen_b_52ed83fc3b",
+            "ku_historie_endringen_gjorde_kirken__003547d424"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_17",
+          "quiz_id": "historie_valerenga_kirke_set_3_q3",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvem laget de nye glassmaleriene til den gjenreiste kirken?",
+          "options": [
+            "Jakob Weidemann",
+            "Kai Fjell",
+            "Håkon Bleken",
+            "Hannah Ryggen"
+          ],
+          "answer": "Håkon Bleken",
+          "answerIndex": 2,
+          "knowledge": "Håkon Bleken laget de nye glassmaleriene sammen med kunstglassmester Annar Milledal. De må skilles fra Emanuel Vigelands tapte originalkunst.",
+          "explanation": "Håkon Bleken laget de nye glassmaleriene sammen med kunstglassmester Annar Milledal. De må skilles fra Emanuel Vigelands tapte originalkunst.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_17",
+          "claim_basis": "Håkon Bleken utformet de nye glassmaleriene.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_hakon_bleken_laget_de_ny_8938a1ca68",
+          "knowledge_unit_ids": [
+            "ku_historie_hakon_bleken_laget_de_ny_8938a1ca68",
+            "ku_historie_de_ma_skilles_fra_emanue_058de8b1da"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_18",
+          "quiz_id": "historie_valerenga_kirke_set_3_q4",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvor kom Emanuel Vigelands frise «Den gode hyrde» fra?",
+          "options": [
+            "Den overlevde kirkebrannen på sin opprinnelige plass",
+            "Den ble overført fra Paulus menighet",
+            "Den ble hentet fra Vigelandmuseet",
+            "Den ble laget for den nye kirken av Håkon Bleken"
+          ],
+          "answer": "Den ble overført fra Paulus menighet",
+          "answerIndex": 1,
+          "knowledge": "Frisen ble deponert av Paulus menighet på 1990-tallet. Den er derfor ikke en bevart del av Vålerenga kirkes tapte opprinnelige fresker.",
+          "explanation": "Frisen ble deponert av Paulus menighet på 1990-tallet. Den er derfor ikke en bevart del av Vålerenga kirkes tapte opprinnelige fresker.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_18",
+          "claim_basis": "Frisen Den gode hyrde kom fra Paulus menighet etter brannen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_frisen_ble_deponert_av_p_42dbf0b434",
+          "knowledge_unit_ids": [
+            "ku_historie_frisen_ble_deponert_av_p_42dbf0b434",
+            "ku_historie_den_er_derfor_ikke_en_be_99a94f640b"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_19",
+          "quiz_id": "historie_valerenga_kirke_set_3_q5",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvilken gjenstand fra den første kirken finnes fortsatt omtalt i den gjenreiste kirken?",
+          "options": [
+            "Det opprinnelige hovedorgelet",
+            "Et døpefat i messing",
+            "Alle de opprinnelige glassmaleriene",
+            "Den opprinnelige prekestolen"
+          ],
+          "answer": "Et døpefat i messing",
+          "answerIndex": 1,
+          "knowledge": "Et messingdøpefat fra 1902 er dokumentert. Gjenstanden viser at ikke alt inventar fra kirkens tidlige historie gikk tapt.",
+          "explanation": "Et messingdøpefat fra 1902 er dokumentert. Gjenstanden viser at ikke alt inventar fra kirkens tidlige historie gikk tapt.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_19",
+          "claim_basis": "Et messingdøpefat fra den første kirken er bevart.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_et_messingd_pefat_fra_19_2f76bb5ae8",
+          "knowledge_unit_ids": [
+            "ku_historie_et_messingd_pefat_fra_19_2f76bb5ae8",
+            "ku_historie_gjenstanden_viser_at_ikk_a7736a332c"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_20",
+          "quiz_id": "historie_valerenga_kirke_set_3_q6",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hva kan du fastslå ved å studere granittmurene fra utsiden?",
+          "options": [
+            "At hele interiøret også er fra den første kirken",
+            "At det gamle murverket fortsatt preger bygningen, men ikke hvordan innsiden så ut før brannen",
+            "At glassmaleriene aldri ble ødelagt",
+            "At takarbeidet må ha foregått i tårnet"
+          ],
+          "answer": "At det gamle murverket fortsatt preger bygningen, men ikke hvordan innsiden så ut før brannen",
+          "answerIndex": 1,
+          "knowledge": "Murene er materielle spor etter den første kirken, men forteller ikke alene om brannårsaken eller tapet av freskene. Slike slutninger krever kilder om interiøret.",
+          "explanation": "Murene er materielle spor etter den første kirken, men forteller ikke alene om brannårsaken eller tapet av freskene. Slike slutninger krever kilder om interiøret.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_20",
+          "claim_basis": "Utvendige murspor kan dokumentere materialkontinuitet, ikke bevise interiørets opprinnelige tilstand.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "method_id": "met_sporlesning",
+          "topic_hook_id": "his_spor_materialitet",
+          "thinker_id": "carlo_ginzburg",
+          "work": "Clues, Myths, and the Historical Method",
+          "theory_ref": {
+            "topic_hook_id": "his_spor_materialitet",
+            "thinker_id": "carlo_ginzburg",
+            "work": "Clues, Myths, and the Historical Method",
+            "why_it_helps": "A wall is direct physical evidence of surviving masonry, not of the disappeared interior."
+          },
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_murene_er_materielle_spo_ab187f67f0",
+          "knowledge_unit_ids": [
+            "ku_historie_murene_er_materielle_spo_ab187f67f0",
+            "ku_historie_slike_slutninger_krever__ed42f2f57d"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "valerenga_kirke_reviewed_21",
+          "quiz_id": "historie_valerenga_kirke_set_3_q7",
+          "categoryId": "historie",
+          "targetId": "valerenga_kirke",
+          "placeId": "valerenga_kirke",
+          "question_scope": "place",
+          "question": "Hvordan bør en historiker beskrive Vålerenga kirke slik den står i dag?",
+          "options": [
+            "Som en fullstendig uendret kirke fra den første innvielsen",
+            "Som en bygning uten historisk verdi etter brannen",
+            "Som en kombinasjon av eldre murverk, gjenoppbygde rom og nyere kunst",
+            "Som en kopi uten forbindelse til menighetens tidligere historie"
+          ],
+          "answer": "Som en kombinasjon av eldre murverk, gjenoppbygde rom og nyere kunst",
+          "answerIndex": 2,
+          "knowledge": "Gjenreisningen bevarte eldre murverk, men ga kirken ny rominndeling og ny kunst. Det er viktig å skille mellom originalt materiale, historisk bruk og nye restaureringsvalg.",
+          "explanation": "Gjenreisningen bevarte eldre murverk, men ga kirken ny rominndeling og ny kunst. Det er viktig å skille mellom originalt materiale, historisk bruk og nye restaureringsvalg.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_restaurering_autentisitet",
+          "source": [
+            "valerenga_kirken",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+            "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_valerenga_kirke_quiz_21",
+          "claim_basis": "Dagens kirke kombinerer eldre murverk, gjenoppbygde rom og nyere kunst.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "historie",
+            "valerenga_kirke",
+            "oslo_aav_v1_20261027"
+          ],
+          "method_id": "met_restaurerings_autentisitetsanalyse",
+          "topic_hook_id": "his_bevaring_restaurering_autentisitet",
+          "thinker_id": "alois_riegl",
+          "work": "The Modern Cult of Monuments",
+          "theory_ref": {
+            "topic_hook_id": "his_bevaring_restaurering_autentisitet",
+            "thinker_id": "alois_riegl",
+            "work": "The Modern Cult of Monuments",
+            "why_it_helps": "The distinction between age and use value helps describe an old shell with changed rooms and art."
+          },
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_gjenreisningen_bevarte_e_778387cbf2",
+          "knowledge_unit_ids": [
+            "ku_historie_gjenreisningen_bevarte_e_778387cbf2",
+            "ku_historie_det_er_viktig_a_skille_m_6539ce07ae"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
