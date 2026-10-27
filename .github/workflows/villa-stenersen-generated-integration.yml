@@ -2,7 +2,6 @@ name: Villa Stenersen generated integration
 on:
   pull_request:
     paths:
-      - 'data/fag/fag_manifest.json'
       - 'data/quiz/manifest.json'
       - 'data/quiz/historie/villa_stenersen_sets.json'
       - 'data/quiz/production_briefs/historie/villa_stenersen.json'
@@ -11,9 +10,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 permissions:
-  contents: write
+  contents: read
 jobs:
   regenerate:
+    permissions:
+      contents: write
     if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'content/oslo-aav-villa-stenersen-v1-20261027'
     runs-on: ubuntu-latest
     timeout-minutes: 18
@@ -31,6 +32,8 @@ jobs:
         run: node scripts/build-quiz-production-context.mjs --category historie --target villa_stenersen --output data/quiz/production_context/historie/villa_stenersen.json
       - name: Build canonical Knowledge links
         run: npm run knowledge:canonical:write
+      - name: Rebuild Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
       - name: Verify target quiz parity
         run: node --test tests/villa-stenersen-v1-parity.test.mjs
       - name: Commit only generated integration artifacts
@@ -39,6 +42,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_release.json
           git add data/quiz/production_context/historie/villa_stenersen.json
           git add -u data/knowledge/ reports/knowledge-id-backfill.json
           if ! git diff --cached --quiet; then
