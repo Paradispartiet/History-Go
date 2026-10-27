@@ -89,7 +89,7 @@ jobs:
           for(const [label,run] of [['progression',auditQuizProgression],['theory',auditQuizTheoryBinding]]){
             const report=await run();
             const target=report.checked.find(x=>x.file===path);
-            if(!target||target.questions!==21)throw Error(label+': Vålerenga quiz not actually checked');
+            if(!target||(target.questions??target.balance?.total)!==21)throw Error(label+': Vålerenga quiz not actually checked');
             const unexpected=report.failures.filter(x=>x.file!==known);
             const inherited=report.failures.filter(x=>x.file===known);
             console.log(JSON.stringify({audit:label,global_status:report.status,target,existing_ostbanestasjonen_failures:inherited,unexpected_failures:unexpected},null,2));
