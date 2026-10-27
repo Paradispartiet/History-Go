@@ -1,0 +1,108 @@
+name: Oslo next six integrate main with preserved Wessels text
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-v1-six-next-20261027
+    paths:
+      - '.github/workflows/oslo-next-six-main-integration-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: oslo-next-six-main-integration-once
+  cancel-in-progress: false
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-v1-six-next-20261027
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Merge latest main without discarding either account's content
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo 'Branch already contains latest main'
+          else
+            set +e
+            git merge --no-commit --no-ff origin/main
+            status=$?
+            set -e
+            if [ "$status" -ne 0 ]; then
+              conflicts="$(git diff --name-only --diff-filter=U)"
+              while IFS= read -r file; do
+                [ -z "$file" ] && continue
+                case "$file" in
+                  data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/wessels_plass.json|data/places/places_index.json|data/runtime/place-open/wessels_plass.json)
+                    echo "Known, recoverable conflict: $file" ;;
+                  *) echo "Unexpected conflict: $file"; exit 1 ;;
+                esac
+              done <<< "$conflicts"
+              for derived in data/places/places_index.json data/runtime/place-open/wessels_plass.json; do
+                if git diff --name-only --diff-filter=U | grep -Fxq "$derived"; then
+                  git checkout --theirs -- "$derived"
+                fi
+              done
+            fi
+            node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          const p='data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/wessels_plass.json';
+          const read=ref=>JSON.parse(execFileSync('git',['show',ref+':'+p],{encoding:'utf8'}));
+          const local=read('HEAD'), latest=read('origin/main');
+          if(local.id!=='wessels_plass'||latest.id!=='wessels_plass'||!local.fagverk||latest.fagverk){
+            throw Error('Unexpected independent Wessels source edit');
+          }
+          const urls=new Set();
+          const links=[];
+          for(const link of [...(latest.externalLinks||[]),...(local.externalLinks||[])]){
+            if(!urls.has(link.url)){ urls.add(link.url); links.push(link); }
+          }
+          const merged={...latest,externalLinks:links,fagverk:local.fagverk};
+          if(!merged.image||!merged.frontImage||!merged.fagverk.source_urls?.length){
+            throw Error('Wessels image or Fagverk lost');
+          }
+          fs.writeFileSync(p,JSON.stringify(merged,null,2)+'\n');
+          console.log('WESSELS_MAIN_TEXT_AND_PR_FAGVERK_MERGED',links.length);
+          NODE
+            git add data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/wessels_plass.json
+            git add data/places/places_index.json data/runtime/place-open/wessels_plass.json
+          fi
+      - name: Install dependencies and regenerate canonical projections
+        run: |
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+      - name: Check site and editorial integrity
+        run: |
+          npm run places:index:check
+          npm run place-open:check
+          npm run epoker:places:check
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/verify-oslo-next-six-editorial-candidates.mjs
+          node --test tests/epoke-place-index.test.mjs
+      - name: Save merged main and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-next-six-main-integration-once.yml
+          git add .github/workflows/oslo-next-six-main-integration-once.yml \
+            data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/wessels_plass.json \
+            data/places/places_index.json data/runtime/place-open data/epoker/epoke-place-index.json
+          git diff --cached --check
+          if test -e .git/MERGE_HEAD; then
+            git commit -m 'merge(oslo-v1): retain main Wessels improvements and this Fagverk'
+          else
+            git commit -m 'build(oslo-v1): sync canonical indices and end one-off merge'
+          fi
+          git push origin HEAD:research/oslo-sentrum-v1-six-next-20261027
