@@ -64,8 +64,10 @@ test("Place Sheet source keeps visual collection rounds outside the sticky text 
   assert.doesNotMatch(shellSource, /data-hg-place-sheet-collection-link|syncCollectionNav/);
   assert.match(shellSource, /collections\.appendChild\(events\)/);
   assert.doesNotMatch(shellSource, /pc-sheet-onsite/);
-  assert.match(source, /css\/place-sheet\.css\?v=20261011-arbeiderbladet-ui4/);
-  assert.match(runtime, /css\/place-sheet\.css\?v=20261011-arbeiderbladet-ui4/);
+  const stylesheetVersion = source.match(/css\\/place-sheet\\.css\\?v=([0-9]{8}-[a-z0-9-]+)/)?.[1];
+  assert.ok(stylesheetVersion, "Place Sheet stylesheet must be versioned");
+  assert.ok(runtime.includes("css/place-sheet.css?v=" + stylesheetVersion),
+    "Bundled runtime must use the same Place Sheet CSS cache version as TypeScript source");
 });
 
 test("plan locks fail-closed parity and Micro Place exception", () => {
