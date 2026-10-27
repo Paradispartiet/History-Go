@@ -50,3 +50,46 @@ for (const story of stories) {
   }
 }
 console.log('Wave G first batch: 8 story threads, 16 gated scenes, 32 choices, valid timing and predecessors');
+
+
+// Role-switch persistence: the actual runner, not only a JSON condition check,
+// must archive a Wave G choice and preserve it in the player's private history.
+const renholder = manifest.roles.renholder;
+const nextRole = C.buildContent({
+  role: read(renholder.role), roleThreads: read(renholder.threads), roleScenes: read(renholder.scenes),
+  phaseDefinitions: read(manifest.shared.phaseDefinitions),
+  lifeThreads: read(manifest.life.threads), lifeScenes: read(manifest.life.scenes)
+});
+let persisted = 0;
+for (const scene of scenes) {
+  const story = scene.id.split('_')[2], anchor = 'wa_f_' + story + '_status';
+  for (const choice of scene.valg) {
+    const state = S.createInitialState(content);
+    state.livsdag = 30;
+    state.fase = scene.fase;
+    state.tidligereValg[anchor] = scene.conditions.flagg[anchor];
+    state.privatHistorie = {
+      flagg: {[anchor]: scene.conditions.flagg[anchor]},
+      flaggDager: {[anchor]: 26},
+      spilteScener: [], arkiv: [], relasjoner: {}
+    };
+    assert.ok(R.getCandidateScenes(state, content).some(s => s.id === scene.id),
+      'Wave G scene eligible with a real delayed flag');
+    R.applyChoice(state, content, scene.id, choice.id);
+    const result = choice.effekter.flagg['wa_g_' + story + '_status'];
+    assert.equal(state.tidligereValg['wa_g_' + story + '_status'], result);
+    assert.ok(state.arkiv.some(e => e.sceneId === scene.id && e.valgId === choice.id));
+    assert.ok(state.privatHistorie.arkiv.some(e => e.sceneId === scene.id));
+
+    // Role-switch persistence: no retroactive choices or lost flags.
+    const switched = S.selectRole(JSON.parse(JSON.stringify(state)), nextRole);
+    assert.equal(switched.tidligereValg[anchor], scene.conditions.flagg[anchor]);
+    assert.equal(switched.tidligereValg['wa_g_' + story + '_status'], result);
+    assert.ok(switched.privatHistorie.arkiv.some(e => e.sceneId === scene.id));
+    const returned = S.selectRole(switched, content);
+    assert.equal(returned.tidligereValg['wa_g_' + story + '_status'], result);
+    assert.ok(returned.arkiv.some(e => e.sceneId === scene.id && e.valgId === choice.id));
+    persisted++;
+  }
+}
+console.log('Role-switch persistence: ' + persisted + ' real Wave G choices retained.');
