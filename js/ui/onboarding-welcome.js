@@ -1,7 +1,7 @@
 // @ts-nocheck
 // js/ui/onboarding-welcome.js
 // HGOnboarding — vises én gang per nettleser ved første besøk.
-// Forklarer hovedflyten kort: kart → sted → quiz → samle.
+// Forklarer hovedflyten: kart → besøk → quiz → merke/kort → Civication.
 //
 // Persisterer dismiss via hg_onboarding_shown_v1.
 // Kan også åpnes manuelt via window.openOnboarding().
@@ -47,15 +47,16 @@
           <div class="hg-onb-kicker">Velkommen til</div>
           <h2 class="hg-onb-title">History GO</h2>
           <p class="hg-onb-sub">
-            Byen er ditt spillkart. Oppdag steder, personer, historier, oppgaver og små spill som vokser med det du finner.
+            Utforsk ekte steder og historier. Besøk, lær og løs quizer for å bygge samlingen din – eller ta med et oppdrag fra Civication.
           </p>
         </header>
         <ol class="hg-onb-steps">
-          <li><span class="hg-onb-step-icon">📍</span><div><strong>Utforsk byen</strong><p>Kartet viser parker, plasser, bygninger, scener, stadioner, museer og skjulte spor rundt deg.</p></div></li>
-          <li><span class="hg-onb-step-icon">🧩</span><div><strong>Åpne stedene</strong><p>Hvert sted kan ha historier, personer, bilder, gamle nyheter, sitater, temaer og forbindelser.</p></div></li>
-          <li><span class="hg-onb-step-icon">🎯</span><div><strong>Løs oppgaver</strong><p>Ta quizer og utfordringer innen historie, kunst, litteratur, sport, musikk, natur, politikk og vitenskap.</p></div></li>
-          <li><span class="hg-onb-step-icon">🏅</span><div><strong>Bygg profilen din</strong><p>Samle merker, favoritter, kunnskap og framgang. Bronse, sølv og gull viser hva du mestrer.</p></div></li>
-          <li><span class="hg-onb-step-icon">🎮</span><div><strong>Gå videre i universet</strong><p>Stedene du finner kan brukes i ruter, Min dag, Football Manager, Kunstskolen og Skrivekunstakademiet.</p></div></li>
+          <li><span class="hg-onb-step-icon">🗺️</span><div><strong>Finn et sted på kartet</strong><p>Utforsk parker, bygninger, plasser og historiske spor. Åpne stedets historie, bilder og forbindelser.</p></div></li>
+          <li><span class="hg-onb-step-icon">📍</span><div><strong>Besøk stedet og samle stedskortet</strong><p>Stedskortet krever at du faktisk er ved stedet. Du kan lese om stedene før du drar dit.</p></div></li>
+          <li><span class="hg-onb-step-icon">🎯</span><div><strong>Les og ta quiz</strong><p>Bruk kunnskapen fra stedet. En perfekt quiz låser opp quizkortet; besøk åpner også for personquizer knyttet til stedet.</p></div></li>
+          <li><span class="hg-onb-step-icon">🏅</span><div><strong>Samle merker og bygg profilen</strong><p>Quizer gir fremgang i fagkategoriene. Samle kort, merker og oppdagelser på tvers av byen.</p></div></li>
+          <li><span class="hg-onb-step-icon">🏛️</span><div><strong>Fortsett historien i Civication</strong><p>Valg, jobber og hverdagsliv kan gi deg oppdrag i History Go. Oppdraget følger deg på skjermen, og du kan gå tilbake til Civication.</p></div></li>
+          <li><span class="hg-onb-step-icon">🧪</span><div><strong>Prøv quizer i testmodus</strong><p>I testmodus kan du ta quizer hvor som helst. Stedskort krever fortsatt et fysisk besøk.</p></div></li>
         </ol>
         <footer class="hg-onb-actions">
           <button type="button" class="hg-onb-primary" data-action="start">Start History Go</button>
@@ -77,6 +78,7 @@
     m.setAttribute("aria-hidden", "true");
     document.removeEventListener("keydown", onKey);
     try { localStorage.setItem(FLAG_KEY, "1"); } catch {}
+    window.dispatchEvent(new Event("hg:onboardingClosed"));
   }
 
   function onKey(e) { if (e.key === "Escape") close(); }
@@ -87,6 +89,7 @@
     m.style.pointerEvents = "auto";
     m.setAttribute("aria-hidden", "false");
     document.addEventListener("keydown", onKey);
+    window.dispatchEvent(new Event("hg:onboardingOpened"));
   }
 
   function whenFullyInteractive(fn) {
@@ -120,6 +123,10 @@
   function maybeShowOnFirstVisit() {
     try {
       if (localStorage.getItem(FLAG_KEY) === "1") return;
+      // A Civication deep link carries a live mission. Show that mission first;
+      // leave onboarding available for the next ordinary History Go visit.
+      const mission = JSON.parse(localStorage.getItem("hg_civication_mode_v1") || "null");
+      if (mission && mission.active === true) return;
     } catch { return; }
 
     whenFullyInteractive(() => {

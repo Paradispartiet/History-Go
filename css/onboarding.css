@@ -92,7 +92,10 @@ body.hg-app.hg-load-failed::after {
 .hg-onb-inner {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: #fff;
   color: #1c2016;
   border-radius: 18px;
@@ -122,7 +125,7 @@ body.hg-app.hg-load-failed::after {
 
 .hg-onb-close:hover { background: rgba(0,0,0,0.1); }
 
-.hg-onb-head { margin-bottom: 20px; }
+.hg-onb-head { margin-bottom: 16px; }
 
 .hg-onb-kicker {
   font-size: 11px;
@@ -152,7 +155,7 @@ body.hg-app.hg-load-failed::after {
   margin: 0 0 20px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .hg-onb-steps li {
@@ -168,8 +171,8 @@ body.hg-app.hg-load-failed::after {
   justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  background: #eef5e6;
+  border-radius: 10px;
+  background: #fff4ba;
   font-size: 18px;
   flex: 0 0 auto;
 }
@@ -194,8 +197,8 @@ body.hg-app.hg-load-failed::after {
 }
 
 .hg-onb-primary {
-  background: #2d5a1a;
-  color: #fff;
+  background: #f3d72d;
+  color: #1c2016;
   border: 0;
   border-radius: 10px;
   padding: 12px 22px;
@@ -206,7 +209,7 @@ body.hg-app.hg-load-failed::after {
   transition: background 120ms;
 }
 
-.hg-onb-primary:hover { background: #3a7022; }
+.hg-onb-primary:hover { background: #f9e460; }
 .hg-onb-primary:active { transform: scale(0.98); }
 
 /* ========== Bedre empty-states i venstre panel ========== */
@@ -258,105 +261,117 @@ body.hg-app.hg-load-failed::after {
   background: rgba(255,255,255,0.2);
 }
 
-/* ========== Toast-posisjon og størrelse ========== */
-
+/* Delte toast-regler: lesbare meldinger på mobil og utenfor kartets layout. */
 body.hg-app #toast {
-  position: absolute;
+  position: fixed;
   top: auto;
-  bottom: 130px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 94px);
   left: 50%;
   transform: translateX(-50%);
-
-  width: min(760px, 84%);
-  max-height: 369px;
+  width: min(520px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  max-height: min(45dvh, 320px);
   height: auto;
   overflow-y: auto;
-
   display: none;
   z-index: 30000;
-  padding: 34px 86px 34px 38px;
-  border-radius: 30px;
-
-  background: rgba(8, 8, 8, 0.9);
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 18px 46px rgba(0,0,0,0.45);
+  padding: 16px 48px 16px 18px;
+  border-radius: 16px;
+  background: rgba(13, 18, 16, 0.96);
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.4);
   color: #fff;
 }
 
 body.hg-app #toast .toast-body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 38px;
-  line-height: 1.28;
-  font-weight: 650;
-  letter-spacing: -0.012em;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 600;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 
 body.hg-app #toast .toast-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 8px;
+  right: 8px;
   transform: none;
-
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.12);
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.13);
   color: #fff;
-  font-size: 32px;
+  font-size: 21px;
   line-height: 1;
-  font-weight: 650;
   cursor: pointer;
 }
 
 body.hg-app .nature-unlock-stack {
-  bottom: 130px;
-  width: min(760px, 84%);
-  max-height: 369px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 94px);
+  width: min(520px, calc(100vw - 24px));
+  max-height: 55dvh;
   overflow-y: auto;
+  gap: 8px;
 }
 
 body.hg-app .nature-unlock-card {
-  grid-template-columns: 86px 1fr auto;
-  gap: 18px;
-  padding: 24px 22px 24px 20px;
-  border-radius: 28px;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 14px;
 }
 
 body.hg-app .nature-unlock-thumb {
-  width: 86px;
-  height: 86px;
-  border-radius: 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 9px;
 }
 
 body.hg-app .nature-unlock-kicker {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.25;
 }
 
 body.hg-app .nature-unlock-title,
 body.hg-app .nature-unlock-card.is-badge .nature-unlock-title {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 32px;
-  line-height: 1.2;
+  font-size: 17px;
+  line-height: 1.25;
   font-weight: 700;
-  letter-spacing: -0.012em;
 }
 
 body.hg-app .nature-unlock-latin,
 body.hg-app .nature-unlock-card.is-badge .nature-unlock-latin {
-  font-size: 21px;
+  font-size: 13px;
   line-height: 1.3;
-  font-weight: 550;
 }
 
 body.hg-app .nature-unlock-close {
-  width: 48px;
-  height: 48px;
-  font-size: 24px;
-  font-weight: 650;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+}
+
+/* Et aktivt Civication-oppdrag har sin faste stripe nederst.
+   Midlertidige meldinger vises over den, ikke oppå den. */
+body.hg-app:has(#hgCivicationModeToast) #toast,
+body.hg-app:has(#hgCivicationModeToast) .nature-unlock-stack {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 162px);
+}
+
+@media (max-width: 600px) {
+  .hg-onboarding-modal { padding: 8px; }
+  .hg-onb-inner {
+    max-height: calc(100dvh - 16px);
+    padding: 20px 16px 16px;
+    border-radius: 14px;
+  }
+  .hg-onb-head { margin-bottom: 12px; }
+  .hg-onb-title { font-size: 24px; }
+  .hg-onb-steps { gap: 10px; }
+  .hg-onb-steps li { grid-template-columns: 30px minmax(0, 1fr); gap: 10px; }
+  .hg-onb-step-icon { width: 30px; height: 30px; font-size: 16px; }
+  .hg-onb-actions { position: sticky; bottom: -16px; padding: 10px 0; background: #fff; }
+  .hg-onb-primary { width: 100%; }
 }
