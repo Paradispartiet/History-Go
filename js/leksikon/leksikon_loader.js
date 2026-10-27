@@ -10,6 +10,8 @@
   let initPromise = null;
   let sprakManifestPromise = null;
   let currentLeksikonContext = null;
+  // Invalidate older async popup renders whenever the player changes destination.
+  let currentLeksikonRequest = 0;
   let wonderkammerReadySeen = !!window.WK_BY_PLACE;
   let wonderkammerInitialWaitDone = !!window.WK_BY_PLACE;
   const sprakByPlace = Object.create(null);
@@ -220,7 +222,9 @@
 
     return `
       <article class="pc-leksikon-article pc-leksikon-lesespor" data-lesespor-mode="${esc(mode)}"${placeId ? ` data-lesespor-place-id="${esc(placeId)}"` : ""}>
-        ${mode === "place" ? renderBackHeader("hub", "Leksikon") : ""}
+        ${mode === "place"
+          ? `<button class="pc-leksikon-back pc-leksikon-back-icon" type="button" data-leksikon-back="hub" aria-label="Tilbake til Leksikon" title="Tilbake til Leksikon"><span aria-hidden="true">←</span></button>`
+          : `<button class="pc-leksikon-back pc-leksikon-back-icon" type="button" data-close-popup aria-label="Tilbake til forrige visning" title="Tilbake til forrige visning"><span aria-hidden="true">←</span></button>`}
         <div class="pc-leksikon-kicker">Lesespor</div>
         <h2 class="hg-popup-name">${esc(title)}</h2>
         <p class="pc-leksikon-one-liner">${esc(subtitle)}</p>
@@ -944,17 +948,21 @@
    * @param {string} [itemSource]
    */
   async function openPlace(placeId, index = 0, detailType = "", itemIndex = 0, sectionType = "", itemSource = "") {
+    const request = ++currentLeksikonRequest;
     const requestedPlaceId = norm(placeId);
     const articles = window.LEKSIKON_BY_PLACE?.[requestedPlaceId] || [];
     const article = articles[Number(index) || 0];
     const normalizedIndex = Number(index) || 0;
-    currentLeksikonContext = { placeId: requestedPlaceId, index: normalizedIndex, detailType: detailType || "hub", sectionType: sectionType || "", itemIndex: Number(itemIndex) || 0, itemSource: itemSource || "" };
+    const nextContext = { placeId: requestedPlaceId, index: normalizedIndex, detailType: detailType || "hub", sectionType: sectionType || "", itemIndex: Number(itemIndex) || 0, itemSource: itemSource || "" };
+    currentLeksikonContext = nextContext;
 
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
       const place = await resolvePlaceForArticle(article) || resolvePlaceById(requestedPlaceId);
+      if (request !== currentLeksikonRequest) return;
       const effectivePlaceId = norm(place?.id || article?.place_id || requestedPlaceId);
       await waitForWonderkammerReady();
+      if (request !== currentLeksikonRequest) return;
 
       // History Go read-signal: å åpne leksikon for stedet teller som read_leksikon.
       // Civication-broen matcher hg_reads_v1.leksikon på emne/kategori/target.
@@ -966,10 +974,13 @@
 
       const mainArticle = resolveMainLeksikonArticle(articles, place) || article || null;
       const sprakArticle = await loadSprakForPlace(effectivePlaceId);
-      currentLeksikonContext.placeId = effectivePlaceId;
+      if (request !== currentLeksikonRequest) return;
+      nextContext.placeId = effectivePlaceId;
       const html = detailType
         ? await renderDetailPopup(mainArticle, place, sprakArticle, detailType, itemIndex, sectionType, articles, itemSource, effectivePlaceId)
         : await renderOverview(mainArticle, place, sprakArticle, articles, effectivePlaceId);
+      if (request !== currentLeksikonRequest) return;
+      currentLeksikonContext = nextContext;
       popupFn(html, "leksikon-entry-popup");
       return;
     }
@@ -978,8 +989,10 @@
   }
 
   async function openAllLesespor() {
-    const items = await ensureLesesporItems();
+    const request = ++currentLeksikonRequest;
     currentLeksikonContext = null;
+    const items = await ensureLesesporItems();
+    if (request !== currentLeksikonRequest) return;
 
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
@@ -1104,7 +1117,7 @@
 
   document.addEventListener("click", (event) => {
     const detailBtn = /** @type {HTMLElement|null} */ (/** @type {Element} */ (event.target).closest("[data-leksikon-detail]"));
-    if (!detailBtn) return;
+    if (!detailBtn?.closest(".hg-popup.leksikon-entry-popup")) return;
     if (!currentLeksikonContext?.placeId) return;
     event.preventDefault();
     event.stopPropagation();
@@ -1123,7 +1136,7 @@
 
   document.addEventListener("click", (event) => {
     const backBtn = /** @type {HTMLElement|null} */ (/** @type {Element} */ (event.target).closest("[data-leksikon-back]"));
-    if (!backBtn) return;
+    if (!backBtn?.closest(".hg-popup.leksikon-entry-popup")) return;
     if (!currentLeksikonContext?.placeId) return;
     event.preventDefault();
     event.stopPropagation();

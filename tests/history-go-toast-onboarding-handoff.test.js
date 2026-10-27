@@ -186,9 +186,9 @@ for (const file of ["nature-unlock-toast.js", "badge-unlock-toast.js", "person-p
 
 // Welcome copy reflects the main game, not the test-only mode or card system.
 assert.match(welcome, /<ul class="hg-onb-steps">/);
-assert.equal((welcome.match(/<li/g) || []).length, 8, "eight unnumbered, linked onboarding panels");
+assert.equal((welcome.match(/<li/g) || []).length, 11, "eleven unnumbered onboarding panels including both nature explorers and Språkatlas");
 for (const heading of [
-  "Utforsk kartet og besøk steder", "Stories", "Lesespor", "Psykologirommet",
+  "Utforsk kartet og besøk steder", "Finn fauna", "Finn flora", "Stories", "Lesespor", "Språkatlas Norge", "Psykologirommet",
   "Ta quiz og samle merker", "Se hva du har samlet", "Min profil", "Opplev Civication"
 ]) assert.ok(welcome.includes(heading), heading);
 assert.doesNotMatch(welcome, /stedskort|quizkort|testmodus/i);
@@ -196,7 +196,24 @@ assert.match(welcome, /steder du har besøkt/);
 assert.match(welcome, /interaktivt læringsmiljø/);
 assert.match(welcome, /simulert livsverden/);
 assert.match(welcome, /forme din egen vei/);
-assert.ok(styles.includes("#1b281f"), "dark onboarding palette");
+// The onboarding surface is neutral black; yellow remains an accent, not a background wash.
+assert.match(styles, /\.hg-onb-inner\s*\{[\s\S]*?background: #090a0b;/);
+assert.match(styles, /\.hg-onb-steps li\s*\{[\s\S]*?background: #151718;/);
+assert.doesNotMatch(styles, /rgba\(246, 216, 34, 0\.11\)|rgba\(71, 69, 27/);
+
+// Existing navigation targets remain intact, now embedded in the visible headings.
+const cards = welcome.match(/<li\b[^>]*>[\s\S]*?<\/li>/g) || [];
+const linkedHeadings = cards.filter((card) => /<strong><(?:a|button)\b[^>]*class="hg-onb-card-link"/.test(card));
+assert.equal(linkedHeadings.length, 10, "all ten actionable cards link from their heading");
+for (const card of cards) {
+  assert.doesNotMatch(card, /<\/p>\s*<(?:a|button)\b[^>]*class="hg-onb-card-link"/, "no duplicate CTA below text");
+}
+for (const target of ['href="knowledge.html"', 'href="profile.html"', 'href="Civication.html"', 'href="finn-fauna.html"', 'href="finn-flora.html"', 'href="sprakatlas.html"',
+  'data-hg-welcome-action="nearby"', 'data-hg-welcome-action="stories"',
+  'data-hg-welcome-action="lesespor"', 'data-hg-welcome-action="psychology"']) {
+  assert.ok(linkedHeadings.some((card) => card.includes(target)), target);
+}
+assert.ok(styles.includes(".hg-onb-steps li strong .hg-onb-card-link"), "heading links have dedicated styling");
 assert.ok(styles.includes("grid-template-columns: repeat(2, minmax(0, 1fr))"), "desktop card grid");
 assert.ok(styles.includes("@media (max-width: 700px)"), "mobile layout");
 assert.match(welcome, /hg:onboardingClosed/);

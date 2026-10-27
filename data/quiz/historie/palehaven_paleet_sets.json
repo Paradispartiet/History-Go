@@ -1,0 +1,926 @@
+{
+  "targetId": "palehaven_paleet",
+  "placeId": "palehaven_paleet",
+  "categoryId": "historie",
+  "title": "Paléhagen og Paleet",
+  "sources": {
+    "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+    "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+    "https://oslobyleksikon.no/side/Pal%C3%A9hagen": "https://oslobyleksikon.no/side/Pal%C3%A9hagen",
+    "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/palehaven_paleet.json",
+    "context_artifact": "data/quiz/production_context/historie/palehaven_paleet.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie",
+        "data/quiz/_archive"
+      ],
+      "active_before": {
+        "status": "not_found_in_pr_diff"
+      },
+      "decisions": [
+        "No existing package on this PR branch; check main again before activating."
+      ],
+      "knowledge_migration": "No migration assumed; require builder verification."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Et avgrenset bygnings- og hageanlegg med én stedsåpning, ett historisk utdypingssett og én kildekritisk avslutning."
+    },
+    "held_back_candidates": [
+      "No year-only answer prompts",
+      "Never depict the demolished historical Paleet as a standing building"
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "historie_palehaven_paleet_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Hagen, huset og menneskene",
+      "questions": [
+        {
+          "id": "palehaven_paleet_q01",
+          "quiz_id": "historie_palehaven_paleet_set_1",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvorfor har Paléhagen en spesiell plass i Oslos parkhistorie?",
+          "options": [
+            "Den var byens første park som ble åpnet for publikum",
+            "Den var den første parken anlagt av kommunen",
+            "Den var en del av Slottsparken",
+            "Den var hage for Oslo domkirke"
+          ],
+          "answer": "Den var byens første park som ble åpnet for publikum",
+          "answerIndex": 0,
+          "knowledge": "Christian Ancher anla hagen ved Paleet. Eierne åpnet den for publikum selv om hagen tilhørte en privat eiendom.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Pal%C3%A9hagen",
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_01",
+          "claim_basis": "Paléhagen regnes som byens første park og ble åpnet for publikum av eierne.",
+          "primary_knowledge_unit_id": "ku_historie_christian_ancher_anla_ha_785d23f19e",
+          "knowledge_unit_ids": [
+            "ku_historie_christian_ancher_anla_ha_785d23f19e",
+            "ku_historie_eierne_apnet_den_for_pub_d970d70e26"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q02",
+          "quiz_id": "historie_palehaven_paleet_set_1",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva skjedde med det historiske Paleet?",
+          "options": [
+            "Det ble flyttet til Norsk Folkemuseum",
+            "Det ble ombygd til dagens kjøpesenter",
+            "Det ble sterkt skadet av brann og revet",
+            "Det står bevart som del av Oslo S"
+          ],
+          "answer": "Det ble sterkt skadet av brann og revet",
+          "answerIndex": 2,
+          "knowledge": "Den gamle kongeboligen ble ødelagt ved brann i 1942 og deretter revet. Stedet kan ikke oppleves som et stående palé.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_02",
+          "claim_basis": "Paleet ble sterkt skadet ved brann i 1942, og ruinen ble revet.",
+          "primary_knowledge_unit_id": "ku_historie_den_gamle_kongeboligen_b_70787e0117",
+          "knowledge_unit_ids": [
+            "ku_historie_den_gamle_kongeboligen_b_70787e0117",
+            "ku_historie_stedet_kan_ikke_oppleves_5273402e73"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q03",
+          "quiz_id": "historie_palehaven_paleet_set_1",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva var Paleets viktigste offentlige funksjon før Slottet sto ferdig?",
+          "options": [
+            "Universitetsbygning",
+            "Konge- og stattholderbolig",
+            "Byens tollbod",
+            "Rådhus og domstol"
+          ],
+          "answer": "Konge- og stattholderbolig",
+          "answerIndex": 1,
+          "knowledge": "Paleet ble brukt til kongelig representasjon og til boliger for stattholdere. Den nye slottsbygningen overtok kongeboligrollen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+            "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_03",
+          "claim_basis": "Paleet tjente som residens for stattholdere og kongebolig før det nye Slottet.",
+          "primary_knowledge_unit_id": "ku_historie_paleet_ble_brukt_til_kon_0fc0f17e04",
+          "knowledge_unit_ids": [
+            "ku_historie_paleet_ble_brukt_til_kon_0fc0f17e04",
+            "ku_historie_den_nye_slottsbygningen__3ca1ed3d4d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q04",
+          "quiz_id": "historie_palehaven_paleet_set_1",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvem fikk Paleet oppført som en stor privat bygård?",
+          "options": [
+            "Christian Ancher",
+            "Christian Frederik",
+            "Karl Johan",
+            "Jacob Wilhelm Nordan"
+          ],
+          "answer": "Christian Ancher",
+          "answerIndex": 0,
+          "knowledge": "Kjøpmannen Christian Ancher lot oppføre den påkostede boligen med store fløyer rundt en gårdsplass.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+            "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_04",
+          "claim_basis": "Christian Ancher oppførte Paleet som privat bolig.",
+          "primary_knowledge_unit_id": "ku_historie_kj_pmannen_christian_anc_2a0bf928ce",
+          "knowledge_unit_ids": [
+            "ku_historie_kj_pmannen_christian_anc_2a0bf928ce"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q05",
+          "quiz_id": "historie_palehaven_paleet_set_1",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva var uvanlig ved Paleets utforming som en stor og kostbar bygård?",
+          "options": [
+            "Den hadde et høyt tårn over fjorden",
+            "Den lå under havnivå",
+            "Den hadde fire fløyer, men bare én etasje",
+            "Den var bygget som en festningsborg"
+          ],
+          "answer": "Den hadde fire fløyer, men bare én etasje",
+          "answerIndex": 2,
+          "knowledge": "Paleet var en vidstrakt, enetasjes residens. Størrelsen viste seg i utstrekningen snarere enn byggehøyden.",
+          "difficulty": 1,
+          "question_type": "comparison",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+            "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_05",
+          "claim_basis": "Paleet fikk fire fløyer rundt en gårdsplass, og fløyene var én etasje høye.",
+          "primary_knowledge_unit_id": "ku_historie_paleet_var_en_vidstrakt__2b708f8d6a",
+          "knowledge_unit_ids": [
+            "ku_historie_paleet_var_en_vidstrakt__2b708f8d6a",
+            "ku_historie_st_rrelsen_viste_seg_i_u_7904d6e9d1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q06",
+          "quiz_id": "historie_palehaven_paleet_set_1",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvem overtok Paleet etter Christian Ancher?",
+          "options": [
+            "Niels Wulfsberg",
+            "Bernt Anker",
+            "Henrik Wergeland",
+            "Carl Frederik von Breda"
+          ],
+          "answer": "Bernt Anker",
+          "answerIndex": 1,
+          "knowledge": "Christian Anchers sønn Bernt Anker overtok eiendommen og utviklet både hagen og stedets selskapsliv.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+            "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_06",
+          "claim_basis": "Bernt Anker overtok eiendommen etter faren Christian Ancher.",
+          "primary_knowledge_unit_id": "ku_historie_christian_anchers_s_nn_b_11c9b3df9c",
+          "knowledge_unit_ids": [
+            "ku_historie_christian_anchers_s_nn_b_11c9b3df9c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q07",
+          "quiz_id": "historie_palehaven_paleet_set_1",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvorfor gikk Paleet fra å være privat praktgård til offentlig representasjonsbygg?",
+          "options": [
+            "Det ble solgt til jernbanen",
+            "Det ble gjort om til rådhus ved folkeavstemning",
+            "Det ble tatt som militært krigsbytte",
+            "Bernt Anker testamenterte eiendommen til offentlig bruk"
+          ],
+          "answer": "Bernt Anker testamenterte eiendommen til offentlig bruk",
+          "answerIndex": 3,
+          "knowledge": "Bernt Anker testamenterte eiendommen til staten. Dermed kunne den tidligere private residensen brukes av stattholdere og kongelige.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+            "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_07",
+          "claim_basis": "Bernt Anker testamenterte Paleet til offentlig bruk, og eiendommen gikk til staten etter hans død.",
+          "primary_knowledge_unit_id": "ku_historie_bernt_anker_testamentert_fc61e9dd7a",
+          "knowledge_unit_ids": [
+            "ku_historie_bernt_anker_testamentert_fc61e9dd7a",
+            "ku_historie_dermed_kunne_den_tidlige_ce8a9d9345"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_palehaven_paleet_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "title": "Kongelig residens og byrom",
+      "questions": [
+        {
+          "id": "palehaven_paleet_q08",
+          "quiz_id": "historie_palehaven_paleet_set_2",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvem tok i bruk Paleet som stattholderbolig før 1814?",
+          "options": [
+            "Christian August",
+            "Oscar II",
+            "Harald V",
+            "Peter Wessel Tordenskjold"
+          ],
+          "answer": "Christian August",
+          "answerIndex": 0,
+          "knowledge": "Christian August brukte Paleet som bolig mens han var stattholder, før bygningen ble sentral i hendelsene i 1814.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_08",
+          "claim_basis": "Stattholder Christian August bodde i Paleet før 1814.",
+          "primary_knowledge_unit_id": "ku_historie_christian_august_brukte__f767c839d7",
+          "knowledge_unit_ids": [
+            "ku_historie_christian_august_brukte__f767c839d7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q09",
+          "quiz_id": "historie_palehaven_paleet_set_2",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvilken rolle spilte Christian Frederik i Paleets historie?",
+          "options": [
+            "Han tegnet paléets første plantegninger",
+            "Han gjorde det til et tollkontor",
+            "Han brukte det som residens under selvstendighetskampen",
+            "Han solgte hagen til private investorer"
+          ],
+          "answer": "Han brukte det som residens under selvstendighetskampen",
+          "answerIndex": 2,
+          "knowledge": "Christian Frederik residerte i Paleet da han arbeidet for norsk selvstendighet i 1814.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_09",
+          "claim_basis": "Christian Frederik brukte Paleet som residens under de politiske begivenhetene i 1814.",
+          "primary_knowledge_unit_id": "ku_historie_christian_frederik_resid_7b3e6c0100",
+          "knowledge_unit_ids": [
+            "ku_historie_christian_frederik_resid_7b3e6c0100"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q10",
+          "quiz_id": "historie_palehaven_paleet_set_2",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva gjorde Christian Frederik i Paleet da svenske utsendinger kom i 1814?",
+          "options": [
+            "Han lot dem åpne et nasjonalt museum",
+            "Han gjorde dem kjent med sitt krav om norsk selvstendighet",
+            "Han overlot Paleet til jernbanen",
+            "Han signerte grunnloven der"
+          ],
+          "answer": "Han gjorde dem kjent med sitt krav om norsk selvstendighet",
+          "answerIndex": 1,
+          "knowledge": "Paleet var en arena for politiske møter. Christian Frederik avviste ikke bare Sveriges krav i ord, men ga utsendingene beskjed om at han ville hevde norsk selvstendighet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_10",
+          "claim_basis": "Christian Frederik sa til svenske utsendinger i Paleet at han ville hevde norsk selvstendighet.",
+          "primary_knowledge_unit_id": "ku_historie_paleet_var_en_arena_for__e4d41eeac4",
+          "knowledge_unit_ids": [
+            "ku_historie_paleet_var_en_arena_for__e4d41eeac4",
+            "ku_historie_christian_frederik_avvis_49840b163c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q11",
+          "quiz_id": "historie_palehaven_paleet_set_2",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva brukte Karl Johan Paleet til etter unionsinngåelsen?",
+          "options": [
+            "Som universitetsbibliotek",
+            "Som militært ammunisjonslager",
+            "Som jernbanestasjon",
+            "Til kongelige opphold, mottakelser og møter"
+          ],
+          "answer": "Til kongelige opphold, mottakelser og møter",
+          "answerIndex": 3,
+          "knowledge": "Karl Johan brukte residensen når han kom til Christiania, blant annet til statsråd, mottakelser og sosiale samlinger.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_11",
+          "claim_basis": "Karl Johan benyttet Paleet til kongelige opphold, mottakelser og statsråd.",
+          "primary_knowledge_unit_id": "ku_historie_karl_johan_brukte_reside_2b9d802e6c",
+          "knowledge_unit_ids": [
+            "ku_historie_karl_johan_brukte_reside_2b9d802e6c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q12",
+          "quiz_id": "historie_palehaven_paleet_set_2",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva ble reist i Paléhagen til minne om Mathia Anker?",
+          "options": [
+            "En støpejernsminnestøtte",
+            "En gotisk kirke",
+            "En bronsefontene over et vikingskip",
+            "Et nytt kongepalass"
+          ],
+          "answer": "En støpejernsminnestøtte",
+          "answerIndex": 0,
+          "knowledge": "Bernt Anker reiste et minnesmerke over hustruen Mathia i hagen. Støtten står senere flyttet til Frogner hovedgård.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+            "https://oslobyleksikon.no/side/Pal%C3%A9hagen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_12",
+          "claim_basis": "Bernt Anker reiste en minnestøtte for Mathia Anker i Paléhagen.",
+          "primary_knowledge_unit_id": "ku_historie_bernt_anker_reiste_et_mi_e11c29047e",
+          "knowledge_unit_ids": [
+            "ku_historie_bernt_anker_reiste_et_mi_e11c29047e",
+            "ku_historie_st_tten_star_senere_flyt_135bf61e3b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q13",
+          "quiz_id": "historie_palehaven_paleet_set_2",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvilken del av Paléhagen nevner Oslo byleksikon som et gjenværende spor?",
+          "options": [
+            "En intakt rokokkopaviljong",
+            "En lindeallé ved Christian Frederiks plass",
+            "Hele barokkhagens opprinnelige murer",
+            "Paleets hovedtrapp i marmor"
+          ],
+          "answer": "En lindeallé ved Christian Frederiks plass",
+          "answerIndex": 1,
+          "knowledge": "Den historiske hagen ble sterkt beskåret av veier og byutvikling. En lindeallé er et av sporene som fremdeles kan leses i området.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Pal%C3%A9hagen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_13",
+          "claim_basis": "Oslo byleksikon omtaler en lindeallé som gjenværende del av Paléhagen.",
+          "primary_knowledge_unit_id": "ku_historie_den_historiske_hagen_ble_e43b729ee5",
+          "knowledge_unit_ids": [
+            "ku_historie_den_historiske_hagen_ble_e43b729ee5",
+            "ku_historie_en_lindealle_er_et_av_sp_1620995f2b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q14",
+          "quiz_id": "historie_palehaven_paleet_set_2",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva kunne de som besøkte lysthuset ytterst i Paléhagen se mot havnen?",
+          "options": [
+            "Slottets nye hovedfløy",
+            "Akerselvas øverste fossefall",
+            "Plankestabler og skip i trelasthandelen",
+            "Bebyggelsen på Holmenkollen"
+          ],
+          "answer": "Plankestabler og skip i trelasthandelen",
+          "answerIndex": 2,
+          "knowledge": "Lysthuset vendte ut mot havnens plankestabler og skip. Utsikten bandt den velstående Ankerfamiliens hage til handelsvirksomheten i sjøfronten.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_14",
+          "claim_basis": "Fra lysthuset kunne man se plankestabler og skip knyttet til trelasthandelen.",
+          "primary_knowledge_unit_id": "ku_historie_lysthuset_vendte_ut_mot__6bf81f69fa",
+          "knowledge_unit_ids": [
+            "ku_historie_lysthuset_vendte_ut_mot__6bf81f69fa",
+            "ku_historie_utsikten_bandt_den_velst_46ec2e170a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_palehaven_paleet_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "title": "Spor og kildekritikk",
+      "questions": [
+        {
+          "id": "palehaven_paleet_q15",
+          "quiz_id": "historie_palehaven_paleet_set_3",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva forteller skiftet fra Ankerfamiliens hjem til kongebolig om Paleet?",
+          "options": [
+            "At huset alltid hadde vært bygget for en konge",
+            "At bare nye bygninger kunne brukes av staten",
+            "At bygningen mistet all betydning da familien flyttet",
+            "At en privat praktbolig fikk en ny statlig funksjon"
+          ],
+          "answer": "At en privat praktbolig fikk en ny statlig funksjon",
+          "answerIndex": 3,
+          "knowledge": "Paleets funksjon skiftet uten at bygget opprinnelig var planlagt som et nytt kongeslott. Det viser hvordan eksisterende bygningsmasse ble tatt i bruk av staten.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_15",
+          "claim_basis": "Paleet skiftet funksjon fra privat praktbolig til statlig residens.",
+          "primary_knowledge_unit_id": "ku_historie_paleets_funksjon_skiftet_7a4f903ff4",
+          "knowledge_unit_ids": [
+            "ku_historie_paleets_funksjon_skiftet_7a4f903ff4",
+            "ku_historie_det_viser_hvordan_eksist_4083d84b19"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q16",
+          "quiz_id": "historie_palehaven_paleet_set_3",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvilke kilder er best egnet til å undersøke hvordan det revne Paleet lå i byen?",
+          "options": [
+            "Gamle kart og avbildninger sammenlignet med dagens gatenett",
+            "Et nyere reklamefoto av kjøpesenteret Paleet",
+            "Dagens parkeringsskilt alene",
+            "Besøkstallene på Oslo S"
+          ],
+          "answer": "Gamle kart og avbildninger sammenlignet med dagens gatenett",
+          "answerIndex": 0,
+          "knowledge": "Historiske kart og fotografier kan kobles til dagens gater, men den gamle bygningskroppen finnes ikke lenger på stedet.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_16",
+          "claim_basis": "Historiske kart og avbildninger kan brukes for å undersøke det revne Paleets plassering og utforming.",
+          "primary_knowledge_unit_id": "ku_historie_historiske_kart_og_fotog_d9b59c5bc7",
+          "knowledge_unit_ids": [
+            "ku_historie_historiske_kart_og_fotog_d9b59c5bc7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q17",
+          "quiz_id": "historie_palehaven_paleet_set_3",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva kan møbler fra Paleet bevart på museum brukes som kilder til?",
+          "options": [
+            "Hvilken farge hagen hadde i alle sesonger",
+            "Deler av residensens innredning og bruk",
+            "Samtlige ansattes arbeidstid",
+            "Hele paléets eksakte grunnplan"
+          ],
+          "answer": "Deler av residensens innredning og bruk",
+          "answerIndex": 1,
+          "knowledge": "Bevarte møbler gir kunnskap om innredning og kongehusets materielle omgivelser, men gir ikke alene et fullstendig bilde av livet i residensen.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_17",
+          "claim_basis": "Gjenstander fra Paleet er bevart ved Norsk Folkemuseum og kan belyse interiøret.",
+          "primary_knowledge_unit_id": "ku_historie_bevarte_m_bler_gir_kunns_9be0faad65",
+          "knowledge_unit_ids": [
+            "ku_historie_bevarte_m_bler_gir_kunns_9be0faad65"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "palehaven_paleet_q18",
+          "quiz_id": "historie_palehaven_paleet_set_3",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvorfor må et moderne bygg med navnet «Paleet» holdes adskilt fra den historiske residensen?",
+          "options": [
+            "Fordi alle gamle bydeler hadde like paléer",
+            "Fordi navnet er et forbudt historisk begrep",
+            "Fordi likt navn ikke betyr samme bygning eller adresse",
+            "Fordi det historiske Paleet aldri sto i Oslo"
+          ],
+          "answer": "Fordi likt navn ikke betyr samme bygning eller adresse",
+          "answerIndex": 2,
+          "knowledge": "Navn kan gjenbrukes. Den opprinnelige kongeboligen lå ved Fred. Olsens gate og er revet.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_18",
+          "claim_basis": "Det historiske Paleet er en revet residens på en annen eiendom enn det moderne kjøpesenteret med samme navn.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_navn_kan_gjenbrukes_5113cc7f7f",
+          "knowledge_unit_ids": [
+            "ku_historie_navn_kan_gjenbrukes_5113cc7f7f",
+            "ku_historie_den_opprinnelige_kongebo_721dde1b46",
+            "ku_historie_olsens_gate_og_er_revet_a9132c2a65"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "palehaven_paleet_q19",
+          "quiz_id": "historie_palehaven_paleet_set_3",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hva risikerer vi å utelate hvis vi bare forteller om de kongelige gjestene i Paleet?",
+          "options": [
+            "At residensen lå nær fjorden",
+            "At det fantes et slott etterpå",
+            "At hagen var en barokkhage",
+            "Arbeid og erfaringer til folk utenfor elitekretsen"
+          ],
+          "answer": "Arbeid og erfaringer til folk utenfor elitekretsen",
+          "answerIndex": 3,
+          "knowledge": "Kildene om kongelige og rikfolk beskriver bare én side av stedet. En sosialhistorisk undersøkelse trenger også kilder om arbeidere, tjenestefolk og andre brukere.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_19",
+          "claim_basis": "Elitekilder til Paleet gir ikke i seg selv et dekkende bilde av alle brukere og deres erfaringer.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kildene_om_kongelige_og__c7726b1a47",
+          "knowledge_unit_ids": [
+            "ku_historie_kildene_om_kongelige_og__c7726b1a47",
+            "ku_historie_en_sosialhistorisk_under_bd16db7151"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "knut_kjeldstadli",
+          "work": "Fortida er ikke hva den en gang var",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "knut_kjeldstadli",
+            "work": "Fortida er ikke hva den en gang var",
+            "why_it_helps": "Kjeldstadlis historiske kildekritikk minner om at kilder om konger og eiere må leses mot andre spor før vi trekker slutninger om hvem som brukte Paleet, og hvem som ikke er representert i fortellingen."
+          }
+        },
+        {
+          "id": "palehaven_paleet_q20",
+          "quiz_id": "historie_palehaven_paleet_set_3",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvorfor er dagens Christian Frederiks plass ikke en direkte fasit for den historiske Paléhagens form?",
+          "options": [
+            "Etterfølgende gate- og havneutbygging har forandret området",
+            "Parken var i virkeligheten på Bygdøy",
+            "Det finnes ingen historiske omtaler av parken",
+            "Hele hagen ble flyttet til Frogner"
+          ],
+          "answer": "Etterfølgende gate- og havneutbygging har forandret området",
+          "answerIndex": 0,
+          "knowledge": "Hagen ble beskåret og omformet flere ganger. Stedsobservasjon må sammenholdes med eldre beskrivelser og kart.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://oslobyleksikon.no/side/Pal%C3%A9hagen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_20",
+          "claim_basis": "Senere gate- og havneutbygging har redusert og forandret Paléhagens utstrekning.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_hagen_ble_beskaret_og_om_d6ed4be28f",
+          "knowledge_unit_ids": [
+            "ku_historie_hagen_ble_beskaret_og_om_d6ed4be28f",
+            "ku_historie_stedsobservasjon_ma_samm_95c812c4b7"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "palehaven_paleet_q21",
+          "quiz_id": "historie_palehaven_paleet_set_3",
+          "categoryId": "historie",
+          "targetId": "palehaven_paleet",
+          "placeId": "palehaven_paleet",
+          "question_scope": "place",
+          "question": "Hvorfor bør History GO skille mellom Paléhagen og Paleet når de fortelles som ett sted?",
+          "options": [
+            "Fordi hagen og huset sto i hver sin by",
+            "Fordi hagen var et offentlig tilgjengelig uterom mens bygningen var en residens",
+            "Fordi hagen var eldre enn Christiania",
+            "Fordi kongene aldri besøkte hagen"
+          ],
+          "answer": "Fordi hagen var et offentlig tilgjengelig uterom mens bygningen var en residens",
+          "answerIndex": 1,
+          "knowledge": "Paléhagen og Paleet hang sammen, men hadde ulike funksjoner, forskjellige materielle spor og delvis ulik brukshistorie.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+            "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+            "https://oslobyleksikon.no/side/Pal%C3%A9hagen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_palehaven_paleet_21",
+          "claim_basis": "Paléhagen var en hage/park tilknyttet Paleet, som var privat og senere kongelig residens.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_palehagen_og_paleet_hang_acdbac427c",
+          "knowledge_unit_ids": [
+            "ku_historie_palehagen_og_paleet_hang_acdbac427c"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

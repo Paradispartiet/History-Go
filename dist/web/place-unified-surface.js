@@ -1976,9 +1976,8 @@
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
       <div class="pc-sheet-intro" data-hg-place-sheet-intro></div>
-      <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-        <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-      </div>
+      <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
+      <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
@@ -2023,8 +2022,8 @@
       aboutSlot.className = "pc-sheet-about";
       aboutSlot.setAttribute("data-hg-place-sheet-about", "1");
       aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
-      const anchor = shell4.querySelector("[data-hg-place-sheet-media]") || shell4.querySelector("[data-hg-place-sheet-hero]");
-      if (anchor == null ? void 0 : anchor.nextSibling) shell4.insertBefore(aboutSlot, anchor.nextSibling);
+      const media = shell4.querySelector("[data-hg-place-sheet-media]");
+      if (media) media.appendChild(aboutSlot);
       else shell4.appendChild(aboutSlot);
     }
     return aboutSlot;
@@ -2063,22 +2062,38 @@
     return slot2;
   }
   function mountPlaceSheetPhase1(place) {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d;
     if (!place || isMicro2(place)) return null;
     const shell4 = ensureShell(place);
     if (!(shell4 instanceof HTMLElement)) return null;
     movePrimaryNodes(shell4, place);
     const aboutSlot = ensureAboutSlot(shell4);
-    if (aboutSlot) (_a = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })) == null ? void 0 : _a.classList.add("pc-sheet-canonical-about");
+    if (aboutSlot) {
+      let aboutOwner = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
+      if (!(aboutOwner instanceof HTMLElement)) {
+        aboutSlot.hidden = false;
+        aboutOwner = document.createElement("section");
+        aboutOwner.className = "hg-section hg-place-section hg-place-about-section";
+        aboutOwner.setAttribute("data-hg-place-sheet-owner", "about");
+        const heading2 = document.createElement("h3");
+        heading2.textContent = "Om stedet";
+        aboutOwner.appendChild(heading2);
+        aboutSlot.replaceChildren(aboutOwner);
+      }
+      aboutOwner.classList.add("pc-sheet-canonical-about");
+      const description = shell4.querySelector("#pcDesc");
+      const heading = aboutOwner.querySelector("h3");
+      if (description && heading) heading.insertAdjacentElement("afterend", description);
+    }
     const historySlot = ensureHistorySlot(shell4);
     if (historySlot) {
-      (_b = mountCanonicalHistory(historySlot, place)) == null ? void 0 : _b.classList.add("pc-sheet-canonical-history");
-      (_c = mountCanonicalChronology(historySlot, place)) == null ? void 0 : _c.classList.add("pc-sheet-canonical-history");
+      (_a = mountCanonicalHistory(historySlot, place)) == null ? void 0 : _a.classList.add("pc-sheet-canonical-history");
+      (_b = mountCanonicalChronology(historySlot, place)) == null ? void 0 : _b.classList.add("pc-sheet-canonical-history");
     }
     const storiesSlot = ensureStoriesSlot(shell4);
-    if (storiesSlot) (_d = mountCanonicalStories(storiesSlot, place)) == null ? void 0 : _d.classList.add("pc-sheet-canonical-stories");
+    if (storiesSlot) (_c = mountCanonicalStories(storiesSlot, place)) == null ? void 0 : _c.classList.add("pc-sheet-canonical-stories");
     const beforeAfterSlot = ensureBeforeAfterSlot(shell4);
-    if (beforeAfterSlot) (_e = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _e.classList.add("pc-sheet-canonical-before-after");
+    if (beforeAfterSlot) (_d = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _d.classList.add("pc-sheet-canonical-before-after");
     syncSectionNav(shell4);
     observeSectionNav(shell4);
     startAutomaticPlaceSheetRender(text16(place.id));
@@ -2213,7 +2228,7 @@
     function ensureStylesheet6() {
       const styles = [
         [STYLE_FLAG, "css/place-unified-surface.css"],
-        [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261011-arbeiderbladet-ui4"],
+        [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261027-about-image-inset1"],
         [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
       ];
       for (const [flag, href] of styles) {

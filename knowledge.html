@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="nb" dir="ltr">
 <head>
+  <style>html:not(.hg-auth-verified) body{visibility:hidden!important}</style>
+  <script src="js/aha.js" onload="this.dataset.hgLoaded='1'"></script>
+  <script src="js/auth/require-login.js?v=20261027-1"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Kunnskapen min | History Go</title>
@@ -11,6 +15,8 @@
   <link rel="stylesheet" href="css/knowledge-v2.css">
   <link rel="stylesheet" href="css/knowledge-badge-logos.css">
   <link rel="stylesheet" href="css/personal-collection-v1.css">
+  <link rel="stylesheet" href="css/universal-header-nav.css?v=20261027-4">
+  <script defer src="js/ui/universal-header-nav.js?v=20261027-4"></script>
 </head>
 <body class="knowledge-v2-page">
   <header class="kv2-appbar">
@@ -48,7 +54,6 @@
   <footer class="kv2-footer"><a href="profile.html">Min samling</a><span aria-hidden="true">·</span><a href="index.html">Kart</a></footer>
 
   <script src="js/learningLog.js"></script>
-  <script src="js/aha.js"></script>
   <script src="js/profileIdentity.js"></script>
   <script src="dist/web/knowledge.js"></script>
   <script src="dist/web/hgInsights.js"></script>

@@ -1,0 +1,934 @@
+{
+  "targetId": "egertorget",
+  "placeId": "egertorget",
+  "categoryId": "by",
+  "title": "Egertorget",
+  "sources": {
+    "https://www.oppdagkvadraturen.no/stoppesteder/egertorget": "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+    "https://snl.no/Egertorget": "https://snl.no/Egertorget",
+    "https://oslobyleksikon.no/side/Egertorget": "https://oslobyleksikon.no/side/Egertorget"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/by/egertorget.json",
+    "context_artifact": "data/quiz/production_context/by/egertorget.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt"
+    ],
+    "emne_ids": [
+      "em_by_offentlige_rom_motesteder"
+    ],
+    "topic_hook_ids": [
+      "urb_offentlig_rom_ide"
+    ],
+    "method_ids": [
+      "met_feltobservasjon"
+    ],
+    "thinker_ids": [
+      "jan_gehl"
+    ],
+    "works": [
+      "Life Between Buildings"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz",
+        "data/quiz/_archive",
+        "data/knowledge/knowledge_units.generated.json",
+        "data/quiz/manifest.json"
+      ],
+      "active_before": {
+        "categoryId": null,
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "Ingen egen aktiv eller arkivert målpakke funnet ved rekursivt navnesøk. Kandidatutkast erstattes etter kildekontroll.",
+        "Kryssomtale i Karl Johans gate-quiz beholdes hos sin eksisterende eier; ingen Knowledge-ID overtas."
+      ],
+      "knowledge_migration": {
+        "status": "not_applicable",
+        "retained_rule": "Ingen eksisterende målpakke slettes eller overskrives."
+      }
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Avgrenset plass/bygård: kildegrunnlaget bærer én konkret åpning, historisk utdyping og én analytisk avslutning; videre sett ville gjenta samme bygnings- og brukshistorie."
+    },
+    "held_back_candidates": [
+      "Årstallpugging og udokumenterte motivforklaringer",
+      "Datering eller navneopphav med uløst kildesprik fremsettes ikke som sikker fasit"
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "by_egertorget_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Egertorget – stedet",
+      "questions": [
+        {
+          "id": "egertorget_q01",
+          "quiz_id": "by_egertorget_set_1",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvilken gate utvider seg til Egertorget?",
+          "options": [
+            "Storgata",
+            "Karl Johans gate",
+            "Prinsens gate",
+            "Grensen"
+          ],
+          "answer": "Karl Johans gate",
+          "answerIndex": 1,
+          "knowledge": "Torget er en åpning i gateløpet mellom Øvre Slottsgate og Akersgata. Navnet kan gi inntrykk av et planlagt markedstorg, men formen oppsto gjennom sammenføyningen av to gater.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://oslobyleksikon.no/side/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_01",
+          "claim_basis": "Egertorget er en utvidelse av Karl Johans gate.",
+          "primary_knowledge_unit_id": "ku_by_torget_er_en_apning_i_ga_221c29c249",
+          "knowledge_unit_ids": [
+            "ku_by_torget_er_en_apning_i_ga_221c29c249",
+            "ku_by_navnet_kan_gi_inntrykk_a_acd78abcdd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q02",
+          "quiz_id": "by_egertorget_set_1",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hva kan du se mot vest fra høyden på Egertorget?",
+          "options": [
+            "Oslo domkirke",
+            "Akershus festning",
+            "Nationaltheatret",
+            "Slottet"
+          ],
+          "answer": "Slottet",
+          "answerIndex": 3,
+          "knowledge": "Høydedraget gir utsyn langs Karl Johans gate. Det gjør Egertorget til et sted hvor forbindelsen mellom den eldre byen og Slottsveien kan oppfattes i selve landskapet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_02",
+          "claim_basis": "Fra høyden på Egertorget ses Slottet mot vest.",
+          "primary_knowledge_unit_id": "ku_by_h_ydedraget_gir_utsyn_la_2da4abc356",
+          "knowledge_unit_ids": [
+            "ku_by_h_ydedraget_gir_utsyn_la_2da4abc356",
+            "ku_by_det_gj_r_egertorget_til__4b877c2909"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q03",
+          "quiz_id": "by_egertorget_set_1",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvilken plass ligger i utsikten østover langs Karl Johans gate?",
+          "options": [
+            "Jernbanetorget",
+            "Rådhusplassen",
+            "Youngstorget",
+            "Fridtjof Nansens plass"
+          ],
+          "answer": "Jernbanetorget",
+          "answerIndex": 0,
+          "knowledge": "Den kommunale stedsartikkelen peker ut Slottet og Jernbanetorget som utsiktspunkter i hver sin retning. Høyden fungerer dermed som et orienteringspunkt mellom ulike deler av sentrum.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_03",
+          "claim_basis": "Jernbanetorget ligger i utsikten østover.",
+          "primary_knowledge_unit_id": "ku_by_den_kommunale_stedsartik_701085a36c",
+          "knowledge_unit_ids": [
+            "ku_by_den_kommunale_stedsartik_701085a36c",
+            "ku_by_h_yden_fungerer_dermed_s_ce4dafab85"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q04",
+          "quiz_id": "by_egertorget_set_1",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvilke to gateløp ble forbundet ved det som ble Egertorget?",
+          "options": [
+            "Dronningens gate og Tollbugata",
+            "Akersgata og Pilestredet",
+            "Slotsveien og Østre Gade",
+            "Kongens gate og Rådhusgata"
+          ],
+          "answer": "Slotsveien og Østre Gade",
+          "answerIndex": 2,
+          "knowledge": "Den vestlige veien mot Slottet og den eldre gaten gjennom Christiania var tidligere adskilt. Reguleringen skapte et sammenhengende løp, men etterlot også det lille åpne arealet som kalles Egertorget.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://snl.no/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_04",
+          "claim_basis": "Slotsveien og Østre Gade ble bundet sammen ved Egertorget.",
+          "primary_knowledge_unit_id": "ku_by_den_vestlige_veien_mot_s_a9f16885d0",
+          "knowledge_unit_ids": [
+            "ku_by_den_vestlige_veien_mot_s_a9f16885d0",
+            "ku_by_reguleringen_skapte_et_s_37a243a2c0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q05",
+          "quiz_id": "by_egertorget_set_1",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvilken gård bærer Freia-reklamen ved Egertorget?",
+          "options": [
+            "Horngården",
+            "Thunegården",
+            "Egergården",
+            "Skreddergården"
+          ],
+          "answer": "Thunegården",
+          "answerIndex": 1,
+          "knowledge": "Den kommunale artikkelen knytter takreklamen til Thunegården. Reklamen har blitt endret underveis, og dens sterke visuelle tilstedeværelse binder handelshistorie til opplevelsen av plassen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_05",
+          "claim_basis": "Freia-reklamen står på Thunegården.",
+          "primary_knowledge_unit_id": "ku_by_den_kommunale_artikkelen_7b2ea06e1f",
+          "knowledge_unit_ids": [
+            "ku_by_den_kommunale_artikkelen_7b2ea06e1f",
+            "ku_by_reklamen_har_blitt_endre_5041f91262"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q06",
+          "quiz_id": "by_egertorget_set_1",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvilket håndverk etablerte Nilius Martinius Thune ved Egertorget?",
+          "options": [
+            "Gullsmedarbeid",
+            "Urproduksjon",
+            "Bokbinding",
+            "Skredderarbeid"
+          ],
+          "answer": "Gullsmedarbeid",
+          "answerIndex": 0,
+          "knowledge": "Thune kjøpte en hjørnegård ved plassen og startet verksted der. Historien viser at plassen fikk næringsvirksomhet etter hvert som tyngdepunktet i byen flyttet seg vestover.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_06",
+          "claim_basis": "Nilius Martinius Thune startet gullsmedverksted ved torget.",
+          "primary_knowledge_unit_id": "ku_by_thune_kj_pte_en_hj_rnega_06f7d8718f",
+          "knowledge_unit_ids": [
+            "ku_by_thune_kj_pte_en_hj_rnega_06f7d8718f",
+            "ku_by_historien_viser_at_plass_95967c6d2c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q07",
+          "quiz_id": "by_egertorget_set_1",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvem etablerte bakeriet med utsalg på hjørnet mot Egertorget?",
+          "options": [
+            "Nilius Martinius Thune",
+            "Louis Samson",
+            "Thorvald Eger",
+            "Wilhelm Bismarck Samson"
+          ],
+          "answer": "Wilhelm Bismarck Samson",
+          "answerIndex": 3,
+          "knowledge": "SNL skiller mellom Louis Samson, som om- og påbygde gården, og sønnen Wilhelm Bismarck, som etablerte bakeriet. Familiehistorie og bygningshistorie er beslektede, men beskriver ulike handlinger.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://snl.no/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_07",
+          "claim_basis": "Wilhelm Bismarck Samson etablerte bakeri ved torget.",
+          "primary_knowledge_unit_id": "ku_by_snl_skiller_mellom_louis_f0e6adec7e",
+          "knowledge_unit_ids": [
+            "ku_by_snl_skiller_mellom_louis_f0e6adec7e",
+            "ku_by_familiehistorie_og_bygni_1b43cb0d0e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_egertorget_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "title": "Egertorget – endringer",
+      "questions": [
+        {
+          "id": "egertorget_q08",
+          "quiz_id": "by_egertorget_set_2",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvem tegnet Horngården ved Egertorget?",
+          "options": [
+            "Henrik Nissen",
+            "Arnstein Arneberg",
+            "Lars Backer",
+            "Jacob Wilhelm Nordan"
+          ],
+          "answer": "Lars Backer",
+          "answerIndex": 2,
+          "knowledge": "Horngården omtales i SNL som byens første høyhus. Planen ble redusert av bygningsrådet før realisering, slik at bygningen også forteller om begrensninger myndighetene satte for høyden.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://snl.no/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_08",
+          "claim_basis": "Lars Backer tegnet Horngården.",
+          "primary_knowledge_unit_id": "ku_by_horngarden_omtales_i_snl_1e31f5e0bc",
+          "knowledge_unit_ids": [
+            "ku_by_horngarden_omtales_i_snl_1e31f5e0bc",
+            "ku_by_planen_ble_redusert_av_b_33b86fd74b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q09",
+          "quiz_id": "by_egertorget_set_2",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvor mange etasjer fikk Horngården etter bygningsrådets reduksjon?",
+          "options": [
+            "Åtte",
+            "Seks",
+            "Ti",
+            "Tolv"
+          ],
+          "answer": "Åtte",
+          "answerIndex": 0,
+          "knowledge": "Forslaget om tolv etasjer ble skåret ned til åtte. Forskjellen mellom tegnet forslag og faktisk bygning viser hvorfor en prosjektplan ikke uten videre kan brukes som dokumentasjon av det som ble oppført.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://snl.no/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_09",
+          "claim_basis": "Horngården fikk åtte etasjer etter at planen om tolv ble redusert.",
+          "primary_knowledge_unit_id": "ku_by_forslaget_om_tolv_etasje_1544f85495",
+          "knowledge_unit_ids": [
+            "ku_by_forslaget_om_tolv_etasje_1544f85495",
+            "ku_by_forskjellen_mellom_tegne_0e261ac1f8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q10",
+          "quiz_id": "by_egertorget_set_2",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvilken T-banestasjon har nedgang ved Egertorget?",
+          "options": [
+            "Nationaltheatret",
+            "Jernbanetorget",
+            "Storgata",
+            "Stortinget"
+          ],
+          "answer": "Stortinget",
+          "answerIndex": 3,
+          "knowledge": "Nedgangen ble først bygd for stasjonen som het Sentrum. Ved en senere ombygging fikk stasjonen navnet Stortinget, og den omstridte betongoverbygningen over nedgangen ble fjernet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://snl.no/Egertorget",
+            "https://oslobyleksikon.no/side/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_10",
+          "claim_basis": "Nedgangen ved Egertorget fører til Stortinget stasjon.",
+          "primary_knowledge_unit_id": "ku_by_nedgangen_ble_f_rst_bygd_c21e15caab",
+          "knowledge_unit_ids": [
+            "ku_by_nedgangen_ble_f_rst_bygd_c21e15caab",
+            "ku_by_ved_en_senere_ombygging__c08d3ca887"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q11",
+          "quiz_id": "by_egertorget_set_2",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvor førte smuget Krøllen fra området ved dagens Egertorget?",
+          "options": [
+            "Til Bankplassen",
+            "Til Lille Grensen",
+            "Til Christiania torv",
+            "Til Pipervika"
+          ],
+          "answer": "Til Lille Grensen",
+          "answerIndex": 1,
+          "knowledge": "Det gamle smuget tilhørte et gatenett som så annerledes ut enn dagens. Små passasjer og senere gategjennombrudd minner om at sentrum er formet ved flere inngrep over tid.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://oslobyleksikon.no/side/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_11",
+          "claim_basis": "Krøllen var et smug fra nåværende Egertorget mot Lille Grensen.",
+          "primary_knowledge_unit_id": "ku_by_det_gamle_smuget_tilh_rt_33d4c386e1",
+          "knowledge_unit_ids": [
+            "ku_by_det_gamle_smuget_tilh_rt_33d4c386e1",
+            "ku_by_sma_passasjer_og_senere__6568094257"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q12",
+          "quiz_id": "by_egertorget_set_2",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hva kjennetegner ferdselen på Egertorget ifølge Oslo byleksikon?",
+          "options": [
+            "Gjennomgående godstrafikk mot havnen",
+            "Hovedsakelig adkomst til privat bakgård",
+            "Stor gangtrafikk i mange retninger",
+            "Biltrafikk dominert av en ringveikryssing"
+          ],
+          "answer": "Stor gangtrafikk i mange retninger",
+          "answerIndex": 2,
+          "knowledge": "Byleksikonet beskriver et travelt gågatestrøk med T-banen i nærheten. Den åpne flaten inngår dermed i flere forbindelser samtidig, også for mennesker som bare passerer gjennom området.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://oslobyleksikon.no/side/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_12",
+          "claim_basis": "Egertorget har stor gangtrafikk i flere retninger.",
+          "primary_knowledge_unit_id": "ku_by_byleksikonet_beskriver_e_2b96ff40c3",
+          "knowledge_unit_ids": [
+            "ku_by_byleksikonet_beskriver_e_2b96ff40c3",
+            "ku_by_den_apne_flaten_inngar_d_3cb8ac0250"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q13",
+          "quiz_id": "by_egertorget_set_2",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvorfor beskriver SNL Egertorget som restareal etter en regulering?",
+          "options": [
+            "Åpningen oppsto da to gateløp ble forbundet",
+            "Åpningen ble avsatt til et nytt matmarked",
+            "Åpningen var en planlagt forplass for Slottet",
+            "Åpningen ble laget som endestasjon for jernbanen"
+          ],
+          "answer": "Åpningen oppsto da to gateløp ble forbundet",
+          "answerIndex": 0,
+          "knowledge": "Det er sammenføyningen av gatene som forklarer formen. Plassens navn forteller derfor mindre om dens opprinnelige funksjon enn selve reguleringshistorien gjør.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://snl.no/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_13",
+          "claim_basis": "Torgets form ble til som restareal da gatene ble knyttet sammen.",
+          "primary_knowledge_unit_id": "ku_by_det_er_sammenf_yningen_a_659a9f1e98",
+          "knowledge_unit_ids": [
+            "ku_by_det_er_sammenf_yningen_a_659a9f1e98",
+            "ku_by_plassens_navn_forteller__ff36d3ac15"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q14",
+          "quiz_id": "by_egertorget_set_2",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvorfor ble betongtaket over T-banenedgangen fjernet?",
+          "options": [
+            "Det hindret forlengelsen av jernbanesporene",
+            "Det ble kritisert for å skjemme Horngården",
+            "Det var bygd for et marked som ble nedlagt",
+            "Det blokkerte en planlagt utvidelse av Slottet"
+          ],
+          "answer": "Det ble kritisert for å skjemme Horngården",
+          "answerIndex": 1,
+          "knowledge": "SNL knytter fjerningen til kritikken av forholdet mellom overbygningen og Horngården. Kommunen måtte også betale erstatning til firmaet H. Horn & Co.; en liten konstruksjon fikk dermed betydning for bybildet og eiendomsinteresser.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://snl.no/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_14",
+          "claim_basis": "T-banenedgangens buede betongtak ble fjernet etter kritikk av virkningen på Horngården.",
+          "primary_knowledge_unit_id": "ku_by_snl_knytter_fjerningen_t_703b3768fd",
+          "knowledge_unit_ids": [
+            "ku_by_snl_knytter_fjerningen_t_703b3768fd",
+            "ku_by_kommunen_matte_ogsa_beta_f5e6b0363d",
+            "ku_by_horn_co_en_liten_konstru_c3068ffea0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_egertorget_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "title": "Egertorget – sammenhenger og analyse",
+      "questions": [
+        {
+          "id": "egertorget_q15",
+          "quiz_id": "by_egertorget_set_3",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvordan henger byggingen mot Slottet sammen med Egertorgets utvikling?",
+          "options": [
+            "Handelen flyttet fra sentrum til et nytt havneanlegg",
+            "Slottsveien ble stengt og torget ble en bakgate",
+            "Gateløpet ble delt for å holde handelen utenfor sentrum",
+            "Byens tyngdepunkt flyttet vestover og handel vokste fram"
+          ],
+          "answer": "Byens tyngdepunkt flyttet vestover og handel vokste fram",
+          "answerIndex": 3,
+          "knowledge": "Kommunens fortelling setter gateforbindelsen, Slottet og senere forretningsgårder i sammenheng. Den beskriver en endring i byens geografi; den dokumenterer ikke motivene til hver enkelt næringsdrivende.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_15",
+          "claim_basis": "Vestlig sentrumsvekst ga nye vilkår for virksomhetene ved Egertorget.",
+          "primary_knowledge_unit_id": "ku_by_kommunens_fortelling_set_d5be0f5528",
+          "knowledge_unit_ids": [
+            "ku_by_kommunens_fortelling_set_d5be0f5528",
+            "ku_by_den_beskriver_en_endring_82f5ac72f5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q16",
+          "quiz_id": "by_egertorget_set_3",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hva viser bakeriet til Samson og verkstedet til Thune samlet om Egertorget?",
+          "options": [
+            "Plassen var forbeholdt én samlet industribedrift",
+            "Alle virksomhetene hadde samme eier og produksjon",
+            "Flere typer handel og håndverk fikk plass i samme strøk",
+            "Torget ble opparbeidet utelukkende for matomsetning"
+          ],
+          "answer": "Flere typer handel og håndverk fikk plass i samme strøk",
+          "answerIndex": 2,
+          "knowledge": "Bakeriet og gullsmedverkstedet var forskjellige virksomheter. Sammen konkretiserer de overgangen fra utkant til et strøk med kunder, forretningsgårder og stadig sterkere sentrumsfunksjoner.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+            "https://snl.no/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_16",
+          "claim_basis": "Samson-bakeriet og Thunes verksted representerer ulike næringsfunksjoner ved samme plass.",
+          "primary_knowledge_unit_id": "ku_by_bakeriet_og_gullsmedverk_834d83d733",
+          "knowledge_unit_ids": [
+            "ku_by_bakeriet_og_gullsmedverk_834d83d733",
+            "ku_by_sammen_konkretiserer_de__59e408e3fc"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q17",
+          "quiz_id": "by_egertorget_set_3",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Hvordan kan Egertorget både være gågateområde og et kollektivt knutepunkt?",
+          "options": [
+            "Gågaten fungerer som kjøretrasé for T-banevognene",
+            "Fotgjengere kan bytte mellom gatenettet og T-banen her",
+            "T-banen har erstattet all ferdsel på bakken",
+            "Torget forbinder bare to interne stasjonsrom"
+          ],
+          "answer": "Fotgjengere kan bytte mellom gatenettet og T-banen her",
+          "answerIndex": 1,
+          "knowledge": "Den dokumenterte nedgangen kobler ferdsel på bakken til et transportnett under byen. Plassen har derfor flere bevegelsesskalaer samtidig, uten at alle som krysser den nødvendigvis skal til stasjonen.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://oslobyleksikon.no/side/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_17",
+          "claim_basis": "Gågate og T-bane gjør plassen til del av både lokalt og større transportnett.",
+          "primary_knowledge_unit_id": "ku_by_den_dokumenterte_nedgang_d5af75b104",
+          "knowledge_unit_ids": [
+            "ku_by_den_dokumenterte_nedgang_d5af75b104",
+            "ku_by_plassen_har_derfor_flere_455ca4cb8a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "egertorget_q18",
+          "quiz_id": "by_egertorget_set_3",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Du ser Slottet fra Egertorget. Hva skiller dette orienteringspunktet fra dokumentasjon av et møtested?",
+          "options": [
+            "Utsynet hjelper deg å finne retning; et møtested krever kunnskap om faktisk opphold",
+            "Utsynet dokumenterer hvor lenge de fleste blir stående",
+            "Utsynet forteller hvilke grupper som føler seg velkomne",
+            "Utsynet måler hvor mange som snakker med hverandre"
+          ],
+          "answer": "Utsynet hjelper deg å finne retning; et møtested krever kunnskap om faktisk opphold",
+          "answerIndex": 0,
+          "knowledge": "Den dokumenterte siktlinjen sier noe om rommets lesbarhet. For å undersøke sosial bruk må man registrere andre forhold, som hvem som stanser, hva de gjør og hvor lenge de blir; utsikten alene avgjør ikke dette.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_18",
+          "claim_basis": "Utsikt langs aksen er orientering; sosialt opphold må undersøkes separat.",
+          "method_id": "met_feltobservasjon",
+          "core_concepts": [
+            "orientering",
+            "opphold"
+          ],
+          "primary_knowledge_unit_id": "ku_by_den_dokumenterte_siktlin_511eb6ea68",
+          "knowledge_unit_ids": [
+            "ku_by_den_dokumenterte_siktlin_511eb6ea68",
+            "ku_by_for_a_unders_ke_sosial_b_dba5c87d6d"
+          ],
+          "concept_ids": [
+            "co_by_orientering_eb37d0606f",
+            "co_by_opphold_d47da9d27f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json",
+            "data/fag/by/emner_by.json"
+          ]
+        },
+        {
+          "id": "egertorget_q19",
+          "quiz_id": "by_egertorget_set_3",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Oslo byleksikon omtaler stor gangtrafikk på Egertorget. Hva må du undersøke i tillegg for å vurdere opphold?",
+          "options": [
+            "Hvor mange som krysser flaten uten stopp",
+            "Hvor mange gater som har navn på kartet",
+            "Hvor folk stanser og hvor lenge de blir",
+            "Hvor mange etasjer Horngården fikk tillatelse til"
+          ],
+          "answer": "Hvor folk stanser og hvor lenge de blir",
+          "answerIndex": 2,
+          "knowledge": "Et høyt antall passerende forteller om ferdsel, men kan skjule at få velger å bli. En avgrenset observasjon som skiller gjennomgang fra opphold kan undersøke dette uten å anta at et travelt sted automatisk er et godt møtested.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://oslobyleksikon.no/side/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_19",
+          "claim_basis": "Gangtrafikk er ikke i seg selv et mål på oppholdskvalitet.",
+          "method_id": "met_feltobservasjon",
+          "core_concepts": [
+            "ferdsel",
+            "opphold"
+          ],
+          "primary_knowledge_unit_id": "ku_by_et_h_yt_antall_passerend_54defed13e",
+          "knowledge_unit_ids": [
+            "ku_by_et_h_yt_antall_passerend_54defed13e",
+            "ku_by_en_avgrenset_observasjon_c239eada4b"
+          ],
+          "concept_ids": [
+            "co_by_ferdsel_06c46858a1",
+            "co_by_opphold_d47da9d27f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json",
+            "data/fag/by/emner_by.json"
+          ]
+        },
+        {
+          "id": "egertorget_q20",
+          "quiz_id": "by_egertorget_set_3",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Horngården ble planlagt med tolv etasjer, men fikk åtte. Hvilket skille er nødvendig når du tolker en gammel tegning av gården?",
+          "options": [
+            "Prosjektert form kan brukes som måling av dagens bygning",
+            "Et reguleringsvedtak dokumenterer alle senere ombygginger",
+            "Den høyeste tegningen viser alltid det opprinnelige gatebildet",
+            "Prosjektert form må skilles fra det som faktisk ble bygd"
+          ],
+          "answer": "Prosjektert form må skilles fra det som faktisk ble bygd",
+          "answerIndex": 3,
+          "knowledge": "Her er avstanden mellom tolv og åtte et dokumentert eksempel på at planmateriale ikke er det samme som en bygningsregistrering. Tegninger kan vise ambisjoner; opplysninger om vedtak og realisering trengs for å rekonstruere den faktiske formen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://snl.no/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_20",
+          "claim_basis": "Ulike historiske byggehøyder viser forskjellen mellom plan og realisering.",
+          "method_id": "met_feltobservasjon",
+          "core_concepts": [
+            "plan",
+            "realisering"
+          ],
+          "primary_knowledge_unit_id": "ku_by_her_er_avstanden_mellom__2563c67635",
+          "knowledge_unit_ids": [
+            "ku_by_her_er_avstanden_mellom__2563c67635",
+            "ku_by_tegninger_kan_vise_ambis_0174c23c44"
+          ],
+          "concept_ids": [
+            "co_by_plan_6c20436828",
+            "co_by_realisering_280a3e715f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json",
+            "data/fag/by/emner_by.json"
+          ]
+        },
+        {
+          "id": "egertorget_q21",
+          "quiz_id": "by_egertorget_set_3",
+          "categoryId": "by",
+          "targetId": "egertorget",
+          "placeId": "egertorget",
+          "question_scope": "place",
+          "question": "Med Jan Gehls skille mellom ferdsel og opphold: Hvilken undersøkelse tester om Egertorget også gir rom for frivillig byliv?",
+          "options": [
+            "Registrer både passeringer og selvvalgte stopp på flere tidspunkter",
+            "Tell alle T-banepassasjerer som deltakere i sosialt samvær",
+            "Bruk antall butikker som direkte mål på oppholdstid",
+            "Bruk utsikten til Slottet som mål på samtaler på torget"
+          ],
+          "answer": "Registrer både passeringer og selvvalgte stopp på flere tidspunkter",
+          "answerIndex": 0,
+          "knowledge": "I Life Between Buildings retter Gehl oppmerksomheten mot aktiviteter mellom bygningene. På en plass med dokumentert stor gangtrafikk hjelper skillet oss å spørre om mennesker bare må passere, eller også velger å stanse. Dette er et forslag til undersøkelse, ikke et rapportert feltfunn.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "https://oslobyleksikon.no/side/Egertorget"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_egertorget_21",
+          "claim_basis": "Gehl-inspirert observasjon skiller nødvendig ferdsel fra frivillig opphold på Egertorget.",
+          "method_id": "met_feltobservasjon",
+          "core_concepts": [
+            "frivillig opphold",
+            "nødvendig ferdsel"
+          ],
+          "topic_hook_id": "urb_offentlig_rom_ide",
+          "thinker_id": "jan_gehl",
+          "work": "Life Between Buildings",
+          "theory_ref": {
+            "topic_hook_id": "urb_offentlig_rom_ide",
+            "thinker_id": "jan_gehl",
+            "work": "Life Between Buildings",
+            "why_it_helps": "Skiller ferdsel fra frivillig opphold slik at trafikktall ikke forveksles med sosialt byliv."
+          },
+          "primary_knowledge_unit_id": "ku_by_i_life_between_buildings_29ceb93de3",
+          "knowledge_unit_ids": [
+            "ku_by_i_life_between_buildings_29ceb93de3",
+            "ku_by_pa_en_plass_med_dokument_779cf21ee8",
+            "ku_by_dette_er_et_forslag_til__2ba8324652"
+          ],
+          "concept_ids": [
+            "co_by_frivillig_opphold_fe0df65d60",
+            "co_by_n_dvendig_ferdsel_7960fd610f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json",
+            "data/fag/by/emner_by.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

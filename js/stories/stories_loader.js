@@ -295,7 +295,13 @@
 
       popupFn(`
         <section class="hg-welcome-stories" aria-label="Stories">
-          <h2>Stories</h2>
+          <header class="hg-welcome-stories-header">
+            <button class="hg-welcome-stories-back" type="button" data-close-popup
+                    aria-label="Tilbake til kartet" title="Tilbake til kartet">
+              <span aria-hidden="true">←</span>
+            </button>
+            <h2>Stories</h2>
+          </header>
           <p>Oppdag historiske fortellinger og utforsk stedene de handler om.</p>
           <label for="hgWelcomeStoriesSearch">Søk etter en fortelling</label>
           <input id="hgWelcomeStoriesSearch" type="search" autocomplete="off"

@@ -173,3 +173,28 @@ body.civi-app .psyche-value {
     transition: none;
   }
 }
+
+
+/* Min dag should read as a scene card, not a coloured folder spine. */
+body.civi-app #civiLifestorySection {
+  border-color: rgba(214,170,58,.09);
+  background: rgba(17,17,19,.98);
+}
+body.civi-app .civi-panels > #civiLifestorySection::before {
+  width: 1px;
+  opacity: .18;
+  background: linear-gradient(180deg,transparent,rgba(214,170,58,.5),transparent);
+}
+body.civi-app #civiLifestorySection::after {
+  opacity: .18;
+}
+body.civi-app #civiLifestoryPanel .civi-lifestory-scene {
+  border-color: rgba(99,203,187,.14);
+  border-left: 1px solid rgba(99,203,187,.19);
+  background: linear-gradient(135deg,rgba(34,100,91,.045),rgba(24,24,27,.98) 55%);
+}
+body.civi-app #civiLifestoryPanel .civi-lifestory-summary {
+  border-color: rgba(174,150,230,.14);
+  border-left: 1px solid rgba(174,150,230,.20);
+  background: var(--card2);
+}

@@ -497,7 +497,7 @@ test("touch dots carry actual visible place names rather than aria-label only", 
     const label = dot.element.children.find(el => el.className === "hg-place-detail-label");
     assert.ok(label, "name is a real child element");
     assert.equal(label.textContent, "Park");
-    assert.equal(label.style.display, "block", "names visible at detailed zoom");
+    assert.equal(label.style.display, "block", "names are visible at initial zoom 15");
     assert.equal(main.getLayer("hg-places-label")?.layout?.visibility, "none",
       "do not overlay an unreliable duplicate WebGL label");
     main.zoom = 10;
@@ -505,7 +505,10 @@ test("touch dots carry actual visible place names rather than aria-label only", 
     assert.equal(label.style.display, "none", "hide labels when zoomed far out");
     main.zoom = 14;
     main.emit("zoom");
-    assert.equal(label.style.display, "block", "restore labels at detail zoom");
+    assert.equal(label.style.display, "none", "hide names below the label threshold zoom 15");
+    main.zoom = 16;
+    main.emit("zoom");
+    assert.equal(label.style.display, "block", "restore names above label threshold zoom 15");
     assert.ok(!dot.removed);
   }
 });

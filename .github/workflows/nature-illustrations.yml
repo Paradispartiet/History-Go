@@ -1,0 +1,42 @@
+name: Nature atlas illustrations
+
+on:
+  pull_request:
+    paths:
+      - 'js/ui/nature-illustrations.js'
+      - 'js/ui/nature-illustrations-batch03.js'
+      - 'js/ui/nature-illustrations-batch04.js'
+      - 'js/ui/nature-illustrations-batch05.js'
+      - 'js/ui/nature-illustrations-batch06.js'
+      - 'js/ui/nature-illustrations-batch07.js'
+      - 'js/ui/nature-illustrations-batch08.js'
+      - 'js/ui/nature-illustrations-batch09.js'
+      - 'js/ui/nature-illustrations-batch10.js'
+      - 'js/ui/nature-illustrations-batch11.js'
+      - 'js/ui/nature-botanical-studies.js'
+      - 'js/ui/nature-explorer.js'
+      - 'js/ui/nature-flora-photographs.js'
+      - 'finn-flora.html'
+      - 'finn-fauna.html'
+      - 'scripts/test-nature-illustrations.mjs'
+      - 'scripts/test-nature-flora-photos.mjs'
+      - '.github/workflows/nature-illustrations.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nature-illustrations-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  illustration-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/test-nature-illustrations.mjs
+      - run: node scripts/test-nature-flora-photos.mjs

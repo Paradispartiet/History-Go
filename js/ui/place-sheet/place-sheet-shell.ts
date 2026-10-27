@@ -156,9 +156,8 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
       <div class="pc-sheet-intro" data-hg-place-sheet-intro></div>
-      <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-        <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-      </div>
+      <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
+      <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
@@ -212,8 +211,10 @@ function ensureAboutSlot(shell: HTMLElement): HTMLElement | null {
     aboutSlot.className = "pc-sheet-about";
     aboutSlot.setAttribute("data-hg-place-sheet-about", "1");
     aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
-    const anchor = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]") || shell.querySelector<HTMLElement>("[data-hg-place-sheet-hero]");
-    if (anchor?.nextSibling) shell.insertBefore(aboutSlot, anchor.nextSibling);
+    // About shares the image's flow context, so text wraps beside the
+    // floated frontImage and continues at full width beneath it.
+    const media = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]");
+    if (media) media.appendChild(aboutSlot);
     else shell.appendChild(aboutSlot);
   }
   return aboutSlot;
@@ -262,7 +263,28 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
 
   movePrimaryNodes(shell, place);
   const aboutSlot = ensureAboutSlot(shell);
-  if (aboutSlot) mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })?.classList.add("pc-sheet-canonical-about");
+  if (aboutSlot) {
+    // The live short description belongs beside frontImage too, not above it.
+    // Move it back to the intro on each mount before the canonical owner
+    // replaces its children; this preserves the same node across place changes.
+    let aboutOwner = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
+    if (!(aboutOwner instanceof HTMLElement)) {
+      // Places whose popupDesc equals desc (or that have only desc) still
+      // need an About heading and text beside their photograph.
+      aboutSlot.hidden = false;
+      aboutOwner = document.createElement("section");
+      aboutOwner.className = "hg-section hg-place-section hg-place-about-section";
+      aboutOwner.setAttribute("data-hg-place-sheet-owner", "about");
+      const heading = document.createElement("h3");
+      heading.textContent = "Om stedet";
+      aboutOwner.appendChild(heading);
+      aboutSlot.replaceChildren(aboutOwner);
+    }
+    aboutOwner.classList.add("pc-sheet-canonical-about");
+    const description = shell.querySelector<HTMLElement>("#pcDesc");
+    const heading = aboutOwner.querySelector("h3");
+    if (description && heading) heading.insertAdjacentElement("afterend", description);
+  }
   const historySlot = ensureHistorySlot(shell);
   if (historySlot) {
     mountCanonicalHistory(historySlot, place)?.classList.add("pc-sheet-canonical-history");

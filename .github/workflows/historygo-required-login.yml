@@ -1,0 +1,41 @@
+name: History Go required login
+on:
+  pull_request:
+    paths:
+      - "login.html"
+      - "index.html"
+      - "js/auth/require-login.js"
+      - "sw.js"
+      - "js/app.js"
+      - "profile.html"
+      - "Civication.html"
+      - "finn-fauna.html"
+      - "finn-flora.html"
+      - "knowledge.html"
+      - "notater.html"
+      - "sprakatlas.html"
+      - "fagverk-forside.html"
+      - "fagverk.html"
+      - "fagverk-sted.html"
+      - "merke.html"
+      - "emner.html"
+      - "tests/login-landing-guard.test.mjs"
+      - ".github/workflows/historygo-required-login.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  login-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check login guard and deep-link behavior
+        run: node --test tests/login-landing-guard.test.mjs

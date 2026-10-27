@@ -1,0 +1,55 @@
+name: Shared header navigation
+
+on:
+  pull_request:
+    paths:
+      - "js/ui/universal-header-nav.js"
+      - "js/leksikon/leksikon_loader.js"
+      - "js/ui/header-menu.js"
+      - "css/lesespor.css"
+      - "tests/lesespor-contextual-navigation.test.mjs"
+      - "css/universal-header-nav.css"
+      - "scripts/check-universal-header-navigation.mjs"
+      - "tests/shared-header-navigation-browser.test.mjs"
+      - ".github/workflows/shared-header-navigation.yml"
+      - "index.html"
+      - "profile.html"
+      - "Civication.html"
+      - "knowledge.html"
+      - "fagverk-forside.html"
+      - "emner.html"
+      - "notater.html"
+      - "sprakatlas.html"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  navigation-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify contextual back navigation
+        run: node scripts/check-universal-header-navigation.mjs
+      - name: Verify Lesespor popup navigation and async isolation
+        run: node --test tests/lesespor-contextual-navigation.test.mjs
+
+  browser-navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Check back link on 390px mobile and 1440px desktop
+        run: node tests/shared-header-navigation-browser.test.mjs

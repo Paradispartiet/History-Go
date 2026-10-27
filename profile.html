@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="nb" dir="ltr">
 <head>
+  <style>html:not(.hg-auth-verified) body{visibility:hidden!important}</style>
+  <script src="js/aha.js" onload="this.dataset.hgLoaded='1'"></script>
+  <script src="js/auth/require-login.js?v=20261027-1"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Min samling | History Go</title>
@@ -21,6 +25,8 @@
   <link rel="stylesheet" href="css/personal-collection-v1.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <script src="js/ui/popup-utils.js"></script>
+  <link rel="stylesheet" href="css/universal-header-nav.css?v=20261027-4">
+  <script defer src="js/ui/universal-header-nav.js?v=20261027-4"></script>
 </head>
 <body class="profile-page">
   <div id="map" aria-label="Kart over steder i samlingen"></div>
@@ -168,7 +174,6 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="js/i18n.js"></script>
   <script src="js/learningLog.js"></script>
-  <script src="js/aha.js"></script>
   <script src="js/integrations/aha-music.js"></script>
   <script src="js/profileIdentity.js"></script>
   <script src="js/historyGoGameRegistry.js"></script>

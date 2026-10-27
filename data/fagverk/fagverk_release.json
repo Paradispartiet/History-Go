@@ -9,9 +9,9 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "3.17.7",
+    "version": "3.17.11",
     "updated_at": "2026-10-27",
-    "content_sha256": "d045157381e6a8bd051aaf36f7bd7ebb676eebd89d1a63dff56c4dd445ab4694"
+    "content_sha256": "a40b9499a55e0646d127da85b236dd6527ebd076261af1debb1b32fa28594482"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "4bfe74902d1ced8560053781277e9fa6a9a6f3aad33e4e7653c6faecc4820252"
+    "content_sha256": "7bedb7291e23edcb519450c587d30514f20a67d3ee684f729c900584dce2773e"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 501,
+    "package_file_count": 528,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1365,
+    "referenced_file_count": 1392,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 111,
+      "package_file_count": 117,
       "required_package_file_count": 4,
-      "optional_package_file_count": 107,
+      "optional_package_file_count": 113,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -201,6 +201,18 @@
           "content_sha256": "0bbf806341a777cac2cddaaa839716623bf9202dca3ba604ed956b1b7501617d"
         },
         {
+          "path": "data/quiz/by/egertorget_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.egertorget.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "633a6934bb5557a5b0b5bfe1fa3eeae32ae971eaacb46c240c4ddaea670729c9"
+        },
+        {
           "path": "data/quiz/by/ekebergrestauranten_sets.json",
           "required": false,
           "fields": [
@@ -318,7 +330,7 @@
             "quizProduction.targets.ostbanestasjonen.quiz_file"
           ],
           "exists": true,
-          "content_sha256": "7cbe83d7a8e9410c170233a66bbfa09dbbb7b66d4397b33f39d2c562ac994888"
+          "content_sha256": "00a284e16d0c11033bf70d6ba364f1d28800157dde7ae5ed5c08cc8b4a6ccb76"
         },
         {
           "path": "data/quiz/by/radhusplassen_sets.json",
@@ -501,6 +513,18 @@
           "content_sha256": "d3204baaf3014b71d3305b01946ec9671cdfe917879304772568a5ab1898cb86"
         },
         {
+          "path": "data/quiz/by/vika_kino_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.vika_kino.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "ecce6f492140bb5f515622bbec2e02a749e84a58d1605b0655c9f8a706f40e29"
+        },
+        {
           "path": "data/quiz/by/vikaterrassen_sets.json",
           "required": false,
           "fields": [
@@ -607,6 +631,18 @@
           ],
           "exists": true,
           "content_sha256": "39c221abfd5d9cd96d3d2850152521e7a05a1aac463c6995863dd72a23009672"
+        },
+        {
+          "path": "data/quiz/production_briefs/by/egertorget.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.egertorget.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "e08a5552eaaefb537da8a62b61e35f1f1e4e008f6bb06fbe4f5e7c57687a9dac"
         },
         {
           "path": "data/quiz/production_briefs/by/ekebergrestauranten.json",
@@ -726,7 +762,7 @@
             "quizProduction.targets.ostbanestasjonen.source_brief"
           ],
           "exists": true,
-          "content_sha256": "6c1219475288f6aa56bb76ee4a864d5eaf7fa396fbcb1502e870541c556ad36a"
+          "content_sha256": "8b38a241a72d3117d7c4c8bbddfd5aecb6633044197141030f8adedc6fb29b33"
         },
         {
           "path": "data/quiz/production_briefs/by/radhusplassen.json",
@@ -909,6 +945,18 @@
           "content_sha256": "19e1d5c54119d633136ab71cfded069c2edad0f833f43c032a5a687d5286990e"
         },
         {
+          "path": "data/quiz/production_briefs/by/vika_kino.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.vika_kino.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "79dea56c1a00ce5933796f30be46b434c4343e55a5e2e0862809e8958ef8d915"
+        },
+        {
           "path": "data/quiz/production_briefs/by/vikaterrassen.json",
           "required": false,
           "fields": [
@@ -1015,6 +1063,18 @@
           ],
           "exists": true,
           "content_sha256": "038b69bdfecd64b3fdd980fcb09b957f9252431ab503ed0463bad24a799147ac"
+        },
+        {
+          "path": "data/quiz/production_context/by/egertorget.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.egertorget.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "3a3a65fdbd9238d6f8e805b8d5206bc012792fc463e870416323ba4ee9678efb"
         },
         {
           "path": "data/quiz/production_context/by/ekebergrestauranten.json",
@@ -1134,7 +1194,7 @@
             "quizProduction.targets.ostbanestasjonen.context_artifact"
           ],
           "exists": true,
-          "content_sha256": "3f43aebd05ab8515b1b2a06e0faf6b4eeb2b35e10571e4b8019ba2d2e2a00930"
+          "content_sha256": "2b5814d7ba8a23060ccb82f2d31d9cc436952ea02fbfd19f5b74f5eb2496a50a"
         },
         {
           "path": "data/quiz/production_context/by/radhusplassen.json",
@@ -1317,6 +1377,18 @@
           "content_sha256": "7b06c6c8df568f95a54efff7e5f243336a29500346c0e71c4d7c0fc31de36553"
         },
         {
+          "path": "data/quiz/production_context/by/vika_kino.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.vika_kino.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "8de28310f43a9e9956939c153c20ec45d3586176d091966abee4bca18b9e8b40"
+        },
+        {
           "path": "data/quiz/production_context/by/vikaterrassen.json",
           "required": false,
           "fields": [
@@ -1413,20 +1485,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "021825cbb30e4bbfdc6441634b762d27e9364b0d91ff03b8baa70847c7374207",
+      "package_content_sha256": "617b58f0f0b463a8dfeac54a53c1ebba6ed4c2074d0f07a62be1149695a864d4",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "38e5be5259e0aa3d733f4ddeeb46df87769c935ad9dd76cd175f8bb645ee79fa",
-      "referenced_file_count": 213,
+      "referenced_file_count": 219,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "ea2457c6dd3881b7a6ce6ffe81eb4f74c0a403fc9e841df899126bbe851e45d6",
-      "content_sha256": "8ed2b87855e88b20a75827e39e6f593b7e01de2f70fba5786132e902c9554616",
+      "structure_sha256": "e982ecbc66641a36963551bb563a64e89980aafedcae98dabda4c588de69ef4c",
+      "content_sha256": "5cff167af9ed121029726f300c3a601a463822da1a370baedd97dfa50d21d0e4",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -2740,9 +2812,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 119,
+      "package_file_count": 140,
       "required_package_file_count": 4,
-      "optional_package_file_count": 115,
+      "optional_package_file_count": 136,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2949,6 +3021,18 @@
           "content_sha256": "a2b91280ac29b129ebe8c855a1f072f149baea945a99e12d6b02cba98530f10e"
         },
         {
+          "path": "data/quiz/historie/avisen_tiden_radhusgata_10_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.avisen_tiden_radhusgata_10.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "8901dc02eac9d11dfb8e571fadc1ae04e708bc0324f16840d5be52bac1c6abe4"
+        },
+        {
           "path": "data/quiz/historie/botsfengselet_sets.json",
           "required": false,
           "fields": [
@@ -3117,6 +3201,18 @@
           "content_sha256": "ebcd0a2b5a1af1cf2bbab9b6e3481530954913b98267bfb1a4263f21df95f6c3"
         },
         {
+          "path": "data/quiz/historie/kontraskjaeret_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.kontraskjaeret.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "d12675fa162c02e7e4fe93a5f6719650b2ccead8bfd85f1978f70694d707fd3b"
+        },
+        {
           "path": "data/quiz/historie/mollergata_19_sets.json",
           "required": false,
           "fields": [
@@ -3151,6 +3247,18 @@
           ],
           "exists": true,
           "content_sha256": "170f117e7e357f7db2cb127418a279e9731e03d2c4b684f89dc475c67712c087"
+        },
+        {
+          "path": "data/quiz/historie/mustadgarden_kongens_gate_3_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.mustadgarden_kongens_gate_3.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "52903d7b22db7f3989018e6578316b3dcdfd9c8b3b1cb65fcf542118125f02e6"
         },
         {
           "path": "data/quiz/historie/myntgatakvartalet_sets.json",
@@ -3199,6 +3307,18 @@
           ],
           "exists": true,
           "content_sha256": "d546f090715d5952aaad4bfc8f3e950ad30b1ec3d5ed5fb898cf6ac741e333de"
+        },
+        {
+          "path": "data/quiz/historie/palehaven_paleet_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.palehaven_paleet.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "cc3cc70e92d21f6c11d14cdb7c7405b23109c3e1a1ee0eb7009d0a1e2e6ebaad"
         },
         {
           "path": "data/quiz/historie/paulus_kirke_sets.json",
@@ -3297,6 +3417,42 @@
           "content_sha256": "786ad31de8d175c5805640428c00ed5371f1935fbd077ab15bea7ae6f2be5217"
         },
         {
+          "path": "data/quiz/historie/vikingtidsmuseet_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.vikingtidsmuseet.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "5b61483624eab26f9e296c76659c4dd5adcb085d6157e6500c4088d49cc20388"
+        },
+        {
+          "path": "data/quiz/historie/villa_grande_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_grande.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "e7a2ac66a2a1528262ef39108d60692eb887d633f8b776188a06787368990273"
+        },
+        {
+          "path": "data/quiz/historie/villa_stenersen_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_stenersen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "1076b422a5784c969664328960eea9ae835414ab75ac64576e5483c88965db71"
+        },
+        {
           "path": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
           "required": false,
           "fields": [
@@ -3355,6 +3511,18 @@
           ],
           "exists": true,
           "content_sha256": "9cd749a1afe520a5dc1a9f04ae2e59ceec72e1afb310fd363b1a6d4802936d62"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/avisen_tiden_radhusgata_10.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.avisen_tiden_radhusgata_10.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "7e4534501749efad8b0b33acd5ad43fc15ddce388234a841006c12a1de1fc8e9"
         },
         {
           "path": "data/quiz/production_briefs/historie/botsfengselet.json",
@@ -3525,6 +3693,18 @@
           "content_sha256": "23bcfc397f9c3452f1b0c2ce41db9a72ffef526de94f1ab25c85eb2d2f57657e"
         },
         {
+          "path": "data/quiz/production_briefs/historie/kontraskjaeret.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.kontraskjaeret.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "46d3c66b234a36b2ad1986a8e81782e49221e049ecbaea12549bc8462a06c835"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/mollergata_19.json",
           "required": false,
           "fields": [
@@ -3559,6 +3739,18 @@
           ],
           "exists": true,
           "content_sha256": "c6028b7f137502ac3ea3e41d54faa4b08b90d2a76fce700167c254904a9b01c9"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/mustadgarden_kongens_gate_3.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.mustadgarden_kongens_gate_3.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "89e0e162534fcf08bc28e8539dc7e088d5879581343fdbaba61361f175141f87"
         },
         {
           "path": "data/quiz/production_briefs/historie/myntgatakvartalet.json",
@@ -3607,6 +3799,18 @@
           ],
           "exists": true,
           "content_sha256": "c0524ec3708dc618bfd80a7dfdad2e9cf14b696a487df9f1aefbcb2554df4462"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/palehaven_paleet.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.palehaven_paleet.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "1f84b7cabbeaca583fcb1f05ce0407dfccb51a2dceaae83b0a5da0ee2135b93c"
         },
         {
           "path": "data/quiz/production_briefs/historie/paulus_kirke.json",
@@ -3705,6 +3909,42 @@
           "content_sha256": "62489fc800124b1a577dd709b0e554158aa5c31eb718441d67e8bd49024df7e1"
         },
         {
+          "path": "data/quiz/production_briefs/historie/vikingtidsmuseet.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.vikingtidsmuseet.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "c52bf6f680d00350f3e0bd5387aa8b503e0a435a2598eeea68f7f36036a3f047"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/villa_grande.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_grande.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "743d899bbda160a2561d4c05923876a064b9741e605ae72ee146f4e8258aaf2c"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/villa_stenersen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_stenersen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "bddd2cc40a0571ac8a71c881b0666db0e96696af6aa71ef84753aa536d09f6a6"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/waisenhuset_kongens_gate.json",
           "required": false,
           "fields": [
@@ -3763,6 +4003,18 @@
           ],
           "exists": true,
           "content_sha256": "d662cd07fbcc8d8e3da9d54ac49eafdad8a06d7a604d6e519b9f51478a0bef6e"
+        },
+        {
+          "path": "data/quiz/production_context/historie/avisen_tiden_radhusgata_10.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.avisen_tiden_radhusgata_10.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "f23c5fad82f5c83bc12cffdda9ffa6a5e7266c89619f0f7bbc0d23e63fae1679"
         },
         {
           "path": "data/quiz/production_context/historie/botsfengselet.json",
@@ -3933,6 +4185,18 @@
           "content_sha256": "49288c952b92fa5d9e524800458219ec85d50b5601e8e0519f6b85964091c99f"
         },
         {
+          "path": "data/quiz/production_context/historie/kontraskjaeret.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.kontraskjaeret.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "bf4a48085a25f2be7ddf257e3d4637c00056067f4a62b280087b9823c7241ac6"
+        },
+        {
           "path": "data/quiz/production_context/historie/mollergata_19.json",
           "required": false,
           "fields": [
@@ -3967,6 +4231,18 @@
           ],
           "exists": true,
           "content_sha256": "7ebb1a7f25cb2519f287716a1478895788e60ce91b81a9d09d827dc1bae67c3d"
+        },
+        {
+          "path": "data/quiz/production_context/historie/mustadgarden_kongens_gate_3.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.mustadgarden_kongens_gate_3.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "d973e1bcfacae89e4c1827f815fb2f67cca341ae9394c7ea4652b4511ab7cade"
         },
         {
           "path": "data/quiz/production_context/historie/myntgatakvartalet.json",
@@ -4015,6 +4291,18 @@
           ],
           "exists": true,
           "content_sha256": "d13ca8bf254cd90a141c8cf2853ea868d815a25a998fbdb41b5c482f479ac236"
+        },
+        {
+          "path": "data/quiz/production_context/historie/palehaven_paleet.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.palehaven_paleet.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "5dddaabca77f625bf99caac2b007e04f46b200bb2a0abbeb99c8dbde05d082c8"
         },
         {
           "path": "data/quiz/production_context/historie/paulus_kirke.json",
@@ -4098,7 +4386,7 @@
             "quizProduction.targets.valerenga_kirke.context_artifact"
           ],
           "exists": true,
-          "content_sha256": "30a0a589978e13142b36e4761da82f5c20cb20149e4b90fd324c0f632f6ad0da"
+          "content_sha256": "126717ef56567d49aa799c7ca7e4717b19940e3f411afe9c4b5e8358fb935547"
         },
         {
           "path": "data/quiz/production_context/historie/var_frelsers_gravlund.json",
@@ -4111,6 +4399,42 @@
           ],
           "exists": true,
           "content_sha256": "b721e27ca39fcebdfb1e511d9f0501f1295938cf41a4db40b5e9ab0486dd73de"
+        },
+        {
+          "path": "data/quiz/production_context/historie/vikingtidsmuseet.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.vikingtidsmuseet.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "e5b221ceec80194c67a46faecc83adeb85a861152569fb1936655c30123eb97a"
+        },
+        {
+          "path": "data/quiz/production_context/historie/villa_grande.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_grande.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "bc24aab2c01cbb4d9f00e29ad9841f49ffbc802174c1824d0fb443db1aa455cb"
+        },
+        {
+          "path": "data/quiz/production_context/historie/villa_stenersen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.villa_stenersen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "bef04ad67576cf493130e64f7c8db9736b1224c48951e715b0d14107c5181255"
         },
         {
           "path": "data/quiz/production_context/historie/waisenhuset_kongens_gate.json",
@@ -4173,20 +4497,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "c2ae06f2a9b2f53af2cb5bb9d28341b7b9601d9d95a7b71f30ff9f6bc9ba5a18",
+      "package_content_sha256": "11f7d3d8a681c01a4b2777b9057568201bbc492da7456b77cf02eb2d21b23dc4",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 211,
+      "referenced_file_count": 232,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "35de79bca9907119cc94964773f876afae82452849fe873b0c037bc8be9ca6a8",
-      "content_sha256": "68949618f89957c5a3fc205dda1fc51f7f7f7c809f48d0d6547f9d4c7ad8d380",
+      "structure_sha256": "f4eacc41a03a3e7d9747b5b3964335458a9979d14919437c86008ed520792de3",
+      "content_sha256": "f7533418c644b537614cb9285f768b585cc6cc1989de7bdeccc9988fd0e61dc7",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -8733,5 +9057,5 @@
       ]
     }
   },
-  "release_sha256": "09918f2a3bdbd9b81e9b26f68c70afb79a5f3aa774b1ac5f020aaabfa9dd7b4e"
+  "release_sha256": "4facf282fa9f73c5195c22933db44d947c72477915a50508bda44fbd86d2f5c2"
 }

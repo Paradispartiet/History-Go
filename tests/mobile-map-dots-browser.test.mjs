@@ -111,6 +111,9 @@ try {
       window.HGMap.setPlaces([{
         id: "torggata", name: "Torggata", category: "by",
         lat: 59.917, lon: 10.7533, r: 180
+      }, {
+        id: "sentrum-area", name: "Sentrum", category: "by",
+        placeScope: "area", mapLod: "area", lat: 59.916, lon: 10.75, r: 500
       }]);
     });
     const usesNativeDots = width <= 1199 || touch;
@@ -125,6 +128,7 @@ try {
         name: el?.querySelector(".hg-place-detail-label")?.textContent,
         nameDisplay: el?.querySelector(".hg-place-detail-label")?.style.display,
         nameColor: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).color : null,
+        nameTextTransform: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).textTransform : null,
         nameShadow: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).textShadow : null,
         nameBackground: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).backgroundColor : null,
         namePadding: el?.querySelector(".hg-place-detail-label") ? getComputedStyle(el.querySelector(".hg-place-detail-label")).padding : null,
@@ -141,8 +145,9 @@ try {
       assert.notEqual(first.outline, "rgb(255, 255, 255)", "contrasting outline");
       assert.equal(first.vector, false, "native renderer does not await vector style");
       assert.equal(first.name, "Torggata", "a visible place name must accompany native dots");
-      assert.equal(first.nameDisplay, "block", "touch name is visible before style.load");
+      assert.equal(first.nameDisplay, "none", "touch name must stay hidden below zoom 15 before style.load");
       assert.equal(first.nameColor, "rgb(0, 0, 0)", "phone and iPad names must render in actual black, not white");
+      assert.equal(first.nameTextTransform, "uppercase", "phone and iPad must render place names in uppercase without changing their stored spelling");
       assert.equal(first.nameShadow, "none", "place name must not have the white halo that made text look white");
       assert.equal(first.nameBackground, "rgba(0, 0, 0, 0)", "touch labels must not have a visible background");
       assert.equal(first.namePadding, "0px", "touch labels must not have a padded box");
@@ -153,11 +158,31 @@ try {
       window.__originalDot = document.querySelector(".hg-place-detail-marker");
       window.__testMap.finishStyle();
     });
+    const area = await page.evaluate(() => {
+      const el = document.querySelector(".hg-place-area-marker");
+      const style = el ? getComputedStyle(el) : null;
+      return { count: document.querySelectorAll(".hg-place-area-marker").length,
+        width: el ? Number.parseFloat(el.style.width) : 0,
+        radius: style?.borderRadius, border: style?.borderTopWidth, zIndex: style?.zIndex };
+    });
+    assert.equal(area.count, 1, "area square must remain visible on touch and desktop");
+    assert.ok(area.width >= 9, "area square must be legible on mobile");
+    assert.equal(area.radius, "0px", "area marker stays square");
+    assert.equal(area.border, "2px");
+    assert.equal(area.zIndex, "12", "area square stays above nearby dots");
     const firstStyle = await page.evaluate(() => ({
       visibility: window.__testMap.getLayer("hg-places-dots")?.layout?.visibility,
       dotCount: document.querySelectorAll(".hg-place-detail-marker").length,
-      vectorLabelVisibility: window.__testMap.getLayer("hg-places-label")?.layout?.visibility
+      vectorLabelVisibility: window.__testMap.getLayer("hg-places-label")?.layout?.visibility,
+      detailTextTransform: window.__testMap.getLayer("hg-places-label")?.layout?.["text-transform"],
+      areaTextTransform: window.__testMap.getLayer("hg-place-areas-label")?.layout?.["text-transform"],
+      areaMinZoom: window.__testMap.getLayer("hg-place-areas-label")?.minzoom,
+      detailMinZoom: window.__testMap.getLayer("hg-places-label")?.minzoom
     }));
+    assert.equal(firstStyle.detailTextTransform, "uppercase", "detail vector labels must be uppercase on desktop");
+    assert.equal(firstStyle.areaTextTransform, "uppercase", "area vector labels must be uppercase");
+    assert.equal(firstStyle.areaMinZoom, 15, "area names appear earlier at zoom 15");
+    assert.equal(firstStyle.detailMinZoom, 15, "detail names appear earlier at zoom 15");
     assert.equal(firstStyle.visibility, usesNativeDots ? "none" : "visible");
     assert.equal(firstStyle.dotCount, usesNativeDots ? 1 : 0);
     assert.equal(firstStyle.vectorLabelVisibility, usesNativeDots ? "none" : "visible",
@@ -168,7 +193,7 @@ try {
         const dot = document.querySelector(".hg-place-detail-marker");
         const widths = [];
         const nameDisplay = [];
-        for (const zoom of [10, 12, 14, 16]) {
+        for (const zoom of [10, 12, 14, 15.9, 16, 17]) {
           map.zoom = zoom;
           map.emit("zoom");
           widths.push(Number(dot.style.width.replace("px", "")));
@@ -182,8 +207,8 @@ try {
       assert.ok(zoomSizes.widths[0] < 5 && zoomSizes.widths.at(-1) <= 8.5,
         "dots shrink into smaller points when zoomed out");
       assert.equal(zoomSizes.setCount, 1, "zoom does not reposition or recreate markers");
-      assert.deepEqual(zoomSizes.nameDisplay, ["none", "none", "block", "block"],
-        "place names show only at detail zoom and return without marker recreation");
+      assert.deepEqual(zoomSizes.nameDisplay, ["none", "none", "none", "block", "block", "block"],
+        "place names show from zoom 15 without marker recreation");
 
       await page.evaluate(() => {
         window.HGMap.resize();
