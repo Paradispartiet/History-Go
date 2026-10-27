@@ -35,6 +35,12 @@ for (const id of references) {
  assert(svg.includes("<path") || svg.includes("<ellipse"), id + ": empty illustration");
  assert(!svg.includes("<script"), id + ": executable image code");
 }
+const batch05Ids = [...read("js/ui/nature-illustrations-batch05.js").matchAll(/\bemne_(?:flora|fauna)_[a-z0-9_]+(?=\s*:)/g)].map(match => match[0]);
+assert.equal(batch05Ids.length, 30, "expected exactly 30 new species in batch 05");
+for (const id of batch05Ids) {
+ const drawing = decodeURIComponent(artist.resolve(id).split(",")[1]);
+ assert(drawing.length < 100_000, id + ": oversized mobile SVG");
+}
 assert.equal(artist.resolve("unknown"), "");
 assert.equal(new Set(references.map(id=>artist.resolve(id) )).size, 150, "illustration assets must be unique");
 assert.match(read("js/ui/nature-explorer.js"), /const art=drawings\?\.resolve/, "illustrations must take display priority");
