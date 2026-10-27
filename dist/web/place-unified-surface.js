@@ -2074,6 +2074,7 @@
         aboutSlot.hidden = false;
         aboutOwner = document.createElement("section");
         aboutOwner.className = "hg-section hg-place-section hg-place-about-section";
+      aboutOwner.setAttribute("data-hg-place-sheet-owner", "about");
         const heading2 = document.createElement("h3");
         heading2.textContent = "Om stedet";
         aboutOwner.appendChild(heading2);
