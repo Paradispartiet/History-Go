@@ -226,7 +226,15 @@ earlyToastQueue.forEach((args) => {
     if(x.target_type==="person") { if(m==="person_quiz") return out(q(x.quiz_id),"unlock_index"); return out(has(st.readPersons,null,x.person_id||x.target_id),"reads_person"); }
     if(x.target_type==="knowledge"&&m==="explore_category") return out(false,null);
     if(x.target_type==="knowledge"&&m==="badge_points") { const required=Number(x.required_points||x.payload.required_points),points=Number(st.merits?.[x.category_id]?.points||0); return out(!!x.category_id&&Number.isFinite(required)&&required>0&&points>=required,"merits"); }
-    if(x.target_type==="knowledge") { if(q(x.quiz_id)) return out(true,"unlock_index"); // Partial quiz_progress is not a completed quiz. if(m==="read_leksikon") return out(has(st.readLeksikon,"emneId",x.emne_id)||has(st.readLeksikon,"categoryId",x.category_id)||has(st.readLeksikon,null,x.target_id),"reads_leksikon"); return out(x.category_id&&Number(st.merits?.[x.category_id]?.points||0)>0,"merits"); }
+    if(x.target_type==="knowledge") {
+      // Only canonical persisted evidence for the requested action can complete it.
+      if(m==="quiz_completed"||m==="correct_answer") return out(q(x.quiz_id),"unlock_index");
+      if(m==="read_leksikon") return out(
+        has(st.readLeksikon,"emneId",x.emne_id)||
+        has(st.readLeksikon,"categoryId",x.category_id)||
+        has(st.readLeksikon,null,x.target_id), "reads_leksikon");
+      return out(false,null);
+    }
     if(x.target_type==="unlock") return out(q(x.unlock_id)||st.visitedPlaces.has(x.unlock_id),"unlock_index");
     if(x.target_type==="debate") { const ids=[x.debate_id,x.conflict_id,x.target_id].filter(Boolean), r=ids.map(id=>st.debateById[id]||st.debateById[st.debateByConflict[id]]).find(Boolean); return out(r&&(m==="position_chosen"?r.position:r.participated),"debate_log"); }
     return out(false,null);
