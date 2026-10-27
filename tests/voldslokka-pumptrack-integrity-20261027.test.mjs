@@ -80,7 +80,7 @@ test("Voldsløkka: lokal illustrasjon er merket og beholdes i canonical Place", 
   assert.match(place.imageCaption || "", /illustrasjon/u);
   assert.match(place.imageMeta?.assetType || "", /editorial_place_illustration/u);
   const svg = readFileSync(new URL("../" + expected, import.meta.url), "utf8");
-  assert.match(svg, /^<svg[\\s>]/u);
+  assert.ok(svg.startsWith("<svg "), "SVG må være en lokal tegningsfil");
   assert.match(svg, /ILLUSTRASJON/u);
-  assert.doesNotMatch(svg, /<image\\b/iu);
+  assert.ok(!svg.includes("<image"), "Ingen innlastede eksterne bilder");
 });
