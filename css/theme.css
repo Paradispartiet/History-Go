@@ -303,6 +303,13 @@ body.hg-app header .actions > button.secondary{
   z-index: 20000;
 }
 
+/* A rewarded card uses the bottom lane. Move ordinary messages above it instead
+   of letting nature/person/badge notifications cover one another. */
+body:has(#natureUnlockStack > .nature-unlock-card) #toast {
+  top: calc(92px + env(safe-area-inset-top, 0px));
+  bottom: auto;
+}
+
 #toast .toast-body{
   font-size: inherit;
   line-height: inherit;
