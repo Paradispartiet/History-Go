@@ -1,0 +1,64 @@
+name: Voldsløkka pumptrack editorial v4.2 materialization
+on:
+  push:
+    branches:
+      - content/voldslokka-pumptrack-editorial-v42-20261027
+    paths:
+      - .github/workflows/voldslokka-editorial-materialize-20261027.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/voldslokka-pumptrack-editorial-v42-20261027
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Build only reviewed source-led place text and claim packet
+        run: node scripts/produce-voldslokka-place-description-20261027.mjs
+      - name: Verify claim, source, text hashes and editorial status
+        run: node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base origin/main
+      - name: Regenerate exact canonical Place index and place-open outputs
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Verify canonical index and runtime
+        run: |
+          npm run places:index:check
+          npm run place-open:check
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const p=JSON.parse(fs.readFileSync('data/places/sport/oslo/voldslokka_pumptrack/voldslokka_pumptrack.json','utf8'));
+          const runtime=JSON.parse(fs.readFileSync('data/runtime/place-open/voldslokka_pumptrack.json','utf8'));
+          assert.equal(p.id,'voldslokka_pumptrack');
+          assert.equal(p.fagverk.status,'curated');
+          assert(!p.popupDesc.includes('I History Go'));
+          assert(runtime.place?.popupDesc===p.popupDesc || JSON.stringify(runtime).includes(p.popupDesc.slice(0,120)));
+          console.log('Voldsløkka: source prose, existing Fagverk and runtime parity PASS.');
+          NODE
+      - name: Commit canonical editorial artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/sport/oslo/voldslokka_pumptrack/voldslokka_pumptrack.json data/places/production/voldslokka_pumptrack.json data/places/places_index.json data/runtime/place-open/voldslokka_pumptrack.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Replace Voldsløkka game-meta prose with source-reviewed v4.2 history"
+            git push
+          fi
+      - name: Remove temporary producer and workflow
+        run: |
+          git rm -- scripts/produce-voldslokka-place-description-20261027.mjs .github/workflows/voldslokka-editorial-materialize-20261027.yml
+          git commit -m "Remove one-time Voldsløkka editorial producer after verification"
+          git push
