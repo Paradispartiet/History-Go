@@ -263,7 +263,27 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
 
   movePrimaryNodes(shell, place);
   const aboutSlot = ensureAboutSlot(shell);
-  if (aboutSlot) mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })?.classList.add("pc-sheet-canonical-about");
+  if (aboutSlot) {
+    // The live short description belongs beside frontImage too, not above it.
+    // Move it back to the intro on each mount before the canonical owner
+    // replaces its children; this preserves the same node across place changes.
+    let aboutOwner = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
+    if (!(aboutOwner instanceof HTMLElement)) {
+      // Places whose popupDesc equals desc (or that have only desc) still
+      // need an About heading and text beside their photograph.
+      aboutSlot.hidden = false;
+      aboutOwner = document.createElement("section");
+      aboutOwner.className = "hg-section hg-place-section hg-place-about-section";
+      const heading = document.createElement("h3");
+      heading.textContent = "Om stedet";
+      aboutOwner.appendChild(heading);
+      aboutSlot.replaceChildren(aboutOwner);
+    }
+    aboutOwner.classList.add("pc-sheet-canonical-about");
+    const description = shell.querySelector<HTMLElement>("#pcDesc");
+    const heading = aboutOwner.querySelector("h3");
+    if (description && heading) heading.insertAdjacentElement("afterend", description);
+  }
   const historySlot = ensureHistorySlot(shell);
   if (historySlot) {
     mountCanonicalHistory(historySlot, place)?.classList.add("pc-sheet-canonical-history");
