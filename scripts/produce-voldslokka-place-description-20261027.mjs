@@ -75,7 +75,8 @@ const qs=[
  ["Hvilke aktiviteter deler anlegget?","Sykkel, sparkesykkel, skateboard og rulleskøyter","hva",9],
  ["Hvem er tiltakets målgruppe?","Barn og unge","hvem",11],
  ["Hvilken vei skal man kjøre på banen?","Mot klokken","hva",12],
- ["Hva er forbudt på banen?","Motorbruk","hva",13]
+ ["Hva er forbudt på banen?","Motorbruk","hva",13],
+ ["Hvor ligger pumptracken som Sagene IF bygde?","På Voldsløkka i Oslo","hvor",0]
 ];
 const quizReadiness={questions:qs.map(([question,answer,type,claimIndex])=>({question,answer,type,normalKnowledgeQuestion:true,claimIds:[claimIds[claimIndex]]}))};
 const hash=v=>crypto.createHash("sha256").update(v,"utf8").digest("hex");
