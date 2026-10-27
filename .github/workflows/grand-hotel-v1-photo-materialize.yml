@@ -1,4 +1,4 @@
-name: Grand Hotel Oslo – documentary photo materialization
+name: Grand Hotel v1 – photo, quiz and Knowledge integration
 on:
   push:
     branches:
@@ -6,23 +6,32 @@ on:
     paths:
       - .github/workflows/grand-hotel-v1-photo-materialize.yml
       - scripts/prepare-grand-hotel-oslo-photos.py
+      - scripts/sync-grand-hotel-quizcard-knowledge.mjs
+      - data/quiz/media/grand_hotel_sets.json
+      - data/quiz/production_briefs/media/grand_hotel.json
+  workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: grand-hotel-v1-integration-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
-    name: License-verify and prepare Grand Hotel photos
+    name: Validate media, activate Knowledge and regenerate runtime
+    if: github.ref == 'refs/heads/content/grand-hotel-sentrum-v1-20261027'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: content/grand-hotel-sentrum-v1-20261027
           persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install image dependencies
         run: python -m pip install 'Pillow>=11,<13'
-      - name: Verify Commons photo rights and create three WebP image variants
+      - name: Verify photo rights and keep deterministic WebP variants
         run: python scripts/prepare-grand-hotel-oslo-photos.py
       - uses: actions/setup-node@v4
         with:
@@ -30,21 +39,33 @@ jobs:
           cache: npm
       - name: Install project dependencies
         run: npm ci --no-audit --no-fund
-      - name: Verify place-specific documentary media and Fagverk
-        run: node --test tests/grand-hotel-v1-fagverk-photo.test.mjs
-      - name: Generate canonical Place, People and Fagverk runtime
+      - name: Build canonical quiz production context
+        run: node scripts/build-quiz-production-context.mjs --category media --target grand_hotel --output data/quiz/production_context/media/grand_hotel.json
+      - name: Generate canonical Knowledge IDs
+        run: npm run knowledge:canonical:write
+      - name: Synchronize QuizCard Knowledge with fullquiz
+        run: node scripts/sync-grand-hotel-quizcard-knowledge.mjs
+      - name: Regenerate Place-open, index and Fagverk release
         run: |
           npm run place-open:build
           npm run places:index:build
           node scripts/build-fagverk-release-manifest.mjs
-      - name: Commit assets and dependent runtime only
+      - name: Verify Grand Hotel source media, Fagverk and quiz parity
         run: |
+          node --test tests/grand-hotel-v1-fagverk-photo.test.mjs tests/grand-hotel-v1-quiz-parity.test.mjs
+      - name: Commit only Grand Hotel and required generated artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add bilder/places/grand-hotel-20261027/
           git add data/places/media/oslo/grand_hotel.json
-          git add data/runtime/place-open/ data/runtime/people-all/ data/places/places_index.json data/fagverk/fagverk_release.json
-          git diff --cached --stat
-          git diff --cached --quiet && { echo 'Canonical assets and runtime already synchronized'; exit 0; }
-          git commit -m 'media(grand-hotel): add licensed source images and canonical runtime'
+          git add data/quiz/production_context/media/grand_hotel.json
+          git add data/quiz/media/grand_hotel_sets.json data/quizcards/media/grand_hotel_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/grand_hotel.json data/places/places_index.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Grand Hotel: activate canonical quiz, Knowledge and Place runtime'
+          fi
           git push origin HEAD:refs/heads/content/grand-hotel-sentrum-v1-20261027
