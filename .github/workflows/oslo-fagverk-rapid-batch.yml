@@ -22,9 +22,6 @@ on:
       - 'data/runtime/place-open/tollbukaia.json'
       - 'data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json'
       - 'data/runtime/place-open/jernbaneverkstedet_lodalen.json'
-  push:
-    branches: [research/oslo-sentrum-v1-six-next-20261027]
-    paths: ['.github/workflows/oslo-fagverk-rapid-batch.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -32,95 +29,6 @@ concurrency:
   group: oslo-fagverk-batch-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
-  sync-new-main:
-    if: github.event_name == 'push'
-    name: Synchronize latest main with five Oslo Places (guarded one-time)
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    timeout-minutes: 25
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: research/oslo-sentrum-v1-six-next-20261027
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Merge main, preserve both scopes and rebuild canonical indexes
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git fetch origin main
-          git show HEAD:data/fagverk/fagverk_registry.json > /tmp/oslo-pr-five-fagverk-registry.json
-          set +e
-          git merge --no-commit --no-ff origin/main
-          merge_result=$?
-          set -e
-          if [ "$merge_result" -ne 0 ]; then
-            actual=$(git diff --name-only --diff-filter=U | LC_ALL=C sort)
-            printf 'MERGE_CONFLICT_PATHS:\n%s\n' "$actual"
-            [ -n "$actual" ] || { echo 'Merge failed without standard conflict markers'; exit 1; }
-            allowed=$(printf '%s\n' \
-              data/epoker/epoke-place-index.json \
-              data/fag/fag_manifest.json \
-              data/fagverk/fagverk_registry.json \
-              data/fagverk/fagverk_release.json \
-              data/knowledge/knowledge_units.generated.json \
-              data/places/places_index.json \
-              data/quiz/manifest.json \
-              data/quizcards/by/manifest.json \
-              data/quizcards/historie/manifest.json \
-              data/quizcards/naeringsliv/manifest.json \
-              reports/knowledge-id-backfill.json | LC_ALL=C sort)
-            while IFS= read -r f; do
-              echo "$allowed" | grep -Fxq "$f" || { echo "UNEXPECTED_CONFLICT_PATH: $f"; exit 1; }
-              git checkout --theirs -- "$f"
-              git add -- "$f"
-            done <<< "$actual"
-          fi
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const p='data/fagverk/fagverk_registry.json';
-          const main=JSON.parse(fs.readFileSync(p,'utf8'));
-          const pr=JSON.parse(fs.readFileSync('/tmp/oslo-pr-five-fagverk-registry.json','utf8'));
-          const scope=['kontraskjaeret','palehaven_paleet','avisen_tiden_radhusgata_10','egertorget','mustadgarden_kongens_gate_3'];
-          for(const id of scope){
-            if(!pr.placeLinks?.[id])throw Error('Missing five-place Fagverk registry link: '+id);
-            if(main.placeLinks?.[id]&&JSON.stringify(main.placeLinks[id])!==JSON.stringify(pr.placeLinks[id]))throw Error('Conflicting scoped Fagverk registry link: '+id);
-            main.placeLinks ??= {};
-            main.placeLinks[id]=pr.placeLinks[id];
-          }
-          for(const id of ['wessels_plass','ostbanestasjonen','vinmonopolet_lager']){
-            if(!main.placeLinks?.[id])throw Error('Main Fagverk registry link lost: '+id);
-          }
-          fs.writeFileSync(p,JSON.stringify(main,null,2)+'\n');
-          NODE
-          test -f data/quiz/by/wessels_plass_sets.json
-          test -f data/quiz/by/ostbanestasjonen_sets.json
-          test -f data/quiz/naeringsliv/vinmonopolet_lager_sets_merged.json
-          npm ci --no-audit --no-fund
-          npm run places:index:build
-          node scripts/build-epoke-place-index.mjs
-          npm run place-open:build
-          node scripts/materialize-oslo-next-six-quizcards-20261027.mjs
-          node scripts/build-fagverk-release-manifest.mjs
-          npm run places:index:check
-          npm run place-open:check
-          node scripts/build-fagverk-release-manifest.mjs --check
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          node --test tests/oslo-next-six-quiz-parity.test.mjs
-          node --experimental-strip-types scripts/knowledge-canonical-data.mts --check
-          git add -A
-          changed=$(git diff --cached --name-only | wc -l)
-          echo "RECONCILED_CHANGED_FILES=$changed"
-          [ "$changed" -le 450 ] || { echo 'Unexpected bulk regeneration, refusing merge'; exit 1; }
-          git commit -m "Integrate current main and preserve five scoped Oslo quiz and Fagverk Places"
-          git push origin HEAD:research/oslo-sentrum-v1-six-next-20261027
   validate-batch:
     runs-on: ubuntu-latest
     timeout-minutes: 15
