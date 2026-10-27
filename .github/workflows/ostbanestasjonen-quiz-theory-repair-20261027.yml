@@ -26,6 +26,8 @@ jobs:
       - name: Generate canonical production context and Knowledge
         run: |
           npm run quiz:context -- --category by --target ostbanestasjonen --output data/quiz/production_context/by/ostbanestasjonen.json
+          # Repair the independent, deterministic context drift from the earlier Vålerenga merge; no quiz or Place edits.
+          npm run quiz:context -- --category historie --target valerenga_kirke --output data/quiz/production_context/historie/valerenga_kirke.json
           npm run knowledge:canonical:write
       - name: Sync QuizCard answer and Knowledge links to canonical questions
         run: |
@@ -63,7 +65,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/quiz/by/ostbanestasjonen_sets.json data/quiz/production_briefs/by/ostbanestasjonen.json data/quiz/production_context/by/ostbanestasjonen.json data/quizcards/by/ostbanestasjonen_quizcard_v1.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/quiz/by/ostbanestasjonen_sets.json data/quiz/production_briefs/by/ostbanestasjonen.json data/quiz/production_context/by/ostbanestasjonen.json data/quiz/production_context/historie/valerenga_kirke.json data/quizcards/by/ostbanestasjonen_quizcard_v1.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
           if ! git diff --cached --quiet; then
             git commit -m "Regenerate Østbanestasjonen source-bound Knowledge and QuizCard"
             git push
