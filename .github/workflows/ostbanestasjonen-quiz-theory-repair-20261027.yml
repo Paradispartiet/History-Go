@@ -1,0 +1,84 @@
+name: Østbanestasjonen progression and theory repair
+on:
+  push:
+    branches:
+      - fix/ostbanestasjonen-quiz-progression-theory-20261027
+    paths:
+      - .github/workflows/ostbanestasjonen-quiz-theory-repair-20261027.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/ostbanestasjonen-quiz-progression-theory-20261027
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Regenerate canonical production context
+        run: npm run quiz:context -- --category by --target ostbanestasjonen --output data/quiz/production_context/by/ostbanestasjonen.json
+      - name: Recompute actual Knowledge links
+        run: npm run knowledge:canonical:write
+      - name: Synchronize canonical quiz and QuizCard, verify balance
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const qp='data/quiz/by/ostbanestasjonen_sets.json',cp='data/quizcards/by/ostbanestasjonen_quizcard_v1.json';
+          const quiz=JSON.parse(fs.readFileSync(qp,'utf8')),card=JSON.parse(fs.readFileSync(cp,'utf8'));
+          const all=quiz.sets.flatMap(s=>s.questions);
+          assert.deepEqual(quiz.sets.map(s=>s.questions.length),[7,7,7]);
+          assert.equal(new Set(all.map(q=>q.id)).size,21);
+          assert.equal(all.filter(q=>q.question_type==='fact').length,12);
+          assert.equal(all.filter(q=>q.question_type==='context').length,5);
+          assert.equal(all.filter(q=>Boolean(q.topic_hook_id)).length,4);
+          for(const q of all){assert.equal(q.answer,q.options[q.answerIndex]);assert.ok(q.primary_knowledge_unit_id&&q.knowledge_unit_ids.length);assert.ok(!/^\\d{4}$/.test(q.answer));}
+          const oldCardIds=card.cards[0].questions.map(q=>q.id);
+          card.cards[0].questions=oldCardIds.map((id,i)=>{const q=all.find(q=>q.id===id);assert.ok(q);return {...q,number:i+1,sourceQuestionId:q.id,sourceQuizId:q.quiz_id,sourceQuizFile:qp};});
+          card.cards[0].answerKey=card.cards[0].questions.map((q,i)=>({number:i+1,answer:q.answer,answerIndex:q.answerIndex}));
+          assert.equal(card.cards[0].questions.length,10);
+          fs.writeFileSync(cp,JSON.stringify(card,null,2)+'\n');
+          console.log('PASS: 21 canonical questions, 10 QuizCard, 21 Knowledge, 12/5/4 family balance, IDs preserved');
+          NODE
+      - name: Commit derived artifacts without oversized diagnostic file
+        run: |
+          git restore --source=HEAD -- reports/knowledge-contract-audit.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/by/ostbanestasjonen_sets.json data/quizcards/by/ostbanestasjonen_quizcard_v1.json data/quiz/production_context/by/ostbanestasjonen.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Regenerate Østbanestasjonen Knowledge links and canonical production context"
+            git push
+          fi
+      - name: Global full quiz audits – do not weaken baseline
+        run: |
+          npm run quiz:context -- --category by --target ostbanestasjonen --output data/quiz/production_context/by/ostbanestasjonen.json --check
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run knowledge:canonical:check
+      - name: Real browser desktop and touchscreen mobile quiz completion
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          export CHROME_BIN
+          node scripts/verify-place-quiz-browser.mjs ostbanestasjonen
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ostbanestasjonen-theory-repair-mobile-desktop
+          path: artifacts/place-quiz/ostbanestasjonen/
+          retention-days: 14
+      - name: Remove one-use workflow after green checks
+        run: |
+          git rm .github/workflows/ostbanestasjonen-quiz-theory-repair-20261027.yml
+          git commit -m "Remove one-time Østbanestasjonen repair workflow"
+          git push

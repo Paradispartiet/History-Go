@@ -4,7 +4,7 @@
   "categoryId": "by",
   "targetId": "ostbanestasjonen",
   "reviewed_at": "2026-10-26",
-  "source_review_basis": "data/places/production/ostbanestasjonen.json; 19 claims verified on 2026-10-26; no new external source review claimed",
+  "source_review_basis": "data/places/production/ostbanestasjonen.json; 19 claims verified on 2026-10-26; no new external source review claimed; 2026-10-27 phase repair: source-grounded context and late theory/method questions preserving question IDs and QuizCard selection.",
   "sources": {
     "banenor": {
       "url": "https://www.nyeoslos.no/oslo-s-gjennom-tidene/",
@@ -37,10 +37,25 @@
       "em_by_historiske_lag_i_hverdagsrom",
       "em_by_transformasjon_ombruk"
     ],
-    "topic_hook_ids": [],
-    "method_ids": [],
-    "thinker_ids": [],
-    "works": []
+    "topic_hook_ids": [
+      "his_ombruk",
+      "ark_transformasjon",
+      "his_spor_gatebilde"
+    ],
+    "method_ids": [
+      "met_arkiv_minne_spor",
+      "met_gaanalyse"
+    ],
+    "thinker_ids": [
+      "alois_riegl",
+      "aldo_rossi",
+      "kevin_lynch"
+    ],
+    "works": [
+      "The Modern Cult of Monuments",
+      "The Architecture of the City",
+      "The Image of the City"
+    ]
   },
   "existing_quiz_audit": {
     "searched_paths": [
@@ -68,7 +83,9 @@
   },
   "held_back_candidates": [
     "Unverified precise details about wartime sabotage beyond the verified Osvald claim.",
-    "Direct year-only questions beyond 2 per set of 10 and confusion between Oslo S, Jernbanetorget and the historic Østbanestasjonen."
+    "Direct year-only questions beyond 2 per set of 10 and confusion between Oslo S, Jernbanetorget and the historic Østbanestasjonen.",
+    "Do not treat the current preserved station hall as evidence that all of the 1854 station was unchanged.",
+    "Do not infer original train numbers or wartime operational details from current building surfaces."
   ],
   "claims": [
     {
@@ -210,7 +227,7 @@
       "claim_id": "claim_ostbanestasjonen_quiz_10",
       "order": 10,
       "planned_phase": "bridge",
-      "family": "fact",
+      "family": "context",
       "statement": "Hovedbanestasjonen fikk navnet Østbanestasjonen da Vestbanestasjonen åpnet i 1872.",
       "source_ids": [
         "ostbanehallen"
@@ -240,7 +257,7 @@
       "claim_id": "claim_ostbanestasjonen_quiz_12",
       "order": 12,
       "planned_phase": "bridge",
-      "family": "fact",
+      "family": "context",
       "statement": "Bystyrets reguleringsplan fra 1976 forutsatte at en vesentlig del av den gamle stasjonsbygningen skulle bevares.",
       "source_ids": [
         "oslo_byleksikon"
@@ -285,8 +302,8 @@
       "claim_id": "claim_ostbanestasjonen_quiz_15",
       "order": 15,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Oslotunnelen og Oslo S ble tatt i bruk i 1980.",
+      "family": "context",
+      "statement": "Oslotunnelen og Oslo S ble tatt i bruk i 1980, før den høytidelige åpningen.",
       "source_ids": [
         "banenor"
       ],
@@ -300,7 +317,7 @@
       "claim_id": "claim_ostbanestasjonen_quiz_16",
       "order": 16,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "context",
       "statement": "Den høytidelige åpningen av Oslo S skjedde i 1987, og Østbanestasjonen ble gradvis nedlagt som jernbanestasjon i perioden 1987–90.",
       "source_ids": [
         "oslo_byleksikon"
@@ -315,7 +332,7 @@
       "claim_id": "claim_ostbanestasjonen_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "context",
       "statement": "Østbanehallen gjenåpnet med restauranter og butikker i 2015 etter restaurering.",
       "source_ids": [
         "ostbanehallen"
@@ -330,8 +347,8 @@
       "claim_id": "claim_ostbanestasjonen_quiz_18",
       "order": 18,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Både hallen og indre og ytre fasade er fredet.",
+      "family": "concept_theory",
+      "statement": "Hallen og både indre og ytre fasader ved den gamle Østbanestasjonen er fredet; bevaring av historiske bygningsdeler kan kombineres med endret bruk.",
       "source_ids": [
         "ostbanehallen"
       ],
@@ -339,14 +356,18 @@
       "emne_id": "em_by_transformasjon_ombruk",
       "place_production_claim_ids": [
         "claim_ostbanestasjonen_aav42_18"
-      ]
+      ],
+      "topic_hook_id": "his_ombruk",
+      "thinker_id": "alois_riegl",
+      "work": "The Modern Cult of Monuments",
+      "method_id": "met_arkiv_minne_spor"
     },
     {
       "claim_id": "claim_ostbanestasjonen_quiz_19",
       "order": 19,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Østbanehallen har adresse Jernbanetorget 1.",
+      "family": "concept_theory",
+      "statement": "Østbanehallen ligger på Jernbanetorget 1. Den tidligere jernbanefunksjonen er avløst av blant annet servering og handel, slik at beliggenhet og brukshistorie må leses sammen.",
       "source_ids": [
         "ostbanehallen"
       ],
@@ -354,14 +375,17 @@
       "emne_id": "em_by_transformasjon_ombruk",
       "place_production_claim_ids": [
         "claim_ostbanestasjonen_aav42_19"
-      ]
+      ],
+      "topic_hook_id": "his_ombruk",
+      "thinker_id": "aldo_rossi",
+      "work": "The Architecture of the City"
     },
     {
       "claim_id": "claim_ostbanestasjonen_quiz_20",
       "order": 20,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "Georg Andreas Bull tegnet det L-formede nybygget med fasader mot Jernbanetorget og Havnegata.",
+      "family": "concept_theory",
+      "statement": "Georg Andreas Bull tegnet det L-formede nybygget med fasader mot Jernbanetorget og Havnegata, noe som kan undersøkes ved å følge bygningens orientering på stedet.",
       "source_ids": [
         "oslo_byleksikon"
       ],
@@ -369,22 +393,30 @@
       "emne_id": "em_by_transformasjon_ombruk",
       "place_production_claim_ids": [
         "claim_ostbanestasjonen_aav42_06"
-      ]
+      ],
+      "topic_hook_id": "ark_transformasjon",
+      "thinker_id": "aldo_rossi",
+      "work": "The Architecture of the City",
+      "method_id": "met_gaanalyse"
     },
     {
       "claim_id": "claim_ostbanestasjonen_quiz_21",
       "order": 21,
       "planned_phase": "final",
-      "family": "fact",
-      "statement": "En ny toghall ble reist mellom Bulls nybygg og den eldre stasjonsbygningen.",
+      "family": "concept_theory",
+      "statement": "En ny toghall ble reist mellom Bulls nybygg og den eldre stasjonsbygningen; anlegget består derfor av flere dokumenterbare byggeperioder.",
       "source_ids": [
         "oslo_byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_transformasjon_ombruk",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
       "place_production_claim_ids": [
         "claim_ostbanestasjonen_aav42_07"
-      ]
+      ],
+      "topic_hook_id": "his_spor_gatebilde",
+      "thinker_id": "kevin_lynch",
+      "work": "The Image of the City",
+      "method_id": "met_arkiv_minne_spor"
     }
   ]
 }
