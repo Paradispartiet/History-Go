@@ -34,6 +34,49 @@ jobs:
           node scripts/audit-quiz-production-context.mjs
           npm run audit:quiz-manifest:v2
           node dist/scripts/knowledge-canonical-data.mjs --audit-only
+      - name: Verify QuizCard source, answer and Knowledge parity
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import {readFileSync} from 'node:fs';
+          const read=(p)=>JSON.parse(readFileSync(p,'utf8'));
+          const path='data/quiz/by/ostbanestasjonen_sets.json';
+          const quiz=read(path), card=read('data/quizcards/by/ostbanestasjonen_quizcard_v1.json').cards[0];
+          const bank=quiz.sets.flatMap(s=>s.questions);
+          const index=new Map(bank.map(q=>[q.id,q]));
+          assert.equal(bank.length,21);
+          assert.equal(card.sourceFile,path);
+          assert.equal(card.questions.length,10);
+          assert.equal(card.answerKey.length,10);
+          for(const [i,c] of card.questions.entries()){
+            const q=index.get(c.sourceQuestionId);
+            assert.ok(q,c.id);
+            assert.equal(c.sourceQuizFile,path);
+            for(const k of ['quiz_id','question','answer','answerIndex','knowledge','primary_knowledge_unit_id'])
+              assert.deepEqual(c[k],q[k],c.id+': '+k);
+            assert.deepEqual(c.options,q.options);
+            assert.deepEqual(c.knowledge_unit_ids,q.knowledge_unit_ids);
+            assert.equal(card.answerKey[i].answer,q.answer);
+            assert.equal(card.answerKey[i].answerIndex,q.answerIndex);
+          }
+          assert.equal(new Set(card.questions.map(x=>x.id)).size,10);
+          assert.equal(bank.filter(q=>/^(når|hvilket år|i hvilket år)\\b/i.test(q.question)).length,0);
+          console.log('PASS Østbanestasjonen: 21 quiz, 10 QuizCards, full Knowledge and answer parity');
+          NODE
+      - name: Full actual-app quiz playthrough, mobile and desktop
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          export CHROME_BIN
+          node scripts/verify-place-quiz-browser.mjs ostbanestasjonen
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ostbanestasjonen-mobile-desktop-quiz
+          path: artifacts/place-quiz/ostbanestasjonen/
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Commit generated source-controlled artifacts
         run: |
           git add data/fag/fag_manifest.json
