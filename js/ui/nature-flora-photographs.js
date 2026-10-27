@@ -1,4 +1,4 @@
-/* Forty individually sourced photographs for Finn Flora.
+/* Fifty-three individually sourced photographs for Finn Flora.
  * Photo identity follows the Wikimedia Commons file description, not a generated
  * SVG template or an automatic species-name search. This is a photographic
  * reference pilot, not a completed botanical-identification audit.
@@ -53,7 +53,20 @@ const FILES=Object.freeze({
  emne_flora_gulmaure:["Galium verum","Galium verum 02.jpg","Bjoertvedt","BY-SA-3.0"],
  emne_flora_penstorkenebb:["Geranium robertianum","Geranium robertianum.jpeg","Kristian Peters","BY-SA-3.0"],
  emne_flora_vassarve:["Stellaria media","Stellaria media ENBLA01.jpeg","Enrico Blasutto","BY-SA-3.0"],
- emne_flora_krypsoleie:["Ranunculus repens","Ranunculus repens sl20.jpg","Stefan.lefnaer","BY-SA-4.0"]
+ emne_flora_krypsoleie:["Ranunculus repens","Ranunculus repens sl20.jpg","Stefan.lefnaer","BY-SA-4.0"],
+ emne_flora_snoklokke:["Galanthus nivalis","Snowdrop - Galanthus nivalis.jpg","Nino Barbieri","BY-SA-3.0"],
+ emne_flora_humleblom:["Geum urbanum","Geum urbanum.jpg","Badlydrawnboy22","BY-SA-3.0"],
+ emne_flora_jordreve:["Glechoma hederacea","Glechoma hederacea.jpeg","Kristian Peters","BY-SA-3.0"],
+ emne_flora_gjetertaske:["Capsella bursa-pastoris","Capsella bursa-pastoris.jpeg","Kristian Peters","BY-SA-3.0"],
+ emne_flora_rodknapp:["Knautia arvensis","Knautia arvensis.jpeg","Kristian Peters","BY-SA-3.0"],
+ emne_flora_smaengkall:["Rhinanthus minor","Rhinanthus minor.jpeg","Kristian Peters","BY-SA-3.0"],
+ emne_flora_rosslyng:["Calluna vulgaris","Callúna vulgáris.JPG","Simo Räsänen (Ximonic)","BY-SA-3.0"],
+ emne_flora_prikktvetann:["Lamium maculatum","Lamium maculatum 28042026.jpg","Fornax","BY-SA-3.0"],
+ emne_flora_kattefot:["Antennaria dioica","Antennaria dioica 001.jpg","Meneerke bloem","BY-SA-3.0"],
+ emne_flora_firkantperikum:["Hypericum maculatum","Hypericum maculatum s. str.jpg","Danny S.","BY-SA-4.0"],
+ emne_flora_varkaal:["Ficaria verna","Ficaria verna 115300058.jpg","dcourtine","BY-4.0"],
+ emne_flora_russblaastjerne:["Scilla siberica","Scilla siberica.jpg","Adventice2000","BY-SA-3.0"],
+ emne_flora_varerteknapp:["Lathyrus vernus","Lathyrus vernus02.jpg","Meneerke bloem","BY-SA-3.0"]
 });
 const PHOTO_URLS=Object.freeze({
  "emne_flora_enghumleblom": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Geum_rivale_flowers.jpg",
@@ -95,7 +108,20 @@ const PHOTO_URLS=Object.freeze({
  "emne_flora_gulmaure": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Galium_verum_02.jpg/640px-Galium_verum_02.jpg",
  "emne_flora_penstorkenebb": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Geranium_robertianum.jpeg/640px-Geranium_robertianum.jpeg",
  "emne_flora_vassarve": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Stellaria_media_ENBLA01.jpeg/640px-Stellaria_media_ENBLA01.jpeg",
- "emne_flora_krypsoleie": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Ranunculus_repens_sl20.jpg/640px-Ranunculus_repens_sl20.jpg"
+ "emne_flora_krypsoleie": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Ranunculus_repens_sl20.jpg/640px-Ranunculus_repens_sl20.jpg",
+ "emne_flora_snoklokke": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Snowdrop_-_Galanthus_nivalis.jpg/640px-Snowdrop_-_Galanthus_nivalis.jpg",
+ "emne_flora_humleblom": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Geum_urbanum.jpg/640px-Geum_urbanum.jpg",
+ "emne_flora_jordreve": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Glechoma_hederacea.jpeg/640px-Glechoma_hederacea.jpeg",
+ "emne_flora_gjetertaske": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Capsella_bursa-pastoris.jpeg/640px-Capsella_bursa-pastoris.jpeg",
+ "emne_flora_rodknapp": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Knautia_arvensis.jpeg/640px-Knautia_arvensis.jpeg",
+ "emne_flora_smaengkall": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Rhinanthus_minor.jpeg/640px-Rhinanthus_minor.jpeg",
+ "emne_flora_rosslyng": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Call%C3%BAna_vulg%C3%A1ris.JPG/640px-Call%C3%BAna_vulg%C3%A1ris.JPG",
+ "emne_flora_prikktvetann": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Lamium_maculatum_28042026.jpg/640px-Lamium_maculatum_28042026.jpg",
+ "emne_flora_kattefot": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Antennaria_dioica_001.jpg/640px-Antennaria_dioica_001.jpg",
+ "emne_flora_firkantperikum": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Hypericum_maculatum_s._str.jpg/640px-Hypericum_maculatum_s._str.jpg",
+ "emne_flora_varkaal": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Ficaria_verna_115300058.jpg/640px-Ficaria_verna_115300058.jpg",
+ "emne_flora_russblaastjerne": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Scilla_siberica.jpg/640px-Scilla_siberica.jpg",
+ "emne_flora_varerteknapp": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Lathyrus_vernus02.jpg/640px-Lathyrus_vernus02.jpg"
 });
 function get(id){
  const entry=FILES[String(id)];if(!entry)return null;
