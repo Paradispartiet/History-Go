@@ -13,8 +13,9 @@ vm.runInNewContext(read("js/ui/nature-illustrations-batch06.js"), sandbox, { tim
 vm.runInNewContext(read("js/ui/nature-illustrations-batch07.js"), sandbox, { timeout: 3000 });
 vm.runInNewContext(read("js/ui/nature-illustrations-batch08.js"), sandbox, { timeout: 3000 });
 vm.runInNewContext(read("js/ui/nature-illustrations-batch09.js"), sandbox, { timeout: 3000 });
+vm.runInNewContext(read("js/ui/nature-illustrations-batch10.js"), sandbox, { timeout: 3000 });
 const artist = sandbox.window.HG_NATURE_ILLUSTRATIONS;
-assert.equal(artist.count, 270, "expected 270 illustrations across nine batches");
+assert.equal(artist.count, 300, "expected 300 illustrations across ten batches");
 const index = JSON.parse(read("data/runtime/nature-all.json"));
 const ids = new Set();
 for (const files of Object.values(index.groups)) {
@@ -26,9 +27,9 @@ for (const files of Object.values(index.groups)) {
   }
  }
 }
-const source = read("js/ui/nature-illustrations.js") + "\n" + read("js/ui/nature-illustrations-batch03.js") + "\n" + read("js/ui/nature-illustrations-batch04.js") + "\n" + read("js/ui/nature-illustrations-batch05.js") + "\n" + read("js/ui/nature-illustrations-batch06.js") + "\n" + read("js/ui/nature-illustrations-batch07.js") + "\n" + read("js/ui/nature-illustrations-batch08.js") + "\n" + read("js/ui/nature-illustrations-batch09.js");
-const references = [...source.matchAll(/\bemne_(?:flora|ved|fauna|kratt|gress|siv|ror|urt)_[\p{L}0-9_]+(?=\s*:)/gu)].map(m=>m[0]);
-assert.equal(new Set(references).size, 270);
+const source = read("js/ui/nature-illustrations.js") + "\n" + read("js/ui/nature-illustrations-batch03.js") + "\n" + read("js/ui/nature-illustrations-batch04.js") + "\n" + read("js/ui/nature-illustrations-batch05.js") + "\n" + read("js/ui/nature-illustrations-batch06.js") + "\n" + read("js/ui/nature-illustrations-batch07.js") + "\n" + read("js/ui/nature-illustrations-batch08.js") + "\n" + read("js/ui/nature-illustrations-batch09.js") + "\n" + read("js/ui/nature-illustrations-batch10.js");
+const references = [...source.matchAll(/\bemne_(?:flora|ved|fauna|kratt|gress|siv|ror|urt|starr)_[\p{L}0-9_]+(?=\s*:)/gu)].map(m=>m[0]);
+assert.equal(new Set(references).size, 300);
 for (const id of references) {
  assert(ids.has(id), "illustration references unknown taxon: " + id);
  assert(artist.has(id), "missing art: " + id);
@@ -65,10 +66,10 @@ for (const id of batch05Ids) {
  assert(drawing.length < 100_000, id + ": oversized mobile SVG");
 }
 assert.equal(artist.resolve("unknown"), "");
-assert.equal(new Set(references.map(id=>artist.resolve(id) )).size, 270, "illustration assets must be unique");
+assert.equal(new Set(references.map(id=>artist.resolve(id) )).size, 300, "illustration assets must be unique");
 assert.match(read("js/ui/nature-explorer.js"), /const art=drawings\?\.resolve/, "illustrations must take display priority");
-assert.equal(references.filter(id => id.startsWith("emne_fauna_")).length, 135);
-assert.equal(references.filter(id => !id.startsWith("emne_fauna_")).length, 135);
+assert.equal(references.filter(id => id.startsWith("emne_fauna_")).length, 150);
+assert.equal(references.filter(id => !id.startsWith("emne_fauna_")).length, 150);
 for (const kind of ["flora", "fauna"]) {
  const html=read("finn-" + kind + ".html");
  assert(html.includes("js/ui/nature-illustrations.js"));
@@ -79,6 +80,7 @@ for (const kind of ["flora", "fauna"]) {
  assert(html.includes("js/ui/nature-illustrations-batch07.js"));
  assert(html.includes("js/ui/nature-illustrations-batch08.js"));
  assert(html.includes("js/ui/nature-illustrations-batch09.js"));
+ assert(html.includes("js/ui/nature-illustrations-batch10.js"));
  assert(html.includes("data-filter=\"illustrated\""));
  assert(html.indexOf("nature-illustrations.js") < html.indexOf("nature-illustrations-batch03.js"));
  assert(html.indexOf("nature-illustrations-batch03.js") < html.indexOf("nature-illustrations-batch04.js"));
@@ -87,7 +89,8 @@ for (const kind of ["flora", "fauna"]) {
  assert(html.indexOf("nature-illustrations-batch06.js") < html.indexOf("nature-illustrations-batch07.js"));
  assert(html.indexOf("nature-illustrations-batch07.js") < html.indexOf("nature-illustrations-batch08.js"));
  assert(html.indexOf("nature-illustrations-batch08.js") < html.indexOf("nature-illustrations-batch09.js"));
- assert(html.indexOf("nature-illustrations-batch09.js") < html.indexOf("nature-explorer.js"));
+ assert(html.indexOf("nature-illustrations-batch09.js") < html.indexOf("nature-illustrations-batch10.js"));
+ assert(html.indexOf("nature-illustrations-batch10.js") < html.indexOf("nature-explorer.js"));
 }
 const batch09Ids = [...read("js/ui/nature-illustrations-batch09.js").matchAll(/\bemne_(?:flora|fauna|kratt|gress|siv|ror|urt)_[\p{L}0-9_]+(?=\s*:)/gu)].map(m=>m[0]);
 assert.equal(batch09Ids.length, 30, "expected exactly 30 new species in batch 09");
@@ -101,4 +104,16 @@ for (const id of batch09Ids) {
  assert(svg.includes('width="600" height="420"'), id + ": unexpected SVG dimensions");
  assert(!/<(?:script|foreignObject|image|use)\b/i.test(svg), id + ": unsafe embedded content");
 }
-console.log("Nature atlas illustrations: 270/270 referenced and renderable; both pages wired.");
+const batch10Ids = [...read("js/ui/nature-illustrations-batch10.js").matchAll(/\bemne_(?:flora|fauna|kratt|gress|siv|ror|urt|starr)_[\p{L}0-9_]+(?=\s*:)/gu)].map(match=>match[0]);
+assert.equal(batch10Ids.length,30,"expected exactly 30 illustrations in batch 10");
+assert.equal(new Set(batch10Ids).size,30,"duplicate batch10 species ID");
+assert.equal(batch10Ids.filter(id=>id.startsWith("emne_fauna_")).length,15,"expected 15 fauna");
+assert.equal(batch10Ids.filter(id=>!id.startsWith("emne_fauna_")).length,15,"expected 15 flora");
+for (const id of batch10Ids) {
+ assert(ids.has(id), "batch10 species not in catalogue: "+id);
+ const svg=decodeURIComponent(artist.resolve(id).split(",")[1]);
+ assert(svg.length < 100_000, id+": oversized illustration");
+ assert(svg.includes('width="600" height="420"'),id+": unexpected image dimensions");
+ assert(!/<(?:script|foreignObject|image|use)\b/i.test(svg),id+": embedded unsafe element");
+}
+console.log("Nature atlas illustrations: 300/300 referenced and renderable; both pages wired.");
