@@ -51,12 +51,12 @@ function boot({ deferLesespor = false } = {}) {
   return { window, popups, clickBack, releaseLesespor: (...args) => releaseLesespor?.(...args) };
 }
 
-test("global Lesespor arrow dismisses only its popup and identifies the map", async () => {
+test("global Lesespor arrow dismisses only its popup and preserves the previous view", async () => {
   const { window, popups } = boot();
   await window.HGLesespor.openAll();
   assert.equal(popups.length, 1);
   assert.equal(popups[0].className, "lesespor-entry-popup");
-  assert.match(popups[0].html, /data-close-popup aria-label="Tilbake til kartet"/);
+  assert.match(popups[0].html, /data-close-popup aria-label="Tilbake til forrige visning"/);
   assert.match(popups[0].html, /class="pc-leksikon-back pc-leksikon-back-icon"/);
   assert.doesNotMatch(popups[0].html, /data-leksikon-back="hub"/);
 });
