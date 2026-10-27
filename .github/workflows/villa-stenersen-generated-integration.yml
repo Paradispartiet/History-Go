@@ -23,6 +23,15 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           persist-credentials: true
+          fetch-depth: 0
+      - name: Sync current main before regenerating shared artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
