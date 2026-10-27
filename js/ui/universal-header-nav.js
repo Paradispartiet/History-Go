@@ -143,10 +143,9 @@
     arrow.className = "hg-universal-back-arrow";
     arrow.setAttribute("aria-hidden", "true");
     arrow.textContent = "←";
-    const text = document.createElement("span");
-    text.className = "hg-universal-back-text";
-    text.textContent = "Til " + readableLabel;
-    link.append(arrow, text);
+    // Keep the descriptive destination available to assistive technology,
+    // without taking room away from the History Go logo in the header.
+    link.append(arrow);
     if (link.parentElement !== host || host.firstElementChild !== link) host.prepend(link);
   }
 
