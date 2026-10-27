@@ -104,7 +104,9 @@ if(phase==="--pre"){
   write(QUIZ,quiz);
   write(CONTEXT,built);
   const manifest=read(QUIZ_MANIFEST);
-  ensure(!manifest.sets.some(e=>e.targetId===ID),"Target already in active manifest; manual migration required");
+  const existing=manifest.sets.filter(e=>e.targetId===ID);
+  ensure(existing.every(e=>e.file===QUIZ && built.set_plan.some(sp=>sp.set_id===e.set_id)),"Existing target has conflicting manifest registration");
+  manifest.sets=manifest.sets.filter(e=>e.targetId!==ID);
   for(const sp of built.set_plan)manifest.sets.push({targetId:ID,file:QUIZ,set_id:sp.set_id,order:sp.order});
   write(QUIZ_MANIFEST,manifest);
   console.log("Prepared canonical 3x7 Østbanestasjonen quiz and production context, 0 standalone year questions.");
