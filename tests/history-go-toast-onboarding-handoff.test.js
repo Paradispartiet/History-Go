@@ -166,6 +166,24 @@ function harness({ ready = true, greeted = true } = {}) {
   assert.equal(t.storage.has("hg_civication_mode_v1"), false);
 }
 
+// Only evidence for the requested quiz may complete a correct-answer mission.
+{
+  const t = harness();
+  const mission = { active:true, target_type:"knowledge", completion_mode:"correct_answer",
+    quiz_id:"quiz_specific", category_id:"historie" };
+  t.storage.set("merits_by_category", JSON.stringify({ historie:{ points:80 } }));
+  assert.equal(t.context.HGCivicationMode.evaluateCompletion(mission).completed, false);
+  t.storage.set("hg_unlocks_v1", JSON.stringify({ byQuiz:{ quiz_specific:{ quizId:"quiz_specific" } } }));
+  assert.equal(t.context.HGCivicationMode.evaluateCompletion(mission).completed, true);
+}
+
+// Every reward producer must enqueue through the shared notification runtime.
+for (const file of ["nature-unlock-toast.js", "badge-unlock-toast.js", "person-place-unlock-toast.js"]) {
+  const source = fs.readFileSync(path.join(__dirname, "..", "js/ui", file), "utf8");
+  assert.match(source, /HGToastRuntime\?\.enqueueReward/, file);
+  assert.match(source, /onFinished\?\.\(\)/, file);
+}
+
 assert.match(welcome, /Besøk stedet og samle stedskortet/);
 assert.match(welcome, /En perfekt quiz låser opp quizkortet/);
 assert.match(welcome, /Civication/);
