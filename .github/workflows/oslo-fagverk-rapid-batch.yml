@@ -101,6 +101,7 @@ jobs:
           test -f data/quiz/by/wessels_plass_sets.json
           test -f data/quiz/by/ostbanestasjonen_sets.json
           test -f data/quiz/naeringsliv/vinmonopolet_lager_sets_merged.json
+          npm ci --no-audit --no-fund
           npm run places:index:build
           node scripts/build-epoke-place-index.mjs
           npm run place-open:build
