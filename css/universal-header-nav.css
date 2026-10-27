@@ -202,7 +202,14 @@ body.hg-app header.site-header > .hg-universal-back {
   text-decoration: none;
   touch-action: manipulation;
 }
-.hg-universal-home svg { width: 19px; height: 19px; display: block; }
+.hg-universal-home img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
 .hg-universal-home:hover { background: rgba(255,227,76,.08); border-color: rgba(255,227,76,.32); }
 .hg-universal-home:focus-visible { outline: 2px solid #ffe34c; outline-offset: 2px; }
 .profile-header-left > .hg-universal-home,
@@ -249,7 +256,7 @@ body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { margin-l
   body.hg-app header.site-header:not(:has(> .hg-universal-back)) .top-actions { margin-left: 145px; }
 }
 @media (max-width: 520px) {
-  /* The house supersedes the redundant map-mode shortcut in the phone header. */
+  /* The small map-home logo supersedes the redundant map-mode shortcut on phones. */
   body.hg-app header.site-header:has(> .hg-universal-home) .top-actions #btnSeeMap { display: none; }
   body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { gap: 3px; }
 }
