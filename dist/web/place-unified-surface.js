@@ -2068,7 +2068,22 @@
     if (!(shell4 instanceof HTMLElement)) return null;
     movePrimaryNodes(shell4, place);
     const aboutSlot = ensureAboutSlot(shell4);
-    if (aboutSlot) (_a = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })) == null ? void 0 : _a.classList.add("pc-sheet-canonical-about");
+    if (aboutSlot) {
+      let aboutOwner = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
+      if (!(aboutOwner instanceof HTMLElement)) {
+        aboutSlot.hidden = false;
+        aboutOwner = document.createElement("section");
+        aboutOwner.className = "hg-section hg-place-section hg-place-about-section";
+        const heading2 = document.createElement("h3");
+        heading2.textContent = "Om stedet";
+        aboutOwner.appendChild(heading2);
+        aboutSlot.replaceChildren(aboutOwner);
+      }
+      aboutOwner.classList.add("pc-sheet-canonical-about");
+      const description = shell4.querySelector("#pcDesc");
+      const heading2 = aboutOwner.querySelector("h3");
+      if (description && heading2) heading2.insertAdjacentElement("afterend", description);
+    }
     const historySlot = ensureHistorySlot(shell4);
     if (historySlot) {
       (_b = mountCanonicalHistory(historySlot, place)) == null ? void 0 : _b.classList.add("pc-sheet-canonical-history");
