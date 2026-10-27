@@ -357,7 +357,7 @@ body.hg-app .nature-unlock-close {
    Midlertidige meldinger vises over den, ikke oppå den. */
 body.hg-app:has(#hgCivicationModeToast) #toast,
 body.hg-app:has(#hgCivicationModeToast) .nature-unlock-stack {
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 162px);
+  bottom: var(--hg-mission-notification-bottom, calc(env(safe-area-inset-bottom, 0px) + 162px));
 }
 
 @media (max-width: 600px) {
