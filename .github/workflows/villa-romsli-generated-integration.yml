@@ -1,0 +1,64 @@
+name: Villa Romsli canonical integration
+on:
+  push:
+    branches:
+      - content/oslo-aav-villa-romsli-v1-20261027
+    paths:
+      - .github/workflows/villa-romsli-generated-integration.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: villa-romsli-generated-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  canonical:
+    if: github.ref == 'refs/heads/content/oslo-aav-villa-romsli-v1-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-aav-villa-romsli-v1-20261027
+          persist-credentials: true
+          fetch-depth: 120
+      - name: Bring in latest main without discarding branch changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate canonical quiz context
+        run: node scripts/build-quiz-production-context.mjs --category kunst --target villa_romsli --output data/quiz/production_context/kunst/villa_romsli.json
+      - name: Generate canonical Knowledge IDs
+        run: npm run knowledge:canonical:write
+      - name: Sync QuizCard to canonical fullquiz Knowledge
+        run: node scripts/sync-villa-romsli-quizcard-knowledge.mjs
+      - name: Refresh Place-open payload
+        run: npm run place-open:build
+      - name: Refresh Fagverk derived files
+        run: |
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Check target quiz/QuizCard/Fagverk parity
+        run: node --test tests/villa-romsli-v1-parity.test.mjs
+      - name: Commit only required generated artifacts on PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/quiz/production_context/kunst/villa_romsli.json
+          git add data/quiz/kunst/villa_romsli_sets.json data/quizcards/kunst/villa_romsli_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/villa_romsli.json
+          git add data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Villa Romsli: activate canonical quiz and Knowledge integration"
+          fi
+          git push origin HEAD:content/oslo-aav-villa-romsli-v1-20261027
