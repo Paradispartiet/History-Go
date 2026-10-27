@@ -2307,17 +2307,17 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   margin: 10px 0 12px;
 }
 
-/* Give paragraphs comfortable line spacing without shrinking the full-width
-   photo, navigation strip or collection/media grid. */
+/* Align frontImage and collection rounds with the text's content insets.
+   Only the landscape hero and section navigation remain edge-to-edge. */
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-shell
-  > :not(.pc-sheet-hero):not(.pc-sheet-section-nav):not(.pc-sheet-hero-media){
+  > :not(.pc-sheet-hero):not(.pc-sheet-section-nav){
   padding-left: 22px;
   padding-right: 22px;
 }
 
 @media (max-width: 720px){
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-shell
-    > :not(.pc-sheet-hero):not(.pc-sheet-section-nav):not(.pc-sheet-hero-media){
+    > :not(.pc-sheet-hero):not(.pc-sheet-section-nav){
     padding-left: 16px;
     padding-right: 16px;
   }

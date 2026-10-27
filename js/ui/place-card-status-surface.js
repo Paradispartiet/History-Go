@@ -83,7 +83,7 @@
     ensureScript("js/ui/place-rounds-fill-layout.js");
     ensureStylesheet("css/place-popup-shortcuts.css");
     ensureScript("js/ui/place-popup-shortcuts.js");
-    ensureStylesheet("css/place-onsite-surface.css?v=20261009-type-scale1");
+    ensureStylesheet("css/place-onsite-surface.css?v=20261027-about-image-inset1");
     ensureScript("js/ui/place-onsite-surface.js?v=20261009-right-collections2");
   }
 
