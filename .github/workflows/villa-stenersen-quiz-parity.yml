@@ -1,0 +1,24 @@
+name: Villa Stenersen quiz parity
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/historie/villa_stenersen_sets.json'
+      - 'data/quiz/production_briefs/historie/villa_stenersen.json'
+      - 'data/quizcards/historie/villa_stenersen_quizcard_v1.json'
+      - 'data/places/historie/oslo/places_historie_added_batch_01/villa_stenersen.json'
+      - 'tests/villa-stenersen-v1-parity.test.mjs'
+      - '.github/workflows/villa-stenersen-quiz-parity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  villa-quiz-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check Villa Stenersen quiz, QuizCard, Fagverk, photo provenance
+        run: node --test tests/villa-stenersen-v1-parity.test.mjs
