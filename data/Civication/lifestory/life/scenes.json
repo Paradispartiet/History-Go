@@ -9812,6 +9812,798 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_g_c01_kvelden_uten_rapport",
+      "threadId": "wave_g_c01",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c01_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En uke du ikke trenger å forklare",
+      "tekst": "Du har valgt å la den gamle kontakten hvile. En rolig kveld ved vinduet merker du at det er forskjell på å savne Jonas og å savne den du pleide å være sammen med ham. Du har ikke fått noe nytt svar, og du trenger ikke finne på et. En liten melding kan vente til den har noe å si, i stedet for å bli en plikt du legger på deg selv.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c01_status": "ro_bevart"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Lag noe godt å spise og la stillheten få være normal",
+          "konsekvensTekst": "Du bruker kvelden på et måltid og lar vennskapet være uavklart uten å gjøre det til en krise.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c01_status": "stillhet_uten_krav"
+            },
+            "meters": {
+              "psyke": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Skriv ned hva du faktisk vil fortelle ham hvis dere snakker igjen",
+          "konsekvensTekst": "Du beholder tanken hos deg selv; ingenting er sendt, men du vet bedre hva du ønsker fra en samtale.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c01_status": "tanker_ikke_sendt"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c01_bildet_uten_invitasjon",
+      "threadId": "wave_g_c01",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c01_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Da bildet var sendt",
+      "tekst": "Du sendte et bilde fra turen uten å foreslå en avtale. Det ligger i samtaletråden med et lite tegn på at det er sendt, men ingenting mer. På vei ut med søpla tar du deg i å planlegge neste hilsen. Det begynner å ligne det gamle mønsteret der du måtte holde hele samtalen i gang. Kanskje er akkurat én liten hilsen nok.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c01_status": "livstegn_sendt"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "La den sendte meldingen være den eneste denne uka",
+          "konsekvensTekst": "Du nekter å gjøre en vennlig hilsen til begynnelsen på en plikt til å følge opp.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c01_status": "en_hilsen_nok"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Bruk den samme lysten på å kontakte en annen venn",
+          "konsekvensTekst": "Du vender deg mot et annet bekjentskap uten å kreve svar fra Jonas. Ingen møteavtale oppstår.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c01_status": "annet_bekjentskap"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c02_plakaten_uten_navn",
+      "threadId": "wave_g_c02",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c02_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En plakat er ikke en kontrakt",
+      "tekst": "Du ser plakaten for konserten igjen. Det står hvem som skal spille, men ikke ditt navn. Du kjenner et lite stikk, enda det aldri ble gitt noe tilbud. På vei hjem spiller du gjennom melodien i hodet og oppdager at den gjør deg glad selv uten et publikum. Det er fristende å omtale den ubestemte forespørselen som en tapt mulighet.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c02_status": "oppdrag_ikke_bekreftet"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Ta fram instrumentet hjemme og øv for din egen del",
+          "konsekvensTekst": "Du øver fordi du vil. Verken betaling, opptreden eller samarbeid blir opprettet av øvingen.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c02_status": "oving_uten_booking"
+            },
+            "meters": {
+              "energi": -1,
+              "psyke": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Legg plakaten bak deg og bruk kvelden på noe annet",
+          "konsekvensTekst": "Du lar et oppdrag som aldri var avtalt, slutte å styre kvelden din. En plakat er ikke et avslag på deg som musiker.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c02_status": "ubekreftet_slippes"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c02_notatet_for_et_tilbud",
+      "threadId": "wave_g_c02",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c02_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Spørsmål som ikke er et ja",
+      "tekst": "Du skrev ned hva et reelt spillejobbtilbud måtte inneholde: varighet, ansvar, utstyr og honorar. Nå leser du lista mens noen øver i rommet ved siden av. Det føles nesten som å ha fått et oppdrag når kravene står så pent ordnet. Men ingen har svart på spørsmålene, og du har ikke takket ja til noe. Listen er et vern om tiden din, ikke et inngått samarbeid.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c02_status": "vilkaar_forberedt"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold notatet til et faktisk tilbud kommer",
+          "konsekvensTekst": "Du lar spørsmålene være klare uten å behandle dem som et svar fra arrangøren.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c02_status": "vilkaar_lagret"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Stryk det som bare handler om å virke profesjonell",
+          "konsekvensTekst": "Du sitter igjen med de kravene som faktisk betyr noe for deg. Ingen avtale blir inngått.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c02_status": "essensielle_vilkaar"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c03_ja_er_ikke_avkrysset",
+      "threadId": "wave_g_c03",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c03_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Det tomme svarfeltet",
+      "tekst": "Du skrev et tydelig spørsmål om samtykke, men svarfeltet er fremdeles tomt. Det er fristende å regne stillheten som et tegn på at materialet sikkert kan brukes; personen har jo fått mulighet til å si nei. Så ser du at du bare har laget et utkast. Spørsmålet er ennå ikke besvart, og det er ikke delt noe nytt.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c03_status": "samtykketekst_utkast"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Merk materialet som ikke frigitt for visning",
+          "konsekvensTekst": "Du gjør det klart for deg selv at ingen bruk er autorisert før et faktisk svar foreligger.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c03_status": "samtykke_mangler"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Les gjennom spørsmålet for å sikre at nei er like enkelt som ja",
+          "konsekvensTekst": "Du forbedrer et utkast uten å gjøre det om til dokumentert samtykke. Svarfeltet er fortsatt tomt, og ingen bruk er godkjent.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c03_status": "rett_til_nei"
+            },
+            "meters": {
+              "integritet": 1,
+              "energi": -1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c03_skjermen_som_fikk_sta",
+      "threadId": "wave_g_c03",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c03_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Den skjermen dere ikke viste",
+      "tekst": "Du utsatte visningen fordi grunnlaget ikke var klart. Nå ligger presentasjonen fortsatt på datamaskinen, med en blank rute der et eksempel skulle vært. Det irriterer deg at en tom plass kan få hele arbeidet til å se mindre ferdig ut. Samtidig vet du at en pen presentasjon ikke er verdt å vise noe som kan gjøre en deltaker gjenkjennelig.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c03_status": "visning_avventes"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Bruk et tydelig fiktivt eksempel i arbeidsutkastet",
+          "konsekvensTekst": "Du erstatter den risikable detaljen med en oppdiktet situasjon. Den beskrives som illustrasjon, ikke prøveresultat.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c03_status": "fiktivt_illustrert"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "La den tomme ruten stå til dere vet mer",
+          "konsekvensTekst": "Du lar mangelen være synlig i stedet for å skjule den med et uavklart bilde.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c03_status": "tomrom_markert"
+            },
+            "meters": {
+              "psyke": -1,
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c05_brevet_som_ikke_gir_svar",
+      "threadId": "wave_g_c05",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c05_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Utkastet som ble tydeligere",
+      "tekst": "Du har skrevet om spørsmålet til saksbehandleren slik at det er lettere å forstå. Likevel åpner du teksten tre ganger før frokost. Den ser nesten ferdig ut, men i hodet ditt har den allerede gitt et svar. Du vet at du ikke kan bestemme et vedtak ved å formulere deg godt, og du vet heller ikke om henvendelsen faktisk blir sendt.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c05_status": "utkast_forbedret"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Les utkastet én gang for faktiske feil og legg det bort",
+          "konsekvensTekst": "Du avslutter redigeringen for i dag uten å behandle et usendt brev som et mottatt svar.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c05_status": "utkast_lagt_bort"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Skriv tydelig hvilken dokumentasjon spørsmålet gjelder",
+          "konsekvensTekst": "Du gjør utkastet mer presist. Det er fortsatt bare forberedelse, ikke en avgjørelse fra NAV.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c05_status": "dokumentasjon_presisert"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c05_det_som_faktisk_mangler",
+      "threadId": "wave_g_c05",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c05_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "To hauger på bordet",
+      "tekst": "Du tok med deg listen hjem for å finne papirene. På bordet ligger to hauger: det du faktisk har, og det du tror kanskje blir etterspurt. Forskjellen virker liten når du er bekymret. Men når du blander dem, blir hele oppgaven større, og du mister oversikten. Det er heller ingen bekreftelse på at etaten trenger alt du frykter.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c05_status": "mangelliste_utkast"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Del lista i dokumenterte mangler og mulige spørsmål",
+          "konsekvensTekst": "Du skiller det du vet fra det du antar. Ingen ny etterspørsel fra etaten er registrert.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c05_status": "mangler_skilt"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Stopp papirarbeidet når de faktiske dokumentene er samlet",
+          "konsekvensTekst": "Du setter en grense for letingen uten å påstå at søknaden er ferdig behandlet.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c05_status": "papirer_samlet"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c06_kvarteret_pa_forsiden",
+      "threadId": "wave_g_c06",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c06_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Når én setning får for stor plass",
+      "tekst": "Du har gjort tidsrommet tydelig: 07.45–08.00, sju gående og tre med skolesekk. Nå står formuleringen på forsiden. En kollega synes tallene er konkrete og derfor overbevisende, men du merker hvordan de kan bli stående alene hvis leseren hopper over forbeholdet. Ett kvarter er en observasjon, ikke et helt mønster.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c06_status": "kort_periode_tydelig"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold tidsrommet i samme setning som tallene",
+          "konsekvensTekst": "Du hindrer at tellingen mister sin begrensning når teksten kopieres eller siteres.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c06_status": "tidsrom_knyttet_til_tall"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Legg en tydelig setning om manglende representativitet under",
+          "konsekvensTekst": "Du markerer hva tallene ikke kan bevise uten å finne på en ny måling. Forbeholdet skal følge tallene også når notatet deles.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c06_status": "manglende_representativitet"
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c06_den_ubesvarte_kontrollen",
+      "threadId": "wave_g_c06",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c06_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Forespørselen som ikke er en undersøkelse",
+      "tekst": "Du foreslo at bruken av tallene skulle kontrolleres før saken gikk videre. Ingen har ennå dokumentert at kontrollen er gjort. Mens du pakker sammen for dagen, ser du en oppsummering som omtaler forslaget i fortid, som om det allerede var gjennomført. Du vet at en forespørsel kan være nødvendig uten å være et utført arbeid.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c06_status": "ny_kontroll_foreslaatt"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Rett oppsummeringen til at kontroll er foreslått",
+          "konsekvensTekst": "Du skriver sann status uten å legge til et nytt faglig funn. Kontrollen er fortsatt ikke utført, og det står nå klart i oppsummeringen.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c06_status": "kontroll_kun_foreslaatt"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Lag en oversikt over hva en senere kontroll må ta stilling til",
+          "konsekvensTekst": "Du avgrenser neste steg. Det finnes fortsatt ingen ny telling eller godkjent vurdering.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c06_status": "kontrollpunkter_klare"
+            },
+            "meters": {
+              "integritet": 1,
+              "energi": -1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c07_dagen_uten_invitasjon",
+      "threadId": "wave_g_c07",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c07_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Jakke i skapet, tid i behold",
+      "tekst": "Du valgte å henge opp jakka da du ikke fikk en klar invitasjon. Nå har gruppa delt bilder fra en kveld du ikke var med på. Du savner noen av menneskene og merker hvor fort savnet kan bli til dårlig samvittighet. Men du hadde ingen avtale, og ingen kunne forvente at du stilte på en vakt du aldri sa ja til.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c07_status": "fortsatt_uavklart"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Send en vennlig hilsen til én person uten å melde deg på noe",
+          "konsekvensTekst": "Du tar et sosialt initiativ uten at en ny vakt eller et møte blir avtalt.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c07_status": "hilsen_uten_oppdrag"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Fortsett pausen og gjør noe hyggelig med din egen kveld",
+          "konsekvensTekst": "Du velger fri tid uten å gjøre fraværet til en konflikt med hele miljøet.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c07_status": "pause_uten_skyld"
+            },
+            "meters": {
+              "psyke": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c07_svaret_som_mangler",
+      "threadId": "wave_g_c07",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c07_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Ett spørsmål var nok",
+      "tekst": "Du spurte igjen om du kunne komme uten å stå på vakt. Det er ennå ikke kommet et klart svar. Nå oppdager du at du leser den gamle gruppesamtalen for å finne antydninger om hva som forventes. Du kan ikke forhandle med meldinger som aldri var adressert til deg, og du trenger ikke sette av tiden før noen sier hva invitasjonen gjelder.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c07_status": "sporsmal_om_forventning"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "La spørsmålet stå uten enda en påminnelse",
+          "konsekvensTekst": "Du har gjort ditt for å avklare forventningen. En ubesvart forespørsel er fortsatt ubesvart.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c07_status": "ingen_tredje_purring"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Bestem at du ikke tilbyr hjelp uten konkret tidspunkt og ansvar",
+          "konsekvensTekst": "Du gjør grensene dine tydelige for deg selv før en eventuell ny henvendelse.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c07_status": "konkret_foresporsel_kreves"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c17_hylla_og_ansvaret",
+      "threadId": "wave_g_c17",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c17_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Beskrivelsen som ikke flytter noe",
+      "tekst": "Du minnet Kari om at ingen skal flytte den tunge hylla alene. Nå leser du notatet ditt og ser at det er tydelig, men hylla står fortsatt der. Det er ubehagelig å ha gjort det riktige og likevel ikke se arbeid bli ferdig. En kollega spør om du kan «bare ordne det» neste gang. Du vet at en skriftlig beskrivelse ikke opphever sperringen.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c17_status": "hindring_beskrevet"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Svar at trygg tilkomst må avklares før renholdet kan fortsette",
+          "konsekvensTekst": "Du gjentar arbeidsgrensen uten å late som lageret er åpnet. Ingen har meldt at hylla er flyttet, så området forblir sperret.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c17_status": "sperring_respektert"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Dokumenter hvilke rom som faktisk kan vaskes i mellomtiden",
+          "konsekvensTekst": "Du gjør nyttig arbeid mulig andre steder, men merker ikke lageret som ferdig.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c17_status": "andre_rom_prioritert"
+            },
+            "meters": {
+              "energi": -1,
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c17_venting_pa_drift",
+      "threadId": "wave_g_c17",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c17_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Du kan ikke skrive andres svar",
+      "tekst": "Du spurte hvem i drift som kan ordne trygg tilgang til lageret. Svaret er ennå ikke avklart. På slutten av vakta blir du bedt om å anslå når området kan være klart. Du ser på den tunge hylla og vet at du ikke har myndighet til å love en dato, selv om det ville gjort rapporten enklere å fylle ut.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c17_status": "drift_skal_avklare"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Oppgi at datoen er ukjent og at drift må bekrefte tilkomsten",
+          "konsekvensTekst": "Du beholder en ærlig status uten å ta ansvaret for andres vurdering. Det er drift som må avklare både tilkomst og tidspunkt.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c17_status": "dato_fremdeles_ukjent"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Skriv hva som må avklares før en ny renholdsvakt kan planlegges",
+          "konsekvensTekst": "Du gjør neste steg konkret uten å registrere at hindringen er fjernet.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c17_status": "forutsetninger_oppfort"
+            },
+            "meters": {
+              "integritet": 1,
+              "energi": -1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c23_den_gamle_formuleringen",
+      "threadId": "wave_g_c23",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c23_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Det ubehagelige ved å beholde originalen",
+      "tekst": "Du valgte å bevare både den opprinnelige og den rettede prosjektmeldingen. Nå leser du den gamle høyt for deg selv og hører hvordan et vennlig ment forslag kan lyde som et løfte. Det er fristende å bare vise den nye versjonen, der alt virker ryddigere. Men da mister du også forklaringen på hvorfor noen kunne føle seg ført bak lyset.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c23_status": "versjoner_bevart"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Noter nøyaktig hvilken setning som kunne misforstås",
+          "konsekvensTekst": "Du beskriver feilen i egen tekst uten å skyve ansvaret over på mottakeren.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c23_status": "feilformulering_dokumentert"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Behold begge versjoner uten å offentliggjøre dem videre",
+          "konsekvensTekst": "Du ivaretar sporbarhet internt. Det innebærer ingen ny kontakt eller bredere spredning.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c23_status": "versjoner_internt_bevart"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c23_hvem_saa_rettelsen",
+      "threadId": "wave_g_c23",
+      "dag": 1,
+      "livsdagFra": 26,
+      "etterValgDager": {
+        "dager": 4,
+        "flagg": "wa_f_c23_status"
+      },
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Mottakerne du ikke kjenner",
+      "tekst": "Du skrev ned hvorfor teksten ble rettet. Da du sammenligner versjonene, innser du hvor lite dere vet om hvem som så den første meldingen. Rettelsen er sendt, men dere kan ikke gjøre antakelser om spredning til fakta. Det plager deg at en god forklaring ikke gir kontroll over hvor et budskap har tatt veien.",
+      "conditions": {
+        "flagg": {
+          "wa_f_c23_status": "lesere_ukjente"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Merk spredningen som ukjent i den interne oversikten",
+          "konsekvensTekst": "Du holder rede på kunnskapsgrensen i stedet for å erklære rettelsen forstått av alle.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c23_status": "spredning_markert_ukjent"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Skriv et spørsmål dere eventuelt må undersøke senere",
+          "konsekvensTekst": "Du forbereder mulig faktasjekk uten å oppsøke mottakeren eller hevde at nye svar er kommet.",
+          "effekter": {
+            "flagg": {
+              "wa_g_c23_status": "mulig_sporsmal_lagret"
+            },
+            "meters": {
+              "integritet": 1,
+              "psyke": -1
+            }
+          }
+        }
+      ]
     }
   ]
 }
