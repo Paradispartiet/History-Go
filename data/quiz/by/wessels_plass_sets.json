@@ -1,0 +1,1129 @@
+{
+  "categoryId": "by",
+  "targetId": "wessels_plass",
+  "generator_version": "source_review_oslo_aav_20261027",
+  "size_class": "narrow",
+  "sources": {
+    "oppdag_kvadraturen": "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+    "oslo_byleksikon": "https://oslobyleksikon.no/side/Wessels_plass"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/by/wessels_plass.json",
+    "context_artifact": "data/quiz/production_context/by/wessels_plass.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_torg_plasser_som_scene",
+      "em_by_historiske_lag_i_hverdagsrom"
+    ],
+    "topic_hook_ids": [
+      "ark_bygningstyper",
+      "bolig_endring_tid",
+      "byliv_aapne_rom",
+      "his_bevaring"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gis_romlig_analyse",
+      "met_morfologisk_analyse",
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/fag/by/quizProduction.targets",
+        "data/quiz/by/wessels_plass_sets.json",
+        "reports/place-production/wessels-plass-quiz-reviewed-20261027.json"
+      ],
+      "active_before": {
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "No current target-owned sets in canonical quiz manifest or By production targets; retain unrelated legacy and archival data.",
+        "Use 21 reviewed location-specific candidates and ten selected QuizCard questions; do not overwrite Place data."
+      ],
+      "knowledge_migration": "New target-owned quiz; canonical generator assigns Knowledge links; no fabricated IDs."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Kildene bærer tre distinkte sett: tidligere forsvars-/hageområde og kommunal omforming; navne- og trafikklag; kildegrenser, offentlig rom og Stortingets tunnel. 21 spørsmål uten rene årstallsfasiter."
+    },
+    "held_back_candidates": [
+      "Question stems whose correct answer is merely a year, and trivia about neighboring buildings unrelated to the independent Place.",
+      "Unsourced exact placements of destroyed Bukkebjerget, old stops or tunnels beyond named source assertions."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "by_wessels_plass_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_wessels_plass_quiz_01",
+        "claim_wessels_plass_quiz_02",
+        "claim_wessels_plass_quiz_03",
+        "claim_wessels_plass_quiz_04",
+        "claim_wessels_plass_quiz_05",
+        "claim_wessels_plass_quiz_06",
+        "claim_wessels_plass_quiz_07"
+      ],
+      "level": 1,
+      "title": "Bukkebjerget, Huitfeldts hage og byrommet",
+      "questions": [
+        {
+          "id": "wessels_plass_opening_01",
+          "quiz_id": "by_wessels_plass_set_1_q1",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva lå i området før dagens Wessels plass ble opparbeidet?",
+          "options": [
+            "En park og et rådhus bygget på samme tid",
+            "Et offentlig torg som alltid hadde dagens navn",
+            "Bukkebjerget og Huitfeldts hus og hage",
+            "En jernbanestasjon og et tilhørende hageanlegg"
+          ],
+          "answer": "Bukkebjerget og Huitfeldts hus og hage",
+          "answerIndex": 2,
+          "knowledge": "Bukkebjerget og Huitfeldts hus og hage hører til eldre lag av stedet.",
+          "explanation": "Bukkebjerget og Huitfeldts hus og hage hører til eldre lag av stedet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_01",
+          "claim_basis": "Bukkebjerget og Huitfeldts hus og hage hører til eldre lag av stedet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_bukkebjerget_og_huitfeld_304c0ecd2c",
+          "knowledge_unit_ids": [
+            "ku_by_bukkebjerget_og_huitfeld_304c0ecd2c"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_opening_02",
+          "quiz_id": "by_wessels_plass_set_1_q2",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva viser overgangen fra Huitfeldts hage til offentlig plass?",
+          "options": [
+            "At det private huset ble stående som del av parken",
+            "At eierskap og arealbruk ble endret gjennom kommunalt oppkjøp og opparbeiding",
+            "At området alltid hadde vært i kommunal eie",
+            "At trikkens etablering alene bestemte plassens navn"
+          ],
+          "answer": "At eierskap og arealbruk ble endret gjennom kommunalt oppkjøp og opparbeiding",
+          "answerIndex": 1,
+          "knowledge": "Kommunalt kjøp og endring av terrenget ga rom for nytt offentlig plassbruk.",
+          "explanation": "Kommunalt kjøp og endring av terrenget ga rom for nytt offentlig plassbruk.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_02",
+          "claim_basis": "Kommunalt kjøp og endring av terrenget ga rom for nytt offentlig plassbruk.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_kommunalt_kj_p_og_endrin_aee4333d71",
+          "knowledge_unit_ids": [
+            "ku_by_kommunalt_kj_p_og_endrin_aee4333d71"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_opening_03",
+          "quiz_id": "by_wessels_plass_set_1_q3",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor er det feil å bruke dagens plassnavn som bevis for når plassen oppsto?",
+          "options": [
+            "Navnet ble tatt i bruk etter at parken var opparbeidet",
+            "Plassen fikk navn etter en lokal gårdeier som oppførte parken",
+            "Stedsnavnet var eldre enn den tidligere fjellknausen",
+            "Navnet viser til byggmesteren som utførte reguleringen"
+          ],
+          "answer": "Navnet ble tatt i bruk etter at parken var opparbeidet",
+          "answerIndex": 0,
+          "knowledge": "Plassen het opprinnelig Stortingspladsen, før den ble kalt Wessels plass i 1891.",
+          "explanation": "Plassen het opprinnelig Stortingspladsen, før den ble kalt Wessels plass i 1891.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_03",
+          "claim_basis": "Plassen het opprinnelig Stortingspladsen, før den ble kalt Wessels plass i 1891.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_plassen_het_opprinnelig__68d0ff93b2",
+          "knowledge_unit_ids": [
+            "ku_by_plassen_het_opprinnelig__68d0ff93b2"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_opening_04",
+          "quiz_id": "by_wessels_plass_set_1_q4",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva gjør Wessels plass til et spesielt byrom?",
+          "options": [
+            "Den er et lukket parkanlegg uten gjennomgangstrafikk",
+            "Den er hovedsakelig en gårdsplass tilhørende ett nabobygg",
+            "Den ble anlagt uten forbindelse til viktige institusjoner",
+            "Flere viktige gater møter hverandre tett ved store institusjoner"
+          ],
+          "answer": "Flere viktige gater møter hverandre tett ved store institusjoner",
+          "answerIndex": 3,
+          "knowledge": "Plassen fungerer som møtepunkt mellom Akersgata, Prinsens gate, Nedre Vollgate og Stortingsgata.",
+          "explanation": "Plassen fungerer som møtepunkt mellom Akersgata, Prinsens gate, Nedre Vollgate og Stortingsgata.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_04",
+          "claim_basis": "Plassen fungerer som møtepunkt mellom Akersgata, Prinsens gate, Nedre Vollgate og Stortingsgata.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_plassen_fungerer_som_m_t_3b8ee2ad17",
+          "knowledge_unit_ids": [
+            "ku_by_plassen_fungerer_som_m_t_3b8ee2ad17"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_opening_05",
+          "quiz_id": "by_wessels_plass_set_1_q5",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva bør skilles fra Wessels plass som selvstendig stedsidentitet?",
+          "options": [
+            "Plassens egen forbindelse mellom fire gateløp",
+            "Det tidligere Bukkebjergets terrenghistorie",
+            "Stortingsbygningen og andre nabobygg med egne adresser",
+            "Navnehistorien knyttet til dikteren Johan Herman Wessel"
+          ],
+          "answer": "Stortingsbygningen og andre nabobygg med egne adresser",
+          "answerIndex": 2,
+          "knowledge": "Plassen er rommet mellom bygningene; nabobygningene har egne historiske identiteter.",
+          "explanation": "Plassen er rommet mellom bygningene; nabobygningene har egne historiske identiteter.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_05",
+          "claim_basis": "Plassen er rommet mellom bygningene; nabobygningene har egne historiske identiteter.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_plassen_er_rommet_mellom_9e4b8f5e3f",
+          "knowledge_unit_ids": [
+            "ku_by_plassen_er_rommet_mellom_9e4b8f5e3f"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_opening_06",
+          "quiz_id": "by_wessels_plass_set_1_q6",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva kan et gammelt fotografi av trikk på Wessels plass dokumentere?",
+          "options": [
+            "At akkurat denne formen for trafikk var synlig da bildet ble tatt",
+            "At trikken dominerte plassen fra dens aller første byggefase",
+            "At den gamle fjellknausen var intakt ved fotograferingen",
+            "At alle byens trikkelinjer hadde samme rute gjennom plassen"
+          ],
+          "answer": "At akkurat denne formen for trafikk var synlig da bildet ble tatt",
+          "answerIndex": 0,
+          "knowledge": "Fotografier dokumenterer et avgrenset øyeblikk, ikke all historisk bruk.",
+          "explanation": "Fotografier dokumenterer et avgrenset øyeblikk, ikke all historisk bruk.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_06",
+          "claim_basis": "Fotografier dokumenterer et avgrenset øyeblikk, ikke all historisk bruk.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_fotografier_dokumenterer_755d1e52fa",
+          "knowledge_unit_ids": [
+            "ku_by_fotografier_dokumenterer_755d1e52fa"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_opening_07",
+          "quiz_id": "by_wessels_plass_set_1_q7",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor må en liten plass kunne forstås både som park og trafikkrom?",
+          "options": [
+            "At en park ikke kan ha historiske transportfunksjoner",
+            "Fordi opphold, gjennomgang og kollektivtransport kan konkurrere om den samme flaten",
+            "At gatenes møtepunkt oppsto uten kommunal planlegging",
+            "At plassens alle bruksformer må ha vært samtidige"
+          ],
+          "answer": "Fordi opphold, gjennomgang og kollektivtransport kan konkurrere om den samme flaten",
+          "answerIndex": 1,
+          "knowledge": "Byrommet har hatt flere bruksmåter og transportfunksjoner gjennom tid.",
+          "explanation": "Byrommet har hatt flere bruksmåter og transportfunksjoner gjennom tid.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_07",
+          "claim_basis": "Byrommet har hatt flere bruksmåter og transportfunksjoner gjennom tid.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_byrommet_har_hatt_flere__83c0cf16c5",
+          "knowledge_unit_ids": [
+            "ku_by_byrommet_har_hatt_flere__83c0cf16c5"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_wessels_plass_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_wessels_plass_quiz_08",
+        "claim_wessels_plass_quiz_09",
+        "claim_wessels_plass_quiz_10",
+        "claim_wessels_plass_quiz_11",
+        "claim_wessels_plass_quiz_12",
+        "claim_wessels_plass_quiz_13",
+        "claim_wessels_plass_quiz_14"
+      ],
+      "level": 2,
+      "title": "Navn, trafikk og offentlige institusjoner",
+      "questions": [
+        {
+          "id": "wessels_plass_development_08",
+          "quiz_id": "by_wessels_plass_set_2_q1",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hvilken transportfunksjon hadde Wessels plass tidligere?",
+          "options": [
+            "Endestasjon for togtrafikken til Eidsvoll",
+            "Oppstillingsplass for ferger til Bygdøy",
+            "Terminal for flybussen til Fornebu",
+            "Et knutepunkt for buss- og sporvognsruter"
+          ],
+          "answer": "Et knutepunkt for buss- og sporvognsruter",
+          "answerIndex": 3,
+          "knowledge": "Wessels plass var tidligere et viktig knutepunkt for både buss- og sporvognsruter.",
+          "explanation": "Wessels plass var tidligere et viktig knutepunkt for både buss- og sporvognsruter.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_08",
+          "claim_basis": "Wessels plass var tidligere et viktig knutepunkt for både buss- og sporvognsruter.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_plassen_har_egen_topogra_924c235c3d",
+          "knowledge_unit_ids": [
+            "ku_by_plassen_har_egen_topogra_924c235c3d"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_09",
+          "quiz_id": "by_wessels_plass_set_2_q2",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva må skilles når vi undersøker Bukkebjerget og dagens park?",
+          "options": [
+            "En elv som fortsatt renner tvers over plassen",
+            "To innganger til samme togstasjon",
+            "Det eldre terrenget fra den senere opparbeidede plassflaten",
+            "To navn på samme samtidige bygning"
+          ],
+          "answer": "Det eldre terrenget fra den senere opparbeidede plassflaten",
+          "answerIndex": 2,
+          "knowledge": "Terrenget ble endret da området ble omgjort til plass.",
+          "explanation": "Terrenget ble endret da området ble omgjort til plass.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_09",
+          "claim_basis": "Terrenget ble endret da området ble omgjort til plass.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_terrenget_ble_endret_da__e3824613e2",
+          "knowledge_unit_ids": [
+            "ku_by_terrenget_ble_endret_da__e3824613e2"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_10",
+          "quiz_id": "by_wessels_plass_set_2_q3",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva forteller omdøpingen fra Stortingspladsen til Wessels plass?",
+          "options": [
+            "Alle tidligere gatenavn ble slettet samtidig",
+            "Stedsnavn kan tilføres etter at et rom er etablert",
+            "Navnet viser alltid hvem som bygde plassen",
+            "Plassen sto tom helt til dikteren flyttet dit"
+          ],
+          "answer": "Stedsnavn kan tilføres etter at et rom er etablert",
+          "answerIndex": 1,
+          "knowledge": "Navnevalget er et senere minne- og identitetslag.",
+          "explanation": "Navnevalget er et senere minne- og identitetslag.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_10",
+          "claim_basis": "Navnevalget er et senere minne- og identitetslag.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_navnevalget_er_et_senere_de7f15e325",
+          "knowledge_unit_ids": [
+            "ku_by_navnevalget_er_et_senere_de7f15e325"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_11",
+          "quiz_id": "by_wessels_plass_set_2_q4",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor er Johan Herman Wessel knyttet til plassen?",
+          "options": [
+            "Plassen er oppkalt etter den dansk-norske dikteren",
+            "Han planla trikkesporet i Akersgata",
+            "Han var arkitekt for Stortingsbygningen",
+            "Han bodde alltid i Frimurerlogen"
+          ],
+          "answer": "Plassen er oppkalt etter den dansk-norske dikteren",
+          "answerIndex": 0,
+          "knowledge": "Wessel ga navnet, men planleggingen av plassen er en annen historie.",
+          "explanation": "Wessel ga navnet, men planleggingen av plassen er en annen historie.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_11",
+          "claim_basis": "Wessel ga navnet, men planleggingen av plassen er en annen historie.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_wessel_ga_navnet_men_pla_e15bbf1721",
+          "knowledge_unit_ids": [
+            "ku_by_wessel_ga_navnet_men_pla_e15bbf1721"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_12",
+          "quiz_id": "by_wessels_plass_set_2_q5",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hvordan bidrar fire kryssende gater til plassens funksjon?",
+          "options": [
+            "De forhindrer all kontakt med nabokvartalene",
+            "De gjør plassen til en lukket privat hage",
+            "De betyr at området aldri kunne bli park",
+            "De gjør den til et knutepunkt for ferdsel og opphold"
+          ],
+          "answer": "De gjør den til et knutepunkt for ferdsel og opphold",
+          "answerIndex": 3,
+          "knowledge": "Plassen forbinder flere gateløp og må tåle ulike typer byliv.",
+          "explanation": "Plassen forbinder flere gateløp og må tåle ulike typer byliv.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_12",
+          "claim_basis": "Plassen forbinder flere gateløp og må tåle ulike typer byliv.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_plassen_forbinder_flere__f242a695b2",
+          "knowledge_unit_ids": [
+            "ku_by_plassen_forbinder_flere__f242a695b2"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_13",
+          "quiz_id": "by_wessels_plass_set_2_q6",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hvilken viktig funksjon fikk området under Wessels plass i nyere tid?",
+          "options": [
+            "Et offentlig rom for kunstutstillinger",
+            "En underjordisk passasje til Rådhuset",
+            "En gangtunnel mellom Stortinget og kontorer i Prinsens gate 26",
+            "Et gammelt tilfluktsrom gjort om til trikkehall"
+          ],
+          "answer": "En gangtunnel mellom Stortinget og kontorer i Prinsens gate 26",
+          "answerIndex": 2,
+          "knowledge": "Stortinget fikk en gangtunnel under plassen til kontorbygningen i Prinsens gate 26.",
+          "explanation": "Stortinget fikk en gangtunnel under plassen til kontorbygningen i Prinsens gate 26.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_13",
+          "claim_basis": "Stortinget fikk en gangtunnel under plassen til kontorbygningen i Prinsens gate 26.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_stortinget_fikk_en_gangt_88f1996ab6",
+          "knowledge_unit_ids": [
+            "ku_by_stortinget_fikk_en_gangt_88f1996ab6"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_14",
+          "quiz_id": "by_wessels_plass_set_2_q7",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva er en begrensning ved et gammelt bilde av Wessels plass?",
+          "options": [
+            "Det gir nøyaktige tall for alle forbipasserende",
+            "Det viser en bestemt vinkel og situasjon, ikke all bruk gjennom året",
+            "Det kan ikke vise noen bygninger",
+            "Det dokumenterer automatisk alle tidligere stedsnavn"
+          ],
+          "answer": "Det viser en bestemt vinkel og situasjon, ikke all bruk gjennom året",
+          "answerIndex": 1,
+          "knowledge": "Fotografiets utsnitt og tidspunkt begrenser konklusjonene.",
+          "explanation": "Fotografiets utsnitt og tidspunkt begrenser konklusjonene.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_14",
+          "claim_basis": "Fotografiets utsnitt og tidspunkt begrenser konklusjonene.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_fotografiets_utsnitt_og__9648c40ea3",
+          "knowledge_unit_ids": [
+            "ku_by_fotografiets_utsnitt_og__9648c40ea3"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_wessels_plass_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_wessels_plass_quiz_15",
+        "claim_wessels_plass_quiz_16",
+        "claim_wessels_plass_quiz_17",
+        "claim_wessels_plass_quiz_18",
+        "claim_wessels_plass_quiz_19",
+        "claim_wessels_plass_quiz_20",
+        "claim_wessels_plass_quiz_21"
+      ],
+      "level": 3,
+      "title": "Historiske spor, minne og skjult infrastruktur",
+      "questions": [
+        {
+          "id": "wessels_plass_development_15",
+          "quiz_id": "by_wessels_plass_set_3_q1",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva forteller nærheten til Frimurerlogen og Stortinget?",
+          "options": [
+            "Plassen ligger mellom ulike institusjons- og byfunksjoner",
+            "Alle nabobygninger hadde alltid samme eier",
+            "Plassen tilhører en privat forening",
+            "Den er en del av Stortingets innendørs korridorer"
+          ],
+          "answer": "Plassen ligger mellom ulike institusjons- og byfunksjoner",
+          "answerIndex": 0,
+          "knowledge": "Nærhet gir historisk kontekst uten å oppheve stedets egen identitet.",
+          "explanation": "Nærhet gir historisk kontekst uten å oppheve stedets egen identitet.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_15",
+          "claim_basis": "Nærhet gir historisk kontekst uten å oppheve stedets egen identitet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_n_rhet_gir_historisk_kon_0026155844",
+          "knowledge_unit_ids": [
+            "ku_by_n_rhet_gir_historisk_kon_0026155844"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_16",
+          "quiz_id": "by_wessels_plass_set_3_q2",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor kan en liten park også være et trafikkområde?",
+          "options": [
+            "Fordi parkrom ikke kan brukes til ferdsel",
+            "Fordi plassen har hatt både opphold og gjennomgang",
+            "Fordi trikken aldri har vært i nærheten av parken",
+            "Fordi trafikken stanset da parken først ble anlagt"
+          ],
+          "answer": "Fordi plassen har hatt både opphold og gjennomgang",
+          "answerIndex": 1,
+          "knowledge": "Wessels plass kombinerer ferdsel og opphold.",
+          "explanation": "Wessels plass kombinerer ferdsel og opphold.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_16",
+          "claim_basis": "Wessels plass kombinerer ferdsel og opphold.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_wessels_plass_kombinerer_05e44b1365",
+          "knowledge_unit_ids": [
+            "ku_by_wessels_plass_kombinerer_05e44b1365"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_17",
+          "quiz_id": "by_wessels_plass_set_3_q3",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva var et viktig skifte da området gikk fra hus og hage til kommunalt plassrom?",
+          "options": [
+            "Alle nabobygningene ble erstattet med festning",
+            "Hagen ble beholdt nøyaktig uendret",
+            "Privat eiendom ble omformet til offentlig tilgjengelig park og gatekryss",
+            "Privathuset ble flyttet til Stortinget"
+          ],
+          "answer": "Privat eiendom ble omformet til offentlig tilgjengelig park og gatekryss",
+          "answerIndex": 2,
+          "knowledge": "Kommunalt oppkjøp og fysisk omforming endret bruken av arealet.",
+          "explanation": "Kommunalt oppkjøp og fysisk omforming endret bruken av arealet.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_17",
+          "claim_basis": "Kommunalt oppkjøp og fysisk omforming endret bruken av arealet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_kommunalt_oppkj_p_og_fys_426aa2193c",
+          "knowledge_unit_ids": [
+            "ku_by_kommunalt_oppkj_p_og_fys_426aa2193c"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_18",
+          "quiz_id": "by_wessels_plass_set_3_q4",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hvordan bør vi bruke sporene etter Bukkebjerget i dagens formidling?",
+          "options": [
+            "Forveksle Bukkebjerget med Slottets hage",
+            "Forklare det eldre terrenget med kart og kilder, selv om knausen er borte",
+            "Påstå at hele knausen fortsatt står midt på plassen",
+            "La dagens plen vise nøyaktig den tidligere høyden"
+          ],
+          "answer": "Forklare det eldre terrenget med kart og kilder, selv om knausen er borte",
+          "answerIndex": 1,
+          "knowledge": "Et forsvunnet landskapselement krever historiske kilder for å bli forstått.",
+          "explanation": "Et forsvunnet landskapselement krever historiske kilder for å bli forstått.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_18",
+          "claim_basis": "Et forsvunnet landskapselement krever historiske kilder for å bli forstått.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_et_forsvunnet_landskapse_61a9b292da",
+          "knowledge_unit_ids": [
+            "ku_by_et_forsvunnet_landskapse_61a9b292da"
+          ],
+          "knowledge_link_status": "linked",
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "wessels_plass_development_19",
+          "quiz_id": "by_wessels_plass_set_3_q5",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva er forskjellen mellom nabobygg og selve Wessels plass?",
+          "options": [
+            "Bygningene rammer inn stedet; plassen er det åpne rommet mellom dem",
+            "Alle nabobygg er samme eiendom som parken",
+            "Plassen er navnet på én bestemt bygård",
+            "Det finnes ingen selvstendig gatehistorie her"
+          ],
+          "answer": "Bygningene rammer inn stedet; plassen er det åpne rommet mellom dem",
+          "answerIndex": 0,
+          "knowledge": "Historisk betydning oppstår både i bygninger og rommene som binder dem sammen.",
+          "explanation": "Historisk betydning oppstår både i bygninger og rommene som binder dem sammen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_19",
+          "claim_basis": "Historisk betydning oppstår både i bygninger og rommene som binder dem sammen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_historisk_betydning_opps_ac8b0edd39",
+          "knowledge_unit_ids": [
+            "ku_by_historisk_betydning_opps_ac8b0edd39"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_20",
+          "quiz_id": "by_wessels_plass_set_3_q6",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor er Wessels plass et godt sted å lære om byens historiske lag?",
+          "options": [
+            "Det har aldri skjedd noen større endringer på stedet",
+            "Alle fasader rundt ble bygget på samme dag",
+            "Det finnes bare moderne kilder om området",
+            "Forsvarsterreng, privat hage, park og trafikk har etterfulgt hverandre"
+          ],
+          "answer": "Forsvarsterreng, privat hage, park og trafikk har etterfulgt hverandre",
+          "answerIndex": 3,
+          "knowledge": "Flere bruksformer kan avleses ved å sammenholde kilder og dagens rom.",
+          "explanation": "Flere bruksformer kan avleses ved å sammenholde kilder og dagens rom.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_20",
+          "claim_basis": "Flere bruksformer kan avleses ved å sammenholde kilder og dagens rom.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_flere_bruksformer_kan_av_09373d82a5",
+          "knowledge_unit_ids": [
+            "ku_by_flere_bruksformer_kan_av_09373d82a5"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "wessels_plass_development_21",
+          "quiz_id": "by_wessels_plass_set_3_q7",
+          "categoryId": "by",
+          "targetId": "wessels_plass",
+          "placeId": "wessels_plass",
+          "question_scope": "place",
+          "question": "Hva bør man observere for å forstå hvordan Wessels plass brukes i dag?",
+          "options": [
+            "Bare bygningenes oppføringsår",
+            "Kun skiltingen i gatene rundt plassen",
+            "Hvordan folk beveger seg gjennom plassen og hvor de oppholder seg",
+            "Bare hvor mange busser som kjører i byen"
+          ],
+          "answer": "Hvordan folk beveger seg gjennom plassen og hvor de oppholder seg",
+          "answerIndex": 2,
+          "knowledge": "Ferdsel og opphold kan observeres på selve plassen. Det viser hvordan et offentlig byrom faktisk brukes, ikke bare hvordan det er tegnet på et kart.",
+          "explanation": "Ferdsel og opphold kan observeres på selve plassen. Det viser hvordan et offentlig byrom faktisk brukes, ikke bare hvordan det er tegnet på et kart.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "oppdag_kvadraturen",
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/wessels-plass",
+            "https://oslobyleksikon.no/side/Wessels_plass"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_wessels_plass_quiz_21",
+          "claim_basis": "Ferdsel og opphold kan observeres på selve plassen. Det viser hvordan et offentlig byrom faktisk brukes, ikke bare hvordan det er tegnet på et kart.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "wessels_plass",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_stedets_egen_fysiske_org_afb4e84d80",
+          "knowledge_unit_ids": [
+            "ku_by_stedets_egen_fysiske_org_afb4e84d80",
+            "ku_by_det_viser_hvordan_et_off_b9836badb6"
+          ],
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "william_h_whyte",
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ],
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "william_h_whyte",
+            "why_it_helps": "William H. Whytes studier av åpne byrom forklarer hvorfor faktisk ferdsel og opphold bør observeres, ikke bare planlagt utforming."
+          }
+        }
+      ]
+    }
+  ]
+}
