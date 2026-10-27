@@ -412,3 +412,88 @@ body.civi-app .civi-score-close{
 :root{ --civi-shell-header-h:94px; }
 @media(max-width:920px){ :root{ --civi-shell-header-h:94px; } }
 @media(max-width:560px){ :root{ --civi-shell-header-h:100px; } }
+
+
+/* Unified Civication status control: the number is a summary, not a separate page. */
+body.civi-app .civi-lifestory-header-status {
+  flex-wrap: wrap;
+  row-gap: 6px;
+  overflow: visible;
+}
+body.civi-app .civi-score-circle.civi-score-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  flex: 0 0 auto;
+  width: auto;
+  min-height: 40px;
+  height: 40px;
+  margin-left: 0;
+  padding: 3px 4px 3px 12px;
+  border: 1px solid rgba(255,255,255,.21);
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+  color: #f0f1f3;
+  font: 750 13px/1.15 var(--civi-font-sans,system-ui);
+  box-shadow: none;
+}
+body.civi-app .civi-score-circle.civi-score-trigger:hover {
+  background: rgba(255,255,255,.11);
+}
+body.civi-app .civi-score-trigger-label {
+  white-space: nowrap;
+}
+body.civi-app .civi-score-trigger-number {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(229,188,96,.32);
+  background: rgba(229,188,96,.09);
+  color: #f7dfaa;
+  font: 800 16px/1 var(--civi-font-sans,system-ui);
+  font-variant-numeric: tabular-nums;
+}
+body.civi-app .civi-score-overview {
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  padding-bottom: 15px;
+}
+body.civi-app .civi-score-overview h3 { margin-top: 8px; }
+body.civi-app .civi-score-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 8px;
+  margin: 0;
+}
+body.civi-app .civi-score-overview-item {
+  min-width: 0;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 10px;
+  background: rgba(255,255,255,.035);
+  padding: 10px 12px;
+}
+body.civi-app .civi-score-overview-item dt {
+  color: #adb5bf;
+  font-size: 12px;
+  font-weight: 750;
+}
+body.civi-app .civi-score-overview-item dd {
+  margin: 4px 0 0;
+  font-size: 15px;
+  font-weight: 730;
+  overflow-wrap: anywhere;
+}
+@media (max-width:760px) {
+  :root { --civi-shell-header-h: 134px; }
+  body.civi-app .civi-lifestory-header-status { gap: 5px; }
+  body.civi-app .civi-header-chip--money { display: none; }
+  body.civi-app .civi-score-circle.civi-score-trigger { min-height: 38px; height: 38px; }
+}
+@media (max-width:560px) {
+  :root { --civi-shell-header-h: 138px; }
+  body.civi-app .civi-score-circle.civi-score-trigger { margin-left: 0; }
+  body.civi-app .civi-score-trigger-label { font-size: 12px; }
+}
