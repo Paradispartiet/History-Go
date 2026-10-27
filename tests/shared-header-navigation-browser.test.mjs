@@ -29,16 +29,30 @@ try {
     for (const [pathname, label, destination] of [
       ["profile.html", "Til kartet", "/index.html"],
       ["knowledge.html", "Til min samling", "/profile.html"],
-      ["sprakatlas.html", "Til kartet", "/index.html"]
+      ["sprakatlas.html", "Til kartet", "/index.html"],
+      ["finn-fauna.html", "Til kartet", "/index.html"],
+      ["finn-flora.html", "Til kartet", "/index.html"]
     ]) {
       await page.goto(base + "/" + pathname, { waitUntil: "domcontentloaded", timeout: 30000 });
       const back = page.locator(".hg-universal-back").first();
       await back.waitFor({ state: "visible", timeout: 12000 });
-      assert.match((await back.textContent()).replace(/\s+/g, " ").trim(), new RegExp(label));
+      assert.equal((await back.textContent()).trim(), "←", pathname + ": arrow only");
+      assert.equal(await back.getAttribute("aria-label"), "Tilbake til " + label.replace(/^Til /, ""), pathname + ": accessible destination");
       const href = await back.getAttribute("href");
       assert.ok(href && new URL(href, base).pathname === destination, pathname + ": safe return URL");
       const rect = await back.boundingBox();
       assert.ok(rect && rect.x >= 0 && rect.x + rect.width <= width + 1, pathname + ": within " + width + "px viewport");
+      if (pathname.startsWith("finn-")) {
+        assert.equal((await back.textContent()).trim(), "←", pathname + ": icon-only back arrow");
+        const brand = page.locator(".ne-header .ne-brand img");
+        await brand.waitFor({ state: "visible" });
+        const logoRect = await brand.boundingBox();
+        const menuRect = await page.locator("#natureMenuToggle").boundingBox();
+        assert.ok(logoRect && menuRect && rect, pathname + ": header parts rendered");
+        assert.ok(rect.x + rect.width <= logoRect.x + 1, pathname + ": arrow and logo do not overlap");
+        assert.ok(logoRect.x + logoRect.width <= menuRect.x + 1, pathname + ": logo and menu do not overlap");
+        assert.equal(await page.locator("#natureBack").count(), 1, pathname + ": only one back link");
+      }
     }
 
     await page.goto(base + "/index.html#/map", { waitUntil: "domcontentloaded", timeout: 30000 });
@@ -52,7 +66,16 @@ try {
     });
     const placeBack = page.locator(".hg-universal-back").first();
     await placeBack.waitFor({ state: "visible", timeout: 12000 });
-    assert.match((await placeBack.textContent()), /Til kartet/);
+    assert.equal((await placeBack.textContent()).trim(), "←", "map back link shows only the arrow");
+    assert.equal(await placeBack.getAttribute("aria-label"), "Tilbake til kartet");
+    const logo = page.locator("header.site-header > .hg-brand");
+    await logo.waitFor({ state: "visible", timeout: 12000 });
+    const logoRect = await logo.boundingBox();
+    const backRect = await placeBack.boundingBox();
+    const exploreRect = await page.locator("header.site-header #nearbyExploreToggle").boundingBox();
+    assert.ok(logoRect && backRect && exploreRect, "header elements are measurable");
+    assert.ok(backRect.x >= logoRect.x + logoRect.width - 1, width + "px: back arrow does not cover the logo, " + JSON.stringify({ logoRect, backRect }));
+    assert.ok(backRect.x + backRect.width <= exploreRect.x + 1, width + "px: back arrow does not cover Utforsk, " + JSON.stringify({ backRect, exploreRect }));
     await placeBack.click();
     await page.waitForFunction(() => location.hash === "#/map");
     await context.close();

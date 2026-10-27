@@ -5,6 +5,7 @@
 const kind = document.body.dataset.natureKind;
 if (!["fauna","flora"].includes(kind)) return;
 const icon = kind === "fauna" ? "🐾" : "🌿";
+const drawings = window.HG_NATURE_ILLUSTRATIONS;
 const grid=document.getElementById("natureGrid"),stats=document.getElementById("natureStats"),count=document.getElementById("natureCount"),
  search=/** @type {HTMLInputElement} */ (document.getElementById("natureSearch")),message=document.getElementById("natureMessage"),more=document.getElementById("natureMore"),
  dialog=/** @type {HTMLDialogElement} */ (document.getElementById("natureDialog")),details=document.getElementById("natureDetails");
@@ -19,11 +20,14 @@ function collected(){
 }
 function photo(a){
  const src=a.image || a.imageCard || a.img;
- return typeof src==="string" && /^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src) ? src : "";
+ if(typeof src==="string" && /^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src))return src;
+ return drawings?.resolve(String(a.id)) || "";
 }
+function illustrated(a){return Boolean(drawings?.has(String(a.id)));}
+function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",icon));}
 function appendImage(parent,src,alt){
  const img=node("img");img.alt=alt;img.loading="lazy";img.src=src;
- img.addEventListener("error",()=>img.remove(),{once:true});parent.appendChild(img);
+ img.addEventListener("error",()=>fallback(parent),{once:true});parent.appendChild(img);
 }
 function section(title,values){
  const vals=list(values);
@@ -39,10 +43,18 @@ function openArt(a){
  const h=node("h2","",name(a));h.id="natureDetailTitle";details.appendChild(h);
  if(latin(a))details.appendChild(node("p","ne-detail-latin",latin(a)));
  details.appendChild(node("p","ne-detail-status",collected().has(String(a.id))?"✓ Samlet gjennom quiz":"Ikke samlet ennå"));
- if(photo(a)){const wrap=node("div");appendImage(wrap,photo(a),name(a));wrap.firstChild.className="ne-dialog-image";details.appendChild(wrap);}
+ if(photo(a)){
+  const wrap=node("div","ne-detail-artwork");appendImage(wrap,photo(a),"Illustrasjon av "+name(a));
+  if(wrap.firstChild?.tagName==="IMG")wrap.firstChild.className="ne-dialog-image";
+  if(illustrated(a))wrap.appendChild(node("p","ne-image-credit","Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
+  details.appendChild(wrap);
+ }
  section("Kjennetegn",a.kjennetegn);
  section("Leveområder",a.habitat?.biotop||a.bykontekst?.typiske_steder);
  section("Observasjonstips",a.observasjonstips);
+ section("Når kan du se arten?",a.fenologi?.blomstring || a.fenologi?.sesong);
+ section("Økologisk rolle",a.økologi?.rolle);
+ section("I Oslo",a.bykontekst?.typiske_steder);
  section("Familie",a.taxonomy?.familie);
  const source=list(a.source_urls).find(v=>v.startsWith("https://"));
  if(source){const s=node("section","ne-detail-section");s.appendChild(node("h3","","Kilde"));
@@ -54,6 +66,7 @@ function card(a,have){
  const b=node("button","ne-card");b.type="button";b.setAttribute("aria-label",name(a)+(have?", samlet":", ikke samlet"));
  const image=node("div","ne-photo",icon);
  if(photo(a)){image.textContent="";appendImage(image,photo(a),"");}
+ if(illustrated(a))image.appendChild(node("span","ne-image-label","Illustrasjon"));
  b.appendChild(image);
  const body=node("div","ne-card-body");body.appendChild(node("span","ne-card-title",name(a)));
  if(latin(a))body.appendChild(node("span","ne-latin",latin(a)));
@@ -65,17 +78,18 @@ function render(){
  const term=search.value.trim().toLocaleLowerCase("nb");
  const matches=all.filter(a=>{
   if(activeFilter==="collected"&&!unlocked.has(String(a.id)))return false;
-  return !term||[name(a),latin(a),...list(a.kjennetegn),...list(a.habitat?.biotop)].join(" ").toLocaleLowerCase("nb").includes(term);
+  if(activeFilter==="illustrated"&&!illustrated(a))return false;
+  return !term||[name(a),latin(a),a.taxonomy?.familie,...list(a.kjennetegn),...list(a.habitat?.biotop),...list(a.observasjonstips),...list(a.bykontekst?.typiske_steder)].join(" ").toLocaleLowerCase("nb").includes(term);
  });
  const held=all.filter(a=>unlocked.has(String(a.id))).length;
- stats.textContent=all.length+" arter · "+held+" samlet";
+ stats.textContent=all.length+" oppføringer · "+held+" samlet · "+all.filter(illustrated).length+" illustrert";
  count.textContent=matches.length+" treff";
  const fragment=document.createDocumentFragment();
  matches.slice(0,limit).forEach(a=>fragment.appendChild(card(a,unlocked.has(String(a.id)))));
  grid.replaceChildren(fragment);
  message.hidden=matches.length>0;
  if(!matches.length)message.textContent=activeFilter==="collected"&&!term
-  ?"Ingen arter samlet ennå. Utforsk steder og ta quiz i History Go.":"Ingen arter passer søket.";
+  ?"Ingen arter samlet ennå. Utforsk steder og ta quiz i History Go.":activeFilter==="illustrated"&&!term ? "Ingen illustrasjoner er publisert ennå.":"Ingen arter passer søket.";
  more.hidden=matches.length<=limit;
 }
 async function load(){
@@ -121,11 +135,7 @@ const closeMenu=()=>{nav.hidden=true;toggle.setAttribute("aria-expanded","false"
 toggle.addEventListener("click",()=>{nav.hidden=!nav.hidden;toggle.setAttribute("aria-expanded",String(!nav.hidden));});
 document.addEventListener("click",e=>{if (!(e.target instanceof Element) || !e.target.closest(".ne-menu-wrap")) closeMenu();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu();});
-document.getElementById("natureBack").addEventListener("click",()=>{
- try{if(document.referrer&&new URL(document.referrer).origin===location.origin&&history.length>1){history.back();return;}}
- catch{}
- location.href="index.html";
-});
+// Back navigation is owned by the shared header module on nature pages.
 window.addEventListener("pageshow",()=>{if(all.length)render();});
 load();
 })();

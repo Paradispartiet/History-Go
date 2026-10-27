@@ -29,11 +29,17 @@ function node() {
 }
 function boot(page, referrer = "", storage = new Map()) {
   const location = new URL(root + page), host = node(), events = {};
+  const nature = page.startsWith("finn-");
+  const natureBack = nature ? node() : null;
+  if (natureBack) { natureBack.parentElement = host; host.children.push(natureBack); }
   const history = { length: 2, calls: 0, back() { this.calls++; } };
   const document = {
     currentScript: { src: root + "js/ui/universal-header-nav.js" }, referrer,
     createElement: node, addEventListener(name, cb) { events["doc:" + name] = cb; },
-    querySelector(selector) { return selector.startsWith("body.hg-app >") ? host : null; }
+    querySelector(selector) {
+      if (nature && selector.includes(".ne-header > .ne-back")) return natureBack;
+      return selector.startsWith("body.hg-app >") ? host : null;
+    }
   };
   const sessionStorage = { getItem: k => storage.get(k) || null, setItem: (k, v) => storage.set(k, v) };
   const window = { addEventListener(name, cb) { events[name] = cb; } };
@@ -41,7 +47,7 @@ function boot(page, referrer = "", storage = new Map()) {
   return {
     history, location, storage,
     get link() { return host.children[0] || null; },
-    get label() { return host.children[0]?.children[1]?.textContent || null; },
+    get label() { return host.children[0]?.attrs["aria-label"] || null; },
     route(hash) { const oldURL = location.href; location.hash = hash; events.hashchange?.({ oldURL, newURL: location.href }); },
     follow(href) {
       events["doc:click"]?.({
@@ -54,16 +60,18 @@ function boot(page, referrer = "", storage = new Map()) {
 const map = boot("index.html#/map");
 assert.equal(map.link, null);
 map.route("#/place/101");
-assert.equal(map.label, "Til kartet");
+assert.equal(map.label, "Tilbake til kartet");
+assert.equal(map.link.children.length, 1, "the back control contains only the arrow");
+assert.equal(map.link.children[0].textContent, "←");
 assert.equal(map.link.href, root + "index.html#/map");
 map.route("#/quiz/101");
-assert.equal(map.label, "Til stedet");
+assert.equal(map.label, "Tilbake til stedet");
 assert.equal(map.link.href, root + "index.html#/place/101");
 map.route("#/map");
 assert.equal(map.link, null);
 
 const profile = boot("profile.html", root + "index.html#/map");
-assert.equal(profile.label, "Til kartet");
+assert.equal(profile.label, "Tilbake til kartet");
 assert.equal(profile.link.click().defaultPrevented, true);
 assert.equal(profile.history.calls, 1);
 
@@ -76,6 +84,14 @@ const store = new Map();
 boot("profile.html#spill", "", store).follow(root + "Civication.html");
 const civi = boot("Civication.html", root + "profile.html", store);
 assert.equal(civi.link.href, root + "profile.html#spill");
-assert.equal(civi.label, "Til min samling");
-assert.equal(boot("sprakatlas.html", root + "index.html").label, "Til kartet");
-process.stdout.write("9/9 History Go header navigation checks passed\n");
+assert.equal(civi.label, "Tilbake til min samling");
+assert.equal(boot("sprakatlas.html", root + "index.html").label, "Tilbake til kartet");
+const fauna = boot("finn-fauna.html");
+assert.equal(fauna.label, "Tilbake til kartet");
+assert.equal(fauna.link.href, root + "index.html");
+assert.equal(fauna.link.children.length, 1, "nature page back link is an icon only");
+const flora = boot("finn-flora.html", root + "finn-fauna.html");
+assert.equal(flora.label, "Tilbake til finn fauna");
+assert.equal(flora.link.click().defaultPrevented, true);
+assert.equal(flora.history.calls, 1);
+process.stdout.write("11/11 History Go header navigation checks passed\n");
