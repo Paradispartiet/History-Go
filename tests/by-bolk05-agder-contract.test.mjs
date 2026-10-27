@@ -14,7 +14,7 @@ const ids = [
 const quizPath = (id) => 'data/quiz/by/' + id + '_regional_v1_sets.json';
 const cardPath = (part) => 'data/quizcards/by/regional_bolk05_agder_part' + part + '_v1_20261027.json';
 
-test('By05 Agder editorial packages maintain Fagverk/quiz/QuizCard parity as added', () => {
+test('By05 Agder editorial packages maintain Fagverk/quiz/QuizCard parity after completion', () => {
   const registry = read('data/fagverk/fagverk_registry.json');
   let completed = 0;
   for (const [index, id] of ids.entries()) {
@@ -55,5 +55,5 @@ test('By05 Agder editorial packages maintain Fagverk/quiz/QuizCard parity as add
       assert.deepEqual(q.options, card.questions[n].options, id);
     }
   }
-  assert.ok(completed >= 2, 'At least two Agder editorial packages should be present');
+  assert.equal(completed, ids.length, 'All five Agder editorial packages must be present');
 });
