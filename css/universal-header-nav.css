@@ -86,12 +86,12 @@ main.main > header > .hg-universal-back {
   background: rgba(9,11,16,.95);
 }
 
-/* The logo is the single, permanent entry back to the History Go start menu.
-   Expand the visible artwork and hit target without obscuring the back arrow. */
+/* The logo opens History Go's start menu. Its top edge must remain inside
+   the header; the enlarged artwork may extend below, never above it. */
 body.hg-app header.site-header > .hg-brand {
   position: absolute;
   left: calc(6px + env(safe-area-inset-left, 0px));
-  top: -19px;
+  top: 2px;
   width: 112px;
   height: 112px;
   padding: 0;
@@ -120,7 +120,7 @@ body.hg-app header.site-header > .hg-universal-back {
   body.hg-app header.site-header > .hg-brand {
     width: 94px;
     height: 94px;
-    top: -19px;
+    top: 2px;
   }
   body.hg-app header.site-header > .hg-universal-back {
     left: calc(107px + env(safe-area-inset-left, 0px));
@@ -130,7 +130,7 @@ body.hg-app header.site-header > .hg-universal-back {
   body.hg-app header.site-header > .hg-brand {
     width: 84px;
     height: 84px;
-    top: -14px;
+    top: 2px;
   }
   body.hg-app header.site-header > .hg-universal-back {
     left: calc(96px + env(safe-area-inset-left, 0px));

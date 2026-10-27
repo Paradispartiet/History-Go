@@ -78,6 +78,9 @@ try {
     assert.equal(await page.locator("#btnStartMenu").count(), 0, "the old Hurtigmeny shortcut is absent");
     const logoRect = await logo.boundingBox();
     assert.ok(logoRect && logoRect.width >= (width <= 860 ? 84 : 105), "HG logo is nearly twice its former size at " + width + "px");
+    const headerRect = await page.locator("header.site-header").boundingBox();
+    assert.ok(headerRect && logoRect.y >= headerRect.y - 1,
+      "HG logo stays within the top edge of the header at " + width + "px");
     const backRect = await placeBack.boundingBox();
     const exploreRect = await page.locator("header.site-header #nearbyExploreToggle").boundingBox();
     assert.ok(logoRect && backRect && exploreRect, "header elements are measurable");
