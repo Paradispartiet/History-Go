@@ -1,0 +1,30 @@
+name: Shared header navigation
+
+on:
+  pull_request:
+    paths:
+      - "js/ui/universal-header-nav.js"
+      - "css/universal-header-nav.css"
+      - "scripts/check-universal-header-navigation.mjs"
+      - ".github/workflows/shared-header-navigation.yml"
+      - "index.html"
+      - "profile.html"
+      - "Civication.html"
+      - "knowledge.html"
+      - "fagverk-forside.html"
+      - "emner.html"
+      - "notater.html"
+      - "sprakatlas.html"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  navigation-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify contextual back navigation
+        run: node scripts/check-universal-header-navigation.mjs
