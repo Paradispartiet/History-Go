@@ -65,12 +65,12 @@ add("desc",desc);
 add("popupDesc",blocks.flat());
 const claimIds=claims.map(x=>x.id);
 const qs=[
- ["Hvem eier selve pumptrackbanen?","Sagene IF","hvem",4],
+ ["Hvem eier selve pumptrackbanen?","Sagene IF","hvem",3],
  ["Hva slags underlag har banen?","Asfalt","hva",5],
- ["Hvem drev fram planleggingen?","Frivillige i Sagene IF og nærmiljøet","hvem",3],
+ ["Hvem drev fram planleggingen?","Frivillige i Sagene IF og nærmiljøet","hvem",2],
  ["Hvem bygde pumptracken?","Betongpark/Shapers","hvem",5],
  ["Hva gjør kuler og doserte svinger mulig?","Å skape fart gjennom pumping","hva",7],
- ["Hvem krediteres for banens design?","Janis Melnis","hvem",6],
+ ["Hva skjedde med banen høsten 2025?","Den ble ferdig og tatt i bruk","hva_skjedde",9],
  ["Hvilke aktiviteter deler anlegget?","Sykkel, sparkesykkel, skateboard og rulleskøyter","hva",8],
  ["Hvem er tiltakets målgruppe?","Barn og unge","hvem",10],
  ["Hvilken vei skal man kjøre på banen?","Mot klokken","hva",11],
