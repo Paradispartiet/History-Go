@@ -1,0 +1,42 @@
+name: Oslo next six source and quiz candidate parity one-time
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-v1-six-next-20261027
+    paths:
+      - '.github/workflows/oslo-next-six-editorial-parity-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: oslo-next-six-editorial-parity-once
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-v1-six-next-20261027
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify all 126 quiz candidates, 60 card candidates and 6 licensed place assets
+        run: node scripts/verify-oslo-next-six-editorial-candidates.mjs
+      - name: Validate current place sources and Fagverk
+        run: |
+          node scripts/audit-fagverk-place-pages.mjs
+          npm run places:index:check
+          npm run place-open:check
+      - name: Delete one-time workflow on successful validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/oslo-next-six-editorial-parity-once.yml
+          git commit -m "test(oslo-v1): confirm candidate and licensed image parity"
+          git push origin HEAD:research/oslo-sentrum-v1-six-next-20261027
