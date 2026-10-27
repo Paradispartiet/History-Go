@@ -156,9 +156,8 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
       <div class="pc-sheet-intro" data-hg-place-sheet-intro></div>
-      <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-        <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-      </div>
+      <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
+      <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
@@ -212,8 +211,10 @@ function ensureAboutSlot(shell: HTMLElement): HTMLElement | null {
     aboutSlot.className = "pc-sheet-about";
     aboutSlot.setAttribute("data-hg-place-sheet-about", "1");
     aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
-    const anchor = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]") || shell.querySelector<HTMLElement>("[data-hg-place-sheet-hero]");
-    if (anchor?.nextSibling) shell.insertBefore(aboutSlot, anchor.nextSibling);
+    // About shares the image's flow context, so text wraps beside the
+    // floated frontImage and continues at full width beneath it.
+    const media = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]");
+    if (media) media.appendChild(aboutSlot);
     else shell.appendChild(aboutSlot);
   }
   return aboutSlot;
