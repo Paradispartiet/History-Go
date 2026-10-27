@@ -89,6 +89,12 @@ try {
         const r=node.getBoundingClientRect();
         return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};
       };
+      const textBox = selector => {
+        const range = document.createRange();
+        range.selectNodeContents(document.querySelector(selector));
+        const r=range.getBoundingClientRect();
+        return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};
+      };
       return {
         front:box(".pc-frontcard"),
         frontImage:box("#pcFrontImage"),
@@ -106,9 +112,9 @@ try {
         events:box('[data-hg-onsite-action="events"]'),
         meet:box('[data-hg-onsite-action="meet"]'),
         rightColumn:box(".pc-sheet-explore-grid"),
-        aboutHeading:box(".pc-sheet-canonical-about > h3"),
+        aboutHeading:textBox(".pc-sheet-canonical-about > h3"),
         about:box(".pc-sheet-about"),
-        intro:box(".pc-sheet-intro"),
+        intro:box("#pcDesc"),
         media:box(".pc-sheet-hero-media"),
         parentClass:document.getElementById("pcEventsBox").parentElement.className,
         previousClass:document.getElementById("pcEventsBox").previousElementSibling?.className,
@@ -126,9 +132,9 @@ try {
     assert.equal(layout.count,1,"One canonical on-site surface at "+width);
     assert.equal(layout.parentClass,"pc-sheet-explore-grid","Events/Møtes belong to the collections section at "+width);
     assert.equal(layout.previousClass,"pc-side-stack","Events/Møtes follow the collection rounds at "+width);
-    assert.ok(Math.abs(layout.front.x - layout.rightColumn.x) <= 2,
+    assert.ok(Math.abs(layout.front.x - layout.rounds.x) <= 2,
       "frontImage and rounds share the same left margin at "+width+": "+JSON.stringify(layout));
-    assert.ok(Math.abs(layout.intro.x - layout.rightColumn.x) <= 2,
+    assert.ok(Math.abs(layout.intro.x - layout.front.x) <= 2,
       "media margins match the description at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.aboutHeading.x >= layout.front.right - 1,
       "Om stedet begins to the right of frontImage at "+width+": "+JSON.stringify(layout));
