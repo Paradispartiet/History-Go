@@ -3,17 +3,15 @@
    Oppdatert: 2026-08-26
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-10-24-v1.3.157";
+const SW_VERSION = "hg-sw-2026-10-27-v1.3.158";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
 
 // Kun filer som faktisk eksisterer og lastes av index.html / Civication.html.
 const PRECACHE_URLS = [
-  "./",
-  "./index.html",
-  "profile.html",
-  "Civication.html",
+  // HTML must never be precached: the app now requires online verification
+  // of an AHA/Supabase session before rendering any protected document.
   "manifest.json",
 
   // CSS
@@ -331,9 +329,26 @@ self.addEventListener("fetch", (/** @type {any} */ event) => {
   // Kun GET
   if (req.method !== "GET") return;
 
-  // Navigasjon (HTML): network-first, fallback cache
+  // Protected HTML must never fall back to an obsolete offline page.
+  // Old cached index.html could otherwise load before the login gate existed.
   if (req.mode === "navigate") {
-    event.respondWith(networkFirst(req, CACHE_STATIC));
+    event.respondWith((async () => {
+      try {
+        return await fetchWithTimeout(req, 4500);
+      } catch {
+        return new Response(
+          '<!doctype html><html lang="nb"><meta charset="utf-8">' +
+          '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+          '<meta name="theme-color" content="#060708">' +
+          '<title>Tilkobling kreves | History Go</title>' +
+          '<body style="margin:0;padding:3rem 1.5rem;background:#060708;color:#fff;font:16px system-ui">' +
+          '<h1>Tilkobling kreves</h1>' +
+          '<p>History Go trenger nettforbindelse for å bekrefte innloggingen. Prøv igjen når du er på nett.</p>' +
+          '</body></html>',
+          { status: 503, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } }
+        );
+      }
+    })());
     return;
   }
 
