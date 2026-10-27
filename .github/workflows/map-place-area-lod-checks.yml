@@ -8,6 +8,7 @@ on:
       - 'dist/web/map.js'
       - 'dist/web/map.js.map'
       - 'tests/map-place-area-lod.test.mjs'
+      - 'tests/mobile-map-dots-browser.test.mjs'
       - 'data/places/**'
       - '.github/workflows/map-place-area-lod-checks.yml'
   workflow_dispatch:
@@ -44,3 +45,9 @@ jobs:
         run: |
           npm run build:web
           git diff --exit-code -- js/map.js dist/web/map.js dist/web/map.js.map
+
+      - name: Install browser engines
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Verify dots, close-zoom labels and area squares in mobile/tablet/desktop browsers
+        run: node tests/mobile-map-dots-browser.test.mjs
