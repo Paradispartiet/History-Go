@@ -29,7 +29,24 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git merge --no-edit origin/main
+          if ! git merge --no-edit origin/main; then
+            mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+            for file in "${conflicts[@]}"; do
+              case "$file" in
+                data/fag/fag_manifest.json|data/fagverk/fagverk_registry.json|data/quiz/manifest.json|data/quizcards/historie/manifest.json)
+                  git checkout --theirs -- "$file" ;;
+                *)
+                  echo "Unexpected merge conflict in $file" >&2
+                  exit 1 ;;
+              esac
+            done
+            node scripts/reconcile-villa-grande-registries.mjs
+            git add data/fag/fag_manifest.json data/fagverk/fagverk_registry.json data/quiz/manifest.json data/quizcards/historie/manifest.json
+            git commit -m "Merge main while retaining all Villa Grande registrations"
+          fi
+          node scripts/reconcile-villa-grande-registries.mjs
+          git add data/fag/fag_manifest.json data/fagverk/fagverk_registry.json data/quiz/manifest.json data/quizcards/historie/manifest.json
+          if ! git diff --cached --quiet; then git commit -m "Synchronize Villa Grande shared registers"; fi
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
