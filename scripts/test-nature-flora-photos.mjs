@@ -46,9 +46,22 @@ const expected=[
  ["emne_flora_gulmaure","Galium verum"],
  ["emne_flora_penstorkenebb","Geranium robertianum"],
  ["emne_flora_vassarve","Stellaria media"],
- ["emne_flora_krypsoleie","Ranunculus repens"]
+ ["emne_flora_krypsoleie","Ranunculus repens"],
+ ["emne_flora_snoklokke","Galanthus nivalis"],
+ ["emne_flora_humleblom","Geum urbanum"],
+ ["emne_flora_jordreve","Glechoma hederacea"],
+ ["emne_flora_gjetertaske","Capsella bursa-pastoris"],
+ ["emne_flora_rodknapp","Knautia arvensis"],
+ ["emne_flora_smaengkall","Rhinanthus minor"],
+ ["emne_flora_rosslyng","Calluna vulgaris"],
+ ["emne_flora_prikktvetann","Lamium maculatum"],
+ ["emne_flora_kattefot","Antennaria dioica"],
+ ["emne_flora_firkantperikum","Hypericum maculatum"],
+ ["emne_flora_varkaal","Ficaria verna"],
+ ["emne_flora_russblaastjerne","Scilla siberica"],
+ ["emne_flora_varerteknapp","Lathyrus vernus"]
 ];
-assert.equal(photos.count,40);
+assert.equal(photos.count,53);
 const urls=new Set();
 const illustrations=[
  "nature-illustrations.js","nature-illustrations-batch03.js",
@@ -112,4 +125,18 @@ for (const id of batch4Ids) {
   `https://upload.wikimedia.org/wikipedia/commons/thumb/${hash[0]}/${hash.slice(0,2)}/${encoded}/640px-${encoded}`,
   "bad Wikimedia thumbnail URL: "+id);
 }
-console.log("Flora photos: 40 sourced species, credits/licenses, SVG fallback and read-only UI OK.");
+
+// Batch 5 – 13 Commons-verified source photos, with matching art names and
+// licensing metadata. Check source-file hash as well as 640px path.
+const batch5Ids=["emne_flora_snoklokke","emne_flora_humleblom","emne_flora_jordreve","emne_flora_gjetertaske","emne_flora_rodknapp","emne_flora_smaengkall","emne_flora_rosslyng","emne_flora_prikktvetann","emne_flora_kattefot","emne_flora_firkantperikum","emne_flora_varkaal","emne_flora_russblaastjerne","emne_flora_varerteknapp"];
+for (const id of batch5Ids) {
+ const photo=photos.get(id);
+ const file=decodeURIComponent(photo.source.split("/wiki/File:")[1]).replace(/ /g,"_");
+ const digest=createHash("md5").update(file).digest("hex");
+ const encoded=encodeURIComponent(file);
+ assert.equal(photo.src,
+  `https://upload.wikimedia.org/wikipedia/commons/thumb/${digest[0]}/${digest.slice(0,2)}/${encoded}/640px-${encoded}`,
+  "invalid Commons image path: "+id);
+ assert.ok(photo.creator && photo.license && photo.licenseUrl);
+}
+console.log("Flora photos: 53 sourced species, credits/licenses, SVG fallback and read-only UI OK.");
