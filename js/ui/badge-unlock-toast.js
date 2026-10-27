@@ -43,7 +43,7 @@
     return stack;
   }
 
-  function showBadgeUnlock(detail) {
+  function showBadgeUnlock(detail, onDone = () => {}) {
     const stack = ensureStack();
 
     const categoryName = String(detail?.categoryName || detail?.categoryId || "Kategori").trim();
@@ -72,13 +72,16 @@
     card.querySelector(".nature-unlock-latin").textContent = categoryName;
 
     stack.appendChild(card);
+    window.HGToastCoordinator?.positionTransientToast?.(stack);
     requestAnimationFrame(() => card.classList.add("is-visible"));
 
+    let dismissing = false;
     function dismiss() {
-      if (!card.parentNode) return;
+      if (dismissing || !card.parentNode) return;
+      dismissing = true;
       card.classList.remove("is-visible");
       card.classList.add("is-leaving");
-      setTimeout(() => card.remove(), 250);
+      setTimeout(() => { card.remove(); onDone(); }, 250);
     }
 
     card.querySelector(".nature-unlock-close").addEventListener("click", dismiss);
@@ -98,7 +101,10 @@
 
   window.addEventListener("hg:badge-tier-unlock", (e) => {
     const event = /** @type {CustomEvent} */ (e);
-    try { showBadgeUnlock(event.detail); } catch (err) {
+    try {
+      const present = complete => showBadgeUnlock(event.detail, complete);
+      if (!window.HGToastCoordinator?.enqueueReward?.(present, 40)) present(() => {});
+    } catch (err) {
       if (window.DEBUG) console.warn("[BadgeUnlockToast]", err);
     }
   });
