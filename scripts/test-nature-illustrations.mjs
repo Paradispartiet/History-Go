@@ -15,6 +15,7 @@ vm.runInNewContext(read("js/ui/nature-illustrations-batch08.js"), sandbox, { tim
 vm.runInNewContext(read("js/ui/nature-illustrations-batch09.js"), sandbox, { timeout: 3000 });
 vm.runInNewContext(read("js/ui/nature-illustrations-batch10.js"), sandbox, { timeout: 3000 });
 vm.runInNewContext(read("js/ui/nature-illustrations-batch11.js"), sandbox, { timeout: 3000 });
+vm.runInNewContext(read("js/ui/nature-botanical-studies.js"), sandbox, { timeout: 3000 });
 const artist = sandbox.window.HG_NATURE_ILLUSTRATIONS;
 assert.equal(artist.count, 330, "expected 330 illustrations across eleven batches");
 const index = JSON.parse(read("data/runtime/nature-all.json"));
@@ -83,6 +84,7 @@ for (const kind of ["flora", "fauna"]) {
  assert(html.includes("js/ui/nature-illustrations-batch09.js"));
  assert(html.includes("js/ui/nature-illustrations-batch10.js"));
  assert(html.includes("js/ui/nature-illustrations-batch11.js"));
+ assert(html.includes("js/ui/nature-botanical-studies.js"));
  assert(html.includes("data-filter=\"illustrated\""));
  assert(html.indexOf("nature-illustrations.js") < html.indexOf("nature-illustrations-batch03.js"));
  assert(html.indexOf("nature-illustrations-batch03.js") < html.indexOf("nature-illustrations-batch04.js"));
@@ -93,7 +95,8 @@ for (const kind of ["flora", "fauna"]) {
  assert(html.indexOf("nature-illustrations-batch08.js") < html.indexOf("nature-illustrations-batch09.js"));
  assert(html.indexOf("nature-illustrations-batch09.js") < html.indexOf("nature-illustrations-batch10.js"));
  assert(html.indexOf("nature-illustrations-batch10.js") < html.indexOf("nature-illustrations-batch11.js"));
- assert(html.indexOf("nature-illustrations-batch11.js") < html.indexOf("nature-explorer.js"));
+ assert(html.indexOf("nature-illustrations-batch11.js") < html.indexOf("nature-botanical-studies.js"));
+ assert(html.indexOf("nature-botanical-studies.js") < html.indexOf("nature-explorer.js"));
 }
 const batch09Ids = [...read("js/ui/nature-illustrations-batch09.js").matchAll(/\bemne_(?:flora|fauna|kratt|gress|siv|ror|urt)_[\p{L}0-9_]+(?=\s*:)/gu)].map(m=>m[0]);
 assert.equal(batch09Ids.length, 30, "expected exactly 30 new species in batch 09");
@@ -131,4 +134,27 @@ for (const id of batch11Ids) {
  assert(svg.includes('width="600" height="420"'),id+": unexpected SVG dimensions");
  assert(!/<(?:script|foreignObject|image|use)\b/i.test(svg),id+": embedded active content");
 }
-console.log("Nature atlas illustrations: 330/330 referenced and renderable; both pages wired.");
+// Anatomy-specific override QA: ensure realistic botanical studies are loaded
+// after the older source, without changing the 330 covered species or unlock state.
+const studies = {
+ emne_flora_enghumleblom:"rivale",
+ emne_flora_engkarse:"pratensis",
+ emne_flora_engknoppurt:"jacea",
+ emne_flora_engsmelle:"vulgaris",
+ emne_flora_engsoleie:"acris",
+ emne_flora_engtjaereblom:"viscaria",
+ emne_flora_prestekrage:"leucanthemum",
+ emne_flora_balderbra:"tripleurospermum"
+};
+for(const [id,latin] of Object.entries(studies)){
+ assert(ids.has(id), "botanical study ID missing from catalogue: "+id);
+ const output=artist.resolve(id);
+ assert(output.startsWith("data:image/svg+xml;charset=UTF-8,"), "botanical study data URI: "+id);
+ const svg=decodeURIComponent(output.split(",")[1]);
+ assert(svg.includes('data-botanical-species="'+latin+'"'), "wrong botanical drawing: "+id);
+ assert(svg.length>7000 && svg.length<100_000, "detail/size regression: "+id);
+ assert((svg.match(/<path\b/g)||[]).length>20,"insufficient anatomy detail: "+id);
+ assert(!/<(?:script|foreignObject|image|use)\b/i.test(svg),"unsafe graphic: "+id);
+}
+assert.equal(artist.count,330,"botanical overrides must not inflate coverage");
+console.log("Nature atlas illustrations: 330/330 referenced and renderable; 8 botanical accuracy studies active; both pages wired.");
