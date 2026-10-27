@@ -58,7 +58,7 @@ jobs:
           assert.equal(rg.placeLinks.vinmonopolet_lager.status,'curated');
           assert.equal(rt.place?.fagverk?.status,'curated');
           assert.equal(p.image,'bilder/places/Vinmonopolets_hovedlager.PNG');
-          assert.deepEqual(quiz.sets.map(s=>s.questions.length),[7,7,7,7,2]);
+          assert.deepEqual(quiz.sets.map(s=>s.questions.length),[6,6,6,6,6]);
           console.log('PASS: Vinmonopolet Place/Fagverk; existing image and 30 quiz questions retained');
           NODE
       - name: Remove one-time producer without rewriting any canonical place data
