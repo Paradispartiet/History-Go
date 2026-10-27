@@ -1,0 +1,74 @@
+name: Wessels plass quiz v1 materialization
+
+on:
+  push:
+    branches:
+      - content/wessels-plass-quiz-v1-20261027
+    paths:
+      - .github/workflows/wessels-place-quiz-v1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/wessels-plass-quiz-v1-20261027
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Materialize reviewed quiz without rewriting Place
+        run: node scripts/materialize-wessels-plass-quiz-20261027.mjs
+      - name: Generate canonical production context
+        run: npm run quiz:context -- --category by --target wessels_plass --output data/quiz/production_context/by/wessels_plass.json
+      - name: Generate actual canonical Knowledge links
+        run: npm run knowledge:canonical:write
+      - name: Sync QuizCard with generator-owned linked quiz questions
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const quizPath='data/quiz/by/wessels_plass_sets.json';
+          const path='data/quizcards/by/wessels_plass_quizcard_v1.json';
+          const quiz=JSON.parse(fs.readFileSync(quizPath,'utf8'));
+          const card=JSON.parse(fs.readFileSync(path,'utf8'));
+          const questions=quiz.sets.flatMap(s=>s.questions);
+          card.cards[0].questions=card.cards[0].questions.map((prev,i)=>{
+            const linked=questions.find(q=>q.id===prev.id);
+            if(!linked||!linked.primary_knowledge_unit_id)throw Error('Missing generated Knowledge for '+prev.id);
+            return {...linked,number:i+1,sourceQuestionId:linked.id,sourceQuizId:linked.quiz_id,sourceQuizFile:quizPath};
+          });
+          card.cards[0].answerKey=card.cards[0].questions.map((q,i)=>({number:i+1,answer:q.answer,answerIndex:q.answerIndex}));
+          fs.writeFileSync(path,JSON.stringify(card,null,2)+'\n');
+          if(card.cards[0].questions.length!==10||questions.length!==21)throw Error('QuizCard/fullquiz parity failed');
+          NODE
+      - name: Commit deterministic production outputs to PR branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fag/fag_manifest.json data/quiz/manifest.json data/quiz/by/wessels_plass_sets.json data/quiz/production_briefs/by/wessels_plass.json data/quiz/production_context/by/wessels_plass.json data/quizcards/by/manifest.json data/quizcards/by/wessels_plass_quizcard_v1.json data/knowledge reports/knowledge-id-backfill.json reports/knowledge-contract-audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Produce Wessels plass canonical 3x7 quiz, QuizCard and Knowledge"
+            git push
+          fi
+      - name: Focused quiz and Knowledge audits
+        run: |
+          npm run quiz:context -- --category by --target wessels_plass --output data/quiz/production_context/by/wessels_plass.json --check
+          npm run audit:quiz-production-context
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-progression
+          npm run knowledge:canonical:check
+      - name: Remove one-time production helper files
+        run: |
+          git rm -- scripts/materialize-wessels-plass-quiz-20261027.mjs .github/workflows/wessels-place-quiz-v1.yml
+          git commit -m "Remove one-time Wessels plass producer after successful audits"
+          git push
