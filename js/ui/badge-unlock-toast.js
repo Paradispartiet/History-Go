@@ -43,7 +43,7 @@
     return stack;
   }
 
-  function showBadgeUnlock(detail) {
+  function showBadgeUnlock(detail, onFinished) {
     const stack = ensureStack();
 
     const categoryName = String(detail?.categoryName || detail?.categoryId || "Kategori").trim();
@@ -74,11 +74,16 @@
     stack.appendChild(card);
     requestAnimationFrame(() => card.classList.add("is-visible"));
 
+    let dismissed = false;
     function dismiss() {
-      if (!card.parentNode) return;
+      if (dismissed) return;
+      dismissed = true;
       card.classList.remove("is-visible");
       card.classList.add("is-leaving");
-      setTimeout(() => card.remove(), 250);
+      setTimeout(() => {
+        card.remove();
+        onFinished?.();
+      }, 250);
     }
 
     card.querySelector(".nature-unlock-close").addEventListener("click", dismiss);
@@ -98,7 +103,10 @@
 
   window.addEventListener("hg:badge-tier-unlock", (e) => {
     const event = /** @type {CustomEvent} */ (e);
-    try { showBadgeUnlock(event.detail); } catch (err) {
+    try {
+      if (window.HGToastRuntime?.enqueueReward) window.HGToastRuntime.enqueueReward(done => showBadgeUnlock(event.detail, done));
+      else showBadgeUnlock(event.detail);
+    } catch (err) {
       if (window.DEBUG) console.warn("[BadgeUnlockToast]", err);
     }
   });
