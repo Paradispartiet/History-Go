@@ -4,7 +4,7 @@
   "categoryId": "kunst",
   "targetId": "villa_romsli",
   "reviewed_at": "2026-10-27",
-  "source_review_basis": "Municipal primary property history, contextual local history; exact construction year intentionally held back.",
+  "source_review_basis": "Municipal cultural property history read alongside later May 2026 municipal vacancy report; current art-centre operation must not be inferred from the older page.",
   "sources": {
     "oslo_kommune": {
       "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/villa-romsli/",
@@ -26,6 +26,13 @@
       "review_status": "reviewed",
       "reviewed_at": "2026-10-27",
       "review_note": "Historisk og geografisk kontekst for Romsås som bydel."
+    },
+    "oslo_kommune_ledige_bygg_mai_2026": {
+      "url": "https://www.oslo.kommune.no/get-file/1222807/fd422aea5de9c641835f76a4c1abd75238291e8dd02f90a863c5d19d13b3bb16",
+      "source_type": "municipal_property_status_may_2026",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Bygningen oppført som ledig siden 1. juli 2025, tidligere brukt som atelierer; salg vurderes og byggeår er oppgitt som 1977."
     }
   },
   "selected_curriculum": {
@@ -64,7 +71,8 @@
     "Exact contested building year.",
     "Unverified names of prior residents.",
     "Invented artists and exhibitions.",
-    "Repeated date-only questions."
+    "Repeated date-only questions.",
+    "Unqualified claims that Villa Romsli was still operating as an art centre in 2026; municipal May 2026 vacancy report documents an empty building."
   ],
   "claims": [
     {
@@ -169,7 +177,7 @@
       "order": 9,
       "planned_phase": "bridge",
       "family": "fact",
-      "statement": "Villa Romsli er omtalt av Oslo kommune som et kunstsenter med atelierer for kunstnere.",
+      "statement": "Oslo kommunes eiendomshistorikk viser at Villa Romsli ble brukt som kunstsenter etter de tidligere omsorgs- og frivillighetsfunksjonene.",
       "source_ids": [
         "oslo_kommune"
       ],
@@ -193,9 +201,10 @@
       "order": 11,
       "planned_phase": "bridge",
       "family": "fact",
-      "statement": "Oslo kommunes eiendomsomtale oppgir at Villa Romsli har tolv atelierer.",
+      "statement": "Kommunens kultureiendomsside omtaler tolv atelierer. I statusrapporten fra mai 2026 står bygningen imidlertid som ledig siden juli 2025.",
       "source_ids": [
-        "oslo_kommune"
+        "oslo_kommune",
+        "oslo_kommune_ledige_bygg_mai_2026"
       ],
       "source_origin": "external",
       "emne_id": "em_kunst_institusjoner_kanon"
@@ -205,7 +214,7 @@
       "order": 12,
       "planned_phase": "bridge",
       "family": "context",
-      "statement": "Den dokumenterte historien går fra botilbud via frivillighetssentral og fritidsklubb til dagens kunstsenter.",
+      "statement": "Den dokumenterte historien går fra botilbud via frivillighetssentral og fritidsklubb til senere kunstsenterdrift.",
       "source_ids": [
         "oslo_kommune"
       ],
@@ -254,9 +263,10 @@
       "order": 16,
       "planned_phase": "final",
       "family": "context",
-      "statement": "Atelierene sier noe om dagens virksomhet, men er ikke i seg selv dokumentasjon for alle tidligere bruksperioder.",
+      "statement": "Atelierene dokumenterer en fase med kunstnerisk bruk, men ikke at denne bruken fortsatt pågikk i 2026. Kommunen oppførte bygget som ledig i mai 2026.",
       "source_ids": [
-        "oslo_kommune"
+        "oslo_kommune",
+        "oslo_kommune_ledige_bygg_mai_2026"
       ],
       "source_origin": "external",
       "emne_id": "em_kunst_institusjoner_kanon"
@@ -266,7 +276,7 @@
       "order": 17,
       "planned_phase": "final",
       "family": "fact",
-      "statement": "Kommunens presentasjon av kultureiendommen omtaler både overføringen fra Røde Kors og kunstsenteret med tolv atelierer.",
+      "statement": "Kommunens kultureiendomsside omtaler overføringen fra Røde Kors og perioden da Villa Romsli fungerte som kunstsenter med atelierer.",
       "source_ids": [
         "oslo_kommune"
       ],
@@ -290,7 +300,7 @@
       "order": 19,
       "planned_phase": "final",
       "family": "concept_theory",
-      "statement": "Kilder viser at Villa Romsli tidligere hadde omsorgs- og frivillighetsfunksjoner. Dagens kunstbruk må ikke projiseres bakover.",
+      "statement": "Villa Romsli hadde omsorgs- og frivillighetsfunksjoner før kunstsenterperioden. En senere funksjon kan ikke uten videre projiseres bakover.",
       "source_ids": [
         "oslo_kommune"
       ],
@@ -496,7 +506,7 @@
       "number": 9,
       "claim_id": "claim_villa_romsli_quiz_09",
       "planned_phase": "bridge",
-      "question": "Hva brukes Villa Romsli til i dag, ifølge Oslo kommune?",
+      "question": "Hvilken funksjon fikk Villa Romsli etter periodene med botilbud og frivillighet?",
       "options": [
         "Kunstsenter",
         "Sykehus",
@@ -505,7 +515,7 @@
       ],
       "answer": "Kunstsenter",
       "answerIndex": 0,
-      "knowledge": "Villa Romsli er omtalt av Oslo kommune som et kunstsenter med atelierer for kunstnere.",
+      "knowledge": "Oslo kommunes eiendomshistorikk viser at Villa Romsli ble brukt som kunstsenter etter de tidligere omsorgs- og frivillighetsfunksjonene.",
       "source_ids": [
         "oslo_kommune"
       ],
@@ -538,7 +548,7 @@
       "number": 11,
       "claim_id": "claim_villa_romsli_quiz_11",
       "planned_phase": "bridge",
-      "question": "Hvor mange atelierer oppgir Oslo kommune ved Villa Romsli?",
+      "question": "Hvor mange atelierer ble beskrevet i Oslo kommunes eldre omtale av Villa Romsli?",
       "options": [
         "Tre",
         "Åtte",
@@ -547,9 +557,10 @@
       ],
       "answer": "Tolv",
       "answerIndex": 2,
-      "knowledge": "Oslo kommunes eiendomsomtale oppgir at Villa Romsli har tolv atelierer.",
+      "knowledge": "Kommunens kultureiendomsside omtaler tolv atelierer. I statusrapporten fra mai 2026 står bygningen imidlertid som ledig siden juli 2025.",
       "source_ids": [
-        "oslo_kommune"
+        "oslo_kommune",
+        "oslo_kommune_ledige_bygg_mai_2026"
       ],
       "emne_id": "em_kunst_institusjoner_kanon",
       "question_type": "fact",
@@ -568,7 +579,7 @@
       ],
       "answer": "Botilbud – frivillighet og fritid – kunstsenter",
       "answerIndex": 3,
-      "knowledge": "Den dokumenterte historien går fra botilbud via frivillighetssentral og fritidsklubb til dagens kunstsenter.",
+      "knowledge": "Den dokumenterte historien går fra botilbud via frivillighetssentral og fritidsklubb til senere kunstsenterdrift.",
       "source_ids": [
         "oslo_kommune"
       ],
@@ -644,18 +655,19 @@
       "number": 16,
       "claim_id": "claim_villa_romsli_quiz_16",
       "planned_phase": "final",
-      "question": "Hva kan dagens atelierer i Villa Romsli alene dokumentere?",
+      "question": "Hva dokumenterer opplysningene om atelierer ved Villa Romsli?",
       "options": [
         "Hvem som bodde der ved åpningen",
         "Hvordan alle tidligere rom var møblert",
         "Nøyaktig hvilket år huset stod ferdig",
-        "At bygget brukes til kunstnerisk arbeid nå"
+        "At bygget i en periode ble brukt til kunstnerisk arbeid"
       ],
-      "answer": "At bygget brukes til kunstnerisk arbeid nå",
+      "answer": "At bygget i en periode ble brukt til kunstnerisk arbeid",
       "answerIndex": 3,
-      "knowledge": "Atelierene sier noe om dagens virksomhet, men er ikke i seg selv dokumentasjon for alle tidligere bruksperioder.",
+      "knowledge": "Atelierene dokumenterer en fase med kunstnerisk bruk, men ikke at denne bruken fortsatt pågikk i 2026. Kommunen oppførte bygget som ledig i mai 2026.",
       "source_ids": [
-        "oslo_kommune"
+        "oslo_kommune",
+        "oslo_kommune_ledige_bygg_mai_2026"
       ],
       "emne_id": "em_kunst_institusjoner_kanon",
       "question_type": "context",
@@ -665,7 +677,7 @@
       "number": 17,
       "claim_id": "claim_villa_romsli_quiz_17",
       "planned_phase": "final",
-      "question": "Hvilken kilde gir direkte oversikt over både eiendomsoverføringen og dagens atelierer?",
+      "question": "Hvilken kilde omtaler både overføringen fra Røde Kors og byggets tidligere atelierdrift?",
       "options": [
         "Oslo kommunes beskrivelse av kultureiendommen",
         "En generell værmelding",
@@ -674,7 +686,7 @@
       ],
       "answer": "Oslo kommunes beskrivelse av kultureiendommen",
       "answerIndex": 0,
-      "knowledge": "Kommunens presentasjon av kultureiendommen omtaler både overføringen fra Røde Kors og kunstsenteret med tolv atelierer.",
+      "knowledge": "Kommunens kultureiendomsside omtaler overføringen fra Røde Kors og perioden da Villa Romsli fungerte som kunstsenter med atelierer.",
       "source_ids": [
         "oslo_kommune"
       ],
@@ -707,16 +719,16 @@
       "number": 19,
       "claim_id": "claim_villa_romsli_quiz_19",
       "planned_phase": "final",
-      "question": "Hva er feil å slutte bare av at Villa Romsli i dag er et kunstsenter?",
+      "question": "Hva er feil å slutte av at Villa Romsli tidligere var et kunstsenter?",
       "options": [
-        "At det finnes atelierer i bygget",
-        "At dagens funksjon skiller seg fra tidligere bruk",
+        "At det fantes atelierer i bygget",
+        "At kunstbruken var en senere fase",
         "At huset alltid har vært et kunstsenter",
-        "At kunstnere bruker huset"
+        "At kunstnere tidligere brukte huset"
       ],
       "answer": "At huset alltid har vært et kunstsenter",
       "answerIndex": 2,
-      "knowledge": "Kilder viser at Villa Romsli tidligere hadde omsorgs- og frivillighetsfunksjoner. Dagens kunstbruk må ikke projiseres bakover.",
+      "knowledge": "Villa Romsli hadde omsorgs- og frivillighetsfunksjoner før kunstsenterperioden. En senere funksjon kan ikke uten videre projiseres bakover.",
       "source_ids": [
         "oslo_kommune"
       ],
