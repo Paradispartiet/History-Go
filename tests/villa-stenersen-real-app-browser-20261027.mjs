@@ -11,7 +11,7 @@ const placePaths={villa_stenersen:'data/places/historie/oslo/places_historie_add
 const targets=IDS;
 const manifest=JSON.parse(fs.readFileSync('data/quiz/manifest.json','utf8'));
 assert.equal(IDS.length,1);
-assert.equal(new Set(IDS).size,5);
+assert.equal(new Set(IDS).size,1);
 
 const quizById=new Map();
 for(const id of targets){
