@@ -1976,9 +1976,8 @@
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
       <div class="pc-sheet-intro" data-hg-place-sheet-intro></div>
-      <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-        <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-      </div>
+      <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
+      <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
@@ -2023,8 +2022,8 @@
       aboutSlot.className = "pc-sheet-about";
       aboutSlot.setAttribute("data-hg-place-sheet-about", "1");
       aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
-      const anchor = shell4.querySelector("[data-hg-place-sheet-media]") || shell4.querySelector("[data-hg-place-sheet-hero]");
-      if (anchor == null ? void 0 : anchor.nextSibling) shell4.insertBefore(aboutSlot, anchor.nextSibling);
+      const media = shell4.querySelector("[data-hg-place-sheet-media]");
+      if (media) media.appendChild(aboutSlot);
       else shell4.appendChild(aboutSlot);
     }
     return aboutSlot;
