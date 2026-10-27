@@ -1,0 +1,44 @@
+name: Villa Stenersen generated integration
+on:
+  pull_request:
+    paths:
+      - 'data/fag/fag_manifest.json'
+      - 'data/quiz/manifest.json'
+      - 'data/quiz/historie/villa_stenersen_sets.json'
+      - 'data/quiz/production_briefs/historie/villa_stenersen.json'
+      - '.github/workflows/villa-stenersen-generated-integration.yml'
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'content/oslo-aav-villa-stenersen-v1-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - name: Build canonical quiz production context
+        run: node scripts/build-quiz-production-context.mjs --category historie --target villa_stenersen --output data/quiz/production_context/historie/villa_stenersen.json
+      - name: Build canonical Knowledge links
+        run: npm run knowledge:canonical:write
+      - name: Verify target quiz parity
+        run: node --test tests/villa-stenersen-v1-parity.test.mjs
+      - name: Commit only generated integration artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/historie/villa_stenersen.json
+          git add -u data/knowledge/ reports/knowledge-id-backfill.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Villa Stenersen: regenerate canonical quiz context and Knowledge"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
