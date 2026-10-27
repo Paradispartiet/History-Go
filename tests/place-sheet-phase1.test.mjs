@@ -107,7 +107,9 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   const media = shell.querySelector("[data-hg-place-sheet-media]");
   assert.equal(hero?.nextElementSibling, nav, "navigation immediately follows the landscape hero");
   assert.equal(nav.nextElementSibling, intro, "place description follows navigation");
-  assert.equal(intro?.nextElementSibling, media, "collection cards follow the description");
+  assert.equal(intro?.nextElementSibling, media, "front image and About follow the description");
+  assert.equal(media?.querySelector(".pc-sheet-about")?.previousElementSibling?.id, "pcFrontCardFlip", "About text sits directly after the floating frontImage");
+  assert.equal(media?.nextElementSibling?.classList.contains("pc-sheet-explore-grid"), true, "collection rounds follow all About text");
   assert.equal(window.document.getElementById("pcDesc")?.parentElement, intro, "description retains one live owner");
   assert.equal(collectionLinks.length, 0, "collection rounds must not appear in text navigation");
   assert.equal(nav.querySelectorAll('[data-hg-place-sheet-jump]').length, 9);
@@ -119,7 +121,7 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   window.fetch = async () => ({ ok:false });
   window.eval(onsiteSource);
   window.HGPlaceOnSiteSurface.decorate(true);
-  const eventsBox = shell.querySelector(".pc-sheet-hero-media > .pc-sheet-explore-grid > .pc-side-stack + #pcEventsBox");
+  const eventsBox = shell.querySelector(".pc-sheet-shell > .pc-sheet-explore-grid > .pc-side-stack + #pcEventsBox");
   assert.ok(eventsBox);
   assert.equal(eventsBox.parentElement, sideStack.parentElement);
   assert.equal(nav.querySelector("#pcEventsBox"), null);
