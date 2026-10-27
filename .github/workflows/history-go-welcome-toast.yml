@@ -9,15 +9,13 @@ on:
       - 'tests/history-go-toast-onboarding-handoff.test.js'
       - 'tests/onboarding-touch-guard.test.js'
       - '.github/workflows/history-go-welcome-toast.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'js/ui/onboarding-welcome.js'
-      - 'js/ui/toast.js'
-      - 'css/onboarding.css'
-      - 'tests/history-go-toast-onboarding-handoff.test.js'
-      - 'tests/onboarding-touch-guard.test.js'
-      - '.github/workflows/history-go-welcome-toast.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   targeted-regression:
