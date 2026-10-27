@@ -79,6 +79,25 @@
     return true;
   }
 
+  async function openPsychologyRoom() {
+    if (!window.HGPsychologyRoomEntry?.open) {
+      await new Promise((resolve, reject) => {
+        let script = document.querySelector('script[src="js/ui/psychology-room-entry.js"]');
+        if (!script) {
+          script = document.createElement("script");
+          script.src = "js/ui/psychology-room-entry.js";
+          script.async = false;
+          document.body.appendChild(script);
+        }
+        if (window.HGPsychologyRoomEntry?.open) { resolve(); return; }
+        script.addEventListener("load", resolve, { once: true });
+        script.addEventListener("error", () => reject(new Error("Psychology Room entry unavailable")), { once: true });
+      });
+    }
+    if (!window.HGPsychologyRoomEntry?.open) throw new Error("Psychology Room entry not loaded");
+    return window.HGPsychologyRoomEntry.open();
+  }
+
   function build() {
     let modal = document.getElementById(MODAL_ID);
     if (modal) return modal;
@@ -131,7 +150,7 @@
         try {
           if (action === "nearby") await openNearestPlace();
           if (action === "lesespor") await window.HGLesespor?.openAll?.();
-          if (action === "psychology") await window.HGPsychologyRoomEntry?.open?.();
+          if (action === "psychology") await openPsychologyRoom();
           if (action === "stories") await window.HGStories?.openAll?.();
         } catch (error) {
           console.warn("[HGOnboarding.openDestination]", action, error);
