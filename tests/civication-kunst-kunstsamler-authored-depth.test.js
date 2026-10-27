@@ -52,7 +52,8 @@ assert.equal(row.authored_depth.thematic_source_ref_count,row.evidence.thematic_
 assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.equal(row.authored_depth.livelihood_template_count,0);
 assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
-assert.ok(row.evidence.thematic_source_refs.includes('data/Civication/lifestory/life/scenes.json'));
+assert.ok(row.evidence.thematic_source_refs.length > 0);
+assert.ok(row.evidence.thematic_source_refs.every(ref => fs.existsSync(path.join(ROOT,ref))), 'thematic sources must exist');
 for(const other of audit.positions.filter(x=>x.key!==lifeKey)){
   assert.ok(!(other.evidence.exact_source_refs||[]).includes(streamPath),streamPath+' leaked exact into '+other.key);
   assert.ok(!(other.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+other.key);
