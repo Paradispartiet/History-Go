@@ -181,3 +181,90 @@ body.hg-app header.site-header > .hg-universal-back {
   }
   body.hg-app header.site-header:has(> .hg-universal-back) #geoStatus { display: none; }
 }
+
+
+/* Fixed house shortcut: always opens the main History Go map. */
+.hg-universal-home {
+  display: inline-flex;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  min-width: 38px;
+  max-width: 38px;
+  height: 38px;
+  min-height: 38px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 9px;
+  background: rgba(255,255,255,.045);
+  color: #ffe34c;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+.hg-universal-home img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.hg-universal-home:hover { background: rgba(255,227,76,.08); border-color: rgba(255,227,76,.32); }
+.hg-universal-home:focus-visible { outline: 2px solid #ffe34c; outline-offset: 2px; }
+.profile-header-left > .hg-universal-home,
+.topbar-left > .hg-universal-home,
+.kv2-appbar > .hg-universal-home,
+.fagverk-topbar > .hg-universal-home,
+.sprakatlas-topbar > .hg-universal-home,
+.ne-header > .hg-universal-home { margin-right: 5px; }
+.emner-header-nav > .hg-universal-home,
+main.main > header > .hg-universal-home {
+  position: fixed;
+  top: calc(10px + env(safe-area-inset-top, 0px));
+  left: calc(58px + env(safe-area-inset-left, 0px));
+  z-index: 1100;
+  box-shadow: 0 6px 24px rgba(0,0,0,.45);
+  background: rgba(9,11,16,.95);
+}
+body.hg-app header.site-header > .hg-universal-home {
+  position: absolute;
+  z-index: 22;
+  margin: 0;
+  left: calc(168px + env(safe-area-inset-left, 0px));
+  top: calc(env(safe-area-inset-top, 0px) + 18px);
+}
+body.hg-app header.site-header:not(:has(> .hg-universal-back)) > .hg-universal-home {
+  left: calc(124px + env(safe-area-inset-left, 0px));
+}
+body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { margin-left: 212px; }
+@media (max-width: 860px) {
+  body.hg-app header.site-header > .hg-universal-home {
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    height: 34px;
+    min-height: 34px;
+    left: calc(145px + env(safe-area-inset-left, 0px));
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  body.hg-app header.site-header:not(:has(> .hg-universal-back)) > .hg-universal-home {
+    left: calc(107px + env(safe-area-inset-left, 0px));
+  }
+  body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { margin-left: 182px; }
+  body.hg-app header.site-header:not(:has(> .hg-universal-back)) .top-actions { margin-left: 145px; }
+}
+@media (max-width: 520px) {
+  /* The small map-home logo supersedes the redundant map-mode shortcut on phones. */
+  body.hg-app header.site-header:has(> .hg-universal-home) .top-actions #btnSeeMap { display: none; }
+  body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { gap: 3px; }
+}
+@media (max-width: 380px) {
+  body.hg-app header.site-header > .hg-universal-home { left: calc(134px + env(safe-area-inset-left, 0px)); }
+  body.hg-app header.site-header:not(:has(> .hg-universal-back)) > .hg-universal-home {
+    left: calc(96px + env(safe-area-inset-left, 0px));
+  }
+  body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { margin-left: 170px; }
+  body.hg-app header.site-header:not(:has(> .hg-universal-back)) .top-actions { margin-left: 133px; }
+}
