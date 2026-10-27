@@ -1,0 +1,53 @@
+name: Voldslokka canonical quiz-context sync
+on:
+  push:
+    branches:
+      - content/voldslokka-pumptrack-editorial-v42-20261027
+    paths:
+      - '.github/workflows/voldslokka-quiz-context-sync-20261027.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: voldslokka-quiz-context-sync-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  regenerate:
+    if: github.ref == 'refs/heads/content/voldslokka-pumptrack-editorial-v42-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/voldslokka-pumptrack-editorial-v42-20261027
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Safely sync latest main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild only Voldslokka canonical context
+        run: |
+          node scripts/build-quiz-production-context.mjs --category sport --target voldslokka_pumptrack --output data/quiz/production_context/sport/voldslokka_pumptrack.json
+          node scripts/build-quiz-production-context.mjs --category sport --target voldslokka_pumptrack --output data/quiz/production_context/sport/voldslokka_pumptrack.json --check
+          node --test tests/voldslokka-pumptrack-integrity-20261027.test.mjs
+          npm run places:index:check
+          npm run epoker:places:check
+          npm run place-open:check
+          node scripts/audit-place-images.mjs --mode=changed
+      - name: Commit corrected canonical context
+        run: |
+          set -euo pipefail
+          git add data/quiz/production_context/sport/voldslokka_pumptrack.json
+          git rm .github/workflows/voldslokka-quiz-context-sync-20261027.yml
+          git diff --cached --check
+          git commit -m "Voldslokka: repair deterministic quiz context parity"
+          git push origin HEAD:content/voldslokka-pumptrack-editorial-v42-20261027
