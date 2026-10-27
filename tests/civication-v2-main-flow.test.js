@@ -36,13 +36,17 @@ const STATIC_SCRIPTS = [
   "js/Civication/civicationShellLoader.js"
 ];
 
-const scriptTags = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((m) => m[1]);
-// Login guard is a deliberate early preboot script, not part of the life-story engine sequence.
-const AUTH_PREBOOT = "js/auth/require-login.js?v=20261027-1";
-assert.ok(scriptTags.includes(AUTH_PREBOOT), "Civication protects player state before loading the game");
-assert.ok(scriptTags.indexOf(AUTH_PREBOOT) < scriptTags.indexOf(STATIC_SCRIPTS[1]),
+const scriptTags = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"[^>]*><\/script>/g)]
+  .map((match) => match[1]);
+// Account auth and the common navigation are preboot shell services, not
+// members of the ordered Civication Life Story runtime.
+const auth = scriptTags.find(src => src.startsWith("js/auth/require-login.js"));
+const sharedNav = scriptTags.find(src => src.startsWith("js/ui/universal-header-nav.js"));
+assert.ok(auth, "Civication protects player state before loading the game");
+assert.ok(sharedNav, "Civication shares the History Go navigation");
+assert.ok(scriptTags.indexOf(auth) < scriptTags.indexOf(STATIC_SCRIPTS[1]),
   "auth guard must run before cloud save and the story runtime");
-const loadedScripts = scriptTags.filter(src => src !== AUTH_PREBOOT);
+const loadedScripts = scriptTags.filter(src => src !== auth && src !== sharedNav);
 assert.deepStrictEqual(
   loadedScripts,
   STATIC_SCRIPTS,
