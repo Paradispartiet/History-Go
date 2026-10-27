@@ -147,7 +147,7 @@
     });
   }
 
-  function showUnlock(obj, kind) {
+  function showUnlock(obj, kind, onDone = () => {}) {
     const stack = ensureStack();
 
     const card = document.createElement("div");
@@ -181,15 +181,18 @@
     card.querySelector(".nature-unlock-latin").textContent = latin;
 
     stack.appendChild(card);
+    window.HGToastCoordinator?.positionTransientToast?.(stack);
 
     // Slide inn på neste frame
     requestAnimationFrame(() => card.classList.add("is-visible"));
 
+    let dismissing = false;
     function dismiss() {
-      if (!card.parentNode) return;
+      if (dismissing || !card.parentNode) return;
+      dismissing = true;
       card.classList.remove("is-visible");
       card.classList.add("is-leaving");
-      setTimeout(() => card.remove(), 250);
+      setTimeout(() => { card.remove(); onDone(); }, 250);
     }
 
     card.querySelector(".nature-unlock-close").addEventListener("click", dismiss);
@@ -209,36 +212,21 @@
     const added = detail?.added || {};
     const flora = Array.isArray(added.flora) ? added.flora : [];
     const fauna = Array.isArray(added.fauna) ? added.fauna : [];
-
-    // Maks 3 synlige samtidig for ikke å spamme skjermen.
-    const MAX = 3;
-    let shown = 0;
-
-    for (const id of flora) {
-      if (shown >= MAX) break;
-      const obj = findEntry(id, "flora") || { id, title: id };
-      showUnlock(obj, "flora");
-      shown++;
-    }
-    for (const id of fauna) {
-      if (shown >= MAX) break;
-      const obj = findEntry(id, "fauna") || { id, title: id };
-      showUnlock(obj, "fauna");
-      shown++;
-    }
-
-    const total = flora.length + fauna.length;
-    if (total > MAX) {
-      const stack = ensureStack();
-      const more = document.createElement("div");
-      more.className = "nature-unlock-card is-more";
-      more.innerHTML = `<div class="nature-unlock-body"><div class="nature-unlock-title">${escapeHtml(tfUI("ui.nature.unlock.moreCollectedCount", "+{count} til samlet", { count: total - MAX }))}</div></div>`;
-      stack.appendChild(more);
-      requestAnimationFrame(() => more.classList.add("is-visible"));
-      setTimeout(() => {
-        more.classList.remove("is-visible");
-        setTimeout(() => more.remove(), 250);
-      }, AUTO_DISMISS_MS);
+    // Three detailed awards followed by an honest count for any remaining.
+    const collected = [
+      ...flora.map(id => ({ id, kind: "flora" })),
+      ...fauna.map(id => ({ id, kind: "fauna" }))
+    ];
+    collected.slice(0, 3).forEach(({ id, kind }) => {
+      const obj = findEntry(id, kind) || { id, title: id };
+      const present = complete => showUnlock(obj, kind, complete);
+      if (!window.HGToastCoordinator?.enqueueReward?.(present, 20)) present(() => {});
+    });
+    if (collected.length > 3) {
+      const message = tfUI("ui.nature.unlock.moreCollectedCount", "+{count} til samlet", {
+        count: collected.length - 3
+      });
+      window.showToast?.(message, 3000);
     }
   }
 
