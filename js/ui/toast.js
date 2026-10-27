@@ -146,6 +146,14 @@ function flushPendingToasts(delay = HG_TOAST_READY_DELAY_MS) {
     const item = pendingToasts.shift();
     if (!item) return;
     toastActive = true;
+    if (item.kind === "reward") {
+      try { item.render(finishToast); }
+      catch (error) {
+        console.error("[HGToastRuntime] Kunne ikke vise belønning", error);
+        finishToast();
+      }
+      return;
+    }
     showToastNow(item.msg, item.ms, item.options);
   }, delay);
 }
@@ -154,6 +162,15 @@ function showToast(msg, ms = null, options = null) {
   const normalized = normalizeToastArgs(ms, options);
   pendingToasts.push({ msg, ms: normalized.ms, options: normalized.options });
   flushPendingToasts();
+}
+
+// Reward cards use the same display slot and sequence as ordinary messages.
+// The reward renderer calls done() only after its card has left the screen.
+function enqueueReward(render) {
+  if (typeof render !== "function") return false;
+  pendingToasts.push({ kind: "reward", render });
+  flushPendingToasts();
+  return true;
 }
 
 window.addEventListener("hg:onboardingClosed", () => flushPendingToasts());
@@ -170,7 +187,8 @@ window.API = window.API || {};
 window.API.showToast = showToast;
 window.HGToastRuntime = {
   getPendingCount: () => pendingToasts.length,
-  isShowing: () => toastActive
+  isShowing: () => toastActive,
+  enqueueReward
 };
 
 earlyToastQueue.forEach((args) => {
