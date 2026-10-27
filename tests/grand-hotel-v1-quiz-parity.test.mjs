@@ -78,7 +78,7 @@ test("Grand Hotel: v4.2 source-to-sentence coverage matches current PlaceCard",(
   const claimIds=new Set(production.claims.map(c=>c.id));
   assert.equal(claimIds.size,production.claims.length);
   assert.ok(production.claims.every(c=>c.status==="verified"&&c.sourceUrl?.startsWith("https://")));
-  const sentences=text=>text.split(/(?<=[.!?])\\s+/u).filter(Boolean);
+  const sentences=text=>text.split(/(?<=[.!?])\s+/u).filter(Boolean);
   for(const field of ["desc","popupDesc"]){
     const coverage=production.sentenceCoverage[field];
     assert.equal(coverage.length,sentences(place[field]).length);
