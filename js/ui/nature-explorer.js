@@ -8,7 +8,26 @@ const icon = kind === "fauna" ? "🐾" : "🌿";
 const grid=document.getElementById("natureGrid"),stats=document.getElementById("natureStats"),count=document.getElementById("natureCount"),
  search=/** @type {HTMLInputElement} */ (document.getElementById("natureSearch")),message=document.getElementById("natureMessage"),more=document.getElementById("natureMore"),
  dialog=/** @type {HTMLDialogElement} */ (document.getElementById("natureDialog")),details=document.getElementById("natureDetails");
-let all=[],activeFilter="all",limit=36;
+let all=[],activeFilter="all",limit=36,atlas=null;
+const illustrationFor = a => atlas?.images?.[String(a.id)] ?? null;
+function addSpeciesArt(parent,a,decorative=false){
+ const fallback=()=>{parent.replaceChildren(node("span","ne-image-placeholder",icon));};
+ const direct=photo(a);
+ if(direct){const img=node("img","ne-direct-image");img.src=direct;img.alt=decorative?"":name(a);
+ img.loading="lazy";img.decoding="async";img.addEventListener("error",fallback,{once:true});parent.appendChild(img);return;}
+ const info=illustrationFor(a),sprite=atlas?.sprite;
+ if(!info || !sprite || !Number.isInteger(info.index)){fallback();return;}
+ const cols=Number(sprite.columns),rows=Number(sprite.rows),i=info.index;
+ if(!Number.isInteger(cols)||!Number.isInteger(rows)||cols<1||rows<1||i<0||i>=cols*rows){fallback();return;}
+ const crop=node("span","ne-sprite-crop");
+ const img=node("img","ne-sprite-image");
+ img.src=sprite.src;img.alt=decorative?"":name(a)+" – KI-generert illustrasjon";img.loading="lazy";img.decoding="async";
+ img.style.width=(cols*100)+"%";img.style.height=(rows*100)+"%";
+ img.style.left=(-(i%cols)*100)+"%";img.style.top=(-Math.floor(i/cols)*100)+"%";
+ img.addEventListener("error",fallback,{once:true});
+ crop.appendChild(img);parent.appendChild(crop);
+}
+
 const node=(tag,cls,txt)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(txt!=null)x.textContent=String(txt);return x;};
 const list=(v)=>Array.isArray(v)?v.filter(Boolean).map(String):v?[String(v)]:[];
 const name=(a)=>String(a.taxonomy?.norsk_navn || a.title || a.name || a.id || "Ukjent art");
@@ -35,14 +54,19 @@ function section(title,values){
 }
 function openArt(a){
  details.replaceChildren();
- details.appendChild(node("div","",icon));
+ details.appendChild(node("p","ne-detail-eyebrow",kind==="flora"?"NATURATLAS · FLORA":"NATURATLAS · FAUNA"));
  const h=node("h2","",name(a));h.id="natureDetailTitle";details.appendChild(h);
  if(latin(a))details.appendChild(node("p","ne-detail-latin",latin(a)));
  details.appendChild(node("p","ne-detail-status",collected().has(String(a.id))?"✓ Samlet gjennom quiz":"Ikke samlet ennå"));
- if(photo(a)){const wrap=node("div");appendImage(wrap,photo(a),name(a));wrap.firstChild.className="ne-dialog-image";details.appendChild(wrap);}
+ const media=node("div","ne-modal-media");addSpeciesArt(media,a,false);details.appendChild(media);
+ if(illustrationFor(a) && !photo(a))details.appendChild(node("p","ne-art-credit","KI-generert illustrasjon · Veiledende motiv, ikke dokumentasjon av et funn."));
+ const traits=list(a.kjennetegn);if(traits.length)details.appendChild(node("p","ne-trait-intro",traits[0]));
  section("Kjennetegn",a.kjennetegn);
  section("Leveområder",a.habitat?.biotop||a.bykontekst?.typiske_steder);
  section("Observasjonstips",a.observasjonstips);
+ section("Blomstring og sesong",a.fenologi?.blomstring);
+ section("Økologisk rolle",a.økologi?.rolle);
+ section("Typiske steder i byen",a.bykontekst?.typiske_steder);
  section("Familie",a.taxonomy?.familie);
  const source=list(a.source_urls).find(v=>v.startsWith("https://"));
  if(source){const s=node("section","ne-detail-section");s.appendChild(node("h3","","Kilde"));
@@ -52,11 +76,12 @@ function openArt(a){
 }
 function card(a,have){
  const b=node("button","ne-card");b.type="button";b.setAttribute("aria-label",name(a)+(have?", samlet":", ikke samlet"));
- const image=node("div","ne-photo",icon);
- if(photo(a)){image.textContent="";appendImage(image,photo(a),"");}
+ const image=node("div","ne-photo");addSpeciesArt(image,a,true);
+ if(illustrationFor(a) && !photo(a))image.appendChild(node("span","ne-image-kind","ILLUSTRASJON"));
  b.appendChild(image);
  const body=node("div","ne-card-body");body.appendChild(node("span","ne-card-title",name(a)));
  if(latin(a))body.appendChild(node("span","ne-latin",latin(a)));
+ const traits=list(a.kjennetegn);if(traits.length)body.appendChild(node("span","ne-card-trait",traits[0]));
  body.appendChild(node("span","ne-status"+(have?" collected":""),have?"✓ Samlet":"Ikke samlet"));
  b.appendChild(body);b.addEventListener("click",()=>openArt(a));return b;
 }
@@ -97,6 +122,15 @@ async function load(){
    items.forEach(a=>{if(a&&typeof a==="object"&&a.id)byId.set(String(a.id),a);});
   });
   all=Array.from(byId.values()).sort((a,b)=>name(a).localeCompare(name(b),"nb"));
+  try{
+   const ar=await fetch("data/nature-illustrations.json");
+   if(ar.ok){
+    const candidate=await ar.json();
+    if(candidate?.schema==="history-go-nature-illustrations-v1" &&
+       /^assets\/nature\/illustrations\/[a-z0-9-]+\.webp$/.test(candidate?.sprite?.src||"") &&
+       candidate.images && typeof candidate.images==="object")atlas=candidate;
+   }
+  }catch(e){console.warn("[NatureExplorer] Illustrasjonspakke utilgjengelig",e);}
   render();
  }catch(error){
   console.warn("[NatureExplorer]",error);
