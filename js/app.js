@@ -65,8 +65,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadDom", () => loadScriptOnce("js/ui/dom.js"));
     await safeRun("loadToast", () => loadScriptOnce("js/ui/toast.js"));
     await safeRun("loadOnboardingWelcome", () => loadScriptOnce("js/ui/onboarding-welcome.js"));
-    // Welcome shortcut must work immediately, before post-ready menu scripts finish.
-    await safeRun("loadPsychologyRoomEntry", () => loadScriptOnce("js/ui/psychology-room-entry.js"));
     await safeRun("loadNatureUnlockToast", () => loadScriptOnce("js/ui/nature-unlock-toast.js"));
     await safeRun("loadPersonPlaceUnlockToast", () => loadScriptOnce("js/ui/person-place-unlock-toast.js"));
     await safeRun("loadBadgeUnlockToast", () => loadScriptOnce("js/ui/badge-unlock-toast.js"));
