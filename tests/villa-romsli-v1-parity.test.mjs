@@ -59,3 +59,12 @@ test("Villa Romsli: both original vector illustrations are available and labeled
     assert.match(svg, /ikke fotografi/);
   }
 });
+
+test("Villa Romsli: generated Place-open uses canonical illustration and fullquiz Knowledge links are active", () => {
+  const live=read("data/runtime/place-open/villa_romsli.json").place;
+  assert.equal(live.id,place.id);
+  assert.equal(live.image,place.image);
+  assert.equal(live.frontImage,place.frontImage);
+  assert.equal(live.imageLicense,place.imageLicense);
+  assert.equal(questions.filter(q=>q.knowledge_link_status==="linked"&&q.primary_knowledge_unit_id&&q.knowledge_unit_ids?.length).length,21);
+});
