@@ -45,10 +45,10 @@ for(const [id,path] of Object.entries(files)){
     assert.ok(q.question?.length>=20 && q.question.endsWith('?'),id+' question format');
     assert.ok(q.source_urls?.length>=1 && q.source_urls.every(s=>s.startsWith('https://')),id+' external provenance');
     assert.equal(q.review_status,'source_and_distractor_review_pending',id+' cannot preapprove sources');
-    assert.ok(!/^\\d{4}$/.test(q.options[q.answerIndex].trim()),id+' no year-answer drill');
-    assert.ok(!/\\bhvilket år\\b/i.test(q.question),id+' no year drilling');
+    assert.ok(!/^\d{4}$/.test(q.options[q.answerIndex].trim()),id+' no year-answer drill');
+    assert.ok(!/\bhvilket år\b/i.test(q.question),id+' no year drilling');
     assert.ok(!ids.has(q.candidate_id)&&!candidateIds.has(q.candidate_id),id+' no duplicate candidate ID');
-    const key=q.question.replaceAll(/\\s+/g,' ').toLocaleLowerCase('nb-NO');
+    const key=q.question.replaceAll(/\s+/g,' ').toLocaleLowerCase('nb-NO');
     assert.ok(!questionText.has(key),id+' no duplicate question');
     questionText.add(key);
     ids.set(q.candidate_id,q);
