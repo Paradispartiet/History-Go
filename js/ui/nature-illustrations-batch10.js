@@ -22,21 +22,21 @@ const SPEC={
  emne_gress_hundesvingel_tuet:["grass","sheepfescue","#a5af91","#718d6f"],
  emne_siv_vassiv:["grass","soft-rush","#b29d74","#709771"],
  emne_starr_flaskestarr:["grass","bottlesedge","#ad8859","#648d66"],
- emne_fauna_bille_neshornbille:["beetle","rhinoceros","#6d463b","#9b745b"],
- emne_fauna_bille_oldenborre:["beetle","chafer","#95744c","#c5a876"],
- emne_fauna_bille_langhornbiller_trebukker:["beetle","longhorn","#765443","#a48a69"],
- emne_fauna_bille_vannkalver:["beetle","diving","#3d5555","#71989b"],
+ emne_fauna_bille_marihoner:["beetle","ladybird","#c94c3c","#343839"],
+ emne_fauna_bille_kornbiller:["beetle","grain","#6b4a35","#9a7e5d"],
+ emne_fauna_bille_vedbiller:["beetle","wood","#53463c","#98826d"],
+ emne_fauna_bille_lovbiller:["beetle","leafdark","#567f7b","#94baa2"],
  emne_fauna_bille_bladbiller:["beetle","leaf","#3d8c75","#95b7a0"],
- emne_fauna_trehumle:["bee","treebumble","#c18a56","#f2f0de"],
- emne_fauna_bladskjaererbie:["bee","leafcutter","#666257","#b9b29c"],
+ emne_fauna_myriapoda_flate_tusenbein:["myriapod","flatmillipede","#836952","#b3a088"],
+ emne_fauna_myriapoda_jord_hundrebein:["myriapod","centipede","#a78162","#cfb593"],
  emne_fauna_gul_engmaur:["ant","meadow","#c5a55a","#dbc983"],
- emne_fauna_stokkmaur:["ant","carpenter","#313a3e","#6d6357"],
- emne_fauna_sjoorre:["bird","scoter","#252d33","#e8e6db"],
- emne_fauna_lovsanger:["bird","warbler","#8c9d70","#e4e6c5"],
- emne_fauna_kattugle:["bird","owl","#897861","#dbc9a9"],
- emne_fauna_roye:["fish","char","#526e70","#de8164"],
- emne_fauna_al:["fish","eel","#756c4d","#a99a73"],
- emne_fauna_fossekall:["bird","dipper","#4b4842","#f2f1e7"]
+ emne_fauna_roed_skogsmaur:["ant","woodant","#914736","#343838"],
+ emne_fauna_isopoda_kule_skrukketroll:["isopod","pillbug","#747c7d","#b4c0b9"],
+ emne_fauna_isopoda_flate_skrukketroll:["isopod","woodlouse","#998d7e","#cfbfa8"],
+ emne_fauna_norsk_storkrill:["crustacean","krill","#bf8677","#a55251"],
+ emne_fauna_brosme:["fish","tusk","#81755f","#c3b5a0"],
+ emne_fauna_hvitting:["fish","whiting","#91a5af","#d5d9d4"],
+ emne_fauna_faraomaur:["ant","pharaoh","#b79067","#dfc49a"]
 };
 const P=(d,c,extra="")=>'<path d="'+d+'" fill="'+c+'" '+extra+'/>';
 const E=(x,y,rx,ry,c,rot=0,extra="")=>'<ellipse cx="'+x+'" cy="'+y+'" rx="'+rx+'" ry="'+ry+'" transform="rotate('+rot+' '+x+' '+y+')" fill="'+c+'" '+extra+'/>';
@@ -113,39 +113,34 @@ function grass(k,col,green){
  return a;
 }
 function beetle(k,col,accent){
- const long=k==="longhorn",horn=k==="rhinoceros",water=k==="diving",round=k==="leaf";
+ const round=k==="ladybird"||k==="leaf"||k==="leafdark",narrow=k==="grain"||k==="wood";
  let a="";
- for(let j=0;j<3;j++){let yy=176+j*63;
-  a+=P("M252 "+yy+"Q183 "+(yy-16)+" "+(130-j*11)+" "+(yy-50),"none",'stroke="#454642" stroke-width="8" stroke-linecap="round"');
-  a+=P("M351 "+yy+"Q415 "+(yy-24)+" "+(467+j*10)+" "+(yy-54),"none",'stroke="#454642" stroke-width="8" stroke-linecap="round"');
+ for(let j=0;j<3;j++){const y=183+j*52;
+  a+=P("M240 "+y+"Q180 "+(y-17)+" "+(126-j*7)+" "+(y-53),"none",'stroke="#50544a" stroke-width="8" stroke-linecap="round"');
+  a+=P("M361 "+y+"Q421 "+(y-17)+" "+(474+j*7)+" "+(y-53),"none",'stroke="#50544a" stroke-width="8" stroke-linecap="round"');
  }
- a+=E(301,261,round?105:horn?110:88,round?99:136,col,0,'stroke="#3a4040" stroke-width="5"');
- a+=E(302,150,horn?86:65,horn?59:50,col,0,'stroke="#454340" stroke-width="5"');
- a+=E(303,92,50,44,horn?"#4b3530":accent);
- a+=L(302,165,302,388,"#2d3736",4);
- for(let z=0;z<18;z++){const xx=247+(z%3)*51,yy=200+Math.floor(z/3)*31;a+=E(xx,yy,k==="leaf"?6:3.4,k==="leaf"?11:5.2,accent,(z*37)%165);}
- if(horn){a+=P("M291 72Q282 28 266 21Q309 27 331 88Z","#49352e",'stroke="#392f2e" stroke-width="4"');a+=P("M270 66Q255 33 230 29","none",'stroke="#58443b" stroke-width="9"');}
- if(long){a+=P("M273 76Q186 3 87 43M328 76Q428 -4 524 43","none",'stroke="#73634e" stroke-width="7" stroke-linecap="round"');for(let j=0;j<9;j++){a+=L(274-j*18,77-j*6,266-j*19,57-j*7,accent,2)+L(330+j*18,76-j*5,340+j*19,54-j*6,accent,2);}}
- else if(k==="chafer"){for(let z=0;z<6;z++){a+=E(260+z*7,53+z*2,21,6,"#a89268",z*12)+E(349-z*7,53+z*2,21,6,"#a89268",-z*12);}}
- else {a+=P("M269 69Q236 21 211 34M337 69Q369 25 393 35","none",'stroke="#5d6258" stroke-width="5"');}
- if(water){for(let j=0;j<3;j++){a+=E(159,240+j*41,45,8,"#7a9d9e",32)+E(443,240+j*41,45,8,"#7a9d9e",-32);}a+=E(279,244,23,96,"#afcfbe",-8,'opacity=".25"');}
- return a+C(283,86,5,"#e5e8d6")+C(324,86,5,"#e5e8d6");
-}
-function bee(k,col,accent){
- const leafcut=k==="leafcutter";
- let a=E(351,243,125,62,leafcut?"#69685b":"#383b3b",-5,'stroke="#565950" stroke-width="4"')+
-  E(223,211,50,48,leafcut?"#665e53":"#bd8354",0,'stroke="#575149" stroke-width="4"');
- if(!leafcut){
-  a+=P("M304 181Q294 246 313 299","none",'stroke="#b88452" stroke-width="31"');
-  a+=E(450,250,25,46,"#f0eee1");
- }else{
-  for(let j=0;j<6;j++)a+=E(315+j*26,267,9,15,"#d8ae64",j*29);
-  a+=P("M188 241L161 256L186 218Z","#4d4a3d")+P("M241 246L255 269L238 216Z","#4d4a3d");
+ a+=E(300,246,round?119:narrow?82:99,round?113:134,col,0,'stroke="#394543" stroke-width="5"');
+ a+=L(300,149,300,358,"#323b3a",4);
+ a+=E(300,151,round?83:70,55,k==="ladybird"?"#373c40":accent,0,'stroke="#414943" stroke-width="5"');
+ a+=E(300,91,48,42,k==="ladybird"?"#3e4243":"#6b6257");
+ a+=C(275,88,5,"#f7f6ea")+C(326,88,5,"#f7f6ea");
+ if(k==="ladybird"){
+  for(let j=0;j<7;j++){let x=245+(j%3)*55,y=196+Math.floor(j/3)*55;
+   a+=C(x,y,12,"#282f32");}
+  a+=C(301,313,13,"#282f32");
+ }else if(k==="grain"){
+  a+=P("M279 63Q265 21 291 8L308 8Q333 23 320 65Z","#77634a",'stroke="#4b493c" stroke-width="3"');
+  for(let j=0;j<18;j++)a+=L(247+(j%3)*51,194+Math.floor(j/3)*30,254+(j%3)*51,208+Math.floor(j/3)*30,accent,2);
+ }else if(k==="wood"){
+  for(let j=0;j<16;j++)a+=P("M"+(243+(j%4)*34)+" "+(196+Math.floor(j/4)*36)+"q19 -10 29 2","none",'stroke="'+accent+'" stroke-width="4"');
+  a+=P("M286 114L274 89M316 114L329 89","none",'stroke="#463b32" stroke-width="6"');
+ }else {
+  for(let j=0;j<16;j++){const x=237+(j%4)*43,y=191+Math.floor(j/4)*39;
+   a+=E(x,y,8,13,j%3===0?"#bdd3b3":accent,17);}
+  a+=E(269,250,28,90,"#bcd6cc",-10,'opacity=".25"');
  }
- a+=E(324,146,88,29,"#dcece9",-26,'stroke="#99b8b3" stroke-width="3" opacity=".79"')+
- E(370,143,91,26,"#e0edec",24,'stroke="#99b8b3" stroke-width="3" opacity=".79"');
- for(let j=0;j<3;j++){a+=L(268+j*45,273,219+j*57,354,"#494c48",4)+L(279+j*49,273,319+j*53,354,"#494c48",4);}
- return a+C(204,203,7,"#292d30")+L(201,174,177,145,"#5b5145",3)+L(238,177,248,144,"#5b5145",3);
+ a+=P("M266 65L230 35M333 65L373 32","none",'stroke="#575b51" stroke-width="4"');
+ return a;
 }
 function ant(k,col,accent){
  let a=E(410,238,k==="carpenter"?94:75,k==="carpenter"?82:69,col)+
@@ -158,51 +153,79 @@ function ant(k,col,accent){
  for(let j=0;j<7;j++)a+=E(394+(j%3)*10,215+Math.floor(j/3)*15,5,6,accent);
  return a+C(195,215,5,"#efe6c9");
 }
-function bird(k,col,accent){
- if(k==="owl"){
-  let a=E(307,240,124,149,col)+E(218,178,76,95,col,-18)+E(391,178,76,95,col,18);
-  a+=E(240,177,66,75,"#c4b29a")+E(373,177,66,75,"#c4b29a");
-  for(let x of [251,365]){a+=C(x,169,29,"#78664f")+C(x,169,19,"#252f32")+C(x-4,164,7,"#f2eee3");}
-  a+=P("M301 197L283 218L312 239L323 213Z","#c89d54");
-  for(let j=0;j<38;j++){const x=224+(j*41)%165,y=258+(j*23)%99;a+=E(x,y,8,20,j%3?accent:col,j*22);}
-  return a+L(267,361,263,391,"#8b785b",8)+L(346,361,350,391,"#8b785b",8);
+function myriapod(k,col,accent){
+ const fast=k==="centipede",segments=fast?23:17,step=fast?16:19,headX=126;
+ let a="";
+ for(let j=0;j<segments;j++){
+  const x=headX+j*step,y=230+Math.sin(j*.43)*31,w=fast?9:13;
+  a+=E(x,y,w,fast?22:34,j%3===0?accent:col,j*2-10,'stroke="#675b4f" stroke-width="1.5"');
+  for(const dir of [-1,1]){
+   a+=P("M"+x+" "+(y+dir*13)+"Q"+(x+dir*11)+" "+(y+dir*43)+" "+(x+dir*5)+" "+(y+dir*(fast?73:54)),"none",'stroke="'+(fast?"#b99f7d":"#80664f")+'" stroke-width="'+(fast?3.7:3)+'" stroke-linecap="round"');
+  }
  }
- const duck=k==="scoter";
- let a=duck?P("M0 348Q280 328 600 345V420H0Z","#a9cbd0"):P("M79 361Q299 351 515 357","none",'stroke="#87725d" stroke-width="13"');
- a+=P("M360 233Q450 255 479 315L368 280Z",col);
- a+=E(305,238,duck?137:117,duck?80:75,col,-7,'stroke="#586459" stroke-width="4"');
- a+=E(329,236,83,41,k==="warbler"?"#859d75":col,-15);
- a+=E(193,161,duck?62:49,duck?58:46,col);
- if(k==="warbler"){a+=P("M153 148Q182 124 218 140","none",'stroke="#eae9ca" stroke-width="9"');a+=E(226,246,48,38,accent);}
- if(k==="dipper"){a+=E(250,237,69,56,"#f5f3eb",-11);a+=P("M142 150Q170 127 208 157","none",'stroke="#e1d9ca" stroke-width="4"');}
- if(duck){a+=P("M293 205Q344 190 402 225L375 253L309 253Z","#ecece8");a+=P("M142 162L77 176L146 201Z","#d6a56d");}
- else a+=P("M151 166L98 176L151 190Z","#a79866");
- a+=C(174,158,7,"#1e2b2c")+C(172,156,2,"#f7faf3");
- if(!duck){a+=L(276,291,268,358,"#746f5e",5)+L(346,284,347,357,"#746f5e",5);}
- else a+=E(304,335,122,9,"#8fbabd",0,'opacity=".55"');
+ const hy=230+Math.sin(0)*31;
+ a+=E(headX-6,hy,21,21,col)+C(headX-16,hy-6,4,"#262c2d");
+ a+=P("M"+(headX-20)+" "+hy+"Q"+(headX-55)+" "+(hy-45)+" "+(headX-77)+" "+(hy-30)+"M"+(headX-20)+" "+hy+"Q"+(headX-58)+" "+(hy+37)+" "+(headX-76)+" "+(hy+27),"none",'stroke="'+col+'" stroke-width="4"');
+ return a;
+}
+function isopod(k,col,accent){
+ const ball=k==="pillbug";
+ let a="";
+ if(ball){
+  a+=E(304,238,132,129,col,0,'stroke="#57635f" stroke-width="5"');
+  for(let j=0;j<8;j++){const x=213+j*27;
+   a+=P("M"+x+" "+(148+Math.abs(j-4)*7)+"Q"+(x+13)+" 243 "+x+" "+(335-Math.abs(j-4)*8),"none",'stroke="'+accent+'" stroke-width="7"');
+  }
+  for(let j=0;j<6;j++)a+=C(265+(j%3)*30,178+Math.floor(j/3)*116,5,"#e3dfd3");
+ }else{
+  for(let j=0;j<10;j++){
+   const x=135+j*34,y=237+Math.sin(j*.46)*21;
+   a+=E(x,y,30,61,j%3?col:accent,5,'stroke="#726e61" stroke-width="4"');
+   for(let d of [-1,1])a+=P("M"+x+" "+(y+d*36)+"Q"+(x+14)+" "+(y+d*82)+" "+(x+20)+" "+(y+d*97),"none",'stroke="#94877a" stroke-width="4"');
+  }
+  a+=E(136,227,40,42,"#7d796b")+C(123,211,5,"#222d2e")+C(156,211,5,"#222d2e");
+  a+=L(119,218,83,178,"#827b68",3)+L(156,218,192,178,"#827b68",3);
+ }
+ return a;
+}
+function krill(col,accent){
+ let a="";
+ for(let j=0;j<11;j++){
+  const x=161+j*26,y=240+Math.sin(j*.35)*10;
+  a+=E(x,y,28-(j*.9),32-(j*.6),j%3?col:accent,-7,'stroke="#a3645f" stroke-width="2"');
+  for(let d of [-1,1]){
+   a+=L(x,y+d*20,x+18,y+d*(59+j%3*11),accent,2);
+  }
+ }
+ a+=E(144,219,44,38,col,-18)+C(135,212,11,"#272e30")+C(131,208,4,"#e9e8e3");
+ a+=P("M119 219Q64 137 27 150M125 220Q52 201 21 243","none",'stroke="#a86b64" stroke-width="3"');
+ a+=P("M429 247L511 203L472 258L519 298Z",col,'stroke="#a66e65" stroke-width="3"');
  return a;
 }
 function fish(k,col,accent){
- if(k==="eel"){
-  let a=P("M87 294Q147 162 263 216Q380 270 426 161Q470 74 515 158Q548 233 503 288Q481 304 456 281Q511 259 495 208Q479 163 450 215Q381 335 275 264Q151 181 87 294Z",col,'stroke="#615f4e" stroke-width="5"');
-  a+=P("M165 235Q258 198 317 252T447 244","none",'stroke="#b6b18d" stroke-width="7"');
-  return a+C(118,265,7,"#2b3230")+P("M106 276Q142 284 154 281","none",'stroke="#454641" stroke-width="3"');
+ const tusk=k==="tusk";
+ let a=P("M80 245Q167 165 303 168Q417 160 491 228L559 181L535 245L559 318L486 276Q343 316 189 299Q104 286 80 245Z",col,'stroke="#59665f" stroke-width="5"');
+ if(tusk){
+  a+=P("M181 190Q250 119 322 146Q397 145 478 219L473 229Q351 170 181 190Z","#666e60");
+  a+=P("M174 295Q235 352 317 300","none",'stroke="#c3bba0" stroke-width="8"');
+  a+=P("M121 278Q110 310 120 316","none",'stroke="#81765a" stroke-width="4"');
+ }else{
+  for(let j=0;j<3;j++)a+=P("M"+(197+j*71)+" 177q22 -48 59 -29l-8 47Z","#879da4",'stroke="#6e8e94" stroke-width="3"');
+  a+=E(267,264,103,33,"#e3e6df",-2,'opacity=".63"');
+  a+=C(258,237,13,"#3a4342");
  }
- let a=P("M78 234Q150 144 298 167Q412 162 482 234L558 179L532 246L558 320L473 272Q352 327 191 291Q104 287 78 234Z",col,'stroke="#56665f" stroke-width="5"');
- a+=P("M223 166L280 121L348 161M261 298L226 338L311 294M365 295L400 331L417 279","none",'stroke="#f4e7d6" stroke-width="8" stroke-linejoin="round"');
- a+=E(306,257,154,34,accent,-3,'opacity=".68"');
- for(let j=0;j<38;j++){const x=172+(j*43)%276,y=191+(j*31)%76;a+=E(x,y,4,6,j%4?"#f4ddbd":"#e3eee6",27);}
- a+=C(132,229,8,"#263438")+C(130,227,2,"#fcfbef");
- return a+P("M110 261Q136 271 162 264","none",'stroke="#566057" stroke-width="3"');
+ for(let j=0;j<28;j++)a+=E(181+(j*43)%277,204+(j*23)%62,3.2,2.1,j%2?accent:"#e6ddd0",j*13);
+ a+=C(132,231,8,"#202f31")+C(131,229,2.3,"#fff");
+ return a+P("M104 264Q133 274 159 266","none",'stroke="#61685d" stroke-width="3"');
 }
 function resolve(id){
  const spec=SPEC[String(id)];if(!spec)return prior.resolve(id);
  const [family,form,color,accent]=spec;
  const drawing=family==="herb"?herb(form,color,accent):family==="shrub"?shrub(form,color,accent):
   family==="grass"?grass(form,color,accent):family==="beetle"?beetle(form,color,accent):
-  family==="bee"?bee(form,color,accent):family==="ant"?ant(form,color,accent):
-  family==="bird"?bird(form,color,accent):fish(form,color,accent);
- const water=form==="scoter"||form==="char"||form==="eel"||form==="dipper"||form==="diving"||form==="bottlesedge"||form==="soft-rush";
+  family==="myriapod"?myriapod(form,color,accent):family==="isopod"?isopod(form,color,accent):
+  family==="crustacean"?krill(color,accent):family==="ant"?ant(form,color,accent):fish(form,color,accent);
+ const water=form==="tusk"||form==="whiting"||form==="krill"||form==="bottlesedge"||form==="soft-rush";
  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="600" height="420" viewBox="0 0 600 420"><defs><linearGradient id="hg10" x1="0" x2="0" y1="0" y2="1"><stop stop-color="'+(water?"#e8f4f3":"#fbf9ed")+'"/><stop offset="1" stop-color="'+(water?"#c5dcdd":"#e0ebd9")+'"/></linearGradient></defs><rect width="600" height="420" fill="url(#hg10)"/><path d="M0 398Q290 383 600 398V420H0Z" fill="'+(water?"#9cbdc0":"#b6d0aa")+'" opacity=".48"/><g stroke-linecap="round" stroke-linejoin="round">'+drawing+'</g></svg>';
  return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg);
 }
