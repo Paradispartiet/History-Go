@@ -123,6 +123,10 @@
   function maybeShowOnFirstVisit() {
     try {
       if (localStorage.getItem(FLAG_KEY) === "1") return;
+      // A Civication deep link carries a live mission. Show that mission first;
+      // leave onboarding available for the next ordinary History Go visit.
+      const mission = JSON.parse(localStorage.getItem("hg_civication_mode_v1") || "null");
+      if (mission && mission.active === true) return;
     } catch { return; }
 
     whenFullyInteractive(() => {
