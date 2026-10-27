@@ -1,0 +1,1074 @@
+{
+  "categoryId": "by",
+  "targetId": "ostbanestasjonen",
+  "generator_version": "source_review_oslo_aav_20261027",
+  "size_class": "narrow",
+  "sources": {
+    "banenor": "https://www.nyeoslos.no/oslo-s-gjennom-tidene/",
+    "oslo_byleksikon": "https://oslobyleksikon.no/side/%C3%98stbanestasjonen",
+    "ostbanehallen": "https://www.ostbanehallen.no/om-oss/"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/by/ostbanestasjonen.json",
+    "context_artifact": "data/quiz/production_context/by/ostbanestasjonen.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_infrastruktur_mobilitet",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_transformasjon_ombruk"
+    ],
+    "topic_hook_ids": [
+      "arb_industri_havn",
+      "arb_logistikk",
+      "arb_transformasjon",
+      "ark_bygningstyper"
+    ],
+    "method_ids": [
+      "met_gaanalyse",
+      "met_dataanalyse",
+      "met_arkiv_minne_spor",
+      "met_gis_romlig_analyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/fag/by/quizProduction.targets",
+        "data/quiz/by (directory)",
+        "reports/place-production/oslo-aav-20-source-and-editorial-intake-20261026.json"
+      ],
+      "active_before": {
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "No active targetId quiz in main manifest; preserve any previously produced archival/omnibus content if found in final audit.",
+        "Reuse and improve the ten existing Å–V candidates; this source-claim bank extends to 21 questions."
+      ],
+      "knowledge_migration": "No active manifest-owned target quiz located; wider archive cross-check before activation."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "19 distinct source-verified Place claims support a 3x7 factual candidate bank including two separate questions on documented construction layers. This remains provisional until existing quiz and complete By curriculum audits."
+    },
+    "held_back_candidates": [
+      "Unverified precise details about wartime sabotage beyond the verified Osvald claim.",
+      "Direct year-only questions beyond 2 per set of 10 and confusion between Oslo S, Jernbanetorget and the historic Østbanestasjonen."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "by_ostbanestasjonen_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ostbanestasjonen_quiz_01",
+        "claim_ostbanestasjonen_quiz_02",
+        "claim_ostbanestasjonen_quiz_03",
+        "claim_ostbanestasjonen_quiz_04",
+        "claim_ostbanestasjonen_quiz_05",
+        "claim_ostbanestasjonen_quiz_06",
+        "claim_ostbanestasjonen_quiz_07"
+      ],
+      "level": 1,
+      "title": "Fra Hovedbanen til Østfoldbanen",
+      "questions": [
+        {
+          "id": "ostbanestasjonen_aav_quiz_01",
+          "quiz_id": "by_ostbanestasjonen_set_1_q1",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilke to steder bandt Hovedbanen sammen?",
+          "options": [
+            "Christiania og Eidsvoll",
+            "Christiania og Drammen",
+            "Christiania og Gjøvik",
+            "Christiania og Moss"
+          ],
+          "answer": "Christiania og Eidsvoll",
+          "answerIndex": 0,
+          "knowledge": "Hovedbanen var Norges første hovedjernbane og fikk endestasjon i Christiania ved forbindelsen til Eidsvoll.",
+          "explanation": "Hovedbanen var Norges første hovedjernbane og fikk endestasjon i Christiania ved forbindelsen til Eidsvoll.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "banenor"
+          ],
+          "source_urls": [
+            "https://www.nyeoslos.no/oslo-s-gjennom-tidene/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_01",
+          "claim_basis": "Hovedbanestasjonen åpnet i 1854 som endestasjon for Hovedbanen mellom Christiania og Eidsvoll.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_hovedbanen_var_norges_f__3b74535bcf",
+          "knowledge_unit_ids": [
+            "ku_by_hovedbanen_var_norges_f__3b74535bcf"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_02",
+          "quiz_id": "by_ostbanestasjonen_set_1_q2",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilke arkitekter tegnet den opprinnelige stasjonsbygningen?",
+          "options": [
+            "Georg Andreas Bull og Lars Backer",
+            "Heinrich Ernst Schirmer og Wilhelm von Hanno",
+            "Arnstein Arneberg og Magnus Poulsson",
+            "Christian Heinrich Grosch og Balthazar Lange"
+          ],
+          "answer": "Heinrich Ernst Schirmer og Wilhelm von Hanno",
+          "answerIndex": 1,
+          "knowledge": "Schirmer og von Hanno står bak den første bygningen. Georg Andreas Bull kom inn ved den store utvidelsen.",
+          "explanation": "Schirmer og von Hanno står bak den første bygningen. Georg Andreas Bull kom inn ved den store utvidelsen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "banenor"
+          ],
+          "source_urls": [
+            "https://www.nyeoslos.no/oslo-s-gjennom-tidene/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_02",
+          "claim_basis": "Heinrich Ernst Schirmer og Wilhelm von Hanno tegnet den eldste stasjonsbygningen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_schirmer_og_von_hanno_st_fa830f96e1",
+          "knowledge_unit_ids": [
+            "ku_by_schirmer_og_von_hanno_st_fa830f96e1",
+            "ku_by_georg_andreas_bull_kom_i_52e36f6984"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_03",
+          "quiz_id": "by_ostbanestasjonen_set_1_q3",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilket byggemateriale preget den opprinnelige stasjonsbygningen?",
+          "options": [
+            "Lys naturstein",
+            "Støpt betong",
+            "Rød tegl",
+            "Laftet tømmer"
+          ],
+          "answer": "Rød tegl",
+          "answerIndex": 2,
+          "knowledge": "Den tidligste stasjonsbygningen hadde fasader av rød tegl og en åpen buegang.",
+          "explanation": "Den tidligste stasjonsbygningen hadde fasader av rød tegl og en åpen buegang.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_03",
+          "claim_basis": "Bygningen fra 1854 var oppført i rød tegl og hadde en åpen buegang.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_den_tidligste_stasjonsby_aad32cf47c",
+          "knowledge_unit_ids": [
+            "ku_by_den_tidligste_stasjonsby_aad32cf47c"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_04",
+          "quiz_id": "by_ostbanestasjonen_set_1_q4",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Ved hvilket byområde ble Hovedbanens endestasjon plassert?",
+          "options": [
+            "Youngstorget",
+            "Grünerløkka",
+            "Vaterlands bru",
+            "Havnen"
+          ],
+          "answer": "Havnen",
+          "answerIndex": 3,
+          "knowledge": "Havneområdet ble valgt; andre plasseringer i byen var også vurdert.",
+          "explanation": "Havneområdet ble valgt; andre plasseringer i byen var også vurdert.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_04",
+          "claim_basis": "Stasjonsplasseringen ved havnen ble valgt framfor forslag på Youngstorget, Grünerløkka og ved Vaterlands bru.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_havneomradet_ble_valgt_a_790e7a2cb8",
+          "knowledge_unit_ids": [
+            "ku_by_havneomradet_ble_valgt_a_790e7a2cb8"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_05",
+          "quiz_id": "by_ostbanestasjonen_set_1_q5",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilken ny jernbanelinje var en viktig årsak til den store utvidelsen?",
+          "options": [
+            "Østfoldbanen",
+            "Bergensbanen",
+            "Gjøvikbanen",
+            "Holmenkollbanen"
+          ],
+          "answer": "Østfoldbanen",
+          "answerIndex": 0,
+          "knowledge": "Stasjonen måtte bygges ut da Østfoldbanen skulle føres inn mot Christiania.",
+          "explanation": "Stasjonen måtte bygges ut da Østfoldbanen skulle føres inn mot Christiania.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_05",
+          "claim_basis": "Anlegget ble utvidet 1879–82 da Østfoldbanen skulle føres inn til stasjonen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_stasjonen_matte_bygges_u_45a055ab3e",
+          "knowledge_unit_ids": [
+            "ku_by_stasjonen_matte_bygges_u_45a055ab3e"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_06",
+          "quiz_id": "by_ostbanestasjonen_set_1_q6",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvem tegnet det L-formede nybygget ved Østbanestasjonen?",
+          "options": [
+            "Heinrich Ernst Schirmer",
+            "Georg Andreas Bull",
+            "Wilhelm von Hanno",
+            "Erik Glosimodt"
+          ],
+          "answer": "Georg Andreas Bull",
+          "answerIndex": 1,
+          "knowledge": "Bull tegnet nybygget med to fasadesider, mens andre arkitekter sto for den første bygningen.",
+          "explanation": "Bull tegnet nybygget med to fasadesider, mens andre arkitekter sto for den første bygningen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_06",
+          "claim_basis": "Georg Andreas Bull tegnet det L-formede nybygget med fasader mot Jernbanetorget og Havnegata.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_bull_tegnet_nybygget_med_b3bc252778",
+          "knowledge_unit_ids": [
+            "ku_by_bull_tegnet_nybygget_med_b3bc252778"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_07",
+          "quiz_id": "by_ostbanestasjonen_set_1_q7",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hva ble bygd mellom Bulls nybygg og den eldre stasjonsbygningen?",
+          "options": [
+            "Et rådhustårn",
+            "Et frittstående postkontor",
+            "En ny toghall",
+            "Et hotell med atrium"
+          ],
+          "answer": "En ny toghall",
+          "answerIndex": 2,
+          "knowledge": "Den nye hallen knyttet de gamle og nye delene sammen som jernbaneanlegg.",
+          "explanation": "Den nye hallen knyttet de gamle og nye delene sammen som jernbaneanlegg.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_07",
+          "claim_basis": "En ny toghall ble reist mellom Bulls nybygg og den eldre stasjonsbygningen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_den_nye_hallen_knyttet_d_a03b376cbe",
+          "knowledge_unit_ids": [
+            "ku_by_den_nye_hallen_knyttet_d_a03b376cbe"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_ostbanestasjonen_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ostbanestasjonen_quiz_08",
+        "claim_ostbanestasjonen_quiz_09",
+        "claim_ostbanestasjonen_quiz_10",
+        "claim_ostbanestasjonen_quiz_11",
+        "claim_ostbanestasjonen_quiz_12",
+        "claim_ostbanestasjonen_quiz_13",
+        "claim_ostbanestasjonen_quiz_14"
+      ],
+      "level": 2,
+      "title": "Bystasjon, okkupasjon og vern",
+      "questions": [
+        {
+          "id": "ostbanestasjonen_aav_quiz_08",
+          "quiz_id": "by_ostbanestasjonen_set_2_q1",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilke materialer kjennetegnet den store toghallen?",
+          "options": [
+            "Marmor og kalkstein",
+            "Laftet tømmer og torv",
+            "Tegl og kobber",
+            "Jern og glass"
+          ],
+          "answer": "Jern og glass",
+          "answerIndex": 3,
+          "knowledge": "Jernkonstruksjoner og glass dannet den nye stasjonshallens karakteristiske overdekning.",
+          "explanation": "Jernkonstruksjoner og glass dannet den nye stasjonshallens karakteristiske overdekning.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "banenor"
+          ],
+          "source_urls": [
+            "https://www.nyeoslos.no/oslo-s-gjennom-tidene/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_08",
+          "claim_basis": "Utvidelsen fikk en stasjonshall i jern og glass.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_jernkonstruksjoner_og_gl_378450b1c4",
+          "knowledge_unit_ids": [
+            "ku_by_jernkonstruksjoner_og_gl_378450b1c4"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_09",
+          "quiz_id": "by_ostbanestasjonen_set_2_q2",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilken kjent gate danner aksen mot den historiske hovedinngangen?",
+          "options": [
+            "Karl Johans gate",
+            "Torggata",
+            "Pilestredet",
+            "Bogstadveien"
+          ],
+          "answer": "Karl Johans gate",
+          "answerIndex": 0,
+          "knowledge": "Bull la hovedinngangen i forlengelsen av Karl Johans gates midtlinje.",
+          "explanation": "Bull la hovedinngangen i forlengelsen av Karl Johans gates midtlinje.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_09",
+          "claim_basis": "Bull la hovedinngangen i forlengelsen av Karl Johans gates midtlinje.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_bull_la_hovedinngangen_i_e3e3008112",
+          "knowledge_unit_ids": [
+            "ku_by_bull_la_hovedinngangen_i_e3e3008112"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_10",
+          "quiz_id": "by_ostbanestasjonen_set_2_q3",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvorfor ble Hovedbanestasjonen kalt Østbanestasjonen?",
+          "options": [
+            "Hovedbanen ble flyttet til Østfold",
+            "Vestbanestasjonen åpnet på den andre siden av byen",
+            "Stasjonen byttet fra persontrafikk til godstrafikk",
+            "En ny østlig havn ble grunnlagt"
+          ],
+          "answer": "Vestbanestasjonen åpnet på den andre siden av byen",
+          "answerIndex": 1,
+          "knowledge": "Da Vestbanestasjonen åpnet i Vika, ble det naturlig å skille øst og vest i stasjonsnavnene.",
+          "explanation": "Da Vestbanestasjonen åpnet i Vika, ble det naturlig å skille øst og vest i stasjonsnavnene.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "ostbanehallen"
+          ],
+          "source_urls": [
+            "https://www.ostbanehallen.no/om-oss/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_10",
+          "claim_basis": "Hovedbanestasjonen fikk navnet Østbanestasjonen da Vestbanestasjonen åpnet i 1872.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_da_vestbanestasjonen_apn_09d3c40236",
+          "knowledge_unit_ids": [
+            "ku_by_da_vestbanestasjonen_apn_09d3c40236"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_11",
+          "quiz_id": "by_ostbanestasjonen_set_2_q4",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hva forutsatte et tidlig etterkrigsprogram for ny sentralstasjon?",
+          "options": [
+            "At alle gamle haller skulle fredes",
+            "At togene skulle flyttes til havnen igjen",
+            "Riving av gamle stasjonsbygninger",
+            "At bare fasaden mot Karl Johan skulle utvides"
+          ],
+          "answer": "Riving av gamle stasjonsbygninger",
+          "answerIndex": 2,
+          "knowledge": "Arkitektkonkurransens program la i utgangspunktet opp til riving av den gamle stasjonsbebyggelsen.",
+          "explanation": "Arkitektkonkurransens program la i utgangspunktet opp til riving av den gamle stasjonsbebyggelsen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_11",
+          "claim_basis": "Stasjonsbygningene var foreslått revet i programmet for arkitektkonkurransen om ny sentralstasjon i 1946.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_arkitektkonkurransens_pr_4e24837fb2",
+          "knowledge_unit_ids": [
+            "ku_by_arkitektkonkurransens_pr_4e24837fb2"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_12",
+          "quiz_id": "by_ostbanestasjonen_set_2_q5",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hva bestemte bystyrets reguleringsplan om den gamle stasjonen?",
+          "options": [
+            "At hallen skulle rives straks",
+            "At jernbanen måtte stenge for godt samme år",
+            "At den eldste bygningen skulle flyttes til Bygdøy",
+            "At en vesentlig del skulle bevares"
+          ],
+          "answer": "At en vesentlig del skulle bevares",
+          "answerIndex": 3,
+          "knowledge": "Den senere reguleringsplanen innebar et viktig skifte fra rivningstanker til bevaring.",
+          "explanation": "Den senere reguleringsplanen innebar et viktig skifte fra rivningstanker til bevaring.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_12",
+          "claim_basis": "Bystyrets reguleringsplan fra 1976 forutsatte at en vesentlig del av den gamle stasjonsbygningen skulle bevares.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_den_senere_reguleringspl_aaf6a7e6dd",
+          "knowledge_unit_ids": [
+            "ku_by_den_senere_reguleringspl_aaf6a7e6dd"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_13",
+          "quiz_id": "by_ostbanestasjonen_set_2_q6",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hva ble vist fram i toghallen under Joseph Goebbels besøk under okkupasjonen?",
+          "options": [
+            "Store hakekorsbannere",
+            "Norske valgplakater",
+            "En permanent skulpturutstilling",
+            "Den nye Oslo S-modellen"
+          ],
+          "answer": "Store hakekorsbannere",
+          "answerIndex": 0,
+          "knowledge": "Hallen ble dekorert med nazistiske bannere under besøket i november 1940.",
+          "explanation": "Hallen ble dekorert med nazistiske bannere under besøket i november 1940.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_13",
+          "claim_basis": "Under Goebbels besøk i november 1940 ble toghallen dekorert med hakekorsbannere.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_hallen_ble_dekorert_med__ee46f8daf9",
+          "knowledge_unit_ids": [
+            "ku_by_hallen_ble_dekorert_med__ee46f8daf9"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_14",
+          "quiz_id": "by_ostbanestasjonen_set_2_q7",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilken motstandsgruppe gjennomførte et bombeangrep mot stasjonen?",
+          "options": [
+            "Milorgs Stockholmskontor",
+            "Osvald-gruppa",
+            "Kompani Linge alene",
+            "Hjemmefrontmuseets stab"
+          ],
+          "answer": "Osvald-gruppa",
+          "answerIndex": 1,
+          "knowledge": "Osvald-gruppa gjennomførte bombeangrepet mot Østbanestasjonen i 1942.",
+          "explanation": "Osvald-gruppa gjennomførte bombeangrepet mot Østbanestasjonen i 1942.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_14",
+          "claim_basis": "Osvald-gruppa gjennomførte et bombeangrep mot Østbanestasjonen i 1942.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_osvald_gruppa_gjennomf_r_8e64a51ac1",
+          "knowledge_unit_ids": [
+            "ku_by_osvald_gruppa_gjennomf_r_8e64a51ac1"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_ostbanestasjonen_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ostbanestasjonen_quiz_15",
+        "claim_ostbanestasjonen_quiz_16",
+        "claim_ostbanestasjonen_quiz_17",
+        "claim_ostbanestasjonen_quiz_18",
+        "claim_ostbanestasjonen_quiz_19",
+        "claim_ostbanestasjonen_quiz_20",
+        "claim_ostbanestasjonen_quiz_21"
+      ],
+      "level": 3,
+      "title": "Oslo S og Østbanehallens nye liv",
+      "questions": [
+        {
+          "id": "ostbanestasjonen_aav_quiz_15",
+          "quiz_id": "by_ostbanestasjonen_set_3_q1",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilken ny jernbaneinfrastruktur ble tatt i bruk før den høytidelige åpningen av Oslo S?",
+          "options": [
+            "Fornebubanen",
+            "Den nye Follo-banetunnelen",
+            "Oslotunnelen og Oslo S i ordinær drift",
+            "En elektrisk linje til Holmenkollen"
+          ],
+          "answer": "Oslotunnelen og Oslo S i ordinær drift",
+          "answerIndex": 2,
+          "knowledge": "Oslotunnelen og Oslo S var i bruk fra 1980, før den høytidelige stasjonsåpningen.",
+          "explanation": "Oslotunnelen og Oslo S var i bruk fra 1980, før den høytidelige stasjonsåpningen.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "banenor"
+          ],
+          "source_urls": [
+            "https://www.nyeoslos.no/oslo-s-gjennom-tidene/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_15",
+          "claim_basis": "Oslotunnelen og Oslo S ble tatt i bruk i 1980.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_oslotunnelen_og_oslo_s_v_95db8c30b7",
+          "knowledge_unit_ids": [
+            "ku_by_oslotunnelen_og_oslo_s_v_95db8c30b7"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_16",
+          "quiz_id": "by_ostbanestasjonen_set_3_q2",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hva er riktig om overgangen fra Østbanestasjonen til Oslo S?",
+          "options": [
+            "Den gamle stasjonen ble sprengt før de første Oslo S-togene gikk",
+            "Begge stasjonene ble åpnet høytidelig samme dag",
+            "Oslo S ble bare brukt til godstog i overgangsårene",
+            "Trafikken ble gradvis overført etter at nytt anlegg var tatt i bruk"
+          ],
+          "answer": "Trafikken ble gradvis overført etter at nytt anlegg var tatt i bruk",
+          "answerIndex": 3,
+          "knowledge": "Oslo S ble tatt i bruk før den høytidelige åpningen i 1987, mens Østbanestasjonen ble avviklet gradvis.",
+          "explanation": "Oslo S ble tatt i bruk før den høytidelige åpningen i 1987, mens Østbanestasjonen ble avviklet gradvis.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_16",
+          "claim_basis": "Den høytidelige åpningen av Oslo S skjedde i 1987, og Østbanestasjonen ble gradvis nedlagt som jernbanestasjon i perioden 1987–90.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_oslo_s_ble_tatt_i_bruk_f_e4be2ddfe6",
+          "knowledge_unit_ids": [
+            "ku_by_oslo_s_ble_tatt_i_bruk_f_e4be2ddfe6"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_17",
+          "quiz_id": "by_ostbanestasjonen_set_3_q3",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hva brukes den tidligere Østbanehallen blant annet til etter restaureringen?",
+          "options": [
+            "Restauranter og butikker",
+            "Lokomotivverksted",
+            "Aktiv militærforlegning",
+            "Kun ordinære togplattformer"
+          ],
+          "answer": "Restauranter og butikker",
+          "answerIndex": 0,
+          "knowledge": "Den gamle toghallen fikk nytt byliv med servering og handel etter restaureringen.",
+          "explanation": "Den gamle toghallen fikk nytt byliv med servering og handel etter restaureringen.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "ostbanehallen"
+          ],
+          "source_urls": [
+            "https://www.ostbanehallen.no/om-oss/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_17",
+          "claim_basis": "Østbanehallen gjenåpnet med restauranter og butikker i 2015 etter restaurering.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_den_gamle_toghallen_fikk_3a306c76fe",
+          "knowledge_unit_ids": [
+            "ku_by_den_gamle_toghallen_fikk_3a306c76fe"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_18",
+          "quiz_id": "by_ostbanestasjonen_set_3_q4",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilke deler av Østbanestasjonens gamle bygningsanlegg er fredet?",
+          "options": [
+            "Bare hoveddøren",
+            "Hallen samt indre og ytre fasader",
+            "Bare takets kobberbeslag",
+            "Kun én perrong utenfor bygningen"
+          ],
+          "answer": "Hallen samt indre og ytre fasader",
+          "answerIndex": 1,
+          "knowledge": "Fredningen omfatter både hallen og bygningens indre og ytre fasader.",
+          "explanation": "Fredningen omfatter både hallen og bygningens indre og ytre fasader.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "ostbanehallen"
+          ],
+          "source_urls": [
+            "https://www.ostbanehallen.no/om-oss/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_18",
+          "claim_basis": "Både hallen og indre og ytre fasade er fredet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_fredningen_omfatter_bade_9c6bc35482",
+          "knowledge_unit_ids": [
+            "ku_by_fredningen_omfatter_bade_9c6bc35482"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_19",
+          "quiz_id": "by_ostbanestasjonen_set_3_q5",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hvilken adresse har Østbanehallen?",
+          "options": [
+            "Karl Johans gate 1",
+            "Havnegata 30",
+            "Jernbanetorget 1",
+            "Vaterlands bru 1"
+          ],
+          "answer": "Jernbanetorget 1",
+          "answerIndex": 2,
+          "knowledge": "Den bevarte hallen ligger på Jernbanetorget 1, selv om Oslo S er et annet anlegg.",
+          "explanation": "Den bevarte hallen ligger på Jernbanetorget 1, selv om Oslo S er et annet anlegg.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "ostbanehallen"
+          ],
+          "source_urls": [
+            "https://www.ostbanehallen.no/om-oss/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_19",
+          "claim_basis": "Østbanehallen har adresse Jernbanetorget 1.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_den_bevarte_hallen_ligge_5d846ef55b",
+          "knowledge_unit_ids": [
+            "ku_by_den_bevarte_hallen_ligge_5d846ef55b"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_20",
+          "quiz_id": "by_ostbanestasjonen_set_3_q6",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Mot hvilke to byrom vendte Bulls L-formede nybygg fasadene?",
+          "options": [
+            "Eidsvolls plass og Akersgata",
+            "Youngstorget og Storgata",
+            "Torggata og Akerselva",
+            "Jernbanetorget og Havnegata"
+          ],
+          "answer": "Jernbanetorget og Havnegata",
+          "answerIndex": 3,
+          "knowledge": "Bulls nybygg fikk fasader mot Jernbanetorget og Havnegata.",
+          "explanation": "Bulls nybygg fikk fasader mot Jernbanetorget og Havnegata.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_20",
+          "claim_basis": "Georg Andreas Bull tegnet det L-formede nybygget med fasader mot Jernbanetorget og Havnegata.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_bulls_nybygg_fikk_fasade_0c33bc5181",
+          "knowledge_unit_ids": [
+            "ku_by_bulls_nybygg_fikk_fasade_0c33bc5181"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ostbanestasjonen_aav_quiz_21",
+          "quiz_id": "by_ostbanestasjonen_set_3_q7",
+          "categoryId": "by",
+          "targetId": "ostbanestasjonen",
+          "placeId": "ostbanestasjonen",
+          "question_scope": "place",
+          "question": "Hva er riktig om forholdet mellom stasjonen fra 1854 og utvidelsen?",
+          "options": [
+            "Deler av den eldre bygningen ble beholdt innenfor det utvidede anlegget",
+            "Hele den eldre bygningen ble flyttet til Eidsvoll",
+            "Den eldre bygningen ble utelukkende brukt som rådhus",
+            "Den nye stasjonen ble lagt på en helt annen tomt"
+          ],
+          "answer": "Deler av den eldre bygningen ble beholdt innenfor det utvidede anlegget",
+          "answerIndex": 0,
+          "knowledge": "Den senere hallen og Bull-bygningen ble reist i tilknytning til eldre deler; utvidelsen fjernet ikke alt fra 1854.",
+          "explanation": "Den senere hallen og Bull-bygningen ble reist i tilknytning til eldre deler; utvidelsen fjernet ikke alt fra 1854.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/%C3%98stbanestasjonen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ostbanestasjonen_quiz_21",
+          "claim_basis": "En ny toghall ble reist mellom Bulls nybygg og den eldre stasjonsbygningen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "by",
+            "ostbanestasjonen",
+            "oslo_aav_v1_20261027"
+          ],
+          "primary_knowledge_unit_id": "ku_by_den_senere_hallen_og_bul_d1d8f1a6b6",
+          "knowledge_unit_ids": [
+            "ku_by_den_senere_hallen_og_bul_d1d8f1a6b6"
+          ],
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
