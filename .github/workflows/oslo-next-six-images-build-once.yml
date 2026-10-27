@@ -1,0 +1,67 @@
+name: Oslo next six build five licensed images (one-time)
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-v1-six-next-20261027
+    paths:
+      - '.github/workflows/oslo-next-six-images-build-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: oslo-next-six-images-build-once
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/oslo-sentrum-v1-six-next-20261027
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build local source-attributed WebP assets
+        run: node scripts/build-oslo-sentrum-next-six-place-images.mjs
+      - name: Rebuild canonical indices and Place-open
+        run: |
+          npm run places:index:build
+          npm run epoker:places:build
+          npm run place-open:build
+      - name: Audit images and regenerated contracts
+        run: |
+          npm run places:index:check
+          npm run epoker:places:check
+          npm run place-open:check
+          node scripts/audit-place-images.mjs --mode=changed
+      - name: Commit reviewed asset paths and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/oslo-next-six-images-build-once.yml
+          git add \
+            .github/workflows/oslo-next-six-images-build-once.yml \
+            data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/egertorget.json \
+            data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_04/kontraskjaeret.json \
+            data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_04/palehaven_paleet.json \
+            data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_hovedstaden_batch_01/avisen_tiden_radhusgata_10.json \
+            data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01/mustadgarden_kongens_gate_3.json \
+            bilder/places/oslo-sentrum-next-six-20261027 \
+            bilder/kort/places/kontraskjaeret.webp \
+            bilder/kort/places/palehaven_paleet.webp \
+            bilder/kort/places/avisen_tiden_radhusgata_10.webp \
+            bilder/kort/places/egertorget.webp \
+            bilder/kort/places/mustadgarden_kongens_gate_3.webp \
+            data/places/places_index.json \
+            data/epoker/epoke-place-index.json \
+            data/runtime/place-open \
+            reports/place-production/oslo-sentrum-next-six-media-provenance-20261027.json
+          git diff --cached --check
+          git commit -m "media(oslo-v1): five licensed Place photos with 15 local WebP assets"
+          git push origin HEAD:research/oslo-sentrum-v1-six-next-20261027
