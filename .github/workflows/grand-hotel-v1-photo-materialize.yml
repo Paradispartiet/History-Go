@@ -30,18 +30,19 @@ jobs:
           cache: npm
       - name: Install project dependencies
         run: npm ci --no-audit --no-fund
-      - name: Generate canonical Place and People runtime
+      - name: Generate canonical Place, People and Fagverk runtime
         run: |
           npm run place-open:build
           npm run places:index:build
+          node scripts/build-fagverk-release-manifest.mjs
       - name: Commit assets and dependent runtime only
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add bilder/places/grand-hotel-20261027/
           git add data/places/media/oslo/grand_hotel.json
-          git add data/runtime/place-open/ data/runtime/people-all/ data/places/places_index.json
+          git add data/runtime/place-open/ data/runtime/people-all/ data/places/places_index.json data/fagverk/fagverk_release.json
           git diff --cached --stat
-          git diff --cached --quiet && { echo 'No generated changes'; exit 1; }
+          git diff --cached --quiet && { echo 'Canonical assets and runtime already synchronized'; exit 0; }
           git commit -m 'media(grand-hotel): add licensed source images and canonical runtime'
           git push origin HEAD:refs/heads/content/grand-hotel-sentrum-v1-20261027
