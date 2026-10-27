@@ -7,6 +7,10 @@ on:
       - 'js/ui/toast.js'
       - 'css/onboarding.css'
       - 'tests/history-go-toast-onboarding-handoff.test.js'
+      - 'tests/civication-history-go-mode.test.js'
+      - 'tests/civication-history-go-task-bridge.test.js'
+      - 'tests/civication-history-go-mission-badge-points.test.js'
+      - 'js/Civication/systems/civicationHistoryGoTaskBridge.js'
       - 'tests/onboarding-touch-guard.test.js'
       - '.github/workflows/history-go-welcome-toast.yml'
 
@@ -29,3 +33,6 @@ jobs:
         run: |
           node tests/history-go-toast-onboarding-handoff.test.js
           node tests/onboarding-touch-guard.test.js
+          node tests/civication-history-go-mode.test.js
+          node tests/civication-history-go-mission-badge-points.test.js
+          node tests/civication-history-go-task-bridge.test.js
