@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#060708">
+  <meta name="robots" content="noindex">
+  <title>Logg inn | History Go</title>
+  <style>
+    :root{color-scheme:dark;--yellow:#f6d200;--text:#f5f6f6;--muted:#a6acb3;--line:#303236}
+    *{box-sizing:border-box}
+    html,body{min-height:100%;margin:0}
+    body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#060708;color:var(--text);min-height:100svh;display:flex;align-items:center;justify-content:center;padding:calc(24px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom))}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 65% 42% at 50% -15%,rgba(246,210,0,.10),transparent 78%)}
+    main{width:min(100%,430px);position:relative;text-align:center}
+    .brand{display:block;max-width:174px;width:45%;height:auto;object-fit:contain;margin:0 auto 18px}
+    .eyebrow{color:var(--yellow);font-size:11px;letter-spacing:.21em;font-weight:780;text-transform:uppercase;margin:0 0 8px}
+    h1{font-size:clamp(28px,6vw,40px);letter-spacing:-.04em;line-height:1.12;margin:0 0 10px}
+    .intro{color:var(--muted);font-size:15px;line-height:1.55;margin:0 auto 30px;max-width:340px}
+    .panel{padding:28px 24px;background:linear-gradient(160deg,#171819,#0e1011);border:1px solid #343638;border-radius:20px;text-align:left;box-shadow:0 22px 70px rgba(0,0,0,.34)}
+    .panel h2{font-size:20px;line-height:1.3;margin:0 0 6px;letter-spacing:-.02em}
+    .sub{color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 22px}
+    label{display:block;font-size:13px;font-weight:650;margin:0 0 8px}
+    input{width:100%;height:48px;border:1px solid #414346;border-radius:10px;background:#090b0c;color:#fff;font:inherit;padding:0 14px;margin:0 0 19px;outline:none}
+    input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+    input:focus{border-color:var(--yellow)}
+    .primary{width:100%;height:48px;border:0;border-radius:10px;background:var(--yellow);color:#080808;font-size:15px;font-weight:800;cursor:pointer}
+    .primary:hover{background:#ffe54d}.primary:disabled{opacity:.7;cursor:wait}
+    .message{min-height:0;color:#ffcfcb;font-size:13px;line-height:1.5;margin:0}
+    .message:not(:empty){margin:0 0 16px;padding:10px 12px;border-radius:9px;background:rgba(255,94,94,.09)}
+    .message.success{color:#b4ecc0;background:rgba(80,200,118,.11)}
+    .links{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin:18px 0 0}
+    .link-button{font:inherit;font-size:13px;color:#e7e7e7;text-decoration:underline;text-underline-offset:3px;background:transparent;border:0;padding:2px 0;cursor:pointer}
+    .provider{margin:24px 0 0;font-size:13px;color:var(--muted);text-align:center}
+    .provider a{color:#f1f1f1;text-decoration:underline;text-underline-offset:3px}
+    .footer{margin:26px auto 0;color:#898e93;font-size:12px;line-height:1.5}
+    @media(max-width:370px){.panel{padding:22px 18px}.links{gap:18px}}
+    @media(prefers-reduced-motion:no-preference){.panel{animation:appear .32s ease-out}@keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}}
+  </style>
+  <script src="js/aha.js"></script>
+</head>
+<body>
+  <main>
+    <img class="brand" src="bilder/logo_historygo.PNG" alt="History Go" width="174">
+    <p class="eyebrow">Utforsk · Oppdag · Lær</p>
+    <h1>Din historie starter her</h1>
+    <p class="intro">Logg inn for å utforske History Go og fortsette med dine steder, quizer og samlinger.</p>
+    <section class="panel" aria-labelledby="formTitle">
+      <h2 id="formTitle">Logg inn</h2>
+      <p class="sub" id="formDescription">Bruk kontoen din fra AHA / History Go.</p>
+      <form id="hgLoginForm" autocomplete="on">
+        <label for="hgLoginEmail">E-post</label>
+        <input id="hgLoginEmail" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="navn@eksempel.no">
+        <label for="hgLoginPassword">Passord</label>
+        <input id="hgLoginPassword" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Passord">
+        <p id="hgLoginStatus" class="message" role="status" aria-live="polite"></p>
+        <button class="primary" id="hgLoginSubmit" type="submit">Logg inn</button>
+      </form>
+      <div class="links">
+        <button class="link-button" id="hgRegisterToggle" type="button">Opprett konto</button>
+        <button class="link-button" id="hgResetPassword" type="button">Glemt passord?</button>
+      </div>
+    </section>
+    <p class="provider">Andre innloggingsmetoder? <a href="https://paradispartiet.github.io/AHA-EchoNet/?auth=login&amp;source=historygo">Logg inn gjennom AHA</a></p>
+    <p class="footer">Du trenger en konto for å gå videre til History Go.</p>
+  </main>
+  <script>
+    (() => {
+      "use strict";
+      const form = document.getElementById("hgLoginForm");
+      const email = document.getElementById("hgLoginEmail");
+      const password = document.getElementById("hgLoginPassword");
+      const submit = document.getElementById("hgLoginSubmit");
+      const status = document.getElementById("hgLoginStatus");
+      const toggle = document.getElementById("hgRegisterToggle");
+      const reset = document.getElementById("hgResetPassword");
+      const title = document.getElementById("formTitle");
+      const description = document.getElementById("formDescription");
+      let mode = "login";
+      let busy = false;
+
+      function destination() {
+        const fallback = new URL("index.html", location.href);
+        const requested = new URLSearchParams(location.search).get("next");
+        if (!requested || requested.startsWith("//") || requested.includes("\\")) return fallback.href;
+        try {
+          const url = new URL(requested, location.href);
+          const root = new URL("./", location.href);
+          if (url.origin !== root.origin || !url.pathname.startsWith(root.pathname)
+            || url.pathname.endsWith("/login.html")) return fallback.href;
+          return url.href;
+        } catch { return fallback.href; }
+      }
+      function message(text, success = false) {
+        status.textContent = text;
+        status.classList.toggle("success", success);
+      }
+      function setMode(next) {
+        mode = next;
+        title.textContent = next === "register" ? "Opprett konto" : "Logg inn";
+        description.textContent = next === "register"
+          ? "Registrer en konto. Bekreft e-posten din hvis du får beskjed om det."
+          : "Bruk kontoen din fra AHA / History Go.";
+        submit.textContent = next === "register" ? "Opprett konto" : "Logg inn";
+        toggle.textContent = next === "register" ? "Har du konto? Logg inn" : "Opprett konto";
+        password.autocomplete = next === "register" ? "new-password" : "current-password";
+        message("");
+      }
+      function go() { location.replace(destination()); }
+      async function client() {
+        const api = window.HistoryGoAHAAuth;
+        if (!api?.getClient) throw new Error("Innloggingen er midlertidig utilgjengelig.");
+        const result = await api.getClient();
+        if (!result) throw new Error("Kunne ikke koble til innloggingen.");
+        return result;
+      }
+      async function verifyAndEnter(auth) {
+        const { data, error } = await auth.auth.getUser();
+        if (error || !data?.user?.id || data.user.is_anonymous === true) return false;
+        go();
+        return true;
+      }
+      async function init() {
+        try {
+          const auth = await client();
+          await verifyAndEnter(auth);
+        } catch {
+          // Stay on the login screen if the provider is temporarily unavailable.
+        }
+      }
+      toggle.addEventListener("click", () => setMode(mode === "register" ? "login" : "register"));
+      form.addEventListener("submit", async event => {
+        event.preventDefault();
+        if (busy) return;
+        busy = true;
+        submit.disabled = true;
+        submit.textContent = mode === "register" ? "Oppretter konto …" : "Logger inn …";
+        message("");
+        try {
+          const auth = await client();
+          const credentials = { email: email.value.trim(), password: password.value };
+          if (mode === "register") {
+            const { data, error } = await auth.auth.signUp(credentials);
+            if (error) throw error;
+            if (data?.session && await verifyAndEnter(auth)) return;
+            message("Sjekk e-posten din for å bekrefte kontoen. Deretter kan du logge inn.", true);
+          } else {
+            const { error } = await auth.auth.signInWithPassword(credentials);
+            if (error) throw error;
+            if (!await verifyAndEnter(auth)) throw new Error("Kunne ikke bekrefte innloggingen.");
+          }
+        } catch (error) {
+          message(error?.message || "Innlogging mislyktes. Prøv igjen.");
+        } finally {
+          busy = false;
+          submit.disabled = false;
+          submit.textContent = mode === "register" ? "Opprett konto" : "Logg inn";
+        }
+      });
+      reset.addEventListener("click", async () => {
+        if (!email.value.trim() || !email.validity.valid) {
+          message("Skriv inn e-postadressen din først.");
+          email.focus();
+          return;
+        }
+        if (busy) return;
+        busy = true;
+        reset.disabled = true;
+        try {
+          const auth = await client();
+          const { error } = await auth.auth.resetPasswordForEmail(email.value.trim());
+          if (error) throw error;
+          message("Hvis kontoen finnes, får du en e-post med lenke for å endre passord.", true);
+        } catch {
+          message("Kunne ikke sende lenke. Prøv igjen senere.");
+        } finally {
+          reset.disabled = false;
+          busy = false;
+        }
+      });
+      init();
+    })();
+  </script>
+</body>
+</html>
