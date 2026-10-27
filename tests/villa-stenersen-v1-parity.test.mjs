@@ -53,3 +53,14 @@ test("Villa Stenersen: Fagverk and licensed image are retained", () => {
   assert.match(place.image || "", /villa_stenersen_hero\.webp/u);
   assert.match(place.frontImage || "", /villa_stenersen_portrait\.webp/u);
 });
+
+
+test("Villa Stenersen: canonical production context matches the released quiz", () => {
+  const context = read("data/quiz/production_context/historie/villa_stenersen.json");
+  assert.equal(context.categoryId, "historie");
+  assert.equal(context.targetId, full.targetId);
+  assert.equal(context.planned_quiz_file, "data/quiz/historie/villa_stenersen_sets.json");
+  assert.equal(context.source_review_status, "reviewed");
+  assert.equal(context.profile_decision?.set_count, full.sets.length);
+  assert.equal(context.profile_decision?.questions_per_set, 7);
+});
