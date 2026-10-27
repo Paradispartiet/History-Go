@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 const read=path=>JSON.parse(readFileSync(new URL("../"+path,import.meta.url),"utf8"));
 const quiz=read("data/quiz/media/grand_hotel_sets.json");
 const card=read("data/quizcards/media/grand_hotel_quizcard_v1.json");
@@ -64,5 +65,24 @@ test("Grand Hotel: Knowledge status is explicit and consistent",()=>{
     assert.equal(card.production_status,"knowledge_linked");
   }else{
     assert.equal(card.production_status,"pending_knowledge_link");
+  }
+});
+
+test("Grand Hotel: v4.2 source-to-sentence coverage matches current PlaceCard",()=>{
+  const production=read("data/places/production/grand_hotel.json");
+  assert.equal(production.schemaVersion,"4.2");
+  assert.equal(production.placeId,"grand_hotel");
+  const digest=text=>createHash("sha256").update(text,"utf8").digest("hex");
+  assert.equal(production.textHashes.desc,digest(place.desc));
+  assert.equal(production.textHashes.popupDesc,digest(place.popupDesc));
+  const claimIds=new Set(production.claims.map(c=>c.id));
+  assert.equal(claimIds.size,production.claims.length);
+  assert.ok(production.claims.every(c=>c.status==="verified"&&c.sourceUrl?.startsWith("https://")));
+  const sentences=text=>text.split(/(?<=[.!?])\\s+/u).filter(Boolean);
+  for(const field of ["desc","popupDesc"]){
+    const coverage=production.sentenceCoverage[field];
+    assert.equal(coverage.length,sentences(place[field]).length);
+    assert.deepEqual(coverage.map(x=>x.sentence),coverage.map((x,i)=>i+1));
+    assert.ok(coverage.every(x=>x.claimIds.length&&x.claimIds.every(id=>claimIds.has(id))));
   }
 });
