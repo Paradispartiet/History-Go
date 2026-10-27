@@ -21,6 +21,9 @@ test("Place Sheet orders photo, section navigation, description and collection v
   assert.match(css, /\.pc-sheet-hero-media \.pc-frontcard\{[\s\S]*?float:left;/);
   assert.match(css, /\.pc-sheet-explore-grid\{[\s\S]*?margin:24px 0 0;[\s\S]*?background:transparent/);
   assert.match(shellSource, /media\.appendChild\(aboutSlot\)/, "About text shares the image flow context");
+  assert.match(shellSource, /heading\.insertAdjacentElement\("afterend", description\)/, "the live short text begins inside About");
+  assert.match(shellSource, /aboutSlot\.replaceChildren\(aboutOwner\)/, "desc-only places still receive an About heading");
+  assert.match(css, /\.pc-sheet-canonical-about #pcDesc\{[\s\S]*?-webkit-line-clamp:unset;[\s\S]*?overflow:visible;/);
   assert.match(shellSource, /<div class="pc-sheet-explore-grid" data-hg-place-sheet-collections/);
 });
 
