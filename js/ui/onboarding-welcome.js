@@ -1,7 +1,7 @@
 // @ts-nocheck
 // js/ui/onboarding-welcome.js
 // HGOnboarding — vises én gang per nettleser ved første besøk.
-// Forklarer hovedflyten: kart → besøk → historier → quiz/merker → samling → Civication.
+// Snarveier til kart/posisjon, Stories, Lesespor, Psykologirommet, profil og Civication.
 //
 // Persisterer dismiss via hg_onboarding_shown_v1.
 // Kan også åpnes manuelt via window.openOnboarding().
@@ -27,6 +27,57 @@
     control.addEventListener("touchend", dismiss, { passive: false });
   }
 
+  function isMappedPlace(place) {
+    const lat = Number(place?.lat);
+    const lon = Number(place?.lon);
+    return !!place?.id && !place.hidden && !place.stub
+      && Number.isFinite(lat) && lat >= -90 && lat <= 90
+      && Number.isFinite(lon) && lon >= -180 && lon <= 180;
+  }
+
+  function nearestPlace(position, places) {
+    const lat = Number(position?.lat);
+    const lon = Number(position?.lon);
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+    let nearest = null;
+    let distance = Infinity;
+    for (const place of Array.isArray(places) ? places : []) {
+      if (!isMappedPlace(place)) continue;
+      const d = typeof window.distMeters === "function"
+        ? window.distMeters({ lat, lon }, { lat: Number(place.lat), lon: Number(place.lon) })
+        : Infinity;
+      if (Number.isFinite(d) && d < distance) { nearest = place; distance = d; }
+    }
+    return nearest;
+  }
+
+  async function openNearestPlace() {
+    window.HGAppRouter?.toMap?.();
+    let pos = window.HGPos?.getPos?.() || null;
+    if (!pos) pos = await window.HGPos?.request?.() || null;
+    if (!pos) {
+      window.showToast?.("Kartet er åpnet. Tillat posisjon for å finne nærmeste sted.");
+      return false;
+    }
+
+    const place = nearestPlace(pos, window.PLACES);
+    if (!place) {
+      window.HGMap?.setUser?.(Number(pos.lat), Number(pos.lon), { fly: true });
+      window.showToast?.("Fant ingen registrerte steder nær denne posisjonen.");
+      return false;
+    }
+
+    // Route through canonical MapView: fly to the place and open PlaceCard
+    // on moveend. Navigation alone must never award a visit.
+    if (typeof window.HGAppRouter?.toPlace === "function") {
+      window.HGAppRouter.toPlace(place.id);
+    } else if (!window.HGMapView?.openPlace?.(place.id)) {
+      window.showToast?.("Kunne ikke åpne nærmeste sted.");
+      return false;
+    }
+    return true;
+  }
+
   function build() {
     let modal = document.getElementById(MODAL_ID);
     if (modal) return modal;
@@ -46,28 +97,43 @@
         <header class="hg-onb-head">
           <p class="hg-onb-kicker">UTFORSK • OPPDAG • LÆR</p>
           <h2 class="hg-onb-title" id="hgOnboardingTitle">Velkommen til <span>History Go</span></h2>
-          <p class="hg-onb-sub" id="hgOnboardingIntro">
-            Oppdag historiene rundt deg. Besøk steder, utforsk kunnskap, møt mennesker fra historien og følg med på det du samler.
-          </p>
+          <p class="hg-onb-sub" id="hgOnboardingIntro">Utforsk steder, historier og kunnskap. Bruk snarveiene nedenfor til å gå rett inn i History Go.</p>
         </header>
         <ul class="hg-onb-steps">
-          <li><span class="hg-onb-step-icon" aria-hidden="true">🗺️</span><div><strong>Utforsk kartet</strong><p>Oppdag historiske bygninger, parker, plasser og andre interessante steder. Se hva som har skjedd der, og hvem som har satt spor.</p></div></li>
-          <li><span class="hg-onb-step-icon" aria-hidden="true">📍</span><div><strong>Besøk steder</strong><p>Oppsøk steder i virkeligheten og registrer besøkene dine. Utforsk byen og oppdag stadig nye steder.</p></div></li>
-          <li><span class="hg-onb-step-icon" aria-hidden="true">📖</span><div><strong>Oppdag historiene</strong><p>Les om hendelser, historiske personer og samfunnene som har formet verden rundt oss.</p></div></li>
-          <li><span class="hg-onb-step-icon" aria-hidden="true">🎯</span><div><strong>Ta quiz og samle merker</strong><p>Test kunnskapen din gjennom quizer om steder, personer og ulike fagområder. Oppnå merker og bygg videre på kunnskapen din.</p></div></li>
-          <li><span class="hg-onb-step-icon" aria-hidden="true">🏆</span><div><strong>Se hva du har samlet</strong><p>Se lister over steder du har besøkt, kunnskap du har tilegnet deg, historiske personer og merker du har samlet. Følg fremgangen din i de ulike kategoriene.</p></div></li>
-          <li class="hg-onb-civication"><span class="hg-onb-step-icon" aria-hidden="true">🏛️</span><div><strong>Opplev Civication</strong><p>Civication er et interaktivt læringsmiljø der du kan utforske interessene dine, ta quizer og kvalifisere deg til spennende roller og jobber. I en simulert livsverden får du prøve ut ulike muligheter, utvikle ferdighetene dine og forme din egen vei. Oppdrag kan ta deg videre til History Go.</p></div></li>
+          <li class="hg-onb-feature"><span class="hg-onb-step-icon" aria-hidden="true">🗺️</span><div><strong>Utforsk kartet og besøk steder</strong><p>Se hva som har skjedd rundt deg. Finn steder på kartet, dra dit og registrer besøket når du faktisk er på stedet.</p><button type="button" class="hg-onb-card-link" data-hg-welcome-action="nearby">Finn nærmeste sted <span aria-hidden="true">↗</span></button></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">📚</span><div><strong>Stories</strong><p>Les fortellinger om mennesker, hendelser og steder. Utforsk historiene som knytter fortiden til omgivelsene dine.</p><button type="button" class="hg-onb-card-link" data-hg-welcome-action="stories">Åpne Stories <span aria-hidden="true">↗</span></button></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">📖</span><div><strong>Lesespor</strong><p>Finn tekster, artikler og kilder som gir nye perspektiver på historie, steder og samfunn.</p><button type="button" class="hg-onb-card-link" data-hg-welcome-action="lesespor">Utforsk Lesespor <span aria-hidden="true">↗</span></button></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🧠</span><div><strong>Psykologirommet</strong><p>Utforsk psykologiske temaer, teorier og øvelser. Reflekter over hvordan vi tenker, føler og handler.</p><button type="button" class="hg-onb-card-link" data-hg-welcome-action="psychology">Gå til Psykologirommet <span aria-hidden="true">↗</span></button></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🎯</span><div><strong>Ta quiz og samle merker</strong><p>Test kunnskapen din om steder, personer og fagområder. Samle merker og oppdag hva du mestrer.</p></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">🏆</span><div><strong>Se hva du har samlet</strong><p>Se oversikter over steder du har besøkt, kunnskap, historiske personer og merker du har oppnådd.</p><a class="hg-onb-card-link" href="knowledge.html">Se kunnskapen din <span aria-hidden="true">↗</span></a></div></li>
+          <li><span class="hg-onb-step-icon" aria-hidden="true">👤</span><div><strong>Min profil</strong><p>Følg fremgangen din og finn samlingene, oppdagelsene og aktiviteten din samlet på ett sted.</p><a class="hg-onb-card-link" href="profile.html">Åpne profilen <span aria-hidden="true">↗</span></a></div></li>
+          <li class="hg-onb-civication"><span class="hg-onb-step-icon" aria-hidden="true">🏛️</span><div><strong>Opplev Civication</strong><p>Civication er et interaktivt læringsmiljø der du kan utforske interessene dine, ta quizer og kvalifisere deg til spennende roller og jobber. I en simulert livsverden får du prøve ut ulike muligheter, utvikle ferdighetene dine og forme din egen vei.</p><a class="hg-onb-card-link" href="Civication.html">Åpne Civication <span aria-hidden="true">↗</span></a></div></li>
         </ul>
         <footer class="hg-onb-actions">
           <button type="button" class="hg-onb-primary" data-action="start">Start History Go <span aria-hidden="true">→</span></button>
         </footer>
-      </div>
-    `;
+      </div>`
 
     document.body.appendChild(modal);
     modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
     bindDismissControl(modal.querySelector(".hg-onb-close"));
     bindDismissControl(modal.querySelector('[data-action="start"]'));
+    modal.querySelectorAll("[data-hg-welcome-action]").forEach((control) => {
+      control.addEventListener("click", async (event) => {
+        event.preventDefault();
+        const action = control.getAttribute("data-hg-welcome-action");
+        close();
+        try {
+          if (action === "nearby") await openNearestPlace();
+          if (action === "lesespor") await window.HGLesespor?.openAll?.();
+          if (action === "psychology") await window.HGPsychologyRoomEntry?.open?.();
+          if (action === "stories") await window.HGStories?.openAll?.();
+        } catch (error) {
+          console.warn("[HGOnboarding.openDestination]", action, error);
+          window.showToast?.("Kunne ikke åpne innholdet. Prøv igjen.");
+        }
+      });
+    });
     return modal;
   }
 
@@ -135,7 +201,7 @@
   }
 
   window.openOnboarding = open;
-  window.HGOnboarding = { open, close, maybeShowOnFirstVisit, FLAG_KEY };
+  window.HGOnboarding = { open, close, maybeShowOnFirstVisit, openNearestPlace, nearestPlace, FLAG_KEY };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", maybeShowOnFirstVisit);
