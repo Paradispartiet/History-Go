@@ -467,3 +467,95 @@ body.hg-app:has(#hgCivicationModeToast) .nature-unlock-stack {
   .hg-onb-title { font-size: 24px; }
   .hg-onb-steps li { padding: 11px; }
 }
+
+/* Velkomstsnarveier – direkte, klikkbare handlinger uten egne lyse knappeflater. */
+.hg-onb-steps li:has(.hg-onb-card-link) {
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.hg-onb-steps li:has(.hg-onb-card-link):hover {
+  border-color: rgba(247, 223, 55, 0.38);
+  background: linear-gradient(145deg, rgba(46, 60, 46, 0.98), rgba(24, 36, 29, 0.98));
+}
+
+.hg-onb-steps .hg-onb-feature {
+  border-color: rgba(247, 223, 55, 0.48);
+  background: linear-gradient(115deg, rgba(71, 69, 27, 0.65), rgba(27, 41, 31, 0.95));
+}
+
+.hg-onb-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  margin: 10px 0 0;
+  padding: 4px 0;
+  color: #ffea58;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 234, 88, 0.47);
+  border-radius: 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hg-onb-card-link:hover {
+  color: #fff4ab;
+  border-color: #fff4ab;
+}
+
+.hg-onb-card-link:focus-visible {
+  outline: 2px solid #fff4ab;
+  outline-offset: 4px;
+}
+
+.hg-welcome-stories {
+  max-width: 740px;
+  max-height: min(70dvh, 680px);
+  overflow-y: auto;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(247, 223, 55, 0.26);
+  color: #edf3e9;
+  background: #14221a;
+}
+
+.hg-welcome-stories h2 { margin: 0 0 8px; color: #ffea58; }
+.hg-welcome-stories > p,
+.hg-welcome-story-count { color: #c0cdbf; }
+.hg-welcome-stories label { display: block; margin: 16px 0 7px; font-weight: 700; }
+.hg-welcome-stories input {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #5b7656;
+  border-radius: 9px;
+  color: #fff;
+  background: #203429;
+  font: inherit;
+}
+.hg-welcome-stories input:focus-visible { outline: 2px solid #ffea58; outline-offset: 2px; }
+.hg-welcome-story-results { display: grid; gap: 10px; }
+.hg-welcome-story-item {
+  padding: 13px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  background: #1c2b22;
+}
+.hg-welcome-story-label { color: #f7df37; font-size: 12px; font-weight: 700; }
+.hg-welcome-story-item h3 { color: #fff; margin: 6px 0; font-size: 15px; }
+.hg-welcome-story-item p { color: #c0cdbf; margin: 0 0 9px; line-height: 1.45; }
+.hg-welcome-story-item a { color: #ffea58; font-weight: 700; }
+
+@media (max-width: 700px) {
+  .hg-onb-card-link { font-size: 13px; min-height: 38px; }
+  .hg-welcome-stories { padding: 14px; max-height: 70dvh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hg-onb-steps li:has(.hg-onb-card-link) { transition: none; }
+}
