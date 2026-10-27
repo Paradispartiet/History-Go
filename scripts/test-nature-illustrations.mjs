@@ -15,7 +15,7 @@ vm.runInNewContext(read("js/ui/nature-illustrations-batch08.js"), sandbox, { tim
 vm.runInNewContext(read("js/ui/nature-illustrations-batch09.js"), sandbox, { timeout: 3000 });
 vm.runInNewContext(read("js/ui/nature-illustrations-batch10.js"), sandbox, { timeout: 3000 });
 const artist = sandbox.window.HG_NATURE_ILLUSTRATIONS;
-assert.equal(artist.count, 300, "expected 300 illustrations across nine batches");
+assert.equal(artist.count, 300, "expected 300 illustrations across ten batches");
 const index = JSON.parse(read("data/runtime/nature-all.json"));
 const ids = new Set();
 for (const files of Object.values(index.groups)) {
