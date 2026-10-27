@@ -1,0 +1,34 @@
+name: One-shot Fagverk release sync 20261027
+
+on:
+  push:
+    branches:
+      - fix/fagverk-release-sync-20261027
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Regenerate deterministic Fagverk release
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          test "$(git diff --name-only | wc -l)" -eq 1
+          test "$(git diff --name-only)" = "data/fagverk/fagverk_release.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_release.json
+          git rm .github/workflows/fagverk-release-sync-once.yml
+          git diff --cached --check
+          git commit -m "fix(fagverk): regenerate canonical release manifest"
+          git push origin HEAD:refs/heads/fix/fagverk-release-sync-20261027
