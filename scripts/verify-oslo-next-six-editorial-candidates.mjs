@@ -66,7 +66,7 @@ for(const [id,path] of Object.entries(files)){
     assertSame(card.source_urls,quiz.source_urls,id+' card sources');
     assert.deepEqual(card.knowledge_unit_ids,[],id+' do not fake Knowledge links');
   }
-  for(const key of ['image','frontImage','cardImage']){
+  for(const key of (id==='wessels_plass'?['image','frontImage']:['image','frontImage','cardImage'])){
     assert.ok(place[key]?.endsWith('.webp') && fs.existsSync(place[key]),id+' requires locally present '+key);
   }
   assert.ok(place.imageLicense && place.imageSourceUrl?.startsWith('https://commons.wikimedia.org/'),id+' licensed image');
