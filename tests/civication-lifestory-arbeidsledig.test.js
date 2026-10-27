@@ -114,8 +114,16 @@ assert.ok(!kandidater.includes("d2_frist_stress"), "frist-stress skal ikke være
   const tekster = [];
   for (const t of lifeThreads.threads) tekster.push(t.tittel, t.konflikt, ...(t.muligeRetninger || []));
   for (const sc of lifeScenes.scenes) {
+    // Delte grunnscener er livssituasjonsnøytrale. Senere oppfølgere
+    // kan handle om en faktisk jobb, men bare med dokumentert forhistorie.
+    if (sc.livsdagFra && sc.etterValgDager && Object.keys(sc.conditions?.flagg || {}).length) continue;
     tekster.push(sc.tittel, sc.tekst);
     for (const v of sc.valg || []) tekster.push(v.tekst, v.konsekvensTekst || "");
+  }
+  for (const sc of lifeScenes.scenes.filter(scene => scene.livsdagFra && !scene.id.startsWith('wave_e_life21_'))) {
+    assert.ok(sc.etterValgDager?.flagg && sc.etterValgDager.dager >= 1 &&
+      Object.keys(sc.conditions?.flagg || {}).length > 0,
+      `delt oppfølger ${sc.id} må være forankret i tidligere valg og tid`);
   }
   const alt = tekster.join(" || ").toLowerCase();
   for (const ord of FORBUDT) {
