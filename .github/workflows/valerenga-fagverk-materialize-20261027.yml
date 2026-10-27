@@ -1,0 +1,62 @@
+name: Valerenga kirke Fagverk materialization
+on:
+  push:
+    branches:
+      - content/valerenga-kirke-fagverk-v1-20261027
+    paths:
+      - .github/workflows/valerenga-fagverk-materialize-20261027.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/valerenga-kirke-fagverk-v1-20261027
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Build official place index, runtime and Fagverk release
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Store generated integration files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/places_index.json data/runtime/place-open/ data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Synchronize Valerenga kirke Fagverk release and Place runtime"
+            git push
+          fi
+      - name: Verify Fagverk, place index and runtime
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+          npm run places:index:check
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const p = JSON.parse(fs.readFileSync('data/places/historie/oslo/places_historie/valerenga_kirke.json','utf8'));
+          const rt = JSON.parse(fs.readFileSync('data/runtime/place-open/valerenga_kirke.json','utf8'));
+          const reg = JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));
+          assert.equal(p.id,'valerenga_kirke');
+          assert.equal(p.fagverk.status,'curated');
+          assert.equal(p.fagverk.article.length,3);
+          assert.equal(p.fagverk.lenses.length,3);
+          assert.equal(reg.placeLinks.valerenga_kirke.status,'curated');
+          assert.equal(rt.place?.fagverk?.status,'curated');
+          console.log('Vålerenga kirke Fagverk and Place-open PASS');
+          NODE
+      - name: Remove temporary workflow after success
+        run: |
+          git rm .github/workflows/valerenga-fagverk-materialize-20261027.yml
+          git commit -m "Remove one-time Valerenga Fagverk workflow after green checks"
+          git push
