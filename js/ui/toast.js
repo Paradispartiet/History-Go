@@ -217,7 +217,7 @@ earlyToastQueue.forEach((args) => {
   function end() { try { localStorage.removeItem(KEY); } catch {} remove(); return true; }
   const sub = (k,n) => { const x=j(k,{}); return x&&typeof x[n]==="object"?x[n]:{}; };
   const set = (v) => new Set(Array.isArray(v)?v.map(s).filter(Boolean):Object.keys(v||{}).filter(k=>v[k]));
-  function state() { return { visitedPlaces:set(j("visited_places",[])), unlockByQuiz:sub("hg_unlocks_v1","byQuiz"), quizProgress:j("quiz_progress",{}), merits:j("merits_by_category",{}), readLeksikon:sub("hg_reads_v1","leksikon"), readStories:sub("hg_reads_v1","stories"), readPersons:sub("hg_reads_v1","persons"), debateById:sub("hg_debate_log_v1","byId"), debateByConflict:sub("hg_debate_log_v1","byConflict") }; }
+  function state() { return { visitedPlaces:set(j("visited_places",[])), unlockByQuiz:sub("hg_unlocks_v1","byQuiz"), quizProgress:j("quiz_progress",{}), quizSets:j("hg_quiz_sets_v1",{}), merits:j("merits_by_category",{}), readLeksikon:sub("hg_reads_v1","leksikon"), readStories:sub("hg_reads_v1","stories"), readPersons:sub("hg_reads_v1","persons"), debateById:sub("hg_debate_log_v1","byId"), debateByConflict:sub("hg_debate_log_v1","byConflict") }; }
   const has = (b,f,id) => { id=s(id); return !!(id && (b[id] || Object.values(b).some(r=>r&&f&&s(r[f])===id))); };
   function done(v, st=state()) {
     const x=norm(v); if(!x) return {completed:false,correct:false,source:null}; const q=(id)=>!!(s(id)&&st.unlockByQuiz[s(id)]), out=(ok,source,correct=ok)=>({completed:!!ok,correct:!!correct,source:ok?source:null}), m=x.completion_mode;
@@ -225,7 +225,22 @@ earlyToastQueue.forEach((args) => {
     if(x.target_type==="person") { if(m==="person_quiz") return out(q(x.quiz_id),"unlock_index"); return out(has(st.readPersons,null,x.person_id||x.target_id),"reads_person"); }
     if(x.target_type==="knowledge"&&m==="explore_category") return out(false,null);
     if(x.target_type==="knowledge"&&m==="badge_points") { const required=Number(x.required_points||x.payload.required_points),points=Number(st.merits?.[x.category_id]?.points||0); return out(!!x.category_id&&Number.isFinite(required)&&required>0&&points>=required,"merits"); }
-    if(x.target_type==="knowledge") { if(m==="correct_answer") return out(q(x.quiz_id),"unlock_index"); if(q(x.quiz_id)) return out(true,"unlock_index"); if(m==="quiz_completed"&&x.quiz_id&&st.quizProgress[x.quiz_id]) return out(true,"quiz_progress",false); if(m==="read_leksikon") return out(has(st.readLeksikon,"emneId",x.emne_id)||has(st.readLeksikon,"categoryId",x.category_id)||has(st.readLeksikon,null,x.target_id),"reads_leksikon"); return out(x.category_id&&Number(st.merits?.[x.category_id]?.points||0)>0,"merits"); }
+    if(x.target_type==="knowledge") {
+      if(m==="correct_answer") return out(q(x.quiz_id),"unlock_index");
+      if(m==="quiz_completed") {
+        if(q(x.quiz_id)) return out(true,"unlock_index");
+        const setResult = st.quizSets?.[x.quiz_id];
+        // quiz_progress is category-level, not proof that this exact quiz was completed.
+        // Likewise, unrelated points in the category cannot satisfy the task.
+        return out(setResult?.completed===true,"quiz_sets",
+          setResult?.completed===true && Number(setResult.score)===Number(setResult.total) && Number(setResult.total)>0);
+      }
+      if(m==="read_leksikon") return out(
+        has(st.readLeksikon,"emneId",x.emne_id) ||
+        has(st.readLeksikon,"categoryId",x.category_id) ||
+        has(st.readLeksikon,null,x.target_id), "reads_leksikon");
+      return out(x.category_id&&Number(st.merits?.[x.category_id]?.points||0)>0,"merits");
+    }
     if(x.target_type==="unlock") return out(q(x.unlock_id)||st.visitedPlaces.has(x.unlock_id),"unlock_index");
     if(x.target_type==="debate") { const ids=[x.debate_id,x.conflict_id,x.target_id].filter(Boolean), r=ids.map(id=>st.debateById[id]||st.debateById[st.debateByConflict[id]]).find(Boolean); return out(r&&(m==="position_chosen"?r.position:r.participated),"debate_log"); }
     return out(false,null);
