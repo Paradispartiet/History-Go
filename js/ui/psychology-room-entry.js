@@ -157,6 +157,9 @@
     }
   }
 
+  // Reuse the canonical lazy-loaded room from welcome and header entry points.
+  window.HGPsychologyRoomEntry = { open: openRoom };
+
   function init() {
     const button = document.getElementById("btnOpenPsychologyRoom");
     if (!button || button.dataset.hgPsychologyRoomBound === "1") return;
