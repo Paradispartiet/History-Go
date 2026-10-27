@@ -1,0 +1,27 @@
+name: Nature atlas illustrations
+
+on:
+  pull_request:
+    paths:
+      - 'js/ui/nature-illustrations.js'
+      - 'js/ui/nature-explorer.js'
+      - 'finn-flora.html'
+      - 'finn-fauna.html'
+      - 'scripts/test-nature-illustrations.mjs'
+      - '.github/workflows/nature-illustrations.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'js/ui/nature-illustrations.js'
+      - 'scripts/test-nature-illustrations.mjs'
+
+jobs:
+  illustration-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/test-nature-illustrations.mjs
