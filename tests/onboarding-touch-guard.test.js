@@ -13,4 +13,9 @@ assert.match(source, /control\.addEventListener\("pointerup", dismiss\)/);
 assert.match(source, /control\.addEventListener\("touchend", dismiss, \{ passive: false \}\)/);
 assert.match(source, /m\.style\.display = "flex"/);
 
+assert.match(source, /History Go gjør virkelige steder til et historisk spillkart/);
+assert.match(source, /Stedskort samles ved fysisk besøk/);
+assert.match(source, /Spill videre i Civication/);
+assert.match(source, /hg:onboardingClosed/);
+
 console.log("onboarding modal remains tappable on touch devices");

@@ -1,5 +1,5 @@
 const HG_TOAST_READY_DELAY_MS = 260;
-const HG_TOAST_QUEUE_STAGGER_MS = 350;
+const HG_TOAST_QUEUE_GAP_MS = 250;
 const pendingToasts = [];
 let toastReadyListenerBound = false;
 let toastQueueFlushing = false;
@@ -75,6 +75,14 @@ function applyToastPresentation(toast, closeBtn, options = {}) {
   closeBtn.style.removeProperty("display");
 }
 
+function completeCurrentToast(toast) {
+  clearTimeout(toast._hide);
+  toast._hide = null;
+  toast.style.display = "none";
+  toastQueueFlushing = false;
+  if (pendingToasts.length) setTimeout(flushPendingToasts, HG_TOAST_QUEUE_GAP_MS);
+}
+
 function showToastNow(msg, ms = null, options = {}) {
   const tt = (key, fallback) => window.HG_I18N?.t?.(key, fallback) || fallback;
   const t = /** @type {HTMLElement & { _hide?: any }} */ (ensureToastElement());
@@ -90,9 +98,7 @@ function showToastNow(msg, ms = null, options = {}) {
   closeBtn.setAttribute("aria-label", tt("ui.toast.closeMessage", "Lukk melding"));
   closeBtn.textContent = "×";
   closeBtn.addEventListener("click", () => {
-    clearTimeout(t._hide);
-    t._hide = null;
-    t.style.display = "none";
+    completeCurrentToast(t);
   });
 
   const body = document.createElement("div");
@@ -102,7 +108,7 @@ function showToastNow(msg, ms = null, options = {}) {
   t.appendChild(closeBtn);
   t.appendChild(body);
 
-  const compactByDuration = Number.isFinite(ms) && Number(ms) <= 1600;
+  const compactByDuration = Number.isFinite(ms) && Number(ms) > 0 && Number(ms) <= 1600;
   applyToastPresentation(t, closeBtn, {
     ...options,
     compact: options.compact === true || (options.compact !== false && compactByDuration)
@@ -112,46 +118,35 @@ function showToastNow(msg, ms = null, options = {}) {
   const duration = Number.isFinite(ms) ? Number(ms) : getToastDuration(msg);
 
   if (duration > 0) {
-    t._hide = setTimeout(() => {
-      t.style.display = "none";
-    }, duration);
+    t._hide = setTimeout(() => completeCurrentToast(t), duration);
   }
 }
 
-function flushPendingToasts() {
-  if (toastQueueFlushing || !pendingToasts.length) return;
-  toastQueueFlushing = true;
+function isOnboardingOpen() {
+  return document.getElementById("hgOnboardingModal")?.getAttribute("aria-hidden") === "false";
+}
 
-  const queue = pendingToasts.splice(0);
-  queue.forEach((item, index) => {
-    setTimeout(() => {
-      showToastNow(item.msg, item.ms, item.options);
-      if (index === queue.length - 1) toastQueueFlushing = false;
-    }, HG_TOAST_READY_DELAY_MS + index * HG_TOAST_QUEUE_STAGGER_MS);
-  });
+function flushPendingToasts() {
+  if (toastQueueFlushing || !pendingToasts.length || isWaitingForIndexAppReady() || isOnboardingOpen()) return;
+  toastQueueFlushing = true;
+  const next = pendingToasts.shift();
+  showToastNow(next.msg, next.ms, next.options);
 }
 
 function ensureToastReadyListener() {
   if (toastReadyListenerBound) return;
   toastReadyListenerBound = true;
-
-  window.addEventListener("hg:appReady", flushPendingToasts, { once: true });
+  window.addEventListener("hg:appReady", () => {
+    setTimeout(flushPendingToasts, HG_TOAST_READY_DELAY_MS);
+  }, { once: true });
+  window.addEventListener("hg:onboardingClosed", flushPendingToasts);
 }
 
 function showToast(msg, ms = null, options = null) {
   const normalized = normalizeToastArgs(ms, options);
-
-  if (isWaitingForIndexAppReady()) {
-    pendingToasts.push({
-      msg,
-      ms: normalized.ms,
-      options: normalized.options
-    });
-    ensureToastReadyListener();
-    return;
-  }
-
-  showToastNow(msg, normalized.ms, normalized.options);
+  pendingToasts.push({ msg, ms: normalized.ms, options: normalized.options });
+  ensureToastReadyListener();
+  if (!isWaitingForIndexAppReady()) flushPendingToasts();
 }
 
 const earlyToastQueue = Array.isArray(window.__HG_EARLY_TOAST_QUEUE__)
@@ -181,7 +176,7 @@ earlyToastQueue.forEach((args) => {
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[c]);
   function norm(v) {
     if (!v || typeof v !== "object" || v.active === false) return null;
-    const ts = Number(v.started_ts || Date.parse(s(v.started_at)) || 0); if (ts && Date.now() - ts > 86400000) return null;
+    const ts = Number(v.started_ts || Date.parse(s(v.started_at)) || 0);
     const p = v.payload && typeof v.payload === "object" ? { ...v.payload } : {};
     const x = (k) => s(v[k] || p[k]);
     return { ...v, active:true, started_ts:ts||Date.now(), started_at:s(v.started_at)||new Date().toISOString(), title:x("title")||"Civication-oppdrag", description:x("description"), target_type:x("target_type"), target_id:x("target_id"), place_id:x("place_id"), person_id:x("person_id"), quiz_id:x("quiz_id"), category_id:x("category_id"), emne_id:x("emne_id"), debate_id:x("debate_id"), conflict_id:x("conflict_id"), unlock_id:x("unlock_id"), required_kind:x("required_kind"), completion_mode:x("completion_mode"), return_href:s(v.return_href)||"Civication.html", expanded:v.expanded===true, payload:p };
@@ -213,11 +208,11 @@ earlyToastQueue.forEach((args) => {
   const card=()=>document.getElementById("placeCard")||document.querySelector(".place-card"), cardOpen=()=>{const c=card();return!!(c&&c.getAttribute("aria-hidden")!=="true")};
   const goPlace=(id)=>W.HGAppRouter?.toPlace?.(id)??(location.hash=`#/place/${encodeURIComponent(id)}`,true), goQuiz=(id)=>W.HGAppRouter?.toQuiz?.(id)??(location.hash=`#/quiz/${encodeURIComponent(id)}`,true);
   function primary(v){const x=norm(v);if(!x)return false;if(x.place_id)return goPlace(x.place_id);if(x.quiz_id)return goQuiz(x.quiz_id);if(x.debate_id||x.conflict_id)return W.HGAppRouter?.toDebate?.(x.debate_id||x.conflict_id)??false;return W.HGAppRouter?.toMap?.()??false;}
-  function back(){const x=get(),raw=s(x?.return_href)||"Civication.html",href=/^Civication\.html(?:[?#].*)?$/i.test(raw)?raw:"Civication.html";end();location.href=href;return true;}
-  function render(){if(typeof document==="undefined"||!document.body)return null;const x=get();if(!x){remove();return null;}css();const st=state(),d=done(x,st),p=progress(x,st),S=suggestions(x),first=S[0],label=s(x.role_label||x.life_role_label||x.role_id||x.life_role_id)||"oppdrag";let n=document.getElementById(ROOT);if(!n){n=document.createElement("aside");n.id=ROOT;n.setAttribute("aria-label","Civication-modus");document.body.appendChild(n);}n.classList.toggle("open",x.expanded&&!cardOpen());n.classList.toggle("pc",cardOpen());const rows=S.length?S.map(r=>`<button class="place" data-place="${esc(r.place.id)}"><span>${esc(r.place.name||r.place.title||r.place.id)}</span><span class="muted">${esc(fd(r.distance))}</span></button>`).join(""):`<div class="row"><span>Ingen sikre stedsforslag ennå</span><span class="muted">Bruk kartet</span></div>`,next=x.completion_mode==="explore_category"?(x.category_id?`Du har ${Number(st.merits?.[x.category_id]?.points||0)} poeng i ${x.category_id}. Se videre krav i Civication.`:"Utforsk History Go, og se livsposisjoner i Civication.") :x.completion_mode==="badge_points"?(()=>{const points=Number(st.merits?.[x.category_id]?.points||0),needed=Number(x.required_points||x.payload.required_points);return d.completed?`Du har ${points} av ${needed} poeng. Tilbake i Civication kan du velge livsposisjonen.`:`${points} av ${needed} poeng i ${x.category_id}. Ta relevante quizer i History Go.`;})():d.completed?"Oppgaven er registrert. Du kan gå tilbake til Civication.":first?`Neste relevante sted: ${s(first.place.name||first.place.title||first.place.id)}`:"Fortsett oppgaven i History Go.";n.innerHTML=`<div class="top"><button class="toggle" data-toggle><span class="mark">C</span><span class="copy"><small>Civication · ${esc(label)} · ${p.current}/${p.total}</small><strong>${d.completed?"✓ ":""}${esc(x.title)}</strong></span></button><button class="return" data-return>Tilbake til Civication</button></div><div class="body">${x.description?`<p>${esc(x.description)}</p>`:""}<div class="row"><strong>${esc(next)}</strong>${first?`<span class="muted">${esc(fd(first.distance))}</span>`:""}</div><div class="places">${rows}</div><div class="actions">${x.quiz_id?`<button class="action" data-quiz="${esc(x.quiz_id)}">Ta quiz</button>`:""}${x.place_id?`<button class="action" data-primary>Vis målsted</button>`:""}<button class="action" data-map>Vis kart</button></div></div>`;const c=card();n.style.bottom=cardOpen()&&c?`${Math.max(12,Math.round(innerHeight-c.getBoundingClientRect().top+8))}px`:"calc(env(safe-area-inset-bottom,0px) + 86px)";return n;}
+  function back(){const x=get(),raw=s(x?.return_href)||"Civication.html",href=/^Civication\.html(?:[?#].*)?$/i.test(raw)?raw:"Civication.html";remove();location.href=href;return true;}
+  function render(){if(typeof document==="undefined"||!document.body)return null;const x=get();if(!x){remove();return null;}css();const st=state(),d=done(x,st),p=progress(x,st),S=suggestions(x),first=S[0],label=s(x.role_label||x.life_role_label||x.role_id||x.life_role_id)||"oppdrag";let n=document.getElementById(ROOT);if(!n){n=document.createElement("aside");n.id=ROOT;n.setAttribute("aria-label","Civication-modus");document.body.appendChild(n);}n.classList.toggle("open",x.expanded&&!cardOpen());n.classList.toggle("pc",cardOpen());const rows=S.length?S.map(r=>`<button class="place" data-place="${esc(r.place.id)}"><span>${esc(r.place.name||r.place.title||r.place.id)}</span><span class="muted">${esc(fd(r.distance))}</span></button>`).join(""):`<div class="row"><span>Ingen sikre stedsforslag ennå</span><span class="muted">Bruk kartet</span></div>`,next=x.completion_mode==="explore_category"?(x.category_id?`Du har ${Number(st.merits?.[x.category_id]?.points||0)} poeng i ${x.category_id}. Se videre krav i Civication.`:"Utforsk History Go, og se livsposisjoner i Civication.") :x.completion_mode==="badge_points"?(()=>{const points=Number(st.merits?.[x.category_id]?.points||0),needed=Number(x.required_points||x.payload.required_points);return d.completed?`Du har ${points} av ${needed} poeng. Tilbake i Civication kan du velge livsposisjonen.`:`${points} av ${needed} poeng i ${x.category_id}. Ta relevante quizer i History Go.`;})():d.completed?"Oppgaven er registrert. Du kan gå tilbake til Civication.":first?`Neste relevante sted: ${s(first.place.name||first.place.title||first.place.id)}`:"Fortsett oppgaven i History Go.";n.innerHTML=`<div class="top"><button class="toggle" data-toggle><span class="mark">C</span><span class="copy"><small>Civication · ${esc(label)} · ${p.current}/${p.total}</small><strong>${d.completed?"✓ ":""}${esc(x.title)}</strong></span></button><button class="return" data-return>Tilbake til Civication</button></div><div class="body">${x.description?`<p>${esc(x.description)}</p>`:""}<div class="row"><strong>${esc(next)}</strong>${first?`<span class="muted">${esc(fd(first.distance))}</span>`:""}</div><div class="places">${rows}</div><div class="actions">${x.quiz_id?`<button class="action" data-quiz="${esc(x.quiz_id)}">Ta quiz</button>`:""}${x.place_id?`<button class="action" data-primary>Vis målsted</button>`:""}<button class="action" data-map>Vis kart</button></div></div>`;const c=card();n.style.top=cardOpen()?"calc(env(safe-area-inset-top, 0px) + 12px)":"auto";n.style.bottom=cardOpen()?"auto":"calc(env(safe-area-inset-bottom,0px) + 86px)";document.documentElement?.style?.setProperty("--hg-civi-toast-clearance",cardOpen()?"40px":Math.min(Math.round(n.getBoundingClientRect().height+100),Math.round(innerHeight*.7))+"px");return n;}
   function click(e){const t=e?.target;if(!t?.closest||!t.closest(`#${ROOT}`))return;if(t.closest("[data-return]")){e.preventDefault();back();return;}if(t.closest("[data-toggle]")){e.preventDefault();const x=get();x.expanded=!x.expanded;save(x);render();return;}const p=t.closest("[data-place]");if(p){e.preventDefault();goPlace(p.getAttribute("data-place"));return;}const q=t.closest("[data-quiz]");if(q){e.preventDefault();goQuiz(q.getAttribute("data-quiz"));return;}if(t.closest("[data-primary]")){e.preventDefault();primary(get());return;}if(t.closest("[data-map]")){e.preventDefault();W.HGAppRouter?.toMap?.();}}
-  function remove(){try{document.getElementById(ROOT)?.remove();}catch{}}
-  let queued=false;function schedule(){if(queued)return;queued=true;setTimeout(()=>{queued=false;try{render();}catch{}},0);}let booted=false;function boot(){if(booted||typeof document==="undefined")return false;booted=true;document.addEventListener("click",click);["hashchange","hg:appReady","hg:routerReady","hg:geo","hg:placeDiscovered","hg:unlocks","updateProfile","resize","storage"].forEach(n=>window.addEventListener(n,schedule));render();setTimeout(schedule,1000);return true;}
+  function remove(){try{document.getElementById(ROOT)?.remove();document.documentElement?.style?.removeProperty("--hg-civi-toast-clearance");}catch{}}
+  let queued=false;function schedule(){if(queued)return;queued=true;setTimeout(()=>{queued=false;try{render();}catch{}},0);}let booted=false;function boot(){if(booted||typeof document==="undefined")return false;booted=true;document.addEventListener("click",click);["hashchange","pageshow","hg:appReady","hg:routerReady","hg:geo","hg:placeDiscovered","hg:unlocks","updateProfile","resize","storage"].forEach(n=>window.addEventListener(n,schedule));document.addEventListener("visibilitychange",()=>{if(!document.hidden)schedule();});try{const target=card();if(target&&typeof MutationObserver==="function")new MutationObserver(schedule).observe(target,{attributes:true,attributeFilter:["aria-hidden"]});}catch{}render();setTimeout(schedule,1000);return true;}
   W.HGCivicationMode={SESSION_KEY:KEY,normalizeSession:norm,getSession:get,saveSession:save,endSession:end,readHistoryGoState:state,evaluateCompletion:done,getProgress:progress,scorePlace:score,suggestPlaces:suggestions,formatDistance:fd,navigatePrimary:primary,returnToCivication:back,render,boot,remove};
   if(typeof document!=="undefined")document.readyState==="loading"?document.addEventListener("DOMContentLoaded",boot,{once:true}):boot();
 })();
