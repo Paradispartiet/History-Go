@@ -121,7 +121,7 @@ if(phase==="--pre"){
   write(CARD,{collection_id:"oslo_aav_ostbanestasjonen_v1_20261027",categoryId:"by",title:"Østbanestasjonen – Oslo",cardFormatRule:"single_surface_top10_with_answer_key",sourceBasis:"Kildekontrollerte canonical quizspørsmål fra "+QUIZ,cards:[{
     card_id:"by_quizkort_ostbanestasjonen",categoryId:"by",targetId:ID,
     title:"Østbanestasjonen",subtitle:"Ti spørsmål om stasjonens historie",order:1,
-    format:"single_surface_top10_with_answer_key",questionCount:10,questions:selected
+    format:"single_surface_top10_with_answer_key",questionCount:10,questions:selected,answerKey:selected.map(q=>({number:q.number,answer:q.answer,answerIndex:q.answerIndex})),sourceFile:QUIZ
   }]});
   const manifest=read(CARD_MANIFEST);
   const leaf=path.basename(CARD);
