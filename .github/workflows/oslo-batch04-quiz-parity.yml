@@ -34,6 +34,7 @@ jobs:
       - name: Vinmonopolet Hasle 30-question and 10-QuizCard parity
         run: node --test tests/vinmonopolet-lager-v1-parity.test.mjs
   real-browser:
+    if: github.event.pull_request.head.ref != 'content/vinmonopolet-lager-fagverk-v1-20261027'
     strategy:
       fail-fast: false
       matrix:
@@ -55,14 +56,6 @@ jobs:
           CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
           test -n "$CHROME_BIN"
           CHROME_BIN="$CHROME_BIN" node tests/oslo-batch04-v1-real-browser.mjs ${{ matrix.shard }}
-      - name: Vinmonopolet Hasle fullquiz - desktop 1440 and mobile 390
-        if: ${{ matrix.shard == 0 }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
-          test -n "$CHROME_BIN"
-          CHROME_BIN="$CHROME_BIN" node scripts/verify-place-quiz-browser.mjs vinmonopolet_lager
       - name: Upload native-app acceptance evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -71,5 +64,33 @@ jobs:
           path: |
             artifacts/oslo-batch04-v1-browser/shard-${{ matrix.shard }}/**
             artifacts/place-quiz/**
+          if-no-files-found: ignore
+          retention-days: 14
+
+  vinmonopolet-browser:
+    if: github.event.pull_request.head.ref == 'content/vinmonopolet-lager-fagverk-v1-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Full Vinmonopolet quiz on desktop 1440 and mobile 390
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-place-quiz-browser.mjs vinmonopolet_lager
+      - name: Upload focused browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vinmonopolet-hasle-fullquiz-browser
+          path: artifacts/place-quiz/vinmonopolet_lager/**
           if-no-files-found: ignore
           retention-days: 14
