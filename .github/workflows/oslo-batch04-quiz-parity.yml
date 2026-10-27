@@ -4,6 +4,7 @@ on:
     paths:
       - '.github/workflows/oslo-batch04-quiz-parity.yml'
       - 'tests/oslo-batch04-v1-quiz-parity.test.mjs'
+      - 'tests/vinmonopolet-lager-v1-parity.test.mjs'
       - 'tests/oslo-batch04-v1-real-browser.mjs'
       - 'scripts/verify-place-quiz-browser.mjs'
       - 'data/quiz/**'
@@ -29,6 +30,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Verify 17 canonical fullquizzes and 170 linked QuizCard questions
         run: node --test tests/oslo-batch04-v1-quiz-parity.test.mjs
+      - name: Vinmonopolet Hasle 30-question and 10-QuizCard parity
+        run: node --test tests/vinmonopolet-lager-v1-parity.test.mjs
   real-browser:
     strategy:
       fail-fast: false
@@ -51,6 +54,14 @@ jobs:
           CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
           test -n "$CHROME_BIN"
           CHROME_BIN="$CHROME_BIN" node tests/oslo-batch04-v1-real-browser.mjs ${{ matrix.shard }}
+      - name: Vinmonopolet Hasle fullquiz - desktop 1440 and mobile 390
+        if: ${{ matrix.shard == 0 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-place-quiz-browser.mjs vinmonopolet_lager
       - name: Upload native-app acceptance evidence
         if: always()
         uses: actions/upload-artifact@v4
