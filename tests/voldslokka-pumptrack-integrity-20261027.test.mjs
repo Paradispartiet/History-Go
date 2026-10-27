@@ -70,3 +70,17 @@ test("Voldsløkka: manifestene peker på de kanoniske quizfilene", () => {
 
 // Fotorettigheter håndheves av eksisterende audit-place-images-port.
 // Manglende lisensiert stedsfoto er ikke unntatt eller omklassifisert her.
+
+
+test("Voldsløkka: lokal illustrasjon er merket og beholdes i canonical Place", () => {
+  const expected = "bilder/places/oslo-aav-20261027/voldslokka_pumptrack_illustration.svg";
+  assert.equal(place.image, expected);
+  assert.equal(place.cardImage, expected);
+  assert.equal(place.popupImage, expected);
+  assert.match(place.imageCaption || "", /illustrasjon/u);
+  assert.match(place.imageMeta?.assetType || "", /editorial_place_illustration/u);
+  const svg = readFileSync(new URL("../" + expected, import.meta.url), "utf8");
+  assert.match(svg, /^<svg[\\s>]/u);
+  assert.match(svg, /ILLUSTRASJON/u);
+  assert.doesNotMatch(svg, /<image\\b/iu);
+});
