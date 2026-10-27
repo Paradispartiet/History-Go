@@ -28,9 +28,10 @@
   }
 
   function isMappedPlace(place) {
-    const lat = Number(place?.lat);
-    const lon = Number(place?.lon);
-    return !!place?.id && !place.hidden && !place.stub
+    if (place?.lat == null || place?.lon == null || place.lat === "" || place.lon === "") return false;
+    const lat = Number(place.lat);
+    const lon = Number(place.lon);
+    return !!place?.id && !place.hidden && !place.stub && place.coordStatus !== "invalid"
       && Number.isFinite(lat) && lat >= -90 && lat <= 90
       && Number.isFinite(lon) && lon >= -180 && lon <= 180;
   }
@@ -118,6 +119,10 @@
     modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
     bindDismissControl(modal.querySelector(".hg-onb-close"));
     bindDismissControl(modal.querySelector('[data-action="start"]'));
+    // Regular page links also mark onboarding as completed before navigation.
+    modal.querySelectorAll(".hg-onb-card-link[href]").forEach((anchor) => {
+      anchor.addEventListener("click", close);
+    });
     modal.querySelectorAll("[data-hg-welcome-action]").forEach((control) => {
       control.addEventListener("click", async (event) => {
         event.preventDefault();
