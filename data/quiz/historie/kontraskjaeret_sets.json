@@ -1,0 +1,996 @@
+{
+  "targetId": "kontraskjaeret",
+  "categoryId": "historie",
+  "title": "Kontraskjæret",
+  "sources": {
+    "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret": "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret",
+    "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn": "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn",
+    "https://oslobyleksikon.no/side/Kontraskj%C3%A6ret": "https://oslobyleksikon.no/side/Kontraskj%C3%A6ret"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/kontraskjaeret.json",
+    "context_artifact": "data/quiz/production_context/historie/kontraskjaeret.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_tid_periodisering"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/**/* including arkiv",
+        "data/knowledge/**/*.json",
+        "data/quiz/historie/kontraskjaeret_sets.json"
+      ],
+      "active_before": {
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Recursive target-ID search across active, legacy and archived quiz JSON found no owned quiz; no canonical Knowledge unit found for target. Incidental reference in myntgatakvartalet production context is not target ownership."
+      },
+      "decisions": [
+        "Replace non-runtime editorial candidates after independent source and distractor review; no active quiz removed.",
+        "Keep separate canonical target identity; no duplicate quiz manifest entry found."
+      ],
+      "knowledge_migration": "No existing owned units to migrate; root builds new canonical Knowledge from reviewed claims and URL source IDs."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Avgrenset sted med tre kildebårne læringsjobber: konkret hovedhistorie, dokumenterte personer og funksjonsendringer, deretter anvendt kildekritikk. To normale sett bevares; flere sett ville gjenta de samme hendelsene eller presse usikre detaljer inn som fakta."
+    },
+    "held_back_candidates": [
+      "No precise Skansen opening-year question: municipal 1926/1926–27 versus byleksikon 1927.",
+      "Horse cause of death and original pit function unknown; not presented as settled facts.",
+      "No claim that all present wood or walls are original fortification remains."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "historie_kontraskjaeret_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Stedet og menneskene",
+      "questions": [
+        {
+          "id": "kontraskjaeret_quiz_01",
+          "quiz_id": "historie_kontraskjaeret_set_1_q1",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hva er de synlige husmurene på Kontraskjæret rester etter?",
+          "options": [
+            "Lagerhus for festningens krutt",
+            "Bolighus fra den tidlige Christiania-bebyggelsen",
+            "Fundamentene til Skansen restaurant",
+            "Ridehus for militære avdelinger"
+          ],
+          "answer": "Bolighus fra den tidlige Christiania-bebyggelsen",
+          "answerIndex": 1,
+          "knowledge": "Grunnmurene viser rominndeling i bygårder som lå her før den store bybrannen. Militære forsvarsverk kom til på samme grunn senere.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De synlige husmurene på Kontraskjæret stammer fra bolighus i Christianias 1600-tallsbygårder.",
+          "claim_id": "claim_kontraskjaeret_quiz_01",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_grunnmurene_viser_rominn_c3c6a5372c",
+          "knowledge_unit_ids": [
+            "ku_historie_grunnmurene_viser_rominn_c3c6a5372c",
+            "ku_historie_milit_re_forsvarsverk_ko_13ff441b8e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_02",
+          "quiz_id": "historie_kontraskjaeret_set_1_q2",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvor i bygården lå latrinen som arkeologene fant spor av?",
+          "options": [
+            "Midt i oppholdsrommets ildsted",
+            "Under inngangen til hovedhuset",
+            "Langs hele grunnmuren mot gaten",
+            "I utkanten av gårdsrommet"
+          ],
+          "answer": "I utkanten av gårdsrommet",
+          "answerIndex": 3,
+          "knowledge": "Husene var ordnet rundt åpne tun. Latrinen lå i kanten av dette utearealet, som også rommet lek og daglige gjøremål.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Latrinen lå i utkanten av det åpne gårdsrommet mellom husene.",
+          "claim_id": "claim_kontraskjaeret_quiz_02",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_husene_var_ordnet_rundt__2e2d0f7215",
+          "knowledge_unit_ids": [
+            "ku_historie_husene_var_ordnet_rundt__2e2d0f7215",
+            "ku_historie_latrinen_la_i_kanten_av__055c0588e8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_03",
+          "quiz_id": "historie_kontraskjaeret_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvilken gruppe bodde for det meste i gårdene på Kontraskjæret?",
+          "options": [
+            "Håndverkere som snekkere og murere",
+            "Embetsmenn ved kongens kanselli",
+            "Offiserer ved festningens artilleri",
+            "Kjøpmenn med store skipsrederier"
+          ],
+          "answer": "Håndverkere som snekkere og murere",
+          "answerIndex": 0,
+          "knowledge": "Byggearbeid og arbeid på kaier ga oppdrag til håndverkere. Kommunens omtale nevner også taktekkere og spor etter garverivirksomhet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Beboerne på Kontraskjæret var for det meste håndverkere, blant annet snekkere, murere og taktekkere.",
+          "claim_id": "claim_kontraskjaeret_quiz_03",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_byggearbeid_og_arbeid_pa_ccf18f6866",
+          "knowledge_unit_ids": [
+            "ku_historie_byggearbeid_og_arbeid_pa_ccf18f6866",
+            "ku_historie_kommunens_omtale_nevner__e7fe1e3289"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_04",
+          "quiz_id": "historie_kontraskjaeret_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvordan skaffet mange av beboerne seg husrom på Kontraskjæret?",
+          "options": [
+            "De fikk tjenestebolig som offiserer",
+            "De overtok kongelige friboliger",
+            "De leide i bygårder",
+            "De kjøpte hver sin kjøpmannsgård"
+          ],
+          "answer": "De leide i bygårder",
+          "answerIndex": 2,
+          "knowledge": "Leiegårdene ga bolig til mennesker som ikke hadde råd til å bygge eget hus. De inngikk i den nye byens sosiale og økonomiske organisering.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Husene var i hovedsak leiegårder for folk uten råd til å oppføre eget hus.",
+          "claim_id": "claim_kontraskjaeret_quiz_04",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_leiegardene_ga_bolig_til_7594bb57a4",
+          "knowledge_unit_ids": [
+            "ku_historie_leiegardene_ga_bolig_til_7594bb57a4",
+            "ku_historie_de_inngikk_i_den_nye_bye_da3b2f1d1e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_05",
+          "quiz_id": "historie_kontraskjaeret_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvem skulle få leie husrom etter kravet i Christian IVs kongebrev?",
+          "options": [
+            "Universitetslærere",
+            "Tollere med kongelig embete",
+            "Håndverksfolk",
+            "Offiserer med garnisonstjeneste"
+          ],
+          "answer": "Håndverksfolk",
+          "answerIndex": 2,
+          "knowledge": "Borgere som valgte gode byggeplasser, skulle også bidra med husrom lenger oppe i byen. Kommunens arkeologiske omtale knytter dette kravet til leiegårdene.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kongebrevet påla borgere som tok gode tomter å skaffe leiehusrom for håndverksfolk lenger oppe i byen.",
+          "claim_id": "claim_kontraskjaeret_quiz_05",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_borgere_som_valgte_gode__8f7952ea7b",
+          "knowledge_unit_ids": [
+            "ku_historie_borgere_som_valgte_gode__8f7952ea7b",
+            "ku_historie_kommunens_arkeologiske_o_5996ec4071"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_06",
+          "quiz_id": "historie_kontraskjaeret_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvilket dyreskjelett fant arkeologene i den store gropen under en bygning?",
+          "options": [
+            "Et hesteskjelett",
+            "Et storfeskjelett",
+            "Et hundeskjelett",
+            "Et svineskjelett"
+          ],
+          "answer": "Et hesteskjelett",
+          "answerIndex": 0,
+          "knowledge": "Gropen inneholdt også keramikk, bein og vindusglass. Hestens kranium hadde en skade, men kilden understreker at skadens tidspunkt og årsak ikke kan avgjøres.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arkeologene fant et hesteskjelett i en grop med keramikk-, bein- og vindusglassavfall.",
+          "claim_id": "claim_kontraskjaeret_quiz_06",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_gropen_inneholdt_ogsa_ke_75b9ca6fe9",
+          "knowledge_unit_ids": [
+            "ku_historie_gropen_inneholdt_ogsa_ke_75b9ca6fe9",
+            "ku_historie_hestens_kranium_hadde_en_311167e930"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_07",
+          "quiz_id": "historie_kontraskjaeret_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hva utløste de arkeologiske utgravningene på Kontraskjæret?",
+          "options": [
+            "En utvidelse av Skansens serveringslokaler",
+            "Planer om å gjenreise militære ridehus",
+            "Byggingen av nye universitetsbygninger",
+            "Et veiprosjekt fra Vestbanen til Havnelageret"
+          ],
+          "answer": "Et veiprosjekt fra Vestbanen til Havnelageret",
+          "answerIndex": 3,
+          "knowledge": "Trafikkplanlegging førte til undersøkelser som avdekket fem bygårder. Arkeologien gjorde et tidligere boligstrøk dokumenterbart under det senere forsvarslandskapet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et veiprosjekt mellom Vestbanen og Havnelageret utløste utgravningene på Kontraskjæret.",
+          "claim_id": "claim_kontraskjaeret_quiz_07",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_trafikkplanlegging_f_rte_ab6812222c",
+          "knowledge_unit_ids": [
+            "ku_historie_trafikkplanlegging_f_rte_ab6812222c",
+            "ku_historie_arkeologien_gjorde_et_ti_311ef38c5a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_kontraskjaeret_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "title": "Bruk, endring og sammenheng",
+      "questions": [
+        {
+          "id": "kontraskjaeret_quiz_08",
+          "quiz_id": "historie_kontraskjaeret_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvilken del av festningslandskapet ga navn til Kontraskjæret?",
+          "options": [
+            "Kanonåpningene i bastionen",
+            "Utsiden av vollgraven",
+            "Broen over hovedporten",
+            "Kruttkammeret inne i fjellet"
+          ],
+          "answer": "Utsiden av vollgraven",
+          "answerIndex": 1,
+          "knowledge": "Det franske ordet contrescarpe ble fornorsket til Kontraskjæret. Navnet peker på den militære bruksfasen etter at boligområdet hadde brent.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Navnet Kontraskjæret kommer fra contrescarpe, knyttet til utsiden av festningens vollgrav.",
+          "claim_id": "claim_kontraskjaeret_quiz_08",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_det_franske_ordet_contre_b55ea912a1",
+          "knowledge_unit_ids": [
+            "ku_historie_det_franske_ordet_contre_b55ea912a1",
+            "ku_historie_navnet_peker_pa_den_mili_9a83a6b69d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_09",
+          "quiz_id": "historie_kontraskjaeret_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hva er trestokkene ved hustuftene i dag?",
+          "options": [
+            "Bevarte stolper fra de første leiegårdene",
+            "Rester av plankegjerdet rundt Skansen",
+            "En ny markering av den tidligere palisadens linje",
+            "Opprinnelige stolper fra festningens palisade"
+          ],
+          "answer": "En ny markering av den tidligere palisadens linje",
+          "answerIndex": 2,
+          "knowledge": "Kommunen opplyser uttrykkelig at trestokkene er nye. Plasseringen følger det historiske ytre gjerdet, som var en rimeligere forsvarsutvidelse enn nye steinmurer.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Dagens trestokker ved hustuftene er nye og markerer hvor festningens ytre palisade gikk.",
+          "claim_id": "claim_kontraskjaeret_quiz_09",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kommunen_opplyser_uttryk_6bf12482d5",
+          "knowledge_unit_ids": [
+            "ku_historie_kommunen_opplyser_uttryk_6bf12482d5",
+            "ku_historie_plasseringen_f_lger_det__b1a1417004"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_10",
+          "quiz_id": "historie_kontraskjaeret_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hva slags sted var Skansen på Kontraskjæret?",
+          "options": [
+            "En frilufts- og danserestaurant",
+            "Et ridehus for kavaleriet",
+            "Et lager for militært fôr",
+            "Et offentlig utstillingsmuseum"
+          ],
+          "answer": "En frilufts- og danserestaurant",
+          "answerIndex": 0,
+          "knowledge": "Lars Backer tegnet restaurantbygget med utsiktsterrasse. Skansen tilhørte funksjonalismens tidlige arkitektur og ga området en serverings- og underholdningsfunksjon.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Skansen var en frilufts- og danserestaurant tegnet av Lars Backer.",
+          "claim_id": "claim_kontraskjaeret_quiz_10",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_lars_backer_tegnet_resta_72832a913c",
+          "knowledge_unit_ids": [
+            "ku_historie_lars_backer_tegnet_resta_72832a913c",
+            "ku_historie_skansen_tilh_rte_funksjo_705acbef9f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_11",
+          "quiz_id": "historie_kontraskjaeret_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvor mange av de fem utgravde bygårdene er markert over bakken?",
+          "options": [
+            "Én",
+            "To",
+            "Tre",
+            "Fem"
+          ],
+          "answer": "To",
+          "answerIndex": 1,
+          "knowledge": "Utgravning og synlig formidling dekker ikke samme areal. Grunnmurene etter to gårder gir et innblikk i et større arkeologisk dokumentert boligmiljø.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret",
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "To bygårder er markert over bakken, mens utgravningene avdekket rester av fem.",
+          "claim_id": "claim_kontraskjaeret_quiz_11",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_utgravning_og_synlig_for_1697bd41b3",
+          "knowledge_unit_ids": [
+            "ku_historie_utgravning_og_synlig_for_1697bd41b3",
+            "ku_historie_grunnmurene_etter_to_gar_2d1257db63"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_12",
+          "quiz_id": "historie_kontraskjaeret_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hva ble området ved Skansen brukt til etter at restauranten var revet?",
+          "options": [
+            "Ny militær kaserne",
+            "Universitetsbygning",
+            "Permanent busstasjon",
+            "Park"
+          ],
+          "answer": "Park",
+          "answerIndex": 3,
+          "knowledge": "Den vestlige delen ble park og fikk et endret terreng. Både rivingen av restauranten og terrenginngrepene ble senere møtt med kritikk.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Kontraskj%C3%A6ret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Etter rivingen av Skansen ble den vestlige delen av Kontraskjæret lagt ut til park.",
+          "claim_id": "claim_kontraskjaeret_quiz_12",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_den_vestlige_delen_ble_p_b215fc5460",
+          "knowledge_unit_ids": [
+            "ku_historie_den_vestlige_delen_ble_p_b215fc5460",
+            "ku_historie_bade_rivingen_av_restaur_c312a97497"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_13",
+          "quiz_id": "historie_kontraskjaeret_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvorfor fikk ikke de nedbrente bygårdene bli reist igjen nær festningen?",
+          "options": [
+            "Kanonene trengte et friere skytefelt",
+            "Universitetet hadde fått tomten til nybygg",
+            "Havnen trengte flere pakkhus på stedet",
+            "Byen hadde vedtatt en offentlig lystpark"
+          ],
+          "answer": "Kanonene trengte et friere skytefelt",
+          "answerIndex": 0,
+          "knowledge": "Etter bybrannen tok festningsbehov forrang over boligbygging. Byggeforbudet gjorde et tett bebygd område til del av et åpnere forsvarslandskap.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret",
+            "https://oslobyleksikon.no/side/Kontraskj%C3%A6ret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Etter bybrannen ble gjenoppbygging forbudt slik at festningen kunne få friere skytefelt.",
+          "claim_id": "claim_kontraskjaeret_quiz_13",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_etter_bybrannen_tok_fest_5ce8bafd00",
+          "knowledge_unit_ids": [
+            "ku_historie_etter_bybrannen_tok_fest_5ce8bafd00",
+            "ku_historie_byggeforbudet_gjorde_et__304c1e7bad"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_14",
+          "quiz_id": "historie_kontraskjaeret_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvorfor var husene brannutsatte selv om Christiania hadde murtvang?",
+          "options": [
+            "Murveggene manglet kalkpuss på utsiden",
+            "Gårdsrommene var fylt med militært krutt",
+            "De var i stor grad oppført i laft og bindingsverk",
+            "Bygårdene var samlet under ett stort tak"
+          ],
+          "answer": "De var i stor grad oppført i laft og bindingsverk",
+          "answerIndex": 2,
+          "knowledge": "Mur var kostbart, og kommunens kilde opplyser at trekonstruksjoner var tillatt her. Det var dermed forskjell mellom murtvangens ideal og husene som faktisk ble reist.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hus av laft og bindingsverk gjorde boligområdet brannutsatt selv om byen hadde murtvang.",
+          "claim_id": "claim_kontraskjaeret_quiz_14",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_mur_var_kostbart_og_komm_932e976ff4",
+          "knowledge_unit_ids": [
+            "ku_historie_mur_var_kostbart_og_komm_932e976ff4",
+            "ku_historie_det_var_dermed_forskjell_27bde98675"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_kontraskjaeret_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "title": "Spor, kilder og forklaringer",
+      "questions": [
+        {
+          "id": "kontraskjaeret_quiz_15",
+          "quiz_id": "historie_kontraskjaeret_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Kongebrevet krever leiehusrom for håndverkere. Hvilket funn gir en selvstendig kontroll av hvordan bebyggelsen ble utformet?",
+          "options": [
+            "Ordlyden i en nyere avskrift av samme kongebrev",
+            "En senere bok som bare gjengir kongebrevet",
+            "Et kart som bare viser dagens parkgrenser",
+            "Grunnmurer og gårdsrom fra de utgravde bygårdene"
+          ],
+          "answer": "Grunnmurer og gårdsrom fra de utgravde bygårdene",
+          "answerIndex": 3,
+          "knowledge": "Brevet dokumenterer kongens krav, mens de materielle levningene dokumenterer deler av utførelsen. Kjeldstadlis praktiske kildekritikk skjerper skillet mellom en bestemmelse og spor etter faktisk praksis.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kongebrevet dokumenterer et krav om leiehusrom; bygningsfunn dokumenterer deler av den utførte bebyggelsen og gir en annen type evidens.",
+          "claim_id": "claim_kontraskjaeret_quiz_15",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "knut_kjeldstadli",
+          "work": "Fortida er ikke hva den en gang var",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "knut_kjeldstadli",
+            "work": "Fortida er ikke hva den en gang var",
+            "why_it_helps": "Kjeldstadlis kildekritikk skiller kongens normative krav fra arkeologiske levninger etter utført bygging. To kildetyper kontrollerer ulike sider av samme konkrete leiegårdshistorie uten at brevet behandles som en liste over bevarte hus."
+          },
+          "primary_knowledge_unit_id": "ku_historie_brevet_dokumenterer_kong_b2e07b71c6",
+          "knowledge_unit_ids": [
+            "ku_historie_brevet_dokumenterer_kong_b2e07b71c6",
+            "ku_historie_kjeldstadlis_praktiske_k_27fc432422"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_16",
+          "quiz_id": "historie_kontraskjaeret_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hestekraniet fra gropen har et knust hull. Hva innebærer kildens usikkerhet for en forklaring av dødsfallet?",
+          "options": [
+            "Skaden daterer dødsfallet til bybrannen",
+            "Skaden kan ha kommet ved døden eller senere",
+            "Kalklaget viser at hesten døde av sykdom",
+            "Gravstedet viser at hesten døde under et slag"
+          ],
+          "answer": "Skaden kan ha kommet ved døden eller senere",
+          "answerIndex": 1,
+          "knowledge": "Funnets tilstand og fortellingen om hvordan hesten døde er ulike spørsmål. Kommunens omtale åpner for senere skade og lar derfor dødsårsaken stå ubestemt.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det knuste hestekraniet avgjør ikke om skaden oppsto ved avliving eller senere.",
+          "claim_id": "claim_kontraskjaeret_quiz_16",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_funnets_tilstand_og_fort_e9136babf8",
+          "knowledge_unit_ids": [
+            "ku_historie_funnets_tilstand_og_fort_e9136babf8",
+            "ku_historie_kommunens_omtale_apner_f_6fa72632cf"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_17",
+          "quiz_id": "historie_kontraskjaeret_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hva består palisademarkeringens autentisitet i når stokkene er nye?",
+          "options": [
+            "Det opprinnelige trevirket som er bevart",
+            "Den opprinnelige høyden som er gjenskapt",
+            "Den historiske plasseringen som markeres",
+            "De gamle sammenføyningene i treverket"
+          ],
+          "answer": "Den historiske plasseringen som markeres",
+          "answerIndex": 2,
+          "knowledge": "En rekonstruksjon kan formidle plasseringen av et tapt anlegg uten å bevare originalmaterialet. Her oppgir kommunen både at stokkene er nye og at de står langs den tidligere gjerdelinjen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den nåværende palisademarkeringen bevarer en historisk linje gjennom nytt materiale, og er derfor ikke originalt treverk fra festningen.",
+          "claim_id": "claim_kontraskjaeret_quiz_17",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_en_rekonstruksjon_kan_fo_4364e14c5e",
+          "knowledge_unit_ids": [
+            "ku_historie_en_rekonstruksjon_kan_fo_4364e14c5e",
+            "ku_historie_her_oppgir_kommunen_bade_0385fc672d"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_18",
+          "quiz_id": "historie_kontraskjaeret_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Næsers kart tegner skarpe voller i 1858, men omtalen sier at terrenget kan være idealisert. Hva må kartets bruk som terrengkilde ta høyde for?",
+          "options": [
+            "Kartet kan gjengi en ryddigere form enn terrenget hadde",
+            "De skarpe linjene må være målt fra dagens park",
+            "Kartet må vise boligkvartalene før bybrannen",
+            "De inntegnede vollene må være planlagt først senere"
+          ],
+          "answer": "Kartet kan gjengi en ryddigere form enn terrenget hadde",
+          "answerIndex": 0,
+          "knowledge": "Et historisk kart er en framstilling med formål og forenklinger. Kommunens uttrykkelige forbehold gjør det nødvendig å kontrollere kartlinjene mot andre spor før de brukes som nøyaktig terrengmål.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kartet fra 1858 tegner glaciene skarpt, mens kommunens omtale advarer om at dette antagelig idealiserer det daværende terrenget.",
+          "claim_id": "claim_kontraskjaeret_quiz_18",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_et_historisk_kart_er_en__4e28fe5726",
+          "knowledge_unit_ids": [
+            "ku_historie_et_historisk_kart_er_en__4e28fe5726",
+            "ku_historie_kommunens_uttrykkelige_f_107eba5dcf"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_19",
+          "quiz_id": "historie_kontraskjaeret_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvorfor gir de to synlige gårdsmarkeringene et mindre bilde enn utgravningene?",
+          "options": [
+            "De to markeringene omfatter alle fem gårdene",
+            "Bare en del av de fem dokumenterte gårdene er synliggjort",
+            "Tre gårder ble bare nevnt i kongebrevet",
+            "De andre gårdene tilhørte Skansen restaurant"
+          ],
+          "answer": "Bare en del av de fem dokumenterte gårdene er synliggjort",
+          "answerIndex": 1,
+          "knowledge": "Dagens park er et utvalg av det undersøkte materialet. De øvrige dokumenterte gårdene forsvinner ikke fra historien selv om de ikke har tilsvarende synlige markeringer.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn",
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Utgravningsresultat og dagens markeringer har ulik dekning: fem dokumenterte bygårder, to synliggjort i parken.",
+          "claim_id": "claim_kontraskjaeret_quiz_19",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_dagens_park_er_et_utvalg_7ea02c5b98",
+          "knowledge_unit_ids": [
+            "ku_historie_dagens_park_er_et_utvalg_7ea02c5b98",
+            "ku_historie_de_vrige_dokumenterte_ga_66e80b6134"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_20",
+          "quiz_id": "historie_kontraskjaeret_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hvorfor støttet kulturminneforvaltningen rivingen av Skansen?",
+          "options": [
+            "Bygårdene skulle gjenreises som leieboliger",
+            "Restauranten skulle flyttes til universitetsområdet",
+            "Rådhusgata skulle tilbakeføres til vollgrav",
+            "Akershus skulle fremtre tydeligere som nasjonalmonument"
+          ],
+          "answer": "Akershus skulle fremtre tydeligere som nasjonalmonument",
+          "answerIndex": 3,
+          "knowledge": "Rivingen var et bevaringsvalg som prioriterte festningen og dens omgivelser. Senere kritikk viser at vern av ett historisk lag samtidig kan innebære tap av et annet.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/kontraskjaeret",
+            "https://oslobyleksikon.no/side/Kontraskj%C3%A6ret"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kulturminneforvaltningen støttet riving av Skansen for å fremheve Akershus som nasjonalmonument; rivingen er senere blitt kritisert.",
+          "claim_id": "claim_kontraskjaeret_quiz_20",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_rivingen_var_et_bevaring_2b852d240f",
+          "knowledge_unit_ids": [
+            "ku_historie_rivingen_var_et_bevaring_2b852d240f",
+            "ku_historie_senere_kritikk_viser_at__6a2dce2635"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kontraskjaeret_quiz_21",
+          "quiz_id": "historie_kontraskjaeret_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "kontraskjaeret",
+          "targetId": "kontraskjaeret",
+          "question_scope": "place",
+          "question": "Hva forteller avfallet under hesteskjelettet om gropens bruk?",
+          "options": [
+            "Den ble brukt til søppel før hesten ble begravet",
+            "Den ble gravd spesielt for hesten og fylt straks",
+            "Den fungerte som vannreservoar frem til begravelsen",
+            "Den var et ildsted som ble fylt etter bybrannen"
+          ],
+          "answer": "Den ble brukt til søppel før hesten ble begravet",
+          "answerIndex": 0,
+          "knowledge": "Keramikk, bein og glass inngikk i gropens brukshistorie før begravelsen. Kilden lar det opprinnelige formålet stå åpent, selv om flere senere bruksfaser kan dokumenteres.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/ruiner-og-arkeologiske-funn"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gropen med hesten var brukt til avfall før begravelsen; gropens opprinnelige formål er ukjent.",
+          "claim_id": "claim_kontraskjaeret_quiz_21",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_keramikk_bein_og_glass_i_10f2d95dac",
+          "knowledge_unit_ids": [
+            "ku_historie_keramikk_bein_og_glass_i_10f2d95dac",
+            "ku_historie_kilden_lar_det_opprinnel_322c05ac99"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
