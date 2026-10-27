@@ -29,7 +29,9 @@ try {
     for (const [pathname, label, destination] of [
       ["profile.html", "Til kartet", "/index.html"],
       ["knowledge.html", "Til min samling", "/profile.html"],
-      ["sprakatlas.html", "Til kartet", "/index.html"]
+      ["sprakatlas.html", "Til kartet", "/index.html"],
+      ["finn-fauna.html", "Til kartet", "/index.html"],
+      ["finn-flora.html", "Til kartet", "/index.html"]
     ]) {
       await page.goto(base + "/" + pathname, { waitUntil: "domcontentloaded", timeout: 30000 });
       const back = page.locator(".hg-universal-back").first();
@@ -40,6 +42,17 @@ try {
       assert.ok(href && new URL(href, base).pathname === destination, pathname + ": safe return URL");
       const rect = await back.boundingBox();
       assert.ok(rect && rect.x >= 0 && rect.x + rect.width <= width + 1, pathname + ": within " + width + "px viewport");
+      if (pathname.startsWith("finn-")) {
+        assert.equal((await back.textContent()).trim(), "←", pathname + ": icon-only back arrow");
+        const brand = page.locator(".ne-header .ne-brand img");
+        await brand.waitFor({ state: "visible" });
+        const logoRect = await brand.boundingBox();
+        const menuRect = await page.locator("#natureMenuToggle").boundingBox();
+        assert.ok(logoRect && menuRect && rect, pathname + ": header parts rendered");
+        assert.ok(rect.x + rect.width <= logoRect.x + 1, pathname + ": arrow and logo do not overlap");
+        assert.ok(logoRect.x + logoRect.width <= menuRect.x + 1, pathname + ": logo and menu do not overlap");
+        assert.equal(await page.locator("#natureBack").count(), 1, pathname + ": only one back link");
+      }
     }
 
     await page.goto(base + "/index.html#/map", { waitUntil: "domcontentloaded", timeout: 30000 });
