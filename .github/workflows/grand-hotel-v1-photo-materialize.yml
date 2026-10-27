@@ -30,6 +30,8 @@ jobs:
           cache: npm
       - name: Install project dependencies
         run: npm ci --no-audit --no-fund
+      - name: Verify place-specific documentary media and Fagverk
+        run: node --test tests/grand-hotel-v1-fagverk-photo.test.mjs
       - name: Generate canonical Place, People and Fagverk runtime
         run: |
           npm run place-open:build
