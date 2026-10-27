@@ -21,6 +21,16 @@ const FILES=Object.freeze({
  emne_flora_prestekrage:["Leucanthemum vulgare","Leucanthemum vulgare.jpeg","The Cosmonaut","BY-SA-2.5-CA"],
  emne_flora_balderbra:["Tripleurospermum inodorum","Tripleurospermum inodorum.jpg","Thayne Tuason","BY-SA-4.0"]
 });
+const PHOTO_URLS=Object.freeze({
+ "emne_flora_enghumleblom": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Geum_rivale_flowers.jpg",
+ "emne_flora_engkarse": "https://upload.wikimedia.org/wikipedia/commons/4/46/Cardamine_pratensis_flower.jpg",
+ "emne_flora_engknoppurt": "https://upload.wikimedia.org/wikipedia/commons/6/66/Centaurea_jacea.jpeg",
+ "emne_flora_engsmelle": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Silene_vulgaris_flower.jpg/960px-Silene_vulgaris_flower.jpg",
+ "emne_flora_engsoleie": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/RanunculusAcris.jpg/960px-RanunculusAcris.jpg",
+ "emne_flora_engtjaereblom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Viscaria_vulgaris_sl66.jpg/960px-Viscaria_vulgaris_sl66.jpg",
+ "emne_flora_prestekrage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Leucanthemum_vulgare.jpeg/960px-Leucanthemum_vulgare.jpeg",
+ "emne_flora_balderbra": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Tripleurospermum_inodorum.jpg/960px-Tripleurospermum_inodorum.jpg"
+});
 function get(id){
  const entry=FILES[String(id)];if(!entry)return null;
  const [scientificName,fileName,creator,licenseKey]=entry;
@@ -29,7 +39,7 @@ function get(id){
  return Object.freeze({
   scientificName,creator,license,licenseUrl,
   source:"https://commons.wikimedia.org/wiki/File:"+encoded,
-  src:"https://commons.wikimedia.org/wiki/Special:FilePath/"+encoded+"?width=960",
+  src:PHOTO_URLS[String(id)],
   type:"photo"
  });
 }
