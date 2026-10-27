@@ -1,8 +1,5 @@
 name: Oslo batch04 quiz and QuizCard parity
 on:
-  push:
-    branches:
-      - content/vinmonopolet-lager-fagverk-v1-20261027
   pull_request:
     paths:
       - '.github/workflows/oslo-batch04-quiz-parity.yml'
@@ -21,67 +18,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
 
-  vinmonopolet-regenerate:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/content/vinmonopolet-lager-fagverk-v1-20261027'
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci --no-audit --no-fund
-      - name: Restore place index and generated epoch and Place-open data
-        run: |
-          set -euo pipefail
-          npm run places:index:build
-          npm run epoker:places:build
-          node scripts/build-place-open-payloads.mjs
-      - name: Regenerate Knowledge contract and link QuizCard to canonical quiz
-        run: |
-          set -euo pipefail
-          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const qPath='data/quiz/naeringsliv/vinmonopolet_lager_sets_merged.json';
-          const cPath='data/quizcards/naeringsliv/vinmonopolet_lager_quizkort_v1.json';
-          const q=JSON.parse(fs.readFileSync(qPath,'utf8'));
-          const c=JSON.parse(fs.readFileSync(cPath,'utf8'));
-          const byId=new Map(q.sets.flatMap(s=>s.questions).map(row=>[row.id,row]));
-          for(const entry of c.cards.flatMap(row=>row.questions)){
-            const source=byId.get(entry.sourceQuestionId);
-            if(!source)throw new Error('missing canonical quiz: '+entry.sourceQuestionId);
-            for(const k of ['question','options','answer','answerIndex','knowledge','primary_knowledge_unit_id','knowledge_unit_ids','concept_ids','term_ids','knowledge_link_status','knowledge_contract_version']){
-              entry[k]=source[k];
-            }
-          }
-          fs.writeFileSync(cPath,JSON.stringify(c,null,2)+'\n');
-          NODE
-      - name: Rebuild 4.2 description packet and Fagverk release
-        run: |
-          set -euo pipefail
-          node scripts/build-vinmonopolet-lager-description-packet.mjs
-          node scripts/build-fagverk-release-manifest.mjs
-          node --test tests/vinmonopolet-lager-v1-parity.test.mjs
-      - name: Commit only regenerated tracked production outputs
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -u data/ reports/
-          git add data/places/production/vinmonopolet_lager.json
-          git diff --cached --stat | tail -45
-          if ! git diff --cached --quiet; then
-            git commit -m "Regenerate Vinmonopolet index, Knowledge, epoch, Place-open, Fagverk and 4.2 packet"
-            git push origin HEAD:content/vinmonopolet-lager-fagverk-v1-20261027
-          fi
   quiz-parity:
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -97,7 +34,6 @@ jobs:
       - name: Vinmonopolet Hasle 30-question and 10-QuizCard parity
         run: node --test tests/vinmonopolet-lager-v1-parity.test.mjs
   real-browser:
-    if: github.event_name == 'pull_request'
     strategy:
       fail-fast: false
       matrix:
