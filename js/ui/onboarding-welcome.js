@@ -3,13 +3,13 @@
 // HGOnboarding — vises én gang per nettleser ved første besøk.
 // Forklarer hovedflyten kort: kart → sted → quiz → samle.
 //
-// Persisterer dismiss via hg_onboarding_shown_v1.
+// Persisterer dismiss via hg_onboarding_shown_v2.
 // Kan også åpnes manuelt via window.openOnboarding().
 
 (function () {
   "use strict";
 
-  const FLAG_KEY = "hg_onboarding_shown_v1";
+  const FLAG_KEY = "hg_onboarding_shown_v2";
   const MODAL_ID = "hgOnboardingModal";
   const MODAL_Z_INDEX = "2147483646";
 
