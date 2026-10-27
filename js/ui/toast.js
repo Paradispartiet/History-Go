@@ -173,8 +173,8 @@ function enqueueReward(render) {
   return true;
 }
 
-window.addEventListener("hg:onboardingClosed", () => flushPendingToasts());
-window.addEventListener("pageshow", () => flushPendingToasts());
+window.addEventListener?.("hg:onboardingClosed", () => flushPendingToasts());
+window.addEventListener?.("pageshow", () => flushPendingToasts());
 
 const earlyToastQueue = Array.isArray(window.__HG_EARLY_TOAST_QUEUE__)
   ? window.__HG_EARLY_TOAST_QUEUE__.splice(0)
