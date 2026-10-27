@@ -8,8 +8,9 @@ const sandbox = { window: {} };
 vm.runInNewContext(read("js/ui/nature-illustrations.js"), sandbox, { timeout: 3000 });
 vm.runInNewContext(read("js/ui/nature-illustrations-batch03.js"), sandbox, { timeout: 3000 });
 vm.runInNewContext(read("js/ui/nature-illustrations-batch04.js"), sandbox, { timeout: 3000 });
+vm.runInNewContext(read("js/ui/nature-illustrations-batch05.js"), sandbox, { timeout: 3000 });
 const artist = sandbox.window.HG_NATURE_ILLUSTRATIONS;
-assert.equal(artist.count, 120, "expected 120 illustrations across four batches");
+assert.equal(artist.count, 150, "expected 150 illustrations across five batches");
 const index = JSON.parse(read("data/runtime/nature-all.json"));
 const ids = new Set();
 for (const files of Object.values(index.groups)) {
@@ -21,9 +22,9 @@ for (const files of Object.values(index.groups)) {
   }
  }
 }
-const source = read("js/ui/nature-illustrations.js") + "\n" + read("js/ui/nature-illustrations-batch03.js") + "\n" + read("js/ui/nature-illustrations-batch04.js");
+const source = read("js/ui/nature-illustrations.js") + "\n" + read("js/ui/nature-illustrations-batch03.js") + "\n" + read("js/ui/nature-illustrations-batch04.js") + "\n" + read("js/ui/nature-illustrations-batch05.js");
 const references = [...source.matchAll(/\bemne_(?:flora|ved|fauna)_[\p{L}0-9_]+(?=\s*:)/gu)].map(m=>m[0]);
-assert.equal(new Set(references).size, 120);
+assert.equal(new Set(references).size, 150);
 for (const id of references) {
  assert(ids.has(id), "illustration references unknown taxon: " + id);
  assert(artist.has(id), "missing art: " + id);
@@ -31,21 +32,24 @@ for (const id of references) {
  assert(uri.startsWith("data:image/svg+xml;charset=UTF-8,"), id + ": bad format");
  const svg = decodeURIComponent(uri.split(",")[1]);
  assert(svg.includes("<svg") && svg.includes("</svg>"), id + ": malformed SVG");
+ assert(svg.includes("<path") || svg.includes("<ellipse"), id + ": empty illustration");
  assert(!svg.includes("<script"), id + ": executable image code");
 }
 assert.equal(artist.resolve("unknown"), "");
-assert.equal(new Set(references.map(id=>artist.resolve(id))).size, 120, "illustration assets must be unique");
+assert.equal(new Set(references.map(id=>artist.resolve(id) )).size, 150, "illustration assets must be unique");
 assert.match(read("js/ui/nature-explorer.js"), /const art=drawings\?\.resolve/, "illustrations must take display priority");
-assert.equal(references.filter(id => id.startsWith("emne_fauna_")).length, 60);
-assert.equal(references.filter(id => !id.startsWith("emne_fauna_")).length, 60);
+assert.equal(references.filter(id => id.startsWith("emne_fauna_")).length, 75);
+assert.equal(references.filter(id => !id.startsWith("emne_fauna_")).length, 75);
 for (const kind of ["flora", "fauna"]) {
  const html=read("finn-" + kind + ".html");
  assert(html.includes("js/ui/nature-illustrations.js"));
  assert(html.includes("js/ui/nature-illustrations-batch03.js"));
  assert(html.includes("js/ui/nature-illustrations-batch04.js"));
+ assert(html.includes("js/ui/nature-illustrations-batch05.js"));
  assert(html.includes("data-filter=\"illustrated\""));
  assert(html.indexOf("nature-illustrations.js") < html.indexOf("nature-illustrations-batch03.js"));
  assert(html.indexOf("nature-illustrations-batch03.js") < html.indexOf("nature-illustrations-batch04.js"));
- assert(html.indexOf("nature-illustrations-batch04.js") < html.indexOf("nature-explorer.js"));
+ assert(html.indexOf("nature-illustrations-batch04.js") < html.indexOf("nature-illustrations-batch05.js"));
+ assert(html.indexOf("nature-illustrations-batch05.js") < html.indexOf("nature-explorer.js"));
 }
-console.log("Nature atlas illustrations: 120/120 referenced and renderable; both pages wired.");
+console.log("Nature atlas illustrations: 150/150 referenced and renderable; both pages wired.");
