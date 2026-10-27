@@ -1,0 +1,19 @@
+name: Villa Romsli quiz parity
+on:
+  pull_request:
+    paths:
+      - 'data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06/villa_romsli.json'
+      - 'data/quiz/kunst/villa_romsli_sets.json'
+      - 'data/quizcards/kunst/villa_romsli_quizcard_v1.json'
+      - 'data/quiz/production_briefs/kunst/villa_romsli.json'
+      - 'tests/villa-romsli-v1-parity.test.mjs'
+      - '.github/workflows/villa-romsli-quiz-parity.yml'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test tests/villa-romsli-v1-parity.test.mjs
