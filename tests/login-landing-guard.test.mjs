@@ -23,11 +23,13 @@ test("all main app entries require login and remain hidden until verification", 
   assert.match(readFileSync("js/app.js", "utf8"), /await window\.HGLoginGate\.ready/);
 });
 
-test("login screen offers account, recovery, and password entry without guest bypass", () => {
+test("login screen uses AHA email link and Google plus optional password, without guest bypass", () => {
   assert.match(page, /id="hgLoginForm"/);
   assert.match(page, /type="password"/);
   assert.match(page, /auth\.signInWithPassword/);
-  assert.match(page, /auth\.signUp/);
+  assert.match(page, /auth\.signInWithOtp/);
+  assert.match(page, /auth\.signInWithOAuth/);
+  assert.match(page, /Logg inn med Google/);
   assert.match(page, /auth\.resetPasswordForEmail/);
   assert.doesNotMatch(page, /Fortsett som gjest/);
 });
