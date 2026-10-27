@@ -36,7 +36,7 @@ const STATIC_SCRIPTS = [
   "js/Civication/civicationShellLoader.js"
 ];
 
-const scriptTags = [...html.matchAll(/<script src="([^"]+)"><\\/script>/g)].map((m) => m[1]);
+const scriptTags = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((m) => m[1]);
 // Login guard is a deliberate early preboot script, not part of the life-story engine sequence.
 const AUTH_PREBOOT = "js/auth/require-login.js?v=20261027-1";
 assert.ok(scriptTags.includes(AUTH_PREBOOT), "Civication protects player state before loading the game");
