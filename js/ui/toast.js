@@ -40,6 +40,12 @@ function isWaitingForIndexAppReady() {
 function onboardingBlocksToasts() {
   const modal = document.getElementById("hgOnboardingModal");
   if (modal && modal.getAttribute("aria-hidden") !== "true") return true;
+  // An inbound Civication mission bypasses first-visit onboarding.
+  // Do not let the missing welcome flag block notifications forever.
+  try {
+    const mission = JSON.parse(localStorage.getItem("hg_civication_mode_v1") || "null");
+    if (mission && mission.active === true) return false;
+  } catch {}
   // A first-visit modal is scheduled shortly after appReady. Do not consume
   // queued messages invisibly behind it before it has had time to open.
   try {
