@@ -485,6 +485,25 @@ body.hg-app.map-only .map-controls {
   position: absolute;
   overflow: visible;
 }
+/* Canonical category badges replace detail dots only at close zoom. */
+body.hg-app #map .hg-place-detail-marker .hg-place-detail-badge {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+body.hg-app #map .hg-place-detail-marker.has-category-badge {
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+body.hg-app #map .hg-place-detail-marker.has-category-badge .hg-place-detail-badge {
+  display: block;
+}
+
 body.hg-app #map .hg-place-detail-marker .hg-place-detail-label {
   position: absolute;
   display: block;
