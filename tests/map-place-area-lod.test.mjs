@@ -51,7 +51,8 @@ test("kartet har separate område- og detaljlag med gradvis detaljövergang", ()
   assert.match(source, /L_AREA_LAB\s*=\s*"hg-place-areas-label"/);
   assert.match(source, /PLACE_DETAIL_MIN_ZOOM\s*=\s*9\.8/);
   assert.match(source, /PLACE_DETAIL_HIT_MIN_ZOOM\s*=\s*9\.8/);
-  assert.match(source, /PLACE_DETAIL_LABEL_MIN_ZOOM\s*=\s*12\.7/);
+  assert.match(source, /PLACE_DETAIL_LABEL_MIN_ZOOM\s*=\s*16\.0/);
+  assert.match(source, /PLACE_AREA_LABEL_MIN_ZOOM\s*=\s*16\.0/);
   assert.match(source, /getPlaceDetailVisibility/);
   assert.match(source, /PLACE_DETAIL_FULL_ZOOM, 1\.0/);
   assert.match(source, /filter: PLACE_AREA_LOD_FILTER/);
@@ -64,7 +65,7 @@ test("kartet har separate område- og detaljlag med gradvis detaljövergang", ()
 });
 
 test("områdeetiketter prioriteres som eget symbol-lag og begge hit-lag er klikkbare", () => {
-  assert.match(source, /id: L_AREA_LAB,[\s\S]*?layout: getPlaceLabelLayout\(true\)/);
+  assert.match(source, /id: L_AREA_LAB,[\s\S]*?minzoom: PLACE_AREA_LABEL_MIN_ZOOM,[\s\S]*?layout: getPlaceLabelLayout\(true\)/);
   assert.match(source, /const hoverLayers = \[L_AREA_HIT, L_HIT\]\.filter\(hasLayer\)/);
   assert.match(source, /PLACE_HIT_LAYERS = \[L_AREA_HIT, L_HIT/);
   assert.match(source, /PLACE_HIT_PRIORITY = \[L_AREA_HIT, L_HIT/);
@@ -110,16 +111,16 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
   assert.match(source, /element\.style\.borderRadius = "0"/);
   assert.match(source, /element\.style\.pointerEvents = "none"/);
   assert.match(source, /element\.style\.backgroundColor = feature\.properties\.fill/);
-  assert.match(source, /element\.style\.borderColor = feature\.properties\.border/);
+  assert.match(source, /entry\.element\.style\.borderColor = !markerBorder/);
   assert.match(source, /syncPlaceAreaDomMarkers\(features\);[\s\S]*?const src = MAP\.getSource\(SRC\)/);
   assert.doesNotMatch(source, /addImage|areaSquareImage|sdf:\s*true/, "områdefirkanten skal være en ekte DOM-markør, ikke et spriteikon");
-  assert.match(source, /\[7, 5\.0\]/);
-  assert.match(source, /\[12, 7\.4\]/);
-  assert.match(source, /\[18, 10\.5\]/);
+  assert.match(source, /\[7, 7\.0\]/);
+  assert.match(source, /\[12, 9\.5\]/);
+  assert.match(source, /\[18, 12\.5\]/);
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261027-uppercase-place-names1"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261027-map-labels-area-squares1"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
@@ -207,7 +208,9 @@ test("runtime lager en synlig DOM-firkant over kartcanvaset", () => {
   assert.equal(marker.element.style.pointerEvents, "none");
   assert.equal(marker.element.style.backgroundColor, "#445566");
   assert.equal(marker.element.style.borderColor, "#112233");
-  assert.equal(marker.element.style.width, "6.44px");
-  assert.equal(marker.element.style.height, "6.44px");
+  assert.equal(marker.element.style.width, "8.30px");
+  assert.equal(marker.element.style.height, "8.30px");
+  assert.equal(marker.element.style.borderWidth, "2px");
+  assert.equal(marker.element.style.zIndex, "12");
   assert.equal(layers.has("hg-place-areas-dots"), false, "det gamle symbollaget skal ikke finnes");
 });

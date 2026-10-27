@@ -37,10 +37,10 @@
     const L_AREA_DOTS = "hg-place-areas-dots";
     const L_AREA_LAB = "hg-place-areas-label";
     const PLACE_AREA_MARKER_CLASS = "hg-place-area-marker";
-    const PLACE_AREA_LABEL_MIN_ZOOM = 9.5;
+    const PLACE_AREA_LABEL_MIN_ZOOM = 16;
     const PLACE_DETAIL_MIN_ZOOM = 9.8;
     const PLACE_DETAIL_HIT_MIN_ZOOM = 9.8;
-    const PLACE_DETAIL_LABEL_MIN_ZOOM = 12.7;
+    const PLACE_DETAIL_LABEL_MIN_ZOOM = 16;
     const PLACE_DETAIL_FULL_ZOOM = 12.7;
     const PLACE_SCOPE_AREA = "area";
     const PLACE_MAP_LOD_OVERVIEW = "overview";
@@ -194,7 +194,10 @@
       var _a;
       if (!MAP) return;
       (_a = MAP.resize) == null ? void 0 : _a.call(MAP);
-      if (lastPlaceMarkerFeatures.length) syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
+      if (lastPlaceMarkerFeatures.length) {
+        syncPlaceAreaDomMarkers(lastPlaceMarkerFeatures);
+        syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
+      }
     }
     function getMap() {
       return MAP;
@@ -551,7 +554,7 @@
       ];
     }
     function interpolatePlaceAreaMarkerSide(zoom, isVisited) {
-      const stops = [[7, 5], [9.5, 6.2], [12, 7.4], [16, 9], [18, 10.5]];
+      const stops = [[7, 7], [9.5, 8], [12, 9.5], [16, 11], [18, 12.5]];
       const bonus = isVisited ? Math.max(0.2, Math.min(0.5, 0.2 + (zoom - 7) * (0.3 / 11))) : 0;
       if (zoom <= stops[0][0]) return stops[0][1] + bonus;
       for (let index = 1; index < stops.length; index += 1) {
@@ -591,21 +594,24 @@
           element.setAttribute("aria-hidden", "true");
           element.style.boxSizing = "border-box";
           element.style.borderStyle = "solid";
-          element.style.borderWidth = "1.5px";
+          element.style.borderWidth = "2px";
           element.style.borderRadius = "0";
           element.style.pointerEvents = "none";
-          element.style.zIndex = "4";
+          element.style.zIndex = "12";
           const marker = new maplibregl.Marker({ element, anchor: "center" }).setLngLat(feature.geometry.coordinates).addTo(MAP);
           entry = { marker, element, visited: false };
           placeAreaMarkers.set(id, entry);
         } else {
+          if (entry.element.isConnected === false) entry.marker.addTo(MAP);
           entry.marker.setLngLat(feature.geometry.coordinates);
         }
         entry.visited = feature.properties.visited === 1;
         entry.element.style.backgroundColor = feature.properties.fill;
-        entry.element.style.borderColor = feature.properties.border;
-        entry.element.style.opacity = ["review", "unknown"].includes(feature.properties.coordinateTrust) ? "0.78" : "1";
-        entry.element.style.boxShadow = `0 0 5px ${feature.properties.fill}`;
+        const markerBorder = String(feature.properties.border || "").trim();
+        const markerFill = String(feature.properties.fill || "").trim();
+        entry.element.style.borderColor = !markerBorder || markerBorder.toLowerCase() === markerFill.toLowerCase() ? "#17212a" : markerBorder;
+        entry.element.style.opacity = ["review", "unknown"].includes(feature.properties.coordinateTrust) ? "0.9" : "1";
+        entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 4px rgba(0,0,0,.3)";
       }
       for (const [id, entry] of placeAreaMarkers) {
         if (activeIds.has(id)) continue;
@@ -1006,6 +1012,7 @@
       });
       MAP.addLayer({
         id: L_AREA_LAB,
+        minzoom: PLACE_AREA_LABEL_MIN_ZOOM,
         filter: PLACE_AREA_LOD_FILTER,
         type: "symbol",
         source: SRC,

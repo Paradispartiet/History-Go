@@ -7,6 +7,38 @@
   emne_fauna_ekorn:["squirrel","#bc7645"],emne_fauna_rodstrupe:["bird","#b69a7f","#e17735"],emne_fauna_kjottmeis:["bird","#303d3f","#edd044"],emne_fauna_blaameis:["bird","#4a77ac","#e4d252"],emne_fauna_bokfink:["bird","#657a84","#c5836d"],emne_fauna_graaspurv:["bird","#8a654e","#cbb194"],emne_fauna_skjaere:["bird","#22343a","#fbfaf4"],emne_fauna_kraake:["bird","#333d45","#777c7c"],emne_fauna_fiskemaake:["bird","#8a9ca7","#faf9f3"],emne_fauna_storskarv:["bird","#313d43","#44484d"],
   emne_fauna_bille_sjuprikket_marihone:["ladybird","#da4539"],emne_fauna_honningbie:["bee","#e1b850"],emne_fauna_libeller:["dragonfly","#4b8f96"],emne_fauna_orret:["fish","#96996c","#d4c6a0"],emne_fauna_laks:["fish","#8da9ba","#c5c7c1"]
  };
+ Object.assign(SPEC,{
+  emne_ved_graor:["v2-tree","#73936e","alder"],
+  emne_ved_hengebjoerk:["v2-tree","#82a971","birch"],
+  emne_ved_hestekastanje:["v2-tree","#5c9359","chestnut"],
+  emne_ved_ask:["v2-tree","#88a675","ash"],
+  emne_ved_bok:["v2-tree","#6f9654","beech"],
+  emne_ved_spisslonn:["v2-tree","#74a35b","maple"],
+  emne_ved_hegg:["v2-tree","#74a26c","cherry"],
+  emne_flora_blaveis:["v2-flower","#718fc7","hepatica"],
+  emne_flora_ballblom:["v2-flower","#ebbc42","globeflower"],
+  emne_flora_bekkeblom:["v2-flower","#f2c53b","marsh"],
+  emne_flora_engsoleie:["v2-flower","#e9c23a","buttercup"],
+  emne_flora_hestehov:["v2-flower","#f5cd43","coltsfoot"],
+  emne_flora_markjordbaer:["v2-flower","#fcf8ed","strawberry"],
+  emne_flora_skogfiol:["v2-flower","#8266bd","violet"],
+  emne_flora_tiriltunge:["v2-flower","#e5b42d","trefoil"],
+  emne_fauna_svarttrost:["v2-bird","#292c31","blackbird"],
+  emne_fauna_ringdue:["v2-bird","#88939d","pigeon"],
+  emne_fauna_flaggspett:["v2-bird","#252e32","woodpecker"],
+  emne_fauna_gronnfink:["v2-bird","#859c51","greenfinch"],
+  emne_fauna_graatrost:["v2-bird","#888c82","fieldfare"],
+  emne_fauna_spettmeis:["v2-bird","#6689a0","nuthatch"],
+  emne_fauna_notteskrike:["v2-bird","#bb937c","jay"],
+  emne_fauna_pilfink:["v2-bird","#a57953","treeSparrow"],
+  emne_fauna_staer:["v2-bird","#2b494e","starling"],
+  emne_fauna_jordhumle:["v2-insect","#edc443","earthBumblebee"],
+  emne_fauna_steinhumle:["v2-insect","#282e31","redTailedBumblebee"],
+  emne_fauna_hagehumle:["v2-insect","#e5bc45","gardenBumblebee"],
+  emne_fauna_vanlig_veps:["v2-insect","#e8ba3c","wasp"],
+  emne_fauna_bille_gullbasse:["v2-insect","#40866c","roseChafer"],
+  emne_fauna_skogsmaur:["v2-insect","#8d543c","woodAnt"]
+ });
  const P=(d,fill,extra="")=>`<path d="${d}" fill="${fill}" ${extra}/>`;
  const E=(x,y,rx,ry,fill,rotate=0,extra="")=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}" transform="rotate(${rotate} ${x} ${y})" ${extra}/>`;
  const L=(x,y,x2,y2,color="#49684c",w=4)=>P(`M${x} ${y}L${x2} ${y2}`,"none",`stroke="${color}" stroke-width="${w}" stroke-linecap="round"`);
@@ -81,10 +113,128 @@
   for(let i=0;i<3;i++)art+=L(290,226+i*28,231,238+i*31,col,4)+L(310,226+i*28,368,238+i*31,col,4);
   return art;
  }
+
+/* Batch 02: individual traits for 30 more common Norwegian taxa.
+ * Educational illustrations, not diagnostic identification photography. */
+function v2Tree(kind,green){
+ let a=P("M0 380Q300 359 600 382V420H0Z","#c5d8bc");
+ const pale=kind==="birch";
+ a+=P("M281 384Q292 297 283 167L309 132Q305 260 321 383Z",pale?"#eeeae0":kind==="beech"?"#999b91":"#846950",'stroke="#665c4e" stroke-width="4"');
+ if(kind==="birch")for(let i=0;i<14;i++)a+=L(289+(i%3)*3,178+i*13,307,180+i*13,"#595c57",2.4);
+ const b=kind==="ash"?"#79634c":"#80654b";
+ for(const [x,y,z,w] of [[296,264,202,203],[302,253,391,183],[298,219,265,146],[304,209,348,131],[290,303,225,249],[310,300,395,257]])a+=P("M"+x+" "+y+"Q"+z+" "+w+" "+z+" "+(w-22),"none",'stroke="'+b+'" stroke-width="8"');
+ if(kind==="birch"){
+  for(let i=0;i<60;i++){const x=180+(i*47)%250,y=106+(i*43)%158;
+   a+=E(x,y,14,8,i%3===0?"#acc38b":green,(i*31)%170);
+   if(i%4===0)a+=L(x,y,x+4,y+35,"#867557",1.8);}
+ }else if(kind==="ash"){
+  for(let i=0;i<29;i++){const x=184+(i*79)%238,y=108+(i*43)%151;
+   for(let j=0;j<5;j++)a+=E(x+(j%2?10:-10),y+j*7,10,5,i%3?"#65985c":green,(j%2?40:-40));}
+ }else if(kind==="maple"){
+  for(let i=0;i<39;i++){const x=176+(i*59)%255,y=106+(i*41)%166;
+   a+=P("M"+x+" "+(y-19)+"l7 9 14-6-5 14 10 11-16 0-10 14-5-13-17-1 12-10-4-13 15 5Z",i%4?"#78a663":green);}
+ }else{
+  for(let i=0;i<60;i++){const x=172+(i*61)%260,y=109+(i*47)%170;
+   a+=E(x,y,kind==="beech"?24:20,kind==="beech"?15:13,i%4===0?"#a8b87b":green,(i*19)%180);}
+ }
+ if(kind==="alder")for(let i=0;i<16;i++){const x=198+(i*83)%207,y=163+(i*31)%119;a+=E(x,y,8,11,"#5f6242",25)+E(x+10,y+10,4,13,"#a99965",36);}
+ if(kind==="chestnut")for(let i=0;i<18;i++){const x=195+(i*73)%205,y=127+(i*29)%138;a+=E(x,y,5,13,"#f5e9c9",15)+E(x+5,y-6,3,8,"#ffffff",20);}
+ if(kind==="cherry")for(let i=0;i<17;i++){const x=187+(i*79)%218,y=134+(i*43)%135;a+=L(x,y,x+5,y+36,"#829166",2);for(let j=0;j<4;j++)a+=E(x+(j%2?6:-6),y+j*9,5,5,"#f6f6e8");}
+ return a;
+}
+function v2Flower(kind,color){
+ let a=P("M0 387Q300 370 600 389V420H0Z","#c9dbc3");
+ for(let j=0;j<3;j++){
+  const x=190+j*111, y=[181,121,205][j],sc=[1,.8,.68][j];
+  a+=P("M"+x+" "+y+"Q"+(x-24)+" 320 "+(x+6)+" 393","none",'stroke="#548451" stroke-width="6"');
+  a+=E(x-32,310,31,12,"#75a36b",-30)+E(x+31,339,29,12,"#6e9d65",30);
+  if(kind==="globeflower"){
+   for(let k=0;k<11;k++){const t=k*Math.PI*2/11;a+=E(x+Math.sin(t)*14*sc,y+Math.cos(t)*14*sc,17*sc,23*sc,k%3?"#ebbe47":"#f6d361",t*180/Math.PI);}
+  }else if(kind==="coltsfoot"){
+   for(let k=0;k<29;k++){const t=k*Math.PI*2/29;a+=E(x+Math.sin(t)*24*sc,y-Math.cos(t)*24*sc,5*sc,22*sc,"#f4cb37",t*180/Math.PI);}
+  }else if(kind==="trefoil"){
+   for(let k=0;k<6;k++){const t=k*Math.PI*2/6;a+=E(x+Math.sin(t)*19*sc,y-Math.cos(t)*18*sc,11*sc,16*sc,k%3?"#e5b837":"#eccb62",t*180/Math.PI);}
+  }else{
+   const n=kind==="buttercup"||kind==="marsh"||kind==="strawberry"||kind==="violet"?5:7;
+   for(let k=0;k<n;k++){const t=k*Math.PI*2/n;a+=E(x+Math.sin(t)*20*sc,y-Math.cos(t)*19*sc,13*sc,19*sc,kind==="strawberry"?"#fffdf4":color,t*180/Math.PI,'stroke="#c4ae70" stroke-width="1"');}
+  }
+  a+=E(x,y,kind==="globeflower"?5:12,kind==="globeflower"?6:12,kind==="hepatica"?"#eef0e6":kind==="violet"?"#f1d16f":"#d0a53a");
+  if(kind==="marsh")a+=E(x-42,326,30,22,"#709c59",-20)+E(x+32,322,29,21,"#659451",17);
+  if(kind==="violet")a+=P("M"+(x-14)+" "+(y+13)+"Q"+x+" "+(y+45)+" "+(x+9)+" "+(y+17)+"Z","#f0df92");
+  if(kind==="strawberry"){a+=E(x+41,282,12,15,"#c84c3b");for(let k=0;k<8;k++)a+=E(x+37+(k%3)*5,276+Math.floor(k/3)*7,1.5,1.5,"#f8d67b");}
+ }
+ return a;
+}
+function v2Bird(kind,color){
+ const wood=kind==="woodpecker";
+ let a=wood?P("M360 38Q345 240 363 420L416 420Q392 219 400 38Z","#8d755d",'stroke="#77634e" stroke-width="4"'):
+    P("M60 367Q300 351 540 375","none",'stroke="#937b5b" stroke-width="13"');
+ const cx=wood?316:306,cy=wood?227:229;
+ a+=P("M"+(cx+45)+" "+(cy+10)+"Q450 236 469 338L"+(cx+48)+" "+(cy+71)+"Z",color,'stroke="#4c5350" stroke-width="4"');
+ a+=E(cx,cy,wood?62:119,wood?118:80,color,wood?-23:-10,'stroke="#515850" stroke-width="4"');
+ a+=E(cx+29,cy+14,wood?42:81,wood?86:43,kind==="pigeon"?"#b48d98":kind==="fieldfare"?"#c7b1a0":color,wood?-25:-22);
+ const hx=wood?272:191,hy=wood?129:169;
+ a+=E(hx,hy,wood?43:55,wood?45:52,color,0,'stroke="#45504a" stroke-width="3"');
+ a+=P("M"+(hx-47)+" "+(hy+3)+"l-48 16 49 12Z",kind==="blackbird"||kind==="starling"?"#dfac3d":"#a28a62",'stroke="#6d6846" stroke-width="2"');
+ a+=E(hx-16,hy-11,6.6,6.6,"#151f20")+E(hx-18,hy-13,2.2,2.2,"#fff");
+ if(!wood){a+=L(cx-27,cy+69,cx-39,354,"#6b6551",5)+L(cx+38,cy+64,cx+43,354,"#6b6551",5);}
+ else{a+=L(cx+48,cy+55,385,270,"#77705b",6)+L(cx+47,cy-14,394,194,"#77705b",6);}
+ if(kind==="blackbird")a+=E(309,247,83,42,"#22272d",-16);
+ if(kind==="pigeon")a+=P("M217 170Q237 195 247 202","none",'stroke="#f3eee2" stroke-width="12"')+E(231,181,13,7,"#5b947f",-10);
+ if(wood){a+=P("M290 103Q315 83 333 105L316 129Z","#d3423c");a+=E(311,207,23,80,"#eee9dd",-25);a+=E(328,240,21,66,"#262e31",-25);}
+ if(kind==="greenfinch"){a+=P("M285 241Q343 253 377 276","none",'stroke="#ead856" stroke-width="17"');a+=E(248,268,30,18,"#d4cb6c",-20);}
+ if(kind==="fieldfare"){a+=E(195,161,29,26,"#8799a8");for(let i=0;i<12;i++)a+=E(244+(i*47)%114,255+(i*19)%32,3.5,5,"#67564c");}
+ if(kind==="nuthatch"){a+=P("M149 162Q194 146 235 160","none",'stroke="#313b3a" stroke-width="11"');a+=E(281,244,75,40,"#cba987",-17);}
+ if(kind==="jay"){a+=P("M302 201L361 238 336 272 276 255Z","#4382a4");for(let i=0;i<6;i++)a+=L(295+i*8,216+i*3,310+i*8,238+i*4,"#272e32",4);a+=P("M173 135l24-26 12 29Z","#313431");}
+ if(kind==="treeSparrow"){a+=P("M146 143Q193 105 234 148Z","#79513e");a+=E(216,214,11,15,"#303331");a+=E(289,243,73,42,"#c4aa87",-16);}
+ if(kind==="starling")for(let i=0;i<30;i++)a+=E(247+(i*37)%133,193+(i*19)%89,2.8,3.6,i%3?"#f2e7cb":"#b2cbba");
+ return a;
+}
+function v2Insect(kind,color){
+ const ant=kind==="woodAnt",beetle=kind==="roseChafer",wasp=kind==="wasp";
+ let a=P("M0 383Q300 367 600 385V420H0Z","#d6dfc9");
+ if(ant){
+  a+=E(384,230,79,60,"#83533d")+E(289,224,54,41,"#a75d3f")+E(205,220,43,38,"#704236");
+  for(let i=0;i<3;i++){a+=L(277+i*38,247,208+i*20,321+i*11,"#573d32",6);a+=L(290+i*36,238,386+i*25,318+i*10,"#573d32",6);}
+  a+=L(179,197,151,164,"#573d32",4)+L(199,192,213,156,"#573d32",4);a+=E(184,212,5,5,"#202521");return a;
+ }
+ if(beetle){
+  a+=E(302,237,111,117,color,0,'stroke="#385c49" stroke-width="7"');
+  a+=E(302,150,68,43,"#39765a")+L(302,173,302,341,"#315b4c",6);
+  a+=E(266,228,35,69,"#66aa7a",-12,'opacity=".58"')+E(335,232,29,70,"#89b983",12,'opacity=".4"');
+  for(let i=0;i<3;i++){a+=L(209,184+i*56,157,161+i*63,"#426451",6);a+=L(398,184+i*56,449,161+i*63,"#426451",6);}
+  a+=L(267,124,242,97,"#355746",4)+L(342,124,360,96,"#355746",4);return a;
+ }
+ if(wasp){
+  a+=E(352,235,112,57,"#efc849",-5,'stroke="#514a3d" stroke-width="5"');
+  for(let i=0;i<4;i++)a+=P("M"+(310+i*29)+" 183Q"+(302+i*29)+" 228 "+(310+i*29)+" 282","none",'stroke="#373a35" stroke-width="12"');
+  a+=E(257,222,54,47,"#313b37")+E(185,210,41,40,"#dfbf55");
+  a+=P("M463 233L516 244 468 254Z","#48433a");
+ }else{
+  a+=E(336,231,120,70,kind==="redTailedBumblebee"?"#303437":"#3b3931",-5,'stroke="#514a40" stroke-width="5"');
+  const band=kind==="gardenBumblebee"?2:1;
+  for(let i=0;i<band;i++)a+=P("M"+(282+i*48)+" 164Q"+(266+i*48)+" 230 "+(281+i*48)+" 297","none",'stroke="#e5bb43" stroke-width="26"');
+  a+=E(416,240,28,55,kind==="redTailedBumblebee"?"#c35c3f":"#ecece0",0);
+  a+=E(232,214,46,48,kind==="redTailedBumblebee"?"#303437":"#393f39");
+ }
+ a+=E(295,150,83,25,"#e2f1ef",-26,'opacity=".8" stroke="#9ebcbb" stroke-width="3"');
+ a+=E(355,149,77,25,"#e1f0ec",21,'opacity=".79" stroke="#9ebcbb" stroke-width="3"');
+ for(let i=0;i<3;i++){a+=L(276+i*38,279,248+i*44,329,"#46413b",5);a+=L(310+i*40,278,330+i*42,328,"#46413b",5);}
+ a+=E(wasp?171:213,205,5,5,"#202b29");a+=L(207,182,194,161,"#42433a",3);
+ return a;
+}
+function v2Drawing(type,color,kind){
+ if(type==="v2-tree")return v2Tree(kind,color);
+ if(type==="v2-flower")return v2Flower(kind,color);
+ if(type==="v2-bird")return v2Bird(kind,color);
+ if(type==="v2-insect")return v2Insect(kind,color);
+ return "";
+}
+
  function resolve(id){
   const s=SPEC[String(id)];if(!s)return "";
   const [type,color,detail]=s;
-  const drawing=["fir","pine","juniper","birch","rowan","aspen","oak","willow","linden"].includes(type)?tree(type,color):["anemone","daisy","dandelion","fireweed","heather","clover"].includes(type)?flower(type,color):fauna(type,color,detail,String(id));
+  const drawing=type.startsWith("v2-")?v2Drawing(type,color,detail):["fir","pine","juniper","birch","rowan","aspen","oak","willow","linden"].includes(type)?tree(type,color):["anemone","daisy","dandelion","fireweed","heather","clover"].includes(type)?flower(type,color):fauna(type,color,detail,String(id));
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="600" height="420" viewBox="0 0 600 420"><defs><linearGradient id="paper" x2="0" y2="1"><stop stop-color="#faf7ec"/><stop offset="1" stop-color="#e0e9da"/></linearGradient></defs><rect width="600" height="420" fill="url(#paper)"/><circle cx="481" cy="80" r="60" fill="#ead9ae" opacity=".2"/><path d="M0 375Q155 344 315 371T600 365V420H0Z" fill="#c6d9bf" opacity=".4"/><g stroke-linecap="round" stroke-linejoin="round">${drawing}</g></svg>`;
   return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg);
  }

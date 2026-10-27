@@ -7,7 +7,7 @@ const read = path => fs.readFileSync(new URL(path, root), "utf8");
 const sandbox = { window: {} };
 vm.runInNewContext(read("js/ui/nature-illustrations.js"), sandbox, { timeout: 3000 });
 const artist = sandbox.window.HG_NATURE_ILLUSTRATIONS;
-assert.equal(artist.count, 30, "expected 30 first-batch original illustrations");
+assert.equal(artist.count, 60, "expected 60 illustrations across two batches");
 const index = JSON.parse(read("data/runtime/nature-all.json"));
 const ids = new Set();
 for (const files of Object.values(index.groups)) {
@@ -21,7 +21,7 @@ for (const files of Object.values(index.groups)) {
 }
 const source = read("js/ui/nature-illustrations.js");
 const references = [...source.matchAll(/\bemne_(?:flora|ved|fauna)_[\p{L}0-9_]+(?=\s*:)/gu)].map(m=>m[0]);
-assert.equal(new Set(references).size, 30);
+assert.equal(new Set(references).size, 60);
 for (const id of references) {
  assert(ids.has(id), "illustration references unknown taxon: " + id);
  assert(artist.has(id), "missing art: " + id);
@@ -32,12 +32,14 @@ for (const id of references) {
  assert(!svg.includes("<script"), id + ": executable image code");
 }
 assert.equal(artist.resolve("unknown"), "");
-assert.equal(references.filter(id => id.startsWith("emne_fauna_")).length, 15);
-assert.equal(references.filter(id => !id.startsWith("emne_fauna_")).length, 15);
+assert.equal(new Set(references.map(id=>artist.resolve(id))).size, 60, "illustration assets must be unique");
+assert.match(read("js/ui/nature-explorer.js"), /const art=drawings\?\.resolve/, "illustrations must take display priority");
+assert.equal(references.filter(id => id.startsWith("emne_fauna_")).length, 30);
+assert.equal(references.filter(id => !id.startsWith("emne_fauna_")).length, 30);
 for (const kind of ["flora", "fauna"]) {
  const html=read("finn-" + kind + ".html");
  assert(html.includes("js/ui/nature-illustrations.js"));
  assert(html.includes("data-filter=\"illustrated\""));
  assert(html.indexOf("nature-illustrations.js") < html.indexOf("nature-explorer.js"));
 }
-console.log("Nature atlas illustrations: 30/30 referenced and renderable; both pages wired.");
+console.log("Nature atlas illustrations: 60/60 referenced and renderable; both pages wired.");

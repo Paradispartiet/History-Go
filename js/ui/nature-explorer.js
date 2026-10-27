@@ -19,9 +19,11 @@ function collected(){
  catch{return new Set();}
 }
 function photo(a){
+ const art=drawings?.resolve(String(a.id));
+ if(art)return art;
  const src=a.image || a.imageCard || a.img;
  if(typeof src==="string" && /^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src))return src;
- return drawings?.resolve(String(a.id)) || "";
+ return "";
 }
 function illustrated(a){return Boolean(drawings?.has(String(a.id)));}
 function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",icon));}
