@@ -1,0 +1,26 @@
+name: Oslo T-S Tøyen torg QuizCard parity
+on:
+  push:
+    branches: [content/oslo-ts-bolk03-toyen-torg-card-parity-20261028]
+    paths:
+      - '.github/workflows/oslo-ts-toyen-torg-parity.yml'
+      - 'data/quizcards/by/topp10_by_kort_batch1.json'
+      - 'tests/oslo-ts-toyen-torg-card-parity.test.mjs'
+  pull_request:
+    paths:
+      - 'data/quizcards/by/topp10_by_kort_batch1.json'
+      - 'tests/oslo-ts-toyen-torg-card-parity.test.mjs'
+permissions:
+  contents: read
+jobs:
+  targeted:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/oslo-ts-toyen-torg-card-parity.test.mjs
