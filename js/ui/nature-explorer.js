@@ -7,6 +7,10 @@ if (!["fauna","flora"].includes(kind)) return;
 const icon = kind === "fauna" ? "🐾" : "🌿";
 const drawings = window.HG_NATURE_ILLUSTRATIONS;
 const floraPhotos = kind === "flora" ? window.HG_NATURE_FLORA_PHOTOS : null;
+// Never equate a technically valid SVG with a botanically verified illustration.
+// Add an ID only after species-level reference review (leaf, flower, growth form)
+// and a separate visual acceptance. Until then, use a documented photograph.
+const approvedFloraIllustrations = new Set();
 const grid=document.getElementById("natureGrid"),stats=document.getElementById("natureStats"),count=document.getElementById("natureCount"),
  search=/** @type {HTMLInputElement} */ (document.getElementById("natureSearch")),message=document.getElementById("natureMessage"),more=document.getElementById("natureMore"),
  dialog=/** @type {HTMLDialogElement} */ (document.getElementById("natureDialog")),details=document.getElementById("natureDetails");
@@ -20,16 +24,22 @@ function collected(){
  catch{return new Set();}
 }
 function media(a){
- const documented = floraPhotos?.get(String(a.id));
- const art=drawings?.resolve(String(a.id));
+ const id=String(a.id);
+ const documented = floraPhotos?.get(id);
+ const art=(kind!=="flora"||approvedFloraIllustrations.has(id))?drawings?.resolve(id):"";
  if(documented)return {...documented,fallback:art||""};
  if(art)return {src:art,type:"illustration"};
  const src=a.image || a.imageCard || a.img;
  if(typeof src==="string" && /^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src))return {src,type:"catalog"};
  return null;
 }
-function illustrated(a){return Boolean(drawings?.has(String(a.id))||floraPhotos?.get(String(a.id)));}
-function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",icon));}
+function illustrated(a){
+ const id=String(a.id);
+ const approvedArt=(kind!=="flora"||approvedFloraIllustrations.has(id))&&drawings?.has(id);
+ const src=a.image || a.imageCard || a.img;
+ return Boolean(floraPhotos?.get(id)||approvedArt||(typeof src==="string"&&/^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src)));
+}
+function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",kind==="flora"?"Foto utilgjengelig":icon));}
 function appendImage(parent,source,alt){
  const img=node("img");img.alt=alt;img.loading="lazy";
  let usingFallback=false;
@@ -72,6 +82,8 @@ function openArt(a){
    wrap.appendChild(node("p","ne-image-credit","Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
   }
   details.appendChild(wrap);
+ }else if(kind==="flora"){
+  details.appendChild(node("p","ne-no-photo","Artsfoto mangler. Ingen illustrasjon er godkjent for denne arten ennå."));
  }
  section("Kjennetegn",a.kjennetegn);
  section("Leveområder",a.habitat?.biotop||a.bykontekst?.typiske_steder);
@@ -88,9 +100,10 @@ function openArt(a){
 }
 function card(a,have){
  const b=node("button","ne-card");b.type="button";b.setAttribute("aria-label",name(a)+(have?", samlet":", ikke samlet"));
- const image=node("div","ne-photo",icon);
+ const image=node("div","ne-photo",kind==="flora"?"":icon);
  const imageInfo=media(a);
  if(imageInfo){image.textContent="";appendImage(image,imageInfo,name(a));}
+ else if(kind==="flora") image.appendChild(node("span","ne-image-fallback","Foto mangler"));
  if(imageInfo&&(imageInfo.type==="photo"||imageInfo.type==="illustration"))
   image.appendChild(node("span","ne-image-label",imageInfo.type==="photo"?"Artsfoto":"Illustrasjon"));
  b.appendChild(image);
@@ -115,7 +128,7 @@ function render(){
  grid.replaceChildren(fragment);
  message.hidden=matches.length>0;
  if(!matches.length)message.textContent=activeFilter==="collected"&&!term
-  ?"Ingen arter samlet ennå. Utforsk steder og ta quiz i History Go.":activeFilter==="illustrated"&&!term ? "Ingen illustrasjoner er publisert ennå.":"Ingen arter passer søket.";
+  ?"Ingen arter samlet ennå. Utforsk steder og ta quiz i History Go.":activeFilter==="illustrated"&&!term ? "Ingen arter med godkjente bilder ennå.":"Ingen arter passer søket.";
  more.hidden=matches.length<=limit;
 }
 async function load(){

@@ -86,6 +86,10 @@ for(const [id,taxon] of expected){
 assert.equal(photos.get("emne_flora_other"),null);
 const explorer=read("js/ui/nature-explorer.js");
 assert(explorer.indexOf("const documented = floraPhotos?.get")<explorer.indexOf('if(art)return {src:art,type:"illustration"}'),"documented photos must take priority");
+assert.match(explorer,/const approvedFloraIllustrations = new Set\(\);/,"flora drawings cannot be shown before manual species QA");
+assert.match(explorer,/kind!=="flora"\|\|approvedFloraIllustrations\.has\(id\)/,"unapproved SVGs must not appear or be used as photo fallback");
+assert.match(explorer,/kind==="flora"\?"Foto utilgjengelig":icon/,"unavailable photo must show a neutral placeholder");
+assert.match(explorer,/else if\(kind==="flora"\) image\.appendChild/,"missing photos must not display generic species drawings");
 assert.match(explorer,/if\(!usingFallback&&source\.fallback\)/,"photo failures must fall back to existing SVG");
 assert.match(explorer,/imageInfo\.creator/,"photo credit missing");
 assert.match(explorer,/imageInfo\.licenseUrl/,"license link missing");
