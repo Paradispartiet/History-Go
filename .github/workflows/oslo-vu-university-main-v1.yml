@@ -24,7 +24,6 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Generate canonical Knowledge
         run: |
-          node scripts/build-quiz-production-context.mjs --category vitenskap --target universitetets_gamle_hovedbygning --output data/quiz/production_context/vitenskap/universitetets_gamle_hovedbygning.json
           npm run knowledge:canonical:write
           node scripts/sync-university-main-quizcard.mjs
       - name: Generate runtime and Fagverk release
@@ -37,7 +36,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/quiz/production_context/vitenskap/universitetets_gamle_hovedbygning.json data/quiz/vitenskap/universitetets_gamle_hovedbygning_sets.json data/quizcards/vitenskap/universitetets_gamle_hovedbygning_quizcard_v1.json
+          git add data/quiz/vitenskap/universitetets_gamle_hovedbygning_sets.json data/quizcards/vitenskap/universitetets_gamle_hovedbygning_quizcard_v1.json
           git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/runtime/place-open/universitetets_gamle_hovedbygning.json data/fagverk/fagverk_release.json
           if ! git diff --cached --quiet; then git commit -m "University main buildings: generated Knowledge and runtime"; fi
           git push origin HEAD:content/oslo-vu-universitetets-hovedbygning-v1-20261028
