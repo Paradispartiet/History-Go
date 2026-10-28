@@ -1,0 +1,1209 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "grini_fangeleir",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-10-28",
+  "profile_hint": "major_10x7",
+  "review_note": "Museet, SNL, Nasjonalarkivet, Fanger.no og lokalhistorisk dokumentasjon er lest og sammenholdt; spesifikke fotolisens-/personidentiteter inngår ikke i quizpåstandene. Ingen fullquiz er ennå materialisert; dette er input/source_brief, ikke et ferdig output.",
+  "sources": {
+    "mia": {
+      "url": "https://mia.no/grinimuseet/om-grini-fangeleir",
+      "source_type": "museum",
+      "review_status": "reviewed",
+      "review_note": "Kildesiden er kontrollert for opprettelse, leirbygninger, overbelegg, kvinner, leirarbeid, Haft, Fallskjermen, døde og etterbruk. Senere museumsformidling, ikke samtidig register."
+    },
+    "snl": {
+      "url": "https://snl.no/Grini_-_tysk_fangeleir",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Forfattet historisk oversikt, kontrollert for fangetall, bygningshistorie, utkommandoer, ungdomsavdeling, sikkerhetspoliti, motstand, deportasjoner, frigjøring og etterkrigstid."
+    },
+    "arkiv": {
+      "url": "https://www.nasjonalarkivet.no/nordmenn-i-fangenskap-under-andre-verdenskrig/",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Primærarkivets veiledning til to fangeprotokollrekker, registreringsfelt og manglende bind 13931–16200. Registerinnføring er ikke lik samtidig antall personer."
+    },
+    "fanger": {
+      "url": "https://www.fanger.no/prisoncamps/672",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Fangehistorisk database kontrollert for varierende opphold, transfer mellom steder og etterkrigsbruk, sammenholdt med MiA/SNL."
+    },
+    "lokal": {
+      "url": "https://lokalhistoriewiki.no/Grini_fangeleir",
+      "source_type": "local_history",
+      "review_status": "reviewed",
+      "review_note": "Lokal historisk framstilling kontrollert for den flyttede museumskonteksten og lokal topografi; samtidige bilder må granskes per post."
+    },
+    "forsk": {
+      "url": "https://ntnuopen.ntnu.no/ntnu-xmlui/bitstream/handle/11250/3090395/ht.102.1.3.pdf?isAllowed=y&sequence=1",
+      "source_type": "scholarly",
+      "review_status": "reviewed",
+      "review_note": "Elise Barring Berggren om Grini, leirens sikkerhetspolitiske styring og fangenskapet. Brukes bare på punkter bekreftet ved synlig kildeutdrag; detaljanalyse holdes tilbake."
+    },
+    "museum": {
+      "url": "https://mia.no/grinimuseet/en/grini-museum",
+      "source_type": "museum",
+      "review_status": "reviewed",
+      "review_note": "MiA beskriver offentlig Grinimuseum, autentisk flyttet fangebrakke og fysisk forskjell fra den opprinnelige leirgrensen."
+    }
+  },
+  "selected_curriculum": {
+    "emne_ids": [
+      "em_his_fangenskap_kontroll",
+      "em_his_okkupasjon_motstand",
+      "em_his_minnesteder_historiebruk",
+      "em_his_rett_politi_fengsel"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_kronologisk_rekonstruksjon"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "profile_decision": {
+    "profile": "major",
+    "set_count": 10,
+    "questions_per_set": 7,
+    "justification": "Ti selvstendige kildebårne læringsspor: etablering, utbygging, fangepopulasjon/register, arbeid, levevilkår, straff/deportasjon, kunnskap/motstand, frigjøring, etterbruk og kildekritisk syntese. 70 ulike claims er gjennomgått og knyttet til konkrete kilder. Profile confirmed først etter ordinær kontekstbygging og quiz-audit."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/grini_fangeleir_sets.json",
+      "data/fag/fag_manifest.json"
+    ],
+    "active_before": {
+      "categoryId": "historie",
+      "set_count": 1,
+      "question_count": 3
+    },
+    "decisions": [
+      "Eksisterende spørsmål 1 om type leir har relevant, kildebåret kjerne; omskrives fra enkle umulige distraktorer.",
+      "Eksisterende spørsmål 2 om politiske fanger har relevant kjerne og beholdes i ny kildeledet form.",
+      "Eksisterende spørsmål 3 om minnestedets betydning flyttes til etterkrigs-/kildebrukssporet; fjern generisk pedagogisk formulering.",
+      "Vurder om eldre Knowledge-enheter faktisk kan gjenbrukes før quizpakken erstattes; ikke generer fiktive Knowledge-ID-er."
+    ],
+    "knowledge_migration": {
+      "status": "pending",
+      "retained_rule": "Eksisterende tre Knowledge-koblinger skal beholdes eller migreres eksplisitt gjennom canonical synk; ikke marker fullført på forhånd."
+    }
+  },
+  "held_back_candidates": [
+    "Biografiske spørsmål der direkte stedlig personankring ikke kan verifiseres.",
+    "Fotospørsmål som bruker et ukontrollert foto som eksakt hendelsesbevis.",
+    "Påstander om at 786 døde på selve Grini-leiren.",
+    "Synlig fag-/teorinavn i de første 14 vanlige spørsmålene.",
+    "Objekter/Brands som ennå mangler identitets- og lisensaudit."
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_grini_fangeleir_set_1",
+      "order": 1,
+      "phase": "opening",
+      "learning_job": "Etablering, sted og kontroll",
+      "claim_ids": [
+        "claim_grini_quiz_01",
+        "claim_grini_quiz_02",
+        "claim_grini_quiz_03",
+        "claim_grini_quiz_04",
+        "claim_grini_quiz_05",
+        "claim_grini_quiz_06",
+        "claim_grini_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_grini_fangeleir_set_2",
+      "order": 2,
+      "phase": "middle",
+      "learning_job": "Brakker, gjerder og leirrom",
+      "claim_ids": [
+        "claim_grini_quiz_08",
+        "claim_grini_quiz_09",
+        "claim_grini_quiz_10",
+        "claim_grini_quiz_11",
+        "claim_grini_quiz_12",
+        "claim_grini_quiz_13",
+        "claim_grini_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_grini_fangeleir_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "learning_job": "Hvem fangene var og hva arkivet forteller",
+      "claim_ids": [
+        "claim_grini_quiz_15",
+        "claim_grini_quiz_16",
+        "claim_grini_quiz_17",
+        "claim_grini_quiz_18",
+        "claim_grini_quiz_19",
+        "claim_grini_quiz_20",
+        "claim_grini_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_grini_fangeleir_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "learning_job": "Arbeid, produksjon og utkommandoer",
+      "claim_ids": [
+        "claim_grini_quiz_22",
+        "claim_grini_quiz_23",
+        "claim_grini_quiz_24",
+        "claim_grini_quiz_25",
+        "claim_grini_quiz_26",
+        "claim_grini_quiz_27",
+        "claim_grini_quiz_28"
+      ]
+    },
+    {
+      "set_id": "historie_grini_fangeleir_set_5",
+      "order": 5,
+      "phase": "bridge",
+      "learning_job": "Levevilkår, kjønnsdeling og unge fanger",
+      "claim_ids": [
+        "claim_grini_quiz_29",
+        "claim_grini_quiz_30",
+        "claim_grini_quiz_31",
+        "claim_grini_quiz_32",
+        "claim_grini_quiz_33",
+        "claim_grini_quiz_34",
+        "claim_grini_quiz_35"
+      ]
+    },
+    {
+      "set_id": "historie_grini_fangeleir_set_6",
+      "order": 6,
+      "phase": "bridge",
+      "learning_job": "Straff, isolasjon og deportasjon",
+      "claim_ids": [
+        "claim_grini_quiz_36",
+        "claim_grini_quiz_37",
+        "claim_grini_quiz_38",
+        "claim_grini_quiz_39",
+        "claim_grini_quiz_40",
+        "claim_grini_quiz_41",
+        "claim_grini_quiz_42"
+      ]
+    },
+    {
+      "set_id": "historie_grini_fangeleir_set_7",
+      "order": 7,
+      "phase": "bridge",
+      "learning_job": "Kunnskap, motstand og aktører",
+      "claim_ids": [
+        "claim_grini_quiz_43",
+        "claim_grini_quiz_44",
+        "claim_grini_quiz_45",
+        "claim_grini_quiz_46",
+        "claim_grini_quiz_47",
+        "claim_grini_quiz_48",
+        "claim_grini_quiz_49"
+      ]
+    },
+    {
+      "set_id": "historie_grini_fangeleir_set_8",
+      "order": 8,
+      "phase": "final",
+      "learning_job": "Frigjøringen i mai 1945",
+      "claim_ids": [
+        "claim_grini_quiz_50",
+        "claim_grini_quiz_51",
+        "claim_grini_quiz_52",
+        "claim_grini_quiz_53",
+        "claim_grini_quiz_54",
+        "claim_grini_quiz_55",
+        "claim_grini_quiz_56"
+      ]
+    },
+    {
+      "set_id": "historie_grini_fangeleir_set_9",
+      "order": 9,
+      "phase": "final",
+      "learning_job": "Ilebu, Ila og minnet om Grini",
+      "claim_ids": [
+        "claim_grini_quiz_57",
+        "claim_grini_quiz_58",
+        "claim_grini_quiz_59",
+        "claim_grini_quiz_60",
+        "claim_grini_quiz_61",
+        "claim_grini_quiz_62",
+        "claim_grini_quiz_63"
+      ]
+    },
+    {
+      "set_id": "historie_grini_fangeleir_set_10",
+      "order": 10,
+      "phase": "final",
+      "learning_job": "Kilder, skala og historisk ansvar",
+      "claim_ids": [
+        "claim_grini_quiz_64",
+        "claim_grini_quiz_65",
+        "claim_grini_quiz_66",
+        "claim_grini_quiz_67",
+        "claim_grini_quiz_68",
+        "claim_grini_quiz_69",
+        "claim_grini_quiz_70"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_grini_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grini lå ved Ila i Bærum og var den største tyske fangeleiren i Norge under okkupasjonen.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 1
+    },
+    {
+      "claim_id": "claim_grini_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grini ble etablert som tysk politifangeleir i juni 1941.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 1
+    },
+    {
+      "claim_id": "claim_grini_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den første leirbygningen var planlagt som et norsk kvinnefengsel før okkupasjonen.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel",
+      "set_number": 1
+    },
+    {
+      "claim_id": "claim_grini_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grini ble drevet under det tyske sikkerhetspolitiets kontroll.",
+      "source_ids": [
+        "snl",
+        "forsk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel",
+      "set_number": 1
+    },
+    {
+      "claim_id": "claim_grini_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nesten 20 000 mennesker ble registrert på Grini i krigsårene, ikke samtidig.",
+      "source_ids": [
+        "snl",
+        "arkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 1
+    },
+    {
+      "claim_id": "claim_grini_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Flertallet av Grini-fangene var norske politiske fanger.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 1
+    },
+    {
+      "claim_id": "claim_grini_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grinis opprinnelige fengselsbygning er bevart inne på dagens Ila fengselsområde, ikke i dagens Grinimuseum.",
+      "source_ids": [
+        "mia",
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "set_number": 1
+    },
+    {
+      "claim_id": "claim_grini_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det første fangebelegget kunne innkvarteres i det nesten ferdige Ila-fengselet.",
+      "source_ids": [
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel",
+      "set_number": 2
+    },
+    {
+      "claim_id": "claim_grini_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fangetallet passerte tusen i 1942 og gjorde en større utvidelse nødvendig.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 2
+    },
+    {
+      "claim_id": "claim_grini_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Etter rydding av skog ble omkring tretti eller flere brakker reist ved Grini fra 1942.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 2
+    },
+    {
+      "claim_id": "claim_grini_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Brakkene ble brukt til innkvartering, verksteder, depoter og sykestuer.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 2
+    },
+    {
+      "claim_id": "claim_grini_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Grinis indre leir hadde et elektrisk piggtrådgjerde og ni vakttårn.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel",
+      "set_number": 2
+    },
+    {
+      "claim_id": "claim_grini_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "På det meste var rundt 5400 mennesker internert samtidig på Grini.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 2
+    },
+    {
+      "claim_id": "claim_grini_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det høyeste samtidige fangetallet inkluderte omkring 600 kvinner.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 2
+    },
+    {
+      "claim_id": "claim_grini_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Gjennom krigsårene var omkring 2000 av de registrerte Grini-fangene kvinner.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 3
+    },
+    {
+      "claim_id": "claim_grini_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grini hadde fanger fra flere nasjoner, blant annet Polen, Sovjetunionen og Frankrike.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 3
+    },
+    {
+      "claim_id": "claim_grini_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Ikke alle fangene satt for politisk motstand; fra 1942 fantes også et mindre innslag av kriminalfanger.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 3
+    },
+    {
+      "claim_id": "claim_grini_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grini-fanger kom fra ulike deler av Norge og fra mange yrkes- og samfunnsgrupper.",
+      "source_ids": [
+        "snl",
+        "arkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 3
+    },
+    {
+      "claim_id": "claim_grini_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grinis fangeprotokoller har to parallelle rekker som kan omtale samme fange.",
+      "source_ids": [
+        "arkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 3
+    },
+    {
+      "claim_id": "claim_grini_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Fangeprotokollene oppgir blant annet fangenummer, navn og dato for overføring eller frigivelse.",
+      "source_ids": [
+        "arkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 3
+    },
+    {
+      "claim_id": "claim_grini_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Protokollmaterialet for fangenumrene 13931–16200 mangler i den første rekken.",
+      "source_ids": [
+        "arkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 3
+    },
+    {
+      "claim_id": "claim_grini_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arbeid på Grini var organisert i såkalte arbeidskommandoer med ulike oppgaver.",
+      "source_ids": [
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 4
+    },
+    {
+      "claim_id": "claim_grini_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arbeidskommandoer utførte oppgaver med leirbygging og vedlikehold.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 4
+    },
+    {
+      "claim_id": "claim_grini_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Noen Grini-fanger arbeidet også i jordbruk på gårder nær leiren.",
+      "source_ids": [
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 4
+    },
+    {
+      "claim_id": "claim_grini_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Omkring 400 fanger ble sendt til Kvænangen i 1942 for arbeid med snøskjermer langs en vei.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 4
+    },
+    {
+      "claim_id": "claim_grini_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fra 1944 til 1945 arbeidet rundt 650 Grini-fanger på flyplassen i Bardufoss.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 4
+    },
+    {
+      "claim_id": "claim_grini_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Over 200 Grini-fanger arbeidet med Thamshavnbanen ved Fannrem.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 4
+    },
+    {
+      "claim_id": "claim_grini_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arbeidskommandoene hadde svært ulike leve- og arbeidsvilkår; en god kommando beskyttet ikke alle fanger.",
+      "source_ids": [
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 4
+    },
+    {
+      "claim_id": "claim_grini_quiz_29",
+      "order": 29,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Brakker med plasser for om lag 150 fanger var i perioder så fulle at mer enn dobbelt så mange bodde der.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 5
+    },
+    {
+      "claim_id": "claim_grini_quiz_30",
+      "order": 30,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Overfylte brakker kunne føre til at fangene måtte sove på skift.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 5
+    },
+    {
+      "claim_id": "claim_grini_quiz_31",
+      "order": 31,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Matmangel og ensidig kost førte til mangelsykdommer blant enkelte Grini-fanger.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 5
+    },
+    {
+      "claim_id": "claim_grini_quiz_32",
+      "order": 32,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Grinis kvinneavdeling lå atskilt fra mennene i deler av hovedbygningen.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 5
+    },
+    {
+      "claim_id": "claim_grini_quiz_33",
+      "order": 33,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kvinner kunne være innelåst en stor del av døgnet og hadde mindre bevegelsesfrihet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 5
+    },
+    {
+      "claim_id": "claim_grini_quiz_34",
+      "order": 34,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "De yngste dokumenterte Grini-fangene var bare 13–14 år gamle.",
+      "source_ids": [
+        "snl",
+        "lokal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 5
+    },
+    {
+      "claim_id": "claim_grini_quiz_35",
+      "order": 35,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "En egen avdeling for gutter ble etablert på Grini i mai 1943.",
+      "source_ids": [
+        "snl",
+        "lokal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 5
+    },
+    {
+      "claim_id": "claim_grini_quiz_36",
+      "order": 36,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Haft var en isolatavdeling med strengere kontroll enn ordinære fangebrakker.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 6
+    },
+    {
+      "claim_id": "claim_grini_quiz_37",
+      "order": 37,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fallskjermen var navnet på en særlig avdeling for blant annet dødsdømte og deportasjonsventende fanger.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 6
+    },
+    {
+      "claim_id": "claim_grini_quiz_38",
+      "order": 38,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Navnet Fallskjermen ble forbundet med køyer som var bygd i flere høyder.",
+      "source_ids": [
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 6
+    },
+    {
+      "claim_id": "claim_grini_quiz_39",
+      "order": 39,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Omtrent 3400 Grini-fanger ble deportert eller sendt videre til fengsler og leirer på kontinentet.",
+      "source_ids": [
+        "snl",
+        "forsk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 6
+    },
+    {
+      "claim_id": "claim_grini_quiz_40",
+      "order": 40,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "I 1943 ble rundt 2000 Grini-fanger sendt til Tyskland.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 6
+    },
+    {
+      "claim_id": "claim_grini_quiz_41",
+      "order": 41,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Av 786 kjente dødsfall blant Grini-fanger skjedde de fleste etter overføring fra Grini.",
+      "source_ids": [
+        "mia",
+        "snl",
+        "forsk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 6
+    },
+    {
+      "claim_id": "claim_grini_quiz_42",
+      "order": 42,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fangene på Fallskjermen kunne bli sendt til Trandumskogen for fullbyrding av dødsdommer.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 6
+    },
+    {
+      "claim_id": "claim_grini_quiz_43",
+      "order": 43,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fanger organiserte foredrag og studiesirkler selv om leirledelsen innførte leseforbud.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 7
+    },
+    {
+      "claim_id": "claim_grini_quiz_44",
+      "order": 44,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Professor Francis Bull holdt foredrag for medfanger på Grini under okkupasjonen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 7
+    },
+    {
+      "claim_id": "claim_grini_quiz_45",
+      "order": 45,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arkitektene Frode Rinnan og Odd Nansen deltok i planlegging av brakkeutvidelsen før deportasjon i 1943.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 7
+    },
+    {
+      "claim_id": "claim_grini_quiz_46",
+      "order": 46,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den hemmelige Grini-gruppen W/25X ble etablert i 1944.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 7
+    },
+    {
+      "claim_id": "claim_grini_quiz_47",
+      "order": 47,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "W/25X fungerte som forbindelsesledd til hjemmefrontens sikringstjeneste.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 7
+    },
+    {
+      "claim_id": "claim_grini_quiz_48",
+      "order": 48,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Einar Gerhardsen kom tilbake til Grini etter opphold i Sachsenhausen i 1944.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 7
+    },
+    {
+      "claim_id": "claim_grini_quiz_49",
+      "order": 49,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bevarte fangeberetninger og tegninger dokumenterer individuell erfaring, men ingen enkeltfange representerer alle.",
+      "source_ids": [
+        "mia",
+        "arkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "set_number": 7
+    },
+    {
+      "claim_id": "claim_grini_quiz_50",
+      "order": 50,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Det tyske sikkerhetspolitiets leirregime ved Grini opphørte ved frigjøringen i mai 1945.",
+      "source_ids": [
+        "snl",
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 8
+    },
+    {
+      "claim_id": "claim_grini_quiz_51",
+      "order": 51,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Den 7. mai 1945 ble fangene samlet på Grinis store appellplass og fikk høre om kapitulasjonen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 8
+    },
+    {
+      "claim_id": "claim_grini_quiz_52",
+      "order": 52,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Svenske Harry Söderman overbrakte kapitulasjonsbeskjeden på Grini.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 8
+    },
+    {
+      "claim_id": "claim_grini_quiz_53",
+      "order": 53,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "En hemmelig fangeledelse hadde forberedt overtakelsen av leiren før kapitulasjonen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 8
+    },
+    {
+      "claim_id": "claim_grini_quiz_54",
+      "order": 54,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Frigjøringen på Grini innebar trinnvis løslatelse; ikke alle forlot leiren samme kveld.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 8
+    },
+    {
+      "claim_id": "claim_grini_quiz_55",
+      "order": 55,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Kvinnelige fanger fikk gå 7. mai, mens mange menn måtte vente til 8. mai.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 8
+    },
+    {
+      "claim_id": "claim_grini_quiz_56",
+      "order": 56,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Bilder av Grini ved frigjøringen må dateres hver for seg før man hevder at de viser en bestemt dag.",
+      "source_ids": [
+        "snl",
+        "lokal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "set_number": 8
+    },
+    {
+      "claim_id": "claim_grini_quiz_57",
+      "order": 57,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Etter frigjøringen fikk det tidligere Grini-anlegget navnet Ilebu.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel",
+      "set_number": 9
+    },
+    {
+      "claim_id": "claim_grini_quiz_58",
+      "order": 58,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Ilebu ble brukt til internering og soning for landssvikfanger under rettsoppgjøret.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel",
+      "set_number": 9
+    },
+    {
+      "claim_id": "claim_grini_quiz_59",
+      "order": 59,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Bruken som Ilebu for landssvikfanger fortsatte til 1951.",
+      "source_ids": [
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel",
+      "set_number": 9
+    },
+    {
+      "claim_id": "claim_grini_quiz_60",
+      "order": 60,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Dagens Ila fengsel og forvaringsanstalt ligger i den opprinnelige fengselsbygningen, men er en annen institusjon enn leiren.",
+      "source_ids": [
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel",
+      "set_number": 9
+    },
+    {
+      "claim_id": "claim_grini_quiz_61",
+      "order": 61,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Grinimuseets autentiske fangebrakke er flyttet og står utenfor opprinnelig leirtomt.",
+      "source_ids": [
+        "mia",
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "set_number": 9
+    },
+    {
+      "claim_id": "claim_grini_quiz_62",
+      "order": 62,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Museets utstillinger viser fangetidens mennesker, dokumenter og gjenstander, ikke leirens fullstendige originalgeometri.",
+      "source_ids": [
+        "museum",
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "set_number": 9
+    },
+    {
+      "claim_id": "claim_grini_quiz_63",
+      "order": 63,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Etterkrigstidens minnearbeid må skilles fra dokumentasjon av fangenes samtidige opplevelser.",
+      "source_ids": [
+        "mia",
+        "forsk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "set_number": 9
+    },
+    {
+      "claim_id": "claim_grini_quiz_64",
+      "order": 64,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "To ulike protokollrekker kan inneholde samme person og skal ikke telles som to separate fanger.",
+      "source_ids": [
+        "arkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 10
+    },
+    {
+      "claim_id": "claim_grini_quiz_65",
+      "order": 65,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Nærmere 20 000 registrerte fanger beskriver samlet fangenskap gjennom krigsårene, ikke høyeste samtidige belegg.",
+      "source_ids": [
+        "mia",
+        "snl",
+        "arkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 10
+    },
+    {
+      "claim_id": "claim_grini_quiz_66",
+      "order": 66,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "De 786 kjente dødsfallene blant Grini-fanger må ikke plasseres fysisk på Grini.",
+      "source_ids": [
+        "snl",
+        "mia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 10
+    },
+    {
+      "claim_id": "claim_grini_quiz_67",
+      "order": 67,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Fangene opplevde forskjellige arbeidskommandoer og disiplinærregimer; ett vitnesbyrd er ikke representativt for alle.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll",
+      "set_number": 10
+    },
+    {
+      "claim_id": "claim_grini_quiz_68",
+      "order": 68,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Det historiske Grini og etterkrigstidens Ilebu har materiell kontinuitet, men tilhørte ulike myndigheter og rettslige regimer.",
+      "source_ids": [
+        "mia",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel",
+      "set_number": 10
+    },
+    {
+      "claim_id": "claim_grini_quiz_69",
+      "order": 69,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Kildene skiller mellom overføring av fanger fra Åneby og opprettelsen av leiren i juni 1941; datoene må merkes med hver sin hendelse.",
+      "source_ids": [
+        "mia",
+        "snl",
+        "lokal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand",
+      "set_number": 10
+    },
+    {
+      "claim_id": "claim_grini_quiz_70",
+      "order": 70,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "En flyttet historisk museumsbrakke er autentisk materiale, men ikke sikkert bevis for plasseringen av hele Grini-leiren.",
+      "source_ids": [
+        "mia",
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "set_number": 10
+    }
+  ]
+}
