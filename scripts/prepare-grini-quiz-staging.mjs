@@ -81,6 +81,10 @@ export function buildGriniStagingPreview({ brief, draft, live, superset }) {
         Number.isInteger(q.answerIndex) && q.options[q.answerIndex] === q.answer,
         `bad correct answer: ${q.id}`);
       ensure(q.question && q.knowledge && q.claim_basis === c.statement, `question/claim mismatch: ${q.id}`);
+      ensure(c.family === family(q), `canonical claim family mismatch: ${q.id}`);
+      for (const field of ["emne_id", "method_id", "topic_hook_id", "thinker_id", "work"]) {
+        if (c[field] !== undefined) ensure(q[field] === c[field], `claim binding mismatch in ${field}: ${q.id}`);
+      }
       const ids = entries(c.source_ids);
       ensure(ids.length > 0 && ids.every(id => sourceBank[id]?.review_status === "reviewed"),
         `non-reviewed/unknown claim source: ${q.id}`);
