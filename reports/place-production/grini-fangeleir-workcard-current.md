@@ -189,3 +189,13 @@ Tidligere PR-head hadde røde, til dels katalogvide tester: place-description-pa
 **Viktig begrensning:** De kanoniske produksjonsfilene og Knowledge-registrene er **ikke skrevet permanent** til PR-grenen. Den spillbare `data/quiz/historie/grini_fangeleir_sets.json` er fortsatt 1×3, fagmanifestet mangler Grinis `quizProduction`-mål, og en lagret, deterministisk kontekst er ennå ikke integrert. PR-en er fortsatt utkast og Grini er **ikke vFerdig**.
 
 Neste eide produksjonsport: selvstendig faktakontroll og distraktorgjennomgang av 70 spørsmål, deretter atomisk integrasjon av fagmanifest, canonical 10×7 quiz, konteksthash og Knowledge-registrering, etterfulgt av hele relevante CI-/runtime-/mobil-testrekken. Eksakt, maskinlesbart testbevis finnes i `reports/place-production/grini-fangeleir-quiz-technical-gates-2026-10-28.json`.
+
+## Checkpoint F – redaksjonell nøkkel og CI-kandidat (2026-10-28)
+
+**Status fortsatt `draft_not_active` / ikke vFerdig.** Fasitposisjonene i den opprinnelige 70-spørsmålsversjonen fulgte A–B–C på 65 av 70 posisjoner til tross for totalbalansen 24/24/22. Alternativene er stokket om uten at korrekte fasiter eller påstander er endret. Nå følger kun 27/70 det mekaniske mønsteret, med fortsatt **24/24/22**. Ny regresjonstest verifiserer nøkkelen.
+
+Historisk redaksjonell presisering: #57 skiller første etterkrigsbetegnelse **Ihlen fangeleir** fra **Ilebu fengsel for landssvikdømte**, som kom da fengselsvesenet overtok. #16, #36, #44 og #50 er forbedret, og **19 distraktorer** i 12 andre spørsmål er omarbeidet for å gi mer relevante alternativer. Se `grini-fangeleir-quiz-editorial-audit-2026-10-28.md`, Checkpoint F.
+
+**Gjennomgåbar, men ikke aktiv, integrasjonskandidat:** GitHub Actions [#40696607712](https://github.com/Paradispartiet/History-Go/actions/runs/40696607712) bestod alle tre Grini-jobber på commit `522641dd7a105a06061537bb162edd77ff96167b` og lastet opp `grini-10x7-full-input-integration-preview`. Arkivet inneholder en kanonisk pakke med 70 spørsmål, faktisk kontekst bygget fra alle sju historiefaglige inputs via hele fagmanifestet og en tydelig `NOT_FOR_PUBLICATION`-markering. Det er et **midlertidig CI-artefakt, ikke committed produksjonskontekst**.
+
+**Gjenstående porter:** 70/70 uavhengig faglig faktakontroll og distraktorgodkjenning, vurdering av metode/teori og etikk, samlet integrasjon av aktiv Grini-quiz+fagmanifest+kontekst, permanent Knowledge-sync og globale/produktnære tester. De opprinnelige tre aktive Knowledge-eierne er fortsatt uendret, og PR-en forblir draft.
