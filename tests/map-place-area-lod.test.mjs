@@ -121,7 +121,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badge-scale-live3"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badge-tiny-zoom4"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
@@ -247,12 +247,12 @@ test("Badge-størrelse synker kontinuerlig ved utzoom og er markant større ved 
     for (let i = 1; i < values.length; i++) {
       assert.ok(values[i] > values[i - 1], name + ": Badge size must grow with zoom " + zooms[i]);
     }
-    assert.ok(size(6) <= 5, name + ": zoomed out badges must be compact");
-    assert.ok(size(10) < 10, name + ": city zoom must stay below ten pixels");
-    assert.ok(size(13) >= 12 && size(13) <= 18, name + ": street view must remain readable");
-    assert.ok(size(18) >= 35 && size(18) < 45, name + ": close zoom should enlarge smoothly");
+    assert.ok(size(6) <= 1.5, name + ": zoomed out badges must be compact");
+    assert.ok(size(10) < 4, name + ": city zoom must stay below ten pixels");
+    assert.ok(size(13) >= 6 && size(13) <= 9, name + ": street view must remain readable");
+    assert.ok(size(18) >= 25 && size(18) < 30, name + ": close zoom should enlarge smoothly");
     assert.ok(size(22) >= 75 && size(22) <= 80, name + ": maximum zoom badge must be much larger than before");
-    assert.equal(size(0), 2.5, name + ": min-size guard");
+    assert.equal(size(0), 1, name + ": min-size guard");
     assert.equal(size(24), 80, name + ": max-size guard");
   }
   assert.match(source, /function setMarkerMode\(nextMode\)/, "dot rollback must remain available");
@@ -262,12 +262,15 @@ test("områdemarkører bruker faktisk Badge-kurven ved utzooming", () => {
   const css = read("css/map.css");
   const block = css.match(/body\.hg-app #map \.hg-place-area-marker\.has-category-badge \{([^}]*)\}/)?.[1] || "";
   assert.match(block, /border-radius:\s*0\s*!important/, "områdebadge skal fortsatt være kvadratisk");
-  assert.doesNotMatch(block, /border:\s*0|border-width:\s*0|box-shadow:\s*none/, "områdebadge skal beholde en synlig ramme");
+  assert.doesNotMatch(block, /border:\s*0|border-width:\s*0/, "områdebadge skal beholde en synlig ramme");
+  assert.match(block, /box-shadow:\s*none\s*!important/, "visuell skygge må ikke forstørre zoomede Badges");
   for (const [name, code] of [["TypeScript", source], ["legacy", legacy], ["web", dist]]) {
     assert.match(code, /const side = showBadge \? mapBadgeDiameter\(zoom\) : interpolatePlaceAreaMarkerSide\(zoom, entry\.visited\)/,
       name + ": områdebadge må ikke låses til gammel minimumsstørrelse");
     assert.match(code, /entry\.element\.style\.borderWidth = showBadge \?/,
       name + ": liten områdebadge må bruke skalert ramme");
+    assert.match(code, /side < 6 \? "0px"/, name + ": ingen tykk ramme rundt svært små Badges");
+    assert.match(code, /const noBadgeGlow =/, name + ": glow må skjules ved kategori-Badge");
     assert.match(code, /function setMarkerMode\(nextMode\)/,
       name + ": gammelt prikkesystem må fortsatt være reverserbart");
   }
@@ -276,7 +279,7 @@ test("områdemarkører bruker faktisk Badge-kurven ved utzooming", () => {
 test("kartet henter nye JS- og CSS-ressurser etter Badge-oppdatering", () => {
   const app = read("js/app.js");
   const html = read("index.html");
-  assert.ok(app.includes("js/map.js?v=20261028-badge-scale-live3"), "kartmodulen må få ny cacheversjon");
-  assert.ok(html.includes("js/app.js?v=20261028-badge-scale-live3"), "startmodulen må få ny cacheversjon");
-  assert.ok(html.includes("css/map.css?v=20261028-badge-scale-live3"), "kartstilen må få ny cacheversjon");
+  assert.ok(app.includes("js/map.js?v=20261028-badge-tiny-zoom4"), "kartmodulen må få ny cacheversjon");
+  assert.ok(html.includes("js/app.js?v=20261028-badge-tiny-zoom4"), "startmodulen må få ny cacheversjon");
+  assert.ok(html.includes("css/map.css?v=20261028-badge-tiny-zoom4"), "kartstilen må få ny cacheversjon");
 });

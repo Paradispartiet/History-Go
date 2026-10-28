@@ -583,7 +583,7 @@
         const side = showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
         entry.element.style.width = `${side.toFixed(2)}px`;
         entry.element.style.height = `${side.toFixed(2)}px`;
-        entry.element.style.borderWidth = showBadge ? `${Math.max(0.5, Math.min(2, side * 0.12)).toFixed(2)}px` : "2px";
+        entry.element.style.borderWidth = showBadge ? (side < 6 ? "0px" : `${Math.min(2, side * 0.12).toFixed(2)}px`) : "2px";
       }
     }
     function syncPlaceAreaDomMarkers(features) {
@@ -670,7 +670,7 @@
       return markerMode;
     }
     function mapBadgeDiameter(zoom) {
-      return Math.max(2.5, Math.min(80, 3.5 * Math.pow(1.202, zoom - 5)));
+      return Math.max(1, Math.min(80, 2 * Math.pow(1.3, zoom - 8)));
     }
     function badgeCategoryId(value) {
       var _a;
@@ -902,11 +902,12 @@
     function getPlaceGlowPaint(isArea = false) {
       const radius = isArea ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15] : ["interpolate", ["linear"], ["zoom"], 10, 1.8, 12, 2.5, 14, 3.7, 16, 5.2, 18, 7.4];
       const visibility = isArea ? 1 : getPlaceDetailVisibility();
+      const noBadgeGlow = ["case", ["==", ["get", "badgeAvailable"], 1], 0, 1];
       if (!isStandardMapStyle()) {
         return {
           "circle-radius": radius,
           "circle-color": "rgba(0,0,0,0.12)",
-          "circle-opacity": ["*", 0.45, visibility],
+          "circle-opacity": ["*", 0.45, visibility, noBadgeGlow],
           "circle-blur": 0.8
         };
       }
@@ -921,7 +922,8 @@
             0.12,
             0.24
           ],
-          visibility
+          visibility,
+          noBadgeGlow
         ],
         "circle-blur": 0.65
       };
