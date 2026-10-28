@@ -121,7 +121,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-area-badge-squares1"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badge-scale-live3"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
@@ -258,13 +258,25 @@ test("Badge-størrelse synker kontinuerlig ved utzoom og er markant større ved 
   assert.match(source, /function setMarkerMode\(nextMode\)/, "dot rollback must remain available");
 });
 
-test("områdefirkanter er synlige også når kategori-Badge er lastet", () => {
+test("områdemarkører bruker faktisk Badge-kurven ved utzooming", () => {
   const css = read("css/map.css");
   const block = css.match(/body\.hg-app #map \.hg-place-area-marker\.has-category-badge \{([^}]*)\}/)?.[1] || "";
-  assert.match(block, /border-radius:\s*0\s*!important/, "områdebadge må fortsatt ha kvadratisk fasong");
-  assert.doesNotMatch(block, /border:\s*0|border-width:\s*0|box-shadow:\s*none/, "badge må ikke skjule områdekant");
+  assert.match(block, /border-radius:\s*0\s*!important/, "områdebadge skal fortsatt være kvadratisk");
+  assert.doesNotMatch(block, /border:\s*0|border-width:\s*0|box-shadow:\s*none/, "områdebadge skal beholde en synlig ramme");
   for (const [name, code] of [["TypeScript", source], ["legacy", legacy], ["web", dist]]) {
-    assert.match(code, /Math\.max\(mapBadgeDiameter\(zoom\), interpolatePlaceAreaMarkerSide\(zoom, entry\.visited\)\)/,
-      name + ": områdemarkøren må ikke krympe under opprinnelig firkant");
+    assert.match(code, /const side = showBadge \? mapBadgeDiameter\(zoom\) : interpolatePlaceAreaMarkerSide\(zoom, entry\.visited\)/,
+      name + ": områdebadge må ikke låses til gammel minimumsstørrelse");
+    assert.match(code, /entry\.element\.style\.borderWidth = showBadge \?/,
+      name + ": liten områdebadge må bruke skalert ramme");
+    assert.match(code, /function setMarkerMode\(nextMode\)/,
+      name + ": gammelt prikkesystem må fortsatt være reverserbart");
   }
+});
+
+test("kartet henter nye JS- og CSS-ressurser etter Badge-oppdatering", () => {
+  const app = read("js/app.js");
+  const html = read("index.html");
+  assert.ok(app.includes("js/map.js?v=20261028-badge-scale-live3"), "kartmodulen må få ny cacheversjon");
+  assert.ok(html.includes("js/app.js?v=20261028-badge-scale-live3"), "startmodulen må få ny cacheversjon");
+  assert.ok(html.includes("css/map.css?v=20261028-badge-scale-live3"), "kartstilen må få ny cacheversjon");
 });

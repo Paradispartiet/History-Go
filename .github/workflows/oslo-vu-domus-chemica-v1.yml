@@ -1,0 +1,42 @@
+name: Oslo V-U Domus Chemica targeted integration
+on:
+  push:
+    branches: [content/oslo-vu-domus-chemica-v1-20261028]
+    paths:
+      - '.github/workflows/oslo-vu-domus-chemica-v1.yml'
+      - 'data/quiz/production_briefs/vitenskap/universitetets_gamle_kjemi.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-vu-domus-chemica-v1-20261028
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate canonical Knowledge
+        run: |
+          npm run knowledge:canonical:write
+          node scripts/sync-domus-chemica-quizcard.mjs
+      - name: Generate runtime and Fagverk release
+        run: |
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Targeted tests
+        run: node --test tests/oslo-vu-domus-chemica-parity.test.mjs
+      - name: Commit generated assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/vitenskap/universitetets_gamle_kjemi_sets.json data/quizcards/vitenskap/universitetets_gamle_kjemi_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/runtime/place-open/universitetets_gamle_kjemi.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then git commit -m "Domus Chemica: generated Knowledge and runtime"; fi
+          git push origin HEAD:content/oslo-vu-domus-chemica-v1-20261028
