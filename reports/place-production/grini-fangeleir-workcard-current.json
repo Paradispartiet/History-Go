@@ -73,7 +73,7 @@
       ]
     }
   },
-  "active_checkpoint": "C: quiz source bank and 70-question editorial draft completed; canonical quiz/context/Knowledge integration pending",
+  "active_checkpoint": "C: 70-question editorial draft structurally checked; June 1941 source conflict corrected; editorial duplicates, canonical integration and Knowledge migration still blocked",
   "production_profile": "major",
   "profile_status": "provisional",
   "blocked": [
@@ -83,7 +83,10 @@
     "Dedicated QuizCard flip not verified",
     "Fagverk release, browser-QA and all relevant CI not yet green",
     "Canonical Story/final on-site-access and mobile/desktop QA incomplete",
-    "70-question quiz draft is not the active quiz: fagmanifest target, generated production_context, source-brief hash/required-input audit, Knowledge migration, quiz audits and release checks remain pending"
+    "70-question quiz draft is not the active quiz: fagmanifest target, generated production_context, source-brief hash/required-input audit, Knowledge migration, quiz audits and release checks remain pending",
+    "Editorial pass for repetition, distractors and question-type balance remains BLOCKED",
+    "Opening-date discrepancy Q69 clarified in draft; source conflict still needs historic research if a single definitive date is required",
+    "Legacy Knowledge ownership and re-used quiz IDs 1-3 require explicit migration before activation"
   ],
   "coordinateDecision": "ALLEREDE FERDIG — preserve historical anchor, visitor anchor and 360m gameplay radius",
   "sourceReview": [
@@ -124,6 +127,31 @@
       "full substantive question review and progression",
       "Knowledge link sync and migration",
       "quiz package/CI/runtime and mobile browser tests"
-    ]
+    ],
+    "editorial_audit": "reports/place-production/grini-fangeleir-quiz-editorial-audit-2026-10-28.md",
+    "editorial_audit_status": "BLOCKED_REQUIRES_CONTENT_REVISION",
+    "read_through_questions": 70,
+    "structural_crosscheck": {
+      "result": "CHECKED_NOT_CANONICAL_CI",
+      "question_count": 70,
+      "claim_links": 70,
+      "answer_slots": {
+        "0": 24,
+        "1": 24,
+        "2": 22
+      },
+      "claim_basis_and_url_links": "match",
+      "source_review_metadata": "match",
+      "canonical_tests": "NOT_RUN"
+    },
+    "editorial_open_findings": [
+      "Semantic repetition: question pairs 19/64, 5/65, 41/66, 49/67, 61/70",
+      "70% fact questions, 8.6% context: substantive balance revision required",
+      "Question 59: clarify 'to 1951' (MiA) versus release at end 1950 (SNL)",
+      "Full distractor and historical source verification across all 70 still pending",
+      "Three active legacy quiz IDs are reused in a different sense in the draft; preserve/migrate Knowledge ownership explicitly"
+    ],
+    "source_date_note": "Q69 revised using NOU 1998:12 (12 June 1941 opening) versus SNL/MiA (14 June establishment). Source difference documented, not presumed resolved.",
+    "activation_decision": "DO_NOT_ACTIVATE until editorial audit and canonical context/Knowledge/runtime gates are completed"
   }
 }
