@@ -1,8 +1,8 @@
 name: Vaterland Bar & Scene v1 integration and browser smoke
 on:
-  push:
+  pull_request:
     branches:
-      - content/oslo-aav-vaterland-bar-scene-v1-20261027
+      - main
     paths:
       - '.github/workflows/vaterland-bar-scene-v1-integration.yml'
   workflow_dispatch:
@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   integrate:
-    if: github.ref == 'refs/heads/content/oslo-aav-vaterland-bar-scene-v1-20261027'
+    if: github.event_name == 'pull_request' && github.head_ref == 'content/oslo-aav-vaterland-bar-scene-v1-20261027'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
