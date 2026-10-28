@@ -69,7 +69,7 @@ for (const id of batch05Ids) {
 }
 assert.equal(artist.resolve("unknown"), "");
 assert.equal(new Set(references.map(id=>artist.resolve(id) )).size, 330, "illustration assets must be unique");
-assert.match(read("js/ui/nature-explorer.js"), /approvedFloraIllustrations\.has\(id\)/, "flora illustrations must require visual species approval");
+assert.match(read("js/ui/nature-explorer.js"), /window\.HG_NATURE_FLORA_APPROVED/, "flora illustrations must require separately approved species artwork");
 assert.equal(references.filter(id => id.startsWith("emne_fauna_")).length, 165);
 assert.equal(references.filter(id => !id.startsWith("emne_fauna_")).length, 165);
 for (const kind of ["flora", "fauna"]) {

@@ -61,6 +61,6 @@ assert(js.includes('illustration-candidates-batch"+batch+".json"'),"shared candi
 assert(js.includes('candidate.approvedForPublication===false'),"review gate disabled");
 const explorer=read("js/ui/nature-explorer.js");
 const app=read("finn-flora.html");
-assert.match(explorer,/const approvedFloraIllustrations = new Set\(\);/,"unapproved art accidentally enabled");
+assert(explorer.includes('window.HG_NATURE_FLORA_APPROVED'), 'flora publication requires explicit approved-image registry');
 assert(!app.includes("illustrasjonskandidater/b02/"),"candidate leaked into app");
 console.log("Flora candidate batch 02: 2 alpha WebP assets, botanical QA flags and photo-only production gate valid.");

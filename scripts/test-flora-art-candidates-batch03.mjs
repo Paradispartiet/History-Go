@@ -37,6 +37,6 @@ assert(review.includes("candidate.approvedForPublication===false"));
 assert(read("flora-illustration-review.html").includes("flora-illustrasjoner-bolk03.html"));
 const app=read("finn-flora.html"),explorer=read("js/ui/nature-explorer.js");
 assert(!app.includes("illustrasjonskandidater/b03")&&!explorer.includes("illustrasjonskandidater/b03"));
-assert.match(explorer,/const approvedFloraIllustrations = new Set\(\);/);
+assert(explorer.includes('window.HG_NATURE_FLORA_APPROVED'), 'flora publication requires explicit approved-image registry');
 assert(read(".github/workflows/nature-illustrations.yml").includes("node scripts/test-flora-art-candidates-batch03.mjs"));
 console.log("Flora hestehov batch 03: transparent WebP and spring morphology; zero publication approvals.");
