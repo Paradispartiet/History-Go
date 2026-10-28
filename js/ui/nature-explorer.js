@@ -27,7 +27,10 @@ function media(a){
  const id=String(a.id);
  const documented = floraPhotos?.get(id);
  const art=(kind!=="flora"||approvedFloraIllustrations.has(id))?drawings?.resolve(id):"";
- if(documented)return {...documented,fallback:art||""};
+ // A species-approved botanical illustration is the preferred image.
+ // A documented photograph is the fallback; an unapproved SVG is never used.
+ if(art&&kind==="flora")return {src:art,type:"illustration",fallback:documented?.src||"",fallbackInfo:documented||null};
+ if(documented)return {...documented,fallback:""};
  if(art)return {src:art,type:"illustration"};
  const src=a.image || a.imageCard || a.img;
  if(typeof src==="string" && /^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src))return {src,type:"catalog"};
@@ -39,17 +42,27 @@ function illustrated(a){
  const src=a.image || a.imageCard || a.img;
  return Boolean(floraPhotos?.get(id)||approvedArt||(typeof src==="string"&&/^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src)));
 }
-function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",kind==="flora"?"Foto utilgjengelig":icon));}
+function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",kind==="flora"?"Bilde utilgjengelig":icon));}
+function photoCredit(info,asFallback=false){
+ const credit=node("p","ne-image-credit",(asFallback?"Godkjent illustrasjon utilgjengelig. Viser artsfoto: ":"Artsfoto: ")+info.creator+" · "+info.license+" · ");
+ const file=node("a","","Wikimedia Commons");file.href=info.source;file.target="_blank";file.rel="noopener noreferrer";
+ const lic=node("a","","Lisens");lic.href=info.licenseUrl;lic.target="_blank";lic.rel="noopener noreferrer";
+ credit.appendChild(file);credit.append(" · ");credit.appendChild(lic);return credit;
+}
 function appendImage(parent,source,alt){
  const img=node("img");img.alt=alt;img.loading="lazy";
  let usingFallback=false;
  img.addEventListener("error",()=>{
   if(!usingFallback&&source.fallback){
-   usingFallback=true;img.src=source.fallback;img.alt="Forenklet illustrasjon av "+alt;
+   usingFallback=true;img.src=source.fallback;
+   img.alt=(source.fallbackInfo?"Artsfoto av ":"Illustrasjon av ")+alt;
    const label=parent.querySelector(".ne-image-label");
-   if(label)label.textContent="Illustrasjon";
+   if(label)label.textContent=source.fallbackInfo?"Artsfoto":"Illustrasjon";
    const credit=parent.querySelector(".ne-image-credit");
-   if(credit)credit.replaceChildren("Artsfoto utilgjengelig. Viser forenklet originalillustrasjon.");
+   if(credit){
+    if(source.fallbackInfo)credit.replaceWith(photoCredit(source.fallbackInfo,true));
+    else credit.replaceChildren("Viser reserveillustrasjon.");
+   }
   }else fallback(parent);
  });
  parent.appendChild(img);img.src=source.src;
@@ -74,16 +87,13 @@ function openArt(a){
   appendImage(wrap,imageInfo,name(a));
   if(wrap.firstChild?.tagName==="IMG")wrap.firstChild.className="ne-dialog-image";
   if(imageInfo.type==="photo"){
-   const credit=node("p","ne-image-credit","Artsfoto: "+imageInfo.creator+" · "+imageInfo.license+" · ");
-   const file=node("a","","Wikimedia Commons");file.href=imageInfo.source;file.target="_blank";file.rel="noopener noreferrer";
-   const lic=node("a","","Lisens");lic.href=imageInfo.licenseUrl;lic.target="_blank";lic.rel="noopener noreferrer";
-   credit.appendChild(file);credit.append(" · ");credit.appendChild(lic);wrap.appendChild(credit);
+   wrap.appendChild(photoCredit(imageInfo));
   }else if(imageInfo.type==="illustration"){
-   wrap.appendChild(node("p","ne-image-credit","Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
+   wrap.appendChild(node("p","ne-image-credit",kind==="flora"?"Individuelt kvalitetsgodkjent botanisk illustrasjon":"Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
   }
   details.appendChild(wrap);
  }else if(kind==="flora"){
-  details.appendChild(node("p","ne-no-photo","Artsfoto mangler. Ingen illustrasjon er godkjent for denne arten ennå."));
+  details.appendChild(node("p","ne-no-photo","Verken kvalitetsgodkjent illustrasjon eller artsfoto er tilgjengelig ennå."));
  }
  section("Kjennetegn",a.kjennetegn);
  section("Leveområder",a.habitat?.biotop||a.bykontekst?.typiske_steder);
