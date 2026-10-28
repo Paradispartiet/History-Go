@@ -6,8 +6,8 @@ Kilde: `data/places/historie/akershus/grini_fangeleir.json`
 Manifest: `data/places/manifest.json` (innført)  
 Hovedbadge: `historie`  
 Status: **PÅGÅR — ikke vFerdig; ingen fullføringsattestasjon**  
-Aktivt checkpoint: **A — tidligere arbeid, identitet, source review og produksjonsplan**  
-Filomfang i dette checkpointet: **kun dette arbeidskortet**.
+Aktivt checkpoint: **B — canonical historietekst, Historie-case og Leksikon-kronologi (review pågår)**  
+Filomfang for arbeidsgrenen: Grini source, description-pakke, språk, Fagverk-registry, Historie-case, Leksikon-kronologi og arbeidskort; genererte outputs og QA fortsatt åpne.
 
 ## 0. READ-FIRST og tidligere arbeid
 
@@ -127,3 +127,28 @@ Ved frigjøringen i mai 1945 opphørte Grini som tysk fangeleir. Den tidligere f
 6. Gjennomfør alle 24 faser / relevante popupfaner, indeksbygging, source-hash-synk, faktiske app-/desktop-/mobiltester og den seksdelte kvalitetsvurderingen før `vFerdig`.
 
 **Ingenting her er en `PASS`-attestasjon av fullproduksjon. Ikke merk stedet `complete`, ikke publiser utkastene som ferdige og ikke endre sikkerhetsankeret ut fra dette dokumentet.**
+
+
+## Checkpoint B – oppdatering 2026-10-28
+
+Følgende finnes nå på denne **ikke-mergede** PR-grenen, og må skilles fra fullført spilleropplevelse:
+
+- Canonical `desc` og `popupDesc` er utvidet med 31 source-backed påstander, teksthash, setning-paritet og separate reviewdeklarasjoner i `data/places/production/grini_fangeleir.json`. Global place-description-CI har feilet også på andre pakker; stedsspesifikk endelig validering må dokumenteres før ferdigmelding.
+- Fire source-backed underbadges er materialisert: `krigshistorie`, `sosialhistorie`, `etterkrigstid`, `kulturminner_og_bevaring`. Ingen dialekteierskap.
+- Fullnivå `fagverk` har stedsegen intro, fem avsnitt, fire linser, fem spørsmål, to observerbare spor og fem kilder, men er fortsatt korrekt `in_production` til lenke-, release- og browser-QA er godkjent.
+- Språkleksikonet er lagt i `data/leksikon/sprak/places/europe/norway/akershus/baerum/grini_fangeleir.json` og manifestført. Ordene er historiske leirbetegnelser, ikke dialekt.
+- Historie-fagrapporten `data/places/historie-production/grini_fangeleir.json` er materialisert med fem kilder, A–F kildebasert caseanalyse og eksplisitt status `blocked`. Quiz (G) og chronology/Story-sluttport (H) er *ikke* godkjent, selv om JSON-skjemaet gir midlertidige `N/A`-felter.
+- `data/leksikon/places/akershus/historie/leksikon_grini_fangeleir.json` er lagt til i `data/leksikon/manifest.json` og inneholder seks source-backed milepæler: 1941, 1942, 1943, 1944, 1945 og 1996. **Epokeindex er ikke manuelt endret**; bygger, source-sync og viewer-QA gjenstår.
+- `frontImage`, medlemsbilder, adaptive samlinger, fullquiz, dedikert QuizCard, Før/etter og full browser-QA er fortsatt blokkere. Koordinat og besøksanker ble ikke endret.
+
+### Bildekandidater – research, ingen publisert fil
+
+- DigitaltMuseum/Oslo Museum [OB.AK1001i](https://digitaltmuseum.no/021018793741/grini-fangeleir-ved-loslatelsen-av-fangene): historisk bilde av løslatelsen fotografert 10. mai 1945 av Rigmor Dahl Delphin. DigitaltMuseum oppgir **CC0 1.0**. Bør vurderes som historisk galleri-/Før/etter-materiale; originalmotiv, kildefil, crop og rettighetsmetadata må verifiseres i bildeproduksjon før eventuell publisering.
+- Store norske leksikon [Grini fangeleir](https://snl.no/Grini_-_tysk_fangeleir) viser et offentlig-domenemerket bilde av fangene ved leiren fra 1941–1943. Original fil, lisensspor og konkret utsnitt må kontrolleres; kilden alene er ikke en publisert frontImage.
+- Autentiske fotografier fra frigjøringen viser ulike utsnitt, men ingen av disse er automatisk et gyldig primært Før/etter-par; kamerastandpunkt, dato og korrekt moderne motiv må matches.
+
+### CI og holdback
+
+Tidligere PR-head hadde røde, til dels katalogvide tester: place-description-pakke for annet sted med `grand42`-feil, Fagverk eksterne lenker for flere andre Places, quiz production contexts i andre fag, en ekstern People-bildefeil og et eldre ikke-synkronisert place-open for Akershus festning. Direkte Grini-gate **manglende Historie-rapport** er nå adressert med en ærlig `blocked`-rapport, men Historie-gaten vil fortsette å nekte ferdigstatus til G/H er lukket. Ikke endre andre steder for å få grønn PR uten eksplisitt nødvendig risikovurdering.
+
+**Neste:** kjør målrettet Historie-/Leksikon-/epoke-/description-audit på exact head, bygg source-derived materialisering, produser fullquiz etter separat kontrakt, kurater foto og PlaceCard, test runtime og rens den midlertidige `.github/workflows/grini-one-shot-materialize.yml` fra sluttdiffen.
