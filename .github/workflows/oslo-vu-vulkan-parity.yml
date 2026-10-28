@@ -1,0 +1,23 @@
+name: Oslo V–U 02 – Vulkan QuizCard parity
+
+on:
+  pull_request:
+    paths:
+      - 'data/quizcards/by/topp10_by_kort_batch1.json'
+      - 'data/quizcards/historie/vulkan_industriomrade_quizcard_v1.json'
+      - 'data/quizcards/historie/manifest.json'
+      - 'tests/oslo-vu-vulkan-parity.test.mjs'
+      - '.github/workflows/oslo-vu-vulkan-parity.yml'
+  workflow_dispatch:
+
+jobs:
+  vulkan-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check both Vulkan Place, quiz and QuizCards
+        run: node --test tests/oslo-vu-vulkan-parity.test.mjs
