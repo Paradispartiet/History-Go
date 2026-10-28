@@ -73,7 +73,7 @@
       ]
     }
   },
-  "active_checkpoint": "C: 70-question editorial draft structurally checked; June 1941 source conflict corrected; editorial duplicates, canonical integration and Knowledge migration still blocked",
+  "active_checkpoint": "D: canonical quiz staging converter + regression tests added; 10x7 phase/claim taxonomy aligned; activation/Knowledge/CI still BLOCKED",
   "production_profile": "major",
   "profile_status": "provisional",
   "blocked": [
@@ -83,10 +83,10 @@
     "Dedicated QuizCard flip not verified",
     "Fagverk release, browser-QA and all relevant CI not yet green",
     "Canonical Story/final on-site-access and mobile/desktop QA incomplete",
-    "70-question quiz draft is not the active quiz: fagmanifest target, generated production_context, source-brief hash/required-input audit, Knowledge migration, quiz audits and release checks remain pending",
-    "Editorial pass for repetition, distractors and question-type balance remains BLOCKED",
     "Opening-date discrepancy Q69 clarified in draft; source conflict still needs historic research if a single definitive date is required",
-    "Legacy Knowledge ownership and re-used quiz IDs 1-3 require explicit migration before activation"
+    "Grini 10x7 canonical staging preview is non-active; exact head canonical production/context/Knowledge checks not yet passed",
+    "Old generated Knowledge units may be dropped if active 1x3 is replaced without explicit retention/migration",
+    "Independent 70-question distractor, fact, ethics and theory/interpretation sign-off not yet completed"
   ],
   "coordinateDecision": "ALLEREDE FERDIG — preserve historical anchor, visitor anchor and 360m gameplay radius",
   "sourceReview": [
@@ -122,14 +122,15 @@
     "active_questions_before_migration": 3,
     "source_pdf_limit": "NTNU article is marked partial/unread due 403; not used as a reviewed claim source",
     "missing_gates": [
-      "quiz-production manifest target",
-      "generated quiz production context",
-      "full substantive question review and progression",
-      "Knowledge link sync and migration",
-      "quiz package/CI/runtime and mobile browser tests"
+      "independent editorial/factual review across all 70",
+      "fagmanifest production target + actual builder-generated context",
+      "full canonical package replacing active 1x3 only after migration approval",
+      "preserve/sync old three Knowledge units in generated registries",
+      "quiz audits and GitHub CI exact-head completion",
+      "runtime QuizCard flip/shuffle and mobile/desktop verification"
     ],
     "editorial_audit": "reports/place-production/grini-fangeleir-quiz-editorial-audit-2026-10-28.md",
-    "editorial_audit_status": "BLOCKED_REQUIRES_CONTENT_REVISION",
+    "editorial_audit_status": "STAGED_PRECHECK_ONLY_EXPERT_REVIEW_PENDING",
     "read_through_questions": 70,
     "structural_crosscheck": {
       "result": "CHECKED_NOT_CANONICAL_CI",
@@ -142,16 +143,50 @@
       },
       "claim_basis_and_url_links": "match",
       "source_review_metadata": "match",
-      "canonical_tests": "NOT_RUN"
+      "canonical_claim_family_and_phase": "aligned",
+      "old_quiz_id_collisions": 0,
+      "canonical_tests": "PENDING"
     },
     "editorial_open_findings": [
-      "Semantic repetition: question pairs 19/64, 5/65, 41/66, 49/67, 61/70",
-      "70% fact questions, 8.6% context: substantive balance revision required",
-      "Question 59: clarify 'to 1951' (MiA) versus release at end 1950 (SNL)",
-      "Full distractor and historical source verification across all 70 still pending",
-      "Three active legacy quiz IDs are reused in a different sense in the draft; preserve/migrate Knowledge ownership explicitly"
+      "Independent historical fact/source and all distractor review across 70 questions still pending",
+      "Method/theory semantics require expert review despite structurally balanced 41/17/12 families",
+      "Old three Knowledge units need explicit preservation or migration during global canonical regeneration",
+      "Canonical 10x7 + context + fagmanifest must be committed and tested as one activation gate",
+      "Full quiz audits, runtime shuffle, QuizCard and mobile/desktop QA not passed"
     ],
     "source_date_note": "Q69 revised using NOU 1998:12 (12 June 1941 opening) versus SNL/MiA (14 June establishment). Source difference documented, not presumed resolved.",
-    "activation_decision": "DO_NOT_ACTIVATE until editorial audit and canonical context/Knowledge/runtime gates are completed"
+    "activation_decision": "DO_NOT_ACTIVATE until editorial audit and canonical context/Knowledge/runtime gates are completed",
+    "canonical_staging": {
+      "status": "PREVIEW_ONLY_NOT_ACTIVE",
+      "script": "scripts/prepare-grini-quiz-staging.mjs",
+      "regression_test": "tests/grini-quiz-staging.test.mjs",
+      "test_command": "npm run test:grini-quiz-staging",
+      "canonical_suite_command": "npm run test:quiz-production",
+      "canonical_set_phases": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "claim_families": {
+        "fact": 41,
+        "context": 17,
+        "concept_theory": 12
+      },
+      "normalized_claim_families": 26,
+      "corrected_set_phases": 7,
+      "corrected_claim_phases": 49,
+      "active_id_collisions": 0,
+      "preview_can_write_active_quiz": false,
+      "canonical_tests": "PENDING_GITHUB_CHECKS_NOT_ATTESTED",
+      "context_artifact": "NOT_BUILT",
+      "knowledge_migration": "PENDING"
+    }
   }
 }
