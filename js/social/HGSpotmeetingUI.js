@@ -315,10 +315,40 @@
     try { result = await root.HG_SocialMeetBackend.getMyProfile(); }
     catch { result = { ok:false, reason:'backend_unavailable' }; }
     if (!result?.ok) {
-      mount.innerHTML = '<p>Kunne ikke hente din stedsstatus akkurat nå.</p>';
+      const reason = String(result?.reason || '');
+      const message = ['not_authenticated', 'supabase_auth_unavailable', 'auth_session_error'].includes(reason)
+        ? 'Logg inn med AHA for å bruke Møtes.'
+        : ['backend_not_enabled', 'missing_backend_url'].includes(reason)
+          ? 'Møtes er ikke aktivert på serveren ennå. Andre kontoer kan ikke vises før dette er klart.'
+          : 'Møtes-serveren svarer ikke. Stedssynlighet er ikke aktivert.';
+      mount.innerHTML = `<p role="status">${escapeHTML(message)}</p>`;
       return;
     }
     const profile = result.profile || {};
+    const visibility = String(profile.profileVisibility || profile.profile_visibility || '').trim().toLowerCase();
+    if (visibility !== 'discoverable') {
+      const bridge = root.HG_SocialMeetProfileBridge;
+      if (typeof bridge?.publish !== 'function') {
+        mount.innerHTML = '<p>Du må gjøre Møtes-profilen synlig under Social Meet på profilsiden før andre kan finne deg.</p>';
+        return;
+      }
+      mount.innerHTML = '<p><strong>Profilen din er ikke synlig ennå.</strong> Du kan velge å gjøre navn og kunnskapsinteresser synlige for andre Møtes-brukere. Stedsstatus er et separat, frivillig valg. Du kan skjule profilen igjen fra Social Meet på profilsiden.</p><button type="button" data-hg-social-profile-publish-here>Bekreft og gjør profilen oppdagbar</button>';
+      mount.querySelector('[data-hg-social-profile-publish-here]')?.addEventListener('click', async event => {
+        const button = event.currentTarget;
+        button.disabled = true;
+        let published;
+        try { published = await bridge.publish(); }
+        catch { published = { ok:false, reason:'backend_unavailable' }; }
+        if (!published?.ok) {
+          button.disabled = false;
+          root.showToast?.('Kunne ikke gjøre Møtes-profilen synlig. Kontroller servertilkoblingen.');
+          return;
+        }
+        await renderOwnPlaceStatus(context);
+        if (currentState?.action) void renderCandidates(context, currentState.action);
+      });
+      return;
+    }
     const placeId = String(profile.currentPlaceId || profile.current_place_id || '').trim();
     const visibleUntilRaw = profile.currentPlaceVisibleUntil || profile.current_place_visible_until || null;
     const visibleUntil = visibleUntilRaw ? new Date(visibleUntilRaw) : null;
