@@ -73,7 +73,7 @@
       ]
     }
   },
-  "active_checkpoint": "E: canonical Grini staging, full 7-input context, isolated quiz audits and Knowledge replacement simulation PASSED on 3d2751dd; publication/integration and final review remain blocked",
+  "active_checkpoint": "F: source key ABC pattern corrected (65/70 to 27/70), Q57 Ihlen/Ilebu corrected, 19 distractors improved; full-input candidate artifact generated and isolated CI passed; not active",
   "production_profile": "major",
   "profile_status": "provisional",
   "blocked": [
@@ -125,12 +125,12 @@
     "active_questions_before_migration": 3,
     "source_pdf_limit": "NTNU article is marked partial/unread due 403; not used as a reviewed claim source",
     "missing_gates": [
-      "independent historical and distractor review of all 70 questions",
-      "real canonical quiz package+fag-manifest+hashed context commit with matching package schemas",
-      "Knowledge canonical output regeneration on integrated PR head (dry-run passed but not persisted)",
-      "global quiz and Knowledge auditer on exact integrated PR head",
-      "QuizCard runtime/flip/shuffle/browser and mobile validation",
-      "all non-quiz place production and quality gates"
+      "independent subject-matter reviewer signoff for all 70 historical claims, options, explanations and ethics",
+      "actual canonical Grini quiz file + fagmanifest target + full-input persisted production context in one integration",
+      "permanent Knowledge registry generation and old 3 KU retention verified on integrated branch",
+      "full repository production, quiz, Knowledge and runtime test gates on exact integration head",
+      "QuizCard flip/shuffle/progression, browser and mobile QA with public access geometry",
+      "nonquiz place production and release gates"
     ],
     "editorial_audit": "reports/place-production/grini-fangeleir-quiz-editorial-audit-2026-10-28.md",
     "editorial_audit_status": "STAGED_PRECHECK_ONLY_EXPERT_REVIEW_PENDING",
@@ -158,7 +158,7 @@
       "Full quiz audits, runtime shuffle, QuizCard and mobile/desktop QA not passed"
     ],
     "source_date_note": "Q69 revised using NOU 1998:12 (12 June 1941 opening) versus SNL/MiA (14 June establishment). Source difference documented, not presumed resolved.",
-    "activation_decision": "KEEP_ACTIVE_1x3_AND_PR_DRAFT until editorial signoff and integrated canonical/Knowledge/runtime QA",
+    "activation_decision": "KEEP_DRAFT_AND_ACTIVE_LEGACY_1x3 until independent editorial signoff, canonical integration and Knowledge/runtime QA",
     "canonical_staging": {
       "status": "PREVIEW_ONLY_NOT_ACTIVE",
       "script": "scripts/prepare-grini-quiz-staging.mjs",
@@ -202,6 +202,51 @@
       "generator": "scripts/knowledge-canonical-data.mts",
       "old_source_snapshot": "data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json",
       "permanent_sync": "NOT_EXECUTED"
+    },
+    "editorial_revision_checkpoint_f": {
+      "source_abc_alignment_before": 65,
+      "source_abc_alignment_after": 27,
+      "answer_slots": {
+        "A": 24,
+        "B": 24,
+        "C": 22
+      },
+      "additional_distractors_revised": 19,
+      "affected_questions": [
+        11,
+        19,
+        20,
+        23,
+        28,
+        30,
+        31,
+        41,
+        49,
+        55,
+        62,
+        70
+      ],
+      "additional_questions_reworded": [
+        16,
+        36,
+        44,
+        50,
+        57
+      ],
+      "historical_issue": "Ihlen fangeleir was interim label; Ilebu fengsel for landssvikdømte followed prison service takeover",
+      "independent_historical_editorial_signoff": "PENDING"
+    },
+    "review_only_integration_preview": {
+      "status": "CI_ARTIFACT_NOT_COMMITTED",
+      "workflow": "Grini quiz staging preflight",
+      "run_id": 40696607712,
+      "run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40696607712",
+      "artifact_name": "grini-10x7-full-input-integration-preview",
+      "source_sha": "522641dd7a105a06061537bb162edd77ff96167b",
+      "artifact_expires_utc": "2026-11-11T13:28:12Z",
+      "built_from_full_history_manifest": true,
+      "production_context_persisted": false,
+      "active_quiz_replaced": false
     }
   }
 }
