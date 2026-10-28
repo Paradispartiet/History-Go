@@ -52,6 +52,14 @@ test("staging fails closed for bad answers, mismatched claims and altered phase 
   badClaim.brief.claims[0].statement = "UNREVIEWED EDIT";
   assert.throws(() => buildGriniStagingPreview(badClaim), /question\/claim mismatch/);
 
+  const badFamily = structuredClone(inputs);
+  badFamily.brief.claims[0].family = "analysis";
+  assert.throws(() => buildGriniStagingPreview(badFamily), /canonical claim family mismatch/);
+
+  const badBinding = structuredClone(inputs);
+  badBinding.brief.claims[66].method_id = "met_nonsense";
+  assert.throws(() => buildGriniStagingPreview(badBinding), /claim binding mismatch/);
+
   const badPhase = structuredClone(inputs);
   badPhase.draft.sets[2].phase = "bridge";
   assert.throws(() => buildGriniStagingPreview(badPhase), /set phase/);
