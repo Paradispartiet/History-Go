@@ -322,3 +322,13 @@ body.hg-app header.site-header:has(> .hg-universal-home) > .top-actions { margin
     width: 16px; min-width: 16px; flex: 0 0 16px;
   }
 }
+
+/* Standalone headers also keep the home logo left of the back arrow. */
+.emner-header-nav > .hg-universal-home,
+main.main > header > .hg-universal-home {
+  left: calc(12px + env(safe-area-inset-left, 0px));
+}
+.emner-header-nav > .hg-universal-back,
+main.main > header > .hg-universal-back {
+  left: calc(58px + env(safe-area-inset-left, 0px));
+}
