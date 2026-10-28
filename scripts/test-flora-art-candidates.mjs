@@ -46,7 +46,9 @@ assert(gallery.includes("ikke botanisk godkjent"),"gallery must state approval l
 const review=read("js/ui/flora-illustration-review.js");
 assert(review.includes('newCandidates = new Map()'));
 assert(review.includes('candidate.approvedForPublication===false'));
-assert(review.includes("illustration-candidates-batch01.json"));
+assert(review.includes('for (const batch of ["01","02","03"])'),"all photo candidates batches must be included");
+assert(review.includes('fetch("data/natur/flora/illustration-candidates-batch"+batch+".json")'),
+  "all candidate manifests must be fetched through the current loader");
 assert(review.includes('newCandidates.get(id)'),"candidate comparison absent");
 assert(read("flora-illustration-review.html").includes("flora-illustrasjoner-bolk01.html"));
 const front=read("finn-flora.html"), explorer=read("js/ui/nature-explorer.js");
