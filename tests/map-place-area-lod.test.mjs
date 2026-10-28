@@ -121,7 +121,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badges-all-zooms1"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badge-zoom-scale2"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
@@ -234,4 +234,26 @@ test("Badge-markører vises på alle zoom, og gamle prikker er reversible", () =
   assert.match(source, /function interpolatePlaceAreaMarkerSide\(zoom, isVisited\)/, "områdefirkantene skal bevares");
   assert.match(css, /\.hg-place-area-marker\.has-category-badge/);
   assert.match(css, /\.hg-place-detail-marker\.has-category-badge/);
+});
+
+
+test("Badge-størrelse synker kontinuerlig ved utzoom og er markant større ved maksimal zoom", () => {
+  for (const [name, code] of [["TypeScript", source], ["legacy", legacy], ["web", dist]]) {
+    const functionCode = code.match(/function mapBadgeDiameter\(zoom\) \{[\s\S]*?\n\s*\}/)?.[0];
+    assert.ok(functionCode, name + ": missing Badge sizing function");
+    const size = vm.runInNewContext("(" + functionCode + ")");
+    const zooms = [4, 6, 8, 10, 12, 13, 15, 16, 18, 20, 21, 22];
+    const values = zooms.map(size);
+    for (let i = 1; i < values.length; i++) {
+      assert.ok(values[i] > values[i - 1], name + ": Badge size must grow with zoom " + zooms[i]);
+    }
+    assert.ok(size(6) <= 5, name + ": zoomed out badges must be compact");
+    assert.ok(size(10) < 10, name + ": city zoom must stay below ten pixels");
+    assert.ok(size(13) >= 12 && size(13) <= 18, name + ": street view must remain readable");
+    assert.ok(size(18) >= 35 && size(18) < 45, name + ": close zoom should enlarge smoothly");
+    assert.ok(size(22) >= 75 && size(22) <= 80, name + ": maximum zoom badge must be much larger than before");
+    assert.equal(size(0), 2.5, name + ": min-size guard");
+    assert.equal(size(24), 80, name + ": max-size guard");
+  }
+  assert.match(source, /function setMarkerMode\(nextMode\)/, "dot rollback must remain available");
 });
