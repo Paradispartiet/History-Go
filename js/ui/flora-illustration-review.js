@@ -4,6 +4,8 @@
   const KEY = "hg_flora_visual_review_v1";
   const illustrationApi = window.HG_NATURE_ILLUSTRATIONS;
   const photoApi = window.HG_NATURE_FLORA_PHOTOS;
+  // Uploaded drawings are candidates only; the production image gate is separate.
+  const newCandidates = new Map();
   const fields = [
     ["leaf", "Bladform og bladstilling"],
     ["flower", "Blomst, frukt, kongle eller sporer"],
@@ -90,6 +92,12 @@
     compare.appendChild(imagePanel("Illustrasjon · ikke godkjent", illustrationApi.resolve(id), "Ikke godkjent illustrasjon av " + label(a)));
     compare.appendChild(imagePanel("Artsfoto · referanse", photo?.src || "", "Fotografi av " + label(a)));
     result.appendChild(compare);
+    const latest = newCandidates.get(id);
+    if (latest) {
+      const preview = imagePanel("Ny transparent kandidat · IKKE godkjent", latest.src, "Ny illustrasjonskandidat av " + label(a));
+      preview.classList.add("candidate-preview");
+      result.appendChild(preview);
+    }
     const links=make("div", "photo-links");
     if (photo) {
       links.appendChild(openLink("Fotokilde og lisens · "+photo.creator, photo.source));
@@ -197,6 +205,18 @@
         }
       }
       species=Array.from(unique.values()).sort((a,b)=>label(a).localeCompare(label(b),"nb"));
+      try {
+        const response=await fetch("data/natur/flora/illustration-candidates-batch01.json");
+        if(response.ok){
+          const candidateData=await response.json();
+          for(const candidate of candidateData?.items||[]){
+            if(candidate?.catalogId && candidate.approvedForPublication===false &&
+              typeof candidate.src==="string" &&
+              candidate.src.startsWith("bilder/natur/flora/illustrasjonskandidater/b01/"))
+              newCandidates.set(candidate.catalogId,candidate);
+          }
+        }
+      } catch(err) { console.warn("[FloraReview] Kandidatbilder utilgjengelige",err); }
       render();
     } catch (err) {
       summary.textContent="Kunne ikke laste botanisk gjennomgang: "+String(err?.message||err);
