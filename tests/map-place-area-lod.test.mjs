@@ -283,7 +283,9 @@ test("kartet henter nye JS- og CSS-ressurser etter Badge-oppdatering", () => {
   const app = read("js/app.js");
   const html = read("index.html");
   assert.ok(app.includes("js/map.js?v=20261028-badges-readable-close5"), "kartmodulen må få ny cacheversjon");
-  assert.ok(html.includes("js/app.js?v=20261028-badges-readable-close5"), "startmodulen må få ny cacheversjon");
+  // Startmodulen kan få en nyere cacheversjon når andre funksjoner publiseres etter Badge-oppdateringen.
+  const appVersion = html.match(/js\/app\.js\?v=(20\d{6})-[a-z0-9-]+/);
+  assert.ok(appVersion && Number(appVersion[1]) >= 20261028, "startmodulen må få en oppdatert cacheversjon");
   assert.ok(html.includes("css/map.css?v=20261028-badges-readable-close5"), "kartstilen må få ny cacheversjon");
 });
 
