@@ -56,7 +56,7 @@ assert.equal(oldEngSha,eng.previousGitBlobSha,"old engkarse version changed");
 assert(read("flora-illustrasjoner-bolk02.html").includes(eng.previousSrc),"engkarse before/after gallery missing");
 assert(!manifest.items.some(p=>p.approvedForPublication),"unreviewed drawings cannot be published");
 const js=read("js/ui/flora-illustration-review.js");
-assert(js.includes('["01","02","03"]'),"all candidate batches must be loaded in the review gallery");
+assert(js.includes('["01","02","03","04"]'),"all candidate batches must be loaded in the review gallery");
 assert(js.includes('illustration-candidates-batch"+batch+".json"'),"shared candidate manifest loader missing");
 assert(js.includes('candidate.approvedForPublication===false'),"review gate disabled");
 const explorer=read("js/ui/nature-explorer.js");
