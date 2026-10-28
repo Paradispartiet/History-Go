@@ -1,4 +1,4 @@
-/* Fifty-three individually sourced photographs for Finn Flora.
+/* Fifty-four individually sourced photographs for Finn Flora.
  * Photo identity follows the Wikimedia Commons file description, not a generated
  * SVG template or an automatic species-name search. This is a photographic
  * reference pilot, not a completed botanical-identification audit.
@@ -14,6 +14,7 @@ const licenses=Object.freeze({
  "BY-SA-2.5-CA":["CC BY-SA 2.5 Canada","https://creativecommons.org/licenses/by-sa/2.5/ca/"]
 });
 const FILES=Object.freeze({
+ emne_flora_lovetann:["Taraxacum officinale agg.","Taraxacum Officinale.jpg","Furu Maru","BY-SA-3.0"],
  emne_flora_enghumleblom:["Geum rivale","Geum rivale flowers.jpg","Meneerke bloem","BY-SA-3.0"],
  emne_flora_engkarse:["Cardamine pratensis","Cardamine pratensis flower.jpg","El Grafo","BY-SA-3.0"],
  emne_flora_engknoppurt:["Centaurea jacea","Centaurea jacea.jpeg","Kristian Peters","BY-SA-3.0"],
@@ -69,6 +70,7 @@ const FILES=Object.freeze({
  emne_flora_varerteknapp:["Lathyrus vernus","Lathyrus vernus02.jpg","Meneerke bloem","BY-SA-3.0"]
 });
 const PHOTO_URLS=Object.freeze({
+ "emne_flora_lovetann": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Taraxacum_Officinale.jpg/960px-Taraxacum_Officinale.jpg",
  "emne_flora_enghumleblom": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Geum_rivale_flowers.jpg",
  "emne_flora_engkarse": "https://upload.wikimedia.org/wikipedia/commons/4/46/Cardamine_pratensis_flower.jpg",
  "emne_flora_engknoppurt": "https://upload.wikimedia.org/wikipedia/commons/6/66/Centaurea_jacea.jpeg",

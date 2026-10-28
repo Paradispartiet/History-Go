@@ -30,7 +30,10 @@ try{
     {name:"blaveis",term:"blåveis",path:"b01/07_blaveis.webp"},
     {name:"engkarse",path:"b04/01_engkarse_v3.webp"},
     {name:"ballblom",path:"b04/02_ballblom_v3.webp"},
-    {name:"engsoleie",path:"b04/03_engsoleie_v3.webp"}
+    {name:"engsoleie",path:"b04/03_engsoleie_v3.webp"},
+    {name:"lovetann",term:"løvetann",path:"b05/01_lovetann_v2.webp"},
+    {name:"rodjonsokblom",term:"jonsok",path:"b05/02_rodjonsokblom_v2.webp"},
+    {name:"prestekrage",path:"b05/03_prestekrage_v2.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
