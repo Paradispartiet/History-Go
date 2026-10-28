@@ -2,7 +2,7 @@
 """Make one lossless contact sheet from the original tracked HG category badge files."""
 from pathlib import Path
 import io, json
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, UnidentifiedImageError
 import cairosvg
 
 root = Path(__file__).resolve().parents[1]
@@ -31,13 +31,20 @@ for i,badge in enumerate(badges):
     draw.rounded_rectangle((x,y,x+card_w,y+card_h),radius=23,fill='#161c26',outline='#343b49',width=2)
     path=root/badge['image']
     assert str(path.resolve()).startswith(str(root.resolve())) and path.is_file(), path
-    if path.suffix.lower()=='.svg':
-        src=Image.open(io.BytesIO(cairosvg.svg2png(url=str(path),output_width=550,output_height=550))).convert('RGBA')
-    else:
-        src=Image.open(path).convert('RGBA')
-    # Thumbnail only; keep the original pixels and aspect ratio unchanged.
-    src.thumbnail((292,292),Image.Resampling.LANCZOS)
-    canvas.paste(src,(x+(card_w-src.width)//2,y+9+(289-src.height)//2),src)
+    invalid=False
+    try:
+        if path.suffix.lower()=='.svg':
+            src=Image.open(io.BytesIO(cairosvg.svg2png(url=str(path),output_width=550,output_height=550))).convert('RGBA')
+        else:
+            src=Image.open(path).convert('RGBA')
+        # Thumbnail only; keep the original pixels and aspect ratio unchanged.
+        src.thumbnail((292,292),Image.Resampling.LANCZOS)
+        canvas.paste(src,(x+(card_w-src.width)//2,y+9+(289-src.height)//2),src)
+    except (UnidentifiedImageError, OSError, ValueError) as exc:
+        invalid=True
+        ImageDraw.Draw(canvas).rounded_rectangle((x+74,y+40,x+card_w-74,y+252),radius=25,fill='#232733',outline='#9b5555',width=3)
+        draw.text((x+92,y+137),'UGYLDIG BILDEFIL',font=ImageFont.truetype(font_bold,20),fill='#f2aaa3')
+        print(f'WARNING: {path}: {exc}')
     name=badge['name']
     if len(name)>27: size=20
     elif len(name)>19: size=22
@@ -45,7 +52,7 @@ for i,badge in enumerate(badges):
     f=ImageFont.truetype(font_bold,size)
     left,top,right,bottom=draw.textbbox((0,0),name,font=f)
     draw.text((x+(card_w-(right-left))//2,y+311),name,font=f,fill='#f4f6fa')
-    metadata.append({'id':badge['id'],'name':name,'source':badge['image'],'source_size':list(Image.open(path).size) if path.suffix.lower()!='.svg' else [512,512]})
+    metadata.append({'id':badge['id'],'name':name,'source':badge['image'],'valid_image':not invalid})
 dst=out/'history-go-merker-originale-20261028.png'
 canvas.save(dst,optimize=True)
 (out/'badge-sources.json').write_text(json.dumps({'badge_count':len(badges),'sources':metadata},ensure_ascii=False,indent=2),encoding='utf-8')
