@@ -583,7 +583,7 @@
         const side = showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
         entry.element.style.width = `${side.toFixed(2)}px`;
         entry.element.style.height = `${side.toFixed(2)}px`;
-        entry.element.style.borderWidth = showBadge ? (side < 6 ? "0px" : `${Math.min(2, side * 0.12).toFixed(2)}px`) : "2px";
+        entry.element.style.borderWidth = showBadge ? side < 6 ? "0px" : `${Math.min(2, side * 0.12).toFixed(2)}px` : "2px";
       }
     }
     function syncPlaceAreaDomMarkers(features) {
