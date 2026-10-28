@@ -24,6 +24,10 @@ on:
       - 'js/ui/flora-illustration-review.js'
       - 'data/natur/flora/illustration-candidates-batch01.json'
       - 'data/natur/flora/illustration-candidates-batch02.json'
+      - 'data/natur/flora/illustration-candidates-batch03.json'
+      - 'bilder/natur/flora/illustrasjonskandidater/b03/**'
+      - 'flora-illustrasjoner-bolk03.html'
+      - 'scripts/test-flora-art-candidates-batch03.mjs'
       - 'bilder/natur/flora/illustrasjonskandidater/b02/**'
       - 'flora-illustrasjoner-bolk02.html'
       - 'scripts/test-flora-art-candidates-batch02.mjs'
@@ -54,3 +58,4 @@ jobs:
       - run: node scripts/test-flora-illustration-review.mjs
       - run: node scripts/test-flora-art-candidates.mjs
       - run: node scripts/test-flora-art-candidates-batch02.mjs
+      - run: node scripts/test-flora-art-candidates-batch03.mjs
