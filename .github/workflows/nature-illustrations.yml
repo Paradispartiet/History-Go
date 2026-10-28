@@ -20,6 +20,9 @@ on:
       - 'finn-fauna.html'
       - 'scripts/test-nature-illustrations.mjs'
       - 'scripts/test-nature-flora-photos.mjs'
+      - 'scripts/test-flora-illustration-review.mjs'
+      - 'js/ui/flora-illustration-review.js'
+      - 'reports/flora-illustration-review.html'
       - '.github/workflows/nature-illustrations.yml'
 
 permissions:
@@ -40,3 +43,4 @@ jobs:
           node-version: '20'
       - run: node scripts/test-nature-illustrations.mjs
       - run: node scripts/test-nature-flora-photos.mjs
+      - run: node scripts/test-flora-illustration-review.mjs
