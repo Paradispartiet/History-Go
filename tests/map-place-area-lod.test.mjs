@@ -121,7 +121,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261027-early-labels-category-badges1"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badges-all-zooms1"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
@@ -214,4 +214,24 @@ test("runtime lager en synlig DOM-firkant over kartcanvaset", () => {
   assert.equal(marker.element.style.borderWidth, "2px");
   assert.equal(marker.element.style.zIndex, "12");
   assert.equal(layers.has("hg-place-areas-dots"), false, "det gamle symbollaget skal ikke finnes");
+});
+
+
+test("Badge-markører vises på alle zoom, og gamle prikker er reversible", () => {
+  const css = read("css/map.css");
+  for (const [name, code] of [["TypeScript", source], ["legacy", legacy], ["web", dist]]) {
+    assert.match(code, /MARKER_MODE_STORAGE_KEY/, name + ": mangler vedvarende modus");
+    assert.match(code, /hg_map_marker_mode/, name + ": mangler lagringsnøkkel");
+    assert.match(code, /function setMarkerMode\(nextMode\)/, name + ": kan ikke rulle tilbake");
+    assert.match(code, /function mapBadgeDiameter\(zoom\)/, name + ": mangler skalerbare badges");
+    assert.match(code, /badgeAvailable/, name + ": må skjule de gamle prikkene kun ved Badge");
+    assert.match(code, /const badgesReady = isBadgeMarkerMode\(\) && placeBadgeImages.size > 0/, name + ": må beholde prikkefallback");
+    assert.match(code, /\.has\(badgeCategoryId\(feature.properties.category\)\)/, name + ": badger må knyttes til riktig kategori");
+    assert.match(code, /getMarkerMode: \(\) => markerMode/, name + ": tilbakekobling må kunne bekreftes");
+  }
+  assert.match(source, /const showBadge = isBadgeMarkerMode\(\) && !!entry.badgeImage\?\.complete/);
+  assert.match(source, /function getPlaceDotPaint\(isArea = false\)/, "prikkemotoren skal bevares");
+  assert.match(source, /function interpolatePlaceAreaMarkerSide\(zoom, isVisited\)/, "områdefirkantene skal bevares");
+  assert.match(css, /\.hg-place-area-marker\.has-category-badge/);
+  assert.match(css, /\.hg-place-detail-marker\.has-category-badge/);
 });

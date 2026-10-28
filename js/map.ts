@@ -29,6 +29,9 @@
   const MAX_TOUCH_DETAIL_MARKERS = 240;
   const placeBadgeImages = new Map();
   let placeBadgeLoadStarted = false;
+  // Badge-mode experiment; original dots and squares remain available.
+  let markerMode = "badges";
+  const MARKER_MODE_STORAGE_KEY = "hg_map_marker_mode";
   const STYLE_STORAGE_KEY = "hg_map_style_mode";
   const STYLE_MODE_STANDARD = "standard";
   const STYLE_MODE_SATELLITE = "satellite";
@@ -160,6 +163,7 @@
     if (!el || !window.maplibregl) return null;
 
     mapStyleMode = getSavedMapStyleMode();
+    markerMode = getSavedMarkerMode();
     const initialStyleUrl = getStyleUrlForMode(mapStyleMode);
     if (!initialStyleUrl) {
       console.warn("[HGMap] Naturtro kart krever window.HG_MAPTILER_KEY. Beholder standardkart.");
@@ -688,7 +692,9 @@
     if (!MAP) return;
     const zoom = Number(MAP.getZoom?.() || 10);
     for (const entry of placeAreaMarkers.values()) {
-      const side = interpolatePlaceAreaMarkerSide(zoom, entry.visited);
+      const showBadge = isBadgeMarkerMode() && !!entry.badgeImage?.complete && entry.badgeImage.naturalWidth > 0;
+      entry.element.classList?.toggle?.("has-category-badge", showBadge);
+      const side = showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
       entry.element.style.width = `${side.toFixed(2)}px`;
       entry.element.style.height = `${side.toFixed(2)}px`;
     }
@@ -719,7 +725,7 @@
         const marker = new maplibregl.Marker({ element, anchor: "center" })
           .setLngLat(feature.geometry.coordinates)
           .addTo(MAP);
-        entry = { marker, element, visited: false };
+        entry = { marker, element, visited: false, badgeImage: null, badgeSrc: "" };
         placeAreaMarkers.set(id, entry);
       } else {
         // Restore native area markers if another map lifecycle step detached them.
@@ -735,6 +741,23 @@
         ? "#17212a" : markerBorder;
       entry.element.style.opacity = ["review", "unknown"].includes(feature.properties.coordinateTrust) ? "0.9" : "1";
       entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 4px rgba(0,0,0,.3)";
+      const badgeSrc = isBadgeMarkerMode() ? (placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "") : "";
+      if (badgeSrc !== entry.badgeSrc) {
+        entry.badgeImage?.remove();
+        entry.badgeSrc = badgeSrc;
+        entry.badgeImage = null;
+        if (badgeSrc) {
+          const image = document.createElement("img");
+          image.className = "hg-place-area-badge";
+          image.alt = "";
+          image.draggable = false;
+          image.addEventListener("load", updatePlaceAreaDomMarkerSizes);
+          image.addEventListener("error", updatePlaceAreaDomMarkerSizes);
+          entry.element.appendChild(image);
+          entry.badgeImage = image;
+          image.src = badgeSrc;
+        }
+      }
     }
 
     for (const [id, entry] of placeAreaMarkers) {
@@ -750,6 +773,24 @@
     updatePlaceAreaDomMarkerSizes();
   }
 
+  function getSavedMarkerMode() {
+    try { return window.localStorage.getItem(MARKER_MODE_STORAGE_KEY) === "dots" ? "dots" : "badges"; }
+    catch { return "badges"; }
+  }
+
+  function isBadgeMarkerMode() { return markerMode === "badges"; }
+
+  function setMarkerMode(nextMode) {
+    markerMode = nextMode === "dots" ? "dots" : "badges";
+    try { window.localStorage.setItem(MARKER_MODE_STORAGE_KEY, markerMode); } catch {}
+    if (MAP) drawPlaceMarkers();
+    return markerMode;
+  }
+
+  function mapBadgeDiameter(zoom) {
+    return Math.max(10, Math.min(42, 10 + (zoom - 7) * 2.3));
+  }
+
   function badgeCategoryId(value) {
     return String((window as any).catIdFromDisplay?.(value) || value || "").trim().toLowerCase();
   }
@@ -761,7 +802,7 @@
         const image = String(badge?.image || "").trim();
         if (id && /\.(png|jpe?g|webp|gif|svg)(\?.*)?$/i.test(image)) placeBadgeImages.set(id, image);
       }
-      if (lastPlaceMarkerFeatures.length) syncPlaceDetailDomMarkers(lastPlaceMarkerFeatures);
+      if (lastPlaceMarkerFeatures.length && MAP) drawPlaceMarkers();
     };
     const existing = (window as any).BADGES;
     if (Array.isArray(existing) && existing.length) {
@@ -795,6 +836,7 @@
   }
 
   function nativeDetailBadgeDiameter(zoom) {
+    if (isBadgeMarkerMode()) return mapBadgeDiameter(zoom);
     return Math.max(18, Math.min(42, 18 + (zoom - PLACE_DETAIL_BADGE_MIN_ZOOM) * 8));
   }
 
@@ -842,7 +884,7 @@
     const diameter = nativeDetailDotDiameter(zoom);
     const width = Math.max(0.9, Math.min(1.4, diameter * 0.2));
     for (const entry of placeDetailMarkers.values()) {
-      const showBadge = zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM &&
+      const showBadge = (isBadgeMarkerMode() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM) &&
         entry.badgeImage?.complete && entry.badgeImage.naturalWidth > 0;
       const size = showBadge ? nativeDetailBadgeDiameter(zoom) : diameter;
       entry.hasCategoryBadge = !!showBadge;
@@ -864,8 +906,9 @@
       MAP.on("zoomend", onViewportChanged);
       placeDetailMarkerEventsBound = true;
     }
-    if (zoom < PLACE_DETAIL_MIN_ZOOM ||
-        (!useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM)) {
+    const badgesReady = isBadgeMarkerMode() && placeBadgeImages.size > 0;
+    if ((!badgesReady && zoom < PLACE_DETAIL_MIN_ZOOM) ||
+        (!badgesReady && !useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM)) {
       for (const entry of placeDetailMarkers.values()) entry.marker.remove();
       placeDetailMarkers.clear();
       return;
@@ -879,6 +922,9 @@
     const lat0 = Number(center.lat ?? START.lat);
     let visible = features.filter(feature => {
       if (feature?.properties?.mapLod !== PLACE_MAP_LOD_DETAIL) return false;
+      if (zoom < PLACE_DETAIL_MIN_ZOOM && !(badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))) return false;
+      if (!useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM &&
+          !(badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))) return false;
       const coords = feature.geometry?.coordinates;
       if (!Array.isArray(coords) || coords.length < 2) return false;
       return typeof bounds?.contains !== "function" || bounds.contains(coords);
@@ -893,7 +939,10 @@
     // or zero-sized map container. Never interpret an empty first bounds
     // calculation as proof that there are no places to display.
     if (!visible.length) {
-      visible = features.filter(feature => feature?.properties?.mapLod === PLACE_MAP_LOD_DETAIL)
+      visible = features.filter(feature => feature?.properties?.mapLod === PLACE_MAP_LOD_DETAIL &&
+          (zoom >= PLACE_DETAIL_MIN_ZOOM || (badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))) &&
+          (useNativeTouchDetailMarkers() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM ||
+            (badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))))
         .sort((a, b) => {
           const [ax, ay] = a.geometry.coordinates;
           const [bx, by] = b.geometry.coordinates;
@@ -955,8 +1004,8 @@
         entry.label.textContent = name;
         entry.element.setAttribute("aria-label", name);
       }
-      const badgeSrc = zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM
-        ? (placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "") : entry.badgeSrc;
+      const badgeSrc = isBadgeMarkerMode() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM
+        ? (placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "") : "";
       if (badgeSrc !== entry.badgeSrc) {
         entry.badgeImage?.remove();
         entry.badgeSrc = badgeSrc;
@@ -1085,6 +1134,7 @@
       // the actual dot away: once a place label can render, its dot must exist.
       "circle-opacity": [
         "case",
+        ["==", ["get", "badgeAvailable"], 1], 0,
         ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.58,
         1
       ]
@@ -1158,6 +1208,7 @@
         properties: {
           id: p.id,
           name: p.name || "",
+          badgeAvailable: isBadgeMarkerMode() && placeBadgeImages.has(badgeCategoryId(p.category)) ? 1 : 0,
           category: p.category || "",
           visited: isVisited ? 1 : 0,
           isAreaPlace: isAreaPlace(p) ? 1 : 0,
@@ -1483,6 +1534,8 @@
     getCoordinateTrust,
     isAreaPlace,
     getMapLod,
+    setMarkerMode,
+    getMarkerMode: () => markerMode,
 
     maybeDrawMarkers,
     ensureMarkers,
