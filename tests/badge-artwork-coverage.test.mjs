@@ -31,6 +31,6 @@ test('redesigned badges have distinct accessible symbolic vector artwork', () =>
     assert.match(svg, /<desc id="desc">/);
     assert.ok(svg.includes('id="symbol-' + id + '"'), id + ' lacks its dedicated motif');
     assert.match(svg, /<\/svg>\s*$/);
-    assert.doesNotMatch(svg, /<script|<image\\s|<foreignObject|xlink:href=|<use\\s/);
+    assert.doesNotMatch(svg, /<script|<image\s|<foreignObject|xlink:href=|<use\s/);
   }
 });
