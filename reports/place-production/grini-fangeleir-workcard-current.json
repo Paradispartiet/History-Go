@@ -73,7 +73,7 @@
       ]
     }
   },
-  "active_checkpoint": "D: canonical quiz staging converter + regression tests added; 10x7 phase/claim taxonomy aligned; activation/Knowledge/CI still BLOCKED",
+  "active_checkpoint": "E: canonical Grini staging, full 7-input context, isolated quiz audits and Knowledge replacement simulation PASSED on 3d2751dd; publication/integration and final review remain blocked",
   "production_profile": "major",
   "profile_status": "provisional",
   "blocked": [
@@ -86,7 +86,10 @@
     "Opening-date discrepancy Q69 clarified in draft; source conflict still needs historic research if a single definitive date is required",
     "Grini 10x7 canonical staging preview is non-active; exact head canonical production/context/Knowledge checks not yet passed",
     "Old generated Knowledge units may be dropped if active 1x3 is replaced without explicit retention/migration",
-    "Independent 70-question distractor, fact, ethics and theory/interpretation sign-off not yet completed"
+    "Independent 70-question distractor, fact, ethics and theory/interpretation sign-off not yet completed",
+    "Dry-run PASSED for Knowledge old-3 preservation and new-70 links, but no integrated Knowledge registries have been written",
+    "Independent 70-question historical/distractor QA and actual runtime are NOT PASSED",
+    "Fagmanifest+active 10x7+source-hashed context remain uncommitted"
   ],
   "coordinateDecision": "ALLEREDE FERDIG — preserve historical anchor, visitor anchor and 360m gameplay radius",
   "sourceReview": [
@@ -122,12 +125,12 @@
     "active_questions_before_migration": 3,
     "source_pdf_limit": "NTNU article is marked partial/unread due 403; not used as a reviewed claim source",
     "missing_gates": [
-      "independent editorial/factual review across all 70",
-      "fagmanifest production target + actual builder-generated context",
-      "full canonical package replacing active 1x3 only after migration approval",
-      "preserve/sync old three Knowledge units in generated registries",
-      "quiz audits and GitHub CI exact-head completion",
-      "runtime QuizCard flip/shuffle and mobile/desktop verification"
+      "independent historical and distractor review of all 70 questions",
+      "real canonical quiz package+fag-manifest+hashed context commit with matching package schemas",
+      "Knowledge canonical output regeneration on integrated PR head (dry-run passed but not persisted)",
+      "global quiz and Knowledge auditer on exact integrated PR head",
+      "QuizCard runtime/flip/shuffle/browser and mobile validation",
+      "all non-quiz place production and quality gates"
     ],
     "editorial_audit": "reports/place-production/grini-fangeleir-quiz-editorial-audit-2026-10-28.md",
     "editorial_audit_status": "STAGED_PRECHECK_ONLY_EXPERT_REVIEW_PENDING",
@@ -155,7 +158,7 @@
       "Full quiz audits, runtime shuffle, QuizCard and mobile/desktop QA not passed"
     ],
     "source_date_note": "Q69 revised using NOU 1998:12 (12 June 1941 opening) versus SNL/MiA (14 June establishment). Source difference documented, not presumed resolved.",
-    "activation_decision": "DO_NOT_ACTIVATE until editorial audit and canonical context/Knowledge/runtime gates are completed",
+    "activation_decision": "KEEP_ACTIVE_1x3_AND_PR_DRAFT until editorial signoff and integrated canonical/Knowledge/runtime QA",
     "canonical_staging": {
       "status": "PREVIEW_ONLY_NOT_ACTIVE",
       "script": "scripts/prepare-grini-quiz-staging.mjs",
@@ -187,6 +190,18 @@
       "canonical_tests": "PENDING_GITHUB_CHECKS_NOT_ATTESTED",
       "context_artifact": "NOT_BUILT",
       "knowledge_migration": "PENDING"
+    },
+    "technical_gate_evidence": "reports/place-production/grini-fangeleir-quiz-technical-gates-2026-10-28.json",
+    "technical_gate_run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40692552404",
+    "technical_gate_tested_sha": "3d2751ddf50821b8976a89d2cc298fc0334023c4",
+    "technical_gate_status": "STAGING_SIMULATIONS_PASS_NOT_PUBLISHED",
+    "knowledge_migration_dry_run": {
+      "status": "PASS_DISPOSABLE_RUNNER",
+      "old_units_preserved": 3,
+      "new_question_links_verified": 70,
+      "generator": "scripts/knowledge-canonical-data.mts",
+      "old_source_snapshot": "data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json",
+      "permanent_sync": "NOT_EXECUTED"
     }
   }
 }
