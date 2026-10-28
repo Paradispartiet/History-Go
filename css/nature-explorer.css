@@ -76,3 +76,8 @@ body[data-nature-kind=fauna] .ne-photo{background:#302e22}.ne-photo img{width:10
 .ne-brand{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;line-height:1}
 .ne-brand img{display:block;width:86px;height:86px;object-fit:contain}
 @media(max-width:380px){.ne-brand img{width:78px;height:78px}}
+
+/* Photo-first flora policy: do not imply an unapproved drawing depicts an actual species. */
+body[data-nature-kind="flora"] .ne-image-fallback{font-size:12px;font-weight:650;line-height:1.4;letter-spacing:.01em;color:#b8c5b8;text-align:center;padding:12px;background:#1b231e}
+body[data-nature-kind="flora"] .ne-dialog .ne-image-fallback{font-size:14px;min-height:170px}
+.ne-no-photo{margin:18px 0 8px;padding:18px;border:1px solid #414b3f;border-radius:12px;background:#1b231e;color:#c2cec1;font-size:13px;line-height:1.5}
