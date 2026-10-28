@@ -1,0 +1,23 @@
+name: Oslo V–U 02 – front images and original quizcards
+
+on:
+  pull_request:
+    paths:
+      - 'data/places/by/oslo/places/vigelandsparken.json'
+      - 'data/places/by/oslo/places/uranienborg_kirke.json'
+      - 'data/places/by/oslo/places/ulvoya.json'
+      - 'tests/oslo-vu-commons-front-images.test.mjs'
+      - '.github/workflows/oslo-vu-front-images.yml'
+  workflow_dispatch:
+
+jobs:
+  front-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify metadata, source and unchanged quizcard parity
+        run: node --test tests/oslo-vu-commons-front-images.test.mjs
