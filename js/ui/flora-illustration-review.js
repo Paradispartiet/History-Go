@@ -8,7 +8,8 @@
     ["leaf", "Bladform og bladstilling"],
     ["flower", "Blomst, frukt, kongle eller sporer"],
     ["habit", "Vekstform og naturlige proporsjoner"],
-    ["reference", "Sammenlignet med artsbestemt kilde"]
+    ["reference", "Sammenlignet med artsbestemt kilde"],
+    ["transparent", "Ekte gjennomsiktig bakgrunn kontrollert på sort flate"]
   ];
   const statuses = {
     pending: "Ikke vurdert",

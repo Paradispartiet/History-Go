@@ -51,10 +51,16 @@ function photoCredit(info,asFallback=false){
 }
 function appendImage(parent,source,alt){
  const img=node("img");img.alt=alt;img.loading="lazy";
+ if(kind==="flora"&&source.type==="illustration"){
+  img.classList.add("ne-transparent-art");
+  parent.classList.add("ne-art-transparent-stage");
+ }
  let usingFallback=false;
  img.addEventListener("error",()=>{
   if(!usingFallback&&source.fallback){
    usingFallback=true;img.src=source.fallback;
+   img.classList.remove("ne-transparent-art");
+   parent.classList.remove("ne-art-transparent-stage");
    img.alt=(source.fallbackInfo?"Artsfoto av ":"Illustrasjon av ")+alt;
    const label=parent.querySelector(".ne-image-label");
    if(label)label.textContent=source.fallbackInfo?"Artsfoto":"Illustrasjon";
