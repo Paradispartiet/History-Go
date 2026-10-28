@@ -72,7 +72,7 @@ async function main() {
         "candidate preview directory must be outside the checkout");
       await fs.mkdir(directory, { recursive: true });
       const writePreview = async (name, obj) => fs.writeFile(
-        path.join(directory, name), JSON.stringify(obj, null, 2) + "\\n", "utf8");
+        path.join(directory, name), JSON.stringify(obj, null, 2) + "\n", "utf8");
       await writePreview("grini_fangeleir_sets.CANDIDATE_NOT_ACTIVE.json", packageCandidate);
       await writePreview("grini_fangeleir_context.FULL_INPUT_PREVIEW.json", context);
       await writePreview("README_NOT_FOR_PUBLICATION.json", {
