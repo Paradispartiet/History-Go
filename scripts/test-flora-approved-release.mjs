@@ -62,7 +62,7 @@ for(const [id,latin] of expected){
 for(const x of batch.items){
   const source=candidates.items.find(a=>a.key===x.key);
   assert(source && source.gitBlobSha===x.gitBlobSha);
-  assert.equal(approved.has(x.catalogId||x.key),x.approvedForPublication,"unapproved candidate leaked: "+x.key);
+  assert.equal(approved.get(x.catalogId||x.key)?.src===x.candidate,x.approvedForPublication,"unapproved historical image leaked: "+x.key);
 }
 for(const id of ["emne_flora_engkarse","emne_flora_ballblom"]){
   assert(approved.has(id),"the v3 version should now be approved");
