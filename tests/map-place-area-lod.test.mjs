@@ -260,11 +260,11 @@ test("Badge-størrelse synker kontinuerlig ved utzoom og er markant større ved 
 
 test("områdefirkanter er synlige også når kategori-Badge er lastet", () => {
   const css = read("css/map.css");
-  const block = css.match(/body\\.hg-app #map \\.hg-place-area-marker\\.has-category-badge \\{([^}]*)\\}/)?.[1] || "";
-  assert.match(block, /border-radius:\\s*0\\s*!important/, "områdebadge må fortsatt ha kvadratisk fasong");
-  assert.doesNotMatch(block, /border:\\s*0|border-width:\\s*0|box-shadow:\\s*none/, "badge må ikke skjule områdekant");
+  const block = css.match(/body\.hg-app #map \.hg-place-area-marker\.has-category-badge \{([^}]*)\}/)?.[1] || "";
+  assert.match(block, /border-radius:\s*0\s*!important/, "områdebadge må fortsatt ha kvadratisk fasong");
+  assert.doesNotMatch(block, /border:\s*0|border-width:\s*0|box-shadow:\s*none/, "badge må ikke skjule områdekant");
   for (const [name, code] of [["TypeScript", source], ["legacy", legacy], ["web", dist]]) {
-    assert.match(code, /Math\\.max\\(mapBadgeDiameter\\(zoom\\), interpolatePlaceAreaMarkerSide\\(zoom, entry\\.visited\\)\\)/,
+    assert.match(code, /Math\.max\(mapBadgeDiameter\(zoom\), interpolatePlaceAreaMarkerSide\(zoom, entry\.visited\)\)/,
       name + ": områdemarkøren må ikke krympe under opprinnelig firkant");
   }
 });
