@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: backend-readiness-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   probe-readiness:
     runs-on: ubuntu-latest
