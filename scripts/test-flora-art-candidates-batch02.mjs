@@ -19,7 +19,7 @@ for(const p of manifest.items){
  const entry=catalog.find(c=>c.id===p.catalogId);
  assert(entry,"unknown catalog id: "+p.catalogId);
  assert.equal(entry.latin,p.scientificName);
- assert.match(p.src,/^bilder\/natur\/flora\/illustrasjonskandidater\/b02\/\d{2}_[a-z]+\.webp$/);
+ assert.match(p.src,/^bilder\/natur\/flora\/illustrasjonskandidater\/b02\/\d{2}_[a-z]+(?:_v\d+)?\.webp$/);
  const bin=readBytes(p.src);
  assert(bin.length>20000 && bin.length<800000,"unexpected image size");
  assert.equal(bin.toString("ascii",0,4),"RIFF","not a RIFF image");
@@ -33,8 +33,20 @@ for(const p of manifest.items){
  assert(gallery.includes(p.src),"missing image on review gallery");
  assert(gallery.includes(p.issues),"missing QA finding on gallery");
 }
-assert.equal(manifest.items.find(p=>p.catalogId==="emne_flora_ballblom")?.reviewStatus,"needs_redraw",
- "globeflower morphology warning must survive");
+const ball=manifest.items.find(p=>p.catalogId==="emne_flora_ballblom");
+assert.equal(ball?.reviewStatus,"needs_species_review","redrawn globeflower is still unapproved");
+assert.equal(ball?.previousSrc,"bilder/natur/flora/illustrasjonskandidater/b02/01_ballblom.webp");
+assert.equal(ball?.previousGitBlobSha,"aa6a051e28c9299513a3660d7589931b3cc3a903");
+assert.notEqual(ball.gitBlobSha,ball.previousGitBlobSha);
+assert(ball.reviewEvidenceUrls?.length>=2,"globeflower reference comparison missing");
+assert(ball.issues.includes("kuleformede")&&ball.issues.includes("bladverket"),"globeflower morphology notes missing");
+const oldBall=readBytes(ball.previousSrc);
+const oldGit=crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+oldBall.length+"\0"),oldBall])).digest("hex");
+assert.equal(oldGit,ball.previousGitBlobSha,"before version missing or modified");
+const eng=manifest.items.find(p=>p.catalogId==="emne_flora_engkarse");
+assert.equal(eng?.reviewStatus,"needs_redraw","engkarse leaf mismatch must be flagged");
+assert(eng.issues.includes("grunnblad")&&eng.botanicalReferenceUrl.includes("kew.org"),"engkarse QA source missing");
+assert(!manifest.items.some(p=>p.approvedForPublication),"unreviewed drawings cannot be published");
 const js=read("js/ui/flora-illustration-review.js");
 assert(js.includes('["01","02"]'),"new batch missing in review gallery");
 assert(js.includes('candidate.approvedForPublication===false'),"review gate disabled");
