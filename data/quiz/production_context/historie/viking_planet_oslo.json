@@ -1,0 +1,550 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "viking_planet_oslo",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1797,
+    "selection_sha256": "2cc49361b240ba02251f534c3433748cc78ae763744a2abc682e401edc16647d",
+    "category_id": "historie",
+    "target_id": "viking_planet_oslo"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/viking_planet_oslo.json",
+      "bytes": 29065,
+      "sha256": "a059de34e8db15ae6dec1f57869d0dd35884921c9d251eb18246c62e0541d61d"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/viking_planet_oslo.json",
+      "bytes": 11375,
+      "sha256": "c64caa3576e407d52f77dbb03a6a41a0cacee647aeb91d5a2682aabb1166d5fb"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1202,
+      "selection_sha256": "2527a8ff27825653ff66dbeaffc246ca4ea1ed6e70b55a932682c3670280e7c8"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/historie/viking_planet_oslo_sets.json",
+  "source_registry": {
+    "about": {
+      "url": "https://www.thevikingplanet.com/no/om-oss/",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-28"
+    },
+    "experiences": {
+      "url": "https://www.thevikingplanet.com/no/opplevelser-no/",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-28"
+    },
+    "visit": {
+      "url": "https://www.thevikingplanet.com/no/plan-your-visit/",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-28"
+    },
+    "home": {
+      "url": "https://www.thevikingplanet.com/",
+      "source_type": "museum_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-28"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/historie/manifest.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Use existing canonical viking_planet_oslo only.",
+      "Make source/reconstruction distinctions explicit.",
+      "Avoid excessive years."
+    ],
+    "knowledge_migration": "Generate canonical Knowledge IDs."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Modern interactive Viking Age interpretation and source criticism."
+  },
+  "held_back_candidates": [
+    "Assuming original Vikings ships are displayed inside The Viking Planet.",
+    "Unlicensed promotional images presented as free-to-reuse."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_tidslag_samtidighet",
+        "title": "Tidslag og samtidighet i sted",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_historiske_lag_i_byrom"
+    ],
+    "topic_hook_ids": [
+      "his_kulturminneutvelgelse_verdi",
+      "his_samtid_ettertid_fortelling",
+      "his_spor_materialitet",
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_kulturarvutvelgelsesanalyse",
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_viking_planet_oslo_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "The Viking Planet åpnet i Oslo 20. juni 2019 som et interaktivt museum om vikingtiden.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museets besøksadresse er Fridtjof Nansens plass 4, rett ved Oslo rådhus.",
+      "source_ids": [
+        "visit"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "The Viking Planet bruker VR, film og interaktive teknologier til å visualisere vikingtid, fremfor å forvalte en arkeologisk originalsamlings hovedutstilling.",
+      "source_ids": [
+        "about",
+        "home"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "concept_theory",
+      "statement": "En digital fremstilling kan være forskningsbasert og likevel inneholde dramatisering og valg som ikke er dokumentert i historiske kilder.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den store 270-graders kinoframstillingen er en omsluttende visuell formidlingsflate, ikke et originalt historisk funn.",
+      "source_ids": [
+        "home"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "The Viking Planet oppgir Erik Gustavson som overordnet ansvarlig for innholdet.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Vikinghistoriker Kim Hjardar har vært faglig rådgiver for blant annet våpen, bekledning og langskip i produksjonene.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "The Ambush er en manusbasert VR-film som lar publikum oppleve et dramatisert vikingangrep.",
+      "source_ids": [
+        "experiences"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Den digitale vikingskiputstillingen lar besøkende oppleve det tidligere Vikingskipshuset gjennom digitale rekonstruksjoner.",
+      "source_ids": [
+        "experiences"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Museets digitale gjennomgang viser blant annet Oseberg- og Gokstadskipene fra den tidligere museumsutstillingen.",
+      "source_ids": [
+        "experiences"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "The Viking Planet oppgir at digitale 3D-modeller av gjenstander er lånt fra Vikingtidsmuseet ved Universitetet i Oslo.",
+      "source_ids": [
+        "experiences"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "En 3D-modell kan bygge på et virkelig funn, men en digital visning er ikke det samme som det originale objektet.",
+      "source_ids": [
+        "experiences"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "The Viking Planet er et digitalt formidlingsmuseum i sentrum, mens Vikingtidsmuseet ved UiO forvalter de arkeologiske originalene på Bygdøy.",
+      "source_ids": [
+        "about",
+        "experiences"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Historisk autentisitet bør vurderes ut fra identifiserbare kilder og tydelig merking av dramatiserte elementer.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Museet sier at de dramatiserte produksjonene bygger på arkeologiske funn og norrøn litteratur.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tekster om vikingtiden må tolkes i lys av når, hvordan og hvorfor de ble skrevet, også når de brukes som grunnlag for film.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "The Viking Planet oppgir samarbeid med Ridley Scott Associates og Dimension Studio om innholdsproduksjon.",
+      "source_ids": [
+        "about",
+        "experiences"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et digitalt hologram kan illustrere en historisk fortolkning, men er ikke i seg selv vitnesbyrd fra vikingtiden.",
+      "source_ids": [
+        "home"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Dramatiske valg i digital formidling kan forskyve oppmerksomheten mot krig og reiser fremfor andre sider ved samfunnslivet.",
+      "source_ids": [
+        "home",
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En interaktiv opplevelse egner seg til å formulere spørsmål som etterprøves mot kildene, ikke til å erstatte kildene.",
+      "source_ids": [
+        "about",
+        "experiences"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_viking_planet_oslo_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "The Viking Planet tilbyr moderne visuelle fortolkninger av vikingtiden med utgangspunkt i historisk kunnskap.",
+      "source_ids": [
+        "about",
+        "home"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "historie_viking_planet_oslo_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_viking_planet_oslo_01",
+        "claim_viking_planet_oslo_02",
+        "claim_viking_planet_oslo_03",
+        "claim_viking_planet_oslo_04",
+        "claim_viking_planet_oslo_05",
+        "claim_viking_planet_oslo_06",
+        "claim_viking_planet_oslo_07"
+      ]
+    },
+    {
+      "set_id": "historie_viking_planet_oslo_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_viking_planet_oslo_08",
+        "claim_viking_planet_oslo_09",
+        "claim_viking_planet_oslo_10",
+        "claim_viking_planet_oslo_11",
+        "claim_viking_planet_oslo_12",
+        "claim_viking_planet_oslo_13",
+        "claim_viking_planet_oslo_14"
+      ]
+    },
+    {
+      "set_id": "historie_viking_planet_oslo_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_viking_planet_oslo_15",
+        "claim_viking_planet_oslo_16",
+        "claim_viking_planet_oslo_17",
+        "claim_viking_planet_oslo_18",
+        "claim_viking_planet_oslo_19",
+        "claim_viking_planet_oslo_20",
+        "claim_viking_planet_oslo_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 11,
+      "context": 3,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.524,
+      "context": 0.143,
+      "concept_theory": 0.333
+    }
+  }
+}
