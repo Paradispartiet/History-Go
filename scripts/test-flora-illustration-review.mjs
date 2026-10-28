@@ -27,7 +27,7 @@ for(const phrase of [
 ])assert(script.includes(phrase),"missing review behavior: "+phrase);
 assert(!script.includes("hg_nature_unlocks_v2"),"visual review must never touch collection status");
 assert(!script.includes("HG_NATURE_FLORA_APPROVED"),"review page must never publish approved art");
-assert.match(explorer,/const approvedFloraIllustrations = new Set\(\);/,"production must still hide all unapproved art");
+assert(explorer.includes('window.HG_NATURE_FLORA_APPROVED'), 'flora publication requires explicit approved-image registry');
 assert(workflow.includes("node scripts/test-flora-illustration-review.mjs"),"CI must validate review gallery");
 const sandbox={window:{}};
 const sources=[
@@ -53,4 +53,4 @@ for(const entry of photographed){
  assert(p.creator&&p.license&&p.source.startsWith("https://commons.wikimedia.org/wiki/File:"),
   "photo provenance missing: "+entry.id);
 }
-console.log("Flora review gallery: 165 taxa, source comparisons, local-only assessment, no release approvals.");
+console.log("Flora review gallery: 165 taxa, source comparisons, local-only assessment; publication through audited registry.");
