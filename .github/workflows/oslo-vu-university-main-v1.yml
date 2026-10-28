@@ -40,3 +40,5 @@ jobs:
           git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/runtime/place-open/universitetets_gamle_hovedbygning.json data/fagverk/fagverk_release.json
           if ! git diff --cached --quiet; then git commit -m "University main buildings: generated Knowledge and runtime"; fi
           git push origin HEAD:content/oslo-vu-universitetets-hovedbygning-v1-20261028
+
+# Reconciled with main while retaining existing canonical place registrations

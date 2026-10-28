@@ -9,6 +9,13 @@ on:
       - '.github/workflows/oslo-vu-vettakollen-universitetsplassen-parity.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-vu-vettakollen-universitetsplassen-parity-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   quizcard-parity:
     runs-on: ubuntu-latest

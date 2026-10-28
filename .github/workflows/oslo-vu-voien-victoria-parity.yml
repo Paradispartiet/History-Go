@@ -10,6 +10,13 @@ on:
       - '.github/workflows/oslo-vu-voien-victoria-parity.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-vu-voien-victoria-parity-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   quizcard-parity:
     runs-on: ubuntu-latest

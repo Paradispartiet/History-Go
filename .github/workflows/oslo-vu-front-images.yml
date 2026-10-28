@@ -10,6 +10,13 @@ on:
       - '.github/workflows/oslo-vu-front-images.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-vu-front-images-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   front-images:
     runs-on: ubuntu-latest
