@@ -12,7 +12,7 @@
       reviewedAt: "2026-10-28",
       stage: "vårblomstring",
       evidence: "data/natur/flora/illustration-quality-review-20261028.json"
-    })    ,
+    }),
     emne_flora_hvitveis: Object.freeze({
       scientificName: "Anemone nemorosa",
       src: "bilder/natur/flora/illustrasjonskandidater/b01/01_hvitveis.webp",
@@ -20,6 +20,30 @@
       reviewedAt: "2026-10-28",
       stage: "vårblomstring",
       evidence: "data/natur/flora/illustration-quality-batch01-20261028.json"
+    }),
+    emne_flora_engkarse: Object.freeze({
+      scientificName: "Cardamine pratensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b04/01_engkarse_v3.webp",
+      gitBlobSha: "346744f204310f1ff066dedaad90721d1e39270a",
+      reviewedAt: "2026-10-28",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-revision-batch04.json"
+    }),
+    emne_flora_ballblom: Object.freeze({
+      scientificName: "Trollius europaeus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b04/02_ballblom_v3.webp",
+      gitBlobSha: "69d93fa920043aec97204528ebaa160cd57f733d",
+      reviewedAt: "2026-10-28",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-revision-batch04.json"
+    }),
+    emne_flora_engsoleie: Object.freeze({
+      scientificName: "Ranunculus acris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b04/03_engsoleie_v3.webp",
+      gitBlobSha: "a63657dea3251934afcd8b8669cace9899cf169a",
+      reviewedAt: "2026-10-28",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-revision-batch04.json"
     }),
     emne_flora_blaveis: Object.freeze({
       scientificName: "Hepatica nobilis",
