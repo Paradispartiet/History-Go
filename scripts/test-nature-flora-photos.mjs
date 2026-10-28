@@ -85,10 +85,17 @@ for(const [id,taxon] of expected){
 }
 assert.equal(photos.get("emne_flora_other"),null);
 const explorer=read("js/ui/nature-explorer.js");
-assert(explorer.indexOf("const documented = floraPhotos?.get")<explorer.indexOf('if(art)return {src:art,type:"illustration"}'),"documented photos must take priority");
-assert.match(explorer,/if\(!usingFallback&&source\.fallback\)/,"photo failures must fall back to existing SVG");
-assert.match(explorer,/imageInfo\.creator/,"photo credit missing");
-assert.match(explorer,/imageInfo\.licenseUrl/,"license link missing");
+assert(explorer.indexOf('if(art&&kind==="flora")return')<explorer.indexOf('if(documented)return'),"approved flora illustrations must take priority over photos");
+assert.match(explorer,/fallbackInfo:documented\|\|null/,"illustrations must fall back to documented photos");
+assert.match(explorer,/const approvedFloraIllustrations = new Set\(\);/,"flora drawings cannot be shown before manual species QA");
+assert.match(explorer,/kind!=="flora"\|\|approvedFloraIllustrations\.has\(id\)/,"unapproved SVGs must not appear or be used as photo fallback");
+assert.match(explorer,/kind==="flora"\?"Bilde utilgjengelig":icon/,"unavailable flora media must show a neutral placeholder");
+assert.match(explorer,/photoCredit\(source\.fallbackInfo,true\)/,"fallback photo must preserve attribution");
+assert.match(explorer,/else if\(kind==="flora"\) image\.appendChild/,"missing photos must not display generic species drawings");
+assert.match(explorer,/if\(!usingFallback&&source\.fallback\)/,"approved illustration failures must support photo fallback");
+assert.match(explorer,/info\.creator/,"photo credit missing");
+assert.match(explorer,/photoCredit\(imageInfo\)/,"photo credit must be used for primary photographs");
+assert.match(explorer,/info\.licenseUrl/,"license link missing");
 assert(!explorer.includes("localStorage.setItem"),"photo display must not touch collection progress");
 const flora=read("finn-flora.html"),fauna=read("finn-fauna.html");
 assert(flora.includes('js/ui/nature-flora-photographs.js'),"photo registry not loaded");
