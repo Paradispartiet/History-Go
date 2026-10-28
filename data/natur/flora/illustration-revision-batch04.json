@@ -2,8 +2,8 @@
   "schema": "history-go-flora-revision-batch-v1",
   "batch": "04",
   "createdAt": "2026-10-28",
-  "status": "v3_assets_imported_and_botanically_reviewed_premerge",
-  "note": "Original v3 WebP files are committed in the b04 directory, with verified Git blobs and transparent edges. Species-level visual review passed; browser acceptance must pass before merging this release. v2 candidates remain historical review images.",
+  "status": "v3_assets_reviewed_and_browser_qa_passed",
+  "note": "All three original 720x1080 WebP assets are committed with exact Git blob SHA1 and SHA256. Species morphology and transparent dark-background review completed. GitHub Actions tested six approved species on 390px and 1440px viewports, with successful image and Commons photo failover. Historical v2 rejections remain in the ledger.",
   "releaseGate": {
     "required": [
       "new_asset_committed_to_repo",
@@ -46,10 +46,10 @@
         0,
         255
       ],
-      "status": "approved_for_release_pending_browser_validation",
+      "status": "species_and_browser_approved",
       "botanicalVisualDecision": "passed",
       "observations": "Opprett og tydelig hovedstengel, kort løs toppklase med lyserosa firetallsblomster, smale skulper, runde finnede grunnblad og smalere stengelblad. Blomsternes støvbærere er for små til å telle sikkert i artskortstørrelse. Identifiseres ikke kun ut fra tegningen.",
-      "browserQaPassed": false
+      "browserQaPassed": true
     },
     {
       "id": "emne_flora_ballblom",
@@ -82,10 +82,10 @@
         0,
         255
       ],
-      "status": "approved_for_release_pending_browser_validation",
+      "status": "species_and_browser_approved",
       "botanicalVisualDecision": "passed",
       "observations": "Én stor nesten lukket kuleformet gul blomst med overlappende begerblad, en mindre knopp på separat slank stengel, hånddelte tannete grunnblad og smalere stengelblad. Størrelsesforhold og kuleform markant bedre enn v2.",
-      "browserQaPassed": false
+      "browserQaPassed": true
     },
     {
       "id": "emne_flora_engsoleie",
@@ -118,10 +118,22 @@
         0,
         255
       ],
-      "status": "approved_for_release_pending_browser_validation",
+      "status": "species_and_browser_approved",
       "botanicalVisualDecision": "passed",
       "observations": "Opprett forgrenet blomsterstengel med to fembladete glinsende gule blomster, knopper, større dypt håndflikede grunnblad og mindre øvre blad. Rotsystem og blomsterstilk egnet som artsillustrasjon.",
-      "browserQaPassed": false
+      "browserQaPassed": true
     }
-  ]
+  ],
+  "browserEvidence": {
+    "workflow": "Nature atlas illustrations",
+    "runId": 40679722124,
+    "url": "https://github.com/Paradispartiet/History-Go/actions/runs/40679722124",
+    "viewportWidths": [
+      390,
+      1440
+    ],
+    "verifiedSpeciesCount": 6,
+    "cardAndDialogPass": true,
+    "photoFailoverPass": true
+  }
 }
