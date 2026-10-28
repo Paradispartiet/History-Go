@@ -38,10 +38,13 @@ test("Van Etten: Fagverk, historical photograph label and generated Place-open",
  assert.deepEqual(live.fagverk.article,p.fagverk.article);
 });
 
-test("Van Etten and Vaterland: canonical subject Knowledge registries contain published question IDs",()=>{
- const ku=new Set(read("data/knowledge/subjects/kunst/knowledge_units.generated.json").units.map(u=>u.knowledge_unit_id));
- for(const question of questions)assert.ok(question.knowledge_unit_ids.some(id=>ku.has(id)),question.id+" missing from Kunst Knowledge");
+test("Van Etten and Vaterland: canonical global and configured subject Knowledge contain published question IDs",()=>{
+ const manifest=read("data/knowledge/knowledge_manifest.json");
+ const registryPaths=["data/knowledge/knowledge_units.generated.json",
+   ...Object.values(manifest.runtime?.subjectCanonicalRegistries||{}).map(config=>"data/knowledge/"+config.knowledge_units)];
+ const known=new Set();
+ for(const registryPath of registryPaths)for(const unit of read(registryPath).units||[])known.add(unit.knowledge_unit_id);
  const vat=read("data/quiz/subkultur/vaterland_bar_scene_sets.json");
- const sub=new Set(read("data/knowledge/subjects/subkultur/knowledge_units.generated.json").units.map(u=>u.knowledge_unit_id));
- for(const question of vat.sets.flatMap(s=>s.questions))assert.ok(question.knowledge_unit_ids?.some(id=>sub.has(id)),question.id+" missing from Subkultur Knowledge");
+ for(const item of [...questions,...vat.sets.flatMap(s=>s.questions)])
+   assert.ok(item.knowledge_unit_ids?.some(unitId=>known.has(unitId)),item.id+" missing from canonical Knowledge registry");
 });
