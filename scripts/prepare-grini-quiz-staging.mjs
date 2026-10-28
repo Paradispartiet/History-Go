@@ -142,6 +142,65 @@ export function buildGriniStagingPreview({ brief, draft, live, superset }) {
   };
 }
 
+
+/**
+ * Construct the exact canonical package SHAPE against a REAL context built
+ * from the full history manifest. The returned object is still a staging
+ * candidate. Do not register it in any runtime manifest or overwrite 1x3
+ * without a separate reviewed activation commit and Knowledge sync.
+ */
+export function buildGriniCanonicalCandidate(preview, context) {
+  ensure(preview?.status === "STAGING_ONLY_NOT_ACTIVE", "expected validated preview");
+  ensure(context?.categoryId === CATEGORY && context?.targetId === TARGET &&
+    context.profile === "major_10x7", "wrong canonical context");
+  ensure(context.source_files?.brief?.path === BRIEF, "wrong canonical brief provenance");
+  ensure(context.claim_bank?.length === 70 && context.set_plan?.length === 10,
+    "context must contain full 70-claim 10-set plan");
+  ensure(context.required_inputs_loaded?.length === 7 &&
+    Object.values(context.resolved_files || {}).length === 7,
+    "seven full category inputs required");
+  for (const [i, set] of preview.sets.entries()) {
+    ensure(context.set_plan[i].set_id === set.set_id &&
+      context.set_plan[i].phase === set.phase &&
+      JSON.stringify(context.set_plan[i].claim_ids) === JSON.stringify(set.questions.map(q => q.claim_id)),
+      "candidate plan differs from built canonical context");
+  }
+  const selected = context.selected_curriculum;
+  ensure(selected?.emne_ids?.length && selected?.method_ids?.length &&
+    selected?.topic_hook_ids?.length, "real curriculum selection missing");
+  const production_context = {
+    manifest_category: CATEGORY,
+    profile: context.profile,
+    standard_version: "3.3",
+    source_brief: BRIEF,
+    context_artifact: "data/quiz/production_context/historie/grini_fangeleir.json",
+    resolved_files: Object.fromEntries(Object.entries(context.resolved_files).map(([k, v]) => [k, v.path])),
+    required_inputs_loaded: context.required_inputs_loaded,
+    pensum_module_ids: selected.module_ids,
+    emne_ids: selected.emne_ids,
+    topic_hook_ids: selected.topic_hook_ids,
+    method_ids: selected.method_ids,
+    thinker_ids: selected.thinker_ids,
+    works: selected.works,
+    source_review_status: context.source_review_status,
+    existing_quiz_audit: context.existing_quiz_audit,
+    profile_decision: context.profile_decision,
+    held_back_candidates: context.held_back_candidates,
+    theory_start_phase: "final",
+    method_start_phase: "middle"
+  };
+  return {
+    categoryId: CATEGORY,
+    targetId: TARGET,
+    size_class: preview.size_class,
+    generated_from: preview.source_brief,
+    generator_version: "1.0",
+    production_context,
+    sources: preview.sources,
+    sets: preview.sets
+  };
+}
+
 export async function readStagingInputs(root = ROOT) {
   const read = async (name) => JSON.parse(await fs.readFile(path.join(root, name), "utf8"));
   const [brief, draft, live, superset] = await Promise.all(
