@@ -30,7 +30,10 @@ try{
     {name:"blaveis",term:"blåveis",path:"b01/07_blaveis.webp"},
     {name:"engkarse",path:"b04/01_engkarse_v3.webp"},
     {name:"ballblom",path:"b04/02_ballblom_v3.webp"},
-    {name:"engsoleie",path:"b04/03_engsoleie_v3.webp"}
+    {name:"engsoleie",path:"b04/03_engsoleie_v3.webp"},
+    {name:"lovetann",label:"Løvetann",term:"løvetann",path:"b05/01_lovetann_v2.webp"},
+    {name:"rodjonsokblom",label:"Rød jonsokblom",term:"jonsok",path:"b05/02_rodjonsokblom_v2.webp"},
+    {name:"prestekrage",path:"b05/03_prestekrage_v2.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
@@ -42,9 +45,10 @@ try{
     await page.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await page.locator("#natureSearch").fill(species.term||species.name);
-    const card=page.locator("#natureGrid .ne-card").first();
+    const title=species.label||species.term||species.name;
+    const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
     await card.waitFor();
-    await page.waitForFunction(()=>document.querySelector(".ne-card img")?.naturalWidth>0);
+    await card.locator("img").evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
     assert((await card.locator("img").getAttribute("src")).endsWith(species.path));
     assert.equal((await card.locator(".ne-image-label").innerText()).trim(),"Illustrasjon");
     assert.equal(await card.locator("img").evaluate(el=>getComputedStyle(el).objectFit),"contain");
@@ -69,7 +73,7 @@ try{
     await test.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await test.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await test.locator("#natureSearch").fill(species.term||species.name);
-    const fallback=test.locator("#natureGrid .ne-card").first();
+    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
     await fallback.locator(".ne-image-label").getByText("Artsfoto").waitFor({timeout:20000});
     assert.match(await fallback.locator("img").getAttribute("src"),/wikimedia\.org/);
     await fallback.click();

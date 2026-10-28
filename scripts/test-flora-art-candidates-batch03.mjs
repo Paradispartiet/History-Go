@@ -32,7 +32,7 @@ const gallery=read("flora-illustrasjoner-bolk03.html");
 assert(gallery.includes(p.src)&&gallery.includes("Etter blomstring"));
 assert(gallery.includes("godkjent for Finn Flora"));
 const review=read("js/ui/flora-illustration-review.js");
-assert(review.includes('["01","02","03","04"]'));
+assert(review.includes('["01","02","03","04","05"]'));
 assert(review.includes("candidate.approvedForPublication===false"));
 assert(read("flora-illustration-review.html").includes("flora-illustrasjoner-bolk03.html"));
 const app=read("finn-flora.html"),explorer=read("js/ui/nature-explorer.js");

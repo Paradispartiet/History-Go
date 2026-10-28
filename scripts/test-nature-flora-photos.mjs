@@ -7,6 +7,7 @@ const sandbox={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-photographs.js"),sandbox);
 const photos=sandbox.window.HG_NATURE_FLORA_PHOTOS;
 const expected=[
+ ["emne_flora_lovetann","Taraxacum officinale agg."],
  ["emne_flora_enghumleblom","Geum rivale"],
  ["emne_flora_engkarse","Cardamine pratensis"],
  ["emne_flora_engknoppurt","Centaurea jacea"],
@@ -61,7 +62,7 @@ const expected=[
  ["emne_flora_russblaastjerne","Scilla siberica"],
  ["emne_flora_varerteknapp","Lathyrus vernus"]
 ];
-assert.equal(photos.count,53);
+assert.equal(photos.count,54);
 const urls=new Set();
 const illustrations=[
  "nature-illustrations.js","nature-illustrations-batch03.js",
@@ -107,7 +108,7 @@ assert(!fauna.includes("nature-flora-photographs.js"),"flora photo registry must
 // Batch 3: Verify that each recorded media URL is in the MediaWiki file's
 // content-addressed directory. Existing pilot entries retain their prior contract.
 import { createHash } from "node:crypto";
-const batch3Ids=["emne_flora_hvitveis","emne_flora_rodkløver","emne_flora_tiriltunge","emne_flora_hvitklover","emne_flora_hvittvetann","emne_flora_rodjonsokblom","emne_flora_hvitbergknapp","emne_flora_groblad","emne_flora_ormehode","emne_flora_skogstorkenebb","emne_flora_gullstjerne","emne_flora_markjordbaer"];
+const batch3Ids=["emne_flora_lovetann","emne_flora_hvitveis","emne_flora_rodkløver","emne_flora_tiriltunge","emne_flora_hvitklover","emne_flora_hvittvetann","emne_flora_rodjonsokblom","emne_flora_hvitbergknapp","emne_flora_groblad","emne_flora_ormehode","emne_flora_skogstorkenebb","emne_flora_gullstjerne","emne_flora_markjordbaer"];
 for (const id of batch3Ids) {
  const photo=photos.get(id);
  const filename=decodeURIComponent(photo.source.split("/wiki/File:")[1]);
@@ -148,4 +149,4 @@ for (const id of batch5Ids) {
   "invalid Commons image path: "+id);
  assert.ok(photo.creator && photo.license && photo.licenseUrl);
 }
-console.log("Flora photos: 53 sourced species, credits/licenses, SVG fallback and read-only UI OK.");
+console.log("Flora photos: 54 sourced species, credits/licenses, SVG fallback and read-only UI OK.");

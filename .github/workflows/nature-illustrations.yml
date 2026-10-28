@@ -33,6 +33,9 @@ on:
       - 'data/natur/flora/illustration-revision-batch04.json'
       - 'data/natur/flora/illustration-revision-batch05.json'
       - 'flora-illustrasjoner-bolk05.html'
+      - 'data/natur/flora/illustration-quality-batch05-20261028.json'
+      - 'data/natur/flora/illustration-candidates-batch05.json'
+      - 'bilder/natur/flora/illustrasjonskandidater/b05/**'
       - 'data/natur/flora/illustration-candidates-batch04.json'
       - 'bilder/natur/flora/illustrasjonskandidater/b04/**'
       - 'flora-illustrasjoner-bolk04.html'
@@ -89,6 +92,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-six-mobile-desktop
+          name: flora-approved-nine-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
