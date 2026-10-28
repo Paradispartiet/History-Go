@@ -1,0 +1,40 @@
+name: Oslo T-S Tullin People and QuizCard parity
+on:
+  push:
+    branches: [content/oslo-ts-bolk03-tullin-people-card-v1-20261028]
+    paths:
+      - '.github/workflows/oslo-ts-tullin-people-card-v1.yml'
+      - 'tests/oslo-ts-tullin-people-card-v1.test.mjs'
+      - 'data/quizcards/by/topp10_by_kort_batch7.json'
+      - 'data/people/by/oslo/tullin/claus_tullin.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ts-bolk03-tullin-people-card-v1-20261028
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild runtime People and Place-open
+        run: npm run place-open:build
+      - name: Check Tullin quiz, QuizCard and People
+        run: node --test tests/oslo-ts-tullin-people-card-v1.test.mjs
+      - name: Save generated runtime changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/people-all/ data/runtime/place-open/tullin.json
+          if ! git diff --cached --quiet; then git commit -m "Tullin: refresh People runtime"; fi
+          git restore .
+          git fetch origin content/oslo-ts-bolk03-tullin-people-card-v1-20261028
+          git rebase origin/content/oslo-ts-bolk03-tullin-people-card-v1-20261028
+          git push origin HEAD:content/oslo-ts-bolk03-tullin-people-card-v1-20261028
