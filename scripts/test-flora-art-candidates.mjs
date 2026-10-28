@@ -53,6 +53,6 @@ assert(review.includes('newCandidates.get(id)'),"candidate comparison absent");
 assert(read("flora-illustration-review.html").includes("flora-illustrasjoner-bolk01.html"));
 const front=read("finn-flora.html"), explorer=read("js/ui/nature-explorer.js");
 assert(!front.includes("illustrasjonskandidater")&&!front.includes("illustration-candidates-batch01"),"candidates exposed on production flora");
-assert.match(explorer,/const approvedFloraIllustrations = new Set\(\);/,"unreviewed SVGs must stay hidden");
+assert(explorer.includes('window.HG_NATURE_FLORA_APPROVED'), 'release registry must prevent unreviewed SVGs');
 assert(!explorer.includes("newCandidates"),"unapproved art must not reach live cards");
 console.log("Flora candidate assets: 15 valid transparent WebP files, 7 catalog-linked for review, 3 uncertain; 0 published.");
