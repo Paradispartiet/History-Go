@@ -205,18 +205,19 @@
         }
       }
       species=Array.from(unique.values()).sort((a,b)=>label(a).localeCompare(label(b),"nb"));
-      try {
-        const response=await fetch("data/natur/flora/illustration-candidates-batch01.json");
-        if(response.ok){
+      for (const batch of ["01","02"]) {
+        try {
+          const response=await fetch("data/natur/flora/illustration-candidates-batch"+batch+".json");
+          if(!response.ok) continue;
           const candidateData=await response.json();
           for(const candidate of candidateData?.items||[]){
             if(candidate?.catalogId && candidate.approvedForPublication===false &&
               typeof candidate.src==="string" &&
-              candidate.src.startsWith("bilder/natur/flora/illustrasjonskandidater/b01/"))
+              candidate.src.startsWith("bilder/natur/flora/illustrasjonskandidater/b"+batch+"/"))
               newCandidates.set(candidate.catalogId,candidate);
           }
-        }
-      } catch(err) { console.warn("[FloraReview] Kandidatbilder utilgjengelige",err); }
+        } catch(err) { console.warn("[FloraReview] Kandidatbilder utilgjengelige i bolk "+batch,err); }
+      }
       render();
     } catch (err) {
       summary.textContent="Kunne ikke laste botanisk gjennomgang: "+String(err?.message||err);
