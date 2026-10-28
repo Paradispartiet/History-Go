@@ -31,10 +31,10 @@
   <link rel="stylesheet" href="css/civi-canvas-map.css" />
   <link rel="stylesheet" href="css/civi-three-map.css" />
   <link rel="stylesheet" href="css/civi-city-layer.css" />
-  <link rel="stylesheet" href="css/fixed-shell.css" />
+  <link rel="stylesheet" href="css/fixed-shell.css?v=20261028-top-navigation1" />
   <link rel="stylesheet" href="css/civi-skills.css" />
-  <link rel="stylesheet" href="css/universal-header-nav.css?v=20261027-safe-back-logo2">
-  <script defer src="js/ui/universal-header-nav.js?v=20261027-safe-back-logo2"></script>
+  <link rel="stylesheet" href="css/universal-header-nav.css?v=20261028-header-alignment1">
+  <script defer src="js/ui/universal-header-nav.js?v=20261028-logo-before-back1"></script>
 </head>
 
 <!-- ============================================================
@@ -242,7 +242,7 @@
   </main>
 
   <div id="civiCloudSaveStatus" role="status" aria-live="polite" style="font-size:12px;padding:3px 12px">Civication: sjekker skylagring …</div>
-  <div class="civi-footer" aria-label="Civication-navigasjon">
+  <nav class="civi-footer" aria-label="Civication-navigasjon">
     <button id="btnCiviMap" class="civi-btn civi-map-icon-btn" type="button" aria-label="Kart" title="Kart">🗺️</button>
     <button class="civi-btn civi-category-tab" type="button" data-category="minDag">Min dag</button>
     <button class="civi-btn civi-category-tab" type="button" data-category="personlig">Personlig</button>
@@ -252,8 +252,8 @@
     <button class="civi-btn civi-category-tab" type="button" data-category="kultur">Kultur</button>
     <button id="civiMoreMenuToggle" class="civi-btn civi-footer-more-toggle" type="button"
       aria-controls="civiMoreMenu" aria-expanded="false" aria-haspopup="true">Mer ⋯</button>
-  </div>
-  <!-- A separate fixed menu cannot be clipped by the footer's horizontal scrolling. -->
+  </nav>
+  <!-- More menu is outside the horizontally scrollable navigation row. -->
   <div id="civiMoreMenu" class="civi-footer-more-menu" role="group"
     aria-label="Flere spillvalg" hidden>
     <div class="civi-footer-more-heading">Flere valg</div>

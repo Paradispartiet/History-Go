@@ -261,10 +261,89 @@ body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { margin-l
   body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { gap: 3px; }
 }
 @media (max-width: 380px) {
-  body.hg-app header.site-header > .hg-universal-home { left: calc(134px + env(safe-area-inset-left, 0px)); }
-  body.hg-app header.site-header:not(:has(> .hg-universal-back)) > .hg-universal-home {
+  /* Navigation occupies reserved space; logo before back arrow. */
+body.hg-app header.site-header { align-items: center; padding-top: 0; padding-bottom: 0; }
+body.hg-app header.site-header > .hg-universal-home {
+  position: absolute; z-index: 22; margin: 0;
+  left: calc(124px + env(safe-area-inset-left, 0px)); top: 18px;
+}
+body.hg-app header.site-header:has(> .hg-universal-home) > .hg-universal-back {
+  left: calc(168px + env(safe-area-inset-left, 0px));
+}
+body.hg-app header.site-header > .top-actions,
+body.hg-app.hg-phone header.site-header > .top-actions {
+  flex: 1 1 auto; min-width: 0; max-width: none;
+  margin-left: 124px; padding: 0;
+  align-self: center; align-content: center; justify-content: flex-end;
+  overflow: visible;
+}
+body.hg-app header.site-header:has(> .hg-universal-back) > .top-actions { margin-left: 172px; }
+body.hg-app header.site-header:has(> .hg-universal-home) > .top-actions { margin-left: 216px; }
+@media (max-width: 860px) {
+  body.hg-app header.site-header > .hg-universal-home {
+    width: 34px; min-width: 34px; max-width: 34px;
+    height: 34px; min-height: 34px;
+    left: calc(107px + env(safe-area-inset-left, 0px));
+    top: 50%; transform: translateY(-50%);
+  }
+  body.hg-app header.site-header:has(> .hg-universal-home) > .hg-universal-back {
+    left: calc(147px + env(safe-area-inset-left, 0px));
+  }
+  body.hg-app header.site-header > .top-actions,
+  body.hg-app.hg-phone header.site-header > .top-actions {
+    margin-left: 108px; padding: 0; flex-wrap: nowrap; gap: 4px;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) > .top-actions { margin-left: 149px; }
+  body.hg-app header.site-header:has(> .hg-universal-home) > .top-actions { margin-left: 189px; }
+}
+@media (max-width: 380px) {
+  body.hg-app header.site-header > .hg-universal-home {
     left: calc(96px + env(safe-area-inset-left, 0px));
   }
-  body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { margin-left: 170px; }
-  body.hg-app header.site-header:not(:has(> .hg-universal-back)) .top-actions { margin-left: 133px; }
+  body.hg-app header.site-header:has(> .hg-universal-home) > .hg-universal-back {
+    left: calc(136px + env(safe-area-inset-left, 0px));
+  }
+  body.hg-app header.site-header > .top-actions,
+  body.hg-app.hg-phone header.site-header > .top-actions {
+    margin-left: 98px; padding: 0; gap: 3px;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) > .top-actions { margin-left: 174px; }
+  body.hg-app header.site-header:has(> .hg-universal-home) > .top-actions { margin-left: 214px; }
+  /* Map mode can be opened via Explore; keep profile, position and menu. */
+  body.hg-app header.site-header #btnSeeMap { display: none; }
+  body.hg-app header.site-header .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header .top-actions #miniProfile {
+    width: 52px; min-width: 52px; max-width: 52px; flex: 0 0 52px;
+  }
+  body.hg-app header.site-header #nearbyExploreToggle {
+    width: 28px; min-width: 28px; flex: 0 0 28px; padding: 0;
+  }
+  body.hg-app header.site-header #geoStatus {
+    width: 16px; min-width: 16px; flex: 0 0 16px;
+  }
+}
+
+/* Standalone headers also keep the home logo left of the back arrow. */
+.emner-header-nav > .hg-universal-home,
+main.main > header > .hg-universal-home {
+  left: calc(12px + env(safe-area-inset-left, 0px));
+}
+.emner-header-nav > .hg-universal-back,
+main.main > header > .hg-universal-back {
+  left: calc(58px + env(safe-area-inset-left, 0px));
+}
+
+/* At 320–380px the profile must actually shrink; override the earlier
+   :has()-specific 72px rule so the rightmost menu is never pushed offscreen. */
+@media (max-width: 380px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 52px; min-width: 52px; max-width: 52px; flex: 0 0 52px;
+  }
+}
+@media (max-width: 350px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 44px; min-width: 44px; max-width: 44px; flex: 0 0 44px;
+  }
 }
