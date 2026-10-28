@@ -10,6 +10,7 @@ on:
       - 'scripts/prepare-grini-quiz-staging.mjs'
       - 'scripts/grini-quiz-context-preflight.mjs'
       - 'scripts/simulate-grini-knowledge-retention.mjs'
+      - 'scripts/simulate-grini-quiz-canonical-audits.mjs'
       - 'scripts/knowledge-canonical-data.mts'
       - 'data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json'
       - 'scripts/quiz-production-lib.mjs'
@@ -67,3 +68,19 @@ jobs:
         env:
           GRINI_DISPOSABLE_KNOWLEDGE_TEST: '1'
         run: node scripts/simulate-grini-knowledge-retention.mjs
+
+  canonical-audits-simulation:
+    name: Audit isolated Grini 10x7 canonical package (disposable only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout disposable PR-head copy
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build actual Grini context and run canonical target audits
+        env:
+          GRINI_DISPOSABLE_CANONICAL_TEST: '1'
+        run: node scripts/simulate-grini-quiz-canonical-audits.mjs
