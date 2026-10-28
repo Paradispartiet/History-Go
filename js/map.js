@@ -580,9 +580,10 @@
       for (const entry of placeAreaMarkers.values()) {
         const showBadge = isBadgeMarkerMode() && !!((_b = entry.badgeImage) == null ? void 0 : _b.complete) && entry.badgeImage.naturalWidth > 0;
         (_d = (_c = entry.element.classList) == null ? void 0 : _c.toggle) == null ? void 0 : _d.call(_c, "has-category-badge", showBadge);
-        const side = showBadge ? Math.max(mapBadgeDiameter(zoom), interpolatePlaceAreaMarkerSide(zoom, entry.visited)) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
+        const side = showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
         entry.element.style.width = `${side.toFixed(2)}px`;
         entry.element.style.height = `${side.toFixed(2)}px`;
+        entry.element.style.borderWidth = showBadge ? `${Math.max(0.5, Math.min(2, side * 0.12)).toFixed(2)}px` : "2px";
       }
     }
     function syncPlaceAreaDomMarkers(features) {
