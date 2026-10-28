@@ -37,3 +37,11 @@ test("Van Etten: Fagverk, historical photograph label and generated Place-open",
  assert.equal(live.id,p.id);assert.equal(live.image,p.image);assert.equal(live.frontImage,p.frontImage);
  assert.deepEqual(live.fagverk.article,p.fagverk.article);
 });
+
+test("Van Etten and Vaterland: canonical subject Knowledge registries contain published question IDs",()=>{
+ const ku=new Set(read("data/knowledge/subjects/kunst/knowledge_units.generated.json").units.map(u=>u.knowledge_unit_id));
+ for(const question of questions)assert.ok(question.knowledge_unit_ids.some(id=>ku.has(id)),question.id+" missing from Kunst Knowledge");
+ const vat=read("data/quiz/subkultur/vaterland_bar_scene_sets.json");
+ const sub=new Set(read("data/knowledge/subjects/subkultur/knowledge_units.generated.json").units.map(u=>u.knowledge_unit_id));
+ for(const question of vat.sets.flatMap(s=>s.questions))assert.ok(question.knowledge_unit_ids?.some(id=>sub.has(id)),question.id+" missing from Subkultur Knowledge");
+});
