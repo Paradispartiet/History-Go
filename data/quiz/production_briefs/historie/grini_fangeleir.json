@@ -62,15 +62,22 @@
       "em_his_fangenskap_kontroll",
       "em_his_okkupasjon_motstand",
       "em_his_minnesteder_historiebruk",
-      "em_his_rett_politi_fengsel"
+      "em_his_rett_politi_fengsel",
+      "em_his_kontroll_overvakning"
     ],
-    "topic_hook_ids": [],
+    "topic_hook_ids": [
+      "his_register_overvakning_disiplin"
+    ],
     "method_ids": [
       "met_kildekritikk",
       "met_kronologisk_rekonstruksjon"
     ],
-    "thinker_ids": [],
-    "works": []
+    "thinker_ids": [
+      "michel_foucault"
+    ],
+    "works": [
+      "Discipline and Punish"
+    ]
   },
   "profile_decision": {
     "profile": "major",
@@ -96,7 +103,35 @@
     ],
     "knowledge_migration": {
       "status": "pending",
-      "retained_rule": "Eksisterende tre Knowledge-koblinger skal beholdes eller migreres eksplisitt gjennom canonical synk; ikke marker fullført på forhånd."
+      "retained_rule": "Eldre Knowledge-enheter skal beholdes eller eksplisitt migreres via canonical Knowledge-synk; ikke marker fullført.",
+      "id_collision_prevention": "The three new editorial questions have new id and quiz_id values instead of silently reusing legacy question identities.",
+      "owners": [
+        {
+          "legacy_id": "grini_fangeleir_quiz_1",
+          "legacy_quiz_id": "historie_grini_fangeleir_set_1_q1",
+          "new_draft_id": "grini_fangeleir_quiz_v2_01",
+          "new_draft_quiz_id": "historie_grini_fangeleir_set_1_v2_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_grini_var_den_st_rste_ty_36d2946139",
+          "decision": "Preserve legacy Knowledge record until canonical owner migration; no implicit link transfer."
+        },
+        {
+          "legacy_id": "grini_fangeleir_quiz_2",
+          "legacy_quiz_id": "historie_grini_fangeleir_set_1_q2",
+          "new_draft_id": "grini_fangeleir_quiz_v2_02",
+          "new_draft_quiz_id": "historie_grini_fangeleir_set_1_v2_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_mange_av_fangene_pa_grin_1e40009469",
+          "decision": "Preserve legacy Knowledge record until canonical owner migration; no implicit link transfer."
+        },
+        {
+          "legacy_id": "grini_fangeleir_quiz_3",
+          "legacy_quiz_id": "historie_grini_fangeleir_set_1_q3",
+          "new_draft_id": "grini_fangeleir_quiz_v2_03",
+          "new_draft_quiz_id": "historie_grini_fangeleir_set_1_v2_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_grini_fungerer_som_et_mi_b92eaec122",
+          "decision": "Preserve legacy Knowledge record until canonical owner migration; no implicit link transfer."
+        }
+      ],
+      "active_legacy_quiz_untouched": true
     }
   },
   "held_back_candidates": [
@@ -511,14 +546,15 @@
       "claim_id": "claim_grini_quiz_19",
       "order": 19,
       "planned_phase": "bridge",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Grinis fangeprotokoller har to parallelle rekker som kan omtale samme fange.",
       "source_ids": [
         "arkiv"
       ],
       "source_origin": "external",
       "emne_id": "em_his_fangenskap_kontroll",
-      "set_number": 3
+      "set_number": 3,
+      "method_id": "met_kildekritikk"
     },
     {
       "claim_id": "claim_grini_quiz_20",
@@ -911,7 +947,7 @@
       "claim_id": "claim_grini_quiz_49",
       "order": 49,
       "planned_phase": "bridge",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Bevarte fangeberetninger og tegninger dokumenterer individuell erfaring, men ingen enkeltfange representerer alle.",
       "source_ids": [
         "mia",
@@ -919,7 +955,8 @@
       ],
       "source_origin": "external",
       "emne_id": "em_his_minnesteder_historiebruk",
-      "set_number": 7
+      "set_number": 7,
+      "method_id": "met_kildekritikk"
     },
     {
       "claim_id": "claim_grini_quiz_50",
@@ -1004,7 +1041,7 @@
       "claim_id": "claim_grini_quiz_56",
       "order": 56,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "Bilder av Grini ved frigjøringen må dateres hver for seg før man hevder at de viser en bestemt dag.",
       "source_ids": [
         "snl",
@@ -1012,7 +1049,8 @@
       ],
       "source_origin": "external",
       "emne_id": "em_his_minnesteder_historiebruk",
-      "set_number": 8
+      "set_number": 8,
+      "method_id": "met_kildekritikk"
     },
     {
       "claim_id": "claim_grini_quiz_57",
@@ -1073,7 +1111,7 @@
       "claim_id": "claim_grini_quiz_61",
       "order": 61,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "Grinimuseets autentiske fangebrakke er flyttet og står utenfor opprinnelig leirtomt.",
       "source_ids": [
         "mia",
@@ -1081,7 +1119,8 @@
       ],
       "source_origin": "external",
       "emne_id": "em_his_minnesteder_historiebruk",
-      "set_number": 9
+      "set_number": 9,
+      "method_id": "met_kildekritikk"
     },
     {
       "claim_id": "claim_grini_quiz_62",
@@ -1101,33 +1140,35 @@
       "claim_id": "claim_grini_quiz_63",
       "order": 63,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "Etterkrigstidens minnearbeid må skilles fra dokumentasjon av fangenes samtidige opplevelser.",
       "source_ids": [
         "mia"
       ],
       "source_origin": "external",
       "emne_id": "em_his_minnesteder_historiebruk",
-      "set_number": 9
+      "set_number": 9,
+      "method_id": "met_kildekritikk"
     },
     {
       "claim_id": "claim_grini_quiz_64",
       "order": 64,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "Grini-fanger fikk høsten 1941 omarbeidede uniformer fra Gardens uniformdepot; klær som likner gardeuniformer er derfor ikke alene bevis for at en fange tjenestegjorde i Garden.",
       "source_ids": [
         "snl"
       ],
       "source_origin": "external",
       "emne_id": "em_his_fangenskap_kontroll",
-      "set_number": 10
+      "set_number": 10,
+      "method_id": "met_kildekritikk"
     },
     {
       "claim_id": "claim_grini_quiz_65",
       "order": 65,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "Fanger kunne bli overført mellom Grini og andre fengsler og leirer. Ved summering av personoppføringer fra flere steder må mulige dobbeltregistreringer på tvers av leirer håndteres.",
       "source_ids": [
         "fanger",
@@ -1135,39 +1176,45 @@
       ],
       "source_origin": "external",
       "emne_id": "em_his_fangenskap_kontroll",
-      "set_number": 10
+      "set_number": 10,
+      "method_id": "met_kildekritikk"
     },
     {
       "claim_id": "claim_grini_quiz_66",
       "order": 66,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "SNL oppgir 786 kjente dødsfall blant Grini-fanger. Formuleringen «kjente» angir dokumenterte tilfeller, ikke nødvendigvis et bevist fullstendig tall for alle dødsfall.",
       "source_ids": [
         "snl"
       ],
       "source_origin": "external",
       "emne_id": "em_his_fangenskap_kontroll",
-      "set_number": 10
+      "set_number": 10,
+      "method_id": "met_kildekritikk"
     },
     {
       "claim_id": "claim_grini_quiz_67",
       "order": 67,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "Mye av Grinis praktiske indre administrasjon ble utført av fanger, men den overordnede myndigheten lå fortsatt hos den tyske leirledelsen.",
       "source_ids": [
         "snl"
       ],
       "source_origin": "external",
-      "emne_id": "em_his_fangenskap_kontroll",
-      "set_number": 10
+      "emne_id": "em_his_kontroll_overvakning",
+      "set_number": 10,
+      "method_id": "met_kildekritikk",
+      "topic_hook_id": "his_register_overvakning_disiplin",
+      "thinker_id": "michel_foucault",
+      "work": "Discipline and Punish"
     },
     {
       "claim_id": "claim_grini_quiz_68",
       "order": 68,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "Det historiske Grini og etterkrigstidens Ilebu har materiell kontinuitet, men tilhørte ulike myndigheter og rettslige regimer.",
       "source_ids": [
         "mia",
@@ -1175,13 +1222,14 @@
       ],
       "source_origin": "external",
       "emne_id": "em_his_rett_politi_fengsel",
-      "set_number": 10
+      "set_number": 10,
+      "method_id": "met_kronologisk_rekonstruksjon"
     },
     {
       "claim_id": "claim_grini_quiz_69",
       "order": 69,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "NOU 1998:12 oppgir at Grini ble åpnet 12. juni 1941, mens SNL og Grinimuseet oppgir etablering 14. juni 1941. Datoavviket må oppgis og granskes uten en ubegrunnet forklaring.",
       "source_ids": [
         "nou_1998_12",
@@ -1190,20 +1238,46 @@
       ],
       "source_origin": "external",
       "emne_id": "em_his_okkupasjon_motstand",
-      "set_number": 10
+      "set_number": 10,
+      "method_id": "met_kildekritikk"
     },
     {
       "claim_id": "claim_grini_quiz_70",
       "order": 70,
       "planned_phase": "final",
-      "family": "analysis",
+      "family": "concept_theory",
       "statement": "Den hemmelige Grini-gruppen W/25X førte en liste over rundt 150 fanger som var mistenkt for angiveri eller samarbeid. En mistankeliste dokumenterer mistanke, ikke i seg selv rettslig bevist skyld.",
       "source_ids": [
         "snl"
       ],
       "source_origin": "external",
       "emne_id": "em_his_okkupasjon_motstand",
-      "set_number": 10
+      "set_number": 10,
+      "method_id": "met_kildekritikk"
     }
-  ]
+  ],
+  "editorial_method_decision": {
+    "status": "draft_pending_runtime_validation",
+    "canonical_family_intent": {
+      "fact": 41,
+      "context": 17,
+      "concept_theory": 12
+    },
+    "method_bound_question_numbers": [
+      19,
+      49,
+      56,
+      61,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70
+    ],
+    "selected_theory": "his_register_overvakning_disiplin / michel_foucault / Discipline and Punish",
+    "rationale": "Avgrensede kildekritiske og sammenlignende spørsmål får metodebinding, etter 2×7 normalåpning. Foucault brukes bare som tolkningshjelp for dokumentert kontrollregime, ikke som ekstern kilde til historiske fakta."
+  }
 }
