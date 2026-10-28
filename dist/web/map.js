@@ -669,7 +669,7 @@
       return markerMode;
     }
     function mapBadgeDiameter(zoom) {
-      return Math.max(10, Math.min(42, 10 + (zoom - 7) * 2.3));
+      return Math.max(2.5, Math.min(80, 3.5 * Math.pow(1.202, zoom - 5)));
     }
     function badgeCategoryId(value) {
       var _a;
