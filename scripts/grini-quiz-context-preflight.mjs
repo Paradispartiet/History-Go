@@ -4,7 +4,8 @@
  *
  * Build the true canonical context from full manifest+category inputs in a
  * disposable CI checkout, then restore the exact original fag manifest bytes.
- * No quiz/Knowledge/production_context artifact is published by this script.
+ * Optional CI artifact preview is written to runner temp, never the repository.
+ * No quiz/Knowledge/production_context file is published by this script.
  *
  * Run this alone (not in parallel with other repo tests) because it uses a
  * short-lived in-checkout fag manifest overlay.
@@ -14,7 +15,7 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { buildQuizProductionContext } from "./quiz-production-lib.mjs";
-import { buildGriniStagingPreview, readStagingInputs } from "./prepare-grini-quiz-staging.mjs";
+import { buildGriniStagingPreview, buildGriniCanonicalCandidate, readStagingInputs } from "./prepare-grini-quiz-staging.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifestPath = path.join(root, "data/fag/fag_manifest.json");
@@ -61,6 +62,31 @@ async function main() {
       Object.values(context.resolved_files).every(record => record.sha256?.length === 64 && record.bytes > 0),
       "missing full-fag input hash evidence");
     ensure(context.source_files.brief.sha256?.length === 64, "missing source-brief hash");
+    if (process.env.GRINI_CANDIDATE_ARTIFACT === "1") {
+      ensure(process.env.GITHUB_ACTIONS === "true" && process.env.RUNNER_TEMP,
+        "candidate artifacts may only be written to the disposable CI runner");
+      const packageCandidate = buildGriniCanonicalCandidate(preview, context);
+      const directory = path.resolve(process.env.RUNNER_TEMP, "grini-integration-preview");
+      const gitRoot = path.resolve(root);
+      ensure(!directory.startsWith(gitRoot + path.sep),
+        "candidate preview directory must be outside the checkout");
+      await fs.mkdir(directory, { recursive: true });
+      const writePreview = async (name, obj) => fs.writeFile(
+        path.join(directory, name), JSON.stringify(obj, null, 2) + "\\n", "utf8");
+      await writePreview("grini_fangeleir_sets.CANDIDATE_NOT_ACTIVE.json", packageCandidate);
+      await writePreview("grini_fangeleir_context.FULL_INPUT_PREVIEW.json", context);
+      await writePreview("README_NOT_FOR_PUBLICATION.json", {
+        status: "STAGING_CANDIDATE_ONLY_NOT_PUBLISHED",
+        source_commit: process.env.REVIEWED_HEAD_SHA || "not_supplied",
+        source_brief_sha256: context.source_files.brief.sha256,
+        manifest_overlay: "Full original fag_manifest.json with only a temporary Grini quizProduction target appended",
+        expected_target: expectedTarget,
+        files_are_not_merged_or_activated: true,
+        knowledge_registry_sync_performed: false,
+        next_gate: "Independent 70-question editorial signoff followed by atomic integration, canonical Knowledge sync and runtime QA"
+      });
+    }
+
     result = {
       status: "STAGING_CONTEXT_BUILT_NOT_ACTIVATED",
       categoryId: context.categoryId,
