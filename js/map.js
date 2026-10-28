@@ -670,7 +670,6 @@
       return markerMode;
     }
     function mapBadgeDiameter(zoom) {
-      // Keep distant icons tiny; accelerate growth from street-level zoom.
       const distant = 2 * Math.pow(1.3, Math.min(zoom, 11) - 8);
       if (zoom <= 11) return Math.max(1, distant);
       const close = distant * Math.pow(1.6, Math.min(zoom, 16) - 11);
