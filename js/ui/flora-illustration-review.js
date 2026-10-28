@@ -178,14 +178,14 @@
   async function load(){
     try {
       if (!illustrationApi?.has || !photoApi?.get)throw Error("Illustrasjon- eller fotoregister ble ikke lastet");
-      const manifestRes=await fetch("../data/runtime/nature-all.json");
+      const manifestRes=await fetch("data/runtime/nature-all.json");
       if(!manifestRes.ok)throw Error("Artsmanifestet kunne ikke lastes");
       const manifest=await manifestRes.json();
       const list=manifest?.groups?.flora;
       if(!Array.isArray(list)||!list.length)throw Error("Flora mangler i artsmanifestet");
       const data=await Promise.all(list.map(async path => {
         if(typeof path!=="string"||!path.startsWith("data/runtime/nature-all/"))throw Error("Uventet katalogsti");
-        const res=await fetch("../"+path);
+        const res=await fetch(path);
         if(!res.ok)throw Error("Kunne ikke laste "+path);
         return res.json();
       }));
