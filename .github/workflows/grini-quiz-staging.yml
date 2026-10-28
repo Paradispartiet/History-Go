@@ -1,0 +1,37 @@
+name: Grini quiz staging preflight
+
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/production_briefs/historie/grini_fangeleir.json'
+      - 'reports/place-production/grini-fangeleir-quiz-full-draft-2026-10-28.json'
+      - 'data/quiz/historie/grini_fangeleir_sets.json'
+      - 'data/fag/historie/supersetQUIZMAL_historie.json'
+      - 'scripts/prepare-grini-quiz-staging.mjs'
+      - 'tests/grini-quiz-staging.test.mjs'
+      - '.github/workflows/grini-quiz-staging.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: grini-quiz-staging-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  non-publishing-preflight:
+    name: Validate Grini 10x7 staging (never activate)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run fail-closed Grini staging tests
+        run: node --test tests/grini-quiz-staging.test.mjs
+      - name: Verify staging summary without writing output
+        run: node scripts/prepare-grini-quiz-staging.mjs
