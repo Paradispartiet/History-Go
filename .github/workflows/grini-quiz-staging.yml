@@ -8,6 +8,8 @@ on:
       - 'data/quiz/historie/grini_fangeleir_sets.json'
       - 'data/fag/historie/supersetQUIZMAL_historie.json'
       - 'scripts/prepare-grini-quiz-staging.mjs'
+      - 'scripts/grini-quiz-context-preflight.mjs'
+      - 'scripts/quiz-production-lib.mjs'
       - 'tests/grini-quiz-staging.test.mjs'
       - '.github/workflows/grini-quiz-staging.yml'
   workflow_dispatch:
@@ -35,3 +37,7 @@ jobs:
         run: node --test tests/grini-quiz-staging.test.mjs
       - name: Verify staging summary without writing output
         run: node scripts/prepare-grini-quiz-staging.mjs
+      - name: Build full category context with temporary manifest overlay
+        run: node scripts/grini-quiz-context-preflight.mjs
+      - name: Confirm all tracked source files were restored unchanged
+        run: git diff --exit-code
