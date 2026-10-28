@@ -6,7 +6,7 @@
   "status": "reviewed",
   "reviewed_at": "2026-10-28",
   "profile_hint": "major_10x7",
-  "review_note": "SNL, MiA, Nasjonalarkivet, Fanger.no og Lokalhistoriewiki gjennomgått. NTNU-artikkel identifisert via sammendragsutdrag, men full PDF er ikke åpnet (HTTP 403); denne står partial og brukes ikke alene som kilde. Dette er kildegrunnlag og settplan, ikke fullført quiz.",
+  "review_note": "SNL, MiA, Nasjonalarkivet, Fanger.no og Lokalhistoriewiki gjennomgått. NTNU-artikkel identifisert via sammendragsutdrag, men full PDF er ikke åpnet (HTTP 403); denne står partial og brukes ikke alene som kilde. Dette er kildegrunnlag og settplan, ikke fullført quiz. Etterkontroll 2026-10-28: NOU 1998:12, §7.2, registrert for kildeavviket 12./14. juni; claim 69 er presisert uten å tillegge kildene en udokumentert forklaring.",
   "sources": {
     "mia": {
       "url": "https://mia.no/grinimuseet/om-grini-fangeleir",
@@ -49,6 +49,12 @@
       "source_type": "museum",
       "review_status": "reviewed",
       "review_note": "MiA beskriver offentlig Grinimuseum, autentisk flyttet fangebrakke og fysisk forskjell fra den opprinnelige leirgrensen."
+    },
+    "nou_1998_12": {
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-1998-12/id375416/?ch=26",
+      "source_type": "government_report",
+      "review_status": "reviewed",
+      "review_note": "Avsnitt 7.2 om Åneby og Grini er kontrollert særskilt: NOU oppgir overføring fra Åneby og åpning 12. juni 1941. SNL og Grinimuseet oppgir opprettelse 14. juni. Ikke anta dokumentert årsak til kildeavviket uten samtidige kilder. Gjennomgangen gjelder disse avsnittene, ikke hele NOU."
     }
   },
   "selected_curriculum": {
@@ -1177,11 +1183,11 @@
       "order": 69,
       "planned_phase": "final",
       "family": "analysis",
-      "statement": "Kildene skiller mellom overføring av fanger fra Åneby og opprettelsen av leiren i juni 1941; datoene må merkes med hver sin hendelse.",
+      "statement": "NOU 1998:12 oppgir at Grini ble åpnet 12. juni 1941, mens SNL og Grinimuseet oppgir etablering 14. juni 1941. Datoavviket må oppgis og granskes uten en ubegrunnet forklaring.",
       "source_ids": [
-        "mia",
+        "nou_1998_12",
         "snl",
-        "lokal"
+        "mia"
       ],
       "source_origin": "external",
       "emne_id": "em_his_okkupasjon_motstand",
