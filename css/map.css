@@ -485,7 +485,29 @@ body.hg-app.map-only .map-controls {
   position: absolute;
   overflow: visible;
 }
-/* Canonical category badges replace detail dots only at close zoom. */
+/* Badge experiment: the existing square/dot renderers stay intact as fallback.
+   The same category artwork can replace both at every zoom when loaded. */
+body.hg-app #map .hg-place-area-marker {
+  overflow: visible;
+}
+body.hg-app #map .hg-place-area-marker .hg-place-area-badge {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+body.hg-app #map .hg-place-area-marker.has-category-badge {
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+body.hg-app #map .hg-place-area-marker.has-category-badge .hg-place-area-badge {
+  display: block;
+}
+/* Detail icons share the same visual treatment, with the original dot fallback. */
 body.hg-app #map .hg-place-detail-marker .hg-place-detail-badge {
   display: none;
   width: 100%;
