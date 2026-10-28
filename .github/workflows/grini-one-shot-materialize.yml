@@ -1,0 +1,68 @@
+name: Grini one-shot materialization (temporary)
+on:
+  push:
+    branches:
+      - place/grini-fangeleir-full-production-20261028
+    paths:
+      - .github/workflows/grini-one-shot-materialize.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: grini-one-shot-materialize
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Grini-derived source outputs
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
+      - name: Check deterministic generated outputs
+        run: |
+          npm run place-open:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run epoker:places:check
+      - name: Verify exact one-place generated change scope and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'Generated diff (tracked files):'
+          git diff --name-only
+          echo 'Generated change summary:'
+          git diff --stat
+          while IFS= read -r file; do
+            case "$file" in
+              data/places/places_index.json|data/runtime/place-open/grini_fangeleir.json|data/fagverk/fagverk_release.json|data/epoker/epoke-place-index.json)
+                ;;
+              *)
+                echo "Refusing unrelated generated change: $file" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git diff --name-only)
+          git add -- data/places/places_index.json data/runtime/place-open/grini_fangeleir.json data/fagverk/fagverk_release.json data/epoker/epoke-place-index.json
+          if git diff --cached --quiet; then
+            echo 'No generated changes needed'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Materialize Grini place index, place-open, Fagverk release and epoke outputs'
+          git push origin HEAD:refs/heads/place/grini-fangeleir-full-production-20261028
