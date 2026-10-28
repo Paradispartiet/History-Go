@@ -5,6 +5,18 @@ const read = path => fs.readFileSync(new URL("../" + path, import.meta.url), "ut
 const page=read("flora-illustration-review.html");
 const script=read("js/ui/flora-illustration-review.js");
 const explorer=read("js/ui/nature-explorer.js");
+const css=read("css/nature-explorer.css");
+const alphaImage=fs.readFileSync(new URL("../bilder/natur/flora/hvitveis-transparent.webp",import.meta.url));
+assert.equal(alphaImage.toString("ascii",0,4),"RIFF","missing RIFF image header");
+assert.equal(alphaImage.toString("ascii",8,12),"WEBP","not a WebP image");
+assert.equal(alphaImage.toString("ascii",12,16),"VP8X","asset must use VP8X for alpha");
+assert.equal(alphaImage[20]&0x10,0x10,"WebP must contain an alpha channel");
+assert(alphaImage.length<400_000,"illustration too large for mobile");
+assert.match(css,/body\[data-nature-kind="flora"\] \.ne-photo img\{background:transparent\}/,"flora drawings must not have a white background");
+assert.match(css,/body\[data-nature-kind="flora"\] \.ne-dialog-image\{background:transparent\}/);
+assert.match(script,/emne_flora_hvitveis: "bilder\/natur\/flora\/hvitveis-transparent\.webp"/);
+assert.match(script,/transparency-preview/);
+
 const workflow=read(".github/workflows/nature-illustrations.yml");
 new vm.Script(script, {filename:"flora-illustration-review.js"});
 assert(page.includes('src="js/ui/flora-illustration-review.js"'));

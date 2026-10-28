@@ -4,6 +4,11 @@
   const KEY = "hg_flora_visual_review_v1";
   const illustrationApi = window.HG_NATURE_ILLUSTRATIONS;
   const photoApi = window.HG_NATURE_FLORA_PHOTOS;
+  // Only QA candidates live here; they are never counted as published approvals.
+  // Assets must be real-alpha WebP/PNG cutouts with no light paper rectangle.
+  const transparentCandidates = Object.freeze({
+    emne_flora_hvitveis: "bilder/natur/flora/hvitveis-transparent.webp"
+  });
   const fields = [
     ["leaf", "Bladform og bladstilling"],
     ["flower", "Blomst, frukt, kongle eller sporer"],
@@ -61,8 +66,8 @@
     return a;
   };
   const photoSearchUrl = scientific => "https://commons.wikimedia.org/wiki/Special:MediaSearch?type=image&search=" + encodeURIComponent(scientific);
-  const imagePanel = (title, url, alt) => {
-    const pane = make("div", "visual");
+  const imagePanel = (title, url, alt, transparent=false) => {
+    const pane = make("div", transparent ? "visual transparency-preview" : "visual");
     pane.appendChild(make("span", "image-title", title));
     if (!url) { pane.appendChild(make("div", "empty", "Ingen dokumentert artsfoto ennå")); return pane; }
     const img = make("img"); img.src=url; img.alt=alt; img.loading="lazy";
@@ -86,7 +91,10 @@
     head.appendChild(make("small", "", id));
     result.appendChild(head);
     const compare=make("div", "compare");
-    compare.appendChild(imagePanel("Illustrasjon · ikke godkjent", illustrationApi.resolve(id), "Ikke godkjent illustrasjon av " + label(a)));
+    const candidate=transparentCandidates[id];
+    compare.appendChild(candidate
+      ? imagePanel("Ny transparent tegning · ikke godkjent",candidate,"Ny illustrasjonskandidat for "+label(a),true)
+      : imagePanel("Illustrasjon · ikke godkjent",illustrationApi.resolve(id),"Ikke godkjent illustrasjon av "+label(a)));
     compare.appendChild(imagePanel("Artsfoto · referanse", photo?.src || "", "Fotografi av " + label(a)));
     result.appendChild(compare);
     const links=make("div", "photo-links");
@@ -98,6 +106,10 @@
     if (source) links.appendChild(openLink("Artsfaglig kilde", source));
     result.appendChild(links);
     const detail=make("div", "detail");
+    if(transparentCandidates[id]){
+      detail.appendChild(make("p", "review-status",
+        "Ny digital botanisk illustrasjon med ekte transparent bakgrunn. Ikke faglig artsgodkjent – sammenlign bladform, blomsterbygning og vekstform mot artsfoto."));
+    }
     const traits=textList(a.kjennetegn);
     detail.appendChild(make("p", "", traits.length ? "Kjennetegn: " + traits.join(" · ") : "Kjennetegn må vurderes mot en faglig artskilde."));
     const state=make("p", "review-status", statuses[r.status]);
