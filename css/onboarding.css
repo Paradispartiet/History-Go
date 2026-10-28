@@ -249,12 +249,30 @@ body.hg-app.hg-load-failed::after {
   z-index: 1;
   bottom: 0;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
   margin: 18px -30px 0;
   padding: 15px 30px 20px;
   border-top: 1px solid rgba(255,255,255,0.09);
   background: #090a0b;
 }
+
+.hg-onb-projects-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: #c8ccce;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.35;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hg-onb-projects-link:hover { color: #f7df37; }
+.hg-onb-projects-link:focus-visible { outline: 2px solid #fff5a2; outline-offset: 3px; border-radius: 3px; }
 
 .hg-onb-primary {
   display: inline-flex;
@@ -457,7 +475,8 @@ body.hg-app:has(#hgCivicationModeToast) .nature-unlock-stack {
   .hg-onb-step-icon { width: 28px; min-height: 28px; font-size: 21px; }
   .hg-onb-steps li strong { margin-bottom: 4px; font-size: 14px; }
   .hg-onb-steps li p { font-size: 12.5px; line-height: 1.5; }
-  .hg-onb-actions { margin: 14px -16px 0; padding: 12px 16px max(16px, env(safe-area-inset-bottom, 0px)); }
+  .hg-onb-actions { flex-direction: column; align-items: stretch; gap: 6px; margin: 14px -16px 0; padding: 12px 16px max(16px, env(safe-area-inset-bottom, 0px)); }
+  .hg-onb-projects-link { align-self: center; justify-content: center; }
   .hg-onb-primary { width: 100%; }
 }
 
