@@ -31,7 +31,7 @@ assert.equal(bin.toString("ascii",0,4),"RIFF");
 assert.equal(bin.toString("ascii",8,12),"WEBP");
 assert.equal(bin.toString("ascii",12,16),"VP8X");
 assert((bin[20]&0x10)!==0,"missing true alpha channel");
-assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+bin.length+"\\0"),bin])).digest("hex"),src.gitBlobSha);
+assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+bin.length+"\0"),bin])).digest("hex"),src.gitBlobSha);
 
 const catalog=JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]);
 assert.equal(catalog.find(x=>x.id==="emne_flora_hestehov")?.latin,src.scientificName);
