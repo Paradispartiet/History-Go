@@ -1,4 +1,4 @@
-name: Oslo V–U 02 – Vår Frelsers QuizCard parity
+name: Oslo V–U 02 – QuizCard parity
 
 on:
   pull_request:
@@ -7,6 +7,10 @@ on:
       - 'data/quiz/historie/var_frelsers_gravlund_sets.json'
       - 'data/places/historie/oslo/places_historie/var_frelsers_gravlund.json'
       - 'tests/var-frelsers-quizcard-parity.test.mjs'
+      - 'data/quizcards/by/topp10_by_kort_batch1.json'
+      - 'data/quiz/by/vulkan_energisentral_sets.json'
+      - 'data/places/by/oslo/places/vulkan_energisentral.json'
+      - 'tests/oslo-vu-vulkan-quizcard-parity.test.mjs'
       - '.github/workflows/oslo-vu-var-frelsers-parity.yml'
   workflow_dispatch:
 
@@ -19,5 +23,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check existing Place, 28 questions and QuizCard 10/10
-        run: node --test tests/var-frelsers-quizcard-parity.test.mjs
+      - name: Check existing Place and QuizCard 10/10 parity
+        run: node --test tests/var-frelsers-quizcard-parity.test.mjs tests/oslo-vu-vulkan-quizcard-parity.test.mjs
