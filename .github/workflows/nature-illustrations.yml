@@ -17,6 +17,9 @@ on:
       - 'js/ui/nature-explorer.js'
       - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
+      - 'js/ui/nature-flora-approved.js'
+      - 'data/natur/flora/illustration-quality-review-20261028.json'
+      - 'scripts/test-flora-approved-release.mjs'
       - 'finn-fauna.html'
       - 'scripts/test-nature-illustrations.mjs'
       - 'scripts/test-nature-flora-photos.mjs'
@@ -55,6 +58,7 @@ jobs:
           node-version: '20'
       - run: node scripts/test-nature-illustrations.mjs
       - run: node scripts/test-nature-flora-photos.mjs
+      - run: node scripts/test-flora-approved-release.mjs
       - run: node scripts/test-flora-illustration-review.mjs
       - run: node scripts/test-flora-art-candidates.mjs
       - run: node scripts/test-flora-art-candidates-batch02.mjs
