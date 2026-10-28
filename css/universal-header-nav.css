@@ -332,3 +332,18 @@ main.main > header > .hg-universal-home {
 main.main > header > .hg-universal-back {
   left: calc(58px + env(safe-area-inset-left, 0px));
 }
+
+/* At 320–380px the profile must actually shrink; override the earlier
+   :has()-specific 72px rule so the rightmost menu is never pushed offscreen. */
+@media (max-width: 380px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 52px; min-width: 52px; max-width: 52px; flex: 0 0 52px;
+  }
+}
+@media (max-width: 350px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 44px; min-width: 44px; max-width: 44px; flex: 0 0 44px;
+  }
+}
