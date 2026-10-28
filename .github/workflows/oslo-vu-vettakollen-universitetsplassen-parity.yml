@@ -1,0 +1,29 @@
+name: Oslo V–U 02 – Vettakollen and Universitetsplassen Knowledge
+
+on:
+  pull_request:
+    paths:
+      - 'data/quizcards/natur/topp10_natur_vettakollen_20261021.json'
+      - 'data/quizcards/by/topp10_by_kort_batch5.json'
+      - 'tests/oslo-vu-vettakollen-universitetsplassen-parity.test.mjs'
+      - '.github/workflows/oslo-vu-vettakollen-universitetsplassen-parity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-vu-vettakollen-universitetsplassen-parity-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quizcard-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check canonical Knowledge for both QuizCards
+        run: node --test tests/oslo-vu-vettakollen-universitetsplassen-parity.test.mjs

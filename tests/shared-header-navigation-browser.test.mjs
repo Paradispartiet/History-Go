@@ -45,7 +45,10 @@ try {
       assert.equal(await back.getAttribute("aria-label"), "Tilbake til " + label.replace(/^Til /, ""), pathname + ": accessible destination");
       const href = await back.getAttribute("href");
       assert.ok(href && new URL(href, base).pathname === destination, pathname + ": safe return URL");
+      const homeRect = await home.boundingBox();
       const rect = await back.boundingBox();
+      assert.ok(homeRect && rect && homeRect.x + homeRect.width <= rect.x + 2,
+        pathname + ": small HG logo must be left of the return arrow");
       assert.ok(rect && rect.x >= 0 && rect.x + rect.width <= width + 1, pathname + ": within " + width + "px viewport");
       if (pathname.startsWith("finn-")) {
         assert.equal((await back.textContent()).trim(), "←", pathname + ": icon-only back arrow");
@@ -62,6 +65,24 @@ try {
         assert.equal(await page.locator("#natureBack").count(), 1, pathname + ": only one back link");
       }
     }
+
+    await page.goto(base + "/Civication.html", { waitUntil: "domcontentloaded", timeout: 30000 });
+    const civiLogo = await page.locator(".topbar-left .hg-universal-home").boundingBox();
+    const civiBack = await page.locator(".topbar-left .hg-universal-back").boundingBox();
+    const civiHeader = await page.locator("body.civi-app .topbar").boundingBox();
+    const civiNav = await page.locator("body.civi-app .civi-footer").boundingBox();
+    const civiWorld = await page.locator("body.civi-app .civi-world").boundingBox();
+    assert.ok(civiLogo && civiBack && civiLogo.x + civiLogo.width <= civiBack.x + 2,
+      "Civication HG logo stays left of return arrow");
+    assert.ok(civiHeader && civiNav && civiWorld, "Civication navigation rendered");
+    assert.ok(civiNav.y >= civiHeader.y + civiHeader.height - 2,
+      "Civication tabs sit directly below header");
+    assert.ok(civiNav.y + civiNav.height <= civiWorld.y + 2,
+      "Civication content begins below top navigation");
+    assert.ok(civiNav.y + civiNav.height < 400,
+      "Civication navigation must not be at viewport bottom");
+    assert.equal(await page.locator("nav.civi-footer .civi-category-tab").count(), 6,
+      "Civication tabs remain in the DOM");
 
     await page.goto(base + "/index.html#/map", { waitUntil: "domcontentloaded", timeout: 30000 });
     assert.equal(await page.locator("header.site-header > .hg-universal-home").count(), 0,
