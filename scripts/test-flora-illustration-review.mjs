@@ -8,6 +8,7 @@ const explorer=read("js/ui/nature-explorer.js");
 const workflow=read(".github/workflows/nature-illustrations.yml");
 new vm.Script(script, {filename:"flora-illustration-review.js"});
 assert(page.includes('src="js/ui/flora-illustration-review.js"'));
+assert(page.includes('.visual img{width:100%;height:205px;object-fit:contain;background:transparent}'),"QA must display transparency on dark backdrop");
 assert(page.includes('src="js/ui/nature-flora-photographs.js"'));
 assert(page.indexOf("nature-flora-photographs.js") < page.indexOf("flora-illustration-review.js"));
 for(const id of ["query","filter","summary","gallery","export","more"])assert(page.includes('id="'+id+'"'),"missing review control: "+id);
@@ -18,6 +19,7 @@ for(const phrase of [
   "photoApi?.get(id)",
   "compare",
   "evidenceValid(r)",
+  '["transparent", "Ekte gjennomsiktig bakgrunn',
   "const payload=",
   "localStorage.setItem(KEY",
   "JSON.stringify(payload,null,2)",

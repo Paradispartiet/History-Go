@@ -81,3 +81,8 @@ body[data-nature-kind=fauna] .ne-photo{background:#302e22}.ne-photo img{width:10
 body[data-nature-kind="flora"] .ne-image-fallback{font-size:12px;font-weight:650;line-height:1.4;letter-spacing:.01em;color:#b8c5b8;text-align:center;padding:12px;background:#1b231e}
 body[data-nature-kind="flora"] .ne-dialog .ne-image-fallback{font-size:14px;min-height:170px}
 .ne-no-photo{margin:18px 0 8px;padding:18px;border:1px solid #414b3f;border-radius:12px;background:#1b231e;color:#c2cec1;font-size:13px;line-height:1.5}
+
+/* Accepted flora illustrations have no matte: real alpha reveals the app's black surface. */
+body[data-nature-kind="flora"] .ne-art-transparent-stage{background:#080908!important}
+body[data-nature-kind="flora"] .ne-transparent-art{object-fit:contain!important;background:transparent!important}
+body[data-nature-kind="flora"] .ne-dialog-image.ne-transparent-art{background:transparent!important}

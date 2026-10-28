@@ -91,6 +91,8 @@ assert.match(explorer,/const approvedFloraIllustrations = new Set\(\);/,"flora d
 assert.match(explorer,/kind!=="flora"\|\|approvedFloraIllustrations\.has\(id\)/,"unapproved SVGs must not appear or be used as photo fallback");
 assert.match(explorer,/kind==="flora"\?"Bilde utilgjengelig":icon/,"unavailable flora media must show a neutral placeholder");
 assert.match(explorer,/photoCredit\(source\.fallbackInfo,true\)/,"fallback photo must preserve attribution");
+assert.match(explorer,/classList\.add\("ne-transparent-art"\)/,"accepted flora art needs transparent treatment");
+assert.match(explorer,/classList\.remove\("ne-transparent-art"\)/,"photo fallback must restore normal image styling");
 assert.match(explorer,/else if\(kind==="flora"\) image\.appendChild/,"missing photos must not display generic species drawings");
 assert.match(explorer,/if\(!usingFallback&&source\.fallback\)/,"approved illustration failures must support photo fallback");
 assert.match(explorer,/info\.creator/,"photo credit missing");
