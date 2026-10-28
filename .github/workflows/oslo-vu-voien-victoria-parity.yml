@@ -1,0 +1,23 @@
+name: Oslo V–U 02 – Vøyenfallene and Victoria QuizCard parity
+
+on:
+  pull_request:
+    paths:
+      - 'data/quizcards/historie/voienfossen_quizcard_v1.json'
+      - 'data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json'
+      - 'data/quizcards/historie/manifest.json'
+      - 'tests/oslo-vu-voien-victoria-parity.test.mjs'
+      - '.github/workflows/oslo-vu-voien-victoria-parity.yml'
+  workflow_dispatch:
+
+jobs:
+  quizcard-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify existing data and both canonical quizcards
+        run: node --test tests/oslo-vu-voien-victoria-parity.test.mjs
