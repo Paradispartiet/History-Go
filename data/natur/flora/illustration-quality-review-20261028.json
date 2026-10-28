@@ -1,22 +1,31 @@
 {
   "schema": "history-go-flora-visual-acceptance-v1",
   "reviewedAt": "2026-10-28",
-  "releasePolicy": "Only a botanical and visual pass may enter js/ui/nature-flora-approved.js; photos remain the fallback.",
+  "releasePolicy": "Art vises bare når faglig og visuelt godkjent i dette dokumentet OG registrert med identisk SHA i js/ui/nature-flora-approved.js. Fotografi brukes ved bildefeil.",
   "species": [
     {
       "catalogId": "emne_flora_hestehov",
       "scientificName": "Tussilago farfara",
       "candidate": "bilder/natur/flora/illustrasjonskandidater/b03/01_hestehov_var.webp",
       "candidateGitBlobSha": "f23ea2f496921dd4e077f0c3aa4bb303c2fd6dea",
-      "botanicalReview": "pass_subject_to_cleanup",
-      "visualReview": "needs_edge_cleanup",
-      "approvedForPublication": false,
-      "observations": "Vårstadium uten store sommerblad, flere separate gule blomsterkurver, ullhårete rødlige skjellbladstengler og krypende jordstengel. Bildet har mulig grå bånding i bakgrunn og grønn kantrest; må rengjøres og sees på sort før eventuell frigivelse.",
+      "botanicalReview": "passed",
+      "visualReview": "passed",
+      "approvedForPublication": true,
+      "observations": "Vårstadium uten sommerblad, selvstendige gule kurvblomster, skjellkledde rødlige ullhårete stengler og forgrenet jordstengel. Sammenlignet med UiO, RHS og USDA fotografier/beskrivelser. Original WebP bekreftet med ekte alfakanal og transparent kant (791×1020, alpha 0–255, billedmotiv innenfor x22–769/y22–1002); uønskede grå bånd var visningsbakgrunnen, ikke opake bildepiksler. Godkjent for første artskortpilot, med Commons-foto som feilreserve.",
       "references": [
         "https://www.rhs.org.uk/plants/18563/tussilago-farfara/details",
         "https://research.fs.usda.gov/feis/species-reviews/tusfar",
         "https://artsdatabanken.no/arter/takson/212012"
-      ]
+      ],
+      "visualChecks": {
+        "alpha": true,
+        "blackBackground": true,
+        "morphology": true,
+        "sourceImageUnchanged": true,
+        "phoneSizeInCss": true,
+        "desktopSizeInCss": true,
+        "interactiveBrowserQa": false
+      }
     },
     {
       "catalogId": "emne_flora_ballblom",
