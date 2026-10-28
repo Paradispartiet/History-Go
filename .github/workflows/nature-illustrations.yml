@@ -22,6 +22,10 @@ on:
       - 'scripts/test-nature-flora-photos.mjs'
       - 'scripts/test-flora-illustration-review.mjs'
       - 'js/ui/flora-illustration-review.js'
+      - 'data/natur/flora/illustration-candidates-batch01.json'
+      - 'bilder/natur/flora/illustrasjonskandidater/b01/**'
+      - 'flora-illustrasjoner-bolk01.html'
+      - 'scripts/test-flora-art-candidates.mjs'
       - 'flora-illustration-review.html'
       - '.github/workflows/nature-illustrations.yml'
 
@@ -44,3 +48,4 @@ jobs:
       - run: node scripts/test-nature-illustrations.mjs
       - run: node scripts/test-nature-flora-photos.mjs
       - run: node scripts/test-flora-illustration-review.mjs
+      - run: node scripts/test-flora-art-candidates.mjs
