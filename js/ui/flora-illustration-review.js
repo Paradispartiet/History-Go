@@ -4,6 +4,7 @@
   const KEY = "hg_flora_visual_review_v1";
   const illustrationApi = window.HG_NATURE_ILLUSTRATIONS;
   const photoApi = window.HG_NATURE_FLORA_PHOTOS;
+  const approvedApi = window.HG_NATURE_FLORA_APPROVED;
   // Uploaded drawings are candidates only; the production image gate is separate.
   const newCandidates = new Map();
   const fields = [
@@ -94,7 +95,8 @@
     result.appendChild(compare);
     const latest = newCandidates.get(id);
     if (latest) {
-      const preview = imagePanel("Ny transparent kandidat · IKKE godkjent", latest.src, "Ny illustrasjonskandidat av " + label(a));
+      const isPublished=approvedApi?.get(id)?.src===latest.src;
+      const preview = imagePanel(isPublished?"Botanisk godkjent · brukes i Finn Flora":"Transparent kandidat · ikke godkjent", latest.src, "Botanisk illustrasjon av " + label(a));
       preview.classList.add("candidate-preview");
       result.appendChild(preview);
     }
@@ -157,7 +159,7 @@
     if(!species.length)return;
     const counts={pending:0,redraw:0,candidate:0};
     for(const a of species)counts[review(a.id).status]++;
-    summary.textContent=species.length+" illustrasjoner · "+counts.pending+" ikke vurdert · "+counts.redraw+" må tegnes om · "+counts.candidate+" lokale kandidater · 0 publiseringsgodkjenninger";
+    summary.textContent=species.length+" illustrasjoner · "+counts.pending+" ikke vurdert · "+counts.redraw+" må tegnes om · "+counts.candidate+" lokale kandidater · "+(approvedApi?.count||0)+" publiseringsgodkjenninger";
   }
   function render(){
     const term=search.value.trim().toLocaleLowerCase("nb");
