@@ -1,0 +1,43 @@
+name: Oslo T-S Tveten gård People v1 integration
+on:
+  push:
+    branches: [content/oslo-ts-bolk03-tveten-gard-people-v1-20261028]
+    paths:
+      - '.github/workflows/oslo-ts-tveten-gard-people-v1.yml'
+      - 'data/quiz/production_briefs/historie/tveten_gard.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ts-bolk03-tveten-gard-people-v1-20261028
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate canonical Knowledge and QuizCard
+        run: |
+          npm run knowledge:canonical:write
+          node scripts/sync-tveten-gard-quizcard.mjs
+      - name: Generate runtime, People shards and Fagverk release
+        run: |
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Targeted quiz and People integration test
+        run: node --test tests/oslo-ts-tveten-gard-people-v1.test.mjs
+      - name: Commit generated artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/historie/tveten_gard_sets.json data/quizcards/historie/tveten_gard_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/runtime/place-open/tveten_gard.json data/fagverk/fagverk_release.json
+          git add data/runtime/people-all/
+          if ! git diff --cached --quiet; then git commit -m "Tveten gård: generated Knowledge and People runtime"; fi
+          git push origin HEAD:content/oslo-ts-bolk03-tveten-gard-people-v1-20261028
