@@ -27,7 +27,7 @@ try{
   const subjects=[
     {name:"hestehov",path:"b03/01_hestehov_var.webp"},
     {name:"hvitveis",path:"b01/01_hvitveis.webp"},
-    {name:"blaveis",path:"b01/07_blaveis.webp"}
+    {name:"blaveis",term:"blåveis",path:"b01/07_blaveis.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
@@ -38,7 +38,7 @@ try{
     const page=await context.newPage();
     await page.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-    await page.locator("#natureSearch").fill(species.name);
+    await page.locator("#natureSearch").fill(species.term||species.name);
     const card=page.locator("#natureGrid .ne-card").first();
     await card.waitFor();
     await page.waitForFunction(()=>document.querySelector(".ne-card img")?.naturalWidth>0);
@@ -65,7 +65,7 @@ try{
     const test=await failure.newPage();
     await test.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await test.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-    await test.locator("#natureSearch").fill(species.name);
+    await test.locator("#natureSearch").fill(species.term||species.name);
     const fallback=test.locator("#natureGrid .ne-card").first();
     await fallback.locator(".ne-image-label").getByText("Artsfoto").waitFor({timeout:20000});
     assert.match(await fallback.locator("img").getAttribute("src"),/wikimedia\.org/);
