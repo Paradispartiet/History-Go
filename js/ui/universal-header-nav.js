@@ -159,10 +159,13 @@
       if (!link.hidden && host.firstElementChild !== link) host.prepend(link);
       return;
     }
-    if (home.parentElement !== host || (!link.hidden && host.firstElementChild !== link)) {
+    // The small home logo precedes the back arrow in visual and keyboard order.
+    if (home.parentElement !== host || host.firstElementChild !== home
+        || (!link.hidden && host.children[1] !== link)) {
+      link.remove();
       home.remove();
-      host.prepend(home);
       if (!link.hidden) host.prepend(link);
+      host.prepend(home);
     }
   }
 
