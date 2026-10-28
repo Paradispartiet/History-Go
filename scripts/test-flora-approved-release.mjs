@@ -7,18 +7,26 @@ const read = p => fs.readFileSync(new URL("../" + p, import.meta.url), "utf8");
 const older = JSON.parse(read("data/natur/flora/illustration-quality-review-20261028.json"));
 const batch = JSON.parse(read("data/natur/flora/illustration-quality-batch01-20261028.json"));
 const candidates = JSON.parse(read("data/natur/flora/illustration-candidates-batch01.json"));
+const revision = JSON.parse(read("data/natur/flora/illustration-revision-batch04.json"));
 const env = {window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved = env.window.HG_NATURE_FLORA_APPROVED;
 const expected = [
   ["emne_flora_hestehov","Tussilago farfara"],
   ["emne_flora_hvitveis","Anemone nemorosa"],
-  ["emne_flora_blaveis","Hepatica nobilis"]
+  ["emne_flora_blaveis","Hepatica nobilis"],
+  ["emne_flora_engkarse","Cardamine pratensis"],
+  ["emne_flora_ballblom","Trollius europaeus"],
+  ["emne_flora_engsoleie","Ranunculus acris"]
 ];
 assert.equal(approved.count,expected.length,"publication count changed without species QA");
 assert.equal(batch.items.length,15);
 assert.equal(batch.items.filter(a=>a.approvedForPublication).length,2);
-const allReviews=[...older.species,...batch.items];
+const allReviews=[...older.species,...batch.items,...revision.items.map(a=>({
+  ...a,catalogId:a.id,candidate:a.newSrc,candidateGitBlobSha:a.newGitBlobSha,
+  approvedForPublication:a.productionApproval,reviewStatus:a.botanicalVisualDecision==="passed"?"approved":"pending",
+  visualChecks:{transparent:true,blackBackgroundReviewed:true},evidence:a.sourceReferences
+}))];
 const catalog=JSON.parse(read("data/runtime/nature-all/flora-001.json"))
   .flatMap(a=>a.kind==="emne_pack"?a.items:[a]);
 const photographed={window:{}};
@@ -57,11 +65,11 @@ for(const x of batch.items){
   assert.equal(approved.has(x.catalogId||x.key),x.approvedForPublication,"unapproved candidate leaked: "+x.key);
 }
 for(const id of ["emne_flora_engkarse","emne_flora_ballblom"]){
-  assert.equal(approved.has(id),false);
-  assert(older.species.some(a=>a.catalogId===id && a.botanicalReview==="needs_redraw"));
+  assert(approved.has(id),"the v3 version should now be approved");
+  assert(older.species.some(a=>a.catalogId===id && a.botanicalReview==="needs_redraw"),"historical v2 rejection must remain");
 }
 const html=read("finn-flora.html"),js=read("js/ui/nature-explorer.js"),css=read("css/nature-explorer.css");
-assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261028-2"'));
+assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261028-3"'));
 assert(html.indexOf("nature-flora-photographs.js")<html.indexOf("nature-flora-approved.js"));
 assert(html.indexOf("nature-flora-approved.js")<html.indexOf("nature-explorer.js"));
 assert(js.includes('const art=kind==="flora" ? approvedFloraIllustrations?.get(id)?.src : drawings?.resolve(id)'));
@@ -71,4 +79,4 @@ assert(js.includes('wrap.firstChild.classList.add("ne-dialog-image")'));
 assert(css.includes('.ne-art-transparent-stage{background:#080908!important}'));
 assert(css.includes('.ne-transparent-art{object-fit:contain!important;background:transparent!important}'));
 assert(!js.includes("localStorage.setItem"));
-console.log("Flora release: 3 botany-approved WebP assets; 15 reviewed in batch 01, 13 held back. SHA, taxon, alpha and photo fallback gates pass.");
+console.log("Flora release: 6 botanical approvals (3 prior + 3 v3), all SHA, taxon, alpha, photo fallback, 13 prior rejection gates pass.");
