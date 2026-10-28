@@ -12,7 +12,7 @@
       "reviewedAt": "2026-10-28",
       "stage": "blomstring",
       "evidence": "data/natur/flora/illustration-quality-batch05-20261028.json"
-}),
+    }),
     emne_flora_rodjonsokblom: Object.freeze({
       "scientificName": "Silene dioica",
       "src": "bilder/natur/flora/illustrasjonskandidater/b05/02_rodjonsokblom_v2.webp",
@@ -20,7 +20,7 @@
       "reviewedAt": "2026-10-28",
       "stage": "blomstring",
       "evidence": "data/natur/flora/illustration-quality-batch05-20261028.json"
-}),
+    }),
     emne_flora_prestekrage: Object.freeze({
       "scientificName": "Leucanthemum vulgare",
       "src": "bilder/natur/flora/illustrasjonskandidater/b05/03_prestekrage_v2.webp",
@@ -28,7 +28,7 @@
       "reviewedAt": "2026-10-28",
       "stage": "blomstring",
       "evidence": "data/natur/flora/illustration-quality-batch05-20261028.json"
-}),
+    }),
 
     emne_flora_hestehov: Object.freeze({
       scientificName: "Tussilago farfara",
