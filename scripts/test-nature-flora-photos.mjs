@@ -93,8 +93,9 @@ assert.match(explorer,/kind==="flora"\?"Bilde utilgjengelig":icon/,"unavailable 
 assert.match(explorer,/photoCredit\(source\.fallbackInfo,true\)/,"fallback photo must preserve attribution");
 assert.match(explorer,/else if\(kind==="flora"\) image\.appendChild/,"missing photos must not display generic species drawings");
 assert.match(explorer,/if\(!usingFallback&&source\.fallback\)/,"approved illustration failures must support photo fallback");
-assert.match(explorer,/imageInfo\.creator/,"photo credit missing");
-assert.match(explorer,/imageInfo\.licenseUrl/,"license link missing");
+assert.match(explorer,/info\.creator/,"photo credit missing");
+assert.match(explorer,/photoCredit\(imageInfo\)/,"photo credit must be used for primary photographs");
+assert.match(explorer,/info\.licenseUrl/,"license link missing");
 assert(!explorer.includes("localStorage.setItem"),"photo display must not touch collection progress");
 const flora=read("finn-flora.html"),fauna=read("finn-fauna.html");
 assert(flora.includes('js/ui/nature-flora-photographs.js'),"photo registry not loaded");
