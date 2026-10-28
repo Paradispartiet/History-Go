@@ -1,0 +1,65 @@
+{
+  "schema": "history-go-flora-batch07-plan-v1",
+  "batch": "07",
+  "date": "2026-10-28",
+  "status": "review_in_progress_not_published",
+  "baselineApproved": 11,
+  "targetApproved": 15,
+  "publicationRule": "Do not add to nature-flora-approved.js before individually reviewed assets, canonical species record and mobile/desktop QA.",
+  "species": [
+    {
+      "name": "Ryllik",
+      "scientificName": "Achillea millefolium",
+      "state": "previous_candidate_morphology_passed_catalog_missing",
+      "existingCandidate": "bilder/natur/flora/illustrasjonskandidater/b06/01_ryllik.webp",
+      "required": [
+        "Find/create canonical atlas species entry, not a fabricated ID",
+        "Document scientific name and licensed photo fallback",
+        "Check card and dialog before approving"
+      ]
+    },
+    {
+      "name": "Tiriltunge",
+      "scientificName": "Lotus corniculatus",
+      "catalogId": "emne_flora_tiriltunge",
+      "state": "redraw_required",
+      "required": [
+        "Leaves with three distal leaflets plus separate basal leaflet pair",
+        "Check leaf-stem connections throughout",
+        "Yellow pea-shaped flowers and grouped pods",
+        "Fresh individual expert visual review"
+      ]
+    },
+    {
+      "name": "Hvitkløver",
+      "scientificName": "Trifolium repens",
+      "catalogId": "emne_flora_hvitklover",
+      "state": "new_candidate_required",
+      "required": [
+        "Trifoliate leaves, often pale chevrons",
+        "Creeping stolons, rooting at nodes",
+        "White to pale pink globose flower heads",
+        "Independent reference and full image review"
+      ]
+    },
+    {
+      "name": "Blåklokke",
+      "scientificName": "Campanula rotundifolia",
+      "state": "new_candidate_required",
+      "required": [
+        "Nodding blue-violet bell-shaped corolla",
+        "Linear upper stem leaves, broader basal leaves where present",
+        "Slender branched stem with characteristic calyx",
+        "Identify canonical catalog key before integration"
+      ]
+    }
+  ],
+  "qa": [
+    "Verify individual image transparency, dimensions and hashes",
+    "Check botanical anatomy against identified references",
+    "Confirm registered species ID and photo fallback",
+    "Verify cards and modal at 390 and 1440 widths",
+    "Run only relevant flora tests"
+  ],
+  "note": "A four-species composite reference plate was generated during planning, but it is not an individual production asset and must not be enabled as an approved illustration."
+}
