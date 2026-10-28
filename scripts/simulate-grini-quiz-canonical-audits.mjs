@@ -12,7 +12,7 @@ import { buildQuizProductionContext } from "./quiz-production-lib.mjs";
 import { auditQuizProductionContext } from "./audit-quiz-production-context.mjs";
 import { auditQuizProgression } from "./audit-quiz-progression.mjs";
 import { auditQuizTheoryBinding } from "./audit-quiz-theory-binding.mjs";
-import { buildGriniStagingPreview, readStagingInputs } from "./prepare-grini-quiz-staging.mjs";
+import { buildGriniStagingPreview, buildGriniCanonicalCandidate, readStagingInputs } from "./prepare-grini-quiz-staging.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const FAG_MANIFEST = "data/fag/fag_manifest.json";
@@ -44,38 +44,7 @@ async function main() {
   const artifact = await buildQuizProductionContext({ root:ROOT, categoryId:"historie", targetId:"grini_fangeleir" });
   ensure(artifact.profile === "major_10x7" && artifact.claim_bank.length === 70,
     "canonical source context profile/claims mismatch");
-  const selected = artifact.selected_curriculum;
-  const production_context = {
-    manifest_category:"historie",
-    profile:artifact.profile,
-    standard_version:"3.3",
-    source_brief:"data/quiz/production_briefs/historie/grini_fangeleir.json",
-    context_artifact:CONTEXT_PATH,
-    resolved_files:Object.fromEntries(Object.entries(artifact.resolved_files).map(([k,v])=>[k,v.path])),
-    required_inputs_loaded:artifact.required_inputs_loaded,
-    pensum_module_ids:selected.module_ids,
-    emne_ids:selected.emne_ids,
-    topic_hook_ids:selected.topic_hook_ids,
-    method_ids:selected.method_ids,
-    thinker_ids:selected.thinker_ids,
-    works:selected.works,
-    source_review_status:artifact.source_review_status,
-    existing_quiz_audit:artifact.existing_quiz_audit,
-    profile_decision:artifact.profile_decision,
-    held_back_candidates:artifact.held_back_candidates,
-    theory_start_phase:"final",
-    method_start_phase:"middle"
-  };
-  const quiz={
-    categoryId:"historie",
-    targetId:"grini_fangeleir",
-    size_class:preview.size_class,
-    generated_from:preview.source_brief,
-    generator_version:"1.0",
-    production_context,
-    sources:preview.sources,
-    sets:preview.sets
-  };
+  const quiz = buildGriniCanonicalCandidate(preview, artifact);
   await writeJson(QUIZ_PATH, quiz);
   await writeJson(CONTEXT_PATH, artifact);
   const audits = [
