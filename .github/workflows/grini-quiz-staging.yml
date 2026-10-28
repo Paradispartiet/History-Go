@@ -42,9 +42,19 @@ jobs:
       - name: Verify staging summary without writing output
         run: node scripts/prepare-grini-quiz-staging.mjs
       - name: Build full category context with temporary manifest overlay
+        env:
+          GRINI_CANDIDATE_ARTIFACT: '1'
+          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: node scripts/grini-quiz-context-preflight.mjs
       - name: Confirm all tracked source files were restored unchanged
         run: git diff --exit-code
+      - name: Upload review-only 10x7 package and full-input context
+        uses: actions/upload-artifact@v4
+        with:
+          name: grini-10x7-full-input-integration-preview
+          path: ${{ runner.temp }}/grini-integration-preview/
+          if-no-files-found: error
+          retention-days: 14
 
   knowledge-migration-simulation:
     name: Simulate Grini Knowledge replacement (disposable only)
