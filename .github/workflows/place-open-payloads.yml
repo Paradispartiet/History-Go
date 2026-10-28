@@ -147,23 +147,3 @@ jobs:
           path: artifacts/oslo-four/
           if-no-files-found: warn
           retention-days: 14
-
-  capture_akershus_payload:
-    name: Capture Akershus generated payload (temporary)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Regenerate canonical place-open payloads
-        run: node scripts/build-place-open-payloads.mjs
-      - name: Upload the generated Akershus JSON only
-        uses: actions/upload-artifact@v4
-        with:
-          name: akershus-runtime-generated
-          path: data/runtime/place-open/akershus_festning.json
-          if-no-files-found: error
-          retention-days: 1
