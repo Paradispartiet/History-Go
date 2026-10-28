@@ -1,0 +1,27 @@
+name: Export current HG badge artwork as contact sheet
+on:
+  push:
+    branches:
+      - assets/badge-overview-export-20261028
+permissions:
+  contents: read
+jobs:
+  build-badge-sheet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image processors
+        run: python -m pip install --disable-pip-version-check pillow cairosvg
+      - name: Render contact sheet from original assets
+        run: python scripts/export-badge-overview.py
+      - name: Save contact sheet
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-history-go-badges
+          path: |
+            out/history-go-merker-originale-20261028.png
+            out/badge-sources.json
+          retention-days: 1
