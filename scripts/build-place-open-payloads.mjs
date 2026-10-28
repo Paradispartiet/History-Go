@@ -33,23 +33,6 @@ function output(file, value) {
   const content = `${JSON.stringify(stable(value))}\n`;
   if (CHECK) {
     const current = fs.existsSync(target) ? fs.readFileSync(target, "utf8") : "";
-    if (current !== content && file === "data/runtime/place-open/linderud_gard.json") {
-      const expected = JSON.parse(content);
-      const actual = current ? JSON.parse(current) : {};
-      const differences = [];
-      const walk = (a, b, p) => {
-        if (JSON.stringify(a) === JSON.stringify(b)) return;
-        if (a && b && typeof a === "object" && typeof b === "object" && !Array.isArray(a) && !Array.isArray(b)) {
-          for (const key of new Set([...Object.keys(a), ...Object.keys(b)])) walk(a[key], b[key], p ? p + "." + key : key);
-        } else if (Array.isArray(a) && Array.isArray(b) && a.length === b.length) {
-          for (let i = 0; i < a.length; i++) walk(a[i], b[i], p + "[" + i + "]");
-        } else {
-          differences.push({ path: p, expected: a, actual: b });
-        }
-      };
-      walk(expected, actual, "");
-      console.error("LINDERUD_PAYLOAD_DIFF=" + JSON.stringify(differences));
-    }
     if (current !== content) throw new Error(`${file} is not synchronized; run npm run place-open:build`);
     return;
   }
