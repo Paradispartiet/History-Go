@@ -207,7 +207,7 @@
         }
       }
       species=Array.from(unique.values()).sort((a,b)=>label(a).localeCompare(label(b),"nb"));
-      for (const batch of ["01","02","03","04","05"]) {
+      for (const batch of ["01","02","03","04","05","06"]) {
         try {
           const response=await fetch("data/natur/flora/illustration-candidates-batch"+batch+".json");
           if(!response.ok) continue;

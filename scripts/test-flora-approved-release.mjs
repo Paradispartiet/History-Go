@@ -8,6 +8,7 @@ const older = JSON.parse(read("data/natur/flora/illustration-quality-review-2026
 const batch = JSON.parse(read("data/natur/flora/illustration-quality-batch01-20261028.json"));
 const candidates = JSON.parse(read("data/natur/flora/illustration-candidates-batch01.json"));
 const revision = JSON.parse(read("data/natur/flora/illustration-revision-batch04.json"));
+const review06 = JSON.parse(read("data/natur/flora/illustration-quality-batch06-20261028.json"));
 const review05 = JSON.parse(read("data/natur/flora/illustration-quality-batch05-20261028.json"));
 const pending05 = JSON.parse(read("data/natur/flora/illustration-revision-batch05.json"));
 const env = {window:{}};
@@ -22,12 +23,14 @@ const expected = [
   ["emne_flora_engsoleie","Ranunculus acris"],
   ["emne_flora_lovetann","Taraxacum officinale agg."],
   ["emne_flora_rodjonsokblom","Silene dioica"],
-  ["emne_flora_prestekrage","Leucanthemum vulgare"]
+  ["emne_flora_prestekrage","Leucanthemum vulgare"],
+  ["emne_flora_geitrams","Chamerion angustifolium"],
+  ["emne_flora_groblad","Plantago major"]
 ];
 assert.equal(approved.count,expected.length,"publication count changed without species QA");
 assert.equal(batch.items.length,15);
 assert.equal(batch.items.filter(a=>a.approvedForPublication).length,2);
-const allReviews=[...review05.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...revision.items.map(a=>({
+const allReviews=[...review06.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review05.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...revision.items.map(a=>({
   ...a,catalogId:a.id,candidate:a.newSrc,candidateGitBlobSha:a.newGitBlobSha,
   approvedForPublication:a.productionApproval,reviewStatus:a.botanicalVisualDecision==="passed"?"approved":"pending",
   visualChecks:{transparent:true,blackBackgroundReviewed:true},evidence:a.sourceReferences
@@ -74,7 +77,7 @@ for(const id of ["emne_flora_engkarse","emne_flora_ballblom"]){
   assert(older.species.some(a=>a.catalogId===id && a.botanicalReview==="needs_redraw"),"historical v2 rejection must remain");
 }
 const html=read("finn-flora.html"),js=read("js/ui/nature-explorer.js"),css=read("css/nature-explorer.css");
-assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261028-4"'));
+assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261028-5"'));
 assert(html.indexOf("nature-flora-photographs.js")<html.indexOf("nature-flora-approved.js"));
 assert(html.indexOf("nature-flora-approved.js")<html.indexOf("nature-explorer.js"));
 assert(js.includes('const art=kind==="flora" ? approvedFloraIllustrations?.get(id)?.src : drawings?.resolve(id)'));
@@ -108,7 +111,7 @@ for(const x of pending05.items){
 const preview05=read("flora-illustrasjoner-bolk05.html");
 for(const x of pending05.items)assert(preview05.includes(x.src),"review page missing: "+x.key);
 assert(read("flora-illustration-review.html").includes('href="flora-illustrasjoner-bolk05.html"'));
-console.log("Flora release: 9 botanical approvals (6 prior + 3 batch 05), all SHA, taxon, alpha, photo fallback, 13 prior rejection gates pass.");
+console.log("Flora release: 11 botanical approvals (9 prior + 2 batch 06), all SHA, taxon, alpha, photo fallback, 13 prior rejection gates pass.");
 
 assert(!approved.has("emne_flora_rodkløver"),"rejected red clover must not be published");
 for(const x of review05.items){

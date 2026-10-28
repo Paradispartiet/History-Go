@@ -5,6 +5,23 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_geitrams: Object.freeze({
+      "scientificName": "Chamerion angustifolium",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b06/02_geitrams.webp",
+      "gitBlobSha": "1962c3082ad500cd52b419334d6470235a2c66b0",
+      "reviewedAt": "2026-10-28",
+      "stage": "blomstring",
+      "evidence": "data/natur/flora/illustration-quality-batch06-20261028.json"
+    }),
+    emne_flora_groblad: Object.freeze({
+      "scientificName": "Plantago major",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b06/03_groblad.webp",
+      "gitBlobSha": "23e2dcadfcb4750312c4fe9c17cd39e701a9139b",
+      "reviewedAt": "2026-10-28",
+      "stage": "blomstring",
+      "evidence": "data/natur/flora/illustration-quality-batch06-20261028.json"
+    }),
+
     emne_flora_lovetann: Object.freeze({
       "scientificName": "Taraxacum officinale agg.",
       "src": "bilder/natur/flora/illustrasjonskandidater/b05/01_lovetann_v2.webp",

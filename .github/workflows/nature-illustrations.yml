@@ -33,6 +33,11 @@ on:
       - 'data/natur/flora/illustration-revision-batch04.json'
       - 'data/natur/flora/illustration-revision-batch05.json'
       - 'flora-illustrasjoner-bolk05.html'
+      - 'flora-illustrasjoner-bolk06.html'
+      - 'data/natur/flora/illustration-quality-batch06-20261028.json'
+      - 'data/natur/flora/illustration-candidates-batch06.json'
+      - 'bilder/natur/flora/illustrasjonskandidater/b06/**'
+      - 'scripts/test-flora-art-candidates-batch06.mjs'
       - 'data/natur/flora/illustration-quality-batch05-20261028.json'
       - 'data/natur/flora/illustration-candidates-batch05.json'
       - 'bilder/natur/flora/illustrasjonskandidater/b05/**'
@@ -71,6 +76,7 @@ jobs:
       - run: node scripts/test-nature-illustrations.mjs
       - run: node scripts/test-nature-flora-photos.mjs
       - run: node scripts/test-flora-approved-release.mjs
+      - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
       - run: node scripts/test-flora-art-candidates.mjs
@@ -92,6 +98,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-nine-mobile-desktop
+          name: flora-approved-eleven-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
