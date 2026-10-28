@@ -53,10 +53,10 @@ for(const p of data.items){
  assert.equal(candidate.src,p.newSrc);
  assert.equal(candidate.gitBlobSha,p.newGitBlobSha);
 }
-assert.equal(published.count,9,"previously accepted images or batch 04 missing");
+assert.equal(published.count,11,"previously accepted images or batch 04 missing");
 const gallery=read("flora-illustrasjoner-bolk04.html");
 for(const p of data.items)assert(gallery.includes(p.newSrc),"candidate not in gallery: "+p.id);
 const review=read("js/ui/flora-illustration-review.js");
-assert(review.includes('["01","02","03","04","05"]'),"new candidate batch missing in review");
+assert(review.includes('["01","02","03","04","05","06"]'),"new candidate batch missing in review");
 assert(read("flora-illustration-review.html").includes("flora-illustrasjoner-bolk04.html"));
 console.log("Flora batch 04: 3 precise original WebP/SHA256 blobs, species reviews, image registry, licensed photo fallback and gallery valid.");
