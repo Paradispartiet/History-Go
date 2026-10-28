@@ -34,6 +34,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/runtime/people-all/ data/runtime/place-open/tullin.json
           if ! git diff --cached --quiet; then git commit -m "Tullin: refresh People runtime"; fi
+          git restore .
           git fetch origin content/oslo-ts-bolk03-tullin-people-card-v1-20261028
           git rebase origin/content/oslo-ts-bolk03-tullin-people-card-v1-20261028
           git push origin HEAD:content/oslo-ts-bolk03-tullin-people-card-v1-20261028
