@@ -10,6 +10,13 @@ on:
       - '.github/workflows/oslo-vu-vulkan-parity.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-vu-vulkan-parity-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   vulkan-parity:
     runs-on: ubuntu-latest
