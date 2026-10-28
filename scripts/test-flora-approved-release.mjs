@@ -98,7 +98,7 @@ for(const x of pending05.items){
   assert(x.requiredRedraw.length>=3 && x.sourceReferences.length>=1);
   assert(!approved.has(x.catalogId),"unapproved batch 05 image leaked into production: "+x.catalogId);
   const bin=fs.readFileSync(new URL("../"+x.src,import.meta.url));
-  const hash=crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+bin.length+"\\0"),bin])).digest("hex");
+  const hash=crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+bin.length),Buffer.from([0]),bin])).digest("hex");
   assert.equal(hash,x.gitBlobSha,"reviewed original image changed: "+x.key);
 }
 const preview05=read("flora-illustrasjoner-bolk05.html");
