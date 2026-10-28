@@ -89,3 +89,22 @@ Ved gyldige inputs konverteres redaksjonelle URL-lister deterministisk til kanon
 3. **Tester og menneskelig QA:** se faktiske resultater fra `npm run test:quiz-production`, alle kanoniske quiz- og Knowledge-audits, faglig kildekontroll av 70 påstander, mobile/desktop QuizCard-flip, shuffle, progresjon og sikker publikumsadkomst. Ingen testresultater skal gjettes.
 4. **PR-styring:** fortsatt draft, ikke merge og ikke vFerdig. Quizstaging har ingen feltinstruksjoner eller ruter inn i dagens Ila fengsel.
 
+
+## Checkpoint E – tekniske CI-gater dokumentert
+
+[GitHub Actions-kjøring #40692552404](https://github.com/Paradispartiet/History-Go/actions/runs/40692552404) ble fullført med **success** på commit `3d2751ddf50821b8976a89d2cc298fc0334023c4`.
+
+| Teknisk port | Faktisk teststatus | Avgrensning |
+| --- | --- | --- |
+| `grini-quiz-staging.test.mjs` | PASS, 4 av 4 | Kun kildebrief/utkast/legacy-paritet |
+| Full historiekontekst fra sju innganger | PASS | Bygd med midlertidig manifest-overlegg, ikke lagret i PR |
+| `auditQuizProductionContext` | PASS | Kun simulert Grini-mål |
+| `auditQuizProgression` | PASS | Kun simulert Grini-mål |
+| `auditQuizTheoryBinding` | PASS | Kun simulert Grini-mål |
+| Canonical Knowledge-generator etter simulert 1×3 → 10×7 | PASS | Tre gamle KU-er, påstandstekster og konseptkoblinger bevart; 70 nye spørsmål fikk lenker i disponibel CI-kopi |
+| Integrert PR-head med ny aktiv quiz, fagmanifest og produksjonskontekst | IKKE UTFØRT | Aktiv quiz er fortsatt 1×3 |
+| Full historisk redaksjonell signatur og runtime / browser / mobil | IKKE UTFØRT | Fortsatt release-blokkerende |
+
+Den nye Knowledge-bevaringskilden skal **aldri** inn i runtime-quizmanifestet. Den brukes bare av generatoren når den gamle quiz-ID-en har falt ut av de spillbare spørsmålene. Full dokumentasjon: `reports/place-production/grini-fangeleir-quiz-technical-gates-2026-10-28.json`.
+
+**Releasevedtak:** `BLOCKED / NOT vFerdig`. Gamle funn om urettede fasefeil og ID-kollisjoner i rapportens første del er historikk; se Checkpoint D/E for gjeldende teknisk status. Uavhengig kilde- og distraktorreview, atomisk integrasjon og full løpende CI gjenstår.
