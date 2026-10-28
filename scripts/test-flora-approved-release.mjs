@@ -8,6 +8,7 @@ const older = JSON.parse(read("data/natur/flora/illustration-quality-review-2026
 const batch = JSON.parse(read("data/natur/flora/illustration-quality-batch01-20261028.json"));
 const candidates = JSON.parse(read("data/natur/flora/illustration-candidates-batch01.json"));
 const revision = JSON.parse(read("data/natur/flora/illustration-revision-batch04.json"));
+const pending05 = JSON.parse(read("data/natur/flora/illustration-revision-batch05.json"));
 const env = {window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved = env.window.HG_NATURE_FLORA_APPROVED;
@@ -79,4 +80,28 @@ assert(js.includes('wrap.firstChild.classList.add("ne-dialog-image")'));
 assert(css.includes('.ne-art-transparent-stage{background:#080908!important}'));
 assert(css.includes('.ne-transparent-art{object-fit:contain!important;background:transparent!important}'));
 assert(!js.includes("localStorage.setItem"));
+// Batch 05 documents rejected artwork only; it must never make images live.
+assert.equal(pending05.batch,"05");
+assert.equal(pending05.approvedForPublication,false);
+assert.equal(pending05.originalApprovedSpeciesCount,6);
+assert.equal(pending05.items.length,4);
+for(const x of pending05.items){
+  const previous=batch.items.find(a=>a.key===x.key);
+  const manifest=candidates.items.find(a=>a.key===x.key);
+  assert(previous && manifest,"missing historical candidate: "+x.key);
+  assert.equal(previous.reviewStatus,"needs_redraw","historical rejection changed: "+x.key);
+  assert.equal(x.releaseStatus,"needs_redraw");
+  assert.equal(x.visualReview,"failed_morphology");
+  assert.equal(x.newAssetSrc,null);
+  assert.equal(x.src,previous.candidate);
+  assert.equal(x.gitBlobSha,manifest.gitBlobSha);
+  assert(x.requiredRedraw.length>=3 && x.sourceReferences.length>=1);
+  assert(!approved.has(x.catalogId),"unapproved batch 05 image leaked into production: "+x.catalogId);
+  const bin=fs.readFileSync(new URL("../"+x.src,import.meta.url));
+  const hash=crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+bin.length+"\\0"),bin])).digest("hex");
+  assert.equal(hash,x.gitBlobSha,"reviewed original image changed: "+x.key);
+}
+const preview05=read("flora-illustrasjoner-bolk05.html");
+for(const x of pending05.items)assert(preview05.includes(x.src),"review page missing: "+x.key);
+assert(read("flora-illustration-review.html").includes('href="flora-illustrasjoner-bolk05.html"'));
 console.log("Flora release: 6 botanical approvals (3 prior + 3 v3), all SHA, taxon, alpha, photo fallback, 13 prior rejection gates pass.");
