@@ -3,6 +3,8 @@
 **Sted:** `grini_fangeleir` · **Kategori:** `historie` · **PR:** #6759 (utkast)  
 **Resultat:** `BLOCKED / NOT RELEASE READY`. Dette er **ikke** en attest for full historisk fagfellekontroll, offisiell CI eller aktiv quiz.
 
+**Revisjonsnotat:** Avsnittene nedenfor dokumenterer første audit. Senere rettelser og gjeldende status er samlet i «Checkpoint D» nederst. Ikke bruk den første feiloversikten som nåstatus.
+
 ## Omfang og metode
 
 Alle 70 spørsmål i `grini-fangeleir-quiz-full-draft-2026-10-28.json` ble lest gjennom sammen med svaralternativer, svar, forklaring og påstandsgrunnlag. Det ble utført en strukturell, programmatisk krysskontroll mot samtlige 70 påstander i kildebriefen (ID, `claim_basis`, kilde-URL-er via kilde-ID, gjennomgått kildestatus, fasitindeks). Sentrale historiske opplysninger ble kontrollert særskilt mot SNL, Grinimuseet og NOU 1998:12, men **ikke** alle 70 historiske påstander og distraktorer uavhengig etterprøvd mot originaldokumenter.
@@ -52,3 +54,38 @@ Alle 70 spørsmål i `grini-fangeleir-quiz-full-draft-2026-10-28.json` ble lest 
 ### Statusdisiplin
 
 Denne revisjonen har ikke startet offisielle testskript, ikke registrert manifestmålet, ikke skrevet produksjonskontekst, ikke byttet aktiv quizfil og ikke synkronisert Knowledge. Strukturelle lokale API-kontroller er ikke lik canonical CI PASS.
+
+## Checkpoint D – kanonisk staging og teknisk preflight (2026-10-28)
+
+**Status fortsatt BLOCKED for aktivering, men flere tidligere redaksjonelle blokkere er lukket i utkastet.**
+
+### Fullførte endringer i utkast / kildebrief
+
+- **15 redaksjonelle omskrivinger** (#23, #24, #36, #37, #43, #44, #47, #52, #59, #60, #64–67 og #70). De fem opprinnelige repetisjonene i sluttsettet er erstattet av andre kildebaserte oppgaver. Q59 har nå eksplisitt kildeavgrensning ved årsskiftet 1950/51.
+- **Metode og teorifordeling:** 12 eksplisitte metodekoblinger først etter den normale 2×7-åpningen, én stedsspesifikt begrunnet teoribinding til Foucault i siste sett. Kanonisk familieprognose: **41 fakta / 17 kontekst / 12 metode-teori** = **58,6 / 24,3 / 17,1 %**. Dette er en strukturell beregning, ikke bevis for semantisk godkjenning.
+- **ID-kollisjoner fjernet:** De tre første spørsmålene i nytt utkast heter nå `grini_fangeleir_quiz_v2_01`–`v2_03` og har også nye `quiz_id`-er. Gamle Knowledge-ID-er er kartlagt men **ikke** migrert og må ikke slettes ved regenerering.
+- **Faser korrigert mot faktisk kategori-superset:** `opening, middle, middle, middle, middle, middle, middle, bridge, bridge, final`. Tidligere utkast hadde **7 feilmerkede sett** og kildebriefen **49 feilmerkede claim-faser**. Begge er rettet.
+- **Kanonisk påstandstaksonomi korrigert:** 26 `claim.family`-verdier endret til kategoriene `fact/context/concept_theory`, fordi kontekstbyggeren avviser `analysis` og fordi `claim.family` må stemme med den faktiske oppgavefamilien. Nå **41 / 17 / 12**.
+- **Arkiv-QA:** #21 skiller nå mellom fangenumrene som delvis finnes i parallell protokollrekke og de som mangler helt.
+
+### Ny ikke-publiserende integrasjonskode
+
+`scripts/prepare-grini-quiz-staging.mjs` leser kildebrief, utkast, aktiv legacy-quiz og kategoriens superset. Den stopper ved feil i:
+- antall sett/spørsmål, fase eller påstandsrekkefølge;
+- fasit, `claim_basis`, `claim.family`, utvalgte fagkoblinger eller kilder;
+- uanmeldt/ikke gjennomgått kilde eller kollisjon med de tre aktive spørsmåls-ID-ene;
+- manglende 2×7-normalåpning, manglende final metode/teori eller endret 24/24/22-fordeling.
+
+Ved gyldige inputs konverteres redaksjonelle URL-lister deterministisk til kanoniske kilde-ID-er og sett får numerisk `level`. Resultatet er eksplisitt **`STAGING_ONLY_NOT_ACTIVE`**, ikke en aktiv quizpakke, og inneholder ingen påstått `production_context` eller oppdiktede Knowledge-enheter. Valgfri `--output` tillater bare JSON under `reports/place-production/`.
+
+`tests/grini-quiz-staging.test.mjs` har regresjonstester for gyldig 10×7-konvertering, fasit/kilde/ID-eierskap og fail-closed ved korrupte inputs. Testen er tatt inn i `npm run test:quiz-production` og kan kjøres isolert som `npm run test:grini-quiz-staging`.
+
+**Verifisering i denne revisjonen:** Connector-basert strukturkrysskontroll 70/70, fasit 24/24/22, 0 aktive ID-kollisjoner, 0 faseavvik og 0 kildeavvik; **ingen lokal Node-kjøring eller godkjent GitHub CI-resultat er attestert her**.
+
+### Fortsatt harde aktiveringsporter
+
+1. **Eksisterende Knowledge må bevares gjennom reell regenerering:** `scripts/knowledge-canonical-data.mts` genererer registre ut fra filene i `data/quiz/manifest.json`. Hvis gammel 1×3-fil erstattes uten eksplisitt migrasjon eller bevaring, kan de tre eksisterende `ku_`-enhetene forsvinne fra registrene. Ikke merk dette `PASS` basert på en ID-mapping alene.
+2. **Canonical context-artifact må bygges:** fagmanifestets `historie.quizProduction.targets.grini_fangeleir` mangler. Registrering, full 10×7-pakke, generert `data/quiz/production_context/historie/grini_fangeleir.json` og fremtidig runtime-manifestoppdatering må utføres i et kontrollert, testbart integrasjonstrinn.
+3. **Tester og menneskelig QA:** se faktiske resultater fra `npm run test:quiz-production`, alle kanoniske quiz- og Knowledge-audits, faglig kildekontroll av 70 påstander, mobile/desktop QuizCard-flip, shuffle, progresjon og sikker publikumsadkomst. Ingen testresultater skal gjettes.
+4. **PR-styring:** fortsatt draft, ikke merge og ikke vFerdig. Quizstaging har ingen feltinstruksjoner eller ruter inn i dagens Ila fengsel.
+
