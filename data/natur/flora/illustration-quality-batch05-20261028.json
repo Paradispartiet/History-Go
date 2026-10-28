@@ -2,7 +2,7 @@
   "schema": "history-go-flora-species-review-v1",
   "batch": "05",
   "reviewedAt": "2026-10-28",
-  "status": "morphology_reviewed_browser_qa_pending",
+  "status": "morphology_reviewed_three_accepted_one_rejected",
   "originalApprovedSpeciesCount": 6,
   "approvedSpeciesCountAfterRelease": 9,
   "scope": "Four new PNG originals; previous b01 rejection ledger remains unchanged. Three accepted, red clover rejected.",
@@ -13,7 +13,6 @@
     "resize": false,
     "alpha": "original alpha preserved exactly; source maximum 254 is retained"
   },
-  "browserQaPassed": false,
   "items": [
     {
       "key": "01_lovetann_v2",
@@ -158,5 +157,14 @@
       "previousCandidate": "bilder/natur/flora/illustrasjonskandidater/b01/13_rodklover.webp",
       "previousGitBlobSha": "a2cea15ff9b4952d2a5b506c6bfd271191a063db"
     }
-  ]
+  ],
+  "browserQa": {
+    "requiredBeforeMerge": true,
+    "evidenceLocation": "Pull request 6764: Nature atlas illustrations / approved-flora-browser on final head",
+    "viewportWidths": [
+      390,
+      1440
+    ],
+    "scope": "Nine approved species; exact card, dialog and simulated image failover. External photo responses are stubbed."
+  }
 }
