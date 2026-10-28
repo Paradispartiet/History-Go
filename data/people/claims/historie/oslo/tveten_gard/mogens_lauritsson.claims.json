@@ -1,0 +1,114 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "mogens_lauritsson",
+  "place_id": "tveten_gard",
+  "profile_file": "data/people/historie/oslo/tveten_gard/mogens_lauritsson.json",
+  "identity": {
+    "canonical_identity": "Mogens Lauritssøn",
+    "name_variants": [
+      "Mogens Lauritssøn",
+      "Mogens Lauritzen",
+      "Mogens Lauritsøn"
+    ],
+    "not": [
+      "Erich Mogenssøn",
+      "Mogens Larsen Monsen"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Mogens Lauritssøn var en rik trelasthandler i Christiania.",
+      "status": "verified",
+      "source_url": "https://mia.no/linderud/mogensson-og-mathiesen",
+      "source_location": "Historisk tekst / eierliste",
+      "source_type": "published_local_history",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "linderud",
+      "claim": "Mogens Lauritssøn kjøpte Linderud gård i 1679.",
+      "status": "verified",
+      "source_url": "https://mia.no/linderud/mogensson-og-mathiesen",
+      "source_location": "Historisk tekst / eierliste",
+      "source_type": "published_local_history",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "purchase_tveten",
+      "claim": "Mogens Lauritssøn overtok Tveten etter 1708.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Tveten_g%C3%A5rd",
+      "source_location": "Historisk tekst / eierliste",
+      "source_type": "published_local_history",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "build_tveten",
+      "claim": "Han flyttet til Tveten, bygde nytt våningshus og rustet opp gården.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Tveten_g%C3%A5rd",
+      "source_location": "Historisk tekst / eierliste",
+      "source_type": "published_local_history",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "succession",
+      "claim": "På Linderud overtok sønnen Erich Mogenssøn i 1713 og lot oppføre en ny hovedbygning.",
+      "status": "verified",
+      "source_url": "https://mia.no/linderud/mogensson-og-mathiesen",
+      "source_location": "Historisk tekst / eierliste",
+      "source_type": "published_local_history",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "year": [
+      "purchase_tveten"
+    ],
+    "placeId": [
+      "purchase_tveten"
+    ],
+    "places[tveten_gard]": [
+      "purchase_tveten"
+    ],
+    "image": []
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity",
+          "purchase_tveten",
+          "build_tveten"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "5/5",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-10-28",
+    "validator_version": "1.0.0",
+    "current_status": "source_curated_media_pending",
+    "pending": "No confirmed freely reusable historical portrait; profile intentionally uses initials."
+  }
+}
