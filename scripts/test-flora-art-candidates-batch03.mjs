@@ -30,7 +30,7 @@ const sha=crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+by
 assert.equal(sha,p.gitBlobSha);
 const gallery=read("flora-illustrasjoner-bolk03.html");
 assert(gallery.includes(p.src)&&gallery.includes("Etter blomstring"));
-assert(gallery.includes("ikke godkjent for publisering"));
+assert(gallery.includes("godkjent for Finn Flora"));
 const review=read("js/ui/flora-illustration-review.js");
 assert(review.includes('["01","02","03"]'));
 assert(review.includes("candidate.approvedForPublication===false"));

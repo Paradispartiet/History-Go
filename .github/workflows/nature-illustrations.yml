@@ -19,6 +19,7 @@ on:
       - 'finn-flora.html'
       - 'js/ui/nature-flora-approved.js'
       - 'data/natur/flora/illustration-quality-review-20261028.json'
+      - 'data/natur/flora/illustration-quality-batch01-20261028.json'
       - 'scripts/test-flora-approved-release.mjs'
       - 'scripts/test-flora-approved-browser.mjs'
       - 'finn-fauna.html'
@@ -80,6 +81,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-hestehov-mobile-desktop
+          name: flora-approved-three-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
