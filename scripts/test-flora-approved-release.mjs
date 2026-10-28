@@ -22,11 +22,11 @@ const expected = [
 assert.equal(approved.count,expected.length,"publication count changed without species QA");
 assert.equal(batch.items.length,15);
 assert.equal(batch.items.filter(a=>a.approvedForPublication).length,2);
-const allReviews=[...older.species,...batch.items,...revision.items.map(a=>({
+const allReviews=[...revision.items.map(a=>({
   ...a,catalogId:a.id,candidate:a.newSrc,candidateGitBlobSha:a.newGitBlobSha,
   approvedForPublication:a.productionApproval,reviewStatus:a.botanicalVisualDecision==="passed"?"approved":"pending",
   visualChecks:{transparent:true,blackBackgroundReviewed:true},evidence:a.sourceReferences
-}))];
+})),...older.species,...batch.items];
 const catalog=JSON.parse(read("data/runtime/nature-all/flora-001.json"))
   .flatMap(a=>a.kind==="emne_pack"?a.items:[a]);
 const photographed={window:{}};
