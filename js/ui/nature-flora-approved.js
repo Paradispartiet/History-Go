@@ -1,12 +1,18 @@
-/* Species-reviewed and visually accepted botanical artwork only.
- * Candidates in data/natur/flora/illustration-candidates-*.json do NOT
- * grant publication. No generated SVG may bypass this register.
+/* Individually botanically verified AND visually approved Finn Flora images.
+ * This registry is the sole publication gate. Review candidates, old SVG
+ * templates and local review state cannot activate an artskort illustration.
  */
 (function () {
   "use strict";
   const images = Object.freeze({
-    // Add individually accepted images only after recording botanical evidence,
-    // dark-background visual QA, and a verified immutable Git blob SHA.
+    emne_flora_hestehov: Object.freeze({
+      scientificName: "Tussilago farfara",
+      src: "bilder/natur/flora/illustrasjonskandidater/b03/01_hestehov_var.webp",
+      gitBlobSha: "f23ea2f496921dd4e077f0c3aa4bb303c2fd6dea",
+      reviewedAt: "2026-10-28",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-review-20261028.json"
+    })
   });
   const get = id => images[String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
