@@ -693,7 +693,7 @@
     const zoom = Number(MAP.getZoom?.() || 10);
     for (const entry of placeAreaMarkers.values()) {
       const showBadge = isBadgeMarkerMode() && !!entry.badgeImage?.complete && entry.badgeImage.naturalWidth > 0;
-      entry.element.classList.toggle("has-category-badge", showBadge);
+      entry.element.classList?.toggle?.("has-category-badge", showBadge);
       const side = showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
       entry.element.style.width = `${side.toFixed(2)}px`;
       entry.element.style.height = `${side.toFixed(2)}px`;
