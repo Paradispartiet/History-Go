@@ -73,18 +73,20 @@ function assertHome(page) {
 }
 const map = boot("index.html#/map");
 assert.equal(map.back, null, "map is terminal screen");
-assertHome(map);
+assert.equal(map.home, null, "index map must never show the small home logo");
 map.route("#/place/101");
 assert.equal(map.label, "Tilbake til kartet");
+assert.equal(map.home, null, "index place route also hides small home logo");
 assert.equal(map.back.href, root + "index.html#/map");
 map.route("#/quiz/101");
 assert.equal(map.label, "Tilbake til stedet");
+assert.equal(map.home, null, "index quiz route also hides small home logo");
 assert.equal(map.back.href, root + "index.html#/place/101");
 assert.equal(map.back.click().defaultPrevented, true);
 assert.deepEqual(map.replacements, [root + "index.html#/place/101"]);
 map.route("#/map");
 assert.equal(map.back, null);
-assertHome(map);
+assert.equal(map.home, null, "small logo stays absent when returning to index map");
 
 const loginReferrer = boot("profile.html", root + "login.html?next=profile.html");
 assert.equal(loginReferrer.back.href, root + "index.html#/map");
@@ -92,10 +94,11 @@ loginReferrer.back.click();
 assert.deepEqual(loginReferrer.replacements, [root + "index.html#/map"]);
 const loginLanding = boot("index.html#/map", root + "profile.html", loginReferrer.storage);
 assert.equal(loginLanding.back, null);
-loginLanding.home.click();
+assert.equal(loginLanding.home, null, "landing on index must not inject a small logo");
 assert.deepEqual(loginLanding.replacements, []);
 
 const knowledge = boot("knowledge.html");
+assertHome(knowledge);
 assert.equal(knowledge.back.href, root + "profile.html");
 knowledge.back.click();
 const profileAfterFallback = boot("profile.html", root + "knowledge.html", knowledge.storage);
@@ -118,6 +121,7 @@ assert.equal(returned.back.href, root + "index.html#/map", "no loop back to Civi
 returned.back.click();
 const terminal = boot("index.html#/map", root + "profile.html", store);
 assert.equal(terminal.back, null, "return journey ends at map");
+assert.equal(terminal.home, null, "return journey ends on index without a second logo");
 
 const fauna = boot("finn-fauna.html");
 assert.equal(fauna.back.href, root + "index.html#/map");

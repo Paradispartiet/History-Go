@@ -152,6 +152,13 @@
   home.append(logo);
 
   function mountControls() {
+    // The main index already has the large History GO welcome logo. Only
+    // subpages need this separate small logo as a direct return to the map.
+    if (isMapRoot) {
+      home.remove();
+      if (!link.hidden && host.firstElementChild !== link) host.prepend(link);
+      return;
+    }
     if (home.parentElement !== host || (!link.hidden && host.firstElementChild !== link)) {
       home.remove();
       host.prepend(home);

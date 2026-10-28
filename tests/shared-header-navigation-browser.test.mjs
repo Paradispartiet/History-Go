@@ -64,6 +64,8 @@ try {
     }
 
     await page.goto(base + "/index.html#/map", { waitUntil: "domcontentloaded", timeout: 30000 });
+    assert.equal(await page.locator("header.site-header > .hg-universal-home").count(), 0,
+      "index map must not display a small secondary History GO logo");
     // The full map depends on external tiles/CDNs, deliberately blocked in this
     // isolated navigation check. Mark its shell ready so the startup gate does
     // not block the real pointer interaction under test.
@@ -74,9 +76,8 @@ try {
     });
     const placeBack = page.locator(".hg-universal-back").first();
     await placeBack.waitFor({ state: "visible", timeout: 12000 });
-    const mapHome = page.locator("header.site-header > .hg-universal-home");
-    await mapHome.waitFor({ state: "visible", timeout: 12000 });
-    assert.equal(new URL(await mapHome.getAttribute("href"), base).hash, "#/map");
+    assert.equal(await page.locator("header.site-header > .hg-universal-home").count(), 0,
+      "index place view must not show small map-home logo");
     assert.equal((await placeBack.textContent()).trim(), "←", "map back link shows only the arrow");
     assert.equal(await placeBack.getAttribute("aria-label"), "Tilbake til kartet");
     const logo = page.locator("header.site-header > .hg-brand");
@@ -90,12 +91,11 @@ try {
     assert.ok(headerRect && logoRect.y >= headerRect.y - 1,
       "HG logo stays within the top edge of the header at " + width + "px");
     const backRect = await placeBack.boundingBox();
-    const homeRect = await mapHome.boundingBox();
     const exploreRect = await page.locator("header.site-header #nearbyExploreToggle").boundingBox();
     assert.ok(logoRect && backRect && exploreRect, "header elements are measurable");
     assert.ok(backRect.x >= logoRect.x + logoRect.width - 1, width + "px: back arrow does not cover the logo, " + JSON.stringify({ logoRect, backRect }));
-    assert.ok(backRect.x + backRect.width <= homeRect.x + 1, width + "px: back arrow does not cover small home logo");
-    assert.ok(homeRect.x + homeRect.width <= exploreRect.x + 1, width + "px: small home logo does not cover Utforsk");
+    assert.ok(backRect.x + backRect.width <= exploreRect.x + 1,
+      width + "px: back arrow does not cover Utforsk without a redundant small home logo");
     // Use the genuine welcome module even with external map dependencies blocked.
     if (!(await page.evaluate(() => Boolean(window.HGOnboarding?.open)))) {
       await page.addScriptTag({ path: "js/ui/onboarding-welcome.js" });
@@ -106,6 +106,8 @@ try {
     await page.locator(".hg-onb-close").click();
     await placeBack.click();
     await page.waitForFunction(() => location.hash === "#/map");
+    assert.equal(await page.locator("header.site-header > .hg-universal-home").count(), 0,
+      "index map still has no secondary logo after return");
     await context.close();
     console.log("Shared header browser navigation ok at " + width + "px");
   }
