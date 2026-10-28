@@ -10,7 +10,7 @@ const floraPhotos = kind === "flora" ? window.HG_NATURE_FLORA_PHOTOS : null;
 // Never equate a technically valid SVG with a botanically verified illustration.
 // Add an ID only after species-level reference review (leaf, flower, growth form)
 // and a separate visual acceptance. Until then, use a documented photograph.
-const approvedFloraIllustrations = new Set();
+const approvedFloraIllustrations = kind === "flora" ? window.HG_NATURE_FLORA_APPROVED : null;
 const grid=document.getElementById("natureGrid"),stats=document.getElementById("natureStats"),count=document.getElementById("natureCount"),
  search=/** @type {HTMLInputElement} */ (document.getElementById("natureSearch")),message=document.getElementById("natureMessage"),more=document.getElementById("natureMore"),
  dialog=/** @type {HTMLDialogElement} */ (document.getElementById("natureDialog")),details=document.getElementById("natureDetails");
@@ -26,7 +26,7 @@ function collected(){
 function media(a){
  const id=String(a.id);
  const documented = floraPhotos?.get(id);
- const art=(kind!=="flora"||approvedFloraIllustrations.has(id))?drawings?.resolve(id):"";
+ const art=kind==="flora" ? approvedFloraIllustrations?.get(id)?.src : drawings?.resolve(id);
  // A species-approved botanical illustration is the preferred image.
  // A documented photograph is the fallback; an unapproved SVG is never used.
  if(art&&kind==="flora")return {src:art,type:"illustration",fallback:documented?.src||"",fallbackInfo:documented||null};
@@ -38,7 +38,7 @@ function media(a){
 }
 function illustrated(a){
  const id=String(a.id);
- const approvedArt=(kind!=="flora"||approvedFloraIllustrations.has(id))&&drawings?.has(id);
+ const approvedArt=kind==="flora" ? approvedFloraIllustrations?.has(id) : drawings?.has(id);
  const src=a.image || a.imageCard || a.img;
  return Boolean(floraPhotos?.get(id)||approvedArt||(typeof src==="string"&&/^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src)));
 }
@@ -91,7 +91,7 @@ function openArt(a){
  if(imageInfo){
   const wrap=node("div","ne-detail-artwork");
   appendImage(wrap,imageInfo,name(a));
-  if(wrap.firstChild?.tagName==="IMG")wrap.firstChild.className="ne-dialog-image";
+  if(wrap.firstChild?.tagName==="IMG")wrap.firstChild.classList.add("ne-dialog-image");
   if(imageInfo.type==="photo"){
    wrap.appendChild(photoCredit(imageInfo));
   }else if(imageInfo.type==="illustration"){
