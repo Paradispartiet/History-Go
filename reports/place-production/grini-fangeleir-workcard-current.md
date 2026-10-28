@@ -177,3 +177,15 @@ Tidligere PR-head hadde røde, til dels katalogvide tester: place-description-pa
 - Fagmanifestregistrering, faktisk produksjonskontekst, Knowledge-generator, runtime-manifest og 70-spørsmåls publikasjon **er ikke gjennomført**. Disse må gjøres kontrollert og med faktiske testresultater; ingen risikable eller oppdiktede git-hasher for produksjonskontekst.
 
 **Revisjon og åpne porter:** `reports/place-production/grini-fangeleir-quiz-editorial-audit-2026-10-28.md`, særlig *Checkpoint D*. Dette checkpointet erstatter tidligere beskrivelser av uendrede repetisjoner, feil faser og ID-kollisjoner som gjeldende status.
+
+## Checkpoint E – bestått teknisk simulering (2026-10-28)
+
+**Bekreftet i GitHub Actions:** [Grini quiz staging preflight, kjøring #40692552404](https://github.com/Paradispartiet/History-Go/actions/runs/40692552404), eksakt commit `3d2751ddf50821b8976a89d2cc298fc0334023c4`. Alle tre separate jobber endte **success**:
+
+- Ikke-publiserende staging: 4 regresjonstester bestått, 0 feil, 70 spørsmål og 24/24/22 fasitposisjoner; faktisk full historiefaglig kontekst bygget med sju innleste hashverifiserte faginputs i midlertidig manifest-overlegg.
+- Kanoniske målrettede audits: `auditQuizProductionContext`, `auditQuizProgression` og `auditQuizTheoryBinding` bestod for et *simulert Grini-only* produksjonsmål. Dette omgår andre steders blokkerende tester, ikke full repository-validering.
+- Knowledge-migrering: Den faktiske generatoren `scripts/knowledge-canonical-data.mts --write` ble kjørt i midlertidig CI-kopi etter simulert utskifting av aktiv 1×3 med 10×7. Alle **tre eksisterende KU-ID-er**, deres opprinnelige påstander og konseptkoblinger overlevde, mens **70 nye spørsmål** fikk Knowledge-lenker. Den nye bevaringskilden `data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json` skal ikke registreres som spillbar quiz.
+
+**Viktig begrensning:** De kanoniske produksjonsfilene og Knowledge-registrene er **ikke skrevet permanent** til PR-grenen. Den spillbare `data/quiz/historie/grini_fangeleir_sets.json` er fortsatt 1×3, fagmanifestet mangler Grinis `quizProduction`-mål, og en lagret, deterministisk kontekst er ennå ikke integrert. PR-en er fortsatt utkast og Grini er **ikke vFerdig**.
+
+Neste eide produksjonsport: selvstendig faktakontroll og distraktorgjennomgang av 70 spørsmål, deretter atomisk integrasjon av fagmanifest, canonical 10×7 quiz, konteksthash og Knowledge-registrering, etterfulgt av hele relevante CI-/runtime-/mobil-testrekken. Eksakt, maskinlesbart testbevis finnes i `reports/place-production/grini-fangeleir-quiz-technical-gates-2026-10-28.json`.
