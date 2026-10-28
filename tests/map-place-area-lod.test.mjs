@@ -121,7 +121,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badge-zoom-scale2"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-area-badge-squares1"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
@@ -256,4 +256,15 @@ test("Badge-størrelse synker kontinuerlig ved utzoom og er markant større ved 
     assert.equal(size(24), 80, name + ": max-size guard");
   }
   assert.match(source, /function setMarkerMode\(nextMode\)/, "dot rollback must remain available");
+});
+
+test("områdefirkanter er synlige også når kategori-Badge er lastet", () => {
+  const css = read("css/map.css");
+  const block = css.match(/body\\.hg-app #map \\.hg-place-area-marker\\.has-category-badge \\{([^}]*)\\}/)?.[1] || "";
+  assert.match(block, /border-radius:\\s*0\\s*!important/, "områdebadge må fortsatt ha kvadratisk fasong");
+  assert.doesNotMatch(block, /border:\\s*0|border-width:\\s*0|box-shadow:\\s*none/, "badge må ikke skjule områdekant");
+  for (const [name, code] of [["TypeScript", source], ["legacy", legacy], ["web", dist]]) {
+    assert.match(code, /Math\\.max\\(mapBadgeDiameter\\(zoom\\), interpolatePlaceAreaMarkerSide\\(zoom, entry\\.visited\\)\\)/,
+      name + ": områdemarkøren må ikke krympe under opprinnelig firkant");
+  }
 });
