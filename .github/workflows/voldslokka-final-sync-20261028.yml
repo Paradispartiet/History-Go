@@ -1,0 +1,62 @@
+name: Voldslokka final integration sync
+on:
+  push:
+    branches:
+      - content/voldslokka-pumptrack-editorial-v42-20261027
+    paths:
+      - '.github/workflows/voldslokka-final-sync-20261028.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: voldslokka-final-integration-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/content/voldslokka-pumptrack-editorial-v42-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/voldslokka-pumptrack-editorial-v42-20261027
+          persist-credentials: true
+          fetch-depth: 0
+      - name: Merge latest main while keeping other Oslo deliveries
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild canonical indexes, Place-open and Voldslokka quiz context
+        run: |
+          npm run places:index:build
+          npm run epoker:places:build
+          npm run place-open:build
+          node scripts/build-quiz-production-context.mjs --category sport --target voldslokka_pumptrack --output data/quiz/production_context/sport/voldslokka_pumptrack.json
+      - name: Verify generated artifacts and playable place
+        run: |
+          npm run places:index:check
+          npm run epoker:places:check
+          npm run place-open:check
+          node scripts/build-quiz-production-context.mjs --category sport --target voldslokka_pumptrack --output data/quiz/production_context/sport/voldslokka_pumptrack.json --check
+          node --test tests/voldslokka-pumptrack-integrity-20261027.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+      - name: Commit regenerated data and remove single-use workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/places/places_index.json data/epoker/epoke-place-index.json
+          git add data/runtime/place-open/voldslokka_pumptrack.json
+          git add data/quiz/production_context/sport/voldslokka_pumptrack.json
+          git rm .github/workflows/voldslokka-final-sync-20261028.yml
+          git diff --cached --check
+          git commit -m "Voldslokka: final canonical synchronization against current main"
+          git push origin HEAD:content/voldslokka-pumptrack-editorial-v42-20261027
