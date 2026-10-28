@@ -87,3 +87,29 @@ test("all 70 draft source URLs are converted to reviewed source IDs without chan
     assert.equal(q.answer, draftQ.answer);
   });
 });
+
+test("source answer positions do not expose a mechanical A-B-C key", () => {
+  const key = source.map(q => q.answerIndex);
+  const moduloThreeMatches = key.filter((index, n) => index === n % 3).length;
+  assert.ok(moduloThreeMatches <= 35, `source key still predictable: ${moduloThreeMatches}/70 ABC matches`);
+  const slotCounts = [0, 0, 0];
+  key.forEach(index => slotCounts[index]++);
+  assert.deepEqual(slotCounts, [24, 24, 22]);
+  const repeatedABC = Array.from({length: key.length - 2}, (_, n) =>
+    key[n] === 0 && key[n + 1] === 1 && key[n + 2] === 2).filter(Boolean).length;
+  assert.ok(repeatedABC <= 4, `too many A-B-C three-question sequences: ${repeatedABC}`);
+});
+
+test("source-specific historical wording distinguishes the two postwar names and dates", () => {
+  const q57 = source[56];
+  const c57 = inputs.brief.claims[56];
+  assert.match(q57.question, /fengselsvesenet overtok/);
+  assert.match(q57.answer, /Ilebu fengsel/);
+  assert.match(c57.statement, /Ihlen fangeleir/);
+  assert.match(c57.statement, /Ilebu fengsel/);
+  const q69 = source[68];
+  const c69 = inputs.brief.claims[68];
+  assert.match(c69.statement, /12\. juni 1941/);
+  assert.match(c69.statement, /14\. juni 1941/);
+  assert.match(q69.answer, /oppgi forskjellen/);
+});
