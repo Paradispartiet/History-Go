@@ -4,6 +4,7 @@ on:
     branches: [content/oslo-vu-viking-planet-licensed-photo-20261028]
     paths:
       - '.github/workflows/viking-planet-photo-review.yml'
+      - 'scripts/prepare-viking-planet-photo-crops.py'
   workflow_dispatch:
 permissions:
   contents: write
@@ -19,7 +20,7 @@ jobs:
       - name: Prepare licensed image contact sheet
         run: |
           python3 -m pip install --user --quiet pillow
-          python3 scripts/prepare-viking-planet-photo-review.py
+          python3 scripts/prepare-viking-planet-photo-crops.py
       - name: Commit review contact sheet
         run: |
           git config user.name "github-actions[bot]"
