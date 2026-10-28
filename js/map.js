@@ -24,7 +24,6 @@
     const MAX_TOUCH_DETAIL_MARKERS = 240;
     const placeBadgeImages = /* @__PURE__ */ new Map();
     let placeBadgeLoadStarted = false;
-    // Reversible badge experiment; original dots remain as fallback.
     let markerMode = "badges";
     const MARKER_MODE_STORAGE_KEY = "hg_map_marker_mode";
     const STYLE_STORAGE_KEY = "hg_map_style_mode";
@@ -575,19 +574,19 @@
       return stops[stops.length - 1][1] + bonus;
     }
     function updatePlaceAreaDomMarkerSizes() {
-      var _a;
+      var _a, _b, _c, _d;
       if (!MAP) return;
       const zoom = Number(((_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) || 10);
       for (const entry of placeAreaMarkers.values()) {
-        const showBadge = isBadgeMarkerMode() && !!(entry.badgeImage && entry.badgeImage.complete && entry.badgeImage.naturalWidth > 0);
-        entry.element.classList?.toggle?.("has-category-badge", showBadge);
+        const showBadge = isBadgeMarkerMode() && !!((_b = entry.badgeImage) == null ? void 0 : _b.complete) && entry.badgeImage.naturalWidth > 0;
+        (_d = (_c = entry.element.classList) == null ? void 0 : _c.toggle) == null ? void 0 : _d.call(_c, "has-category-badge", showBadge);
         const side = showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
         entry.element.style.width = `${side.toFixed(2)}px`;
         entry.element.style.height = `${side.toFixed(2)}px`;
       }
     }
     function syncPlaceAreaDomMarkers(features) {
-      var _a;
+      var _a, _b;
       if (!MAP || typeof (maplibregl == null ? void 0 : maplibregl.Marker) !== "function") return;
       const activeIds = /* @__PURE__ */ new Set();
       for (const feature of features) {
@@ -623,7 +622,7 @@
         entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 4px rgba(0,0,0,.3)";
         const badgeSrc = isBadgeMarkerMode() ? placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "" : "";
         if (badgeSrc !== entry.badgeSrc) {
-          if (entry.badgeImage) entry.badgeImage.remove();
+          (_b = entry.badgeImage) == null ? void 0 : _b.remove();
           entry.badgeSrc = badgeSrc;
           entry.badgeImage = null;
           if (badgeSrc) {
@@ -651,12 +650,21 @@
       updatePlaceAreaDomMarkerSizes();
     }
     function getSavedMarkerMode() {
-      try { return window.localStorage.getItem(MARKER_MODE_STORAGE_KEY) === "dots" ? "dots" : "badges"; } catch { return "badges"; }
+      try {
+        return window.localStorage.getItem(MARKER_MODE_STORAGE_KEY) === "dots" ? "dots" : "badges";
+      } catch {
+        return "badges";
+      }
     }
-    function isBadgeMarkerMode() { return markerMode === "badges"; }
+    function isBadgeMarkerMode() {
+      return markerMode === "badges";
+    }
     function setMarkerMode(nextMode) {
       markerMode = nextMode === "dots" ? "dots" : "badges";
-      try { window.localStorage.setItem(MARKER_MODE_STORAGE_KEY, markerMode); } catch {}
+      try {
+        window.localStorage.setItem(MARKER_MODE_STORAGE_KEY, markerMode);
+      } catch {
+      }
       if (MAP) drawPlaceMarkers();
       return markerMode;
     }
@@ -771,7 +779,7 @@
         placeDetailMarkerEventsBound = true;
       }
       const badgesReady = isBadgeMarkerMode() && placeBadgeImages.size > 0;
-      if (!badgesReady && (zoom < PLACE_DETAIL_MIN_ZOOM || !useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM)) {
+      if (!badgesReady && zoom < PLACE_DETAIL_MIN_ZOOM || !badgesReady && !useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM) {
         for (const entry of placeDetailMarkers.values()) entry.marker.remove();
         placeDetailMarkers.clear();
         return;
@@ -784,8 +792,7 @@
         var _a2, _b2;
         if (((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) !== PLACE_MAP_LOD_DETAIL) return false;
         if (zoom < PLACE_DETAIL_MIN_ZOOM && !(badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))) return false;
-        if (!useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM &&
-            !(badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))) return false;
+        if (!useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM && !(badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))) return false;
         const coords = (_b2 = feature.geometry) == null ? void 0 : _b2.coordinates;
         if (!Array.isArray(coords) || coords.length < 2) return false;
         return typeof (bounds == null ? void 0 : bounds.contains) !== "function" || bounds.contains(coords);
@@ -797,10 +804,7 @@
       if (!visible.length) {
         visible = features.filter((feature) => {
           var _a2;
-          return ((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) === PLACE_MAP_LOD_DETAIL &&
-            (zoom >= PLACE_DETAIL_MIN_ZOOM || badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category))) &&
-            (useNativeTouchDetailMarkers() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM ||
-              badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)));
+          return ((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) === PLACE_MAP_LOD_DETAIL && (zoom >= PLACE_DETAIL_MIN_ZOOM || badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category))) && (useNativeTouchDetailMarkers() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM || badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)));
         }).sort((a, b) => {
           const [ax, ay] = a.geometry.coordinates;
           const [bx, by] = b.geometry.coordinates;
@@ -998,7 +1002,8 @@
         // the actual dot away: once a place label can render, its dot must exist.
         "circle-opacity": [
           "case",
-          ["==", ["get", "badgeAvailable"], 1], 0,
+          ["==", ["get", "badgeAvailable"], 1],
+          0,
           ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]],
           0.58,
           1
