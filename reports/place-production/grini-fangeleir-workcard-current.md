@@ -164,3 +164,16 @@ Tidligere PR-head hadde røde, til dels katalogvide tester: place-description-pa
 - Ingen npm-quiztester, eksakt-head CI, app/browser-QA eller påstått Knowledge-PASS er utført i denne revisjonen. PR #6759 skal fortsatt være utkast, uten merge.
 
 **Detaljert bevis og videre handling:** `reports/place-production/grini-fangeleir-quiz-editorial-audit-2026-10-28.md`. Før målregistrering og aktivering skal redaksjonelle overlapp ryddes, kildegrunnlag og spørsmål kvalitetssikres, canonical kontekst genereres fra alle påkrevde inputs, eksisterende Knowledge migreres og hele quiztestrekken kjøres.
+
+## Checkpoint D – quizstaging og kilde-/faseintegrasjon (2026-10-28)
+
+**Status:** PR #6759 er fortsatt **draft**, Grini er fortsatt **ikke vFerdig**, og aktiv quiz er fortsatt **1 × 3**. Ingen graderte tester er erklært PASS.
+
+- Kildebrief og redaksjonell 10 × 7-quiz er revidert: de fem opprinnelige semantiske repetisjonene er erstattet, 15 spørsmål omskrevet, og spørsmål 21/59/69 gitt nødvendig presisjon. 12 kildekritiske/metodiske spørsmål og én tolkningsbasert teoribinding gir strukturell familieprognose **41 fakta / 17 kontekst / 12 metode-teori**.
+- Under teknisk preflight ble **7 feilmerkede settfaser** og **49 feilmerkede claim-faser** oppdaget. De er nå justert til fagets bindende 10-settsplan: `opening, middle, middle, middle, middle, middle, middle, bridge, bridge, final`.
+- **26 påstandsfamilier** er normalisert: kategoriens produksjonsbibliotek krever `fact`, `context` eller `concept_theory`, ikke `analysis` som påstandsfamilie. Nå samsvarer alle 70 med spørsmålets kanoniske familielogikk.
+- De tre første nye spørsmåls-ID-ene er endret slik at de ikke kolliderer med de eksisterende 1×3-spørsmålene. Dette **migrerer ikke** de gamle Knowledge-enhetene; eierskap og registrergenerering er fortsatt en blokkering.
+- Ny `scripts/prepare-grini-quiz-staging.mjs` bygger en **ikke-publiserende preview** med canonical sete-/kilde-ID-struktur. Ny `tests/grini-quiz-staging.test.mjs` validerer blant annet faser, kilde-URL→ID, source-brief-paritet og bevaring av gamle ID-er. Kommandoer: `npm run test:grini-quiz-staging` (isolert) og `npm run test:quiz-production` (inkluderer nye tester i eksisterende CI-pipeline).
+- Fagmanifestregistrering, faktisk produksjonskontekst, Knowledge-generator, runtime-manifest og 70-spørsmåls publikasjon **er ikke gjennomført**. Disse må gjøres kontrollert og med faktiske testresultater; ingen risikable eller oppdiktede git-hasher for produksjonskontekst.
+
+**Revisjon og åpne porter:** `reports/place-production/grini-fangeleir-quiz-editorial-audit-2026-10-28.md`, særlig *Checkpoint D*. Dette checkpointet erstatter tidligere beskrivelser av uendrede repetisjoner, feil faser og ID-kollisjoner som gjeldende status.
