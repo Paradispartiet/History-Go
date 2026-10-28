@@ -121,7 +121,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badge-tiny-zoom4"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badges-readable-close5"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
@@ -248,12 +248,15 @@ test("Badge-størrelse synker kontinuerlig ved utzoom og er markant større ved 
       assert.ok(values[i] > values[i - 1], name + ": Badge size must grow with zoom " + zooms[i]);
     }
     assert.ok(size(6) <= 1.5, name + ": zoomed out badges must be compact");
-    assert.ok(size(10) < 4, name + ": city zoom must stay below ten pixels");
-    assert.ok(size(13) >= 6 && size(13) <= 9, name + ": street view must remain readable");
-    assert.ok(size(18) >= 25 && size(18) < 30, name + ": close zoom should enlarge smoothly");
-    assert.ok(size(22) >= 75 && size(22) <= 80, name + ": maximum zoom badge must be much larger than before");
+    assert.ok(size(10) < 4, name + ": city zoom must stay below four pixels");
+    assert.ok(size(15) > 28, name + ": Badge must become legible in neighborhood zoom");
+    assert.ok(size(16) > 45, name + ": Badge must grow strongly while zooming in");
+    assert.ok(size(17) > size(16) + 17, name + ": Badge must keep growing during close zoom");
+    assert.ok(size(13) >= 11 && size(13) <= 12, name + ": street view must remain readable");
+    assert.ok(size(18) >= 80 && size(18) <= 85, name + ": close zoom should enlarge smoothly");
+    assert.ok(size(22) >= 150 && size(22) <= 160, name + ": maximum zoom badge must be much larger than before");
     assert.equal(size(0), 1, name + ": min-size guard");
-    assert.equal(size(24), 80, name + ": max-size guard");
+    assert.equal(size(24), 160, name + ": max-size guard");
   }
   assert.match(source, /function setMarkerMode\(nextMode\)/, "dot rollback must remain available");
 });
@@ -279,7 +282,17 @@ test("områdemarkører bruker faktisk Badge-kurven ved utzooming", () => {
 test("kartet henter nye JS- og CSS-ressurser etter Badge-oppdatering", () => {
   const app = read("js/app.js");
   const html = read("index.html");
-  assert.ok(app.includes("js/map.js?v=20261028-badge-tiny-zoom4"), "kartmodulen må få ny cacheversjon");
-  assert.ok(html.includes("js/app.js?v=20261028-badge-tiny-zoom4"), "startmodulen må få ny cacheversjon");
-  assert.ok(html.includes("css/map.css?v=20261028-badge-tiny-zoom4"), "kartstilen må få ny cacheversjon");
+  assert.ok(app.includes("js/map.js?v=20261028-badges-readable-close5"), "kartmodulen må få ny cacheversjon");
+  assert.ok(html.includes("js/app.js?v=20261028-badges-readable-close5"), "startmodulen må få ny cacheversjon");
+  assert.ok(html.includes("css/map.css?v=20261028-badges-readable-close5"), "kartstilen må få ny cacheversjon");
+});
+
+
+test("merkene oppdaterer størrelse under faktisk zoom på både område- og detaljmarkører", () => {
+  for (const [name, code] of [["TypeScript", source], ["legacy", legacy], ["web", dist]]) {
+    assert.match(code, /MAP\.on\("zoom", updatePlaceAreaDomMarkerSizes\)/, name + ": område-Badges må følge zoom");
+    assert.match(code, /MAP\.on\("zoom", updateNativeDetailDotSizes\)/, name + ": detalj-Badges må følge zoom");
+    assert.match(code, /const side = showBadge \? mapBadgeDiameter\(zoom\)/, name + ": område-Badges må bruke felles størrelseskurve");
+    assert.match(code, /if \(isBadgeMarkerMode\(\)\) return mapBadgeDiameter\(zoom\)/, name + ": detalj-Badges må bruke samme kurve");
+  }
 });

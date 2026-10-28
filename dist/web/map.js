@@ -670,7 +670,11 @@
       return markerMode;
     }
     function mapBadgeDiameter(zoom) {
-      return Math.max(1, Math.min(80, 2 * Math.pow(1.3, zoom - 8)));
+      // Keep distant icons tiny; accelerate growth from street-level zoom.
+      const distant = 2 * Math.pow(1.3, Math.min(zoom, 11) - 8);
+      if (zoom <= 11) return Math.max(1, distant);
+      const close = distant * Math.pow(1.6, Math.min(zoom, 16) - 11);
+      return Math.min(160, close + 18 * Math.max(0, zoom - 16));
     }
     function badgeCategoryId(value) {
       var _a;
