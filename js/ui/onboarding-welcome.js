@@ -133,6 +133,7 @@
           <li class="hg-onb-civication"><span class="hg-onb-step-icon" aria-hidden="true">🏛️</span><div><strong><a class="hg-onb-card-link" href="Civication.html">Opplev Civication <span aria-hidden="true">↗</span></a></strong><p>Civication er et interaktivt læringsmiljø der du kan utforske interessene dine, ta quizer og kvalifisere deg til spennende roller og jobber. I en simulert livsverden får du prøve ut ulike muligheter, utvikle ferdighetene dine og forme din egen vei.</p></div></li>
         </ul>
         <footer class="hg-onb-actions">
+          <a class="hg-onb-projects-link" href="https://paradispartiet.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Se alle prosjektene på Paradispartiet (åpnes i ny fane)">Paradispartiet · Alle prosjekter <span aria-hidden="true">↗</span></a>
           <button type="button" class="hg-onb-primary" data-action="start">Start History Go <span aria-hidden="true">→</span></button>
         </footer>
       </div>`
