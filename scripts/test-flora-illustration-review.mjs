@@ -26,7 +26,8 @@ for(const phrase of [
   "never a published approval list"
 ])assert(script.includes(phrase),"missing review behavior: "+phrase);
 assert(!script.includes("hg_nature_unlocks_v2"),"visual review must never touch collection status");
-assert(!script.includes("HG_NATURE_FLORA_APPROVED"),"review page must never publish approved art");
+assert(script.includes("window.HG_NATURE_FLORA_APPROVED"),"review page must show actual published count");
+assert(!script.includes("window.HG_NATURE_FLORA_APPROVED ="),"review page must not grant approvals");
 assert(explorer.includes('window.HG_NATURE_FLORA_APPROVED'), 'flora publication requires explicit approved-image registry');
 assert(workflow.includes("node scripts/test-flora-illustration-review.mjs"),"CI must validate review gallery");
 const sandbox={window:{}};
