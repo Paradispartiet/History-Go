@@ -1,5 +1,5 @@
 name: Van Etten v1 integration and browser smoke
-# Revalidate the revised historical-sequence quiz question before publishing generated Knowledge.
+# Regenerate and commit both Kunst and Subkultur subject Knowledge, including Vaterland from PR #6707.
 on:
   pull_request:
     branches:
@@ -80,7 +80,7 @@ jobs:
           set -euo pipefail
           git add data/quiz/production_context/kunst/van_etten.json
           git add data/quiz/kunst/van_etten_sets.json data/quizcards/kunst/van_etten_quizcard_v1.json
-          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/knowledge/knowledge_units.generated.json data/knowledge/subjects/kunst/knowledge_units.generated.json data/knowledge/subjects/subkultur/knowledge_units.generated.json reports/knowledge-id-backfill.json
           git add data/runtime/place-open/van_etten.json data/fagverk/fagverk_release.json
           if ! git diff --cached --quiet; then git commit -m "Van Etten: publish canonical quiz, Knowledge and runtime"; fi
           git push origin HEAD:content/oslo-aav-van-etten-v1-20261028
