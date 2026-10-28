@@ -1,0 +1,23 @@
+name: Oslo V–U 02 – Vår Frelsers QuizCard parity
+
+on:
+  pull_request:
+    paths:
+      - 'data/quizcards/historie/topp10_historie_sted_kort_batch1.json'
+      - 'data/quiz/historie/var_frelsers_gravlund_sets.json'
+      - 'data/places/historie/oslo/places_historie/var_frelsers_gravlund.json'
+      - 'tests/var-frelsers-quizcard-parity.test.mjs'
+      - '.github/workflows/oslo-vu-var-frelsers-parity.yml'
+  workflow_dispatch:
+
+jobs:
+  quizcard-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check existing Place, 28 questions and QuizCard 10/10
+        run: node --test tests/var-frelsers-quizcard-parity.test.mjs
