@@ -1,0 +1,54 @@
+# Grini fangeleir – redaksjonell og teknisk quiz-audit (2026-10-28)
+
+**Sted:** `grini_fangeleir` · **Kategori:** `historie` · **PR:** #6759 (utkast)  
+**Resultat:** `BLOCKED / NOT RELEASE READY`. Dette er **ikke** en attest for full historisk fagfellekontroll, offisiell CI eller aktiv quiz.
+
+## Omfang og metode
+
+Alle 70 spørsmål i `grini-fangeleir-quiz-full-draft-2026-10-28.json` ble lest gjennom sammen med svaralternativer, svar, forklaring og påstandsgrunnlag. Det ble utført en strukturell, programmatisk krysskontroll mot samtlige 70 påstander i kildebriefen (ID, `claim_basis`, kilde-URL-er via kilde-ID, gjennomgått kildestatus, fasitindeks). Sentrale historiske opplysninger ble kontrollert særskilt mot SNL, Grinimuseet og NOU 1998:12, men **ikke** alle 70 historiske påstander og distraktorer uavhengig etterprøvd mot originaldokumenter.
+
+| Kontroll | Faktisk resultat | Status |
+| --- | --- | --- |
+| Kildebrief, antall påstander | 70 | Strukturelt kontrollert |
+| Redaksjonelt utkast | 10 sett × 7 = 70 | Strukturelt kontrollert |
+| Unike spørsmåls-ID-er | 70 | Strukturelt kontrollert |
+| Fasitindekser | 24 / 24 / 22 | Strukturelt kontrollert |
+| Fasit mot svaralternativer | 70/70 samsvarer | Strukturelt kontrollert |
+| Spørsmål mot påstandstekst og URL-er | 70/70 samsvarer etter retting av #69 | Strukturelt kontrollert |
+| Bare kilder markert `reviewed` i påstandene | 70/70 | Metadata-kontroll, **ikke** uavhengig kilderevisjon |
+| Fagmanifestets mål `historie.quizProduction.targets.grini_fangeleir` | Mangler | BLOCKED |
+| Aktiv quiz | Eldre 1 sett × 3 spørsmål | UENDRET |
+| Canonical produksjonskontekst | Ikke generert | BLOCKED |
+| Knowledge-migrering, runtime-shuffle og quiz-UI | Ikke testet | BLOCKED |
+| Offisielle npm-audits og CI | Ikke kjørt her | NOT RUN |
+
+## Redaksjonelle funn
+
+1. **Kildekonflikt ved dato (#69) – presisert i kildebrief og utkast, trenger eventuell dypere kildekontroll.** NOU 1998:12 (kap. 7.2) oppgir at Grini ble **åpnet 12. juni 1941** og at 115 fanger ble overført fra Åneby. Både SNL og Grinimuseet oppgir **opprettelse 14. juni 1941**. Første utkast foreslo uten tilstrekkelig grunnlag at dette gjaldt henholdsvis overføring og formell etablering. Dette ble endret: spørsmålet handler nå om å dokumentere datoavviket, ikke hevde at forklaringen er kjent. Referanser: https://www.regjeringen.no/no/dokumenter/nou-1998-12/id375416/?ch=26 ; https://snl.no/Grini_-_tysk_fangeleir ; https://mia.no/grinimuseet/om-grini-fangeleir.
+2. **Gjennomgående repetisjon mellom læringsspor** (redaksjonelt BLOCKED): #19 og #64 tester samme dobbeltelling av protokoller; #5 og #65 gjentar samlet vs. samtidig fangetall; #41 og #66 gjentar hvor de 786 dødsfallene inntraff; #49 og #67 gjentar at ett vitnesbyrd ikke representerer alle; #61 og #70 gjentar at flyttet autentisk brakke ikke fastslår opprinnelig geografi. Kildebankens påstands-ID-er er teknisk unike, men spørsmålene er ikke tilstrekkelig uavhengige. Erstatt, differensier eller bygg reelle sammenligningsoppgaver, uten å innføre ukontrollerte påstander.
+3. **Innholdsbalanse** (redaksjonelt BLOCKED): 49 `fact` (70 %), 6 `context` (8,6 %), 13 `analysis` (18,6 %) og 2 `comparison` (2,9 %). Canonical normalt: 50–60 % konkrete fakta, 20–30 % årsak/utvikling/sammenheng, 15–25 % fag/metode/begrep; to første sett skal uansett være normale. Reell innholdsendring og semantisk vurdering må gå foran type-remerking.
+4. **Etterbruk (#59) – presisering anbefales:** MiA sier «brukt for landssvikfanger til 1951», mens SNL oppgir at de siste landssvikdømte forlot leiren ved utgangen av 1950. Vurder å spørre om periode/overgang rundt årsskiftet 1950–1951 framfor en tvetydig siste årsangivelse. Referanser: samme museum og SNL som over.
+5. **Distraktor-QA** (ikke ferdig): Minst #44 («Vidkun Quisling», «Christian Michelsen» mot Francis Bull) og flere andre har alternativer som er lette å forkaste uten kunnskap om Grini. Utfør en egen lesning av alle 70 for plausibilitet, lengde, historisk presisjon og fravær av utilsiktede hint.
+6. **Arkivdetaljer (#21)**: et manglende fangenummerintervall er legitimt kildekunnskap, men bør redaksjonelt vurderes mot mer overførbar kildekritikk på samme plass. Ikke fjern presis arkivinformasjon uten å bevare den i `knowledge`/Knowledge.
+
+## Integrasjonsfunn og risikogrenser
+
+- `data/fag/fag_manifest.json` har `quizProduction` for `historie`, men ikke målregistrering for Grini. Å registrere målet **før** canonical pakke og context-artifact finnes, vil trekke en uferdig quiz inn i produksjonsaudits; utsett registrering til samlet migrasjonstrinn.
+- Redaksjonell `source` er skrevet som URL-er; canonical `audit:quiz-production-context` forventer kilde-**ID-er** som peker til `sources`-kartet i quizpakken og `source_brief`. Denne transformasjonen må gjøres deterministisk, uten å miste kildebevis.
+- `data/quiz/historie/grini_fangeleir_sets.json` er fortsatt legacy 1×3 med aktive `primary_knowledge_unit_id`, `knowledge_unit_ids` og `concept_ids`. Utkastet **gjenbruker ID-ene** `grini_fangeleir_quiz_1`–`_3` til andre spørsmålsbetydninger. Dette er en konkret risiko for feil progresjons-/Knowledge-kobling. Velg eksplisitt migrasjon/re-ID og verifiser gammel eierhistorikk før aktivering. Ingen nye Knowledge-ID-er må oppgis som eksisterende uten kanonisk synk.
+- De to første settene har sju normale spørsmålsflater hver. Dette er gjennomlest redaksjonelt; canonical åpnings- og progresjonstester er **ikke kjørt**.
+- NTNU-PDF har fortsatt `partial`; ingen Grini-spørsmål skal baseres på dette som gjennomgått kilde.
+- Historisk leir, museets offentlige ankomstpunkt og dagens aktive Ila-fengsel må holdes fysisk adskilt. Ingen aktivitet eller rute skal føre spilleren inn i fengselets sikrede område.
+
+## Nærmeste produksjonsport
+
+1. Rediger det overlappende sluttsettet og kontroller innholdsbalanse, kilder, svar og distraktorer; ta eksplisitt beslutning om #59 og #21.
+2. Lås migrasjonstabell for de tre eksisterende spørsmåls-/Knowledge-eierne, inkludert eventuelle nye ID-er og bevaring av allerede genererte Knowledge-enheter.
+3. Registrer målet i `data/fag/fag_manifest.json` **sammen med** gyldig canonical quiz og generert `data/quiz/production_context/historie/grini_fangeleir.json`. Kjør `npm run quiz:context -- --category historie --target grini_fangeleir --output data/quiz/production_context/historie/grini_fangeleir.json`; output må komme fra faktisk full inputlast og deterministisk hash, ikke håndkonstruert metadata.
+4. Synkroniser/verifiser Knowledge, kontroller åpning, progresjon, shuffle og utvalg i appen.
+5. Kjør minst `npm run audit:quiz-content`, `npm run audit:quiz-templates`, `npm run audit:quiz-production-context`, `npm run audit:quiz-progression`, `npm run audit:quiz-theory-binding`, `npm run test:quiz-content-audit`, samt relevante Knowledge-/runtime-/browserkontroller. Lagre eksakt head-SHA og faktiske resultater.
+6. Behold PR #6759 som **draft** og stedets status **ikke vFerdig** til alle relevante produksjonsporter og manuell QA er grønn.
+
+### Statusdisiplin
+
+Denne revisjonen har ikke startet offisielle testskript, ikke registrert manifestmålet, ikke skrevet produksjonskontekst, ikke byttet aktiv quizfil og ikke synkronisert Knowledge. Strukturelle lokale API-kontroller er ikke lik canonical CI PASS.
