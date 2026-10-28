@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080c0a">
+<title>Flora – botanisk bildegjennomgang | History Go</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:dark;background:#080c0a;color:#e7eee8}
+*{box-sizing:border-box}body{margin:0;line-height:1.45}a{color:#b3dc90}
+header{padding:22px max(20px,calc((100vw - 1300px)/2));border-bottom:1px solid #294331;background:#101913}
+h1{font-size:clamp(1.35rem,3vw,2rem);margin:0 0 8px}h2{font-size:1.07rem;margin:0}
+p{margin:6px 0 12px}header p{max-width:940px;color:#c2d3c5}
+main{max-width:1340px;padding:20px; margin:0 auto}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;align-items:center}
+button,input,select,textarea{font:inherit}button,select,input,textarea{border:1px solid #436249;border-radius:9px;background:#142017;color:#e7eee8;padding:10px}
+button{cursor:pointer}button:hover{border-color:#afdb74}
+button.primary{background:#d4f071;color:#16220e;font-weight:700;border-color:#d4f071}
+input[type=search]{min-width:200px;flex:1}select{min-width:160px}
+#summary{color:#c9d5cc;margin:10px 0 18px;font-size:.93rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(305px,1fr));gap:14px}
+.card{background:#101a13;border:1px solid #304735;border-radius:13px;overflow:hidden}
+.card header{background:none;border:0;padding:15px 15px 11px}
+.card small{color:#b6cbb9}.card em{display:block;font-size:.85rem;color:#aabbad}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#304735}
+.visual{min-height:225px;background:#e9eee7;color:#314034;display:flex;flex-direction:column;align-items:stretch;justify-content:center}
+.visual img{width:100%;height:205px;object-fit:contain;background:#f2f2eb}
+.visual .image-title{display:block;color:#17261b;background:#e9eee7;font-size:.75rem;font-weight:750;padding:6px 10px}
+.visual .empty{display:grid;place-items:center;min-height:205px;font-size:.8rem;text-align:center;padding:15px}
+.photo-links{padding:8px 12px;display:flex;gap:10px;flex-wrap:wrap;background:#161f18;font-size:.75rem}
+.review-status{margin-top:7px;color:#e1d7aa;font-size:.85rem}
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checklist label{display:flex;gap:7px;align-items:flex-start;margin:3px 0}
+.checklist input{width:17px;flex:none;margin:2px 0}
+.review-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.review-actions button{padding:7px 9px;font-size:.77rem}
+.review-actions button[aria-pressed=true]{background:#d4f071;color:#16220e;border-color:#d4f071;font-weight:750}
+.review-actions button:disabled{opacity:.45;cursor:not-allowed}
+#more{display:block;margin:25px auto}
+@media(max-width:670px){.grid{grid-template-columns:1fr}.visual{min-height:170px}.visual img{height:165px}.visual .empty{min-height:165px}.checklist{grid-template-columns:1fr}}
+.detail{padding:13px 15px 16px}.detail p{font-size:.85rem;color:#c7d7c8}
+.detail ul{margin:6px 0 12px;padding-left:18px;font-size:.85rem}
+.detail a{font-size:.85rem}.detail label{display:block;margin-top:10px;font-size:.83rem;color:#b9cbb8}
+.detail input,.detail textarea,.detail select{width:100%;margin-top:4px}
+.detail textarea{resize:vertical;min-height:56px}
+.art-tag{font-size:.73rem;font-weight:700;color:#e4ba6e}
+.approved{border-color:#6b9b60}.redraw{border-color:#ab745c}
+footer{margin:24px 0;color:#acc5b0;font-size:.83rem}
+.warning{padding:10px 12px;border-left:3px solid #e1be6d;background:#1a2017;border-radius:4px}
+</style>
+<script defer src="js/ui/nature-illustrations.js"></script>
+<script defer src="js/ui/nature-illustrations-batch03.js"></script>
+<script defer src="js/ui/nature-illustrations-batch04.js"></script>
+<script defer src="js/ui/nature-illustrations-batch05.js"></script>
+<script defer src="js/ui/nature-illustrations-batch06.js"></script>
+<script defer src="js/ui/nature-illustrations-batch07.js"></script>
+<script defer src="js/ui/nature-illustrations-batch08.js"></script>
+<script defer src="js/ui/nature-illustrations-batch09.js"></script>
+<script defer src="js/ui/nature-illustrations-batch10.js"></script>
+<script defer src="js/ui/nature-illustrations-batch11.js"></script>
+<script defer src="js/ui/nature-botanical-studies.js"></script>
+<script defer src="js/ui/nature-flora-photographs.js"></script>
+<script defer src="js/ui/flora-illustration-review.js"></script>
+</head>
+<body>
+<header>
+<h1>Flora – botanisk kvalitetsgjennomgang</h1>
+<p>Arbeidsflate for alle 165 illustrerte floraoppføringer i History Go. Sammenlign tegningen med artsbestemte fotografier og de registrerte kjennetegnene. En generert SVG er ikke automatisk botanisk korrekt.</p>
+<p class="warning">Tilgjengelige artsfotografier vises ved siden av originalillustrasjonene. Kildebildene forblir hos Wikimedia Commons og blir ikke kopiert inn i History Go. Kontroller korrekt artsbestemmelse og individuell lisens før et bilde eventuelt tas i bruk. Godkjenning gjelder tegningens likhet med arten, ikke bildebrukstillatelse.</p>
+</header>
+<main>
+<div class="toolbar">
+<input type="search" id="query" placeholder="Søk art, slekt eller kjennetegn" aria-label="Søk arter">
+<select id="filter" aria-label="Filter for vurderingsstatus">
+<option value="all">Alle 165 illustrasjoner</option>
+<option value="pending">Ikke vurdert</option>
+<option value="redraw">Må tegnes om</option>
+<option value="candidate">Godkjenningskandidat (kun lokal vurdering)</option>
+</select>
+<button class="primary" id="export" type="button">Eksporter gjennomgang (JSON)</button>
+</div>
+<div id="summary" role="status" aria-live="polite">Laster artsdata …</div>
+<div id="gallery" class="grid"></div>
+<button type="button" id="more" class="primary" hidden>Vis flere arter</button>
+<footer>Gjennomgangen lagres bare i denne nettleseren inntil JSON-filen eksporteres. Ingen spillstatus, quiz eller artsoppføring endres av vurderingene. Alle arter starter som «Ikke vurdert», også de åtte forbedrede tegningene. «Godkjenningskandidat» betyr ikke godkjent for bruk i Finn Flora. En særskilt kildeført faglig vurdering og kodeendring kreves før en illustrasjon kan publiseres.</footer>
+</main>
+</body>
+</html>
