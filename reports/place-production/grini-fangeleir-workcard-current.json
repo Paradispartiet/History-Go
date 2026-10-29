@@ -73,7 +73,7 @@
       ]
     }
   },
-  "active_checkpoint": "F: source key ABC pattern corrected (65/70 to 27/70), Q57 Ihlen/Ilebu corrected, 19 distractors improved; full-input candidate artifact generated and isolated CI passed; not active",
+  "active_checkpoint": "G: 8/8 isolated Grini regression checks, 70-question content balance (41/17/12), real runtime shuffle and integrated Knowledge dry run PASS; independent 70/70 signoff and production integration still pending",
   "production_profile": "major",
   "profile_status": "provisional",
   "blocked": [
@@ -125,12 +125,11 @@
     "active_questions_before_migration": 3,
     "source_pdf_limit": "NTNU article is marked partial/unread due 403; not used as a reviewed claim source",
     "missing_gates": [
-      "independent subject-matter reviewer signoff for all 70 historical claims, options, explanations and ethics",
-      "actual canonical Grini quiz file + fagmanifest target + full-input persisted production context in one integration",
-      "permanent Knowledge registry generation and old 3 KU retention verified on integrated branch",
-      "full repository production, quiz, Knowledge and runtime test gates on exact integration head",
-      "QuizCard flip/shuffle/progression, browser and mobile QA with public access geometry",
-      "nonquiz place production and release gates"
+      "independent editor signs every one of 70 historical claims, explanations and distractor sets",
+      "review historical source differences, crime/trauma ethical framing, accessible visitor geometry",
+      "commit canonical quiz/fagmanifest/context/Knowledge registries in controlled integration and rerun full canonical checks",
+      "actual QuizCard interaction in browser and mobile; current runtime test validates shuffler only",
+      "resolve whole-repository Data checks failure from other production targets and remaining governance gates"
     ],
     "editorial_audit": "reports/place-production/grini-fangeleir-quiz-editorial-audit-2026-10-28.md",
     "editorial_audit_status": "STAGED_PRECHECK_ONLY_EXPERT_REVIEW_PENDING",
@@ -247,6 +246,26 @@
       "built_from_full_history_manifest": true,
       "production_context_persisted": false,
       "active_quiz_replaced": false
+    },
+    "checkpoint_g": {
+      "status": "TECHNICAL_STAGING_AND_CANONICAL_CONTENT_PASS_NOT_ACTIVE",
+      "evidence_path": "reports/place-production/grini-fangeleir-quiz-technical-gates-2026-10-29.json",
+      "source_ci_head": "1ef793a551c70f5cdca5c5d6b41e4540255e45f5",
+      "source_ci_run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40928991594",
+      "staging_tests_passed": 8,
+      "runtime_shuffle_question_count": 70,
+      "runtime_shuffle_seed_count_per_question": 32,
+      "content_family_counts": {
+        "fact": 41,
+        "context": 17,
+        "concept_theory": 12
+      },
+      "content_audit_violations": 0,
+      "canonical_context_and_theory_audits": "PASS_SIMULATED_TARGET",
+      "integrated_knowledge_contract": "PASS_SIMULATED_TARGET",
+      "independent_review_matrix": "reports/place-production/grini-fangeleir-quiz-70q-editorial-signoff-2026-10-29.md",
+      "independent_signoff_completed": 0,
+      "active_quiz_replacement": "NOT_DONE"
     }
   }
 }
