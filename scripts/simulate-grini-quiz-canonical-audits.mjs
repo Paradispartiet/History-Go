@@ -12,6 +12,7 @@ import { buildQuizProductionContext } from "./quiz-production-lib.mjs";
 import { auditQuizProductionContext } from "./audit-quiz-production-context.mjs";
 import { auditQuizProgression } from "./audit-quiz-progression.mjs";
 import { auditQuizTheoryBinding } from "./audit-quiz-theory-binding.mjs";
+import { auditQuizContent } from "./audit-quiz-content-quality.mjs";
 import { buildGriniStagingPreview, buildGriniCanonicalCandidate, readStagingInputs } from "./prepare-grini-quiz-staging.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -47,6 +48,27 @@ async function main() {
   const quiz = buildGriniCanonicalCandidate(preview, artifact);
   await writeJson(QUIZ_PATH, quiz);
   await writeJson(CONTEXT_PATH, artifact);
+  // Audit this candidate alone: the global quiz bank contains unrelated legacy
+  // targets whose editorial failures must not mask Grini regressions.
+  const qaDir = path.join(ROOT, ".grini-quiz-isolated-content-audit");
+  await fs.mkdir(qaDir, { recursive:true });
+  await fs.writeFile(path.join(qaDir, "grini_fangeleir_sets.json"),
+    JSON.stringify(quiz, null, 2) + "\n", "utf8");
+  const contentReport = await auditQuizContent({ rootDir:qaDir });
+  const candidateGroup = contentReport.groups.filter(g => g.target === "grini_fangeleir");
+  ensure(candidateGroup.length === 1 && candidateGroup[0].total === 70,
+    "content quality audit did not isolate 70 Grini questions");
+  const qaProblems = [
+    ...contentReport.parseErrors,
+    ...contentReport.balanceViolations,
+    ...contentReport.templateViolations,
+    ...contentReport.optionLengthSignals,
+    ...contentReport.repeatedOpenings
+  ];
+  if (qaProblems.length) {
+    console.error(JSON.stringify({audit:"quiz-content-quality",summary:contentReport.summary,problems:qaProblems.slice(0,30)},null,2));
+    throw new Error("Grini isolated quiz-content-quality audit failed");
+  }
   const audits = [
     ["quiz-production-context", await auditQuizProductionContext({root:ROOT})],
     ["quiz-progression", await auditQuizProgression({root:ROOT})],
@@ -66,6 +88,7 @@ async function main() {
     question_count:quiz.sets.flatMap(s=>s.questions).length,
     resolved_hash_inputs:Object.keys(artifact.resolved_files).length,
     audits:audits.map(([name,r])=>({name,status:r.status,checked:r.quizFilesChecked})),
+    content_quality:{status:"passed",summary:contentReport.summary,counts:candidateGroup[0].counts,ratios:candidateGroup[0].ratios},
     runtime_manifest_unchanged:true,
     all_repository_checks_passed:false,
     published:false
