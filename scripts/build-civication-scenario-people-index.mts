@@ -533,16 +533,6 @@ function checkOutputs(files: Map<string, string>, index: string): void {
 }
 
 const built = build();
-if (CHECK_MODE) {
-  const diagnostic = [...built.files.entries()].filter(([file, expected]) => { const abs = path.join(ROOT, file); return !fs.existsSync(abs) || fs.readFileSync(abs, "utf8") !== expected; });
-  diagnostic.push(["data/Civication/scenarioPeople_index.json", built.index]);
-  for (const [file, expected] of diagnostic) {
-    const size = 6000;
-    for (let index = 0; index * size < expected.length; index += 1) {
-      console.error("SCENARIO_EXPECTED_PART=" + JSON.stringify({ file, index, total: Math.ceil(expected.length / size), chunk: expected.slice(index * size, (index + 1) * size) }));
-    }
-  }
-}
 if (CHECK_MODE) checkOutputs(built.files, built.index);
 else {
   writeOutputs(built.files, built.index);
