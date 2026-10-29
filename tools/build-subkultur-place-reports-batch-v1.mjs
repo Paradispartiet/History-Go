@@ -1075,7 +1075,21 @@ const CASES = [
     verifiedAt: '2026-08-04',
     placeFile: 'data/places/subkultur/oslo/places_subkultur/vaterland_bar_scene.json',
     anchorType: 'scene_or_venue',
-    start: '2016',
+    start: '2018',
+    temporalRationale: 'Oppstart 2018 etter uavhengige samtidige kilder; sluttpunkt følger siste verifiserte aktivitet.',
+    changeScopeRationale: 'Etablering i 2018 dokumentert av samtidige kilder, med senere utvikling.',
+    identitySourceIds: ['source_vaterland_bar_scene_milieu', 'source_vaterland_bar_scene_outside'],
+    additionalSources: [{
+      id: 'source_vaterland_bar_scene_opened_2018',
+      url: 'https://www.disharmoni.no/vaterlarm-venter/',
+      sourceLocation: '2020 intervju om Vaterlarm, åpning 2018',
+      sourceType: 'reputable_secondary',
+      perspective: 'secondary',
+      verifiedAt: '2026-10-27',
+      temporalCoverage: '2018-2020',
+      provenance: 'Uavhengig musikksite med samtidige intervjuer',
+      limitations: 'Gir oppstartsåret og miljøpraksiser, men erstatter ikke kommunale arkiver.'
+    }],
     emneIds: ['em_sub_scene_fellesskap', 'em_sub_undergrunn_miljo', 'em_sub_klubbkultur_natt'],
     methodId: 'met_sub_sceneanalyse',
     milieuUrl: 'https://www.vaterlandoslo.no/',
@@ -1374,7 +1388,7 @@ function report(config) {
       anchorType: config.anchorType,
       mainSocietyRelationship: config.relationship,
       placeObjectDistinction: config.placeObjectDistinction ?? 'Rapporten skiller det fysiske stedet, driftsorganisasjonen, arrangementene og miljøene som bruker tilbudet.',
-      temporalScope: { start: config.start, end: '2026', precision: 'year', rationale: 'Startåret følger kildene; sluttpunktet følger kontroll av nåværende eller blandet funksjon.' },
+      temporalScope: { start: config.start, end: '2026', precision: 'year', rationale: config.temporalRationale ?? 'Startåret følger kildene; sluttpunktet følger kontroll av nåværende eller blandet funksjon.' },
       sourceIds: identitySourceIds
     },
     subcultureTopics: config.emneIds.map((emneId) => ({
