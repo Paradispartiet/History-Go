@@ -1086,7 +1086,7 @@ const CASES = [
       sourceType: 'reputable_secondary',
       perspective: 'secondary',
       verifiedAt: '2026-10-27',
-      temporalCoverage: '2018-2020',
+      temporalCoverage: 'historical',
       provenance: 'Uavhengig musikksite med samtidige intervjuer',
       limitations: 'Gir oppstartsåret og miljøpraksiser, men erstatter ikke kommunale arkiver.'
     }],
