@@ -1,0 +1,74 @@
+name: Religion embroidered badge artwork QA
+on:
+  push:
+    branches: [design/religion-yellow-subbadges-20261029]
+    paths:
+      - bilder/merker/religion.svg
+      - 'bilder/merker/religion/familie/**'
+      - data/badges/religion.json
+      - data/badges/religion_underbadge_artwork.json
+      - js/fagverk-ia-v3-badge-progress.js
+      - .github/workflows/qa-religion-embroidered.yml
+  pull_request:
+    paths:
+      - bilder/merker/religion.svg
+      - 'bilder/merker/religion/familie/**'
+      - data/badges/religion.json
+      - data/badges/religion_underbadge_artwork.json
+      - js/fagverk-ia-v3-badge-progress.js
+permissions:
+  contents: read
+jobs:
+  validate-render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate UI JavaScript and badge registry
+        run: |
+          node --check js/fagverk-ia-v3-badge-progress.js
+          node --test tests/badge-artwork-coverage.test.mjs
+      - name: Render and inspect Religion SVG family
+        run: |
+          python -m pip install --quiet cairosvg pillow
+          python - <<'PY'
+          import io,json,xml.etree.ElementTree as ET
+          from PIL import Image,ImageDraw,ImageFont
+          import cairosvg
+          from pathlib import Path
+          out=Path('out');out.mkdir(exist_ok=True)
+          data=json.loads(Path('data/badges/religion_underbadge_artwork.json').read_text())
+          reg=json.loads(Path('data/badges/religion.json').read_text())
+          assert reg['color'].lower()=='#e7b517'
+          assert data['categoryId']=='religion' and len(data['assets'])==8
+          assert set(x['id'] for x in data['assets'])==set(reg['subBadgeImages'])
+          assert all(x['image']==reg['subBadgeImages'][x['id']] for x in data['assets'])
+          images=[('Religion',reg['image'])]+[(x['label'],x['image']) for x in data['assets']]
+          sheet=Image.new('RGB',(960,1020),'#121722')
+          draw=ImageDraw.Draw(sheet)
+          font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',21)
+          for i,(name,path) in enumerate(images):
+              src=Path(path)
+              assert src.is_file(),path
+              tree=ET.parse(src)
+              root=tree.getroot()
+              assert root.attrib.get('viewBox')=='0 0 512 512',path
+              png=cairosvg.svg2png(url=str(src),output_width=285,output_height=285)
+              image=Image.open(io.BytesIO(png)).convert('RGBA')
+              x=12+(i%3)*318
+              y=12+(i//3)*340
+              sheet.paste(image,(x+16,y+10),image)
+              draw.text((x+18,y+301),name,font=font,fill='#f4e5bf')
+          sheet.save(out/'religion-badges-render-preview.png')
+          print(f'Rendered {len(images)} SVGs and verified family membership')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: religion-embroidered-preview
+          path: out/religion-badges-render-preview.png
+          retention-days: 3
