@@ -325,6 +325,13 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
 
       const artifact = await readJson(root, paths.context_artifact);
       const rebuiltArtifact = await buildQuizProductionContext({ root, categoryId, targetId });
+      if (categoryId === "by" && targetId === "vika_kino") {
+        for (const key of Object.keys(rebuiltArtifact)) {
+          if (JSON.stringify(artifact[key]) !== JSON.stringify(rebuiltArtifact[key])) {
+            console.log("DEBUG_VIKA_CONTEXT " + key + " " + JSON.stringify(rebuiltArtifact[key]));
+          }
+        }
+      }
       if (JSON.stringify(artifact) !== JSON.stringify(rebuiltArtifact)) {
         addFailure(failures, paths.context_artifact, "kontekstarterfakt avviker fra deterministisk rebuild");
       }
