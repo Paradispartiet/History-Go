@@ -199,3 +199,14 @@ Historisk redaksjonell presisering: #57 skiller første etterkrigsbetegnelse **I
 **Gjennomgåbar, men ikke aktiv, integrasjonskandidat:** GitHub Actions [#40696607712](https://github.com/Paradispartiet/History-Go/actions/runs/40696607712) bestod alle tre Grini-jobber på commit `522641dd7a105a06061537bb162edd77ff96167b` og lastet opp `grini-10x7-full-input-integration-preview`. Arkivet inneholder en kanonisk pakke med 70 spørsmål, faktisk kontekst bygget fra alle sju historiefaglige inputs via hele fagmanifestet og en tydelig `NOT_FOR_PUBLICATION`-markering. Det er et **midlertidig CI-artefakt, ikke committed produksjonskontekst**.
 
 **Gjenstående porter:** 70/70 uavhengig faglig faktakontroll og distraktorgodkjenning, vurdering av metode/teori og etikk, samlet integrasjon av aktiv Grini-quiz+fagmanifest+kontekst, permanent Knowledge-sync og globale/produktnære tester. De opprinnelige tre aktive Knowledge-eierne er fortsatt uendret, og PR-en forblir draft.
+
+## Checkpoint G – fullstendig teknisk quizstaging (29. oktober 2026)
+
+**Bekreftet på commit `1ef793a551c70f5cdca5c5d6b41e4540255e45f5`:** GitHub Actions [#40928991594](https://github.com/Paradispartiet/History-Go/actions/runs/40928991594) fullførte med **success** i alle tre isolerte Grini-jobbene.
+
+- **8/8 staging-regresjonstester bestått.** Herunder faktisk svarstokking av alle 70 spørsmål 32 ganger hver (**2 240 testvisninger**), med fasitparitet og uten mutasjon av kanoniske svaralternativer.
+- **Kanonisk redaksjonell innholdsaudit bestått:** **41 fakta (58,6 %), 17 kontekst (24,3 %), 12 metode/teori (17,1 %)**. Null forbudte teori-/spørsmålsmaler, null mistenkelige fasitlengder, null gjentatte spørsmålsåpninger og null balansebrudd. Avvikene i #17/#19/#33/#49 ble rettet i innholdet, ikke i auditreglene.
+- Faktiske quiz-context/progresjons/teoriaudits på isolert Grini-mål er fortsatt grønne. Den strengere Knowledge-testen bygger *også* faktisk full-input-kontekst og kjører både canonical Knowledge-`--write` og `--audit-only` på disposabel CI-kopi. Tre gamle KU-er bevares og alle 70 nye spørsmål er lenket.
+- En **70-spørsmåls redaksjonell signeringsmatrise** ligger i `reports/place-production/grini-fangeleir-quiz-70q-editorial-signoff-2026-10-29.md`. Ingen spørsmål er feilaktig signert; alle **70 står ÅPEN**. Matrisa angir fasit, to distraktorer, kildepåstand, Knowledge-forklaring og konkrete kilder for hvert spørsmål.
+
+**Gjenstående realeaseporter:** Uavhengig fagredaktør må gjennomgå/signe 70/70, kildeavvik og etikk. Deretter kan quizens 10×7-pakke, fagmanifest, deterministisk kontekst og Knowledge-output integreres som en samlet kontrollert PR-endring. Hele repositoryets Data checks og faktisk QuizCard/browser-/mobiltest må bestås før merge/vFerdig. Aktiv quiz på denne PR-grenen er fortsatt gammel 1×3; ingen produksjonsaktivering er gjort. Fullt maskinlesbart testbevis: `reports/place-production/grini-fangeleir-quiz-technical-gates-2026-10-29.json`.
