@@ -13,6 +13,14 @@
       "stage": "blomstring",
       "evidence": "data/natur/flora/illustration-quality-batch06-20261028.json"
     }),
+    emne_flora_ryllik: Object.freeze({
+      scientificName: "Achillea millefolium",
+      src: "bilder/natur/flora/illustrasjonskandidater/b06/01_ryllik.webp",
+      gitBlobSha: "5b593314041bb8122f401f78695977fc7db8f31c",
+      reviewedAt: "2026-10-29",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
+    }),
     emne_flora_groblad: Object.freeze({
       "scientificName": "Plantago major",
       "src": "bilder/natur/flora/illustrasjonskandidater/b06/03_groblad.webp",
