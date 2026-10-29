@@ -35,7 +35,8 @@ try{
     {name:"rodjonsokblom",label:"Rød jonsokblom",term:"jonsok",path:"b05/02_rodjonsokblom_v2.webp"},
     {name:"prestekrage",path:"b05/03_prestekrage_v2.webp"},
     {name:"geitrams",path:"b06/02_geitrams.webp"},
-    {name:"groblad",path:"b06/03_groblad.webp"}
+    {name:"groblad",path:"b06/03_groblad.webp"},
+    {name:"ryllik",path:"b06/01_ryllik.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){

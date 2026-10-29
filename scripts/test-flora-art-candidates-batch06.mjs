@@ -17,7 +17,7 @@ assert.equal(review.items.length,4);
 assert.equal(manifest.items.length,4);
 assert.equal(review.originalApprovedSpeciesCount,9);
 assert.equal(review.approvedSpeciesCountAfterRelease,11);
-assert.equal(approved.count,11);
+assert.equal(approved.count,12);
 const expected=[
   ["01_ryllik",null,"Achillea millefolium","needs_catalog_entry"],
   ["02_geitrams","emne_flora_geitrams","Chamerion angustifolium","approved"],
@@ -36,7 +36,7 @@ for(const [key,id,latin,status] of expected){
   assert.equal(c.src,x.src);assert.equal(c.gitBlobSha,x.gitBlobSha);
   assert.equal(approved.get(id)?.src===x.src,x.approvedForPublication);
   if(id){assert.equal(catalog.find(a=>a.id===id)?.latin,latin);}
-  else {assert(!catalog.some(a=>a.latin===latin),"unlinked species must be reviewed again if catalog changes");}
+  else {assert(catalog.some(a=>a.id==="emne_flora_ryllik" && a.latin===latin),"batch 07 catalog entry missing");}
   if(x.approvedForPublication){
     assert.equal(x.botanicalVisualDecision,"passed");
     assert(env.window.HG_NATURE_FLORA_PHOTOS.get(id),"licensed photo reserve missing");
@@ -57,8 +57,8 @@ for(const [key,id,latin,status] of expected){
   assert(read("flora-illustrasjoner-bolk06.html").includes(x.src));
 }
 assert(!approved.has("emne_flora_tiriltunge"));
-assert(!approved.has("emne_flora_ryllik"),"do not invent a canonical ID");
+assert(approved.has("emne_flora_ryllik"),"batch 07 must link to the new canonical ID");
 assert(!approved.has("emne_flora_rodkløver"),"previous red-clover rejection must remain");
 assert(read("flora-illustration-review.html").includes("flora-illustrasjoner-bolk06.html"));
 assert(read(".github/workflows/nature-illustrations.yml").includes("node scripts/test-flora-art-candidates-batch06.mjs"));
-console.log("Flora batch 06: four exact alpha WebP files, two accepted, yarrow unlinked, trefoil rejected; 11 production approvals.");
+console.log("Flora batch 06: four exact alpha WebP files, two originally accepted, yarrow linked by batch 07, trefoil rejected; 12 production approvals.");

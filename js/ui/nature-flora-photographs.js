@@ -67,7 +67,9 @@ const FILES=Object.freeze({
  emne_flora_firkantperikum:["Hypericum maculatum","Hypericum maculatum s. str.jpg","Danny S.","BY-SA-4.0"],
  emne_flora_varkaal:["Ficaria verna","Ficaria verna 115300058.jpg","dcourtine","BY-4.0"],
  emne_flora_russblaastjerne:["Scilla siberica","Scilla siberica.jpg","Adventice2000","BY-SA-3.0"],
- emne_flora_varerteknapp:["Lathyrus vernus","Lathyrus vernus02.jpg","Meneerke bloem","BY-SA-3.0"]
+ emne_flora_varerteknapp:["Lathyrus vernus","Lathyrus vernus02.jpg","Meneerke bloem","BY-SA-3.0"],
+ emne_flora_ryllik:["Achillea millefolium","Flowers. Achillea millefolium.jpg","llysmlv","BY-4.0"],
+ emne_flora_blaklokke:["Campanula rotundifolia","Harebell (Campanula rotundifolia) - Oslo, Norway.jpg","Ryan Hodnett","BY-SA-4.0"]
 });
 const PHOTO_URLS=Object.freeze({
  "emne_flora_lovetann": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Taraxacum_Officinale.jpg/960px-Taraxacum_Officinale.jpg",
@@ -123,7 +125,9 @@ const PHOTO_URLS=Object.freeze({
  "emne_flora_firkantperikum": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Hypericum_maculatum_s._str.jpg/640px-Hypericum_maculatum_s._str.jpg",
  "emne_flora_varkaal": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Ficaria_verna_115300058.jpg/640px-Ficaria_verna_115300058.jpg",
  "emne_flora_russblaastjerne": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Scilla_siberica.jpg/640px-Scilla_siberica.jpg",
- "emne_flora_varerteknapp": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Lathyrus_vernus02.jpg/640px-Lathyrus_vernus02.jpg"
+ "emne_flora_varerteknapp": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Lathyrus_vernus02.jpg/640px-Lathyrus_vernus02.jpg",
+ "emne_flora_ryllik": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flowers._Achillea_millefolium.jpg/960px-Flowers._Achillea_millefolium.jpg",
+ "emne_flora_blaklokke": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Harebell_(Campanula_rotundifolia)_-_Oslo%2C_Norway.jpg/960px-Harebell_(Campanula_rotundifolia)_-_Oslo%2C_Norway.jpg"
 });
 function get(id){
  const entry=FILES[String(id)];if(!entry)return null;

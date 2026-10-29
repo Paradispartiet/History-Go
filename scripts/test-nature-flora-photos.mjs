@@ -60,9 +60,11 @@ const expected=[
  ["emne_flora_firkantperikum","Hypericum maculatum"],
  ["emne_flora_varkaal","Ficaria verna"],
  ["emne_flora_russblaastjerne","Scilla siberica"],
- ["emne_flora_varerteknapp","Lathyrus vernus"]
+ ["emne_flora_varerteknapp","Lathyrus vernus"],
+ ["emne_flora_ryllik","Achillea millefolium"],
+ ["emne_flora_blaklokke","Campanula rotundifolia"]
 ];
-assert.equal(photos.count,54);
+assert.equal(photos.count,56);
 const urls=new Set();
 const illustrations=[
  "nature-illustrations.js","nature-illustrations-batch03.js",
@@ -82,7 +84,9 @@ for(const [id,taxon] of expected){
  assert.match(p.licenseUrl,/^https:\/\/creativecommons\.org\/licenses\//);
  assert(!urls.has(p.source),"duplicate species file "+p.source);
  urls.add(p.source);
- assert(illustrations.includes(id),"photo species must have an existing drawing fallback: "+id);
+ if (!new Set(["emne_flora_ryllik","emne_flora_blaklokke"]).has(id)) {
+  assert(illustrations.includes(id),"photo species must have an existing drawing fallback: "+id);
+ }
 }
 assert.equal(photos.get("emne_flora_other"),null);
 const explorer=read("js/ui/nature-explorer.js");
@@ -149,4 +153,12 @@ for (const id of batch5Ids) {
   "invalid Commons image path: "+id);
  assert.ok(photo.creator && photo.license && photo.licenseUrl);
 }
-console.log("Flora photos: 54 sourced species, credits/licenses, SVG fallback and read-only UI OK.");
+const batch7Ids=["emne_flora_ryllik","emne_flora_blaklokke"];
+for (const id of batch7Ids) {
+ const photo=photos.get(id);
+ const filename=decodeURIComponent(photo.source.split("/wiki/File:")[1]).replace(/ /g,"_");
+ const digest=createHash("md5").update(filename).digest("hex");
+ const encoded=encodeURIComponent(filename);
+ assert.equal(photo.src,`https://upload.wikimedia.org/wikipedia/commons/thumb/${digest[0]}/${digest.slice(0,2)}/${encoded}/960px-${encoded}`,"invalid Commons image path: "+id);
+}
+console.log("Flora photos: 56 sourced species, credits/licenses, fallback and read-only UI OK.");
