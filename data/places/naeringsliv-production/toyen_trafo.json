@@ -1,0 +1,316 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "toyen_trafo",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04/toyen_trafo.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Tøyen transformatorstasjon i Hovinveien 1 er et eldre elektrisitetsfordelingsanlegg fra 1915 som ble ombrukt til kultur- og arbeidslokaler for kunstnere fra 1975.",
+    "anchorType": "infrastructure",
+    "placeObjectDistinction": "Rapporten gjelder bygningen fra 1915 og dens dokumenterte funksjonsskifte, ikke selve kraftproduksjonen, den nyere transformatorstasjonen ved siden av eller hele byens kunstnersektor.",
+    "temporalScope": {
+      "start": "1915",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Fra den opprinnelige transformatorstasjonen ble oppført til dokumentert kommunal kultur- og atelierbruk i dag."
+    },
+    "sourceIds": [
+      "source_toyen_trafo_oslo_kommune",
+      "source_toyen_trafo_byleksikon",
+      "source_toyen_trafo_kunstnerhus"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_arbeidsliv_organisering",
+      "siteSpecificRationale": "Den dokumenterte overgangen fra teknisk nettanlegg til organiserte atelierer og scenekunst viser at de samme lokalene kan huse helt andre typer arbeid og institusjoner.",
+      "caseIds": [
+        "case_toyen_trafo_nettinfrastruktur_og_gjenbruk"
+      ]
+    },
+    {
+      "emneId": "em_naering_teknologi_infrastruktur",
+      "siteSpecificRationale": "Tøyen trafo var et fordelingsledd i elektrisitetsnettet, ikke et kraftverk; bygningens tekniske formål og senere ombruk kan sammenlignes gjennom historiske kilder.",
+      "caseIds": [
+        "case_toyen_trafo_nettinfrastruktur_og_gjenbruk"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_toyen_trafo_oslo_kommune",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/toyen-trafo/",
+      "sourceLocation": "Oslo kommunes oppføring av kultureiendommen Tøyen trafo, Hovinveien 1, atelierer og fem teaterstudioer",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-29",
+      "temporalCoverage": "mixed",
+      "provenance": "Kommunens eiendomsforvalter beskriver den historiske bygningen og dens nåværende offentlige leiebruk.",
+      "limitations": "Kommunens presentasjon oppgir ikke full historisk nettstatistikk, detaljerte driftsregnskap eller inntekter fra utleien."
+    },
+    {
+      "id": "source_toyen_trafo_byleksikon",
+      "url": "https://oslobyleksikon.no/side/T%C3%B8yen_transformatorstasjon",
+      "sourceLocation": "Oslo byleksikons oppslag om transformatorstasjonen, oppføring 1915 og drift fra 1917",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-29",
+      "temporalCoverage": "mixed",
+      "provenance": "Stedshistorisk leksikonoppføring med datoer, arkitekturhistorie og opplysninger om det senere kulturhuset.",
+      "limitations": "Oppslaget beskriver bygningens hovedlinjer, ikke målt strømforbruk, bemanning eller effekter på området."
+    },
+    {
+      "id": "source_toyen_trafo_kunstnerhus",
+      "url": "https://trafokunstnerhus.no/historie/",
+      "sourceLocation": "Trafo kunstnerhus sin historikk om atelierkomiteen, bystyrevedtaket og gjenbruk",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-10-29",
+      "temporalCoverage": "mixed",
+      "provenance": "Det historiske kunstnermiljøets egen fortelling om behov for atelierer og forhandlinger med kommunen.",
+      "limitations": "Aktørens egen historiefortelling er miljønær og må holdes adskilt fra uavhengig kontroll av teknisk drift og økonomiske virkninger."
+    },
+    {
+      "id": "source_toyen_trafo_lokalhistoriewiki",
+      "url": "https://lokalhistoriewiki.no/wiki/T%C3%B8yen_transformatorstasjon",
+      "sourceLocation": "Lokalhistoriewiki om bygningens tekniske og kulturelle bruk, arkitektur og vern",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-10-29",
+      "temporalCoverage": "mixed",
+      "provenance": "Lokalhistorisk oppslag med kildehenvisninger til Oslo kommune, Trafo kunstnerhus og byleksikon.",
+      "limitations": "Teksten samler i hovedsak kjente lokale opplysninger, og er ikke en uavhengig måling av økonomiske resultater."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_toyen_trafo_nettinfrastruktur_og_gjenbruk",
+      "claim": "Transformatorstasjonen fra 1915 ble erstattet teknisk av et nyere anlegg og fikk fra 1975 ny funksjon som atelier- og scenekunstbygg; endringen kan dokumenteres som skifte i arbeidsplass- og arealbruk, ikke som tallfestet økonomisk gevinst.",
+      "unitOfAnalysis": {
+        "unit": "Tøyen trafo, den eldre bygningen i Hovinveien 1",
+        "boundary": "Omfatter eldre transformatorstasjon og dens senere kulturbruk; ikke nabostasjonen, kraftproduksjon utenfor eiendommen eller Oslos samlede strømnett.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1915",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Fra den opprinnelige transformatorstasjonen ble oppført til dokumentert kommunal kultur- og atelierbruk i dag."
+        },
+        "sourceIds": [
+          "source_toyen_trafo_oslo_kommune",
+          "source_toyen_trafo_byleksikon",
+          "source_toyen_trafo_kunstnerhus"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Elektrisitetsforsyningens tekniske driftsmiljø",
+          "roleOrInterest": "Brukte det tekniske anlegget til omforming og fordeling av strøm fram til omlegging av forsyningsinfrastrukturen.",
+          "economicPosition": "Forvaltet nettinfrastruktur som muliggjorde elektrisk distribusjon, men bygget var ikke et produksjonskraftverk.",
+          "sourceIds": [
+            "source_toyen_trafo_byleksikon",
+            "source_toyen_trafo_lokalhistoriewiki"
+          ]
+        },
+        {
+          "name": "Unge Kunstneres Samfunds atelierkomité og kunstnere",
+          "roleOrInterest": "Forhandlet om gjenbruk og tok i bruk den gamle stasjonen som arbeidsrom, prøvesaler og kunstneratelierer.",
+          "economicPosition": "Kunstnere og kulturaktører fikk tilgang til arbeidslokaler etter at den tekniske bruken opphørte.",
+          "sourceIds": [
+            "source_toyen_trafo_oslo_kommune",
+            "source_toyen_trafo_kunstnerhus"
+          ]
+        },
+        {
+          "name": "Oslo kommune og Oslo teatersenter",
+          "roleOrInterest": "Forvalter kultureiendommen og bruker studioer og atelierer til scenekunst og kulturformål.",
+          "economicPosition": "Kommunen disponerer bygget som kulturressurs; utleievirksomhetens økonomiske nettoeffekt er ikke dokumentert her.",
+          "sourceIds": [
+            "source_toyen_trafo_oslo_kommune",
+            "source_toyen_trafo_kunstnerhus"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Den opprinnelige stasjonen krevde bygning, tekniske installasjoner, driftspersonell og tilkobling til et elektrisk distribusjonsnett.",
+            "sourceIds": [
+              "source_toyen_trafo_byleksikon",
+              "source_toyen_trafo_lokalhistoriewiki"
+            ]
+          },
+          {
+            "statement": "Etter ombruk inngår den eksisterende bygningen, atelierarealer, studioer og kunstnerisk arbeidsinnsats som ressurser.",
+            "sourceIds": [
+              "source_toyen_trafo_oslo_kommune",
+              "source_toyen_trafo_kunstnerhus"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Anlegget gikk fra teknisk strømomforming og distribusjon til organisering av atelierbruk, prøver og scenekunstaktiviteter i et bevart bygg.",
+          "sourceIds": [
+            "source_toyen_trafo_oslo_kommune",
+            "source_toyen_trafo_byleksikon",
+            "source_toyen_trafo_kunstnerhus"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Den historiske ytelsen var å omforme og fordele elektrisitet videre i nettet, ikke produsere den.",
+            "sourceIds": [
+              "source_toyen_trafo_byleksikon",
+              "source_toyen_trafo_lokalhistoriewiki"
+            ]
+          },
+          {
+            "statement": "Dagens bruk gir arbeids- og øvingsrom for kunstnere og teatermiljøer, blant annet fem studioer oppført av kommunen.",
+            "sourceIds": [
+              "source_toyen_trafo_oslo_kommune"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Det er dokumentert et funksjonsskifte fra teknisk tjeneste til kulturarbeidsplasser, men kildene tallfester ikke samlet verdiskaping, lønnsomhet eller offentlige besparelser.",
+          "sourceIds": [
+            "source_toyen_trafo_oslo_kommune",
+            "source_toyen_trafo_byleksikon",
+            "source_toyen_trafo_kunstnerhus"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_infrastrukturanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Oppføringsår, driftsstart, ny nabostasjon og senere atelierbruk samt kommunens beskrivelse av fem studioer.",
+        "unit": "Bygningens funksjonsfaser og dokumenterte bruksrom",
+        "period": "1915–2026",
+        "comparability": "Sammenligningen gjelder beskrivelser av fysisk funksjon og arbeidsform; teknisk nettkapasitet og kulturøkonomi er ikke direkte sammenlignbare.",
+        "dataLimitations": "Kildene inneholder ikke produksjonstall, tidsserier for sysselsetting, investeringsregnskap eller en kontrafaktisk evaluering av gjenbruk.",
+        "sourceIds": [
+          "source_toyen_trafo_oslo_kommune",
+          "source_toyen_trafo_byleksikon",
+          "source_toyen_trafo_kunstnerhus",
+          "source_toyen_trafo_lokalhistoriewiki"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Transformatorfunksjonen var del av elektrisitetsforsyningen; kommunen vedtok ombruk til kulturhus og forvalter dagens kultureiendom.",
+        "laborPosition": "Teknisk driftspersonell ble etterfulgt av arbeid fra kunstnere, atelierbrukere og scenekunstmiljøer; arbeidsvilkår og antall ansatte er ikke tallfestet.",
+        "beneficiaries": [
+          "Elektrisitetsbrukere var avhengige av nettinfrastrukturen i den historiske fasen.",
+          "Kunstnere og scenekunstaktører har siden fått tilgang til atelierer og øvingsarealer."
+        ],
+        "costRiskBearers": [
+          "Teknisk nettforvalter bar opprinnelig anleggs- og driftsansvar.",
+          "Kommunen og brukerne må håndtere bevaring, vedlikehold og funksjonelle behov i eldre lokaler."
+        ],
+        "sourceIds": [
+          "source_toyen_trafo_oslo_kommune",
+          "source_toyen_trafo_byleksikon",
+          "source_toyen_trafo_kunstnerhus"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Bevaring og ombruk krever tilpasning av verneverdig industriarkitektur; det er kildebelagt at bygget fikk annen bruk, men ingen sammenlignbar kostnadsvurdering finnes her.",
+          "sourceIds": [
+            "source_toyen_trafo_oslo_kommune",
+            "source_toyen_trafo_kunstnerhus",
+            "source_toyen_trafo_lokalhistoriewiki"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Det er ikke publisert kildegrunnlag her for å tallfeste lokal støy, utslipp, energibesparelse eller fortrengningsvirkning av funksjonsskiftet."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Oslo byleksikons historiske stedsfakta sammenholdes med kommunens nåværende eiendomsopplysninger og kunstnerhusets organisasjonshistorie.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Kildene dokumenterer at det tekniske anlegget ble erstattet og bygningen tatt i bruk som kulturhus, men isolerer ikke hvor mye politiske, økonomiske eller kunstnerorganisatoriske hensyn hver bidro til utfallet.",
+        "alternativeExplanations": [
+          "Teknologisk oppgradering av nettinfrastruktur og behov for ny kapasitet kan ha bidratt til at den eldre stasjonen ble overflødig.",
+          "Kommunalt lokalbehov, vern og kunstnernes organiserte arbeid kan ha påvirket valg av senere bruk."
+        ],
+        "uncertainty": "Kildegrunnlaget sier lite om økonomiske alternativer, kostnader eller hvor mange arbeidsplasser ombruket faktisk skapte.",
+        "sourceIds": [
+          "source_toyen_trafo_oslo_kommune",
+          "source_toyen_trafo_byleksikon",
+          "source_toyen_trafo_kunstnerhus",
+          "source_toyen_trafo_lokalhistoriewiki"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "mixed",
+    "statement": "Den eldre Tøyen trafo brukes nå til atelierer og scenekunststudioer. Den opprinnelige funksjonen som transformatorstasjon er opphørt i denne bygningen.",
+    "originalEconomicRoleRelationship": "Dagens kulturbruk foregår i det historiske tekniske bygningsanlegget, men viderefører ikke elektrisitetsfordelingsdriften; en nyere nettstasjon ligger ved siden av.",
+    "checkedAt": "2026-10-29",
+    "sourceIds": [
+      "source_toyen_trafo_oslo_kommune",
+      "source_toyen_trafo_kunstnerhus"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Denne rapporten endrer kun den kanoniske Fagverk-emnekoblingen for Tøyen trafo og produserer ingen nye Næringsliv-startsett eller separate 7+7 spørsmål; quizprofiler må testes særskilt."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Stedets kanoniske Place har ingen nye chronology- eller Story-filer i denne rettelsen; datoene 1915, 1917, 1972 og 1975 er kildeavgrenset i eksisterende stedstekst."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_toyen_trafo_nettinfrastruktur_og_gjenbruk.valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_toyen_trafo_nettinfrastruktur_og_gjenbruk.actors",
+        "case_toyen_trafo_nettinfrastruktur_og_gjenbruk.distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_toyen_trafo_nettinfrastruktur_og_gjenbruk.measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_toyen_trafo_nettinfrastruktur_og_gjenbruk.comparisonAndCausality",
+        "presentOperation"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Ingen ny quizstartpakke produseres i Fagverk-koblingsrettelsen."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ingen nye Stories eller kronologifiler produseres i Fagverk-koblingsrettelsen."
+    }
+  },
+  "review": {
+    "reviewer": "History GO – Næringsliv fagredaksjon",
+    "reviewedAt": "2026-10-29",
+    "notes": "Kildene skiller teknisk strømfordeling fra kraftproduksjon, og den eldre bevarte bygningen fra ny nabostasjon. Historisk fase er sammenholdt mellom Oslo byleksikon, Trafo kunstnerhus og lokalhistoriewiki, mens kommunens side dokumenterer dagens atelierer og studioer. Det påstås ingen tallfestede økonomiske effekter."
+  }
+}
