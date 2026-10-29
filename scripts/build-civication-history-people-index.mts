@@ -162,6 +162,20 @@ function main(): void {
   if (CHECK_MODE) {
     const actual = fs.existsSync(OUTPUT_PATH) ? fs.readFileSync(OUTPUT_PATH, "utf8") : "";
     if (actual !== json) {
+      const oldDoc = actual ? JSON.parse(actual) : {categories: {}};
+      const newDoc = JSON.parse(json);
+      const differences = [];
+      for (const category of new Set([...Object.keys(oldDoc.categories || {}), ...Object.keys(newDoc.categories || {})])) {
+        const oldRows = oldDoc.categories?.[category] || [];
+        const newRows = newDoc.categories?.[category] || [];
+        const byOld = new Map(oldRows.map((person) => [person.id, person]));
+        const byNew = new Map(newRows.map((person) => [person.id, person]));
+        for (const id of new Set([...byOld.keys(), ...byNew.keys()])) {
+          if (JSON.stringify(byOld.get(id)) !== JSON.stringify(byNew.get(id))) differences.push({ category, id, expected: byNew.get(id), actual: byOld.get(id) });
+        }
+        if (oldRows.map((r) => r.id).join("|") !== newRows.map((r) => r.id).join("|")) differences.push({ category, orderDifference: true, expectedIds: newRows.map(r => r.id), actualIds: oldRows.map(r => r.id) });
+      }
+      console.error("CIV_HISTORY_DIFF=" + JSON.stringify({ expectedCount: newDoc.person_count, actualCount: oldDoc.person_count, differences }));
       console.error(`FEIL: ${path.relative(ROOT, OUTPUT_PATH)} er ikke i sync med kildene i data/people/.`);
       console.error("Kjør: npm run civication:history-people:build");
       process.exit(1);
