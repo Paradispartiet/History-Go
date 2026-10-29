@@ -534,7 +534,7 @@ function checkOutputs(files: Map<string, string>, index: string): void {
 
 const built = build();
 if (CHECK_MODE) {
-  const diagnostic = [...built.files.entries()].filter(([file]) => /scenarioPeople\/generated\/(kunst|litteratur)\.json$/.test(file));
+  const diagnostic = [...built.files.entries()].filter(([file, expected]) => { const abs = path.join(ROOT, file); return !fs.existsSync(abs) || fs.readFileSync(abs, "utf8") !== expected; });
   diagnostic.push(["data/Civication/scenarioPeople_index.json", built.index]);
   for (const [file, expected] of diagnostic) {
     const size = 6000;
