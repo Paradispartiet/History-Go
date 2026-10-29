@@ -11,12 +11,21 @@ import path from "node:path";
 import process from "node:process";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { buildGriniStagingPreview, readStagingInputs } from "./prepare-grini-quiz-staging.mjs";
+import { buildGriniStagingPreview, buildGriniCanonicalCandidate, readStagingInputs } from "./prepare-grini-quiz-staging.mjs";
+import { buildQuizProductionContext } from "./quiz-production-lib.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ACTIVE = "data/quiz/historie/grini_fangeleir_sets.json";
 const PRESERVED = "data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json";
 const UNITS = "data/knowledge/knowledge_units.generated.json";
+const FAG_MANIFEST = "data/fag/fag_manifest.json";
+const CONTEXT_PATH = "data/quiz/production_context/historie/grini_fangeleir.json";
+const TARGET_ENTRY = {
+  source_brief: "../quiz/production_briefs/historie/grini_fangeleir.json",
+  context_artifact: "../quiz/production_context/historie/grini_fangeleir.json",
+  quiz_file: "../quiz/historie/grini_fangeleir_sets.json"
+};
+
 
 function ensure(condition, error) { if (!condition) throw new Error(error); }
 async function readJson(relative) {
@@ -44,18 +53,30 @@ async function main() {
   // Simulate the canonical manifest's existing Grini file being replaced.
   // The real Knowledge generator still sees it through data/quiz/manifest.json,
   // and retains the displaced legacy units from PRESERVED.
-  const quiz = {
-    categoryId: "historie", targetId: "grini_fangeleir",
-    generator_version: "staging-knowledge-test-only",
-    generated_from: preview.source_brief,
-    sources: preview.sources,
-    sets: preview.sets
-  };
+  // Build the integrated target in the disposable checkout with the REAL
+  // full fag manifest; unlike a bare quiz replacement, this models the new
+  // package's context and Knowledge links together.
+  const fag = await readJson(FAG_MANIFEST);
+  ensure(!fag.historie?.quizProduction?.targets?.grini_fangeleir,
+    "target unexpectedly active; re-audit before changing migration simulation");
+  fag.historie.quizProduction.targets.grini_fangeleir = TARGET_ENTRY;
+  await fs.writeFile(path.join(ROOT, FAG_MANIFEST), JSON.stringify(fag, null, 2) + "\n");
+  const context = await buildQuizProductionContext({root:ROOT,categoryId:"historie",targetId:"grini_fangeleir"});
+  ensure(context.claim_bank.length === 70 && context.profile === "major_10x7",
+    "full-input production context is not the expected 10x7 target");
+  const quiz = buildGriniCanonicalCandidate(preview, context);
+  await fs.mkdir(path.dirname(path.join(ROOT, CONTEXT_PATH)), { recursive:true });
+  await fs.writeFile(path.join(ROOT, CONTEXT_PATH), JSON.stringify(context, null, 2) + "\n");
   await fs.writeFile(path.join(ROOT, ACTIVE), JSON.stringify(quiz, null, 2) + "\n");
   const child = spawnSync(process.execPath, ["dist/scripts/knowledge-canonical-data.mjs", "--write"], {
     cwd: ROOT, encoding: "utf8", env: process.env, maxBuffer: 20 * 1024 * 1024
   });
   ensure(child.status === 0, `canonical Knowledge generator failed: ${child.stderr || child.stdout}`);
+  const audit = spawnSync(process.execPath, ["dist/scripts/knowledge-canonical-data.mjs", "--audit-only"], {
+    cwd:ROOT, encoding:"utf8", env:process.env, maxBuffer:20 * 1024 * 1024
+  });
+  ensure(audit.status === 0, `canonical Knowledge contract audit failed: ${audit.stderr || audit.stdout}`);
+
   const regenerated = await readJson(UNITS);
   const retained = findUnits(regenerated, oldIds);
   ensure(retained.every(Boolean), "Knowledge migration simulation dropped at least one old KU");
@@ -87,6 +108,9 @@ async function main() {
     new_question_knowledge_links_complete:true,
     old_quiz_ref_ownership_retained:true,
     actual_canonical_knowledge_generator_ran:true,
+    canonical_knowledge_contract_audit_passed:true,
+    actual_full_manifest_production_context_built:true,
+    context_profile:context.profile,
     disposable_checkout_only:true,
     active_source_committed:false,
     production_approval:false
