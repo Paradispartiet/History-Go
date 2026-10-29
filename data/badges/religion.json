@@ -2,32 +2,239 @@
   "id": "religion",
   "name": "Religion",
   "icon": "🛐",
-  "color": "#d7b46a",
+  "color": "#E7B517",
   "secondaryColor": "#151B28",
   "image": "bilder/merker/religion.svg",
   "description": "For dem som utforsker tro, ritualer, hellige rom og religionens plass i samfunn, kultur og historie.",
   "career_life_evidence": "data/Civication/religionCareerLifeEvidence.json",
   "tiers": [
-    {"label":"Besøkende","threshold":5,"life_position":{"id":"besokende","label":"Besøkende","kind":"visitor_practice","employment_independent":true}},
-    {"label":"Nysgjerrig","threshold":10,"life_position":{"id":"nysgjerrig","label":"Nysgjerrig","kind":"exploration_interest","employment_independent":true}},
-    {"label":"Tradisjonskjenner","threshold":15,"life_position":{"id":"tradisjonskjenner","label":"Tradisjonskjenner","kind":"tradition_literacy","employment_independent":true}},
-    {"label":"Ritualkjenner","threshold":25,"life_position":{"id":"ritualkjenner","label":"Ritualkjenner","kind":"ritual_literacy","employment_independent":true}},
-    {"label":"Symboltolker","threshold":40,"life_position":{"id":"symboltolker","label":"Symboltolker","kind":"symbol_interpretation_practice","employment_independent":true}},
-    {"label":"Troslivskjenner","threshold":60,"life_position":{"id":"troslivskjenner","label":"Troslivskjenner","kind":"lived_religion_literacy","employment_independent":true}},
-    {"label":"Religionsformidler","threshold":85,"career_offer":{"title":"Religionsformidler","policy":"direct","salary_tier":1,"role_scope":"religion_formidling_og_kulturarv"}},
-    {"label":"Religionshistoriker","threshold":115,"career_offer":{"title":"Religionshistoriker","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"religion_forskning"}},
-    {"label":"Religionsviter","threshold":150,"career_offer":{"title":"Religionsviter","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"religion_forskning"}},
-    {"label":"Feltarbeider","threshold":190,"life_position":{"id":"feltarbeider","label":"Feltarbeider","kind":"fieldwork_practice","employment_independent":true}},
-    {"label":"Fagkonsulent","threshold":240,"career_offer":{"title":"Fagkonsulent","policy":"direct","salary_tier":1,"role_scope":"religion_utredning_og_radgivning"}},
-    {"label":"Kurator","threshold":300,"career_offer":{"title":"Kurator","policy":"direct","salary_tier":2,"role_scope":"religion_formidling_og_kulturarv"}},
-    {"label":"Seniorrådgiver","threshold":380,"career_offer":{"title":"Seniorrådgiver","policy":"direct","salary_tier":2,"role_scope":"religion_utredning_og_radgivning"}},
-    {"label":"Fagansvarlig","threshold":500,"career_offer":{"title":"Fagansvarlig","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"religion_fagledelse"}},
-    {"label":"Forsker","threshold":650,"career_offer":{"title":"Forsker","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":2,"role_scope":"religion_forskning"}},
-    {"label":"Seniorforsker","threshold":800,"career_offer":{"title":"Seniorforsker","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":3,"role_scope":"religion_forskning"}},
-    {"label":"Seksjonsleder","threshold":1000,"career_offer":{"title":"Seksjonsleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"religion_fagledelse"}},
-    {"label":"Avdelingsleder","threshold":1250,"career_offer":{"title":"Avdelingsleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"religion_fagledelse"}},
-    {"label":"Avdelingsdirektør","threshold":1550,"career_offer":{"title":"Avdelingsdirektør","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"religion_fagledelse"}},
-    {"label":"Direktør","threshold":1900,"career_offer":{"title":"Direktør","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"religion_fagledelse"}}
+    {
+      "label": "Besøkende",
+      "threshold": 5,
+      "life_position": {
+        "id": "besokende",
+        "label": "Besøkende",
+        "kind": "visitor_practice",
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Nysgjerrig",
+      "threshold": 10,
+      "life_position": {
+        "id": "nysgjerrig",
+        "label": "Nysgjerrig",
+        "kind": "exploration_interest",
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Tradisjonskjenner",
+      "threshold": 15,
+      "life_position": {
+        "id": "tradisjonskjenner",
+        "label": "Tradisjonskjenner",
+        "kind": "tradition_literacy",
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Ritualkjenner",
+      "threshold": 25,
+      "life_position": {
+        "id": "ritualkjenner",
+        "label": "Ritualkjenner",
+        "kind": "ritual_literacy",
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Symboltolker",
+      "threshold": 40,
+      "life_position": {
+        "id": "symboltolker",
+        "label": "Symboltolker",
+        "kind": "symbol_interpretation_practice",
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Troslivskjenner",
+      "threshold": 60,
+      "life_position": {
+        "id": "troslivskjenner",
+        "label": "Troslivskjenner",
+        "kind": "lived_religion_literacy",
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Religionsformidler",
+      "threshold": 85,
+      "career_offer": {
+        "title": "Religionsformidler",
+        "policy": "direct",
+        "salary_tier": 1,
+        "role_scope": "religion_formidling_og_kulturarv"
+      }
+    },
+    {
+      "label": "Religionshistoriker",
+      "threshold": 115,
+      "career_offer": {
+        "title": "Religionshistoriker",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ],
+        "salary_tier": 2,
+        "role_scope": "religion_forskning"
+      }
+    },
+    {
+      "label": "Religionsviter",
+      "threshold": 150,
+      "career_offer": {
+        "title": "Religionsviter",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ],
+        "salary_tier": 2,
+        "role_scope": "religion_forskning"
+      }
+    },
+    {
+      "label": "Feltarbeider",
+      "threshold": 190,
+      "life_position": {
+        "id": "feltarbeider",
+        "label": "Feltarbeider",
+        "kind": "fieldwork_practice",
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Fagkonsulent",
+      "threshold": 240,
+      "career_offer": {
+        "title": "Fagkonsulent",
+        "policy": "direct",
+        "salary_tier": 1,
+        "role_scope": "religion_utredning_og_radgivning"
+      }
+    },
+    {
+      "label": "Kurator",
+      "threshold": 300,
+      "career_offer": {
+        "title": "Kurator",
+        "policy": "direct",
+        "salary_tier": 2,
+        "role_scope": "religion_formidling_og_kulturarv"
+      }
+    },
+    {
+      "label": "Seniorrådgiver",
+      "threshold": 380,
+      "career_offer": {
+        "title": "Seniorrådgiver",
+        "policy": "direct",
+        "salary_tier": 2,
+        "role_scope": "religion_utredning_og_radgivning"
+      }
+    },
+    {
+      "label": "Fagansvarlig",
+      "threshold": 500,
+      "career_offer": {
+        "title": "Fagansvarlig",
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ],
+        "salary_tier": 2,
+        "role_scope": "religion_fagledelse"
+      }
+    },
+    {
+      "label": "Forsker",
+      "threshold": 650,
+      "career_offer": {
+        "title": "Forsker",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ],
+        "salary_tier": 2,
+        "role_scope": "religion_forskning"
+      }
+    },
+    {
+      "label": "Seniorforsker",
+      "threshold": 800,
+      "career_offer": {
+        "title": "Seniorforsker",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ],
+        "salary_tier": 3,
+        "role_scope": "religion_forskning"
+      }
+    },
+    {
+      "label": "Seksjonsleder",
+      "threshold": 1000,
+      "career_offer": {
+        "title": "Seksjonsleder",
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ],
+        "salary_tier": 2,
+        "role_scope": "religion_fagledelse"
+      }
+    },
+    {
+      "label": "Avdelingsleder",
+      "threshold": 1250,
+      "career_offer": {
+        "title": "Avdelingsleder",
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ],
+        "salary_tier": 3,
+        "role_scope": "religion_fagledelse"
+      }
+    },
+    {
+      "label": "Avdelingsdirektør",
+      "threshold": 1550,
+      "career_offer": {
+        "title": "Avdelingsdirektør",
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ],
+        "salary_tier": 3,
+        "role_scope": "religion_fagledelse"
+      }
+    },
+    {
+      "label": "Direktør",
+      "threshold": 1900,
+      "career_offer": {
+        "title": "Direktør",
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ],
+        "salary_tier": 3,
+        "role_scope": "religion_fagledelse"
+      }
+    }
   ],
   "sub": [
     "trossteder_og_hellige_rom",
@@ -41,6 +248,19 @@
     "andre_tros_og_livssynstradisjoner",
     "religion_og_samfunn",
     "religios_kunst_og_arkitektur",
-    "pilegrim_og_hellige_reiser"
-  ]
+    "pilegrim_og_hellige_reiser",
+    "naturreligion",
+    "livssyn"
+  ],
+  "subBadgeArtworkManifest": "data/badges/religion_underbadge_artwork.json",
+  "subBadgeImages": {
+    "kristendom": "bilder/merker/religion/familie/kristendom.svg",
+    "islam": "bilder/merker/religion/familie/islam.svg",
+    "jodedom": "bilder/merker/religion/familie/jodedom.svg",
+    "hinduisme": "bilder/merker/religion/familie/hinduisme.svg",
+    "buddhisme": "bilder/merker/religion/familie/buddhisme.svg",
+    "andre_tros_og_livssynstradisjoner": "bilder/merker/religion/familie/andre_tros_og_livssynstradisjoner.svg",
+    "naturreligion": "bilder/merker/religion/familie/naturreligion.svg",
+    "livssyn": "bilder/merker/religion/familie/livssyn.svg"
+  }
 }
