@@ -29,7 +29,8 @@ const expected = [
   ["emne_flora_groblad","Plantago major"],
   ["emne_flora_ryllik","Achillea millefolium"],
   ["emne_flora_hvitklover","Trifolium repens"],
-  ["emne_flora_blaklokke","Campanula rotundifolia"]
+  ["emne_flora_blaklokke","Campanula rotundifolia"],
+  ["emne_flora_tiriltunge","Lotus corniculatus"]
 ];
 assert.equal(approved.count,expected.length,"publication count changed without species QA");
 assert.equal(batch.items.length,15);
@@ -81,7 +82,7 @@ for(const id of ["emne_flora_engkarse","emne_flora_ballblom"]){
   assert(older.species.some(a=>a.catalogId===id && a.botanicalReview==="needs_redraw"),"historical v2 rejection must remain");
 }
 const html=read("finn-flora.html"),js=read("js/ui/nature-explorer.js"),css=read("css/nature-explorer.css");
-assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261030-2"'));
+assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261030-3"'));
 assert(html.indexOf("nature-flora-photographs.js")<html.indexOf("nature-flora-approved.js"));
 assert(html.indexOf("nature-flora-approved.js")<html.indexOf("nature-explorer.js"));
 assert(js.includes('const art=kind==="flora" ? approvedFloraIllustrations?.get(id)?.src : drawings?.resolve(id)'));
@@ -115,7 +116,7 @@ for(const x of pending05.items){
 const preview05=read("flora-illustrasjoner-bolk05.html");
 for(const x of pending05.items)assert(preview05.includes(x.src),"review page missing: "+x.key);
 assert(read("flora-illustration-review.html").includes('href="flora-illustrasjoner-bolk05.html"'));
-console.log("Flora release: 14 botanical approvals (9 prior + 2 batch 06 + 3 batch 07), all SHA, taxon, alpha, photo fallback, 13 prior rejection gates pass.");
+console.log("Flora release: 15 botanical approvals (9 prior + 2 batch 06 + 4 batch 07), all SHA, taxon, alpha, photo fallback, 13 prior rejection gates pass.");
 
 assert(!approved.has("emne_flora_rodkløver"),"rejected red clover must not be published");
 for(const x of review05.items){

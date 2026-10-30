@@ -79,6 +79,25 @@ for (const candidate of candidates) {
   present++;
   console.log(catalogId + ": verified image bytes, WebP alpha, dimensions, catalog and credited photo");
 }
-assert(!approved.has("emne_flora_tiriltunge"),
-  "Tiriltunge remains blocked until its separate leaf-morphology approval");
+const redraw=review.localCandidateAssets?.redrawCandidate;
+assert(redraw && redraw.catalogId==="emne_flora_tiriltunge","Missing newly approved tiriltunge v2");
+const oldRejected="bilder/natur/flora/illustrasjonskandidater/b06/04_tiriltunge.webp";
+const newApproved=approved.get(redraw.catalogId);
+const redrawReview=review.items.find(x=>x.catalogId===redraw.catalogId);
+assert(newApproved && newApproved.src===redraw.suggestedPath && newApproved.gitBlobSha===redraw.gitBlobSha);
+assert(redrawReview?.reviewStatus==="approved" && redrawReview.approvedForPublication===true);
+assert.notEqual(newApproved.src,oldRejected,"Do not activate historical rejected image");
+assert.equal(source.find(x=>x.id===redraw.catalogId)?.latin,redraw.scientificName);
+assert.equal(runtime.find(x=>x.id===redraw.catalogId)?.latin,redraw.scientificName);
+assert.equal(photos.get(redraw.catalogId)?.scientificName,redraw.scientificName);
+const v2=fs.readFileSync(new URL(redraw.suggestedPath,base));
+assert.equal(v2.length,redraw.sizeBytes);
+assert.equal(crypto.createHash("sha256").update(v2).digest("hex"),redraw.sha256);
+assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+v2.length),Buffer.from([0]),v2])).digest("hex"),redraw.gitBlobSha);
+assert.equal(v2.toString("ascii",0,4),"RIFF");
+assert.equal(v2.toString("ascii",8,12),"WEBP");
+assert.equal(v2.toString("ascii",12,16),"VP8X");
+assert((v2[20]&0x10)!==0,"Missing transparency for tiriltunge v2");
+assert.deepEqual([1+v2.readUIntLE(24,3),1+v2.readUIntLE(27,3)],redraw.dimensions);
+console.log("Tiriltunge v2: new validated WebP active, old b06 image still rejected");
 console.log("Batch 07 transfer: " + present + "/2 exact WebP binaries; " + publishedCount + "/2 activated");
