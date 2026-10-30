@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "generator_version": "1.0",
-  "categoryId": "media",
+  "categoryId": "naeringsliv",
   "targetId": "grand_hotel",
   "profile": "narrow_3x7",
   "manifest": {
@@ -9,36 +9,36 @@
     "matches": 1,
     "selection_bytes": 1331,
     "selection_sha256": "84660ca731e81a653ca0a0620ae029a2f1647a775bc029b7df8913a827e9bde6",
-    "category_id": "media",
+    "category_id": "naeringsliv",
     "target_id": "grand_hotel"
   },
   "resolved_files": {
     "pensum": {
-      "path": "data/fag/media/mediapensum_canonical_v4_5.json",
+      "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
       "bytes": 33153,
       "sha256": "93a3ed6694ec989fb9173b50760506b041919e00fc9a5d77ed7a24892886aee2",
       "format": "json"
     },
     "emner": {
-      "path": "data/fag/media/emner_media_canonical_v4_5.json",
+      "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
       "bytes": 1098399,
       "sha256": "6c87c169118d28e9e62e6de6d7a007ac2eadc75e07927dc31137ce2cc1809a1b",
       "format": "json"
     },
     "fagkart": {
-      "path": "data/fag/media/fagkart_media_canonical_v4_5.json",
+      "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
       "bytes": 324362,
       "sha256": "6d1e72b3099e9e5363c41a8f0f0893aa45abf5f24f21fdc4387d1b555582069c",
       "format": "json"
     },
     "methods": {
-      "path": "data/fag/media/methods_media_canonical_v4_5.json",
+      "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
       "bytes": 251694,
       "sha256": "da7010167c615b2163921ff65755b3bf72ce04f95c48e129a9b6d6280d32783c",
       "format": "json"
     },
     "supersetQuizMal": {
-      "path": "data/fag/media/supersetQUIZMAL_media.json",
+      "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
       "bytes": 4569,
       "sha256": "e671013c9bef71ec04c6d2ebcd1ad2e45efd378d0f71125b0cdc0d0f118bcd4d",
       "format": "json"
@@ -67,12 +67,12 @@
   ],
   "source_files": {
     "brief": {
-      "path": "data/quiz/production_briefs/media/grand_hotel.json",
+      "path": "data/quiz/production_briefs/naeringsliv/grand_hotel.json",
       "bytes": 28161,
       "sha256": "5de2b6c80c1f9a8475f8297cd603ca294865b024355397133db59628aae83379"
     },
     "target": {
-      "path": "data/places/media/oslo/grand_hotel.json",
+      "path": "data/places/naeringsliv/oslo/grand_hotel.json",
       "bytes": 12185,
       "sha256": "e425f05fafd596b889d0c23a760d18ec2ede15f086b1362e28ea1ba6e685aa95"
     },
@@ -92,7 +92,7 @@
       }
     ]
   },
-  "planned_quiz_file": "data/quiz/media/grand_hotel_sets.json",
+  "planned_quiz_file": "data/quiz/naeringsliv/grand_hotel_sets.json",
   "source_registry": {
     "byleksikon": {
       "url": "https://oslobyleksikon.no/side/Grand_Hotel",
@@ -152,9 +152,19 @@
     },
     "candidate_emner": [
       {
-        "id": "em_media_hendelse_og_presse",
-        "title": "Hendelse og Presse",
+        "id": "em_naering_tjenesteyting_og_service",
+        "title": "Tjenesteyting og service",
         "score": 100
+      },
+      {
+        "id": "em_naering_handel_butikk_byrom",
+        "title": "Handel, butikk og byrom",
+        "score": 90
+      },
+      {
+        "id": "em_naering_omstilling_kriser_skift",
+        "title": "Omstilling, kriser og skift",
+        "score": 85
       }
     ],
     "candidate_topic_hooks": [
@@ -165,24 +175,20 @@
         "score": 10
       }
     ],
-    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+    "note": "Foreløpig redaksjonell næringslivsklassifisering. Rebuild fra canonical fagfiler kreves før merge."
   },
   "selected_curriculum": {
     "module_ids": [
-      "presse_redaksjoner_avishus"
+      "arbeid_produksjon_verdiskaping"
     ],
     "emne_ids": [
-      "em_media_hendelse_og_presse",
-      "em_by_historiske_lag_i_hverdagsrom",
-      "em_media_pop_ikonisk_persona"
+      "em_naering_handel_butikk_byrom",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_tjenesteyting_og_service"
     ],
-    "topic_hook_ids": [
-      "nyhetssted"
-    ],
-    "method_ids": [
-      "met_media_nyhetsstedsanalyse",
-      "met_media_hendelsesanalyse"
-    ],
+    "topic_hook_ids": [],
+    "method_ids": [],
     "thinker_ids": [],
     "works": []
   },
@@ -197,7 +203,7 @@
         "byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_hendelse_og_presse"
+      "emne_id": "em_naering_handel_butikk_byrom"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_02",
@@ -210,7 +216,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+      "emne_id": "em_naering_omstilling_kriser_skift"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_03",
@@ -223,7 +229,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_pop_ikonisk_persona"
+      "emne_id": "em_naering_arbeid_verdiskaping"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_04",
@@ -236,7 +242,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_hendelse_og_presse"
+      "emne_id": "em_naering_tjenesteyting_og_service"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_05",
@@ -249,7 +255,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_pop_ikonisk_persona"
+      "emne_id": "em_naering_handel_butikk_byrom"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_06",
@@ -262,7 +268,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_pop_ikonisk_persona"
+      "emne_id": "em_naering_tjenesteyting_og_service"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_07",
@@ -274,7 +280,7 @@
         "byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_pop_ikonisk_persona"
+      "emne_id": "em_naering_handel_butikk_byrom"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_08",
@@ -287,7 +293,7 @@
         "heritage"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+      "emne_id": "em_naering_omstilling_kriser_skift"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_09",
@@ -300,7 +306,7 @@
         "byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+      "emne_id": "em_naering_omstilling_kriser_skift"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_10",
@@ -313,7 +319,7 @@
         "heritage"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+      "emne_id": "em_naering_omstilling_kriser_skift"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_11",
@@ -326,7 +332,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+      "emne_id": "em_naering_tjenesteyting_og_service"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_12",
@@ -339,7 +345,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_pop_ikonisk_persona"
+      "emne_id": "em_naering_handel_butikk_byrom"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_13",
@@ -352,7 +358,7 @@
         "byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_hendelse_og_presse"
+      "emne_id": "em_naering_handel_butikk_byrom"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_14",
@@ -364,7 +370,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_pop_ikonisk_persona"
+      "emne_id": "em_naering_handel_butikk_byrom"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_15",
@@ -376,7 +382,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_hendelse_og_presse"
+      "emne_id": "em_naering_tjenesteyting_og_service"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_16",
@@ -388,7 +394,7 @@
         "byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_hendelse_og_presse"
+      "emne_id": "em_naering_tjenesteyting_og_service"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_17",
@@ -400,7 +406,7 @@
         "byleksikon"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_hendelse_og_presse"
+      "emne_id": "em_naering_tjenesteyting_og_service"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_18",
@@ -413,7 +419,7 @@
         "heritage"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_hendelse_og_presse"
+      "emne_id": "em_naering_handel_butikk_byrom"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_19",
@@ -426,7 +432,7 @@
         "heritage"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+      "emne_id": "em_naering_handel_butikk_byrom"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_20",
@@ -439,7 +445,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+      "emne_id": "em_naering_omstilling_kriser_skift"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_21",
@@ -452,7 +458,7 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_media_hendelse_og_presse"
+      "emne_id": "em_naering_tjenesteyting_og_service"
     }
   ],
   "story_units": [
