@@ -1,21 +1,13 @@
 name: Religion embroidered badge artwork QA
 on:
-  push:
-    branches: [design/religion-yellow-subbadges-20261029]
-    paths:
-      - bilder/merker/religion.svg
-      - 'bilder/merker/religion/familie/**'
-      - data/badges/religion.json
-      - data/badges/religion_underbadge_artwork.json
-      - js/fagverk-ia-v3-badge-progress.js
-      - .github/workflows/qa-religion-embroidered.yml
   pull_request:
     paths:
-      - bilder/merker/religion.svg
-      - 'bilder/merker/religion/familie/**'
+      - 'bilder/merker/religion/**'
+      - bilder/merker/religion.webp
       - data/badges/religion.json
       - data/badges/religion_underbadge_artwork.json
-      - js/fagverk-ia-v3-badge-progress.js
+      - tests/badge-artwork-coverage.test.mjs
+      - .github/workflows/qa-religion-embroidered.yml
 permissions:
   contents: read
 jobs:
@@ -29,43 +21,39 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate UI JavaScript and badge registry
+      - name: Validate badge registry and JS rendering
         run: |
           node --check js/fagverk-ia-v3-badge-progress.js
           node --test tests/badge-artwork-coverage.test.mjs
-      - name: Render and inspect Religion SVG family
+      - name: Verify nine actual sewn WebP images and render preview
         run: |
-          python -m pip install --quiet cairosvg pillow
+          python -m pip install --quiet pillow
           python - <<'PY'
-          import io,json,xml.etree.ElementTree as ET
-          from PIL import Image,ImageDraw,ImageFont
-          import cairosvg
+          import json
           from pathlib import Path
-          out=Path('out');out.mkdir(exist_ok=True)
-          data=json.loads(Path('data/badges/religion_underbadge_artwork.json').read_text())
-          reg=json.loads(Path('data/badges/religion.json').read_text())
-          assert reg['color'].lower()=='#e7b517'
-          assert data['categoryId']=='religion' and len(data['assets'])==8
-          assert set(x['id'] for x in data['assets'])==set(reg['subBadgeImages'])
-          assert all(x['image']==reg['subBadgeImages'][x['id']] for x in data['assets'])
-          images=[('Religion',reg['image'])]+[(x['label'],x['image']) for x in data['assets']]
-          sheet=Image.new('RGB',(960,1020),'#121722')
+          from PIL import Image, ImageDraw, ImageFont
+          badge=json.loads(Path('data/badges/religion.json').read_text())
+          art=json.loads(Path('data/badges/religion_underbadge_artwork.json').read_text())
+          assert badge['color']=='#E7B517' and len(art['assets'])==8
+          imgs=[('Religion',badge['image'])]+[(x['label'],x['image']) for x in art['assets']]
+          assert all(x['image']==badge['subBadgeImages'][x['id']] for x in art['assets'])
+          sheet=Image.new('RGB',(1050,1130),'#141c25')
           draw=ImageDraw.Draw(sheet)
-          font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',21)
-          for i,(name,path) in enumerate(images):
+          font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',19)
+          for i,(name,path) in enumerate(imgs):
               src=Path(path)
-              assert src.is_file(),path
-              tree=ET.parse(src)
-              root=tree.getroot()
-              assert root.attrib.get('viewBox')=='0 0 512 512',path
-              png=cairosvg.svg2png(url=str(src),output_width=285,output_height=285)
-              image=Image.open(io.BytesIO(png)).convert('RGBA')
-              x=12+(i%3)*318
-              y=12+(i//3)*340
-              sheet.paste(image,(x+16,y+10),image)
-              draw.text((x+18,y+301),name,font=font,fill='#f4e5bf')
-          sheet.save(out/'religion-badges-render-preview.png')
-          print(f'Rendered {len(images)} SVGs and verified family membership')
+              assert src.exists() and src.suffix=='.webp'
+              im=Image.open(src).convert('RGBA')
+              assert im.size==(640,640)
+              assert im.getpixel((0,0))[3]==0 and im.getpixel((320,320))[3]==255
+              thumb=im.resize((300,300),Image.Resampling.LANCZOS)
+              x=16+(i%3)*350
+              y=12+(i//3)*370
+              sheet.paste(thumb,(x+14,y+12),thumb)
+              draw.text((x+20,y+321),name,font=font,fill='#f5e8cf')
+          Path('out').mkdir(exist_ok=True)
+          sheet.save('out/religion-badges-render-preview.png')
+          print('Verified nine sewn textile images and rendered contact sheet')
           PY
       - uses: actions/upload-artifact@v4
         with:
