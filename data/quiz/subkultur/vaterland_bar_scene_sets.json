@@ -23,17 +23,76 @@
     "context_artifact": "data/quiz/production_context/subkultur/vaterland_bar_scene.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/subkultur/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "Correct 2016 to 2018",
-        "Retain category and existing subkultur production data",
-        "Avoid date-only questions and anonymous band biographical guesses"
-      ]
+        "2018 documented; older 2016 record corrected",
+        "One physical canonical venue and no duplicate Brugata 9",
+        "Subcultural identity from continued program, not restaurant branding"
+      ],
+      "knowledge_migration": "Generate Knowledge before merge."
     },
-    "knowledge_migration": "Generate Knowledge before merge."
+    "knowledge_migration": "Generate Knowledge before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/subkultur/subkulturpensum_canonical_v4_5.json",
+      "emner": "data/fag/subkultur/emner_subkultur_canonical_v4_5.json",
+      "fagkart": "data/fag/subkultur/fagkart_subkultur_canonical_v4_5.json",
+      "methods": "data/fag/subkultur/methods_subkultur_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/subkultur/supersetQUIZMAL_subkultur.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "subkulturteori_feltgrenser",
+      "fellesskap_scener_egenorganisering",
+      "steder_territorier_okkupering"
+    ],
+    "emne_ids": [
+      "em_sub_scene_fellesskap",
+      "em_sub_undergrunn_miljo",
+      "em_sub_klubbkultur_natt"
+    ],
+    "topic_hook_ids": [
+      "klubbkultur_natt",
+      "scene_fellesskap",
+      "undergrunn_miljo"
+    ],
+    "method_ids": [
+      "met_sub_klubbanalyse",
+      "met_sub_trygghets_og_eksklusjonsanalyse",
+      "met_sub_sceneanalyse",
+      "met_sub_nettverksanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Distinct building history, concert programming and study of small-scene culture."
+    },
+    "held_back_candidates": [
+      "Opening 2016",
+      "Treating venue as only restaurant",
+      "Inventing exact showtimes or band lineups",
+      "Assuming economic precarity without primary evidence"
+    ]
   },
   "sets": [
     {
