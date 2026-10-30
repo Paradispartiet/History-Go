@@ -1,0 +1,36 @@
+name: Vitenskap badge focused QA
+on:
+  push:
+    branches: [design/vitenskap-brodert-lilla-20261030]
+    paths:
+      - '.github/workflows/qa-vitenskap-final.yml'
+      - 'tests/badge-artwork-coverage.test.mjs'
+      - 'data/badges/vitenskap.json'
+permissions:
+  contents: read
+jobs:
+  validate-science-artwork:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check all badge artwork contracts
+        run: node --test tests/badge-artwork-coverage.test.mjs
+      - name: Decode all real science WebP images
+        run: |
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from PIL import Image
+          b=json.loads(Path('data/badges/vitenskap.json').read_text())
+          assets=[b['image']]+list(b['subBadgeImages'].values())
+          assert len(assets)==8
+          for src in assets:
+              im=Image.open(src)
+              im.load()
+              assert im.size==(720,720),src
+              print('OK',src)
+          PY
