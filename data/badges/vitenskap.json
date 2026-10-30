@@ -4,23 +4,182 @@
   "icon": "🔬",
   "color": "#6A5AE0",
   "secondaryColor": "#332B51",
-  "image": "bilder/merker/vitenskap.PNG",
+  "image": "bilder/merker/vitenskap/brodert/vitenskap.webp",
   "description": "For dem som undersøker, forklarer og bygger verden gjennom observasjon, måling, testing, beregning, ingeniørkunst og etterprøvbar kunnskap – fra naturvitenskap og medisin til teknologi, IT, programvare og digital infrastruktur.",
   "career_life_evidence": "data/Civication/vitenskapCareerLifeEvidence.json",
   "tiers": [
-    {"label":"Studentassistent","threshold":5,"career_offer":{"title":"Studentassistent","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":1,"role_scope":"vitenskap_assistent_og_laboratorium"}},
-    {"label":"Vitenskapelig assistent","threshold":10,"career_offer":{"title":"Vitenskapelig assistent","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":1,"role_scope":"vitenskap_assistent_og_laboratorium"}},
-    {"label":"Forskningsassistent","threshold":15,"career_offer":{"title":"Forskningsassistent","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":1,"role_scope":"vitenskap_assistent_og_laboratorium"}},
-    {"label":"Laboratorieassistent","threshold":25,"career_offer":{"title":"Laboratorieassistent","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":1,"role_scope":"vitenskap_assistent_og_laboratorium"}},
-    {"label":"Stipendiat (PhD)","threshold":40,"career_offer":{"title":"Stipendiat (PhD)","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":1,"role_scope":"vitenskap_doktorlop_og_postdoktor"}},
-    {"label":"Postdoktor","threshold":60,"career_offer":{"title":"Postdoktor","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":2,"role_scope":"vitenskap_doktorlop_og_postdoktor"}},
-    {"label":"Forsker","threshold":85,"career_offer":{"title":"Forsker","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":2,"role_scope":"vitenskap_forskning"}},
-    {"label":"Seniorforsker","threshold":115,"career_offer":{"title":"Seniorforsker","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":2,"role_scope":"vitenskap_forskning"}},
-    {"label":"Førsteamanuensis","threshold":150,"career_offer":{"title":"Førsteamanuensis","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":2,"role_scope":"vitenskap_undervisning_og_forskning"}},
-    {"label":"Professor","threshold":190,"career_offer":{"title":"Professor","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":3,"role_scope":"vitenskap_undervisning_og_forskning"}},
-    {"label":"Forskningsleder","threshold":240,"career_offer":{"title":"Forskningsleder","policy":"appointment_required","qualification_ids":["academic_qualification_and_employment","employer_appointment"],"salary_tier":3,"role_scope":"vitenskap_forskningsledelse"}},
-    {"label":"Instituttleder","threshold":300,"career_offer":{"title":"Instituttleder","policy":"appointment_required","qualification_ids":["academic_qualification_and_employment","employer_appointment"],"salary_tier":3,"role_scope":"vitenskap_institusjonsledelse"}},
-    {"label":"Dekan","threshold":380,"career_offer":{"title":"Dekan","policy":"appointment_required","qualification_ids":["academic_qualification_and_employment","employer_appointment"],"salary_tier":3,"role_scope":"vitenskap_institusjonsledelse"}}
+    {
+      "label": "Studentassistent",
+      "threshold": 5,
+      "career_offer": {
+        "title": "Studentassistent",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ],
+        "salary_tier": 1,
+        "role_scope": "vitenskap_assistent_og_laboratorium"
+      }
+    },
+    {
+      "label": "Vitenskapelig assistent",
+      "threshold": 10,
+      "career_offer": {
+        "title": "Vitenskapelig assistent",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ],
+        "salary_tier": 1,
+        "role_scope": "vitenskap_assistent_og_laboratorium"
+      }
+    },
+    {
+      "label": "Forskningsassistent",
+      "threshold": 15,
+      "career_offer": {
+        "title": "Forskningsassistent",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ],
+        "salary_tier": 1,
+        "role_scope": "vitenskap_assistent_og_laboratorium"
+      }
+    },
+    {
+      "label": "Laboratorieassistent",
+      "threshold": 25,
+      "career_offer": {
+        "title": "Laboratorieassistent",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ],
+        "salary_tier": 1,
+        "role_scope": "vitenskap_assistent_og_laboratorium"
+      }
+    },
+    {
+      "label": "Stipendiat (PhD)",
+      "threshold": 40,
+      "career_offer": {
+        "title": "Stipendiat (PhD)",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ],
+        "salary_tier": 1,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor"
+      }
+    },
+    {
+      "label": "Postdoktor",
+      "threshold": 60,
+      "career_offer": {
+        "title": "Postdoktor",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ],
+        "salary_tier": 2,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor"
+      }
+    },
+    {
+      "label": "Forsker",
+      "threshold": 85,
+      "career_offer": {
+        "title": "Forsker",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ],
+        "salary_tier": 2,
+        "role_scope": "vitenskap_forskning"
+      }
+    },
+    {
+      "label": "Seniorforsker",
+      "threshold": 115,
+      "career_offer": {
+        "title": "Seniorforsker",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ],
+        "salary_tier": 2,
+        "role_scope": "vitenskap_forskning"
+      }
+    },
+    {
+      "label": "Førsteamanuensis",
+      "threshold": 150,
+      "career_offer": {
+        "title": "Førsteamanuensis",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ],
+        "salary_tier": 2,
+        "role_scope": "vitenskap_undervisning_og_forskning"
+      }
+    },
+    {
+      "label": "Professor",
+      "threshold": 190,
+      "career_offer": {
+        "title": "Professor",
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ],
+        "salary_tier": 3,
+        "role_scope": "vitenskap_undervisning_og_forskning"
+      }
+    },
+    {
+      "label": "Forskningsleder",
+      "threshold": 240,
+      "career_offer": {
+        "title": "Forskningsleder",
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment",
+          "employer_appointment"
+        ],
+        "salary_tier": 3,
+        "role_scope": "vitenskap_forskningsledelse"
+      }
+    },
+    {
+      "label": "Instituttleder",
+      "threshold": 300,
+      "career_offer": {
+        "title": "Instituttleder",
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment",
+          "employer_appointment"
+        ],
+        "salary_tier": 3,
+        "role_scope": "vitenskap_institusjonsledelse"
+      }
+    },
+    {
+      "label": "Dekan",
+      "threshold": 380,
+      "career_offer": {
+        "title": "Dekan",
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment",
+          "employer_appointment"
+        ],
+        "salary_tier": 3,
+        "role_scope": "vitenskap_institusjonsledelse"
+      }
+    }
   ],
   "sub": [
     "naturvitenskap",
@@ -39,5 +198,15 @@
     "klima_og_miljovitenskap",
     "astronomi_og_fysikk",
     "kjemi_og_materialvitenskap"
-  ]
+  ],
+  "subBadgeImages": {
+    "naturvitenskap": "bilder/merker/vitenskap/brodert/naturvitenskap.webp",
+    "teknologi": "bilder/merker/vitenskap/brodert/teknologi.webp",
+    "matematikk": "bilder/merker/vitenskap/brodert/matematikk.webp",
+    "informasjonsteknologi": "bilder/merker/vitenskap/brodert/informasjonsteknologi.webp",
+    "forskning_og_metode": "bilder/merker/vitenskap/brodert/forskning_og_metode.webp",
+    "astronomi_og_fysikk": "bilder/merker/vitenskap/brodert/astronomi_og_fysikk.webp",
+    "kjemi_og_materialvitenskap": "bilder/merker/vitenskap/brodert/kjemi_og_materialvitenskap.webp"
+  },
+  "subBadgeArtworkManifest": "data/badges/vitenskap_underbadge_artwork.json"
 }
