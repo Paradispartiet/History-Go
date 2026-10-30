@@ -68,6 +68,13 @@ test("Grand Hotel quiz and QuizCards use the same Næringsliv ownership", () => 
   assert.equal(quiz.production_context.context_artifact, paths.context);
   assert.equal(questions.length, 21);
   assert.equal(new Set(questions.map((q) => q.id)).size, 21);
+  assert.ok(questions.every((q) => /^media_grand_hotel_set_[1-3]_q[1-7]$/.test(q.quiz_id)),
+    "eksisterende quiz_id beholdes for lagret framdrift og Knowledge");
+  assert.ok(questions.every((q) => /^ku_media_/.test(q.primary_knowledge_unit_id)),
+    "eksisterende Knowledge-unit-ID-er beholdes ved kategoriflyttingen");
+  assert.ok(questions.every((q) => q.knowledge_unit_ids.includes(q.primary_knowledge_unit_id)),
+    "primær kunnskapsenhet må fortsatt være koblet");
+
 
   for (const question of questions) {
     assert.equal(question.categoryId, "naeringsliv", question.id);
