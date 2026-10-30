@@ -17,12 +17,13 @@ jobs:
           python-version: '3.11'
       - name: Render all eight SVG badges to transparent WebP
         run: |
-          python -m pip install --quiet cairosvg pillow
+          python -m pip install --quiet cairosvg pillow numpy
           python - <<'PY'
           from pathlib import Path
           import json,io,xml.etree.ElementTree as ET
           from PIL import Image,ImageDraw,ImageFont
           import cairosvg
+          import numpy as np
           manifest=json.loads(Path('data/badges/vitenskap_underbadge_artwork.json').read_text())
           badge=json.loads(Path('data/badges/vitenskap.json').read_text())
           images=[{'id':'vitenskap','svg':'bilder/merker/vitenskap/brodert/vitenskap.svg','image':badge['image'],'label':'Vitenskap'}]+manifest['assets']
@@ -37,6 +38,22 @@ jobs:
               data=cairosvg.svg2png(url=str(src),output_width=720,output_height=720)
               im=Image.open(io.BytesIO(data)).convert('RGBA')
               assert im.getpixel((0,0))[3]==0
+              # Stitch-grain: directional thread shading only on colored motifs and the border.
+              # Linen and transparency retain their original appearance.
+              rgba=np.asarray(im,dtype=np.float32)
+              rgb=rgba[:,:,:3]/255.0
+              mx=rgb.max(axis=2)
+              mn=rgb.min(axis=2)
+              sat=(mx-mn)/(mx+1e-6)
+              mask=np.clip((sat-0.20)*8.0,0,1)*np.clip((mx-0.13)*4.0,0,1)*(rgba[:,:,3]/255.0)
+              yy,xx=np.mgrid[0:rgba.shape[0],0:rgba.shape[1]]
+              rng=np.random.default_rng(1088)
+              ridges=np.sin(2*np.pi*(xx*0.80+yy*0.55)/8.2)
+              cross=np.sin(2*np.pi*(xx*0.55-yy*0.75)/5.3)
+              noise=rng.normal(0,0.014,mx.shape)
+              multiplier=1.0+mask*(0.09*ridges+0.030*cross+noise)
+              rgba[:,:,:3]=np.clip(rgba[:,:,:3]*multiplier[:,:,None],0,255)
+              im=Image.fromarray(rgba.astype('uint8'),'RGBA')
               out=Path(asset['image'])
               out.parent.mkdir(parents=True,exist_ok=True)
               im.save(out,'WEBP',quality=94,method=6)
