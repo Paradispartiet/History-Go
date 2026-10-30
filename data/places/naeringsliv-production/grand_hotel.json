@@ -1,0 +1,318 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "grand_hotel",
+  "placeFile": "data/places/naeringsliv/oslo/grand_hotel.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Grand Hotel i Karl Johans gate er et dokumentert hotell- og serveringssted med egen hotelldrift og Grand Café som en tilknyttet, historisk møteplass.",
+    "anchorType": "mixed_economic_site",
+    "placeObjectDistinction": "Analysen gjelder hotell- og kafévirksomheten ved Grand Hotel som sted, ikke hele Karl Johans gate, Nobels fredsprisutdeling eller alle kulturelle miljøer som har benyttet kaféen.",
+    "temporalScope": {
+      "start": "1874",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "1874 er dokumentert åpningstidspunkt; senere ombygginger og bruk viser ulike faser fram til kildenes kontroll i 2026."
+    },
+    "sourceIds": [
+      "source_grand_byleksikon",
+      "source_grand_hotel",
+      "source_grand_cafe"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_tjenesteyting_og_service",
+      "siteSpecificRationale": "Hotellets overnatting og Grand Cafés servering viser to ulike tjenestetilbud på samme historiske adresse; sosialt og kulturelt møtested er en sekundær funksjon.",
+      "caseIds": [
+        "case_grand_hotel_hotel_and_cafe_services"
+      ]
+    },
+    {
+      "emneId": "em_naering_handel_butikk_byrom",
+      "siteSpecificRationale": "Lokaliseringen mot Karl Johans gate knytter publikumsrettede tjenester til sentrums byrom og historisk ferdsel, uten antakelser om konkrete kundetall.",
+      "caseIds": [
+        "case_grand_hotel_hotel_and_cafe_services"
+      ]
+    },
+    {
+      "emneId": "em_naering_omstilling_kriser_skift",
+      "siteSpecificRationale": "Hotellet åpnet i Heiberggården i 1874; hovedfasaden ble senere preget av Ole Sverres ombygging. Vi dokumenterer bygningsskift, ikke udokumentert økonomisk vekst.",
+      "caseIds": [
+        "case_grand_hotel_hotel_and_cafe_services"
+      ]
+    },
+    {
+      "emneId": "em_naering_arbeid_verdiskaping",
+      "siteSpecificRationale": "Julius Fritzners hotellledelse og serverings- og overnattingsfunksjonene gjør arbeid og tjenesteproduksjon konkret, men kildene tallfester ikke lønn, ansatte eller verdiskaping.",
+      "caseIds": [
+        "case_grand_hotel_hotel_and_cafe_services"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_grand_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Grand_Hotel",
+      "sourceLocation": "Grand Hotel – hovedomtale om åpningen, Grand Café, ombygging og offentlige markeringer",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Redaksjonell byhistorisk fremstilling som allerede er kontrollert som kilde i Grand Hotels v4.2-pakke.",
+      "limitations": "Oppslaget dokumenterer hendelser og historisk funksjon, ikke regnskap, belegg, lønnsforhold eller målbar økonomisk effekt."
+    },
+    {
+      "id": "source_grand_hotel",
+      "url": "https://grand.no/om-grand",
+      "sourceLocation": "Grand Hotel – Om Grand / hotellets egen historiefremstilling",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-10-27",
+      "temporalCoverage": "current",
+      "provenance": "Hotellets egen nettside om virksomhetens historie og identitet, brukt i den eksisterende kildegjennomgangen.",
+      "limitations": "Egenpresentasjonen er en parts-/virksomhetskilde og gir ikke uavhengig dokumentasjon på økonomiske resultater eller arbeidsvilkår."
+    },
+    {
+      "id": "source_grand_cafe",
+      "url": "https://www.grandcafeoslo.no/historien",
+      "sourceLocation": "Grand Café – historien",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-10-27",
+      "temporalCoverage": "historical",
+      "provenance": "Serveringsstedets egen historie som stedsspesifikk kilde for kaféens funksjon og kulturhistoriske forbindelser.",
+      "limitations": "Historieformidling fra virksomheten kan ikke brukes til å beregne kundetrafikk, fortjeneste eller kausale virkninger av kunstnermiljøet."
+    },
+    {
+      "id": "source_grand_kulturminne",
+      "url": "https://www.oslo.kommune.no/get-file/1124255/b46ce889cb18a785bc396d2b8b5eeee23cc32eca796fe328e956d26dac450dc7",
+      "sourceLocation": "Kommunal dokumentasjon av Grand Hotels bevaringsverdier og ombyggingen 1911–1913",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-27",
+      "temporalCoverage": "historical",
+      "provenance": "Kommunal kulturmiljødokumentasjon, allerede knyttet til v4.2-påstanden om fasade og tårn.",
+      "limitations": "Bygningshistorisk dokumentasjon beskriver ikke hotelløkonomi eller omsetning og gir ingen isolert effekt av ombyggingen."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_grand_hotel_hotel_and_cafe_services",
+      "claim": "Grand Hotels overnattings- og serveringstjenester var stedbundne næringsaktiviteter, mens Grand Café samtidig fikk en kulturhistorisk møteplassrolle som ikke i seg selv dokumenterer økonomisk effekt.",
+      "unitOfAnalysis": {
+        "unit": "Grand Hotel og Grand Café ved Karl Johans gate 31",
+        "boundary": "Hotellbygningen med tilknyttet kafé og dokumenterte historiske faser; ikke andre hoteller, alle kulturpersoner i Kristiania eller hele fredsprisfeiringen.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1874",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "1874 er dokumentert åpningstidspunkt; senere ombygginger og bruk viser ulike faser fram til kildenes kontroll i 2026."
+        },
+        "sourceIds": [
+          "source_grand_byleksikon",
+          "source_grand_hotel",
+          "source_grand_cafe"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Hotelloperatøren Julius Fritzner og senere hotellvirksomhet",
+          "roleOrInterest": "Drev overnattingsvirksomheten og organiserte tjenester ved hotellets åpning.",
+          "economicPosition": "Tjenestetilbyder ved hotellet; kildene gir ikke et fullstendig oversyn over eierskap og drift gjennom alle senere perioder.",
+          "sourceIds": [
+            "source_grand_byleksikon",
+            "source_grand_hotel"
+          ]
+        },
+        {
+          "name": "Grand Café som serveringssted og de besøkende",
+          "roleOrInterest": "Tilbød servering og fungerte som møtested for gjester, blant dem kunstnere og forfattere.",
+          "economicPosition": "Kommersiell serveringsvirksomhet og brukere av tjenestene, med kulturhistorisk rolle som ikke er identisk med hotelldriften.",
+          "sourceIds": [
+            "source_grand_byleksikon",
+            "source_grand_cafe"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Hotellets bygning, lokaler og arbeidsinnsats la til rette for overnattings- og serveringstjenester; mengde og priser er ikke dokumentert.",
+            "sourceIds": [
+              "source_grand_byleksikon",
+              "source_grand_hotel"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Virksomheten tilbød hotellopphold og tilknyttet servering, mens kaféen også fungerte som et historisk møtested.",
+          "sourceIds": [
+            "source_grand_byleksikon",
+            "source_grand_hotel",
+            "source_grand_cafe"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Dokumenterte tjenester er overnatting og servering. Et offentlig kulturmiljø oppstod rundt kaféen, men kan ikke regnskapsføres som målt næringsoutput.",
+            "sourceIds": [
+              "source_grand_byleksikon",
+              "source_grand_cafe"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer næringsfunksjoner og historisk bruk, men gir ingen konsistent måling av økonomisk verdiskaping, omsetning eller sysselsetting.",
+          "sourceIds": [
+            "source_grand_byleksikon",
+            "source_grand_hotel"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_byhistorisk_naeringsanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Åpningen i 1874, Grand Cafés dokumenterte serveringsfunksjon og ombyggingen i 1911–1913 brukes som historiske stedsspor.",
+        "unit": "historiske funksjoner og bygningsfaser",
+        "period": "1874–2026",
+        "comparability": "Åpning, servering og bygningsendring kan beskrives i en tidslinje, men er ikke sammenlignbare økonomiske måltall.",
+        "dataLimitations": "Ingen sammenhengende tidsserie for rombelegg, arbeidstimer, priser, lønn, omsetning eller kapitalavkastning i gjennomgått materiale.",
+        "sourceIds": [
+          "source_grand_byleksikon",
+          "source_grand_hotel",
+          "source_grand_kulturminne"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Julius Fritzner er dokumentert som hotelloperatør ved åpningen. Kildene viser ikke hele eierskaps- og kontraktshistorien for hotell og kafé.",
+        "laborPosition": "Hotell- og serveringsarbeid er nødvendige tjenestefunksjoner, men tilgjengelige kilder dokumenterer ikke arbeidsvilkår, lønn eller forhandlingsmakt over tid.",
+        "beneficiaries": [
+          "Gjester kunne benytte hotell- og kafétjenester.",
+          "Virksomhetens operatører kunne tilby kommersielle tjenester; ingen dokumentert tallverdi hevdes."
+        ],
+        "costRiskBearers": [
+          "Kommersiell hotell- og serveringsdrift innebærer driftsrisiko, men stedsspesifikke kostnader og tap kan ikke beregnes fra kildene."
+        ],
+        "sourceIds": [
+          "source_grand_byleksikon",
+          "source_grand_hotel",
+          "source_grand_cafe"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Endringer i kundegrunnlag, bygningsvedlikehold og tjenestebehov er relevante risikokategorier for et historisk hotell, men kildene tallfester ikke risiko eller tap.",
+          "sourceIds": [
+            "source_grand_hotel",
+            "source_grand_kulturminne"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Det finnes ikke kildebelagte stedsspesifikke målinger av sysselsettingsspillover, støy, trafikk eller andre eksterne virkninger som kan tilskrives hotellet."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Oslo byleksikon dokumenterer stedshistorien, hotellet og kaféen gir virksomhetens egne framstillinger, og kommunens dokumentasjon belyser bygningslag.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Kildene viser samtidighet mellom hotell-, kafé- og kulturhistorie, men isolerer ikke at disse forholdene forårsaket økonomisk vekst eller endret byen.",
+        "alternativeExplanations": [
+          "Byutvikling, reisevirksomhet, etterspørsel, konkurranse og kulturelle nettverk kan ha påvirket stedets rolle; de er ikke kvantitativt sammenlignet her."
+        ],
+        "uncertainty": "Det er ikke grunnlag for å tilskrive konkrete sysselsettingstall eller inntekter til kulturpersoners besøk eller til senere fredsprisritualer.",
+        "sourceIds": [
+          "source_grand_byleksikon",
+          "source_grand_hotel",
+          "source_grand_kulturminne"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "active",
+    "statement": "Grand Hotel presenteres fortsatt som hotellvirksomhet; den historiske Grand Café-funksjonen og dagens bygningslag må skilles fra 1874-utgangspunktet.",
+    "originalEconomicRoleRelationship": "Overnattings- og serveringstjenester viderefører stedets næringspreg, men det er ikke dokumentasjon for at alle virksomhetsforhold og bygningsdeler er uendret siden åpningen.",
+    "checkedAt": "2026-10-27",
+    "sourceIds": [
+      "source_grand_hotel",
+      "source_grand_byleksikon"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "grand_hotel",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/grand_hotel.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/grand_hotel.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Denne PR-en flytter og dokumenterer Grand Hotels eksisterende sted og quiz; den produserer ingen nye selvstendige kronologi- eller storyfiler."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity",
+        "data/places/naeringsliv/oslo/grand_hotel.json"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].actors",
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality",
+        "economicCases[0].riskAndExternalities"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/naeringsliv/grand_hotel_sets.json",
+        "data/quiz/production_briefs/naeringsliv/grand_hotel.json"
+      ]
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ingen egne story- eller kronologifiler endres i Grand Hotel-reklassifiseringen."
+    }
+  },
+  "review": {
+    "reviewer": "History GO Grand Hotel – dokumentert kildegjennomgang",
+    "reviewedAt": "2026-10-27",
+    "notes": "Avgrenset stedlig næringslivsanalyse basert på Grand Hotels eksisterende kilde- og redaksjonskontroll, 14 verifiserte v4.2-påstander, dokumentert hotell-, kafé- og bygningshistorie. Ingen påstand om økonomisk kausalitet, målte inntekter eller uavhengig nettlesergodkjenning."
+  }
+}
