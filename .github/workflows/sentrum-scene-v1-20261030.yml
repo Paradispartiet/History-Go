@@ -43,5 +43,7 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Sync Sentrum Scene canonical Knowledge, Fagverk and Place-open"
             git restore .
+            git fetch origin content/oslo-sentrum-scene-v1-20261030
+            git rebase origin/content/oslo-sentrum-scene-v1-20261030
             git push origin HEAD:content/oslo-sentrum-scene-v1-20261030
           fi
