@@ -326,6 +326,9 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
       const artifact = await readJson(root, paths.context_artifact);
       const rebuiltArtifact = await buildQuizProductionContext({ root, categoryId, targetId });
       if (JSON.stringify(artifact) !== JSON.stringify(rebuiltArtifact)) {
+        if (["van_etten","villa_furulund","vestre_gravlund","vikingtidsmuseet","vigelandmuseet","villa_grande","vega_scene","vaterland_bar_scene"].includes(targetId)) {
+          console.log("TEMP_SCOPED_REBUILD_" + targetId + "=" + JSON.stringify(rebuiltArtifact));
+        }
         addFailure(failures, paths.context_artifact, "kontekstarterfakt avviker fra deterministisk rebuild");
       }
       if (artifact.categoryId !== categoryId || artifact.targetId !== targetId) {
