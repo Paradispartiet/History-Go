@@ -16,7 +16,7 @@ test('all 19 canonical categories have actual badge images in the registry', () 
     const badge = read('data/badges/' + id + '.json');
     assert.equal(badge.id, id);
     assert.ok(badge.image, id + ' lacks image');
-    assert.match(badge.image, /^bilder\/merker\/[a-zA-Z0-9_.-]+$/);
+    assert.match(badge.image, /^bilder\/merker\/(?:[a-zA-Z0-9_.-]+\/)*[a-zA-Z0-9_.-]+$/);
     assert.ok(existsSync(resolve(root, badge.image)), id + ' missing image file: ' + badge.image);
   }
 });
