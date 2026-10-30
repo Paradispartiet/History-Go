@@ -21,6 +21,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_tiriltunge: Object.freeze({
+      scientificName: "Lotus corniculatus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b07/02_tiriltunge_v2.webp",
+      gitBlobSha: "7000ad3263a04817f297896e8206c2b959de94fa",
+      reviewedAt: "2026-10-30",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
+    }),
     emne_flora_hvitklover: Object.freeze({
       scientificName: "Trifolium repens",
       src: "bilder/natur/flora/illustrasjonskandidater/b07/03_hvitklover.webp",
