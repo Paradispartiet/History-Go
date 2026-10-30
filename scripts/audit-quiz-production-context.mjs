@@ -326,6 +326,18 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
       const artifact = await readJson(root, paths.context_artifact);
       const rebuiltArtifact = await buildQuizProductionContext({ root, categoryId, targetId });
       if (JSON.stringify(artifact) !== JSON.stringify(rebuiltArtifact)) {
+        const targets = new Set(["villa_furulund","vestre_gravlund","vikingtidsmuseet","vigelandmuseet","villa_grande","vega_scene","vaterland_bar_scene"]);
+        if (targets.has(targetId)) {
+          const differences = [];
+          const diff = (a,b,p) => {
+            if (JSON.stringify(a)===JSON.stringify(b)) return;
+            if (a && b && typeof a==="object" && typeof b==="object" && !Array.isArray(a) && !Array.isArray(b)) {
+              for (const k of new Set([...Object.keys(a),...Object.keys(b)])) diff(a[k],b[k],p?p+"."+k:k);
+            } else differences.push({path:p,current:JSON.stringify(a)?.slice(0,100),expected:JSON.stringify(b)?.slice(0,100)});
+          };
+          diff(artifact,rebuiltArtifact,"");
+          console.log("TEMP_REBUILD_PARITY",targetId,JSON.stringify(differences.slice(0,20)));
+        }
         addFailure(failures, paths.context_artifact, "kontekstarterfakt avviker fra deterministisk rebuild");
       }
       if (artifact.categoryId !== categoryId || artifact.targetId !== targetId) {
