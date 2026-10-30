@@ -93,7 +93,7 @@ assert.equal(photos.get(redraw.catalogId)?.scientificName,redraw.scientificName)
 const v2=fs.readFileSync(new URL(redraw.suggestedPath,base));
 assert.equal(v2.length,redraw.sizeBytes);
 assert.equal(crypto.createHash("sha256").update(v2).digest("hex"),redraw.sha256);
-assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+v2.length+"\\0"),v2])).digest("hex"),redraw.gitBlobSha);
+assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+v2.length),Buffer.from([0]),v2])).digest("hex"),redraw.gitBlobSha);
 assert.equal(v2.toString("ascii",0,4),"RIFF");
 assert.equal(v2.toString("ascii",8,12),"WEBP");
 assert.equal(v2.toString("ascii",12,16),"VP8X");
