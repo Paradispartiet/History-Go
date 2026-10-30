@@ -1,0 +1,288 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "grini_fangeleir",
+  "category": "historie",
+  "status": "preflight",
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "grini_fangeleir",
+    "category": "historie",
+    "recorded_at": "2026-10-30T14:52:37.948Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "eacaec225d5a1c61e43ed6cbe9754bc007ecff3818dfd630940dd4f4870ba7f5"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "fbd5e39905942e116c1fef9e375253c54f93d292b82bac03379d011f38fe93c6"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/historie.json",
+        "sha256": "f33595ccbd1bf21e2cb5048a855d1077e29be8b2cde95decd2ff6ccbed010b9c"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "historical_events"
+      ],
+      "category_expression": "historical_events",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  },
+  "active_checkpoint": "70 spørsmål kildekontrollert av Codex (KI), integrert i arbeidsgrenen med fullt fagmanifest/kontekst og faktisk Knowledge-regenerering. 3 eldre enheter bevart. Eksisterende QuizCard bruker ti spørsmål fra fullquiz. Ikke publisert eller vFerdig.",
+  "production_profile": "major",
+  "profile_status": "provisional",
+  "blocked": [
+    "PlaceCard frontImage og bildeklare samlinger med rettigheter og faktisk appvisning gjenstår",
+    "Curated Fagverk, samlet leksikoneierskap og Story-review gjenstår",
+    "Historie-sluttgate, relevante popupfaner og mobil-/desktop-QA gjenstår",
+    "Katalogens eksisterende quiz-/Fagverk-/beskrivelsesfeil gir fortsatt røde globale porter; exact-head CI må kontrolleres",
+    "Ingen uavhengig menneskelig fagredaktør har signert; kildekontrollen er eksplisitt KI-utført"
+  ],
+  "coordinateDecision": "ALLEREDE FERDIG — preserve historical anchor, visitor anchor and 360m gameplay radius",
+  "sourceReview": [
+    "https://snl.no/Grini_-_tysk_fangeleir",
+    "https://mia.no/grinimuseet/om-grini-fangeleir",
+    "https://www.nasjonalarkivet.no/nordmenn-i-fangenskap-under-andre-verdenskrig/",
+    "https://mia.no/grinimuseet/en/grini-museum"
+  ],
+  "notes": "Dette workcardets checkpoint_h og active_checkpoint beskriver nåtilstanden. Eldre bokstav-checkpoints og completion-gate-rapporten beholdes som historikk. Helhetsstatus fortsatt blocked, ikke vFerdig.",
+  "new_subsystems": [
+    "source-backed full narrative with 31 claims",
+    "Historie case report (blocked pending quiz and chronology closeout)",
+    "language lexicon entries",
+    "source-backed 6-anchor leksikon chronology",
+    "in-production full Fagverk",
+    "Grini quiz source brief with 70 distinct source-backed claims and ten justified major learning sets",
+    "10x7 editorial quiz draft with explicit claim->question links and balanced stored answer positions; NOT ACTIVE"
+  ],
+  "quiz_stage": {
+    "status": "INTEGRATED_BRANCH_CANDIDATE_NOT_PUBLISHED",
+    "source_brief": "data/quiz/production_briefs/historie/grini_fangeleir.json",
+    "source_brief_claims": 70,
+    "full_editorial_draft": "reports/place-production/grini-fangeleir-quiz-full-draft-2026-10-28.json",
+    "draft_sets": 10,
+    "draft_questions": 70,
+    "answer_index_distribution": {
+      "0": 24,
+      "1": 24,
+      "2": 22
+    },
+    "active_quiz": "data/quiz/historie/grini_fangeleir_sets.json",
+    "active_sets_before_migration": 1,
+    "active_questions_before_migration": 3,
+    "source_pdf_limit": "NTNU article is marked partial/unread due 403; not used as a reviewed claim source",
+    "missing_gates": [
+      "independent editor signs every one of 70 historical claims, explanations and distractor sets",
+      "review historical source differences, crime/trauma ethical framing, accessible visitor geometry",
+      "commit canonical quiz/fagmanifest/context/Knowledge registries in controlled integration and rerun full canonical checks",
+      "actual QuizCard interaction in browser and mobile; current runtime test validates shuffler only",
+      "resolve whole-repository Data checks failure from other production targets and remaining governance gates"
+    ],
+    "editorial_audit": "reports/place-production/grini-fangeleir-quiz-editorial-audit-2026-10-28.md",
+    "editorial_audit_status": "STAGED_PRECHECK_ONLY_EXPERT_REVIEW_PENDING",
+    "read_through_questions": 70,
+    "structural_crosscheck": {
+      "result": "CHECKED_NOT_CANONICAL_CI",
+      "question_count": 70,
+      "claim_links": 70,
+      "answer_slots": {
+        "0": 24,
+        "1": 24,
+        "2": 22
+      },
+      "claim_basis_and_url_links": "match",
+      "source_review_metadata": "match",
+      "canonical_claim_family_and_phase": "aligned",
+      "old_quiz_id_collisions": 0,
+      "canonical_tests": "PENDING"
+    },
+    "editorial_open_findings": [
+      "Independent historical fact/source and all distractor review across 70 questions still pending",
+      "Method/theory semantics require expert review despite structurally balanced 41/17/12 families",
+      "Old three Knowledge units need explicit preservation or migration during global canonical regeneration",
+      "Canonical 10x7 + context + fagmanifest must be committed and tested as one activation gate",
+      "Full quiz audits, runtime shuffle, QuizCard and mobile/desktop QA not passed"
+    ],
+    "source_date_note": "Q69 revised using NOU 1998:12 (12 June 1941 opening) versus SNL/MiA (14 June establishment). Source difference documented, not presumed resolved.",
+    "activation_decision": "70-question package integrated on PR branch; final production/UI gates remain open",
+    "canonical_staging": {
+      "status": "PREVIEW_ONLY_NOT_ACTIVE",
+      "script": "scripts/prepare-grini-quiz-staging.mjs",
+      "regression_test": "tests/grini-quiz-staging.test.mjs",
+      "test_command": "npm run test:grini-quiz-staging",
+      "canonical_suite_command": "npm run test:quiz-production",
+      "canonical_set_phases": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "claim_families": {
+        "fact": 41,
+        "context": 17,
+        "concept_theory": 12
+      },
+      "normalized_claim_families": 26,
+      "corrected_set_phases": 7,
+      "corrected_claim_phases": 49,
+      "active_id_collisions": 0,
+      "preview_can_write_active_quiz": false,
+      "canonical_tests": "PENDING_GITHUB_CHECKS_NOT_ATTESTED",
+      "context_artifact": "BUILT_AND_INTEGRATED",
+      "knowledge_migration": "PASS_ACTUAL_GENERATOR_LOCAL"
+    },
+    "technical_gate_evidence": "reports/place-production/grini-fangeleir-quiz-technical-gates-2026-10-28.json",
+    "technical_gate_run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40692552404",
+    "technical_gate_tested_sha": "3d2751ddf50821b8976a89d2cc298fc0334023c4",
+    "technical_gate_status": "STAGING_SIMULATIONS_PASS_NOT_PUBLISHED",
+    "knowledge_migration_dry_run": {
+      "status": "PASS_DISPOSABLE_RUNNER",
+      "old_units_preserved": 3,
+      "new_question_links_verified": 70,
+      "generator": "scripts/knowledge-canonical-data.mts",
+      "old_source_snapshot": "data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json",
+      "permanent_sync": "EXECUTED_IN_BRANCH_CANDIDATE_NOT_PUBLISHED"
+    },
+    "editorial_revision_checkpoint_f": {
+      "source_abc_alignment_before": 65,
+      "source_abc_alignment_after": 27,
+      "answer_slots": {
+        "A": 24,
+        "B": 24,
+        "C": 22
+      },
+      "additional_distractors_revised": 19,
+      "affected_questions": [
+        11,
+        19,
+        20,
+        23,
+        28,
+        30,
+        31,
+        41,
+        49,
+        55,
+        62,
+        70
+      ],
+      "additional_questions_reworded": [
+        16,
+        36,
+        44,
+        50,
+        57
+      ],
+      "historical_issue": "Ihlen fangeleir was interim label; Ilebu fengsel for landssvikdømte followed prison service takeover",
+      "independent_historical_editorial_signoff": "PENDING"
+    },
+    "review_only_integration_preview": {
+      "status": "CI_ARTIFACT_NOT_COMMITTED",
+      "workflow": "Grini quiz staging preflight",
+      "run_id": 40696607712,
+      "run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40696607712",
+      "artifact_name": "grini-10x7-full-input-integration-preview",
+      "source_sha": "522641dd7a105a06061537bb162edd77ff96167b",
+      "artifact_expires_utc": "2026-11-11T13:28:12Z",
+      "built_from_full_history_manifest": true,
+      "production_context_persisted": false,
+      "active_quiz_replaced": false
+    },
+    "checkpoint_g": {
+      "status": "TECHNICAL_STAGING_AND_CANONICAL_CONTENT_PASS_NOT_ACTIVE",
+      "evidence_path": "reports/place-production/grini-fangeleir-quiz-technical-gates-2026-10-29.json",
+      "source_ci_head": "1ef793a551c70f5cdca5c5d6b41e4540255e45f5",
+      "source_ci_run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40928991594",
+      "staging_tests_passed": 8,
+      "runtime_shuffle_question_count": 70,
+      "runtime_shuffle_seed_count_per_question": 32,
+      "content_family_counts": {
+        "fact": 41,
+        "context": 17,
+        "concept_theory": 12
+      },
+      "content_audit_violations": 0,
+      "canonical_context_and_theory_audits": "PASS_SIMULATED_TARGET",
+      "integrated_knowledge_contract": "PASS_SIMULATED_TARGET",
+      "independent_review_matrix": "reports/place-production/grini-fangeleir-quiz-70q-editorial-signoff-2026-10-29.md",
+      "independent_signoff_completed": 0,
+      "active_quiz_replacement": "NOT_DONE"
+    },
+    "checkpoint_h": {
+      "source_review": "reports/place-production/grini-fangeleir-quiz-source-review-2026-10-30.json",
+      "reviewer": "Codex (AI); not a human expert sign-off",
+      "questions_reviewed": 70,
+      "questions_with_distractors_revised": 30,
+      "legacy_knowledge_units_retained": 3,
+      "new_questions_knowledge_linked": 70,
+      "existing_quizcard_reused": true,
+      "local_regression_tests_passed": 13,
+      "content_audit_violations": 0,
+      "global_audit_grini_failures": 0,
+      "global_audit_failures": {
+        "context": 433,
+        "progression": 76,
+        "theory_binding": 28
+      },
+      "published": false,
+      "exact_head_ci": "PENDING"
+    },
+    "blocked_until": [
+      "Full PlaceCard/Fagverk/Story/chronology and on-screen QA closeout",
+      "Exact-head GitHub CI green",
+      "Human review is not attested; only named AI source review is recorded"
+    ]
+  },
+  "completion_gate_evidence": "reports/place-production/grini-fangeleir-completion-gate-2026-10-30.md"
+}

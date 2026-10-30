@@ -1,0 +1,147 @@
+name: Grini quiz staging preflight
+
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/production_briefs/historie/grini_fangeleir.json'
+      - 'reports/place-production/grini-fangeleir-quiz-full-draft-2026-10-28.json'
+      - 'data/quiz/historie/grini_fangeleir_sets.json'
+      - 'data/fag/historie/supersetQUIZMAL_historie.json'
+      - 'scripts/prepare-grini-quiz-staging.mjs'
+      - 'scripts/grini-quiz-context-preflight.mjs'
+      - 'scripts/simulate-grini-knowledge-retention.mjs'
+      - 'scripts/simulate-grini-quiz-canonical-audits.mjs'
+      - 'scripts/knowledge-canonical-data.mts'
+      - 'data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json'
+      - 'scripts/quiz-production-lib.mjs'
+      - 'tests/grini-quiz-staging.test.mjs'
+      - 'tests/grini-quiz-runtime-shuffle.test.mjs'
+      - 'tests/grini-quiz-integration.test.mjs'
+      - 'reports/place-production/grini-fangeleir-quiz-source-review-2026-10-30.json'
+      - 'data/quizcards/historie/topp10_historie_sted_kort_batch1.json'
+      - 'data/quiz/production_context/historie/grini_fangeleir.json'
+      - 'tests/grini-place-description.test.mjs'
+      - 'data/places/production/grini_fangeleir.json'
+      - 'data/places/historie/akershus/grini_fangeleir.json'
+      - 'data/i18n/content/places/*.json'
+      - 'js/quiz/answer-shuffle.js'
+      - 'scripts/audit-quiz-content-quality.mjs'
+      - '.github/workflows/grini-quiz-staging.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: grini-quiz-staging-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  materialize-integrated-knowledge:
+    name: Materialize reviewed Grini Knowledge registry
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'place/grini-fangeleir-full-production-20261028'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical Knowledge and verify reviewed bytes
+        run: |
+          npm run knowledge:canonical:write
+          test "$(git hash-object data/knowledge/knowledge_units.generated.json)" = '9fedcc55906bb307bf17810ae9e5661b5bc38b43'
+          node --test tests/grini-quiz-integration.test.mjs tests/grini-quiz-runtime-shuffle.test.mjs
+      - name: Persist the verified registry on the authorized candidate branch
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+          TARGET_BRANCH: ${{ github.head_ref }}
+        run: |
+          python - <<'PY'
+          import subprocess
+          changed = subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines()
+          if set(changed) - {'data/knowledge/knowledge_units.generated.json'}:
+              raise SystemExit('Unexpected generated changes: ' + repr(changed))
+          PY
+          if git diff --quiet; then exit 0; fi
+          test "$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/knowledge/knowledge_units.generated.json
+          git commit -m 'Grini: materialize byte-verified canonical Knowledge registry'
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+
+  non-publishing-preflight:
+    name: Validate Grini 10x7 staging (never activate)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run fail-closed Grini staging tests
+        run: node --test tests/grini-quiz-staging.test.mjs tests/grini-quiz-runtime-shuffle.test.mjs tests/grini-quiz-integration.test.mjs tests/grini-place-description.test.mjs
+      - name: Verify staging summary without writing output
+        run: node scripts/prepare-grini-quiz-staging.mjs
+      - name: Build full category context with temporary manifest overlay
+        env:
+          GRINI_CANDIDATE_ARTIFACT: '1'
+          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: node scripts/grini-quiz-context-preflight.mjs
+      - name: Confirm all tracked source files were restored unchanged
+        run: git diff --exit-code
+      - name: Upload review-only 10x7 package and full-input context
+        uses: actions/upload-artifact@v4
+        with:
+          name: grini-10x7-full-input-integration-preview
+          path: ${{ runner.temp }}/grini-integration-preview/
+          if-no-files-found: error
+          retention-days: 14
+
+  knowledge-migration-simulation:
+    name: Simulate Grini Knowledge replacement (disposable only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout disposable PR-head copy
+        uses: actions/checkout@v4
+      - name: Set up Node with npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install build/test dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build canonical Knowledge generator
+        run: npm run build:scripts
+      - name: Assert pristine Knowledge outputs before replacement
+        run: node dist/scripts/knowledge-canonical-data.mjs --check
+      - name: Simulate 10x7 replacement and verify old KU preservation
+        env:
+          GRINI_DISPOSABLE_KNOWLEDGE_TEST: '1'
+        run: node scripts/simulate-grini-knowledge-retention.mjs
+
+  canonical-audits-simulation:
+    name: Audit isolated Grini 10x7 canonical package (disposable only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout disposable PR-head copy
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build actual Grini context and run canonical target audits
+        env:
+          GRINI_DISPOSABLE_CANONICAL_TEST: '1'
+        run: node scripts/simulate-grini-quiz-canonical-audits.mjs
