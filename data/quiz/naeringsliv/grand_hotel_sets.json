@@ -21,6 +21,62 @@
       "em_naering_omstilling_kriser_skift",
       "em_naering_arbeid_verdiskaping",
       "em_naering_tjenesteyting_og_service"
+    ],
+    "resolved_files": {
+      "pensum": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "emner": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "fagkart": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "methods": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "handel_forbruk_marked"
+    ],
+    "topic_hook_ids": [
+      "tjenester_og_servicearbeid"
+    ],
+    "method_ids": [
+      "met_naering_byhistorisk_naeringsanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/media/manifest.json"
+      ],
+      "active_before": {
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "Gjenbruk canonical grand_hotel som media; ikke lag egen Grand Café-Place.",
+        "Ikke still rene dateringsspørsmål; varier mellom personer, historie, materialitet og kildekritikk."
+      ],
+      "knowledge_migration": "Generate canonical Knowledge IDs during activation."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Tre tydelige klynger: Grand Café og kultur, arkitektur og bygningslag, fredspris og offentlig mediebruk."
+    },
+    "held_back_candidates": [
+      "Udokumenterte opplysninger om nåværende gjester, sikkerhetsrutiner og private arrangementer.",
+      "Påstander om at alle personer i Per Krohgs maleri satt samtidig ved samme kafébord."
     ]
   },
   "sets": [
