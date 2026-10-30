@@ -1,0 +1,51 @@
+name: Civication scenario People dependent regeneration (one-shot)
+on:
+  push:
+    branches:
+      - fix/civication-history-people-index-20261030
+    paths:
+      - .github/workflows/zz-regenerate-scenario-people.yml
+permissions:
+  contents: write
+concurrency:
+  group: civication-scenario-people-once
+  cancel-in-progress: false
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/civication-history-people-index-20261030
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Regenerate scenario People outputs from verified People index
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          npm run civication:history-people:check
+          node --test tests/civication-scenario-people.test.mjs
+          git diff --name-only | sort > /tmp/actual
+          printf '%s\n' data/Civication/scenarioPeople/generated/historie.json data/Civication/scenarioPeople/generated/kunst.json data/Civication/scenarioPeople/generated/litteratur.json data/Civication/scenarioPeople_index.json | sort > /tmp/allowed
+          if ! diff -u /tmp/allowed /tmp/actual; then
+            echo 'Unexpected generated diff; refusing to push'
+            exit 1
+          fi
+      - name: Commit only generated scenario People outputs and remove workflow
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/Civication/scenarioPeople/generated/historie.json data/Civication/scenarioPeople/generated/kunst.json data/Civication/scenarioPeople/generated/litteratur.json data/Civication/scenarioPeople_index.json
+          git rm -- .github/workflows/zz-regenerate-scenario-people.yml
+          git diff --cached --stat
+          git diff --exit-code
+          git commit -m "fix(civication): synchronize scenario People catalog after People index regeneration"
+          git push origin HEAD:fix/civication-history-people-index-20261030
