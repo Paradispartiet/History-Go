@@ -39,7 +39,8 @@ try{
     {name:"ryllik",path:"b06/01_ryllik.webp"},
     {name:"hvitklover",label:"Hvitkløver",term:"hvitkløver",path:"b07/03_hvitklover.webp"},
     {name:"blaklokke",label:"Blåklokke",term:"blåklokke",path:"b07/04_blaklokke.webp"},
-    {name:"tiriltunge",label:"Tiriltunge",term:"tiriltunge",path:"b07/02_tiriltunge_v2.webp"}
+    {name:"tiriltunge",label:"Tiriltunge",term:"tiriltunge",path:"b07/02_tiriltunge_v2.webp"},
+    {name:"rodkløver",label:"Rødkløver",term:"rødkløver",path:"b08/01_rodklover_v4.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
