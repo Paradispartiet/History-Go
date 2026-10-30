@@ -123,3 +123,25 @@ test("Grand Hotel is Næringsliv across the generated epoch index", () => {
     assert.equal(place.source_file, "places/naeringsliv/oslo/grand_hotel.json");
   }
 });
+
+test("Grand Hotel Næringsliv production report keeps A–H evidence", () => {
+  const place = readJson(paths.place);
+  const report = readJson("data/places/naeringsliv-production/grand_hotel.json");
+  const topics = place.emne_ids.filter((id) => id.startsWith("em_naering_"));
+  const reportedTopics = report.businessTopics.map((topic) => topic.emneId);
+
+  assert.equal(report.schemaVersion, "naeringsliv_place_production_v1");
+  assert.equal(report.validatorVersion, "1.0.0");
+  assert.equal(report.placeId, "grand_hotel");
+  assert.equal(report.placeFile, paths.place);
+  assert.equal(report.status, "ready");
+  assert.deepEqual([...reportedTopics].sort(), [...topics].sort());
+  assert.ok(report.sources.some((source) => source.sourceType === "primary_business" || source.sourceType === "official"));
+  assert.equal(report.quizOpening.status, "PASS");
+  assert.equal(report.quizOpening.quizTargetId, "grand_hotel");
+  assert.equal(report.quizOpening.firstTwoSetsQuestionCount, 14);
+  for (const gate of ["A", "B", "C", "D", "E", "F", "G"]) {
+    assert.equal(report.gates[gate].status, "PASS", gate);
+  }
+  assert.equal(report.gates.H.status, "N/A");
+});
