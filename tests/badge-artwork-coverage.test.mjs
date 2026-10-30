@@ -8,7 +8,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const read = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
 const categories = read('data/categories/category_contract.json').runtimeCategories;
 const index = read('data/badges/index.json').files;
-const redesigned = ['media','film_tv','psykologi','helse','utdanning'];
+const redesigned = ['film_tv','psykologi','helse','utdanning'];
 
 test('all 19 canonical categories have actual badge images in the registry', () => {
   assert.deepEqual(new Set(index.map(path => path.split('/').at(-1).replace('.json',''))), new Set(categories));
@@ -66,4 +66,14 @@ test('Kunst uses its own tricolor, embroidered WebP artwork', () => {
   assert.ok(image.length > 4000, 'Kunst badge file is too small');
   assert.equal(image.toString('ascii', 0, 4), 'RIFF');
   assert.equal(image.toString('ascii', 8, 12), 'WEBP');
+});
+
+test('Medier uses lighter-blue embroidered art without replacing other category badges', () => {
+  const badge = read('data/badges/media.json');
+  assert.equal(badge.image, 'bilder/merker/media-brodert-lysbla.webp');
+  assert.equal(badge.color, '#57AEE2');
+  const file = readFileSync(resolve(root, badge.image));
+  assert.ok(file.length > 7000, 'Medier image is too small');
+  assert.equal(file.toString('ascii', 0, 4), 'RIFF');
+  assert.equal(file.toString('ascii', 8, 12), 'WEBP');
 });
