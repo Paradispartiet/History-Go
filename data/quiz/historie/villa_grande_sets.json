@@ -19,14 +19,75 @@
     "context_artifact": "data/quiz/production_context/historie/villa_grande.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/villa_grande_sets.json",
+        "data/quizcards/historie/manifest.json"
+      ],
       "active_before": {
         "set_count": 1,
         "question_count": 3
       },
       "decisions": [
-        "Keep original three question identities while adding supported questions; regenerate canonical Knowledge before publication."
-      ]
-    }
+        "Preserve the original three question IDs and core facts.",
+        "Expand 3 to 21 with historically distinct claims, each sourced.",
+        "Use no date-only questions."
+      ],
+      "knowledge_migration": "Rebuild canonical Knowledge IDs with the repository generator."
+    },
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_okkupasjon_motstand",
+      "em_his_minnesteder_historiebruk",
+      "em_his_minoritetshistorie",
+      "em_his_riving_ombruk_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_krig_okkupasjon_okkupasjon_og_motstand",
+      "his_minnested_ritual_offentlig_sorg",
+      "his_minoritetspolitikk_kategorisering_registrering",
+      "his_okkupasjon_byrom_kontroll"
+    ],
+    "method_ids": [
+      "met_muntlig_historie",
+      "met_institusjonshistorisk_analyse",
+      "met_prosopografi",
+      "met_minnesteds_og_ritualanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Origin and occupation; physical historical evidence; postwar reuse, memorial institution and source criticism."
+    },
+    "held_back_candidates": [
+      "Speculative dialogue involving Quisling, unverified room usage and sensational descriptions of Holocaust.",
+      "Exact attribution of motives or private actions not documented in the sources."
+    ]
   },
   "sets": [
     {

@@ -24,17 +24,74 @@
     "context_artifact": "data/quiz/production_context/scenekunst/vega_scene.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/scenekunst/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "Keep canonical category scenekunst, not a separate film_tv place.",
-        "Correct three movie theaters, not two.",
-        "Avoid time-dependent program questions."
-      ]
+        "Retain original canonical place and photograph.",
+        "Correct existing two-salas typo to three movie theatres.",
+        "Choose static architectural/institutional facts, no today-specific shows."
+      ],
+      "knowledge_migration": "Run canonical Knowledge generator."
     },
-    "knowledge_migration": "Generate canonical Knowledge before merge."
+    "knowledge_migration": "Generate canonical Knowledge before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/scenekunst/scenekunstpensum_canonical_v1.json",
+      "emner": "data/fag/scenekunst/emner_scenekunst_canonical_v1.json",
+      "fagkart": "data/fag/scenekunst/fagkart_scenekunst_canonical_v1.json",
+      "theoryObjects": "data/fag/scenekunst/theory_objects_scenekunst_canonical_v1.json",
+      "methods": "data/fag/scenekunst/methods_scenekunst_canonical_v1.json",
+      "supersetQuizMal": "data/fag/scenekunst/supersetQUIZMAL_scenekunst.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "theoryObjects",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_scenekunst_01_institusjon_historie_infrastruktur",
+      "kur_scenekunst_02_dramaturgi_utover_scenetekst",
+      "kur_scenekunst_05_publikum_performance_etikk"
+    ],
+    "emne_ids": [
+      "em_scenekunst_teaterinstitusjon_repertoar",
+      "em_scenekunst_dramaturgi_iscenesettelse",
+      "em_scenekunst_publikum_fjerde_vegg"
+    ],
+    "topic_hook_ids": [
+      "theory_scenekunst_audience_reception_methods",
+      "theory_scenekunst_institusjon_repertoar_policy",
+      "theory_scenekunst_performance_analysis",
+      "theory_scenekunst_text_performance"
+    ],
+    "method_ids": [],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Diverse sourced questions on purpose, architecture, multi-form programming, youth co-creation and environmental design."
+    },
+    "held_back_candidates": [
+      "Two cinemas instead of three.",
+      "Vika kino confused with Vega Scene.",
+      "Current opening hours as permanent facts.",
+      "Specific 2026 cinema schedules as historic learning."
+    ]
   },
   "sets": [
     {

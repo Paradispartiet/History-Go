@@ -23,16 +23,77 @@
     "context_artifact": "data/quiz/production_context/historie/vikingtidsmuseet.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/historie/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "No direct target registered in quiz/manifest.json; retain single canonical Place ID.",
-        "Do not confuse 2026 object relocation with public opening; avoid date-only quizzes."
-      ]
+        "The existing canonical Place is sufficient: do not add a second Vikingskipshuset place.",
+        "Distinguish 2021 closure, 2025/2026 relocation and expected 2027 public opening.",
+        "Avoid year-only question prompts."
+      ],
+      "knowledge_migration": "Regenerate canonical Knowledge IDs."
     },
-    "knowledge_migration": "Generate canonical Knowledge IDs before merge."
+    "knowledge_migration": "Generate canonical Knowledge IDs before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring",
+      "em_his_samtid_ettertid_fortelling"
+    ],
+    "topic_hook_ids": [
+      "his_kulturminneutvelgelse_verdi",
+      "his_samtid_ettertid_fortelling",
+      "his_spor_materialitet",
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_kulturarvutvelgelsesanalyse",
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Museum history, archaeological evidence and conservation, contemporary museum transformation."
+    },
+    "held_back_candidates": [
+      "Claiming Vikingtidsmuseet was open for visitors in 2026.",
+      "Unverified exact public opening date.",
+      "Identity claims about the buried Oseberg women.",
+      "Attributing reconstructed hull pieces to original Viking-Age craftsmanship."
+    ]
   },
   "sets": [
     {
