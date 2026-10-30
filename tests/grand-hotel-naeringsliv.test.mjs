@@ -58,6 +58,9 @@ test("Grand Hotel quiz and QuizCards use the same Næringsliv ownership", () => 
   assert.equal(activeSets.length, 3);
   assert.ok(activeSets.every((item) => item.categoryId === "naeringsliv" && item.file === paths.quiz));
   assert.equal(quiz.categoryId, "naeringsliv");
+  assert.deepEqual(quiz.sets.map((s) => s.set_id),
+    ["naeringsliv_grand_hotel_set_1", "naeringsliv_grand_hotel_set_2", "naeringsliv_grand_hotel_set_3"]);
+  assert.deepEqual(activeSets.map((s) => s.set_id), quiz.sets.map((s) => s.set_id));
   assert.equal(brief.categoryId, "naeringsliv");
   assert.equal(context.categoryId, "naeringsliv");
   assert.equal(quiz.production_context.manifest_category, "naeringsliv");
