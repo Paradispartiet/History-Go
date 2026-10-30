@@ -27,6 +27,7 @@ const photos = photoContext.window.HG_NATURE_FLORA_PHOTOS;
 const requireAssets = process.argv.includes("--require-assets") || process.argv.includes("--require-published");
 const requirePublished = process.argv.includes("--require-published");
 let present = 0;
+let publishedCount = 0;
 for (const candidate of candidates) {
   const {catalogId,scientificName,suggestedPath,dimensions,sizeBytes,sha256,gitBlobSha} = candidate;
   assert(/^emne_flora_[a-z]+$/.test(catalogId), "Unexpected catalog ID");
@@ -43,19 +44,20 @@ for (const candidate of candidates) {
   assert.equal(reviewItem.scientificName, scientificName);
 
   const registered = approved.get(catalogId);
-  if (requirePublished) {
-    assert.equal(reviewItem.approvedForPublication, true, catalogId + " not reviewed for publication");
+  const published = Boolean(registered || reviewItem.approvedForPublication);
+  assert.equal(Boolean(registered), Boolean(reviewItem.approvedForPublication),
+    catalogId + " registry/review disagreement");
+  if (requirePublished) assert(published, "Not yet published: " + catalogId);
+  if (published) {
+    publishedCount++;
     assert.equal(registered?.src, suggestedPath, catalogId + " approved path mismatch");
     assert.equal(registered?.gitBlobSha, gitBlobSha, catalogId + " approved hash mismatch");
     assert.equal(registered?.scientificName, scientificName);
-  } else {
-    assert.equal(reviewItem.approvedForPublication, false, catalogId + " prematurely approved in review");
-    assert(!registered, catalogId + " prematurely activated in production");
   }
 
   const url = new URL(suggestedPath, base);
   if (!fs.existsSync(url)) {
-    assert(!requireAssets, "Missing staged WebP: " + suggestedPath);
+    assert(!(requireAssets || published), "Missing staged WebP: " + suggestedPath);
     console.log(catalogId + ": awaiting image transfer (safe, not published)");
     continue;
   }
@@ -79,4 +81,4 @@ for (const candidate of candidates) {
 }
 assert(!approved.has("emne_flora_tiriltunge"),
   "Tiriltunge remains blocked until its separate leaf-morphology approval");
-console.log("Batch 07 transfer: " + present + "/2 exact WebP binaries, published="+requirePublished);
+console.log("Batch 07 transfer: " + present + "/2 exact WebP binaries; " + publishedCount + "/2 activated");
