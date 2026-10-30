@@ -65,7 +65,7 @@ test('Religion uses approved old-fashioned sewn WebP patches on all nine badge s
     assert.equal(bytes.toString('ascii',8,12),'WEBP');
     const imageManifest=manifest.assets.find(x=>x.id===id);
     if(id!=='religion')assert.equal(imageManifest?.image,path);
-    const input=Buffer.concat([Buffer.from(`blob ${bytes.length}\\0`),bytes]);
+    const input=Buffer.concat([Buffer.from(`blob ${bytes.length}`),Buffer.from([0]),bytes]);
     assert.equal(createHash('sha1').update(input).digest('hex'),sha,id+' differs from approved source image');
   }
 });
