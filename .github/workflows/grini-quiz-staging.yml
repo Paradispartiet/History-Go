@@ -56,7 +56,7 @@ jobs:
       - name: Regenerate canonical Knowledge and verify reviewed bytes
         run: |
           npm run knowledge:canonical:write
-          test "$(git hash-object data/knowledge/knowledge_units.generated.json)" = '5f88939f4eecbe251327fd95b2e39eea83899857'
+          test "$(git hash-object data/knowledge/knowledge_units.generated.json)" = '9fedcc55906bb307bf17810ae9e5661b5bc38b43'
           node --test tests/grini-quiz-integration.test.mjs tests/grini-quiz-runtime-shuffle.test.mjs
       - name: Persist the verified registry on the authorized candidate branch
         env:

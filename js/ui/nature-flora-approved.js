@@ -21,6 +21,22 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_hvitklover: Object.freeze({
+      scientificName: "Trifolium repens",
+      src: "bilder/natur/flora/illustrasjonskandidater/b07/03_hvitklover.webp",
+      gitBlobSha: "66aefcd7d3ea4ba4bfc5b272cfe8f6914a748a51",
+      reviewedAt: "2026-10-30",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
+    }),
+    emne_flora_blaklokke: Object.freeze({
+      scientificName: "Campanula rotundifolia",
+      src: "bilder/natur/flora/illustrasjonskandidater/b07/04_blaklokke.webp",
+      gitBlobSha: "cf2580139a5359b7c2687cfd3a100a911756704b",
+      reviewedAt: "2026-10-30",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
+    }),
     emne_flora_groblad: Object.freeze({
       "scientificName": "Plantago major",
       "src": "bilder/natur/flora/illustrasjonskandidater/b06/03_groblad.webp",
