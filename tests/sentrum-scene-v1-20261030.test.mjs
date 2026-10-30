@@ -38,7 +38,7 @@ test('QuizCard is 10 exact source questions with no numeric-answer overload',()=
   for(const key of ['question','options','answer','answerIndex','knowledge']) assert.deepEqual(cq[key],source[key],key);
   assert.equal(cq.sourceQuizId,source.quiz_id);
   assert.equal(card.answerKey[i].answer,source.answer);
-  if(/(?:^|\\s)\\d{3,4}(?:\\s|$)/.test(cq.answer)) numeric++;
+  if(/(?:^|\s)\d{3,4}(?:\s|$)/.test(cq.answer)) numeric++;
  }
  assert.ok(numeric<=2);
 });
