@@ -326,18 +326,6 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
       const artifact = await readJson(root, paths.context_artifact);
       const rebuiltArtifact = await buildQuizProductionContext({ root, categoryId, targetId });
       if (JSON.stringify(artifact) !== JSON.stringify(rebuiltArtifact)) {
-        const targetNames = new Set(["villa_furulund","van_etten","vestre_gravlund","vikingtidsmuseet","vigelandmuseet","villa_grande","vega_scene","vaterland_bar_scene"]);
-        if (targetNames.has(targetId)) {
-          const rows = [];
-          const deep = (a, b, k) => {
-            if (JSON.stringify(a) === JSON.stringify(b)) return;
-            if (a && b && typeof a === "object" && typeof b === "object" && !Array.isArray(a) && !Array.isArray(b)) {
-              for (const key of new Set([...Object.keys(a), ...Object.keys(b)])) deep(a[key],b[key],k ? k+"."+key:key);
-            } else rows.push({path:k,actual:JSON.stringify(a)?.slice(0,120),expected:JSON.stringify(b)?.slice(0,120)});
-          };
-          deep(artifact,rebuiltArtifact,"");
-          console.log("TEMP_17_SITE_CONTEXT_DIFF",targetId,JSON.stringify(rows.slice(0,30)));
-        }
         addFailure(failures, paths.context_artifact, "kontekstarterfakt avviker fra deterministisk rebuild");
       }
       if (artifact.categoryId !== categoryId || artifact.targetId !== targetId) {
