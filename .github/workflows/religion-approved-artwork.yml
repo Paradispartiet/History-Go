@@ -1,0 +1,53 @@
+name: Approved Religion badge artwork
+on:
+  push:
+    branches:
+      - design/religion-stitch-badges-artwork-20261030
+    paths:
+      - 'bilder/merker/religion-godkjent.webp'
+      - 'bilder/merker/religion/familie/godkjent/**'
+      - 'data/badges/religion.json'
+      - 'data/badges/religion_underbadge_artwork.json'
+      - 'tests/badge-artwork-coverage.test.mjs'
+      - '.github/workflows/religion-approved-artwork.yml'
+  pull_request:
+    paths:
+      - 'bilder/merker/religion-godkjent.webp'
+      - 'bilder/merker/religion/familie/godkjent/**'
+      - 'data/badges/religion.json'
+      - 'data/badges/religion_underbadge_artwork.json'
+      - 'tests/badge-artwork-coverage.test.mjs'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical badge registry and nine WebP files
+        run: node --test tests/badge-artwork-coverage.test.mjs
+      - name: Validate original artwork signatures, transparency and hashes
+        run: |
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          import hashlib, io, json
+          from pathlib import Path
+          from PIL import Image
+          root = Path.cwd()
+          badge = json.loads((root/'data/badges/religion.json').read_text())
+          manifest = json.loads((root/'data/badges/religion_underbadge_artwork.json').read_text())
+          assets = [{'id':'religion','image':badge['image'],'sha256':manifest['parentImageSha256']}] + manifest['assets']
+          assert len(assets) == 9 and len({x['image'] for x in assets}) == 9
+          for item in assets:
+            data = (root/item['image']).read_bytes()
+            assert hashlib.sha256(data).hexdigest() == item['sha256'], item['id']
+            im = Image.open(io.BytesIO(data))
+            assert im.format == 'WEBP', item['id']
+            assert im.width >= 230 and im.height >= 230, item['id']
+            assert im.mode == 'RGBA', (item['id'], im.mode)
+            assert im.getpixel((0,0))[3] < 10, item['id']
+            print(item['id'], im.size, len(data), 'verified')
+          PY
