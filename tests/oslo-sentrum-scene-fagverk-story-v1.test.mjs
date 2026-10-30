@@ -9,6 +9,11 @@ test('Sentrum Scene Fagverk and story registration are canonical and source-back
  for(const url of p.fagverk.source_urls)assert.ok(urls.has(url),url);
  const subjectIds=new Set(r.subjects.musikk.chapters.flatMap(x=>x.emne_ids));
  for(const emne of p.fagverk.emne_ids)assert.ok(subjectIds.has(emne),emne);
+ const chapterIndex=new Map(r.subjects.musikk.chapters.map(ch=>[ch.id,ch]));
+ assert.deepEqual(p.fagverk.chapter_ids,['historisk-musikkvitenskap-historiografi','institusjoner-okonomi-politikk-offentlighet']);
+ for(const chapterId of p.fagverk.chapter_ids)assert.ok(chapterIndex.has(chapterId),`Dead canonical chapter: ${chapterId}`);
+ const coveredByChapters=new Set(p.fagverk.chapter_ids.flatMap(chapterId=>chapterIndex.get(chapterId).emne_ids));
+ for(const emne of p.fagverk.emne_ids)assert.ok(coveredByChapters.has(emne),`Unmapped music topic: ${emne}`);
  for(const lens of p.fagverk.lenses)assert.ok(subjectIds.has(lens.emne_id),lens.id);
  for(const img of [p.image,p.frontImage,p.cardImage])assert.ok(fs.existsSync(img),img);
 });
