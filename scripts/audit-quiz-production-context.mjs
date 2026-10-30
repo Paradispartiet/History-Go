@@ -326,6 +326,16 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
       const artifact = await readJson(root, paths.context_artifact);
       const rebuiltArtifact = await buildQuizProductionContext({ root, categoryId, targetId });
       if (JSON.stringify(artifact) !== JSON.stringify(rebuiltArtifact)) {
+        if (targetId === "van_etten" && categoryId === "kunst") {
+          const diff = (a, b, prefix = "") => {
+            if (JSON.stringify(a) === JSON.stringify(b)) return [];
+            if (a && b && typeof a === "object" && typeof b === "object" && !Array.isArray(a) && !Array.isArray(b)) {
+              return [...new Set([...Object.keys(a), ...Object.keys(b)])].flatMap((key) => diff(a[key], b[key], prefix ? prefix + "." + key : key));
+            }
+            return [{ path: prefix, actual: JSON.stringify(a)?.slice(0, 450), expected: JSON.stringify(b)?.slice(0, 450) }];
+          };
+          console.log("TEMP_VAN_ETTEN_REBUILD_DIFF", JSON.stringify(diff(artifact, rebuiltArtifact).slice(0, 60)));
+        }
         addFailure(failures, paths.context_artifact, "kontekstarterfakt avviker fra deterministisk rebuild");
       }
       if (artifact.categoryId !== categoryId || artifact.targetId !== targetId) {
