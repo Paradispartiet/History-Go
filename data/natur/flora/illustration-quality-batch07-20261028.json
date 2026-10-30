@@ -1,0 +1,126 @@
+{
+  "schema": "history-go-flora-batch07-plan-v1",
+  "batch": "07",
+  "date": "2026-10-28",
+  "status": "ryllik_ready_for_release_three_pending",
+  "baselineApproved": 11,
+  "targetApproved": 15,
+  "publicationRule": "Do not add to nature-flora-approved.js before individually reviewed assets, canonical species record and mobile/desktop QA.",
+  "species": [
+    {
+      "name": "Ryllik",
+      "scientificName": "Achillea millefolium",
+      "state": "previous_candidate_morphology_passed_catalog_missing",
+      "existingCandidate": "bilder/natur/flora/illustrasjonskandidater/b06/01_ryllik.webp",
+      "required": [
+        "Find/create canonical atlas species entry, not a fabricated ID",
+        "Document scientific name and licensed photo fallback",
+        "Check card and dialog before approving"
+      ]
+    },
+    {
+      "name": "Tiriltunge",
+      "scientificName": "Lotus corniculatus",
+      "catalogId": "emne_flora_tiriltunge",
+      "state": "redraw_required",
+      "required": [
+        "Leaves with three distal leaflets plus separate basal leaflet pair",
+        "Check leaf-stem connections throughout",
+        "Yellow pea-shaped flowers and grouped pods",
+        "Fresh individual expert visual review"
+      ]
+    },
+    {
+      "name": "Hvitkløver",
+      "scientificName": "Trifolium repens",
+      "catalogId": "emne_flora_hvitklover",
+      "state": "new_candidate_required",
+      "required": [
+        "Trifoliate leaves, often pale chevrons",
+        "Creeping stolons, rooting at nodes",
+        "White to pale pink globose flower heads",
+        "Independent reference and full image review"
+      ]
+    },
+    {
+      "name": "Blåklokke",
+      "scientificName": "Campanula rotundifolia",
+      "state": "new_candidate_required",
+      "required": [
+        "Nodding blue-violet bell-shaped corolla",
+        "Linear upper stem leaves, broader basal leaves where present",
+        "Slender branched stem with characteristic calyx",
+        "Identify canonical catalog key before integration"
+      ]
+    }
+  ],
+  "qa": [
+    "Verify individual image transparency, dimensions and hashes",
+    "Check botanical anatomy against identified references",
+    "Confirm registered species ID and photo fallback",
+    "Verify cards and modal at 390 and 1440 widths",
+    "Run only relevant flora tests"
+  ],
+  "note": "A four-species composite reference plate was generated during planning, but it is not an individual production asset and must not be enabled as an approved illustration.",
+  "reviewedAt": "2026-10-29",
+  "approvedCandidateCount": 1,
+  "projectedApprovedAfterMerge": 12,
+  "items": [
+    {
+      "key": "01_ryllik",
+      "name": "Ryllik",
+      "catalogId": "emne_flora_ryllik",
+      "scientificName": "Achillea millefolium",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b06/01_ryllik.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b06/01_ryllik.webp",
+      "gitBlobSha": "5b593314041bb8122f401f78695977fc7db8f31c",
+      "candidateGitBlobSha": "5b593314041bb8122f401f78695977fc7db8f31c",
+      "sha256": "187783f090a6930e0df231335bc32a0b93a3d30f1462290011e9d3592dd4b264",
+      "reviewStatus": "approved",
+      "botanicalVisualDecision": "passed",
+      "approvedForPublication": true,
+      "visualChecks": {
+        "transparent": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://www.rhs.org.uk/plants/311/achillea-millefolium/details",
+        "https://dnr.illinois.gov/education/wildaboutpages/wildaboutplants/wapcommonyarrow.html"
+      ],
+      "evidence": [
+        "https://www.rhs.org.uk/plants/311/achillea-millefolium/details",
+        "https://dnr.illinois.gov/education/wildaboutpages/wildaboutplants/wapcommonyarrow.html"
+      ],
+      "reviewNotes": "Earlier full botanical image review passed in batch 06; canonical entry and attributed photo fallback are now linked; no modification to source image."
+    },
+    {
+      "key": "02_tiriltunge",
+      "name": "Tiriltunge",
+      "catalogId": "emne_flora_tiriltunge",
+      "scientificName": "Lotus corniculatus",
+      "reviewStatus": "needs_redraw_validation",
+      "approvedForPublication": false,
+      "note": "Separate illustration candidate generated but leaf bases and pea corollas require independent inspection; binary not yet committed."
+    },
+    {
+      "key": "03_hvitklover",
+      "name": "Hvitkløver",
+      "catalogId": "emne_flora_hvitklover",
+      "scientificName": "Trifolium repens",
+      "reviewStatus": "generated_candidate_needs_upload_review",
+      "approvedForPublication": false,
+      "note": "Individual watercolor-style source artwork created; no asset committed; assess stolons and trifoliate leaves."
+    },
+    {
+      "key": "04_blaklokke",
+      "name": "Blåklokke",
+      "catalogId": "emne_flora_blaklokke",
+      "scientificName": "Campanula rotundifolia",
+      "reviewStatus": "generated_candidate_needs_upload_review",
+      "approvedForPublication": false,
+      "note": "Individual watercolor-style source artwork created; no asset committed; assess corolla and basal/upper leaf difference."
+    }
+  ],
+  "releaseScope": "Only Ryllik can enter the approved registry in this PR, contingent on tests; three candidate images remain blocked until the actual binaries and expert review are integrated."
+}

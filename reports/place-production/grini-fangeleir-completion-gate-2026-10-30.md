@@ -2,7 +2,7 @@
 
 **Resultat: BLOCKED. Ikke vFerdig og ikke mergeklar.** Brukerens fullførings- og mergeautorisasjon er mottatt; det gjenstår reelle kvalitetsporter, ikke en ny autorisasjonsforespørsel.
 
-Arbeidsgren: `place/grini-fangeleir-full-production-20261028`. Utgangspunkt: `a03a3fb7a6e350b27ab9793a48a22bc3d2ddad83`, PR #6759. Separat, uendret main-kontroll: `4172b5ffad5b558873f4ef3df757f118d2c7dc20`.
+Arbeidsgren: `place/grini-fangeleir-full-production-20261028`. Utgangspunkt: `a03a3fb7a6e350b27ab9793a48a22bc3d2ddad83`, PR #6759. Oppdatert mot main nedenfor; separat, uendret main-kontroll: `4172b5ffad5b558873f4ef3df757f118d2c7dc20`.
 
 ## Rettet i dette checkpointet
 
@@ -19,7 +19,7 @@ Arbeidsgren: `place/grini-fangeleir-full-production-20261028`. Utgangspunkt: `a0
 
 | Kontroll | Resultat |
 | --- | --- |
-| Beskrivelse, Grini-staging, reell svarstokking, generelle beskrivelsesregresjoner og epoke-/viewer-kontrakter | 71/71 PASS |
+| Beskrivelse, Grini-staging, reell svarstokking, generelle beskrivelsesregresjoner, epoke-/viewer-kontrakter og Place-open etter main-integrasjon | 78/78 PASS |
 | Fokusert Grini-kjøring etter siste endring | 10/10 PASS |
 | Place-open runtime og Lesespor-race | 7/7 PASS |
 | `places:index:check` inkludert koordinatparitet | PASS |
@@ -29,11 +29,15 @@ Arbeidsgren: `place/grini-fangeleir-full-production-20261028`. Utgangspunkt: `a0
 | `check-place-i18n-freshness.mjs grini_fangeleir` | PASS, en/es/pt |
 | Samlet description-audit | FAIL, 25 feil ved Grand Hotel og Villa Romsli; nøyaktig samme funn på separat main |
 | Samlet quizkontekst-audit | FAIL, 433 funn; nøyaktig samme funn på separat main |
-| Fagverk-substansaudit | FAIL, 63 funn på kandidatgrunnlaget, 65 på main; ingen kandidatspesifikke funn |
+| Fagverk-substansaudit | FAIL, 65 funnlinjer (61 unike) både etter main-integrasjon og på separat main; identiske funn |
 | Fagverk-side/rendering/substans-tester | 7 feil; de samme sju testene feiler også på separat main |
 | Reell mobil-/desktop-QA | IKKE UTFØRT: Chromium-nedlastingen ga ugyldig arkiv; cloud-nettleseren nådde ikke lokal testserver (`ERR_CONNECTION_REFUSED`) |
 
 Kontrakttester av epokeviseren er ikke en påstand om gjennomført manuell nettleser-QA. Lokal testkjøring er heller ikke en påstand om grønn exact-head GitHub Actions.
+
+## Oppdatering mot main
+
+Main `4172b5ffad5b558873f4ef3df757f118d2c7dc20` er integrert i kandidatens tre. Den eneste mergekonflikten var det genererte `data/fagverk/fagverk_release.json`; den ble løst ved å kjøre byggeren fra de sammenslåtte kildene. Place-/runtime-/epoke-byggere og 78 lokale regresjonstester er kjørt etter sammenslåingen. Dette er en oppdatering av arbeidsgrenen, ikke merge av PR-en til main.
 
 ## Fortsatt åpne fullføringsporter
 

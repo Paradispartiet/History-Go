@@ -30,7 +30,13 @@ try{
     {name:"blaveis",term:"blåveis",path:"b01/07_blaveis.webp"},
     {name:"engkarse",path:"b04/01_engkarse_v3.webp"},
     {name:"ballblom",path:"b04/02_ballblom_v3.webp"},
-    {name:"engsoleie",path:"b04/03_engsoleie_v3.webp"}
+    {name:"engsoleie",path:"b04/03_engsoleie_v3.webp"},
+    {name:"lovetann",label:"Løvetann",term:"løvetann",path:"b05/01_lovetann_v2.webp"},
+    {name:"rodjonsokblom",label:"Rød jonsokblom",term:"jonsok",path:"b05/02_rodjonsokblom_v2.webp"},
+    {name:"prestekrage",path:"b05/03_prestekrage_v2.webp"},
+    {name:"geitrams",path:"b06/02_geitrams.webp"},
+    {name:"groblad",path:"b06/03_groblad.webp"},
+    {name:"ryllik",path:"b06/01_ryllik.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
@@ -42,9 +48,10 @@ try{
     await page.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await page.locator("#natureSearch").fill(species.term||species.name);
-    const card=page.locator("#natureGrid .ne-card").first();
+    const title=species.label||species.term||species.name;
+    const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
     await card.waitFor();
-    await page.waitForFunction(()=>document.querySelector(".ne-card img")?.naturalWidth>0);
+    await card.locator("img").evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
     assert((await card.locator("img").getAttribute("src")).endsWith(species.path));
     assert.equal((await card.locator(".ne-image-label").innerText()).trim(),"Illustrasjon");
     assert.equal(await card.locator("img").evaluate(el=>getComputedStyle(el).objectFit),"contain");
@@ -69,7 +76,7 @@ try{
     await test.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await test.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await test.locator("#natureSearch").fill(species.term||species.name);
-    const fallback=test.locator("#natureGrid .ne-card").first();
+    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
     await fallback.locator(".ne-image-label").getByText("Artsfoto").waitFor({timeout:20000});
     assert.match(await fallback.locator("img").getAttribute("src"),/wikimedia\.org/);
     await fallback.click();
@@ -77,6 +84,30 @@ try{
     await failure.close();
     console.log(species.name+" viewport "+width+": illustrated card/dialog and photo failover OK.");
     }
+    // Held candidates remain outside Finn Flora; the dedicated review shows all four.
+    const held=await browser.newContext({viewport:{width,height:900}});
+    await held.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+    await held.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+    await held.route("https://upload.wikimedia.org/**",r=>r.fulfill({contentType:"image/png",body:photoStub}));
+    const page=await held.newPage();
+    await page.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
+    await page.locator("#natureGrid .ne-card").first().waitFor();
+    await page.locator("#natureSearch").fill("tiriltunge");
+    const rejected=page.locator("#natureGrid").getByRole("button",{name:/^Tiriltunge,/i});
+    await rejected.locator(".ne-image-label").getByText("Artsfoto").waitFor();
+    assert.match(await rejected.locator("img").getAttribute("src"),/wikimedia\.org/);
+    await page.goto("http://127.0.0.1:"+port+"/flora-illustrasjoner-bolk06.html",{waitUntil:"domcontentloaded"});
+    assert.equal(await page.locator(".species img").count(),4);
+    for(const img of await page.locator(".species img").all()){
+      await img.scrollIntoViewIfNeeded();
+      await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+      assert.equal(await img.evaluate(el=>el.naturalWidth),1024);
+    }
+    assert(await page.getByText("Artsform vurdert · mangler artsoppføring",{exact:true}).isVisible());
+    assert(await page.getByText("Må tegnes om · ikke publisert",{exact:true}).isVisible());
+    await page.screenshot({path:path.join(artifacts,"batch06-gallery-"+width+".png"),fullPage:true});
+    await held.close();
+    console.log("Batch 06 viewport "+width+": four review images and rejected tiriltunge photo gate OK.");
   }
 } finally {
   if(browser)await browser.close();

@@ -5,6 +5,56 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_geitrams: Object.freeze({
+      "scientificName": "Chamerion angustifolium",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b06/02_geitrams.webp",
+      "gitBlobSha": "1962c3082ad500cd52b419334d6470235a2c66b0",
+      "reviewedAt": "2026-10-28",
+      "stage": "blomstring",
+      "evidence": "data/natur/flora/illustration-quality-batch06-20261028.json"
+    }),
+    emne_flora_ryllik: Object.freeze({
+      scientificName: "Achillea millefolium",
+      src: "bilder/natur/flora/illustrasjonskandidater/b06/01_ryllik.webp",
+      gitBlobSha: "5b593314041bb8122f401f78695977fc7db8f31c",
+      reviewedAt: "2026-10-29",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
+    }),
+    emne_flora_groblad: Object.freeze({
+      "scientificName": "Plantago major",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b06/03_groblad.webp",
+      "gitBlobSha": "23e2dcadfcb4750312c4fe9c17cd39e701a9139b",
+      "reviewedAt": "2026-10-28",
+      "stage": "blomstring",
+      "evidence": "data/natur/flora/illustration-quality-batch06-20261028.json"
+    }),
+
+    emne_flora_lovetann: Object.freeze({
+      "scientificName": "Taraxacum officinale agg.",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b05/01_lovetann_v2.webp",
+      "gitBlobSha": "df3e933959180185025c33657c4c71cc00fd61c7",
+      "reviewedAt": "2026-10-28",
+      "stage": "blomstring",
+      "evidence": "data/natur/flora/illustration-quality-batch05-20261028.json"
+    }),
+    emne_flora_rodjonsokblom: Object.freeze({
+      "scientificName": "Silene dioica",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b05/02_rodjonsokblom_v2.webp",
+      "gitBlobSha": "feaad9255b0c8288423cb4a99f8d5a9472dfcd14",
+      "reviewedAt": "2026-10-28",
+      "stage": "blomstring",
+      "evidence": "data/natur/flora/illustration-quality-batch05-20261028.json"
+    }),
+    emne_flora_prestekrage: Object.freeze({
+      "scientificName": "Leucanthemum vulgare",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b05/03_prestekrage_v2.webp",
+      "gitBlobSha": "d343ff4a96d828e8d02f1c350cd98e253bd0db1a",
+      "reviewedAt": "2026-10-28",
+      "stage": "blomstring",
+      "evidence": "data/natur/flora/illustration-quality-batch05-20261028.json"
+    }),
+
     emne_flora_hestehov: Object.freeze({
       scientificName: "Tussilago farfara",
       src: "bilder/natur/flora/illustrasjonskandidater/b03/01_hestehov_var.webp",
