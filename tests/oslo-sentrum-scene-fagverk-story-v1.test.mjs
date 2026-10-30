@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));const id='sentrum_scene';
 test('Sentrum Scene Fagverk and story registration are canonical and source-backed',()=>{
- const p=read('data/places/musikk/oslo/places_musikk/sentrum_scene.json'),r=read('data/fagverk/fagverk_registry.json'),m=read('data/stories/stories_manifest.json');
+ const p=read('data/places/musikk/oslo/places_musikk/sentrum_scene.json'),r=read('data/fagverk/fagverk_registry.json'),m=read('data/stories/stories_manifest_music_batch_01.json');
  assert.equal(p.fagverk.status,'curated');assert.equal(p.fagverk.level,'standard');assert.equal(p.fagverk.article.length,3);
  assert.equal(r.placeLinks[id].sourceFile,'places/musikk/oslo/places_musikk/sentrum_scene.json');
  assert.equal(m.files.filter(x=>x.entity_id===id&&x.path==='data/stories/stories_sentrum_scene.json').length,1);
