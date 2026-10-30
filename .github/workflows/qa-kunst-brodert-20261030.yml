@@ -1,0 +1,42 @@
+name: Kunst embroidered badge render QA
+on:
+  push:
+    branches: [design/kunst-brodert-tricolor-20261030]
+permissions:
+  contents: read
+jobs:
+  validate-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Focused badge registry test
+        run: node --test tests/badge-artwork-coverage.test.mjs
+      - name: Verify raster can be decoded and export preview
+        run: |
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          import hashlib
+          p=Path('bilder/merker/kunst-brodert.webp')
+          data=p.read_bytes()
+          print('sha256:',hashlib.sha256(data).hexdigest(),'bytes:',len(data))
+          img=Image.open(p).convert('RGBA')
+          assert img.size==(192,192),img.size
+          assert img.getpixel((0,0))[3]==0
+          assert img.getpixel((96,96))[3]>230
+          print('Decoded Kunst:',img.mode,img.size)
+          Path('out').mkdir(exist_ok=True)
+          img.resize((512,512),Image.Resampling.LANCZOS).save('out/kunst-brodert-repo-render.png')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kunst-brodert-repo-preview
+          path: out/kunst-brodert-repo-render.png
+          retention-days: 1
