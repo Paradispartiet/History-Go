@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildGriniStagingPreview, readStagingInputs } from "../scripts/prepare-grini-quiz-staging.mjs";
+import fs from "node:fs/promises";
 import "../js/quiz/answer-shuffle.js";
 
 const { shuffleQuestion } = globalThis.HGQuizAnswerShuffle;
-const candidate = buildGriniStagingPreview(await readStagingInputs());
+const candidate = JSON.parse(await fs.readFile(new URL("../data/quiz/historie/grini_fangeleir_sets.json", import.meta.url), "utf8"));
 const questions = candidate.sets.flatMap(set => set.questions);
 
 function seededRng(seed) {
@@ -15,7 +15,7 @@ function seededRng(seed) {
   };
 }
 
-test("all 70 candidate answers remain correct under 32 real runtime permutations", () => {
+test("all 70 integrated answers remain correct under 32 real runtime permutations", () => {
   assert.equal(questions.length, 70);
   let movedCount = 0;
   for (const [index, q] of questions.entries()) {

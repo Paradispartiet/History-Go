@@ -217,8 +217,20 @@
     ]
   },
   "quizOpening": {
-    "status": "N/A",
-    "rationale": "IKKE GODKJENT, kun midlertidig skjemastatus for pågående blocked-rapport: eksisterende quiz har ett sett med tre spørsmål. Kravet om minst to innledende sett med 14 kildebelagte spørsmål står åpent for separat quizproduksjon; N/A er ikke endelig fritak."
+    "status": "PASS",
+    "quizTargetId": "grini_fangeleir",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/historie/grini_fangeleir.json",
+    "productionContext": "data/quiz/production_context/historie/grini_fangeleir.json",
+    "requiredInputs": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ]
   },
   "chronologyStories": {
     "status": "N/A",
@@ -268,8 +280,12 @@
       ]
     },
     "G": {
-      "status": "N/A",
-      "rationale": "BLOCKER, ikke en sluttført N/A: dagens quiz består av bare tre spørsmål; full source-led quiz og normalåpning må produseres separat før Grini kan ferdigmeldes."
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening",
+        "reports/place-production/grini-fangeleir-quiz-source-review-2026-10-30.json",
+        "tests/grini-quiz-integration.test.mjs"
+      ]
     },
     "H": {
       "status": "N/A",
@@ -279,6 +295,6 @@
   "review": {
     "reviewer": "HistoryGo Grini checkpoint – source/case review, ikke sluttgodkjenning",
     "reviewedAt": "2026-10-28",
-    "notes": "Historisk A–F case- og kildegjennomgang. Rapporten har status blocked fordi quizåpning, chronology/epoke og UI-integrasjon ikke er ferdige; ingen fullførings-PASS. Kildedatoer om 12/14 juni må aldri slås sammen."
+    "notes": "Historisk A–F case- og kildegjennomgang. Rapporten har status blocked fordi quizåpning, chronology/epoke og UI-integrasjon ikke er ferdige; ingen fullførings-PASS. Kildedatoer om 12/14 juni må aldri slås sammen. 2026-10-30: quizOpening/G oppdatert for faktisk integrert 10×7-kandidat og individuell KI-kildekontroll, ikke menneskelig fagredaktørsignatur. H og fullføringsstatus fortsatt blokkert."
   }
 }

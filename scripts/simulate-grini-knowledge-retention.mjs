@@ -57,8 +57,9 @@ async function main() {
   // full fag manifest; unlike a bare quiz replacement, this models the new
   // package's context and Knowledge links together.
   const fag = await readJson(FAG_MANIFEST);
-  ensure(!fag.historie?.quizProduction?.targets?.grini_fangeleir,
-    "target unexpectedly active; re-audit before changing migration simulation");
+  const currentTarget = fag.historie?.quizProduction?.targets?.grini_fangeleir;
+  ensure(!currentTarget || JSON.stringify(currentTarget) === JSON.stringify(TARGET_ENTRY),
+    "active Grini target differs from the tested canonical target");
   fag.historie.quizProduction.targets.grini_fangeleir = TARGET_ENTRY;
   await fs.writeFile(path.join(ROOT, FAG_MANIFEST), JSON.stringify(fag, null, 2) + "\n");
   const context = await buildQuizProductionContext({root:ROOT,categoryId:"historie",targetId:"grini_fangeleir"});

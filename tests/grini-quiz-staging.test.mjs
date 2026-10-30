@@ -32,7 +32,7 @@ test("Grini 10x7 preview uses canonical phases, claim IDs and balanced answer sl
   assert.equal(JSON.stringify(inputs), before, "staging builder must not mutate its inputs");
 });
 
-test("the active 1x3 Quiz/Knowledge ownership is not reused or replaced by staging", () => {
+test("the preserved legacy 1x3 Quiz/Knowledge ownership is not reused or replaced by staging", () => {
   const candidate = buildGriniStagingPreview(inputs);
   const ids = new Set(candidate.sets.flatMap(s => s.questions).flatMap(q => [q.id, q.quiz_id]));
   const oldIds = oldQuestions.flatMap(q => [q.id, q.quiz_id]);

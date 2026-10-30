@@ -73,23 +73,15 @@
       ]
     }
   },
-  "active_checkpoint": "Beskrivelsesintegritet: 3 ingressetninger og 29 popupsetninger / 34 claims validert; oversettelser og runtime/epoke/Fagverk-release synkronisert. Fullføringsgate fortsatt BLOCKED.",
+  "active_checkpoint": "70 spørsmål kildekontrollert av Codex (KI), integrert i arbeidsgrenen med fullt fagmanifest/kontekst og faktisk Knowledge-regenerering. 3 eldre enheter bevart. Eksisterende QuizCard bruker ti spørsmål fra fullquiz. Ikke publisert eller vFerdig.",
   "production_profile": "major",
   "profile_status": "provisional",
   "blocked": [
-    "Chronology/epoke build/check PASS; faktisk epoke-UI, samlet leksikoneierskap og Story-review gjenstår",
-    "Historie report G is BLOCKED until reviewed 10x7 quiz is integrated, normal opening validated, and Knowledge + UI sync pass",
-    "PlaceCard frontImage and 1–4 member samlinger and rights QA incomplete",
-    "Dedicated QuizCard flip not verified",
-    "Fagverk release, browser-QA and all relevant CI not yet green",
-    "Canonical Story/final on-site-access and mobile/desktop QA incomplete",
-    "Opening-date discrepancy Q69 clarified in draft; source conflict still needs historic research if a single definitive date is required",
-    "Grini 10x7 canonical staging preview is non-active; exact head canonical production/context/Knowledge checks not yet passed",
-    "Old generated Knowledge units may be dropped if active 1x3 is replaced without explicit retention/migration",
-    "Independent 70-question distractor, fact, ethics and theory/interpretation sign-off not yet completed",
-    "Dry-run PASSED for Knowledge old-3 preservation and new-70 links, but no integrated Knowledge registries have been written",
-    "Independent 70-question historical/distractor QA and actual runtime are NOT PASSED",
-    "Fagmanifest+active 10x7+source-hashed context remain uncommitted"
+    "PlaceCard frontImage og bildeklare samlinger med rettigheter og faktisk appvisning gjenstår",
+    "Curated Fagverk, samlet leksikoneierskap og Story-review gjenstår",
+    "Historie-sluttgate, relevante popupfaner og mobil-/desktop-QA gjenstår",
+    "Katalogens eksisterende quiz-/Fagverk-/beskrivelsesfeil gir fortsatt røde globale porter; exact-head CI må kontrolleres",
+    "Ingen uavhengig menneskelig fagredaktør har signert; kildekontrollen er eksplisitt KI-utført"
   ],
   "coordinateDecision": "ALLEREDE FERDIG — preserve historical anchor, visitor anchor and 360m gameplay radius",
   "sourceReview": [
@@ -98,7 +90,7 @@
     "https://www.nasjonalarkivet.no/nordmenn-i-fangenskap-under-andre-verdenskrig/",
     "https://mia.no/grinimuseet/en/grini-museum"
   ],
-  "notes": "Gjeldende READ-FIRST-filer er lest, og repoets offisielle place-production-rule-preflight.mjs record er kjørt 2026-10-30. Se datert completion-gate for utførte tester, main-baseline og faktiske blokkere. Ikke vFerdig eller mergeklar.",
+  "notes": "Dette workcardets checkpoint_h og active_checkpoint beskriver nåtilstanden. Eldre bokstav-checkpoints og completion-gate-rapporten beholdes som historikk. Helhetsstatus fortsatt blocked, ikke vFerdig.",
   "new_subsystems": [
     "source-backed full narrative with 31 claims",
     "Historie case report (blocked pending quiz and chronology closeout)",
@@ -109,7 +101,7 @@
     "10x7 editorial quiz draft with explicit claim->question links and balanced stored answer positions; NOT ACTIVE"
   ],
   "quiz_stage": {
-    "status": "draft_not_active",
+    "status": "INTEGRATED_BRANCH_CANDIDATE_NOT_PUBLISHED",
     "source_brief": "data/quiz/production_briefs/historie/grini_fangeleir.json",
     "source_brief_claims": 70,
     "full_editorial_draft": "reports/place-production/grini-fangeleir-quiz-full-draft-2026-10-28.json",
@@ -157,7 +149,7 @@
       "Full quiz audits, runtime shuffle, QuizCard and mobile/desktop QA not passed"
     ],
     "source_date_note": "Q69 revised using NOU 1998:12 (12 June 1941 opening) versus SNL/MiA (14 June establishment). Source difference documented, not presumed resolved.",
-    "activation_decision": "KEEP_DRAFT_AND_ACTIVE_LEGACY_1x3 until independent editorial signoff, canonical integration and Knowledge/runtime QA",
+    "activation_decision": "70-question package integrated on PR branch; final production/UI gates remain open",
     "canonical_staging": {
       "status": "PREVIEW_ONLY_NOT_ACTIVE",
       "script": "scripts/prepare-grini-quiz-staging.mjs",
@@ -187,8 +179,8 @@
       "active_id_collisions": 0,
       "preview_can_write_active_quiz": false,
       "canonical_tests": "PENDING_GITHUB_CHECKS_NOT_ATTESTED",
-      "context_artifact": "NOT_BUILT",
-      "knowledge_migration": "PENDING"
+      "context_artifact": "BUILT_AND_INTEGRATED",
+      "knowledge_migration": "PASS_ACTUAL_GENERATOR_LOCAL"
     },
     "technical_gate_evidence": "reports/place-production/grini-fangeleir-quiz-technical-gates-2026-10-28.json",
     "technical_gate_run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40692552404",
@@ -200,7 +192,7 @@
       "new_question_links_verified": 70,
       "generator": "scripts/knowledge-canonical-data.mts",
       "old_source_snapshot": "data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json",
-      "permanent_sync": "NOT_EXECUTED"
+      "permanent_sync": "EXECUTED_IN_BRANCH_CANDIDATE_NOT_PUBLISHED"
     },
     "editorial_revision_checkpoint_f": {
       "source_abc_alignment_before": 65,
@@ -266,7 +258,31 @@
       "independent_review_matrix": "reports/place-production/grini-fangeleir-quiz-70q-editorial-signoff-2026-10-29.md",
       "independent_signoff_completed": 0,
       "active_quiz_replacement": "NOT_DONE"
-    }
+    },
+    "checkpoint_h": {
+      "source_review": "reports/place-production/grini-fangeleir-quiz-source-review-2026-10-30.json",
+      "reviewer": "Codex (AI); not a human expert sign-off",
+      "questions_reviewed": 70,
+      "questions_with_distractors_revised": 30,
+      "legacy_knowledge_units_retained": 3,
+      "new_questions_knowledge_linked": 70,
+      "existing_quizcard_reused": true,
+      "local_regression_tests_passed": 13,
+      "content_audit_violations": 0,
+      "global_audit_grini_failures": 0,
+      "global_audit_failures": {
+        "context": 433,
+        "progression": 76,
+        "theory_binding": 28
+      },
+      "published": false,
+      "exact_head_ci": "PENDING"
+    },
+    "blocked_until": [
+      "Full PlaceCard/Fagverk/Story/chronology and on-screen QA closeout",
+      "Exact-head GitHub CI green",
+      "Human review is not attested; only named AI source review is recorded"
+    ]
   },
   "completion_gate_evidence": "reports/place-production/grini-fangeleir-completion-gate-2026-10-30.md"
 }

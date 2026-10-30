@@ -19,7 +19,7 @@ const TARGET = "grini_fangeleir";
 const CATEGORY = "historie";
 const BRIEF = "data/quiz/production_briefs/historie/grini_fangeleir.json";
 const DRAFT = "reports/place-production/grini-fangeleir-quiz-full-draft-2026-10-28.json";
-const LIVE = "data/quiz/historie/grini_fangeleir_sets.json";
+const LEGACY = "data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json";
 const SUPERSET = "data/fag/historie/supersetQUIZMAL_historie.json";
 
 const ensure = (condition, reason) => { if (!condition) throw new Error(reason); };
@@ -171,7 +171,7 @@ export function buildGriniCanonicalCandidate(preview, context) {
   const production_context = {
     manifest_category: CATEGORY,
     profile: context.profile,
-    standard_version: "3.3",
+    standard_version: "3.4",
     source_brief: BRIEF,
     context_artifact: "data/quiz/production_context/historie/grini_fangeleir.json",
     resolved_files: Object.fromEntries(Object.entries(context.resolved_files).map(([k, v]) => [k, v.path])),
@@ -203,9 +203,11 @@ export function buildGriniCanonicalCandidate(preview, context) {
 
 export async function readStagingInputs(root = ROOT) {
   const read = async (name) => JSON.parse(await fs.readFile(path.join(root, name), "utf8"));
-  const [brief, draft, live, superset] = await Promise.all(
-    [BRIEF, DRAFT, LIVE, SUPERSET].map(read)
+  const [brief, draft, legacy, superset] = await Promise.all(
+    [BRIEF, DRAFT, LEGACY, SUPERSET].map(read)
   );
+  ensure(legacy.status === "preserved_legacy_knowledge_only_not_playable", "missing preserved legacy source");
+  const live = {targetId: legacy.targetId, categoryId: legacy.categoryId, sets: [{questions: legacy.questions}]};
   return { brief, draft, live, superset };
 }
 
