@@ -422,6 +422,27 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
 
 async function main() {
   const report = await auditQuizProductionContext();
+  // TEMP integration-only regeneration diagnostic; removed before merge.
+  const { readFileSync } = await import("node:fs");
+  const { spawnSync } = await import("node:child_process");
+  const casePaths = [
+    "data/fag/subkultur/case_sources_subkultur_canonical_v1.json",
+    "data/fag/subkultur/case_evidence_subkultur_canonical_v1.json",
+    "data/fag/subkultur/case_validation_subkultur_v1.json"
+  ];
+  const before = casePaths.map((p) => JSON.parse(readFileSync(p, "utf8")));
+  const run = spawnSync(process.execPath, ["tools/build-subkultur-case-evidence-v1.mjs", "--write"], {encoding:"utf8"});
+  if (run.status !== 0) throw new Error("TEMP case regeneration failed: "+run.stderr.slice(0,500));
+  const after = casePaths.map((p) => JSON.parse(readFileSync(p, "utf8")));
+  const diffs = [];
+  const walk = (a,b,path,file) => {
+    if (JSON.stringify(a) === JSON.stringify(b)) return;
+    if (a && b && typeof a === "object" && typeof b === "object" && Array.isArray(a) === Array.isArray(b)) {
+      for (const k of new Set([...Object.keys(a),...Object.keys(b)])) walk(a[k],b[k],[...path,k],file);
+    } else diffs.push({file,path,expected:b===undefined?null:b,remove:b===undefined});
+  };
+  for (let i=0;i<casePaths.length;i++) walk(before[i],after[i],[],casePaths[i]);
+  console.log("TEMP_SUBKULTUR_CASE_DIFF=" + JSON.stringify(diffs));
   console.log(JSON.stringify(report, null, 2));
   process.exitCode = report.status === "passed" ? 0 : 1;
 }
