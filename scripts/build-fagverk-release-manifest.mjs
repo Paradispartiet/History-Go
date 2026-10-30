@@ -411,7 +411,21 @@ function main() {
   if (args.check) {
     if (!fs.existsSync(outputPath)) throw new Error(`Missing Fagverk release manifest: ${args.output}`);
     if (fs.readFileSync(outputPath, "utf8") !== serialized) {
-      for (let i=0;i<serialized.length;i+=8000) console.log("TEMP_RELEASE_EXPECTED_PART="+JSON.stringify(serialized.slice(i,i+8000)));
+      const actualRaw = fs.readFileSync(outputPath,"utf8");
+      const actual=JSON.parse(actualRaw);
+      const mismatches=[],orders=[];
+      const walk=(a,b,path=[])=>{
+        if(a&&b&&typeof a==="object"&&typeof b==="object"&&Array.isArray(a)===Array.isArray(b)){
+          const akeys=Object.keys(a),bkeys=Object.keys(b);
+          if(JSON.stringify(akeys)!==JSON.stringify(bkeys))orders.push({path,expectedKeys:bkeys});
+          for(const key of new Set([...akeys,...bkeys]))walk(a[key],b[key],[...path,key]);
+        }else if(a!==b)mismatches.push({path,expected:b===undefined?null:b,remove:b===undefined});
+      };
+      walk(actual,release);
+      let pos=0;while(pos<serialized.length&&serialized[pos]===actualRaw[pos])pos++;
+      console.log("TEMP_RELEASE_DIFF_VALUES="+JSON.stringify(mismatches.slice(0,100)));
+      console.log("TEMP_RELEASE_DIFF_ORDER="+JSON.stringify(orders.slice(0,40)));
+      console.log("TEMP_RELEASE_DIFF_TEXT="+JSON.stringify({oldLength:actualRaw.length,newLength:serialized.length,firstMismatch:pos,oldExcerpt:actualRaw.slice(pos,pos+100),newExcerpt:serialized.slice(pos,pos+100)}));
       throw new Error(`Stale Fagverk release manifest: ${args.output}`);
     }
     console.log(`Verified Fagverk release ${release.release_sha256}: ${release.summary.subject_count} packages, ${release.summary.chapter_count} chapters.`);
