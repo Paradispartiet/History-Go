@@ -1,0 +1,50 @@
+name: Grand Villa People combined validation (one-shot)
+on:
+  push:
+    branches:
+      - test/grand-villa-people-integration-20261030
+    paths:
+      - .github/workflows/zz-grand-villa-people-integration-check.yml
+permissions:
+  contents: write
+concurrency:
+  group: grand-villa-people-integration-20261030
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: test/grand-villa-people-integration-20261030
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify all canonical v4.2 claim and scope packets
+        run: node scripts/validate-place-description-production-v4_2_policy.mjs --all --report reports/place-description-validation-v4_2.json
+      - name: Check Civication People generated index
+        run: npm run civication:history-people:check
+      - name: Check Grand Hotel category, quiz and stable IDs
+        run: node --test tests/grand-hotel-naeringsliv.test.mjs
+      - name: Check Grand Hotel Næringsliv A–H report
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          BASE="$(git merge-base HEAD origin/main)"
+          node scripts/audit-naeringsliv-place-production.mjs --changed --base "$BASE" --head HEAD
+      - name: Check canonical Knowledge output
+        run: npm run knowledge:canonical:check
+      - name: Remove one-shot workflow from test branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/zz-grand-villa-people-integration-check.yml
+          git commit -m "chore(test): remove one-shot Grand Villa People verification"
+          git push origin HEAD:test/grand-villa-people-integration-20261030
