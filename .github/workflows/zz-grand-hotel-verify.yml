@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Install project dependencies
+        run: npm ci --no-audit --no-fund
       - name: Verify Grand Hotel Næringsliv category, quiz and Knowledge IDs
         run: node --test tests/grand-hotel-naeringsliv.test.mjs
       - name: Audit changed Næringsliv production report A–H
