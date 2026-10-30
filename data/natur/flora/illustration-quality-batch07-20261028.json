@@ -2,7 +2,7 @@
   "schema": "history-go-flora-batch07-plan-v1",
   "batch": "07",
   "date": "2026-10-28",
-  "status": "ryllik_ready_for_release_three_pending",
+  "status": "ryllik_published_two_webp_cleaned_awaiting_github_transfer_tiriltunge_rejected",
   "baselineApproved": 11,
   "targetApproved": 15,
   "publicationRule": "Do not add to nature-flora-approved.js before individually reviewed assets, canonical species record and mobile/desktop QA.",
@@ -62,7 +62,7 @@
     "Run only relevant flora tests"
   ],
   "note": "A four-species composite reference plate was generated during planning, but it is not an individual production asset and must not be enabled as an approved illustration.",
-  "reviewedAt": "2026-10-29",
+  "reviewedAt": "2026-10-30",
   "approvedCandidateCount": 1,
   "projectedApprovedAfterMerge": 12,
   "items": [
@@ -99,28 +99,71 @@
       "name": "Tiriltunge",
       "catalogId": "emne_flora_tiriltunge",
       "scientificName": "Lotus corniculatus",
-      "reviewStatus": "needs_redraw_validation",
+      "reviewStatus": "needs_redraw",
       "approvedForPublication": false,
-      "note": "Separate illustration candidate generated but leaf bases and pea corollas require independent inspection; binary not yet committed."
+      "note": "Five-leaflet arrangement is still inconsistent: require three apical plus distinct basal pair. Not approved."
     },
     {
       "key": "03_hvitklover",
       "name": "Hvitkløver",
       "catalogId": "emne_flora_hvitklover",
       "scientificName": "Trifolium repens",
-      "reviewStatus": "generated_candidate_needs_upload_review",
+      "reviewStatus": "morphology_passed_webp_cleaned_local_upload_pending",
       "approvedForPublication": false,
-      "note": "Individual watercolor-style source artwork created; no asset committed; assess stolons and trifoliate leaves."
+      "note": "Visual review and alpha cleanup complete. Exact WebP binary not committed to GitHub. Approval remains false."
     },
     {
       "key": "04_blaklokke",
       "name": "Blåklokke",
       "catalogId": "emne_flora_blaklokke",
       "scientificName": "Campanula rotundifolia",
-      "reviewStatus": "generated_candidate_needs_upload_review",
+      "reviewStatus": "morphology_passed_webp_cleaned_local_upload_pending",
       "approvedForPublication": false,
-      "note": "Individual watercolor-style source artwork created; no asset committed; assess corolla and basal/upper leaf difference."
+      "note": "Visual review and alpha cleanup complete. Exact WebP binary not committed to GitHub. Approval remains false."
     }
   ],
-  "releaseScope": "Only Ryllik can enter the approved registry in this PR, contingent on tests; three candidate images remain blocked until the actual binaries and expert review are integrated."
+  "releaseScope": "Only Ryllik can enter the approved registry in this PR, contingent on tests; three candidate images remain blocked until the actual binaries and expert review are integrated.",
+  "readyButNotPublishedCount": 2,
+  "localCandidateAssets": {
+    "source": "local candidate package; image binaries NOT in GitHub",
+    "candidates": [
+      {
+        "catalogId": "emne_flora_hvitklover",
+        "scientificName": "Trifolium repens",
+        "suggestedPath": "bilder/natur/flora/illustrasjonskandidater/b07/03_hvitklover.webp",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sizeBytes": 574666,
+        "sha256": "f5159027e5684902c068dc7182912736ee296292d06293c477a7b5d5c1dc3a01",
+        "gitBlobSha": "66aefcd7d3ea4ba4bfc5b272cfe8f6914a748a51",
+        "morphology": "passed_illustration_review",
+        "alpha": "cleaned_local_not_uploaded",
+        "sourceReferences": [
+          "https://www.rhs.org.uk/plants/88720/trifolium-repens/details",
+          "https://plantscience.psu.edu/outreach/plant-id/broadleaf/white-clover"
+        ]
+      },
+      {
+        "catalogId": "emne_flora_blaklokke",
+        "scientificName": "Campanula rotundifolia",
+        "suggestedPath": "bilder/natur/flora/illustrasjonskandidater/b07/04_blaklokke.webp",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sizeBytes": 307146,
+        "sha256": "b7ad45eee829f5a5ccdb86d4ff6535364c4eec8e8ac84011d05a42c09f33093b",
+        "gitBlobSha": "cf2580139a5359b7c2687cfd3a100a911756704b",
+        "morphology": "passed_illustration_review",
+        "alpha": "cleaned_local_not_uploaded",
+        "sourceReferences": [
+          "https://www.rhs.org.uk/plants/2969/campanula-rotundifolia/details",
+          "https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2745.2012.01963.x"
+        ]
+      }
+    ],
+    "publicationGate": "Keep approval registry unchanged until exact WebP blobs are uploaded to GitHub and verified; then run release/browser tests. Neither image is published by this review."
+  }
 }
