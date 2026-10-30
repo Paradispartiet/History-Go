@@ -31,6 +31,8 @@ Kjør målrettet 30/30 manifestparitet og QuizCard 10/10, Story/årstall, Fagver
 Korrekthet/evidens: 5 (primær- og leksikonkilder med eksplisitte skillelinjer).
 Dekning: 4 (v1 inkludert quiz, Story, bilder og Fagverk; People-fullprofil og appgjennomspilling ikke dokumentert).
 Redaksjonell kvalitet: 5 (stedshistorisk 1956-hendelse, akustikk, funksjonsendring).
-Teknisk integritet: avvent CI, fullført merking først når grønn.
+Teknisk integritet: 4 (målrettet 30/30 fullquiz-, 10/10 QuizCard-, Fagverk-, Story- og Knowledge-kontroll samt genererte runtime-artefakter bestod i GitHub Actions 41105244246).
 Ansvarlighet: 5 (kildeskille og ingen oppdiktede konsert- eller People-referanser).
 Etterprøvbarhet: 5 (stabile ID-er, konkrete kilder og særskilt rettetid).
+
+**Samlet v1-vurdering:** 28/30 (5 + 4 + 5 + 4 + 5 + 5). Alle seks dimensjoner minst 4/5. Dette er godkjent v1-revisjon, ikke påstand om fullstendig place-production-vFerdig; ytterligere People/Objects/Brands/Productions-arbeid gjenstår før en slik status.
