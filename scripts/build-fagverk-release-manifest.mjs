@@ -410,7 +410,10 @@ function main() {
   const outputPath = path.resolve(args.root, args.output);
   if (args.check) {
     if (!fs.existsSync(outputPath)) throw new Error(`Missing Fagverk release manifest: ${args.output}`);
-    if (fs.readFileSync(outputPath, "utf8") !== serialized) throw new Error(`Stale Fagverk release manifest: ${args.output}`);
+    if (fs.readFileSync(outputPath, "utf8") !== serialized) {
+      for (let i=0;i<serialized.length;i+=8000) console.log("TEMP_RELEASE_EXPECTED_PART="+JSON.stringify(serialized.slice(i,i+8000)));
+      throw new Error(`Stale Fagverk release manifest: ${args.output}`);
+    }
     console.log(`Verified Fagverk release ${release.release_sha256}: ${release.summary.subject_count} packages, ${release.summary.chapter_count} chapters.`);
     return;
   }
