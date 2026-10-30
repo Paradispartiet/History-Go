@@ -1,0 +1,68 @@
+name: Export Vitenskap stitched badge family
+on:
+  push:
+    branches: [design/vitenskap-brodert-lilla-20261030]
+    paths:
+      - 'bilder/merker/vitenskap/brodert/*.svg'
+      - '.github/workflows/export-vitenskap-badges.yml'
+permissions:
+  contents: write
+jobs:
+  export-embroidered-artwork:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Render all eight SVG badges to transparent WebP
+        run: |
+          python -m pip install --quiet cairosvg pillow
+          python - <<'PY'
+          from pathlib import Path
+          import json,io,xml.etree.ElementTree as ET
+          from PIL import Image,ImageDraw,ImageFont
+          import cairosvg
+          manifest=json.loads(Path('data/badges/vitenskap_underbadge_artwork.json').read_text())
+          badge=json.loads(Path('data/badges/vitenskap.json').read_text())
+          images=[{'id':'vitenskap','svg':'bilder/merker/vitenskap/brodert/vitenskap.svg','image':badge['image'],'label':'Vitenskap'}]+manifest['assets']
+          assert len(images)==8
+          Path('out').mkdir(exist_ok=True)
+          sheet=Image.new('RGB',(1200,670),'#101421')
+          d=ImageDraw.Draw(sheet)
+          font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',18)
+          for i,asset in enumerate(images):
+              src=Path(asset['svg'])
+              assert ET.parse(src).getroot().attrib['viewBox']=='0 0 512 512'
+              data=cairosvg.svg2png(url=str(src),output_width=720,output_height=720)
+              im=Image.open(io.BytesIO(data)).convert('RGBA')
+              assert im.getpixel((0,0))[3]==0
+              out=Path(asset['image'])
+              out.parent.mkdir(parents=True,exist_ok=True)
+              im.save(out,'WEBP',quality=94,method=6)
+              restored=Image.open(out)
+              assert restored.size==(720,720), (out,restored.size)
+              assert out.stat().st_size>3000,out
+              tile=im.resize((252,252),Image.Resampling.LANCZOS)
+              x=20+(i%4)*296
+              y=10+(i//4)*322
+              sheet.paste(tile,(x,y),tile)
+              d.text((x,y+262),asset['label'],font=font,fill='#E6DDFF')
+              print(asset['id'],out.stat().st_size)
+          sheet.save('out/vitenskap-stitched-badges-review.png')
+          print('All eight embroidered images produced')
+          PY
+      - name: Commit binary artwork on this work branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/merker/vitenskap/brodert/*.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "Render science embroidered badge assets to real WebP files"
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vitenskap-stitched-badges-review
+          path: out/vitenskap-stitched-badges-review.png
+          retention-days: 3
