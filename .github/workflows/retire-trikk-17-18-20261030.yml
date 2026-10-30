@@ -1,0 +1,49 @@
+name: Retire Trikk 17/18 – generate dependent data
+on:
+  push:
+    branches:
+      - cleanup/remove-trikk-17-18-20261030
+    paths:
+      - '.github/workflows/retire-trikk-17-18-20261030.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cleanup/remove-trikk-17-18-20261030
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical Places index
+        run: npm run places:index:build
+      - name: Regenerate Knowledge from remaining quiz sources
+        run: npm run knowledge:canonical:write
+      - name: Regenerate Fagverk release and Place-open payloads
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run place-open:build
+      - name: Verify permanent place removal and dependent data
+        run: |
+          node --test tests/trikk-17-18-retirement.test.mjs
+          npm run place-open:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit only regenerated canonical outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u data/places/places_index.json data/knowledge/ data/runtime/ data/fagverk/fagverk_release.json
+          git diff --cached --stat
+          if ! git diff --cached --quiet; then
+            git commit -m "Retire trikk 17/18 from generated Places and Knowledge"
+            git push origin HEAD:cleanup/remove-trikk-17-18-20261030
+          fi
