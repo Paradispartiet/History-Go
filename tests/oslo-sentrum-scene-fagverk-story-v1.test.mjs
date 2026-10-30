@@ -14,6 +14,8 @@ test('Sentrum Scene Fagverk and story registration are canonical and source-back
  for(const chapterId of p.fagverk.chapter_ids)assert.ok(chapterIndex.has(chapterId),`Dead canonical chapter: ${chapterId}`);
  const coveredByChapters=new Set(p.fagverk.chapter_ids.flatMap(chapterId=>chapterIndex.get(chapterId).emne_ids));
  for(const emne of p.fagverk.emne_ids)assert.ok(coveredByChapters.has(emne),`Unmapped music topic: ${emne}`);
+ const runtime=read('data/runtime/place-open/sentrum_scene.json');
+ assert.deepEqual(runtime.place.fagverk.chapter_ids,p.fagverk.chapter_ids,'Place-open Fagverk must match canonical chapter IDs');
  for(const lens of p.fagverk.lenses)assert.ok(subjectIds.has(lens.emne_id),lens.id);
  for(const img of [p.image,p.frontImage,p.cardImage])assert.ok(fs.existsSync(img),img);
 });
