@@ -103,3 +103,23 @@ test("Grand Hotel quiz and QuizCards use the same Næringsliv ownership", () => 
     }
   }
 });
+
+test("Grand Hotel is Næringsliv across the generated epoch index", () => {
+  const index = readJson("data/epoker/epoke-place-index.json");
+  const grandHotelEntries = [];
+  function visit(node) {
+    if (Array.isArray(node)) {
+      node.forEach(visit);
+      return;
+    }
+    if (!node || typeof node !== "object") return;
+    if (node.place_id === "grand_hotel") grandHotelEntries.push(node);
+    Object.values(node).forEach(visit);
+  }
+  visit(index);
+  assert.ok(grandHotelEntries.length >= 1, "Grand Hotel må være med i epokeindeksen");
+  for (const place of grandHotelEntries) {
+    assert.equal(place.category, "naeringsliv");
+    assert.equal(place.source_file, "places/naeringsliv/oslo/grand_hotel.json");
+  }
+});
