@@ -21,6 +21,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_rodkløver: Object.freeze({
+      scientificName: "Trifolium pratense",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/01_rodklover_v4.webp",
+      gitBlobSha: "4aa2d6b97fd263caee0340286f2b876daa129c25",
+      reviewedAt: "2026-10-30",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-batch08-20261030.json"
+    }),
     emne_flora_tiriltunge: Object.freeze({
       scientificName: "Lotus corniculatus",
       src: "bilder/natur/flora/illustrasjonskandidater/b07/02_tiriltunge_v2.webp",
