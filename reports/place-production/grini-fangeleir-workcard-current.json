@@ -8,7 +8,7 @@
     "status": "PASS",
     "place_id": "grini_fangeleir",
     "category": "historie",
-    "recorded_at": "2026-10-28T12:00:00.000Z",
+    "recorded_at": "2026-10-30T14:52:37.948Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
@@ -73,11 +73,11 @@
       ]
     }
   },
-  "active_checkpoint": "G: 8/8 isolated Grini regression checks, 70-question content balance (41/17/12), real runtime shuffle and integrated Knowledge dry run PASS; independent 70/70 signoff and production integration still pending",
+  "active_checkpoint": "Beskrivelsesintegritet: 3 ingressetninger og 29 popupsetninger / 34 claims validert; oversettelser og runtime/epoke/Fagverk-release synkronisert. Fullføringsgate fortsatt BLOCKED.",
   "production_profile": "major",
   "profile_status": "provisional",
   "blocked": [
-    "Chronology/epoke index build/check and actual epoke UI QA not yet completed",
+    "Chronology/epoke build/check PASS; faktisk epoke-UI, samlet leksikoneierskap og Story-review gjenstår",
     "Historie report G is BLOCKED until reviewed 10x7 quiz is integrated, normal opening validated, and Knowledge + UI sync pass",
     "PlaceCard frontImage and 1–4 member samlinger and rights QA incomplete",
     "Dedicated QuizCard flip not verified",
@@ -98,7 +98,7 @@
     "https://www.nasjonalarkivet.no/nordmenn-i-fangenskap-under-andre-verdenskrig/",
     "https://mia.no/grinimuseet/en/grini-museum"
   ],
-  "notes": "Snapshot derived from exact GitHub file content after READ-FIRST review using SHA-256 algorithm verified against standard test vectors. Official CLI not executed in this environment; GitHub CI should validate.",
+  "notes": "Gjeldende READ-FIRST-filer er lest, og repoets offisielle place-production-rule-preflight.mjs record er kjørt 2026-10-30. Se datert completion-gate for utførte tester, main-baseline og faktiske blokkere. Ikke vFerdig eller mergeklar.",
   "new_subsystems": [
     "source-backed full narrative with 31 claims",
     "Historie case report (blocked pending quiz and chronology closeout)",
@@ -267,5 +267,6 @@
       "independent_signoff_completed": 0,
       "active_quiz_replacement": "NOT_DONE"
     }
-  }
+  },
+  "completion_gate_evidence": "reports/place-production/grini-fangeleir-completion-gate-2026-10-30.md"
 }

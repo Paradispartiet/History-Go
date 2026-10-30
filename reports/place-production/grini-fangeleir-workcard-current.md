@@ -1,3 +1,11 @@
+# Gjeldende checkpoint — 30. oktober 2026
+
+**BLOCKED / IKKE MERGEKLAR.** Beskrivelsespakken er reparert (34 claims; 3 + 29 setninger), eksisterende oversettelser og genererte runtime-/epoke-/release-data er synkronisert. Fullføringsstatus, tester, main-baseline og restarbeid: [completion-gate](grini-fangeleir-completion-gate-2026-10-30.md).
+
+Seksdelt vurdering: korrekthet 4, dekning 2, fag/redaksjon 3, teknikk 3, sikkerhet 4, vedlikehold 4 — **20/30, ikke godkjent**. Ingen uavhengig quizsignering eller faktisk browser-QA er attestert.
+
+## Tidligere checkpoints og bevart researchgrunnlag
+
 # Grini fangeleir — fullproduksjon, aktivt arbeidskort
 
 Dato: 2026-10-28  

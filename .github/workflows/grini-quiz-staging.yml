@@ -16,6 +16,10 @@ on:
       - 'scripts/quiz-production-lib.mjs'
       - 'tests/grini-quiz-staging.test.mjs'
       - 'tests/grini-quiz-runtime-shuffle.test.mjs'
+      - 'tests/grini-place-description.test.mjs'
+      - 'data/places/production/grini_fangeleir.json'
+      - 'data/places/historie/akershus/grini_fangeleir.json'
+      - 'data/i18n/content/places/*.json'
       - 'js/quiz/answer-shuffle.js'
       - 'scripts/audit-quiz-content-quality.mjs'
       - '.github/workflows/grini-quiz-staging.yml'
@@ -41,7 +45,7 @@ jobs:
         with:
           node-version: '22'
       - name: Run fail-closed Grini staging tests
-        run: node --test tests/grini-quiz-staging.test.mjs tests/grini-quiz-runtime-shuffle.test.mjs
+        run: node --test tests/grini-quiz-staging.test.mjs tests/grini-quiz-runtime-shuffle.test.mjs tests/grini-place-description.test.mjs
       - name: Verify staging summary without writing output
         run: node scripts/prepare-grini-quiz-staging.mjs
       - name: Build full category context with temporary manifest overlay
