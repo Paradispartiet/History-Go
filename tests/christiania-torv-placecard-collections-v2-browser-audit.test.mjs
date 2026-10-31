@@ -62,6 +62,14 @@ try {
   const page = await context.newPage();
   await page.goto(`http://127.0.0.1:${port}/__audit__/christiania-torv.html`, { waitUntil: "networkidle" });
   await page.waitForFunction(() => window.__auditReady === true);
+  const brandDiagnostic = await page.evaluate(() => ({
+    placeId: window.PLACES?.[0]?.id,
+    mappedIds: window.HGBrands?.getByPlace?.(window.PLACES?.[0]?.id)?.map(item => item?.id),
+    iconCount: document.getElementById("pcBrandsIcon")?.dataset?.collectionItemCount,
+    imgSrc: document.querySelector("#pcBrandsIcon img")?.getAttribute("src"),
+    error: window.__auditError || null
+  }));
+  console.log("Christiania Torv Brands browser diagnostic:", JSON.stringify(brandDiagnostic));
 
   const verify = async expectedWidth => {
     assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "2");
