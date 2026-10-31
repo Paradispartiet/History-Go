@@ -2,7 +2,7 @@ import assert from "node:assert/strict";import fs from "node:fs";import crypto f
 const read=p=>fs.readFileSync(new URL("../"+p,import.meta.url),"utf8");
 const entry=JSON.parse(read("data/natur/flora/illustration-quality-bergmynte-20261031.json")).items[0],id="emne_flora_bergmynte";
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),ctx);
-assert.equal(ctx.window.HG_NATURE_FLORA_APPROVED.count,20);
+assert.equal(ctx.window.HG_NATURE_FLORA_APPROVED.count,21);
 assert.equal(ctx.window.HG_NATURE_FLORA_APPROVED.get(id)?.src,entry.src);
 const source=JSON.parse(read("data/natur/flora/blomster.json"));
 const runtime=JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]);
@@ -17,4 +17,4 @@ assert.equal(crypto.createHash("sha256").update(b).digest("hex"),entry.sha256);
 assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),entry.gitBlobSha);
 assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,12),"WEBP");assert.equal(b.toString("ascii",12,16),"VP8X");
 assert(b[20]&0x10);assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],entry.dimensions);
-console.log("Bergmynte: 20 approved, verified WebP hash/alpha, canonical taxon and licensed photo fallback");
+console.log("Bergmynte: 21 approved, verified WebP hash/alpha, canonical taxon and licensed photo fallback");

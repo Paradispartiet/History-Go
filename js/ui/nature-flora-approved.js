@@ -21,6 +21,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_blaknapp: Object.freeze({
+      scientificName: "Succisa pratensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/06_blaknapp_v1.webp",
+      gitBlobSha: "2bbdcb67f0730a62db8bd81408a6033cdb19e305",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-blaknapp-20261031.json"
+    }),
     emne_flora_blodstorkenebb: Object.freeze({
       scientificName: "Geranium sanguineum",
       src: "bilder/natur/flora/illustrasjonskandidater/b08/05_blodstorkenebb_v1.webp",
