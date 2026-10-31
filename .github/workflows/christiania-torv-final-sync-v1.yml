@@ -43,4 +43,7 @@ jobs:
           git diff --cached --check
           git diff --cached --quiet && exit 0
           git commit -m "build(christiania-torv): sync three-collection profile and quiz context"
-          git push
+          git reset --hard HEAD
+          git fetch origin content/christiania-torv-brands-v1-20261031
+          git rebase FETCH_HEAD
+          git push origin HEAD:content/christiania-torv-brands-v1-20261031
