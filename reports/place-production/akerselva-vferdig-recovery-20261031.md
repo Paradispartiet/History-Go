@@ -30,3 +30,40 @@ Preserve coordinates/route anchors, stable question and place IDs, user progress
 
 ## Outcome
 Recovery work includes an active QuizCard, repaired language content and data contract tests. No complete vFerdig or visual QA is claimed.
+
+## 31 October follow-up — canonical quiz discrepancy resolved
+The five-item Akerselva group in `data/quiz/quiz_naeringsliv.json` uses
+`akerselva_industri_quiz_1` through `akerselva_industri_quiz_5`.
+Those same five IDs already exist in the active
+`data/quiz/naeringsliv/akerselva_industri_sets_merged.json` (though with
+different question wording). The old data are *not* five additional,
+uniquely identified active questions. The canonical manifest continues to
+register **30 active questions in five sets of six**. The separate QuizCard
+references ten of those active IDs. There is no safe evidence for raising the
+count to 35; doing so by blindly appending the old five would create duplicate
+IDs and invalidate progress/Knowledge correspondence.
+
+## PR #6838 verified post-merge
+PR #6838 merged as `fefdd254762ee33ed8d52c9726727dfb88ec6430`.
+The dedicated Akerselva browser run [#41213697605](https://github.com/Paradispartiet/History-Go/actions/runs/41213697605)
+passed with four languages on both mobile and desktop, and the original
+Commons landscape photo is loaded with an uncropped PlaceCard front image.
+Existing licensing and route anchors remain unchanged.
+
+## Remaining editorial People gate
+The Akerselva runtime includes Sam Eyde (`sam_eyde_industriutbygger`) and
+Kristian Birkeland (`kristian_birkeland_teknologi_og_industri`).
+Their records in `data/people/naeringsliv/oslo/people_naeringsliv_oslo.json`
+assign `placeId: akerselva`, but carry no place-specific documentary
+`source_urls` or claim references. A working People widget does **not**
+establish a documented historical association with the river.
+
+By contrast, Friedrich Grüner's primary historical anchor is `nedre_foss`
+and Fredrik Ferdinand Hausmann's is
+`prinds_christian_augusts_minde`, with Hausmannsbrua as a secondary name
+connection. These should not silently be promoted to the whole river.
+
+PR #6844 adds real mobile/desktop browser acceptance for Fagverk and People,
+but editorial review of those two generic industrial People associations
+remains required before assigning the full `vFerdig` label. This report
+does not change People, quiz IDs, visit state or production data.
