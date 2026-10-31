@@ -10,49 +10,57 @@
       "url": "https://www.osloartguide.no/en/venues/van-etten",
       "source_type": "arts_directory",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Oslo Art Guide brukes for adresse, oppstart, kunstnerdrevet profil og program. Kilden dokumenterer institusjonen, men ikke at eldre gatefotografier viser galleriaktivitet."
     },
     "vartoslo": {
       "url": "https://www.vartoslo.no/bydel-gamle-oslo-enerhaugen-espen-kvalsvoll/oyvind-37-og-katja-36-satset-alt-pa-lokalet-pa-enerhaugen-sa-kom-sjokket-hva-er-det-vi-har-gjort/797419",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Samtidsintervju om grunnleggerne, ombygging av lokalet, pandemien og første utstilling. Brukes om oppstarten, ikke som dokumentasjon for virksomhetens senere status."
     },
     "subjekt": {
       "url": "https://subjekt.no/subjektprisen/disse-er-nominert-til-arets-visningsrom-2021/",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Juryomtalen fra 2021 brukes for nominasjonen, juryens vurderinger og datidens oppgitte utstillingstall. Tallet er tidsbundet og skal ikke presenteres som dagens total."
     },
     "move": {
       "url": "https://kunstavisen.no/nyheter/tiltrer-som-gallerist-og-partner",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Kunstavisens daterte sak om Jarems rollebytte i 2025 brukes bare om rollen hennes og overgangen til Galleri Brandstrup; den gir ikke grunnlag for å påstå at Van Etten ble lagt ned."
     },
     "sept": {
       "url": "https://subjekt.no/2026/09/17/ukens-beste-utstillinger-oslo/",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Subjekts utstillingsomtale fra september 2026 dokumenterer en konkret omtale og periode, ikke et varig utstillingsprogram eller åpningstider."
     },
     "kunstavisen": {
       "url": "https://kunstavisen.no/artikler/kunstnerdrevne-visningssteder-i-oslo",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Kunstavisens gjennomgang gir bakgrunn om kunstnerdrevne visningssteder og faglig organisering, ikke dokumentasjon for Van Ettens aktuelle finansiering eller eierforhold."
     },
     "commons16": {
       "url": "https://commons.wikimedia.org/wiki/File:Smedgata_3_(2016).jpg",
       "source_type": "licensed_photograph",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Datert og lisensiert foto av Smedgata 3 fra 2016. Kan brukes til å dokumentere bygningsmiljø før etableringen i 2020, ikke Van Ettens utstillinger."
     },
     "commons15": {
       "url": "https://commons.wikimedia.org/wiki/File:Smedgata_3.jpg",
       "source_type": "licensed_photograph",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Datert og lisensiert foto av Smedgata 3 fra 2015. Viser adressen før etableringen i 2020 og må ikke beskrives som fotografi av galleriets virksomhet."
     }
   },
   "selected_curriculum": {
@@ -68,6 +76,10 @@
     "works": []
   },
   "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/kunst/manifest.json"
+    ],
     "active_before": {
       "set_count": 0,
       "question_count": 0
@@ -77,7 +89,8 @@
       "Correct 2025 leadership change",
       "Use pre-opening photos with clear date labels",
       "No date-only questions"
-    ]
+    ],
+    "knowledge_migration": "Generate canonical Knowledge before merge."
   },
   "profile_decision": {
     "profile": "narrow",
@@ -309,7 +322,11 @@
         "guide"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_okonomi_og_finansiering"
+      "emne_id": "em_kunst_okonomi_og_finansiering",
+      "method_id": "met_kunst_kanon_og_arkivanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_van_etten_quiz_19",
@@ -322,7 +339,11 @@
         "guide"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_institusjonskritikk_og_representasjon"
+      "emne_id": "em_kunst_institusjonskritikk_og_representasjon",
+      "method_id": "met_kunst_kontekstualisering",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_van_etten_quiz_20",
@@ -717,10 +738,10 @@
       "planned_phase": "final",
       "question": "Hva dokumenterer Commons-fotografiet av Smedgata 3 fra 2016?",
       "options": [
-        "Galleriets åpningsutstilling i 2020",
+        "At galleriet hadde hatt fast utstillingsprogram siden 2016",
         "Bygningen før Van Etten åpnet",
-        "Beatrice Alexanians utstilling i 2026",
-        "Hvem som ledet galleriet i 2025"
+        "At de senere galleristene allerede drev stedet i 2016",
+        "At bygningens virksomhet var uendret fram til 2026"
       ],
       "answer": "Bygningen før Van Etten åpnet",
       "answerIndex": 1,
@@ -731,7 +752,11 @@
       ],
       "emne_id": "em_kunst_okonomi_og_finansiering",
       "question_type": "concept_theory",
-      "review_status": "source_reviewed_ready_for_package"
+      "review_status": "source_reviewed_ready_for_package",
+      "method_id": "met_kunst_kanon_og_arkivanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "number": 19,
@@ -739,10 +764,10 @@
       "planned_phase": "final",
       "question": "Hvilket grep er kildekritisk riktig når man bruker et gatefoto fra 2015?",
       "options": [
-        "Dater Van Ettens første utstilling til 2015",
-        "Bruke fotoet som bevis for lederroller i 2026",
+        "Tolke bildet som bevis for Van Ettens første utstilling i 2015",
+        "Slutte at galleriets organisering har vært identisk siden fotografiet ble tatt",
         "Skille bygningens utseende fra galleridriften som kom senere",
-        "Regne alle bygg i Smedgata som samme institusjon"
+        "Bruke det eldre fotoet til å fastslå hvilke kunstnere som stilte ut i 2026"
       ],
       "answer": "Skille bygningens utseende fra galleridriften som kom senere",
       "answerIndex": 2,
@@ -753,7 +778,11 @@
       ],
       "emne_id": "em_kunst_institusjonskritikk_og_representasjon",
       "question_type": "concept_theory",
-      "review_status": "source_reviewed_ready_for_package"
+      "review_status": "source_reviewed_ready_for_package",
+      "method_id": "met_kunst_kontekstualisering",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "number": 20,

@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/kunst/villa_romsli.json",
-      "bytes": 29092,
-      "sha256": "32ed4d1f99ebda84b86081a65a85716e644f40227973a67731805e55866d923f"
+      "bytes": 29882,
+      "sha256": "7bc941cd4053b761a07a51174ac6b3c831590564f908e45b03a8e80702e2e42e"
     },
     "target": {
       "path": "data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06/villa_romsli.json",
@@ -79,8 +79,8 @@
     "target_index": {
       "path": "data/places/places_index.json",
       "matches": 1,
-      "selection_bytes": 871,
-      "selection_sha256": "394971000a9d995d1964f84d3eae702c1dc67149c7001699aa84731889cd4d8a"
+      "selection_bytes": 1006,
+      "selection_sha256": "020889a02e6cb96884c31deba4f8534f58ddb5fb4a22d6ed04a5380b8033644b"
     },
     "relations": [],
     "stories": []
@@ -440,20 +440,24 @@
       "claim_id": "claim_villa_romsli_quiz_16",
       "order": 16,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Atelierene dokumenterer en fase med kunstnerisk bruk, men ikke at denne bruken fortsatt pågikk i 2026. Kommunen oppførte bygget som ledig i mai 2026.",
       "source_ids": [
         "oslo_kommune",
         "oslo_kommune_ledige_bygg_mai_2026"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_institusjoner_kanon"
+      "emne_id": "em_kunst_institusjoner_kanon",
+      "method_id": "met_kunst_kontekstualisering",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_villa_romsli_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "context",
       "statement": "Kommunens kultureiendomsside omtaler overføringen fra Røde Kors og perioden da Villa Romsli fungerte som kunstsenter med atelierer.",
       "source_ids": [
         "oslo_kommune"
@@ -489,13 +493,17 @@
       "claim_id": "claim_villa_romsli_quiz_20",
       "order": 20,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Botilbudet er en dokumentert del av Villa Romslis historie og bør behandles med samme kildekritiske respekt som den senere kunstvirksomheten.",
       "source_ids": [
         "oslo_kommune"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_institusjoner_kanon"
+      "emne_id": "em_kunst_institusjoner_kanon",
+      "method_id": "met_kunst_institusjonsanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_villa_romsli_quiz_21",
@@ -564,14 +572,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 13,
-      "context": 6,
-      "concept_theory": 2
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
     },
     "ratios": {
-      "fact": 0.619,
-      "context": 0.286,
-      "concept_theory": 0.095
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
     }
   }
 }

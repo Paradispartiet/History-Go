@@ -17,16 +17,75 @@
     "context_artifact": "data/quiz/production_context/historie/viking_planet_oslo.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/historie/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "Reuse the canonical Museum location; do not confuse it with Vikingtidsmuseet on Bygdøy.",
-        "Do not present digital reconstruction as primary archaeological evidence."
-      ]
+        "Use existing canonical viking_planet_oslo only.",
+        "Make source/reconstruction distinctions explicit.",
+        "Avoid excessive years."
+      ],
+      "knowledge_migration": "Generate canonical Knowledge IDs."
     },
-    "knowledge_migration": "Generate canonical Knowledge before merge."
+    "knowledge_migration": "Generate canonical Knowledge before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_historiske_lag_i_byrom"
+    ],
+    "topic_hook_ids": [
+      "his_kulturminneutvelgelse_verdi",
+      "his_samtid_ettertid_fortelling",
+      "his_spor_materialitet",
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_kulturarvutvelgelsesanalyse",
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Modern interactive Viking Age interpretation and source criticism."
+    },
+    "held_back_candidates": [
+      "Assuming original Vikings ships are displayed inside The Viking Planet.",
+      "Unlicensed promotional images presented as free-to-reuse."
+    ]
   },
   "sets": [
     {
@@ -197,7 +256,7 @@
           "knowledge": "En digital fremstilling kan være forskningsbasert og likevel inneholde dramatisering og valg som ikke er dokumentert i historiske kilder.",
           "explanation": "En digital fremstilling kan være forskningsbasert og likevel inneholde dramatisering og valg som ikke er dokumentert i historiske kilder.",
           "difficulty": 1,
-          "question_type": "concept_theory",
+          "question_type": "analysis",
           "emne_id": "em_his_spor_materialitet",
           "source": [
             "about"
@@ -561,7 +620,7 @@
           "knowledge": "En 3D-modell kan bygge på et virkelig funn, men en digital visning er ikke det samme som det originale objektet.",
           "explanation": "En 3D-modell kan bygge på et virkelig funn, men en digital visning er ikke det samme som det originale objektet.",
           "difficulty": 2,
-          "question_type": "concept_theory",
+          "question_type": "context",
           "emne_id": "em_his_spor_materialitet",
           "source": [
             "experiences"
@@ -649,7 +708,7 @@
           "knowledge": "Historisk autentisitet bør vurderes ut fra identifiserbare kilder og tydelig merking av dramatiserte elementer.",
           "explanation": "Historisk autentisitet bør vurderes ut fra identifiserbare kilder og tydelig merking av dramatiserte elementer.",
           "difficulty": 2,
-          "question_type": "concept_theory",
+          "question_type": "analysis",
           "emne_id": "em_his_spor_materialitet",
           "source": [
             "about"
@@ -755,7 +814,7 @@
           "knowledge": "Tekster om vikingtiden må tolkes i lys av når, hvordan og hvorfor de ble skrevet, også når de brukes som grunnlag for film.",
           "explanation": "Tekster om vikingtiden må tolkes i lys av når, hvordan og hvorfor de ble skrevet, også når de brukes som grunnlag for film.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "concept",
           "emne_id": "em_his_spor_materialitet",
           "source": [
             "about"
@@ -843,7 +902,7 @@
           "knowledge": "Et digitalt hologram kan illustrere en historisk fortolkning, men er ikke i seg selv vitnesbyrd fra vikingtiden.",
           "explanation": "Et digitalt hologram kan illustrere en historisk fortolkning, men er ikke i seg selv vitnesbyrd fra vikingtiden.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "concept",
           "emne_id": "em_his_samtid_ettertid_fortelling",
           "source": [
             "home"
@@ -886,7 +945,7 @@
           "knowledge": "Dramatiske valg i digital formidling kan forskyve oppmerksomheten mot krig og reiser fremfor andre sider ved samfunnslivet.",
           "explanation": "Dramatiske valg i digital formidling kan forskyve oppmerksomheten mot krig og reiser fremfor andre sider ved samfunnslivet.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "concept",
           "emne_id": "em_his_samtid_ettertid_fortelling",
           "source": [
             "home",
@@ -931,7 +990,7 @@
           "knowledge": "En interaktiv opplevelse egner seg til å formulere spørsmål som etterprøves mot kildene, ikke til å erstatte kildene.",
           "explanation": "En interaktiv opplevelse egner seg til å formulere spørsmål som etterprøves mot kildene, ikke til å erstatte kildene.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "concept",
           "emne_id": "em_his_spor_materialitet",
           "source": [
             "about",
@@ -955,7 +1014,22 @@
           "knowledge_unit_ids": [
             "ku_historie_en_interaktiv_opplevelse_6bd05f72c1"
           ],
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "his_spor_materialitet",
+          "thinker_id": "marc_bloch",
+          "thinker_name": "Marc Bloch",
+          "work": "The Historian's Craft",
+          "theory_ref": {
+            "topic_hook_id": "his_spor_materialitet",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Blochs kildekritiske tilnærming understreker at digitale framstillinger må kontrolleres mot arkeologiske og skriftlige kilder, selv når framstillingen bygger på forskning."
+          }
         },
         {
           "id": "viking_planet_oslo_reviewed_21",

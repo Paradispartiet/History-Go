@@ -21,17 +21,75 @@
     "context_artifact": "data/quiz/production_context/historie/vestre_gravlund.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/historie/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "Use canonical cemetery area, not an individual grave.",
-        "Separate Norway's second crematorium from Oslo's first.",
-        "Distinguish Emanuel Vigeland (Gamle kapell) and Alf Rolfsen (Nye kapell)."
-      ]
+        "A single area-level canonical Place",
+        "Disallow named individual graves as location markers",
+        "Correct crematorium national numbering"
+      ],
+      "knowledge_migration": "Generate canonical ID binding before merge."
     },
-    "knowledge_migration": "Generate Knowledge before merge."
+    "knowledge_migration": "Generate Knowledge before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_minnesteder_historiebruk",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kulturminneutvelgelse_verdi",
+      "his_minnested_ritual_offentlig_sorg",
+      "his_spor_materialitet"
+    ],
+    "method_ids": [
+      "met_kulturarvutvelgelsesanalyse",
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "21 distinct sourced questions on urban cemetery history, cremation, chapel art and war memorials."
+    },
+    "held_back_candidates": [
+      "Claims about private grave owners",
+      "Mistaken claim that 1909 was Norway's first crematorium",
+      "Conflating Emanuel Vigeland with Alf Rolfsen",
+      "Treating Kapell access as guaranteed"
+    ]
   },
   "sets": [
     {
@@ -337,7 +395,7 @@
           "knowledge": "Utformingen har vokst fram i flere etapper, og landskapet inneholder ulike tidslag.",
           "explanation": "Utformingen har vokst fram i flere etapper, og landskapet inneholder ulike tidslag.",
           "difficulty": 1,
-          "question_type": "concept_theory",
+          "question_type": "context",
           "emne_id": "em_his_spor_materialitet",
           "source": [
             "byleks",
@@ -779,7 +837,7 @@
           "answer": "De viser ulike gravskikker og endringer over tid",
           "answerIndex": 1,
           "knowledge": "Gravtypene dokumenterer ulike former for gravlegging og minne.",
-          "explanation": "Gravtypene dokumenterer ulike former for gravlegging og minne.",
+          "explanation": "Kistegraver og urnegraver er materielle spor etter ulike gravskikker. Sporlesning bruker slike forskjeller som kilder til å undersøke hvordan gravlegging og minne har endret seg over tid.",
           "difficulty": 3,
           "question_type": "concept_theory",
           "emne_id": "em_his_minnesteder_historiebruk",
@@ -806,6 +864,10 @@
           "primary_knowledge_unit_id": "ku_historie_gravtypene_dokumenterer__2ac3acd6e8",
           "knowledge_unit_ids": [
             "ku_historie_gravtypene_dokumenterer__2ac3acd6e8"
+          ],
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
           ]
         },
         {
@@ -1005,7 +1067,7 @@
           "knowledge": "På Vestre gravlund ble enkelte monumenter reist flere år etter den andre verdenskrigen.",
           "explanation": "På Vestre gravlund ble enkelte monumenter reist flere år etter den andre verdenskrigen.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "analysis",
           "emne_id": "em_his_minnesteder_historiebruk",
           "source": [
             "krig",
@@ -1030,7 +1092,22 @@
           "primary_knowledge_unit_id": "ku_historie_pa_vestre_gravlund_ble_e_1c6f2b55f4",
           "knowledge_unit_ids": [
             "ku_historie_pa_vestre_gravlund_ble_e_1c6f2b55f4"
-          ]
+          ],
+          "method_id": "met_minneanalyse",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "his_minnested_ritual_offentlig_sorg",
+          "thinker_id": "maurice_halbwachs",
+          "thinker_name": "Maurice Halbwachs",
+          "work": "On Collective Memory",
+          "theory_ref": {
+            "topic_hook_id": "his_minnested_ritual_offentlig_sorg",
+            "thinker_id": "maurice_halbwachs",
+            "work": "On Collective Memory",
+            "why_it_helps": "Halbwachs' perspektiv på kollektivt minne gjør det mulig å forstå hvorfor et minnesmerke kan reises lenge etter hendelsen: minnepraksisen har sin egen historiske utvikling."
+          }
         }
       ]
     }

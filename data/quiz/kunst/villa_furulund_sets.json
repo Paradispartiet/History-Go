@@ -18,16 +18,71 @@
     "context_artifact": "data/quiz/production_context/kunst/villa_furulund.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/kunst/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "No direct Villa Furulund target on quiz manifest before production.",
-        "Do not conflate 1967 organisational agreement, 1972 permanent sculpture-office presence, and 2018 gallery opening."
-      ]
+        "No direct Villa Furulund fullquiz registered in manifest; preserve category kunst.",
+        "Avoid pure date recall and distinguish NBF tenancy, permanent office and new gallery."
+      ],
+      "knowledge_migration": "Build Knowledge IDs using canonical generator."
     },
-    "knowledge_migration": "Generate canonical Knowledge IDs before merging."
+    "knowledge_migration": "Generate canonical Knowledge IDs before merging.",
+    "resolved_files": {
+      "pensum": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
+      "emner": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+      "fagkart": "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
+      "methods": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/kunst/supersetQUIZMAL_kunst.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "felt_institusjon"
+    ],
+    "emne_ids": [
+      "em_kunst_institusjoner_kanon"
+    ],
+    "topic_hook_ids": [
+      "arkiv_og_minne",
+      "autonomi_vs_avhengighet",
+      "distribusjonsinfrastruktur",
+      "epokefortellinger"
+    ],
+    "method_ids": [
+      "met_kunst_kanon_og_arkivanalyse",
+      "met_kunst_institusjonsanalyse",
+      "met_kunst_kunsthistorisk_kontekstualisering",
+      "met_kunst_kuratorisk_analyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "The house and property; art associations; exhibition, sculpture and public access."
+    },
+    "held_back_candidates": [
+      "Unsupported claims about specific artwork or artists currently on show.",
+      "Treating the site exclusively as a museum instead of a working association and gallery.",
+      "Incorrectly collapsing the 1967 agreement, 1972 sculpture office and 2018 gallery opening into one event."
+    ]
   },
   "sets": [
     {
@@ -917,7 +972,7 @@
           "knowledge": "Skulptur i uterom gir andre møter mellom verk, besøkende og omgivelser enn et innendørs galleri.",
           "explanation": "Skulptur i uterom gir andre møter mellom verk, besøkende og omgivelser enn et innendørs galleri.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "concept",
           "emne_id": "em_kunst_institusjoner_kanon",
           "source": [
             "park",
@@ -942,6 +997,19 @@
           "primary_knowledge_unit_id": "ku_kunst_skulptur_i_uterom_gir_an_41fae466ef",
           "knowledge_unit_ids": [
             "ku_kunst_skulptur_i_uterom_gir_an_41fae466ef"
+          ],
+          "topic_hook_id": "autonomi_vs_avhengighet",
+          "thinker_id": "brian_odoherty",
+          "thinker_name": "Brian O'Doherty",
+          "work": "Inside the White Cube",
+          "theory_ref": {
+            "topic_hook_id": "autonomi_vs_avhengighet",
+            "thinker_id": "brian_odoherty",
+            "work": "Inside the White Cube",
+            "why_it_helps": "O'Dohertys analyse av gallerirommet gir et relevant sammenligningsgrunnlag når skulptur møter publikum ute i parken i stedet for bare inne i visningsrommet."
+          },
+          "guidance_basis": [
+            "data/fag/kunst/fagkart_kunst_canonical_v4_5.json"
           ]
         },
         {
@@ -1007,7 +1075,7 @@
           "knowledge": "Villa Furulund er både foreningshus, visningssted og skulpturpark, ikke bare en tradisjonell museumssamling.",
           "explanation": "Villa Furulund er både foreningshus, visningssted og skulpturpark, ikke bare en tradisjonell museumssamling.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "analysis",
           "emne_id": "em_kunst_institusjoner_kanon",
           "source": [
             "snl",
@@ -1034,6 +1102,10 @@
           "primary_knowledge_unit_id": "ku_kunst_villa_furulund_er_bade_f_39944b024d",
           "knowledge_unit_ids": [
             "ku_kunst_villa_furulund_er_bade_f_39944b024d"
+          ],
+          "method_id": "met_kunst_institusjonsanalyse",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json"
           ]
         }
       ]

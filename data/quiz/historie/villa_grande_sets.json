@@ -19,14 +19,75 @@
     "context_artifact": "data/quiz/production_context/historie/villa_grande.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/villa_grande_sets.json",
+        "data/quizcards/historie/manifest.json"
+      ],
       "active_before": {
         "set_count": 1,
         "question_count": 3
       },
       "decisions": [
-        "Keep original three question identities while adding supported questions; regenerate canonical Knowledge before publication."
-      ]
-    }
+        "Preserve the original three question IDs and core facts.",
+        "Expand 3 to 21 with historically distinct claims, each sourced.",
+        "Use no date-only questions."
+      ],
+      "knowledge_migration": "Rebuild canonical Knowledge IDs with the repository generator."
+    },
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_okkupasjon_motstand",
+      "em_his_minnesteder_historiebruk",
+      "em_his_minoritetshistorie",
+      "em_his_riving_ombruk_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_krig_okkupasjon_okkupasjon_og_motstand",
+      "his_minnested_ritual_offentlig_sorg",
+      "his_minoritetspolitikk_kategorisering_registrering",
+      "his_okkupasjon_byrom_kontroll"
+    ],
+    "method_ids": [
+      "met_muntlig_historie",
+      "met_institusjonshistorisk_analyse",
+      "met_prosopografi",
+      "met_minnesteds_og_ritualanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Origin and occupation; physical historical evidence; postwar reuse, memorial institution and source criticism."
+    },
+    "held_back_candidates": [
+      "Speculative dialogue involving Quisling, unverified room usage and sensational descriptions of Holocaust.",
+      "Exact attribution of motives or private actions not documented in the sources."
+    ]
   },
   "sets": [
     {
@@ -109,7 +170,6 @@
             "emne_id": "em_his_okkupasjon_motstand",
             "method_id": "met_kildekritikk"
           },
-          "method_id": "met_kildekritikk",
           "history_anchor_type": "institutional_place",
           "source_note": "Kildebasert historisk quizspørsmål.",
           "external_source_ratio_target": 0.85,
@@ -204,7 +264,6 @@
             "emne_id": "em_his_minnesteder_historiebruk",
             "method_id": "met_for_etter_historisk"
           },
-          "method_id": "met_for_etter_historisk",
           "history_anchor_type": "historical_transformation",
           "source_note": "Kildebasert historisk quizspørsmål.",
           "external_source_ratio_target": 0.85,
@@ -260,7 +319,7 @@
           "knowledge": "Villa Grande viser hvordan et bygg kan få ny moralsk og historisk betydning når bruken endres over tid.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "synthesis",
+          "question_type": "context",
           "question_layer": "synthesis_comparison",
           "year": null,
           "epoke_id": "flere_epoker",
@@ -299,7 +358,6 @@
             "emne_id": "em_his_riving_ombruk_bevaring",
             "method_id": "met_for_etter_historisk"
           },
-          "method_id": "met_for_etter_historisk",
           "history_anchor_type": "historical_transformation",
           "source_note": "Kildebasert historisk quizspørsmål.",
           "external_source_ratio_target": 0.85,
@@ -731,7 +789,7 @@
           "knowledge": "Bevaring gjør det mulig å undersøke regimets maktuttrykk uten å slutte seg til ideologien.",
           "explanation": "Bevaring gjør det mulig å undersøke regimets maktuttrykk uten å slutte seg til ideologien.",
           "difficulty": 2,
-          "question_type": "concept",
+          "question_type": "context",
           "emne_id": "em_his_minnesteder_historiebruk",
           "source": [
             "fredning",
@@ -977,7 +1035,7 @@
           "knowledge": "Historien krever kritisk formidling av regimets egen selvframstilling og de historiske konsekvensene.",
           "explanation": "Historien krever kritisk formidling av regimets egen selvframstilling og de historiske konsekvensene.",
           "difficulty": 2,
-          "question_type": "context",
+          "question_type": "concept",
           "emne_id": "em_his_minnesteder_historiebruk",
           "source": [
             "hl",
@@ -1002,6 +1060,19 @@
           "primary_knowledge_unit_id": "ku_historie_historien_krever_kritisk_22cce2972a",
           "knowledge_unit_ids": [
             "ku_historie_historien_krever_kritisk_22cce2972a"
+          ],
+          "topic_hook_id": "his_minnested_ritual_offentlig_sorg",
+          "thinker_id": "pierre_nora",
+          "thinker_name": "Pierre Nora",
+          "work": "Realms of Memory",
+          "theory_ref": {
+            "topic_hook_id": "his_minnested_ritual_offentlig_sorg",
+            "thinker_id": "pierre_nora",
+            "work": "Realms of Memory",
+            "why_it_helps": "Noras perspektiv på minnesteder belyser hvorfor en tidligere representasjonsbolig for kollaborasjonsregimet må formidles kritisk som et sted med senere minne- og læringsfunksjon."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
           ]
         },
         {
@@ -1048,6 +1119,10 @@
           "primary_knowledge_unit_id": "ku_historie_materielle_spor_kan_doku_eddf355239",
           "knowledge_unit_ids": [
             "ku_historie_materielle_spor_kan_doku_eddf355239"
+          ],
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
           ]
         },
         {
@@ -1092,6 +1167,10 @@
           "primary_knowledge_unit_id": "ku_historie_den_offisielle_forskrift_20b034a1be",
           "knowledge_unit_ids": [
             "ku_historie_den_offisielle_forskrift_20b034a1be"
+          ],
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
           ]
         },
         {
@@ -1136,6 +1215,10 @@
           "primary_knowledge_unit_id": "ku_historie_bunkeren_er_en_materiell_c0021f03de",
           "knowledge_unit_ids": [
             "ku_historie_bunkeren_er_en_materiell_c0021f03de"
+          ],
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
           ]
         },
         {
