@@ -21,7 +21,9 @@ jobs:
         with:
           node-version: '22'
       - name: Verify artwork, approved originals and underbadges
-        run: node --test tests/badge-embroidered-rollout-v1.test.mjs
+        run: |
+          node --test tests/badge-embroidered-rollout-v1.test.mjs
+          node --test tests/badge-embroidered-rollout-v2.test.mjs
       - name: Generate four-badge preview
         run: |
           python -m pip install -q pillow

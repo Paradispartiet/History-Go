@@ -35,12 +35,12 @@ Ingen av disse ni bildereferansene skal byttes ut i dette arbeidet.
 | 2 | film_tv | #C2188B / #E7F8FF | integrated_candidate (ikke publisert) |
 | 3 | litteratur | #F5B4C8 / #FFF4E3 | integrated_candidate (ikke publisert) |
 | 4 | natur | #2E4F21 / #DC7A04 | integrated_candidate (ikke publisert) |
-| 5 | Musikk | #E354A0 / #000000 | review_existing |
-| 6 | Scenekunst | #C96E8B / #808080 | review_existing |
-| 7 | Filosofi | #7A5FD0 / #FFFFFF | review_existing |
-| 8 | Psykologi | #06D6A0 / #00A896 | review_existing |
-| 9 | Helse | #0B7A75 / #2E8B57 | review_existing |
-| 10 | Utdanning | #7D8534 / #F2C94C | review_existing |
+| 5 | Musikk | #E354A0 / #000000 | integrated_candidate, v1 in PR |
+| 6 | Scenekunst | #C96E8B / #808080 | integrated_candidate, v1 in PR |
+| 7 | Filosofi | #7A5FD0 / #FFFFFF | integrated_candidate, v1 in PR |
+| 8 | Psykologi | #06D6A0 / #00A896 | integrated_candidate, v1 in PR |
+| 9 | Helse | #0B7A75 / #2E8B57 | integrated_candidate, v1 in PR |
+| 10 | Utdanning | #7D8534 / #F2C94C | integrated_candidate, v1 in PR |
 
 ## Kvalitetskrav
 1. Bruk allerede godkjente merkeillustrasjoner; fem historiske originaler og fire nyere godkjente er låst.
