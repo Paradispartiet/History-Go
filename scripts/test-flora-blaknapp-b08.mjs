@@ -14,7 +14,7 @@ assert.equal(runtime.find(x=>x.id===id)?.latin,a.scientificName);
 const photo={window:{}};vm.runInNewContext(read("js/ui/nature-flora-photographs.js"),photo);
 assert.equal(photo.window.HG_NATURE_FLORA_PHOTOS.get(id)?.scientificName,a.scientificName);
 const context={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),context);
-const approved=context.window.HG_NATURE_FLORA_APPROVED;assert.equal(approved.count,21);
+const approved=context.window.HG_NATURE_FLORA_APPROVED;assert.equal(approved.count,22);
 assert.equal(approved.get(id)?.src,a.src);assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
 const b=fs.readFileSync(new URL("../"+a.src,import.meta.url));
 assert.equal(b.length,a.sizeBytes);
