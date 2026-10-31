@@ -1,0 +1,153 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "knud_graah_voyenfallene",
+  "profile_file": "data/people/natur/oslo/people_natur_oslo.json",
+  "identity": {
+    "canonical_identity": "Knud Graah (1817–1909), industrigründeren knyttet til Vøiens Bomuldsspinderi.",
+    "name_variants": [
+      "Knud Graah"
+    ],
+    "not": [
+      "Niels O. Young"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "name",
+      "claim": "Knud Graah er den dokumenterte industrigründeren knyttet til Vøiens Bomuldsspinderi.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Knud_Graah",
+      "source_location": "biografiens overskrift og ingress",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-31",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "birth_year",
+      "claim": "Knud Graah ble født i 1817.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Knud_Graah",
+      "source_location": "faktaboks",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-31",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "rights",
+      "claim": "Knud Graah og Niels O. Young kjøpte fallrettigheter ved Nedre Vøyen langs Akerselva i 1844.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Knud_Graah",
+      "source_location": "avsnittet om etableringen",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-31",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "launch",
+      "claim": "Spinneriet nedenfor Beierbrua ble satt i drift i 1846 med 70–80 arbeidere.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/V%C3%B8iens_Bomuldsspinderi",
+      "source_location": "første avsnitt",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-31",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "ownership",
+      "claim": "Graah ble eneeier i 1854 og drev bedriften til 1906.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/V%C3%B8iens_Bomuldsspinderi",
+      "source_location": "første avsnitt",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-31",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "site",
+      "claim": "Det historiske Vøiens Bomuldsspinderi ligger i Sagveien 21 ved Akerselva.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/V%C3%B8iens_Bomuldsspinderi",
+      "source_location": "overskrift og første avsnitt",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-31",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "name"
+    ],
+    "kindLabel": [
+      "name"
+    ],
+    "year": [
+      "birth_year"
+    ],
+    "placeId": [
+      "rights",
+      "site"
+    ],
+    "places[voienfossen]": [
+      "rights",
+      "site"
+    ],
+    "places[akerselva]": [
+      "rights",
+      "site"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "name",
+          "launch"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "rights"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "launch"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "ownership"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "site"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "6/6",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-10-31",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
