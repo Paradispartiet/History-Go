@@ -12,15 +12,21 @@ Canonical city Place `akerselva` (not the 20+ distinct Nature stops along the Ak
 - Historical People profiles along Akerselva and separate Nature route places exist; these must not be conflated with the canonical city Place.
 - Production branch `production/akerselva-vferdig-20261031` was nine commits behind main and zero ahead at time of inspection. Reported local commit `f23628af` could not be resolved on GitHub.
 
+## Implemented in recovery PR #6838
+- A ten-question QuizCard from ten **existing** fullquiz questions is registered in `data/quizcards/naeringsliv/manifest.json`. Source question IDs, answer keys and Knowledge links are retained; the QuizCard adds no questions to the 30-question fullquiz.
+- The Akerselva-only entries in `en.json`, `es.json` and `pt.json` have been translated to the current canonical Norwegian eight-paragraph article. The three entries now carry canonical source hash `db217cea5131ef90`. Other places in those language files are unchanged.
+- Commons metadata for the existing landscape image confirms Reem78, 19 August 2015, CC BY-SA 4.0 and 4160×2336 original resolution. Current canonical rights fields and the generated place-open payload already agree. The image has **not** been recropped, replaced, locally downloaded or visually accepted in the app.
+- Added contract tests for fullquiz/manifest/Knowledge, QuizCard source parity, Fagverk and People primary-place boundaries, i18n source-freshness and image metadata/runtime parity. Direct JSON contract verification for the affected places passed. GitHub Actions on the latest head still determine merge readiness.
+
 ## Open gates for vFerdig
 1. Recover or rebuild the missing local changes against current main; do not treat the archived session's description as committed files.
-2. The manifest currently resolves to 30 fullquiz questions, not 35 (five sets of six), with existing Knowledge references. Resolve the five-question discrepancy before changing the quiz; confirm the ten QuizCard questions, including their actual linkage.
-3. Confirm PlaceCard and Fagverk runtime links, relevant People connections, local/licensed image and its crop.
-4. Verify nb/en/es/pt text on the canonical Place and in actual runtime language switching; maintain consistency with the canonical history.
-5. Run narrowly scoped generated-file/quiz/Fagverk checks and required PR CI. Only then consider merge and vFerdig promotion.
+2. The manifest currently resolves to 30 fullquiz questions, not the 35 previously reported locally (five sets of six). The ten-question QuizCard is now present and sourced from existing questions. Resolve the five-question discrepancy from actual production evidence before increasing the quiz count.
+3. The canonical Fagverk is curated and the existing People retain their documentary anchor places; verify their **actual UI** rendering. The image license is independently checked; photo framing/crop in PlaceCard is still unverified.
+4. nb is canonical; en/es/pt entries have been synchronised to its content and hash. The actual language-switching UI still needs checking.
+5. Complete relevant PR CI on the latest head and check the moving main branch before merging. No vFerdig promotion without resolving the remaining gates.
 
 ## Preservation rules
 Preserve coordinates/route anchors, stable question and place IDs, user progress, unrelated Akerselva Nature stops, and existing photography credits. Do not substitute a person portrait or generated image for the Akerselva place photograph.
 
 ## Outcome
-Recovery context is preserved as a committed audit. No completion or visual QA is claimed.
+Recovery work includes an active QuizCard, repaired language content and data contract tests. No complete vFerdig or visual QA is claimed.
