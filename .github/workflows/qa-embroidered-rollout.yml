@@ -8,6 +8,10 @@ on:
       - '.github/workflows/qa-embroidered-rollout.yml'
 permissions:
   contents: read
+
+concurrency:
+  group: embroidered-badges-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   badge-qa:
     runs-on: ubuntu-latest
