@@ -44,6 +44,8 @@ on:
       - 'data/natur/flora/illustration-quality-bitterbergknapp-20261031.json'
       - 'data/natur/flora/illustration-quality-blodstorkenebb-20261031.json'
       - 'data/natur/flora/illustration-quality-blaknapp-20261031.json'
+      - 'data/natur/flora/illustration-quality-burot-20261031.json'
+      - 'scripts/test-flora-burot-b08.mjs'
       - 'scripts/test-flora-blaknapp-b08.mjs'
       - 'scripts/test-flora-blodstorkenebb-b08.mjs'
       - 'scripts/test-flora-bitterbergknapp-b08.mjs'
@@ -99,6 +101,7 @@ jobs:
       - run: node scripts/test-flora-bitterbergknapp-b08.mjs
       - run: node scripts/test-flora-blodstorkenebb-b08.mjs
       - run: node scripts/test-flora-blaknapp-b08.mjs
+      - run: node scripts/test-flora-burot-b08.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -121,6 +124,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-twentyone-mobile-desktop
+          name: flora-approved-twentytwo-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore

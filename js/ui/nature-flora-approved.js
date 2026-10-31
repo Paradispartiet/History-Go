@@ -21,6 +21,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_burot: Object.freeze({
+      scientificName: "Artemisia vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/07_burot_v1.webp",
+      gitBlobSha: "dbb1eb58fcbf93c4e81c41dee607192f69d5f50a",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-burot-20261031.json"
+    }),
     emne_flora_blaknapp: Object.freeze({
       scientificName: "Succisa pratensis",
       src: "bilder/natur/flora/illustrasjonskandidater/b08/06_blaknapp_v1.webp",
