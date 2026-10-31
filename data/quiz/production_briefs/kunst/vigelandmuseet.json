@@ -285,7 +285,7 @@
       "claim_id": "claim_vigelandmuseet_quiz_16",
       "order": 16,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "context",
       "statement": "Smeder og andre assistenter bygde jernarmaturer som støttet store leiremodeller.",
       "source_ids": [
         "history"
@@ -322,14 +322,18 @@
       "claim_id": "claim_vigelandmuseet_quiz_19",
       "order": 19,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Museet forvalter også et stort materiale av tegninger, tresnitt, brev og fotografier.",
       "source_ids": [
         "history",
         "museum"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_institusjoner_kanon"
+      "emne_id": "em_kunst_institusjoner_kanon",
+      "method_id": "met_kunst_kanon_og_arkivanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_vigelandmuseet_quiz_20",
@@ -689,11 +693,11 @@
       "number": 16,
       "claim_id": "claim_vigelandmuseet_quiz_16",
       "planned_phase": "final",
-      "question": "Hva var en av smedenes oppgaver?",
+      "question": "Under arbeidet med de store leiremodellene: hva ga skulpturene innvendig støtte mens de ble formet?",
       "options": [
-        "Å programmere kinolyd",
-        "Å redigere tresnittene digitalt",
-        "Å tegne husets vindusglass",
+        "Å herde leiren i ovn før modellen var ferdig",
+        "Å støpe bronseverket før modelleringen begynte",
+        "Å bruke malte støttelinjer uten noen bærende konstruksjon",
         "Å lage jernskjelett inne i større skulpturer"
       ],
       "answer": "Å lage jernskjelett inne i større skulpturer",
@@ -703,7 +707,7 @@
         "history"
       ],
       "emne_id": "em_kunst_institusjoner_kanon",
-      "question_type": "fact",
+      "question_type": "context",
       "review_status": "source_reviewed_ready_for_package"
     },
     {
@@ -753,12 +757,12 @@
       "number": 19,
       "claim_id": "claim_vigelandmuseet_quiz_19",
       "planned_phase": "final",
-      "question": "Hva inneholder museet i tillegg til skulpturer?",
+      "question": "Hvis vi vil undersøke mer enn de ferdige skulpturene, hvilke av museets kilder gir innblikk i kunstnerens arbeid og etterlatte materiale?",
       "options": [
-        "Bare filmruller",
+        "Bare fotografier av parken, uten tegninger eller skriftlige kilder",
         "Tegninger, tresnitt, brev og annet arkivmateriale",
-        "Kun geologiske prøver",
-        "Bare skipsdeler"
+        "Kun publikumsstatistikk fra nyere utstillinger",
+        "Kun ferdige bronseverk, uten skisser eller korrespondanse"
       ],
       "answer": "Tegninger, tresnitt, brev og annet arkivmateriale",
       "answerIndex": 1,
@@ -768,8 +772,12 @@
         "museum"
       ],
       "emne_id": "em_kunst_institusjoner_kanon",
-      "question_type": "fact",
-      "review_status": "source_reviewed_ready_for_package"
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package",
+      "method_id": "met_kunst_kanon_og_arkivanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "number": 20,
