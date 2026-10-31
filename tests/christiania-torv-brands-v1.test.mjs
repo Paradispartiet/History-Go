@@ -42,14 +42,22 @@ test('both brands have actual local WebP sign crops and exact media provenance',
     assert.equal(asset.sourceForm, 'authentic_photographed_sign_wordmark');
     assert.ok(asset.sourcePage.startsWith('https://'));
     assert.ok(asset.sourceSha256.match(/^[a-f0-9]{64}$/));
-    assert.equal(asset.reviewStatus, 'source_verified_visual_review_pending');
+    assert.equal(asset.reviewStatus, 'manually_approved');
   }
-  assert.equal(attribution.visualReviewPending, true);
+  assert.equal(attribution.visualReviewPending, false);
 });
 
 test('legacy unaudited names remain excluded from the published square mapping', () => {
   const rejected = ['brasserie_france','filter_musikk','fjord_restaurant','pascal','skuld','statholdergaarden','stress','tom_wood'];
   for (const id of rejected) assert.ok(!byPlace.christiania_torv.includes(id));
-  assert.equal(audit.publicationStatus, 'assets_generated_source_verified_visual_review_pending');
+  assert.equal(audit.publicationStatus, 'GODKJENT');
   assert.equal(audit.coverage.localAssetFiles, 2);
+  assert.equal(audit.coverage.logoCoveragePercent, 100);
+});
+
+test('place-open runtime includes both approved real Brands, not a placeholder', () => {
+  const runtime = read('data/runtime/place-open/christiania_torv.json');
+  assert.deepEqual(runtime.brands.map(brand => brand.id), ids);
+  assert.equal(runtime.place.place_card_profile.verifiedAt, '2026-10-31');
+  assert.ok(runtime.brands.every(brand => brand.logo && brand.imageMeta?.reviewStatus === 'manually_approved'));
 });
