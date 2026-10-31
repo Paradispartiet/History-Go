@@ -1,0 +1,99 @@
+{
+  "schema": "history_go_grini_quiz_technical_gates_v2",
+  "place_id": "grini_fangeleir",
+  "evidence_date": "2026-10-29",
+  "verified_commit_sha": "1ef793a551c70f5cdca5c5d6b41e4540255e45f5",
+  "verified_workflow_run_id": 40928991594,
+  "verified_run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40928991594",
+  "status": "STAGING_TECHNICAL_AND_CONTENT_QA_PASS_NOT_ACTIVE",
+  "actual_ci_result": "success",
+  "checks": {
+    "staging_regression": {
+      "status": "passed",
+      "tests": 8,
+      "failures": 0,
+      "includes": "70-question source/phase/Knowledge guards and 2240 real runtime answer shuffle permutations"
+    },
+    "source_content_audit": {
+      "status": "passed",
+      "scope": "isolated 70-question Grini package",
+      "family_counts": {
+        "fact": 41,
+        "context": 17,
+        "theory": 12
+      },
+      "ratios": {
+        "fact": 0.586,
+        "context": 0.243,
+        "theory": 0.171
+      },
+      "parse_errors": 0,
+      "template_violations": 0,
+      "option_length_signals": 0,
+      "repeated_openings": 0,
+      "balance_violations": 0
+    },
+    "canonical_quiz_audits": {
+      "status": "passed",
+      "names": [
+        "quiz-production-context",
+        "quiz-progression",
+        "quiz-theory-binding"
+      ],
+      "scope": "temporary Grini-only fagmanifest overlay"
+    },
+    "full_manifest_builder": {
+      "status": "passed",
+      "full_history_fag_inputs": 7,
+      "actual_resolver_used": true,
+      "stored_in_pr_branch": false
+    },
+    "integrated_knowledge_dry_run": {
+      "status": "passed",
+      "full_manifest_context_built": true,
+      "old_knowledge_units_retained": 3,
+      "new_questions_linked": 70,
+      "contract_audit": "passed",
+      "generator": "dist/scripts/knowledge-canonical-data.mjs --write",
+      "permanent_knowledge_registry_commit": false
+    },
+    "runtime_answer_shuffling": {
+      "status": "passed",
+      "questions_tested": 70,
+      "seeds_per_question": 32,
+      "correctness_and_canonical_immutability_checked": true,
+      "actual_browser_testing": "NOT_RUN"
+    }
+  },
+  "review_artifact": {
+    "type": "GitHub Actions artifact",
+    "run_id": 40928991594,
+    "artifact_id": 12921213466,
+    "name": "grini-10x7-full-input-integration-preview",
+    "expires_at": "2026-11-12T18:15:41Z",
+    "active": false
+  },
+  "independent_editorial_review": {
+    "status": "NOT_SIGNED",
+    "matrix_path": "reports/place-production/grini-fangeleir-quiz-70q-editorial-signoff-2026-10-29.md",
+    "reviewed_questions_documented": 0,
+    "required_questions": 70
+  },
+  "release_state": {
+    "pull_request": 6759,
+    "draft": true,
+    "merged": false,
+    "active_quiz": "legacy 1x3",
+    "fagmanifest_target_registered": false,
+    "permanent_context_committed": false,
+    "permanent_knowledge_regenerated": false,
+    "runtime_mobile_browser_verified": false,
+    "ready_to_merge": false,
+    "place_vferdig": false
+  },
+  "notes": [
+    "Evidence is exact-head GitHub CI run, not a permanent production activation.",
+    "An independent reviewer must verify historical source claims, source differences, ethics and distractors, despite passing machine audit.",
+    "Other repository-wide Data checks continue to fail on unrelated targets and must be addressed or exempted through actual project governance before release."
+  ]
+}

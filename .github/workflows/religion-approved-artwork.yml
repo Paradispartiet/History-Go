@@ -1,15 +1,5 @@
 name: Approved Religion badge artwork
 on:
-  push:
-    branches:
-      - design/religion-stitch-badges-artwork-20261030
-    paths:
-      - 'bilder/merker/religion-godkjent.webp'
-      - 'bilder/merker/religion/familie/godkjent/**'
-      - 'data/badges/religion.json'
-      - 'data/badges/religion_underbadge_artwork.json'
-      - 'tests/badge-artwork-coverage.test.mjs'
-      - '.github/workflows/religion-approved-artwork.yml'
   pull_request:
     paths:
       - 'bilder/merker/religion-godkjent.webp'
@@ -17,6 +7,10 @@ on:
       - 'data/badges/religion.json'
       - 'data/badges/religion_underbadge_artwork.json'
       - 'tests/badge-artwork-coverage.test.mjs'
+      - '.github/workflows/religion-approved-artwork.yml'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:

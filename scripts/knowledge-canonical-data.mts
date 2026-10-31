@@ -25,6 +25,18 @@ const ROOT = process.cwd();
 const QUIZ_MANIFEST = path.join(ROOT, 'data/quiz/manifest.json');
 const FAG_MANIFEST = path.join(ROOT, 'data/fag/fag_manifest.json');
 const KNOWLEDGE_ROOT = path.join(ROOT, 'data/knowledge');
+/**
+ * Source snapshots of retired playable quizzes. These are never registered in
+ * the runtime quiz manifest. They are only read if the original quiz_id is no
+ * longer present among currently playable questions, so canonical KU IDs and
+ * existing Knowledge memory can survive a quiz replacement.
+ *
+ * No legacy question is reactivated by this mechanism.
+ */
+const PRESERVED_QUIZ_KNOWLEDGE_SOURCES = [
+  'data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json',
+];
+
 const KNOWLEDGE_MANIFEST_PATH = path.join(KNOWLEDGE_ROOT, 'knowledge_manifest.json');
 const UNIT_REGISTRY_PATH = path.join(KNOWLEDGE_ROOT, 'knowledge_units.generated.json');
 const CONCEPT_REGISTRY_PATH = path.join(KNOWLEDGE_ROOT, 'concepts.generated.json');
@@ -171,7 +183,8 @@ async function subjectCanonicalRegistries(): Promise<Record<string, JsonObject>>
 }
 function jsonText(value: unknown): string { return `${JSON.stringify(value, null, 2)}\n`; }
 async function writeOrCheck(filePath: string, value: unknown, changedFiles: string[]): Promise<void> {
-  const next = jsonText(value);
+  // Compact only the large shared registry; preserve values/order and exact --check semantics.
+  const next = filePath === UNIT_REGISTRY_PATH ? `${JSON.stringify(value)}\n` : jsonText(value);
   let previous = '';
   try { previous = await fs.readFile(filePath, 'utf8'); } catch {}
   if (previous === next) return;
@@ -293,6 +306,29 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
     const data = await readJson<JsonObject | JsonObject[]>(full);
     fileData.set(relative, data);
     rows.push(...collectQuestions(data, relative));
+  }
+  // Preserve Knowledge ownership of retired questions without adding a quiz
+  // target, set or gameplay question. Current active rows always take priority.
+  const activeQuestionRefs = new Set(rows.map(row => questionId(row.question, row.file, row.location)));
+  for (const relative of PRESERVED_QUIZ_KNOWLEDGE_SOURCES) {
+    const preserved = await readJson<JsonObject>(path.resolve(ROOT, relative));
+    if (preserved.status !== 'preserved_legacy_knowledge_only_not_playable'
+      || !Array.isArray(preserved.questions)
+      || !clean(preserved.source_quiz_file)) {
+      throw new Error(`Invalid preserved Knowledge-only source: ${relative}`);
+    }
+    const preservedRows = collectQuestions(preserved, relative);
+    if (preservedRows.length !== preserved.questions.length) {
+      throw new Error(`Preserved Knowledge source contains malformed questions: ${relative}`);
+    }
+    for (const row of preservedRows) {
+      const id = questionId(row.question, row.file, row.location);
+      if (!clean(row.question.primary_knowledge_unit_id)
+        || !list(row.question.knowledge_unit_ids).includes(row.question.primary_knowledge_unit_id)) {
+        throw new Error(`Preserved Knowledge owner missing canonical KU link: ${id}`);
+      }
+      if (!activeQuestionRefs.has(id)) rows.push(row);
+    }
   }
   const catalogs = await loadEmner();
   const targetExplicit = new Map<string, Set<string>>();

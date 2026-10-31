@@ -21,6 +21,54 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_burot: Object.freeze({
+      scientificName: "Artemisia vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/07_burot_v1.webp",
+      gitBlobSha: "dbb1eb58fcbf93c4e81c41dee607192f69d5f50a",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-burot-20261031.json"
+    }),
+    emne_flora_blaknapp: Object.freeze({
+      scientificName: "Succisa pratensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/06_blaknapp_v1.webp",
+      gitBlobSha: "2bbdcb67f0730a62db8bd81408a6033cdb19e305",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-blaknapp-20261031.json"
+    }),
+    emne_flora_blodstorkenebb: Object.freeze({
+      scientificName: "Geranium sanguineum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/05_blodstorkenebb_v1.webp",
+      gitBlobSha: "cceb3134562f3eabc3f5700091777ecf59f78558",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-blodstorkenebb-20261031.json"
+    }),
+    emne_flora_bitterbergknapp: Object.freeze({
+      scientificName: "Sedum acre",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/04_bitterbergknapp_v1.webp",
+      gitBlobSha: "8d71e52d3ce87394903e1726a0915c75e5bc9d13",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-bitterbergknapp-20261031.json"
+    }),
+    emne_flora_bergmynte: Object.freeze({
+      scientificName: "Origanum vulgare",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/03_bergmynte_v1.webp",
+      gitBlobSha: "735048d4298361f0fd02bd5104dda28080381a58",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-bergmynte-20261031.json"
+    }),
+    emne_flora_bekkeblom: Object.freeze({
+      scientificName: "Caltha palustris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/02_bekkeblom_v1.webp",
+      gitBlobSha: "3607fad83fde319a8c6e3478f14c425c5b72798f",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-bekkeblom-20261031.json"
+    }),
     emne_flora_rodkløver: Object.freeze({
       scientificName: "Trifolium pratense",
       src: "bilder/natur/flora/illustrasjonskandidater/b08/01_rodklover_v4.webp",
