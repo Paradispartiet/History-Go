@@ -1,6 +1,6 @@
 # Christiania Torv – current workcard
 
-Dato: 2026-08-24
+Dato: 2026-10-31
 PLACE ID: `christiania_torv`  
 NAVN: Christiania Torv  
 CANONICAL SOURCE-FIL: `data/places/by/oslo/places/christiania_torv.json`  
@@ -19,10 +19,10 @@ STRUKTURERTE PROFILER: fase 5 materialiserte `spatial_profile`, `temporal_profil
 LEKSIKON: legacy source-tom batch3-post må saneres/supersedes i popupfasen.  
 SPRÅK: navnehistorie vurderes senere; ingen dokumentert dialektflate.  
 MÅL FOR PLACECARD-SAMLINGER: alltid fire flater i fast kategori-komposisjon + separat Badge + obligatorisk Quiz.
-VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `brands`, `related` – eksplisitt v2-profil med full 2 × 2-komposisjon. Brands viser ærlig ikon-/statusreserve uten falske virksomhetskoblinger når registeret er tomt.
+VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `brands`, `related` – eksplisitt v2-profil med full 2 × 2-komposisjon. Brands viser nå to kildebelagte restauranter, Brasserie Hansken og Kafé Celsius, med visuelt godkjente autentiske skiltordmerker.
 PEOPLE-KANDIDATER: gjenbruk `wenche_gulbransen` og canonical `kong_christian_iv`; People-stedskoblinger kvalitetssikres i entity-/roundfasen.  
 OBJECT-KANDIDAT: `Christian IVs hanske`; søk/reuse eksisterende micro/object-data før materialisering.  
-BRANDS: åtte eksisterende mappings må own-place-/freshness-auditeres.  
+BRANDS: De åtte svakt dokumenterte, tidligere mappingene er fortsatt avvist. To direkte torvtilknyttede restaurantmerker er kilde-/bildegodkjent i #6841: `brasserie_hansken` og `kafe_celsius`.  
 ROUTE/RELATION: `gamle_radhus` separat canonical nabosted; Story relaterer `middelalder_oslo`, `akershus_festning` og `gamle_radhus` uten å slå dem sammen.  
 QUIZ-STATUS: Phase 7 fullført og merget; 5 × 7 = 35 spørsmål, alle canonical Knowledge-linked.  
 STORY-STATUS: `st_christiania_torv_byflyttingen_1624` er materialisert som `episode_v1`, med gammel ikke-aktiv ID gjenbrukt, 3 kilder, canonical `kong_christian_iv`, maskinscore 19 og eksplisitt kildekritisk hanskegrense.  
@@ -44,7 +44,7 @@ POPUPSTATUS — SPRÅK: GODKJENT; tre dokumenterte navnehistoriske oppføringer,
 POPUPSTATUS — SPOR OG OBJEKTER: GODKJENT; Christian IVs hanske materialisert som stedsspesifikt fysisk objekt.  
 POPUPSTATUS — RELASJONER/KUNNSKAP/OBSERVASJONER: fem curated relasjoner; Knowledge linked; ingen filler-observasjonsfane.  
 MANUELL SLUTT-QA: canonical data, placegrense, spørsmålstall, Knowledge-linker, route reuse og volatile Brands er kontrollert; permanente Phase-9-porter var 8/8 grønne.  
-PLACECARD V2-QA: fire flater rendres som full 2 × 2; People er sirkel, Objects, Brands og Relaterte steder er avrundede rektangler; Bilder er ikke samling; Quiz er synlig primærhandling; tom Brands-status lager ikke layout-hull eller falsk 0.
+PLACECARD V2-QA: fire flater rendres som full 2 × 2; People er sirkel, Objects, Brands og Relaterte steder er avrundede rektangler; Bilder er ikke samling; Quiz er synlig primærhandling; Brands viser to virkelige merkeposter uten tom reserve.
 
 ## Completion record 2026-08-24
 
