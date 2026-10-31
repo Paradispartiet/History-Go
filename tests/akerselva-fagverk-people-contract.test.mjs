@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
+import { validatePeopleClaimsDocument } from '../tools/audit-people-profile-canonical.mjs';
 
 const load = path => JSON.parse(readFileSync(new URL('../' + path, import.meta.url), 'utf8'));
 
@@ -71,6 +72,7 @@ test('Akerselva publishes only two evidenced, deduplicated People profiles', () 
     assert.equal(claims.completion.current_status, 'ready_people_v1');
     assert.ok(claims.field_claim_map['places[akerselva]'].length);
     assert.ok(claims.claims.every(claim => claim.status === 'verified'));
+    assert.deepEqual(validatePeopleClaimsDocument(claims, person, {claimsPath:person.claimsFile,now:new Date('2026-10-31T12:00:00Z')}), []);
   }
   const shard3 = load('data/runtime/people-all/part-003.json');
   const shard7 = load('data/runtime/people-all/part-007.json');
