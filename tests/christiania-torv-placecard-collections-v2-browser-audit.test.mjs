@@ -12,6 +12,7 @@ const brandIds = JSON.parse(fs.readFileSync("data/brands/brands_by_place.json", 
 const brands = brandIds.map(id => brandMaster.find(brand => brand.id === id));
 const fixture = `<!doctype html><html><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <base href="/">
   <link rel="stylesheet" href="/css/place-rounds-fill-layout.css">
   <style>
     :root{--pc-round-gap:12px;--place-card-orb-size:120px}
@@ -62,13 +63,23 @@ try {
   const page = await context.newPage();
   await page.goto(`http://127.0.0.1:${port}/__audit__/christiania-torv.html`, { waitUntil: "networkidle" });
   await page.waitForFunction(() => window.__auditReady === true);
+  await page.waitForFunction(() => document.querySelector(".pc-icons-quad")?.dataset.collectionCount === "1");
+  const brandDiagnostic = await page.evaluate(() => ({
+    placeId: window.PLACES?.[0]?.id,
+    mappedIds: window.HGBrands?.getByPlace?.(window.PLACES?.[0]?.id)?.map(item => item?.id),
+    iconCount: document.getElementById("pcBrandsIcon")?.dataset?.collectionItemCount,
+    imgSrc: document.querySelector("#pcBrandsIcon img")?.getAttribute("src"),
+    error: window.__auditError || null
+  }));
+  console.log("Christiania Torv Brands browser diagnostic:", JSON.stringify(brandDiagnostic));
 
   const verify = async expectedWidth => {
-    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "2");
-    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-profile-source"), "place_card_profile_v2");
-    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 2);
+    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "1");
+    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-profile-source"), "place_card_profile_v2_curated");
+    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 1);
     assert.equal(await page.locator("#pcBrandsIcon").getAttribute("data-collection-item-count"), "2");
     assert.equal(await page.locator("#pcBrandsIcon img.pc-person-img").count(), 1);
+    assert.equal(await page.locator("#pcBrandsIcon img.pc-person-img").evaluate(img => img.complete && img.naturalWidth > 0), true);
     assert.equal(await page.locator(".pc-title-row > #pcPeopleIcon:not([hidden])").count(), 1,
       "canonical People round sits next to Merker in heading");
     assert.equal(await page.locator("#pcQuiz").isVisible(), true);
@@ -91,23 +102,24 @@ try {
     assert.ok(Math.abs(geometry.people.width - geometry.people.height) < 2);
     assert.ok(geometry.people.x < geometry.badge.x && geometry.people.x + geometry.people.width <= geometry.badge.x + 1,
       "People is directly to the left of Merker");
-    assert.ok(geometry.objects.width > geometry.objects.height);
+    assert.equal(geometry.objects.width, 0, "Object without independent preview image must not reserve a slot");
     assert.ok(geometry.brands.width > geometry.brands.height);
     assert.equal(geometry.categoryHidden, true);
-    assert.equal(geometry.columns.split(" ").filter(Boolean).length, 2);
+    assert.equal(geometry.columns.split(" ").filter(Boolean).length, 1);
     assert.equal(geometry.rows.split(" ").filter(Boolean).length, 1);
     assert.ok(geometry.grid.width >= expectedWidth);
   };
 
   await verify(350);
-  await page.locator("#pcObjectsIcon").click();
-  await page.waitForFunction(() => window.__lastPopup?.kind === "objects");
-  assert.equal(await page.locator("#capture [data-visual-round-item]").count(), 1);
+  assert.equal(place.civication_store[0].id, "christiania_torv_christian_ivs_hanske");
+  assert.equal(brandIds.length, 2);
+  assert.ok(brands.every(brand => brand?.logo?.endsWith(".webp")));
   assert.deepEqual(await page.locator("#pcBrandsIcon").getAttribute("data-collection-shape"), "rectangle");
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload({ waitUntil: "networkidle" });
   await page.waitForFunction(() => window.__auditReady === true);
+  await page.waitForFunction(() => document.querySelector(".pc-icons-quad")?.dataset.collectionCount === "1");
   await verify(350);
   assert.equal(await page.evaluate(() => window.__auditError || null), null);
   await context.close();
