@@ -115,6 +115,61 @@ try {
         assert.equal(localized.popupDesc, expected.popupDesc, tag+'/'+lang+' full article');
         assert.equal(await page.locator('#pcTitle').textContent(), 'Akerselva');
       }
+      // The production People round must be visible and populated by the actual
+      // source registry, not by a stubbed People fixture.
+      await page.waitForFunction(() => {
+        const el = document.getElementById('pcPeopleIcon');
+        return el && el.hidden === false &&
+          el.getAttribute('aria-hidden') !== 'true';
+      }, null, {timeout:20000});
+      const people = await page.evaluate(() => {
+        const people = window.getPeopleForPlace?.('akerselva') || [];
+        return people.map(person => ({id:person.id, name:person.name}));
+      });
+      const expectedPeople = JSON.parse(fs.readFileSync(
+        'data/runtime/place-open/akerselva.json','utf8')).people;
+      for (const person of expectedPeople) {
+        assert.ok(people.some(item => item.id === person.id),
+          tag + ': runtime People missing from actual app: ' + person.id);
+      }
+      await page.evaluate(() => {
+        const original = window.showPlaceCardRoundPopup;
+        window.showPlaceCardRoundPopup = payload => {
+          window.__akerselvaPeoplePopup = payload;
+          return original?.(payload);
+        };
+      });
+      await page.locator('#pcPeopleIcon').click();
+      await page.waitForFunction(() => window.__akerselvaPeoplePopup?.kind === 'people',
+        null, {timeout:15000});
+      assert.ok(await page.locator('#pcPeopleList [data-person]').count() >= expectedPeople.length,
+        tag + ': person list did not render');
+      const renderedPeople = await page.locator('#pcPeopleList').innerText();
+      for (const person of expectedPeople) {
+        assert.ok(renderedPeople.includes(person.name),
+          tag + ': person absent from round popup: ' + person.name);
+      }
+      await page.screenshot({path:path.join(output,tag+'-akerselva-people.png')});
+
+      // Read the real Fagverk page, not the JSON contract or a mock rendering.
+      await page.goto(base + '/fagverk-sted.html?place=akerselva',
+        {waitUntil:'domcontentloaded',timeout:60000});
+      await page.waitForFunction(() =>
+        document.getElementById('fagverkPlaceContent')?.hidden === false,
+        null, {timeout:45000});
+      assert.equal((await page.locator('#fagverkPlaceTitle').textContent()).trim(), 'Akerselva');
+      assert.match(await page.locator('#fagverkPlaceCoverageStatus').innerText(),
+        /kuratert stedsfagverk/i);
+      assert.equal(await page.locator('#fagverkPlaceUnfinished').isHidden(), true);
+      assert.equal(await page.locator('#fagverkPlaceError').isHidden(), true);
+      assert.equal(await page.locator('#fagverkPlaceArticle p').count(),place.fagverk.article.length);
+      assert.equal(await page.locator('#fagverkPlaceLenses a').count(),place.fagverk.lenses.length);
+      assert.equal(await page.locator('#fagverkPlaceQuestions li').count(),place.fagverk.guiding_questions.length);
+      assert.equal(await page.locator('#fagverkPlaceSources a').count(),place.fagverk.source_urls.length);
+      for (const paragraph of place.fagverk.article) {
+        assert.ok((await page.locator('#fagverkPlaceArticle').innerText()).includes(paragraph));
+      }
+      await page.screenshot({path:path.join(output,tag+'-akerselva-fagverk.png'),fullPage:true});
       assert.deepEqual(errors, [], tag + ': browser errors');
       results.push({viewport:tag,status:'passed',languages:['nb','en','es','pt'],media});
       console.log('PASS Akerselva', tag, '4 languages, front image and header image');
