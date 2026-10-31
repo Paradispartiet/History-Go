@@ -1,5 +1,4 @@
-name: Christiania Torv authentic brand wordmarks (one-shot)
-# Sign crops reviewed against full-size source image 2026-10-31.
+name: Christiania Torv brand finish (one-shot)
 
 on:
   push:
@@ -12,34 +11,37 @@ permissions:
   contents: write
 
 concurrency:
-  group: christiania-torv-brand-assets-v1
+  group: christiania-torv-brand-finish-v1
   cancel-in-progress: false
 
 jobs:
-  materialize:
+  finish:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: '3.12'
-      - name: Download source photography and crop original signs, never recreate logos
+          node-version: '22'
+          cache: npm
+      - name: Build canonical Place-open and targeted quiz context
         run: |
-          python -m pip install --quiet pillow
-          python scripts/materialize-christiania-torv-brand-marks.py
-      - name: Verify source mapping and two on-disk Brand assets
-        run: node --test tests/christiania-torv-brands-v1.test.mjs
-      - name: Commit only canonical brands, attributes, audit and real images to feature branch
+          node scripts/build-place-open-payloads.mjs
+          node scripts/build-quiz-production-context.mjs --category by --target christiania_torv --output data/quiz/production_context/by/christiania_torv.json
+      - name: Install test dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Run only relevant Brand and PlaceCard tests
+        run: |
+          node --test tests/christiania-torv-brands-v1.test.mjs tests/christiania-torv-placecard-collections-v2.test.mjs tests/place-card-profile-schema.test.mjs
+          node scripts/build-quiz-production-context.mjs --category by --target christiania_torv --output data/quiz/production_context/by/christiania_torv.json --check
+      - name: Commit only deterministically generated files for Christiania Torv
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/brands/brands_master.json data/brands/brands_catalog.json data/brands/brands_by_place.json
-          git add data/brands/christiania_torv_asset_attributions.json reports/place-production/christiania-torv-brands-v1.json
-          git add bilder/kort/brands/brasserie_hansken.webp bilder/kort/brands/kafe_celsius.webp
+          git add data/runtime/place-open/christiania_torv.json data/quiz/production_context/by/christiania_torv.json
           git diff --cached --check
           git diff --cached --quiet && exit 0
-          git commit -m "feat(christiania-torv): publish two source-backed Brands and authentic sign crops"
+          git commit -m "build(christiania-torv): synchronize Brand runtime and quiz context"
           git push
