@@ -18,7 +18,7 @@ SOURCES = [
         "source": "https://brasseriehansken.no/uploads/lfdNepXG/A7406329-Edit.jpg",
         "sourcePage": "https://brasseriehansken.no/chambre-separee",
         "evidence": ["https://brasseriehansken.no/", "https://brasseriehansken.no/om-oss", "https://www.visitoslo.com/no/servering/brasserie-hansken"],
-        "box": (0.29, 0.505, 0.605, 0.610),
+        "box": (0.49, 0.58, 0.72, 0.67),
         "desc": "Brasserie Hansken åpnet ved Christiania torv i 1997. Restauranten har uteservering på torget, med adresse Christiania torv 4.",
         "popupdesc": "Brasserie Hansken ble etablert av Arne Sunde og Yngvar Nilsen i 1997. Restauranten driver i Christiania torv 4 med uteservering på den historiske plassen. Dette er restaurantens egen virksomhetsidentitet, ikke en ny identitet for selve torget.",
         "founded": 1997,
@@ -31,7 +31,7 @@ SOURCES = [
         "source": "https://osloisentrum.no/wp-content/uploads/2020/10/celsius-2048x1365.jpg",
         "sourcePage": "https://osloisentrum.no/Virksomhet/kafe-celsius/",
         "evidence": ["https://www.kafecelsius.no/om-oss", "https://www.visitoslo.com/no/servering/kaf-celsius", "https://virksomhet.brreg.no/nb/oppslag/underenheter/972019089"],
-        "box": (0.02, 0.04, 0.65, 0.59),
+        "box": (0.19, 0.31, 0.78, 0.66),
         "desc": "Kafé Celsius holder til i Rådhusgata 19 og har uteservering direkte på Christiania torv. Kafeens navn er en separat serveringsidentitet.",
         "popupdesc": "Kafé Celsius holder til i den historiske gården Rådhusgata 19 fra 1620-årene. Kafeen har eget navn, historiske lokaler og uteservering på Christiania torv. Bygningens eldre bruk som bibliotek og sykehus må skilles fra dagens kafévirksomhet.",
         "imageSource": "documented_facade_sign",
@@ -80,7 +80,7 @@ def acquire(spec):
       "assetSha256": hashlib.sha256(dest.read_bytes()).hexdigest(),
       "sourceDimensions": f"{w}x{h}",
       "originalCropBox": list(box),
-      "assetKind": "historic_wordmark" if False else "logo",
+      "assetKind": "logo",
       "sourceForm": "authentic_photographed_sign_wordmark",
       "creator": "Unknown photographer; see credited source",
       "credit": spec["credit"],
@@ -105,8 +105,8 @@ def main():
     catalog = load("data/brands/brands_catalog.json")
     mapping = load("data/brands/brands_by_place.json")
     for spec, attr in zip(SOURCES, attrs):
-        if any(item["id"] == spec["id"] for item in master + catalog):
-            raise ValueError(f"Duplicate canonical Brand ID: {spec['id']}")
+        master[:] = [item for item in master if item.get("id") != spec["id"]]
+        catalog[:] = [item for item in catalog if item.get("id") != spec["id"]]
         brand = {
           "id": spec["id"], "name": spec["name"], "brand_group": "venue_brand",
           "brand_type": "restaurant_brand", "brand_kind": "restaurant",
