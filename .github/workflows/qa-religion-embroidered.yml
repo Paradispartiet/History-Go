@@ -1,14 +1,5 @@
 name: Religion embroidered badge artwork QA
 on:
-  push:
-    branches: [design/religion-yellow-subbadges-20261029]
-    paths:
-      - bilder/merker/religion.svg
-      - 'bilder/merker/religion/familie/**'
-      - data/badges/religion.json
-      - data/badges/religion_underbadge_artwork.json
-      - js/fagverk-ia-v3-badge-progress.js
-      - .github/workflows/qa-religion-embroidered.yml
   pull_request:
     paths:
       - bilder/merker/religion.svg
@@ -16,6 +7,10 @@ on:
       - data/badges/religion.json
       - data/badges/religion_underbadge_artwork.json
       - js/fagverk-ia-v3-badge-progress.js
+      - .github/workflows/qa-religion-embroidered.yml
+concurrency:
+  group: religion-embroidered-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
