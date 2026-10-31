@@ -222,6 +222,13 @@
   z-index:1;
 }
 
+/* Akerselva uses a landscape Commons photo on a portrait flip card.
+   Show the complete source photograph rather than cropping the river. */
+#placeCard[data-current-place-id="akerselva"] #pcFrontImage{
+  object-fit: contain !important;
+}
+
+
 /* Elegant black board-game QuizCard: a single hairline frame, refined
    corner ornaments, and large, high-contrast type. Bitmap cards stay intact. */
 .pc-quiz-card-back{
