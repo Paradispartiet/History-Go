@@ -25,7 +25,7 @@ assert.equal(runtime.find(x=>x.id===a.catalogId)?.latin,a.scientificName);
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,19,"unexpected total approvals");
+assert.equal(approved.count,20,"unexpected total approvals");
 assert.equal(approved.get(a.catalogId)?.src,a.src,"v4 must be active");
 assert.equal(approved.get(a.catalogId)?.gitBlobSha,a.gitBlobSha);
 assert.notEqual(approved.get(a.catalogId)?.src,old.src,"v3 must remain rejected");
