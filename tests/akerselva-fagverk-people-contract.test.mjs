@@ -27,8 +27,12 @@ test('Akerselva Fagverk keeps canonical registry, chapters and place-specific ev
 });
 
 test('Akerselva People keep their evidence-based primary sites, not the whole river', () => {
-  const gruner = load('data/people/historie/oslo/akerselva/friedrich_gruner.json');
-  const hausmann = load('data/people/historie/oslo/akerselva/fredrik_ferdinand_hausmann.json');
+  const grunerRows = load('data/people/historie/oslo/akerselva/friedrich_gruner.json');
+  const hausmannRows = load('data/people/historie/oslo/akerselva/fredrik_ferdinand_hausmann.json');
+  assert.equal(grunerRows.length, 1);
+  assert.equal(hausmannRows.length, 1);
+  const [gruner] = grunerRows;
+  const [hausmann] = hausmannRows;
   assert.equal(gruner.placeId, 'nedre_foss');
   assert.ok(gruner.places.includes('nedre_foss'));
   assert.equal(hausmann.placeId, 'prinds_christian_augusts_minde');
