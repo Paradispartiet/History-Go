@@ -41,6 +41,8 @@ on:
       - 'scripts/test-flora-art-candidates-batch08.mjs'
       - 'data/natur/flora/illustration-quality-bekkeblom-20261031.json'
       - 'data/natur/flora/illustration-quality-bergmynte-20261031.json'
+      - 'data/natur/flora/illustration-quality-bitterbergknapp-20261031.json'
+      - 'scripts/test-flora-bitterbergknapp-b08.mjs'
       - 'scripts/test-flora-bergmynte-b08.mjs'
       - 'scripts/test-flora-bekkeblom-b08.mjs'
       - 'bilder/natur/flora/illustrasjonskandidater/b08/**'
@@ -90,6 +92,7 @@ jobs:
       - run: node scripts/test-flora-art-candidates-batch08.mjs
       - run: node scripts/test-flora-bekkeblom-b08.mjs --require-assets
       - run: node scripts/test-flora-bergmynte-b08.mjs
+      - run: node scripts/test-flora-bitterbergknapp-b08.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -112,6 +115,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-eighteen-mobile-desktop
+          name: flora-approved-nineteen-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
