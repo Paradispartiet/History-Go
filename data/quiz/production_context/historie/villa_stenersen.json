@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/historie/villa_stenersen.json",
-      "bytes": 30088,
-      "sha256": "3be66ac42299b42b40c4752129b67dcd253fccc106eb474efd3d16296121ed03"
+      "bytes": 30954,
+      "sha256": "648a744a74992f76dc977f4e0f607c4decf0f602bc84147fabd9bad33ab89b45"
     },
     "target": {
       "path": "data/places/historie/oslo/places_historie_added_batch_01/villa_stenersen.json",
@@ -442,25 +442,33 @@
       "claim_id": "claim_villa_stenersen_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Villaen ble foreslått brukt som statsministerbolig, men huset fikk ikke varig funksjon som statsministerresidens.",
       "source_ids": [
         "riksantikvaren"
       ],
       "source_origin": "external",
-      "emne_id": "em_his_samtid_ettertid_fortelling"
+      "emne_id": "em_his_samtid_ettertid_fortelling",
+      "method_id": "met_institusjonshistorisk_analyse",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_villa_stenersen_quiz_18",
       "order": 18,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Fredningsvedtaket fra Riksantikvaren omfatter både bygningens ytre, indre og hagen.",
       "source_ids": [
         "riksantikvaren"
       ],
       "source_origin": "external",
-      "emne_id": "em_his_kulturminner_bevaring"
+      "emne_id": "em_his_kulturminner_bevaring",
+      "method_id": "met_sporlesning",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_villa_stenersen_quiz_19",
@@ -555,14 +563,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 14,
+      "fact": 12,
       "context": 5,
-      "concept_theory": 2
+      "concept_theory": 4
     },
     "ratios": {
-      "fact": 0.667,
+      "fact": 0.571,
       "context": 0.238,
-      "concept_theory": 0.095
+      "concept_theory": 0.19
     }
   }
 }
