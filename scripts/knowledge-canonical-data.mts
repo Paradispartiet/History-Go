@@ -183,7 +183,8 @@ async function subjectCanonicalRegistries(): Promise<Record<string, JsonObject>>
 }
 function jsonText(value: unknown): string { return `${JSON.stringify(value, null, 2)}\n`; }
 async function writeOrCheck(filePath: string, value: unknown, changedFiles: string[]): Promise<void> {
-  const next = jsonText(value);
+  // Compact only the large shared registry; preserve values/order and exact --check semantics.
+  const next = filePath === UNIT_REGISTRY_PATH ? `${JSON.stringify(value)}\n` : jsonText(value);
   let previous = '';
   try { previous = await fs.readFile(filePath, 'utf8'); } catch {}
   if (previous === next) return;

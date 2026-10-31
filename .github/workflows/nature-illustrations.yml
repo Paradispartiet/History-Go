@@ -38,6 +38,21 @@ on:
       - 'data/natur/flora/illustration-quality-batch07-20261028.json'
       - 'bilder/natur/flora/illustrasjonskandidater/b07/**'
       - 'scripts/test-flora-batch07-upload.mjs'
+      - 'scripts/test-flora-art-candidates-batch08.mjs'
+      - 'data/natur/flora/illustration-quality-bekkeblom-20261031.json'
+      - 'data/natur/flora/illustration-quality-bergmynte-20261031.json'
+      - 'data/natur/flora/illustration-quality-bitterbergknapp-20261031.json'
+      - 'data/natur/flora/illustration-quality-blodstorkenebb-20261031.json'
+      - 'data/natur/flora/illustration-quality-blaknapp-20261031.json'
+      - 'data/natur/flora/illustration-quality-burot-20261031.json'
+      - 'scripts/test-flora-burot-b08.mjs'
+      - 'scripts/test-flora-blaknapp-b08.mjs'
+      - 'scripts/test-flora-blodstorkenebb-b08.mjs'
+      - 'scripts/test-flora-bitterbergknapp-b08.mjs'
+      - 'scripts/test-flora-bergmynte-b08.mjs'
+      - 'scripts/test-flora-bekkeblom-b08.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b08/**'
+      - 'data/natur/flora/illustration-quality-batch08-20261030.json'
       - 'data/natur/flora/illustration-candidates-batch06.json'
       - 'bilder/natur/flora/illustrasjonskandidater/b06/**'
       - 'scripts/test-flora-art-candidates-batch06.mjs'
@@ -80,6 +95,13 @@ jobs:
       - run: node scripts/test-nature-flora-photos.mjs
       - run: node scripts/test-flora-approved-release.mjs
       - run: node scripts/test-flora-batch07-upload.mjs --require-published
+      - run: node scripts/test-flora-art-candidates-batch08.mjs
+      - run: node scripts/test-flora-bekkeblom-b08.mjs --require-assets
+      - run: node scripts/test-flora-bergmynte-b08.mjs
+      - run: node scripts/test-flora-bitterbergknapp-b08.mjs
+      - run: node scripts/test-flora-blodstorkenebb-b08.mjs
+      - run: node scripts/test-flora-blaknapp-b08.mjs
+      - run: node scripts/test-flora-burot-b08.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -102,6 +124,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-fourteen-mobile-desktop
+          name: flora-approved-twentytwo-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
