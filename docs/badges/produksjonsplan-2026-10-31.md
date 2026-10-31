@@ -5,8 +5,9 @@ Dato: 2026-10-31
 - 19 hovedkategorier, med registrerte primær- og sekundærfarger i `data/badges/*.json`.
 - 9 hovedmerker skal beholdes uendret: Historie, Sport, Politikk, Næringsliv, Subkultur, Religion, Kunst, Medier og Vitenskap.
 - 15 eksisterende vitenskap-/religion-undermerker beholdes (8 Religion og 7 Vitenskap).
-- 4 nye WebP-kandidater er lagt i GitHub-grenen og koblet til registeret: By v6, Film & TV v5, Litteratur v4 og Natur v4. Se `data/badges/embroidered_rollout_v1.json` for eksakte SHA-256 og dimensjoner.
-- Binærintegrasjon betyr ikke publisering. Målrettet bilde-QA er bestått på forrige commit. Oppdatert By v6 krever ny QA før merge.
+- 10 nye broderte WebP-hovedmerker er merget i to bolker: PR #6829 (By v6, Film & TV v5, Litteratur v4, Natur v4) og PR #6842 (Musikk, Scenekunst, Filosofi, Psykologi, Helse, Utdanning).
+- Begge målrettede QA-jobber er bestått. Binærfiler, SHA-256 og registerkoblinger er verifisert i `data/badges/embroidered_rollout_v1.json` og `data/badges/embroidered_rollout_v2.json`.
+- Alle 19 hovedkategorier har dermed aktiv bildereferanse i `main`, fordelt på 9 beskyttede eksisterende og 10 nyintegrerte. GitHub Pages for den siste bolken er ennå ikke bekreftet ferdig.
 
 ## Vernede hovedmerker
 | Kategori | Fil |
@@ -31,20 +32,20 @@ Ingen av disse ni bildereferansene skal byttes ut i dette arbeidet.
 ## Produksjonskø
 | Prioritet | Kategori | Farger | Status |
 | --- | --- | --- | --- |
-| 1 | by | #808080 / #404040 | integrated_candidate (ikke publisert) |
-| 2 | film_tv | #C2188B / #E7F8FF | integrated_candidate (ikke publisert) |
-| 3 | litteratur | #F5B4C8 / #FFF4E3 | integrated_candidate (ikke publisert) |
-| 4 | natur | #2E4F21 / #DC7A04 | integrated_candidate (ikke publisert) |
-| 5 | Musikk | #E354A0 / #000000 | integrated_candidate, v1 in PR |
-| 6 | Scenekunst | #C96E8B / #808080 | integrated_candidate, v1 in PR |
-| 7 | Filosofi | #7A5FD0 / #FFFFFF | integrated_candidate, v1 in PR |
-| 8 | Psykologi | #06D6A0 / #00A896 | integrated_candidate, v1 in PR |
-| 9 | Helse | #0B7A75 / #2E8B57 | integrated_candidate, v1 in PR |
-| 10 | Utdanning | #7D8534 / #F2C94C | integrated_candidate, v1 in PR |
+| 1 | by | #808080 / #404040 | merged_main (Pages-status kontrolleres separat) |
+| 2 | film_tv | #C2188B / #E7F8FF | merged_main (Pages-status kontrolleres separat) |
+| 3 | litteratur | #F5B4C8 / #FFF4E3 | merged_main (Pages-status kontrolleres separat) |
+| 4 | natur | #2E4F21 / #DC7A04 | merged_main (Pages-status kontrolleres separat) |
+| 5 | Musikk | #E354A0 / #000000 | merged_main (Pages-status kontrolleres separat) |
+| 6 | Scenekunst | #C96E8B / #808080 | merged_main (Pages-status kontrolleres separat) |
+| 7 | Filosofi | #7A5FD0 / #FFFFFF | merged_main (Pages-status kontrolleres separat) |
+| 8 | Psykologi | #06D6A0 / #00A896 | merged_main (Pages-status kontrolleres separat) |
+| 9 | Helse | #0B7A75 / #2E8B57 | merged_main (Pages-status kontrolleres separat) |
+| 10 | Utdanning | #7D8534 / #F2C94C | merged_main (Pages-status kontrolleres separat) |
 
 ## Kvalitetskrav
 1. Bruk allerede godkjente merkeillustrasjoner; fem historiske originaler og fire nyere godkjente er låst.
 2. Ny illustrasjon kun ved dokumentert behov. Kontroller broderikant, stofftekstur, lesbarhet i kartstørrelse, symbol og faktiske kategorifarger.
 3. For nye WebP: 1024×1024, ekte alfa, manifest med byte, SHA-256, aktiv bildereferanse, målrettet automatisert QA.
 4. Unngå revisjon eller utilsiktet endring av undermerker.
-5. Merk `integrated_candidate` før CI og visuell kontroll; `published` først etter merge og vellykket publisering.
+5. Merk `integrated_candidate` før CI og visuell kontroll, `merged_main` etter merge, og `published` først etter vellykket GitHub Pages-publisering.
