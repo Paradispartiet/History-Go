@@ -53,7 +53,7 @@ for(const p of data.items){
  assert.equal(candidate.src,p.newSrc);
  assert.equal(candidate.gitBlobSha,p.newGitBlobSha);
 }
-assert.equal(published.count,20,"previously accepted images or batch 04 missing");
+assert.equal(published.count,21,"previously accepted images or batch 04 missing");
 const gallery=read("flora-illustrasjoner-bolk04.html");
 for(const p of data.items)assert(gallery.includes(p.newSrc),"candidate not in gallery: "+p.id);
 const review=read("js/ui/flora-illustration-review.js");
