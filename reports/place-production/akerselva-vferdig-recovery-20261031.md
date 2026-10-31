@@ -67,3 +67,32 @@ PR #6844 adds real mobile/desktop browser acceptance for Fagverk and People,
 but editorial review of those two generic industrial People associations
 remains required before assigning the full `vFerdig` label. This report
 does not change People, quiz IDs, visit state or production data.
+
+## 31 October follow-up — People editorial gate closed in PR #6847
+
+PR [#6847](https://github.com/Paradispartiet/History-Go/pull/6847) merged to `main` as
+`bdd7f4ec677bb9bad8a59a0fc2777446b5be488d`. This supersedes the
+*Remaining editorial People gate* note above.
+
+- Sam Eyde and Kristian Birkeland are preserved as People records, but their
+  undocumented `akerselva` place associations have been removed.
+- The two Akerselva People entries are the **existing canonical IDs**
+  `knud_graah_voyenfallene` and `halvor_schou`, with source-backed industrial
+  links to Vøiens Bomuldsspinderi and Hjula Væveri respectively. Their original
+  primary place anchors remain in place; no duplicate person was introduced.
+- Verified People claims and sentence/field mapping are present. Halvor Schou's
+  approved identity portrait is preserved.
+- Both Place-open and globally sharded People runtime payloads have been
+  regenerated consistently. The Civication People index now includes 1,437
+  canonical profiles, including eight previously omitted existing profiles;
+  the scenario People catalog is also synchronized.
+- GitHub's targeted Akerselva JSON contract and actual mobile/desktop
+  PlaceCard/Fagverk browser acceptance passed on PR head. The relevant
+  `Place-open payloads`, `People data` and `Civication scenario People`
+  checks also passed before merge.
+
+The historical quiz discrepancy remains documented above: **30 canonical
+fullquiz questions**, not 35; the ten-question QuizCard draws from these.
+The four-language and photo-framing acceptance results were established in
+PRs #6838 and #6844. This report closes the editorial People gate, not the
+independent maintenance of unrelated repository-wide CI jobs.
