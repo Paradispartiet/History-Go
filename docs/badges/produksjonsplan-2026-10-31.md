@@ -5,8 +5,8 @@ Dato: 2026-10-31
 - 19 hovedkategorier, med registrerte primær- og sekundærfarger i `data/badges/*.json`.
 - 9 hovedmerker skal beholdes uendret: Historie, Sport, Politikk, Næringsliv, Subkultur, Religion, Kunst, Medier og Vitenskap.
 - 15 eksisterende vitenskap-/religion-undermerker beholdes (8 Religion og 7 Vitenskap).
-- 4 nye WebP-kandidater er lagt i GitHub-grenen og koblet til registeret: By v5, Film & TV v5, Litteratur v4 og Natur v4. Se `data/badges/embroidered_rollout_v1.json` for eksakte SHA-256 og dimensjoner.
-- Binærintegrasjon betyr ikke publisering. CI og visuell sluttrevisjon kreves før merge.
+- 4 nye WebP-kandidater er lagt i GitHub-grenen og koblet til registeret: By v6, Film & TV v5, Litteratur v4 og Natur v4. Se `data/badges/embroidered_rollout_v1.json` for eksakte SHA-256 og dimensjoner.
+- Binærintegrasjon betyr ikke publisering. Målrettet bilde-QA er bestått på forrige commit. Oppdatert By v6 krever ny QA før merge.
 
 ## Vernede hovedmerker
 | Kategori | Fil |
