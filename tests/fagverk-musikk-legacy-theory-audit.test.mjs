@@ -68,7 +68,8 @@ test('Musikk-equivalence måler hele canonicale eierflaten, ikke bare scientific
   assert.equal(report.canonical.methodCount, 18);
   assert.equal(report.canonical.chapterCount, 8);
   assert.equal(report.canonical.chapterOwnedFileCount, 96);
-  assert.equal(report.canonical.corpusCharacterCount, 1148237);
+  // The canonical corpus includes the Musikk badge image path; main now uses musikk-brodert-v1.webp (+12 characters).
+  assert.equal(report.canonical.corpusCharacterCount, 1148249);
   assert.equal(report.canonical.scenekunstSeparateTopLevelSubject, true);
   assert.equal(report.canonical.performanceStudyInScope, true);
 });
