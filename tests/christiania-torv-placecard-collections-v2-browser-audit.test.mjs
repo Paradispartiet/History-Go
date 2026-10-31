@@ -7,9 +7,6 @@ import { chromium } from "playwright";
 const root = process.cwd();
 const place = JSON.parse(fs.readFileSync("data/places/by/oslo/places/christiania_torv.json", "utf8"));
 const related = place.related_place_ids.map(id => ({ id, name: id.replaceAll("_", " ") }));
-const brandIds = JSON.parse(fs.readFileSync("data/brands/brands_by_place.json", "utf8")).christiania_torv;
-const brandMaster = JSON.parse(fs.readFileSync("data/brands/brands_master.json", "utf8"));
-const brands = brandIds.map(id => brandMaster.find(item => item.id === id));
 const brandMaster = JSON.parse(fs.readFileSync("data/brands/brands_master.json", "utf8"));
 const brandIds = JSON.parse(fs.readFileSync("data/brands/brands_by_place.json", "utf8")).christiania_torv;
 const brands = brandIds.map(id => brandMaster.find(brand => brand.id === id));
@@ -34,7 +31,7 @@ const fixture = `<!doctype html><html><head><meta charset="utf-8">
       <div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div>
     </div>
   </div><button id="pcQuiz" hidden>Ta quiz</button><div id="capture"></div>
-  <script>window.PLACES=${JSON.stringify([place, ...related])};window.getPeopleForPlace=()=>[{id:"wenche_gulbransen",name:"Wenche Gulbransen"}];window.HGBrands={getByPlace:()=>${JSON.stringify(brands)}};window.HGBrands={getByPlace:(id)=>id==="christiania_torv"?${JSON.stringify(brands)}:[]};window.showPlaceCardRoundPopup=payload=>{window.__lastPopup={title:payload.title,kind:payload.kind,html:payload.html};document.getElementById('capture').innerHTML=payload.html};</script>
+  <script>window.PLACES=${JSON.stringify([place, ...related])};window.getPeopleForPlace=()=>[{id:"wenche_gulbransen",name:"Wenche Gulbransen"}];window.HGBrands={getByPlace:(id)=>id==="christiania_torv"?${JSON.stringify(brands)}:[]};window.showPlaceCardRoundPopup=payload=>{window.__lastPopup={title:payload.title,kind:payload.kind,html:payload.html};document.getElementById('capture').innerHTML=payload.html};</script>
   <script src="/js/ui/place-rounds-visual-collections.js"></script>
   <script src="/js/ui/place-rounds-fill-layout.js"></script>
   <script>window.addEventListener('DOMContentLoaded',()=>{window.HGPlaceCardCollections.apply(window.PLACES[0]).then(()=>{window.__auditReady=true}).catch(error=>{window.__auditError=String(error&&error.stack||error)})})</script>
