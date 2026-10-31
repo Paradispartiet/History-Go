@@ -40,3 +40,16 @@ test('Akerselva People keep their evidence-based primary sites, not the whole ri
   assert.ok(!gruner.places.includes('akerselva'));
   assert.ok(!hausmann.places.includes('akerselva'));
 });
+
+test('Akerselva excludes undocumented industrial People from canonical and generated data', () => {
+  const people = load('data/people/naeringsliv/oslo/people_naeringsliv_oslo.json');
+  const runtime = load('data/runtime/place-open/akerselva.json');
+  const ids = ['sam_eyde_industriutbygger', 'kristian_birkeland_teknologi_og_industri'];
+  for (const id of ids) {
+    const person = people.find(row => row.id === id);
+    assert.ok(person, 'Person profile must be preserved: ' + id);
+    assert.notEqual(person.placeId, 'akerselva');
+    assert.ok(!person.places?.includes('akerselva'));
+    assert.ok(!runtime.people?.some(row => row.id === id));
+  }
+});
