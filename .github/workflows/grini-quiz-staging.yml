@@ -37,46 +37,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  materialize-integrated-knowledge:
-    name: Materialize reviewed Grini Knowledge registry
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'place/grini-fangeleir-full-production-20261028'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci --no-audit --no-fund
-      - name: Regenerate canonical Knowledge and verify reviewed bytes
-        run: |
-          npm run knowledge:canonical:write
-          test "$(git hash-object data/knowledge/knowledge_units.generated.json)" = '9fedcc55906bb307bf17810ae9e5661b5bc38b43'
-          node --test tests/grini-quiz-integration.test.mjs tests/grini-quiz-runtime-shuffle.test.mjs
-      - name: Persist the verified registry on the authorized candidate branch
-        env:
-          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
-          TARGET_BRANCH: ${{ github.head_ref }}
-        run: |
-          python - <<'PY'
-          import subprocess
-          changed = subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines()
-          if set(changed) - {'data/knowledge/knowledge_units.generated.json'}:
-              raise SystemExit('Unexpected generated changes: ' + repr(changed))
-          PY
-          if git diff --quiet; then exit 0; fi
-          test "$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/knowledge/knowledge_units.generated.json
-          git commit -m 'Grini: materialize byte-verified canonical Knowledge registry'
-          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
-
   non-publishing-preflight:
     name: Validate Grini 10x7 staging (never activate)
     runs-on: ubuntu-latest
