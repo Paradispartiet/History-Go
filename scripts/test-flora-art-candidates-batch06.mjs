@@ -17,7 +17,7 @@ assert.equal(review.items.length,4);
 assert.equal(manifest.items.length,4);
 assert.equal(review.originalApprovedSpeciesCount,9);
 assert.equal(review.approvedSpeciesCountAfterRelease,11);
-assert.equal(approved.count,17);
+assert.equal(approved.count,18);
 const expected=[
   ["01_ryllik",null,"Achillea millefolium","needs_catalog_entry"],
   ["02_geitrams","emne_flora_geitrams","Chamerion angustifolium","approved"],
@@ -62,4 +62,4 @@ assert(approved.has("emne_flora_ryllik"),"batch 07 must link to the new canonica
 assert.equal(approved.get("emne_flora_rodkløver")?.src,"bilder/natur/flora/illustrasjonskandidater/b08/01_rodklover_v4.webp","Only independently approved b08 red clover can be active");
 assert(read("flora-illustration-review.html").includes("flora-illustrasjoner-bolk06.html"));
 assert(read(".github/workflows/nature-illustrations.yml").includes("node scripts/test-flora-art-candidates-batch06.mjs"));
-console.log("Flora batch 06: four exact alpha WebP files, two originally accepted, yarrow linked by batch 07, trefoil rejected; 17 production approvals.");
+console.log("Flora batch 06: four exact alpha WebP files, two originally accepted, yarrow linked by batch 07, trefoil rejected; 18 production approvals.");

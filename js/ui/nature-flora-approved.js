@@ -21,6 +21,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_bergmynte: Object.freeze({
+      scientificName: "Origanum vulgare",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/03_bergmynte_v1.webp",
+      gitBlobSha: "735048d4298361f0fd02bd5104dda28080381a58",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-bergmynte-20261031.json"
+    }),
     emne_flora_bekkeblom: Object.freeze({
       scientificName: "Caltha palustris",
       src: "bilder/natur/flora/illustrasjonskandidater/b08/02_bekkeblom_v1.webp",
