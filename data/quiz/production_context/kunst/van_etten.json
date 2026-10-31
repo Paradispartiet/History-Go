@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/kunst/van_etten.json",
-      "bytes": 30599,
-      "sha256": "5be37e0b7fe797b9e0cc53c491fae501fa632c5c231d68a2d320f441d3415196"
+      "bytes": 31161,
+      "sha256": "f0f333e4a6cdf0c59d079f553bf0d00e44ccbe077569d825df2495302ae95366"
     },
     "target": {
       "path": "data/places/kunst/oslo/places_kunst/van_etten.json",
@@ -455,7 +455,7 @@
       "claim_id": "claim_van_etten_quiz_10",
       "order": 10,
       "planned_phase": "bridge",
-      "family": "fact",
+      "family": "context",
       "statement": "Van Etten har særlig prioritert separatutstillinger, kunstproduksjon og kritisk dialog.",
       "source_ids": [
         "guide"
@@ -515,14 +515,18 @@
       "claim_id": "claim_van_etten_quiz_15",
       "order": 15,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Van Etten er organisert som et uavhengig visningssted med produksjon og faglig dialog som sentrale oppgaver.",
       "source_ids": [
         "guide",
         "kunstavisen"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_okonomi_og_finansiering"
+      "emne_id": "em_kunst_okonomi_og_finansiering",
+      "method_id": "met_kunst_institusjonsanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_van_etten_quiz_16",
@@ -540,7 +544,7 @@
       "claim_id": "claim_van_etten_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "context",
       "statement": "Kunstavisen skrev i april 2025 at Jarem avsluttet sin rolle som gallerist ved Van Etten.",
       "source_ids": [
         "move"
@@ -663,14 +667,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 14,
-      "context": 4,
-      "concept_theory": 3
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
     },
     "ratios": {
-      "fact": 0.667,
-      "context": 0.19,
-      "concept_theory": 0.143
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
     }
   }
 }
