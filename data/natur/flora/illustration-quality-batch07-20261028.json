@@ -2,7 +2,7 @@
   "schema": "history-go-flora-batch07-plan-v1",
   "batch": "07",
   "date": "2026-10-28",
-  "status": "ryllik_published_two_new_webp_approved_pending_merge_tiriltunge_rejected",
+  "status": "fifteen_approved_tiriltunge_v2_historical_rejection_preserved",
   "baselineApproved": 11,
   "targetApproved": 15,
   "publicationRule": "Do not add to nature-flora-approved.js before individually reviewed assets, canonical species record and mobile/desktop QA.",
@@ -63,8 +63,8 @@
   ],
   "note": "A four-species composite reference plate was generated during planning, but it is not an individual production asset and must not be enabled as an approved illustration.",
   "reviewedAt": "2026-10-30",
-  "approvedCandidateCount": 3,
-  "projectedApprovedAfterMerge": 14,
+  "approvedCandidateCount": 4,
+  "projectedApprovedAfterMerge": 15,
   "items": [
     {
       "key": "01_ryllik",
@@ -99,9 +99,33 @@
       "name": "Tiriltunge",
       "catalogId": "emne_flora_tiriltunge",
       "scientificName": "Lotus corniculatus",
-      "reviewStatus": "needs_redraw",
-      "approvedForPublication": false,
-      "note": "Five-leaflet arrangement is still inconsistent: require three apical plus distinct basal pair. Not approved."
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "note": "New v2 illustration separately reviewed; old b06 candidate remains rejected and preserved.",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b07/02_tiriltunge_v2.webp",
+      "gitBlobSha": "7000ad3263a04817f297896e8206c2b959de94fa",
+      "sha256": "0176eba5035d8bb77302fb1613560cd8fae2e83f200a89cfe9505c559c775f84",
+      "sizeBytes": 403716,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "botanicalVisualDecision": "passed",
+      "visualChecks": {
+        "transparent": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://extension.psu.edu/lawn-and-turfgrass-weeds-birdsfoot-trefoil-lotus-corniculatus-l",
+        "https://www.worldfloraonline.org/taxon/wfo-0000212180",
+        "https://www.umass.edu/agriculture-food-environment/landscape/publications-resources/weed-identification/lotus-corniculatus"
+      ],
+      "evidence": [
+        "https://extension.psu.edu/lawn-and-turfgrass-weeds-birdsfoot-trefoil-lotus-corniculatus-l",
+        "https://www.worldfloraonline.org/taxon/wfo-0000212180"
+      ],
+      "reviewNotes": "Reviewed newly generated botanical specimen at 1024x1536 with transparent background on black; principal leaves show three distal plus two separately based leaflets, yellow pea-like flower clusters and slender radial pods. Historical b06/04 version remains rejected. Illustration is not a diagnostic photograph."
     },
     {
       "key": "03_hvitklover",
@@ -168,7 +192,7 @@
       "reviewNotes": "Verified nodding violet-blue bell-shaped corollas, slender stems and differing upper/basal foliage; 1024x1536 alpha WebP hash-matched, photo fallback credited. Does not assert microscopically exact floral structures."
     }
   ],
-  "releaseScope": "Ryllik remains published. Hvitkløver and blåklokke have verified exact WebP binaries, botanical reviews and licensed photo fallbacks and are approved for activation upon merging this PR. Tiriltunge remains rejected pending morphology redraw.",
+  "releaseScope": "All four reviewed batch-07 species approved; tiriltunge is a separately drawn v2. The older b06 illustration remains rejected. Fifteen illustrations after merging.",
   "readyButNotPublishedCount": 0,
   "localCandidateAssets": {
     "source": "Exact image blobs committed to GitHub PR #6807",
@@ -210,6 +234,24 @@
         ]
       }
     ],
-    "publicationGate": "Two verified WebP files match recorded SHA-256 and Git blob IDs; publish approved assets only after passing full flora release/browser checks and merging PR #6807."
+    "publicationGate": "Three exact WebP assets in GitHub require release and browser tests before merge.",
+    "redrawCandidate": {
+      "catalogId": "emne_flora_tiriltunge",
+      "scientificName": "Lotus corniculatus",
+      "suggestedPath": "bilder/natur/flora/illustrasjonskandidater/b07/02_tiriltunge_v2.webp",
+      "gitBlobSha": "7000ad3263a04817f297896e8206c2b959de94fa",
+      "sha256": "0176eba5035d8bb77302fb1613560cd8fae2e83f200a89cfe9505c559c775f84",
+      "sizeBytes": 403716,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "alpha": "verified_in_github",
+      "sourceReferences": [
+        "https://extension.psu.edu/lawn-and-turfgrass-weeds-birdsfoot-trefoil-lotus-corniculatus-l",
+        "https://www.worldfloraonline.org/taxon/wfo-0000212180",
+        "https://www.umass.edu/agriculture-food-environment/landscape/publications-resources/weed-identification/lotus-corniculatus"
+      ]
+    }
   }
 }

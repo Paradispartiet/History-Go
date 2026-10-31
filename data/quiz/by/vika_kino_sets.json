@@ -23,17 +23,75 @@
     "context_artifact": "data/quiz/production_context/by/vika_kino.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/by/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "Keep existing canonical ID and by category despite film source-file directory.",
-        "Correct invalid year 1981 to externally verified December 1997.",
-        "Do not conflate 2013 Victoria renovation with founding date."
-      ]
+        "No directly registered Vika kino target; keep name and location.",
+        "1997 established by Oslo byleksikon and government NOU.",
+        "One date-oriented opening question; others concern film architecture, public institutions and audience."
+      ],
+      "knowledge_migration": "Regenerate canonical IDs with Knowledge builder."
     },
-    "knowledge_migration": "Run the canonical Knowledge generator before merge."
+    "knowledge_migration": "Run the canonical Knowledge generator before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_offentlige_rom_motesteder",
+      "em_by_historiske_lag_i_hverdagsrom"
+    ],
+    "topic_hook_ids": [
+      "ark_bygningstyper",
+      "bolig_endring_tid",
+      "byliv_aapne_rom",
+      "his_bevaring"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gis_romlig_analyse",
+      "met_morfologisk_analyse",
+      "met_for_etter"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Specific evidence supports opening/architecture, multihall technology/municipal policies and later audience segmentation/branding."
+    },
+    "held_back_candidates": [
+      "Treating 1981 Saga redevelopment as Vika cinema opening.",
+      "Inferred current showtimes or permanent festival schedule.",
+      "Mistakenly calling Kino Victoria a separate site.",
+      "Unverified claims about continuously unchanged THX certification."
+    ]
   },
   "sets": [
     {

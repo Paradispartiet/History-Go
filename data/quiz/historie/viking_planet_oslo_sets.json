@@ -17,16 +17,75 @@
     "context_artifact": "data/quiz/production_context/historie/viking_planet_oslo.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/historie/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "Reuse the canonical Museum location; do not confuse it with Vikingtidsmuseet on Bygdøy.",
-        "Do not present digital reconstruction as primary archaeological evidence."
-      ]
+        "Use existing canonical viking_planet_oslo only.",
+        "Make source/reconstruction distinctions explicit.",
+        "Avoid excessive years."
+      ],
+      "knowledge_migration": "Generate canonical Knowledge IDs."
     },
-    "knowledge_migration": "Generate canonical Knowledge before merge."
+    "knowledge_migration": "Generate canonical Knowledge before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_historiske_lag_i_byrom"
+    ],
+    "topic_hook_ids": [
+      "his_kulturminneutvelgelse_verdi",
+      "his_samtid_ettertid_fortelling",
+      "his_spor_materialitet",
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_kulturarvutvelgelsesanalyse",
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Modern interactive Viking Age interpretation and source criticism."
+    },
+    "held_back_candidates": [
+      "Assuming original Vikings ships are displayed inside The Viking Planet.",
+      "Unlicensed promotional images presented as free-to-reuse."
+    ]
   },
   "sets": [
     {
