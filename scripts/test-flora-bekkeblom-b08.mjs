@@ -21,13 +21,17 @@ assert.equal(photos.window.HG_NATURE_FLORA_PHOTOS.get(id)?.scientificName,specie
 const approvedCtx={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),approvedCtx);
 const approved=approvedCtx.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,16,"Do not publish untransferred candidate");
-assert.equal(approved.get(id),null,"Candidate must not be active until GitHub transfer and QA");
-assert.equal(species.approvedForPublication,false);
+assert.equal(approved.count,17,"Bekkeblom approval must increase count to 17");
+const registered=approved.get(id);
+assert(registered && registered.src===species.candidate,"Bekkeblom must be active from approved registry");
+assert.equal(registered.gitBlobSha,species.gitBlobSha);
+assert.equal(registered.scientificName,species.scientificName);
+assert.equal(species.approvedForPublication,true);
+assert.equal(species.reviewStatus,"approved");
+assert(species.visualChecks.transparent && species.visualChecks.blackBackgroundReviewed && species.visualChecks.whiteBackgroundReviewed);
 const file=new URL(species.candidate,base);
 if(!fs.existsSync(file)){
-  assert(!process.argv.includes("--require-assets"),"Bekkeblom exact WebP missing from GitHub");
-  console.log("Bekkeblom: reviewed candidate staged, exact WebP transfer pending. 16 approved unchanged.");
+  throw new Error("Approved Bekkeblom exact WebP missing from GitHub");
 }else{
  const b=fs.readFileSync(file);
  assert.equal(b.length,species.sizeBytes);
@@ -38,5 +42,5 @@ if(!fs.existsSync(file)){
  assert.equal(b.toString("ascii",12,16),"VP8X");
  assert(b[20]&0x10,"WebP must have alpha");
  assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],species.dimensions);
- console.log("Bekkeblom: 1/1 exact WebP candidate validates. 16 approved unchanged.");
+ console.log("Bekkeblom: 1/1 exact WebP approved, 17 published in registry.");
 }

@@ -86,7 +86,7 @@ jobs:
       - run: node scripts/test-flora-approved-release.mjs
       - run: node scripts/test-flora-batch07-upload.mjs --require-published
       - run: node scripts/test-flora-art-candidates-batch08.mjs
-      - run: node scripts/test-flora-bekkeblom-b08.mjs
+      - run: node scripts/test-flora-bekkeblom-b08.mjs --require-assets
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -109,6 +109,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-sixteen-mobile-desktop
+          name: flora-approved-seventeen-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
