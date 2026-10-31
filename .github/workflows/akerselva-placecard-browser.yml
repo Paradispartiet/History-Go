@@ -1,0 +1,49 @@
+name: Akerselva PlaceCard browser acceptance
+
+on:
+  pull_request:
+    paths:
+      - 'tests/akerselva-placecard-real-browser.test.mjs'
+      - 'data/i18n/content/places/en.json'
+      - 'data/i18n/content/places/es.json'
+      - 'data/i18n/content/places/pt.json'
+      - 'data/places/by/oslo/places/akerselva.json'
+      - 'data/quizcards/naeringsliv/akerselva_quizcard_v1.json'
+      - '.github/workflows/akerselva-placecard-browser.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  akerselva-placecard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Locate installed Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Akerselva targeted JSON contracts
+        run: node --test tests/akerselva-vferdig-existing-quiz-contract.test.mjs tests/akerselva-quizcard-v1-contract.test.mjs tests/akerselva-fagverk-people-contract.test.mjs tests/akerselva-i18n-media-contract.test.mjs
+      - name: Live app mobile and desktop PlaceCard acceptance
+        run: node tests/akerselva-placecard-real-browser.test.mjs
+      - name: Upload screenshot and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: akerselva-placecard-browser
+          path: artifacts/akerselva-placecard-browser
+          if-no-files-found: ignore
+          retention-days: 14
