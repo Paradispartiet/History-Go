@@ -1,0 +1,50 @@
+name: Embroidered badges - focused validation
+on:
+  pull_request:
+    paths:
+      - 'bilder/merker/*-brodert-v*.webp'
+      - 'data/badges/*.json'
+      - 'tests/badge-embroidered-rollout-v1.test.mjs'
+      - '.github/workflows/qa-embroidered-rollout.yml'
+permissions:
+  contents: read
+
+concurrency:
+  group: embroidered-badges-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  badge-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify artwork, approved originals and underbadges
+        run: node --test tests/badge-embroidered-rollout-v1.test.mjs
+      - name: Generate four-badge preview
+        run: |
+          python -m pip install -q pillow
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image, ImageDraw
+          manifest=json.loads(Path('data/badges/embroidered_rollout_v1.json').read_text())
+          dst=Path('out'); dst.mkdir(exist_ok=True)
+          sheet=Image.new('RGB',(1040,290),'#16202c')
+          d=ImageDraw.Draw(sheet)
+          for i,art in enumerate(manifest['assets']):
+              with Image.open(art['image']) as img:
+                  assert img.size==(1024,1024)
+                  assert img.mode=='RGBA'
+                  icon=img.copy()
+              icon.thumbnail((240,240),Image.Resampling.LANCZOS)
+              sheet.paste(icon,(i*260+10,6),icon)
+              d.text((i*260+20,255),art['id'],fill='white')
+          sheet.save(dst/'embroidered-review.png')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: embroidered-four-review
+          path: out/embroidered-review.png
+          retention-days: 7
