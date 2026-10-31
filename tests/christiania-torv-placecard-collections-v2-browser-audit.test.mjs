@@ -7,6 +7,9 @@ import { chromium } from "playwright";
 const root = process.cwd();
 const place = JSON.parse(fs.readFileSync("data/places/by/oslo/places/christiania_torv.json", "utf8"));
 const related = place.related_place_ids.map(id => ({ id, name: id.replaceAll("_", " ") }));
+const brandMaster = JSON.parse(fs.readFileSync("data/brands/brands_master.json", "utf8"));
+const brandIds = JSON.parse(fs.readFileSync("data/brands/brands_by_place.json", "utf8")).christiania_torv;
+const brands = brandIds.map(id => brandMaster.find(brand => brand.id === id));
 const fixture = `<!doctype html><html><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="/css/place-rounds-fill-layout.css">
@@ -28,7 +31,7 @@ const fixture = `<!doctype html><html><head><meta charset="utf-8">
       <div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div>
     </div>
   </div><button id="pcQuiz" hidden>Ta quiz</button><div id="capture"></div>
-  <script>window.PLACES=${JSON.stringify([place, ...related])};window.getPeopleForPlace=()=>[{id:"wenche_gulbransen",name:"Wenche Gulbransen"}];window.showPlaceCardRoundPopup=payload=>{window.__lastPopup={title:payload.title,kind:payload.kind,html:payload.html};document.getElementById('capture').innerHTML=payload.html};</script>
+  <script>window.PLACES=${JSON.stringify([place, ...related])};window.getPeopleForPlace=()=>[{id:"wenche_gulbransen",name:"Wenche Gulbransen"}];window.HGBrands={getByPlace:(id)=>id==="christiania_torv"?${JSON.stringify(brands)}:[]};window.showPlaceCardRoundPopup=payload=>{window.__lastPopup={title:payload.title,kind:payload.kind,html:payload.html};document.getElementById('capture').innerHTML=payload.html};</script>
   <script src="/js/ui/place-rounds-visual-collections.js"></script>
   <script src="/js/ui/place-rounds-fill-layout.js"></script>
   <script>window.addEventListener('DOMContentLoaded',()=>{window.HGPlaceCardCollections.apply(window.PLACES[0]).then(()=>{window.__auditReady=true}).catch(error=>{window.__auditError=String(error&&error.stack||error)})})</script>
@@ -61,9 +64,11 @@ try {
   await page.waitForFunction(() => window.__auditReady === true);
 
   const verify = async expectedWidth => {
-    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "3");
+    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "2");
     assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-profile-source"), "place_card_profile_v2");
-    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 3);
+    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 2);
+    assert.equal(await page.locator("#pcBrandsIcon").getAttribute("data-collection-item-count"), "2");
+    assert.equal(await page.locator("#pcBrandsIcon img.pc-person-img").count(), 1);
     assert.equal(await page.locator(".pc-title-row > #pcPeopleIcon:not([hidden])").count(), 1,
       "canonical People round sits next to Merker in heading");
     assert.equal(await page.locator("#pcQuiz").isVisible(), true);
@@ -76,21 +81,21 @@ try {
       const people = box(document.getElementById("pcPeopleIcon"));
       const objects = box(document.getElementById("pcObjectsIcon"));
       const brands = box(document.getElementById("pcBrandsIcon"));
-      const related = box(document.getElementById("pcCategoryCollectionIcon"));
+      const categoryHidden = document.getElementById("pcCategoryCollectionIcon").hidden;
       const gridElement = document.querySelector(".pc-icons-quad");
       const grid = box(gridElement);
       const badge = box(document.getElementById("pcBadgesIcon"));
       const gridStyle = getComputedStyle(gridElement);
-      return { people, badge, objects, brands, related, grid, columns:gridStyle.gridTemplateColumns, rows:gridStyle.gridTemplateRows };
+      return { people, badge, objects, brands, categoryHidden, grid, columns:gridStyle.gridTemplateColumns, rows:gridStyle.gridTemplateRows };
     });
     assert.ok(Math.abs(geometry.people.width - geometry.people.height) < 2);
     assert.ok(geometry.people.x < geometry.badge.x && geometry.people.x + geometry.people.width <= geometry.badge.x + 1,
       "People is directly to the left of Merker");
     assert.ok(geometry.objects.width > geometry.objects.height);
     assert.ok(geometry.brands.width > geometry.brands.height);
-    assert.ok(geometry.related.width > geometry.related.height);
+    assert.equal(geometry.categoryHidden, true);
     assert.equal(geometry.columns.split(" ").filter(Boolean).length, 2);
-    assert.equal(geometry.rows.split(" ").filter(Boolean).length, 2);
+    assert.equal(geometry.rows.split(" ").filter(Boolean).length, 1);
     assert.ok(geometry.grid.width >= expectedWidth);
   };
 
@@ -98,9 +103,7 @@ try {
   await page.locator("#pcObjectsIcon").click();
   await page.waitForFunction(() => window.__lastPopup?.kind === "objects");
   assert.equal(await page.locator("#capture [data-visual-round-item]").count(), 1);
-  await page.locator("#pcCategoryCollectionIcon").click();
-  await page.waitForFunction(() => window.__lastPopup?.kind === "related");
-  assert.equal(await page.locator("#capture [data-visual-round-item]").count(), 5);
+  assert.deepEqual(await page.locator("#pcBrandsIcon").getAttribute("data-collection-shape"), "rectangle");
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload({ waitUntil: "networkidle" });
