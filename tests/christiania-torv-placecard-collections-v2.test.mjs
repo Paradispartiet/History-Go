@@ -51,10 +51,10 @@ test("Christiania Torv uses the canonical full four-collection v2 profile", () =
     schema: "history_go_place_card_profile_v2",
     collection_ids: ["people", "objects", "brands", "related"],
     reason: place.place_card_profile.reason,
-    verifiedAt: "2026-08-24"
+    verifiedAt: "2026-10-31"
   });
   assert.ok(place.place_card_profile.reason.length >= schema.properties.reason.minLength);
-  assert.match(place.place_card_profile.reason, /faste, fulle standardkomposisjonen/);
+  assert.match(place.place_card_profile.reason, /Brasserie Hansken og Kafé Celsius/);
   assert.ok(!place.place_card_profile.collection_ids.includes("images"));
   assert.ok(place.place_card_profile.collection_ids.includes("brands"));
 });
