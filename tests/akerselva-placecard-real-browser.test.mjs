@@ -132,11 +132,18 @@ try {
         assert.ok(people.some(item => item.id === person.id),
           tag + ': runtime People missing from actual app: ' + person.id);
       }
+      await page.evaluate(() => {
+        const original = window.showPlaceCardRoundPopup;
+        window.showPlaceCardRoundPopup = payload => {
+          window.__akerselvaPeoplePopup = payload;
+          return original?.(payload);
+        };
+      });
       await page.locator('#pcPeopleIcon').click();
-      await page.waitForFunction(() => {
-        const list = document.getElementById('pcPeopleList');
-        return list?.querySelectorAll('[data-visual-round-item]').length > 0;
-      }, null, {timeout:15000});
+      await page.waitForFunction(() => window.__akerselvaPeoplePopup?.kind === 'people',
+        null, {timeout:15000});
+      assert.ok(await page.locator('#pcPeopleList [data-person]').count() >= expectedPeople.length,
+        tag + ': person list did not render');
       const renderedPeople = await page.locator('#pcPeopleList').innerText();
       for (const person of expectedPeople) {
         assert.ok(renderedPeople.includes(person.name),
