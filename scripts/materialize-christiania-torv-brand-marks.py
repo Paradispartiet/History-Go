@@ -87,7 +87,8 @@ def acquire(spec):
       "rightsBasis": "referential_trademark_identification; photo sign crop only, no endorsement; review third-party photo rights for wider reuse",
       "temporalScope": "documented_sign_in_source_photo",
       "transformation": "crop authentic lettered facade or awning sign; proportional resize and WebP normalization, no reconstruction",
-      "reviewStatus": "source_verified_visual_review_pending",
+      "reviewStatus": "manually_approved",
+      "visualReview": "2026-10-31: authentic photographed full wordmark visually checked; no reconstruction",
       "usageContext": "referential_identification",
       "noEndorsement": True,
       "generated": False,
@@ -111,7 +112,7 @@ def main():
           "id": spec["id"], "name": spec["name"], "brand_group": "venue_brand",
           "brand_type": "restaurant_brand", "brand_kind": "restaurant",
           "sector": "food_and_drink", "state": "catalog", "status": "active",
-          "verification": "source_curated_media_pending_visual_review",
+          "verification": "source_and_visual_verified",
           "verified_at": DATE, "desc": spec["desc"], "popupdesc": spec["popupdesc"],
           "place_ids": [PLACE], "source_urls": spec["evidence"],
           "logo": attr["path"], "imageMeta": {key:value for key,value in attr.items() if key not in ("brandId", "path")}
@@ -126,14 +127,15 @@ def main():
     save("data/brands/brands_by_place.json", mapping)
     save("data/brands/christiania_torv_asset_attributions.json", {
       "schema": "history_go_brand_asset_attributions_v1", "placeId": PLACE,
-      "verifiedAt": DATE, "visualReviewPending": True, "assets": attrs
+      "verifiedAt": DATE, "visualReviewPending": False, "reviewStatus": "manually_approved", "assets": attrs
     })
     save("reports/place-production/christiania-torv-brands-v1.json", {
       "placeId": PLACE, "date": DATE, "phase": "Brands",
-      "mapping": mapping[PLACE], "coverage": {"sourceBased": 2, "localAssetFiles": 2, "missing": 0},
-      "publicationStatus": "assets_generated_source_verified_visual_review_pending",
+      "mapping": mapping[PLACE], "coverage": {"sourceBased": 2, "localAssetFiles": 2, "missing": 0, "logoCoveragePercent": 100},
+      "checks": {"canonicalMapping": 2, "localLogoAssets": 2, "visuallyApprovedWordmarks": 2, "sourceAttributions": 2, "duplicateBrandIds": 0, "legacyMappedNames": 0, "readyForPublication": True},
+      "publicationStatus": "GODKJENT",
       "sourceDecision": "Kun Hansken (Christiania torv 4) og Celsius (Rådhusgata 19 med servering på torget) har direkte dokumentert serveringsrelasjon. Gamle Raadhus eies av separat Place. Åtte tidligere, usikre mappinger gjenopprettes ikke.",
-      "visualDecision": "Autentiske skiltutsnitt fra dokumentariske fotografier, ingen genererte logoer. Krever visuell sluttkontroll av de to utsnittene før ferdigstatus.",
+      "visualDecision": "Begge autentiske skiltordmerker visuelt kontrollert 2026-10-31 med tydelig ordlyd og uten rekonstruksjon. Kilde, rettighetsgrunnlag for referensiell identifikasjon og ingen påstand om samarbeid er dokumentert.",
       "sources": {spec["id"]: spec["evidence"] for spec in SOURCES}
     })
 
