@@ -18,8 +18,8 @@ const protectedImages={
   media:'bilder/merker/media-brodert-lysbla.webp',
   vitenskap:'bilder/merker/vitenskap/brodert/vitenskap.webp'
 };
-test('batch 02 music and theatre art is full-sized hash-verified WebP',()=>{
-  assert.deepEqual(manifest.assets.map(x=>x.id).sort(),['musikk','scenekunst']);
+test('batch 02 six category badges are full-sized hash-verified WebP',()=>{
+  assert.deepEqual(manifest.assets.map(x=>x.id).sort(),['filosofi','helse','musikk','psykologi','scenekunst','utdanning']);
   for(const x of manifest.assets){
     const reg=read('data/badges/'+x.id+'.json');
     assert.equal(reg.image,x.image);assert.equal(reg.color.toUpperCase(),x.color);
