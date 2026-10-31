@@ -21,7 +21,7 @@ assert.equal(photos.window.HG_NATURE_FLORA_PHOTOS.get(id)?.scientificName,specie
 const approvedCtx={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),approvedCtx);
 const approved=approvedCtx.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,17,"Bekkeblom approval must increase count to 17");
+assert.equal(approved.count,18,"Bekkeblom approval must be retained among 18 species");
 const registered=approved.get(id);
 assert(registered && registered.src===species.candidate,"Bekkeblom must be active from approved registry");
 assert.equal(registered.gitBlobSha,species.gitBlobSha);
@@ -42,5 +42,5 @@ if(!fs.existsSync(file)){
  assert.equal(b.toString("ascii",12,16),"VP8X");
  assert(b[20]&0x10,"WebP must have alpha");
  assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],species.dimensions);
- console.log("Bekkeblom: 1/1 exact WebP approved, 17 published in registry.");
+ console.log("Bekkeblom: 1/1 exact WebP approved, 18 published in registry.");
 }
