@@ -43,7 +43,8 @@ try{
     {name:"rodkløver",label:"Rødkløver",term:"rødkløver",path:"b08/01_rodklover_v4.webp"},
     {name:"bekkeblom",label:"Bekkeblom",term:"bekkeblom",path:"b08/02_bekkeblom_v1.webp"},
     {name:"bergmynte",label:"Bergmynte",term:"bergmynte",path:"b08/03_bergmynte_v1.webp"},
-    {name:"bitterbergknapp",label:"Bitter bergknapp",term:"bitter bergknapp",path:"b08/04_bitterbergknapp_v1.webp"}
+    {name:"bitterbergknapp",label:"Bitter bergknapp",term:"bitter bergknapp",path:"b08/04_bitterbergknapp_v1.webp"},
+    {name:"blodstorkenebb",label:"Blodstorkenebb",term:"blodstorkenebb",path:"b08/05_blodstorkenebb_v1.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
