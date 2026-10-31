@@ -147,11 +147,12 @@ test("legacy round_profile remains readable and silently drops Images", async ()
   assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionProfileSource, "round_profile_v1_adapter");
 });
 
-test("Christiania Torv's full four-collection v2 profile is executable", () => {
+test("Christiania Torv's three source-backed v2 collections remain executable", () => {
   const place = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/places/by/oslo/places/christiania_torv.json"), "utf8"));
   const w = make(place);
-  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "related"]);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands"]);
   assert.equal(w.HGPlaceCardCollections.getProfileSource(place), "place_card_profile_v2");
+  assert.ok(!ids(w, place).includes("related"), "related Places use independent navigation, not a collection slot");
 });
 
 test("People stays circular; other ordinary collections become rounded rectangles", async () => {
