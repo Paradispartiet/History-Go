@@ -21,6 +21,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_bekkeblom: Object.freeze({
+      scientificName: "Caltha palustris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/02_bekkeblom_v1.webp",
+      gitBlobSha: "3607fad83fde319a8c6e3478f14c425c5b72798f",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-bekkeblom-20261031.json"
+    }),
     emne_flora_rodkløver: Object.freeze({
       scientificName: "Trifolium pratense",
       src: "bilder/natur/flora/illustrasjonskandidater/b08/01_rodklover_v4.webp",

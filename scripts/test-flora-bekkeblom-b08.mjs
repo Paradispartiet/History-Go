@@ -1,0 +1,46 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import crypto from "node:crypto";
+import vm from "node:vm";
+const base=new URL("../",import.meta.url);
+const read=p=>fs.readFileSync(new URL(p,base),"utf8");
+const doc=JSON.parse(read("data/natur/flora/illustration-quality-bekkeblom-20261031.json"));
+assert.equal(doc.batch,"08");
+assert.equal(doc.items.length,1);
+const species=doc.items[0], id="emne_flora_bekkeblom";
+assert.equal(species.catalogId,id);
+assert.equal(species.scientificName,"Caltha palustris");
+assert(species.sourceReferences.length>=2);
+const catalog=JSON.parse(read("data/natur/flora/blomster.json"));
+const runtime=JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]);
+assert.equal(catalog.find(x=>x.id===id)?.latin,species.scientificName);
+assert.equal(runtime.find(x=>x.id===id)?.latin,species.scientificName);
+const photos={window:{}};
+vm.runInNewContext(read("js/ui/nature-flora-photographs.js"),photos);
+assert.equal(photos.window.HG_NATURE_FLORA_PHOTOS.get(id)?.scientificName,species.scientificName);
+const approvedCtx={window:{}};
+vm.runInNewContext(read("js/ui/nature-flora-approved.js"),approvedCtx);
+const approved=approvedCtx.window.HG_NATURE_FLORA_APPROVED;
+assert.equal(approved.count,17,"Bekkeblom approval must increase count to 17");
+const registered=approved.get(id);
+assert(registered && registered.src===species.candidate,"Bekkeblom must be active from approved registry");
+assert.equal(registered.gitBlobSha,species.gitBlobSha);
+assert.equal(registered.scientificName,species.scientificName);
+assert.equal(species.approvedForPublication,true);
+assert.equal(species.reviewStatus,"approved");
+assert(species.visualChecks.transparent && species.visualChecks.blackBackgroundReviewed && species.visualChecks.whiteBackgroundReviewed);
+const file=new URL(species.candidate,base);
+if(!fs.existsSync(file)){
+  throw new Error("Approved Bekkeblom exact WebP missing from GitHub");
+}else{
+ const b=fs.readFileSync(file);
+ assert.equal(b.length,species.sizeBytes);
+ assert.equal(crypto.createHash("sha256").update(b).digest("hex"),species.sha256);
+ assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),species.gitBlobSha);
+ assert.equal(b.toString("ascii",0,4),"RIFF");
+ assert.equal(b.toString("ascii",8,12),"WEBP");
+ assert.equal(b.toString("ascii",12,16),"VP8X");
+ assert(b[20]&0x10,"WebP must have alpha");
+ assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],species.dimensions);
+ console.log("Bekkeblom: 1/1 exact WebP approved, 17 published in registry.");
+}
