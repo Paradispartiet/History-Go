@@ -21,6 +21,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_bitterbergknapp: Object.freeze({
+      scientificName: "Sedum acre",
+      src: "bilder/natur/flora/illustrasjonskandidater/b08/04_bitterbergknapp_v1.webp",
+      gitBlobSha: "8d71e52d3ce87394903e1726a0915c75e5bc9d13",
+      reviewedAt: "2026-10-31",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-bitterbergknapp-20261031.json"
+    }),
     emne_flora_bergmynte: Object.freeze({
       scientificName: "Origanum vulgare",
       src: "bilder/natur/flora/illustrasjonskandidater/b08/03_bergmynte_v1.webp",
