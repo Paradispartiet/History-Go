@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/kunst/vigelandmuseet.json",
-      "bytes": 28015,
-      "sha256": "1b171c5e9337cd9d254e433a34a85c8f565414c502f1f5e9cfbe20ba3ad09167"
+      "bytes": 28687,
+      "sha256": "f367bddbfa68d58615611b6cda9545592dfdee75e2935d1429fbf0fcec445bbd"
     },
     "target": {
       "path": "data/places/kunst/oslo/places_kunst/vigelandmuseet.json",
@@ -483,7 +483,7 @@
       "claim_id": "claim_vigelandmuseet_quiz_16",
       "order": 16,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "context",
       "statement": "Smeder og andre assistenter bygde jernarmaturer som støttet store leiremodeller.",
       "source_ids": [
         "history"
@@ -520,14 +520,18 @@
       "claim_id": "claim_vigelandmuseet_quiz_19",
       "order": 19,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Museet forvalter også et stort materiale av tegninger, tresnitt, brev og fotografier.",
       "source_ids": [
         "history",
         "museum"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_institusjoner_kanon"
+      "emne_id": "em_kunst_institusjoner_kanon",
+      "method_id": "met_kunst_kanon_og_arkivanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_vigelandmuseet_quiz_20",
@@ -609,14 +613,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 14,
-      "context": 4,
-      "concept_theory": 3
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
     },
     "ratios": {
-      "fact": 0.667,
-      "context": 0.19,
-      "concept_theory": 0.143
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
     }
   }
 }
