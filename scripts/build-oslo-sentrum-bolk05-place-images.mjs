@@ -76,9 +76,15 @@ for (const item of manifest.images) {
     throw new Error('SOURCE_OR_LICENSE_INVALID: ' + item.placeId);
   }
   const preserveHero = item.preserveExistingHero === true;
+  const sameSourcePreview = place.imageMeta?.productionStatus === 'candidate_remote_preview_not_v1_approved'
+    && place.imageMeta.sourcePage === item.sourcePage;
   if (preserveHero && !place.image) throw new Error('EXISTING_HERO_MISSING: ' + item.placeId);
-  if (!preserveHero && place.image) throw new Error('EXISTING_HERO_NEEDS_EDITORIAL_REVIEW: ' + item.placeId);
-  if (place.frontImage || place.cardImage) throw new Error('PREEXISTING_CARD_MEDIA_NEEDS_REVIEW: ' + item.placeId);
+  if (!preserveHero && place.image && !sameSourcePreview) {
+    throw new Error('EXISTING_HERO_NEEDS_EDITORIAL_REVIEW: ' + item.placeId);
+  }
+  if ((place.frontImage || place.cardImage) && !sameSourcePreview) {
+    throw new Error('PREEXISTING_CARD_MEDIA_NEEDS_REVIEW: ' + item.placeId);
+  }
   if (planOnly) {
     console.log('OSLO05_MEDIA_PLAN', item.placeId, preserveHero ? 'preserve hero' : 'new hero',
       item.sourcePage, item.license);
