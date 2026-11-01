@@ -2,7 +2,7 @@
   "schema": "history-go-flora-single-species-review-v1",
   "batch": "09",
   "date": "2026-11-01",
-  "status": "reviewed_waiting_for_exact_binary_and_green_ci",
+  "status": "reviewed_binary_verified_pending_ci",
   "baselineApproved": 25,
   "approvedCountAfterRelease": 26,
   "publicationRule": "Merge only when the exact 1024x1536 WebP binary matches the recorded SHA256, Git blob SHA and alpha/dimensions, all 25 prior approvals remain intact, the licensed species photograph remains a fallback, and illustration-contract and approved-flora-browser pass on last PR head. Confirm Pages success after merge.",
@@ -41,10 +41,9 @@
       "photoFallbackRegistry": "js/ui/nature-flora-photographs.js",
       "observations": "The candidate shows dark reddish stems with dark sticky bands just below the upper nodes, clusters of five-petalled saturated rose-magenta flowers with pale stamens, narrow opposite lanceolate leaves and ribbed narrow burgundy calyces. These are the distinguishing traits documented by NIBIO and Artsdatabanken. Natural proportions and the precise location and extent of sticky bands require final visual review.",
       "limitations": "Illustrative watercolor, not a specimen drawing. Several flower corollas are shown frontally and may be larger or more symmetrically arrayed than in field specimens. Sticky bands are visually amplified; leaf density at the base is stylized. Do not use this illustration alone for diagnostic species identification. Preserve the existing named and licensed photo for comparison.",
-      "technicalVerification": "Local image generated as 1024x1536 RGBA PNG. Stray low-opacity ambient pixels removed (alpha threshold 50, rescaled to 0..255). Converted to 1024x1536 WebP with alpha (Pillow quality 91, method 6), then SHA-256 and Git blob SHA calculated directly from its final 179204 bytes. Dark and light background previews visually inspected. Not yet uploaded to GitHub.",
+      "technicalVerification": "The 1024x1536 VP8X alpha WebP was inspected and hashed locally (SHA256 dd1e1364b7956efc609f26e2d8c04d7f625c38fab0a4471118208136f506990f). The exact 179204 bytes were uploaded as Git blob SHA 2e25e6c9a06c6ae9817b1afd2c081a4f5e01096c and linked in PR #6865 at bilder/natur/flora/illustrasjonskandidater/b09/04_engtjaereblom_v1.webp. Dark/light preview and alpha verified. CI and GitHub Pages are separate publication gates.",
       "publicationBlockedBy": [
-        "Exact WebP binary not yet uploaded to GitHub",
-        "CI checks cannot pass without the matching GitHub binary"
+        "Both illustration-contract and approved-flora-browser must pass on final PR head before merge"
       ]
     }
   ]
