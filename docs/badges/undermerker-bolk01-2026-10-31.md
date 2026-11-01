@@ -36,3 +36,10 @@ De seks nylig lagde Scenekunst-bildene er gjennomgått på faktisk GitHub-WebP. 
 De tre tidligere pilotene (Teater, Klassisk arkitektur, Spillefilm) er fortsatt kandidater uten visuell sluttsignering. Ingen `subBadgeImages` aktiveres før godkjenning. Merke-PR skal forbli utkast.
 
 Det AI-genererte arket med 15/29 motiver er ikke en produksjonspakke: en del navn samsvarer ikke med underkategoriene i registeret, og det skal ikke klippes opp til aktive filer.
+
+## Pilotillustrasjoner – ytterligere visuell vurdering
+- **Teater:** Ikke godkjent. Gjentar Scenekunst-hovedmerkets teatermasker, bryter kravet om særskilt undermerkemotiv.
+- **Spillefilm:** Ikke godkjent. For likt Film & TV-hovedmerkets kamera/projektor; magenta/liljehvit skal dominere og ny ikonografi kreves.
+- **Klassisk arkitektur:** Egnet kandidat (grå palett, tydelig nyklassisk fasade, realistiske tråder). Fortsatt *ikke* formelt godkjent.
+
+Totalt: **8 må tegnes om, 1 avventer endelig visuell vurdering, 0 aktivert**. Originalfilene beholdes for sporbarhet, men skal ikke brukes som aktive merker.
