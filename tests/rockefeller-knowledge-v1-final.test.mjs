@@ -9,7 +9,7 @@ const units=new Map(read('data/knowledge/knowledge_units.generated.json').units.
 const match=id=>[...rock,...sen].find(q=>q.id===id);
 test('No internal Knowledge prose in the reviewed Rockefeller questions',()=>{
  assert.equal(rock.length,30);assert.equal(card.questions.length,10);
- for(const id of ['rockefeller_quiz_3','rockefeller_quiz_28','rockefeller_quiz_29','sentrum_scene_quiz_27']){
+ for(const id of ['rockefeller_quiz_1','rockefeller_quiz_2','rockefeller_quiz_3','rockefeller_quiz_5','rockefeller_quiz_28','rockefeller_quiz_29','sentrum_scene_quiz_27']){
   const q=match(id);assert.ok(q);assert.doesNotMatch(q.knowledge,/place-filen|place-filene|kontrasttarget/i);
   const claims=q.knowledge.match(/[^.!?]+[.!?]/g).map(x=>x.trim());
   assert.equal(claims.length,q.knowledge_unit_ids.length,id);
