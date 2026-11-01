@@ -37,6 +37,15 @@
       stage: "blomstring og frøsetting",
       evidence: "data/natur/flora/illustration-quality-gjetertaske-20261101.json"
     }),
+    emne_flora_gullsoleie: Object.freeze({
+      scientificName: "Ranunculus auricomus agg.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/09_nyresoleier_v1.webp",
+      gitBlobSha: "0384f753c644e46dbb868ab796f84b1c8e8d2238",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      taxonomicScope: "species-complex-representative",
+      evidence: "data/natur/flora/illustration-quality-nyresoleier-20261101.json"
+    }),
     emne_flora_gulaks: Object.freeze({
       scientificName: "Anthoxanthum odoratum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/08_gulaks_v1.webp",

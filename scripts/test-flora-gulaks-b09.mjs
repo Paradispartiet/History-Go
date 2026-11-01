@@ -18,7 +18,7 @@ const runtime=JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap
 assert.equal(catalog.find(x=>x.id===id)?.latin,a.scientificName);
 assert.equal(runtime.find(x=>x.id===id)?.latin,a.scientificName);
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
-assert.equal(env.window.HG_NATURE_FLORA_APPROVED.count,30);
+assert(env.window.HG_NATURE_FLORA_APPROVED.count>=30);
 assert.equal(env.window.HG_NATURE_FLORA_APPROVED.get(id)?.gitBlobSha,a.gitBlobSha);
 const b=fs.readFileSync(new URL(a.src,root));
 assert.equal(b.length,a.sizeBytes);

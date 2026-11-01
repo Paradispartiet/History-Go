@@ -57,6 +57,8 @@ on:
       - 'scripts/test-flora-gjetertaske-b09.mjs'
       - 'scripts/test-flora-gulaks-b09.mjs'
       - 'data/natur/flora/illustration-quality-gulaks-20261101.json'
+      - 'data/natur/flora/illustration-quality-nyresoleier-20261101.json'
+      - 'scripts/test-flora-nyresoleier-b09.mjs'
       - 'css/nature-explorer.css'
       - 'js/ui/nature-explorer.js'
       - 'scripts/test-flora-engtjaereblom-b09.mjs'
@@ -129,6 +131,7 @@ jobs:
       - run: node scripts/test-flora-forglemmegei-b09.mjs
       - run: node scripts/test-flora-gjetertaske-b09.mjs
       - run: node scripts/test-flora-gulaks-b09.mjs
+      - run: node scripts/test-flora-nyresoleier-b09.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -151,6 +154,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-30-black-mobile-desktop
+          name: flora-approved-31-black-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
