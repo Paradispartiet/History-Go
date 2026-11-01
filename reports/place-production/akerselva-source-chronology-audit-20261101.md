@@ -67,3 +67,37 @@ Epoke-/chronology-generator og visning skal undersøkes separat. Ikke bruk `plac
 - **Separat kontroll:** epokeviserens genererte indeks er rapportert utdatert. Dette skal håndteres som egen datagenereringsoppgave, ikke ved å legge urelatert generert indeks i PR #6859.
 
 **Publiseringsregel:** PR #6859 holdes åpen til v4.2-påstandene og målrettet CI er bestått. Akerselva er fortsatt ikke `vFerdig`.
+
+## Gjeldende revisjon – tekstpakke og integrasjon lukket
+
+Denne seksjonen erstatter de eldre åpne statuspunktene over for artikkel, claims og epokematerialisering.
+
+- 41/41 claims verifisert; 3 ingresssetninger og 33 artikkelsetninger er koblet med oppdatert SHA-256.
+- Arbeidersamfunnet er presisert til Nydalen. Den første kommunale kloakkledningen er identifisert med ruten Youngstorget–Vaterlands bru og 1846.
+- Nåtidsspor er avgrenset til museumsguidens dammer, broer, rørgater og fabrikkbygninger i tegl. Sluttsetningen beskriver industriområder, parker, boliger og kulturbygg uten den tidligere årsaksslutningen.
+- Norsk kilde, Place-open og en/es/pt er synkronisert. Ny i18n-kildehash: `08d6170da5130c92`.
+- Readiness-spørsmålet om Sissel Rønbeck spør nå etter én initiativtaker.
+- Historie- og Næringsliv-rapportene dokumenterer stedets eksisterende emnekoblinger. Deres N/A gjelder opprettelse av separate fagquizer på dette By-stedet, aldri den eksisterende obligatoriske By-quizen.
+- Epokeindeksen er generert med den uendrede canonicale byggeren. Elleve verifiserte Akerselva-milestones tilføyes, og den allerede mergede flyttingen av fyrstikk-Storyen fra Akerselva til Bryn slår nå også gjennom i epokeindeksens koblinger. Ingen historiske datoer er utledet fra katalogfeltet `year: 1850`.
+- Flyttingen av fyrstikkarbeiderstreiken til Bryn er bevart. Stedets samlinger, People, bilder, ruteankre og eksisterende quizdata er ikke endret.
+
+### Utført validering
+
+- `node scripts/validate-place-description-production-v4_2_policy.mjs --all`: 263 pakker, 247 ready, 0 blokkerende feil.
+- `node scripts/build-epoke-place-index.mjs` og `--check`: deterministisk indeks, 340 steder og 2287 milepæler.
+- `node --test tests/akerselva-i18n-media-contract.test.mjs`: 3/3 bestått.
+- De uendrede fagvalidatorene `validateHistoriePlaceReport` og `validateNaeringslivPlaceReport` med canonicale emne-/metode-ID-er: ingen feil.
+- Siste GitHub-head før denne rettelsen hadde bestått Akerselvas nettlesertest. Ny exact-head CI kreves før merge; en eldre nettlesertest er ikke bevis for den nye commiten.
+
+### Kvalitetsvurdering for denne avgrensede rettelsen
+
+| Dimensjon | Score | Evidens |
+|---|---:|---|
+| Korrekthet og evidens | 5/5 | 41 kildebundne claims; to tidligere åpne kjerner avgrenset mot museumsguiden; syrekonflikten avgjort med samtidig Storting-kilde. |
+| Dekning | 5/5 | Begge åpne claims, språk/runtime, manglende fagrapporter og indeks håndtert i samme dokumenterte omfang. |
+| Redaksjonell kvalitet | 4/5 | Konkret historie om vannkraft, arbeid, forurensning og ombruk; fire presiseringer og entydig quizspørsmål. |
+| Teknisk integritet | 4/5 | Global pakkevalidator, målrettet språk-/medietest, fagrapporter og indekskontroll består lokalt; final GitHub CI er separat mergeport. |
+| Sikkerhet og ansvarlighet | 5/5 | Ingen nye persondata; faglige årsaksgrenser og økonomiske databegrensninger oppgitt. |
+| Etterprøvbarhet | 5/5 | Stabile claim-ID-er, konkrete kildeplasseringer, ferske hash/reviews og uendret indeksbygger. |
+
+**Sum: 28/30 for denne rettelsen.** Dette er ikke full vFerdig for Akerselva. Relasjonsnavigasjon, betingede moduler og samlet stedssluttføring følger egne gjenstående porter; ingen av dem skjules av tekstpakkens `ready_v4_2`.

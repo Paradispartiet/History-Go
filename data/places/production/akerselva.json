@@ -3,7 +3,7 @@
   "validatorVersion": "4.2.1",
   "placeId": "akerselva",
   "placeFile": "data/places/by/oslo/places/akerselva.json",
-  "status": "needs_research",
+  "status": "ready_v4_2",
   "identity": {
     "status": "resolved",
     "represents": "Akerselva som sammenhengende byelv og historisk industri- og miljøkorridor med tre ruteankre gjennom Oslo.",
@@ -42,7 +42,7 @@
   "textHashes": {
     "algorithm": "sha256",
     "desc": "6c6861629eb126b24d479df7e19edb06a3c2873256ee0404631fc606d2857893",
-    "popupDesc": "25c7e2f363c3f69843054cf4de2a715526a6c74a43484a7aea8fe0668f3b19f5"
+    "popupDesc": "dbc164761dd664090b5e226210430a7081777217c205c0f5bb458cc52b4c6f74"
   },
   "claims": [
     {
@@ -450,16 +450,16 @@
     },
     {
       "id": "claim_akerselva_visible_infrastructure",
-      "claim": "Langs elva finnes fremdeles dammer, eldre fabrikkbygninger, broer og tekniske vannkraftanlegg.",
-      "sourceUrl": "https://oslobyleksikon.no/side/Akerselva",
-      "sourceLocation": "Industrifotografier og omtale av bevart industri langs elva.",
+      "claim": "Langs turveien finnes fortsatt dammer, broer, rørgater og fabrikkbygninger i tegl.",
+      "sourceUrl": "https://von-landing-page.vercel.app/p/Norsk%2BTeknisk%2BMuseum/route/2232",
+      "sourceLocation": "«Intro Akerselva – et museum gjennom byen (nord)»: fabrikkbygninger i rød murstein og tekniske spor med demninger, broer, rørgater og dammer.",
       "sourceType": "institutional",
       "verifiedAt": "2026-11-01",
-      "status": "needs_research",
+      "status": "verified",
       "claimKind": "temporal",
       "evidenceMode": "direct",
       "temporalStatus": "current",
-      "notes": "Behov for oppdatert kilde som dokumenterer hele listen, særlig inntak, murer og teglbygg."
+      "notes": "Museenes turguide lest 2026-11-01. Listen avgrenset til dokumenterte tekniske spor; udokumenterte nåværende inntak og murer er tatt ut av artikkelen."
     },
     {
       "id": "claim_akerselva_course_changed",
@@ -547,19 +547,19 @@
     },
     {
       "id": "claim_akerselva_historic_shift",
-      "claim": "Turen langs Akerselva følger både tidligere mølle- og industristeder og senere miljøpark, kultur- og boligområder.",
+      "claim": "Langs elva ligger tidligere industristeder side om side med parker, boliger og kulturbygg.",
       "sourceUrl": "https://oslobyleksikon.no/side/Akerselva",
-      "sourceLocation": "Historisk industrioversikt og omtale av miljøpark og ombruk.",
+      "sourceLocation": "«Industrien langs Akerselva», avsluttende avsnitt om ombruk og boliger; «Akerselva Miljøpark», «Elveparken» og «Videreføring».",
       "sourceType": "institutional",
       "verifiedAt": "2026-11-01",
-      "status": "needs_research",
-      "claimKind": "strong",
-      "evidenceMode": "explicit",
-      "temporalStatus": "historical",
+      "status": "verified",
+      "claimKind": "temporal",
+      "evidenceMode": "direct",
+      "temporalStatus": "current",
       "independentSourceUrls": [
         "https://oslobyleksikon.no/side/Akerselva_Milj%C3%B8park"
       ],
-      "notes": "Slutning uttrykt med «derfor» må vurderes redaksjonelt som eksplisitt kausalitet eller omskrives."
+      "notes": "Beskrivende nåtidsopplysning om dokumentert arealbruk. Den tidligere kausale fortolkningen med «derfor» er fjernet; ingen ny årsaksslutning."
     },
     {
       "id": "claim_akerselva_first_municipal_sewer_1846",
@@ -815,17 +815,17 @@
   },
   "reviews": {
     "factual": {
-      "status": "pending",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
       "reviewer": "Akerselva v4.2 source audit",
-      "notes": "Ny gjennomgang 2026-11-01: dokumenterte museumsreferanser for Nydalens arbeiderinstitusjoner, historisk øst–vest-grense, avsperrede elvebredder og første kloakkledning (1846). De opprinnelige syrekildene er uendret. Tidslinjeclaim 1990/240 dekar/31 områder er også normalisert. Åpent: dagens fullstendige infrastruktur-liste og den kausalt formulerte sluttsetningen («derfor»). Selv med formelle setningskoblinger er full v4.2 faktareview fremdeles pending."
+      "notes": "Alle 41 claim-kjerner og 36 setningskoblinger gjennomgått mot oppgitte kildeavsnitt. Industrioversikt, vannmiljø, miljøpark og ombruk kontrollert i Oslo byleksikon; møller/industrivekst også i SNL; 1990-saltsyre mot Stortingets samtidige spørsmål. Museenes turguide dokumenterer Nydalens arbeidersamfunn, kloakkledningen fra 1846 og de synlige tekniske sporene. Arbeidersamfunn avgrenset til Nydalen; sluttsetningen beskriver arealbruk uten kausal slutning. Metadata beholder eksisterende ruteanker og kategori; year=1850 er katalogens industriperiodeanker, ikke elvas opphav. Ti quiz-readiness-fasiter kontrollert, og spørsmålet om initiativtaker er rettet til entall."
     },
     "editorial": {
-      "status": "pending",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
       "reviewer": "Akerselva v4.2 editorial audit",
       "introducedNewFacts": false,
-      "notes": "Mangler endelig redaksjonell behandling av to påstandskjerner: spesifikt hvor dagens vanninntak, murer og teglbygg er synlige; og sluttsetningens årsaksord «derfor». Eventuelt omskriv begge og oppdater i18n + runtime + hash. Ingen nye brukerrettede fakta er innført."
+      "notes": "Fortellingen følger vannkraft, industriarbeid, forurensning og ombruk i åtte avsnitt. Fire presiseringer holder teksten innenfor allerede registrerte claim-kjerner: Nydalen, første kloakkledning, dokumenterte tekniske spor og konkret avslutning. Ingressens hovedbevegelse fra industri til miljøpark er bevart. Ingen nye fakta introdusert i den redaksjonelle gjennomgangen; samtidige oversettelser og runtime er synkronisert."
     }
   },
   "quizReadiness": {
@@ -867,7 +867,7 @@
         ]
       },
       {
-        "question": "Hvilke to personer står bak initiativet til Akerselva Miljøpark?",
+        "question": "Hvem tok initiativet til Akerselva Miljøpark?",
         "answer": "Miljøvernminister Sissel Rønbeck tok initiativet",
         "type": "hvem",
         "normalKnowledgeQuestion": true,
@@ -922,6 +922,17 @@
       }
     ]
   },
-  "completion": {},
-  "reviewsNotes": "Åpen v4.2-pakke. Fyrstikkarbeiderstreiken er korrigert ved PR #6862 og skal ikke ligge på Akerselva. Nå 39/41 claims dokumentert; krav vurderes etter full kilde- og redaksjonell kontroll; ikke merge før v4.2-validator samt PR-scope og Story-integrasjon har PASS."
+  "completion": {
+    "completedUnder": "4.2",
+    "currentStatus": "current",
+    "sourceVerifiedAt": "2026-11-01",
+    "factualReview": "passed",
+    "editorialReview": "passed",
+    "validatorVersion": "4.2.1",
+    "claimsVerified": {
+      "verified": 41,
+      "total": 41
+    }
+  },
+  "reviewsNotes": "Artikkelens v4.2-kildepakke er gjennomgått. 41/41 claims og 36/36 setninger. Dette registrerer tekstens factuality-status, ikke full vFerdig/closeout for alle Place-subsystemer. Merge krever relevante kontroller på endelig PR-head."
 }
