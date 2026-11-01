@@ -17,6 +17,19 @@
 
 Denne oversikten beskriver bare kontrollerte felter og manifestkoblinger, **ikke** full kilde-, bilde-, People- eller v4.2-preflight. Folketeaterets eksisterende quizfil skal ikke erstattes uten systematisk audit. Kulturkirken Jakobs eldre litteraturfil er bevisst avregistrert i tidligere PR-er (#5994–#5997): ikke gjenopprett den eller flytt primærkategori.
 
+## Canonical preservation / redaksjonelle differanser (kontrollert mot main 1.11.2026)
+
+Disse tekstene skal **ikke** ukritisk erstatte eksisterende `desc` og `popupDesc`. Etter full gjennomlesing av dagens canonical tekst er den konkrete differansebeslutningen:
+
+- **Folketeateret:** eksisterende korttekst (~136 tegn) og popup (~619 tegn) er tynne; nytt utkast er en reell utvidelseskandidat. Kontroller om publikums-passasjen best benevnes **Folketeaterpassasjen** eller **Operapassasjen** – kildene/eksisterende tekst bruker ulike betegnelser – før endelig ordvalg.
+- **Kunstnernes Hus:** eksisterende korttekst og popup er relativt korte (~186/~762 tegn). Nytt utkast tilfører kunsthistorisk og arkitektonisk dybde, men skal beholde riktig eksisterende status som kunstnerstyrt institusjon.
+- **Historisk museum:** eksisterende popup er allerede **~2349 tegn** og omhandler arkeologiske, etnografiske og numismatiske samlinger, forskning og representasjon. Vårt utkast er kun en **alternativ kilde- og formidlingsvinkel**, ikke en full erstatning. Bevar samlings-/etikkdybden og korrekt ankermarkør Frederiks gate 2.
+- **IBSEN Museum & Teater:** eksisterende popup er allerede **~2226 tegn** og skiller eksplisitt publikumsinngang i Henrik Ibsens gate 26 fra den historiske leiligheten Arbins gate 1. Vårt utkast er et supplement; **ikke forenkle bort museets rekonstruksjon, addresseskille, Suzannah eller scenefunksjonen**.
+- **Blitzhuset:** kort eksisterende popup (~624 tegn) kan utvides, men kontroller om dagens offisielle husnummer er **30C eller 30E** før endring i adresse eller bildetekst. Behold eksisterende trygg besøksmarkør inntil bekreftet.
+- **Kulturkirken Jakob:** dagens tekst er detaljert og kildebåret, med sceneoppsett, lydteknikk, altertavle og eksisterende Fagverk. **Ingen omskriving til kortere tekst**. Utkastet nedenfor fungerer kun som mulig fortellervinkel; fullfør manglende stående bilder og quiz uten å fjerne tekniske/musikkfaglige detaljer, endre kategori eller gjenopprette den gamle litteraturquizfilen.
+
+Første versjon av denne rapporten oppsummerte noen av de eksisterende popupene som generelt «historisk tekst». Den presise sammenligningen over erstatter den foreløpige beskrivelsen. Disse seks tekstutkastene er **for revisjon, ikke produksjonsaktivert**.
+
 ---
 
 ## 1. Folketeateret — `folketeateret`
