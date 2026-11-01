@@ -1,0 +1,38 @@
+name: Rockefeller v1 quiz Knowledge synchronization
+on:
+  pull_request:
+    paths:
+      - "data/quiz/musikk/rockefeller_sets_merged.json"
+      - "data/quizcards/musikk/topp10_musikk_oslo_v1_batch01.json"
+      - "tests/rockefeller-quiz-v1-quality-20261101.test.mjs"
+      - ".github/workflows/rockefeller-v1-quiz-knowledge.yml"
+permissions:
+  contents: write
+jobs:
+  sync-knowledge:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor == 'Paradispartiet'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Generate canonical Knowledge from reviewed quiz
+        run: npm run knowledge:canonical:write
+      - name: Validate Rockefeller quiz and QuizCard
+        run: node --test tests/rockefeller-quiz-v1-quality-20261101.test.mjs
+      - name: Commit generated Knowledge changes on the same PR branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u data/knowledge reports/knowledge-contract-audit.json reports/knowledge-id-backfill.json data/quiz/musikk/rockefeller_sets_merged.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Rockefeller: synchronize canonical Knowledge after quiz factual corrections"
+            git push origin "HEAD:${{ github.head_ref }}"
+          fi
