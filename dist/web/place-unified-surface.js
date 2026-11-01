@@ -2282,25 +2282,18 @@
       return shell4;
     }
     function scrollToSection(target, options = {}) {
-      var _a, _b, _c, _d;
+      var _a, _b, _c;
       const id = canonicalSection2(target);
-      if (id === "about") {
-        const scroller2 = (_a = card2()) == null ? void 0 : _a.querySelector(".pc-body");
-        if (scroller2) {
-          scroller2.scrollTop = 0;
-          return true;
-        }
-      }
       const section = placeSheetSectionTarget(id);
       if (!(section instanceof HTMLElement)) return false;
-      const scroller = (_b = card2()) == null ? void 0 : _b.querySelector(":scope > .pc-body");
+      const scroller = (_a = card2()) == null ? void 0 : _a.querySelector(":scope > .pc-body");
       if (id === "about" && scroller) {
         scroller.scrollTop = 0;
       } else {
         try {
           section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" });
         } catch {
-          (_c = section.scrollIntoView) == null ? void 0 : _c.call(section);
+          (_b = section.scrollIntoView) == null ? void 0 : _b.call(section);
         }
       }
       if (options.focus) {
@@ -2308,7 +2301,7 @@
         try {
           section.focus({ preventScroll: true });
         } catch {
-          (_d = section.focus) == null ? void 0 : _d.call(section);
+          (_c = section.focus) == null ? void 0 : _c.call(section);
         }
       }
       return true;

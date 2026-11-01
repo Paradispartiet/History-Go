@@ -249,7 +249,10 @@ try {
         const section=document.querySelector('#placeCard [data-hg-place-sheet-section="'+sectionId+'"]');
         const nav=document.querySelector('#placeCard [data-hg-place-sheet-nav]');
         return section&&nav&&section.getBoundingClientRect().top>=nav.getBoundingClientRect().bottom-2;
-      },id,{timeout:15000});
+      },id,{timeout:15000}).catch(async error=>{
+        const geometry=await panel.evaluate(el=>({top:el.getBoundingClientRect().top,navBottom:document.querySelector('#placeCard [data-hg-place-sheet-nav]').getBoundingClientRect().bottom,scrollTop:document.querySelector('#placeCard .pc-body').scrollTop}));
+        throw new Error('Section start covered: '+id+' '+JSON.stringify(geometry),{cause:error});
+      });
       if(id==='history') assert.match(await panel.innerText(),/1941|1942/);
       if(id==='stories') assert.match(await panel.innerText(),/Beskjeden om frihet/);
       if(id==='news') assert.match(await panel.innerText(),/kommandanturet/i);

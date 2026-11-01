@@ -149,12 +149,6 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
 
   function scrollToSection(target: unknown, options: { instant?: boolean; focus?: boolean } = {}): boolean {
     const id = canonicalSection(target);
-    // About starts with the portrait and ingress; return to the top of the
-    // actual scroll surface instead of aligning a long floated text block.
-    if (id === "about") {
-      const scroller = card()?.querySelector<HTMLElement>(".pc-body");
-      if (scroller) { scroller.scrollTop = 0; return true; }
-    }
     const section = placeSheetSectionTarget(id);
     if (!(section instanceof HTMLElement)) return false;
 
