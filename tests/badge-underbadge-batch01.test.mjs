@@ -71,6 +71,22 @@ test('nine candidate WebPs match the exact 29 registered undercategories without
  assert.equal(plan.families.film_tv.assets.filter(a=>a.status==='rework_required').length,1);
  assert.equal(plan.families.by.assets.filter(a=>a.status==='rendered_candidate').length,1);
 });
+test('new Dans v2 replacement stays unactivated until actual upload and visual approval',()=>{
+ const item=plan.families.scenekunst.assets.find(a=>a.id==='dans');
+ const replacement=item.replacementCandidate;
+ assert.equal(item.status,'rework_required');
+ assert.equal(item.selectedImage,null);
+ assert.equal(replacement.repositoryUploaded,false);
+ assert.equal(replacement.visualApproved,false);
+ assert.equal(replacement.selectedImage,null);
+ assert.equal(replacement.letteringInsideBorder,true);
+ assert.equal(replacement.width,1024);
+ assert.equal(replacement.height,1024);
+ assert.equal(replacement.primaryColor.toUpperCase(),plan.families.scenekunst.primaryColor.toUpperCase());
+ assert.equal(replacement.secondaryColor.toUpperCase(),plan.families.scenekunst.secondaryColor.toUpperCase());
+ assert.match(replacement.sha256,/^[0-9a-f]{64}$/);
+ assert.ok(!existsSync(resolve(root,replacement.proposedImage)),'unapproved Dans v2 must not yet exist at active GitHub path');
+});
 test('all nine protected main and 15 approved Religion/Vitenskap underbadge files remain untouched',()=>{
  for(const [id,path] of Object.entries(approvedMain)){
   const badge=read('data/badges/'+id+'.json');

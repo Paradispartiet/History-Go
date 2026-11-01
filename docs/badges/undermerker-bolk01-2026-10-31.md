@@ -43,3 +43,13 @@ Det AI-genererte arket med 15/29 motiver er ikke en produksjonspakke: en del nav
 - **Klassisk arkitektur:** Egnet kandidat (grå palett, tydelig nyklassisk fasade, realistiske tråder). Fortsatt *ikke* formelt godkjent.
 
 Totalt: **8 må tegnes om, 1 avventer endelig visuell vurdering, 0 aktivert**. Originalfilene beholdes for sporbarhet, men skal ikke brukes som aktive merker.
+
+## Dans v2 – separat forbedret kandidat (1. november 2026)
+
+- En ny **selvstendig** WebP er generert, 1024 × 1024, RGBA/WebP med gjennomsiktige hjørner og rund broderikant.
+- Motivet viser en klassisk danser i arabesque. **DANS** ligger brodert innenfor øvre kant.
+- Kategorifargene er korrigert: roserosa `#C96E8B`, grå `#808080`, mindre lyse nøytrale detaljer.
+- **SHA-256:** `ca83f80cc601841cc660b163b15c8df606b0d820660a40d946c00f8d986ef93d`. Filstørrelse: 442 262 byte.
+- Filen finnes i ChatGPT-arbeidspakken `history-go-dans-v2/dans-brodert-v2.webp`, men er **ikke** lastet opp til denne GitHub-grenen. Ikke oppgi dette som en integrert merkeerstatning.
+- v1 beholder status `rework_required` og skal ikke vises i appen. v2 er `local_candidate_pending_upload_and_approval`.
+- Før aktivering: overfør eksakte WebP-bytes til `bilder/merker/scenekunst/undermerker/dans-brodert-v2.webp`, verifiser SHA-256, kontroller den visuelle kvaliteten og knytt `subBadgeImages.dans` til filen først ved godkjenning.
