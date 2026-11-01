@@ -29,6 +29,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-engknoppurt-20261101.json"
     }),
+    emne_flora_gjetertaske: Object.freeze({
+      scientificName: "Capsella bursa-pastoris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/07_gjetertaske_v1.webp",
+      gitBlobSha: "6cdbe644470909f7b8ade074534413a84b444fcb",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring og frøsetting",
+      evidence: "data/natur/flora/illustration-quality-gjetertaske-20261101.json"
+    }),
     emne_flora_forglemmegei: Object.freeze({
       scientificName: "Myosotis spp.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/06_forglemmegei_v1.webp",

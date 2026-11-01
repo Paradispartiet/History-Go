@@ -30,7 +30,7 @@ assert.equal(fallback?.license,"CC BY-SA 4.0");
 assert.equal(fallback?.src,a.photoFallback);
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,28,"27 prior approvals plus genus-level Myosotis spp. expected");
+assert(approved.count >= 28,"Existing Myosotis approval must remain after later additions");
 assert.equal(approved.get(id)?.scientificName,a.scientificName);
 assert.equal(approved.get(id)?.taxonomicScope,"genus-representative");
 assert.equal(approved.get(id)?.src,a.src);

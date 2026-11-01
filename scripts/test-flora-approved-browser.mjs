@@ -52,7 +52,8 @@ try{
     {name:"engsmelle",label:"Engsmelle",term:"engsmelle",path:"b09/03_engsmelle_v1.webp"},
     {name:"engtjaereblom",label:"Engtjæreblom",term:"engtjæreblom",path:"b09/04_engtjaereblom_v1.webp"},
     {name:"firkantperikum",label:"Firkantperikum",term:"firkantperikum",path:"b09/05_firkantperikum_v1.webp"},
-    {name:"forglemmegei",label:"Forglemmegei",term:"forglemmegei",path:"b09/06_forglemmegei_v1.webp"}
+    {name:"forglemmegei",label:"Forglemmegei",term:"forglemmegei",path:"b09/06_forglemmegei_v1.webp"},
+    {name:"gjetertaske",label:"Gjetertaske",term:"gjetertaske",path:"b09/07_gjetertaske_v1.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
