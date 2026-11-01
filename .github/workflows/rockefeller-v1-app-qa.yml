@@ -1,0 +1,45 @@
+name: Rockefeller v1 real app browser QA
+on:
+  pull_request:
+    paths:
+      - 'tests/rockefeller-v1-real-app-browser.mjs'
+      - '.github/workflows/rockefeller-v1-app-qa.yml'
+      - 'data/places/production-tiers/v1-oslo-nature-music-20261017-batch02.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rockefeller-v1-app-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  rockefeller-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Resolve Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Native Rockefeller PlaceCard, QuizCard, Fagverk and People on mobile and desktop
+        run: node tests/rockefeller-v1-real-app-browser.mjs
+      - name: Full Rockefeller quiz playthrough on mobile and desktop
+        run: node scripts/verify-place-quiz-browser.mjs rockefeller
+      - name: Save browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rockefeller-v1-real-app-evidence
+          path: |
+            artifacts/rockefeller-v1-app-qa/**
+            artifacts/place-quiz/rockefeller/**
+          if-no-files-found: warn
+          retention-days: 14
