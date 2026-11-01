@@ -31,6 +31,7 @@
 - 6/6 canonical Place-filer endret; eksisterende `id`, `category`, `address`, `lat` og `lon` kontrollert uendret.
 - Folketeaterets tidslinje og eksisterende tekstlige `quiz_profile.signature_features` korrigert; **ingen** quizspørsmål, svar, progresjon, manifest eller Knowledge-ID-er skrevet om.
 - Ingen andre Oslo-bolker, Folkets Hus eller parallell litteraturquiz for Kulturkirken Jakob berørt.
+- Kulturkirken Jakobs eksisterende v4.2-produksjonspakke er oppdatert med ny popup-hash, to kildeførte påstander og dekning for de tre tilføydde setningene. Ingen felles validatorer er endret.
 - Ingen endring i bildeindeks, hero, frontImage eller cardImage. Eksisterende Kulturkirken Jakob-bilde beholdt.
 
 ## Åpne porter før v1
@@ -38,5 +39,7 @@
 1. **Bilder:** Seks Commons-kandidater og lisenser er dokumentert i `oslo-sentrum-bolk05-bildekilder-20261101.md`. Originalbyte-nedlasting lyktes ikke i dette arbeidsmiljøet 1.11.2026. **Ingen WebP importert**, ingen SHA-256 eller utsnitt godkjent. Kjør bildeproduksjon med direkte filtilgang før bildeporten lukkes. Bevar synlig fotograf, filside, CC BY-SA-versjon og merking av beskjæring/konvertering.
 2. **Quiz og kort:** Revider Folketeaterets eksisterende quiz mot tidskorrigeringen, og produser gjenstående fullquiz/QuizCards etter billedporten. Unngå årstallspugging og dobbelte ID-er.
 3. **Generering og QA:** Regenerer bare berørte avledede registre etter repoets ordinære prosedyre; målrettet CI og visuell kontroll i mobilbredde og desktop. Grønne PR-kontroller alene er ikke app-godkjenning.
+
+**CI-oppfølging:** Første kjøring på tekstcommit fant 4/4 v4.2-avvik i Kulturkirken Jakobs produksjonspakke (én utdatert popup-hash, tre setninger uten påstandsdekning). De er konkret rettet i pakken; ny målrettet CI på etterfølgende commit må bekrefte resultatet.
 
 **Status:** Stage A **aktive tekster levert i PR-grenen**, Stage B og senere porter **ikke fullført**. Draft skal ikke merges som en ferdig v1-leveranse.
