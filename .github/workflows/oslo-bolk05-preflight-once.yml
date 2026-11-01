@@ -86,6 +86,7 @@ jobs:
       - name: Rebuild only changed derivative place-open payload and verify indexes
         run: |
           node scripts/build-place-open-payloads.mjs
+          node scripts/build-epoke-place-index.mjs
           node scripts/build-epoke-place-index.mjs --check
           node scripts/build-place-open-payloads.mjs --check
       - name: Verify local image paths and backlog audit summary
@@ -134,6 +135,7 @@ jobs:
           git add -- data/places/musikk/oslo/places_musikk/kulturkirken_jakob_litteratur.json
           git add -- data/places/production/kulturkirken_jakob_litteratur.json
           git add -- data/runtime/place-open/kulturkirken_jakob_litteratur.json
+          git add -- data/epoker/epoke-place-index.json
           git rm -- .github/workflows/oslo-bolk05-preflight-once.yml
           git diff --cached --check
           git commit -m "Expand source-backed Kulturkirken Jakob popup and finish scoped preflight"
