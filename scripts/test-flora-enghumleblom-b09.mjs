@@ -32,7 +32,8 @@ assert.equal(photos.window.HG_NATURE_FLORA_PHOTOS.get(id)?.scientificName, speci
 const ctx = {window: {}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"), ctx);
 const approved = ctx.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count, species.approvedForPublication ? 23 : 22);
+assert(approved.count >= (species.approvedForPublication ? doc.approvedCountAfterRelease : doc.baselineApproved),
+  "Later approved species must preserve this approval and all earlier approvals");
 
 const file = new URL(species.src, root);
 if (!fs.existsSync(file)) {

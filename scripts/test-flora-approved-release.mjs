@@ -18,6 +18,7 @@ const blodstorkenebbReview = JSON.parse(read("data/natur/flora/illustration-qual
 const blaknappReview = JSON.parse(read("data/natur/flora/illustration-quality-blaknapp-20261031.json"));
 const burotReview = JSON.parse(read("data/natur/flora/illustration-quality-burot-20261031.json"));
 const enghumleblomReview = JSON.parse(read("data/natur/flora/illustration-quality-enghumleblom-20261101.json"));
+const engknoppurtReview = JSON.parse(read("data/natur/flora/illustration-quality-engknoppurt-20261101.json"));
 const review05 = JSON.parse(read("data/natur/flora/illustration-quality-batch05-20261028.json"));
 const pending05 = JSON.parse(read("data/natur/flora/illustration-revision-batch05.json"));
 const env = {window:{}};
@@ -46,12 +47,13 @@ const expected = [
   ["emne_flora_blodstorkenebb","Geranium sanguineum"],
   ["emne_flora_blaknapp","Succisa pratensis"],
   ["emne_flora_burot","Artemisia vulgaris"],
-  ["emne_flora_enghumleblom","Geum rivale"]
+  ["emne_flora_enghumleblom","Geum rivale"],
+  ["emne_flora_engknoppurt","Centaurea jacea"]
 ];
 assert.equal(approved.count,expected.length,"publication count changed without species QA");
 assert.equal(batch.items.length,15);
 assert.equal(batch.items.filter(a=>a.approvedForPublication).length,2);
-const allReviews=[...enghumleblomReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...burotReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...blaknappReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...blodstorkenebbReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bitterbergknappReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bergmynteReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bekkeblomReview.items.map(a=>({...a,candidate:a.candidate||a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review08.items.filter(a=>a.approvedForPublication).map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review07.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review06.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review05.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...revision.items.map(a=>({
+const allReviews=[...engknoppurtReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...enghumleblomReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...burotReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...blaknappReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...blodstorkenebbReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bitterbergknappReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bergmynteReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bekkeblomReview.items.map(a=>({...a,candidate:a.candidate||a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review08.items.filter(a=>a.approvedForPublication).map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review07.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review06.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review05.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...revision.items.map(a=>({
   ...a,catalogId:a.id,candidate:a.newSrc,candidateGitBlobSha:a.newGitBlobSha,
   approvedForPublication:a.productionApproval,reviewStatus:a.botanicalVisualDecision==="passed"?"approved":"pending",
   visualChecks:{transparent:true,blackBackgroundReviewed:true},evidence:a.sourceReferences
@@ -98,7 +100,7 @@ for(const id of ["emne_flora_engkarse","emne_flora_ballblom"]){
   assert(older.species.some(a=>a.catalogId===id && a.botanicalReview==="needs_redraw"),"historical v2 rejection must remain");
 }
 const html=read("finn-flora.html"),js=read("js/ui/nature-explorer.js"),css=read("css/nature-explorer.css");
-assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261101-1"'));
+assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261101-2"'));
 assert(html.indexOf("nature-flora-photographs.js")<html.indexOf("nature-flora-approved.js"));
 assert(html.indexOf("nature-flora-approved.js")<html.indexOf("nature-explorer.js"));
 assert(js.includes('const art=kind==="flora" ? approvedFloraIllustrations?.get(id)?.src : drawings?.resolve(id)'));
@@ -132,7 +134,7 @@ for(const x of pending05.items){
 const preview05=read("flora-illustrasjoner-bolk05.html");
 for(const x of pending05.items)assert(preview05.includes(x.src),"review page missing: "+x.key);
 assert(read("flora-illustration-review.html").includes('href="flora-illustrasjoner-bolk05.html"'));
-console.log("Flora release: 23 botanical approvals (9 prior + 2 batch 06 + 4 batch 07 + 7 batch 08 + 1 batch 09), all SHA, taxon, alpha, photo fallback, 13 prior rejection gates pass.");
+console.log("Flora release: 24 botanical approvals (9 prior + 2 batch 06 + 4 batch 07 + 7 batch 08 + 2 batch 09), all SHA, taxon, alpha, photo fallback, 13 prior rejection gates pass.");
 
 assert.equal(approved.get("emne_flora_rodkløver")?.src,"bilder/natur/flora/illustrasjonskandidater/b08/01_rodklover_v4.webp","Only reviewed v4 may publish");
 assert(review08.items.some(a=>a.key==="01_rodklover_v3" && a.approvedForPublication===false),"Historical rejected v3 must remain in review");

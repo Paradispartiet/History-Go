@@ -155,7 +155,7 @@
     if (!rows2.length) return null;
     const html = rows2.map((row) => {
       const title = text3(row.title || row.text || row.event);
-      const summary = text3(row.summary || row.description || row.text);
+      const summary = text3(row.summary || row.description || row.desc || row.text);
       const sources = Array.isArray(row.sources) ? row.sources : [];
       const links = sources.map((source) => {
         const item = typeof source === "string" ? { url: source, title: "Kilde" } : source;
@@ -528,7 +528,9 @@
     return `<div class="hg-place-tab-card-list pc-sheet-news-list">${values.map((item) => {
       var _a;
       const title = text7((item == null ? void 0 : item.title) || (item == null ? void 0 : item.name) || (item == null ? void 0 : item.id) || "Notis");
-      const meta = [(item == null ? void 0 : item.date) || (item == null ? void 0 : item.year) || (item == null ? void 0 : item.period), (item == null ? void 0 : item.category) || (item == null ? void 0 : item.type)].map(text7).filter(Boolean).join(" \xB7 ");
+      const kind = text7((item == null ? void 0 : item.category) || (item == null ? void 0 : item.type));
+      const kindLabel = kind === "news_note" ? "Notis" : kind === "historical_news" ? "Historisk nyhet" : kind;
+      const meta = [(item == null ? void 0 : item.date) || (item == null ? void 0 : item.year) || (item == null ? void 0 : item.period), kindLabel].map(text7).filter(Boolean).join(" \xB7 ");
       const summary = text7(((_a = item == null ? void 0 : item.summary) == null ? void 0 : _a.one_liner) || (item == null ? void 0 : item.popupDesc) || (item == null ? void 0 : item.desc) || (item == null ? void 0 : item.description));
       const rawSource = Array.isArray(item == null ? void 0 : item.sources) ? item.sources[0] : null;
       const sourceUrl = safeHttpsUrl2(typeof rawSource === "string" ? rawSource : rawSource == null ? void 0 : rawSource.url);
@@ -551,7 +553,7 @@
     const content = renderNewsContentHtml(historicalNews, newsNotes);
     if (!content) return "";
     return `
-    <section class="hg-section hg-place-news-section" data-hg-place-sheet-owner="news">
+    <section class="hg-section hg-place-news-section pc-sheet-canonical-news" data-hg-place-sheet-owner="news">
       <h3>Nyheter</h3>
       ${content}
     </section>
@@ -2280,21 +2282,26 @@
       return shell4;
     }
     function scrollToSection(target, options = {}) {
-      var _a, _b;
+      var _a, _b, _c;
       const id = canonicalSection2(target);
       const section = placeSheetSectionTarget(id);
       if (!(section instanceof HTMLElement)) return false;
-      try {
-        section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" });
-      } catch {
-        (_a = section.scrollIntoView) == null ? void 0 : _a.call(section);
+      const scroller = (_a = card2()) == null ? void 0 : _a.querySelector(":scope > .pc-body");
+      if (id === "about" && scroller) {
+        scroller.scrollTop = 0;
+      } else {
+        try {
+          section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" });
+        } catch {
+          (_b = section.scrollIntoView) == null ? void 0 : _b.call(section);
+        }
       }
       if (options.focus) {
         if (!section.hasAttribute("tabindex")) section.setAttribute("tabindex", "-1");
         try {
           section.focus({ preventScroll: true });
         } catch {
-          (_b = section.focus) == null ? void 0 : _b.call(section);
+          (_c = section.focus) == null ? void 0 : _c.call(section);
         }
       }
       return true;

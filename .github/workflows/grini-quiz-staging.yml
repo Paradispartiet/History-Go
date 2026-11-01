@@ -32,6 +32,7 @@ on:
       - 'data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json'
       - 'bilder/places/grini_fangeleir*.jpg'
       - 'scripts/verify-grini-place-browser.mjs'
+      - 'scripts/verify-grini-collections-browser.mjs'
   workflow_dispatch:
 
 permissions:
@@ -55,8 +56,12 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Locate installed Chrome
         run: echo "CHROME_BIN=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Verify source-owned chronology rendering
+        run: node --test tests/place-sheet-chronology-renderer.test.mjs tests/place-sheet-history-renderer.test.mjs tests/place-sheet-news-renderer.test.mjs
       - name: Verify PlaceCard, portraits, QuizCard and Fagverk
         run: node scripts/verify-grini-place-browser.mjs
+      - name: Verify collections, knowledge tabs, language and favorites
+        run: node scripts/verify-grini-collections-browser.mjs grini_fangeleir
       - name: Play all 70 questions on desktop and mobile
         run: node scripts/verify-place-quiz-browser.mjs grini_fangeleir
       - name: Retain actual browser evidence
@@ -66,6 +71,7 @@ jobs:
           name: grini-actual-app-desktop-mobile
           path: |
             artifacts/grini-place/
+            artifacts/grini-closeout/
             artifacts/place-quiz/grini_fangeleir/
           if-no-files-found: error
           retention-days: 14

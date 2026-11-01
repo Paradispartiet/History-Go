@@ -143,6 +143,10 @@ test("standard Places render directly in Place Sheet while Micro keeps the stand
   window.eval(runtime);
   await window.openPlaceCard(standard);
   await waitFor(() => window.HGPlaceSheetState?.snapshot?.()?.phase === "full-ready");
+  const readingScroller = window.document.querySelector('#placeCard > .pc-body');
+  readingScroller.scrollTop = 600;
+  assert.equal(window.HGPlaceUnifiedSurface.scrollToSection('about'), true);
+  assert.equal(readingScroller.scrollTop, 0, 'About returns to the portrait and ingress');
 
   const card = window.document.getElementById("placeCard");
   assert.equal(card.classList.contains("is-unified-place"), true);
@@ -171,6 +175,11 @@ test("standard Places render directly in Place Sheet while Micro keeps the stand
   assert.equal(card.querySelector('[data-hg-place-sheet-onsite]'), null, "legacy onsite slot must be gone");
 
   assert.equal(typeof window.HGPlacePopupTabs.openTab, "function", "legacy entry point must route into Place Sheet for standard Places");
+
+  const scroller = card.querySelector(":scope > .pc-body");
+  scroller.scrollTop = 500;
+  assert.equal(window.HGPlaceUnifiedSurface.scrollToSection("about", { instant: true }), true);
+  assert.equal(scroller.scrollTop, 0, "About must restore the full introduction instead of jumping into the long text");
 
   await window.HGPlacePopupTabs.openTab(standard, "history");
   assert.equal(window.document.querySelector("body > .hg-popup.place-popup-v2"), null);
