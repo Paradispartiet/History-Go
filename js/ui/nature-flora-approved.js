@@ -21,6 +21,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_enghumleblom: Object.freeze({
+      scientificName: "Geum rivale",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/01_enghumleblom_v2.webp",
+      gitBlobSha: "1ce0c45d3af070907db440977ccb6de0889aefe2",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-enghumleblom-20261101.json"
+    }),
     emne_flora_burot: Object.freeze({
       scientificName: "Artemisia vulgaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b08/07_burot_v1.webp",

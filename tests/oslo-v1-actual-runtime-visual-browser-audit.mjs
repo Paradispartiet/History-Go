@@ -51,9 +51,12 @@ try{
   try{
    await page.goto("http://127.0.0.1:"+port+"/index.html",{waitUntil:"domcontentloaded",timeout:28000});
    await page.waitForFunction(()=>typeof window.openPlaceCard==="function"&&!!document.getElementById("pcFrontImage"),{timeout:16000});
-   // Wait for the same readiness signal used by normal navigation and onboarding.
-   // Merely defining openPlaceCard does not mean the first app/router boot finished.
-   await page.waitForFunction(()=>window.__HG_APP_READY__===true,{timeout:25000});
+   // appReady fires before HGAppRouter.start(): opening the first PlaceCard
+   // before routerReady races the initial route render, which closes that card.
+   // The normal onboarding flow also requires both readiness signals.
+   await page.waitForFunction(()=>
+     window.__HG_APP_READY__===true && window.__HG_ROUTER_STARTED__===true,
+     {timeout:25000});
    booted=true;
    // Close the actual app onboarding using its public start button before taking screenshots.
    await page.locator("#hgOnboardingModal .hg-onb-primary").click({timeout:1800}).catch(async()=>{
@@ -77,7 +80,9 @@ try{
       window.PLACES=[place];
       return await Promise.race([
        window.openPlaceCard(place),
-       new Promise((_,reject)=>setTimeout(()=>reject(new Error("PlaceCard open timeout")),9000))
+       // First place may require canonical hydration while background data loads.
+       // Give it bounded time to render without treating a slow fetch as absence.
+       new Promise((_,reject)=>setTimeout(()=>reject(new Error("PlaceCard open timeout")),20000))
       ]);
      },place)!==false;
      if(!open)problems.push("openPlaceCard returned false");
@@ -100,12 +105,16 @@ try{
       const title=document.querySelector("#pcTitle")?.getBoundingClientRect();
       const hero=document.querySelector("#pcHeaderHero")?.getBoundingClientRect();
       return{visible:document.querySelector("#placeCard")?.classList.contains("is-open"),
+       heroOnScreen:!!hero && hero.width>0 && hero.height>0 &&
+        hero.left<window.innerWidth && hero.right>0 &&
+        hero.top<window.innerHeight && hero.bottom>0,
        titleVisible:!!title && !!hero && title.width>0 && title.height>0 &&
         title.top>=hero.top-1 && title.bottom<=hero.bottom+1 &&
         title.left>=hero.left-1 && title.right<=hero.right+1,
        hero:get("#pcHeaderImage"),portrait:get("#pcFrontImage"),quiz:get("#pcQuizCardImage")};
      });
      if(!media.visible)problems.push("PlaceCard not visible");
+     if(!media.heroOnScreen)problems.push("PlaceCard hero outside browser viewport");
      if(!media.titleVisible)problems.push("PlaceCard title clipped inside hero after place switch");
      if(!media.hero?.decoded||!media.hero?.source.endsWith(place.image))problems.push("Real hero image did not decode");
      if(!media.portrait?.decoded||!media.portrait?.source.endsWith(place.frontImage))problems.push("Real portrait did not decode");
@@ -115,7 +124,12 @@ try{
      if(media.visible){
       for(const [selector,label] of [["#pcHeaderHero","hero"],["#pcFrontCardFlip","front"]]){
        try{
-        await page.locator(selector).screenshot({path:TMP+"/"+place.id+"-"+width+"-"+label+".png",timeout:6000});
+        const imagePath=TMP+"/"+place.id+"-"+width+"-"+label+".png";
+        // Tablet's fixed app canvas can stall locator.screenshot during its
+        // auto-scroll. Capture the viewport without scrolling the document.
+        // The heroOnScreen assertion guards actual visual placement above.
+        if(width===768)await page.screenshot({path:imagePath,timeout:8000,animations:"disabled"});
+        else await page.locator(selector).screenshot({path:imagePath,timeout:6000});
         snapshots.push(label);
        }catch(e){problems.push("Screenshot "+label+": "+String(e).slice(0,120));}
       }
@@ -155,7 +169,9 @@ try{
        if(!flip.image&&!flip.content)problems.push("QuizCard reverse empty");
        if(flip.content&&!flip.headingVisible)problems.push("QuizCard heading clipped in compact view");
        if(flip.image&&flip.fit!=="contain")problems.push("QuizCard image cropped");
-       await page.locator("#pcFrontCardFlip").screenshot({path:TMP+"/"+place.id+"-"+width+"-reverse.png",timeout:6000});
+       const reversePath=TMP+"/"+place.id+"-"+width+"-reverse.png";
+       if(width===768)await page.screenshot({path:reversePath,timeout:8000,animations:"disabled"});
+       else await page.locator("#pcFrontCardFlip").screenshot({path:reversePath,timeout:6000});
        snapshots.push("reverse");
       }catch(e){problems.push("Flip: "+String(e).slice(0,200));}
      }

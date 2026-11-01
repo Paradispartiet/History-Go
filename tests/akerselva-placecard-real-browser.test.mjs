@@ -12,6 +12,7 @@ const translations = Object.fromEntries(['en', 'es', 'pt'].map(lang => [
 ]));
 assert.equal(place.id, 'akerselva');
 assert.ok(place.image && place.image === place.cardImage);
+assert.ok(place.frontImage && place.frontImage !== place.image, 'Akerselva requires an independent standing portrait');
 
 const mime = {'.html':'text/html', '.js':'text/javascript', '.mjs':'text/javascript',
   '.json':'application/json', '.css':'text/css', '.jpg':'image/jpeg', '.png':'image/png',
@@ -66,6 +67,16 @@ try {
         document.getElementById('pcDesc')?.textContent === expected, place.desc, {timeout:20000});
       assert.equal(await readDesc(), place.desc, tag + ': Norwegian description');
 
+      // Language lexicon should hydrate with the same real Place-open payload.
+      await page.waitForFunction(() =>
+        window.HG_PLACE_OPEN_LANGUAGE?.akerselva?.entries?.length === 5,
+        null, {timeout:20000});
+      const riverNames = await page.evaluate(() =>
+        window.HG_PLACE_OPEN_LANGUAGE.akerselva.entries.map(entry => entry.term));
+      for (const term of ['Akerselva', 'Frysja', 'Aggershuses elv', 'O / å', 'Vaterlandselva']) {
+        assert.ok(riverNames.includes(term), tag + ': missing historical name ' + term);
+      }
+
       const image = page.locator('#pcFrontImage');
       const header = page.locator('#pcHeaderImage');
       await page.waitForFunction(() => {
@@ -90,7 +101,10 @@ try {
       });
       assert.equal(media.front.fit, 'contain', tag + ': photo must not be cropped on portrait card');
       assert.equal(media.hero.fit, 'cover', tag + ': landscape photo covers header');
-      assert.equal(media.front.width, media.hero.width, tag + ': same source image');
+      assert.ok(media.front.height > media.front.width, tag + ': front photo is natively portrait');
+      assert.ok(media.hero.width > media.hero.height, tag + ': header photo is landscape');
+      assert.notEqual(media.front.src, media.hero.src, tag + ': independent front and header photos');
+      assert.ok(media.front.src.includes('2020-08-06'), tag + ': frontImage uses Ryan Hodnett photo');
       assert.ok(media.front.box.width > 0 && media.front.box.height > 0);
       assert.ok(media.hero.box.width > 0 && media.hero.box.height > 0);
       assert.ok(media.front.box.right > 0 && media.front.box.left < viewport.width);
@@ -149,6 +163,20 @@ try {
         assert.ok(renderedPeople.includes(person.name),
           tag + ': person absent from round popup: ' + person.name);
       }
+      // Both industrialists now have authentic, distinct source-backed portraits.
+      // Graah's 1891 portrait is a painting, not a historic photograph.
+      await page.waitForFunction(() => {
+        const images = [...document.querySelectorAll('#pcPeopleList img.pc-person-img')];
+        return images.length === 2 && images.every(img => img.complete && img.naturalWidth > 0);
+      }, null, {timeout:30000});
+      const portraitSources = await page.locator('#pcPeopleList img.pc-person-img')
+        .evaluateAll(images => images.map(img => img.currentSrc || img.src));
+      assert.equal(portraitSources.length, expectedPeople.length,
+        tag + ': People portraits must have a real image for each member');
+      assert.ok(portraitSources.some(src => src.includes('Knud_Graah.jpg')),
+        tag + ': licensed Knud Graah painted portrait absent from actual browser');
+      assert.ok(portraitSources.some(src => src.includes('halvor_schou.webp')),
+        tag + ': canonical Halvor Schou portrait absent from actual browser');
       await page.screenshot({path:path.join(output,tag+'-akerselva-people.png')});
 
       // Read the real Fagverk page, not the JSON contract or a mock rendering.

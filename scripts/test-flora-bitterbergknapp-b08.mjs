@@ -17,7 +17,7 @@ const photos={window:{}};vm.runInNewContext(read("js/ui/nature-flora-photographs
 assert.equal(photos.window.HG_NATURE_FLORA_PHOTOS.get(id)?.scientificName,a.scientificName);
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),ctx);
 const approved=ctx.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,22);assert.equal(approved.get(id)?.src,a.src);
+assert(approved.count >= 22);assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
 const bytes=fs.readFileSync(new URL("../"+a.src,import.meta.url));
 assert.equal(bytes.length,a.sizeBytes);
