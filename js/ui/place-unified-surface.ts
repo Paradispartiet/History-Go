@@ -149,11 +149,24 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
 
   function scrollToSection(target: unknown, options: { instant?: boolean; focus?: boolean } = {}): boolean {
     const id = canonicalSection(target);
+    // About starts with the portrait and ingress; return to the top of the
+    // actual scroll surface instead of aligning a long floated text block.
+    if (id === "about") {
+      const scroller = card()?.querySelector<HTMLElement>(".pc-body");
+      if (scroller) { scroller.scrollTop = 0; return true; }
+    }
     const section = placeSheetSectionTarget(id);
     if (!(section instanceof HTMLElement)) return false;
 
-    try { section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" }); }
-    catch { section.scrollIntoView?.(); }
+    const scroller = card()?.querySelector<HTMLElement>(":scope > .pc-body");
+    if (id === "about" && scroller) {
+      // About includes the introduction beside the portrait. Returning to the
+      // card start also lets its real sticky photograph expand before reading.
+      scroller.scrollTop = 0;
+    } else {
+      try { section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" }); }
+      catch { section.scrollIntoView?.(); }
+    }
     if (options.focus) {
       if (!section.hasAttribute("tabindex")) section.setAttribute("tabindex", "-1");
       try { section.focus({ preventScroll: true }); } catch { section.focus?.(); }

@@ -2282,21 +2282,33 @@
       return shell4;
     }
     function scrollToSection(target, options = {}) {
-      var _a, _b;
+      var _a, _b, _c, _d;
       const id = canonicalSection2(target);
+      if (id === "about") {
+        const scroller2 = (_a = card2()) == null ? void 0 : _a.querySelector(".pc-body");
+        if (scroller2) {
+          scroller2.scrollTop = 0;
+          return true;
+        }
+      }
       const section = placeSheetSectionTarget(id);
       if (!(section instanceof HTMLElement)) return false;
-      try {
-        section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" });
-      } catch {
-        (_a = section.scrollIntoView) == null ? void 0 : _a.call(section);
+      const scroller = (_b = card2()) == null ? void 0 : _b.querySelector(":scope > .pc-body");
+      if (id === "about" && scroller) {
+        scroller.scrollTop = 0;
+      } else {
+        try {
+          section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" });
+        } catch {
+          (_c = section.scrollIntoView) == null ? void 0 : _c.call(section);
+        }
       }
       if (options.focus) {
         if (!section.hasAttribute("tabindex")) section.setAttribute("tabindex", "-1");
         try {
           section.focus({ preventScroll: true });
         } catch {
-          (_b = section.focus) == null ? void 0 : _b.call(section);
+          (_d = section.focus) == null ? void 0 : _d.call(section);
         }
       }
       return true;
