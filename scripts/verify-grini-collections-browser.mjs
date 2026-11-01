@@ -240,7 +240,9 @@ try {
     for(const id of ['about','history','stories','news','reading','sources','language','learning']) {
       const jump=sheet.locator('[data-hg-place-sheet-jump="'+id+'"]');
       await jump.waitFor({state:'visible',timeout:30000});
-      await jump.click();
+      // Sticky navigation and scrollIntoView can make pointer auto-scrolling
+      // oscillate on narrow viewports; exercise the actual keyboard action.
+      await jump.press('Enter');
       const panel=sheet.locator('[data-hg-place-sheet-section="'+id+'"]').first();
       await panel.waitFor({state:'visible',timeout:15000});
       await panel.scrollIntoViewIfNeeded();
@@ -258,7 +260,7 @@ try {
     }
     assert.equal(await sheet.locator('[data-hg-place-sheet-jump="before-after"]').isHidden(),true,'No invented before/after pair may be shown');
     fs.writeFileSync(path.join(outDir,profile.name+'-tabs.json'),JSON.stringify(tabChecks,null,2));
-    await sheet.locator('[data-hg-place-sheet-jump="about"]').click();
+    await sheet.locator('[data-hg-place-sheet-jump="about"]').press('Enter');
     const beforeFlipText = await page.locator('#pcQuizCardContent').textContent();
     await page.locator('#pcFrontCardFlip').click();
     await page.waitForFunction(

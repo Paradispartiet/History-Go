@@ -551,7 +551,7 @@
     const content = renderNewsContentHtml(historicalNews, newsNotes);
     if (!content) return "";
     return `
-    <section class="hg-section hg-place-news-section" data-hg-place-sheet-owner="news">
+    <section class="hg-section hg-place-news-section pc-sheet-canonical-news" data-hg-place-sheet-owner="news">
       <h3>Nyheter</h3>
       ${content}
     </section>
