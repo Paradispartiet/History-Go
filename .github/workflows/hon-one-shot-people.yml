@@ -1,0 +1,32 @@
+name: House of Nerds one-shot People index generation
+on:
+  push:
+    branches: [place/house-of-nerds-person-evidence-20261101]
+    paths: [.github/workflows/hon-one-shot-people.yml]
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.ref == 'refs/heads/place/house-of-nerds-person-evidence-20261101'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run civication:history-people:build
+      - name: Commit only canonical generated People index
+        shell: bash
+        run: |
+          set -eu
+          git add -- data/Civication/historyPeople_index.json
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Rebuild Civication People index for Andreas Bøe Sollund"
+            git push origin HEAD:place/house-of-nerds-person-evidence-20261101
+          fi
