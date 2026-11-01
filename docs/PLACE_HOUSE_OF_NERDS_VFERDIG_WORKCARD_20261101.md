@@ -27,7 +27,7 @@
 | Stedsegen Fagverk-side | UNDER REVIEW | PR #6886; curated/standard, navngitte eksterne kilder, registry-indeks og release-digest oppdatert; krever CI, browser-QA og merge |
 | Aktiv Story | UNDER REVIEW | PR #6890 migrerer kandidat til episode_v1 og registrerer aktiv Story med fire eksterne kilder; Stories governance PASS, men PR ikke merget, slutt-QA og Place-open PASS gjenstår |
 | Kronologi og epoker | BLOCKED | Historiske kilder dokumenterer Løren 2015 og Vulkan rundt årsskiftet 2019–2020; kildeuenighet i åpningsdato må behandles ved tidslinjematerialisering |
-| Språkleksikon | BLOCKED | Mangler dokumentert stedsspesifikk term-/navnekobling og UI-kontroll |
+| Språkleksikon | UNDER REVIEW | PR #6895: 4 kildebelagte stedstermer, egen språkfil og aktiv manifestkobling; CI og UI-kontroll gjenstår |
 | People | BLOCKED / kandidataudit | Eldre kollektivanker `house_of_nerds_miljoet` er ikke en automatisk godkjent individuell person; navngitte personer må belegges med stedsspesifikk rolle |
 | Objects | KANDIDATAUDIT | Ingen dokumentert egenarts- eller eierklarert PlaceCard-objektsamling ennå |
 | Brands | KANDIDATAUDIT | Driftsselskap/House of Nerds-identiteten kan være relevant, men canonical brand-gate er ikke gjennomgått |
@@ -60,3 +60,5 @@ Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og b
 - PR #6886: syv navngitte operative lenker, Place-eid Fagverk-indeks og deterministisk release-digest oppdatert; `Fagverk release feed = success` i ny kjøring.
 - PR #6890: `Stories governance = success`; fremdeles draft og ikke publisert.
 - Flere `Place-open`- og `Epoch viewer`-kjøringer stopper ved genererte filer (`data/runtime/nature-all/flora-001.json`, `data/epoker/epoke-place-index.json`). Disse statusene må skilles fra faglig godkjenning og løses før `vFerdig`.
+
+- PR #6895: kildebelagt Språkleksikon med `nerdehjem`, `gaming`, `VR-escape room` og `community`; canonical manifestregistrering; avventer slutt-QA.
