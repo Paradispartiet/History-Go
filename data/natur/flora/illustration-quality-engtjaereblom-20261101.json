@@ -1,0 +1,53 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-01",
+  "status": "candidate_awaiting_binary_upload_and_ci",
+  "baselineApproved": 25,
+  "approvedCountAfterRelease": 26,
+  "publicationRule": "Do not activate in js/ui/nature-flora-approved.js until the exact WebP is uploaded and its SHA-256 and Git blob SHA verified. Keep the existing CC BY-SA 4.0 photograph as fallback; require illustration-contract, approved-flora-browser (390 and 1440 px) and Pages success.",
+  "items": [
+    {
+      "name": "Engtjæreblom",
+      "catalogId": "emne_flora_engtjaereblom",
+      "scientificName": "Viscaria vulgaris",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/04_engtjaereblom_v1.webp",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/04_engtjaereblom_v1.webp",
+      "sha256": "dd1e1364b7956efc609f26e2d8c04d7f625c38fab0a4471118208136f506990f",
+      "gitBlobSha": "2e25e6c9a06c6ae9817b1afd2c081a4f5e01096c",
+      "sizeBytes": 179204,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "candidate_pending_upload_and_ci",
+      "approvedForPublication": false,
+      "botanicalVisualDecision": "candidate_matches_key_field_characters_pending_final_visual_review",
+      "reviewedAt": "2026-11-01",
+      "stage": "blomstring",
+      "visualChecks": {
+        "transparent": true,
+        "blackBackgroundReviewed": true,
+        "whiteBackgroundReviewed": true,
+        "fullImageReviewed": true,
+        "originalAlphaVerified": true
+      },
+      "sourceReferences": [
+        "https://artsdatabanken.no/arter/takson/138831",
+        "https://leksikon.nibio.no/l/oppslag/1616/",
+        "https://nibio.no/tema/landskap/nibio-landvik-norsk-kompetansesenter-for-blomstereng-og-naturfro/spirer-og-smaplanter-av-markblomster/engtjaereblom-viscaria-vulgaris",
+        "https://snl.no/engtj%C3%A6reblom"
+      ],
+      "photoFallbackRegistry": "js/ui/nature-flora-photographs.js",
+      "observations": "The candidate shows dark reddish stems with dark sticky bands just below the upper nodes, clusters of five-petalled saturated rose-magenta flowers with pale stamens, narrow opposite lanceolate leaves and ribbed narrow burgundy calyces. These are the distinguishing traits documented by NIBIO and Artsdatabanken. Natural proportions and the precise location and extent of sticky bands require final visual review.",
+      "limitations": "Illustrative watercolor, not a specimen drawing. Several flower corollas are shown frontally and may be larger or more symmetrically arrayed than in field specimens. Sticky bands are visually amplified; leaf density at the base is stylized. Do not use this illustration alone for diagnostic species identification. Preserve the existing named and licensed photo for comparison.",
+      "technicalVerification": "Local image generated as 1024x1536 RGBA PNG. Stray low-opacity ambient pixels removed (alpha threshold 50, rescaled to 0..255). Converted to 1024x1536 WebP with alpha (Pillow quality 91, method 6), then SHA-256 and Git blob SHA calculated directly from its final 179204 bytes. Dark and light background previews visually inspected. Not yet uploaded to GitHub.",
+      "publicationBlockedBy": [
+        "Exact WebP binary not yet uploaded to GitHub",
+        "Git SHA and checksum need re-verification on GitHub",
+        "Approved register, release/browser tests, workflow and cache version not yet updated",
+        "Both relevant CI jobs and Pages publication not yet run"
+      ]
+    }
+  ]
+}
