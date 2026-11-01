@@ -35,7 +35,7 @@ jobs:
             test "${#conflicts[@]}" -gt 0
             for conflict in "${conflicts[@]}"; do
               case "$conflict" in
-                data/epoker/epoke-place-index.json|data/knowledge/knowledge_units.generated.json|data/places/place_image_backlog_summary.json)
+                data/epoker/epoke-place-index.json|data/knowledge/knowledge_units.generated.json|data/places/place_image_backlog_summary.json|reports/knowledge-id-backfill.json)
                   git checkout --ours -- "$conflict"
                   git add -- "$conflict"
                   ;;
