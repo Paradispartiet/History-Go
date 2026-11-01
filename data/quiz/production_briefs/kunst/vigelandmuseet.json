@@ -10,37 +10,43 @@
       "url": "https://vigeland.museum.no/vigeland-museet",
       "source_type": "museum_primary_institution",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-27"
+      "reviewed_at": "2026-10-27",
+      "review_note": "Vigelandmuseets primærinformasjon brukes for samlinger, gipsmodeller, verkstedets funksjon og skillet mellom museet og Vigelandsparken. Gipsmodeller dokumenterer arbeidsprosesser, ikke automatisk datering av hvert parkverk."
     },
     "history": {
       "url": "https://vigeland.museum.no/vigeland-museet/historie",
       "source_type": "museum_primary_institution",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-27"
+      "reviewed_at": "2026-10-27",
+      "review_note": "Museets egen historietekst brukes for Vigelands atelier, kommunalavtalen i 1921, bruken som bolig/verksted og senere museum. Atelierets bruk fra 1923 må ikke forveksles med museets åpning i 1947."
     },
     "architecture": {
       "url": "https://vigeland.museum.no/historie/arkitekturen",
       "source_type": "museum_primary_institution",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-27"
+      "reviewed_at": "2026-10-27",
+      "review_note": "Museets arkitekturhistorie brukes for Lorentz Harboe Ree, Carl Emil Buch, nyklassisisme, teglfasaden og senere sydfløy. Ulike byggefaser skal beholdes atskilt."
     },
     "artist": {
       "url": "https://vigeland.museum.no/gustav-vigeland/historie",
       "source_type": "museum_primary_institution",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-27"
+      "reviewed_at": "2026-10-27",
+      "review_note": "Museets biografiske fremstilling brukes for Vigelands liv, arbeidsmetoder, medhjelpere og avtaleforholdet til kommunen, ikke som grunnlag for å tilskrive alle verk eneutførelse."
     },
     "snl": {
       "url": "https://snl.no/Vigelandmuseet",
       "source_type": "reference",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-27"
+      "reviewed_at": "2026-10-27",
+      "review_note": "SNLs fagartikkel gir sekundærbekreftelse av adresse, byggets funksjon, kommunal avtale og arkitektonisk plassering. Det må skilles mellom kunstnerens bolig og publikums museum."
     },
     "byleks": {
       "url": "https://oslobyleksikon.no/side/Vigeland-museet",
       "source_type": "reference",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-27"
+      "reviewed_at": "2026-10-27",
+      "review_note": "Oslo Byleksikon brukes for gateadresse, arkitektmedvirkning, arkitekturpris og bevart kunstnerleilighet. Opplysninger om historisk interiør gir ikke garanti for dagens publikumsadgang."
     }
   },
   "selected_curriculum": {
@@ -279,7 +285,7 @@
       "claim_id": "claim_vigelandmuseet_quiz_16",
       "order": 16,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "context",
       "statement": "Smeder og andre assistenter bygde jernarmaturer som støttet store leiremodeller.",
       "source_ids": [
         "history"
@@ -316,14 +322,18 @@
       "claim_id": "claim_vigelandmuseet_quiz_19",
       "order": 19,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Museet forvalter også et stort materiale av tegninger, tresnitt, brev og fotografier.",
       "source_ids": [
         "history",
         "museum"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_institusjoner_kanon"
+      "emne_id": "em_kunst_institusjoner_kanon",
+      "method_id": "met_kunst_kanon_og_arkivanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_vigelandmuseet_quiz_20",
@@ -683,11 +693,11 @@
       "number": 16,
       "claim_id": "claim_vigelandmuseet_quiz_16",
       "planned_phase": "final",
-      "question": "Hva var en av smedenes oppgaver?",
+      "question": "Under arbeidet med de store leiremodellene: hva ga skulpturene innvendig støtte mens de ble formet?",
       "options": [
-        "Å programmere kinolyd",
-        "Å redigere tresnittene digitalt",
-        "Å tegne husets vindusglass",
+        "Å herde leiren i ovn før modellen var ferdig",
+        "Å støpe bronseverket før modelleringen begynte",
+        "Å bruke malte støttelinjer uten noen bærende konstruksjon",
         "Å lage jernskjelett inne i større skulpturer"
       ],
       "answer": "Å lage jernskjelett inne i større skulpturer",
@@ -697,7 +707,7 @@
         "history"
       ],
       "emne_id": "em_kunst_institusjoner_kanon",
-      "question_type": "fact",
+      "question_type": "context",
       "review_status": "source_reviewed_ready_for_package"
     },
     {
@@ -747,12 +757,12 @@
       "number": 19,
       "claim_id": "claim_vigelandmuseet_quiz_19",
       "planned_phase": "final",
-      "question": "Hva inneholder museet i tillegg til skulpturer?",
+      "question": "Hvis vi vil undersøke mer enn de ferdige skulpturene, hvilke av museets kilder gir innblikk i kunstnerens arbeid og etterlatte materiale?",
       "options": [
-        "Bare filmruller",
+        "Bare fotografier av parken, uten tegninger eller skriftlige kilder",
         "Tegninger, tresnitt, brev og annet arkivmateriale",
-        "Kun geologiske prøver",
-        "Bare skipsdeler"
+        "Kun publikumsstatistikk fra nyere utstillinger",
+        "Kun ferdige bronseverk, uten skisser eller korrespondanse"
       ],
       "answer": "Tegninger, tresnitt, brev og annet arkivmateriale",
       "answerIndex": 1,
@@ -762,8 +772,12 @@
         "museum"
       ],
       "emne_id": "em_kunst_institusjoner_kanon",
-      "question_type": "fact",
-      "review_status": "source_reviewed_ready_for_package"
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package",
+      "method_id": "met_kunst_kanon_og_arkivanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "number": 20,

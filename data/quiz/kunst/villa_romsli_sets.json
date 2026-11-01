@@ -30,7 +30,59 @@
         "Keep exact year questions to one (1988); use decade for disputed building date."
       ],
       "knowledge_migration": "Regenerate canonical Knowledge IDs at activation."
-    }
+    },
+    "resolved_files": {
+      "pensum": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
+      "emner": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+      "fagkart": "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
+      "methods": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/kunst/supersetQUIZMAL_kunst.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "felt_institusjon"
+    ],
+    "emne_ids": [
+      "em_kunst_institusjoner_kanon"
+    ],
+    "topic_hook_ids": [
+      "arkiv_og_minne",
+      "autonomi_vs_avhengighet",
+      "distribusjonsinfrastruktur",
+      "epokefortellinger"
+    ],
+    "method_ids": [
+      "met_kunst_kanon_og_arkivanalyse",
+      "met_kunst_institusjonsanalyse",
+      "met_kunst_kunsthistorisk_kontekstualisering",
+      "met_kunst_kuratorisk_analyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Site-specific phases: Red Cross and transfer, community and art, responsible interpretation of historic uses."
+    },
+    "held_back_candidates": [
+      "Exact contested building year.",
+      "Unverified names of prior residents.",
+      "Invented artists and exhibitions.",
+      "Repeated date-only questions.",
+      "Unqualified claims that Villa Romsli was still operating as an art centre in 2026; municipal May 2026 vacancy report documents an empty building."
+    ]
   },
   "sets": [
     {
@@ -770,15 +822,15 @@
           "question_scope": "place",
           "question": "Hva dokumenterer opplysningene om atelierer ved Villa Romsli?",
           "options": [
-            "Hvem som bodde der ved åpningen",
-            "Hvordan alle tidligere rom var møblert",
-            "Nøyaktig hvilket år huset stod ferdig",
+            "At atelierdriften har pågått uten avbrudd fram til 2026",
+            "At bygget alltid har vært planlagt som galleri",
+            "At atelierene dokumenterer dagens aktive kunstsenter",
             "At bygget i en periode ble brukt til kunstnerisk arbeid"
           ],
           "answer": "At bygget i en periode ble brukt til kunstnerisk arbeid",
           "answerIndex": 3,
           "knowledge": "Atelierene dokumenterer en fase med kunstnerisk bruk, men ikke at denne bruken fortsatt pågikk i 2026. Kommunen oppførte bygget som ledig i mai 2026.",
-          "explanation": "Atelierene dokumenterer en fase med kunstnerisk bruk, men ikke at denne bruken fortsatt pågikk i 2026. Kommunen oppførte bygget som ledig i mai 2026.",
+          "explanation": "Atelieropplysningene dokumenterer en historisk fase med kunstnerisk arbeid, ikke automatisk nåværende drift. Kontekstualisering krever at vi sammenholder en eldre beskrivelse med kommunens opplysning om ledige lokaler i mai 2026.",
           "difficulty": 3,
           "question_type": "context",
           "emne_id": "em_kunst_institusjoner_kanon",
@@ -806,6 +858,10 @@
           "knowledge_unit_ids": [
             "ku_kunst_atelierene_dokumenterer__f662bb46bd",
             "ku_kunst_kommunen_oppf_rte_bygget_2a98106331"
+          ],
+          "method_id": "met_kunst_kontekstualisering",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json"
           ]
         },
         {
@@ -818,16 +874,16 @@
           "question": "Hvilken kilde omtaler både overføringen fra Røde Kors og byggets tidligere atelierdrift?",
           "options": [
             "Oslo kommunes beskrivelse av kultureiendommen",
-            "En generell værmelding",
-            "En roman om Oslo",
-            "Et rutekart for T-banen"
+            "Et utstillingsprogram som bare omtaler én kunstner",
+            "En generell omtale av Røde Kors uten eiendomshistorikk",
+            "En kartoversikt som viser bygningens plassering"
           ],
           "answer": "Oslo kommunes beskrivelse av kultureiendommen",
           "answerIndex": 0,
           "knowledge": "Kommunens kultureiendomsside omtaler overføringen fra Røde Kors og perioden da Villa Romsli fungerte som kunstsenter med atelierer.",
-          "explanation": "Kommunens kultureiendomsside omtaler overføringen fra Røde Kors og perioden da Villa Romsli fungerte som kunstsenter med atelierer.",
+          "explanation": "Kommunens eiendomsbeskrivelse er relevant fordi den omtaler både overføringen fra Røde Kors og byggets senere atelierdrift. En utstillingskalender eller et kart kan dokumentere andre ting, men ikke begge bruksfasene samlet.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "context",
           "emne_id": "em_kunst_institusjoner_kanon",
           "source": [
             "oslo_kommune"
@@ -951,15 +1007,15 @@
           "question_scope": "place",
           "question": "Hvordan bør tidligere botilbud omtales i stedets historie?",
           "options": [
-            "Som et kuriosum uten kildebehov",
-            "Med antakelser om tidligere beboere",
-            "Uten å nevne at funksjonen fantes",
+            "Som et uvesentlig forstadium til kunstsenteret",
+            "Som en beskrivelse av tidligere beboeres private forhold",
+            "Som noe vi utelater fordi kunstdriften kom senere",
             "Saklig og som en selvstendig del av bygningens historie"
           ],
           "answer": "Saklig og som en selvstendig del av bygningens historie",
           "answerIndex": 3,
           "knowledge": "Botilbudet er en dokumentert del av Villa Romslis historie og bør behandles med samme kildekritiske respekt som den senere kunstvirksomheten.",
-          "explanation": "Botilbudet er en dokumentert del av Villa Romslis historie og bør behandles med samme kildekritiske respekt som den senere kunstvirksomheten.",
+          "explanation": "En institusjonsanalyse skiller mellom de dokumenterte periodene med botilbud, frivillighet og kunst, uten å gjøre en enkelt fase til hele stedets historie eller spekulere om tidligere beboere.",
           "difficulty": 3,
           "question_type": "context",
           "emne_id": "em_kunst_institusjoner_kanon",
@@ -984,6 +1040,10 @@
           "primary_knowledge_unit_id": "ku_kunst_botilbudet_er_en_dokumen_875425a18a",
           "knowledge_unit_ids": [
             "ku_kunst_botilbudet_er_en_dokumen_875425a18a"
+          ],
+          "method_id": "met_kunst_institusjonsanalyse",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json"
           ]
         },
         {
@@ -1028,7 +1088,22 @@
           "primary_knowledge_unit_id": "ku_kunst_villa_romsli_viser_hvord_4cacbdb52d",
           "knowledge_unit_ids": [
             "ku_kunst_villa_romsli_viser_hvord_4cacbdb52d"
-          ]
+          ],
+          "method_id": "met_kunst_institusjonsanalyse",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+            "data/fag/kunst/fagkart_kunst_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "autonomi_vs_avhengighet",
+          "thinker_id": "tony_bennett",
+          "thinker_name": "Tony Bennett",
+          "work": "The Birth of the Museum",
+          "theory_ref": {
+            "topic_hook_id": "autonomi_vs_avhengighet",
+            "thinker_id": "tony_bennett",
+            "work": "The Birth of the Museum",
+            "why_it_helps": "Bennetts perspektiv på kulturinstitusjoner gjør det mulig å skille bygningens dokumenterte perioder med omsorg, kunst og allmennyttig bruk uten å gjøre en enkelt epoke til hele stedets identitet."
+          }
         }
       ]
     }

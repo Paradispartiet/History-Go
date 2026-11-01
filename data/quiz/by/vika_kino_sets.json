@@ -23,17 +23,75 @@
     "context_artifact": "data/quiz/production_context/by/vika_kino.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/by/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "Keep existing canonical ID and by category despite film source-file directory.",
-        "Correct invalid year 1981 to externally verified December 1997.",
-        "Do not conflate 2013 Victoria renovation with founding date."
-      ]
+        "No directly registered Vika kino target; keep name and location.",
+        "1997 established by Oslo byleksikon and government NOU.",
+        "One date-oriented opening question; others concern film architecture, public institutions and audience."
+      ],
+      "knowledge_migration": "Regenerate canonical IDs with Knowledge builder."
     },
-    "knowledge_migration": "Run the canonical Knowledge generator before merge."
+    "knowledge_migration": "Run the canonical Knowledge generator before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_offentlige_rom_motesteder",
+      "em_by_historiske_lag_i_hverdagsrom"
+    ],
+    "topic_hook_ids": [
+      "ark_bygningstyper",
+      "bolig_endring_tid",
+      "byliv_aapne_rom",
+      "his_bevaring"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gis_romlig_analyse",
+      "met_morfologisk_analyse",
+      "met_for_etter"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Specific evidence supports opening/architecture, multihall technology/municipal policies and later audience segmentation/branding."
+    },
+    "held_back_candidates": [
+      "Treating 1981 Saga redevelopment as Vika cinema opening.",
+      "Inferred current showtimes or permanent festival schedule.",
+      "Mistakenly calling Kino Victoria a separate site.",
+      "Unverified claims about continuously unchanged THX certification."
+    ]
   },
   "sets": [
     {
@@ -402,15 +460,15 @@
           "question_scope": "place",
           "question": "Hva var spesielt med Vikas største sal?",
           "options": [
-            "Den var byens første utendørskino",
-            "Den lå under Akershus festning",
+            "Den var spesialbygd for IMAX-visninger",
+            "Den ble profilert for 70-mm-film",
             "Den var Oslos første med THX",
-            "Den var bygget som konsertsal for opera"
+            "Den lanserte byens første digitale 3D-sal"
           ],
           "answer": "Den var Oslos første med THX",
           "answerIndex": 2,
           "knowledge": "Den største salen var Oslos første THX-godkjente kinosal.",
-          "explanation": "Den største salen var Oslos første THX-godkjente kinosal.",
+          "explanation": "Den største salen utmerket seg ved å være Oslos første THX-godkjente kinosal. Det handlet om visningskvalitet, særlig lyd og akustikk.",
           "difficulty": 2,
           "question_type": "fact",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
@@ -446,17 +504,17 @@
           "question_scope": "place",
           "question": "Hva var THX viktig for i kinodriften?",
           "options": [
-            "Trykking av filmplakater",
+            "Klassifisering av filmers aldersgrenser",
             "Kontroll av lyd- og akustikkforhold",
-            "Antall kinobilletter per dag",
-            "Distribusjon av papirprogram"
+            "Valg av filmrullenes spilletid",
+            "Kuratering av kinoens filmrepertoar"
           ],
           "answer": "Kontroll av lyd- og akustikkforhold",
           "answerIndex": 1,
           "knowledge": "THX handlet om å oppfylle tekniske kvalitetskrav for filmvisning, særlig lyd og akustikk.",
-          "explanation": "THX handlet om å oppfylle tekniske kvalitetskrav for filmvisning, særlig lyd og akustikk.",
+          "explanation": "THX var knyttet til tekniske kvalitetskrav for filmvisningen, særlig lyd og akustikk – ikke til programvalg eller aldersgrenser.",
           "difficulty": 2,
-          "question_type": "concept_theory",
+          "question_type": "fact",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
             "byleks"
@@ -490,15 +548,15 @@
           "question_scope": "place",
           "question": "Hvilken kino i Oslo fikk flere saler allerede i 1981?",
           "options": [
-            "Vika kino",
-            "Ringen kino på Grünerløkka",
+            "Filmteatret",
+            "Ringen kino",
             "Saga kino",
-            "Kino Victoria"
+            "Vika kino"
           ],
           "answer": "Saga kino",
           "answerIndex": 2,
           "knowledge": "Saga ble ombygd til flersalskino i 1981, mens Vika først åpnet i 1997.",
-          "explanation": "Saga ble ombygd til flersalskino i 1981, mens Vika først åpnet i 1997.",
+          "explanation": "Saga ble ombygd til flersalskino i 1981. Vika åpnet først i 1997, og navnet Kino Victoria kom enda senere, i 2013.",
           "difficulty": 2,
           "question_type": "context",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
@@ -536,17 +594,17 @@
           "question_scope": "place",
           "question": "Hva er en sentral fordel med en flersalskino?",
           "options": [
-            "Den kan bare ha én forestilling per dag",
-            "Den trenger ikke publikum",
-            "Alle saler må vise samme film samtidig",
+            "Den sikrer lengre spilletid for hver enkelt film",
+            "Alle filmene må vises i samme sal",
+            "Alle visninger får identisk starttid",
             "Den kan vise flere filmer i samme bygg"
           ],
           "answer": "Den kan vise flere filmer i samme bygg",
           "answerIndex": 3,
           "knowledge": "Et flersalsanlegg gir plass til et mer variert repertoar parallelt.",
-          "explanation": "Et flersalsanlegg gir plass til et mer variert repertoar parallelt.",
+          "explanation": "Flere saler gjør det mulig å vise forskjellige filmer parallelt. Det gir rom for et mer variert program uten at alle filmene konkurrerer om samme sal.",
           "difficulty": 2,
-          "question_type": "concept_theory",
+          "question_type": "context",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
             "kinodrift"
@@ -581,14 +639,14 @@
           "question": "Hvilken kommunal kinoordning preget Oslo før 2013?",
           "options": [
             "Oslo Kinematografer og senere Oslo Kino",
-            "Nasjonalmuseets kinokontor",
-            "NRKs konsertsaler",
-            "Hurtigrutens filmavdeling"
+            "Norsk Film og senere Norsk filminstitutt",
+            "Filmklubben og senere Cinemateket",
+            "Norsk filmdistribusjon og senere Filmens Hus"
           ],
           "answer": "Oslo Kinematografer og senere Oslo Kino",
           "answerIndex": 0,
           "knowledge": "Oslo hadde en omfattende kommunal kinodrift som ble videreført gjennom Oslo Kinematografer og Oslo Kino.",
-          "explanation": "Oslo hadde en omfattende kommunal kinodrift som ble videreført gjennom Oslo Kinematografer og Oslo Kino.",
+          "explanation": "Det kommunale kinosystemet ble videreført gjennom Oslo Kinematografer og Oslo Kino. Det skiller kinodrift fra filmproduksjon og filmformidling.",
           "difficulty": 2,
           "question_type": "fact",
           "emne_id": "em_by_offentlige_rom_motesteder",
@@ -626,15 +684,15 @@
           "question_scope": "place",
           "question": "Hvem overtok Oslo Kino i 2013?",
           "options": [
-            "Vinmonopolet",
+            "Norsk Film",
             "Nordisk Film",
-            "Norsk Tipping",
-            "Deichman"
+            "SF Norge",
+            "Cinemateket"
           ],
           "answer": "Nordisk Film",
           "answerIndex": 1,
           "knowledge": "I 2013 ble Oslo Kino solgt til Nordisk Film.",
-          "explanation": "I 2013 ble Oslo Kino solgt til Nordisk Film.",
+          "explanation": "Salget av Oslo Kino til Nordisk Film i 2013 markerte en endring i eierskapet etter en lang periode med kommunal kinodrift.",
           "difficulty": 2,
           "question_type": "fact",
           "emne_id": "em_by_offentlige_rom_motesteder",
@@ -670,15 +728,15 @@
           "question_scope": "place",
           "question": "Hva het Vika kino etter ombyggingen i 2013?",
           "options": [
-            "Kino Eldorado",
-            "Vikingskipshuset",
+            "Vika Filmteater",
+            "Ruseløkka Filmhus",
             "Saga Scene",
             "Kino Victoria"
           ],
           "answer": "Kino Victoria",
           "answerIndex": 3,
           "knowledge": "Etter oppussingen i 2013 åpnet Vika kino som Kino Victoria.",
-          "explanation": "Etter oppussingen i 2013 åpnet Vika kino som Kino Victoria.",
+          "explanation": "Kino Victoria var navnet ved relanseringen etter ombyggingen i 2013. Det var samme kino som tidligere hadde hett Vika kino.",
           "difficulty": 2,
           "question_type": "fact",
           "emne_id": "em_by_offentlige_rom_motesteder",
@@ -734,19 +792,19 @@
           "targetId": "vika_kino",
           "placeId": "vika_kino",
           "question_scope": "place",
-          "question": "Hvem rettet Kino Victoria seg særlig mot?",
+          "question": "Hva forteller Kino Victorias satsing på voksne om kinoprofilen i 2013?",
           "options": [
-            "Et voksent kinopublikum",
-            "Bare barn i skolealder",
-            "Bare turister med cruisebilletter",
-            "Kun idrettslag"
+            "Filmprogram og tilbud ble særlig rettet mot et voksent publikum",
+            "Kinoen sluttet å vise ordinære spillefilmer",
+            "Alle visninger ble bare for skoleklasser",
+            "Kinoen flyttet til et nytt festivalbygg"
           ],
-          "answer": "Et voksent kinopublikum",
+          "answer": "Filmprogram og tilbud ble særlig rettet mot et voksent publikum",
           "answerIndex": 0,
           "knowledge": "Kino Victoria satset i 2013 på filmer og tilbud rettet mot voksne.",
-          "explanation": "Kino Victoria satset i 2013 på filmer og tilbud rettet mot voksne.",
+          "explanation": "Kino Victoria ble relansert med en tydelig voksenprofil. Det er en endring i hvem programmet og tilbudet henvendte seg til, ikke i kinoens adresse.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "context",
           "emne_id": "em_by_offentlige_rom_motesteder",
           "source": [
             "victoria"
@@ -769,7 +827,8 @@
           "primary_knowledge_unit_id": "ku_by_kino_victoria_satset_i_2_18c78a3d30",
           "knowledge_unit_ids": [
             "ku_by_kino_victoria_satset_i_2_18c78a3d30"
-          ]
+          ],
+          "topic": "Hvem rettet Kino Victoria seg særlig mot?"
         },
         {
           "id": "vika_kino_reviewed_16",
@@ -778,19 +837,19 @@
           "targetId": "vika_kino",
           "placeId": "vika_kino",
           "question_scope": "place",
-          "question": "Hva kom i de ombygde lokalene i stedet for den gamle kinokiosken?",
+          "question": "Hvordan påvirket restaurant og servering opplevelsen av å besøke Kino Victoria?",
           "options": [
-            "Et svømmebasseng",
-            "Et nytt postkontor",
-            "Restaurant og servering",
-            "En trikkestall"
+            "Kinobesøket omfattet også mat og sosialt opphold",
+            "Selve filmvisningene ble avviklet",
+            "Kinobillettene ble erstattet med hotellreservasjon",
+            "Serveringen ble flyttet til et annet kinobygg"
           ],
-          "answer": "Restaurant og servering",
-          "answerIndex": 2,
+          "answer": "Kinobesøket omfattet også mat og sosialt opphold",
+          "answerIndex": 0,
           "knowledge": "Ombyggingen til Kino Victoria omfattet blant annet restaurant og servering.",
-          "explanation": "Ombyggingen til Kino Victoria omfattet blant annet restaurant og servering.",
+          "explanation": "Ombyggingen la til restaurant og servering. Dermed kunne publikum kombinere selve filmvisningen med opphold og servering på kinoen.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "context",
           "emne_id": "em_by_offentlige_rom_motesteder",
           "source": [
             "victoria",
@@ -815,7 +874,8 @@
           "primary_knowledge_unit_id": "ku_by_ombyggingen_til_kino_vic_fc03bedc14",
           "knowledge_unit_ids": [
             "ku_by_ombyggingen_til_kino_vic_fc03bedc14"
-          ]
+          ],
+          "topic": "Hva kom i de ombygde lokalene i stedet for den gamle kinokiosken?"
         },
         {
           "id": "vika_kino_reviewed_17",
@@ -824,19 +884,19 @@
           "targetId": "vika_kino",
           "placeId": "vika_kino",
           "question_scope": "place",
-          "question": "Hva var en viktig endring i kinosalene i 2013?",
+          "question": "Hva viser de mer komfortable setene om Kino Victorias satsing på publikum?",
           "options": [
-            "Salene fikk bare ståplasser",
-            "Alle skjermene ble fjernet",
-            "Filmer skulle bare vises utendørs",
-            "Nye seter med bedre komfort"
+            "Sittekomfort ble en del av kinoopplevelsens profil",
+            "Kinoen gikk over til bare ståplasser",
+            "Komfort ble nedprioritert for å øke antall seter",
+            "Alle salene ble erstattet av et utendørs amfi"
           ],
-          "answer": "Nye seter med bedre komfort",
-          "answerIndex": 3,
+          "answer": "Sittekomfort ble en del av kinoopplevelsens profil",
+          "answerIndex": 0,
           "knowledge": "I forbindelse med ombyggingen fikk salene nye og mer komfortable seter.",
-          "explanation": "I forbindelse med ombyggingen fikk salene nye og mer komfortable seter.",
+          "explanation": "Nye, mer komfortable seter var et konkret publikumsrettet tiltak. Det viser hvordan komfort og fysisk utforming kan brukes som del av en kinoprofil.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "concept",
           "emne_id": "em_by_offentlige_rom_motesteder",
           "source": [
             "victoria"
@@ -859,7 +919,8 @@
           "primary_knowledge_unit_id": "ku_by_i_forbindelse_med_ombygg_f6a67c3c3f",
           "knowledge_unit_ids": [
             "ku_by_i_forbindelse_med_ombygg_f6a67c3c3f"
-          ]
+          ],
+          "topic": "Hva var en viktig endring i kinosalene i 2013?"
         },
         {
           "id": "vika_kino_reviewed_18",
@@ -868,19 +929,19 @@
           "targetId": "vika_kino",
           "placeId": "vika_kino",
           "question_scope": "place",
-          "question": "Hvilken festival ble omtalt som en samarbeidspartner for Kino Victoria?",
+          "question": "Hva illustrerer samarbeidet mellom Kino Victoria og Film fra Sør?",
           "options": [
-            "Øyafestivalen",
-            "Film fra Sør",
-            "Holmenkollstafetten",
-            "Moldejazz"
+            "En kino kan formidle film gjennom samarbeid med en festival",
+            "En filmfestival overtok hele kinobygningen",
+            "Festivalprogram betyr at en kino ikke har vanlige visninger",
+            "Samarbeidet krevde at kinoen flyttet ut av Oslo"
           ],
-          "answer": "Film fra Sør",
-          "answerIndex": 1,
+          "answer": "En kino kan formidle film gjennom samarbeid med en festival",
+          "answerIndex": 0,
           "knowledge": "I 2013 ble samarbeidet med Film fra Sør trukket fram i presentasjonen av Kino Victoria.",
-          "explanation": "I 2013 ble samarbeidet med Film fra Sør trukket fram i presentasjonen av Kino Victoria.",
+          "explanation": "Film fra Sør ble trukket fram som samarbeidspartner ved relanseringen. Eksemplet viser hvordan en kino kan knyttes til filmformidling og festivalmiljøer.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "concept",
           "emne_id": "em_by_offentlige_rom_motesteder",
           "source": [
             "victoria"
@@ -903,7 +964,8 @@
           "primary_knowledge_unit_id": "ku_by_i_2013_ble_samarbeidet_m_50dc7bfbd6",
           "knowledge_unit_ids": [
             "ku_by_i_2013_ble_samarbeidet_m_50dc7bfbd6"
-          ]
+          ],
+          "topic": "Hvilken festival ble omtalt som en samarbeidspartner for Kino Victoria?"
         },
         {
           "id": "vika_kino_reviewed_19",
@@ -915,16 +977,16 @@
           "question": "Hva skulle regissørbesøk og samtaler bidra til ved Kino Victoria?",
           "options": [
             "Møter mellom film, filmskapere og publikum",
-            "At filmene kunne vises uten projektor",
-            "At visningene ble helt private",
-            "At kinobygget ikke trengte saler"
+            "En overgang til bare forhåndsinnspilte intervjuer",
+            "Et erstatningsprogram uten filmvisning",
+            "At filmene bare skulle vises for inviterte"
           ],
           "answer": "Møter mellom film, filmskapere og publikum",
           "answerIndex": 0,
           "knowledge": "Kino Victoria planla innledninger, regissørbesøk og diskusjoner i forbindelse med enkelte filmer.",
-          "explanation": "Kino Victoria planla innledninger, regissørbesøk og diskusjoner i forbindelse med enkelte filmer.",
+          "explanation": "Regissørbesøk, innledninger og diskusjoner kunne gjøre kinobesøket til et møte mellom publikum og filmskapere, ikke bare en isolert visning.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "concept",
           "emne_id": "em_by_offentlige_rom_motesteder",
           "source": [
             "victoria"
@@ -947,6 +1009,19 @@
           "primary_knowledge_unit_id": "ku_by_kino_victoria_planla_inn_10f1f98da1",
           "knowledge_unit_ids": [
             "ku_by_kino_victoria_planla_inn_10f1f98da1"
+          ],
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "richard_sennett",
+          "thinker_name": "Richard Sennett",
+          "work": "The Fall of Public Man",
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "richard_sennett",
+            "work": "The Fall of Public Man",
+            "why_it_helps": "Sennetts perspektiv på offentlig samhandling belyser rollen til samtaler og regissørbesøk som møteplass. Kilden viser programideen, ikke hvordan alle besøkende faktisk opplevde den."
+          },
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json"
           ]
         },
         {
@@ -956,19 +1031,19 @@
           "targetId": "vika_kino",
           "placeId": "vika_kino",
           "question_scope": "place",
-          "question": "Hvilket navn tok kinoen tilbake i 2016?",
+          "question": "Hva viser navnebyttet fra Kino Victoria tilbake til Vika kino i 2016?",
           "options": [
-            "Colosseum kino",
-            "Filmteatret",
-            "Vika kino",
-            "Frogner kino"
+            "Navn og profil kan skifte mens kinostedet består",
+            "Et navneskifte betyr nødvendigvis en ny adresse",
+            "Et nytt navn betyr at den opprinnelige bygningen er revet",
+            "Navnebyttet viser at kinodriften opphørte"
           ],
-          "answer": "Vika kino",
-          "answerIndex": 2,
+          "answer": "Navn og profil kan skifte mens kinostedet består",
+          "answerIndex": 0,
           "knowledge": "I 2016 gikk Kino Victoria tilbake til navnet Vika kino.",
-          "explanation": "I 2016 gikk Kino Victoria tilbake til navnet Vika kino.",
+          "explanation": "Kino Victoria gikk tilbake til navnet Vika kino i 2016. Navnet og profilen forandret seg, mens kinoen fortsatte i lokalene i Ruseløkkveien.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "context",
           "emne_id": "em_by_offentlige_rom_motesteder",
           "source": [
             "cinema",
@@ -993,7 +1068,8 @@
           "primary_knowledge_unit_id": "ku_by_i_2016_gikk_kino_victori_22693fde44",
           "knowledge_unit_ids": [
             "ku_by_i_2016_gikk_kino_victori_22693fde44"
-          ]
+          ],
+          "topic": "Hvilket navn tok kinoen tilbake i 2016?"
         },
         {
           "id": "vika_kino_reviewed_21",
@@ -1004,17 +1080,17 @@
           "question_scope": "place",
           "question": "Hva er riktig måte å tolke kinoens ulike navn på?",
           "options": [
-            "Kino Victoria lå på Bygdøy",
+            "Kino Victoria var et eget bygg i en annen bydel",
             "Samme sted fikk ny profil og senere sitt gamle navn tilbake",
-            "Vika åpnet først etter Victoria i 2016",
-            "Alle navneskifter betydde nytt bygg og ny adresse"
+            "Kino Victoria og Vika kino var to parallelle kinoer i samme bygg",
+            "Navneskiftet betydde at den opprinnelige kinoen ble revet"
           ],
           "answer": "Samme sted fikk ny profil og senere sitt gamle navn tilbake",
           "answerIndex": 1,
           "knowledge": "Vika og Kino Victoria var navn på kinodriften i samme lokaler i Ruseløkkveien 14.",
-          "explanation": "Vika og Kino Victoria var navn på kinodriften i samme lokaler i Ruseløkkveien 14.",
+          "explanation": "Vika og Kino Victoria betegnet kinodrift i samme lokaler. Endringer i navn og profil betyr ikke nødvendigvis at selve bygningen eller adressen endres.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "analysis",
           "emne_id": "em_by_offentlige_rom_motesteder",
           "source": [
             "byleks",
@@ -1041,6 +1117,10 @@
           "primary_knowledge_unit_id": "ku_by_vika_og_kino_victoria_va_7f93fb6e6d",
           "knowledge_unit_ids": [
             "ku_by_vika_og_kino_victoria_va_7f93fb6e6d"
+          ],
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
           ]
         }
       ]

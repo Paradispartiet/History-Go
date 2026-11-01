@@ -21,6 +21,10 @@
     "context_artifact": "data/quiz/production_context/kunst/van_etten.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/kunst/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
@@ -30,9 +34,63 @@
         "Correct 2025 leadership change",
         "Use pre-opening photos with clear date labels",
         "No date-only questions"
-      ]
+      ],
+      "knowledge_migration": "Generate canonical Knowledge before merge."
     },
-    "knowledge_migration": "Generate canonical Knowledge before merge."
+    "knowledge_migration": "Generate canonical Knowledge before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
+      "emner": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+      "fagkart": "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
+      "methods": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/kunst/supersetQUIZMAL_kunst.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "felt_institusjon",
+      "makt_legitimitet"
+    ],
+    "emne_ids": [
+      "em_kunst_institusjonskritikk_og_representasjon",
+      "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+      "em_kunst_okonomi_og_finansiering"
+    ],
+    "topic_hook_ids": [
+      "autonomi_vs_avhengighet",
+      "estetisk_hegemoni",
+      "finansieringslogikk",
+      "identitet_og_representasjon"
+    ],
+    "method_ids": [
+      "met_kunst_institusjonsanalyse",
+      "met_kunst_kuratorisk_analyse",
+      "met_kunst_feltanalyse",
+      "met_kunst_kritikk_og_diskursanalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Site foundation, artist-run institution, public exhibitions, critical sources, and 2025 role changes."
+    },
+    "held_back_candidates": [
+      "Do not assert gallery closed after Jarem's 2025 role departure.",
+      "Do not treat 2015 or 2016 building photos as Van Etten exhibit documentation.",
+      "Do not confuse Smedgata 3 with Smedgata 34."
+    ]
   },
   "sets": [
     {
@@ -480,17 +538,17 @@
           "question_scope": "place",
           "question": "Hva kjennetegner Van Ettens utstillingsprogram ifølge Oslo Art Guide?",
           "options": [
-            "Først og fremst idrettsutstillinger",
+            "Hovedsakelig fellesutstillinger uten fordypning i enkeltkunstnere",
             "Særlig separatutstillinger",
-            "Bare permanente historiske samlinger",
-            "Utstillinger uten kunstnere"
+            "Faste samlingsutstillinger uten skiftende kunstnere",
+            "Et program av retrospektive museumssamlinger alene"
           ],
           "answer": "Særlig separatutstillinger",
           "answerIndex": 1,
           "knowledge": "Van Etten har særlig prioritert separatutstillinger, kunstproduksjon og kritisk dialog.",
-          "explanation": "Van Etten har særlig prioritert separatutstillinger, kunstproduksjon og kritisk dialog.",
+          "explanation": "Oslo Art Guide beskriver separatutstillinger som et særlig trekk ved programmet. Det gir Van Etten mulighet til å følge ett kunstnerskap over flere arbeider, i motsetning til et visningssted som bare presenterer faste samlinger eller brede samleutstillinger.",
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "context",
           "emne_id": "em_kunst_institusjonskritikk_og_representasjon",
           "source": [
             "guide"
@@ -720,15 +778,15 @@
           "question_scope": "place",
           "question": "Hvordan skiller en kunstnerdrevet institusjon som Van Etten seg fra et stort museum?",
           "options": [
-            "Den har nødvendigvis ingen kunstnere",
-            "Den må eie alle kunstverk",
+            "Det er en statlig samlingsinstitusjon der hele produksjonen styres av et departement",
+            "Det må kjøpe inn kunstverk før det kan organisere en utstilling",
             "Den kan bygges og styres av aktører i kunstfeltet i mindre skala",
-            "Den kan ikke ha et offentlig program"
+            "Det har ingen faglig programprofil fordi det er uavhengig"
           ],
           "answer": "Den kan bygges og styres av aktører i kunstfeltet i mindre skala",
           "answerIndex": 2,
           "knowledge": "Van Etten er organisert som et uavhengig visningssted med produksjon og faglig dialog som sentrale oppgaver.",
-          "explanation": "Van Etten er organisert som et uavhengig visningssted med produksjon og faglig dialog som sentrale oppgaver.",
+          "explanation": "Institusjonsanalyse skiller mellom hvem som organiserer, finansierer og kuraterer kunsten. Van Etten er et uavhengig, kunstnerdrevet visningssted i mindre skala, der produksjon og dialog er sentrale oppgaver; det skiller organisasjonsformen fra store samlingsmuseer.",
           "difficulty": 3,
           "question_type": "context",
           "emne_id": "em_kunst_okonomi_og_finansiering",
@@ -755,6 +813,10 @@
           "primary_knowledge_unit_id": "ku_kunst_van_etten_er_organisert__faf4d5d4d2",
           "knowledge_unit_ids": [
             "ku_kunst_van_etten_er_organisert__faf4d5d4d2"
+          ],
+          "method_id": "met_kunst_institusjonsanalyse",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json"
           ]
         },
         {
@@ -811,16 +873,16 @@
           "question": "Hva sier Kunstavisen om Jarems rolle ved Van Etten etter overgangen i 2025?",
           "options": [
             "Hun avsluttet rollen som gallerist der",
-            "Hun ble oppnevnt som direktør på livstid",
-            "Hele galleriet ble automatisk lagt ned",
-            "Ingen rolle endret seg"
+            "Hun fortsatte som gallerist ved begge stedene uten rolleendring",
+            "Van Etten gikk automatisk inn i Galleri Brandstrups eierskap",
+            "Galleriet ble nedlagt som direkte følge av ansettelsen"
           ],
           "answer": "Hun avsluttet rollen som gallerist der",
           "answerIndex": 0,
           "knowledge": "Kunstavisen skrev i april 2025 at Jarem avsluttet sin rolle som gallerist ved Van Etten.",
-          "explanation": "Kunstavisen skrev i april 2025 at Jarem avsluttet sin rolle som gallerist ved Van Etten.",
+          "explanation": "Kunstavisen dokumenterte både Jarems overgang til Galleri Brandstrup og at hun gikk ut av rollen som gallerist ved Van Etten. Kilden dokumenterer dermed et organisatorisk rollebytte, men ikke at Van Etten ble lagt ned eller automatisk overtatt.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "context",
           "emne_id": "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
           "source": [
             "move"
@@ -854,15 +916,15 @@
           "question_scope": "place",
           "question": "Hva dokumenterer Commons-fotografiet av Smedgata 3 fra 2016?",
           "options": [
-            "Galleriets åpningsutstilling i 2020",
+            "At galleriet hadde hatt fast utstillingsprogram siden 2016",
             "Bygningen før Van Etten åpnet",
-            "Beatrice Alexanians utstilling i 2026",
-            "Hvem som ledet galleriet i 2025"
+            "At de senere galleristene allerede drev stedet i 2016",
+            "At bygningens virksomhet var uendret fram til 2026"
           ],
           "answer": "Bygningen før Van Etten åpnet",
           "answerIndex": 1,
           "knowledge": "Fotografiet er datert september 2016, flere år før galleriets etablering i 2020.",
-          "explanation": "Fotografiet er datert september 2016, flere år før galleriets etablering i 2020.",
+          "explanation": "Det daterte fotografiet viser bygningen slik den framstod før Van Etten ble etablert i 2020. Arkivanalyse skiller hva selve bildet kan dokumentere, fra senere opplysninger om galleriets program, organisasjon og ledelse.",
           "difficulty": 3,
           "question_type": "concept_theory",
           "emne_id": "em_kunst_okonomi_og_finansiering",
@@ -889,6 +951,10 @@
           "primary_knowledge_unit_id": "ku_kunst_fotografiet_er_datert_se_1ede6fe596",
           "knowledge_unit_ids": [
             "ku_kunst_fotografiet_er_datert_se_1ede6fe596"
+          ],
+          "method_id": "met_kunst_kanon_og_arkivanalyse",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json"
           ]
         },
         {
@@ -900,15 +966,15 @@
           "question_scope": "place",
           "question": "Hvilket grep er kildekritisk riktig når man bruker et gatefoto fra 2015?",
           "options": [
-            "Dater Van Ettens første utstilling til 2015",
-            "Bruke fotoet som bevis for lederroller i 2026",
+            "Tolke bildet som bevis for Van Ettens første utstilling i 2015",
+            "Slutte at galleriets organisering har vært identisk siden fotografiet ble tatt",
             "Skille bygningens utseende fra galleridriften som kom senere",
-            "Regne alle bygg i Smedgata som samme institusjon"
+            "Bruke det eldre fotoet til å fastslå hvilke kunstnere som stilte ut i 2026"
           ],
           "answer": "Skille bygningens utseende fra galleridriften som kom senere",
           "answerIndex": 2,
           "knowledge": "Et fotografi fra 2015 viser adressen, men beviser ikke driften til et galleri opprettet i 2020.",
-          "explanation": "Et fotografi fra 2015 viser adressen, men beviser ikke driften til et galleri opprettet i 2020.",
+          "explanation": "Et gatefoto fra 2015 kan dokumentere den daværende bygningen, men ikke driften ved Van Etten, som ble etablert senere. Kildekritisk kontekstualisering krever at bildets datering og motiv skilles fra nyere kilder om kunstinstitusjonen.",
           "difficulty": 3,
           "question_type": "concept_theory",
           "emne_id": "em_kunst_institusjonskritikk_og_representasjon",
@@ -935,6 +1001,10 @@
           "primary_knowledge_unit_id": "ku_kunst_et_fotografi_fra_2015_vi_65e31517a9",
           "knowledge_unit_ids": [
             "ku_kunst_et_fotografi_fra_2015_vi_65e31517a9"
+          ],
+          "method_id": "met_kunst_kontekstualisering",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json"
           ]
         },
         {
@@ -1000,7 +1070,7 @@
           "knowledge": "Utstillingsomtaler og en datert artikkel om rollebytte dokumenterer ulike deler av Van Ettens utvikling.",
           "explanation": "Utstillingsomtaler og en datert artikkel om rollebytte dokumenterer ulike deler av Van Ettens utvikling.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "analysis",
           "emne_id": "em_kunst_okonomi_og_finansiering",
           "source": [
             "sept",
@@ -1027,7 +1097,22 @@
           "primary_knowledge_unit_id": "ku_kunst_utstillingsomtaler_og_en_2b785f0265",
           "knowledge_unit_ids": [
             "ku_kunst_utstillingsomtaler_og_en_2b785f0265"
-          ]
+          ],
+          "method_id": "met_kunst_institusjonsanalyse",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+            "data/fag/kunst/fagkart_kunst_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "finansieringslogikk",
+          "thinker_id": "pierre_bourdieu",
+          "thinker_name": "Pierre Bourdieu",
+          "work": "The Rules of Art",
+          "theory_ref": {
+            "topic_hook_id": "finansieringslogikk",
+            "thinker_id": "pierre_bourdieu",
+            "work": "The Rules of Art",
+            "why_it_helps": "Bourdieus analyse av posisjoner og institusjoner i kunstfeltet bidrar til å forstå hvorfor daterte utstillinger og dokumenterte rolleendringer bør leses sammen når galleriets utvikling undersøkes."
+          }
         }
       ]
     }

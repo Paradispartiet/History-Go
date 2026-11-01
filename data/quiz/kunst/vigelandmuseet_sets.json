@@ -20,17 +20,73 @@
     "context_artifact": "data/quiz/production_context/kunst/vigelandmuseet.json",
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/kunst/manifest.json"
+      ],
       "active_before": {
         "set_count": 0,
         "question_count": 0
       },
       "decisions": [
-        "No direct Vigelandmuseet target in quiz manifest.",
-        "Museum and Vigeland Park are separate canonical locations.",
-        "No pure date recall questions."
-      ]
+        "No directly registered quiz for this Place.",
+        "Do not duplicate Vigelandsparken as a Place.",
+        "Avoid date-only questions."
+      ],
+      "knowledge_migration": "Regenerate canonical Knowledge IDs."
     },
-    "knowledge_migration": "Generate canonical IDs before merge."
+    "knowledge_migration": "Generate canonical IDs before merge.",
+    "resolved_files": {
+      "pensum": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
+      "emner": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+      "fagkart": "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
+      "methods": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/kunst/supersetQUIZMAL_kunst.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "felt_institusjon"
+    ],
+    "emne_ids": [
+      "em_kunst_institusjoner_kanon"
+    ],
+    "topic_hook_ids": [
+      "arkiv_og_minne",
+      "autonomi_vs_avhengighet",
+      "distribusjonsinfrastruktur",
+      "epokefortellinger"
+    ],
+    "method_ids": [
+      "met_kunst_kanon_og_arkivanalyse",
+      "met_kunst_institusjonsanalyse",
+      "met_kunst_kunsthistorisk_kontekstualisering",
+      "met_kunst_kuratorisk_analyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": true,
+      "justification": "Artist house and contract, architectural processes, sculpture models and collections."
+    },
+    "held_back_candidates": [
+      "Mistaking museum for entire Frognerpark landscape.",
+      "Claiming the building was entirely completed in 1923.",
+      "Confusing floors between English and Norwegian conventions.",
+      "Claiming assistants' work was not needed."
+    ]
   },
   "sets": [
     {
@@ -782,19 +838,19 @@
           "targetId": "vigelandmuseet",
           "placeId": "vigelandmuseet",
           "question_scope": "place",
-          "question": "Hva var en av smedenes oppgaver?",
+          "question": "Under arbeidet med de store leiremodellene: hva ga skulpturene innvendig støtte mens de ble formet?",
           "options": [
-            "Å programmere kinolyd",
-            "Å redigere tresnittene digitalt",
-            "Å tegne husets vindusglass",
+            "Å herde leiren i ovn før modellen var ferdig",
+            "Å støpe bronseverket før modelleringen begynte",
+            "Å bruke malte støttelinjer uten noen bærende konstruksjon",
             "Å lage jernskjelett inne i større skulpturer"
           ],
           "answer": "Å lage jernskjelett inne i større skulpturer",
           "answerIndex": 3,
           "knowledge": "Smeder og andre assistenter bygde jernarmaturer som støttet store leiremodeller.",
-          "explanation": "Smeder og andre assistenter bygde jernarmaturer som støttet store leiremodeller.",
+          "explanation": "De store leiremodellene trengte en bærende armatur mens kunstneren modellerte. Smedene laget innvendige jernskjeletter; det viser hvordan et skulpturverk er resultat av både formgivning og teknisk samarbeid.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "context",
           "emne_id": "em_kunst_institusjoner_kanon",
           "source": [
             "history"
@@ -817,7 +873,8 @@
           "primary_knowledge_unit_id": "ku_kunst_smeder_og_andre_assisten_0048ed976f",
           "knowledge_unit_ids": [
             "ku_kunst_smeder_og_andre_assisten_0048ed976f"
-          ]
+          ],
+          "topic": "Hva var en av smedenes oppgaver?"
         },
         {
           "id": "vigelandmuseet_reviewed_17",
@@ -838,7 +895,7 @@
           "knowledge": "Museets gipsmodeller er kilder til arbeidsprosessen bak flere skulpturer i parken.",
           "explanation": "Museets gipsmodeller er kilder til arbeidsprosessen bak flere skulpturer i parken.",
           "difficulty": 3,
-          "question_type": "concept_theory",
+          "question_type": "analysis",
           "emne_id": "em_kunst_institusjoner_kanon",
           "source": [
             "museum"
@@ -861,6 +918,10 @@
           "primary_knowledge_unit_id": "ku_kunst_museets_gipsmodeller_er__f4c8e3b8aa",
           "knowledge_unit_ids": [
             "ku_kunst_museets_gipsmodeller_er__f4c8e3b8aa"
+          ],
+          "method_id": "met_kunst_kanon_og_arkivanalyse",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json"
           ]
         },
         {
@@ -880,7 +941,7 @@
           "answer": "Museet er atelierbygningen; parken er et eget skulpturlandskap",
           "answerIndex": 2,
           "knowledge": "Vigelandmuseet og Vigelandsparken er geografisk og funksjonelt forskjellige steder.",
-          "explanation": "Vigelandmuseet og Vigelandsparken er geografisk og funksjonelt forskjellige steder.",
+          "explanation": "En sammenligning av funksjonene viser forskjellen: Vigelandmuseet er kunstnerens tidligere atelier- og boligbygning, mens Vigelandsparken er et eget skulpturlandskap. Begge formidler Vigeland, men på ulike måter.",
           "difficulty": 3,
           "question_type": "concept_theory",
           "emne_id": "em_kunst_institusjoner_kanon",
@@ -907,6 +968,10 @@
           "primary_knowledge_unit_id": "ku_kunst_vigelandmuseet_og_vigela_0e196bb4b8",
           "knowledge_unit_ids": [
             "ku_kunst_vigelandmuseet_og_vigela_0e196bb4b8"
+          ],
+          "method_id": "met_kunst_komparativ_institusjonsanalyse",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json"
           ]
         },
         {
@@ -916,19 +981,19 @@
           "targetId": "vigelandmuseet",
           "placeId": "vigelandmuseet",
           "question_scope": "place",
-          "question": "Hva inneholder museet i tillegg til skulpturer?",
+          "question": "Hvis vi vil undersøke mer enn de ferdige skulpturene, hvilke av museets kilder gir innblikk i kunstnerens arbeid og etterlatte materiale?",
           "options": [
-            "Bare filmruller",
+            "Bare fotografier av parken, uten tegninger eller skriftlige kilder",
             "Tegninger, tresnitt, brev og annet arkivmateriale",
-            "Kun geologiske prøver",
-            "Bare skipsdeler"
+            "Kun publikumsstatistikk fra nyere utstillinger",
+            "Kun ferdige bronseverk, uten skisser eller korrespondanse"
           ],
           "answer": "Tegninger, tresnitt, brev og annet arkivmateriale",
           "answerIndex": 1,
           "knowledge": "Museet forvalter også et stort materiale av tegninger, tresnitt, brev og fotografier.",
-          "explanation": "Museet forvalter også et stort materiale av tegninger, tresnitt, brev og fotografier.",
+          "explanation": "Arkivanalyse bruker flere kildetyper for å undersøke kunstnerens praksis utover sluttresultatet. Tegninger, tresnitt, brev og fotografier kan belyse ulike deler av arbeidet og museets samling, men dokumenterer ikke nødvendigvis hele skapelsesprosessen.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "concept_theory",
           "emne_id": "em_kunst_institusjoner_kanon",
           "source": [
             "history",
@@ -953,6 +1018,11 @@
           "primary_knowledge_unit_id": "ku_kunst_museet_forvalter_ogsa_et_008a147983",
           "knowledge_unit_ids": [
             "ku_kunst_museet_forvalter_ogsa_et_008a147983"
+          ],
+          "topic": "Hva inneholder museet i tillegg til skulpturer?",
+          "method_id": "met_kunst_kanon_og_arkivanalyse",
+          "guidance_basis": [
+            "data/fag/kunst/methods_kunst_canonical_v4_5.json"
           ]
         },
         {
@@ -999,6 +1069,19 @@
           "primary_knowledge_unit_id": "ku_kunst_vigelands_tidligere_leil_3e7fc6ea91",
           "knowledge_unit_ids": [
             "ku_kunst_vigelands_tidligere_leil_3e7fc6ea91"
+          ],
+          "topic_hook_id": "arkiv_og_minne",
+          "thinker_id": "carol_duncan",
+          "thinker_name": "Carol Duncan",
+          "work": "Civilizing Rituals",
+          "theory_ref": {
+            "topic_hook_id": "arkiv_og_minne",
+            "thinker_id": "carol_duncan",
+            "work": "Civilizing Rituals",
+            "why_it_helps": "Duncans perspektiv på museers formidling og publikumsopplevelse belyser hvordan et bevart boliginteriør kan være del av formidlingen av kunstnerens liv."
+          },
+          "guidance_basis": [
+            "data/fag/kunst/fagkart_kunst_canonical_v4_5.json"
           ]
         },
         {

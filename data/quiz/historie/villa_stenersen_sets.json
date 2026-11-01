@@ -46,7 +46,8 @@
     ],
     "topic_hook_ids": [
       "his_spor_materialitet",
-      "his_bevaring_restaurering_autentisitet"
+      "his_bevaring_restaurering_autentisitet",
+      "his_kulturminneutvelgelse_verdi"
     ],
     "method_ids": [
       "met_sporlesning",
@@ -54,11 +55,13 @@
     ],
     "thinker_ids": [
       "carlo_ginzburg",
-      "alois_riegl"
+      "alois_riegl",
+      "laurajane_smith"
     ],
     "works": [
       "Clues, Myths, and the Historical Method",
-      "The Modern Cult of Monuments"
+      "The Modern Cult of Monuments",
+      "Uses of Heritage"
     ],
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
@@ -879,17 +882,17 @@
           "question_scope": "place",
           "question": "Hvordan fungerte villaen som statsministerbolig?",
           "options": [
-            "Som fast bolig for alle statsministre siden 1974",
-            "Som regjeringens eneste kontorbygg",
+            "En plan om statsministerbolig førte til at alle statsministre bodde der fast",
+            "Villaen fungerte i hovedsak som regjeringskontor etter 1974",
             "Den var tenkt til formålet, men ble bare brukt kortvarig",
-            "Som offisiell bolig frem til 2026"
+            "Donasjonen innebar at bygningen ble revet og erstattet av en residens"
           ],
           "answer": "Den var tenkt til formålet, men ble bare brukt kortvarig",
           "answerIndex": 2,
           "knowledge": "Villaen ble foreslått brukt som statsministerbolig, men huset fikk ikke varig funksjon som statsministerresidens.",
-          "explanation": "Villaen ble foreslått brukt som statsministerbolig, men huset fikk ikke varig funksjon som statsministerresidens.",
+          "explanation": "Institusjonshistorisk analyse skiller planlagt funksjon fra faktisk bruk. Villa Stenersen ble gitt med tanke på representasjon og statsministerbolig, men fikk aldri en varig funksjon som statsministerresidens.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "concept_theory",
           "emne_id": "em_his_samtid_ettertid_fortelling",
           "source": [
             "riksantikvaren"
@@ -912,7 +915,12 @@
           "primary_knowledge_unit_id": "ku_historie_villaen_ble_foreslatt_br_724d0cc51d",
           "knowledge_unit_ids": [
             "ku_historie_villaen_ble_foreslatt_br_724d0cc51d"
-          ]
+          ],
+          "method_id": "met_institusjonshistorisk_analyse",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ],
+          "unit_type": "fact"
         },
         {
           "id": "villa_stenersen_reviewed_18",
@@ -921,19 +929,19 @@
           "targetId": "villa_stenersen",
           "placeId": "villa_stenersen",
           "question_scope": "place",
-          "question": "Hvilke deler omfattes av fredningen av Villa Stenersen?",
+          "question": "Når Villa Stenersen undersøkes som et modernistisk helhetsverk, hvilke bevarte deler må ses i sammenheng?",
           "options": [
-            "Bare gatefasaden",
-            "Bare takterrassen",
-            "Bare de gamle kunstverkene",
+            "Kun gatefasaden, siden interiøret ikke inngår i helhetsinntrykket",
+            "Bare selve samlingen, uten bygning og uteområder",
+            "Bare takterrassen og enkelte enkeltrom",
             "Eksteriøret, interiøret og hagen"
           ],
           "answer": "Eksteriøret, interiøret og hagen",
           "answerIndex": 3,
           "knowledge": "Fredningsvedtaket fra Riksantikvaren omfatter både bygningens ytre, indre og hagen.",
-          "explanation": "Fredningsvedtaket fra Riksantikvaren omfatter både bygningens ytre, indre og hagen.",
+          "explanation": "Sporlesning undersøker bygningen og landskapet som sammenhengende materielle kilder. Fredningen gjelder både fasaden, innvendige rom og hagen, fordi modernismens helhet også viser seg i overgangene mellom inne og ute. Bare en fasade ville ikke dokumentere hele kulturminnet.",
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "concept_theory",
           "emne_id": "em_his_kulturminner_bevaring",
           "source": [
             "riksantikvaren"
@@ -956,6 +964,11 @@
           "primary_knowledge_unit_id": "ku_historie_fredningsvedtaket_fra_ri_4191284f6c",
           "knowledge_unit_ids": [
             "ku_historie_fredningsvedtaket_fra_ri_4191284f6c"
+          ],
+          "topic": "Hvilke deler omfattes av fredningen av Villa Stenersen?",
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
           ]
         },
         {
@@ -998,17 +1011,18 @@
           ],
           "knowledge_link_status": "linked",
           "method_id": "met_restaurerings_autentisitetsanalyse",
-          "topic_hook_id": "his_bevaring_restaurering_autentisitet",
+          "topic_hook_id": "his_kulturminneutvelgelse_verdi",
           "thinker_id": "alois_riegl",
           "work": "The Modern Cult of Monuments",
           "theory_ref": {
-            "topic_hook_id": "his_bevaring_restaurering_autentisitet",
+            "topic_hook_id": "his_kulturminneutvelgelse_verdi",
             "thinker_id": "alois_riegl",
             "work": "The Modern Cult of Monuments",
-            "why_it_helps": "Korsmos faste interiør viser at kulturminneverdien omfatter materialer og opprinnelig bruk, ikke bare fasaden."
+            "why_it_helps": "Riegls verdiperspektiv gjør det mulig å undersøke hvorfor villaens originale inventar inngår i fredningsverdien sammen med arkitektur og bruk. Det historiske belegget er den dokumenterte bevaringen av interiøret, ikke teorien alene."
           },
           "guidance_basis": [
-            "data/fag/historie/methods_historie_canonical_v4_5.json"
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
           ],
           "primary_knowledge_unit_id": "ku_historie_korsmos_interi_r_og_fast_83514a9b85",
           "knowledge_unit_ids": [
@@ -1103,22 +1117,24 @@
           ],
           "knowledge_link_status": "linked",
           "method_id": "met_sporlesning",
-          "topic_hook_id": "his_spor_materialitet",
-          "thinker_id": "carlo_ginzburg",
-          "work": "Clues, Myths, and the Historical Method",
+          "topic_hook_id": "his_kulturminneutvelgelse_verdi",
+          "thinker_id": "laurajane_smith",
+          "work": "Uses of Heritage",
           "theory_ref": {
-            "topic_hook_id": "his_spor_materialitet",
-            "thinker_id": "carlo_ginzburg",
-            "work": "Clues, Myths, and the Historical Method",
-            "why_it_helps": "Husets bevarte spor må tolkes sammen med dokumentasjon om bestilling, bruk og fredning."
+            "topic_hook_id": "his_kulturminneutvelgelse_verdi",
+            "thinker_id": "laurajane_smith",
+            "work": "Uses of Heritage",
+            "why_it_helps": "Smiths perspektiv på kulturarv som utvelgelse og offentlig bruk gir en faglig ramme for å analysere overgangen fra privat kunstsamlerhjem til vernet kulturminne. Kildene dokumenterer villaens fredning og bruk; teorien er en tolkningsramme."
           },
           "guidance_basis": [
-            "data/fag/historie/methods_historie_canonical_v4_5.json"
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
           ],
           "primary_knowledge_unit_id": "ku_historie_villa_stenersen_viser_sa_0e12317b3c",
           "knowledge_unit_ids": [
             "ku_historie_villa_stenersen_viser_sa_0e12317b3c"
-          ]
+          ],
+          "thinker_name": "Laurajane Smith"
         }
       ]
     }
