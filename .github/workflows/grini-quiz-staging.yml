@@ -27,6 +27,11 @@ on:
       - 'js/quiz/answer-shuffle.js'
       - 'scripts/audit-quiz-content-quality.mjs'
       - '.github/workflows/grini-quiz-staging.yml'
+      - 'data/stories/stories_grini_fangeleir.json'
+      - 'data/leksikon/places/akershus/historie/leksikon_grini_fangeleir.json'
+      - 'data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json'
+      - 'bilder/places/grini_fangeleir*.jpg'
+      - 'scripts/verify-grini-place-browser.mjs'
   workflow_dispatch:
 
 permissions:
@@ -37,6 +42,34 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  actual-browser:
+    name: Grini actual app desktop and mobile
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Locate installed Chrome
+        run: echo "CHROME_BIN=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Verify PlaceCard, portraits, QuizCard and Fagverk
+        run: node scripts/verify-grini-place-browser.mjs
+      - name: Play all 70 questions on desktop and mobile
+        run: node scripts/verify-place-quiz-browser.mjs grini_fangeleir
+      - name: Retain actual browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grini-actual-app-desktop-mobile
+          path: |
+            artifacts/grini-place/
+            artifacts/place-quiz/grini_fangeleir/
+          if-no-files-found: error
+          retention-days: 14
+
   non-publishing-preflight:
     name: Validate Grini 10x7 staging (never activate)
     runs-on: ubuntu-latest
