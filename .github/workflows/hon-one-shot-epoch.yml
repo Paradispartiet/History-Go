@@ -1,0 +1,30 @@
+name: House of Nerds one-shot epoch materialization
+on:
+  push:
+    branches: [place/house-of-nerds-chronology-20261101]
+    paths: [.github/workflows/hon-one-shot-epoch.yml]
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.ref == 'refs/heads/place/house-of-nerds-chronology-20261101'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/build-epoke-place-index.mjs
+      - name: Commit only generated epoch-place index
+        shell: bash
+        run: |
+          set -eu
+          git add -- data/epoker/epoke-place-index.json
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Materialize House of Nerds source-backed Vulkan chronology"
+            git push origin HEAD:place/house-of-nerds-chronology-20261101
+          fi
