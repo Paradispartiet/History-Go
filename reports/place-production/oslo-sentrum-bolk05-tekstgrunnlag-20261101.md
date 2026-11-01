@@ -17,15 +17,32 @@
 
 Denne oversikten beskriver bare kontrollerte felter og manifestkoblinger, **ikke** full kilde-, bilde-, People- eller v4.2-preflight. Folketeaterets eksisterende quizfil skal ikke erstattes uten systematisk audit. Kulturkirken Jakobs eldre litteraturfil er bevisst avregistrert i tidligere PR-er (#5994–#5997): ikke gjenopprett den eller flytt primærkategori.
 
+## Kildeaudit 1. november 2026 – presise avgjørelser
+
+| Sted | Primær-/institusjonskilder sjekket | Redaksjonell avgjørelse |
+|---|---|---|
+| Folketeateret | Oslo byleksikon: [Folketeatret](https://oslobyleksikon.no/side/Folketeatret), [Folketeaterbygningen](https://oslobyleksikon.no/side/Folketeaterbygningen), [Folketeaterpassasjen](https://oslobyleksikon.no/side/Folketeaterpassasjen) | Verdensteatret 1935, Folketeatret 1952, Den Norske Opera 1959–2007, nytt operahus 2008; passasjens nåværende/historiske navn skilt |
+| Kunstnernes Hus | Institusjonens [Vår historie](https://kunstnerneshus.no/om/historie) | 1928 konkurranse, 1930 åpning, Ørnulf Bast-løver 1931, Per Krohgs takmaleri 1932, Guernica i Oslo 1938 og okkupasjon 1942 bekreftet; ingen påstand om at Guernica fortsatt befinner seg der |
+| Historisk museum | Universitetets [Historien til museumsbygget](https://www.historiskmuseum.no/om-museet/om-bygningane/index.html) | Karl August Henriksen vant opprinnelig konkurranse, Henrik Bull overtok etter hans død; bygget sto ferdig 1902, åpnet 1904; eksisterende canonical samlingshistorie skal beholdes |
+| IBSEN Museum & Teater | Museets [Fra dramatikerhjem til museum](https://ibsenmt.no/fra-dramatikerhjem-til-museum), [Oslo byleksikon](https://oslobyleksikon.no/side/Ibsenmuseet), [SNL](https://snl.no/Ibsen_Museum_%26_Teater) | 1994 var første åpning med arbeidsværelset; fullere rekonstruksjon 2006, teatersal/navn 2022, full museumsleilighet 1. juli 2023. Historisk Arbins gate 1 er ikke dagens publikumsadresse |
+| Blitzhuset | Oslo byleksikon: [Blitz](https://oslobyleksikon.no/side/Blitz) og [Pilestredet](https://oslobyleksikon.no/side/Pilestredet); [SNL](https://snl.no/Blitz) | Bruk 1981–82/1982, bystyrets 2000-vedtak, rehabilitering 2000-tallet, kaféåpning 2009. **30c** i Blitz-artikkelen og **30e (tidligere c)** i gateartikkelen – behold canonical 30C inntil nyere autoritativ adressereferanse er kontrollert |
+| Kulturkirken Jakob | Stedets egen [Historie](https://www.jakob.no/om-jakob/historie), [Oslo byleksikon](https://oslobyleksikon.no/side/Jakob_kirke) | Kirke fra 1880, menighetsfunksjon opphørte 1985, kulturkirke åpnet 18. februar 2000, Ingrid Bjerkås' plass fikk navn i 2011. Behold canonical musikkprofil og allerede kuratert Fagverk |
+
+**Kildestatus:** Historiske hovedlinjer over er dokumentert. Dette er en faktakontroll av **seks tekstutkast**, ikke en full kontroll av enhver setning i allerede publiserte canonical steder eller en uavhengig ekspertgodkjenning av alle påstander. Museets egen Ibsen-side har indeksert innhold, men kan blokkere direkte gjenåpning; kryssjekket med SNL og Oslo byleksikon. Blitz' nyere adressebruk er foreløpig ikke avklart med offisielt adressedatasett.
+
+**Kvalitetsbeslutning:** De historiske presiseringene er tatt inn i utkastene nedenfor. Stage A er forbedret, men **ingen Place-tekst eller prod-status flyttes til appen** før en eksplisitt differansegjennomgang av canonical fagtekst, kildeparitet og tilhørende runtime/quizkontekst. Bilder og quiz kommer etter godkjent tekst.
+
+---
+
 ## Canonical preservation / redaksjonelle differanser (kontrollert mot main 1.11.2026)
 
 Disse tekstene skal **ikke** ukritisk erstatte eksisterende `desc` og `popupDesc`. Etter full gjennomlesing av dagens canonical tekst er den konkrete differansebeslutningen:
 
-- **Folketeateret:** eksisterende korttekst (~136 tegn) og popup (~619 tegn) er tynne; nytt utkast er en reell utvidelseskandidat. Kontroller om publikums-passasjen best benevnes **Folketeaterpassasjen** eller **Operapassasjen** – kildene/eksisterende tekst bruker ulike betegnelser – før endelig ordvalg.
+- **Folketeateret:** eksisterende korttekst (~136 tegn) og popup (~619 tegn) er tynne; nytt utkast er en reell utvidelseskandidat. Oslo byleksikon bekrefter **Folketeaterpassasjen**, tidligere også Operapassasjen. Skill Den Norske Operas siste forestilling i 2007 fra åpningen av nytt operahus i Bjørvika i 2008.
 - **Kunstnernes Hus:** eksisterende korttekst og popup er relativt korte (~186/~762 tegn). Nytt utkast tilfører kunsthistorisk og arkitektonisk dybde, men skal beholde riktig eksisterende status som kunstnerstyrt institusjon.
 - **Historisk museum:** eksisterende popup er allerede **~2349 tegn** og omhandler arkeologiske, etnografiske og numismatiske samlinger, forskning og representasjon. Vårt utkast er kun en **alternativ kilde- og formidlingsvinkel**, ikke en full erstatning. Bevar samlings-/etikkdybden og korrekt ankermarkør Frederiks gate 2.
 - **IBSEN Museum & Teater:** eksisterende popup er allerede **~2226 tegn** og skiller eksplisitt publikumsinngang i Henrik Ibsens gate 26 fra den historiske leiligheten Arbins gate 1. Vårt utkast er et supplement; **ikke forenkle bort museets rekonstruksjon, addresseskille, Suzannah eller scenefunksjonen**.
-- **Blitzhuset:** kort eksisterende popup (~624 tegn) kan utvides, men kontroller om dagens offisielle husnummer er **30C eller 30E** før endring i adresse eller bildetekst. Behold eksisterende trygg besøksmarkør inntil bekreftet.
+- **Blitzhuset:** kort eksisterende popup (~624 tegn) kan utvides. Canonical Place har adresse **Pilestredet 30C**. Oslo byleksikons egen Blitz-artikkel bruker 30c, mens gateartikkelen bruker **30e (tidligere c)**. Dette er en dokumentert adressenummereringsforskjell, **ikke belegg for å flytte kartpunkt eller overskrive brukernes besøksanker**. Behold canonical adresse og koordinat inntil nåværende offisiell adresse er verifisert.
 - **Kulturkirken Jakob:** dagens tekst er detaljert og kildebåret, med sceneoppsett, lydteknikk, altertavle og eksisterende Fagverk. **Ingen omskriving til kortere tekst**. Utkastet nedenfor fungerer kun som mulig fortellervinkel; fullfør manglende stående bilder og quiz uten å fjerne tekniske/musikkfaglige detaljer, endre kategori eller gjenopprette den gamle litteraturquizfilen.
 
 Første versjon av denne rapporten oppsummerte noen av de eksisterende popupene som generelt «historisk tekst». Den presise sammenligningen over erstatter den foreløpige beskrivelsen. Disse seks tekstutkastene er **for revisjon, ikke produksjonsaktivert**.
@@ -42,9 +59,9 @@ Folketeateret ligger inne i Folketeaterbygningen mellom Storgata og Youngstorget
 
 Planen om et folketeater hadde røtter i ønsket om å gjøre scenekunst tilgjengelig for flere. Men økonomiske og politiske konflikter gjorde at teaterdriften ikke kom i gang da bygningen sto ferdig. Salen åpnet i stedet som kinoen Verdensteatret i 1935. Først i 1952 kunne Folketeatret åpne som egen teaterscene. Den historien minner oss om at et kulturbygg kan være ferdig lenge før den opprinnelige planen blir virkelighet.
 
-Fra 1959 ble scenen hjem for Den Norske Opera, som holdt til her frem til flyttingen til Bjørvika i 2008. Etter ombygging ble lokalene gjenåpnet som musikalscene i 2009. Slik kan ett og samme rom fortelle om endringer i publikums ønsker, økonomi, teaterformer og hvordan byen bruker sine kulturhus.
+Fra 1959 ble scenen hjem for Den Norske Opera. Den siste forestillingen der var i desember 2007; det nye operahuset i Bjørvika åpnet i 2008. Slik skilles siste drift på Folketeateret fra innflyttingen til en ny operabygning. Etter ombygging ble lokalene gjenåpnet som musikalscene i 2009. Slik kan ett og samme rom fortelle om endringer i publikums ønsker, økonomi, teaterformer og hvordan byen bruker sine kulturhus.
 
-Ser du mot Youngstorget, møter du Folketeaterbygningens politiske historie; går du inn i passasjen, møter du teaterets egen historie. Bygningen, institusjonene og forestillingene må ikke blandes sammen, selv om de deler adresse.
+Ser du mot Youngstorget, møter du Folketeaterbygningens politiske historie; går du inn i Folketeaterpassasjen (tidligere også kalt Operapassasjen), møter du teaterets egen historie. Bygningen, institusjonene og forestillingene må ikke blandes sammen, selv om de deler adresse.
 
 ### Dokumenterte kilder og kontrollpåstander
 - Oslo byleksikon, [Folketeatret](https://oslobyleksikon.no/side/Folketeatret): kino i 1935, teater fra 1952, opera, musikalscene og lokalisering.
@@ -112,13 +129,13 @@ I hjørnegården ved Arbins gate bodde Henrik Ibsen de siste elleve årene av si
 
 Ibsens arbeidsværelse står sentralt i museets fortelling. Her arbeidet han med sene skuespill, blant annet «John Gabriel Borkman» og «Når vi døde vågner». At et arbeidsrom kan bevares, er ikke det samme som at vi kan lese alle forfatterens tanker ut av møblene. Rommet gir materielle spor av arbeidslivet hans, mens tekstene og andre samtidige kilder må brukes for å forstå dramatikken.
 
-Museet ble bygget opp gjennom et langvarig arbeid for å ta vare på leiligheten og inventaret. Norsk Folkemuseum overtok ansvaret, og publikum fikk tilgang til en tilbakeført leilighet i 1994. Senere restaureringer og ombygginger har endret museets formidling. Etter et nytt ombyggingsarbeid ble stedet gjenåpnet som IBSEN Museum & Teater i 2022.
+Museet ble bygget opp gjennom et langvarig arbeid for å ta vare på leiligheten og inventaret. Norsk Folkemuseum overtok driften i 1993, og museet åpnet for publikum i 1994, den gang med arbeidsværelset som det viktigste tilbakeførte rommet. Leiligheten ble rekonstruert mer omfattende frem mot Ibsenåret i 2006. Den nye teatersalen åpnet i 2022, da institusjonen tok navnet IBSEN Museum & Teater. Den fullverdige leilighetsvisningen åpnet igjen 1. juli 2023.
 
 Bygningens adressehistorie kan være forvirrende: den historiske leiligheten er Arbins gate 1, mens dagens museumsadresse oppgis som Henrik Ibsens gate 26. Det er ikke to ulike Ibsen-hjem. Ved å gå mellom huset, fortauet og nærområdet kan en undersøke hvordan en forfatters liv blir gjort til kulturarv i byen.
 
 ### Dokumenterte kilder og kontrollpåstander
 - Oslo byleksikon, [Ibsenmuseet](https://oslobyleksikon.no/side/Ibsen-museet): adressene, Ibsen og Suzannah, museumshistorie, åpning og ombygging.
-- Norsk Folkemuseum, [IBSEN Museum & Teater](https://stillinger.norskfolkemuseum.no/locations/ibsen-museum-teater): museumsansvar, hjemmet og ombruk.
+- IBSEN Museum & Teater, [Fra dramatikerhjem til museum](https://ibsenmt.no/fra-dramatikerhjem-til-museum): 1990/1993/1994, rekonstruksjonen i 2006, åpning av teatersal i 2022 og museets leilighet i 2023.
 - **Redaksjonell grense:** museet er ikke identisk med Henrik Ibsen som personprofil; eksisterende People-anker skal bevares.
 
 ### Fagverk og quizretning
