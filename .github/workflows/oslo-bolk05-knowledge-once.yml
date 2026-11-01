@@ -47,6 +47,9 @@ jobs:
           git add data/knowledge/concepts.generated.json
           git add reports/knowledge-id-backfill.json
           git add reports/knowledge-contract-audit.json
-          git diff --cached --quiet && exit 0
+          git rm -- .github/workflows/oslo-bolk05-knowledge-once.yml
+          git diff --cached --check
           git commit -m "Oslo bolk 05: link Folketeateret 3x7 Knowledge and ten QuizCards"
+          git fetch origin "${BRANCH_NAME}"
+          git rebase FETCH_HEAD
           git push origin "HEAD:${BRANCH_NAME}"
