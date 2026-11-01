@@ -46,7 +46,7 @@ const flora=manifest.groups.flora.flatMap(file=>JSON.parse(read(file)))
 const illustrated=flora.filter(entry=>artist.has(entry.id));
 assert.equal(illustrated.length,165,"gallery should show 165 originally illustrated flora taxa");
 assert.equal(new Set(illustrated.map(x=>x.id)).size,165,"duplicate taxa in review");
-assert.equal(photos.count,56,"review reference registry count has changed");
+assert.equal(photos.count,57,"review reference registry count has changed");
 const photographed=illustrated.filter(x=>photos.get(x.id));
 assert(photographed.length>=35,"too few artsphoto comparisons");
 for(const entry of photographed){
