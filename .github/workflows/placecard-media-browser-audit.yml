@@ -57,6 +57,8 @@ jobs:
         run: npm ci
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Verify background reinitialization preserves an open PlaceCard
+        run: node --test tests/bottom-sheet-controller-reinit.test.mjs
       - name: Audit compact PlaceCard at mobile and desktop widths
         run: node tests/placecard-media-hero-responsive-browser.test.mjs
       - name: Audit Black Box productions across mobile, tablet and desktop
