@@ -99,6 +99,7 @@ try {
   for (const profile of profiles) {
     const context = await browser.newContext({
       viewport: profile.viewport,
+      locale: "nb-NO",
       isMobile: profile.isMobile || false,
       hasTouch: profile.hasTouch || false,
     });
@@ -220,6 +221,8 @@ try {
       });
 
       const popupRoot = page.locator('.hg-popup.placecard-round-popup.visible');
+      await page.waitForFunction(()=>[...document.querySelectorAll('.hg-popup.placecard-round-popup.visible img')].every(img=>img.complete&&img.naturalWidth>0),null,{timeout:30000});
+      await page.screenshot({path:path.join(outDir,profile.name+'-collection-'+expected.id+'.png')});
       await popupRoot.locator('[data-close-popup]').click();
       await popupRoot.waitFor({ state: 'detached', timeout: 10_000 });
     }
@@ -230,28 +233,30 @@ try {
     assert.equal(await page.evaluate(id=>window.HGFavoritePlaces.has(id),placeId),false);
     assert.equal(await page.locator('#pcVisit').isVisible(),true);
     await page.evaluate(id=>window.showPlacePopup(window.PLACES.find(p=>p.id===id)),placeId);
-    const knowledgePopup=page.locator('.hg-popup.place-popup-v2').last();
-    await knowledgePopup.waitFor({state:'visible',timeout:30000});
-    await page.waitForFunction(()=>document.querySelector('.hg-popup.place-popup-v2 [data-place-tab="reading"]'),null,{timeout:30000});
+    const sheet=page.locator('#placeCard [data-hg-place-sheet-shell]');
+    await sheet.waitFor({state:'visible',timeout:30000});
     const tabChecks=[];
-    for(const id of ['about','history','stories','before-after','news','reading','sources','language']) {
-      await knowledgePopup.locator('[data-place-tab="'+id+'"]').click();
-      const panel=knowledgePopup.locator('[data-place-panel="'+id+'"]');
+    for(const id of ['about','history','stories','news','reading','sources','language','learning']) {
+      const jump=sheet.locator('[data-hg-place-sheet-jump="'+id+'"]');
+      await jump.waitFor({state:'visible',timeout:30000});
+      await jump.click();
+      const panel=sheet.locator('[data-hg-place-sheet-section="'+id+'"]').first();
       await panel.waitFor({state:'visible',timeout:15000});
-      if(id==='history') await page.waitForFunction(()=>/1941|1942/.test(document.querySelector('.hg-popup [data-place-panel="history"]')?.textContent||''),null,{timeout:15000});
-      if(id==='stories') await page.waitForFunction(()=>/Beskjeden om frihet/.test(document.querySelector('.hg-popup [data-place-panel="stories"]')?.textContent||''),null,{timeout:15000});
-      if(id==='news') await page.waitForFunction(()=>/kommandanturet/i.test(document.querySelector('.hg-popup [data-place-panel="news"]')?.textContent||''),null,{timeout:15000});
-      if(id==='reading') {await panel.locator('a[href*="digitalarkivet.no/view/"]').first().waitFor();assert.equal(await panel.locator('a[href*="digitalarkivet.no/view/"]').count(),2);}
+      if(id==='history') assert.match(await panel.innerText(),/1941|1942/);
+      if(id==='stories') assert.match(await panel.innerText(),/Beskjeden om frihet/);
+      if(id==='news') assert.match(await panel.innerText(),/kommandanturet/i);
+      if(id==='reading') assert.equal(await panel.locator('a[href*="digitalarkivet.no/view/"]').count(),2);
       if(id==='sources') assert.ok(await panel.locator('a[href^="https:"]').count()>=5);
       if(id==='language') {
         await panel.locator('[data-language-collect]').first().click();
         assert.ok(await page.evaluate(()=>JSON.parse(localStorage.getItem('hg_knowledge_entries_v2')||'[]').some(x=>x.source?.type==='language_lexicon')));
       }
       tabChecks.push({id,textLength:(await panel.innerText()).length});
+      await page.screenshot({path:path.join(outDir,profile.name+'-section-'+id+'.png')});
     }
+    assert.equal(await sheet.locator('[data-hg-place-sheet-jump="before-after"]').isHidden(),true,'No invented before/after pair may be shown');
     fs.writeFileSync(path.join(outDir,profile.name+'-tabs.json'),JSON.stringify(tabChecks,null,2));
-    await knowledgePopup.locator('[data-close-popup]').first().click();
-    await knowledgePopup.waitFor({state:'detached',timeout:15000});
+    await sheet.locator('[data-hg-place-sheet-jump="about"]').click();
     const beforeFlipText = await page.locator('#pcQuizCardContent').textContent();
     await page.locator('#pcFrontCardFlip').click();
     await page.waitForFunction(
