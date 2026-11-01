@@ -178,5 +178,10 @@ if(MODE==='write'){
     status:'production_files_created_knowledge_and_browser_check_pending',
     fullQuizTotal:105,quizCardTotal:50,places:audit});
 }
+if(MODE==='sync-cards'){
+  const report=read(reportPath);
+  report.status='knowledge_linked_browser_review_pending';
+  write(reportPath,report);
+}
 for(const [p,c] of edits){fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,c);}
 console.log('OSLO_BOLK05_QUIZ',MODE,config.length,'places',105,'fullquiz',50,'QuizCards');
