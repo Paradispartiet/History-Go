@@ -3,7 +3,7 @@
   "validatorVersion": "4.2.1",
   "placeId": "kunstnernes_hus",
   "placeFile": "data/places/kunst/oslo/places_kunst/kunstnernes_hus.json",
-  "status": "needs_research",
+  "status": "ready_v4_2",
   "identity": {
     "status": "resolved",
     "represents": "Kunstnernes Hus, kunstnerstyrt utstillingsinstitusjon i Wergelandsveien 17.",
@@ -200,21 +200,115 @@
   },
   "reviews": {
     "factual": {
-      "status": "needs_review",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
-      "reviewer": "Oslo bolk 05 source-audit staging",
-      "notes": "Setningsdekning omfordelt etter konkrete kildepåstander for hver beskrivelsessetning. Hovedlinjene er kildestøttet; uavhengig faktagjennomgang og endelig v1-signering gjenstår."
+      "reviewer": "Kunstnernes Hus source verification",
+      "notes": "Primærkilden Kunstnernes Hus: Vår historie kontrollert på arkitektkonkurransen 1928, innvielsen 1930, løver 1931, takmaleriet 1932, Guernica 1938, beslagleggelsen i 1942 og gjenåpningen etter krigen. Fem kildepåstander dekker eksisterende desc og popupDesc."
     },
     "editorial": {
-      "status": "needs_review",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
-      "reviewer": "Oslo bolk 05 editorial staging",
+      "reviewer": "Oslo bolk 05 editorial review",
       "introducedNewFacts": false,
-      "notes": "Stedstekst aktiv i PR; ikke v1-signert."
+      "notes": "Stedstekst og 21 eksisterende flervalg kontrollert for identitet, lesbarhet og mangfold. Ingen nye fakta eller stedsidentiteter innført gjennom reviews. Den separate nettleserporten er ikke godkjent av denne reviewen."
     }
   },
   "quizReadiness": {
-    "status": "awaiting_fullquiz_review",
-    "questions": []
+    "status": "reviewed_source_linked_browser_pending",
+    "questions": [
+      {
+        "question": "Hvilken institusjon står Kunstnernes Hus særlig knyttet til ved åpningen?",
+        "answer": "Høstutstillingen",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_kunstnernes_hus_source_1"
+        ]
+      },
+      {
+        "question": "Hvilke arkitekter er knyttet til bygget?",
+        "answer": "Gudolf Blakstad og Herman Munthe-Kaas",
+        "type": "hvem",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_kunstnernes_hus_source_2"
+        ]
+      },
+      {
+        "question": "Hva møter du ved inngangen til Kunstnernes Hus?",
+        "answer": "To bronsefigurer av løver",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_kunstnernes_hus_source_3"
+        ]
+      },
+      {
+        "question": "Hvem skapte løvene ved inngangen?",
+        "answer": "Ørnulf Bast",
+        "type": "hvem",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_kunstnernes_hus_source_3"
+        ]
+      },
+      {
+        "question": "Hvor finner du Per Krohgs takmaleri i bygget?",
+        "answer": "I trappehallen",
+        "type": "hvor",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_kunstnernes_hus_source_3"
+        ]
+      },
+      {
+        "question": "Hvilket berømt verk ble vist ved Kunstnernes Hus på 1930-tallet?",
+        "answer": "Guernica",
+        "type": "hvilket_verk_eller_objekt",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_kunstnernes_hus_source_4"
+        ]
+      },
+      {
+        "question": "Hva skjedde med bygningen under den tyske okkupasjonen?",
+        "answer": "Den ble beslaglagt av Wehrmacht",
+        "type": "hva_skjedde",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_kunstnernes_hus_source_5"
+        ]
+      },
+      {
+        "question": "Hva viser beslagleggelsen om kunstinstitusjonens historie?",
+        "answer": "Kunstinstitusjoner påvirkes også av politisk makt",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_kunstnernes_hus_source_5"
+        ]
+      },
+      {
+        "question": "Hva er en presis måte å undersøke historien om Guernica-visningen?",
+        "answer": "Se utstillingsprogrammer og arkivkilder fra den historiske visningen",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_kunstnernes_hus_source_4"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completedUnder": "4.2",
+    "currentStatus": "current",
+    "sourceVerifiedAt": "2026-11-01",
+    "claimsVerified": {
+      "verified": 5,
+      "total": 5
+    },
+    "factualReview": "passed",
+    "editorialReview": "passed",
+    "validatorVersion": "4.2.1"
   }
 }
