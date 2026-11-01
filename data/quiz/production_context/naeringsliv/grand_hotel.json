@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/naeringsliv/grand_hotel.json",
-      "bytes": 28657,
-      "sha256": "5bfa9dc22e0eeb3bd6f2e7c6a08f0c4aca685347b317d9dd4b1d21f7c254ffe7"
+      "bytes": 29389,
+      "sha256": "377cf4136061e8fba6220ebddbd95d91e1155be7daca33a917fa6fc8a2c7d736"
     },
     "target": {
       "path": "data/places/naeringsliv/oslo/grand_hotel.json",
@@ -284,12 +284,16 @@
       "em_naering_tjenesteyting_og_service"
     ],
     "topic_hook_ids": [
-      "tjenester_og_servicearbeid"
+      "tjenester_og_servicearbeid",
+      "handel_som_bystruktur"
     ],
     "method_ids": [
-      "met_naering_byhistorisk_naeringsanalyse"
+      "met_naering_byhistorisk_naeringsanalyse",
+      "met_naering_romlig_okonomisk_analyse"
     ],
-    "thinker_ids": [],
+    "thinker_ids": [
+      "georg_simmel"
+    ],
     "works": []
   },
   "claim_bank": [
@@ -451,7 +455,7 @@
       "claim_id": "claim_grand_hotel_quiz_13",
       "order": 13,
       "planned_phase": "bridge",
-      "family": "concept_theory",
+      "family": "context",
       "statement": "Per Krohg malte et miljø fra en tidligere tid. Fremstillingen samler historiske personer og kan ikke leses som et samtidig fotografi.",
       "source_ids": [
         "hotel",
@@ -488,7 +492,7 @@
       "claim_id": "claim_grand_hotel_quiz_16",
       "order": 16,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Under fredsprisfeiringen har fredsprisvinnere hilst fakkeltoget fra balkongen mot Karl Johans gate.",
       "source_ids": [
         "byleksikon"
@@ -500,7 +504,7 @@
       "claim_id": "claim_grand_hotel_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Oslo byleksikon omtaler hotellets autografalbum med navn fra berømte gjester, blant dem fredsprisvinnere.",
       "source_ids": [
         "byleksikon"
@@ -532,7 +536,8 @@
         "heritage"
       ],
       "source_origin": "external",
-      "emne_id": "em_naering_handel_butikk_byrom"
+      "emne_id": "em_naering_handel_butikk_byrom",
+      "method_id": "met_naering_romlig_okonomisk_analyse"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_20",
@@ -558,7 +563,9 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_naering_tjenesteyting_og_service"
+      "emne_id": "em_naering_handel_butikk_byrom",
+      "topic_hook_id": "handel_som_bystruktur",
+      "thinker_id": "georg_simmel"
     }
   ],
   "story_units": [
@@ -622,14 +629,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 14,
-      "context": 4,
-      "concept_theory": 3
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
     },
     "ratios": {
-      "fact": 0.667,
-      "context": 0.19,
-      "concept_theory": 0.143
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
     }
   }
 }

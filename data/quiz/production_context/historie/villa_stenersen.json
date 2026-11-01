@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/historie/villa_stenersen.json",
-      "bytes": 29799,
-      "sha256": "001e6217f13d59a043ab790f57513fbac9aa92f6f17a297f7d59c9a85c207607"
+      "bytes": 31046,
+      "sha256": "27a5dd68601be087b4dbcf2f3dd84f2e49874153cf123ed67cd9b3485d26e7ab"
     },
     "target": {
       "path": "data/places/historie/oslo/places_historie_added_batch_01/villa_stenersen.json",
@@ -222,17 +222,24 @@
       "em_his_samtid_ettertid_fortelling"
     ],
     "topic_hook_ids": [
-      "his_kulturminneutvelgelse_verdi",
-      "his_samtid_ettertid_fortelling",
       "his_spor_materialitet",
-      "his_tidslag_samtidighet"
+      "his_bevaring_restaurering_autentisitet",
+      "his_kulturminneutvelgelse_verdi"
     ],
     "method_ids": [
       "met_sporlesning",
       "met_restaurerings_autentisitetsanalyse"
     ],
-    "thinker_ids": [],
-    "works": []
+    "thinker_ids": [
+      "carlo_ginzburg",
+      "alois_riegl",
+      "laurajane_smith"
+    ],
+    "works": [
+      "Clues, Myths, and the Historical Method",
+      "The Modern Cult of Monuments",
+      "Uses of Heritage"
+    ]
   },
   "claim_bank": [
     {
@@ -438,25 +445,33 @@
       "claim_id": "claim_villa_stenersen_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Villaen ble foreslått brukt som statsministerbolig, men huset fikk ikke varig funksjon som statsministerresidens.",
       "source_ids": [
         "riksantikvaren"
       ],
       "source_origin": "external",
-      "emne_id": "em_his_samtid_ettertid_fortelling"
+      "emne_id": "em_his_samtid_ettertid_fortelling",
+      "method_id": "met_institusjonshistorisk_analyse",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_villa_stenersen_quiz_18",
       "order": 18,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Fredningsvedtaket fra Riksantikvaren omfatter både bygningens ytre, indre og hagen.",
       "source_ids": [
         "riksantikvaren"
       ],
       "source_origin": "external",
-      "emne_id": "em_his_kulturminner_bevaring"
+      "emne_id": "em_his_kulturminner_bevaring",
+      "method_id": "met_sporlesning",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_villa_stenersen_quiz_19",
@@ -551,14 +566,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 14,
+      "fact": 12,
       "context": 5,
-      "concept_theory": 2
+      "concept_theory": 4
     },
     "ratios": {
-      "fact": 0.667,
+      "fact": 0.571,
       "context": 0.238,
-      "concept_theory": 0.095
+      "concept_theory": 0.19
     }
   }
 }

@@ -55,7 +55,7 @@ try{
     assert.ok(placeText.length>120,id+' PlaceCard story missing');
     await page.waitForFunction(()=>document.querySelector('#pcQuizCardContent')?.querySelector('.pc-rendered-quiz-card')&&document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card'),null,{timeout:45000});
     const front=page.locator('#pcFrontCardFlip');
-    await front.click({position:{x:22,y:Math.max(24,(await front.boundingBox()).height-25)},timeout:12000});
+    await front[mobile?'tap':'click']({position:{x:22,y:Math.max(24,(await front.boundingBox()).height-25)},timeout:12000});
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:14000});
     await page.waitForTimeout(550);
     assert.equal(await page.locator('#pcQuizCardContent li').count(),10,id+' missing QuizCard questions');
@@ -65,6 +65,11 @@ try{
     assert.equal(await page.locator('#pcQuizExpandedContent li').count(),10,id+' expanded QuizCard missing');
     await page.locator('#pcQuizExpandedClose').click();
     await front.click({position:{x:22,y:Math.max(24,(await front.boundingBox()).height-25)},timeout:12000});
+    await front.focus();
+    await front.press('Enter');
+    await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'));
+    await front.press('Space');
+    await page.waitForFunction(()=>!document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'));
     await page.locator('#pcQuiz').click({timeout:18000});
     await page.waitForFunction(id=>location.hash.startsWith('#/quiz/'+id),id,{timeout:25000});
     await page.waitForFunction(()=>document.querySelector('#quizChoices button:not(:disabled)'),null,{timeout:30000});

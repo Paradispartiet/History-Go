@@ -68,19 +68,19 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/kunst/van_etten.json",
-      "bytes": 28196,
-      "sha256": "af0c66686bd2b17a63449d829215305f1660c9bd843480c36b7261538536167a"
+      "bytes": 31161,
+      "sha256": "f0f333e4a6cdf0c59d079f553bf0d00e44ccbe077569d825df2495302ae95366"
     },
     "target": {
       "path": "data/places/kunst/oslo/places_kunst/van_etten.json",
-      "bytes": 13188,
-      "sha256": "2c39faa9b627b75714463b627f775b9993d38a064f42b4030947a83543786e29"
+      "bytes": 14851,
+      "sha256": "b034147d9f517a4eb6d5b444caa42f3fb6023e5c037b678a96b204779d36b320"
     },
     "target_index": {
       "path": "data/places/places_index.json",
       "matches": 1,
-      "selection_bytes": 1131,
-      "selection_sha256": "23f426b805a71d9aed1a04bef7d12189db16c90762f2ecb679d23219a0e1d15a"
+      "selection_bytes": 1391,
+      "selection_sha256": "aa35aedb2d5201cd7b9c9ae6ac17ba7b91344b5d8ff601333b8b5afaf4828a6c"
     },
     "relations": [],
     "stories": []
@@ -91,53 +91,65 @@
       "url": "https://www.osloartguide.no/en/venues/van-etten",
       "source_type": "arts_directory",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Oslo Art Guide brukes for adresse, oppstart, kunstnerdrevet profil og program. Kilden dokumenterer institusjonen, men ikke at eldre gatefotografier viser galleriaktivitet."
     },
     "vartoslo": {
       "url": "https://www.vartoslo.no/bydel-gamle-oslo-enerhaugen-espen-kvalsvoll/oyvind-37-og-katja-36-satset-alt-pa-lokalet-pa-enerhaugen-sa-kom-sjokket-hva-er-det-vi-har-gjort/797419",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Samtidsintervju om grunnleggerne, ombygging av lokalet, pandemien og første utstilling. Brukes om oppstarten, ikke som dokumentasjon for virksomhetens senere status."
     },
     "subjekt": {
       "url": "https://subjekt.no/subjektprisen/disse-er-nominert-til-arets-visningsrom-2021/",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Juryomtalen fra 2021 brukes for nominasjonen, juryens vurderinger og datidens oppgitte utstillingstall. Tallet er tidsbundet og skal ikke presenteres som dagens total."
     },
     "move": {
       "url": "https://kunstavisen.no/nyheter/tiltrer-som-gallerist-og-partner",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Kunstavisens daterte sak om Jarems rollebytte i 2025 brukes bare om rollen hennes og overgangen til Galleri Brandstrup; den gir ikke grunnlag for å påstå at Van Etten ble lagt ned."
     },
     "sept": {
       "url": "https://subjekt.no/2026/09/17/ukens-beste-utstillinger-oslo/",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Subjekts utstillingsomtale fra september 2026 dokumenterer en konkret omtale og periode, ikke et varig utstillingsprogram eller åpningstider."
     },
     "kunstavisen": {
       "url": "https://kunstavisen.no/artikler/kunstnerdrevne-visningssteder-i-oslo",
       "source_type": "external_editorial",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Kunstavisens gjennomgang gir bakgrunn om kunstnerdrevne visningssteder og faglig organisering, ikke dokumentasjon for Van Ettens aktuelle finansiering eller eierforhold."
     },
     "commons16": {
       "url": "https://commons.wikimedia.org/wiki/File:Smedgata_3_(2016).jpg",
       "source_type": "licensed_photograph",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Datert og lisensiert foto av Smedgata 3 fra 2016. Kan brukes til å dokumentere bygningsmiljø før etableringen i 2020, ikke Van Ettens utstillinger."
     },
     "commons15": {
       "url": "https://commons.wikimedia.org/wiki/File:Smedgata_3.jpg",
       "source_type": "licensed_photograph",
       "review_status": "reviewed",
-      "reviewed_at": "2026-10-28"
+      "reviewed_at": "2026-10-28",
+      "review_note": "Datert og lisensiert foto av Smedgata 3 fra 2015. Viser adressen før etableringen i 2020 og må ikke beskrives som fotografi av galleriets virksomhet."
     }
   },
   "source_review_status": "reviewed",
   "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/kunst/manifest.json"
+    ],
     "active_before": {
       "set_count": 0,
       "question_count": 0
@@ -147,7 +159,8 @@
       "Correct 2025 leadership change",
       "Use pre-opening photos with clear date labels",
       "No date-only questions"
-    ]
+    ],
+    "knowledge_migration": "Generate canonical Knowledge before merge."
   },
   "profile_decision": {
     "profile": "narrow",
@@ -442,7 +455,7 @@
       "claim_id": "claim_van_etten_quiz_10",
       "order": 10,
       "planned_phase": "bridge",
-      "family": "fact",
+      "family": "context",
       "statement": "Van Etten har særlig prioritert separatutstillinger, kunstproduksjon og kritisk dialog.",
       "source_ids": [
         "guide"
@@ -502,14 +515,18 @@
       "claim_id": "claim_van_etten_quiz_15",
       "order": 15,
       "planned_phase": "final",
-      "family": "context",
+      "family": "concept_theory",
       "statement": "Van Etten er organisert som et uavhengig visningssted med produksjon og faglig dialog som sentrale oppgaver.",
       "source_ids": [
         "guide",
         "kunstavisen"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_okonomi_og_finansiering"
+      "emne_id": "em_kunst_okonomi_og_finansiering",
+      "method_id": "met_kunst_institusjonsanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_van_etten_quiz_16",
@@ -527,7 +544,7 @@
       "claim_id": "claim_van_etten_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "context",
       "statement": "Kunstavisen skrev i april 2025 at Jarem avsluttet sin rolle som gallerist ved Van Etten.",
       "source_ids": [
         "move"
@@ -546,7 +563,11 @@
         "guide"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_okonomi_og_finansiering"
+      "emne_id": "em_kunst_okonomi_og_finansiering",
+      "method_id": "met_kunst_kanon_og_arkivanalyse",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_van_etten_quiz_19",
@@ -559,7 +580,11 @@
         "guide"
       ],
       "source_origin": "external",
-      "emne_id": "em_kunst_institusjonskritikk_og_representasjon"
+      "emne_id": "em_kunst_institusjonskritikk_og_representasjon",
+      "method_id": "met_kunst_kontekstualisering",
+      "guidance_basis": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ]
     },
     {
       "claim_id": "claim_van_etten_quiz_20",
@@ -642,14 +667,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 14,
-      "context": 4,
-      "concept_theory": 3
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
     },
     "ratios": {
-      "fact": 0.667,
-      "context": 0.19,
-      "concept_theory": 0.143
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
     }
   }
 }

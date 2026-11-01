@@ -37,7 +37,7 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav button:focus-
   color:#f6c800;
   outline:none;
 }
-body.hg-app #placeCard.is-place-sheet-direct [data-hg-place-sheet-section]{scroll-margin-top:76px;}
+body.hg-app #placeCard.is-place-sheet-direct [data-hg-place-sheet-section]{scroll-margin-top:calc(var(--pc-visible-hero-height, 0px) + 76px);}
 /* Language still uses the canonical language owner's popup-scoped CSS internally,
    but the full popup scaffold is discarded immediately after the owner panel mounts. */
 body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-language-compat > .hg-place-language-panel{
