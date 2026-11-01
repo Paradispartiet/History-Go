@@ -12,6 +12,7 @@ const translations = Object.fromEntries(['en', 'es', 'pt'].map(lang => [
 ]));
 assert.equal(place.id, 'akerselva');
 assert.ok(place.image && place.image === place.cardImage);
+assert.ok(place.frontImage && place.frontImage !== place.image, 'Akerselva requires an independent standing portrait');
 
 const mime = {'.html':'text/html', '.js':'text/javascript', '.mjs':'text/javascript',
   '.json':'application/json', '.css':'text/css', '.jpg':'image/jpeg', '.png':'image/png',
@@ -100,7 +101,10 @@ try {
       });
       assert.equal(media.front.fit, 'contain', tag + ': photo must not be cropped on portrait card');
       assert.equal(media.hero.fit, 'cover', tag + ': landscape photo covers header');
-      assert.equal(media.front.width, media.hero.width, tag + ': same source image');
+      assert.ok(media.front.height > media.front.width, tag + ': front photo is natively portrait');
+      assert.ok(media.hero.width > media.hero.height, tag + ': header photo is landscape');
+      assert.notEqual(media.front.src, media.hero.src, tag + ': independent front and header photos');
+      assert.ok(media.front.src.includes('2020-08-06'), tag + ': frontImage uses Ryan Hodnett photo');
       assert.ok(media.front.box.width > 0 && media.front.box.height > 0);
       assert.ok(media.hero.box.width > 0 && media.hero.box.height > 0);
       assert.ok(media.front.box.right > 0 && media.front.box.left < viewport.width);
