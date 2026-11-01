@@ -4,24 +4,28 @@
   "category": "by",
   "status": "in_progress",
   "production_profile": "standard",
-  "profile_status": "provisional",
-  "profile_reason": "Sammenhengende byelv med selvstendig kulturhistorie, miljøhistorie og stedsspesifikt Fagverk. Endelig bredde avgjøres i samlet factuality- og kronologirevisjon, ikke av antall Places langs elva.",
+  "profile_status": "confirmed",
+  "profile_reason": "By-elv og historisk infrastrukturkorridor med dokumentert vannkraft, forurensning, miljøpark og ombruk; standard-profilen bærer flere kunnskapsspor uten å kopiere de selvstendige fabrikk-, bro- og fossestedene.",
   "underbadge_ids": [
-    "industri"
+    "infrastruktur"
   ],
   "scope": "Kanonisk By-sted for Akerselva som elveløp med tre ruteankre; ikke identisk med separate fabrikker, broer, fosser eller Nature-rutestopp.",
   "source_review": {
-    "status": "in_progress",
+    "status": "complete",
     "refs": [
-      "reports/place-production/akerselva-vferdig-recovery-20261031.md",
-      "reports/place-production/akerselva-collections-audit-20261101.json"
+      "data/places/production/akerselva.json",
+      "data/places/historie-production/akerselva.json",
+      "data/places/naeringsliv-production/akerselva.json",
+      "reports/place-production/akerselva-navigation-modules-audit-20261101.md"
     ],
     "source_urls": [
       "https://oslobyleksikon.no/side/Akerselva",
-      "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
-      "https://oslobyleksikon.no/side/V%C3%B8iens_Bomuldsspinderi"
+      "https://oslobyleksikon.no/side/Akerselva_Milj%C3%B8park",
+      "https://www.stortinget.no/no/Saker-og-publikasjoner/Sporsmal/Sporretimesporsmal/et-sporretimesporsmal/?qnid=3486",
+      "https://von-landing-page.vercel.app/p/Norsk%2BTeknisk%2BMuseum/route/2232",
+      "https://snl.no/Bentse_Brug"
     ],
-    "remaining": "V4.2 claim-by-sentence factuality review for existing long article, and documented chronology materialization."
+    "remaining": "Før/etter: arkivkandidater funnet, men den konkrete lisensen, bildefilen og sammenlignbart nyere utsnitt er ikke verifisert."
   },
   "content_plan": {
     "people": "PASS — to canonical industrialists Knud Graah/Halvor Schou, both original sourced portraits.",
@@ -32,20 +36,22 @@
     "fagverk": "PASS — curated place Fagverk linked to existing canonical subjects/chapters.",
     "language": "PASS — five documented hydronyms; app translations nb/en/es/pt verified.",
     "images": "PASS — independent authentic standing frontImage and landscape hero; People portraits verified.",
-    "chronology": "IN_PROGRESS — research and canonical epoch materialization audit still required.",
-    "related": "IN_PROGRESS — own-place relation/navigation audit still required.",
-    "stories": "EXISTING — one canonical place Story; comprehensive narrative review remains open.",
-    "lesespor": "IN_PROGRESS — assess relevance; no filler."
+    "chronology": "PASS — 41-claim-pakke og uendret epokebygger; indeks i sync fra #6859.",
+    "related": "PASS_DATA_PENDING_BROWSER — fem verifiserte canonical Place-ID-er under Om; ikke PlaceCard-samling eller People-relasjoner.",
+    "stories": "BEGRUNNET_NA — fyrstikk-Storyen eies av Bryn (#6862); undersøkte utslipp beholdes som chronology, ikke en konstruert episode. Ingen ny selvstendig elve-Story er godkjent i dette omfanget.",
+    "lesespor": "PASS_DATA_PENDING_BROWSER — to åpne, kuraterte eksterne tekster hos museene og Vann- og avløpsetaten.",
+    "news": "PASS_DATA_PENDING_BROWSER — avsluttet oppstartshøring med fristdato 10.04.2026; ingen påstand om vedtatt plan.",
+    "before_after": "BLOCKED — sammenlignbar før/etter-kandidat fra Nybrua mot Ankerbrua er funnet, men arkivoppslaget gir 403 og bildets lisens/fil/utsnitt er ikke inspisert.",
+    "sources": "PASS — kildeflaten eksponerer også Stortingets samtidige syrekilde og museumsreferansen."
   },
   "collection_ids": [
     "people"
   ],
-  "collection_status": "PASS_1_OF_4_ELIGIBLE_NOT_FINAL_VFERDIG",
+  "collection_status": "PASS_CURATED_PEOPLE_NO_FILLER",
   "quality_gate": "pending_exact_head_browser_and_place_open_checks",
   "blockers": [
-    "Full v4.2 source-to-claim/sentence parity for canonical long article not yet completed.",
-    "Chronology, epoch and related-place navigation require independent editorial audit.",
-    "Remaining conditional modules and final vFerdig quality gate not yet closed."
+    "Før/etter: publiserbart, rettighetsverifisert historisk bilde og visuelt sammenlignbart etterbilde mangler.",
+    "Slutt-QA av den nye navigasjonen og modulene kjøres på endelig PR-head."
   ],
   "manual_reviews": {
     "images": {
@@ -54,7 +60,7 @@
     },
     "final_ui": {
       "status": "PENDING",
-      "evidence": "PR #6855 real mobile/desktop Playwright acceptance on exact latest head."
+      "evidence": "Den utvidede Akerselva-testen skal kontrollere fem ekte navigasjonsklikk, nyheter, begge lesespor og uendret besøksstatus på mobil og desktop. Lokal Chromium-nedlasting feilet; samme test kjøres i GitHub Actions."
     }
   },
   "rule_preflight": {
@@ -62,7 +68,7 @@
     "status": "PASS",
     "place_id": "akerselva",
     "category": "by",
-    "recorded_at": "2026-11-01T03:52:33.208Z",
+    "recorded_at": "2026-11-01T19:17:59.076Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
@@ -126,5 +132,8 @@
         "final_content_plan"
       ]
     }
-  }
+  },
+  "active_phase": "INTEGRASJON_OG_MODUL_QA",
+  "branch_status": "local",
+  "live_status": "PR #6859 er live på main; denne navigasjons- og modulendringen er ikke merget."
 }

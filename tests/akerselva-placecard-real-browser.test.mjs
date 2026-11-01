@@ -11,7 +11,8 @@ const translations = Object.fromEntries(['en', 'es', 'pt'].map(lang => [
   lang, JSON.parse(fs.readFileSync(`data/i18n/content/places/${lang}.json`, 'utf8')).akerselva
 ]));
 assert.equal(place.id, 'akerselva');
-assert.ok(place.image && place.image === place.cardImage);
+assert.ok(place.image);
+assert.equal(Object.hasOwn(place, 'cardImage'), false);
 assert.ok(place.frontImage && place.frontImage !== place.image, 'Akerselva requires an independent standing portrait');
 
 const mime = {'.html':'text/html', '.js':'text/javascript', '.mjs':'text/javascript',
@@ -129,6 +130,32 @@ try {
         assert.equal(localized.popupDesc, expected.popupDesc, tag+'/'+lang+' full article');
         assert.equal(await page.locator('#pcTitle').textContent(), 'Akerselva');
       }
+      // Source-owned modules must hydrate in the real sheet, and every curated
+      // Place link must navigate without awarding a physical visit.
+      const visitedBefore = await page.evaluate(() => localStorage.getItem('visited_places'));
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#placeCard .hg-place-related-places a').length === 5 &&
+        document.querySelectorAll('#placeCard .pc-sheet-reading-card').length === 2 &&
+        [...document.querySelectorAll('#placeCard .pc-sheet-news-card')].some(node =>
+          node.textContent.includes('Oppstartshøring om ny forvaltningsplan')),
+        null, {timeout:30000});
+      await page.locator('#placeCard .hg-place-related-places').screenshot({path:path.join(output,tag+'-akerselva-related.png')});
+      await page.locator('#placeCard [data-hg-place-sheet-section="reading"]').screenshot({path:path.join(output,tag+'-akerselva-reading.png')});
+      await page.locator('#placeCard [data-hg-place-sheet-section="news"]').screenshot({path:path.join(output,tag+'-akerselva-news.png')});
+      for (const target of place.related_place_ids) {
+        await page.locator('#placeCard .hg-place-related-places a[href="#/place/' + target + '"]').click();
+        await page.waitForFunction(id =>
+          document.getElementById('placeCard')?.dataset.currentPlaceId === id,
+          target, {timeout:25000});
+        await page.goto(base + '/index.html?hgTest=1#/place/akerselva', {waitUntil:'domcontentloaded'});
+        await page.waitForFunction(() =>
+          document.getElementById('placeCard')?.dataset.currentPlaceId === 'akerselva' &&
+          document.querySelectorAll('#placeCard .hg-place-related-places a').length === 5,
+          null, {timeout:30000});
+      }
+      assert.equal(await page.evaluate(() => localStorage.getItem('visited_places')), visitedBefore,
+        tag + ': reading/navigation must not award a physical visit');
+
       // The production People round must be visible and populated by the actual
       // source registry, not by a stubbed People fixture.
       await page.waitForFunction(() => {

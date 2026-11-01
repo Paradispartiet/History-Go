@@ -46,3 +46,30 @@ test("Phase 6 standard path owns About directly while standalone popup keeps the
   assert.match(popupSource, /HGPlaceSheetSections\?\.about/);
   assert.match(popupSource, /suppressPlaceAbout/);
 });
+
+test("related-place navigation resolves canonical IDs without exposing invalid or hidden targets", () => {
+  const dom = new JSDOM("<!doctype html><html><head></head><body></body></html>", {
+    url: "https://history-go.test/", runScripts: "outside-only"
+  });
+  const { window } = dom;
+  window.PLACES = [
+    { id: "river", name: "Elva" },
+    { id: "bridge", name: '<img src=x onerror="alert(1)">' },
+    { id: "hidden", name: "Skjult", hidden: true },
+    { id: "stub", name: "Uferdig", stub: true }
+  ];
+  window.eval(runtime);
+  const about = window.HGPlaceSheetSections.about;
+  window.document.body.innerHTML = about.renderHtml({
+    id: "river", popupDesc: "Elvehistorie.",
+    related_place_ids: ["river", "bridge", "bridge", "unknown", "hidden", "stub"]
+  });
+  const nav = window.document.querySelector('nav[aria-label="Relaterte steder"]');
+  assert.ok(nav);
+  assert.equal(nav.querySelectorAll("a").length, 1);
+  assert.equal(nav.querySelector("a").getAttribute("href"), "#/place/bridge");
+  assert.equal(nav.querySelectorAll("img").length, 0);
+  assert.equal(nav.querySelector("a").textContent, '<img src=x onerror="alert(1)">');
+  assert.doesNotMatch(about.renderHtml({ id: "river", popupDesc: "Elvehistorie." }), /<nav/);
+  dom.window.close();
+});

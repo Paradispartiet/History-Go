@@ -37,7 +37,7 @@ test('Akerselva image rights and published place-open source stay aligned', () =
   for (const key of ['name','desc','popupDesc','image','cardImage','imageCredit','imageLicense','imageLicenseUrl','imageSourceUrl','frontImage','frontImageMeta']) {
     assert.deepEqual(runtime[key], place[key], 'runtime parity for ' + key);
   }
-  assert.equal(place.image, place.cardImage);
+  assert.equal(Object.hasOwn(place, 'cardImage'), false);
   assert.equal(place.imageLicense, 'CC BY-SA 4.0');
   assert.match(place.imageCredit, /Reem78/);
   assert.equal(place.imageLicenseUrl, 'https://creativecommons.org/licenses/by-sa/4.0/');

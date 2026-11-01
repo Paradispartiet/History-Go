@@ -135,6 +135,28 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonica
   margin: 0 0 1em;
 }
 
+body.hg-app .hg-place-related-places ul{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+body.hg-app .hg-place-related-places a{
+  display: block;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 8px;
+  color: #ffe000;
+  text-decoration: none;
+}
+
+body.hg-app .hg-place-related-places a:focus-visible{
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore{
   margin-top: 28px;
   padding-top: 22px;
