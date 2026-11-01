@@ -1,0 +1,35 @@
+name: Alnaparken PlaceCard curation
+
+on:
+  pull_request:
+    paths:
+      - "data/places/natur/oslo/places_oslo_natur_alnaelva_rute/alnaparken.json"
+      - "data/runtime/place-open/alnaparken.json"
+      - "data/brands/brands_by_place.json"
+      - "data/brands/brands_master.json"
+      - "data/quiz/natur/alnaparken_sets.json"
+      - "data/quizcards/natur/topp10_natur_alna_v1_batch01.json"
+      - "tests/alnaparken-placecard-collections-v2.test.mjs"
+      - "reports/place-production/alnaparken-placecard-curation-v1.md"
+      - ".github/workflows/alnaparken-placecard-curation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  alnaparken-collections:
+    name: Verify PlaceCard Brands, original quiz and photo parity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run scoped regression test
+        run: node --test tests/alnaparken-placecard-collections-v2.test.mjs
