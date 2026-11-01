@@ -59,6 +59,12 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Verify background reinitialization preserves an open PlaceCard
         run: node --test tests/bottom-sheet-controller-reinit.test.mjs
+      - name: Verify first PlaceCard at phone and tablet widths
+        env:
+          HG_VISUAL_PLACES: groruddammen
+          HG_VISUAL_OUT: .tmp/groruddammen-first-place-audit
+          HG_VISUAL_CAPTURES: .tmp/groruddammen-first-place-captures
+        run: node tests/oslo-v1-actual-runtime-visual-browser-audit.mjs
       - name: Audit compact PlaceCard at mobile and desktop widths
         run: node tests/placecard-media-hero-responsive-browser.test.mjs
       - name: Audit Black Box productions across mobile, tablet and desktop
