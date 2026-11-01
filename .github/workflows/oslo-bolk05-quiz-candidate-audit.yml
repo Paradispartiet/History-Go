@@ -6,6 +6,13 @@ on:
     paths:
       - .github/workflows/oslo-bolk05-quiz-candidate-audit.yml
       - scripts/audit-oslo-bolk05-quiz-candidates.mjs
+      - scripts/audit-oslo-bolk05-v42.mjs
+      - data/places/production/folketeateret.json
+      - data/places/production/kunstnernes_hus.json
+      - data/places/production/historisk_museum.json
+      - data/places/production/ibsen_museum_teater.json
+      - data/places/production/blitzhuset.json
+      - data/places/production/kulturkirken_jakob_litteratur.json
       - reports/place-production/oslo-bolk05-*-quiz21-candidates-20261101.json
       - reports/place-production/oslo-bolk05-quizcards50-candidates-20261101.json
 
@@ -27,4 +34,6 @@ jobs:
         with:
           node-version: '22'
       - name: Check the five candidate packages, QuizCards and existing Folketeateret parity
-        run: node scripts/audit-oslo-bolk05-quiz-candidates.mjs --json
+        run: |
+          node scripts/audit-oslo-bolk05-quiz-candidates.mjs --json
+          node scripts/audit-oslo-bolk05-v42.mjs
