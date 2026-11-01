@@ -78,6 +78,7 @@ fs.writeFileSync(logo,'<svg xmlns="http://www.w3.org/2000/svg" width="1200" heig
 }
 {
  const p='data/leksikon/places/akershus/historie/leksikon_grini_fangeleir.json',rows=read(p),id='grini_fangeleir_news_kommandantur_2026';
+ for(const item of rows[0].chronology||[])if(item.period&&!item.title){item.title=item.period;delete item.period;}
  const note={id,place_id:'grini_fangeleir',title:'Det gamle kommandanturet restaureres',type:'news_note',period:'Planstatus kontrollert 1. november 2026; kildene er udaterte',popupDesc:'MiA beskriver rehabilitering av det gamle kommandanturet, der fangene ble innregistrert, for bruk i Grinimuseets formidling. Institusjonens sider oppgir ulike planlagte ferdigtidspunkter i 2026. Sidene bekrefter ikke at arbeidet er ferdig; planlagt åpning må derfor ikke leses som en gjennomført hendelse.',sources:[{title:'MiA – Vi pusser opp',url:'https://mia.no/grinimuseet/vi-pusser-opp-'},{title:'MiA – rehabilitering av Rødhuset',url:'https://mia.no/rehabilitering-av-rodhuset-ved-grinimuseet'}],verifiedAt:day};
  const i=rows.findIndex(x=>x.id===id);if(i<0)rows.push(note);else rows[i]=note;write(p,rows);
 }

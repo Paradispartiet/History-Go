@@ -56,6 +56,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Locate installed Chrome
         run: echo "CHROME_BIN=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Verify source-owned chronology rendering
+        run: node --test tests/place-sheet-chronology-renderer.test.mjs tests/place-sheet-history-renderer.test.mjs
       - name: Verify PlaceCard, portraits, QuizCard and Fagverk
         run: node scripts/verify-grini-place-browser.mjs
       - name: Verify collections, knowledge tabs, language and favorites

@@ -155,7 +155,7 @@
     if (!rows2.length) return null;
     const html = rows2.map((row) => {
       const title = text3(row.title || row.text || row.event);
-      const summary = text3(row.summary || row.description || row.text);
+      const summary = text3(row.summary || row.description || row.desc || row.text);
       const sources = Array.isArray(row.sources) ? row.sources : [];
       const links = sources.map((source) => {
         const item = typeof source === "string" ? { url: source, title: "Kilde" } : source;
