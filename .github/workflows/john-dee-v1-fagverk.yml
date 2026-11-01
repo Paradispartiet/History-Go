@@ -1,0 +1,26 @@
+name: John Dee Fagverk and place integration
+on:
+  pull_request:
+    paths:
+      - "data/places/musikk/oslo/places_musikk/john_dee.json"
+      - "data/runtime/place-open/john_dee.json"
+      - "data/people/musikk/oslo/people_musikk_oslo.json"
+      - "tests/john-dee-v1-fagverk-20261101.test.mjs"
+      - ".github/workflows/john-dee-v1-fagverk.yml"
+permissions:
+  contents: read
+concurrency:
+  group: john-dee-v1-fagverk-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-john-dee:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/john-dee-v1-fagverk-20261101.test.mjs
