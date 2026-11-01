@@ -18,12 +18,12 @@ const approvedMain={
  media:'bilder/merker/media-brodert-lysbla.webp',
  vitenskap:'bilder/merker/vitenskap/brodert/vitenskap.webp'
 };
-test('nine original v1 candidates and three active Scenekunst v3 images are registered correctly',()=>{
+test('nine original v1 candidates and five active Scenekunst images are registered correctly',()=>{
  assert.equal(plan.version,1);
- assert.equal(plan.status,'three_v3_active_one_v1_pending_eight_v1_rework');
+ assert.equal(plan.status,'five_scenekunst_active_one_v1_pending_remaining_rework');
  assert.deepEqual(plan.pilot.map(p=>p.categoryId+'/'+p.subId),firstPilotKeys);
  const counts={scenekunst:7,by:10,film_tv:12};
- const activated={"sceneproduksjon":"bilder/merker/scenekunst/undermerker/sceneproduksjon-brodert-v3.webp","regi":"bilder/merker/scenekunst/undermerker/regi-brodert-v3.webp","dramaturgi":"bilder/merker/scenekunst/undermerker/dramaturgi-brodert-v3.webp"};
+ const activated={"sceneproduksjon":"bilder/merker/scenekunst/undermerker/sceneproduksjon-brodert-v3.webp","regi":"bilder/merker/scenekunst/undermerker/regi-brodert-v3.webp","dramaturgi":"bilder/merker/scenekunst/undermerker/dramaturgi-brodert-v3.webp","dans":"bilder/merker/scenekunst/undermerker/dans-brodert-v2.webp","performance":"bilder/merker/scenekunst/undermerker/performance-brodert-v2.webp"};
  let total=0,uploaded=0;
  for(const [id,count] of Object.entries(counts)){
   const parent=read('data/badges/'+id+'.json'),family=plan.families[id];
@@ -73,38 +73,38 @@ test('nine original v1 candidates and three active Scenekunst v3 images are regi
  assert.equal(plan.families.film_tv.assets.filter(a=>a.status==='rework_required').length,1);
  assert.equal(plan.families.by.assets.filter(a=>a.status==='rendered_candidate').length,1);
 });
-test('new Performance v2 remains a local candidate, not active or published',()=>{
- const item=plan.families.scenekunst.assets.find(a=>a.id==='performance');
- const replacement=item.replacementCandidate;
- assert.equal(item.status,'rework_required');
- assert.equal(item.selectedImage,null);
- assert.equal(replacement.repositoryUploaded,false);
- assert.equal(replacement.visualApproved,false);
- assert.equal(replacement.selectedImage,null);
- assert.equal(replacement.letteringInsideBorder,true);
- assert.equal(replacement.width,1024);
- assert.equal(replacement.height,1024);
- assert.equal(replacement.primaryColor.toUpperCase(),plan.families.scenekunst.primaryColor.toUpperCase());
- assert.equal(replacement.secondaryColor.toUpperCase(),plan.families.scenekunst.secondaryColor.toUpperCase());
- assert.equal(replacement.status,'local_candidate_pending_upload_and_approval');
- assert.match(replacement.sha256,/^[0-9a-f]{64}$/);
- assert.ok(!existsSync(resolve(root,replacement.proposedImage)),'Performance v2 is not yet uploaded');
-});
-test('new Dans v2 replacement stays unactivated until actual upload and visual approval',()=>{
- const item=plan.families.scenekunst.assets.find(a=>a.id==='dans');
- const replacement=item.replacementCandidate;
- assert.equal(item.status,'rework_required');
- assert.equal(item.selectedImage,null);
- assert.equal(replacement.repositoryUploaded,false);
- assert.equal(replacement.visualApproved,false);
- assert.equal(replacement.selectedImage,null);
- assert.equal(replacement.letteringInsideBorder,true);
- assert.equal(replacement.width,1024);
- assert.equal(replacement.height,1024);
- assert.equal(replacement.primaryColor.toUpperCase(),plan.families.scenekunst.primaryColor.toUpperCase());
- assert.equal(replacement.secondaryColor.toUpperCase(),plan.families.scenekunst.secondaryColor.toUpperCase());
- assert.match(replacement.sha256,/^[0-9a-f]{64}$/);
- assert.ok(!existsSync(resolve(root,replacement.proposedImage)),'unapproved Dans v2 must not yet exist at active GitHub path');
+test('Dans and Performance v2 are uploaded, verified and activated',()=>{
+ const expected={
+  dans:{bytes:442262,sha256:'ca83f80cc601841cc660b163b15c8df606b0d820660a40d946c00f8d986ef93d'},
+  performance:{bytes:348476,sha256:'ef3ecddf2bad45be308126e04c3888ce102bac2fd3e7efffba45e8c645b62fec'}
+ };
+ const parent=read('data/badges/scenekunst.json');
+ for(const [id,record] of Object.entries(expected)){
+  const asset=plan.families.scenekunst.assets.find(x=>x.id===id);
+  const v2=asset.replacementCandidate;
+  const path='bilder/merker/scenekunst/undermerker/'+id+'-brodert-v2.webp';
+  assert.equal(v2.version,'v2');
+  assert.equal(asset.selectedImage,path);
+  assert.equal(parent.subBadgeImages[id],path);
+  assert.equal(v2.proposedImage,path);
+  assert.equal(v2.selectedImage,path);
+  assert.equal(v2.status,'active');
+  assert.equal(v2.repositoryUploaded,true);
+  assert.equal(v2.visualApproved,true);
+  assert.equal(v2.letteringInsideBorder,true);
+  assert.equal(v2.primaryColor.toUpperCase(),plan.families.scenekunst.primaryColor.toUpperCase());
+  assert.equal(v2.secondaryColor.toUpperCase(),plan.families.scenekunst.secondaryColor.toUpperCase());
+  const buf=readFileSync(resolve(root,path));
+  assert.equal(buf.length,record.bytes);
+  assert.equal(v2.bytes,record.bytes);
+  assert.equal(buf.toString('ascii',0,4),'RIFF');
+  assert.equal(buf.readUInt32LE(4)+8,buf.length);
+  assert.equal(buf.toString('ascii',8,12),'WEBP');
+  assert.equal(buf.readUIntLE(24,3)+1,1024);
+  assert.equal(buf.readUIntLE(27,3)+1,1024);
+  assert.equal(createHash('sha256').update(buf).digest('hex'),record.sha256);
+  assert.equal(v2.sha256,record.sha256);
+ }
 });
 test('all nine protected main and 15 approved Religion/Vitenskap underbadge files remain untouched',()=>{
  for(const [id,path] of Object.entries(approvedMain)){
