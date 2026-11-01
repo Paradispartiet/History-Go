@@ -177,6 +177,22 @@ try {
         tag + ': licensed Knud Graah painted portrait absent from actual browser');
       assert.ok(portraitSources.some(src => src.includes('halvor_schou.webp')),
         tag + ': canonical Halvor Schou portrait absent from actual browser');
+      // Curated PlaceCard v2: People is the sole qualifying collection,
+      // shown beside the heading; no empty Objects/Brands/Structures placeholders.
+      await page.waitForFunction(() => {
+        const card = document.getElementById('placeCard');
+        return card?.dataset.collectionProfileSource === 'place_card_profile_v2_curated' &&
+          card.dataset.collectionRequestedCount === '1' &&
+          card.dataset.collectionCount === '1' &&
+          card.dataset.collectionGridCount === '0';
+      }, null, {timeout:20000});
+      assert.equal(await page.locator('#pcPeopleIcon').isVisible(), true,
+        tag + ': curated People collection must be visible');
+      for (const id of ['pcObjectsIcon','pcBrandsIcon','pcCategoryCollectionIcon']) {
+        const icon = page.locator('#' + id);
+        if (await icon.count()) assert.equal(await icon.isVisible(), false,
+          tag + ': unqualified collection displayed: ' + id);
+      }
       await page.screenshot({path:path.join(output,tag+'-akerselva-people.png')});
 
       // Read the real Fagverk page, not the JSON contract or a mock rendering.

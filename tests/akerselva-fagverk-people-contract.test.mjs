@@ -141,3 +141,31 @@ test('Knud Graah portrait is source-backed, unmistakably a painting, and synced 
   assert.equal(civication.image, graah.image);
   assert.equal(civication.cardImage, graah.cardImage);
 });
+
+test('Akerselva curated PlaceCard uses only image-backed canonical People', () => {
+  const place = load('data/places/by/oslo/places/akerselva.json');
+  const runtime = load('data/runtime/place-open/akerselva.json');
+  const audit = load('reports/place-production/akerselva-collections-audit-20261101.json');
+  assert.equal(place.place_card_profile.schema, 'history_go_place_card_profile_v2');
+  assert.deepEqual(place.place_card_profile.collection_ids, ['people']);
+  assert.deepEqual(runtime.place.place_card_profile, place.place_card_profile);
+  assert.deepEqual(audit.chosen_collection_ids, ['people']);
+  assert.equal(audit.collections.people.status, 'PASS');
+  for (const key of ['objects', 'brands', 'structures']) {
+    assert.equal(audit.collections[key].status, 'BEGRUNNET_NA');
+    assert.ok(audit.collections[key].decision.length >= 60);
+  }
+  assert.deepEqual(new Set(audit.collections.people.member_ids),
+    new Set(['knud_graah_voyenfallene', 'halvor_schou']));
+  assert.equal(runtime.people.length, 2);
+  for (const person of runtime.people) {
+    assert.ok(audit.collections.people.member_ids.includes(person.id));
+    assert.ok(person.image && person.image === person.cardImage, person.name + ': missing portrait');
+    assert.ok(person.imageMeta?.sourcePage?.startsWith('https://commons.wikimedia.org/'));
+    assert.ok(person.imageMeta?.license);
+    assert.equal(person.profileStatus, 'ready_people_v1');
+  }
+  assert.equal(place.objects, undefined);
+  assert.equal(place.structures, undefined);
+  assert.equal(place.brand_ids, undefined);
+});
