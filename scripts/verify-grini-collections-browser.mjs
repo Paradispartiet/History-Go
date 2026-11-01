@@ -100,6 +100,7 @@ try {
     const context = await browser.newContext({
       viewport: profile.viewport,
       locale: "nb-NO",
+      reducedMotion: "reduce",
       isMobile: profile.isMobile || false,
       hasTouch: profile.hasTouch || false,
     });
@@ -242,6 +243,7 @@ try {
       await jump.click();
       const panel=sheet.locator('[data-hg-place-sheet-section="'+id+'"]').first();
       await panel.waitFor({state:'visible',timeout:15000});
+      await panel.scrollIntoViewIfNeeded();
       if(id==='history') assert.match(await panel.innerText(),/1941|1942/);
       if(id==='stories') assert.match(await panel.innerText(),/Beskjeden om frihet/);
       if(id==='news') assert.match(await panel.innerText(),/kommandanturet/i);
