@@ -29,6 +29,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-engknoppurt-20261101.json"
     }),
+    emne_flora_firkantperikum: Object.freeze({
+      scientificName: "Hypericum maculatum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/05_firkantperikum_v1.webp",
+      gitBlobSha: "ea1d0ad4f916927f3b4da59a1817353fc8b4686e",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-firkantperikum-20261101.json"
+    }),
     emne_flora_engtjaereblom: Object.freeze({
       scientificName: "Viscaria vulgaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/04_engtjaereblom_v1.webp",
