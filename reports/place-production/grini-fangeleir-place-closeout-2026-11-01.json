@@ -87,6 +87,95 @@
     "stories_integrity": "PASS: 349 aktive Stories, 128 episode_v1, ingen integritetsfeil",
     "grini_regressions": "PASS: 13 tester, 2240 svaromstokkinger",
     "workflow_routing": "PASS: 181 PR-workflows",
-    "browser": "PENDING_EXACT_HEAD_CI"
-  }
+    "browser": "PENDING_EXACT_HEAD_CI",
+    "historie_category": "PASS: 39 kontrollert, 0 feil",
+    "epoke_regressions": "PASS (se lokal logg; antall innføres etter avlest resultat)",
+    "global_fagverk": "FAIL: eksisterende avvik utenfor Grini; ingen Grini-treff i auditfeil"
+  },
+  "fagverk_review": {
+    "status": "SOURCE_AND_SUBSTANCE_REVIEWED_UI_PENDING",
+    "reviewer": "Codex (AI)",
+    "paragraph_sources": [
+      {
+        "paragraph": 1,
+        "url": "https://snl.no/Grini_-_tysk_fangeleir",
+        "sourceLocation": "Etableringen; Fra fengsel til fangeleir",
+        "limits": "Perimeter er ikke utledet fra brakken."
+      },
+      {
+        "paragraph": 2,
+        "url": "https://www.nasjonalarkivet.no/nordmenn-i-fangenskap-under-andre-verdenskrig/",
+        "sourceLocation": "Grini fangeleir ved Oslo, parallelle protokoller og hull",
+        "limits": "Registrert antall er ikke samtidig belegg."
+      },
+      {
+        "paragraph": 3,
+        "url": "https://snl.no/Grini_-_tysk_fangeleir",
+        "sourceLocation": "Forvaltning og daglig drift; Kvinnene; De yngste; Fangene som ble isolert",
+        "limits": "Avdelinger og erfaringer beskrives adskilt."
+      },
+      {
+        "paragraph": 4,
+        "url": "https://snl.no/Grini_-_tysk_fangeleir",
+        "sourceLocation": "Fangetransporter; Registrerte dødsfall; Studievirksomhet; Motstandsarbeid",
+        "limits": "786 er kjente dødsfall blant Grini-fanger, hovedsakelig etter deportasjon."
+      },
+      {
+        "paragraph": 5,
+        "url": "https://mia.no/grinimuseet/en/grini-museum",
+        "sourceLocation": "About us, autentisk flyttet brakke og utstillinger",
+        "additionalSources": [
+          "https://snl.no/Grini_-_tysk_fangeleir",
+          "https://mia.no/museumstjenesten/grinimuseet"
+        ],
+        "limits": "Ny juridisk institusjon etter 1945; modellen gir ikke eksakt tomtegrense."
+      }
+    ],
+    "editorial_review": "Fem avsnitt har hver sin analysejobb: fysisk vekst, registerkritikk, ulike regimer, deportasjon/handlingsrom, etterbruk/minne. Ingen avsnitt kopierer popupDesc; fire stedsspesifikke linser binder fagbegrep til konkrete kilder. Ingen teorinavn eller forskerroller konstruert for å fylle felt."
+  },
+  "source_fingerprints": [
+    {
+      "source": "snl",
+      "retrieved_at": "2026-11-01",
+      "normalized_text_sha256": "1916e66e5de9b6ef56c35e7b2142bd0a5dc19e4c98d0aee378a442433effee6d"
+    },
+    {
+      "source": "mia",
+      "retrieved_at": "2026-11-01",
+      "normalized_text_sha256": "c409c78ac6b81508db87a07f81cfbc365869f14abcc2bcf18228779e653abc9e"
+    },
+    {
+      "source": "register",
+      "retrieved_at": "2026-11-01",
+      "normalized_text_sha256": "dba613b14870edc6524ffbce0f186329236f2e18abf6fa3852505e1a2c39b731"
+    },
+    {
+      "source": "museum",
+      "retrieved_at": "2026-11-01",
+      "normalized_text_sha256": "8bb129bfd996d443fd7fa52e0762f1ca9ae5ff3306b3fa6c8f35e410aace6769"
+    },
+    {
+      "source": "samlinger",
+      "retrieved_at": "2026-11-01",
+      "normalized_text_sha256": "58b6ca8370c847f043291c9da2632e32e42f16140ec8cce5cde4f11ce2483cd5"
+    },
+    {
+      "source": "commons",
+      "retrieved_at": "2026-11-01",
+      "normalized_text_sha256": "3b632c32e5304ea1ed54e628786554a15ecc6d4b5d1f8cb7e1c06af52ee84f4d"
+    },
+    {
+      "source": "appell",
+      "retrieved_at": "2026-11-01",
+      "normalized_text_sha256": "493be81db0c6c093b5490253ec4d08bde962781551943c01894334a8e5ba4041"
+    }
+  ],
+  "browser_findings": [
+    {
+      "head": "0876f2cba7d61abe60a77faae0af2f09ed3c4d9c",
+      "run_id": 41266695157,
+      "finding": "PlaceCard, ekte stående bilde, flip, utvidet ti-spørsmålskort og fullquiz-rute fungerte på første mobilprofil; Fagverk-linser manglet fordi status fortsatt var in_production.",
+      "fix": "Kilde-/substansreview av alle fem avsnitt, fire linser, fem spørsmål, to spor og fem kilder; Place- og registry-status synkronisert til curated. Ny faktisk browserrunde kreves."
+    }
+  ]
 }

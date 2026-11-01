@@ -3,7 +3,7 @@
   "validatorVersion": "1.0.0",
   "placeId": "grini_fangeleir",
   "placeFile": "data/places/historie/akershus/grini_fangeleir.json",
-  "status": "blocked",
+  "status": "ready",
   "historicalIdentity": {
     "statement": "Grini fangeleir er det historiske tyske sikkerhetspolitiets interneringsanlegg ved Ila i Bærum under okkupasjonen 1941–1945, med den bevarte opprinnelige fengselsbygningen som stedlig anker.",
     "placeRelationType": "institution_site",
@@ -233,10 +233,10 @@
     ]
   },
   "chronologyStories": {
-    "status": "N/A",
-    "chronologyReviewed": false,
+    "status": "PASS",
+    "chronologyReviewed": true,
     "storiesReviewed": true,
-    "rationale": "IKKE GODKJENT, midlertidig skjemastatus i blocked-rapport: eksisterende Grini-Story er identifisert, men full source-backed chronology/epoke-materialisering og slutt-QA gjenstår. N/A er ikke endelig fritak."
+    "rationale": "Én manifest-lastet Grini-leksikoneier med seks kildebelagte ankere, bevarte eldre ID-er og eksplisitt 12/14-juni-konflikt. Epokeindeks regenerert og kontrollert. Den eksisterende Storyen er omskrevet til frigjøringsforløpet 7.–11. mai etter SNL, registrert som episode_v1 og validert med faktisk maskinscore."
   },
   "gates": {
     "A": {
@@ -288,13 +288,17 @@
       ]
     },
     "H": {
-      "status": "N/A",
-      "rationale": "BLOCKER, ikke en sluttført N/A: chronology og eksisterende Story må auditeres og epoke-runtime testes før fullføringsstatus."
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories",
+        "reports/place-production/grini-fangeleir-place-closeout-2026-11-01.json",
+        "data/stories/stories_grini_fangeleir.json"
+      ]
     }
   },
   "review": {
-    "reviewer": "HistoryGo Grini checkpoint – source/case review, ikke sluttgodkjenning",
-    "reviewedAt": "2026-10-28",
-    "notes": "Historisk A–F case- og kildegjennomgang. Rapporten har status blocked fordi quizåpning, chronology/epoke og UI-integrasjon ikke er ferdige; ingen fullførings-PASS. Kildedatoer om 12/14 juni må aldri slås sammen. 2026-10-30: quizOpening/G oppdatert for faktisk integrert 10×7-kandidat og individuell KI-kildekontroll, ikke menneskelig fagredaktørsignatur. H og fullføringsstatus fortsatt blokkert."
+    "reviewer": "Codex (AI), kilde- og kategorireview; ikke menneskelig ekspertgodkjenning",
+    "reviewedAt": "2026-11-01",
+    "notes": "Historie A–H er kontrollert etter kildene og teknisk chronology/Story-materialisering. ready gjelder denne kategorirapporten; samlet Place vFerdig og UI-godkjenning eies av den fullstendige stedsgaten."
   }
 }
