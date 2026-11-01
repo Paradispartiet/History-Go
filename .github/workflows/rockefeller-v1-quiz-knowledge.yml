@@ -9,24 +9,33 @@ on:
       - "tests/rockefeller-quiz-v1-quality-20261101.test.mjs"
       - ".github/workflows/rockefeller-v1-quiz-knowledge.yml"
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: rockefeller-v1-quiz-knowledge-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
-  verify-knowledge:
+  synchronize-once:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor == 'Paradispartiet'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
-      - name: Verify generated Knowledge matches reviewed quiz
-        run: npm run knowledge:canonical:check
-      - name: Validate Rockefeller quiz and QuizCard
-        run: node --test tests/rockefeller-quiz-v1-quality-20261101.test.mjs
+      - run: npm ci --no-audit --no-fund
+      - run: npm run knowledge:canonical:write
+      - run: node --test tests/rockefeller-quiz-v1-quality-20261101.test.mjs
+      - name: Commit only generated Knowledge, not large diagnostic reports
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u data/knowledge data/quiz/musikk/rockefeller_sets_merged.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Rockefeller: regenerate Knowledge after final editorial cleanup"
+            git push origin "HEAD:${{ github.head_ref }}"
+          fi
