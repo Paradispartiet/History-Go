@@ -90,8 +90,8 @@ try{
       await page.locator('#pcQuizExpandBtn').click({timeout:15000});
       await page.locator('#pcQuizExpanded').waitFor({state:'visible',timeout:15000});
       assert.equal(await page.locator('#pcQuizExpandedContent li').count(),10,'Expanded QuizCard must show 10 questions');
-      const firstCardText=(await page.locator('#pcQuizExpandedContent li').first().innerText()).replace(/\\s+/g,' ').trim();
-      assert.ok(firstCardText.includes(expectedCardQuestion.replace(/\\s+/g,' ').trim()),
+      const firstCardText=(await page.locator('#pcQuizExpandedContent li').first().innerText()).replace(/\s+/g,' ').trim();
+      assert.ok(firstCardText.includes(expectedCardQuestion.replace(/\s+/g,' ').trim()),
         placeId+'/'+profile.name+': app displayed a stale QuizCard instead of the canonical '+cat+' card');
       await page.screenshot({path:out+'/'+profile.name+'-expanded.png',fullPage:true});
       await page.locator('#pcQuizExpandedClose').click({timeout:15000});
