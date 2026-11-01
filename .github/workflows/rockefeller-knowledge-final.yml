@@ -1,0 +1,57 @@
+name: Rockefeller final Knowledge prose synchronization
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/musikk/rockefeller_sets_merged.json'
+      - 'data/quiz/musikk/sentrum_scene_sets_merged.json'
+      - 'tests/rockefeller-knowledge-v1-final.test.mjs'
+      - '.github/workflows/rockefeller-knowledge-final.yml'
+permissions:
+  contents: read
+concurrency:
+  group: rockefeller-knowledge-final-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  synchronize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor == 'Paradispartiet'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate Knowledge canonical claims
+        run: npm run knowledge:canonical:write
+      - name: Check generated Knowledge and the focused quiz contract
+        run: |
+          npm run knowledge:canonical:check
+          node --test tests/rockefeller-knowledge-v1-final.test.mjs
+      - name: Ensure generator altered only intended files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only | while read -r file; do
+            case "$file" in
+              data/knowledge/knowledge_units.generated.json|data/knowledge/concepts.generated.json|reports/knowledge-contract-audit.json|reports/knowledge-id-backfill.json|data/quiz/musikk/rockefeller_sets_merged.json|data/quiz/musikk/sentrum_scene_sets_merged.json) ;;
+              *) echo "::error::Unexpected regeneration: $file"; exit 1;;
+            esac
+          done
+      - name: Commit updated canonical units onto this PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json data/quiz/musikk/rockefeller_sets_merged.json data/quiz/musikk/sentrum_scene_sets_merged.json reports/knowledge-id-backfill.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Rockefeller: synchronize five stable Knowledge claims'
+            git push origin "HEAD:${{ github.head_ref }}"
+          fi
