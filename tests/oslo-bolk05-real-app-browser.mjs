@@ -17,6 +17,26 @@ const cat=cats[placeId];
 const root=process.cwd();
 const quiz=JSON.parse(fs.readFileSync('data/quiz/'+cat+'/'+placeId+'_sets.json','utf8'));
 const expected=new Map(quiz.sets.flatMap(s=>s.questions.map(q=>[q.question,q])));
+const canonicalCard=JSON.parse(fs.readFileSync('data/quizcards/'+cat+'/'+placeId+'_quizkort_v1.json','utf8')).cards[0];
+const expectedCardQuestion=canonicalCard.questions[0]?.question;
+assert.ok(expectedCardQuestion,'Canonical card lacks first question');
+const cardMatches=[];
+for(const item of fs.readdirSync('data/quizcards',{withFileTypes:true})){
+  if(!item.isDirectory())continue;
+  const folder='data/quizcards/'+item.name;
+  const manifestFile=folder+'/manifest.json';
+  if(!fs.existsSync(manifestFile))continue;
+  const manifest=JSON.parse(fs.readFileSync(manifestFile,'utf8'));
+  for(const filename of manifest.collections||[]){
+    const file=path.join(folder,filename);
+    if(!fs.existsSync(file))continue;
+    const collection=JSON.parse(fs.readFileSync(file,'utf8'));
+    for(const card of collection.cards||[]){
+      if(card.targetId===placeId)cardMatches.push({category:item.name,file});
+    }
+  }
+}
+assert.deepEqual(cardMatches.map(x=>x.category),[cat],placeId+': conflicting category QuizCard bindings '+JSON.stringify(cardMatches));
 const out=path.join(root,'artifacts','oslo-bolk05-browser',placeId);
 fs.mkdirSync(out,{recursive:true});
 const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json',
@@ -70,6 +90,9 @@ try{
       await page.locator('#pcQuizExpandBtn').click({timeout:15000});
       await page.locator('#pcQuizExpanded').waitFor({state:'visible',timeout:15000});
       assert.equal(await page.locator('#pcQuizExpandedContent li').count(),10,'Expanded QuizCard must show 10 questions');
+      const firstCardText=(await page.locator('#pcQuizExpandedContent li').first().innerText()).replace(/\\s+/g,' ').trim();
+      assert.ok(firstCardText.includes(expectedCardQuestion.replace(/\\s+/g,' ').trim()),
+        placeId+'/'+profile.name+': app displayed a stale QuizCard instead of the canonical '+cat+' card');
       await page.screenshot({path:out+'/'+profile.name+'-expanded.png',fullPage:true});
       await page.locator('#pcQuizExpandedClose').click({timeout:15000});
       await page.locator('#pcQuiz').click({timeout:15000});
