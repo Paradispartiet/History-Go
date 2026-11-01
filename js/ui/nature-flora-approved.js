@@ -37,6 +37,14 @@
       stage: "blomstring og frøsetting",
       evidence: "data/natur/flora/illustration-quality-gjetertaske-20261101.json"
     }),
+    emne_flora_gullstjerne: Object.freeze({
+      scientificName: "Gagea lutea",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/10_gullstjerne_v1.webp",
+      gitBlobSha: "1ca9b46b49dd48977b8b463e667412018bf96c0e",
+      reviewedAt: "2026-11-01",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-gullstjerne-20261101.json"
+    }),
     emne_flora_gullsoleie: Object.freeze({
       scientificName: "Ranunculus auricomus agg.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/09_nyresoleier_v1.webp",
