@@ -6,7 +6,7 @@ Endret: q4 bruker nå arrangørens 1300-plassers kapasitet, q26 bruker arrangør
 
 Kildene er Rockefellers offisielle Om oss og utleiesider samt Oslo byleksikon. Kildetallene 1350 (Oslo World) og 400 (Gateforening) erstattes av arrangørens oppdaterte tall, uten å endre kapasitetene til andre steder.
 
-**Utført på PR-grenen:** `npm run knowledge:canonical:write` regenererte `data/knowledge/knowledge_units.generated.json`, `data/knowledge/concepts.generated.json` og Knowledge-kontraktrapporten. Målrettet 30/10-quiztest bestod. Den midlertidige skriverettighets-workflowen er fjernet etter generering. Før merge kontrolleres vanlig PR-CI og Knowledge-kontrakt. Quiz-ID-er og eksisterende primære Knowledge-ID-er er bevart. Appvisning på mobil/desktop kreves fortsatt før `v1`-godkjenning. Gjeldende status: `v1_candidate`.
+**Utført på PR-grenen:** `npm run knowledge:canonical:write` regenererte `data/knowledge/knowledge_units.generated.json` og `data/knowledge/concepts.generated.json`; den store diagnostikkrapporten beholdes på `main`-nivå for å følge rapportstørrelsesregelen. Målrettet 30/10-quiztest bestod. Den midlertidige skriverettighets-workflowen er fjernet etter generering. Før merge kontrolleres vanlig PR-CI og Knowledge-kontrakt. Quiz-ID-er og eksisterende primære Knowledge-ID-er er bevart. Appvisning på mobil/desktop kreves fortsatt før `v1`-godkjenning. Gjeldende status: `v1_candidate`.
 
 Kilder:
 - https://www.rockefeller.no/om-oss
