@@ -37,6 +37,14 @@
       stage: "blomstring og frøsetting",
       evidence: "data/natur/flora/illustration-quality-gjetertaske-20261101.json"
     }),
+    emne_flora_haredylle: Object.freeze({
+      scientificName: "Crepis capillaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/12_haredylle_v1.webp",
+      gitBlobSha: "3f81267f338ce635c8de0296fa61f9647d72bcc2",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring og frøsetting",
+      evidence: "data/natur/flora/illustration-quality-haredylle-20261101.json"
+    }),
     emne_flora_gulmaure: Object.freeze({
       scientificName: "Galium verum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/11_gulmaure_v1.webp",
