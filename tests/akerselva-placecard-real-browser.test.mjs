@@ -66,6 +66,16 @@ try {
         document.getElementById('pcDesc')?.textContent === expected, place.desc, {timeout:20000});
       assert.equal(await readDesc(), place.desc, tag + ': Norwegian description');
 
+      // Language lexicon should hydrate with the same real Place-open payload.
+      await page.waitForFunction(() =>
+        window.HG_PLACE_OPEN_LANGUAGE?.akerselva?.entries?.length === 5,
+        null, {timeout:20000});
+      const riverNames = await page.evaluate(() =>
+        window.HG_PLACE_OPEN_LANGUAGE.akerselva.entries.map(entry => entry.term));
+      for (const term of ['Akerselva', 'Frysja', 'Aggershuses elv', 'O / å', 'Vaterlandselva']) {
+        assert.ok(riverNames.includes(term), tag + ': missing historical name ' + term);
+      }
+
       const image = page.locator('#pcFrontImage');
       const header = page.locator('#pcHeaderImage');
       await page.waitForFunction(() => {

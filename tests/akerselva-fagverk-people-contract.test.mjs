@@ -87,3 +87,26 @@ test('Akerselva publishes only two evidenced, deduplicated People profiles', () 
       .people.some(p => p.id === schou.id), 'Halvor missing from ' + placeId);
   }
 });
+
+
+test('Akerselva language lexicon has sourced river-name history and runtime parity', () => {
+  const manifest = load('data/leksikon/sprak/manifest.json');
+  const path = 'data/leksikon/sprak/places/europe/norway/oslo/akerselva.json';
+  assert.equal(manifest.place_files.akerselva, path);
+  const lexicon = load(path);
+  const payload = load('data/runtime/place-open/akerselva.json');
+  assert.equal(lexicon.place_id, 'akerselva');
+  assert.deepEqual(payload.language, lexicon);
+  assert.equal(lexicon.entries.length, 5);
+  assert.deepEqual(new Set(lexicon.entries.map(entry => entry.term)),
+    new Set(['Akerselva', 'Frysja', 'Aggershuses elv', 'O / å', 'Vaterlandselva']));
+  for (const entry of lexicon.entries) {
+    assert.equal(entry.linked_to.kind, 'place');
+    assert.equal(entry.linked_to.id, 'akerselva');
+    assert.equal(entry.layer, 'language');
+    assert.ok(entry.meaning && entry.context);
+    assert.ok(['current','historical'].includes(entry.status));
+    assert.ok(entry.sources.length > 0);
+    assert.ok(entry.sources.every(source => source.label && /^https:\/\//.test(source.url)));
+  }
+});
