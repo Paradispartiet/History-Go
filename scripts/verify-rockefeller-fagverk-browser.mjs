@@ -93,6 +93,66 @@ try {
       assert.deepEqual(errors,[],'Fagverk must not throw browser errors');
       results.push({profile:profile.name,passed:true,snapshot});
       console.log('PASS: Rockefeller curated Fagverk browser — '+profile.name);
+
+      // The independent Fagverk check alone is not enough to approve PlaceCard v1.
+      // Check the actual image surfaces, People collection and QuizCard flip.
+      await page.goto(base + '/index.html?hgTest=1#/place/rockefeller', {waitUntil:'domcontentloaded',timeout:90000});
+      await page.waitForFunction(() => window.__HG_APP_READY__ === true &&
+        window.__HG_ROUTER_STARTED__ === true &&
+        document.getElementById('placeCard')?.dataset.currentPlaceId === 'rockefeller', null, {timeout:90000});
+      await page.waitForFunction(() => {
+        const img = document.getElementById('pcFrontImage');
+        const header = document.getElementById('pcHeaderImage');
+        const people = document.getElementById('pcPeopleIcon');
+        const flip = document.getElementById('pcFrontCardFlip');
+        const quiz = document.getElementById('pcQuizCardContent');
+        return img?.complete && img.naturalWidth > 0
+          && header?.complete && header.naturalWidth > 0
+          && Number(people?.dataset.collectionItemCount || 0) >= 3
+          && people.hidden === false
+          && flip?.classList.contains('has-quiz-card')
+          && quiz?.hidden === false && (quiz.textContent || '').trim().length > 20;
+      }, null, {timeout:90000});
+      const placeCard = await page.evaluate(() => {
+        const q = selector => document.querySelector(selector);
+        const image = selector => {
+          const el = q(selector);
+          return {src:el?.getAttribute('src') || '',complete:el?.complete,naturalWidth:el?.naturalWidth};
+        };
+        const people = q('#pcPeopleIcon');
+        const quiz = q('#pcQuizCardContent');
+        const card = q('#placeCard');
+        return {
+          placeId:card?.dataset.currentPlaceId,
+          title:q('#pcTitle')?.textContent?.trim() || '',
+          header:image('#pcHeaderImage'),
+          portrait:image('#pcFrontImage'),
+          peopleCount:Number(people?.dataset.collectionItemCount || 0),
+          peopleVisible:people?.hidden === false && people?.getAttribute('aria-hidden') !== 'true',
+          quizReady:q('#pcFrontCardFlip')?.classList.contains('has-quiz-card') === true,
+          quizTextLength:(quiz?.textContent || '').trim().length,
+          horizontalOverflow:Math.max(0,document.documentElement.scrollWidth-document.documentElement.clientWidth)
+        };
+      });
+      assert.equal(placeCard.placeId,placeId);
+      assert.match(placeCard.title,/Rockefeller/);
+      assert.ok(placeCard.header.naturalWidth>0,'Hero must load its licensed location image');
+      assert.ok(placeCard.portrait.naturalWidth>0,'Portrait must load its separately encoded licensed image');
+      assert.ok(placeCard.peopleCount>=3 && placeCard.peopleVisible,'Three existing People must be visible in PlaceCard');
+      assert.ok(placeCard.quizReady && placeCard.quizTextLength>20,'QuizCard content must actually load');
+      assert.ok(placeCard.horizontalOverflow<=4,'PlaceCard must not overflow horizontally');
+      await page.screenshot({path:path.join(output,profile.name+'-placecard.png'),fullPage:true});
+      await page.locator('#pcFrontCardFlip').click({timeout:15000});
+      await page.waitForFunction(() => document.getElementById('pcFrontCardFlip')?.classList.contains('is-flipped')===true, null, {timeout:10000});
+      const backFace=await page.locator('.pc-card-face-back').evaluate(el => ({
+        visibility:getComputedStyle(el).visibility,
+        text:(el.textContent || '').trim()
+      }));
+      assert.equal(backFace.visibility,'visible','QuizCard reverse must be visible after flip');
+      assert.ok(backFace.text.length>20,'QuizCard reverse must contain rendered questions');
+      await page.screenshot({path:path.join(output,profile.name+'-quizcard-flipped.png'),fullPage:true});
+      results.at(-1).placeCard={...placeCard,quizCardFlipped:true};
+      console.log('PASS: Rockefeller PlaceCard hero, portrait, People and QuizCard flip — '+profile.name);
     } finally { await context.close(); }
   }
 } finally {
