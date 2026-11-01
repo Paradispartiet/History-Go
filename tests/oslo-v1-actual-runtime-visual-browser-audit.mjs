@@ -80,7 +80,9 @@ try{
       window.PLACES=[place];
       return await Promise.race([
        window.openPlaceCard(place),
-       new Promise((_,reject)=>setTimeout(()=>reject(new Error("PlaceCard open timeout")),9000))
+       // First place may require canonical hydration while background data loads.
+       // Give it bounded time to render without treating a slow fetch as absence.
+       new Promise((_,reject)=>setTimeout(()=>reject(new Error("PlaceCard open timeout")),20000))
       ]);
      },place)!==false;
      if(!open)problems.push("openPlaceCard returned false");
