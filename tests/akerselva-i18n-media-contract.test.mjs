@@ -34,7 +34,7 @@ test('Akerselva image rights and published place-open source stay aligned', () =
   const place = read(canonicalPath);
   const runtime = read(runtimePath).place;
   assert.equal(runtime.id, place.id);
-  for (const key of ['name','desc','popupDesc','image','cardImage','imageCredit','imageLicense','imageLicenseUrl','imageSourceUrl']) {
+  for (const key of ['name','desc','popupDesc','image','cardImage','imageCredit','imageLicense','imageLicenseUrl','imageSourceUrl','frontImage','frontImageMeta']) {
     assert.deepEqual(runtime[key], place[key], 'runtime parity for ' + key);
   }
   assert.equal(place.image, place.cardImage);
@@ -43,4 +43,13 @@ test('Akerselva image rights and published place-open source stay aligned', () =
   assert.equal(place.imageLicenseUrl, 'https://creativecommons.org/licenses/by-sa/4.0/');
   assert.equal(place.imageSourceUrl, 'https://commons.wikimedia.org/wiki/File:The_Akerselva_river_in_Oslo.jpg');
   assert.ok(place.image.startsWith('https://commons.wikimedia.org/wiki/Special:Redirect/file/'));
+  assert.ok(place.frontImage.startsWith('https://commons.wikimedia.org/wiki/Special:Redirect/file/'));
+  assert.notEqual(place.frontImage, place.image, 'The portrait must use an independent original');
+  assert.equal(place.frontImageMeta.orientation, 'portrait');
+  assert.equal(place.frontImageMeta.aspectRatio, '2:3');
+  assert.equal(place.frontImageMeta.creator, 'Ryan Hodnett');
+  assert.equal(place.frontImageMeta.license, 'CC BY-SA 4.0');
+  assert.ok(place.frontImageMeta.sourcePage.includes('2020-08-06'));
+  assert.match(place.frontImageMeta.viewpoint, /Nydalsdammen/);
+
 });
