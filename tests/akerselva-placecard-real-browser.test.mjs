@@ -129,6 +129,26 @@ try {
         assert.equal(localized.popupDesc, expected.popupDesc, tag+'/'+lang+' full article');
         assert.equal(await page.locator('#pcTitle').textContent(), 'Akerselva');
       }
+      // The curated PlaceCard v2 must not show empty Objects, Brands or Structures
+      // when the entire river (rather than its separately owned sites) is open.
+      await page.waitForFunction(() =>
+        document.getElementById('placeCard')?.dataset.collectionProfileSource ===
+          'place_card_profile_v2_curated', null, {timeout:20000});
+      const collectionState = await page.evaluate(() => {
+        const card = document.getElementById('placeCard');
+        return {
+          declared: window.PLACES.find(p => p.id === 'akerselva')?.place_card_profile?.collection_ids,
+          total:card?.dataset.collectionCount,
+          requested:card?.dataset.collectionRequestedCount,
+          gridCount:card?.dataset.collectionGridCount,
+          visibleGrid:[...card.querySelectorAll('.pc-icons-quad .pc-round')]
+            .filter(node => !node.hidden).map(node => node.id)
+        };
+      });
+      assert.deepEqual(collectionState.declared, ['people'], tag + ': canonical collection declaration');
+      assert.equal(collectionState.requested, '1', tag + ': exactly one evidenced collection');
+      assert.equal(collectionState.total, '1', tag + ': People preview counted');
+      assert.deepEqual(collectionState.visibleGrid, [], tag + ': no empty gallery panels');
       // The production People round must be visible and populated by the actual
       // source registry, not by a stubbed People fixture.
       await page.waitForFunction(() => {
