@@ -110,3 +110,62 @@ test('Akerselva language lexicon has sourced river-name history and runtime pari
     assert.ok(entry.sources.every(source => source.label && /^https:\/\//.test(source.url)));
   }
 });
+
+
+test('Knud Graah portrait is source-backed, unmistakably a painting, and synced to both Places', () => {
+  const graah = load('data/people/natur/oslo/people_natur_oslo.json')
+    .find(person => person.id === 'knud_graah_voyenfallene');
+  assert.ok(graah?.image?.includes('Knud_Graah.jpg'));
+  assert.equal(graah.image, graah.cardImage);
+  assert.equal(graah.imageMeta.assetKind, 'historical_painted_portrait');
+  assert.equal(graah.imageMeta.license, 'CC BY-SA 4.0');
+  assert.match(graah.imageMeta.credit, /Cathrine Heyerdahl/);
+  assert.match(graah.imageMeta.credit, /Oslo Museum/);
+  assert.equal(graah.imageMeta.accessionNumber, 'OB.00242');
+  const claims = load(graah.claimsFile);
+  const portraitClaim = claims.claims.find(claim => claim.id === 'historical_portrait_1891');
+  assert.ok(portraitClaim?.source_url?.endsWith('File:Knud_Graah.jpg'));
+  assert.ok(claims.field_claim_map.image.includes(portraitClaim.id));
+  assert.ok(claims.field_claim_map.cardImage.includes(portraitClaim.id));
+  assert.equal(claims.completion.claims_verified, '7/7');
+  for (const id of ['akerselva', 'voienfossen']) {
+    const people = load('data/runtime/place-open/' + id + '.json').people;
+    assert.deepEqual(people.find(person => person.id === graah.id), graah);
+  }
+  const rows = [...Array.from({length:7},(_,i) =>
+    load('data/runtime/people-all/part-' + String(i+1).padStart(3,'0') + '.json'))]
+    .flat().filter(person => person.id === graah.id);
+  assert.deepEqual(rows, [graah]);
+  const civication = load('data/Civication/historyPeople_index.json').categories[graah.category]
+    .find(person => person.id === graah.id);
+  assert.equal(civication.image, graah.image);
+  assert.equal(civication.cardImage, graah.cardImage);
+});
+
+test('Akerselva curated PlaceCard uses only image-backed canonical People', () => {
+  const place = load('data/places/by/oslo/places/akerselva.json');
+  const runtime = load('data/runtime/place-open/akerselva.json');
+  const audit = load('reports/place-production/akerselva-collections-audit-20261101.json');
+  assert.equal(place.place_card_profile.schema, 'history_go_place_card_profile_v2');
+  assert.deepEqual(place.place_card_profile.collection_ids, ['people']);
+  assert.deepEqual(runtime.place.place_card_profile, place.place_card_profile);
+  assert.deepEqual(audit.chosen_collection_ids, ['people']);
+  assert.equal(audit.collections.people.status, 'PASS');
+  for (const key of ['objects', 'brands', 'structures']) {
+    assert.equal(audit.collections[key].status, 'BEGRUNNET_NA');
+    assert.ok(audit.collections[key].decision.length >= 60);
+  }
+  assert.deepEqual(new Set(audit.collections.people.member_ids),
+    new Set(['knud_graah_voyenfallene', 'halvor_schou']));
+  assert.equal(runtime.people.length, 2);
+  for (const person of runtime.people) {
+    assert.ok(audit.collections.people.member_ids.includes(person.id));
+    assert.ok(person.image && person.image === person.cardImage, person.name + ': missing portrait');
+    assert.ok(person.imageMeta?.sourcePage?.startsWith('https://commons.wikimedia.org/'));
+    assert.ok(person.imageMeta?.license);
+    assert.equal(person.profileStatus, 'ready_people_v1');
+  }
+  assert.equal(place.objects, undefined);
+  assert.equal(place.structures, undefined);
+  assert.equal(place.brand_ids, undefined);
+});

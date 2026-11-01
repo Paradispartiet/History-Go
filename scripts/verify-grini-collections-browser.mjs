@@ -1,0 +1,379 @@
+#!/usr/bin/env node
+
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import http from 'node:http';
+import path from 'node:path';
+import process from 'node:process';
+import { chromium } from 'playwright';
+
+const root = process.cwd();
+const [placeId] = process.argv.slice(2);
+
+if (!placeId) {
+  console.error('Usage: node scripts/verify-place-closeout-browser.mjs <place_id>');
+  process.exit(2);
+}
+
+function readJson(relativePath) {
+  return JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
+}
+
+const runtime = readJson(`data/runtime/place-open/${placeId}.json`);
+const place = runtime.place;
+assert.equal(place?.id, placeId, `runtime place-open payload does not resolve ${placeId}`);
+assert.equal(place?.place_card_profile?.schema, 'history_go_place_card_profile_v2', 'closeout requires place_card_profile_v2');
+
+const expectedCollections = ['people','objects','brands','historical_events'];
+assert.ok(expectedCollections.length >= 1 && expectedCollections.length <= 4, 'closeout expects 1-4 PASS collections');
+assert.deepEqual(
+  place.place_card_profile.collection_ids,
+  expectedCollections,
+  'PlaceCard collection_ids must match PASS collections in reviewed collection order',
+);
+
+const fixedIcons = {
+  people: 'pcPeopleIcon',
+  objects: 'pcObjectsIcon',
+  brands: 'pcBrandsIcon',
+};
+const categoryCollections = expectedCollections.filter((id) => !(id in fixedIcons));
+assert.ok(categoryCollections.length <= 1, `closeout supports one category-expression collection, found: ${categoryCollections.join(', ')}`);
+const expectedUiCollections = expectedCollections.map((id) => ({
+  id,
+  iconId: fixedIcons[id] || 'pcCategoryCollectionIcon',
+}));
+
+const mime = {
+  '.css': 'text/css; charset=utf-8',
+  '.gif': 'image/gif',
+  '.html': 'text/html; charset=utf-8',
+  '.ico': 'image/x-icon',
+  '.jpeg': 'image/jpeg',
+  '.jpg': 'image/jpeg',
+  '.js': 'text/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
+  '.png': 'image/png',
+  '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+};
+
+const server = http.createServer((request, response) => {
+  const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+  const relative = pathname === '/' ? '/index.html' : pathname;
+  const file = path.resolve(root, `.${relative}`);
+  if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
+    response.writeHead(404);
+    response.end('not found');
+    return;
+  }
+  response.writeHead(200, { 'content-type': mime[path.extname(file).toLowerCase()] || 'application/octet-stream' });
+  response.end(fs.readFileSync(file));
+});
+
+await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+const { port } = server.address();
+const baseUrl = `http://127.0.0.1:${port}`;
+const outDir = path.join(root, 'artifacts', 'grini-closeout', placeId);
+fs.mkdirSync(outDir, { recursive: true });
+
+const profiles = [
+  { name: 'desktop', viewport: { width: 1440, height: 1000 } },
+  { name: 'mobile', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
+];
+
+let browser;
+const reports = [];
+let failed = false;
+
+try {
+  browser = await chromium.launch({
+    headless: true,
+    executablePath: process.env.CHROME_BIN || undefined,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  });
+
+  for (const profile of profiles) {
+    const context = await browser.newContext({
+      viewport: profile.viewport,
+      isMobile: profile.isMobile || false,
+      hasTouch: profile.hasTouch || false,
+    });
+    const page = await context.newPage();
+    const pageErrors = [];
+    page.on('pageerror', (error) => pageErrors.push(String(error?.stack || error)));
+
+    await page.addInitScript(() => {
+      try {
+        localStorage.setItem('hg_onboarding_shown_v1', '1');
+        localStorage.setItem('HG_TEST_MODE', '1');
+      } catch {}
+    });
+
+    try {
+    await page.goto(`${baseUrl}/index.html?hgTest=1#/place/${placeId}`, {
+      waitUntil: 'domcontentloaded',
+      timeout: 60_000,
+    });
+    await page.waitForFunction(
+      () => window.__HG_APP_READY__ === true && window.__HG_ROUTER_STARTED__ === true,
+      null,
+      { timeout: 90_000 },
+    );
+    await page.waitForFunction(
+      (id) => document.getElementById('placeCard')?.dataset?.currentPlaceId === id,
+      placeId,
+      { timeout: 60_000 },
+    );
+    await page.waitForFunction(
+      ({ count, collections }) => {
+        const card = document.getElementById('placeCard');
+        if (card?.dataset?.collectionMode !== 'place-card-collections-v2') return false;
+        if (Number(card?.dataset?.collectionCount || 0) !== count) return false;
+        return collections.every(({ iconId, id }) => {
+          const el = document.getElementById(iconId);
+          if (!(el instanceof HTMLElement)) return false;
+          const rect = el.getBoundingClientRect();
+          return el.hidden !== true
+            && el.getAttribute('aria-hidden') !== 'true'
+            && rect.width > 0
+            && rect.height > 0
+            && el.dataset.collectionId === id;
+        });
+      },
+      { count: expectedUiCollections.length, collections: expectedUiCollections },
+      { timeout: 60_000 },
+    );
+    await page.waitForFunction(
+      () => {
+        const flip = document.getElementById('pcFrontCardFlip');
+        const content = document.getElementById('pcQuizCardContent');
+        // The back face is visibility:hidden until flipped; use textContent here.
+        return flip?.classList.contains('has-quiz-card')
+          && content instanceof HTMLElement
+          && content.hidden === false
+          && (content.textContent || '').trim().length > 20;
+      },
+      null,
+      { timeout: 60_000 },
+    );
+    await page.waitForFunction(
+      () => typeof window.showPlaceCardRoundPopup === 'function',
+      null,
+      { timeout: 30_000 },
+    );
+
+    await page.evaluate(() => {
+      const original = window.showPlaceCardRoundPopup;
+      window.__HG_PLACE_CLOSEOUT_POPUPS__ = [];
+      window.showPlaceCardRoundPopup = function(options = {}) {
+        window.__HG_PLACE_CLOSEOUT_POPUPS__.push({
+          kind: String(options?.kind || ''),
+          title: String(options?.title || ''),
+          html: String(options?.html || ''),
+        });
+        return original.apply(this, arguments);
+      };
+    });
+
+    const collectionState = await page.evaluate((collections) => collections.map(({ iconId, id }) => {
+      const el = document.getElementById(iconId);
+      const image = el?.querySelector(':scope > img.pc-person-img');
+      return {
+        id,
+        actualId: el?.dataset?.collectionId || '',
+        position: Number(el?.dataset?.collectionPosition ?? -1),
+        inTitleRow: Boolean(el?.closest('.pc-title-row')),
+        inCollectionGrid: Boolean(el?.closest('.pc-icons-quad')),
+        itemCount: Number(el?.dataset?.collectionItemCount || 0),
+        previewLoaded: image instanceof HTMLImageElement ? image.complete && image.naturalWidth > 0 : false,
+      };
+    }), expectedUiCollections);
+
+    const popupChecks = [];
+    for (const expected of expectedUiCollections) {
+      const before = await page.evaluate(() => window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0);
+      await page.locator(`#${expected.iconId}`).click();
+      await page.waitForFunction(
+        (count) => (window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0) > count,
+        before,
+        { timeout: 10_000 },
+      );
+      const popup = await page.evaluate(() => window.__HG_PLACE_CLOSEOUT_POPUPS__.at(-1));
+      if(expected.id==='people') {
+        assert.ok(popup.html.includes('einar_gerhardsen')&&popup.html.includes('frode_rinnan'),'Reviewed prisoners must be present');
+        assert.ok(!popup.html.includes('trygve_bratteli')&&!popup.html.includes('arnulf_overland'),'Legacy profiles remain held back');
+      }
+      if(expected.id==='objects') {
+        assert.ok(popup.html.includes('Illustrasjon – ikke fotografi'),'Visible illustration disclosure required');
+        assert.ok(popup.html.includes('Molvig')&&popup.html.includes('11–2600'),'Both identified archive volumes required');
+      }
+      if(expected.id==='brands') assert.ok(popup.html.includes('Baker Hansen'));
+      popupChecks.push({
+        expectedId: expected.id,
+        kind: popup?.kind || '',
+        title: popup?.title || '',
+        hasContent: String(popup?.html || '').trim().length > 20,
+      });
+
+      const popupRoot = page.locator('.hg-popup.placecard-round-popup.visible');
+      await popupRoot.locator('[data-close-popup]').click();
+      await popupRoot.waitFor({ state: 'detached', timeout: 10_000 });
+    }
+
+    await page.locator('#pcFavorite').click();
+    assert.equal(await page.evaluate(id=>window.HGFavoritePlaces.has(id),placeId),true);
+    await page.locator('#pcFavorite').click();
+    assert.equal(await page.evaluate(id=>window.HGFavoritePlaces.has(id),placeId),false);
+    assert.equal(await page.locator('#pcVisit').isVisible(),true);
+    await page.evaluate(id=>window.showPlacePopup(window.PLACES.find(p=>p.id===id)),placeId);
+    const knowledgePopup=page.locator('.hg-popup.place-popup-v2').last();
+    await knowledgePopup.waitFor({state:'visible',timeout:30000});
+    await page.waitForFunction(()=>document.querySelector('.hg-popup.place-popup-v2 [data-place-tab="reading"]'),null,{timeout:30000});
+    const tabChecks=[];
+    for(const id of ['about','history','stories','before-after','news','reading','sources','language']) {
+      await knowledgePopup.locator('[data-place-tab="'+id+'"]').click();
+      const panel=knowledgePopup.locator('[data-place-panel="'+id+'"]');
+      await panel.waitFor({state:'visible',timeout:15000});
+      if(id==='history') await page.waitForFunction(()=>/1941|1942/.test(document.querySelector('.hg-popup [data-place-panel="history"]')?.textContent||''),null,{timeout:15000});
+      if(id==='stories') await page.waitForFunction(()=>/Beskjeden om frihet/.test(document.querySelector('.hg-popup [data-place-panel="stories"]')?.textContent||''),null,{timeout:15000});
+      if(id==='news') await page.waitForFunction(()=>/kommandanturet/i.test(document.querySelector('.hg-popup [data-place-panel="news"]')?.textContent||''),null,{timeout:15000});
+      if(id==='reading') {await panel.locator('a[href*="digitalarkivet.no/view/"]').first().waitFor();assert.equal(await panel.locator('a[href*="digitalarkivet.no/view/"]').count(),2);}
+      if(id==='sources') assert.ok(await panel.locator('a[href^="https:"]').count()>=5);
+      if(id==='language') {
+        await panel.locator('[data-language-collect]').first().click();
+        assert.ok(await page.evaluate(()=>JSON.parse(localStorage.getItem('hg_knowledge_entries_v2')||'[]').some(x=>x.source?.type==='language_lexicon')));
+      }
+      tabChecks.push({id,textLength:(await panel.innerText()).length});
+    }
+    fs.writeFileSync(path.join(outDir,profile.name+'-tabs.json'),JSON.stringify(tabChecks,null,2));
+    await knowledgePopup.locator('[data-close-popup]').first().click();
+    await knowledgePopup.waitFor({state:'detached',timeout:15000});
+    const beforeFlipText = await page.locator('#pcQuizCardContent').textContent();
+    await page.locator('#pcFrontCardFlip').click();
+    await page.waitForFunction(
+      () => document.getElementById('pcFrontCardFlip')?.classList.contains('is-flipped') === true,
+      null,
+      { timeout: 10_000 },
+    );
+    const visibleBack = await page.locator('.pc-card-face-back').evaluate(el => ({
+      visibility: getComputedStyle(el).visibility,
+      content: (el.textContent || '').trim(),
+    }));
+    assert.equal(visibleBack.visibility, 'visible', 'QuizCard backside must become visible after the flip');
+    assert.ok(visibleBack.content.length > 20, 'QuizCard backside must contain real quiz text after the flip');
+    await page.locator('#pcFrontCardFlip').click();
+    await page.waitForFunction(
+      () => document.getElementById('pcFrontCardFlip')?.classList.contains('is-flipped') !== true,
+      null,
+      { timeout: 10_000 },
+    );
+
+    const base = await page.evaluate(() => {
+      const card = document.getElementById('placeCard');
+      const rect = card?.getBoundingClientRect?.();
+      const images = Array.from(card?.querySelectorAll?.('img') || [])
+        .map((img) => {
+          const box = img.getBoundingClientRect();
+          return {
+            src: img.currentSrc || img.src || '',
+            width: box.width,
+            height: box.height,
+            naturalWidth: img.naturalWidth,
+            complete: img.complete,
+          };
+        })
+        .filter((img) => img.width > 0 && img.height > 0 && img.src);
+      return {
+        title: (document.getElementById('pcTitle')?.textContent || '').trim(),
+        placeId: card?.dataset?.currentPlaceId || '',
+        visible: Boolean(rect && rect.width > 0 && rect.height > 0),
+        collectionMode: card?.dataset?.collectionMode || '',
+        collectionCount: Number(card?.dataset?.collectionCount || 0),
+        horizontalOverflowPx: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth),
+        images,
+      };
+    });
+
+    await page.screenshot({ path: path.join(outDir, `${profile.name}-placecard.png`), fullPage: true });
+
+    // Exercise the existing visit controller with synthetic positions in this
+    // isolated browser context. Near point is the lawful public museum anchor.
+    await page.evaluate(async id => {
+      window.TEST_MODE=false;
+      window.getPos=()=>({lat:59.91,lon:10.75});
+      await window.openPlaceCard(window.PLACES.find(p=>p.id===id));
+    },placeId);
+    await page.locator('#pcVisit').click();
+    assert.equal(await page.evaluate(id=>window.HGPhysicalVisits.isVisited(id),placeId),false,'Far-away click must not record a visit');
+    await page.evaluate(async id => {
+      window.getPos=()=>({lat:59.9557896,lon:10.5847011});
+      await window.openPlaceCard(window.PLACES.find(p=>p.id===id));
+    },placeId);
+    await page.locator('#pcVisit').click();
+    await page.waitForFunction(id=>window.HGPhysicalVisits.isVisited(id),placeId,{timeout:15000});
+    assert.match(await page.locator('#pcVisit').innerText(),/Besøkt/);
+
+    await page.locator('#pcQuiz').click();
+    await page.waitForFunction(
+      (id) => location.hash.startsWith(`#/quiz/${id}`),
+      placeId,
+      { timeout: 15_000 },
+    );
+    const quizHash = await page.evaluate(() => location.hash);
+
+    const required = {
+      exactPlace: base.placeId === placeId,
+      titlePresent: base.title.length > 0,
+      visible: base.visible === true,
+      canonicalCollectionMode: base.collectionMode === 'place-card-collections-v2',
+      collectionCount: base.collectionCount === expectedUiCollections.length,
+      collectionIdsAndOrder: collectionState.every((item, index) =>
+        item.actualId === expectedUiCollections[index].id && (item.id === 'people'
+          ? item.inTitleRow && !item.inCollectionGrid
+          : item.inCollectionGrid && item.position === expectedUiCollections.filter(row => row.id !== 'people').findIndex(row => row.id === item.id))
+      ),
+      collectionItemsPresent: collectionState.every((item) => item.itemCount >= 1),
+      collectionPreviewsLoaded: collectionState.every((item) => item.previewLoaded === true),
+      collectionPopups: popupChecks.every((item) => item.hasContent && item.title.trim().length > 0),
+      quizCardMaterialized: beforeFlipText.trim().length > 20,
+      quizEntry: quizHash.startsWith(`#/quiz/${placeId}`),
+      noHorizontalOverflow: base.horizontalOverflowPx <= 2,
+      noPageErrors: pageErrors.length === 0,
+      // A lazy/offscreen image with complete=false is still pending, not broken.
+      // Broken requests have complete=true but naturalWidth=0.
+      noBrokenVisibleImages: base.images.every((image) => !image.complete || Number(image.naturalWidth || 0) > 0),
+    };
+
+    const report = {
+      placeId,
+      profile: profile.name,
+      expectedCollections,
+      required,
+      base,
+      collectionState,
+      popupChecks,
+      quizHash,
+      pageErrors,
+    };
+    reports.push(report);
+    fs.writeFileSync(path.join(outDir, `${profile.name}.json`), JSON.stringify(report, null, 2) + '\n');
+
+    if (Object.values(required).some((value) => value !== true)) failed = true;
+    } catch(error) {await page.screenshot({path:path.join(outDir,profile.name+'-failure.png')}).catch(()=>{});throw error;}
+    await context.close();
+  }
+} finally {
+  await browser?.close();
+  await new Promise((resolve) => server.close(resolve));
+}
+
+fs.writeFileSync(path.join(outDir, 'summary.json'), JSON.stringify(reports, null, 2) + '\n');
+if (failed) {
+  console.error(`Place closeout browser QA failed for ${placeId}`);
+  process.exit(1);
+}
+console.log(`Place closeout browser QA OK: ${placeId}`);

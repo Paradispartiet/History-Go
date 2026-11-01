@@ -1,0 +1,130 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "akerselva",
+  "category": "by",
+  "status": "in_progress",
+  "production_profile": "standard",
+  "profile_status": "provisional",
+  "profile_reason": "Sammenhengende byelv med selvstendig kulturhistorie, miljøhistorie og stedsspesifikt Fagverk. Endelig bredde avgjøres i samlet factuality- og kronologirevisjon, ikke av antall Places langs elva.",
+  "underbadge_ids": [
+    "industri"
+  ],
+  "scope": "Kanonisk By-sted for Akerselva som elveløp med tre ruteankre; ikke identisk med separate fabrikker, broer, fosser eller Nature-rutestopp.",
+  "source_review": {
+    "status": "in_progress",
+    "refs": [
+      "reports/place-production/akerselva-vferdig-recovery-20261031.md",
+      "reports/place-production/akerselva-collections-audit-20261101.json"
+    ],
+    "source_urls": [
+      "https://oslobyleksikon.no/side/Akerselva",
+      "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
+      "https://oslobyleksikon.no/side/V%C3%B8iens_Bomuldsspinderi"
+    ],
+    "remaining": "V4.2 claim-by-sentence factuality review for existing long article, and documented chronology materialization."
+  },
+  "content_plan": {
+    "people": "PASS — to canonical industrialists Knud Graah/Halvor Schou, both original sourced portraits.",
+    "objects": "BEGRUNNET_NA — no independently image-backed physical object owned by entire river instead of a separate mill/bridge Place.",
+    "brands": "BEGRUNNET_NA — no proven river-owned logo/identity preview; industrial brands belong to own Places.",
+    "category_expression": "BEGRUNNET_NA — Structures are independent canonical mill, waterfall and bridge Places; related navigation not duplicated.",
+    "quiz": "PASS — 30 canonical active fullquiz questions in 5×6, plus 10 derived QuizCard questions.",
+    "fagverk": "PASS — curated place Fagverk linked to existing canonical subjects/chapters.",
+    "language": "PASS — five documented hydronyms; app translations nb/en/es/pt verified.",
+    "images": "PASS — independent authentic standing frontImage and landscape hero; People portraits verified.",
+    "chronology": "IN_PROGRESS — research and canonical epoch materialization audit still required.",
+    "related": "IN_PROGRESS — own-place relation/navigation audit still required.",
+    "stories": "EXISTING — one canonical place Story; comprehensive narrative review remains open.",
+    "lesespor": "IN_PROGRESS — assess relevance; no filler."
+  },
+  "collection_ids": [
+    "people"
+  ],
+  "collection_status": "PASS_1_OF_4_ELIGIBLE_NOT_FINAL_VFERDIG",
+  "quality_gate": "pending_exact_head_browser_and_place_open_checks",
+  "blockers": [
+    "Full v4.2 source-to-claim/sentence parity for canonical long article not yet completed.",
+    "Chronology, epoch and related-place navigation require independent editorial audit.",
+    "Remaining conditional modules and final vFerdig quality gate not yet closed."
+  ],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "PRs #6838, #6853 and #6854: verified Commons front/hero, historical Knud Graah painting and Halvor Schou portrait."
+    },
+    "final_ui": {
+      "status": "PENDING",
+      "evidence": "PR #6855 real mobile/desktop Playwright acceptance on exact latest head."
+    }
+  },
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "akerselva",
+    "category": "by",
+    "recorded_at": "2026-11-01T03:52:33.208Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "eacaec225d5a1c61e43ed6cbe9754bc007ecff3818dfd630940dd4f4870ba7f5"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "fbd5e39905942e116c1fef9e375253c54f93d292b82bac03379d011f38fe93c6"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/by.json",
+        "sha256": "a2370a9ff354b1c6c6eee6b723b0f412aed1fca25afb162bf124fb49cd09fca7"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "structures"
+      ],
+      "category_expression": "structures",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  }
+}

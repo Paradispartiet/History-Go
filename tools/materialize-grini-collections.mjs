@@ -3,6 +3,7 @@
 // This builder records candidate content, never final UI approval or vFerdig.
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 const day='2026-11-01';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const write=(p,v)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,JSON.stringify(v,null,2)+'\n');};
@@ -20,6 +21,7 @@ if(!fs.existsSync(logoFile)){
  const response=await fetch(logoUrl);if(!response.ok)throw Error('Official logo download: '+response.status);
  fs.mkdirSync(path.dirname(logoFile),{recursive:true});fs.writeFileSync(logoFile,Buffer.from(await response.arrayBuffer()));
 }
+if(createHash('sha256').update(fs.readFileSync(logoFile)).digest('hex')!=='4c089c58786362cd08cb6e4449a9028af70baa3fe6e9d8db6acaecbcf07ef802')throw Error('Official logo differs from the source-reviewed asset; review before replacing.');
 for(const item of people){
  const rows=read(item.file),person=rows.find(x=>x.id===item.id),claims=read(item.claims);
  if(!person)throw Error('Missing canonical person '+item.id);

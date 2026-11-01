@@ -1,0 +1,110 @@
+{
+  "schema": "history_go_place_collection_candidate_audit_v1",
+  "place_id": "akerselva",
+  "category": "by",
+  "scope": "Canonical by-Place for Akerselva as a multi-neighborhood river corridor and route with three anchors, not any one fall, mill, bridge, factory or riverside business.",
+  "audited_at": "2026-11-01",
+  "outcome": "curated_one_collection_not_vferdig",
+  "source_files": [
+    "data/places/by/oslo/places/akerselva.json",
+    "data/runtime/place-open/akerselva.json",
+    "data/people/natur/oslo/people_natur_oslo.json",
+    "data/people/naeringsliv/oslo/ovre_foss/halvor_schou.json",
+    "data/people/claims/natur/oslo/knud_graah_voyenfallene.claims.json",
+    "data/people/claims/naeringsliv/oslo/ovre_foss/halvor_schou.claims.json",
+    "data/brands/brands_by_place.json",
+    "data/places/manifest.json"
+  ],
+  "external_sources": [
+    {
+      "label": "Oslo byleksikon — Akerselva",
+      "url": "https://oslobyleksikon.no/side/Akerselva",
+      "use": "history of river, industrial mills and place boundary"
+    },
+    {
+      "label": "Oslo byleksikon — Vøiens Bomuldsspinderi",
+      "url": "https://oslobyleksikon.no/side/V%C3%B8iens_Bomuldsspinderi",
+      "use": "Knud Graah physical river industry"
+    },
+    {
+      "label": "Oslo byleksikon — Hjula Væverier",
+      "url": "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
+      "use": "Halvor Schou physical river industry"
+    },
+    {
+      "label": "Wikimedia Commons — Knud Graah",
+      "url": "https://commons.wikimedia.org/wiki/File:Knud_Graah.jpg",
+      "use": "licensed historical portrait, Oslo Museum"
+    },
+    {
+      "label": "Wikimedia Commons — Halvor Schou",
+      "url": "https://commons.wikimedia.org/wiki/File:Halvor_Schou.jpg",
+      "use": "identity portrait, licensed media"
+    }
+  ],
+  "collections": {
+    "people": {
+      "status": "PASS",
+      "member_ids": [
+        "knud_graah_voyenfallene",
+        "halvor_schou"
+      ],
+      "evidence": "Both are canonical existing People with documentary association to textile industry beside Akerselva; each has a distinct, image-loaded licensed portrait. Primary place IDs remain Vøyenfossen and Glads mølle respectively.",
+      "preview_contract": "Either person may preview, but People popup must show both; no placeholder imagery."
+    },
+    "objects": {
+      "status": "BEGRUNNET_NA",
+      "candidates_reviewed": [
+        "mill machinery",
+        "sluice gates",
+        "industrial signage"
+      ],
+      "decision": "No single separately documented canonical physical object with its own member image and an appropriate ownership anchor at the entire river corridor. Apparatus and signs identified at individual mills are owned by their specific Places, not duplicated here."
+    },
+    "brands": {
+      "status": "BEGRUNNET_NA",
+      "candidates_reviewed": [
+        "Hjula Væverier",
+        "Vøiens Bomuldsspinderi",
+        "Akerselva Miljøpark"
+      ],
+      "decision": "No current certified logo/sign preview and own-place evidence for a brand owned by the river corridor. Factory names belong to separately anchored places and must not be turned into an invented river-wide Brand."
+    },
+    "structures": {
+      "status": "BEGRUNNET_NA",
+      "candidates_reviewed": [
+        "Hjula Væverier at Øvre Foss",
+        "Vøyenfallene and textile mills",
+        "Beierbrua",
+        "Ankerbrua",
+        "Nydalen"
+      ],
+      "canonical_place_ids": [
+        "ovre_foss",
+        "voienfossen",
+        "beierbrua",
+        "ankerbrua",
+        "nydalen"
+      ],
+      "decision": "The candidate structures or fall facilities are individually registered canonical Places. They should remain navigable via related Places/routing rather than duplicate entity cards under the full river Place."
+    }
+  },
+  "chosen_collection_ids": [
+    "people"
+  ],
+  "preserve": [
+    "30 canonical fullquiz questions and source IDs",
+    "10-source-question QuizCard",
+    "three river anchors",
+    "four language texts",
+    "licensed distinct frontImage and hero",
+    "separate Nature route places"
+  ],
+  "pending_vferdig": [
+    "canonical Place factuality and sentence-level source→claim review",
+    "chronology and epoke audit",
+    "source-grounded related-place navigation verification",
+    "other conditional modules and final overall quality/production workflow audit"
+  ],
+  "note": "This closes the PlaceCard collections candidacy gate only. A green data/browser test is not a declaration of full vFerdig."
+}
