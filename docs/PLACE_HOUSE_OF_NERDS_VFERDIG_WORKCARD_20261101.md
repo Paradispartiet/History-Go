@@ -33,8 +33,8 @@
 | Brands | KANDIDATAUDIT | Driftsselskap/House of Nerds-identiteten kan være relevant, men canonical brand-gate er ikke gjennomgått |
 | Category expression | KANDIDATAUDIT | Innhold skal bare produseres dersom canonical samling passer med dokumenterte spor |
 | PlaceCard-samlinger | BLOCKED | Ingen 1–4 verifiserte PASS-samlinger/medlemsbilder i `place_card_profile` |
-| Fullquiz | BLOCKED | Quizreadiness ≠ aktiv fullquiz; krev kildebelagt `narrow|normal|rich|major`, manifestsynk, Knowledge-paritet, anti-repetisjon og UI-kontroll |
-| QuizCard | BLOCKED | Ingen faktisk stående kortfil/kobling for stedet og ingen godkjent spørsmålsparitet |
+| Fullquiz | UNDER REVIEW / BLOCKED FOR KNOWLEDGE | PR #6900: 21 kildebaserte spørsmål i 3×7 narrow-sett og aktiv quizmanifest-kandidat. `knowledge:canonical:check` feiler: 21 spørsmål uten genererte Knowledge-ID-er, Subkultur-kunnskapsfil og backfill-rapport ute av synk. Ingen fullquiz-PASS før regenerering og faktisk app-QA. |
+| QuizCard | UNDER REVIEW / BLOCKED FOR INTEGRASJON | PR #6900 har 10 identiske spørsmål og fasiter fra fullquiz i `data/quizcards/subkultur/house_of_nerds_quizcard_v1.json` med manifestkobling. Faktisk stående kortbilde, PlaceCard-flip/runtime og browserkontroll gjenstår. |
 | Hovedbilde | BLOCKED | `popupImage` peker mot tredjeparts Squarespace-bilde uten dokumentert lisens-/proveniensgate; dette er ikke nok til publiseringsgodkjent hero-bilde |
 | Stående `frontImage` | BLOCKED | Egen bildefil, stående pikselgeometri, motividentitet, rettighet og faktisk kortvisning mangler |
 | Utforsk/På stedet/Progress | BLOCKED | Ingen eksakt app-/browser-QA av stedskort, popup, check-in, quizstart, progress og mobilflate |
@@ -50,7 +50,7 @@
 
 ## Produksjonsbeslutning og ferdig-gate
 **Produksjonsprofil:** `focused` (provisional, ikke confirmed; ett relativt avgrenset aktivt spill-/arrangementssted med eget subkultur-case). Ferdig profil krever endelig badge-drevet kilde- og kandidataudit.  
-**Quizprofil:** ikke avgjort før komplett claimbank og eksisterende quiz-audit.  
+**Quizprofil:** foreløpig valgt `narrow_3x7` på 21 kildebaserte quizclaims i PR #6900; kandidat er ikke teknisk godkjent før Knowledge-generering, ny CI og quiz-UI-kontroll.  
 **V3:** Ingen `data/places/workflow/house_of_nerds.json` funnet ved preflight; stedet følger eksisterende legacy-prosess, ikke kunstig V3-`complete`.
 
 Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og bildeporter har PASS, faktisk desktop/mobil UX er kontrollert, relevante tester er grønne, eksakt head er merget til main og live-readback er dokumentert. **Ikke fyll manglende samlinger med filler og ikke erstatt eksisterende verifisert geometri eller Subkultur-evidens.**
@@ -62,3 +62,5 @@ Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og b
 - Flere `Place-open`- og `Epoch viewer`-kjøringer stopper ved genererte filer (`data/runtime/nature-all/flora-001.json`, `data/epoker/epoke-place-index.json`). Disse statusene må skilles fra faglig godkjenning og løses før `vFerdig`.
 
 - PR #6895: kildebelagt Språkleksikon med `nerdehjem`, `gaming`, `VR-escape room` og `community`; canonical manifestregistrering; avventer slutt-QA.
+
+- PR #6900: 21 kildebaserte spørsmål, 3 sett, ti nøyaktige QuizCard-spørsmål, registrert i quiz- og QuizCard-manifest. CI viser `Knowledge canonical data`-drift i `data/quiz/subkultur/house_of_nerds_sets.json`, `data/knowledge/subjects/subkultur/knowledge_units.generated.json` og `reports/knowledge-id-backfill.json`. Ikke sett Quiz/Knowledge til PASS før kanonisk builder og faktisk UI-QA.
