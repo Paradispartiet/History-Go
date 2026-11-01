@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/subkultur/vaterland_bar_scene.json",
-      "bytes": 30386,
-      "sha256": "cac7ee88d977add3e074df0f875a5577061d42721868f4fc88a86d518599068b"
+      "bytes": 30895,
+      "sha256": "350364cdb56eea4808af13bcd20f4c0440a43d3bb0f979123dc7a1ec1feba52e"
     },
     "target": {
       "path": "data/places/subkultur/oslo/places_subkultur/vaterland_bar_scene.json",
@@ -202,6 +202,11 @@
         "score": 100
       },
       {
+        "id": "em_sub_rett_til_byen",
+        "title": "Rett til byen",
+        "score": 100
+      },
+      {
         "id": "em_sub_scene_fellesskap",
         "title": "Scene og fellesskap",
         "score": 100
@@ -217,6 +222,12 @@
         "id": "klubbkultur_natt",
         "title": "Klubbkultur og natt",
         "category_id": "steder_territorier_okkupering",
+        "score": 10
+      },
+      {
+        "id": "rett_til_byen",
+        "title": "Rett til byen",
+        "category_id": "makt_kontroll_regulering",
         "score": 10
       },
       {
@@ -243,12 +254,14 @@
     "emne_ids": [
       "em_sub_scene_fellesskap",
       "em_sub_undergrunn_miljo",
-      "em_sub_klubbkultur_natt"
+      "em_sub_klubbkultur_natt",
+      "em_sub_rett_til_byen"
     ],
     "topic_hook_ids": [
       "klubbkultur_natt",
       "scene_fellesskap",
-      "undergrunn_miljo"
+      "undergrunn_miljo",
+      "rett_til_byen"
     ],
     "method_ids": [
       "met_sub_klubbanalyse",
@@ -256,8 +269,12 @@
       "met_sub_sceneanalyse",
       "met_sub_nettverksanalyse"
     ],
-    "thinker_ids": [],
-    "works": []
+    "thinker_ids": [
+      "henri_lefebvre"
+    ],
+    "works": [
+      "The Right to the City"
+    ]
   },
   "claim_bank": [
     {
@@ -509,7 +526,10 @@
         "disharmoni"
       ],
       "source_origin": "external",
-      "emne_id": "em_sub_klubbkultur_natt"
+      "emne_id": "em_sub_rett_til_byen",
+      "topic_hook_id": "rett_til_byen",
+      "thinker_id": "henri_lefebvre",
+      "work": "The Right to the City"
     },
     {
       "claim_id": "claim_vaterland_bar_scene_21",
@@ -580,14 +600,14 @@
   "question_balance": {
     "total": 21,
     "counts": {
-      "fact": 9,
-      "context": 0,
-      "concept_theory": 12
+      "fact": 10,
+      "context": 7,
+      "concept_theory": 4
     },
     "ratios": {
-      "fact": 0.429,
-      "context": 0,
-      "concept_theory": 0.571
+      "fact": 0.476,
+      "context": 0.333,
+      "concept_theory": 0.19
     }
   }
 }
