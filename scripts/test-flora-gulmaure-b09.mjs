@@ -11,7 +11,7 @@ const catalog=JSON.parse(read("data/natur/flora/blomster.json")).find(x=>x.id===
 const runtime=JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]).find(x=>x.id===id);
 for(const x of [catalog,runtime]){assert.equal(x.latin,a.scientificName);assert.equal(x.title,"Gulmaure");}
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
-assert.equal(env.window.HG_NATURE_FLORA_APPROVED.count,33);
+assert(env.window.HG_NATURE_FLORA_APPROVED.count>=33,"Previously approved 33 illustrations must remain");
 assert.equal(env.window.HG_NATURE_FLORA_APPROVED.get(id)?.src,a.src);
 assert.equal(env.window.HG_NATURE_FLORA_APPROVED.get(id)?.gitBlobSha,a.gitBlobSha);
 const b=fs.readFileSync(new URL(a.src,root));
