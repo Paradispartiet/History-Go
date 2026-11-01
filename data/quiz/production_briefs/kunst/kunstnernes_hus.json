@@ -1,0 +1,385 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "kunst",
+  "targetId": "kunstnernes_hus",
+  "scope": "place",
+  "status": "partial",
+  "reviewed_at": "2026-11-01",
+  "profile_hint": "narrow_3x7",
+  "review_note": "Historiske fakta er kontrollert mot Kunstnernes Hus' offisielle kronologi. 21 kandidatspørsmål er knyttet til konkrete kildeavsnitt. Fortolkende spørsmål, andre kilder, Fagverk/Knowledge og nettleseraksept krever siste redaksjonelle godkjenning før quiz publiseres.",
+  "sources": {
+    "https://kunstnerneshus.no/om/historie": {
+      "url": "https://kunstnerneshus.no/om/historie",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 1928–1945: konkurranse, åpning, modernistisk bygg, løver, takmaleri, Guernica-visning, Wehrmachts beslag og gjenåpning."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_kunst_institusjoner_kanon",
+      "em_kunst_materialitet_teknikk_handverk",
+      "em_kunst_offentlig_kunst_monumenter",
+      "em_kunst_institusjonskritikk_og_representasjon"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_kunst_institusjonsanalyse",
+      "met_kunst_kunsthistorisk_kontekstualisering",
+      "met_kunst_kanon_og_arkivanalyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "considered_curriculum": {
+    "note": "Avgrenset til stedets kunstinstitusjon, bygning, utsmykning, internasjonal utstilling og okkupasjonshistorie. Kunstnerbiografier og generell estetisk teori er ikke egne åpningssett."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/kunst/kunstnernes_hus_sets.json",
+      "data/quizcards/kunst/manifest.json",
+      "reports/place-production/oslo-bolk05-kunstnernes-hus-quiz21-candidates-20261101.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv quiz registrert på targetId i quizmanifest."
+    },
+    "decisions": [
+      "Ikke opprett duplikat-Place eller parallelle quizsett.",
+      "Hold kandidater utenfor runtime-manifest til Knowledge er generert og CI bestått."
+    ],
+    "knowledge_migration": "Canonical builder skal opprette de nye Knowledge-ID-ene; ingen oppdiktede KU-ID-er tillates."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Tre kildebårne læringsoppgaver med ulike kognitive nivåer: identitet og arkitektur; utsmykning og historisk utstilling; institusjonell frihet og kildekritikk. 21 spørsmål er kuratert uten årstallsdrill."
+  },
+  "held_back_candidates": [
+    "Ikke påstå at Guernica eies av Kunstnernes Hus.",
+    "Ikke bland en midlertidig utstilling i 1938 med permanent samling.",
+    "Ikke utvid til usikre detaljer om utenlandsk kunst uten egen kilde.",
+    "Materialisering, canonical Knowledge, QuizCards og visuell QA er ikke godkjent."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "bygg_og_identitet",
+      "statement": "Kunstnernes Hus åpnet med Høstutstillingen og var kunstnernes egen utstillingsarena.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1930, Husets innvielse; kunstnernes eget hus",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "bygg_og_identitet",
+      "statement": "Kunstnere arbeidet for en permanent, kunstnerstyrt utstillingsinstitusjon.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1930, Husets innvielse; kunstnernes eget hus",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "bygg_og_identitet",
+      "statement": "Gudolf Blakstad og Herman Munthe-Kaas vant arkitektkonkurransen for Kunstnernes Hus.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1928 Arkitektkonkurranse; 1929 Bygningsarbeidet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_materialitet_teknikk_handverk"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "bygg_og_identitet",
+      "statement": "Overlyssalene er bygget for å gi særlige lysforhold til utstillingsrommene.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1928 Arkitektkonkurranse; 1929 Bygningsarbeidet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_materialitet_teknikk_handverk"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "bygg_og_identitet",
+      "statement": "Ørnulf Basts løver står ved inngangen og er et tydelig kjennetegn.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1931 Løvene finner sin plass; 1932 Per Krohgs takmaleri",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_offentlig_kunst_monumenter"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "bygg_og_identitet",
+      "statement": "Løvene er laget av billedhuggeren Ørnulf Bast.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1931 Løvene finner sin plass; 1932 Per Krohgs takmaleri",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_offentlig_kunst_monumenter"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "bygg_og_identitet",
+      "statement": "Per Krohgs takmaleri er en del av den kunstneriske utsmykningen i trappehallen.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1931 Løvene finner sin plass; 1932 Per Krohgs takmaleri",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_offentlig_kunst_monumenter"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_08",
+      "order": 8,
+      "planned_phase": "opening",
+      "family": "institusjon_og_historie",
+      "statement": "Picassos Guernica ble vist her i 1938, som et historisk utstillingslån.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1937 Picassos Guernica til Norge og visningen i 1938",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_09",
+      "order": 9,
+      "planned_phase": "opening",
+      "family": "institusjon_og_historie",
+      "statement": "Historien om Guernica gjelder en utstilling i 1938, ikke en nåværende permanent utstilling.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1937 Picassos Guernica til Norge og visningen i 1938",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_10",
+      "order": 10,
+      "planned_phase": "opening",
+      "family": "institusjon_og_historie",
+      "statement": "Wehrmacht tok over Kunstnernes Hus i 1942 og brøt kunstnernes råderett i okkupasjonsårene.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1942 Huset blir beslaglagt; 1945 åpning etter krigen",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjonskritikk_og_representasjon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_11",
+      "order": 11,
+      "planned_phase": "opening",
+      "family": "institusjon_og_historie",
+      "statement": "Okkupasjonen viser at kunstens institusjonelle frihet ikke er uavhengig av samfunnet rundt.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1942 Huset blir beslaglagt; 1945 åpning etter krigen",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjonskritikk_og_representasjon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_12",
+      "order": 12,
+      "planned_phase": "opening",
+      "family": "institusjon_og_historie",
+      "statement": "Huset ble igjen en viktig ramme om kunstnernes utstillingsvirksomhet.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1942 Huset blir beslaglagt; 1945 åpning etter krigen",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjonskritikk_og_representasjon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_13",
+      "order": 13,
+      "planned_phase": "opening",
+      "family": "institusjon_og_historie",
+      "statement": "Arkitekturen er et eksempel på norsk modernisme fra mellomkrigstiden.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1928 Arkitektkonkurranse; 1929 Bygningsarbeidet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_materialitet_teknikk_handverk"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_14",
+      "order": 14,
+      "planned_phase": "opening",
+      "family": "institusjon_og_historie",
+      "statement": "Lys og rom påvirker tolkningen av verk uten å endre selve verkene.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1928 Arkitektkonkurranse; 1929 Bygningsarbeidet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_materialitet_teknikk_handverk"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "tolkning_og_kildekritikk",
+      "statement": "Et kunstnerstyrt hus handler om større kontroll over utstillingsmuligheter og institusjonelle valg.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1930, Husets innvielse; kunstnernes eget hus",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "tolkning_og_kildekritikk",
+      "statement": "Samtidige kataloger, plakater og arkivmateriale kan belyse en tidligere utstilling.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1937 Picassos Guernica til Norge og visningen i 1938",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "tolkning_og_kildekritikk",
+      "statement": "Guernica-visningen er et konkret eksempel på at et verk kan være midlertidig til stede.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1937 Picassos Guernica til Norge og visningen i 1938",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "tolkning_og_kildekritikk",
+      "statement": "Ørnulf Basts løver og Per Krohgs takmaleri er integrert i besøksopplevelsen av huset.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1931 Løvene finner sin plass; 1932 Per Krohgs takmaleri",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_offentlig_kunst_monumenter"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "tolkning_og_kildekritikk",
+      "statement": "Beslaget under okkupasjonen betydde et brudd i hvem som kontrollerte lokalene.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1942 Huset blir beslaglagt; 1945 åpning etter krigen",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjonskritikk_og_representasjon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "tolkning_og_kildekritikk",
+      "statement": "Kunsthistorie omfatter også institusjoner, makt, publikum og betingelsene for å vise verk.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1930, Husets innvielse; kunstnernes eget hus",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_kunstnernes_hus_b05_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "tolkning_og_kildekritikk",
+      "statement": "Kunstnernes Hus samler bygningens formspråk, kunstnernes organisering, internasjonale utstillinger og erfaringene fra okkupasjonen.",
+      "source_ids": [
+        "https://kunstnerneshus.no/om/historie"
+      ],
+      "source_location": "Vår historie: 1930, Husets innvielse; kunstnernes eget hus",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    }
+  ]
+}

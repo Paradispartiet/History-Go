@@ -1,0 +1,70 @@
+name: Oslo bolk 05 - finish two remaining v4.2 packets once
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-bolk05-tekst-20261101
+    paths:
+      - .github/workflows/oslo-bolk05-final-v42-once.yml
+permissions:
+  contents: write
+concurrency:
+  group: oslo-bolk05-final-v42
+  cancel-in-progress: false
+jobs:
+  final-v42:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      # Corrected Blitz photo evidence phrasing after scoped v4.2 sentence audit.
+      - name: Verify production helper syntax
+        run: node --check scripts/finish-oslo-bolk05-v42.mjs
+      - name: Source-reviewed completion for Historisk museum and Blitzhuset
+        run: node scripts/finish-oslo-bolk05-v42.mjs
+      - name: Regenerate epoke lookup and check scope
+        run: |
+          npm run epoker:places:build
+          npm run epoker:places:check
+          node scripts/build-oslo-bolk05-quizzes.mjs --check
+      - name: Verify all six place packets with production v4.2 validator
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {validatePacket} from './scripts/validate-place-description-production-v4_2.mjs';
+          const ids=['folketeateret','kunstnernes_hus','historisk_museum','ibsen_museum_teater','blitzhuset','kulturkirken_jakob_litteratur'];
+          for(const id of ids){
+            const path='data/places/production/'+id+'.json';
+            const packet=JSON.parse(fs.readFileSync(path,'utf8'));
+            const place=JSON.parse(fs.readFileSync(packet.placeFile,'utf8'));
+            const errors=validatePacket({packet,place,packetFile:path}).issues;
+            if(packet.status!=='ready_v4_2'||errors.length)throw Error(id+': '+packet.status+' '+JSON.stringify(errors.slice(0,10)));
+            console.log(id,'ready_v4_2','OK');
+          }
+          NODE
+      - name: Commit two reviewed places and source packets, without other batches
+        env:
+          BRANCH_NAME: research/oslo-sentrum-bolk05-tekst-20261101
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/places/historie/oslo/places_historie/historisk_museum.json data/places/subkultur/oslo/places_subkultur/blitzhuset.json
+          git add -- data/places/production/historisk_museum.json data/places/production/blitzhuset.json
+          git add -- data/runtime/place-open/historisk_museum.json data/runtime/place-open/blitzhuset.json
+          git add -- data/epoker/epoke-place-index.json
+          git rm -- .github/workflows/oslo-bolk05-final-v42-once.yml
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m "Complete source-reviewed v4.2 text and quiz evidence for Historisk museum and Blitzhuset"
+          git fetch origin "$BRANCH_NAME"
+          if [ "$(git rev-parse "origin/$BRANCH_NAME")" != "$(git rev-parse HEAD^)" ]; then
+            echo "::error::PR branch advanced since checkout; refusing to overwrite"
+            exit 1
+          fi
+          git push origin "HEAD:$BRANCH_NAME"

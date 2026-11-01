@@ -1,0 +1,395 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "litteratur",
+  "targetId": "ibsen_museum_teater",
+  "scope": "place",
+  "status": "partial",
+  "reviewed_at": "2026-11-01",
+  "profile_hint": "narrow_3x7",
+  "review_note": "Stedsspesifikke historiske fakta og kildespørsmål i tre trinn. Kildebaserte kandidatspørsmål er kontrollert mot eksisterende v4.2-påstander. Endelig teori- og metodesamsvar, Knowledge-generering og browser QA gjenstår.",
+  "sources": {
+    "https://ibsenmt.no/besok-oss": {
+      "url": "https://ibsenmt.no/besok-oss",
+      "source_type": "official",
+      "review_status": "partial",
+      "review_note": "Institusjonens kildegrunnlag kontrollert mot publisert historikk og sekundærkilde; gjennomgå kildeavsnitt før endelig signering."
+    },
+    "https://oslobyleksikon.no/side/Ibsenmuseet": {
+      "url": "https://oslobyleksikon.no/side/Ibsenmuseet",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Historisk oversiktsartikkel, også adresse- og forvaltningshistorie."
+    },
+    "https://ibsenmt.no/om-oss": {
+      "url": "https://ibsenmt.no/om-oss",
+      "source_type": "official",
+      "review_status": "partial",
+      "review_note": "Institusjonens kildegrunnlag kontrollert mot publisert historikk og sekundærkilde; gjennomgå kildeavsnitt før endelig signering."
+    },
+    "https://ibsenmt.no/fra-dramatikerhjem-til-museum": {
+      "url": "https://ibsenmt.no/fra-dramatikerhjem-til-museum",
+      "source_type": "official",
+      "review_status": "partial",
+      "review_note": "Institusjonens kildegrunnlag kontrollert mot publisert historikk og sekundærkilde; gjennomgå kildeavsnitt før endelig signering."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_lit_drama_scene_og_teatertekst",
+      "em_lit_forfatterskap_verk_og_liv"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [],
+    "thinker_ids": [],
+    "works": []
+  },
+  "considered_curriculum": {
+    "note": "Ibsens faktiske hjem vs dagens inngang, rekonstruksjonens kildegrunnlag og teatersal 2022 vs åpning 2023"
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/litteratur/ibsen_museum_teater_sets.json",
+      "data/quizcards/litteratur/manifest.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv, manifestert quiz for dette canonical targetId."
+    },
+    "decisions": [
+      "Ikke lag nye Places eller dupliser mål i manifest.",
+      "Kandidatsett skal først registreres etter faglig signering og canonical Knowledge-generering."
+    ],
+    "knowledge_migration": "Nye KU-ID-er genereres deterministisk. Eksisterende fremgang eller eventuelle andre targetId-er skal ikke endres."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Tre læringsjobber fra konkret sted via historie/funksjon til kildekritikk og fortolkning, med fokus på kildebasert forståelse og få rene årstallsspørsmål."
+  },
+  "held_back_candidates": [
+    "Ikke fremstille kandidatspørsmål som publisert fullquiz.",
+    "Ikke auto-opprette Knowledge-ID-er eller nye steder før kanonisk integrasjon.",
+    "Kildeskiller og metodereferanser må fagkontrolleres før endelig QuizCard-materialisering."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "identitet_adresser",
+      "statement": "Dagens publikumsinngang er i Henrik Ibsens gate 26; den historiske boligen ligger i Arbins gate 1.",
+      "source_ids": [
+        "https://ibsenmt.no/besok-oss"
+      ],
+      "source_location": "Museets besøksadresse",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "identitet_adresser",
+      "statement": "Henrik og Suzannah Ibsen bodde i Arbins gate 1.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Ibsenmuseet"
+      ],
+      "source_location": "Ibsens bolig og arbeid",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "identitet_adresser",
+      "statement": "Henrik og Suzannah Ibsen bodde her i forfatterens siste Oslo-år.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Ibsenmuseet"
+      ],
+      "source_location": "Ibsens bolig og arbeid",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "identitet_adresser",
+      "statement": "Det historiske hjemmet, ikke bare det moderne teaterprogrammet, er selve museets kjerne.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Ibsenmuseet"
+      ],
+      "source_location": "Ibsens bolig og arbeid",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "identitet_adresser",
+      "statement": "I leiligheten skrev Ibsen sine to siste skuespill.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Ibsenmuseet"
+      ],
+      "source_location": "Ibsens bolig og arbeid",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "identitet_adresser",
+      "statement": "Besøkslogistikk er en moderne løsning, mens Arbins gate 1 er den biografiske adressen.",
+      "source_ids": [
+        "https://ibsenmt.no/besok-oss"
+      ],
+      "source_location": "Museets besøksadresse",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "identitet_adresser",
+      "statement": "Museet kombinerer det tidligere hjemmet med utstillinger og scenisk arbeid.",
+      "source_ids": [
+        "https://ibsenmt.no/om-oss"
+      ],
+      "source_location": "Museets funksjon og formidling",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_08",
+      "order": 8,
+      "planned_phase": "opening",
+      "family": "museumshistorie",
+      "statement": "En tilbakeføring gjenskaper et dokumentert miljø, men er fortsatt en historisk rekonstruksjon.",
+      "source_ids": [
+        "https://ibsenmt.no/fra-dramatikerhjem-til-museum"
+      ],
+      "source_location": "Tilbakeføring av leilighet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_forfatterskap_verk_og_liv"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_09",
+      "order": 9,
+      "planned_phase": "opening",
+      "family": "museumshistorie",
+      "statement": "Museet har brukt Ibsens egne møbler og annet dokumentert materiale i gjenoppbyggingen.",
+      "source_ids": [
+        "https://ibsenmt.no/fra-dramatikerhjem-til-museum"
+      ],
+      "source_location": "Tilbakeføring av leilighet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_forfatterskap_verk_og_liv"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_10",
+      "order": 10,
+      "planned_phase": "opening",
+      "family": "museumshistorie",
+      "statement": "God formidling synliggjør hva som bygger på sikre kilder og hva som er rekonstruert.",
+      "source_ids": [
+        "https://ibsenmt.no/fra-dramatikerhjem-til-museum"
+      ],
+      "source_location": "Tilbakeføring av leilighet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_forfatterskap_verk_og_liv"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_11",
+      "order": 11,
+      "planned_phase": "opening",
+      "family": "museumshistorie",
+      "statement": "Teatersalen åpnet i 2022; den fulle leilighetsvisningen ble gjenåpnet 1. juli 2023.",
+      "source_ids": [
+        "https://ibsenmt.no/fra-dramatikerhjem-til-museum"
+      ],
+      "source_location": "Teatersal i 2022, leilighet i 2023",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_forfatterskap_verk_og_liv"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_12",
+      "order": 12,
+      "planned_phase": "opening",
+      "family": "museumshistorie",
+      "statement": "Teatersalens åpning og leilighetens gjenåpning er separate milepæler.",
+      "source_ids": [
+        "https://ibsenmt.no/fra-dramatikerhjem-til-museum"
+      ],
+      "source_location": "Teatersal i 2022, leilighet i 2023",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_forfatterskap_verk_og_liv"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_13",
+      "order": 13,
+      "planned_phase": "opening",
+      "family": "museumshistorie",
+      "statement": "Museet hadde allerede gjennomført en betydelig tilbakeføring før 2022–2023.",
+      "source_ids": [
+        "https://ibsenmt.no/fra-dramatikerhjem-til-museum"
+      ],
+      "source_location": "Museumshistorien 1994 og 2006",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_forfatterskap_verk_og_liv"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_14",
+      "order": 14,
+      "planned_phase": "opening",
+      "family": "museumshistorie",
+      "statement": "Teaterarbeid knytter Ibsens dramatikk til dagens publikum, mens hjemmet bevarer biografien.",
+      "source_ids": [
+        "https://ibsenmt.no/om-oss"
+      ],
+      "source_location": "Museets funksjon og formidling",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_forfatterskap_verk_og_liv"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "rekonstruksjon_kilder_og_teater",
+      "statement": "Rom og gjenstander gir kontekst, men erstatter ikke lesning av verkene.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Ibsenmuseet"
+      ],
+      "source_location": "Ibsens bolig og arbeid",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "rekonstruksjon_kilder_og_teater",
+      "statement": "Tilbakeføringen er begrunnet formidling, ikke en uendret tidskapsel.",
+      "source_ids": [
+        "https://ibsenmt.no/fra-dramatikerhjem-til-museum"
+      ],
+      "source_location": "Tilbakeføring av leilighet",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "rekonstruksjon_kilder_og_teater",
+      "statement": "Samtidige spor kan gi kontrollert grunnlag for tilbakeføring av farger og inventar.",
+      "source_ids": [
+        "https://ibsenmt.no/fra-dramatikerhjem-til-museum"
+      ],
+      "source_location": "Tilbakeføring av leilighet",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "rekonstruksjon_kilder_og_teater",
+      "statement": "En ny forestilling kan aktualisere et verk uten å endre dokumenterte biografiske fakta.",
+      "source_ids": [
+        "https://ibsenmt.no/om-oss"
+      ],
+      "source_location": "Museets funksjon og formidling",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "rekonstruksjon_kilder_og_teater",
+      "statement": "Ulike kulturinstitusjoner kan formidle samme forfatter gjennom forskjellige typer kilder.",
+      "source_ids": [
+        "https://ibsenmt.no/om-oss"
+      ],
+      "source_location": "Museets funksjon og formidling",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "rekonstruksjon_kilder_og_teater",
+      "statement": "En fasadefotografi dokumenterer eksteriøret, ikke i seg selv moderne inngang eller historisk innredning.",
+      "source_ids": [
+        "https://ibsenmt.no/besok-oss"
+      ],
+      "source_location": "Museets besøksadresse",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    },
+    {
+      "claim_id": "claim_ibsen_museum_teater_b05_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "rekonstruksjon_kilder_og_teater",
+      "statement": "Historiske gjenstander, rekonstruksjon og teaterformidling har forskjellige roller i institusjonen.",
+      "source_ids": [
+        "https://ibsenmt.no/om-oss"
+      ],
+      "source_location": "Museets funksjon og formidling",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_lit_drama_scene_og_teatertekst"
+    }
+  ]
+}
