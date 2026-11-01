@@ -26,7 +26,7 @@ jobs:
           const packetFile='data/places/production/kulturkirken_jakob_litteratur.json';
           const place=JSON.parse(fs.readFileSync(placeFile,'utf8'));
           const packet=JSON.parse(fs.readFileSync(packetFile,'utf8'));
-          const marker='\\n\\nKulturkirkens historikkside oppgir';
+          const marker='\n\nKulturkirkens historikkside oppgir';
           const inserted=[
             'Da kontorer erstattet mange boliger i området, ble menighetsgrunnlaget mindre, noe som bidro til at Jakob kirke ble nedlagt som soknekirke.',
             'Etter stengningen vurderte biskop Andreas Aarflot å rive bygningen, mens bygningsvernmyndighetene gikk inn for fredning.',
@@ -34,7 +34,7 @@ jobs:
             'Handlingsprogram Oslo Indre Øst bidro med midler til rehabiliteringen, og ytterligere støtte gjorde det mulig å kjøpe inn interiør, lyd- og lysutstyr og instrumenter.'
           ];
           if(!place.popupDesc.includes(marker)||place.popupDesc.includes(inserted[0]))throw new Error('Kulturkirken text anchor changed; abort');
-          place.popupDesc=place.popupDesc.replace(marker,'\\n\\n'+inserted.join(' ') + marker);
+          place.popupDesc=place.popupDesc.replace(marker,'\n\n'+inserted.join(' ') + marker);
           const claims=[
             ['demographic_decline','Kontorisering og nedgang i antall bosatte bidro til at Jakob kirke mistet sitt soknekirkegrunnlag.','Historie – avsnittet om nedleggelsen i 1985'],
             ['preservation','Biskop Andreas Aarflot ønsket å rive den tomme kirken, men Byantikvaren og Riksantikvaren gikk inn for fredning.','Historie – bevaring framfor riving'],
@@ -55,8 +55,8 @@ jobs:
           packet.completion.claimsVerified={verified:packet.claims.filter(x=>x.status==='verified').length,total:packet.claims.length};
           packet.reviews.factual.notes='Utvidet med konkrete kildeførte opplysninger om kontorisering, fredning, setningsskader og finansiering, kontrollert mot offisiell historikk 1.11.2026.';
           packet.reviews.editorial.notes='Den eksisterende teksten og musikkategorien er bevart. Fire direkte kildeførte faktasetninger om ombruken er lagt til uten ny kategori eller ny fortellingsvinkel.';
-          fs.writeFileSync(placeFile,JSON.stringify(place,null,2)+'\\n');
-          fs.writeFileSync(packetFile,JSON.stringify(packet,null,2)+'\\n');
+          fs.writeFileSync(placeFile,JSON.stringify(place,null,2)+'\n');
+          fs.writeFileSync(packetFile,JSON.stringify(packet,null,2)+'\n');
           console.log('KULTURKIRKEN_JAKOB_POPUP_SYNCHRONIZED',packet.sentenceCoverage.popupDesc.length,packet.claims.length);
           NODE
       - name: Validate exactly the six Oslo bolk 05 v4.2 packets
