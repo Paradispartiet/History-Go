@@ -38,3 +38,34 @@ jobs:
           node-version: "22"
       - name: Run scoped Blå venue identity contract
         run: node --test tests/blaa-venue-identity-dedup.test.mjs
+
+  regenerate-epoke-index:
+    name: Regenerate source-backed epoch index for canonical Blå marker
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'fix/blaa-duplicate-place-anchor-20261101'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build deterministic epoch index from current Places and Stories
+        run: node scripts/build-epoke-place-index.mjs
+      - name: Commit generated epoch index on this controlled same-repository PR branch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet -- data/epoker/epoke-place-index.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add data/epoker/epoke-place-index.json
+            git commit -m 'Blå: regenerate source-backed epoch index for one canonical venue'
+            git push origin HEAD:fix/blaa-duplicate-place-anchor-20261101
+          else
+            echo 'Epoke index already synchronized'
+          fi
