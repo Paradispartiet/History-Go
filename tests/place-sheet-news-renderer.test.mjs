@@ -78,6 +78,9 @@ test("generated runtime preserves both news buckets, source links and escaping",
   assert.match(html, /https:\/\/example\.com\/old/);
   assert.match(html, /https:\/\/example\.com\/new/);
   assert.doesNotMatch(html, /Avis <1900>/);
+  assert.match(html, /Historisk nyhet/);
+  assert.match(html, /2026 · Notis/);
+  assert.doesNotMatch(html, /historical_news|news_note/);
 
   const host = window.document.getElementById("host");
   const mounted = api.mount(host, historical, notes);

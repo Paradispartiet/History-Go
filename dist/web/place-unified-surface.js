@@ -528,7 +528,9 @@
     return `<div class="hg-place-tab-card-list pc-sheet-news-list">${values.map((item) => {
       var _a;
       const title = text7((item == null ? void 0 : item.title) || (item == null ? void 0 : item.name) || (item == null ? void 0 : item.id) || "Notis");
-      const meta = [(item == null ? void 0 : item.date) || (item == null ? void 0 : item.year) || (item == null ? void 0 : item.period), (item == null ? void 0 : item.category) || (item == null ? void 0 : item.type)].map(text7).filter(Boolean).join(" \xB7 ");
+      const kind = text7((item == null ? void 0 : item.category) || (item == null ? void 0 : item.type));
+      const kindLabel = kind === "news_note" ? "Notis" : kind === "historical_news" ? "Historisk nyhet" : kind;
+      const meta = [(item == null ? void 0 : item.date) || (item == null ? void 0 : item.year) || (item == null ? void 0 : item.period), kindLabel].map(text7).filter(Boolean).join(" \xB7 ");
       const summary = text7(((_a = item == null ? void 0 : item.summary) == null ? void 0 : _a.one_liner) || (item == null ? void 0 : item.popupDesc) || (item == null ? void 0 : item.desc) || (item == null ? void 0 : item.description));
       const rawSource = Array.isArray(item == null ? void 0 : item.sources) ? item.sources[0] : null;
       const sourceUrl = safeHttpsUrl2(typeof rawSource === "string" ? rawSource : rawSource == null ? void 0 : rawSource.url);

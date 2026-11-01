@@ -3,7 +3,7 @@
   "place_id": "grini_fangeleir",
   "reviewed_at": "2026-11-01",
   "reviewer": "Codex (AI), ikke attestert som menneskelig fagredaktørsignatur",
-  "status": "ACTUAL_UI_PENDING",
+  "status": "COMPLETE_REVIEWED_CANDIDATE",
   "profile": "major",
   "identity": "Historisk Grini fangeleir; originalt fengsel, flyttet museumsbrakke og dagens Ila er ulike fysiske og institusjonelle enheter.",
   "text_review": "Ingress og alle sju hovedavsnitt lest og beholdt: etablering, vekst, fangegrupper, fangeregimer, deportasjon, organisering og frigjøring/etterbruk. Ingen ny tekst eller endret claim-hash.",
@@ -78,13 +78,15 @@
         "https://commons.wikimedia.org/wiki/File:Grini_1941-43.jpg",
         "https://www.loc.gov/pictures/item/2017872639/",
         "https://commons.wikimedia.org/wiki/File:Ila_fengsel.JPG",
-        "https://commons.wikimedia.org/wiki/File:Ila_fengsel_og_forvaringsanstalt_-_2012-06-09_at_12-24-43.jpg"
+        "https://commons.wikimedia.org/wiki/File:Ila_fengsel_og_forvaringsanstalt_-_2012-06-09_at_12-24-43.jpg",
+        "https://www.abhistorielag.no/grini-ytre-hovedport"
       ],
-      "visual_result": "Krigsbildet viser en lang fengselsfasade tett på med fanger. 2010-bildet viser anlegget fra et fjernt jorde; 2012-bildet viser port og annen fasadevinkel. Disse består ikke samme utsnitt/retning/målestokk. Ingen misvisende primærsammenligning publiseres. Den flyttede museumsbrakken er ikke erstatning for leirstedet."
+      "visual_result": "Krigsbildet viser en lang fengselsfasade tett på med fanger. 2010-bildet viser anlegget fra et fjernt jorde; 2012-bildet viser port og annen fasadevinkel. Disse består ikke samme utsnitt/retning/målestokk. Ingen misvisende primærsammenligning publiseres. Den flyttede museumsbrakken er ikke erstatning for leirstedet.",
+      "rights_candidate": "Asker og Bærum historielag har et relevant 1945/2025-portpar. Siden er kontrollert igjen 1. november: ingen eksplisitt gjenbrukslisens/avklart fotografrett er oppgitt på siden. Det er ikke lastet ned eller publisert som appens Før/etter. Geometrisk dårlige Commons-alternativer brukes ikke til å omgå rettighetsmangelen."
     },
     "news": "Egen manifest-lastet notis om kommandanturet. To offisielle udaterte MiA-sider har ulike planfrister i 2026; kontrolltidspunkt angis, faktisk ferdigstillelse hevdes ikke.",
     "reading": "To åpne direkte Digitalarkivet-visninger, minnebok og dagbok; metadata og lenke, ingen kopiert fulltekst. Ikke bare ny kopi av kildelisten.",
-    "language": "Eksisterende stedsspesifikke begreper beholdt; enkeltsted uten dialekteierskap. Faktisk Knowledge V2-innsamling skal testes.",
+    "language": "PASS: faktisk innsamling til Knowledge V2 i både desktop og mobil.",
     "sources": "Eksisterende sikre kilder og bildeattribusjoner beholdt. Nye Objects og Brand har egne inspectable kilder.",
     "more": "Ingen brukerrettet Mer-fane. Objects, People, tolkning og relasjoner beholder riktig eier."
   },
@@ -94,7 +96,491 @@
     "nature_training_play": "Ikke natur-/sports-/lekeplass; slike samlinger/handlinger brukes ikke som fyll.",
     "route_home": "Ingen ny rute uten dokumentert fortsettelse; aktivt fengsel gjøres ikke til offentlig hjemsted.",
     "relations_i18n": "Canonical identitet, eksisterende relasjoner og oversettelser beholdt; ingen parallelle Place-ID-er.",
-    "progress_rewards": "Eksisterende runtime-eiere beholdt. Fullquiz/progresjon/belønning/ingen fysisk besøk kontrolleres i ekte nettleser; ingen ny People-/Object-unlockmekanisme hevdes."
+    "progress_rewards": "PASS: quiz gir 10 læringshendelser og én stedbelønning per frisk kontekst; ingen fysisk besøksregistrering. Favoritt og eksplisitt besøkscontroller testet separat."
   },
-  "remaining_gate": "Faktisk mobil/desktop: fire samlinger, medlemsbilder/popuper, faste kunnskapsfaner, favoritt, språkinnsamling og quiz; slutt-QA og merge før vFerdig."
+  "quality": {
+    "reviewer": "Codex (AI), ikke attestert som menneskelig fagredaktørsignatur",
+    "dimensions": [
+      {
+        "dimension": "Korrekthet og evidens",
+        "score": 5,
+        "evidence": "Konkrete People-claims med SNL-avsnitt; to identifiserte arkivbøker og direkte Digitalarkivet; Baker Hansens egen historikk og museumskurator; eksisterende 34 tekstclaims og 70 quizclaims bevart. Datoavvik 12/14 juni og planlagt rehabilitering er avgrenset eksplisitt."
+      },
+      {
+        "dimension": "Dekning og ferdigstillelse",
+        "score": 5,
+        "evidence": "Alle fire samlinger og alle åtte relevante faner kontrollert på begge skjermbredder; full gjennomspilling av 70/70 spørsmål to ganger; begrunnet N/A for manglende publiserbart Før/etter-par og ikke relevante aktiviteter."
+      },
+      {
+        "dimension": "Faglig/redaksjonell kvalitet",
+        "score": 4,
+        "evidence": "Hele stedsteksten og ny tekst gjennomgått; arkivadministrasjon skilles fra fangenes minnebok, frigjøringens flere dager og deportasjonsdødsfall skilles fra dødsfall på stedet. Ingen uavhengig menneskelig fagredaktørsignatur er attestert."
+      },
+      {
+        "dimension": "Teknisk integritet",
+        "score": 4,
+        "evidence": "Fire Grini-jobber PASS på 0bce0be00f9f559dd0b349537929c3032aae7798. 2x70 faktiske nettlesersvar, 2240 omstokkinger, 11 rendererregresjoner, Knowledge-paritet, index/runtime/release-determinisme. Separate katalogfeil og isolert eldre Place Sheet-fixture er dokumentert; ingen terskler svekket."
+      },
+      {
+        "dimension": "Sikkerhet og ansvarlighet",
+        "score": 5,
+        "evidence": "Historisk leir, aktivt fengsel og offentlig museum skilt; ingen prison-entry-oppgaver. Syntetisk fjernposisjon avviser besøk, offentlig museumsposisjon godtar; quiz alene gir ikke fysisk besøk. Ekte lisensierte foto, merket skjematisk illustrasjon, offisiell logo uten påstått fri lisens eller sponsing."
+      },
+      {
+        "dimension": "Vedlikeholdbarhet og etterprøvbarhet",
+        "score": 5,
+        "evidence": "Kanoniske eiere og gamle stabile IDs bevart; idempotent materialiserer med SHA-låst offisiell logo; permanente nettleser- og rendererregresjoner og CI-artefakt med alle skjermbilder/JSON."
+      }
+    ],
+    "total": 28,
+    "maximum": 30,
+    "minimum_dimension": 4,
+    "result": "PASS",
+    "scope": "Hele Grini-leveransen fra #6759, #6851 og #6858; publisering krever merge og deploy-readback. Automatikk beviser ikke uavhengig historikerfaglig enighet."
+  },
+  "browser_evidence": {
+    "run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/41304682294",
+    "head_sha": "0bce0be00f9f559dd0b349537929c3032aae7798",
+    "artifact_id": 13082751785,
+    "artifact_digest": "sha256:e6cfdec2f7c0a64e32e2b19f61826a2b82289e9cc391d1cbc19f849480398e86",
+    "collections": [
+      {
+        "placeId": "grini_fangeleir",
+        "profile": "desktop",
+        "expectedCollections": [
+          "people",
+          "objects",
+          "brands",
+          "historical_events"
+        ],
+        "required": {
+          "exactPlace": true,
+          "titlePresent": true,
+          "visible": true,
+          "canonicalCollectionMode": true,
+          "collectionCount": true,
+          "collectionIdsAndOrder": true,
+          "collectionItemsPresent": true,
+          "collectionPreviewsLoaded": true,
+          "collectionPopups": true,
+          "quizCardMaterialized": true,
+          "quizEntry": true,
+          "noHorizontalOverflow": true,
+          "noPageErrors": true,
+          "noBrokenVisibleImages": true
+        },
+        "base": {
+          "title": "Grini fangeleir",
+          "placeId": "grini_fangeleir",
+          "visible": true,
+          "collectionMode": "place-card-collections-v2",
+          "collectionCount": 4,
+          "horizontalOverflowPx": 0,
+          "images": [
+            {
+              "src": "http://127.0.0.1:37091/bilder/places/grini_fangeleir_appell_1945.jpg",
+              "width": 980,
+              "height": 251,
+              "naturalWidth": 1128,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/kort/people/einar_gerhardsen.jpg",
+              "width": 50,
+              "height": 50,
+              "naturalWidth": 397,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/merker/historie.PNG",
+              "width": 58,
+              "height": 58,
+              "naturalWidth": 1024,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/places/grini_fangeleir_minnesmerke_front.jpg",
+              "width": 326.25140380859375,
+              "height": 500.89642333984375,
+              "naturalWidth": 960,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/brands/baker_hansen.svg",
+              "width": 459,
+              "height": 158,
+              "naturalWidth": 1200,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/kort/objects/grini_fangeprotokoll_1941_1942.svg",
+              "width": 459,
+              "height": 158,
+              "naturalWidth": 1200,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/places/grini_fangeleir_appell_1945.jpg",
+              "width": 936,
+              "height": 158,
+              "naturalWidth": 1128,
+              "complete": true
+            }
+          ]
+        },
+        "collectionState": [
+          {
+            "id": "people",
+            "actualId": "people",
+            "position": -1,
+            "inTitleRow": true,
+            "inCollectionGrid": false,
+            "itemCount": 2,
+            "previewLoaded": true
+          },
+          {
+            "id": "objects",
+            "actualId": "objects",
+            "position": 0,
+            "inTitleRow": false,
+            "inCollectionGrid": true,
+            "itemCount": 2,
+            "previewLoaded": true
+          },
+          {
+            "id": "brands",
+            "actualId": "brands",
+            "position": 1,
+            "inTitleRow": false,
+            "inCollectionGrid": true,
+            "itemCount": 1,
+            "previewLoaded": true
+          },
+          {
+            "id": "historical_events",
+            "actualId": "historical_events",
+            "position": 2,
+            "inTitleRow": false,
+            "inCollectionGrid": true,
+            "itemCount": 1,
+            "previewLoaded": true
+          }
+        ],
+        "popupChecks": [
+          {
+            "expectedId": "people",
+            "kind": "people",
+            "title": "People",
+            "hasContent": true
+          },
+          {
+            "expectedId": "objects",
+            "kind": "objects",
+            "title": "Gjenstander",
+            "hasContent": true
+          },
+          {
+            "expectedId": "brands",
+            "kind": "brands",
+            "title": "Brands",
+            "hasContent": true
+          },
+          {
+            "expectedId": "historical_events",
+            "kind": "historical_events",
+            "title": "Historiske hendelser",
+            "hasContent": true
+          }
+        ],
+        "quizHash": "#/quiz/grini_fangeleir",
+        "pageErrors": []
+      },
+      {
+        "placeId": "grini_fangeleir",
+        "profile": "mobile",
+        "expectedCollections": [
+          "people",
+          "objects",
+          "brands",
+          "historical_events"
+        ],
+        "required": {
+          "exactPlace": true,
+          "titlePresent": true,
+          "visible": true,
+          "canonicalCollectionMode": true,
+          "collectionCount": true,
+          "collectionIdsAndOrder": true,
+          "collectionItemsPresent": true,
+          "collectionPreviewsLoaded": true,
+          "collectionPopups": true,
+          "quizCardMaterialized": true,
+          "quizEntry": true,
+          "noHorizontalOverflow": true,
+          "noPageErrors": true,
+          "noBrokenVisibleImages": true
+        },
+        "base": {
+          "title": "Grini fangeleir",
+          "placeId": "grini_fangeleir",
+          "visible": true,
+          "collectionMode": "place-card-collections-v2",
+          "collectionCount": 4,
+          "horizontalOverflowPx": 0,
+          "images": [
+            {
+              "src": "http://127.0.0.1:37091/bilder/places/grini_fangeleir_appell_1945.jpg",
+              "width": 378,
+              "height": 226,
+              "naturalWidth": 1128,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/kort/people/einar_gerhardsen.jpg",
+              "width": 36,
+              "height": 36,
+              "naturalWidth": 397,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/merker/historie.PNG",
+              "width": 46,
+              "height": 46,
+              "naturalWidth": 1024,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/places/grini_fangeleir_minnesmerke_front.jpg",
+              "width": 11.812255859375,
+              "height": 223.49343872070312,
+              "naturalWidth": 960,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/brands/baker_hansen.svg",
+              "width": 168,
+              "height": 88,
+              "naturalWidth": 1200,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/kort/objects/grini_fangeprotokoll_1941_1942.svg",
+              "width": 168,
+              "height": 88,
+              "naturalWidth": 1200,
+              "complete": true
+            },
+            {
+              "src": "http://127.0.0.1:37091/bilder/places/grini_fangeleir_appell_1945.jpg",
+              "width": 346,
+              "height": 88,
+              "naturalWidth": 1128,
+              "complete": true
+            }
+          ]
+        },
+        "collectionState": [
+          {
+            "id": "people",
+            "actualId": "people",
+            "position": -1,
+            "inTitleRow": true,
+            "inCollectionGrid": false,
+            "itemCount": 2,
+            "previewLoaded": true
+          },
+          {
+            "id": "objects",
+            "actualId": "objects",
+            "position": 0,
+            "inTitleRow": false,
+            "inCollectionGrid": true,
+            "itemCount": 2,
+            "previewLoaded": true
+          },
+          {
+            "id": "brands",
+            "actualId": "brands",
+            "position": 1,
+            "inTitleRow": false,
+            "inCollectionGrid": true,
+            "itemCount": 1,
+            "previewLoaded": true
+          },
+          {
+            "id": "historical_events",
+            "actualId": "historical_events",
+            "position": 2,
+            "inTitleRow": false,
+            "inCollectionGrid": true,
+            "itemCount": 1,
+            "previewLoaded": true
+          }
+        ],
+        "popupChecks": [
+          {
+            "expectedId": "people",
+            "kind": "people",
+            "title": "People",
+            "hasContent": true
+          },
+          {
+            "expectedId": "objects",
+            "kind": "objects",
+            "title": "Gjenstander",
+            "hasContent": true
+          },
+          {
+            "expectedId": "brands",
+            "kind": "brands",
+            "title": "Brands",
+            "hasContent": true
+          },
+          {
+            "expectedId": "historical_events",
+            "kind": "historical_events",
+            "title": "Historiske hendelser",
+            "hasContent": true
+          }
+        ],
+        "quizHash": "#/quiz/grini_fangeleir",
+        "pageErrors": []
+      }
+    ],
+    "quiz": [
+      {
+        "profile": "desktop",
+        "placeId": "grini_fangeleir",
+        "questions": 70,
+        "after": {
+          "summary": {
+            "targetId": "grini_fangeleir",
+            "mode": "sets",
+            "hasAny": true,
+            "totalSets": 10,
+            "completedSets": 10,
+            "remainingSets": 0,
+            "isComplete": true
+          },
+          "physical": false,
+          "learningEvents": 10,
+          "placeUnlocks": 1
+        },
+        "pageErrors": []
+      },
+      {
+        "profile": "mobile",
+        "placeId": "grini_fangeleir",
+        "questions": 70,
+        "after": {
+          "summary": {
+            "targetId": "grini_fangeleir",
+            "mode": "sets",
+            "hasAny": true,
+            "totalSets": 10,
+            "completedSets": 10,
+            "remainingSets": 0,
+            "isComplete": true
+          },
+          "physical": false,
+          "learningEvents": 10,
+          "placeUnlocks": 1
+        },
+        "pageErrors": []
+      }
+    ],
+    "tabs": {
+      "desktop": [
+        {
+          "id": "about",
+          "textLength": 3490
+        },
+        {
+          "id": "history",
+          "textLength": 1351
+        },
+        {
+          "id": "stories",
+          "textLength": 1477
+        },
+        {
+          "id": "news",
+          "textLength": 461
+        },
+        {
+          "id": "reading",
+          "textLength": 583
+        },
+        {
+          "id": "sources",
+          "textLength": 987
+        },
+        {
+          "id": "language",
+          "textLength": 732
+        },
+        {
+          "id": "learning",
+          "textLength": 164
+        }
+      ],
+      "mobile": [
+        {
+          "id": "about",
+          "textLength": 3490
+        },
+        {
+          "id": "history",
+          "textLength": 1351
+        },
+        {
+          "id": "stories",
+          "textLength": 1477
+        },
+        {
+          "id": "news",
+          "textLength": 461
+        },
+        {
+          "id": "reading",
+          "textLength": 583
+        },
+        {
+          "id": "sources",
+          "textLength": 987
+        },
+        {
+          "id": "language",
+          "textLength": 732
+        },
+        {
+          "id": "learning",
+          "textLength": 164
+        }
+      ]
+    },
+    "interaction_assertions": [
+      "favorite add/remove",
+      "language term stored in hg_knowledge_entries_v2",
+      "actual keyboard activation of all eight section links on mobile and desktop",
+      "QuizCard flip and expanded first ten questions",
+      "Fagverk full article and four lenses",
+      "far-away physical visit rejected; lawful public museum position accepted in isolated synthetic browser context"
+    ],
+    "visual_review": "Samlingene gjennomgått i skjermbilder; separate People-portretter, begge bøker med synlig illustrasjonsmerking, offisiell logo og historisk hendelsesfoto. Mobilkortet viser reelt portrettformat. Nyheter bruker responsivt kort; siste etikettendring erstatter interne news_note/historical_news med Notis/Historisk nyhet og verifiseres i permanente renderertester."
+  },
+  "runtime_fixes": [
+    "Chronology bruker year + title og støtter canonical desc; reell Grini-regresjon bevarer alle seks forklaringer og kildekonflikten.",
+    "News bruker samme canonical responsive card styling og leselige typeetiketter. Ingen auditregler svekket."
+  ],
+  "baseline_limits": {
+    "comparison_base": "8ed25f850cd0a486bf282ada14111fd1112cf6a9",
+    "fagverk": "57 feillinjer byte-identiske mot baseline; ingen ny Grini-feil.",
+    "people": "33 feil / 34 outputlinjer byte-identiske; to endrede målprofiler validert separat med null feil.",
+    "subkultur": "Tre foreldede genererte filer / fire outputlinjer byte-identiske.",
+    "quiz_context": "391 eksisterende katalogavvik; Grini har null.",
+    "place_sheet_fixture": "CI 41304682289: eldre isolert onsite-fixture venter forgjeves på Events/Møtes ved linje 83. Testen og onsite-controlleren er uendret mot main 87a50c776bbf11f4adb7dfd088c28a3483bab028; den laster ingen endret Grini-/news-/chronology-kode. Eneste endring i fixture-serverte filer er CSS scroll-margin-top for seksjonshopp; den kan ikke opprette/fjerne Events/Møtes-noder som fixture venter på. Faktisk Grini-app består på begge bredder.",
+    "main_integrity": "Tidligere main-run 41303886874 stoppet på manglende Akerselva frontImage i gammel index. Kandidatens regenererte index består places:index:check og bevarer Akerselva-kilden."
+  },
+  "release_gate": "Redaksjonell/teknisk kandidat komplett. Endelig head-CI, merge og post-merge integrity/deploy verifiseres separat før publisert hevdes."
 }
