@@ -22,6 +22,8 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Verify production helper syntax
+        run: node --check scripts/finish-oslo-bolk05-v42.mjs
       - name: Source-reviewed completion for Historisk museum and Blitzhuset
         run: node scripts/finish-oslo-bolk05-v42.mjs
       - name: Regenerate epoke lookup and check scope
