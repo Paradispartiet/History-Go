@@ -78,3 +78,9 @@ Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og b
 - Senere faglig review av quiz tok ut motstridende VIP-kapasitetsclaim og forbedret final-sett med tidskildekritikk, dokumentert miljøpraksis og kommersialiseringsmetode. Rebuild har 21/21 Knowledge-koblinger, og lagret svarposisjonsbias er balansert 7/7/7. Eksakt-head CI/resultat og browser-QA fortsatt åpen.
 - PR #6903: kanonisk epokebygger la to Vulkan-milestones i `data/epoker/epoke-place-index.json` uten manuelle indeksendringer; diffen gir `dated_evidence` for House of Nerds. Visuell tidslinjetest gjenstår.
 - PR #6904: People-index-regenerering er satt opp med kanonisk Civication-builder fordi `Data checks` stoppet på stale `data/Civication/historyPeople_index.json`.
+
+## PlaceCard og relaterte steder — antifyll
+- `vulkan_industriomrade` finnes som selvstendig canonical Place med kildetilknyttede CC0-bilder og faktisk stående, kreditert PlaceCard-bilde: `data/places/natur/oslo/places_oslo_natur_akerselvarute/vulkan_industriomrade.json`.
+- Vulkan-industriområdet er relevant områdetilknytning for House of Nerds på Vulkan 18, men er ikke et bilde av selve House of Nerds. Ikke bruk områdets CC0-foto som om det dokumenterer gaming-lokalet.
+- Ifølge `docs/PLACE_PRODUCTION_PROFILES.md` §9 er `related` aldri en PlaceCard-samling eller reserve. Mulig geografisk relasjon kan undersøkes i relasjonslaget, men skal ikke settes i `place_card_profile.collection_ids`.
+- Minst én ekte relevant, kilde- og bildegodkjent People/Objects/Brands/kategoriuttrykk-samling mangler fortsatt. Den eksisterende People-personen (`andreas_sollund`) har ikke rettighetsklarert portrett. Dette blokkerer PlaceCard-closeout uten filler.
