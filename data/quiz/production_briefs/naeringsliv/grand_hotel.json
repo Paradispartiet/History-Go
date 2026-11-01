@@ -40,12 +40,16 @@
       "em_naering_tjenesteyting_og_service"
     ],
     "topic_hook_ids": [
-      "tjenester_og_servicearbeid"
+      "tjenester_og_servicearbeid",
+      "handel_som_bystruktur"
     ],
     "method_ids": [
-      "met_naering_byhistorisk_naeringsanalyse"
+      "met_naering_byhistorisk_naeringsanalyse",
+      "met_naering_romlig_okonomisk_analyse"
     ],
-    "thinker_ids": [],
+    "thinker_ids": [
+      "georg_simmel"
+    ],
     "works": []
   },
   "existing_quiz_audit": {
@@ -233,7 +237,7 @@
       "claim_id": "claim_grand_hotel_quiz_13",
       "order": 13,
       "planned_phase": "bridge",
-      "family": "concept_theory",
+      "family": "context",
       "statement": "Per Krohg malte et miljø fra en tidligere tid. Fremstillingen samler historiske personer og kan ikke leses som et samtidig fotografi.",
       "source_ids": [
         "hotel",
@@ -270,7 +274,7 @@
       "claim_id": "claim_grand_hotel_quiz_16",
       "order": 16,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Under fredsprisfeiringen har fredsprisvinnere hilst fakkeltoget fra balkongen mot Karl Johans gate.",
       "source_ids": [
         "byleksikon"
@@ -282,7 +286,7 @@
       "claim_id": "claim_grand_hotel_quiz_17",
       "order": 17,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Oslo byleksikon omtaler hotellets autografalbum med navn fra berømte gjester, blant dem fredsprisvinnere.",
       "source_ids": [
         "byleksikon"
@@ -314,7 +318,8 @@
         "heritage"
       ],
       "source_origin": "external",
-      "emne_id": "em_naering_handel_butikk_byrom"
+      "emne_id": "em_naering_handel_butikk_byrom",
+      "method_id": "met_naering_romlig_okonomisk_analyse"
     },
     {
       "claim_id": "claim_grand_hotel_quiz_20",
@@ -340,7 +345,9 @@
         "hotel"
       ],
       "source_origin": "external",
-      "emne_id": "em_naering_tjenesteyting_og_service"
+      "emne_id": "em_naering_handel_butikk_byrom",
+      "topic_hook_id": "handel_som_bystruktur",
+      "thinker_id": "georg_simmel"
     }
   ],
   "candidate_questions": [
@@ -610,14 +617,14 @@
       "number": 13,
       "claim_id": "claim_grand_hotel_quiz_13",
       "planned_phase": "bridge",
-      "question": "Hva må vi huske når vi tolker Per Krohgs maleri av kafémiljøet?",
+      "question": "Hva skiller Per Krohgs maleri fra et fotografi tatt i Grand Café i bohemtiden?",
       "options": [
-        "Det er en senere kunstnerisk framstilling, ikke et øyeblikksfoto fra bohemtiden",
-        "Alle personene er dokumentert til stede samtidig",
-        "Bildet beviser at kafeen var stengt",
-        "Maleriet viser hotellets byggearbeid i 1874"
+        "Det ble malt senere og samler personer fra en tidligere tid",
+        "Det viser dokumentert alle gjestene i ett bestemt øyeblikk",
+        "Det ble fotografert av Per Krohg før kaféen åpnet",
+        "Det er en teknisk plantegning fra 1874"
       ],
-      "answer": "Det er en senere kunstnerisk framstilling, ikke et øyeblikksfoto fra bohemtiden",
+      "answer": "Det ble malt senere og samler personer fra en tidligere tid",
       "answerIndex": 0,
       "knowledge": "Per Krohg malte et miljø fra en tidligere tid. Fremstillingen samler historiske personer og kan ikke leses som et samtidig fotografi.",
       "source_ids": [
@@ -625,7 +632,7 @@
         "byleksikon"
       ],
       "emne_id": "em_naering_handel_butikk_byrom",
-      "question_type": "concept_theory",
+      "question_type": "context",
       "review_status": "source_reviewed_ready_for_package"
     },
     {
@@ -674,42 +681,42 @@
       "number": 16,
       "claim_id": "claim_grand_hotel_quiz_16",
       "planned_phase": "final",
-      "question": "Hva gjør Grand Hotels balkong særlig kjent i forbindelse med Nobels fredspris?",
+      "question": "Hva gjør Grand Hotels balkong til en del av det offentlige fredsprisritualet?",
       "options": [
-        "Den brukes som pressearkiv",
-        "Den er selve prisutdelingssalen",
-        "Den er et fredsprismuseum",
-        "Fredsprisvinnere hilser fakkeltoget derfra"
+        "Fredsprisvinnerne kan hilse fakkeltoget fra balkongen mot gaten",
+        "Den brukes som selve salen for Nobels fredsprisutdeling",
+        "Den er et offentlig arkiv for alle nominasjonene",
+        "Den brukes utelukkende til private hotellkonferanser"
       ],
-      "answer": "Fredsprisvinnere hilser fakkeltoget derfra",
-      "answerIndex": 3,
+      "answer": "Fredsprisvinnerne kan hilse fakkeltoget fra balkongen mot gaten",
+      "answerIndex": 0,
       "knowledge": "Under fredsprisfeiringen har fredsprisvinnere hilst fakkeltoget fra balkongen mot Karl Johans gate.",
       "source_ids": [
         "byleksikon"
       ],
       "emne_id": "em_naering_tjenesteyting_og_service",
-      "question_type": "fact",
+      "question_type": "concept",
       "review_status": "source_reviewed_ready_for_package"
     },
     {
       "number": 17,
       "claim_id": "claim_grand_hotel_quiz_17",
       "planned_phase": "final",
-      "question": "Hva er hotellets autografalbum et spor etter?",
+      "question": "Hva slags historisk kilde er Grand Hotels autografalbum?",
       "options": [
-        "Kjente gjester, blant dem fredsprismottakere",
-        "Alle hotellansattes lønn",
-        "Bygningens tekniske tegninger",
-        "Navnelisten over byens ordførere"
+        "Et dokument med signaturer fra kjente gjester, blant dem fredsprisvinnere",
+        "En tegning av den opprinnelige bygningsfasaden",
+        "En oversikt over alle ansatte og deres lønn",
+        "Et fullstendig referat fra hvert fredsprisarrangement"
       ],
-      "answer": "Kjente gjester, blant dem fredsprismottakere",
+      "answer": "Et dokument med signaturer fra kjente gjester, blant dem fredsprisvinnere",
       "answerIndex": 0,
       "knowledge": "Oslo byleksikon omtaler hotellets autografalbum med navn fra berømte gjester, blant dem fredsprisvinnere.",
       "source_ids": [
         "byleksikon"
       ],
       "emne_id": "em_naering_tjenesteyting_og_service",
-      "question_type": "fact",
+      "question_type": "concept",
       "review_status": "source_reviewed_ready_for_package"
     },
     {
@@ -754,7 +761,8 @@
       ],
       "emne_id": "em_naering_handel_butikk_byrom",
       "question_type": "concept_theory",
-      "review_status": "source_reviewed_ready_for_package"
+      "review_status": "source_reviewed_ready_for_package",
+      "method_id": "met_naering_romlig_okonomisk_analyse"
     },
     {
       "number": 20,
@@ -782,23 +790,25 @@
       "number": 21,
       "claim_id": "claim_grand_hotel_quiz_21",
       "planned_phase": "final",
-      "question": "Hva gjør Grand Hotel til et godt sted for å studere både kultur- og mediehistorie?",
+      "question": "Hvordan kan Grand Hotel forstås som både næringssted og del av Oslos offentlige byliv?",
       "options": [
-        "Stedet knytter kaféliv, arkitektur og fredsprisritual sammen",
-        "Stedet ble bygget som avisredaksjon",
-        "Stedet har aldri hatt publikumsarrangementer",
-        "Stedet har ingen historiske bygningsspor"
+        "Hotell og kafé, arkitektur og fredsprisritual knytter stedet til byens sosiale liv",
+        "Hotellet har kun en privat funksjon og ingen tilknytning til gaten",
+        "Grand Café og hotellet har aldri vært knyttet til hverandre",
+        "Balkongen viser at hotellbygningen opprinnelig var et rådhus"
       ],
-      "answer": "Stedet knytter kaféliv, arkitektur og fredsprisritual sammen",
+      "answer": "Hotell og kafé, arkitektur og fredsprisritual knytter stedet til byens sosiale liv",
       "answerIndex": 0,
       "knowledge": "Grand Hotel forbinder kaféoffentlighet, omformet byarkitektur og fredsprisvinnernes møte med publikum fra balkongen.",
       "source_ids": [
         "byleksikon",
         "hotel"
       ],
-      "emne_id": "em_naering_tjenesteyting_og_service",
-      "question_type": "concept_theory",
-      "review_status": "source_reviewed_ready_for_package"
+      "emne_id": "em_naering_handel_butikk_byrom",
+      "question_type": "concept",
+      "review_status": "source_reviewed_ready_for_package",
+      "topic_hook_id": "handel_som_bystruktur",
+      "thinker_id": "georg_simmel"
     }
   ],
   "quizCard_candidate_source_question_numbers": [
