@@ -11,6 +11,7 @@ type PlaceSheetAboutApi = {
 };
 
 type PlaceSheetSectionRuntime = Window & typeof globalThis & {
+  PLACES?: PlaceLike[];
   HG_I18N?: { localizePlace?: (place: PlaceLike) => PlaceLike | null | undefined };
   HGPlaceSheetSections?: Record<string, unknown> & { about?: PlaceSheetAboutApi };
 };
@@ -60,6 +61,20 @@ function renderParagraphs(value: string): string {
     .join("");
 }
 
+function renderRelatedPlaces(place: PlaceLike): string {
+  const ids = Array.isArray(place.related_place_ids) ? place.related_place_ids : [];
+  const catalog = new Map<string, PlaceLike>((runtime.PLACES || []).map(target => [text(target.id), target]));
+  const targets = [...new Set(ids.map(text))]
+    .filter(id => id && id !== text(place.id))
+    .map(id => catalog.get(id))
+    .filter((target): target is PlaceLike => Boolean(target && !target.hidden && !target.stub && text(target.name)));
+  if (!targets.length) return "";
+  return `<nav class="hg-place-related-places" aria-label="Relaterte steder">
+    <h3>Relaterte steder</h3>
+    <ul>${targets.map(target => `<li><a href="#/place/${encodeURIComponent(text(target.id))}">${escapeHtml(target.name)}</a></li>`).join("")}</ul>
+  </nav>`;
+}
+
 export function renderCanonicalAboutHtml(inputPlace: PlaceLike, options: AboutRenderOptions = {}): string {
   const place = localize(inputPlace || {});
   const fullText = canonicalAboutText(place);
@@ -70,6 +85,7 @@ export function renderCanonicalAboutHtml(inputPlace: PlaceLike, options: AboutRe
     <section class="hg-section hg-place-section hg-place-about-section" data-hg-place-sheet-owner="about">
       <h3>Om stedet</h3>
       <div class="hg-place-longread">${renderParagraphs(fullText)}</div>
+      ${renderRelatedPlaces(place)}
     </section>
   `;
 }
