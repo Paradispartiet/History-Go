@@ -1,0 +1,40 @@
+name: John Dee one-time Knowledge report sync
+on:
+  push:
+    branches:
+      - john-dee-v1-fagverk-people-20261101
+    paths:
+      - .github/workflows/john-dee-report-sync-one-time.yml
+permissions:
+  contents: write
+concurrency:
+  group: john-dee-report-sync-one-time
+  cancel-in-progress: false
+jobs:
+  regenerate:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Regenerate Knowledge and canonical diagnostic report
+        run: npm run knowledge:canonical:write
+      - name: Commit matching generated report and Knowledge only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/knowledge-id-backfill.json data/quiz/musikk/john_dee_sets_merged_REVISED.json data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json
+          if ! git diff --cached --quiet; then
+            git commit -m "John Dee: synchronize canonical Knowledge diagnostics"
+            git restore .
+            git fetch origin john-dee-v1-fagverk-people-20261101
+            git rebase origin/john-dee-v1-fagverk-people-20261101
+            git push origin HEAD:john-dee-v1-fagverk-people-20261101
+          fi
