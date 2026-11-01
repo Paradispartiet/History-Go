@@ -1,0 +1,79 @@
+name: One-time PR 6824 generated artifact repair
+
+on:
+  pull_request:
+    types: [synchronize]
+    branches: [main]
+    paths:
+      - '.github/workflows/repair-pr-6824-generated.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repair-pr-6824-generated
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    if: >-
+      github.event.pull_request.number == 6824 &&
+      github.event.pull_request.head.repo.full_name == 'Paradispartiet/History-Go' &&
+      github.head_ref == 'integration/fagverk17-quiz8-20261030'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical artifacts
+        run: |
+          set -euo pipefail
+          node scripts/build-quiz-production-context.mjs --category subkultur --target vaterland_bar_scene --output data/quiz/production_context/subkultur/vaterland_bar_scene.json
+          npm run knowledge:canonical:write
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Confirm expected Knowledge byte-for-byte outputs
+        run: |
+          set -euo pipefail
+          echo '938826c72e4ed4f7fbd4a2477e79942f63ee6907c83bed3024e0399b1079f33c  data/knowledge/knowledge_units.generated.json' | sha256sum -c -
+          echo 'c3165bcaff74981af654b3a46ffe093bb18b36d48151c7117890da4947482073  data/knowledge/subjects/subkultur/knowledge_units.generated.json' | sha256sum -c -
+      - name: Enforce original quality gates
+        run: |
+          set -euo pipefail
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Reject unexpected generated file changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only | while IFS= read -r file; do
+            case "$file" in
+              data/quiz/production_context/subkultur/vaterland_bar_scene.json|data/knowledge/knowledge_units.generated.json|data/knowledge/subjects/subkultur/knowledge_units.generated.json|data/fagverk/fagverk_release.json) ;;
+              *) echo "Unexpected generated change: $file"; exit 1 ;;
+            esac
+          done
+      - name: Commit verified artifacts and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/subkultur/vaterland_bar_scene.json
+          git add data/knowledge/knowledge_units.generated.json
+          git add data/knowledge/subjects/subkultur/knowledge_units.generated.json
+          git add data/fagverk/fagverk_release.json
+          git rm -- .github/workflows/repair-pr-6824-generated.yml
+          git commit -m "build: synchronize canonical quiz, Knowledge and Fagverk release"
+          git push origin HEAD:refs/heads/integration/fagverk17-quiz8-20261030
