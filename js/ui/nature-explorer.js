@@ -107,7 +107,7 @@ function render(){
  const matches=all.filter(a=>{
   if(activeFilter==="collected"&&!unlocked.has(String(a.id)))return false;
   if(activeFilter==="illustrated"&&!illustrated(a))return false;
-  return !term||[name(a),latin(a),a.taxonomy?.familie,...list(a.kjennetegn),...list(a.habitat?.biotop),...list(a.observasjonstips),...list(a.bykontekst?.typiske_steder)].join(" ").toLocaleLowerCase("nb").includes(term);
+  return !term||[name(a),latin(a),...list(a.aliases),a.taxonomy?.familie,...list(a.kjennetegn),...list(a.habitat?.biotop),...list(a.observasjonstips),...list(a.bykontekst?.typiske_steder)].join(" ").toLocaleLowerCase("nb").includes(term);
  });
  const held=all.filter(a=>unlocked.has(String(a.id))).length;
  stats.textContent=all.length+" oppføringer · "+held+" samlet · "+all.filter(illustrated).length+" med illustrasjon";
