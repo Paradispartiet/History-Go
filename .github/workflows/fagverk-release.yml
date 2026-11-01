@@ -40,6 +40,15 @@ jobs:
         run: |
           node --check scripts/build-fagverk-release-manifest.mjs
           node --test tests/fagverk-release-manifest.test.mjs
+      - name: Build expected release for one-time diagnostics
+        run: node scripts/build-fagverk-release-manifest.mjs --output /tmp/history-go-fagverk-expected.json
+      - name: Upload expected release for one-time diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-go-fagverk-release-expected
+          path: /tmp/history-go-fagverk-expected.json
+          if-no-files-found: error
+          retention-days: 3
       - name: Verify release manifest is current
         run: node scripts/build-fagverk-release-manifest.mjs --check
       - name: Verify release v2 contract
