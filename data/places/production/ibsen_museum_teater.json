@@ -3,7 +3,7 @@
   "validatorVersion": "4.2.1",
   "placeId": "ibsen_museum_teater",
   "placeFile": "data/places/litteratur/oslo/places_litteratur/ibsen_museum_teater.json",
-  "status": "needs_research",
+  "status": "ready_v4_2",
   "identity": {
     "status": "resolved",
     "represents": "IBSEN Museum & Teater med dagens inngang i Henrik Ibsens gate 26 og Ibsens tidligere hjem i Arbins gate 1.",
@@ -297,21 +297,115 @@
   },
   "reviews": {
     "factual": {
-      "status": "needs_review",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
-      "reviewer": "Oslo bolk 05 source-audit staging",
-      "notes": "Setningsdekning omfordelt etter konkrete kildepåstander for hver beskrivelsessetning. Hovedlinjene er kildestøttet; uavhengig faktagjennomgang og endelig v1-signering gjenstår."
+      "reviewer": "IBSEN Museum & Teater source verification",
+      "notes": "Institusjonens publiserte historikk og besøksadresse er kontrollert mot SNL: bolig Arbins gate 1 (1895–1906), dagens inngang Henrik Ibsens gate 26, rekonstruksjon i 2006, teatersal åpnet 2022 og leiligheten fullverdig gjenåpnet 1. juli 2023. Historisk leilighetsbygg må ikke feilmerkes som moderne publikumsinngang."
     },
     "editorial": {
-      "status": "needs_review",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
-      "reviewer": "Oslo bolk 05 editorial staging",
+      "reviewer": "Oslo bolk 05 editorial review",
       "introducedNewFacts": false,
-      "notes": "Stedstekst aktiv i PR; ikke v1-signert."
+      "notes": "Teksten holder historisk hjem, moderne inngang og teaterformidling atskilt, med 2022/2023-skillet konsekvent. Ingen nye fakta innført gjennom denne reviewen; mobil- og QuizCard-visuell QA fortsatt separat."
     }
   },
   "quizReadiness": {
-    "status": "awaiting_fullquiz_review",
-    "questions": []
+    "status": "reviewed_source_linked_browser_pending",
+    "questions": [
+      {
+        "question": "Hvor finner publikum den moderne inngangen til IBSEN Museum & Teater?",
+        "answer": "Henrik Ibsens gate 26",
+        "type": "hvor",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_ibsen_museum_teater_source_2"
+        ]
+      },
+      {
+        "question": "Hvilken adresse er knyttet til Ibsens faktiske leilighet i Oslo?",
+        "answer": "Arbins gate 1",
+        "type": "hvor",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_ibsen_museum_teater_source_1"
+        ]
+      },
+      {
+        "question": "Hvem bodde i leiligheten som museet formidler?",
+        "answer": "Henrik og Suzannah Ibsen",
+        "type": "hvem",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_ibsen_museum_teater_source_1"
+        ]
+      },
+      {
+        "question": "Hva skapte Ibsen i dette hjemmet?",
+        "answer": "Sine to siste skuespill",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_ibsen_museum_teater_source_1"
+        ]
+      },
+      {
+        "question": "Hvilken type institusjon er IBSEN Museum & Teater?",
+        "answer": "Et forfatterhjemsmuseum med teaterformidling",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_ibsen_museum_teater_source_6"
+        ]
+      },
+      {
+        "question": "Hva betyr det å tilbakeføre en historisk leilighet?",
+        "answer": "Å rekonstruere rom ut fra dokumentasjon og gjenstander",
+        "type": "hva_ble_bygget_produsert_eller_endret",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_ibsen_museum_teater_source_3"
+        ]
+      },
+      {
+        "question": "Hva åpnet først ved museets nye utvidelse: teatersalen eller den fullstendig tilbakeførte leiligheten?",
+        "answer": "Teatersalen",
+        "type": "hva_skjedde",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_ibsen_museum_teater_source_5"
+        ]
+      },
+      {
+        "question": "Hvilken tidligere fase i museumshistorien kom før den siste utvidelsen?",
+        "answer": "En omfattende rekonstruksjon av leiligheten i 2006",
+        "type": "hva_skjedde",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_ibsen_museum_teater_source_4"
+        ]
+      },
+      {
+        "question": "Hvordan skiller museet seg fra Nationaltheatret som Ibsen-sted?",
+        "answer": "Museet bevarer og formidler forfatterens hjem; Nationaltheatret iscenesetter dramatikk",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_ibsen_museum_teater_source_6"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completedUnder": "4.2",
+    "currentStatus": "current",
+    "sourceVerifiedAt": "2026-11-01",
+    "claimsVerified": {
+      "verified": 6,
+      "total": 6
+    },
+    "factualReview": "passed",
+    "editorialReview": "passed",
+    "validatorVersion": "4.2.1"
   }
 }
