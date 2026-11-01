@@ -21,6 +21,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-batch07-20261028.json"
     }),
+    emne_flora_engknoppurt: Object.freeze({
+      scientificName: "Centaurea jacea",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/02_engknoppurt_v2.webp",
+      gitBlobSha: "c26069fcd15e182ccebca3ed52e9e88458005fc7",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-engknoppurt-20261101.json"
+    }),
     emne_flora_enghumleblom: Object.freeze({
       scientificName: "Geum rivale",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/01_enghumleblom_v2.webp",
