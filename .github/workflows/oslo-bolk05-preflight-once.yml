@@ -17,8 +17,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check changed v4.2 packets against canonical Places
-        run: node scripts/validate-place-description-production-v4_2.mjs --changed --base origin/main
+      - name: Validate exactly the six Oslo bolk 05 v4.2 packets
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { validatePacket } from './scripts/validate-place-description-production-v4_2.mjs';
+          const ids=['folketeateret','kunstnernes_hus','historisk_museum','ibsen_museum_teater','blitzhuset','kulturkirken_jakob_litteratur'];
+          const issues=[];
+          for(const id of ids){
+            const packetFile='data/places/production/'+id+'.json';
+            const packet=JSON.parse(fs.readFileSync(packetFile,'utf8'));
+            const source=JSON.parse(fs.readFileSync(packet.placeFile,'utf8'));
+            const records=Array.isArray(source)?source:Array.isArray(source.places)?source.places:[source];
+            const place=records.find(row=>row?.id===id);
+            const result=validatePacket({packet,place,packetFile});
+            console.log(id,'v4.2',packet.status,result.issues.length,'issues');
+            issues.push(...result.issues.map(x=>({placeId:id,...x})));
+          }
+          if(issues.length){
+            console.error(JSON.stringify(issues,null,2));
+            process.exitCode=1;
+          }else console.log('OSLO_BOLK05_V42_PACKETS_OK',ids.length);
+          NODE
       - name: Check history-specific production case for Historisk museum
         run: node scripts/audit-historie-place-production.mjs --changed --base origin/main
       - name: Check derived epoch and place-open indexes
