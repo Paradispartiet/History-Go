@@ -29,6 +29,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-engknoppurt-20261101.json"
     }),
+    emne_flora_engsmelle: Object.freeze({
+      scientificName: "Silene vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/03_engsmelle_v1.webp",
+      gitBlobSha: "1afbc358c9fee5ab1c7cccff5e08dadfc05b9902",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-engsmelle-20261101.json"
+    }),
     emne_flora_enghumleblom: Object.freeze({
       scientificName: "Geum rivale",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/01_enghumleblom_v2.webp",

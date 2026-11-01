@@ -41,7 +41,7 @@ assert.equal(photos.window.HG_NATURE_FLORA_PHOTOS.get(id)?.scientificName, item.
 const approvedCtx = {window: {}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"), approvedCtx);
 const approved = approvedCtx.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count, 24, "All prior 23 approvals plus engknoppurt must be preserved");
+assert(approved.count >= 24, "Engknoppurt and its 23 predecessors must remain approved");
 assert.equal(approved.get(id)?.src, item.src);
 assert.equal(approved.get(id)?.gitBlobSha, item.gitBlobSha);
 
