@@ -37,6 +37,14 @@
       stage: "blomstring og frøsetting",
       evidence: "data/natur/flora/illustration-quality-gjetertaske-20261101.json"
     }),
+    emne_flora_gulmaure: Object.freeze({
+      scientificName: "Galium verum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/11_gulmaure_v1.webp",
+      gitBlobSha: "6f1d1d29598a30cc04cff7ccc85c0fc9dfa8756c",
+      reviewedAt: "2026-11-01",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-gulmaure-20261101.json"
+    }),
     emne_flora_gullstjerne: Object.freeze({
       scientificName: "Gagea lutea",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/10_gullstjerne_v1.webp",
