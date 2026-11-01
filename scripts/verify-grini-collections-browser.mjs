@@ -245,7 +245,11 @@ try {
       await jump.press('Enter');
       const panel=sheet.locator('[data-hg-place-sheet-section="'+id+'"]').first();
       await panel.waitFor({state:'visible',timeout:15000});
-      await panel.scrollIntoViewIfNeeded();
+      await page.waitForFunction(sectionId=>{
+        const section=document.querySelector('#placeCard [data-hg-place-sheet-section="'+sectionId+'"]');
+        const nav=document.querySelector('#placeCard [data-hg-place-sheet-nav]');
+        return section&&nav&&section.getBoundingClientRect().top>=nav.getBoundingClientRect().bottom-2;
+      },id,{timeout:15000});
       if(id==='history') assert.match(await panel.innerText(),/1941|1942/);
       if(id==='stories') assert.match(await panel.innerText(),/Beskjeden om frihet/);
       if(id==='news') assert.match(await panel.innerText(),/kommandanturet/i);
