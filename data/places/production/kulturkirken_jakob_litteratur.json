@@ -57,7 +57,7 @@
   "textHashes": {
     "algorithm": "sha256",
     "desc": "9bda5036d4725b433b4e912a1d791a7abe85766a891d4d7f5c6c7c1c4f0f227b",
-    "popupDesc": "63ab4d7144c0948e432d16d21d85f4866ff9c511a616234d9b51ff7a25635bbf"
+    "popupDesc": "0b1272e4e9313e10a059b69ebf757fc5fc30e1cac07affab3012cafd4e29e647"
   },
   "claims": [
     {
@@ -221,6 +221,54 @@
       "evidenceMode": "direct",
       "temporalStatus": "historical",
       "timelineYear": 2000
+    },
+    {
+      "id": "claim_kulturkirken_jakob_demographic_decline",
+      "claim": "Kontorisering og nedgang i antall bosatte bidro til at Jakob kirke mistet sitt soknekirkegrunnlag.",
+      "sourceUrl": "https://www.jakob.no/om-jakob/historie",
+      "sourceLocation": "Historie – avsnittet om nedleggelsen i 1985",
+      "sourceType": "official",
+      "verifiedAt": "2026-11-01",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "claim_kulturkirken_jakob_preservation",
+      "claim": "Biskop Andreas Aarflot ønsket å rive den tomme kirken, men Byantikvaren og Riksantikvaren gikk inn for fredning.",
+      "sourceUrl": "https://www.jakob.no/om-jakob/historie",
+      "sourceLocation": "Historie – bevaring framfor riving",
+      "sourceType": "official",
+      "verifiedAt": "2026-11-01",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "claim_kulturkirken_jakob_structural_damage",
+      "claim": "Setninger i østenden og sprekker i murverket gjorde kirken forfallen og rehabiliteringen nødvendig for ny bruk.",
+      "sourceUrl": "https://www.jakob.no/om-jakob/historie",
+      "sourceLocation": "Historie – bygningsskader og istandsetting",
+      "sourceType": "official",
+      "verifiedAt": "2026-11-01",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "claim_kulturkirken_jakob_rehabilitation_funding",
+      "claim": "Handlingsprogram Oslo Indre Øst bevilget rehabiliteringsmidler, supplert av støtte til interiør, lyd, lys og instrumenter.",
+      "sourceUrl": "https://www.jakob.no/om-jakob/historie",
+      "sourceLocation": "Historie – finansieringen frem mot 2000",
+      "sourceType": "official",
+      "verifiedAt": "2026-11-01",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical"
     }
   ],
   "sentenceCoverage": {
@@ -291,59 +339,83 @@
       {
         "sentence": 8,
         "claimIds": [
-          "claim_kulturkirken_jakob_open_date"
+          "claim_kulturkirken_jakob_demographic_decline"
         ]
       },
       {
         "sentence": 9,
         "claimIds": [
-          "claim_kulturkirken_jakob_current_use"
+          "claim_kulturkirken_jakob_preservation"
         ]
       },
       {
         "sentence": 10,
         "claimIds": [
-          "claim_kulturkirken_jakob_bronn"
+          "claim_kulturkirken_jakob_structural_damage"
         ]
       },
       {
         "sentence": 11,
         "claimIds": [
-          "claim_kulturkirken_jakob_capacity"
+          "claim_kulturkirken_jakob_rehabilitation_funding"
         ]
       },
       {
         "sentence": 12,
         "claimIds": [
-          "claim_kulturkirken_jakob_capacity"
+          "claim_kulturkirken_jakob_open_date"
         ]
       },
       {
         "sentence": 13,
         "claimIds": [
-          "claim_kulturkirken_jakob_stage"
+          "claim_kulturkirken_jakob_current_use"
         ]
       },
       {
         "sentence": 14,
         "claimIds": [
-          "claim_kulturkirken_jakob_sound"
+          "claim_kulturkirken_jakob_bronn"
         ]
       },
       {
         "sentence": 15,
         "claimIds": [
-          "claim_kulturkirken_jakob_altarpiece"
+          "claim_kulturkirken_jakob_capacity"
         ]
       },
       {
         "sentence": 16,
         "claimIds": [
-          "claim_kulturkirken_jakob_altarpiece"
+          "claim_kulturkirken_jakob_capacity"
         ]
       },
       {
         "sentence": 17,
+        "claimIds": [
+          "claim_kulturkirken_jakob_stage"
+        ]
+      },
+      {
+        "sentence": 18,
+        "claimIds": [
+          "claim_kulturkirken_jakob_sound"
+        ]
+      },
+      {
+        "sentence": 19,
+        "claimIds": [
+          "claim_kulturkirken_jakob_altarpiece"
+        ]
+      },
+      {
+        "sentence": 20,
+        "claimIds": [
+          "claim_kulturkirken_jakob_altarpiece"
+        ]
+      },
+      {
+        "sentence": 21,
         "claimIds": [
           "claim_kulturkirken_jakob_current_use",
           "claim_kulturkirken_jakob_altarpiece"
@@ -356,14 +428,14 @@
       "status": "passed",
       "reviewedAt": "2026-11-01",
       "reviewer": "Kulturkirken Jakob source review",
-      "notes": "Offisielle Kulturkirken-kilder er kontrollert for identitet, historikk, bruk, rom og teknikk; SNL er brukt for den kunsthistoriske altertavledateringen. Oppdatert 1.11.2026 med offisielt dokumentert bygningsforfall og rehabilitering i 1985–2000."
+      "notes": "Utvidet med konkrete kildeførte opplysninger om kontorisering, fredning, setningsskader og finansiering, kontrollert mot offisiell historikk 1.11.2026."
     },
     "editorial": {
       "status": "passed",
       "reviewedAt": "2026-11-01",
       "reviewer": "Kulturkirken Jakob editorial review",
       "introducedNewFacts": false,
-      "notes": "Tidligere Litteratur-framing er fjernet. Musikk er primærkategori, Kunst sekundærbadge, og vigslet kirkerom beholdes som dokumentert kontekst. Tre nye popup-setninger er dekket av eksisterende 1986-claim og to nye claims med eksplisitt kilde."
+      "notes": "Den eksisterende teksten og musikkategorien er bevart. Fire direkte kildeførte faktasetninger om ombruken er lagt til uten ny kategori eller ny fortellingsvinkel."
     }
   },
   "quizReadiness": {
@@ -457,8 +529,8 @@
     "currentStatus": "current",
     "sourceVerifiedAt": "2026-11-01",
     "claimsVerified": {
-      "verified": 13,
-      "total": 13
+      "verified": 17,
+      "total": 17
     },
     "factualReview": "passed",
     "editorialReview": "passed",
