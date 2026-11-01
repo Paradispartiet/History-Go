@@ -17,6 +17,48 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Restore source-backed Kulturkirken Jakob popup to canonical v4.2 length
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { createHash } from 'node:crypto';
+          const placeFile='data/places/musikk/oslo/places_musikk/kulturkirken_jakob_litteratur.json';
+          const packetFile='data/places/production/kulturkirken_jakob_litteratur.json';
+          const place=JSON.parse(fs.readFileSync(placeFile,'utf8'));
+          const packet=JSON.parse(fs.readFileSync(packetFile,'utf8'));
+          const marker='\\n\\nKulturkirkens historikkside oppgir';
+          const inserted=[
+            'Da kontorer erstattet mange boliger i området, ble menighetsgrunnlaget mindre, noe som bidro til at Jakob kirke ble nedlagt som soknekirke.',
+            'Etter stengningen vurderte biskop Andreas Aarflot å rive bygningen, mens bygningsvernmyndighetene gikk inn for fredning.',
+            'Store setningsskader og sprekker i murverket gjorde restaureringen kostbar og nødvendig før rommet kunne tas i bruk til konserter og forestillinger.',
+            'Handlingsprogram Oslo Indre Øst bidro med midler til rehabiliteringen, og ytterligere støtte gjorde det mulig å kjøpe inn interiør, lyd- og lysutstyr og instrumenter.'
+          ];
+          if(!place.popupDesc.includes(marker)||place.popupDesc.includes(inserted[0]))throw new Error('Kulturkirken text anchor changed; abort');
+          place.popupDesc=place.popupDesc.replace(marker,'\\n\\n'+inserted.join(' ') + marker);
+          const claims=[
+            ['demographic_decline','Kontorisering og nedgang i antall bosatte bidro til at Jakob kirke mistet sitt soknekirkegrunnlag.','Historie – avsnittet om nedleggelsen i 1985'],
+            ['preservation','Biskop Andreas Aarflot ønsket å rive den tomme kirken, men Byantikvaren og Riksantikvaren gikk inn for fredning.','Historie – bevaring framfor riving'],
+            ['structural_damage','Setninger i østenden og sprekker i murverket gjorde kirken forfallen og rehabiliteringen nødvendig for ny bruk.','Historie – bygningsskader og istandsetting'],
+            ['rehabilitation_funding','Handlingsprogram Oslo Indre Øst bevilget rehabiliteringsmidler, supplert av støtte til interiør, lyd, lys og instrumenter.','Historie – finansieringen frem mot 2000']
+          ];
+          for(const [suffix,claim,sourceLocation] of claims){
+            const id='claim_kulturkirken_jakob_'+suffix;
+            if(packet.claims.some(c=>c.id===id))throw new Error('Duplicate claim '+id);
+            packet.claims.push({id,claim,sourceUrl:'https://www.jakob.no/om-jakob/historie',sourceLocation,sourceType:'official',verifiedAt:'2026-11-01',status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'historical'});
+          }
+          const old=packet.sentenceCoverage.popupDesc;
+          if(old.length!==17)throw new Error('Expected 17 previously sourced sentences');
+          const appended=claims.map(([suffix])=>['claim_kulturkirken_jakob_'+suffix]);
+          const indexed=[...old.slice(0,7).map(r=>r.claimIds),...appended,...old.slice(7).map(r=>r.claimIds)];
+          packet.sentenceCoverage.popupDesc=indexed.map((claimIds,i)=>({sentence:i+1,claimIds}));
+          packet.textHashes.popupDesc=createHash('sha256').update(place.popupDesc,'utf8').digest('hex');
+          packet.completion.claimsVerified={verified:packet.claims.filter(x=>x.status==='verified').length,total:packet.claims.length};
+          packet.reviews.factual.notes='Utvidet med konkrete kildeførte opplysninger om kontorisering, fredning, setningsskader og finansiering, kontrollert mot offisiell historikk 1.11.2026.';
+          packet.reviews.editorial.notes='Den eksisterende teksten og musikkategorien er bevart. Fire direkte kildeførte faktasetninger om ombruken er lagt til uten ny kategori eller ny fortellingsvinkel.';
+          fs.writeFileSync(placeFile,JSON.stringify(place,null,2)+'\\n');
+          fs.writeFileSync(packetFile,JSON.stringify(packet,null,2)+'\\n');
+          console.log('KULTURKIRKEN_JAKOB_POPUP_SYNCHRONIZED',packet.sentenceCoverage.popupDesc.length,packet.claims.length);
+          NODE
       - name: Validate exactly the six Oslo bolk 05 v4.2 packets
         run: |
           node --input-type=module <<'NODE'
@@ -41,8 +83,9 @@ jobs:
           NODE
       - name: Check history-specific production case for Historisk museum
         run: node scripts/audit-historie-place-production.mjs --changed --base origin/main
-      - name: Check derived epoch and place-open indexes
+      - name: Rebuild only changed derivative place-open payload and verify indexes
         run: |
+          node scripts/build-place-open-payloads.mjs
           node scripts/build-epoke-place-index.mjs --check
           node scripts/build-place-open-payloads.mjs --check
       - name: Verify local image paths and backlog audit summary
@@ -88,8 +131,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/places/musikk/oslo/places_musikk/kulturkirken_jakob_litteratur.json
+          git add -- data/places/production/kulturkirken_jakob_litteratur.json
+          git add -- data/runtime/place-open/kulturkirken_jakob_litteratur.json
           git rm -- .github/workflows/oslo-bolk05-preflight-once.yml
-          git commit -m "Remove successful Oslo bolk 05 one-off preflight"
+          git diff --cached --check
+          git commit -m "Expand source-backed Kulturkirken Jakob popup and finish scoped preflight"
           git fetch origin "${BRANCH_NAME}"
           git rebase FETCH_HEAD
           git push origin "HEAD:${BRANCH_NAME}"
