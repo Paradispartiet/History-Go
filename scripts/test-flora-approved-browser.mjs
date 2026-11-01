@@ -53,7 +53,8 @@ try{
     {name:"engtjaereblom",label:"Engtjæreblom",term:"engtjæreblom",path:"b09/04_engtjaereblom_v1.webp"},
     {name:"firkantperikum",label:"Firkantperikum",term:"firkantperikum",path:"b09/05_firkantperikum_v1.webp"},
     {name:"forglemmegei",label:"Forglemmegei",term:"forglemmegei",path:"b09/06_forglemmegei_v1.webp"},
-    {name:"gjetertaske",label:"Gjetertaske",term:"gjetertaske",path:"b09/07_gjetertaske_v1.webp"}
+    {name:"gjetertaske",label:"Gjetertaske",term:"gjetertaske",path:"b09/07_gjetertaske_v1.webp"},
+    {name:"gulaks",label:"Gulaks",term:"gulaks",path:"b09/08_gulaks_v1.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
@@ -72,7 +73,7 @@ try{
     assert((await card.locator("img").getAttribute("src")).endsWith(species.path));
     assert.equal((await card.locator(".ne-image-label").innerText()).trim(),"Illustrasjon");
     assert.equal(await card.locator("img").evaluate(el=>getComputedStyle(el).objectFit),"contain");
-    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(8, 9, 8)");
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
     await card.screenshot({path:path.join(artifacts,species.name+"-kort-"+width+".png")});
     await card.click();
     const dialog=page.locator("#natureDialog");
@@ -87,19 +88,19 @@ try{
     const failure=await browser.newContext({viewport:{width,height:900}});
     await failure.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
     await failure.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
-    await failure.route("https://upload.wikimedia.org/**",r=>r.fulfill({contentType:"image/png",body:photoStub}));
+    await failure.route("https://upload.wikimedia.org/**",r=>r.abort("failed"));
     await failure.route("**/bilder/natur/flora/illustrasjonskandidater/"+species.path,r=>r.abort("failed"));
     const test=await failure.newPage();
     await test.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await test.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await test.locator("#natureSearch").fill(species.term||species.name);
     const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
-    await fallback.locator(".ne-image-label").getByText("Artsfoto").waitFor({timeout:20000});
-    assert.match(await fallback.locator("img").getAttribute("src"),/wikimedia\.org/);
+    await fallback.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:20000});
+    assert.equal(await fallback.locator("img").count(),0);
     await fallback.click();
-    await test.locator("#natureDialog .ne-image-credit").getByText("Viser artsfoto",{exact:false}).waitFor({timeout:20000});
+    await test.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:20000});
     await failure.close();
-    console.log(species.name+" viewport "+width+": illustrated card/dialog and photo failover OK.");
+    console.log(species.name+" viewport "+width+": illustrated card/dialog and no photo fallback OK.");
     }
     // Held candidates remain outside Finn Flora; the dedicated review shows all four.
     const held=await browser.newContext({viewport:{width,height:900}});

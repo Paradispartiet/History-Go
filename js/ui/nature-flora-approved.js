@@ -37,6 +37,14 @@
       stage: "blomstring og frøsetting",
       evidence: "data/natur/flora/illustration-quality-gjetertaske-20261101.json"
     }),
+    emne_flora_gulaks: Object.freeze({
+      scientificName: "Anthoxanthum odoratum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/08_gulaks_v1.webp",
+      gitBlobSha: "5e79619f6cca4e531f9daa56b7e0d5f7de6b2bc5",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-gulaks-20261101.json"
+    }),
     emne_flora_forglemmegei: Object.freeze({
       scientificName: "Myosotis spp.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/06_forglemmegei_v1.webp",
