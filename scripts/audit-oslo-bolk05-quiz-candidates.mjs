@@ -35,6 +35,24 @@ for (const [id, category, slug] of scope) {
   const qs = data.questions || [];
   const cq = collection?.cards || [];
   const claims = new Map((packet.claims||[]).map(c=>[c.id,c]));
+  const briefFile='data/quiz/production_briefs/'+category+'/'+id+'.json';
+  const brief=read(briefFile);
+  if(brief.categoryId!==category || brief.targetId!==id || brief.status!=='partial')
+    fail(id,'Production brief must be correctly scoped and transparently partial');
+  if(brief.profile_decision?.set_count!==3 || brief.profile_decision?.questions_per_set!==7)
+    fail(id,'Production brief must specify three sets of seven');
+  if(brief.claims?.length!==21) fail(id,'Production brief must document all 21 candidate claims');
+  for(const [i,q] of qs.entries()){
+    const claim=brief.claims?.[i];
+    if(claim?.order!==i+1 || claim?.statement!==q.knowledge ||
+       claim?.source_ids?.length!==q.source_urls?.length ||
+       !equal(claim?.source_ids,q.source_urls))
+      fail(id,'Production brief claim or URL drift at '+(i+1));
+    for(const sourceId of q.source_urls||[]){
+      if(!brief.sources?.[sourceId] || brief.sources[sourceId].url!==sourceId)
+        fail(id,'Production brief missing source '+sourceId);
+    }
+  }
   if (data.targetId!==id || data.categoryId!==category || packet.placeId!==id)
     fail(id,'Place ID/category not in expected canonical scope');
   if(qs.length!==21 || cq.length!==10 || collection?.sourceQuestionIds?.length!==10)
