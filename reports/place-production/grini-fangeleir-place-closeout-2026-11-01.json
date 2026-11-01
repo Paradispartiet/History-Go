@@ -78,10 +78,10 @@
     }
   },
   "remaining": [
-    "People, Objects og Brands ferdigstilles etter egne kontrakter",
-    "PlaceCard-profil og samlet UI-review",
-    "Før/etter, Nyheter og Lesespor-eierkontroll",
-    "Curated Fagverk og full stedsgate"
+    "People-, Objects- og Brands-kandidater ferdigstilles etter egne kontrakter",
+    "PlaceCard-samlingsprofil og samlet samlings-UI-review",
+    "Før/etter, Nyheter og Lesespor med dokumentert eksternt søk",
+    "Samlet Place vFerdig-sluttgate; denne fasen er ikke full stedsproduksjon"
   ],
   "checks": {
     "stories_integrity": "PASS: 349 aktive Stories, 128 episode_v1, ingen integritetsfeil",
@@ -89,8 +89,24 @@
     "workflow_routing": "PASS: 181 PR-workflows",
     "browser": "PENDING_EXACT_HEAD_CI",
     "historie_category": "PASS: 39 kontrollert, 0 feil",
-    "epoke_regressions": "PASS (se lokal logg; antall innføres etter avlest resultat)",
-    "global_fagverk": "FAIL: eksisterende avvik utenfor Grini; ingen Grini-treff i auditfeil"
+    "epoke_regressions": "PASS: 39 tester",
+    "global_fagverk": {
+      "baseline_failures": 53,
+      "candidate_failures": 53,
+      "new_failures": 0,
+      "grini_failures": 0,
+      "baseline_commit": "4575369fcc4eb958609bfb1825d7e21ff2f5a7ff",
+      "command": "node scripts/audit-fagverk-place-pages.mjs",
+      "comparison": "Eksakt samme feillinjer, ikke bare samme antall. Ingen gate svekket."
+    },
+    "quiz_context": {
+      "baseline_failures": 391,
+      "candidate_failures": 391,
+      "grini_failures": 0,
+      "baseline_commit": "4575369fcc4eb958609bfb1825d7e21ff2f5a7ff",
+      "command": "auditQuizProductionContext() fra scripts/audit-quiz-production-context.mjs",
+      "target_deterministic_rebuild": "PASS"
+    }
   },
   "fagverk_review": {
     "status": "SOURCE_AND_SUBSTANCE_REVIEWED_UI_PENDING",
@@ -177,5 +193,43 @@
       "finding": "PlaceCard, ekte stående bilde, flip, utvidet ti-spørsmålskort og fullquiz-rute fungerte på første mobilprofil; Fagverk-linser manglet fordi status fortsatt var in_production.",
       "fix": "Kilde-/substansreview av alle fem avsnitt, fire linser, fem spørsmål, to spor og fem kilder; Place- og registry-status synkronisert til curated. Ny faktisk browserrunde kreves."
     }
-  ]
+  ],
+  "quality_gate": {
+    "scope": "Kun denne PR-fasen: bilder, frigjørings-Story, leksikoneierskap, Historie-kategorigate og Fagverk med faktisk browserkontroll. Samlet Place-produksjon er fortsatt åpen.",
+    "status": "BROWSER_AND_EXACT_HEAD_CI_PENDING",
+    "dimensions": [
+      {
+        "dimension": "Korrekthet og evidens",
+        "score": 5,
+        "evidence": "Alle nye påstander kontrollert mot navngitte SNL/MiA-seksjoner; bildeidentitet/lisens kontrollert, kildekonflikt bevart."
+      },
+      {
+        "dimension": "Dekning og ferdigstillelse",
+        "score": 4,
+        "evidence": "Alle leveranser i fasen skrevet og materialisert; browserverifisering gjenstår før fasegodkjenning. Denne scoren gjelder ikke hele Place."
+      },
+      {
+        "dimension": "Faglig/redaksjonell kvalitet",
+        "score": 5,
+        "evidence": "Avgrenset fortelling om forskjellen mellom kapitulasjon og utskriving, egen analyseartikkel og kildekritikk, ingen oppdiktet dialog eller motiv."
+      },
+      {
+        "dimension": "Teknisk integritet",
+        "score": 4,
+        "evidence": "13 Grini-tester, 39 epoketester, Stories-integritet og Historie A–H PASS; 53 Fagverk- og 391 kontekstfeil er også til stede på main. Faktisk browser og exact-head CI avventes."
+      },
+      {
+        "dimension": "Sikkerhet og ansvarlighet",
+        "score": 5,
+        "evidence": "Historisk fengselsanker og aktivt fengsel beholdt, ingen ny på-stedet-oppgave; ingen påstått skyld for tilbakeholdte, datoer og minnesmerker holdt adskilt."
+      },
+      {
+        "dimension": "Vedlikeholdbarhet og etterprøvbarhet",
+        "score": 5,
+        "evidence": "Stabile ID-er, ett leksikoneierskap, deterministiske bygg, kildefingeravtrykk, lokal lisensiert media og permanent faktisk appkontroll."
+      }
+    ],
+    "total": 28,
+    "final_decision": "Ikke godkjent før ny browserrunde består. Endelig head, CI-resultater, faktisk screenshot-review og mergebeslutning skal registreres i PR-beskrivelsen."
+  }
 }
