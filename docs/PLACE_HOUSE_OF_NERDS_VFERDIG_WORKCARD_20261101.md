@@ -26,9 +26,9 @@
 | Stedstekst + claimpakke | UNDER REVIEW | PR #6885; 17 source-claims, setningskoblinger, 10 quiz-readiness-kandidater |
 | Stedsegen Fagverk-side | UNDER REVIEW | PR #6886; curated/standard, navngitte eksterne kilder, registry-indeks og release-digest oppdatert; krever CI, browser-QA og merge |
 | Aktiv Story | UNDER REVIEW | PR #6890 migrerer kandidat til episode_v1 og registrerer aktiv Story med fire eksterne kilder; Stories governance PASS, men PR ikke merget, slutt-QA og Place-open PASS gjenstår |
-| Kronologi og epoker | BLOCKED | Historiske kilder dokumenterer Løren 2015 og Vulkan rundt årsskiftet 2019–2020; kildeuenighet i åpningsdato må behandles ved tidslinjematerialisering |
+| Kronologi og epoker | UNDER REVIEW / BLOCKED FOR INDEX | PR #6903: egen manifestlastet Vulkan-leksikonartikkel med to kildebelagte åpningsannonser (2019 og 2020). PR #6885 setter Løren-/omstridt åpning-claims til timelineScope=institution_context for å unngå falske Vulkan-milestones. Deterministisk epokeindeks og visuell QA gjenstår. |
 | Språkleksikon | UNDER REVIEW | PR #6895: 4 kildebelagte stedstermer, egen språkfil og aktiv manifestkobling; CI og UI-kontroll gjenstår |
-| People | BLOCKED / kandidataudit | Eldre kollektivanker `house_of_nerds_miljoet` er ikke en automatisk godkjent individuell person; navngitte personer må belegges med stedsspesifikk rolle |
+| People | EKSISTERENDE PERSON GJENBRUKT / UNDER REVIEW | `andreas_sollund` var allerede manifestlastet og koblet til House of Nerds; PR #6904 retter navn og kildebelagte roller (Gamer.no 2013, selskap Vulkan 2026) uten å duplisere personen. Portrett mangler og full People Profile v1 er ikke attestert. |
 | Objects | KANDIDATAUDIT | Ingen dokumentert egenarts- eller eierklarert PlaceCard-objektsamling ennå |
 | Brands | KANDIDATAUDIT | Driftsselskap/House of Nerds-identiteten kan være relevant, men canonical brand-gate er ikke gjennomgått |
 | Category expression | KANDIDATAUDIT | Innhold skal bare produseres dersom canonical samling passer med dokumenterte spor |
@@ -64,3 +64,7 @@ Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og b
 - PR #6895: kildebelagt Språkleksikon med `nerdehjem`, `gaming`, `VR-escape room` og `community`; canonical manifestregistrering; avventer slutt-QA.
 
 - PR #6900: 21 kildebaserte spørsmål, 3 sett, ti nøyaktige QuizCard-spørsmål, registrert i quiz- og QuizCard-manifest. CI viser `Knowledge canonical data`-drift i `data/quiz/subkultur/house_of_nerds_sets.json`, `data/knowledge/subjects/subkultur/knowledge_units.generated.json` og `reports/knowledge-id-backfill.json`. Ikke sett Quiz/Knowledge til PASS før kanonisk builder og faktisk UI-QA.
+
+- PR #6903: Vulkan-spesifikt leksikon med daterte kildeannonser fra 2019 og 2020; eksakt åpning holdes omstridt. Epokeindeks og viewer gjenstår.
+- PR #6904: eksisterende `andreas_sollund` People-ID gjenbrukt; feilaktig kontaktperson-påstand erstattet med dokumentert prosjektlederrolle og profesjonell rolle i Vulkan-selskapet. Bildet er fremdeles tomt.
+- PR #6900: Narrow-fasene justert til canonical `opening → bridge → final`; `quizProduction.targets` er registrert. Engangskjøring av repository-eid `quiz:context` + Knowledge-generator forsøkt på quizgrenen. Ingen generert output regnes som synkronisert før commit og CI PASS er observert.
