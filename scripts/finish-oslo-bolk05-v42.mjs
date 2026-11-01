@@ -66,7 +66,7 @@ for(const spec of config){
         claimIds:['claim_blitzhuset_source_3','claim_blitzhuset_source_4']
       },
       {
-        paragraph:'Et fotografi kan være godt bevis for hvordan fasaden så ut akkurat da bildet ble tatt. Plakater og veggmalerier kan skifte, og et eldre fotografi bør derfor ikke merkes som en direkte registrering av et senere tidspunkt. Adressekildene må leses på samme måte: historiske betegnelser som Pilestredet 30c og den senere nummereringen 30e er ulike registreringer av samme bygningshistorie, ikke bevis for at kulturhuset flyttet.',
+        paragraph:'Et fotografi kan være godt bevis for hvordan fasaden så ut akkurat da bildet ble tatt. Plakater og veggmalerier kan skifte, og et eldre fotografi kan ikke uten videre dokumentere et senere tidspunkt. Adressekildene må leses på samme måte: historiske betegnelser som Pilestredet 30c og den senere nummereringen 30e er ulike registreringer av samme bygningshistorie, ikke bevis for at kulturhuset flyttet.',
         claimIds:['claim_blitzhuset_source_5','claim_blitzhuset_photo_temporality']
       }
     ];
