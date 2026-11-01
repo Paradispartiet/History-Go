@@ -21,6 +21,30 @@ IDS = ("sceneproduksjon", "regi", "dramaturgi")
 PREFIX = "bilder/merker/scenekunst/undermerker"
 
 
+
+def validate_webp(payload: bytes, category_id: str) -> None:
+    """Validate RIFF length, alpha and dimensions for VP8X or lossless VP8L."""
+    if len(payload) < 30 or payload[:4] != b"RIFF" or payload[8:12] != b"WEBP":
+        raise ValueError(f"{category_id}: invalid WebP header")
+    if int.from_bytes(payload[4:8], "little") + 8 != len(payload):
+        raise ValueError(f"{category_id}: RIFF size mismatch")
+    subtype = payload[12:16]
+    if subtype == b"VP8X":
+        width = int.from_bytes(payload[24:27], "little") + 1
+        height = int.from_bytes(payload[27:30], "little") + 1
+        has_alpha = bool(payload[20] & 0x10)
+    elif subtype == b"VP8L":
+        if payload[20] != 0x2F:
+            raise ValueError(f"{category_id}: invalid VP8L signature")
+        bits = int.from_bytes(payload[21:25], "little")
+        width = (bits & 0x3FFF) + 1
+        height = ((bits >> 14) & 0x3FFF) + 1
+        has_alpha = bool((bits >> 28) & 1)
+    else:
+        raise ValueError(f"{category_id}: unsupported WebP subtype {subtype!r}")
+    if (width, height) != (1024, 1024) or not has_alpha:
+        raise ValueError(f"{category_id}: requires 1024x1024 WebP with alpha")
+
 def main() -> int:
     if len(sys.argv) != 2:
         print("Usage: python3 scripts/badges/import_scenekunst_v3.py <zip-path>", file=sys.stderr)
@@ -40,14 +64,15 @@ def main() -> int:
                 raise ValueError(f"{category_id}: unexpected candidate file path")
             if candidate.get("visualApproved") or candidate.get("selectedImage"):
                 raise ValueError(f"{category_id}: candidate unexpectedly activated")
+            if bundle.namelist().count(name) != 1:
+                raise ValueError(f"{category_id}: missing or duplicate ZIP entry")
             info = bundle.getinfo(name)
             if info.file_size != candidate["bytes"]:
                 raise ValueError(f"{category_id}: ZIP file size differs from register")
             payload = bundle.read(info)
             if hashlib.sha256(payload).hexdigest() != candidate["sha256"]:
                 raise ValueError(f"{category_id}: SHA-256 differs from register")
-            if len(payload) < 16 or payload[:4] != b"RIFF" or payload[8:12] != b"WEBP":
-                raise ValueError(f"{category_id}: invalid WebP header")
+            validate_webp(payload, category_id)
             target = ROOT / name
             if target.exists() and target.read_bytes() != payload:
                 raise FileExistsError(f"Refusing to replace different existing file: {target}")
