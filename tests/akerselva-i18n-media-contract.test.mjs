@@ -53,3 +53,19 @@ test('Akerselva image rights and published place-open source stay aligned', () =
   assert.match(place.frontImageMeta.viewpoint, /Nydalsdammen/);
 
 });
+
+
+test('Akerselva 1990 Spigerverket spill names hydrochloric acid, not sulphuric acid', () => {
+  const place = read(canonicalPath);
+  const runtime = read(runtimePath).place;
+  assert.match(place.popupDesc, /saltsyre fra Spigerverket/);
+  assert.doesNotMatch(place.popupDesc, /svovelsyre fra Spigerverket/);
+  assert.equal(runtime.popupDesc, place.popupDesc);
+  const expected = { en: 'hydrochloric acid from Spigerverket', es: 'ácido clorhídrico procedente de Spigerverket', pt: 'ácido clorídrico proveniente de Spigerverket' };
+  const disallowed = { en: 'sulphuric acid from Spigerverket', es: 'ácido sulfúrico procedente de Spigerverket', pt: 'ácido sulfúrico proveniente de Spigerverket' };
+  for (const lang of ['en', 'es', 'pt']) {
+    const article = read('data/i18n/content/places/' + lang + '.json').akerselva.popupDesc;
+    assert.ok(article.includes(expected[lang]), lang + ': correct acid missing');
+    assert.ok(!article.includes(disallowed[lang]), lang + ': superseded acid still present');
+  }
+});
