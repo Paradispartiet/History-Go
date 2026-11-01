@@ -1,0 +1,35 @@
+name: Alna ved Bryn PlaceCard curation
+
+on:
+  pull_request:
+    paths:
+      - "data/places/natur/oslo/places_oslo_natur_alnaelva_rute/alna_bryn.json"
+      - "data/runtime/place-open/alna_bryn.json"
+      - "data/brands/brands_by_place.json"
+      - "data/brands/brands_master.json"
+      - "data/quiz/natur/alna_bryn_sets.json"
+      - "data/quizcards/natur/topp10_natur_alna_v1_batch01.json"
+      - "tests/alna-bryn-placecard-collections-v2.test.mjs"
+      - "reports/place-production/alna-bryn-placecard-curation-v1.md"
+      - ".github/workflows/alna-bryn-placecard-curation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  alna-bryn-collections:
+    name: Verify Bryn Brand curation and original quiz/photo parity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run targeted Bryn curation regression
+        run: node --test tests/alna-bryn-placecard-collections-v2.test.mjs
