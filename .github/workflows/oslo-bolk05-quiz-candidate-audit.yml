@@ -1,0 +1,30 @@
+name: Oslo bolk 05 - quiz candidate integrity
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-bolk05-tekst-20261101
+    paths:
+      - .github/workflows/oslo-bolk05-quiz-candidate-audit.yml
+      - scripts/audit-oslo-bolk05-quiz-candidates.mjs
+      - reports/place-production/oslo-bolk05-*-quiz21-candidates-20261101.json
+      - reports/place-production/oslo-bolk05-quizcards50-candidates-20261101.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-bolk05-quiz-candidate-audit
+  cancel-in-progress: false
+
+jobs:
+  audit-candidates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the five candidate packages, QuizCards and existing Folketeateret parity
+        run: node scripts/audit-oslo-bolk05-quiz-candidates.mjs --json
