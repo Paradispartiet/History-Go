@@ -1,3 +1,5 @@
+> **Oppdatert status (1.11.2026):** De seks aktive canonical stedstekstene er nå oppdatert i denne PR-grenen. Utkastene og «ingen Place-tekst endret»-utsagnene nedenfor beskriver **situasjonen før integrasjon**. Se [integrasjonsrapporten](oslo-sentrum-bolk05-tekstintegrasjon-20261101.md) for gjennomført arbeid, kildeankere og gjenstående bilde-/quiz-/QA-porter. PR-en er fortsatt draft og ikke v1-godkjent.
+
 # Oslo sentrum – bolk 05: stedstekst og kildegrunnlag (Stage A)
 
 **Dato:** 1. november 2026  
