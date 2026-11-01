@@ -1,38 +1,23 @@
-# History Go – undermerker: produksjonsbolk 01
-Dato: 31.10.2026
+# History Go – undermerker bolk 01 – tre bildekandidater
+Dato: 01.11.2026
 
-## Status
-- **29 underkategorier** fordelt på Scenekunst (7), By (10) og Film & TV (12) er kartlagt i aktivt kategoriregister.
-- Ingen har foreløpig registrert eget undermerkebilde i `data/badges/{scenekunst,by,film_tv}.json`.
-- Ingen av de foreslåtte nye filene er generert eller aktivert. `data/badges/underbadge_batch01_production.json` er designspesifikasjon, **ikke en publiseringsmanifest**.
-- De fem originalmerkene og de fire nylig godkjente hovedmerkene er beskyttet. De 15 ferdige undermerkene i Religion/Vitenskap beholdes.
-- En bildegenerert plakat/samleillustrasjon kan ikke brukes som source-of-truth eller klippes opp til enkelmerker.
+## Faktisk produksjon
+Det er produsert **tre egne WebP-bildefiler** på 1024 × 1024, med gjennomsiktig bakgrunn, broderte kategorinavn innenfor kanten og SHA-256-verifiserbar metadata.
 
-## Første pilot
-| Prioritet | Kategori | Undermerke | Symbol | Farger |
-|---|---|---|---|---|
-| 1 | Scenekunst | Teater | Prosceniumscene og scenelys, ikke hovedmerkets masker | `#C96E8B` + `#808080` |
-| 1 | By | Klassisk arkitektur | Søyle og trekantgavl i grå stein | `#808080` + `#404040` |
-| 1 | Film & TV | Spillefilm | Filmklapper, objektiv og filmstrimmel | `#C2188B` + `#E7F8FF` |
+| Kategori | Undermerke | Kandidatfil | Status |
+| --- | --- | --- | --- |
+| Scenekunst | Teater | `bilder/merker/scenekunst/undermerker/teater-brodert-v1.webp` | Rendered candidate |
+| By | Klassisk arkitektur | `bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v1.webp` | Rendered candidate |
+| Film & TV | Spillefilm | `bilder/merker/film_tv/undermerker/spillefilm-brodert-v1.webp` | Rendered candidate |
 
-## Produksjonskontrakt
-1. Tegn én selvstendig 1024×1024-fil per undermerke i brodert stil; aldri generer et kontaktark og klipp ut detaljene. Inngående plan angir motiv og hva som skal unngås for alle 29.
-2. Bruk foreldrekategoriens fargepar, tydelig vevd bakgrunn, brodert kant og et gjenkjennelig symbol som også fungerer i 48–64 px.
-3. Kunstnerisk vurdering før aktivering. Teknisk CI kan bare verifisere fil, SHA-256, oppløsning, alfa, kategori-ID og lenker.
-4. Etter godkjenning: WebP lastes opp i foreslått `bilder/merker/<kategori>/undermerker/<id>-brodert-vN.webp`; fyll manifestets `selectedImage` og status; legg til `subBadgeImages` i riktig kategori-JSON; oppdater manifest/kilder, test og kontaktark.
-5. Ingen eksisterende hoved- eller undermerker skal overskrives eller byttes ut på grunn av den nye bolken.
+**Viktig:** Bildene er utskilt fra et tredelt tidligere illustrasjonsutkast (original 2172 × 724) og skalert til 1024 × 1024. De er dermed ikke nativt generert i 1024. Dette skal fremgå av produksjonsmanifestet og ved senere visuell vurdering.
 
-## Neste etter pilot
-- Scenekunst: dans, performance, musikkteater, sceneproduksjon, regi, dramaturgi.
-- By: modernisme, funksjonalisme, brutalisme, postmodernisme, samtidsarkitektur, byplanlegging, infrastruktur, monumenter_og_landemerker, bolig_og_bomiljo.
-- Film & TV: kortfilm, dokumentarfilm, tv_serier, nyheter_og_reportasje, klassikere, norsk_film_og_tv, filmfestivaler, filmlocations, film_og_tv_produksjon, arkiv_og_kanon, visningssteder.
+## Design og kontroll
+- Påkrevd: navn **inne i badge**, buet øverst, som brodert tråd.
+- Beskytt alle eksisterende 19 hovedmerker og 15 godkjente undermerker.
+- Ikke aktiver `subBadgeImages` for de tre underkategoriene før visuell godkjenning.
+- Kvalitetsgjennomgangen skal særskilt kontrollere **Teater** mot Scenekunst-hovedmerket (for like masker), **Klassisk arkitektur** mot grå palett (mørk bakgrunn/lyse fasader), og **Spillefilm** mot Film & TV-fargene (kraftig rosa/oransje fremfor liljehvit).
+- Teknisk verifisering: dedikert `node --test tests/badge-underbadge-batch01.test.mjs` kontrollerer WebP-header, dimensjoner, byte og SHA-256, tilhørighet, ID-er og vern av 9 hovedmerker og 15 undermerker.
 
-## Relevante registre
-- `data/badges/scenekunst.json`
-- `data/badges/by.json`
-- `data/badges/film_tv.json`
-- `data/badges/religion_underbadge_artwork.json`
-- `data/badges/vitenskap_underbadge_artwork.json`
-- `badge-kontaktark.html`
-
-Kjør bare `node --test tests/badge-underbadge-batch01.test.mjs` for kontrakten i denne grenen.
+## Fortsatt arbeid
+26 øvrige undermerkekandidater er på planstadiet. Etter godkjent pilot brukes samme produksjonsregel, individuelt og uten gjenbruk av hovedmerkemotiv.
