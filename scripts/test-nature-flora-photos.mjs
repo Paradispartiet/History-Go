@@ -58,13 +58,14 @@ const expected=[
  ["emne_flora_prikktvetann","Lamium maculatum"],
  ["emne_flora_kattefot","Antennaria dioica"],
  ["emne_flora_firkantperikum","Hypericum maculatum"],
+ ["emne_flora_forglemmegei","Myosotis spp."],
  ["emne_flora_varkaal","Ficaria verna"],
  ["emne_flora_russblaastjerne","Scilla siberica"],
  ["emne_flora_varerteknapp","Lathyrus vernus"],
  ["emne_flora_ryllik","Achillea millefolium"],
  ["emne_flora_blaklokke","Campanula rotundifolia"]
 ];
-assert.equal(photos.count,56);
+assert.equal(photos.count,57);
 const urls=new Set();
 const illustrations=[
  "nature-illustrations.js","nature-illustrations-batch03.js",
@@ -161,4 +162,4 @@ for (const id of batch7Ids) {
  const encoded=encodeURIComponent(filename);
  assert.equal(photo.src,`https://upload.wikimedia.org/wikipedia/commons/thumb/${digest[0]}/${digest.slice(0,2)}/${encoded}/960px-${encoded}`,"invalid Commons image path: "+id);
 }
-console.log("Flora photos: 56 sourced species, credits/licenses, fallback and read-only UI OK.");
+console.log("Flora photos: 57 sourced taxa, credits/licenses, fallback and read-only UI OK.");

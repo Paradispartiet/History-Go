@@ -29,6 +29,15 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-engknoppurt-20261101.json"
     }),
+    emne_flora_forglemmegei: Object.freeze({
+      scientificName: "Myosotis spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/06_forglemmegei_v1.webp",
+      gitBlobSha: "de59258e141b0b922424d31a167a16b16335fae6",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      taxonomicScope: "genus-representative",
+      evidence: "data/natur/flora/illustration-quality-forglemmegei-20261101.json"
+    }),
     emne_flora_firkantperikum: Object.freeze({
       scientificName: "Hypericum maculatum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/05_firkantperikum_v1.webp",
