@@ -24,3 +24,15 @@ Det er produsert **tre egne WebP-bildefiler** på 1024 × 1024, med gjennomsikti
 
 ## Utvidelse 1. november 2026
 Seks nye separate Scenekunst-WebP-filer er nå lagt på arbeidsgrenen: Dans, Performance, Musikkteater, Sceneproduksjon, Regi og Dramaturgi. Til sammen er 9 av 29 kandidater lagt inn i PR-en. Ingen er koblet inn som aktivt undermerke; `selectedImage` forblir `null`. De seks nye kandidatene er håndtegnede, stiliserte broderimotiver og **krever visuell kvalitetssikring** mot hovedmerkenes mer naturtro trådtekstur før de kan godkjennes. Kategori-navn er tegnet inne i øvre kant på hver kandidat. Teknisk verifisering skjer med `node --test tests/badge-underbadge-batch01.test.mjs`.
+
+## Visuell kvalitetskontroll 01.11.2026 – ikke godkjent
+
+De seks nylig lagde Scenekunst-bildene er gjennomgått på faktisk GitHub-WebP. Følgende er merket `rework_required` i produksjonsmanifestet: Dans, Performance, Musikkteater, Sceneproduksjon, Regi og Dramaturgi.
+
+**Årsaker:** Flate ikonmotiver, for lite realistisk tekstil-/trådstruktur. Dansemerket har en figur som ligner trommestikker snarere enn en danser. Regi og Dramaturgi er for like. Filene oppbevares som arbeidsutkast, men skal ikke aktiveres eller regnes som godkjente.
+
+**Obligatorisk videre:** En illustrasjon per fil (ikke beskåret samlebilde), bueformet navn brodert *inne* i øvre kant, realistisk kant- og stoffstruktur, korrekt navn og godkjent fargepar. Scenekunst: `#C96E8B` og `#808080`. Kontroll mot hovedmerket på 64 px og full størrelse.
+
+De tre tidligere pilotene (Teater, Klassisk arkitektur, Spillefilm) er fortsatt kandidater uten visuell sluttsignering. Ingen `subBadgeImages` aktiveres før godkjenning. Merke-PR skal forbli utkast.
+
+Det AI-genererte arket med 15/29 motiver er ikke en produksjonspakke: en del navn samsvarer ikke med underkategoriene i registeret, og det skal ikke klippes opp til aktive filer.

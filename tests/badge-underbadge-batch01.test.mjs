@@ -20,7 +20,7 @@ const approvedMain={
 };
 test('nine candidate WebPs match the exact 29 registered undercategories without activation',()=>{
  assert.equal(plan.version,1);
- assert.equal(plan.status,'nine_images_uploaded_not_approved');
+ assert.equal(plan.status,'three_pilot_candidates_six_rework_required');
  assert.deepEqual(plan.pilot.map(p=>p.categoryId+'/'+p.subId),firstPilotKeys);
  const counts={scenekunst:7,by:10,film_tv:12};
  let total=0,uploaded=0;
@@ -38,7 +38,12 @@ test('nine candidate WebPs match the exact 29 registered undercategories without
    assert.equal(asset.selectedImage,null,id+'/'+asset.id);
    assert.equal(asset.quality.visualApproved,false);
    assert.ok(asset.label.length>=3&&asset.motif.length>=25);
-   if(asset.status==='rendered_candidate'){
+   if(asset.status==='rendered_candidate'||asset.status==='rework_required'){
+     if(asset.status==='rework_required'){
+       assert.equal(asset.visualReview?.result,'rejected',id+'/'+asset.id);
+       assert.ok(asset.visualReview.reason.length>25);
+       assert.equal(asset.quality.visualApproved,false);
+     }
      uploaded++;
      assert.equal(asset.candidateImage,path);
      assert.equal(asset.letteringInsideBorder,true);
@@ -61,7 +66,8 @@ test('nine candidate WebPs match the exact 29 registered undercategories without
  }
  assert.equal(total,29);
  assert.equal(uploaded,9);
- assert.equal(plan.families.scenekunst.assets.filter(a=>a.status==='rendered_candidate').length,7);
+ assert.equal(plan.families.scenekunst.assets.filter(a=>a.status==='rendered_candidate').length,1);
+ assert.equal(plan.families.scenekunst.assets.filter(a=>a.status==='rework_required').length,6);
 });
 test('all nine protected main and 15 approved Religion/Vitenskap underbadge files remain untouched',()=>{
  for(const [id,path] of Object.entries(approvedMain)){
