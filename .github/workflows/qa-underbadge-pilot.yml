@@ -1,0 +1,25 @@
+name: Underbadge pilot - focused QA
+on:
+  pull_request:
+    paths:
+      - 'bilder/merker/*/undermerker/*.webp'
+      - 'data/badges/underbadge_batch01_production.json'
+      - 'tests/badge-underbadge-batch01.test.mjs'
+      - '.github/workflows/qa-underbadge-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: underbadge-pilot-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-pilot-candidates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify nine candidate images and protected badges
+        run: node --test tests/badge-underbadge-batch01.test.mjs
