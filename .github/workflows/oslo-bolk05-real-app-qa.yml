@@ -1,0 +1,84 @@
+name: Oslo bolk 05 — six-place real-app QA
+
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-bolk05-tekst-20261101
+    paths:
+      - .github/workflows/oslo-bolk05-real-app-qa.yml
+      - tests/oslo-bolk05-real-app-browser.mjs
+      - data/quiz/scenekunst/folketeateret_sets.json
+      - data/quiz/kunst/kunstnernes_hus_sets.json
+      - data/quiz/historie/historisk_museum_sets.json
+      - data/quiz/litteratur/ibsen_museum_teater_sets.json
+      - data/quiz/subkultur/blitzhuset_sets.json
+      - data/quiz/musikk/kulturkirken_jakob_litteratur_sets.json
+  pull_request:
+    paths:
+      - .github/workflows/oslo-bolk05-real-app-qa.yml
+      - tests/oslo-bolk05-real-app-browser.mjs
+      - data/quiz/scenekunst/folketeateret_sets.json
+      - data/quiz/kunst/kunstnernes_hus_sets.json
+      - data/quiz/historie/historisk_museum_sets.json
+      - data/quiz/litteratur/ibsen_museum_teater_sets.json
+      - data/quiz/subkultur/blitzhuset_sets.json
+      - data/quiz/musikk/kulturkirken_jakob_litteratur_sets.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-bolk05-real-app-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    name: ${{ matrix.place }} — 390/1440 card and complete quiz
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        place:
+          - folketeateret
+          - kunstnernes_hus
+          - historisk_museum
+          - ibsen_museum_teater
+          - blitzhuset
+          - kulturkirken_jakob_litteratur
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned app and browser dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Use the installed Chrome browser
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then
+            npx playwright install --with-deps chromium
+          else
+            echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+            "$CHROME_BIN" --version
+          fi
+      - name: Verify actual PlaceCard, 10-question flip, expanded card and fullquiz opening
+        env:
+          HG_PLACE_ID: ${{ matrix.place }}
+        run: node tests/oslo-bolk05-real-app-browser.mjs "$HG_PLACE_ID"
+      - name: Play all fullquiz questions on mobile and desktop to final unlock
+        env:
+          HG_PLACE_ID: ${{ matrix.place }}
+        run: node scripts/verify-place-quiz-browser.mjs "$HG_PLACE_ID"
+      - name: Attach screenshots and browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-bolk05-${{ matrix.place }}-screenshots
+          path: |
+            artifacts/oslo-bolk05-browser/${{ matrix.place }}/
+            artifacts/place-quiz/${{ matrix.place }}/
+          if-no-files-found: warn
+          retention-days: 14
