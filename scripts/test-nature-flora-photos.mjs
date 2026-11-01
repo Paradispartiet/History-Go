@@ -58,13 +58,14 @@ const expected=[
  ["emne_flora_prikktvetann","Lamium maculatum"],
  ["emne_flora_kattefot","Antennaria dioica"],
  ["emne_flora_firkantperikum","Hypericum maculatum"],
+ ["emne_flora_forglemmegei","Myosotis spp."],
  ["emne_flora_varkaal","Ficaria verna"],
  ["emne_flora_russblaastjerne","Scilla siberica"],
  ["emne_flora_varerteknapp","Lathyrus vernus"],
  ["emne_flora_ryllik","Achillea millefolium"],
  ["emne_flora_blaklokke","Campanula rotundifolia"]
 ];
-assert.equal(photos.count,56);
+assert.equal(photos.count,57);
 const urls=new Set();
 const illustrations=[
  "nature-illustrations.js","nature-illustrations-batch03.js",
@@ -90,25 +91,15 @@ for(const [id,taxon] of expected){
 }
 assert.equal(photos.get("emne_flora_other"),null);
 const explorer=read("js/ui/nature-explorer.js");
-assert(explorer.indexOf('if(art&&kind==="flora")return')<explorer.indexOf('if(documented)return'),"approved flora illustrations must take priority over photos");
-assert.match(explorer,/fallbackInfo:documented\|\|null/,"illustrations must fall back to documented photos");
-assert(explorer.includes('window.HG_NATURE_FLORA_APPROVED'), 'flora publication requires explicit approved-image registry');
-assert(explorer.includes('kind==="flora" ? approvedFloraIllustrations?.get(id)?.src : drawings?.resolve(id)'), 'flora never falls through to an unapproved drawing');
-assert.match(explorer,/kind==="flora"\?"Bilde utilgjengelig":icon/,"unavailable flora media must show a neutral placeholder");
-assert.match(explorer,/photoCredit\(source\.fallbackInfo,true\)/,"fallback photo must preserve attribution");
-assert.match(explorer,/classList\.add\("ne-transparent-art"\)/,"accepted flora art needs transparent treatment");
-assert.match(explorer,/classList\.remove\("ne-transparent-art"\)/,"photo fallback must restore normal image styling");
-assert.match(explorer,/else if\(kind==="flora"\) image\.appendChild/,"missing photos must not display generic species drawings");
-assert.match(explorer,/if\(!usingFallback&&source\.fallback\)/,"approved illustration failures must support photo fallback");
-assert.match(explorer,/info\.creator/,"photo credit missing");
-assert.match(explorer,/photoCredit\(imageInfo\)/,"photo credit must be used for primary photographs");
-assert.match(explorer,/info\.licenseUrl/,"license link missing");
-assert(!explorer.includes("localStorage.setItem"),"photo display must not touch collection progress");
 const flora=read("finn-flora.html"),fauna=read("finn-fauna.html");
-assert(flora.includes('js/ui/nature-flora-photographs.js'),"photo registry not loaded");
-assert(flora.indexOf("nature-flora-photographs.js")<flora.indexOf("nature-explorer.js"),"registry must load first");
-assert(!fauna.includes("nature-flora-photographs.js"),"flora photo registry must not affect fauna");
-
+assert(explorer.includes("window.HG_NATURE_FLORA_APPROVED"),"Approved registry required");
+assert(explorer.includes('const art=approvedFloraIllustrations?.get(id)?.src'));
+assert(!explorer.includes("floraPhotos")&&!explorer.includes("photoCredit"),"No photos in public runtime");
+assert(!flora.includes('src="js/ui/nature-flora-photographs.js'),"No photos on public page");
+assert(!fauna.includes("nature-flora-photographs.js"));
+assert(flora.includes("Med illustrasjon"));
+assert(explorer.includes("Illustrasjon under arbeid"));
+assert(!explorer.includes("localStorage.setItem"));
 // Batch 3: Verify that each recorded media URL is in the MediaWiki file's
 // content-addressed directory. Existing pilot entries retain their prior contract.
 import { createHash } from "node:crypto";
@@ -161,4 +152,4 @@ for (const id of batch7Ids) {
  const encoded=encodeURIComponent(filename);
  assert.equal(photo.src,`https://upload.wikimedia.org/wikipedia/commons/thumb/${digest[0]}/${digest.slice(0,2)}/${encoded}/960px-${encoded}`,"invalid Commons image path: "+id);
 }
-console.log("Flora photos: 56 sourced species, credits/licenses, fallback and read-only UI OK.");
+console.log("57 sourced photos kept in QA archive; public atlas illustration-only.");

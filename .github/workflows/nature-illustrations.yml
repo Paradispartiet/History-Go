@@ -48,6 +48,28 @@ on:
       - 'data/natur/flora/illustration-quality-enghumleblom-20261101.json'
       - 'data/natur/flora/illustration-quality-engknoppurt-20261101.json'
       - 'data/natur/flora/illustration-quality-engsmelle-20261101.json'
+      - 'data/natur/flora/illustration-quality-engtjaereblom-20261101.json'
+      - 'data/natur/flora/illustration-quality-firkantperikum-20261101.json'
+      - 'scripts/test-flora-firkantperikum-b09.mjs'
+      - 'data/natur/flora/illustration-quality-forglemmegei-20261101.json'
+      - 'scripts/test-flora-forglemmegei-b09.mjs'
+      - 'data/natur/flora/illustration-quality-gjetertaske-20261101.json'
+      - 'scripts/test-flora-gjetertaske-b09.mjs'
+      - 'scripts/test-flora-gulaks-b09.mjs'
+      - 'data/natur/flora/illustration-quality-gulaks-20261101.json'
+      - 'data/natur/flora/illustration-quality-nyresoleier-20261101.json'
+      - 'scripts/test-flora-nyresoleier-b09.mjs'
+      - 'data/natur/flora/illustration-quality-gullstjerne-20261101.json'
+      - 'data/natur/flora/illustration-quality-gulmaure-20261101.json'
+      - 'scripts/test-flora-gulmaure-b09.mjs'
+      - 'data/natur/flora/illustration-quality-haredylle-20261101.json'
+      - 'scripts/test-flora-haredylle-b09.mjs'
+      - 'scripts/test-flora-humleblom-b09.mjs'
+      - 'data/natur/flora/illustration-quality-humleblom-20261101.json'
+      - 'scripts/test-flora-gullstjerne-b09.mjs'
+      - 'css/nature-explorer.css'
+      - 'js/ui/nature-explorer.js'
+      - 'scripts/test-flora-engtjaereblom-b09.mjs'
       - 'scripts/test-flora-engsmelle-b09.mjs'
       - 'scripts/test-flora-engknoppurt-b09.mjs'
       - 'scripts/test-flora-enghumleblom-b09.mjs'
@@ -112,6 +134,16 @@ jobs:
       - run: node scripts/test-flora-enghumleblom-b09.mjs
       - run: node scripts/test-flora-engknoppurt-b09.mjs
       - run: node scripts/test-flora-engsmelle-b09.mjs
+      - run: node scripts/test-flora-engtjaereblom-b09.mjs
+      - run: node scripts/test-flora-firkantperikum-b09.mjs
+      - run: node scripts/test-flora-forglemmegei-b09.mjs
+      - run: node scripts/test-flora-gjetertaske-b09.mjs
+      - run: node scripts/test-flora-gulaks-b09.mjs
+      - run: node scripts/test-flora-nyresoleier-b09.mjs
+      - run: node scripts/test-flora-gullstjerne-b09.mjs
+      - run: node scripts/test-flora-gulmaure-b09.mjs
+      - run: node scripts/test-flora-haredylle-b09.mjs
+      - run: node scripts/test-flora-humleblom-b09.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -134,6 +166,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-twentyfour-mobile-desktop
+          name: flora-approved-35-black-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore

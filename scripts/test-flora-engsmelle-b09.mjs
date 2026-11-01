@@ -32,7 +32,7 @@ assert(fallback?.src && fallback?.creator && fallback?.license, "licensed photo 
 const env = {window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"), env);
 const approved = env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count, 25, "Existing 24 approvals and new Silene species must be retained");
+assert(approved.count >= 25, "Existing 24 approvals and new Silene species must be retained");
 assert.equal(approved.get(id)?.src, a.src);
 assert.equal(approved.get(id)?.gitBlobSha, a.gitBlobSha);
 const b = fs.readFileSync(new URL(a.src, root));

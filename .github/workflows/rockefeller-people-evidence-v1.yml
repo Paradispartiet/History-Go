@@ -1,0 +1,26 @@
+name: Rockefeller People evidence v1
+on:
+  pull_request:
+    paths:
+      - 'data/people/musikk/oslo/people_musikk_oslo.json'
+      - 'data/runtime/people-all/part-004.json'
+      - 'data/runtime/place-open/rockefeller.json'
+      - 'data/runtime/place-open/john_dee.json'
+      - 'data/runtime/place-open/sentrum_scene.json'
+      - 'tests/rockefeller-people-evidence-v1.test.mjs'
+      - '.github/workflows/rockefeller-people-evidence-v1.yml'
+permissions:
+  contents: read
+concurrency:
+  group: rockefeller-people-evidence-v1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  source-and-runtime-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/rockefeller-people-evidence-v1.test.mjs

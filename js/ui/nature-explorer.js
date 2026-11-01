@@ -6,10 +6,8 @@ const kind = document.body.dataset.natureKind;
 if (!["fauna","flora"].includes(kind)) return;
 const icon = kind === "fauna" ? "🐾" : "🌿";
 const drawings = window.HG_NATURE_ILLUSTRATIONS;
-const floraPhotos = kind === "flora" ? window.HG_NATURE_FLORA_PHOTOS : null;
-// Never equate a technically valid SVG with a botanically verified illustration.
-// Add an ID only after species-level reference review (leaf, flower, growth form)
-// and a separate visual acceptance. Until then, use a documented photograph.
+// Documented source photos are for research only: never load them into the public atlas.
+// Only individually verified illustrations are eligible for public flora artwork.
 const approvedFloraIllustrations = kind === "flora" ? window.HG_NATURE_FLORA_APPROVED : null;
 const grid=document.getElementById("natureGrid"),stats=document.getElementById("natureStats"),count=document.getElementById("natureCount"),
  search=/** @type {HTMLInputElement} */ (document.getElementById("natureSearch")),message=document.getElementById("natureMessage"),more=document.getElementById("natureMore"),
@@ -25,52 +23,29 @@ function collected(){
 }
 function media(a){
  const id=String(a.id);
- const documented = floraPhotos?.get(id);
- const art=kind==="flora" ? approvedFloraIllustrations?.get(id)?.src : drawings?.resolve(id);
- // A species-approved botanical illustration is the preferred image.
- // A documented photograph is the fallback; an unapproved SVG is never used.
- if(art&&kind==="flora")return {src:art,type:"illustration",fallback:documented?.src||"",fallbackInfo:documented||null};
- if(documented)return {...documented,fallback:""};
+ if(kind==="flora"){
+  const art=approvedFloraIllustrations?.get(id)?.src;
+  return art ? {src:art,type:"illustration"} : null;
+ }
+ const art=drawings?.resolve(id);
  if(art)return {src:art,type:"illustration"};
  const src=a.image || a.imageCard || a.img;
  if(typeof src==="string" && /^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src))return {src,type:"catalog"};
  return null;
 }
 function illustrated(a){
- const id=String(a.id);
- const approvedArt=kind==="flora" ? approvedFloraIllustrations?.has(id) : drawings?.has(id);
+ if(kind==="flora")return Boolean(approvedFloraIllustrations?.has(String(a.id)));
  const src=a.image || a.imageCard || a.img;
- return Boolean(floraPhotos?.get(id)||approvedArt||(typeof src==="string"&&/^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src)));
+ return Boolean(drawings?.has(String(a.id))||(typeof src==="string"&&/^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src)));
 }
-function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",kind==="flora"?"Bilde utilgjengelig":icon));}
-function photoCredit(info,asFallback=false){
- const credit=node("p","ne-image-credit",(asFallback?"Godkjent illustrasjon utilgjengelig. Viser artsfoto: ":"Artsfoto: ")+info.creator+" · "+info.license+" · ");
- const file=node("a","","Wikimedia Commons");file.href=info.source;file.target="_blank";file.rel="noopener noreferrer";
- const lic=node("a","","Lisens");lic.href=info.licenseUrl;lic.target="_blank";lic.rel="noopener noreferrer";
- credit.appendChild(file);credit.append(" · ");credit.appendChild(lic);return credit;
-}
+function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",kind==="flora"?"Illustrasjon utilgjengelig":icon));}
 function appendImage(parent,source,alt){
  const img=node("img");img.alt=alt;img.loading="lazy";
  if(kind==="flora"&&source.type==="illustration"){
   img.classList.add("ne-transparent-art");
   parent.classList.add("ne-art-transparent-stage");
  }
- let usingFallback=false;
- img.addEventListener("error",()=>{
-  if(!usingFallback&&source.fallback){
-   usingFallback=true;img.src=source.fallback;
-   img.classList.remove("ne-transparent-art");
-   parent.classList.remove("ne-art-transparent-stage");
-   img.alt=(source.fallbackInfo?"Artsfoto av ":"Illustrasjon av ")+alt;
-   const label=parent.querySelector(".ne-image-label");
-   if(label)label.textContent=source.fallbackInfo?"Artsfoto":"Illustrasjon";
-   const credit=parent.querySelector(".ne-image-credit");
-   if(credit){
-    if(source.fallbackInfo)credit.replaceWith(photoCredit(source.fallbackInfo,true));
-    else credit.replaceChildren("Viser reserveillustrasjon.");
-   }
-  }else fallback(parent);
- });
+ img.addEventListener("error",()=>fallback(parent));
  parent.appendChild(img);img.src=source.src;
 }
 function section(title,values){
@@ -92,14 +67,12 @@ function openArt(a){
   const wrap=node("div","ne-detail-artwork");
   appendImage(wrap,imageInfo,name(a));
   if(wrap.firstChild?.tagName==="IMG")wrap.firstChild.classList.add("ne-dialog-image");
-  if(imageInfo.type==="photo"){
-   wrap.appendChild(photoCredit(imageInfo));
-  }else if(imageInfo.type==="illustration"){
+  if(imageInfo.type==="illustration"){
    wrap.appendChild(node("p","ne-image-credit",kind==="flora"?"Individuelt kvalitetsgodkjent botanisk illustrasjon":"Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
   }
   details.appendChild(wrap);
  }else if(kind==="flora"){
-  details.appendChild(node("p","ne-no-photo","Verken kvalitetsgodkjent illustrasjon eller artsfoto er tilgjengelig ennå."));
+  details.appendChild(node("p","ne-no-photo","Illustrasjon under arbeid. Artsinformasjonen er tilgjengelig."));
  }
  section("Kjennetegn",a.kjennetegn);
  section("Leveområder",a.habitat?.biotop||a.bykontekst?.typiske_steder);
@@ -119,9 +92,9 @@ function card(a,have){
  const image=node("div","ne-photo",kind==="flora"?"":icon);
  const imageInfo=media(a);
  if(imageInfo){image.textContent="";appendImage(image,imageInfo,name(a));}
- else if(kind==="flora") image.appendChild(node("span","ne-image-fallback","Foto mangler"));
- if(imageInfo&&(imageInfo.type==="photo"||imageInfo.type==="illustration"))
-  image.appendChild(node("span","ne-image-label",imageInfo.type==="photo"?"Artsfoto":"Illustrasjon"));
+ else if(kind==="flora") image.appendChild(node("span","ne-image-fallback","Illustrasjon under arbeid"));
+ if(imageInfo?.type==="illustration")
+  image.appendChild(node("span","ne-image-label","Illustrasjon"));
  b.appendChild(image);
  const body=node("div","ne-card-body");body.appendChild(node("span","ne-card-title",name(a)));
  if(latin(a))body.appendChild(node("span","ne-latin",latin(a)));
@@ -134,17 +107,17 @@ function render(){
  const matches=all.filter(a=>{
   if(activeFilter==="collected"&&!unlocked.has(String(a.id)))return false;
   if(activeFilter==="illustrated"&&!illustrated(a))return false;
-  return !term||[name(a),latin(a),a.taxonomy?.familie,...list(a.kjennetegn),...list(a.habitat?.biotop),...list(a.observasjonstips),...list(a.bykontekst?.typiske_steder)].join(" ").toLocaleLowerCase("nb").includes(term);
+  return !term||[name(a),latin(a),...list(a.aliases),a.taxonomy?.familie,...list(a.kjennetegn),...list(a.habitat?.biotop),...list(a.observasjonstips),...list(a.bykontekst?.typiske_steder)].join(" ").toLocaleLowerCase("nb").includes(term);
  });
  const held=all.filter(a=>unlocked.has(String(a.id))).length;
- stats.textContent=all.length+" oppføringer · "+held+" samlet · "+all.filter(illustrated).length+" med bilde";
+ stats.textContent=all.length+" oppføringer · "+held+" samlet · "+all.filter(illustrated).length+" med illustrasjon";
  count.textContent=matches.length+" treff";
  const fragment=document.createDocumentFragment();
  matches.slice(0,limit).forEach(a=>fragment.appendChild(card(a,unlocked.has(String(a.id)))));
  grid.replaceChildren(fragment);
  message.hidden=matches.length>0;
  if(!matches.length)message.textContent=activeFilter==="collected"&&!term
-  ?"Ingen arter samlet ennå. Utforsk steder og ta quiz i History Go.":activeFilter==="illustrated"&&!term ? "Ingen arter med godkjente bilder ennå.":"Ingen arter passer søket.";
+  ?"Ingen arter samlet ennå. Utforsk steder og ta quiz i History Go.":activeFilter==="illustrated"&&!term ? "Ingen arter med godkjente illustrasjoner ennå.":"Ingen arter passer søket.";
  more.hidden=matches.length<=limit;
 }
 async function load(){

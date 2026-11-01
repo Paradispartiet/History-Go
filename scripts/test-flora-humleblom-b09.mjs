@@ -1,0 +1,28 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";import crypto from "node:crypto";import vm from "node:vm";
+const root=new URL("../",import.meta.url),read=p=>fs.readFileSync(new URL(p,root),"utf8");
+const doc=JSON.parse(read("data/natur/flora/illustration-quality-humleblom-20261101.json")),a=doc.items[0],id="emne_flora_humleblom";
+assert.equal(doc.baselineApproved,34);assert.equal(doc.approvedCountAfterRelease,35);
+assert.equal(doc.items.length,1);assert.equal(a.scientificName,"Geum urbanum");
+assert.equal(a.reviewStatus,"approved");assert.equal(a.approvedForPublication,true);
+assert(a.sourceReferences.length>=3&&a.observations.length>160&&a.limitations.length>150);
+assert(a.visualChecks.transparent&&a.visualChecks.alphaVerifiedAfterConversion&&a.visualChecks.blackBackgroundReviewed);
+const catalog=JSON.parse(read("data/natur/flora/blomster.json")).find(x=>x.id===id);
+const runtime=JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]).find(x=>x.id===id);
+for(const x of [catalog,runtime]){assert.equal(x.latin,a.scientificName);assert.equal(x.title,"Humleblom");}
+const env={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
+assert.equal(env.window.HG_NATURE_FLORA_APPROVED.count,35);
+assert.equal(env.window.HG_NATURE_FLORA_APPROVED.get(id)?.src,a.src);
+assert.equal(env.window.HG_NATURE_FLORA_APPROVED.get(id)?.gitBlobSha,a.gitBlobSha);
+const b=fs.readFileSync(new URL(a.src,root));
+assert.equal(b.length,a.sizeBytes);
+assert.equal(crypto.createHash("sha256").update(b).digest("hex"),a.sha256);
+assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),a.gitBlobSha);
+assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,12),"WEBP");
+assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&0x10)!==0);
+assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],a.dimensions);
+const html=read("finn-flora.html"),ui=read("js/ui/nature-explorer.js"),css=read("css/nature-explorer.css");
+assert(!html.includes('src="js/ui/nature-flora-photographs.js'));
+assert(!ui.includes("photoCredit")&&ui.includes("Illustrasjon under arbeid"));
+assert(css.includes('body[data-nature-kind="flora"] .ne-photo,')&&css.includes('background:#000!important'));
+console.log("Humleblom: exact image SHA256/Git SHA, alpha, botanical record, 35 approvals, black-only display.");

@@ -20,6 +20,16 @@ const burotReview = JSON.parse(read("data/natur/flora/illustration-quality-burot
 const enghumleblomReview = JSON.parse(read("data/natur/flora/illustration-quality-enghumleblom-20261101.json"));
 const engknoppurtReview = JSON.parse(read("data/natur/flora/illustration-quality-engknoppurt-20261101.json"));
 const engsmelleReview = JSON.parse(read("data/natur/flora/illustration-quality-engsmelle-20261101.json"));
+const engtjaereblomReview = JSON.parse(read("data/natur/flora/illustration-quality-engtjaereblom-20261101.json"));
+const firkantperikumReview = JSON.parse(read("data/natur/flora/illustration-quality-firkantperikum-20261101.json"));
+const forglemmegeiReview = JSON.parse(read("data/natur/flora/illustration-quality-forglemmegei-20261101.json"));
+const gjetertaskeReview = JSON.parse(read("data/natur/flora/illustration-quality-gjetertaske-20261101.json"));
+const gulaksReview = JSON.parse(read("data/natur/flora/illustration-quality-gulaks-20261101.json"));
+const nyresoleierReview = JSON.parse(read("data/natur/flora/illustration-quality-nyresoleier-20261101.json"));
+const gullstjerneReview = JSON.parse(read("data/natur/flora/illustration-quality-gullstjerne-20261101.json"));
+const gulmaureReview = JSON.parse(read("data/natur/flora/illustration-quality-gulmaure-20261101.json"));
+const haredylleReview = JSON.parse(read("data/natur/flora/illustration-quality-haredylle-20261101.json"));
+const humleblomReview = JSON.parse(read("data/natur/flora/illustration-quality-humleblom-20261101.json"));
 const review05 = JSON.parse(read("data/natur/flora/illustration-quality-batch05-20261028.json"));
 const pending05 = JSON.parse(read("data/natur/flora/illustration-revision-batch05.json"));
 const env = {window:{}};
@@ -50,12 +60,22 @@ const expected = [
   ["emne_flora_burot","Artemisia vulgaris"],
   ["emne_flora_enghumleblom","Geum rivale"],
   ["emne_flora_engknoppurt","Centaurea jacea"],
-  ["emne_flora_engsmelle","Silene vulgaris"]
+  ["emne_flora_engsmelle","Silene vulgaris"],
+  ["emne_flora_engtjaereblom","Viscaria vulgaris"],
+  ["emne_flora_firkantperikum","Hypericum maculatum"],
+  ["emne_flora_forglemmegei","Myosotis spp."],
+  ["emne_flora_gjetertaske","Capsella bursa-pastoris"],
+  ["emne_flora_gulaks","Anthoxanthum odoratum"],
+  ["emne_flora_gullsoleie","Ranunculus auricomus agg."],
+  ["emne_flora_gullstjerne","Gagea lutea"],
+  ["emne_flora_gulmaure","Galium verum"],
+  ["emne_flora_haredylle","Crepis capillaris"],
+  ["emne_flora_humleblom","Geum urbanum"]
 ];
 assert.equal(approved.count,expected.length,"publication count changed without species QA");
 assert.equal(batch.items.length,15);
 assert.equal(batch.items.filter(a=>a.approvedForPublication).length,2);
-const allReviews=[...engsmelleReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...engknoppurtReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...enghumleblomReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...burotReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...blaknappReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...blodstorkenebbReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bitterbergknappReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bergmynteReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bekkeblomReview.items.map(a=>({...a,candidate:a.candidate||a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review08.items.filter(a=>a.approvedForPublication).map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review07.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review06.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review05.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...revision.items.map(a=>({
+const allReviews=[...humleblomReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...haredylleReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...gulmaureReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...gullstjerneReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...nyresoleierReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...gulaksReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...gjetertaskeReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...forglemmegeiReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...firkantperikumReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...engtjaereblomReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...engsmelleReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...engknoppurtReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...enghumleblomReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...burotReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...blaknappReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...blodstorkenebbReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bitterbergknappReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bergmynteReview.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...bekkeblomReview.items.map(a=>({...a,candidate:a.candidate||a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review08.items.filter(a=>a.approvedForPublication).map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review07.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review06.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...review05.items.map(a=>({...a,candidate:a.src,candidateGitBlobSha:a.gitBlobSha,evidence:a.sourceReferences})),...revision.items.map(a=>({
   ...a,catalogId:a.id,candidate:a.newSrc,candidateGitBlobSha:a.newGitBlobSha,
   approvedForPublication:a.productionApproval,reviewStatus:a.botanicalVisualDecision==="passed"?"approved":"pending",
   visualChecks:{transparent:true,blackBackgroundReviewed:true},evidence:a.sourceReferences
@@ -82,7 +102,7 @@ for(const [id,latin] of expected){
   }
   assert((entry.references||entry.evidence).length>=2,"missing botanical evidence");
   assert.equal(catalog.find(x=>x.id===id)?.latin,latin,"catalog mismatch: "+id);
-  assert(photographed.window.HG_NATURE_FLORA_PHOTOS.get(id),"approved illustration must have licensed photo fallback");
+  // Photographic source material remains private to the QA gallery, not public.
   const bin=fs.readFileSync(new URL("../"+asset.src,import.meta.url));
   assert(bin.length>15000,"empty image");
   assert.equal(bin.toString("ascii",0,4),"RIFF");
@@ -102,14 +122,14 @@ for(const id of ["emne_flora_engkarse","emne_flora_ballblom"]){
   assert(older.species.some(a=>a.catalogId===id && a.botanicalReview==="needs_redraw"),"historical v2 rejection must remain");
 }
 const html=read("finn-flora.html"),js=read("js/ui/nature-explorer.js"),css=read("css/nature-explorer.css");
-assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261101-3"'));
-assert(html.indexOf("nature-flora-photographs.js")<html.indexOf("nature-flora-approved.js"));
+assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261101-13"'));
+assert(!html.includes('src="js/ui/nature-flora-photographs.js'),"No source photograph registry in the public atlas");
 assert(html.indexOf("nature-flora-approved.js")<html.indexOf("nature-explorer.js"));
-assert(js.includes('const art=kind==="flora" ? approvedFloraIllustrations?.get(id)?.src : drawings?.resolve(id)'));
-assert(js.includes('fallback:documented?.src||""'));
-assert(js.includes('photoCredit(source.fallbackInfo,true)'));
+assert(js.includes('const art=approvedFloraIllustrations?.get(id)?.src'));
+assert(!js.includes("photoCredit") && !js.includes("floraPhotos"),"No photo runtime fallback");
+assert(js.includes('Illustrasjon under arbeid'),"No artwork placeholder required");
 assert(js.includes('wrap.firstChild.classList.add("ne-dialog-image")'));
-assert(css.includes('.ne-art-transparent-stage{background:#080908!important}'));
+assert(css.includes('body[data-nature-kind="flora"] .ne-photo,') && css.includes('background:#000!important'));
 assert(css.includes('.ne-transparent-art{object-fit:contain!important;background:transparent!important}'));
 assert(!js.includes("localStorage.setItem"));
 // Batch 05 documents rejected artwork only; it must never make images live.
@@ -136,7 +156,7 @@ for(const x of pending05.items){
 const preview05=read("flora-illustrasjoner-bolk05.html");
 for(const x of pending05.items)assert(preview05.includes(x.src),"review page missing: "+x.key);
 assert(read("flora-illustration-review.html").includes('href="flora-illustrasjoner-bolk05.html"'));
-console.log("Flora release: 25 botanical approvals (9 prior + 2 batch 06 + 4 batch 07 + 7 batch 08 + 3 batch 09), all SHA, taxon, alpha, photo fallback, 13 prior rejection gates pass.");
+console.log("Flora release: 35 verified illustration entries, black-only flora, no public photographs.");
 
 assert.equal(approved.get("emne_flora_rodkløver")?.src,"bilder/natur/flora/illustrasjonskandidater/b08/01_rodklover_v4.webp","Only reviewed v4 may publish");
 assert(review08.items.some(a=>a.key==="01_rodklover_v3" && a.approvedForPublication===false),"Historical rejected v3 must remain in review");

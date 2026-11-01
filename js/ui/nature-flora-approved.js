@@ -29,6 +29,88 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-engknoppurt-20261101.json"
     }),
+    emne_flora_gjetertaske: Object.freeze({
+      scientificName: "Capsella bursa-pastoris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/07_gjetertaske_v1.webp",
+      gitBlobSha: "6cdbe644470909f7b8ade074534413a84b444fcb",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring og frøsetting",
+      evidence: "data/natur/flora/illustration-quality-gjetertaske-20261101.json"
+    }),
+    emne_flora_humleblom: Object.freeze({
+      scientificName: "Geum urbanum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/13_humleblom_v1.webp",
+      gitBlobSha: "50fe2553702e114d6ed56902bbaaafaee0c7c005",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring og frøsetting",
+      evidence: "data/natur/flora/illustration-quality-humleblom-20261101.json"
+    }),
+    emne_flora_haredylle: Object.freeze({
+      scientificName: "Crepis capillaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/12_haredylle_v1.webp",
+      gitBlobSha: "3f81267f338ce635c8de0296fa61f9647d72bcc2",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring og frøsetting",
+      evidence: "data/natur/flora/illustration-quality-haredylle-20261101.json"
+    }),
+    emne_flora_gulmaure: Object.freeze({
+      scientificName: "Galium verum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/11_gulmaure_v1.webp",
+      gitBlobSha: "6f1d1d29598a30cc04cff7ccc85c0fc9dfa8756c",
+      reviewedAt: "2026-11-01",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-gulmaure-20261101.json"
+    }),
+    emne_flora_gullstjerne: Object.freeze({
+      scientificName: "Gagea lutea",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/10_gullstjerne_v1.webp",
+      gitBlobSha: "1ca9b46b49dd48977b8b463e667412018bf96c0e",
+      reviewedAt: "2026-11-01",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-gullstjerne-20261101.json"
+    }),
+    emne_flora_gullsoleie: Object.freeze({
+      scientificName: "Ranunculus auricomus agg.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/09_nyresoleier_v1.webp",
+      gitBlobSha: "0384f753c644e46dbb868ab796f84b1c8e8d2238",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      taxonomicScope: "species-complex-representative",
+      evidence: "data/natur/flora/illustration-quality-nyresoleier-20261101.json"
+    }),
+    emne_flora_gulaks: Object.freeze({
+      scientificName: "Anthoxanthum odoratum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/08_gulaks_v1.webp",
+      gitBlobSha: "5e79619f6cca4e531f9daa56b7e0d5f7de6b2bc5",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-gulaks-20261101.json"
+    }),
+    emne_flora_forglemmegei: Object.freeze({
+      scientificName: "Myosotis spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/06_forglemmegei_v1.webp",
+      gitBlobSha: "de59258e141b0b922424d31a167a16b16335fae6",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      taxonomicScope: "genus-representative",
+      evidence: "data/natur/flora/illustration-quality-forglemmegei-20261101.json"
+    }),
+    emne_flora_firkantperikum: Object.freeze({
+      scientificName: "Hypericum maculatum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/05_firkantperikum_v1.webp",
+      gitBlobSha: "ea1d0ad4f916927f3b4da59a1817353fc8b4686e",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-firkantperikum-20261101.json"
+    }),
+    emne_flora_engtjaereblom: Object.freeze({
+      scientificName: "Viscaria vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/04_engtjaereblom_v1.webp",
+      gitBlobSha: "2e25e6c9a06c6ae9817b1afd2c081a4f5e01096c",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-engtjaereblom-20261101.json"
+    }),
     emne_flora_engsmelle: Object.freeze({
       scientificName: "Silene vulgaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/03_engsmelle_v1.webp",
