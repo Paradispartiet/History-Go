@@ -68,3 +68,9 @@ Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og b
 - PR #6903: Vulkan-spesifikt leksikon med daterte kildeannonser fra 2019 og 2020; eksakt åpning holdes omstridt. Epokeindeks og viewer gjenstår.
 - PR #6904: eksisterende `andreas_sollund` People-ID gjenbrukt; feilaktig kontaktperson-påstand erstattet med dokumentert prosjektlederrolle og profesjonell rolle i Vulkan-selskapet. Bildet er fremdeles tomt.
 - PR #6900: Narrow-fasene justert til canonical `opening → bridge → final`; `quizProduction.targets` er registrert. Engangskjøring av repository-eid `quiz:context` + Knowledge-generator forsøkt på quizgrenen. Ingen generert output regnes som synkronisert før commit og CI PASS er observert.
+
+## Bildeproveniens og rettighetsgate (research 2026-11-01)
+- Mulig fasade-/stedsmotiv er publisert i OsloMet Journalen (05.11.2022), med **foto: Emma Rosenberg Hammeren**. Kilde: https://journalen.oslomet.no/nb/innenriks/2022/11/dette-er-nerdenes-samlingspunkt . Ingen fri lisens eller brukstillatelse er dokumentert; derfor ikke importer som `frontImage` eller lokalt asset.
+- Offisiell House of Nerds Vulkan-side publiserer interiørbilder fra bar, VIP-gaming og VR: https://houseofnerds.no/house-of-nerds-oslo-vulkan . Publisering på virksomhetens nettsted er **ikke** dokumentasjon på viderebrukslisens for History GO.
+- Kilde: https://vulkanoslo.no/no/house-of-nerds/ omtaler stedet og aktiviteter, men gir ingen dokumentert rettighetsklarert originalfil.
+- Både fasade/hero, stående PlaceCard-bilde og eventuelle QuizCard-/People-illustrasjoner forblir `BLOCKED` inntil eier/oppmann krediteres, originalens proveniens, bruksrett, format og synlig faktisk appgeometri er kontrollert. Ikke bruk generert fotorealistisk stedskopi som stedsevidens.
