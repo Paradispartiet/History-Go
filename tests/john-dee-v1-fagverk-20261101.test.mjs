@@ -34,6 +34,7 @@ test('John Dee does not inherit undocumented Jokke association',()=>{
  assert.ok(jokke.places.includes('rockefeller'),'Rockefeller association must remain');
  assert.ok(!jokke.places.includes('john_dee'),'Jokke concert documentation is Rockefeller-only');
  assert.ok(!runtime.people.some(p=>p.id==='joachim_nielsen'));
+ assert.deepEqual(runtime.people.map(p=>p.id),['bo_terje_hustoft'],'John Dee People must be independently documented');
 });
 
 test('John Dee keeps original 30-question quiz and 10-card question parity',()=>{
@@ -41,6 +42,8 @@ test('John Dee keeps original 30-question quiz and 10-card question parity',()=>
  assert.equal(quiz.sets.length,5);
  assert.equal(questions.length,30);
  assert.equal(new Set(questions.map(q=>q.id)).size,30);
+ const forbidden=/place-fil|em_musikk_|met_musikk_|musikkdata|History Go|quiz|`john_dee`/i;
+ assert.ok(questions.every(q=>!forbidden.test(q.question+' '+q.knowledge)),'No internal quiz metadata in historical prose');
  assert.ok(questions.every(q=>q.quiz_id && q.targetId==='john_dee'));
  const card=cards.cards.find(c=>c.targetId==='john_dee');
  assert.ok(card);
