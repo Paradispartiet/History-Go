@@ -31,3 +31,34 @@ jobs:
           node-version: "22"
       - name: Run scoped Rockefeller historic Story regression
         run: node --test tests/rockefeller-torggata-bad-story.test.mjs
+
+  regenerate-epoch-index:
+    name: Regenerate source-backed epoch after Rockefeller Story correction
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'fix/rockefeller-story-torggata-bad-20261101'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build canonical epoch index from sourced Story and Places
+        run: node scripts/build-epoke-place-index.mjs
+      - name: Commit regenerated epoch index on this exact same-repository branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet -- data/epoker/epoke-place-index.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add data/epoker/epoke-place-index.json
+            git commit -m 'Rockefeller: regenerate source-backed epoch index for corrected Story'
+            git push origin HEAD:fix/rockefeller-story-torggata-bad-20261101
+          else
+            echo 'Generated epoch index already synchronized'
+          fi
