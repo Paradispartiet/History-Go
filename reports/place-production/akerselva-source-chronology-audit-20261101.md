@@ -56,3 +56,14 @@ Epoke-/chronology-generator og visning skal undersøkes separat. Ikke bruk `plac
 4. Relasjonssystem, betingede moduler og endelig QA på mobil/desktop.
 
 **Status:** Avgrenset kildefaktarettelse, ikke vFerdig.
+
+## Statusoppdatering etter PR #6862 og v4.2-revisjon (1. november 2026)
+
+- **Story-feilen lukket:** PR #6862 er merget til `main` som `adfe2ac8a12076fe087f5f992cf3ee34c336247e`. `st_akerselva_fyrstikkpikene_1889` tilhører nå Bryn. Den tidligere Story-blockeren i denne rapporten er dermed historikk, ikke lenger en åpen oppgave.
+- **Konflikt løst:** PR #6859 er synkronisert med `main`; den genererte Akerselva Place-open inneholder både korrekt saltsyre (1990) og `stories: []`. Ingen Story er gjeninnført i Akerselva.
+- **Produksjonspakke opprettet:** `data/places/production/akerselva.json` med 41 claims, hvorav 39 er markert verifiserte, samt setning–claim-dekning for 3 inngangssetninger og 33 artikkelsetninger.
+- **Fortsatt åpne 4.2-porter:** `claim_akerselva_visible_infrastructure` (bevarte inntak/murer og nåtidspresisjon) og `claim_akerselva_historic_shift` (årsaksuttrykket «derfor» i konklusjonen). Faktareview og redaksjonell review står derfor `pending`, og status er `needs_research`, ikke `ready_v4_2`.
+- **CI-revisjon:** Den sentrale 4.2-kontrollen rapporterte 3 feil på første synkroniserte head: ett `timelineYear`-funn og to setninger med uverifiserte claims. `timelineYear`-claimet er nå korrigert; begge åpne claims må fortsatt dokumenteres eller teksten omskrives og synkroniseres før merge.
+- **Separat kontroll:** epokeviserens genererte indeks er rapportert utdatert. Dette skal håndteres som egen datagenereringsoppgave, ikke ved å legge urelatert generert indeks i PR #6859.
+
+**Publiseringsregel:** PR #6859 holdes åpen til v4.2-påstandene og målrettet CI er bestått. Akerselva er fortsatt ikke `vFerdig`.
