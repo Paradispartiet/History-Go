@@ -33,5 +33,7 @@ jobs:
           git add data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json
           if ! git diff --cached --quiet; then
             git commit -m "John Dee: synchronize canonical Knowledge to revised quiz"
+            git fetch origin john-dee-v1-fagverk-people-20261101
+            git rebase origin/john-dee-v1-fagverk-people-20261101
             git push origin HEAD:john-dee-v1-fagverk-people-20261101
           fi
