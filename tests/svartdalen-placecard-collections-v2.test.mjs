@@ -25,14 +25,19 @@ test("Svartdalen must not render terrain names and agencies as Brands", () => {
   assert.deepEqual(byPlace[placeId] || [], []);
   assert.equal(allBrands.filter(item =>
     Array.isArray(item.place_ids) && item.place_ids.includes(placeId)).length, 0);
-  assert.deepEqual(source.place_card_profile.collection_ids, []);
-  assert.deepEqual(runtime.place.place_card_profile, source.place_card_profile);
-  assert.equal(source.place_card_profile.schema, "history_go_place_card_profile_v2");
+  // The v2 schema requires at least one real collection; never publish an
+  // empty or invented profile just to fill the visual PlaceCard grid.
+  assert.equal(source.place_card_profile, undefined);
+  assert.equal(runtime.place.place_card_profile, undefined);
 
-  // Do not manufacture People or claim game-store field cards are historical objects.
+  // Do not manufacture People or count interpretive store cards as real objects.
   assert.deepEqual(runtime.people, []);
   assert.ok(source.civication_store.length >= 4);
-  assert.equal(source.place_card_profile.collection_ids.includes("objects"), false);
+  assert.ok(source.civication_store.every(item => item.kind === "physical_object"),
+    "Existing interpretive Civication products remain untouched");
+  const audit = fs.readFileSync(path.join(root, "reports/place-production/svartdalen-placecard-curation-v1.md"), "utf8");
+  assert.match(audit, /Det blå løpehjulet/);
+  assert.match(audit, /v1_candidate/);
 });
 
 test("Svartdalen keeps all existing Knowledge-linked questions and QuizCard mapping", () => {
