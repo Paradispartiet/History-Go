@@ -51,9 +51,12 @@ try{
   try{
    await page.goto("http://127.0.0.1:"+port+"/index.html",{waitUntil:"domcontentloaded",timeout:28000});
    await page.waitForFunction(()=>typeof window.openPlaceCard==="function"&&!!document.getElementById("pcFrontImage"),{timeout:16000});
-   // Wait for the same readiness signal used by normal navigation and onboarding.
-   // Merely defining openPlaceCard does not mean the first app/router boot finished.
-   await page.waitForFunction(()=>window.__HG_APP_READY__===true,{timeout:25000});
+   // appReady fires before HGAppRouter.start(): opening the first PlaceCard
+   // before routerReady races the initial route render, which closes that card.
+   // The normal onboarding flow also requires both readiness signals.
+   await page.waitForFunction(()=>
+     window.__HG_APP_READY__===true && window.__HG_ROUTER_STARTED__===true,
+     {timeout:25000});
    booted=true;
    // Close the actual app onboarding using its public start button before taking screenshots.
    await page.locator("#hgOnboardingModal .hg-onb-primary").click({timeout:1800}).catch(async()=>{
