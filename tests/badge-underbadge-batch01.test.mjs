@@ -71,6 +71,23 @@ test('nine candidate WebPs match the exact 29 registered undercategories without
  assert.equal(plan.families.film_tv.assets.filter(a=>a.status==='rework_required').length,1);
  assert.equal(plan.families.by.assets.filter(a=>a.status==='rendered_candidate').length,1);
 });
+test('new Performance v2 remains a local candidate, not active or published',()=>{
+ const item=plan.families.scenekunst.assets.find(a=>a.id==='performance');
+ const replacement=item.replacementCandidate;
+ assert.equal(item.status,'rework_required');
+ assert.equal(item.selectedImage,null);
+ assert.equal(replacement.repositoryUploaded,false);
+ assert.equal(replacement.visualApproved,false);
+ assert.equal(replacement.selectedImage,null);
+ assert.equal(replacement.letteringInsideBorder,true);
+ assert.equal(replacement.width,1024);
+ assert.equal(replacement.height,1024);
+ assert.equal(replacement.primaryColor.toUpperCase(),plan.families.scenekunst.primaryColor.toUpperCase());
+ assert.equal(replacement.secondaryColor.toUpperCase(),plan.families.scenekunst.secondaryColor.toUpperCase());
+ assert.equal(replacement.status,'local_candidate_pending_upload_and_approval');
+ assert.match(replacement.sha256,/^[0-9a-f]{64}$/);
+ assert.ok(!existsSync(resolve(root,replacement.proposedImage)),'Performance v2 is not yet uploaded');
+});
 test('new Dans v2 replacement stays unactivated until actual upload and visual approval',()=>{
  const item=plan.families.scenekunst.assets.find(a=>a.id==='dans');
  const replacement=item.replacementCandidate;

@@ -53,3 +53,12 @@ Totalt: **8 må tegnes om, 1 avventer endelig visuell vurdering, 0 aktivert**. O
 - Filen finnes i ChatGPT-arbeidspakken `history-go-dans-v2/dans-brodert-v2.webp`, men er **ikke** lastet opp til denne GitHub-grenen. Ikke oppgi dette som en integrert merkeerstatning.
 - v1 beholder status `rework_required` og skal ikke vises i appen. v2 er `local_candidate_pending_upload_and_approval`.
 - Før aktivering: overfør eksakte WebP-bytes til `bilder/merker/scenekunst/undermerker/dans-brodert-v2.webp`, verifiser SHA-256, kontroller den visuelle kvaliteten og knytt `subBadgeImages.dans` til filen først ved godkjenning.
+
+## Performance v2 – ny individuell brodert kandidat, 01.11.2026
+- Eget motiv av scenekunstutøver i spotlys med «PERFORMANCE» brodert langs øvre innerkant.
+- Bildefilen er **lokalt produsert**, 1024×1024 WebP med alfa; størrelse **397786 byte** og SHA-256 `c5e012997721076efa28bdc8c61ace79f71b58b957ddfaca6a598a342d66c872`.
+- Fargebehandling mot Scenekunst-paletten roserosa `#C96E8B` og grå `#808080`; kontrasten i broderitråden er bevart.
+- Lokalt bildebibliotek: `history-go-performance-v2/performance-brodert-v2.webp`.
+- Produksjonsmanifestet registrerer `replacementCandidate` og `repositoryUploaded:false`; den gamle Performance v1 er fortsatt avvist.
+- **Ikke aktivert eller visuelt sluttgodkjent**, selv om filkontrollen er bestått. Må lastes opp og knyttes til manifestet etter separat visuell vurdering.
+- Det samme gjelder allerede produserte Dans v2, som heller ikke er overført som binærfil.
