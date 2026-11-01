@@ -3,7 +3,7 @@
   "validatorVersion": "4.2.1",
   "placeId": "folketeateret",
   "placeFile": "data/places/scenekunst/oslo/places_scenekunst/folketeateret.json",
-  "status": "needs_research",
+  "status": "ready_v4_2",
   "identity": {
     "status": "resolved",
     "represents": "Folketeateret som teater- og musikalscene i Folketeaterbygningen ved Youngstorget; huset, passasjen og scenen er beslektede, men ikke identiske funksjoner.",
@@ -241,21 +241,115 @@
   },
   "reviews": {
     "factual": {
-      "status": "needs_review",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
-      "reviewer": "Oslo bolk 05 source-audit staging",
-      "notes": "Kildekoblingene for desc og popupDesc er strammet inn setning for setning. Arkitekter, folketeateridé og institusjonssammenslåing er skilt fra scene-/opera- og passasjehistorikken. Fortsatt needs_review inntil full redaksjonell kontroll."
+      "reviewer": "Oslo byleksikon source verification",
+      "notes": "Oslo byleksikons separate artikler om Folketeatret og Folketeaterbygningen kontrollert for bygget, arbeiderbevegelsen, arkitekter, kino 1935, Folketeatret 1952, Oslo Nye 1959, Den Norske Operas avslutningsforestilling 31.12.2007 og gjenåpning som musikalscene 2009. Operahuset i Bjørvika åpnet i 2008, separat fra avslutningen her."
     },
     "editorial": {
-      "status": "needs_review",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
-      "reviewer": "Oslo bolk 05 editorial staging",
+      "reviewer": "Oslo bolk 05 editorial review",
       "introducedNewFacts": false,
-      "notes": "Redaksjonell integrasjon er fullført som tekst, men produksjons- og bildeportene er fortsatt åpne."
+      "notes": "Skille mellom Folketeaterbygningen, Folketeateret og senere operaens virksomhet kontrollert. Quizprogresjon, kategorier, ID-er og kartpunkt uendret. Visuell app-QA er fortsatt separat."
     }
   },
   "quizReadiness": {
-    "status": "awaiting_fullquiz_review",
-    "questions": []
+    "status": "reviewed_source_linked_browser_pending",
+    "questions": [
+      {
+        "question": "Hvem tegnet Folketeaterbygningen?",
+        "answer": "Christian Morgenstierne og Arne Eide",
+        "type": "hvem",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_folketeateret_source_6"
+        ]
+      },
+      {
+        "question": "Hva het kinoen som først brukte salen?",
+        "answer": "Verdensteatret",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_folketeateret_source_7"
+        ]
+      },
+      {
+        "question": "Hva skjedde med Folketeatret i 1959?",
+        "answer": "Det ble slått sammen med Det Nye Teater til Oslo Nye Teater",
+        "type": "hva_skjedde",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_folketeateret_source_8"
+        ]
+      },
+      {
+        "question": "Hvor går Folketeaterpassasjen?",
+        "answer": "Mellom Youngstorget og Storgata gjennom Folketeaterbygningen",
+        "type": "hvor",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_folketeateret_source_5"
+        ]
+      },
+      {
+        "question": "Når ble Den Norske Operas virksomhet på Folketeateret avsluttet?",
+        "answer": "31. desember 2007",
+        "type": "når",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_folketeateret_source_3"
+        ]
+      },
+      {
+        "question": "Hva var målet for folketeaterbevegelsen?",
+        "answer": "Scenekunst tilgjengelig for et bredt publikum",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_folketeateret_source_7"
+        ]
+      },
+      {
+        "question": "Hvilken institusjon hadde hovedscenen her fra 1959?",
+        "answer": "Den Norske Opera",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_folketeateret_source_2"
+        ]
+      },
+      {
+        "question": "Hva ble teatersalen tatt i bruk som etter restaureringen?",
+        "answer": "Privatdrevet musikalscene fra 2009",
+        "type": "hva_ble_bygget_produsert_eller_endret",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_folketeateret_source_4"
+        ]
+      },
+      {
+        "question": "Hva er forskjellen på Folketeateret og Folketeaterbygningen?",
+        "answer": "Scenen ligger inne i det større bygningskomplekset",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_folketeateret_source_6"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completedUnder": "4.2",
+    "currentStatus": "current",
+    "sourceVerifiedAt": "2026-11-01",
+    "claimsVerified": {
+      "verified": 8,
+      "total": 8
+    },
+    "factualReview": "passed",
+    "editorialReview": "passed",
+    "validatorVersion": "4.2.1"
   }
 }
