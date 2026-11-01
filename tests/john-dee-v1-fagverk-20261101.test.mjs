@@ -58,8 +58,10 @@ test('John Dee keeps original 30-question quiz and 10-card question parity',()=>
  }
 });
 
-test('No premature John Dee v1 declaration',()=>{
+test('John Dee v1 is backed by real mobile and desktop browser evidence',()=>{
  const tiers=read('data/places/production-tiers/v1-oslo-nature-music-20261017-batch02.json');
  const john=tiers.places.find(p=>p.place_id==='john_dee');
- assert.equal(john?.content_level,'v1_candidate');
+ assert.equal(john?.content_level,'v1');
+ assert.ok(john.v1_browser_evidence.workflow_run_ids.includes(41357190082));
+ assert.deepEqual(john.v1_browser_evidence.checked_viewports,['mobile_390x844','desktop_1440x1000']);
 });
