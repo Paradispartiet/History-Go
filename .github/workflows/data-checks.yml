@@ -334,6 +334,19 @@ jobs:
           npm run knowledge:legacy:check
           npm run audit:knowledge
           node scripts/audit-knowledge-links.mjs
+      - name: Generate expected Knowledge data for diagnostics
+        if: failure()
+        run: npm run knowledge:canonical:write
+      - name: Upload expected Knowledge registries for diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-go-knowledge-expected
+          path: |
+            data/knowledge/knowledge_units.generated.json
+            data/knowledge/subjects/subkultur/knowledge_units.generated.json
+          if-no-files-found: error
+          retention-days: 3
       - name: Run Knowledge V2 and storage contract tests
         run: |
           npm run test:knowledge-core
