@@ -21,3 +21,6 @@ Det er produsert **tre egne WebP-bildefiler** på 1024 × 1024, med gjennomsikti
 
 ## Fortsatt arbeid
 26 øvrige undermerkekandidater er på planstadiet. Etter godkjent pilot brukes samme produksjonsregel, individuelt og uten gjenbruk av hovedmerkemotiv.
+
+## Utvidelse 1. november 2026
+Seks nye separate Scenekunst-WebP-filer er nå lagt på arbeidsgrenen: Dans, Performance, Musikkteater, Sceneproduksjon, Regi og Dramaturgi. Til sammen er 9 av 29 kandidater lagt inn i PR-en. Ingen er koblet inn som aktivt undermerke; `selectedImage` forblir `null`. De seks nye kandidatene er håndtegnede, stiliserte broderimotiver og **krever visuell kvalitetssikring** mot hovedmerkenes mer naturtro trådtekstur før de kan godkjennes. Kategori-navn er tegnet inne i øvre kant på hver kandidat. Teknisk verifisering skjer med `node --test tests/badge-underbadge-batch01.test.mjs`.
