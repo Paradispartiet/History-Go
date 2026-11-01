@@ -18,11 +18,12 @@ const approvedMain={
  media:'bilder/merker/media-brodert-lysbla.webp',
  vitenskap:'bilder/merker/vitenskap/brodert/vitenskap.webp'
 };
-test('nine candidate WebPs match the exact 29 registered undercategories without activation',()=>{
+test('nine original v1 candidates and three active Scenekunst v3 images are registered correctly',()=>{
  assert.equal(plan.version,1);
- assert.equal(plan.status,'one_candidate_pending_eight_rework_required');
+ assert.equal(plan.status,'three_v3_active_one_v1_pending_eight_v1_rework');
  assert.deepEqual(plan.pilot.map(p=>p.categoryId+'/'+p.subId),firstPilotKeys);
  const counts={scenekunst:7,by:10,film_tv:12};
+ const activated={"sceneproduksjon":"bilder/merker/scenekunst/undermerker/sceneproduksjon-brodert-v3.webp","regi":"bilder/merker/scenekunst/undermerker/regi-brodert-v3.webp","dramaturgi":"bilder/merker/scenekunst/undermerker/dramaturgi-brodert-v3.webp"};
  let total=0,uploaded=0;
  for(const [id,count] of Object.entries(counts)){
   const parent=read('data/badges/'+id+'.json'),family=plan.families[id];
@@ -31,11 +32,12 @@ test('nine candidate WebPs match the exact 29 registered undercategories without
   assert.equal(family.secondaryColor.toUpperCase(),parent.secondaryColor.toUpperCase());
   assert.equal(family.assets.length,count);
   assert.deepEqual(family.assets.map(a=>a.id),parent.sub);
-  assert.equal(parent.subBadgeImages,undefined,id+' underbadges cannot be enabled before visual signoff');
+  if(id==='scenekunst') assert.deepEqual(parent.subBadgeImages,activated);
+  else assert.equal(parent.subBadgeImages,undefined,id+' other underbadges remain inactive');
   for(const asset of family.assets){
    const path='bilder/merker/'+id+'/undermerker/'+asset.id+'-brodert-v1.webp';
    assert.equal(asset.proposedFile,path);
-   assert.equal(asset.selectedImage,null,id+'/'+asset.id);
+   assert.equal(asset.selectedImage,id==='scenekunst'&&activated[asset.id]?activated[asset.id]:null,id+'/'+asset.id);
    assert.equal(asset.quality.visualApproved,false);
    assert.ok(asset.label.length>=3&&asset.motif.length>=25);
    if(asset.status==='rendered_candidate'||asset.status==='rework_required'){
@@ -117,7 +119,8 @@ test('all nine protected main and 15 approved Religion/Vitenskap underbadge file
  }
 });
 
-test('Scenekunst v3 candidates are traceable, inactive, and verified if uploaded',()=>{
+test('Scenekunst v3 images are traceable, activated, and verified',()=>{
+ const activated={"sceneproduksjon":"bilder/merker/scenekunst/undermerker/sceneproduksjon-brodert-v3.webp","regi":"bilder/merker/scenekunst/undermerker/regi-brodert-v3.webp","dramaturgi":"bilder/merker/scenekunst/undermerker/dramaturgi-brodert-v3.webp"};
  const expected={
   sceneproduksjon:'760f3690f092be148a52a64e10c3ec9e2daf517faf500c7c279546fdb2cc8de8',
   regi:'dd079e22ebbcb2a3304582aed087e22f42a422bf3652d588b756b2ad17ce005f',
@@ -134,16 +137,16 @@ test('Scenekunst v3 candidates are traceable, inactive, and verified if uploaded
   assert.equal(v3.height,1024);
   assert.equal(v3.primaryColor.toUpperCase(),plan.families.scenekunst.primaryColor.toUpperCase());
   assert.equal(v3.secondaryColor.toUpperCase(),plan.families.scenekunst.secondaryColor.toUpperCase());
-  assert.equal(v3.visualApproved,false);
-  assert.equal(v3.selectedImage,null);
-  assert.equal(asset.selectedImage,null);
+  assert.equal(v3.visualApproved,true);
+  assert.equal(v3.selectedImage,activated[id]);
+  assert.equal(asset.selectedImage,activated[id]);
   const dest=resolve(root,v3.proposedImage);
   if(!v3.repositoryUploaded){
    assert.equal(v3.status,'local_candidate_pending_upload_and_approval');
    assert.ok(!existsSync(dest),id+' not recorded as uploaded, so file should not yet exist');
    continue;
   }
-  assert.equal(v3.status,'repository_candidate_pending_visual_approval');
+  assert.equal(v3.status,'active');
   assert.ok(existsSync(dest),id+' is recorded as uploaded');
   const buf=readFileSync(dest);
   assert.equal(buf.length,v3.bytes,id+' byte count');
