@@ -1,0 +1,28 @@
+name: Rockefeller Fagverk v1 candidate
+on:
+  pull_request:
+    paths:
+      - "data/places/musikk/oslo/places_musikk/rockefeller.json"
+      - "data/fagverk/fagverk_registry.json"
+      - "data/fagverk/fagverk_release.json"
+      - "data/runtime/place-open/rockefeller.json"
+      - "tests/rockefeller-v1-fagverk.test.mjs"
+      - ".github/workflows/rockefeller-v1-fagverk.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rockefeller-fagverk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Targeted Rockefeller Fagverk, quiz preservation and images
+        run: node --test tests/rockefeller-v1-fagverk.test.mjs
+      - name: Canonical Fagverk pages
+        run: node scripts/audit-fagverk-place-pages.mjs
+      - name: Fagverk release registry checksum
+        run: node scripts/build-fagverk-release-manifest.mjs --check
