@@ -51,6 +51,8 @@ on:
       - 'data/natur/flora/illustration-quality-engtjaereblom-20261101.json'
       - 'data/natur/flora/illustration-quality-firkantperikum-20261101.json'
       - 'scripts/test-flora-firkantperikum-b09.mjs'
+      - 'data/natur/flora/illustration-quality-forglemmegei-20261101.json'
+      - 'scripts/test-flora-forglemmegei-b09.mjs'
       - 'scripts/test-flora-engtjaereblom-b09.mjs'
       - 'scripts/test-flora-engsmelle-b09.mjs'
       - 'scripts/test-flora-engknoppurt-b09.mjs'
@@ -118,6 +120,7 @@ jobs:
       - run: node scripts/test-flora-engsmelle-b09.mjs
       - run: node scripts/test-flora-engtjaereblom-b09.mjs
       - run: node scripts/test-flora-firkantperikum-b09.mjs
+      - run: node scripts/test-flora-forglemmegei-b09.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -140,6 +143,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-27-mobile-desktop
+          name: flora-approved-28-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
