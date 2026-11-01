@@ -2,7 +2,7 @@
   "schema": "history-go-flora-single-species-review-v1",
   "batch": "09",
   "date": "2026-11-01",
-  "status": "candidate_binary_not_uploaded",
+  "status": "reviewed_field_illustration_pending_ci",
   "baselineApproved": 22,
   "approvedCountAfterRelease": 23,
   "publicationRule": "Do not activate this candidate until the exact WebP is present in the repository, manual botanical comparison is accepted, and illustration-contract plus approved-flora-browser are green. Preserve all 22 published approvals.",
@@ -20,9 +20,9 @@
         1024,
         1536
       ],
-      "reviewStatus": "candidate_pending_botanical_approval",
-      "approvedForPublication": false,
-      "botanicalVisualDecision": "improved_basally_compound_leaves_but_requires_final_visual_review",
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
       "visualChecks": {
         "transparent": true,
         "blackBackgroundReviewed": true,
@@ -34,14 +34,10 @@
         "https://linnet.geog.ubc.ca/Atlas/Atlas.aspx?noTransfer=1&sciname=Geum+rivale",
         "https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Geum+rivale"
       ],
-      "observations": "Drooping reddish-purple sepals with pale rose-apricot petals; finely hairy reddish flowering stalks; multiple nodding buds; v2 basal foliage has visibly separate toothed lateral leaflets and larger lobed terminal leaflets rather than the v1 oversized unsegmented leaf blades. Brown rhizome crown and fibrous roots shown illustratively.",
-      "limitations": "This AI-generated rendering remains a field-guide aid, not taxonomic evidence. Leaflet proportions and phyllotaxis are stylized; some flowers and floral appendages are exaggerated to improve readability. Roots are illustrative. Final human botanical comparison and publication tests are required before registering this as approved.",
-      "technicalVerification": "Source transparent RGBA 1024x1536 converted to lossily compressed WebP with alpha; SHA256/Git blob SHA and sizes calculated directly from final bytes; light/dark previews created locally.",
-      "publicationBlockedBy": [
-        "binary_not_uploaded",
-        "illustration_ci_not_run",
-        "final_botanical_signoff_pending"
-      ]
+      "observations": "Review of the exact WebP confirms drooping reddish-purple hairy calyces, pale peach-pink petals, hairy reddish flowering stems and interruptedly pinnate basal leaves. The larger terminal leaflets are lobed and toothed and smaller lateral leaflets are present. Multiple blooms and buds are shown.",
+      "limitations": "Petals are more pink and saturated than in many wild examples, flowers are enlarged for legibility, foliage is more symmetrical than typical specimens, and roots are illustrative. This is a field-guide illustration, not conclusive botanical identification.",
+      "technicalVerification": "Exact 537174-byte WebP committed at pictures/b09 and independently matched by GitHub blob SHA 1ce0c45d3af070907db440977ccb6de0889aefe2; source SHA256 85200af04c3719a8ff54be70ecf06e3d4b10ce1688b14f07b7dac47006daad09, 1024×1536 with VP8X alpha. Visual comparison against E-Flora BC, World Flora Online and Burke Herbarium completed.",
+      "publicationBlockedBy": []
     }
   ]
 }
