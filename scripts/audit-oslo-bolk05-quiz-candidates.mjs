@@ -90,11 +90,45 @@ for (const [id, category, slug] of scope) {
   if(new Set(idsFromCards).size!==10 ||
      !equal(collection?.sourceQuestionIds,idsFromCards))
     fail(id,'QuizCard source IDs are not a unique ordered copy of the source questions');
+  const playableFile='data/quiz/'+category+'/'+id+'_sets.json';
+  const playable=read(playableFile);
+  const activeQuestions=(playable.sets||[]).flatMap(v=>v.questions||[]);
+  const activeCards=read('data/quizcards/'+category+'/'+id+'_quizkort_v1.json');
+  const activeCardQuestions=(activeCards.cards||[]).flatMap(v=>v.questions||[]);
+  const categoryCardManifest=read('data/quizcards/'+category+'/manifest.json');
+  if (playable.targetId!==id || playable.categoryId!==category ||
+      playable.sets?.length!==3 || activeQuestions.length!==21)
+    fail(id,'Canonical quiz must contain exactly three 7-question sets');
+  if (!categoryCardManifest.collections?.includes(id+'_quizkort_v1.json') ||
+      activeCardQuestions.length!==10)
+    fail(id,'Canonical 10-card file or manifest entry is missing');
+  const cardBySource=new Map(activeCardQuestions.map(q=>[q.sourceQuestionId,q]));
+  for (const [i,original] of qs.entries()) {
+    const actual=activeQuestions[i];
+    if (!actual || actual.id!==original.candidate_id || actual.question!==original.question ||
+      actual.answer!==original.answer || !equal(actual.options,original.options) ||
+      actual.knowledge!==original.knowledge || actual.answerIndex!==original.answerIndex)
+      fail(id,'Canonical quiz has drifted from reviewed candidate '+String(i+1));
+    if (!actual?.knowledge_unit_ids?.length ||
+        !actual.knowledge_unit_ids.includes(actual.primary_knowledge_unit_id) ||
+        actual.knowledge_link_status!=='linked')
+      fail(id,'Canonical Knowledge not linked for '+String(i+1));
+    if (actual && cardBySource.has(actual.id)){
+      const card=cardBySource.get(actual.id);
+      for(const field of ['question','options','answer','answerIndex','knowledge','source_urls','knowledge_unit_ids']){
+        if(!equal(card[field],actual[field]))
+          fail(id,'Canonical QuizCard parity drift '+actual.id+' '+field);
+      }
+      if(card.sourceQuizFile!==playableFile || card.knowledge_link_status!=='linked')
+        fail(id,'Canonical QuizCard has incorrect source link '+actual.id);
+    }
+  }
   const canonicalManifestEntries=(manifest.sets||[]).filter(x=>x.targetId===id);
   const yearMemorization=qs.filter(x=>/hvilket år|når ble|i hvilket år/iu.test(x.question)).length;
   findings.push({placeId:id,categoryId:category,candidateQuestions:qs.length,
     candidateCardQuestions:cq.length,claims:claims.size,
     canonicalManifestEntries:canonicalManifestEntries.length,
+    playableQuestionCount:activeQuestions.length,activeCardCount:activeCardQuestions.length,
     yearMemorizationQuestions:yearMemorization,
     openGates:['source-claim-editorial-signoff','Fagverk theory/method review',
       'canonical Knowledge generation','quiz and card manifest integration','real app 390/1440 QA']});
@@ -119,6 +153,8 @@ const result={schema:'oslo_bolk05_quiz_candidate_audit_v1',status:errors.length?
   candidateQuestionCount:findings.reduce((n,f)=>n+f.candidateQuestions,0),
   candidateQuizCardCount:findings.reduce((n,f)=>n+f.candidateCardQuestions,0),
   playableFolketeateretQuestions:folkQuestions.length,
+  totalPlayableQuestions:findings.reduce((n,f)=>n+f.playableQuestionCount,0)+folkQuestions.length,
+  totalPlayableQuizCards:findings.reduce((n,f)=>n+f.activeCardCount,0)+cardList.length,
   folketeateretCardQuestions:cardList.length,
   findings,errors};
 if(process.argv.includes('--json')) console.log(JSON.stringify(result,null,2));
