@@ -49,7 +49,8 @@ try{
     {name:"burot",label:"Burot",term:"burot",path:"b08/07_burot_v1.webp"},
     {name:"enghumleblom",label:"Enghumleblom",term:"enghumleblom",path:"b09/01_enghumleblom_v2.webp"},
     {name:"engknoppurt",label:"Engknoppurt",term:"engknoppurt",path:"b09/02_engknoppurt_v2.webp"},
-    {name:"engsmelle",label:"Engsmelle",term:"engsmelle",path:"b09/03_engsmelle_v1.webp"}
+    {name:"engsmelle",label:"Engsmelle",term:"engsmelle",path:"b09/03_engsmelle_v1.webp"},
+    {name:"engtjaereblom",label:"Engtjæreblom",term:"engtjæreblom",path:"b09/04_engtjaereblom_v1.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
