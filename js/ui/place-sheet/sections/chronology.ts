@@ -31,7 +31,7 @@ export function mountCanonicalChronology(container: HTMLElement, place: PlaceLik
 
   const html = rows.map(row => {
     const title = text(row.title || row.text || row.event);
-    const summary = text(row.summary || row.description || row.text);
+    const summary = text(row.summary || row.description || row.desc || row.text);
     const sources = Array.isArray(row.sources) ? row.sources : [];
     const links = sources.map((source: unknown) => {
       const item = typeof source === "string" ? { url: source, title: "Kilde" } : source as PlaceLike;
