@@ -22,6 +22,7 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci --no-audit --no-fund
+      # Corrected Blitz photo evidence phrasing after scoped v4.2 sentence audit.
       - name: Verify production helper syntax
         run: node --check scripts/finish-oslo-bolk05-v42.mjs
       - name: Source-reviewed completion for Historisk museum and Blitzhuset
