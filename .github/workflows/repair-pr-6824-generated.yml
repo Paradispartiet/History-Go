@@ -55,6 +55,8 @@ jobs:
           npm run audit:quiz-theory-binding
           npm run knowledge:canonical:check
           node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Restore ephemeral audit report
+        run: git restore -- reports/knowledge-contract-audit.json
       - name: Reject unexpected generated file changes
         shell: bash
         run: |
