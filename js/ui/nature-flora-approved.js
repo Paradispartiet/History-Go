@@ -37,6 +37,14 @@
       stage: "blomstring og frøsetting",
       evidence: "data/natur/flora/illustration-quality-gjetertaske-20261101.json"
     }),
+    emne_flora_humleblom: Object.freeze({
+      scientificName: "Geum urbanum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/13_humleblom_v1.webp",
+      gitBlobSha: "50fe2553702e114d6ed56902bbaaafaee0c7c005",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring og frøsetting",
+      evidence: "data/natur/flora/illustration-quality-humleblom-20261101.json"
+    }),
     emne_flora_haredylle: Object.freeze({
       scientificName: "Crepis capillaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/12_haredylle_v1.webp",

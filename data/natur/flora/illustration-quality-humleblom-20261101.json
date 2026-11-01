@@ -1,0 +1,51 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-01",
+  "status": "reviewed_binary_verified_pending_ci",
+  "baselineApproved": 34,
+  "approvedCountAfterRelease": 35,
+  "publicationRule": "Publish only the exact 1024×1536 transparent WebP with matching SHA256/Git blob SHA; retain all 34 prior approved illustrations, black #000 public background and no public photo fallback. Require illustration-contract and approved-flora-browser green on final PR head and Pages success after merge.",
+  "items": [
+    {
+      "name": "Humleblom",
+      "catalogId": "emne_flora_humleblom",
+      "scientificName": "Geum urbanum",
+      "taxonomicScope": "species",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/13_humleblom_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/13_humleblom_v1.webp",
+      "gitBlobSha": "50fe2553702e114d6ed56902bbaaafaee0c7c005",
+      "sha256": "876593404ea6824dbe022f492a72d9de3abbab62e4a05502a79667ef792dab89",
+      "sizeBytes": 268886,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
+      "reviewedAt": "2026-11-01",
+      "stage": "blomstring og frøsetting",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": false,
+        "alphaVerifiedAfterConversion": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://www.rhs.org.uk/plants/7987/geum-urbanum/details",
+        "https://www.devonwildlifetrust.org/wildlife-explorer/wildflowers/wood-avens",
+        "https://www.naturespot.org/species/wood-avens",
+        "https://www.rhs.org.uk/weeds/herb-bennet"
+      ],
+      "observations": "Botanical watercolor of Geum urbanum shows a low basal rosette of coarsely toothed and partly pinnately divided green leaves with a large terminal lobe, smaller toothed stem leaves, several thin hairy branching stems, small upright yellow five-petalled flowers with central stamens, and two separate ripe round seed heads bearing long red-brown hooked styles. Pale roots descend from a compact perennial crown. Flowers and bur-like fruits are deliberately included together to make the main field marks visible.",
+      "limitations": "A field-guide illustration, not a specimen diagnosis. Leaf number and arrangement are simplified to make the toothed lobes legible, and flowers as well as curved hooked fruit styles are enlarged for visual clarity. Some ripe seed styles bend in stylized arcs; in real plants the hooks may be much shorter. Different developmental stages are combined on the same specimen and not all leaflets are shown in true pinnate structure. Compare botanical field material before final identification.",
+      "technicalVerification": "Original source RGB PNG generated at 1024×1536 against pure black. Converted background to transparent RGBA by channel maximum alpha threshold 5–38 while preserving plant edges; final WebP saved at quality 94, method 6 and retains true alpha. Exact 268886-byte WebP SHA256 and Git blob SHA calculated locally; GitHub create_blob returned the same Git SHA. A black-stage preview was visually inspected. Public runtime must never fall back to photographic images.",
+      "publicationBlockedBy": [
+        "Both illustration-contract and approved-flora-browser must be green on final PR head before merge.",
+        "Confirm GitHub Pages deployment success after merge."
+      ]
+    }
+  ]
+}
