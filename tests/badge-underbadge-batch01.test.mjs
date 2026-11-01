@@ -116,3 +116,56 @@ test('all nine protected main and 15 approved Religion/Vitenskap underbadge file
   for(const asset of original.assets)assert.ok(existsSync(resolve(root,asset.image)),asset.image);
  }
 });
+
+test('Scenekunst v3 candidates are traceable, inactive, and verified if uploaded',()=>{
+ const expected={
+  sceneproduksjon:'760f3690f092be148a52a64e10c3ec9e2daf517faf500c7c279546fdb2cc8de8',
+  regi:'dd079e22ebbcb2a3304582aed087e22f42a422bf3652d588b756b2ad17ce005f',
+  dramaturgi:'4ac17ef33751f174ca73642c70a7338b3e5da0d760f5a317107d91456812f3ab'
+ };
+ for(const [id,digest] of Object.entries(expected)){
+  const asset=plan.families.scenekunst.assets.find(a=>a.id===id);
+  assert.ok(asset,id+' registered');
+  const v3=asset.replacementCandidate;
+  assert.equal(v3.version,'v3');
+  assert.equal(v3.sha256,digest,id+' independently pinned SHA-256');
+  assert.equal(v3.proposedImage,'bilder/merker/scenekunst/undermerker/'+id+'-brodert-v3.webp');
+  assert.equal(v3.width,1024);
+  assert.equal(v3.height,1024);
+  assert.equal(v3.primaryColor.toUpperCase(),plan.families.scenekunst.primaryColor.toUpperCase());
+  assert.equal(v3.secondaryColor.toUpperCase(),plan.families.scenekunst.secondaryColor.toUpperCase());
+  assert.equal(v3.visualApproved,false);
+  assert.equal(v3.selectedImage,null);
+  assert.equal(asset.selectedImage,null);
+  const dest=resolve(root,v3.proposedImage);
+  if(!v3.repositoryUploaded){
+   assert.equal(v3.status,'local_candidate_pending_upload_and_approval');
+   assert.ok(!existsSync(dest),id+' not recorded as uploaded, so file should not yet exist');
+   continue;
+  }
+  assert.equal(v3.status,'repository_candidate_pending_visual_approval');
+  assert.ok(existsSync(dest),id+' is recorded as uploaded');
+  const buf=readFileSync(dest);
+  assert.equal(buf.length,v3.bytes,id+' byte count');
+  assert.equal(buf.toString('ascii',0,4),'RIFF');
+  assert.equal(buf.readUInt32LE(4)+8,buf.length,'valid RIFF size');
+  assert.equal(buf.toString('ascii',8,12),'WEBP');
+  const subtype=buf.toString('ascii',12,16);
+  let width,height,hasAlpha;
+  if(subtype==='VP8X'){
+   width=buf.readUIntLE(24,3)+1;
+   height=buf.readUIntLE(27,3)+1;
+   hasAlpha=!!(buf[20]&0x10);
+  }else if(subtype==='VP8L'){
+   assert.equal(buf[20],0x2f,'VP8L signature');
+   const bits=buf.readUInt32LE(21);
+   width=(bits&0x3fff)+1;
+   height=((bits>>>14)&0x3fff)+1;
+   hasAlpha=!!(bits&0x10000000);
+  }else assert.fail(id+' unexpected WebP subtype '+subtype);
+  assert.equal(width,1024,id+' width');
+  assert.equal(height,1024,id+' height');
+  assert.ok(hasAlpha,id+' WebP alpha channel');
+  assert.equal(createHash('sha256').update(buf).digest('hex'),digest,id+' file SHA-256');
+ }
+});
