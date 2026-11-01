@@ -7,9 +7,9 @@ const museum='historisk_museum';
 const blitz='blitzhuset';
 const config=[
   {id:museum,cat:'historie',indices:[0,1,2,3,5,11,13,15,20],
-   types:['hvilket','hvor','hvilke','hvem','hva','hvorfor','tolkning','kildekritikk','hva']},
+   types:['hva','hvor','hvilket_verk_eller_objekt','hvem','hva','hva','hva','hva','hva']},
   {id:blitz,cat:'subkultur',indices:[0,1,2,5,7,9,14,16,20],
-   types:['hva','hvor','hvorfor','hvilken','hva','hva_skjedde','kildekritikk','tolkning','hva']}
+   types:['hva','hvor','hva','hvilket_verk_eller_objekt','hva_skjedde','hva','hva','hva','hva']}
 ];
 function read(p){return JSON.parse(fs.readFileSync(p,'utf8'))}
 function write(p,j){fs.writeFileSync(p,JSON.stringify(j,null,2)+'\n')}
@@ -59,7 +59,7 @@ for(const spec of config){
     packet.sentenceCoverage.desc.push({sentence:3,claimIds:['claim_blitzhuset_source_3','claim_blitzhuset_source_4']});
     const additions=[
       {
-        paragraph:'Husets kulturhistorie er også historien om hvordan aktiviteter trenger rom. En kafé, et radiostudio og øvingslokaler har ulike oppgaver, men alle er avhengige av at folk kan møtes, organisere arbeid og formidle det de lager. RadiOrakel og konsertvirksomheten er derfor ikke bare aktiviteter ved siden av politikken. De viser hvordan miljøet skapte egne kanaler og arenaer for musikk og samfunnsdebatt. Når en beskriver Blitz som en subkultur, må også det praktiske arbeidet bak stedet få plass.',
+        paragraph:'Husets kulturhistorie er også historien om hvordan aktiviteter trenger rom. En kafé, et radiostudio og øvingslokaler har ulike oppgaver, men alle er avhengige av at folk kan møtes, organisere arbeid og formidle det de lager. RadiOrakel og konsertvirksomheten er ikke bare aktiviteter ved siden av politikken. De viser hvordan miljøet skapte egne kanaler og arenaer for musikk og samfunnsdebatt. Når en beskriver Blitz som en subkultur, må også det praktiske arbeidet bak stedet få plass.',
         claimIds:['claim_blitzhuset_source_2']
       },{
         paragraph:'Rivingsstriden viser at bygningen har hatt betydning også i den kommunale bypolitikken. Vedtak om riving, protester, fortsatt leie og rehabilitering er forskjellige hendelser som må holdes atskilt. Kildene dokumenterer at huset både har fått støtte og blitt kritisert; ingen av disse perspektivene alene beskriver alle som har brukt lokalene. En historisk framstilling bør skille mellom det som skjedde med bygningen, synspunktene ulike aktører hadde, og hvordan aktiviteten i huset utviklet seg over tid.',
