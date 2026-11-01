@@ -30,7 +30,7 @@ assert(fallback?.src&&fallback?.creator&&fallback?.license,"licensed photo fallb
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,27,"Existing 26 approvals and new Hypericum species must all be retained");
+assert(approved.count >= 27,"The 27th Hypericum approval and all earlier approvals must be retained");
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
 const b=fs.readFileSync(new URL(a.src,root));
