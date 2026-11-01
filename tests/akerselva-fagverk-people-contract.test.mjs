@@ -141,3 +141,23 @@ test('Knud Graah portrait is source-backed, unmistakably a painting, and synced 
   assert.equal(civication.image, graah.image);
   assert.equal(civication.cardImage, graah.cardImage);
 });
+
+
+test('Akerselva declares only its two verified People as a curated v2 PlaceCard collection', () => {
+  const place = load('data/places/by/oslo/places/akerselva.json');
+  const runtime = load('data/runtime/place-open/akerselva.json');
+  assert.equal(place.place_card_profile.schema, 'history_go_place_card_profile_v2');
+  assert.deepEqual(place.place_card_profile.collection_ids, ['people']);
+  assert.deepEqual(runtime.place.place_card_profile, place.place_card_profile);
+  assert.ok(place.place_card_profile.reason.includes('egne kanoniske steder'));
+  assert.equal(runtime.people.length, 2);
+  assert.deepEqual(new Set(runtime.people.map(person => person.id)),
+    new Set(['knud_graah_voyenfallene', 'halvor_schou']));
+  for (const person of runtime.people) {
+    assert.ok(person.image && person.cardImage, person.id + ' must have an authentic preview');
+    assert.ok(person.imageMeta?.sourcePage?.startsWith('https://commons.wikimedia.org/wiki/File:'),
+      person.id + ' must have traceable media provenance');
+  }
+  assert.ok(!place.objects?.length, 'Do not invent river-wide objects');
+  assert.ok(!place.structures?.length, 'Distinct canonical bridges and mills stay separate');
+});
