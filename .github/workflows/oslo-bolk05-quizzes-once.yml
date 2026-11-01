@@ -1,0 +1,66 @@
+name: Oslo bolk 05 — publish five source-gated quiz sets once
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-bolk05-tekst-20261101
+    paths:
+      - .github/workflows/oslo-bolk05-quizzes-once.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oslo-bolk05-quiz-production-once
+  cancel-in-progress: false
+
+jobs:
+  publish-five-quiz-packages:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout current scoped PR
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Produce only the five reviewed candidates and manifests
+        run: node scripts/build-oslo-bolk05-quizzes.mjs --write
+      - name: Regenerate canonical Knowledge on all 105 questions
+        run: npm run knowledge:canonical:write
+      - name: Copy generated Knowledge IDs into 50 corresponding QuizCard questions
+        run: node scripts/build-oslo-bolk05-quizzes.mjs --sync-cards
+      - name: Verify canonical Knowledge and source/QuizCard parity
+        run: |
+          npm run knowledge:canonical:check
+          node scripts/build-oslo-bolk05-quizzes.mjs --check
+      - name: Commit bounded five-place delivery and remove workflow
+        env:
+          BRANCH_NAME: research/oslo-sentrum-bolk05-tekst-20261101
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/quiz/manifest.json
+          git add -- data/quiz/kunst/kunstnernes_hus_sets.json
+          git add -- data/quiz/historie/historisk_museum_sets.json
+          git add -- data/quiz/litteratur/ibsen_museum_teater_sets.json
+          git add -- data/quiz/subkultur/blitzhuset_sets.json
+          git add -- data/quiz/musikk/kulturkirken_jakob_litteratur_sets.json
+          git add -- data/quizcards/kunst/kunstnernes_hus_quizkort_v1.json data/quizcards/kunst/manifest.json
+          git add -- data/quizcards/historie/historisk_museum_quizkort_v1.json data/quizcards/historie/manifest.json
+          git add -- data/quizcards/litteratur/ibsen_museum_teater_quizkort_v1.json data/quizcards/litteratur/manifest.json
+          git add -- data/quizcards/subkultur/blitzhuset_quizkort_v1.json data/quizcards/subkultur/manifest.json
+          git add -- data/quizcards/musikk/kulturkirken_jakob_litteratur_quizkort_v1.json data/quizcards/musikk/manifest.json
+          git add -- data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json
+          git add -- reports/knowledge-id-backfill.json reports/knowledge-contract-audit.json
+          git add -- reports/place-production/oslo-bolk05-quiz105-production-audit-20261101.json
+          git rm -- .github/workflows/oslo-bolk05-quizzes-once.yml
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m "Produce five Oslo bolk 05 3x7 fullquizzes, 50 linked QuizCards and canonical Knowledge"
+          git fetch origin "$BRANCH_NAME"
+          git rebase FETCH_HEAD
+          git push origin "HEAD:$BRANCH_NAME"
