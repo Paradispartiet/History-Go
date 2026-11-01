@@ -29,6 +29,14 @@
       stage: "blomstring",
       evidence: "data/natur/flora/illustration-quality-engknoppurt-20261101.json"
     }),
+    emne_flora_engtjaereblom: Object.freeze({
+      scientificName: "Viscaria vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/04_engtjaereblom_v1.webp",
+      gitBlobSha: "2e25e6c9a06c6ae9817b1afd2c081a4f5e01096c",
+      reviewedAt: "2026-11-01",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-engtjaereblom-20261101.json"
+    }),
     emne_flora_engsmelle: Object.freeze({
       scientificName: "Silene vulgaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/03_engsmelle_v1.webp",

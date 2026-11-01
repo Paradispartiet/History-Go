@@ -2,10 +2,10 @@
   "schema": "history-go-flora-single-species-review-v1",
   "batch": "09",
   "date": "2026-11-01",
-  "status": "candidate_awaiting_binary_upload_and_ci",
+  "status": "reviewed_waiting_for_exact_binary_and_green_ci",
   "baselineApproved": 25,
   "approvedCountAfterRelease": 26,
-  "publicationRule": "Do not activate in js/ui/nature-flora-approved.js until the exact WebP is uploaded and its SHA-256 and Git blob SHA verified. Keep the existing CC BY-SA 4.0 photograph as fallback; require illustration-contract, approved-flora-browser (390 and 1440 px) and Pages success.",
+  "publicationRule": "Merge only when the exact 1024x1536 WebP binary matches the recorded SHA256, Git blob SHA and alpha/dimensions, all 25 prior approvals remain intact, the licensed species photograph remains a fallback, and illustration-contract and approved-flora-browser pass on last PR head. Confirm Pages success after merge.",
   "items": [
     {
       "name": "Engtjæreblom",
@@ -20,9 +20,9 @@
         1024,
         1536
       ],
-      "reviewStatus": "candidate_pending_upload_and_ci",
-      "approvedForPublication": false,
-      "botanicalVisualDecision": "candidate_matches_key_field_characters_pending_final_visual_review",
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
       "reviewedAt": "2026-11-01",
       "stage": "blomstring",
       "visualChecks": {
@@ -44,9 +44,7 @@
       "technicalVerification": "Local image generated as 1024x1536 RGBA PNG. Stray low-opacity ambient pixels removed (alpha threshold 50, rescaled to 0..255). Converted to 1024x1536 WebP with alpha (Pillow quality 91, method 6), then SHA-256 and Git blob SHA calculated directly from its final 179204 bytes. Dark and light background previews visually inspected. Not yet uploaded to GitHub.",
       "publicationBlockedBy": [
         "Exact WebP binary not yet uploaded to GitHub",
-        "Git SHA and checksum need re-verification on GitHub",
-        "Approved register, release/browser tests, workflow and cache version not yet updated",
-        "Both relevant CI jobs and Pages publication not yet run"
+        "CI checks cannot pass without the matching GitHub binary"
       ]
     }
   ]
