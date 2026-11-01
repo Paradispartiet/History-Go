@@ -24,8 +24,8 @@
 | Underbadge | ENDRING UNDER REVIEW | `fandom` → `fandom_og_nerdekultur`, PR #6885 |
 | Faglig Subkultur-case | ALLEREDE FERDIG / BEHOLD | PR #4694, `case_sub_house_of_nerds` |
 | Stedstekst + claimpakke | UNDER REVIEW | PR #6885; 17 source-claims, setningskoblinger, 10 quiz-readiness-kandidater |
-| Stedsegen Fagverk-side | UNDER REVIEW | PR #6886; curated/standard; krever registry-bygg, QA og merge |
-| Aktiv Story | BLOCKED | Kandidat er ikke i aktivt Story-manifest; må narrativt og kildefaglig revideres før aktivering |
+| Stedsegen Fagverk-side | UNDER REVIEW | PR #6886; curated/standard, navngitte eksterne kilder, registry-indeks og release-digest oppdatert; krever CI, browser-QA og merge |
+| Aktiv Story | UNDER REVIEW | PR #6890 migrerer kandidat til episode_v1 og registrerer aktiv Story med fire eksterne kilder; Stories governance PASS, men PR ikke merget, slutt-QA og Place-open PASS gjenstår |
 | Kronologi og epoker | BLOCKED | Historiske kilder dokumenterer Løren 2015 og Vulkan rundt årsskiftet 2019–2020; kildeuenighet i åpningsdato må behandles ved tidslinjematerialisering |
 | Språkleksikon | BLOCKED | Mangler dokumentert stedsspesifikk term-/navnekobling og UI-kontroll |
 | People | BLOCKED / kandidataudit | Eldre kollektivanker `house_of_nerds_miljoet` er ikke en automatisk godkjent individuell person; navngitte personer må belegges med stedsspesifikk rolle |
@@ -54,3 +54,9 @@
 **V3:** Ingen `data/places/workflow/house_of_nerds.json` funnet ved preflight; stedet følger eksisterende legacy-prosess, ikke kunstig V3-`complete`.
 
 Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og bildeporter har PASS, faktisk desktop/mobil UX er kontrollert, relevante tester er grønne, eksakt head er merget til main og live-readback er dokumentert. **Ikke fyll manglende samlinger med filler og ikke erstatt eksisterende verifisert geometri eller Subkultur-evidens.**
+
+## Endringer i arbeidsløpet 2026-11-01
+- PR #6885: 4.2-påstand om Løren-konkursselskapet presisert; ny validator-run viser `Place description governance = success`.
+- PR #6886: syv navngitte operative lenker, Place-eid Fagverk-indeks og deterministisk release-digest oppdatert; `Fagverk release feed = success` i ny kjøring.
+- PR #6890: `Stories governance = success`; fremdeles draft og ikke publisert.
+- Flere `Place-open`- og `Epoch viewer`-kjøringer stopper ved genererte filer (`data/runtime/nature-all/flora-001.json`, `data/epoker/epoke-place-index.json`). Disse statusene må skilles fra faglig godkjenning og løses før `vFerdig`.
