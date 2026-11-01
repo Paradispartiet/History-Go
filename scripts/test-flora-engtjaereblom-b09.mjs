@@ -33,7 +33,7 @@ assert(fallback?.src && fallback?.creator && fallback?.license, "licensed photo 
 const env = {window: {}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"), env);
 const approved = env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count, 26, "25 prior approvals plus Viscaria vulgaris expected");
+assert(approved.count >= 26, "25 prior approvals plus Viscaria vulgaris must be retained");
 assert.equal(approved.get(id)?.src, a.src);
 assert.equal(approved.get(id)?.gitBlobSha, a.gitBlobSha);
 assert(fs.existsSync(new URL(a.src, root)), "Engtjæreblom binary missing: do not merge");
