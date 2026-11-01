@@ -28,7 +28,7 @@ const photo = {window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-photographs.js"), photo);
 const fallback = photo.window.HG_NATURE_FLORA_PHOTOS.get(id);
 assert.equal(fallback?.scientificName, a.scientificName);
-assert(fallback?.src && fallback?.credit, "licensed photo fallback required");
+assert(fallback?.src && fallback?.creator && fallback?.license, "licensed photo fallback required");
 const env = {window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"), env);
 const approved = env.window.HG_NATURE_FLORA_APPROVED;
@@ -39,7 +39,7 @@ const b = fs.readFileSync(new URL(a.src, root));
 assert.equal(b.length, a.sizeBytes);
 assert.equal(crypto.createHash("sha256").update(b).digest("hex"), a.sha256);
 assert.equal(crypto.createHash("sha1")
-  .update(Buffer.concat([Buffer.from("blob "+b.length+"\\0"),b])).digest("hex"), a.gitBlobSha);
+  .update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"), a.gitBlobSha);
 assert.equal(b.toString("ascii",0,4), "RIFF");
 assert.equal(b.toString("ascii",8,12), "WEBP");
 assert.equal(b.toString("ascii",12,16), "VP8X");
