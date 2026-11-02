@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_jordreve: Object.freeze({
+      scientificName: "Glechoma hederacea",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/17_jordreve_v1.webp",
+      gitBlobSha: "c63341e153213897a685ce9c8693841ceee771f8",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-jordreve-20261102.json"
+    }),
     emne_flora_hvitmaure: Object.freeze({
       scientificName: "Galium boreale",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/16_hvitmaure_v1.webp",
