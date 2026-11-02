@@ -1,30 +1,26 @@
 /* Place Sheet Phase 6 — direct standard-Place shell, no popup embedding */
-/* The real section navigation anchors to the bottom of the scrollable
-   Place Sheet instead of overlapping the header and original photograph. */
-body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-shell{
-  display:flex;
-  flex-direction:column;
-  padding-bottom:0;
-}
-body.hg-app #placeCard.is-place-sheet-direct .pc-body{
-  padding-bottom:0;
-}
-body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav{
-  order:999;
-  position:sticky;
+/* Single persistent navigation row attached to the bottom of PlaceCard.
+   The scrollable .pc-body above it retains the original collapsing photo. */
+body.hg-app #placeCard.is-place-sheet-direct > .pc-sheet-section-nav{
+  position:relative;
   top:auto;
-  bottom:0;
+  bottom:auto;
   z-index:12;
   display:flex;
-  gap:8px;
   flex:0 0 auto;
+  align-items:center;
+  gap:8px;
   overflow-x:auto;
-  margin:12px -22px 0;
-  padding:10px 22px 12px;
+  overflow-y:hidden;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+  margin:0;
+  padding:10px 16px;
   border-top:1px solid rgba(255,255,255,.16);
   border-bottom:0;
-  background:rgba(6,9,15,.98);
-  box-shadow:0 -8px 22px rgba(0,0,0,.35);
+  background:rgba(6,9,15,.97);
+  box-shadow:0 -8px 24px rgba(0,0,0,.23);
   backdrop-filter:blur(14px);
   scrollbar-width:none;
 }
@@ -63,8 +59,8 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-language-compat > .hg-pla
 }
 
 @media (max-width:720px){
-  body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav{
-    margin:8px -16px 10px;
-    padding:10px 16px 9px;
+  body.hg-app #placeCard.is-place-sheet-direct > .pc-sheet-section-nav{
+    margin:0;
+    padding:9px 12px calc(9px + env(safe-area-inset-bottom, 0px) * .2);
   }
 }
