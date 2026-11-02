@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_krypsoleie: Object.freeze({
+      scientificName: "Ranunculus repens",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/19_krypsoleie_v1.webp",
+      gitBlobSha: "3eb62d0fe328cd08854bd6529c03f8955c82af29",
+      reviewedAt: "2026-11-02",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-krypsoleie-20261102.json"
+    }),
     emne_flora_kattefot: Object.freeze({
       scientificName: "Antennaria dioica",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/18_kattefot_v1.webp",
@@ -331,6 +339,8 @@
     })
 
   });
-  const get = id => images[String(id)] || null;
+  // One scientific species appears twice in the public catalog; reuse the same approved artwork.
+  const aliases = Object.freeze({ emne_flora_knoppurt: "emne_flora_engknoppurt" });
+  const get = id => images[aliases[String(id)] || String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();
