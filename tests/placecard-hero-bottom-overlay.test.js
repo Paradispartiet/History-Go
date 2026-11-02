@@ -6,14 +6,16 @@ const vm = require("node:vm");
 const root = path.join(__dirname, "..");
 const css = fs.readFileSync(path.join(root, "css", "placeCard.css"), "utf8");
 const heroCss = css.slice(css.indexOf("/* PlaceCard landscape hero:"), css.indexOf("/* Direct Place Sheet:"));
-assert.match(heroCss, /has-photo-source \.pc-heading-content\{\s*display:grid;/, "The photograph hero must use the two-column layout");
-assert.match(heroCss, /\.pc-title-row\{\s*order:1;\s*grid-column:2;/, "Title column must be on the right");
-assert.match(heroCss, /\.pc-title-row #pcTitle\{[^}]*text-align:right;/s, "Title must align right");
-assert.match(heroCss, /#pcMeta\{\s*order:0;\s*grid-column:1;/, "Category/epoch must be bottom left");
-assert.match(heroCss, /#pcStatusBar\{\s*order:2;\s*grid-column:1;\s*grid-row:3;/, "Next action must follow epoke at lower left");
-for (const selector of ["#pcFavorite", "#pcPeopleIcon", "#pcBadgesIcon"]) {
-  assert.ok(heroCss.includes("> " + selector + "{"), selector + " stays in the upper-right control group");
-}
+assert.match(heroCss, /has-photo-source \.pc-heading-content\{\s*display:grid;/, "Hero uses live photo grid");
+assert.match(heroCss, /grid-template-columns:minmax\(0,1fr\);/, "Text uses a full-width left column");
+assert.match(heroCss, /\.pc-title-row\{\s*order:0;\s*grid-column:1;\s*grid-row:2;/, "Title above metadata on left");
+assert.match(heroCss, /\.pc-title-row #pcTitle\{[^}]*text-align:left;/s, "Title aligns left");
+assert.match(heroCss, /#pcMeta\{\s*order:1;\s*grid-column:1;\s*grid-row:3;/, "Category and epoch follow heading");
+assert.match(heroCss, /#pcStatusBar\{\s*order:2;\s*grid-column:1;\s*grid-row:4;/, "Next action follows epoke");
+assert.match(heroCss, /#pcFavorite\{\s*top:46px;\s*right:76px;/, "Star is centered below the two other controls");
+assert.match(heroCss, /#pcPeopleIcon\{\s*top:12px;\s*right:94px;/, "People at upper right cluster");
+assert.match(heroCss, /#pcBadgesIcon\{\s*top:12px;\s*right:14px;/, "Merker at upper right cluster");
+assert.match(heroCss, /is-place-sheet-direct > #pcCollapseBtn\{[^}]*bottom:74px;[^}]*z-index:35;/s, "Collapse arrow above bottom tabs");
 assert.match(css, /rgba\(0,0,0,\.90\) 100%/, "Photo bottom must have a contrast gradient");
 assert.match(heroCss, /#pcMeta > \*\{[^}]*color:#fff;/s, "Metadata must remain white");
 assert.match(heroCss, /--pc-hero-collapse-offset/, "Title must follow the shrinking photo");
