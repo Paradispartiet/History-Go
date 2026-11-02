@@ -43,7 +43,7 @@
   // The existing owners then reuse these links instead of re-inserting stale
   // unversioned CSS after the larger PlaceCard typography has loaded.
   function loadPlaceSheetTypographyStyles() {
-    const version = "20261009-type-scale1";
+    const version = "20261102-sticky-bottom2";
     const styles = [
       ["data-hg-place-unified-style", "css/place-unified-surface.css"],
       ["data-hg-place-sheet-style", "css/place-sheet.css"],
@@ -74,7 +74,7 @@
     // Unified Place Surface is a primary PlaceCard presentation layer, not a
     // low-priority post-ready extra. Its own installer waits fail-closed for
     // popup/direct-tab dependencies before patching the public entry points.
-    ensureScript("dist/web/place-unified-surface.js?v=20260912-onsite-under-explore1");
+    ensureScript("dist/web/place-unified-surface.js?v=20261102-sticky-bottom2");
     ensureScript("js/ui/nature-detailed-map.js");
     ensureScript("js/ui/place-rounds-visual-collections.js");
     ensureScript("js/ui/micro-place-card.js");
