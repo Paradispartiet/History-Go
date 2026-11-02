@@ -133,3 +133,9 @@ Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og b
 
 ### Presisering fra historiske CI-logger (ikke nyeste HEAD)
 - På tidligere People-commit `85ee923fce441940ce8dda0d5b7b05b29f38ef16` feilet `Civication scenario People` på `data/Civication/scenarioPeople/generated/musikk.json` (mangler/ute av sync), og `Place-open payloads` på `data/runtime/people-all/part-007.json` (ute av sync). Disse feilene er fra CI-mergevisningen av en **eldre** commit; nyeste HEAD `68a649c` er ikke verifisert med grønn eksakt-head CI. Krev kanoniske builder-kjøringer og --check etter integrasjon mot main.
+
+## Faktisk merge og integrasjon 2026-11-02
+- **PR #6903 er merget til `main`**, squash-commit `b1a7f6610a5b87fa18a65e72d7f2f2e050543e2e`. Kronologi- og Place-open-CI var grønne på kilde-PR-en; dette er ikke full Place-release.
+- **Samlet integrasjon PR #6909** (`place/house-of-nerds-integration-20261102`) kombinerer tekst/underbadge, Fagverk, Story, Språkleksikon, 21-spørsmålsquiz og QuizCard, People og manifestoppføringer. Verified koordinat og nyeste `main`-indekser er bevart. Beslektede eldre utkast #6885/#6886/#6890/#6895/#6900/#6904 er ikke merget individuelt.
+- Den midlertidige integrasjonsbyggeren ble kjørt med suksess på branch (regenererte quiz-kontekst, Knowledge, Fagverk-release, Civication People/scenario, epoke- og Place-open-projeksjoner). Hjelpeworkflowen er deretter **slettet**, slutt-HEAD `2a7cfd0d02b8633d320f8c5d806b527b290a2e62`. Krev særskilt eksakt-HEAD PR-CI på denne committen, og manuell visuell QA før release.
+- **Ingen `vFerdig`** før bildelisens/proveniens, stående place frontImage, godkjent relevant samlingspreview, faktisk House of Nerds app-QA og produksjons-readback består. Merge av faglig kode alene er ikke en attestasjon på publisering.
