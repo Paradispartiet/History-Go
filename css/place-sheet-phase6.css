@@ -24,6 +24,12 @@ body.hg-app #placeCard.is-place-sheet-direct > .pc-sheet-section-nav{
   backdrop-filter:blur(14px);
   scrollbar-width:none;
 }
+/* Override the high-specificity margins left by the original in-scroll
+   section navigation; the dock must meet the card's bottom edge. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct > .pc-sheet-section-nav{
+  margin:0;
+  padding:10px 16px;
+}
 body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav::-webkit-scrollbar{display:none;}
 body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav button{
   flex:0 0 auto;
@@ -59,7 +65,7 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-language-compat > .hg-pla
 }
 
 @media (max-width:720px){
-  body.hg-app #placeCard.is-place-sheet-direct > .pc-sheet-section-nav{
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct > .pc-sheet-section-nav{
     margin:0;
     padding:9px 12px calc(9px + env(safe-area-inset-bottom, 0px) * .2);
   }
