@@ -1,0 +1,28 @@
+name: The Villa – focused place content QA
+
+on:
+  pull_request:
+    paths:
+      - 'data/places/subkultur/oslo/places_subkultur/the_villa.json'
+      - 'data/places/subkultur-production/the_villa.json'
+      - 'data/quiz/musikk/the_villa_sets_merged.json'
+      - 'data/runtime/place-open/the_villa.json'
+      - 'tests/the-villa-v1-content.test.mjs'
+      - '.github/workflows/the-villa-v1-content.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: the-villa-content-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/the-villa-v1-content.test.mjs
