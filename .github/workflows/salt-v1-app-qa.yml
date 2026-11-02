@@ -1,0 +1,50 @@
+name: SALT v1 native app and quiz QA
+on:
+  pull_request:
+    paths:
+      - 'tests/salt-v1-real-app-browser.mjs'
+      - 'data/places/musikk/oslo/places_musikk/salt.json'
+      - 'data/quiz/musikk/salt_sets_merged.json'
+      - 'data/places/production-tiers/v1-oslo-nature-music-20261017-batch02.json'
+      - '.github/workflows/salt-v1-app-qa.yml'
+permissions:
+  contents: read
+concurrency:
+  group: salt-v1-app-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  salt-app-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Native browser and source contracts
+        run: node --test tests/salt-v1-fagverk-people-quiz-20261102.test.mjs
+      - name: Resolve Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Native SALT PlaceCard QuizCard Fagverk People on mobile and desktop
+        run: node tests/salt-v1-real-app-browser.mjs
+      - name: Full SALT quiz playthrough on mobile and desktop
+        run: node scripts/verify-place-quiz-browser.mjs salt
+      - name: Save browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: salt-v1-real-app-evidence
+          path: |
+            artifacts/salt-v1-app-qa/**
+            artifacts/place-quiz/salt/**
+          if-no-files-found: warn
+          retention-days: 14
