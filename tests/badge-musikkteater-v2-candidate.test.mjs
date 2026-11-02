@@ -1,0 +1,27 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+const read = p => JSON.parse(readFileSync(new URL('../'+p,import.meta.url),'utf8'));
+test('Musikkteater v2 is a verified WebP candidate and never activated without approval',()=>{
+  const registry=read('data/badges/scenekunst.json');
+  const manifest=read('data/badges/underbadge_batch01_production.json');
+  const m=manifest.families.scenekunst.assets.find(a=>a.id==='musikkteater');
+  const c=m.replacementCandidate;
+  assert.equal(registry.color.toUpperCase(),'#C96E8B');
+  assert.equal(registry.secondaryColor.toUpperCase(),'#808080');
+  assert.equal(registry.subBadgeImages?.musikkteater,undefined);
+  assert.equal(m.selectedImage,null);
+  assert.equal(c.selectedImage,null);
+  assert.equal(c.visualApproved,false);
+  assert.equal(c.status,'repository_candidate_pending_visual_approval');
+  assert.equal(c.letteringInsideBorder,true);
+  const bytes=readFileSync(new URL('../'+c.candidateImage,import.meta.url));
+  assert.equal(bytes.length,373504);
+  assert.equal(bytes.toString('ascii',0,4),'RIFF');
+  assert.equal(bytes.toString('ascii',8,12),'WEBP');
+  assert.equal(bytes.toString('ascii',12,16),'VP8X');
+  assert.equal(bytes.readUIntLE(24,3)+1,1024);
+  assert.equal(bytes.readUIntLE(27,3)+1,1024);
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),c.sha256);
+});
