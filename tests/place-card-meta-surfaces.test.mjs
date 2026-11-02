@@ -83,7 +83,8 @@ test("status renders for an already-open first card and opens its next action", 
   assert.equal(w.document.querySelector("#pcMeta > .pc-progress-status-line"), null);
   assert.equal(w.document.querySelector("#pcMeta > button").textContent, "BY & ARKITEKTUR");
   assert.equal(status.tagName, "BUTTON");
-  assert.match(status.textContent, /^Status: Ikke fullført · Gjenstår: Ta quiz$/);
+  assert.equal(status.textContent, "Ta quiz");
+  assert.doesNotMatch(status.textContent, /Status:|Gjenstår:/, "No obsolete progress text in the photo");
   status.click();
   assert.equal(quizClicks, 1);
   dom.window.close();
