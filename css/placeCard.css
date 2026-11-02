@@ -2304,6 +2304,48 @@ body.hg-app #placeCard.is-place-sheet-direct > #pcCollapseBtn:focus-visible{
   outline-offset:2px;
 }
 
+/* The newer Place Sheet stylesheet may load after this one; the
+   user-selected left title always wins over its former right alignment. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+ .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row #pcTitle{
+  text-align:left !important;
+}
+/* The reader button follows “Om stedet” in the editorial content;
+   it is not part of the photo's floating controls. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-height:30px;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+ .pc-sheet-canonical-about > h3 > .pc-reader-toggle{
+  display:inline-flex;
+  flex:0 0 30px;
+  align-items:center;
+  justify-content:center;
+  width:30px;
+  height:30px;
+  margin:0;
+  padding:0;
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:50%;
+  background:rgba(18,18,18,.92);
+  color:#fff;
+  cursor:pointer;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+ .pc-sheet-canonical-about > h3 > .pc-reader-toggle[aria-pressed="true"]{
+  background:#f6d15a;
+  border-color:#f6d15a;
+  color:#191919;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+ .pc-sheet-canonical-about > h3 > .pc-reader-toggle:focus-visible{
+  outline:2px solid #f6d15a;
+  outline-offset:2px;
+}
+
 /* Direct Place Sheet: the image, section navigation and collection surface
    meet the PlaceCard edge. Padding belongs to readable text sections, not
    to an extra wrapper/frame around the entire sheet. Micro-places and
