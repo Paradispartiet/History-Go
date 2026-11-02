@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_kattefot: Object.freeze({
+      scientificName: "Antennaria dioica",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/18_kattefot_v1.webp",
+      gitBlobSha: "e28389f70fcfc55beacf7a22d4b64bbaed2a9178",
+      reviewedAt: "2026-11-02",
+      stage: "hunnplante i blomstring",
+      evidence: "data/natur/flora/illustration-quality-kattefot-20261102.json"
+    }),
     emne_flora_jordreve: Object.freeze({
       scientificName: "Glechoma hederacea",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/17_jordreve_v1.webp",

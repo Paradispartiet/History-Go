@@ -74,6 +74,8 @@ on:
       - 'scripts/test-flora-hvitmaure-b09.mjs'
       - 'data/natur/flora/illustration-quality-jordreve-20261102.json'
       - 'scripts/test-flora-jordreve-b09.mjs'
+      - 'data/natur/flora/illustration-quality-kattefot-20261102.json'
+      - 'scripts/test-flora-kattefot-b09.mjs'
       - 'scripts/test-flora-gullstjerne-b09.mjs'
       - 'css/nature-explorer.css'
       - 'js/ui/nature-explorer.js'
@@ -156,6 +158,7 @@ jobs:
       - run: node scripts/test-flora-hvittvetann-b09.mjs
       - run: node scripts/test-flora-hvitmaure-b09.mjs
       - run: node scripts/test-flora-jordreve-b09.mjs
+      - run: node scripts/test-flora-kattefot-b09.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -178,6 +181,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-39-black-mobile-desktop
+          name: flora-approved-40-black-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
