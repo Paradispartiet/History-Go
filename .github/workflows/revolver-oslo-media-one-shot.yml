@@ -1,0 +1,50 @@
+name: Revolver source-photo derivative – one shot
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/build-revolver-oslo-media-20261102.mjs'
+      - '.github/workflows/revolver-oslo-media-one-shot.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: revolver-one-shot-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.event.pull_request.number == 6925 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/revolver-oslo-sourced-fagverk-20261102
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Produce genuine licensed WebP images and source attribution
+        run: node scripts/build-revolver-oslo-media-20261102.mjs
+      - name: Verify derivatives are independent local images
+        run: |
+          test -s bilder/places/candidates/oslo-v1-20261102/revolver_oslo_hero.webp
+          test -s bilder/places/candidates/oslo-v1-20261102/revolver_oslo_portrait.webp
+          test -s bilder/places/candidates/oslo-v1-20261102/revolver_oslo_card.webp
+          test "$(sha256sum bilder/places/candidates/oslo-v1-20261102/revolver_oslo_hero.webp | cut -d ' ' -f1)" != "$(sha256sum bilder/places/candidates/oslo-v1-20261102/revolver_oslo_portrait.webp | cut -d ' ' -f1)"
+          node --test tests/revolver-oslo-sourced-fagverk-20261102.test.mjs
+      - name: Push only actual Revolver image derivatives, data, and remove one-shot workflow
+        env:
+          REF: content/revolver-oslo-sourced-fagverk-20261102
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/candidates/oslo-v1-20261102/revolver_oslo_hero.webp bilder/places/candidates/oslo-v1-20261102/revolver_oslo_portrait.webp bilder/places/candidates/oslo-v1-20261102/revolver_oslo_card.webp data/places/subkultur/oslo/places_subkultur/revolver_oslo.json data/runtime/place-open/revolver_oslo.json
+          git rm .github/workflows/revolver-oslo-media-one-shot.yml
+          git diff --cached --check
+          git commit -m 'Revolver: integrer tre ekte CC BY-SA-fotografier fra Wikimedia Commons'
+          git push origin "HEAD:$REF"
