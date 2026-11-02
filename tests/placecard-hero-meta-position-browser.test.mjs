@@ -89,7 +89,7 @@ try{
      };
      return {
        hero:rect("#pcHeaderHero"), status:rect("#pcStatusBar > .pc-progress-status-line"),
-       title:rect("#pcTitle"),badge:rect("#pcBadgesIcon"),people:rect("#pcPeopleIcon"),
+       title:rect("#pcTitle"),badge:rect("#pcBadgesIcon"),people:rect("#pcPeopleIcon"),favorite:rect("#pcFavorite"),
        category:rect("#pcMeta > .pc-category-meta"),epoke:rect("#pcMeta > .pc-epoke"),
        statusParent:document.querySelector(".pc-progress-status-line").parentElement.id,
        categoryParent:document.querySelector(".pc-category-meta").parentElement.id,
@@ -103,11 +103,14 @@ try{
    assert.ok(m.status.y>=m.epoke.bottom-1 && m.status.bottom<=m.hero.bottom+1,
      "status inside image below epoch at "+width+": "+JSON.stringify(m));
    assert.ok(m.title.x>=m.hero.x-1 && m.title.x<=m.hero.x+26
-     && m.title.y>=m.hero.y-1 && m.title.y<=m.hero.y+27,
-     "title top-left on image at "+width+": "+JSON.stringify(m));
-   assert.ok(m.category.y>=m.badge.bottom-2 && m.category.y-m.badge.bottom<=22
-     && Math.abs(m.category.right-m.badge.right)<=16,
-     "category button directly below Merker logo at "+width+": "+JSON.stringify(m));
+     && m.title.y>=m.hero.y-1 && m.title.bottom<=m.category.y+1,
+     "title lower-left above category at "+width+": "+JSON.stringify(m));
+   assert.ok(m.category.y>=m.title.bottom-1
+     && m.category.x>=m.hero.x-1 && m.category.right<=m.hero.right+1,
+     "category beneath heading at "+width+": "+JSON.stringify(m));
+   assert.ok(m.favorite.y>m.people.y && m.favorite.y>m.badge.y
+     && m.favorite.x>=m.people.right-8 && m.favorite.right<=m.badge.x+8,
+     "favorite star centered below the People and Merker icons at "+width+": "+JSON.stringify(m));
    assert.ok(m.epoke.y>=m.category.bottom-1,"epoch stays below category at "+width);
    assert.ok(m.category.bottom<=m.hero.bottom+1
      && m.epoke.bottom<=m.hero.bottom+1,"metadata stays inside landscape hero at "+width);

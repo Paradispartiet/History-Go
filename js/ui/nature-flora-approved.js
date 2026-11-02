@@ -5,6 +5,39 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_prikkperikum: Object.freeze({
+      scientificName: "Hypericum perforatum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/29_prikkperikum_v1.webp",
+      gitBlobSha: "efb9ee18fb2da3f799064cfdfe6429be46ac0a76",
+      reviewedAt: "2026-11-02",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-prikkperikum-20261102.json"
+    }),
+    emne_flora_perleblomst: Object.freeze({
+      scientificName: "Muscari spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/28_perleblomst_v1.webp",
+      gitBlobSha: "1bc873a3e3a30d552e2e77d25f21319c5a1ce93b",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      taxonomicScope: "genus-representative",
+      evidence: "data/natur/flora/illustration-quality-perleblomst-20261102.json"
+    }),
+    emne_flora_penstorkenebb: Object.freeze({
+      scientificName: "Geranium robertianum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/27_stankstorkenebb_v1.webp",
+      gitBlobSha: "a057aae517028ebb753b97f76eb11a44bb83ed50",
+      reviewedAt: "2026-11-02",
+      stage: "blomstring og fruktsetting",
+      evidence: "data/natur/flora/illustration-quality-stankstorkenebb-20261102.json"
+    }),
+    emne_flora_ormehode: Object.freeze({
+      scientificName: "Echium vulgare",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/26_ormehode_v1.webp",
+      gitBlobSha: "7f83fcce4e1ba246dea7c73a1d31bc2589b8bc08",
+      reviewedAt: "2026-11-02",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-ormehode-20261102.json"
+    }),
     emne_flora_meldestokk: Object.freeze({
       scientificName: "Chenopodium album",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/25_meldestokk_v1.webp",
