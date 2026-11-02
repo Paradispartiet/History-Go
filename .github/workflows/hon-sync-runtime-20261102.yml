@@ -1,0 +1,43 @@
+name: House of Nerds temporary runtime sync
+on:
+  push:
+    branches:
+      - place/house-of-nerds-integration-20261102
+    paths:
+      - .github/workflows/hon-sync-runtime-20261102.yml
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build canonical Subkultur runtime and epoch
+        run: |
+          node tools/materialize-subkultur-runtime-v1.mjs
+          npm run epoker:places:build
+      - name: Verify generated files
+        run: |
+          node tools/materialize-subkultur-runtime-v1.mjs --check
+          npm run epoker:places:check
+      - name: Commit bounded generated projections
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          changed=$(git diff --name-only | wc -l)
+          test "$changed" -le 2
+          git add -- data/fag/subkultur/subkultur_runtime_manifest.json data/epoker/epoke-place-index.json
+          test "$(git diff --cached --name-only | wc -l)" -eq "$changed"
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Sync House of Nerds Subkultur runtime and epoch index"
+            git push origin HEAD:place/house-of-nerds-integration-20261102
+          fi
