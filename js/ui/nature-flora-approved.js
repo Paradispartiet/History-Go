@@ -5,6 +5,30 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_russblaastjerne: Object.freeze({
+      scientificName: "Scilla siberica",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/32_russblastjerne_v1.webp",
+      gitBlobSha: "a89e49d8f90fa26f7e5c8ed5b2d63ae0ca3b5f4c",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-russblastjerne-20261102.json"
+    }),
+    emne_flora_reinfann: Object.freeze({
+      scientificName: "Tanacetum vulgare",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/31_reinfann_v1.webp",
+      gitBlobSha: "5efb130ebf1da42f34b09e7aa30174647e76022b",
+      reviewedAt: "2026-11-02",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-reinfann-20261102.json"
+    }),
+    emne_flora_prikktvetann: Object.freeze({
+      scientificName: "Lamium maculatum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/30_prikktvetann_v1.webp",
+      gitBlobSha: "6fd16ab8d8473c97b12eaa5f06e0d40d2be08c46",
+      reviewedAt: "2026-11-02",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-prikktvetann-20261102.json"
+    }),
     emne_flora_prikkperikum: Object.freeze({
       scientificName: "Hypericum perforatum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/29_prikkperikum_v1.webp",

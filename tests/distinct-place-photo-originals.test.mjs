@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { validateDistinctPhotoPair } from '../scripts/check-distinct-place-photos.mjs';
+import { validateDistinctPhotoPair, photoFieldsChanged, placeRows } from '../scripts/check-distinct-place-photos.mjs';
 
 const a = 'a'.repeat(64);
 const b = 'b'.repeat(64);
@@ -35,4 +35,16 @@ test('require original hashes and source URLs, not just different filenames', ()
 test('unphotographed draft is allowed in changed audit, but not publication gate', () => {
   assert.deepEqual(validateDistinctPhotoPair({image:'',frontImage:''}), []);
   assert.equal(validateDistinctPhotoPair({image:'',frontImage:''},{requireBoth:true}).length,1);
+});
+
+test('grouped and array place files retain per-place original-photo checks', () => {
+  const first={id:'one',...fixture()};
+  const second={id:'two',...fixture(),frontImage:'bilder/places/second.webp'};
+  const old=[first,second];
+  const updated=[first,{...second,frontImageMeta:{...second.frontImageMeta,sourceSha256:second.imageMeta.sourceSha256}}];
+  assert.equal(placeRows(old).length,2);
+  assert.equal(placeRows({places:updated}).length,2);
+  assert.equal(photoFieldsChanged(old[0],updated[0]),false);
+  assert.equal(photoFieldsChanged(old[1],updated[1]),true);
+  assert.match(validateDistinctPhotoPair(updated[1]).join(' '),/same original sourceSha256/);
 });

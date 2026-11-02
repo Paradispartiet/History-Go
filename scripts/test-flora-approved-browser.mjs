@@ -76,6 +76,9 @@ try{
     {name:"stankstorkenebb",label:"Stankstorkenebb",term:"stankstorkenebb",path:"b09/27_stankstorkenebb_v1.webp"},
     {name:"perleblomst",label:"Perleblomst",term:"perleblomst",path:"b09/28_perleblomst_v1.webp"},
     {name:"prikkperikum",label:"Prikkperikum",term:"prikkperikum",path:"b09/29_prikkperikum_v1.webp"},
+    {name:"prikktvetann",label:"Prikktvetann",term:"prikktvetann",path:"b09/30_prikktvetann_v1.webp"},
+    {name:"reinfann",label:"Reinfann",term:"reinfann",path:"b09/31_reinfann_v1.webp"},
+    {name:"russblastjerne",label:"Russblåstjerne",term:"Russblåstjerne",path:"b09/32_russblastjerne_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){

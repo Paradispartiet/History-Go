@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261018-footer-actions2"));
-    await safeRun("loadPlaceCardReader", () => loadScriptOnce("js/ui/place-card-reader.js?v=20261102-about-speaker3"));
+    await safeRun("loadPlaceCardReader", () => loadScriptOnce("js/ui/place-card-reader.js?v=20261102-visible-layout6"));
     await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20261027-about-image-inset1"));
     await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
     await safeRun("loadPlacePopupV2", () => loadScriptOnce("js/ui/place-popup-v2.js"));
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadEpokerRuntime", () => loadScriptOnce("js/epoker-runtime.js"));
     await safeRun("loadTimeResolver", () => loadScriptOnce("js/time-resolver.js"));
     await safeRun("loadPlaceCardEpoke", () => loadScriptOnce("js/ui/place-card-epoke.js"));
-    await safeRun("loadPlaceCardStatusSurface", () => loadScriptOnce("js/ui/place-card-status-surface.js?v=20261102-docked-bottom-nav1"));
+    await safeRun("loadPlaceCardStatusSurface", () => loadScriptOnce("js/ui/place-card-status-surface.js?v=20261102-visible-layout6"));
 
     await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
     await safeRun("bottomSheetController.init", () => window.bottomSheetController?.init?.());
