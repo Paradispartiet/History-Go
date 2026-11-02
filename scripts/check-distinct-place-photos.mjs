@@ -69,22 +69,25 @@ const readOld = (base, filename) => {
   try { return JSON.parse(execFileSync('git', ['show', base + ':' + filename], {cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore']})); }
   catch { return {}; }
 };
-const hasPhotoChange = (before, after) => important.some(key => JSON.stringify(before[key]) !== JSON.stringify(after[key]));
+export const photoFieldsChanged = (before = {}, after = {}) => important.some(key => JSON.stringify(before[key]) !== JSON.stringify(after[key]));
+export const placeRows = data => Array.isArray(data) ? data : Array.isArray(data?.places) ? data.places : [data];
 const isCanonicalPlaceFile = p => /^data\/places\/(?!production\/|regler\/|workflow\/|places_index\.json|manifest\.json)/u.test(p) && p.endsWith('.json');
 
 export function checkPaths(paths, { base = '', requireBoth = false, changedOnly = false } = {}) {
   const failures = [];
   let pairs = 0;
   let skipped = 0;
-  for (const filename of paths.filter(isCanonicalPlaceFile)) {
+  for (const filename of new Set(paths.filter(isCanonicalPlaceFile))) {
     const abs = path.resolve(root, filename);
     if (!abs.startsWith(root + path.sep) || !fs.existsSync(abs)) continue;
-    const data = read(filename);
-    const records = Array.isArray(data) ? data : [data];
-    const prior = base ? readOld(base, filename) : {};
-    if (changedOnly && !hasPhotoChange(prior, data)) { skipped++; continue; }
+    const records = placeRows(read(filename));
+    const previous = base ? placeRows(readOld(base, filename)) : [];
+    const priorById = new Map(previous.filter(p => p && typeof p === 'object' && p.id).map(p => [p.id, p]));
     for (const place of records) {
       if (!place || typeof place !== 'object') continue;
+      const before = priorById.get(place.id) || {};
+      // Compare each Place, not only top-level file keys: canonical files may contain arrays.
+      if (changedOnly && !photoFieldsChanged(before, place)) { skipped++; continue; }
       if (place.image && place.frontImage) pairs++;
       const problems = validateDistinctPhotoPair(place, {requireBoth});
       failures.push(...problems.map(message => ({placeId:place.id || path.basename(filename, '.json'),file:filename,message})));
