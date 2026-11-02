@@ -16,10 +16,19 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.canonical_source_count, 256);
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
-  // Rockefeller's corrected, source-addressable Torggata bad Story adds one real 1986 milestone.
-  assert.equal(index.stats.canonical_story_milestone_count, 242);
+  // Rockefeller's Torggata bad and House of Nerds' two-sites Story are each source-backed.
+  assert.equal(index.stats.canonical_story_milestone_count, 243);
+  const honStoryMilestones = Object.values(index.domains.historie.epochs)
+    .flatMap((epoch) => epoch.places || [])
+    .filter((place) => place.place_id === "house_of_nerds")
+    .flatMap((place) => place.milestones || [])
+    .filter((milestone) => milestone.evidence_type === "canonical_story");
+  assert.ok(honStoryMilestones.some((milestone) =>
+    milestone.story_id === "st_house_of_nerds_fandom_blir_fysisk_rom" && milestone.year === 2020
+  ), "House of Nerds source-backed two-site Story must remain in the chronology");
   assert.ok(index.stats.verified_place_production_milestone_count >= 593, "previous verified milestones must remain available");
 });
+
 
 
 test("Sentrum Scene distinguishes conference and concert milestones", () => {
