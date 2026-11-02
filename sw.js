@@ -3,7 +3,8 @@
    Oppdatert: 2026-08-26
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-10-27-v1.3.158";
+// New cache namespace invalidates previously cached PlaceCard CSS/JS on activation.
+const SW_VERSION = "hg-sw-2026-11-02-placecard-v1.3.159";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
