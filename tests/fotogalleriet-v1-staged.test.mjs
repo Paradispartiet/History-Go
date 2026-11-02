@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 
 const read = p => JSON.parse(fs.readFileSync(new URL('../' + p, import.meta.url), 'utf8'));
 const quiz = read('reports/place-production/fotogalleriet/quiz-sets-staged.json');
@@ -37,6 +38,31 @@ test('every answer, source and Knowledge identifier is explicit and source-backe
     assert.ok(q.knowledge_unit_ids.includes(q.primary_knowledge_unit_id));
     assert.equal(q.knowledge_link_status, 'staged_pending_canonical_registry');
   }
+});
+
+test('staged Knowledge IDs match the canonical generator deterministically', () => {
+  const normalize = value => String(value ?? '').trim().toLowerCase()
+    .normalize('NFKD').replace(/[\\u0300-\\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ').replace(/\\s+/g, ' ').trim();
+  const kuId = (subject, claim) => {
+    const normalized = normalize(claim);
+    const prefix = normalized.replace(/\\s+/g, '_').slice(0, 24) || 'item';
+    const digest = createHash('sha256')
+      .update(subject + '\\0' + normalized, 'utf8').digest('hex').slice(0, 10);
+    return `ku_${subject}_${prefix}_${digest}`;
+  };
+  const idToClaim = new Map();
+  for (const q of all) {
+    const expectedId = kuId(q.categoryId, q.knowledge);
+    assert.equal(q.primary_knowledge_unit_id, expectedId, q.id + ': noncanonical KU ID');
+    assert.deepEqual(q.knowledge_unit_ids, [expectedId], q.id + ': unexpected KU binding');
+    assert.equal(q.knowledge, q.claim_basis, q.id + ': Knowledge differs from verified claim');
+    assert.equal(q.knowledge_link_status, 'staged_pending_canonical_registry');
+    const previous = idToClaim.get(expectedId);
+    if (previous) assert.equal(previous, q.knowledge, 'KU collision with different claim');
+    idToClaim.set(expectedId, q.knowledge);
+  }
+  assert.ok(idToClaim.size > 10, '21 quiz questions should span multiple distinct claims');
 });
 
 test('ten QuizCard questions are exact references to the fullquiz', () => {
