@@ -3,7 +3,7 @@ const path = require('path');
 
 const sw = fs.readFileSync(path.join(__dirname, '..', 'sw.js'), 'utf8');
 
-if (!/const SW_VERSION = "hg-sw-2026-08-26-v1\.3\.148";/.test(sw)) {
+if (!/const SW_VERSION = "hg-sw-2026-11-02-placecard-v1\.3\.159";/.test(sw)) {
   throw new Error('service worker version was not bumped');
 }
 
