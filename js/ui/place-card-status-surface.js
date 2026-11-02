@@ -43,7 +43,7 @@
   // The existing owners then reuse these links instead of re-inserting stale
   // unversioned CSS after the larger PlaceCard typography has loaded.
   function loadPlaceSheetTypographyStyles() {
-    const version = "20261009-type-scale1";
+    const version = "20261102-bottom-tabs-v1";
     const styles = [
       ["data-hg-place-unified-style", "css/place-unified-surface.css"],
       ["data-hg-place-sheet-style", "css/place-sheet.css"],

@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadEpokerRuntime", () => loadScriptOnce("js/epoker-runtime.js"));
     await safeRun("loadTimeResolver", () => loadScriptOnce("js/time-resolver.js"));
     await safeRun("loadPlaceCardEpoke", () => loadScriptOnce("js/ui/place-card-epoke.js"));
-    await safeRun("loadPlaceCardStatusSurface", () => loadScriptOnce("js/ui/place-card-status-surface.js?v=20261102-next-action-only1"));
+    await safeRun("loadPlaceCardStatusSurface", () => loadScriptOnce("js/ui/place-card-status-surface.js?v=20261102-next-action-bottom2"));
 
     await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
     await safeRun("bottomSheetController.init", () => window.bottomSheetController?.init?.());
