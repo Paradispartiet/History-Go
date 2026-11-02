@@ -176,7 +176,7 @@ for(const x of pending05.items){
 const preview05=read("flora-illustrasjoner-bolk05.html");
 for(const x of pending05.items)assert(preview05.includes(x.src),"review page missing: "+x.key);
 assert(read("flora-illustration-review.html").includes('href="flora-illustrasjoner-bolk05.html"'));
-console.log("Flora release: 43 verified illustration entries, black-only flora, no public photographs.");
+console.log("Flora release: 44 verified illustration entries, black-only flora, no public photographs.");
 
 assert.equal(approved.get("emne_flora_rodkløver")?.src,"bilder/natur/flora/illustrasjonskandidater/b08/01_rodklover_v4.webp","Only reviewed v4 may publish");
 assert(review08.items.some(a=>a.key==="01_rodklover_v3" && a.approvedForPublication===false),"Historical rejected v3 must remain in review");

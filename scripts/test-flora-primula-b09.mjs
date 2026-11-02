@@ -7,7 +7,7 @@ const catalog=JSON.parse(read("data/natur/flora/blomster.json"));
 const runtime=JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]);
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,43);
+assert.equal(approved.count,44);
 for(const [id,latin,stem] of [["emne_flora_kusymre_marianokleblom","Primula vulgaris","kusymre"],["emne_flora_marianokleblom","Primula veris","marianokleblom"]]){
  const a=catalog.find(x=>x.id===id),r=runtime.find(x=>x.id===id);
  assert(a&&r);assert.equal(a.latin,latin);assert.equal(r.latin,latin);
