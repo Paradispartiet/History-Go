@@ -42,3 +42,21 @@ Ytterligere **tre** bildegenereringer ble forkastet fordi de fortsatt viste **NY
 - Manuell godkjenning ved 1024 px og 64 px, deretter faktisk 1024×1024 RGBA/WebP-fil, SHA-256 og test før `subBadgeImages.klassikere` opprettes.
 
 Automatisert filtest kan ikke alene verifisere at broderte bokstaver i selve bildet er riktige. Den visuelle godkjenningen er et selvstendig obligatorisk trinn.
+
+## Ferdigstilt – 2. november 2026
+
+Den nye **FILMKLASSIKERE**-illustrasjonen er produsert som en selvstendig realistisk brodert rund patch. En original svart-hvitt-filmscene dominerer, med liten historisk projektor, filmrull, 35 mm-filmstrimmel og broderte laurbær. Dette er ikke noen nyhetsreportasje eller gjenbruk fra et tidligere kort. Begge kategorinavnene er **sydd innenfor kanten**, med `FILMKLASSIKERE` øverst og `FILM & TV` mindre nederst. Fargene følger `#C2188B` og `#E7F8FF`.
+
+Brukeren godkjente den nye illustrasjonen visuelt 2. november 2026. Den tidligere forkastede utkastshistorikken (sju kandidater) er bevart i produksjonsmanifestet.
+
+**Faktisk integrert fil:** `bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp`
+
+- 1024 × 1024 WebP med alfa
+- 477 120 byte
+- SHA-256: `39b28542ca4ca9215c54d8810df6e57bac1816a9000c1bbd6943c957d11550d5`
+- `subBadgeImages.klassikere` er koblet i `data/badges/film_tv.json`.
+- Fem tidligere aktive Film & TV-undermerker og sju Scenekunst-undermerker er bevart.
+
+Målrettet test: `node --test tests/badge-filmklassikere-v1-production.test.mjs tests/badge-underbadge-batch01.test.mjs`.
+
+![Filmklassikere – brodert undermerke](../../bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp)
