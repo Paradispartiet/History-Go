@@ -1893,7 +1893,8 @@
     return text16(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
   }
   function ensureSectionNav(shell4, place) {
-    let nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
+    const host = card();
+    let nav = (host == null ? void 0 : host.querySelector(':scope > [data-hg-place-sheet-nav="1"]')) || shell4.querySelector('[data-hg-place-sheet-nav="1"]');
     if (!(nav instanceof HTMLElement)) {
       nav = document.createElement("nav");
       nav.className = "pc-sheet-section-nav";
@@ -1916,9 +1917,7 @@
         }
       });
     }
-    const hero = shell4.querySelector("[data-hg-place-sheet-hero]");
-    if (hero && hero.nextElementSibling !== nav) hero.insertAdjacentElement("afterend", nav);
-    else if (!hero && shell4.firstElementChild !== nav) shell4.prepend(nav);
+    if (host && nav.parentElement !== host) host.appendChild(nav);
     nav.dataset.placeId = text16(place.id);
     return nav;
   }
@@ -1935,7 +1934,8 @@
     return Boolean(owner && text16(owner.textContent) && !owner.querySelector(".hg-place-tab-empty"));
   }
   function syncSectionNav(shell4) {
-    const nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
+    const host = card();
+    const nav = (host == null ? void 0 : host.querySelector(':scope > [data-hg-place-sheet-nav="1"]')) || shell4.querySelector('[data-hg-place-sheet-nav="1"]');
     const placeId2 = text16(shell4.dataset.placeId);
     if (!(nav instanceof HTMLElement) || !placeId2) return;
     nav.querySelectorAll("[data-hg-place-sheet-jump]").forEach((button) => {
@@ -2131,6 +2131,8 @@
     if (sideStack instanceof HTMLElement) legacyGrid.appendChild(sideStack);
     if (events instanceof HTMLElement) legacyGrid.appendChild(events);
     shell4 == null ? void 0 : shell4.remove();
+    const bottomNav = root2.querySelector(':scope > [data-hg-place-sheet-nav="1"]');
+    if (bottomNav) bottomNav.remove();
     root2.classList.remove("is-place-sheet-phase1", "is-place-sheet-direct");
     delete root2.dataset.hgPlaceSheetPhase;
   }
