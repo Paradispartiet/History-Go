@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 const read = p => JSON.parse(readFileSync(new URL('../'+p, import.meta.url),'utf8'));
-const img = 'bilder/merker/film_tv/undermerker/filmlocations-brodert-v1.webp';
-const sha = 'd1a28895adaa50fa19f94ed72f5c6b6ac85abfc82c30befb291091bfc702726a';
+const img = 'bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp';
+const sha = 'e2c44ebb35f46fef275daa17145a76806b651f6fa4a29784fc88e55d2c6fdb19';
 test('Filminnspillingssteder has the active authentic WebP and approved production record',()=>{
  const f=read('data/badges/film_tv.json');
  const m=read('data/badges/underbadge_batch01_production.json');
@@ -19,7 +19,7 @@ test('Filminnspillingssteder has the active authentic WebP and approved producti
  assert.equal(a.productionBrief.bottomLabel,'FILM & TV');
  assert.equal(a.sha256,sha);
  const b=readFileSync(new URL('../'+img,import.meta.url));
- assert.equal(b.length,184132);
+ assert.equal(b.length,420684);
  assert.equal(b.subarray(0,4).toString('ascii'),'RIFF');
  assert.equal(b.subarray(8,12).toString('ascii'),'WEBP');
  assert.equal(b.subarray(12,16).toString('ascii'),'VP8X');
@@ -38,7 +38,7 @@ test('eight previous Film & TV subbadges and the seven Scenekunst subbadges are 
  nyheter_og_reportasje:'bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp',
  klassikere:'bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp',
  norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',
- filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v1.webp'
+ filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp'
  };
  const {filmlocations,...other}=f.subBadgeImages;
  assert.deepEqual(other,prior);
