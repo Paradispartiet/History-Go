@@ -119,3 +119,7 @@ Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og b
 - PR #6904: person- og scenarioindekser er bygget på midlertidig merge-view mot current main, inkludert nytt `bo_terje_hustoft`-anker fra main. Endringene er genererte, ikke manuelt redigert. CI-resultat og People runtime-gate må fortsatt sees på nøyaktig PR-HEAD.
 
 - PR #6904: kanonisk `node scripts/build-place-open-payloads.mjs` har nå skrevet `data/runtime/people-all/part-007.json`, `data/runtime/place-open/house_of_nerds.json` og nødvendig florashard til People-grenen. Engangsworkflowen ble fjernet; PR-head oppdatert. Siste CI-kjøringer etter cleanup er ikke dokumentert PASS; ikke endre `vFerdig`-status basert på bygg alene.
+
+## Forskningsspor – kritisk vurdert (2026-11-02)
+- Blumenthal, Veronica og Olga Gjerald (2022), «‘You just get sucked into it’: extending the immersion process model to virtual gameplay experiences in managed visitor attractions», *Leisure Studies* 41(5), 722–741, DOI https://doi.org/10.1080/02614367.2022.2049627. Studien bygger på intervjuer med gjester ved **House of Nerds Oslo** og er relevant for spilloppslukthet og kommersielle opplevelser.
+- **Stedsgate:** Det er foreløpig ikke dokumentert at alle intervjuene fant sted på Vulkan 18. Ikke bruk studien som direkte Vulkan-evidens uten eksplisitt tidspunkt og sted. Klassifiser som metodisk forskningsspor, ikke som kronologi-/quizfasit eller PlaceCard-evidens.
