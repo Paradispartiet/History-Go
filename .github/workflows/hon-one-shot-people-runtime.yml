@@ -1,0 +1,42 @@
+name: House of Nerds temporary People runtime sync
+on:
+  push:
+    branches: [place/house-of-nerds-person-evidence-20261101]
+    paths: [.github/workflows/hon-one-shot-people-runtime.yml]
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.ref == 'refs/heads/place/house-of-nerds-person-evidence-20261101'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and check official place-open output
+        shell: bash
+        run: |
+          set -eu
+          node scripts/build-place-open-payloads.mjs
+          node scripts/build-place-open-payloads.mjs --check
+      - name: Commit only bounded generated runtime output
+        shell: bash
+        run: |
+          set -eu
+          git add -A -- data/runtime
+          count=$(git diff --cached --name-only | wc -l | tr -d ' ')
+          echo "Changed generated assets: $count"
+          git diff --cached --name-only
+          if [ "$count" -gt 20 ]; then
+            echo "Refusing broad unrelated generated output" >&2
+            exit 1
+          fi
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Synchronize House of Nerds People in generated Place-open runtime"
+            git push origin HEAD:place/house-of-nerds-person-evidence-20261101
+          fi
