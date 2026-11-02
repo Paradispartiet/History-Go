@@ -1,7 +1,7 @@
 # Teater undermerke – designbrief v2 (2. november 2026)
 
 ## Status
-**Ny illustrasjon mangler.** Eksisterende `teater-brodert-v1.webp` ble avvist fordi det kopierer de to maskene fra Scenekunst-hovedmerket. Tre ytterligere illustrasjonsforsøk ble også avvist for samme feil. Ingen av dem skal aktiveres.
+**Ny illustrasjon er produsert som inaktiv kandidat.** Eksisterende `teater-brodert-v1.webp` ble avvist fordi det kopierer de to maskene fra Scenekunst-hovedmerket. Tre ytterligere illustrasjonsforsøk ble også avvist for samme feil. Ingen av dem skal aktiveres.
 
 ## Påkrevd bilde
 - Én **selvstendig** 1024 × 1024 WebP, realistisk sydd og med gjennomsiktig bakgrunn rundt merket.
@@ -14,6 +14,13 @@
 **Ingen** komedie-/tragediemasker, teaterkikkert eller billettsymboler. Ikke bruk kopi fra Scenekunst, Teater v1 eller andre ferdige merker.
 
 ## Implementering etter visuell godkjenning
-Plasser `bilder/merker/scenekunst/undermerker/teater-brodert-v2.webp`, registrer SHA-256, kontroller alfa/dimensjoner og oppdater først da `subBadgeImages.teater` i `data/badges/scenekunst.json`. Oppdater samtidig `selectedImage` og godkjenningsstatus i `underbadge_batch01_production.json`.
+WebP-filen er lagt inn som inaktiv kandidat med SHA-256 `bfa38522935c7895a495a2b470b77120e9164037c5832e6125d8448f305948ad` (449 234 byte, 1024×1024 med alfa). Kontroller visuell kvalitet og oppdater først da `subBadgeImages.teater` i `data/badges/scenekunst.json`. Oppdater samtidig `selectedImage` og godkjenningsstatus i `underbadge_batch01_production.json`.
 
 **Ingen bildereferanser eller eksisterende originaler er endret av denne briefen.**
+
+## Ny kandidat fra 2. november 2026
+- **Teater v2** er selvstendig generert med en aktør foran tre publikummere, grå klær, scenelys og forheng. Den inneholder **ingen teatermasker, teaterkikkert eller billett**.
+- Øvre innskrift **TEATER** er brodert i stoffet.
+- Faktisk fil: [Teater v2](../../bilder/merker/scenekunst/undermerker/teater-brodert-v2.webp).
+- WebP 1024×1024, 449 234 byte, SHA-256 `bfa38522935c7895a495a2b470b77120e9164037c5832e6125d8448f305948ad`.
+- **Ikke visuelt sluttgodkjent; ikke aktivert**. Ingen eksisterende Scenekunst-undermerker eller -hovedmerker er endret.
