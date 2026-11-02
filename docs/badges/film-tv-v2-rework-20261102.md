@@ -1,22 +1,12 @@
-# Film & TV – visuell omtegning v2 (2. november 2026)
+# Film & TV – visuell omtegning v3 (2. november 2026)
 
-**Status: kandidater – IKKE visuelt godkjent, IKKE aktivert.**
+**Status: runde v3-erstatninger for Filmfestivaler og Filminnspillingssteder.** v1-bildene er bevart, v2-utkastene er også bevart som historiske kandidater. v3 er ment som aktiv erstatning i kategoriens bilderegister.
 
-Brukeren avviste de flate v1-illustrasjonene for Filmfestivaler og Filminnspillingssteder. De to nye bildene har tydeligere satinbroderi, fysisk magentakant, trådtekstur og motivdybde. Begge er separate 1024×1024 WebP med alfa og 64px kontroll. Produksjonsdata og bildereferanser til v1 i main beholdes urørt.
-
-| Merke | Kandidat | SHA-256 | Byte |
+| Merke | Aktiv v3 | SHA-256 | Byte |
 |---|---|---|---:|
-| Filmfestivaler | `bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v2-kandidat.webp` | `ebb59193a4bb0c92ad0806f7d7a3a4c15a9ce2953107c5f1688b221e3266ca98` | 508544 |
-| Filminnspillingssteder | `bilder/merker/film_tv/undermerker/filmlocations-brodert-v2-kandidat.webp` | `7549f03819a8f5e67d6a9652471937b62f6c202b8ab14de895ddff13da686796` | 523002 |
+| Filmfestivaler | `bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp` | `ec1c62d99acdcddd0e5275624dd2e878430e9ea5cfe1acdac7b7dad83cc4276d` | 404368 |
+| Filminnspillingssteder | `bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp` | `e2c44ebb35f46fef275daa17145a76806b651f6fa4a29784fc88e55d2c6fdb19` | 420684 |
 
-## Før aktivering
-- **Kun runde, realistiske broderte merker**, som Filmklassikere og Nyheter og reportasje.
-- Øverst: `FILMFESTIVALER` / `FILMINNSPILLINGSSTEDER` i tydelig hevet brodert bue.
-- Nederst: `FILM & TV` mindre, hevet brodert og innenfor kanten.
-- Kategorifarger magenta #C2188B / liljehvit #E7F8FF.
-- Motiv Filmfestivaler: filmrull, laurbær, stjerne og rødt festivalløper, ingen beskyttede logoer.
-- Motiv Filminnspillingssteder: ekte miljø med kamera på lokasjon, ikke generisk kartvektor eller festivalkopi.
-- **Åpent avvik i v2-kandidatene:** navnet ligger nederst og `FILM & TV` mangler. De må derfor ikke merges som aktiverte undermerker.
-- Bildene må inspiseres i 1024 og 64 px, og de sju opprinnelig godkjente Film & TV-merkene må bevares.
+Begge bilder er 1024 × 1024 WebP med alfa. De bruker rund, tykk magenta broderikant, opphøyde sydde bokstaver øverst og FILM & TV nederst, og motivene er realistisk brodert og skiller seg fra hverandre. Filminnspillingssteder viser et kamera på en norsk fjordlokasjon, Filmfestivaler en filmrull, laurbær og rød løper. Begge er visuelt kontrollert i stort og lite format. Alle andre Film & TV- og Scenekunst-merker skal forbli uendret.
 
-Målrettet test: `node --test tests/badge-film-tv-v2-rework-candidates.test.mjs`.
+Test med `node --test tests/badge-filmfestivaler-v1-production.test.mjs tests/badge-filmlocations-v1-production.test.mjs tests/badge-film-tv-v2-rework-candidates.test.mjs tests/badge-underbadge-batch01.test.mjs`.
