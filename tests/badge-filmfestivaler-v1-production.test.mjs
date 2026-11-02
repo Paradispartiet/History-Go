@@ -4,10 +4,10 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 
 const read = path => JSON.parse(readFileSync(new URL('../' + path, import.meta.url), 'utf8'));
-const imagePath = 'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v1.webp';
-const expectedSHA = '8400ee7d3ccce2d5e59a9f3dc1d5306c27e7a192ec80536e28af8bd2a2ef891a';
+const imagePath = 'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp';
+const expectedSHA = 'ec1c62d99acdcddd0e5275624dd2e878430e9ea5cfe1acdac7b7dad83cc4276d';
 
-test('Filmfestivaler v1 is activated with verified original WebP', () => {
+test('Filmfestivaler v3 is activated with verified original WebP', () => {
   const film = read('data/badges/film_tv.json');
   const manifest = read('data/badges/underbadge_batch01_production.json');
   const badge = manifest.families.film_tv.assets.find(x => x.id === 'filmfestivaler');
@@ -21,7 +21,7 @@ test('Filmfestivaler v1 is activated with verified original WebP', () => {
   assert.equal(badge.productionBrief.bottomLabel, 'FILM & TV');
   assert.equal(badge.sha256, expectedSHA);
   const bytes = readFileSync(new URL('../' + imagePath, import.meta.url));
-  assert.equal(bytes.length, 199394);
+  assert.equal(bytes.length, 404368);
   assert.equal(bytes.subarray(0,4).toString('ascii'), 'RIFF');
   assert.equal(bytes.subarray(8,12).toString('ascii'), 'WEBP');
   assert.equal(bytes.subarray(12,16).toString('ascii'), 'VP8X');
@@ -42,7 +42,8 @@ test('seven previous Film & TV badges and all seven Scenekunst badges are preser
     nyheter_og_reportasje:'bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp',
     klassikere:'bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp',
     norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',
-    filmfestivaler:imagePath
+    filmfestivaler:imagePath,
+    filmlocations:'bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp'
   });
   assert.equal(Object.keys(stage.subBadgeImages).length,7);
   for (const id of stage.sub) assert.ok(stage.subBadgeImages[id]);
