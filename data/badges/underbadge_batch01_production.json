@@ -18,7 +18,22 @@
     "qualityGate": "visual signoff is mandatory; automated image checks alone are insufficient",
     "publication": "inactive until visual approval, repository WebP upload, hash verification and explicit category mapping",
     "imageSourceQualityNote": "Prototype files derived from a triptych; do not automatically mark as approved or reuse them for other IDs.",
-    "visualReference": "Match existing realistic raised-thread/stitched textile badges, never flat vector icons."
+    "visualReference": "Match existing realistic raised-thread/stitched textile badges, never flat vector icons.",
+    "parentCategoryLabel": {
+      "rule": "mandatory_for_all_new_subbadges",
+      "location": "curved INNER bottom rim, stitched within patch (never external text)",
+      "sizeRelativeToSubcategory": 0.48,
+      "threadColor": "muted light parent category secondary color, legible at 64px",
+      "source": "parent category name from data/badges/*.json, no guessed label",
+      "note": "Already approved images remain unchanged until separately reviewed and updated; retroactive rollout is not part of this PR",
+      "examples": {
+        "film_tv": "FILM & TV",
+        "scenekunst": "SCENEKUNST",
+        "by": "BY",
+        "religion": "RELIGION",
+        "vitenskap": "VITENSKAP"
+      }
+    }
   },
   "pilot": [
     {
@@ -744,14 +759,20 @@
               "label_spelled_DOKUMENTARFILM",
               "label_inside_embroidery",
               "magenta_lily_white",
-              "recognizable_at_64px"
+              "recognizable_at_64px",
+              "parent_label_FILM_AND_TV_inside_bottom_rim",
+              "secondary_label_smaller_than_top_title"
             ],
-            "rejectedAttempts": 2,
-            "rejectedReason": "To bildegenereringer 2. november gjentok feilaktig KORTFILM og ble ikke lagret eller aktivert.",
+            "rejectedAttempts": 3,
+            "rejectedReason": "Three image outputs on November 2 repeated KORTFILM or the previously approved Kortfilm motif; none accepted as DOKUMENTARFILM.",
             "visualApproved": false,
             "technicalApproved": false,
             "selectedImage": null,
-            "targetPath": "bilder/merker/film_tv/undermerker/dokumentarfilm-brodert-v1.webp"
+            "targetPath": "bilder/merker/film_tv/undermerker/dokumentarfilm-brodert-v1.webp",
+            "parentLabelInsidePatch": "FILM & TV",
+            "parentLabelPosition": "embroidered curved uppercase lettering INSIDE the lower inner rim",
+            "parentLabelSizeRelativeToTitle": 0.48,
+            "parentLabelSecondaryThreadColor": "#E7F8FF"
           }
         },
         {

@@ -15,6 +15,12 @@ test('Dokumentarfilm cannot activate a recycled Kortfilm badge',()=>{
  assert.equal(asset.selectedImage,null);
  assert.equal(brief.status,'artwork_required_no_accepted_image');
  assert.equal(brief.titleInsidePatch,'DOKUMENTARFILM');
+ assert.equal(brief.parentLabelInsidePatch,'FILM & TV');
+ assert.equal(brief.parentLabelPosition,'embroidered curved uppercase lettering INSIDE the lower inner rim');
+ assert.equal(brief.parentLabelSizeRelativeToTitle,0.48);
+ assert.equal(brief.parentLabelSecondaryThreadColor.toUpperCase(),film.secondaryColor.toUpperCase());
+ assert.ok(brief.imageRules.includes('parent_label_FILM_AND_TV_inside_bottom_rim'));
+ assert.equal(manifest.style.parentCategoryLabel.rule,'mandatory_for_all_new_subbadges');
  assert.notEqual(brief.titleInsidePatch,'KORTFILM');
  assert.equal(brief.palette.primary.toUpperCase(),film.color.toUpperCase());
  assert.equal(brief.palette.secondary.toUpperCase(),film.secondaryColor.toUpperCase());
