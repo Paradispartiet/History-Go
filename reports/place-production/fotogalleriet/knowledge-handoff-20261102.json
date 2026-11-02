@@ -1,0 +1,424 @@
+{
+  "schema": "history_go_place_knowledge_handoff_v1",
+  "placeId": "fotogalleriet",
+  "status": "staged_reviewed_not_registered_or_published",
+  "sourceQuiz": "reports/place-production/fotogalleriet/quiz-sets-staged.json",
+  "sourceQuizCard": "reports/place-production/fotogalleriet/quizcard-staged.json",
+  "sourcePacket": "data/places/production/fotogalleriet.json",
+  "provenance": "Claim text and KU IDs copied from source-reviewed staged quiz, not independently generated canonical Knowledge registry.",
+  "counts": {
+    "fullquiz": 21,
+    "quizcard": 10,
+    "uniqueKnowledgeUnits": 17
+  },
+  "activationOrder": [
+    "After two independently licensed, photo-identified originals are published with correct source hashes and distinct image/frontImage paths, verify the photo gate.",
+    "Move reviewed 3x7 quiz into data/quiz/kunst/fotogalleriet_sets.json and append only Fotogalleriet entries to data/quiz/manifest.json on a refreshed main snapshot.",
+    "Run the existing canonical Knowledge generator with --write and verify all 21 fullquiz questions link to canonical generated units. Do not manually write or fork canonical knowledge registries.",
+    "Copy exactly ten source questions into the active QuizCard file and synchronize canonical Knowledge IDs; validate parity and runtime mobile/iPad.",
+    "Retire staged-only tests/status fields, run targeted production closeout and confirm that main and the active runtime include only the intended Fotogalleriet additions."
+  ],
+  "units": [
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriet_ble_etable_640eedfd6e",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriet ble etablert i 1977 som en selvstendig visningsarena for fotografisk kunst i Oslo.",
+      "claim_ids": [
+        "claim_fotogalleriet_origin"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_1_q1"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q01"
+      ],
+      "card_question_ids": [
+        "fotogalleriet_v1_q01"
+      ],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriet_apnet_i_en_c3d2c22b18",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriet åpnet i en tidligere potetkjeller i Oscars gate 50A i Oslo.",
+      "claim_ids": [
+        "claim_fotogalleriet_first_room"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_1_q2",
+        "kunst_fotogalleriet_set_1_q3",
+        "kunst_fotogalleriet_set_3_q7"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q02",
+        "fotogalleriet_v1_q03",
+        "fotogalleriet_v1_q21"
+      ],
+      "card_question_ids": [
+        "fotogalleriet_v1_q02",
+        "fotogalleriet_v1_q21"
+      ],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_tom_sandberg_dag_alveng__1f0f55444c",
+      "subject_id": "kunst",
+      "canonical_claim": "Tom Sandberg, Dag Alveng, Bjørn Høyum, Per Berntsen, Jamie Parslow og Jim Bengston var blant fotografene som bidro til å etablere Fotogalleriet.",
+      "claim_ids": [
+        "claim_fotogalleriet_founders"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_1_q4",
+        "kunst_fotogalleriet_set_1_q6"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q04",
+        "fotogalleriet_v1_q06"
+      ],
+      "card_question_ids": [],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriet_ble_grunnl_875f0d534f",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriet ble grunnlagt for å gi fotografi et eget sted for utstilling og diskusjon som kunstnerisk medium.",
+      "claim_ids": [
+        "claim_fotogalleriet_independent"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_1_q5"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q05"
+      ],
+      "card_question_ids": [
+        "fotogalleriet_v1_q05"
+      ],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriet_apnet_5_se_b20ca04a69",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriet åpnet 5. september 1977 med fotografier av Paul Hill og Raymond Moor.",
+      "claim_ids": [
+        "claim_fotogalleriet_opening"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_1_q7",
+        "kunst_fotogalleriet_set_2_q1"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q07",
+        "fotogalleriet_v1_q08"
+      ],
+      "card_question_ids": [
+        "fotogalleriet_v1_q08"
+      ],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotografi_hadde_svakere__a44849b401",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotografi hadde svakere status enn maleri og skulptur i de etablerte norske kunstinstitusjonene på 1970-tallet.",
+      "claim_ids": [
+        "claim_fotogalleriet_status"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_2_q2"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q09"
+      ],
+      "card_question_ids": [],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_forbundet_frie_fotografe_d8dbfbe35c",
+      "subject_id": "kunst",
+      "canonical_claim": "Forbundet Frie Fotografer ble opprettet i 1974 og arbeidet for fotografenes kunstfaglige interesser.",
+      "claim_ids": [
+        "claim_fotogalleriet_fff"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_2_q3"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q10"
+      ],
+      "card_question_ids": [
+        "fotogalleriet_v1_q10"
+      ],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fff_vedtok_i_1976_a_arra_57d5d129fd",
+      "subject_id": "kunst",
+      "canonical_claim": "FFF vedtok i 1976 å arrangere en juryert utstilling av fotografi da Høstutstillingen ikke var åpen for fotografi.",
+      "claim_ids": [
+        "claim_fotogalleriet_spring_origin"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_2_q4"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q11"
+      ],
+      "card_question_ids": [
+        "fotogalleriet_v1_q11"
+      ],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriet_og_fff_sam_36eccc0a13",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriet og FFF samarbeider om den årlige Vårutstillingen.",
+      "claim_ids": [
+        "claim_fotogalleriet_collaboration"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://www.visitoslo.com/no/attraksjon/fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_2_q5"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q12"
+      ],
+      "card_question_ids": [
+        "fotogalleriet_v1_q12"
+      ],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriets_publisert_9a52d795b3",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriets publiserte besøksadresse er Møllergata 34 i Oslo.",
+      "claim_ids": [
+        "claim_fotogalleriet_visitor"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://fotogalleriet.no/about/"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_2_q6"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q13"
+      ],
+      "card_question_ids": [],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriet_beskriver__0c39e3b535",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriet beskriver en rolle som plattform for unge kunstnere og nye ideer.",
+      "claim_ids": [
+        "claim_fotogalleriet_platform"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://fotogalleriet.no/about/"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_2_q7"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q14"
+      ],
+      "card_question_ids": [],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriet_har_presen_e28cffebc4",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriet har presentert fotografer som Kåre Kivijärvi, Diane Arbus og Christer Strömholm.",
+      "claim_ids": [
+        "claim_fotogalleriet_exhibitions"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_3_q1"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q15"
+      ],
+      "card_question_ids": [
+        "fotogalleriet_v1_q15"
+      ],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriets_egen_hist_7b0c54a946",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriets egen historikk omtaler tidlige separatutstillinger for Dag Alveng, Eline Mugaas og Maria Pasenau.",
+      "claim_ids": [
+        "claim_fotogalleriet_solo"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://fotogalleriet.no/about/"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_3_q2"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q16"
+      ],
+      "card_question_ids": [],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriet_driver_uts_db41d00d46",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriet driver utstillingsprogram, formidling og forskning om fotografisk kunst og visuell kultur.",
+      "claim_ids": [
+        "claim_fotogalleriet_activities"
+      ],
+      "emne_ids": [
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital"
+      ],
+      "sources": [
+        "https://fotogalleriet.no/about/"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_3_q3"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q17"
+      ],
+      "card_question_ids": [],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_i_2017_viste_fotogalleri_c0cb02e554",
+      "subject_id": "kunst",
+      "canonical_claim": "I 2017 viste Fotogalleriet materiale fra sitt eget arkiv i en jubileumsutstilling.",
+      "claim_ids": [
+        "claim_fotogalleriet_anniversary"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_3_q4"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q18"
+      ],
+      "card_question_ids": [
+        "fotogalleriet_v1_q18"
+      ],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotogalleriet_har_dokume_3aefe4b7ca",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotogalleriet har dokumentert virksomheten i et omfattende arkiv og bibliotek med fotolitteratur og tidsskrifter.",
+      "claim_ids": [
+        "claim_fotogalleriet_archive"
+      ],
+      "emne_ids": [
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital"
+      ],
+      "sources": [
+        "https://snl.no/Fotogalleriet"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_3_q5"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q19"
+      ],
+      "card_question_ids": [],
+      "status": "reviewed_staged_not_canonical"
+    },
+    {
+      "knowledge_unit_id": "ku_kunst_fotografiens_hus_er_et_a_51f8784dc4",
+      "subject_id": "kunst",
+      "canonical_claim": "Fotografiens Hus er et annet fotogalleri og oppgir Rådhusgata 20 som besøksadresse.",
+      "claim_ids": [
+        "claim_fotogalleriet_distinct"
+      ],
+      "emne_ids": [
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "sources": [
+        "https://fotografiens-hus.no/om-oss/"
+      ],
+      "quiz_ids": [
+        "kunst_fotogalleriet_set_3_q6"
+      ],
+      "question_ids": [
+        "fotogalleriet_v1_q20"
+      ],
+      "card_question_ids": [],
+      "status": "reviewed_staged_not_canonical"
+    }
+  ]
+}
