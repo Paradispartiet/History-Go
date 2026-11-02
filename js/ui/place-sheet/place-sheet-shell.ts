@@ -81,9 +81,9 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
       }
     });
   }
-  // Keep the original nav in the shell for content-aware updates. CSS puts
-  // it last visually, pinned to the bottom even when async sections mount.
-  if (nav.parentElement !== shell) shell.appendChild(nav);
+  const hero = shell.querySelector<HTMLElement>("[data-hg-place-sheet-hero]");
+  if (hero && hero.nextElementSibling !== nav) hero.insertAdjacentElement("afterend", nav);
+  else if (!hero && shell.firstElementChild !== nav) shell.prepend(nav);
   nav.dataset.placeId = text(place.id);
   return nav;
 }
