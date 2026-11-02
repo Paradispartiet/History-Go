@@ -29,14 +29,24 @@
 - **Ben Sand** og **Einar Idsøe Eidsvåg**: respektivt konsert- og klubbbooking i 2017 ifølge Subjekt.
 Ingen personprofiler er godkjent eller generert her. Sjekk eksisterende identiteter og bildelisenser før eventuelle nye profiler.
 
-## Bilder – klarerte kilder, ikke ferdige lokale derivater
-- Ssu, «Revolver bar, Møllergata 32, Oslo», januar 2024, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Revolver_bar,_M%C3%B8llergata_32,_Oslo.jpg
-- Ssu, «Revolver Bar (ELO-bygget), Møllergata 32, Oslo», januar 2020, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Revolver_Bar_(ELO-bygget),_M%C3%B8llergata_32,_Oslo.jpg
-To forskjellige lokale bildefiler kreves for `image` og `frontImage`; ikke hotlink i stedet for identifiserte, lisensierte deriverte filer.
+## Bilder – integrert og rettighetsklarert
+- Toppbilde: `bilder/places/candidates/oslo-v1-20261102/revolver_oslo_hero.webp` (1400 × 900).
+- Stående QuizCard-bilde: `bilder/places/candidates/oslo-v1-20261102/revolver_oslo_portrait.webp` (900 × 1350).
+- Kortbilde: `bilder/places/candidates/oslo-v1-20261102/revolver_oslo_card.webp` (900 × 600).
+- Fotograf: Ssu; CC BY-SA 4.0. Originaler: https://commons.wikimedia.org/wiki/File:Revolver_bar,_M%C3%B8llergata_32,_Oslo.jpg og https://commons.wikimedia.org/wiki/File:Revolver_Bar_(ELO-bygget),_M%C3%B8llergata_32,_Oslo.jpg
+- Kreditering og kildelenker er lagret i canonical stedskort, og bildekoblinger er synkronisert til Place-open.
 
-## Ikke v1-godkjent ennå
-- **Produsert i arbeidsgrenen:** fem nye sett med 30 direkte kildebelagte fullquizspørsmål og ti matchende QuizCard-spørsmål; ID-er, svar og manifest er lagt inn. De er fortsatt kandidater inntil Knowledge-generering og faktisk app-QA er godkjent.
-- Personprofiler og bildebruk er ennå ikke kvalitetssikret og integrert.
-- Quizmanifest og QuizCard-kolleksjon er redaksjonelt oppdatert. **Generert Fagverk-release-digest, samlet Knowledge (med manglende Knowledge-ID-er), avledede runtime-/Place-open- og øvrige manifestindekser må regenereres og valideres.**
-- Reell mobil-/desktopvisning av bilde, PlaceCard, Fagverk og quiz er ikke kjørt.
-- **Ingen formell endring til `v1`.** Arbeidsgrenen er et avgrenset innholdsgrunnlag som ikke skal merges før nødvendige runtime-/QA-gater er håndtert.
+## Knowledge og Fagverk-release – generert
+- GitHub Actions «Revolver Knowledge and Fagverk release – one shot» ble fullført med **success** 2. november 2026.
+- `data/knowledge/knowledge_units.generated.json`, `data/knowledge/concepts.generated.json`, `reports/knowledge-id-backfill.json` og `data/fagverk/fagverk_release.json` er synkronisert i PR-en.
+- Quizspørsmålene har nå kanoniske Knowledge-referanser. Midlertidig workflow er slettet av den fullførte jobben.
+- Dette bekrefter generering og datakontroller, ikke at appen viser alt korrekt.
+
+## People – avgrenset
+- Navngitte dokumenterte roller: Dan Marius Nordhagen, Ole Øvstedal, Sarah Jägenstedt, Ben Sand, Einar Idsøe Eidsvåg (Subjekt 2017).
+- Ingen nye People-profiler er opprettet uten full kontroll av eksisterende ID-er, biografisk kildegrunnlag og bildelisenser. Eksisterende miljøtilknytninger er bevart.
+
+## V1-gate – gjenstår
+- Reell mobil-/desktopkontroll av **PlaceCard-bilder, QuizCard-flipp og kuratert Fagverk** skal kjøres i den nye målrettede nettleserjobben.
+- `revolver_oslo` beholdes som `v1_candidate` inntil nettleser-QA er bestått og siste kontroller er gjennomgått.
+- Ikke endre canonical ID, koordinater, stedskategori eller eksisterende People-tilknytninger ved godkjenning.

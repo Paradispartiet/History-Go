@@ -94,3 +94,24 @@ test("10 QuizCard questions preserve fullquiz question, options and answer keys"
     assert.equal(card.answerKey[i].answer, q.answer);
   }
 });
+
+test("Revolver local licensed media and generated Knowledge IDs exist", () => {
+  const files = [source.image,source.frontImage,source.cardImage];
+  assert.equal(new Set(files).size, 3);
+  for(const file of files) {
+    assert(file.endsWith(".webp"));
+    assert(fs.existsSync(file), "Missing local image: " + file);
+    assert(fs.statSync(file).size > 10000, "Truncated local image: " + file);
+    assert.equal(runtime.place[file === source.image ? "image" : file === source.frontImage ? "frontImage" : "cardImage"],file);
+  }
+  assert.equal(source.imageMeta.creator, "Ssu");
+  assert.equal(source.frontImageMeta.license, "CC BY-SA 4.0");
+  const quiz = read("data/quiz/musikk/revolver_oslo_sets_merged.json");
+  assert.equal(quiz.status, "v1_candidate_pending_browser");
+  for (const q of quiz.sets.flatMap(s => s.questions)) {
+    assert.equal(q.knowledge_link_status, "linked", q.id);
+    assert(q.primary_knowledge_unit_id?.startsWith("ku_"), q.id);
+    assert(q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id), q.id);
+    assert(q.concept_ids?.length > 0, q.id);
+  }
+});

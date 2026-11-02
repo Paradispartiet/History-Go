@@ -10,6 +10,7 @@ on:
       - 'data/quiz/manifest.json'
       - 'data/quizcards/musikk/topp10_musikk_oslo_v1_batch01.json'
       - '.github/workflows/revolver-oslo-sourced-fagverk.yml'
+      - 'tests/revolver-oslo-real-browser.test.mjs'
   workflow_dispatch:
 
 permissions:
@@ -28,3 +29,32 @@ jobs:
         with:
           node-version: '22'
       - run: node --test tests/revolver-oslo-sourced-fagverk-20261102.test.mjs
+
+  browser-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Locate installed Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Revolver real app mobile/desktop PlaceCard, QuizCard and Fagverk
+        run: node tests/revolver-oslo-real-browser.test.mjs
+      - name: Upload screenshots and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: revolver-oslo-real-browser
+          path: artifacts/revolver-oslo-real-browser
+          if-no-files-found: ignore
+          retention-days: 14
