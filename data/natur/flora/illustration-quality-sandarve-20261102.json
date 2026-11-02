@@ -2,7 +2,7 @@
   "schema": "history-go-flora-single-species-review-v1",
   "batch": "09",
   "date": "2026-11-02",
-  "status": "prepared_locally_binary_transfer_required",
+  "status": "source_uploaded_ci_pending",
   "baselineApproved": 54,
   "approvedCountAfterRelease": 55,
   "publicationRule": "Do not publish or merge before the exact original WebP bytes are present at src, their SHA256 and gitBlobSha match, the existing 54 species remain unchanged, and illustration-contract plus approved-flora-browser pass on final PR head.",
@@ -21,9 +21,9 @@
         1024,
         1536
       ],
-      "reviewStatus": "visual_candidate",
-      "approvedForPublication": false,
-      "botanicalVisualDecision": "visual_recognizability_reviewed_pending_repository_source",
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
       "reviewedAt": "2026-11-02",
       "stage": "blomstring_og_frostander",
       "visualChecks": {
@@ -40,12 +40,11 @@
       ],
       "observations": "En liten ettårig sandarve med flere slanke forgrenede og svakt hårete stengler fra en fin rot. Små motsatte eggformede til spisst lansettformede, oftest 3-nervete blad langs stenglene. Små hvite blomster har fem hele kronblad, kortere enn de fem lange, spisse og svakt hårete grønne begerbladene. Knopper og kapsler i flere stadier vises for å gjøre planten gjenkjennelig.",
       "limitations": "Illustrasjonen er en forenklet botanisk plate, ikke en komplett bestemmelsesnøkkel. Blomstene er delvis forstørret og plantens blomstrende og fruktsettende stadier sammensatt. Gitt størrelsesspriket i illustrasjonen skal blomster og blad ikke brukes til å beregne reell plantestørrelse. Artsbestemmelse må kontrolleres med botanisk beskrivelse.",
-      "technicalVerification": "Generated RGBA original 1024x1536; 805505 fully transparent pixels; original alpha range 0–253. Converted to 384620-byte WebP locally. SHA256 4858248ca90e59ec934e8a5300f6d55b9e2db74cbc072f1b445df35cbfac16e7; git blob SHA 098a4c460c4b289e79b651e5da7de582e75b7728. Image transfer from local workspace to repository not yet completed.",
+      "technicalVerification": "Verified exact original 384620-byte alpha WebP 1024x1536 uploaded into GitHub at src; SHA256 4858248ca90e59ec934e8a5300f6d55b9e2db74cbc072f1b445df35cbfac16e7 and git blob SHA 098a4c460c4b289e79b651e5da7de582e75b7728 match local original. Black #000 compositing reviewed; no photographs.",
       "publicationBlockedBy": [
-        "Transfer exact original WebP to the repository at src.",
-        "Set approvedForPublication=true after verifying source file against hashes.",
-        "Integrate registry, release test, browser test and workflow routing; both required jobs green before merge.",
-        "Verify Pages after merge."
+        "Mandatory illustration-contract must pass on final PR head.",
+        "Mandatory approved-flora-browser must pass on final PR head.",
+        "Confirm GitHub Pages after merge."
       ]
     }
   ]
