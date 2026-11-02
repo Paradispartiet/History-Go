@@ -2225,7 +2225,8 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   background:rgba(0,0,0,.62);
 }
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta > .pc-epoke{
-  flex-basis:auto;
+  /* Epoch always starts below the category, including tablet and desktop. */
+  flex-basis:100%;
   padding:4px 8px;
   border:1px solid rgba(255,255,255,.22);
   border-radius:999px;

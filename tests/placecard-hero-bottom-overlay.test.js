@@ -11,6 +11,7 @@ assert.match(heroCss, /grid-template-columns:minmax\(0,1fr\);/, "Text uses a ful
 assert.match(heroCss, /\.pc-title-row\{\s*order:1;\s*grid-column:1;\s*grid-row:3;/, "Title directly below quiz action on left");
 assert.match(heroCss, /\.pc-title-row #pcTitle\{[^}]*text-align:left;/s, "Title aligns left");
 assert.match(heroCss, /#pcMeta\{\s*order:2;\s*grid-column:1;\s*grid-row:4;/, "Category and epoch follow heading");
+assert.match(heroCss, /#pcMeta > \.pc-epoke\{[^}]*flex-basis:100%;/s, "Epoch must remain below category at every width");
 assert.match(heroCss, /#pcStatusBar\{\s*order:0;\s*grid-column:1;\s*grid-row:2;/, "Next action precedes heading");
 assert.match(heroCss, /#pcFavorite\{\s*position:static;\s*order:1;\s*flex:0 0 28px;/, "Small star remains inline after title");
 assert.match(heroCss, /#pcPeopleIcon\{\s*top:12px;\s*right:94px;/, "People stays at upper right");
