@@ -37,6 +37,14 @@
       stage: "blomstring og frøsetting",
       evidence: "data/natur/flora/illustration-quality-gjetertaske-20261101.json"
     }),
+    emne_flora_hvitbergknapp: Object.freeze({
+      scientificName: "Sedum album",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/14_hvitbergknapp_v1.webp",
+      gitBlobSha: "eaab16110ecafcd5ebddde8e72b6cd67e95ae30d",
+      reviewedAt: "2026-11-02",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-hvitbergknapp-20261102.json"
+    }),
     emne_flora_humleblom: Object.freeze({
       scientificName: "Geum urbanum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/13_humleblom_v1.webp",
