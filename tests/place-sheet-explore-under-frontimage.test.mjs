@@ -42,9 +42,9 @@ test("Place Sheet keeps only text-section links and puts Events/Møtes below col
   assert.doesNotMatch(shellSource, /insertAfter\?\.after\(sideStack\)/);
 });
 
-test("Place Sheet header scrolls horizontally without moving collection images into it", () => {
-  assert.match(shellSource, /hero\.insertAdjacentElement\("afterend", nav\)/, "text navigation sits below the place photo");
-  assert.match(phase6Css, /\.pc-sheet-section-nav\{[\s\S]*?position:sticky;[\s\S]*?top:0;[\s\S]*?overflow-x:auto;/);
+test("Place Sheet bottom section bar scrolls horizontally without moving collection images into it", () => {
+  assert.match(shellSource, /host\.appendChild\(nav\)/, "text navigation is docked after the scroll container");
+  assert.match(phase6Css, /> \.pc-sheet-section-nav\{[\s\S]*?position:relative;[\s\S]*?overflow-x:auto;/);
   assert.doesNotMatch(phase6Css, /> \.pc-side-stack/);
   assert.doesNotMatch(phase6Css, /> #pcEventsBox/);
   assert.match(onsiteCss, /\.pc-sheet-explore-grid > #pcEventsBox\{/);

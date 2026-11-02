@@ -21,8 +21,10 @@ const sticky = fs.readFileSync(path.join(root, "js", "ui", "place-card-sticky-he
 assert.match(sticky, /naturalHeight \* 0\.53/, "The hero must contract toward half-height");
 assert.match(sticky, /--pc-hero-collapse-offset/, "The title must travel upward with scroll");
 const navCss = fs.readFileSync(path.join(root, "css", "place-sheet-phase6.css"), "utf8");
-assert.match(navCss, /\.pc-sheet-section-nav\{[^}]*position:sticky;[^}]*top:auto;[^}]*bottom:0;/s, "Section navigation must be pinned to the bottom");
-assert.match(navCss, /\.pc-sheet-section-nav\{[^}]*order:999;/s, "Section navigation must follow editorial sections");
+assert.match(navCss, /> \.pc-sheet-section-nav\{[^}]*position:relative;/s, "Section navigation is docked outside scroll body");
+const shellSource = fs.readFileSync(path.join(root, "js", "ui", "place-sheet", "place-sheet-shell.ts"), "utf8");
+assert.match(shellSource, /host\.appendChild\(nav\)/, "Section navigation is the card's bottom sibling");
+
 let summary = { status: "unknown", visited: false, quizCompleted: false, nextAction: "quiz" };
 const calls = [];
 const actions = {
