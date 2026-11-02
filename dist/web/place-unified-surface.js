@@ -1916,7 +1916,9 @@
         }
       });
     }
-    if (nav.parentElement !== shell4) shell4.appendChild(nav);
+    const hero = shell4.querySelector("[data-hg-place-sheet-hero]");
+    if (hero && hero.nextElementSibling !== nav) hero.insertAdjacentElement("afterend", nav);
+    else if (!hero && shell4.firstElementChild !== nav) shell4.prepend(nav);
     nav.dataset.placeId = text16(place.id);
     return nav;
   }
@@ -2229,7 +2231,7 @@
       const styles = [
         [STYLE_FLAG, "css/place-unified-surface.css"],
         [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261027-about-image-inset1"],
-        [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css?v=20261102-bottom-tabs-v1"]
+        [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
       ];
       for (const [flag, href] of styles) {
         if (document.querySelector(`link[${flag}="1"]`)) continue;
