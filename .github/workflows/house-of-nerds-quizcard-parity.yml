@@ -11,6 +11,10 @@ on:
       - .github/workflows/house-of-nerds-quizcard-parity.yml
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   contract:
     runs-on: ubuntu-latest
