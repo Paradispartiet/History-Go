@@ -2233,7 +2233,7 @@
       const styles = [
         [STYLE_FLAG, "css/place-unified-surface.css"],
         [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261027-about-image-inset1"],
-        [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
+        [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css?v=20261102-sticky-bottom2"]
       ];
       for (const [flag, href] of styles) {
         if (document.querySelector(`link[${flag}="1"]`)) continue;
