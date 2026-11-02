@@ -56,7 +56,9 @@ test('Regjeringskvartalet has exactly 22 unique canonical People links', () => {
   assert.equal(linked.length, 22);
   assert.equal(byId.size, 22);
   assert.deepEqual([...byId.keys()].sort(), expectedIds);
-  assert.equal(new Set(people.map(person => person.id)).size, people.length);
+  const peopleIds = people.map((person) => person.id);
+  const duplicateIds = peopleIds.filter((id, index) => peopleIds.indexOf(id) !== index);
+  assert.equal(new Set(peopleIds).size, people.length, `Duplicate canonical People IDs: ${duplicateIds.join(", ")}`);
 });
 
 test('the ten expanded links are ready claim-backed People profiles', () => {
