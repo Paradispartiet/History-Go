@@ -1,0 +1,49 @@
+name: The Villa – native PlaceCard and QuizCard QA
+
+on:
+  pull_request:
+    paths:
+      - 'tests/the-villa-v1-real-app-browser.mjs'
+      - 'tests/the-villa-v1-content.test.mjs'
+      - 'data/places/subkultur/oslo/places_subkultur/the_villa.json'
+      - 'data/quiz/musikk/the_villa_sets_merged.json'
+      - '.github/workflows/the-villa-v1-browser.yml'
+permissions:
+  contents: read
+concurrency:
+  group: the-villa-native-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Validate native source and quiz contracts
+        run: node --test tests/the-villa-v1-content.test.mjs
+      - name: Find preinstalled browser
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: The Villa actual PlaceCard QuizCard and Fagverk on mobile and desktop
+        run: node tests/the-villa-v1-real-app-browser.mjs
+      - name: The Villa full quiz, actual mobile and desktop
+        run: node scripts/verify-place-quiz-browser.mjs the_villa
+      - name: Save actual app screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: the-villa-native-browser-evidence
+          path: |
+            artifacts/the_villa-v1-app-qa/**
+            artifacts/place-quiz/the_villa/**
+          if-no-files-found: warn
+          retention-days: 14
