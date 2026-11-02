@@ -13,10 +13,11 @@
 4. Oslo World: programbredde, uavhengig scene og blanding av musikkmiljøer: https://www.osloworld.no/spillested/revolver
 5. VisitOSLO: beskrivelse av etasjebruk, bar, konsertrom og klubber: https://www.visitoslo.com/eat/revolver
 6. Brønnøysundregistrene: 32B som den registrerte beliggenhetsadressen: https://virksomhet.brreg.no/nb/oppslag/underenheter/992100311
-7. Radio Revolt 13.11.2023: kontekst om klubbmiljø og Revolvers sjangerprofil: https://radiorevolt.no/post/oslo-stor-fisk-liten-dam
+7. Ballade 16.05.2017: Oslo Psych Fest på Revolver 2013 og AFTR Fest i 2017: https://www.ballade.no/bransjen/starter-ny-sjangerlos-festival-i-oslo/
+8. Radio Revolt 13.11.2023: kontekst om klubbmiljø og Revolvers sjangerprofil: https://radiorevolt.no/post/oslo-stor-fisk-liten-dam
 
 ## Produsert
-- Historisk ingress og fire selvstendige stedstekstavsnitt uten spillintern tekst.
+- Historisk ingress og fem selvstendige stedstekstavsnitt inkludert festivalhistorie fra Ballade, uten spillintern tekst.
 - Eget kuratert Fagverk med tre artikler, tre undersøkelser, kildehenvisninger og eksisterende musikkapitler.
 - Canonical Fagverk-indeks og Place-open synkronisert i denne arbeidsgrenen.
 - Ingen endringer i eksisterende kollektiv People-ID, koordinater, sekundærmerker eller andre steder.
@@ -34,8 +35,8 @@ Ingen personprofiler er godkjent eller generert her. Sjekk eksisterende identite
 To forskjellige lokale bildefiler kreves for `image` og `frontImage`; ikke hotlink i stedet for identifiserte, lisensierte deriverte filer.
 
 ## Ikke v1-godkjent ennå
-- Det er ikke produsert eller publisert ny fullquiz på minimum `normal`-profil og tilhørende 10 QuizCard-spørsmål.
+- **Produsert i arbeidsgrenen:** fem nye sett med 30 direkte kildebelagte fullquizspørsmål og ti matchende QuizCard-spørsmål; ID-er, svar og manifest er lagt inn. De er fortsatt kandidater inntil Knowledge-generering og faktisk app-QA er godkjent.
 - Personprofiler og bildebruk er ennå ikke kvalitetssikret og integrert.
-- Generert Fagverk-release-digest, samlet Knowledge, quiz-/QuizCard-manifest og eventuelle øvrige genererte indekser må regenereres og valideres.
+- Quizmanifest og QuizCard-kolleksjon er redaksjonelt oppdatert. **Generert Fagverk-release-digest, samlet Knowledge (med manglende Knowledge-ID-er), avledede runtime-/Place-open- og øvrige manifestindekser må regenereres og valideres.**
 - Reell mobil-/desktopvisning av bilde, PlaceCard, Fagverk og quiz er ikke kjørt.
 - **Ingen formell endring til `v1`.** Arbeidsgrenen er et avgrenset innholdsgrunnlag som ikke skal merges før nødvendige runtime-/QA-gater er håndtert.
