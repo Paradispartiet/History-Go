@@ -2,24 +2,29 @@
 2. november 2026
 
 ## Status
-**Produksjonskontrakt. Ingen illustrasjon er ferdig, overført eller aktivert.** Tre bildeproduksjonsforsøk gjentok TV-SERIER i stedet for riktig navn og motiv. Samtlige er avvist.
+**Ferdig som individuelt merket WebP og aktivert i produksjonsgrenen**, forbeholdt målrettet QA og merge.
 
-## Riktig visuelt konsept
-- **NYHETER OG REPORTASJE** sydd langs øvre innerkant. For å bevare korrekt navn og lesbarhet kan den lange tittelen fordeles på **to buede øvre linjer**; ikke forkort navnet.
-- **FILM & TV** sydd langs nedre innerkant i omtrent 48 % skriftstørrelse, ikke en billedtekst under merket.
-- Film & TV-farger: magenta `#C2188B` og liljehvit `#E7F8FF`. Diskrete grå/sorte tråder er tillatt; gull skal ikke dominere.
-- Midtmotiv: en journalist som rapporterer fra et faktisk gatemiljø, med diskret øreplugg/opptakskontroll, kringkastingsramme og tydelig hendelsessted.
-- **Ikke** episodekort, TV-sofa, popcorn, fjernkontroll, klapperbrett, dokumentarintervju eller kopi av Medier-hovedmerkets avis og mikrofon.
-- Ett selvstendig, rundt brodert WebP-merke på 1024 × 1024 med alfa. Lesbarhetskontroll ved 64 px.
+- `bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp`
+- 1024 × 1024 WebP med alfa, **477 942 byte**
+- SHA-256: `19ba49acb138e57c8b219b1a13ecdfad232c9df552555122486f8ab607299a65`
 
-## Godkjenningsport
-1. Kontroller hele stavemåten på begge broderte navn, inkludert ordet «REPORTASJE».
-2. Sjekk motivets særpreg mot de fire publiserte Film & TV-undermerkene og Medier-hovedmerket.
-3. Kontroller realistisk stoff-/stingtekstur og korrekt fargepar.
-4. Deretter lastes godkjent bildefil til `bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp`, med størrelse og SHA-256 i manifest.
-5. Aktiver `subBadgeImages.nyheter_og_reportasje` **bare** etter visuell og teknisk godkjenning. Kjør målrettede tester.
+## Design
+- **NYHETER OG REPORTASJE**: korrekt norsk tekst, to buede linjer i øvre innerkant.
+- **FILM & TV**: mindre brodert tekst langs nedre innerkant.
+- Primærfarge magenta `#C2188B`, sekundærfarge liljehvit `#E7F8FF`.
+- Motivet viser en reporter i et urbant hendelsesmiljø med opptaksutstyr, publikum og diskret presseinnslag; dette er forskjellig fra TV-serier og dokumentarintervju.
+- Stoff-/broderitekstur kontrollert i 1024 px og nedskalert 64 px.
+- De tre tidligere feilaktige TV-SERIER-utkastene er forkastet, og ingen slike er aktivert.
 
-## Bevar
-`spillefilm`, `kortfilm`, `dokumentarfilm`, `tv_serier`, alle sju Scenekunst-undermerker og de 19 ferdige hovedmerkene skal være uendret.
+## Integrasjon
+`subBadgeImages.nyheter_og_reportasje` peker til den nye WebP-filen i `data/badges/film_tv.json`. Filens mål, SHA-256 og visuelle godkjenning er registrert i `data/badges/underbadge_batch01_production.json`.
 
-Dette dokumentet er en **produksjonsbeskrivelse**, ikke et ferdig bildefilprodukt.
+De fire eksisterende Film & TV-undermerkene og sju aktive Scenekunst-undermerker er bevart. Ingen hovedmerker er byttet ut.
+
+## Test
+`node --test tests/badge-nyheter-reportasje-v1-production.test.mjs tests/badge-underbadge-batch01.test.mjs`
+
+![Nyheter og reportasje](../../bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp)
+
+## Videre
+Neste undermerke er `klassikere` (filmklassikere), med egen brodert komposisjon og **FILM & TV** nederst.
