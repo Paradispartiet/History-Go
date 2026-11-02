@@ -49,7 +49,7 @@ test('SALT has 30 natural history quiz questions with 10 matching QuizCard answe
  assert.equal(questions.length,30);
  assert.equal(new Set(questions.map(q=>q.id)).size,30);
  assert.ok(questions.every(q=>q.quiz_id&&q.targetId==='salt'));
- const forbidden=/place-fil|em_musikk_|met_musikk_|Nuu\\/SALT|musikkmetodefil|`salt`/i;
+ const forbidden=/place-fil|em_musikk_|met_musikk_|Nuu|musikkmetodefil|`salt`/i;
  assert.ok(questions.every(q=>!forbidden.test(q.question+' '+q.knowledge)));
  const card=cards.cards.find(c=>c.targetId==='salt');
  assert.ok(card);
