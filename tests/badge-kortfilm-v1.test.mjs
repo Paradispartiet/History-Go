@@ -1,0 +1,38 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+const read = p => JSON.parse(readFileSync(new URL('../'+p, import.meta.url), 'utf8'));
+const file = p => readFileSync(new URL('../'+p, import.meta.url));
+test('Kortfilm v1 connects original embroidered WebP with required label, palette and SHA-256', () => {
+  const film=read('data/badges/film_tv.json');
+  const manifest=read('data/badges/underbadge_batch01_production.json');
+  const asset=manifest.families.film_tv.assets.find(a=>a.id==='kortfilm');
+  const image='bilder/merker/film_tv/undermerker/kortfilm-brodert-v1.webp';
+  assert.equal(film.color.toUpperCase(),'#C2188B');
+  assert.equal(film.secondaryColor.toUpperCase(),'#E7F8FF');
+  assert.equal(film.image,'bilder/merker/film_tv-brodert-v5.webp');
+  assert.equal(film.subBadgeImages.kortfilm,image);
+  assert.equal(asset.selectedImage,image);
+  assert.equal(asset.status,'integrated');
+  assert.equal(asset.letteringInsideBorder,true);
+  assert.equal(asset.quality.visualApproved,true);
+  const data=file(image);
+  assert.equal(data.length,382864);
+  assert.equal(data.toString('ascii',0,4),'RIFF');
+  assert.equal(data.toString('ascii',8,12),'WEBP');
+  assert.equal(data.toString('ascii',12,16),'VP8X');
+  assert.ok((data[20] & 0x10)!==0,'expect alpha channel');
+  assert.equal(data.readUIntLE(24,3)+1,1024);
+  assert.equal(data.readUIntLE(27,3)+1,1024);
+  assert.equal(createHash('sha256').update(data).digest('hex'),'64257f44bbbf3a763fe8b3b8e3f621c6a708d4213d8c5559c0e1a8994e94df56');
+  assert.equal(asset.sha256,'64257f44bbbf3a763fe8b3b8e3f621c6a708d4213d8c5559c0e1a8994e94df56');
+});
+test('Earlier Film and Scenekunst image links are preserved', () => {
+  const film=read('data/badges/film_tv.json');
+  const scene=read('data/badges/scenekunst.json');
+  assert.equal(film.subBadgeImages.spillefilm,'bilder/merker/film_tv/undermerker/spillefilm-brodert-v2.webp');
+  assert.equal(Object.keys(scene.subBadgeImages).length,7);
+  for (const id of scene.sub) assert.ok(scene.subBadgeImages[id]);
+  assert.equal(film.subBadgeImages.kortfilm,'bilder/merker/film_tv/undermerker/kortfilm-brodert-v1.webp');
+});

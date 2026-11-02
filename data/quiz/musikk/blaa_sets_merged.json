@@ -22,7 +22,8 @@
     "kept": "Kept place-file core: Blå as klubb- og konsertscene ved Akerselva, important for jazz, elektronika and klubbkultur, with alternative/urban music profile.",
     "corrected": "Made the quiz music-first: Blå is not treated as only nightlife or serving. Questions require music, scene, genre, audience, event, DJ/liveband, Akerselva or industrial-building anchor. Opening date is anchored to 28 February 1998 from Oslo byleksikon.",
     "not_continued": "No generic nightlife questions, no pure bar/serving questions, no taste questions, no category/meta questions.",
-    "added": "Added 5 sets x 6 questions: opening, Brenneriveien 9C, founders, Ingens gate, jazz/electronic/hiphop/rock profile, concert-to-club rhythm, industrial building, Nordisk Tekstil, Petter Thane, outdoor meeting place, avoid-angle, contrast against Rockefeller/John Dee and advanced music-ecology synthesis."
+    "added": "Added 5 sets x 6 questions: opening, Brenneriveien 9C, founders, Ingens gate, jazz/electronic/hiphop/rock profile, concert-to-club rhythm, industrial building, Nordisk Tekstil, Petter Thane, outdoor meeting place, avoid-angle, contrast against Rockefeller/John Dee and advanced music-ecology synthesis.",
+    "v1_editorial_20261102": "Replaced internal meta and generic genre analysis with source-backed opening-night, founders, industrial venue and booking/bar history; preserved all question IDs and ten QuizCard sources."
   },
   "profile_snapshot": {
     "place_type": "club_concert_venue",
@@ -316,17 +317,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hvilken type sted er Blå i place-filen?",
+          "question": "Hva slags musikkscene åpnet i Brenneriveien ved Akerselva i 1998?",
           "options": [
-            "Klubb- og konsertscene ved Akerselva",
-            "Nynorsk teaterinstitusjon",
-            "Midlertidig fjordarena med badstuer"
+            "En jazz- og konsertscene for unge og eksperimenterende musikere",
+            "En operasal bare for klassiske oppsetninger",
+            "Et teater uten konserter"
           ],
-          "answer": "Klubb- og konsertscene ved Akerselva",
+          "answer": "En jazz- og konsertscene for unge og eksperimenterende musikere",
           "answerIndex": 0,
           "dimension": "placeprofil",
           "topic": "klubbscene",
-          "knowledge": "Place-filen beskriver Blå som klubb- og konsertscene ved Akerselva, viktig for jazz, elektronika og klubbkultur.",
+          "knowledge": "Blå ble etablert som en jazzscene i Brenneriveien 9C, med rom for unge, eksperimenterende musikere og et program som etter hvert favnet flere sjangre.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
@@ -358,11 +359,11 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
-            "https://oslobyleksikon.no/side/Bl%C3%A5"
+            "https://oslobyleksikon.no/side/Bl%C3%A5",
+            "https://www.dagbladet.no/kultur/det-bla-eventyret-ved-akerselva/65599295"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -377,16 +378,16 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept",
-          "primary_knowledge_unit_id": "ku_musikk_place_filen_beskriver_bl_eb5620fd7e",
-          "knowledge_unit_ids": [
-            "ku_musikk_place_filen_beskriver_bl_eb5620fd7e"
-          ],
           "concept_ids": [
             "co_musikk_klubbscene_6d5cfd1564",
             "co_musikk_konsertscene_b296b7a5aa",
             "co_musikk_akerselva_5028cf34de"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_bla_ble_etablert_som_en__3dcf16ab51",
+          "knowledge_unit_ids": [
+            "ku_musikk_bla_ble_etablert_som_en__3dcf16ab51"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
@@ -481,17 +482,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hvilken musikkfaglig lesning passer best for Blå?",
+          "question": "Hvilke musikksjangre ble knyttet sammen på Blå i årene etter etableringen?",
           "options": [
-            "En elvenær klubb- og konsertscene der jazz, elektronika, hiphop, rock, DJs, liveband, publikum og industrielt byrom virker sammen",
-            "En ren badstuearena uten musikkprogram",
-            "Et klassisk teaterhus uten klubb- eller konsertfunksjon"
+            "Jazz, improvisasjon, elektronisk musikk, hiphop og rock",
+            "Bare symfonisk musikk",
+            "Kun tradisjonell folkemusikk uten jazz"
           ],
-          "answer": "En elvenær klubb- og konsertscene der jazz, elektronika, hiphop, rock, DJs, liveband, publikum og industrielt byrom virker sammen",
+          "answer": "Jazz, improvisasjon, elektronisk musikk, hiphop og rock",
           "answerIndex": 0,
           "dimension": "syntese",
           "topic": "samlet Blå-analyse",
-          "knowledge": "Blå bør leses som klubb- og livekultur: sjangerbredde, publikumspraksis, nattkultur, elverom og tidligere industribygg danner én sceneidentitet.",
+          "knowledge": "Blå begynte med jazz og improvisasjon, men fikk etter hvert et bredere konsert- og klubbprogram med elektronisk musikk, hiphop, pop og rock.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
@@ -526,13 +527,11 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
             "https://oslobyleksikon.no/side/Bl%C3%A5",
-            "https://www.osloworld.no/spillested/bl%C3%A5",
-            "https://www.visitnorway.no/reisemal/ostlandet/oslo/listings-oslo/bl%C3%A5/15478/"
+            "https://www.blaaoslo.no/om-blaa"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -547,10 +546,6 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept_expanded",
-          "primary_knowledge_unit_id": "ku_musikk_bla_b_r_leses_som_klubb__eed7e3cefc",
-          "knowledge_unit_ids": [
-            "ku_musikk_bla_b_r_leses_som_klubb__eed7e3cefc"
-          ],
           "concept_ids": [
             "co_musikk_jazz_fe2b70e9e1",
             "co_musikk_elektronika_e4c366e60f",
@@ -560,6 +555,10 @@
             "co_musikk_akerselva_5028cf34de"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_bla_begynte_med_jazz_og__8d6b57680b",
+          "knowledge_unit_ids": [
+            "ku_musikk_bla_begynte_med_jazz_og__8d6b57680b"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         }
@@ -1009,7 +1008,7 @@
           "answerIndex": 0,
           "dimension": "syntese",
           "topic": "sjangerblanding",
-          "knowledge": "Blå er viktig som musikksted nettopp fordi konserter, klubbkvelder og sjangere ofte glir over i hverandre.",
+          "knowledge": "Blå ble startet som en jazzscene, og har siden presentert elektronisk musikk, hiphop, pop og rock. Blandingen har vært sentral for konsert- og klubblivet.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
@@ -1064,10 +1063,6 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept_expanded",
-          "primary_knowledge_unit_id": "ku_musikk_bla_er_viktig_som_musikk_52f8f6511f",
-          "knowledge_unit_ids": [
-            "ku_musikk_bla_er_viktig_som_musikk_52f8f6511f"
-          ],
           "concept_ids": [
             "co_musikk_jazz_fe2b70e9e1",
             "co_musikk_elektronika_e4c366e60f",
@@ -1076,6 +1071,11 @@
             "co_musikk_klubbkultur_05f05b8fa9"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_bla_ble_startet_som_en_j_7278b2be86",
+          "knowledge_unit_ids": [
+            "ku_musikk_bla_ble_startet_som_en_j_7278b2be86",
+            "ku_musikk_blandingen_har_v_rt_sent_3380211387"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         }
@@ -1344,17 +1344,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Når ble bygningen renovert ifølge Oslo byleksikon?",
+          "question": "Hvordan er fabrikkbygningens historie forskjellig fra Blås historie?",
           "options": [
-            "1982",
-            "1998",
-            "2014"
+            "Industribygningen ble oppført og renovert lenge før musikklubben åpnet",
+            "Blå bygde fabrikken som ny konsertsal i 1998",
+            "Klubben åpnet før fabrikken fantes"
           ],
-          "answer": "1982",
+          "answer": "Industribygningen ble oppført og renovert lenge før musikklubben åpnet",
           "answerIndex": 0,
           "dimension": "bygningshistorie",
           "topic": "renovert 1982",
-          "knowledge": "Oslo byleksikon skriver at bygningen ble renovert i 1982.",
+          "knowledge": "Bygningen ble oppført for Nordisk Tekstil A/S i 1913 og renovert i 1982, mens Blå åpnet i 1998. Dette er forskjellige stadier i stedets historie.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
@@ -1389,7 +1389,7 @@
             "https://oslobyleksikon.no/side/Bl%C3%A5"
           ],
           "source_origin": "external",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -1404,16 +1404,17 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "added_or_rebuilt",
-          "primary_knowledge_unit_id": "ku_musikk_oslo_byleksikon_skriver__82da267c6c",
-          "knowledge_unit_ids": [
-            "ku_musikk_oslo_byleksikon_skriver__82da267c6c"
-          ],
           "concept_ids": [
             "co_musikk_renovert_74770f43d5",
             "co_musikk_1982_3125bb213e",
             "co_musikk_fabrikkbygning_55d272b1f9"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_bygningen_ble_oppf_rt_fo_853cc8f7a8",
+          "knowledge_unit_ids": [
+            "ku_musikk_bygningen_ble_oppf_rt_fo_853cc8f7a8",
+            "ku_musikk_dette_er_forskjellige_st_5356ff8f99"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
@@ -1518,7 +1519,7 @@
           "answerIndex": 0,
           "dimension": "syntese",
           "topic": "industribygg som scene",
-          "knowledge": "Blå viser hvordan Akerselvas industribygg kunne få ny rolle som musikk-, klubb- og publikumsarena.",
+          "knowledge": "Blå åpnet i en tidligere fabrikkbygning fra 1913 ved Akerselva. Ombruken av bygningen gjorde et eldre industrirom til scene for konserter, klubbkvelder og publikum.",
           "trivia": [],
           "difficulty": 3,
           "question_type": "fact",
@@ -1551,12 +1552,10 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
-            "https://oslobyleksikon.no/side/Bl%C3%A5",
-            "https://www.visitnorway.no/reisemal/ostlandet/oslo/listings-oslo/bl%C3%A5/15478/"
+            "https://oslobyleksikon.no/side/Bl%C3%A5"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -1571,10 +1570,6 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept_expanded",
-          "primary_knowledge_unit_id": "ku_musikk_bla_viser_hvordan_akerse_0dd8fca42e",
-          "knowledge_unit_ids": [
-            "ku_musikk_bla_viser_hvordan_akerse_0dd8fca42e"
-          ],
           "concept_ids": [
             "co_musikk_industriombruk_7159afa287",
             "co_musikk_akerselva_5028cf34de",
@@ -1582,6 +1577,11 @@
             "co_musikk_konsertrom_f7b5c785d3"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_bla_apnet_i_en_tidligere_12014c9c80",
+          "knowledge_unit_ids": [
+            "ku_musikk_bla_apnet_i_en_tidligere_12014c9c80",
+            "ku_musikk_ombruken_av_bygningen_gj_0996384b00"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         }
@@ -1850,17 +1850,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hvilken rolle gir gårdsrommet og elveplasseringen Blå?",
+          "question": "Hvordan endret Blå bruken av industrilokalene ved Akerselva?",
           "options": [
-            "Et sosialt publikumsrom rundt konserter og klubbkvelder",
-            "En lukket backstage uten publikum",
-            "En ren lagerfunksjon for instrumenter"
+            "Det gamle fabrikkmiljøet ble rom for konserter, klubbkvelder og sosialt samvær",
+            "Bygningen ble permanent stengt for publikum",
+            "Det ble bare etablert kontor- og lagerplasser"
           ],
-          "answer": "Et sosialt publikumsrom rundt konserter og klubbkvelder",
+          "answer": "Det gamle fabrikkmiljøet ble rom for konserter, klubbkvelder og sosialt samvær",
           "answerIndex": 0,
           "dimension": "publikum",
           "topic": "publikumsrom",
-          "knowledge": "Place-filen og VisitOSLO viser at Blå ikke bare er innendørsscene, men også elverom, gårdsrom og sosial møteplass.",
+          "knowledge": "Blå tok i bruk tidligere fabrikkarealer som konsert- og klubblokale og fikk uteservering ved elva, slik Oslo byleksikon beskriver.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
@@ -1893,12 +1893,10 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
-            "https://www.visitnorway.no/reisemal/ostlandet/oslo/listings-oslo/bl%C3%A5/15478/",
             "https://oslobyleksikon.no/side/Bl%C3%A5"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -1913,10 +1911,6 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept_expanded",
-          "primary_knowledge_unit_id": "ku_musikk_place_filen_og_visitoslo_3ea17dfdce",
-          "knowledge_unit_ids": [
-            "ku_musikk_place_filen_og_visitoslo_3ea17dfdce"
-          ],
           "concept_ids": [
             "co_musikk_gardsrom_9693686062",
             "co_musikk_akerselva_5028cf34de",
@@ -1924,6 +1918,10 @@
             "co_musikk_m_tested_6aa242c001"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_bla_tok_i_bruk_tidligere_0a8e8f84b5",
+          "knowledge_unit_ids": [
+            "ku_musikk_bla_tok_i_bruk_tidligere_0a8e8f84b5"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
@@ -1936,17 +1934,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hvilken analysefeil må unngås i spørsmål om Blå?",
+          "question": "Hvem tok initiativet til å etablere Blå etter at Oslo Jazzhus mistet sin posisjon?",
           "options": [
-            "Å gjøre Blå til bare servering eller uteliv uten musikk- og klubbsceneanker",
-            "Å nevne at Blå ligger ved Akerselva",
-            "Å spørre om jazz og elektronika"
+            "Martin Revheim og Kjell Einar Karlsen",
+            "Bugge Wesseltoft og Jan Garbarek",
+            "Petter Thane og Edvard Munch"
           ],
-          "answer": "Å gjøre Blå til bare servering eller uteliv uten musikk- og klubbsceneanker",
+          "answer": "Martin Revheim og Kjell Einar Karlsen",
           "answerIndex": 0,
           "dimension": "kvalitet",
           "topic": "unngå feilvinkel",
-          "knowledge": "Place-filens avoid_angles sier at Blå ikke skal spørres som kun uteliv eller kun servering.",
+          "knowledge": "Etter vanskelighetene ved Oslo Jazzhus i 1996 begynte Martin Revheim og Kjell Einar Karlsen planleggingen av en ny jazzscene ved Akerselva.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
@@ -1978,10 +1976,10 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json"
+            "https://www.dagbladet.no/kultur/det-bla-eventyret-ved-akerselva/65599295"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -1996,16 +1994,16 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept",
-          "primary_knowledge_unit_id": "ku_musikk_place_filens_avoid_angle_b6a9f630be",
-          "knowledge_unit_ids": [
-            "ku_musikk_place_filens_avoid_angle_b6a9f630be"
-          ],
           "concept_ids": [
             "co_musikk_kun_uteliv_d0c49276df",
             "co_musikk_kun_servering_0af2775db9",
             "co_musikk_musikkanker_5b13c6543b"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_etter_vanskelighetene_ve_20923b2a35",
+          "knowledge_unit_ids": [
+            "ku_musikk_etter_vanskelighetene_ve_20923b2a35"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
@@ -2018,17 +2016,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hvilken publikums- og arrangementsanalyse passer best for Blå?",
+          "question": "Hvorfor fikk konsertforeningen og bardriften forskjellige roller ved Blå?",
           "options": [
-            "Blå kobler konsert, klubb, DJs, uteservering, elverom og sosial møteplass til ett livekulturmiljø",
-            "Blå fungerer bare som stillesittende teatersal",
-            "Blå er kun et lager uten publikum"
+            "Konsertforeningen sto for programmet, mens Brenneriveien Jazzhus drev serveringen",
+            "Begge organisasjonene arbeidet bare med tekstilproduksjon",
+            "Konsertforeningen drev byens trikkelinjer"
           ],
-          "answer": "Blå kobler konsert, klubb, DJs, uteservering, elverom og sosial møteplass til ett livekulturmiljø",
+          "answer": "Konsertforeningen sto for programmet, mens Brenneriveien Jazzhus drev serveringen",
           "answerIndex": 0,
           "dimension": "syntese",
           "topic": "publikum og arrangement",
-          "knowledge": "Blå viser hvordan musikksteder ofte er både scene, sosialt rom, nattkultur, byrom og arrangementsarbeid.",
+          "knowledge": "Konsertforeningen Blå organiserte de kunstneriske arrangementene, mens Brenneriveien Jazzhus hadde ansvaret for baren. Delingen bandt sammen sceneprogram og serveringsøkonomi.",
           "trivia": [],
           "difficulty": 3,
           "question_type": "fact",
@@ -2062,12 +2060,10 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
-            "https://www.visitnorway.no/reisemal/ostlandet/oslo/listings-oslo/bl%C3%A5/15478/",
-            "https://oslobyleksikon.no/side/Bl%C3%A5"
+            "https://www.dagsavisen.no/kultur/bla/4804252"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -2082,10 +2078,6 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept_expanded",
-          "primary_knowledge_unit_id": "ku_musikk_bla_viser_hvordan_musikk_41664230ae",
-          "knowledge_unit_ids": [
-            "ku_musikk_bla_viser_hvordan_musikk_41664230ae"
-          ],
           "concept_ids": [
             "co_musikk_konsert_335d216cc6",
             "co_musikk_klubb_0947144b83",
@@ -2094,6 +2086,11 @@
             "co_musikk_elverom_97afdb9a33"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_konsertforeningen_bla_or_a0c15d36a7",
+          "knowledge_unit_ids": [
+            "ku_musikk_konsertforeningen_bla_or_a0c15d36a7",
+            "ku_musikk_delingen_bandt_sammen_sc_0405d4fee6"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         }
@@ -2115,17 +2112,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hvilket musikkemne er Blå koblet til i place-filen?",
+          "question": "Hvem opptrådte på Blås åpningskveld ifølge Martin Eia-Revheim?",
           "options": [
-            "em_musikk_jazz_improvisasjon",
-            "em_musikk_musikkteater_institusjon",
-            "em_naering_kapital_finans"
+            "Jaga Jazzist, Päronsoda og Bugge Wesseltoft",
+            "a-ha, Metallica og U2",
+            "Edvard Grieg og Oslo-Filharmonien"
           ],
-          "answer": "em_musikk_jazz_improvisasjon",
+          "answer": "Jaga Jazzist, Päronsoda og Bugge Wesseltoft",
           "answerIndex": 0,
           "dimension": "fagkobling",
           "topic": "jazz/improvisasjon",
-          "knowledge": "Place-filen kobler Blå til em_musikk_jazz_improvisasjon.",
+          "knowledge": "I et tilbakeblikk i Dagbladet i 2016 navnga Blå-grunnlegger Martin Eia-Revheim Jaga Jazzist, Päronsoda og Bugge Wesseltoft som artister på åpningskvelden.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
@@ -2157,11 +2154,10 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
-            "data/fag/musikk/fagkart_musikk_canonical_v4_5.json"
+            "https://www.dagbladet.no/kultur/et-av-oslos-mest-kjente-utesteder-star-i-fare-a-bli-stengt---vi-var-lenge-alene-i-dumpa-na-koker-det-der/60854296"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -2176,16 +2172,16 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept",
-          "primary_knowledge_unit_id": "ku_musikk_place_filen_kobler_bla_t_3809913660",
-          "knowledge_unit_ids": [
-            "ku_musikk_place_filen_kobler_bla_t_3809913660"
-          ],
           "concept_ids": [
             "co_musikk_em_musikk_jazz_improvisasjon_3db13aaacc",
             "co_musikk_bla_1c3acb38c3",
             "co_musikk_improvisasjon_07246cc411"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_i_et_tilbakeblikk_i_dagb_9e08e9437a",
+          "knowledge_unit_ids": [
+            "ku_musikk_i_et_tilbakeblikk_i_dagb_9e08e9437a"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
@@ -2198,17 +2194,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hvilket annet musikkemne er Blå koblet til i place-filen?",
+          "question": "Hva viser Dagbladets omtale av 267 arrangementer ved Blå i 1999?",
           "options": [
-            "em_musikk_scene_klubb_livekultur",
-            "em_lit_realismen_norge",
-            "em_by_parker_friluft"
+            "At Blå allerede tidlig hadde et omfattende konsert- og klubbprogram",
+            "At bygningen bare var et tomt industrilager",
+            "At stedet var et ordinært museum uten musikk"
           ],
-          "answer": "em_musikk_scene_klubb_livekultur",
+          "answer": "At Blå allerede tidlig hadde et omfattende konsert- og klubbprogram",
           "answerIndex": 0,
           "dimension": "fagkobling",
           "topic": "scene/klubb/livekultur",
-          "knowledge": "Place-filen kobler Blå til em_musikk_scene_klubb_livekultur.",
+          "knowledge": "Dagbladets reportasje fra 2000 oppga 267 arrangementer ved Blå i 1999. Tallet viser hvor omfattende programvirksomheten var kort tid etter åpningen.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
@@ -2240,11 +2236,10 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
-            "data/fag/musikk/fagkart_musikk_canonical_v4_5.json"
+            "https://www.dagbladet.no/kultur/det-bla-eventyret-ved-akerselva/65599295"
           ],
           "source_origin": "external",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -2259,16 +2254,17 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "added_or_rebuilt",
-          "primary_knowledge_unit_id": "ku_musikk_place_filen_kobler_bla_t_5cb24e89f5",
-          "knowledge_unit_ids": [
-            "ku_musikk_place_filen_kobler_bla_t_5cb24e89f5"
-          ],
           "concept_ids": [
             "co_musikk_em_musikk_scene_klubb_livekultur_bcabd0b3d5",
             "co_musikk_klubb_0947144b83",
             "co_musikk_live_03c85b2e55"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_dagbladets_reportasje_fr_a16e438ce9",
+          "knowledge_unit_ids": [
+            "ku_musikk_dagbladets_reportasje_fr_a16e438ce9",
+            "ku_musikk_tallet_viser_hvor_omfatt_5d6fc433b6"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
@@ -2281,17 +2277,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hva skiller Blå fra Rockefeller i place-filens logikk?",
+          "question": "Hvilken uenighet preget Blås drift i 2005–2006?",
           "options": [
-            "Blå er elvenær klubb- og konsertscene med alternativ/urban sceneprofil; Rockefeller er større sentral pop-/rockinstitusjon i sentrum",
-            "Begge har samme adresse og samme sceneformat",
-            "Blå er nynorsk teaterhus, Rockefeller er badstuearena"
+            "Forholdet mellom Konsertforeningen og selskapet som drev baren",
+            "Valget av farger på T-banevognene",
+            "Et bytte av arkitekt for fabrikkbygningen i 1913"
           ],
-          "answer": "Blå er elvenær klubb- og konsertscene med alternativ/urban sceneprofil; Rockefeller er større sentral pop-/rockinstitusjon i sentrum",
+          "answer": "Forholdet mellom Konsertforeningen og selskapet som drev baren",
           "answerIndex": 0,
           "dimension": "kontrast",
           "topic": "Blå vs Rockefeller",
-          "knowledge": "Place-filen peker på Rockefeller som kontrasttarget. Kontrasten er elvenær klubbscene/alternativt miljø mot større etablert konsertinstitusjon.",
+          "knowledge": "Salget av bardriften i 2005 endret de økonomiske og organisatoriske rammene. Ved årsskiftet 2005–2006 opphørte samarbeidet mellom Konsertforeningen Blå og driftsselskapet.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
@@ -2324,11 +2320,11 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
-            "data/places/musikk/oslo/places_musikk.json"
+            "https://www.ballade.no/bransjen/bla-har-solgt-bardriften/",
+            "https://www.dagsavisen.no/kultur/bla/4804252"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -2343,11 +2339,6 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept_expanded",
-          "primary_knowledge_unit_id": "ku_musikk_place_filen_peker_pa_roc_d2c7c0bd82",
-          "knowledge_unit_ids": [
-            "ku_musikk_place_filen_peker_pa_roc_d2c7c0bd82",
-            "ku_musikk_kontrasten_er_elven_r_kl_09a3b6786c"
-          ],
           "concept_ids": [
             "co_musikk_bla_1c3acb38c3",
             "co_musikk_rockefeller_2f564d729d",
@@ -2355,6 +2346,11 @@
             "co_musikk_konsertscene_b296b7a5aa"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_salget_av_bardriften_i_2_ec9f9e47ab",
+          "knowledge_unit_ids": [
+            "ku_musikk_salget_av_bardriften_i_2_ec9f9e47ab",
+            "ku_musikk_ved_arsskiftet_2005_2006_1e8f028439"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
@@ -2367,17 +2363,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hva skiller Blå fra John Dee i place-filens logikk?",
+          "question": "Hva skilte Blås kunstneriske organisering fra barens drift?",
           "options": [
-            "Blå er knyttet til Akerselva, bakgård og klubbkultur; John Dee er en mindre scene i Rockefeller-huset",
-            "Begge er fiskehjell-inspirerte fjordarenaer",
-            "Blå er bare teater, John Dee er bare opera"
+            "Konsertforeningen programmerte musikken, mens et annet selskap sto for serveringen",
+            "Det var bare én kommunal skoleklasse som drev begge",
+            "Blå hadde ingen konsertarrangører"
           ],
-          "answer": "Blå er knyttet til Akerselva, bakgård og klubbkultur; John Dee er en mindre scene i Rockefeller-huset",
+          "answer": "Konsertforeningen programmerte musikken, mens et annet selskap sto for serveringen",
           "answerIndex": 0,
           "dimension": "kontrast",
           "topic": "Blå vs John Dee",
-          "knowledge": "Place-filen peker på John Dee som kontrasttarget, der Blås elverom og klubbmiljø skiller seg fra Rockefeller-husets mindre scene.",
+          "knowledge": "Konsertforeningen Blå var ansvarlig for kunstneriske arrangementer, mens Brenneriveien Jazzhus organiserte serveringen. Dette skillet fikk betydning for driftskonflikten midt på 2000-tallet.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
@@ -2410,11 +2406,11 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
-            "data/places/musikk/oslo/places_musikk.json"
+            "https://www.ballade.no/bransjen/bla-har-solgt-bardriften/",
+            "https://www.dagsavisen.no/kultur/bla/4804252"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -2429,10 +2425,6 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept_expanded",
-          "primary_knowledge_unit_id": "ku_musikk_place_filen_peker_pa_joh_bed2d6ec89",
-          "knowledge_unit_ids": [
-            "ku_musikk_place_filen_peker_pa_joh_bed2d6ec89"
-          ],
           "concept_ids": [
             "co_musikk_bla_1c3acb38c3",
             "co_musikk_john_dee_cff5d05019",
@@ -2440,6 +2432,11 @@
             "co_musikk_klubbkultur_05f05b8fa9"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_konsertforeningen_bla_va_f652a7bee3",
+          "knowledge_unit_ids": [
+            "ku_musikk_konsertforeningen_bla_va_f652a7bee3",
+            "ku_musikk_dette_skillet_fikk_betyd_debda4404e"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
@@ -2452,17 +2449,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hvilken metode passer best for å analysere Blå som musikksted?",
+          "question": "Hva skilte Blås opprinnelige musikkprofil fra en tradisjonell sjangeravgrenset jazzklubb?",
           "options": [
-            "met_musikk_felt_og_bransjeanalyse",
-            "met_naering_verdiskapingsanalyse",
-            "met_lit_narratologi"
+            "Blå åpnet for improvisasjon, nye sjangerkombinasjoner og etter hvert klubbmusikk",
+            "Blå ga bare plass til ett symfoniorkester",
+            "Det ble ikke arrangert konserter på Blå"
           ],
-          "answer": "met_musikk_felt_og_bransjeanalyse",
+          "answer": "Blå åpnet for improvisasjon, nye sjangerkombinasjoner og etter hvert klubbmusikk",
           "answerIndex": 0,
           "dimension": "metode",
           "topic": "felt- og bransjeanalyse",
-          "knowledge": "Felt- og bransjeanalyse passer fordi Blå må forstås som scene, arrangørledd, sjangermiljø, publikum og byrom.",
+          "knowledge": "Initiativtakerne ønsket en scene for moderne og eksperimenterende jazz. Konsertprogrammet omfattet etter hvert elektronisk musikk, hiphop og rock.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
@@ -2494,11 +2491,11 @@
             "em_musikk"
           ],
           "source": [
-            "data/fag/musikk/methods_musikk_canonical_v4_5.json",
-            "data/places/musikk/oslo/places_musikk.json"
+            "https://www.dagbladet.no/kultur/det-bla-eventyret-ved-akerselva/65599295",
+            "https://oslobyleksikon.no/side/Bl%C3%A5"
           ],
           "source_origin": "external",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -2513,16 +2510,17 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "added_or_rebuilt",
-          "primary_knowledge_unit_id": "ku_musikk_felt_og_bransjeanalyse_p_5d4d06c675",
-          "knowledge_unit_ids": [
-            "ku_musikk_felt_og_bransjeanalyse_p_5d4d06c675"
-          ],
           "concept_ids": [
             "co_musikk_feltanalyse_619653ea49",
             "co_musikk_bransje_b6a5d800de",
             "co_musikk_scene_74929bd0f1"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_initiativtakerne_nsket_e_8055889d22",
+          "knowledge_unit_ids": [
+            "ku_musikk_initiativtakerne_nsket_e_8055889d22",
+            "ku_musikk_konsertprogrammet_omfatt_b3833545a5"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
@@ -2535,17 +2533,17 @@
           "natureId": "",
           "targetId": "blaa",
           "question_scope": "place",
-          "question": "Hvilken samlet analyse passer best for `blaa`?",
+          "question": "Hvilken historisk utvikling beskriver Blå best?",
           "options": [
-            "En Akerselva-scene der jazz, elektronika, hiphop, rock, DJs, konserter, klubbkvelder, uteservering, industribygg og urban tilhørighet danner én musikkøkologi",
-            "Et rent serveringssted uten musikkprogram",
-            "Et symfonisk konserthus bygget for orkester alene"
+            "Fra dugnadsbasert jazzscene i et industrilokale til bred konsert- og klubbkultur ved Akerselva",
+            "Fra operahus til jernbanestasjon",
+            "Fra fiskemottak til bilverksted"
           ],
-          "answer": "En Akerselva-scene der jazz, elektronika, hiphop, rock, DJs, konserter, klubbkvelder, uteservering, industribygg og urban tilhørighet danner én musikkøkologi",
+          "answer": "Fra dugnadsbasert jazzscene i et industrilokale til bred konsert- og klubbkultur ved Akerselva",
           "answerIndex": 0,
           "dimension": "syntese",
           "topic": "samlet musikk- og sceneanalyse",
-          "knowledge": "Blå er best forstått som musikkøkologi: sjangerbredde, liveformat, klubbformat, publikum, elvebyrom og industriombruk virker sammen.",
+          "knowledge": "Blå startet i 1998 som en scene for eksperimenterende jazz i en eldre fabrikkbygning ved Akerselva. Programmet og driften utviklet seg videre som del av Oslos konsert- og klubbliv.",
           "trivia": [],
           "difficulty": 3,
           "question_type": "fact",
@@ -2580,13 +2578,12 @@
             "em_musikk"
           ],
           "source": [
-            "data/places/musikk/oslo/places_musikk.json",
             "https://oslobyleksikon.no/side/Bl%C3%A5",
-            "https://www.osloworld.no/spillested/bl%C3%A5",
-            "https://www.visitnorway.no/reisemal/ostlandet/oslo/listings-oslo/bl%C3%A5/15478/"
+            "https://www.dagbladet.no/kultur/det-bla-eventyret-ved-akerselva/65599295",
+            "https://www.blaaoslo.no/om-blaa"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "external_source_verified",
           "music_anchor_type": "club_concert_venue_akerselva_jazz_electronica_urban_liveculture",
           "external_source_ratio_target": 0.85,
           "requires_music_anchor": true,
@@ -2601,10 +2598,6 @@
             "data/places/musikk/oslo/places_musikk.json"
           ],
           "merge_status": "kept_expanded",
-          "primary_knowledge_unit_id": "ku_musikk_bla_er_best_forstatt_som_7b7b29273f",
-          "knowledge_unit_ids": [
-            "ku_musikk_bla_er_best_forstatt_som_7b7b29273f"
-          ],
           "concept_ids": [
             "co_musikk_jazz_fe2b70e9e1",
             "co_musikk_elektronika_e4c366e60f",
@@ -2614,6 +2607,11 @@
             "co_musikk_akerselva_5028cf34de"
           ],
           "term_ids": [],
+          "primary_knowledge_unit_id": "ku_musikk_bla_startet_i_1998_som_e_c2ed8c4ace",
+          "knowledge_unit_ids": [
+            "ku_musikk_bla_startet_i_1998_som_e_c2ed8c4ace",
+            "ku_musikk_programmet_og_driften_ut_fba123c731"
+          ],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         }

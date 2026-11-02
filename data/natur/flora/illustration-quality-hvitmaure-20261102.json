@@ -1,0 +1,51 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-02",
+  "status": "reviewed_binary_verified_pending_ci",
+  "baselineApproved": 37,
+  "approvedCountAfterRelease": 38,
+  "publicationRule": "Require exact approved 1024x1536 alpha WebP with identical Git blob SHA, green illustration-contract and approved-flora-browser on final PR head before merge; black #000 stage and no photographs.",
+  "items": [
+    {
+      "name": "Hvitmaure",
+      "catalogId": "emne_flora_hvitmaure",
+      "scientificName": "Galium boreale",
+      "taxonomicScope": "species",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/16_hvitmaure_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/16_hvitmaure_v1.webp",
+      "gitBlobSha": "9fa573ed27d6d8a61fe4ab5ac49f41d04926f7c8",
+      "sha256": "17cedd4edf8737fe30ed38042176ee6711ad14286017a0473c08e4567e47baba",
+      "sizeBytes": 301780,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
+      "reviewedAt": "2026-11-02",
+      "stage": "sommerblomstring",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": true,
+        "alphaVerifiedAfterConversion": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://fermanagh.bsbi.org/galium-boreale-l",
+        "https://extension.usu.edu/rangeplants/forbs-herbaceous/northern-bedstraw",
+        "https://www.kongsvollfjellhage.no/planter/hvitmaure"
+      ],
+      "observations": "Botanisk illustrasjon av en opprett tueformet hvitmaure med flere slanke, rette og sparsomt forgreinete grønne stengler og tydelig kransstilte smalt lansettformede blad, med lysere parallelle nerver. I toppen sees åpne, forgreinete samlinger av tallrike små hvite blomster med fire frie kronfliker og blekgule sentre. Vekstformen og hvite blomster skiller arten fra gulmaure.",
+      "limitations": "Stilisert visning med større blomster for gjenkjennelighet, ikke fotografisk skala. Noen av bladkransene fremstår med flere enn de typiske fire bladene som artsdiagnosen beskriver; enkelte sidegrener og overlapp kan forveksles med ekstra blad. Dette er en illustrativ feltguidekandidat, ikke diagnostisk dokumentasjon, og bør sammenholdes med artsnøkkel ved sikker artsbestemmelse.",
+      "technicalVerification": "Original alpha WebP 1024x1536, 301780 bytes, sha256 17cedd4edf8737fe30ed38042176ee6711ad14286017a0473c08e4567e47baba, GitHub blob SHA 9fa573ed27d6d8a61fe4ab5ac49f41d04926f7c8 matches local Git calculation; transparent PNG original with alpha haze removed and WebP exported; visually reviewed black #000 composite.",
+      "publicationBlockedBy": [
+        "Both nature-illustrations mandatory CI jobs must pass on final PR commit.",
+        "Merge base PR #6912 first, retarget to main and confirm no conflict.",
+        "Confirm GitHub Pages deployment after merge."
+      ]
+    }
+  ]
+}
