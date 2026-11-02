@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_meldestokk: Object.freeze({
+      scientificName: "Chenopodium album",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/25_meldestokk_v1.webp",
+      gitBlobSha: "bbbb6dd2f5149629016ddb138f8fdc6806a00875",
+      reviewedAt: "2026-11-02",
+      stage: "blomstring og frøsetting",
+      evidence: "data/natur/flora/illustration-quality-meldestokk-20261102.json"
+    }),
     emne_flora_markjordbaer: Object.freeze({
       scientificName: "Fragaria vesca",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/24_markjordbaer_v1.webp",
