@@ -949,8 +949,8 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-cop
   }
 }
 
-/* PlaceCard v3: override previous narrow-screen title-grid special cases.
-   Keep long names right aligned below the top-right controls. */
+/* Keep the long-name overrides compatible with the lower-left heading,
+   above category/epoch. */
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
   .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row{
   display:flex;
@@ -959,6 +959,6 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
   .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row #pcTitle{
   grid-area:auto;
   padding-right:0;
-  text-align:right;
+  text-align:left;
   overflow-wrap:break-word;
 }
