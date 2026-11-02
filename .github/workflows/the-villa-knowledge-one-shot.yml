@@ -1,0 +1,49 @@
+name: The Villa – generate canonical Knowledge and Fagverk once
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/the-villa-knowledge-one-shot.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: the-villa-knowledge-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.event.pull_request.number == 6935 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/the-villa-v1-source-quiz-20261102
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate Knowledge and release using canonical generators
+        run: |
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify generated models and The Villa's 30/10 content
+        run: |
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/the-villa-v1-content.test.mjs
+      - name: Commit generated artifacts and remove one-shot workflow
+        env:
+          REF: content/the-villa-v1-source-quiz-20261102
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u data/quiz/musikk/the_villa_sets_merged.json data/knowledge reports/knowledge-id-backfill.json data/fagverk/fagverk_release.json
+          git rm .github/workflows/the-villa-knowledge-one-shot.yml
+          git diff --cached --check
+          git commit -m 'The Villa: regenerer Knowledge-ID og Fagverk-release'
+          git push origin "HEAD:$REF"
