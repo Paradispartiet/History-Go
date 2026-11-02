@@ -86,3 +86,16 @@ test('Fotogalleriet quiz covers history and institution without date-question ov
   assert.ok(all.every(q => q.knowledge_link_status === 'staged_pending_canonical_registry'),
     'unverified canonical Knowledge must not be labelled linked');
 });
+
+test('Fotogalleriet concepts are semantically bound to the curated Fagverk', () => {
+  const allowed = new Set(place.fagverk.concepts);
+  for (const q of all) {
+    assert.ok(Array.isArray(q.concepts) && q.concepts.length > 0, q.id);
+    assert.ok(q.concepts.every(c => allowed.has(c)), q.id + ': out-of-scope concept');
+    assert.deepEqual(q.concept_ids, [], 'no unverified concept ID must be published');
+  }
+  const byQuiz = new Map(all.map(q => [q.quiz_id, q]));
+  for (const cq of cards.cards[0].questions) {
+    assert.deepEqual(cq.concepts, byQuiz.get(cq.sourceQuizId).concepts);
+  }
+});
