@@ -1934,8 +1934,8 @@
     return Boolean(owner && text16(owner.textContent) && !owner.querySelector(".hg-place-tab-empty"));
   }
   function syncSectionNav(shell4) {
-    const host = card();
-    const nav = (host == null ? void 0 : host.querySelector(':scope > [data-hg-place-sheet-nav="1"]')) || shell4.querySelector('[data-hg-place-sheet-nav="1"]');
+    var _a;
+    const nav = ((_a = card()) == null ? void 0 : _a.querySelector(':scope > [data-hg-place-sheet-nav="1"]')) || shell4.querySelector('[data-hg-place-sheet-nav="1"]');
     const placeId2 = text16(shell4.dataset.placeId);
     if (!(nav instanceof HTMLElement) || !placeId2) return;
     nav.querySelectorAll("[data-hg-place-sheet-jump]").forEach((button) => {
@@ -2102,6 +2102,7 @@
     return shell4;
   }
   function restoreLegacyPlaceCardStructure() {
+    var _a;
     cancelAutomaticPlaceSheetRender();
     sectionNavObserver == null ? void 0 : sectionNavObserver.disconnect();
     sectionNavObserver = null;
@@ -2131,8 +2132,7 @@
     if (sideStack instanceof HTMLElement) legacyGrid.appendChild(sideStack);
     if (events instanceof HTMLElement) legacyGrid.appendChild(events);
     shell4 == null ? void 0 : shell4.remove();
-    const bottomNav = root2.querySelector(':scope > [data-hg-place-sheet-nav="1"]');
-    if (bottomNav) bottomNav.remove();
+    (_a = root2.querySelector(':scope > [data-hg-place-sheet-nav="1"]')) == null ? void 0 : _a.remove();
     root2.classList.remove("is-place-sheet-phase1", "is-place-sheet-direct");
     delete root2.dataset.hgPlaceSheetPhase;
   }

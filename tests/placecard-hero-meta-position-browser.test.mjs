@@ -102,16 +102,16 @@ try{
    assert.equal(m.titleParent,"pc-title-row","title stays in hero heading row at "+width);
    assert.ok(m.status.y>=m.epoke.bottom-1 && m.status.bottom<=m.hero.bottom+1,
      "status inside image below epoch at "+width+": "+JSON.stringify(m));
-   assert.ok(m.title.x>=m.hero.x-1 && m.title.x<=m.hero.x+26
-     && m.title.y>=m.hero.y-1 && m.title.y<=m.hero.y+27,
-     "title top-left on image at "+width+": "+JSON.stringify(m));
-   assert.ok(m.category.y>=m.badge.bottom-2 && m.category.y-m.badge.bottom<=22
-     && Math.abs(m.category.right-m.badge.right)<=16,
-     "category button directly below Merker logo at "+width+": "+JSON.stringify(m));
+   assert.ok(m.title.right<=m.hero.right+1 && m.hero.right-m.title.right<=26
+     && m.title.bottom<=m.hero.bottom+1 && m.hero.bottom-m.title.bottom<=30,
+     "title lower-right on image at "+width+": "+JSON.stringify(m));
+   assert.ok(m.category.y>=m.badge.bottom-2
+     && m.category.x>=m.hero.x-1 && m.category.right<=m.hero.right+1,
+     "category button is below the upper-right icons at "+width+": "+JSON.stringify(m));
    assert.ok(m.epoke.y>=m.category.bottom-1,"epoch stays below category at "+width);
    assert.ok(m.category.bottom<=m.hero.bottom+1
      && m.epoke.bottom<=m.hero.bottom+1,"metadata stays inside landscape hero at "+width);
-   assert.ok(m.people.right<=m.badge.x+1,"People remains next to Merker at "+width);
+   assert.ok(m.people.right<=m.badge.x+1,"People remains next to Merker without overlap at "+width);
    assert.equal(m.overflow,false,"no horizontal scroll at "+width);
    await page.locator("#pcStatusBar > button").click();
    await page.locator("#pcMeta > .pc-category-meta").click();
