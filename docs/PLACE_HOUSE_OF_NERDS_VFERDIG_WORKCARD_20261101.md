@@ -112,3 +112,8 @@ Ingen `vFerdig`-attest før alle nødvendige canonical data er bygd, kilde- og b
 - PR #6904: Personprofil/Civication-synkronisering er under egen kontroll, inklusive merget-visning; behold People-identitet og adresse uendret.
 - Opphavsrett/medier: offisielle interiørfoto og OsloMet Journalen-foto er ikke rettighetsklarert til lokal app-publisering. Dokumentarisk House of Nerds-fasade-/portrettbilde, stående frontImage, PlaceCard-medlemmer og manuell app-QA forblir BLOCKED.
 - Ingen PR er merget til `main` per denne kontrollen; aldri merk Place `vFerdig` før alle krav er virkelig godkjent.
+
+## Dokumentert CI-resultat etter kanonisk runtime-bygg (2026-11-02)
+- PR #6903, commit `93f2240d450df9604753fba908d8573ef2b742c0`: **5/5 PR CI workflows success**, inkludert `Epoch viewer quality`, `Place-open payloads`, `Place production closeout`, `Rockefeller historical Story correction` og `Oslo Fagverk — multi-Place production batch`. Dette er en teknisk PASS for den *isoler­te kronologi-PR-en*, ikke for sammenslått Place eller produksjon i main.
+- PR #6900, direkte kildedatakontroll 2026-11-02: 21/21 spørsmål med korrekt svarposisjon, kildeclaim og Knowledge-ID; 10/10 QuizCard-paritet; fasitposisjoner 7/7/7; eksplisitt, avgrenset Will Straw-teori og metode kun i final-sett. Direkte data-PASS erstatter ikke GH CI eller UI-QA.
+- PR #6904: person- og scenarioindekser er bygget på midlertidig merge-view mot current main, inkludert nytt `bo_terje_hustoft`-anker fra main. Endringene er genererte, ikke manuelt redigert. CI-resultat og People runtime-gate må fortsatt sees på nøyaktig PR-HEAD.
