@@ -1,0 +1,47 @@
+name: John Dee v1 real app browser QA
+on:
+  pull_request:
+    paths:
+      - 'tests/john-dee-v1-real-app-browser.mjs'
+      - '.github/workflows/john-dee-v1-app-qa.yml'
+      - 'data/places/production-tiers/v1-oslo-nature-music-20261017-batch02.json'
+      - 'data/quiz/musikk/john_dee_sets_merged_REVISED.json'
+permissions:
+  contents: read
+concurrency:
+  group: john-dee-v1-app-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  john-dee-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Resolve Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Native John Dee PlaceCard QuizCard Fagverk People on mobile and desktop
+        run: node tests/john-dee-v1-real-app-browser.mjs
+      - name: Full John Dee quiz playthrough on mobile and desktop
+        run: node scripts/verify-place-quiz-browser.mjs john_dee
+      - name: Save browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: john-dee-v1-real-app-evidence
+          path: |
+            artifacts/john_dee-v1-app-qa/**
+            artifacts/place-quiz/john_dee/**
+          if-no-files-found: warn
+          retention-days: 14
