@@ -22,7 +22,7 @@
 - **Kilde I:** Jan-Tore Egge, 23.03.2022, «Møllergata 23 I.jpg», CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:M%C3%B8llergata_23_I.jpg
 - **Kilde II:** Jan-Tore Egge, 23.03.2022, «Møllergata 23 II.jpg», CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:M%C3%B8llergata_23_II.jpg
 - Begge viser **den faktiske bygningen** i Møllergata 23, ikke klubbens innvendige dansegulv.
-- Tre lokale WebP-varianter bygges til toppbilde (1400 × 900), stående kort (900 × 1350) og minikort (900 × 600).
+- Tre lokale WebP-varianter er produsert til toppbilde (1400 × 900), stående kort (900 × 1350) og minikort (900 × 600).
 - Transformasjon/crop og lisens føres i bildefeltene. Ingen antatt tillatelse til tredjeparts klubbfotografier.
 
 ## People
@@ -31,5 +31,5 @@
 
 ## V1-kvalitet
 - Utført: GitHub Actions-bildejobb integrerte tre lokale fotografiske WebP-derivater, synkroniserte Place-open, genererte Knowledge og Fagverk-release og fjernet den midlertidige skrive-workflowen.
-- Målrettede kontrakttester og reell mobil-/desktoptest av PlaceCard, QuizCard og Fagverk skal kjøres på commit etter generering. Tidligere feil gjaldt kjøring før bildene og Knowledge var tilgjengelige.
-- Inntil verifisert browser/QA: **v1_candidate_pending_browser**, ikke formelt godkjent og ikke merget.
+- Målrettede kontrakttester og reell Playwright mobil-/desktoptest av PlaceCard, QuizCard og Fagverk **bestod** på commit `94f8f0750c0188cf7ea5a73ca89062471e6bb2fb` (GitHub Actions `41455133666`). Subkultur/Knowledge (`41455133615`), CI-ruting (`41455133549`) og Fagverk-release (`41455133531`) bestod også.
+- **Formell v1-godkjenning:** dokumenterte kilder, tre lisensierte bilder, Fagverk, fullquiz, QuizCard og mobil/desktop-bekreftelse bestått. Status `v1`; merge utføres separat.

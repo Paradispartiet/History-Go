@@ -39,7 +39,7 @@ test("The Villa curated Fagverk and actual Place-open are linked",()=>{
 });
 test("30 original sourced fullquiz questions and 10 source-matched QuizCard questions",()=>{
  assert.equal(quiz.targetId,"the_villa");
- assert.equal(quiz.status,"v1_candidate_pending_browser");
+ assert.equal(quiz.status,"v1");
  assert.equal(quiz.categoryId,"musikk");
  assert.equal(quiz.sets.length,5);
  assert(quiz.sets.every(s=>s.questions.length===6));
