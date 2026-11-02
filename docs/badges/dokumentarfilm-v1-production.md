@@ -31,3 +31,16 @@ Dette er en design- og sikkerhetskontrakt, **ikke en påstand om at illustrasjon
 Et undermerke viser fra nå av både underkategorinavn øverst og hovedkategorinavn nederst, begge som broderte bokstaver inni merket. Underkategorinavnet skal være visuelt dominerende. Tidligere godkjente bilder oppdateres separat etter visuell vurdering – de overskrives ikke automatisk.
 
 Forsøket på å visualisere dette 2. november viste riktig plassering av «FILM & TV» nederst, men genererte nok en gang **KORTFILM** øverst og et Kortfilm-motiv. Dette er bare layoutreferanse, ikke en godkjent Dokumentarfilm-fil. Totalt tre avviste bildeforsøk; ingen ny WebP fra disse forsøkene aktiveres.
+
+## Publisering av riktig Dokumentarfilm-merke, 2. november 2026
+
+- Ny individuell illustrasjon: intervju mellom journalist og eldre mann i fjellandskap, med dokumentarisk feltopptak. Kameraet er underordnet samtalen og kopierer ikke Kortfilms motiv.
+- **DOKUMENTARFILM** brodert i øvre innerkant, **FILM & TV** mindre brodert i nedre innerkant.
+- Magenta `#C2188B`, liljehvit `#E7F8FF`; reell sydd stofftekstur og transparent bakgrunn.
+- WebP: 1024 × 1024, **474 110 byte**, SHA-256 `5930257ad941f0d8359283bd55411a6085def63c114ade5b3fedd463bfc58b2d`.
+- Visuell kontroll gjennomført i 1024 × 1024 og 64 × 64. Tidligere feilmerkede KORTFILM-utkast er ikke brukt.
+- Aktiv fil: `bilder/merker/film_tv/undermerker/dokumentarfilm-brodert-v1.webp`.
+- Integrasjon: `data/badges/film_tv.json` har nå `subBadgeImages.dokumentarfilm`. Spillefilm, Kortfilm, alle syv Scenekunst-undermerker og 19 hovedmerker er beholdt.
+- Kontroll: `node --test tests/badge-dokumentarfilm-v1-production.test.mjs tests/badge-underbadge-batch01.test.mjs`.
+
+![Dokumentarfilm v1](../../bilder/merker/film_tv/undermerker/dokumentarfilm-brodert-v1.webp)
