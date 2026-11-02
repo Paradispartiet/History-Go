@@ -64,3 +64,25 @@ test('no same-photo image and frontImage shortcuts in Fotogalleriet draft', () =
     assert.notEqual(place.imageMeta?.sourcePage, place.frontImageMeta?.sourcePage);
   }
 });
+
+test('Foto-gate: rejected Commons artwork photographs stay out of live PlaceCard', () => {
+  const review = read('reports/place-production/fotogalleriet-v1-quiz-and-photo-candidates-20261102.json');
+  assert.equal(review.images.status, 'candidates_rejected_for_v1_card_photography');
+  assert.equal(review.images.candidatePhotos.length, 2);
+  const sources = review.images.candidatePhotos.map(p => p.sourcePage);
+  const originals = review.images.candidatePhotos.map(p => p.originalId);
+  assert.equal(new Set(sources).size, 2);
+  assert.equal(new Set(originals).size, 2);
+  for (const photo of review.images.candidatePhotos) {
+    assert.match(photo.sourcePage, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+    assert.match(photo.usageDecision, /^rejected_for_image_or_frontImage:/);
+  }
+  assert.ok(!place.image && !place.frontImage, 'no rejected image is made active');
+});
+
+test('Fotogalleriet quiz covers history and institution without date-question overload', () => {
+  const dateOnly = all.filter(q => /^(?:i hvilket (?:år|tiår)|når)\b/i.test(q.question));
+  assert.ok(dateOnly.length <= 2, 'too many bare date questions');
+  assert.ok(all.every(q => q.knowledge_link_status === 'staged_pending_canonical_registry'),
+    'unverified canonical Knowledge must not be labelled linked');
+});
