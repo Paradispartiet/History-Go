@@ -177,6 +177,7 @@ jobs:
       - run: node scripts/test-flora-ormehode-b09.mjs
       - run: node scripts/test-flora-stankstorkenebb-b09.mjs
       - run: node scripts/test-flora-perleblomst-b09.mjs
+      - run: node scripts/test-flora-prikkperikum-b09.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -199,6 +200,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-50-black-mobile-desktop
+          name: flora-approved-51-black-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore

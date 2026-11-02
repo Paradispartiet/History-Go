@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_prikkperikum: Object.freeze({
+      scientificName: "Hypericum perforatum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/29_prikkperikum_v1.webp",
+      gitBlobSha: "efb9ee18fb2da3f799064cfdfe6429be46ac0a76",
+      reviewedAt: "2026-11-02",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-prikkperikum-20261102.json"
+    }),
     emne_flora_perleblomst: Object.freeze({
       scientificName: "Muscari spp.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/28_perleblomst_v1.webp",

@@ -75,6 +75,7 @@ try{
     {name:"ormehode",label:"Ormehode",term:"ormehode",path:"b09/26_ormehode_v1.webp"},
     {name:"stankstorkenebb",label:"Stankstorkenebb",term:"stankstorkenebb",path:"b09/27_stankstorkenebb_v1.webp"},
     {name:"perleblomst",label:"Perleblomst",term:"perleblomst",path:"b09/28_perleblomst_v1.webp"},
+    {name:"prikkperikum",label:"Prikkperikum",term:"prikkperikum",path:"b09/29_prikkperikum_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
