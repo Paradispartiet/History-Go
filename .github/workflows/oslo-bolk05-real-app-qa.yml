@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/oslo-bolk05-real-app-qa.yml
       - tests/oslo-bolk05-real-app-browser.mjs
+      - tests/oslo-bolk05-v42-knowledge-regression.test.mjs
       - data/quiz/scenekunst/folketeateret_sets.json
       - data/quiz/kunst/kunstnernes_hus_sets.json
       - data/quiz/historie/historisk_museum_sets.json
@@ -35,6 +36,7 @@ on:
     paths:
       - .github/workflows/oslo-bolk05-real-app-qa.yml
       - tests/oslo-bolk05-real-app-browser.mjs
+      - tests/oslo-bolk05-v42-knowledge-regression.test.mjs
       - data/quiz/scenekunst/folketeateret_sets.json
       - data/quiz/kunst/kunstnernes_hus_sets.json
       - data/quiz/historie/historisk_museum_sets.json
@@ -68,6 +70,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  static:
+    name: Six-place v4.2, Knowledge and QuizCard parity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/oslo-bolk05-v42-knowledge-regression.test.mjs
   browser:
     name: ${{ matrix.place }} — 390/1440 card and complete quiz
     runs-on: ubuntu-latest
