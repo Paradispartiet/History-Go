@@ -20,10 +20,10 @@ const approvedMain={
 };
 test('nine original v1 candidates and five active Scenekunst images are registered correctly',()=>{
  assert.equal(plan.version,1);
- assert.equal(plan.status,'five_scenekunst_active_one_v1_pending_remaining_rework');
+ assert.equal(plan.status,'seven_scenekunst_active_remaining_by_film_pending');
  assert.deepEqual(plan.pilot.map(p=>p.categoryId+'/'+p.subId),firstPilotKeys);
  const counts={scenekunst:7,by:10,film_tv:12};
- const activated={"sceneproduksjon":"bilder/merker/scenekunst/undermerker/sceneproduksjon-brodert-v3.webp","regi":"bilder/merker/scenekunst/undermerker/regi-brodert-v3.webp","dramaturgi":"bilder/merker/scenekunst/undermerker/dramaturgi-brodert-v3.webp","dans":"bilder/merker/scenekunst/undermerker/dans-brodert-v2.webp","performance":"bilder/merker/scenekunst/undermerker/performance-brodert-v2.webp"};
+ const activated={"sceneproduksjon":"bilder/merker/scenekunst/undermerker/sceneproduksjon-brodert-v3.webp","regi":"bilder/merker/scenekunst/undermerker/regi-brodert-v3.webp","dramaturgi":"bilder/merker/scenekunst/undermerker/dramaturgi-brodert-v3.webp","dans":"bilder/merker/scenekunst/undermerker/dans-brodert-v2.webp","performance":"bilder/merker/scenekunst/undermerker/performance-brodert-v2.webp","teater":"bilder/merker/scenekunst/undermerker/teater-brodert-v2.webp","musikkteater":"bilder/merker/scenekunst/undermerker/musikkteater-brodert-v3.webp"};
  let total=0,uploaded=0;
  for(const [id,count] of Object.entries(counts)){
   const parent=read('data/badges/'+id+'.json'),family=plan.families[id];
