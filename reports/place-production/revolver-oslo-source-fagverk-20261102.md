@@ -46,7 +46,13 @@ Ingen personprofiler er godkjent eller generert her. Sjekk eksisterende identite
 - Navngitte dokumenterte roller: Dan Marius Nordhagen, Ole Øvstedal, Sarah Jägenstedt, Ben Sand, Einar Idsøe Eidsvåg (Subjekt 2017).
 - Ingen nye People-profiler er opprettet uten full kontroll av eksisterende ID-er, biografisk kildegrunnlag og bildelisenser. Eksisterende miljøtilknytninger er bevart.
 
-## V1-gate – gjenstår
-- Reell mobil-/desktopkontroll av **PlaceCard-bilder, QuizCard-flipp og kuratert Fagverk** skal kjøres i den nye målrettede nettleserjobben.
-- `revolver_oslo` beholdes som `v1_candidate` inntil nettleser-QA er bestått og siste kontroller er gjennomgått.
-- Ikke endre canonical ID, koordinater, stedskategori eller eksisterende People-tilknytninger ved godkjenning.
+## Formell v1-vurdering – godkjent
+- **Kildedekning**: redaksjonelt kontrollert historisk ingress, fem avsnitt, navngitte kildehenvisninger og datert konsertaktivitet.
+- **Fagverk**: tre stedseide artikler og tre undersøkelseslinser; kanoniske Musikk-kapitler koblet. Fagverk-release generert og kontrollert.
+- **Quiz**: 30 fullquizspørsmål i fem sett, 10 QuizCard-spørsmål med identisk fasit; kanoniske Knowledge-ID-er generert og kontrollert.
+- **Bilder**: tre lokale WebP-derivater av Ssu, CC BY-SA 4.0, med kreditering og riktige formater.
+- **Reell app-QA**: GitHub Actions «Revolver Oslo – source and Fagverk QA» bestod med 390 px mobil og 1440 px desktop (PR #6925, første godkjente browser-run 41447184632; siste vellykkede browser-run 41447514188). Tester PlaceCard, begge bildeorienteringene, QuizCard-flipp og Fagverk.
+- **Subkultur-gate**: final audit oppdatert fra 158 til 180 Knowledge-enheter og bestått i workflow 41447514090.
+- **People**: dokumenterte roller er med i historisk tekst. Nye separate personprofiler opprettes først med komplett lisensiert biografisk kildegrunnlag; disse er ikke et skjult krav for v1.
+
+**Konklusjon: Godkjent v1-stedsproduksjon**, ikke vFerdig. Koordinat, canonical sted-ID, kategori og eksisterende People-miljøkoblinger er bevart.

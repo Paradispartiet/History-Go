@@ -107,7 +107,7 @@ test("Revolver local licensed media and generated Knowledge IDs exist", () => {
   assert.equal(source.imageMeta.creator, "Ssu");
   assert.equal(source.frontImageMeta.license, "CC BY-SA 4.0");
   const quiz = read("data/quiz/musikk/revolver_oslo_sets_merged.json");
-  assert.equal(quiz.status, "v1_candidate_pending_browser");
+  assert.equal(quiz.status, "v1");
   for (const q of quiz.sets.flatMap(s => s.questions)) {
     assert.equal(q.knowledge_link_status, "linked", q.id);
     assert(q.primary_knowledge_unit_id?.startsWith("ku_"), q.id);
