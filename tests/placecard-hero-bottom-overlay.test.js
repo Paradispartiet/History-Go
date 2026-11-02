@@ -34,7 +34,7 @@ const doc = {
     return actions[id] || null;
   },
   createElement(tag) {
-    return { tag, dataset: {}, setAttribute(name, value) { this[name] = value; } };
+    return { tag, dataset: {}, setAttribute(name, value) { this[name] = value; }, addEventListener() {} };
   },
   head: { appendChild() {} },
   body: { appendChild() {} }
