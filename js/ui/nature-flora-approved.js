@@ -5,6 +5,23 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_kusymre_marianokleblom: Object.freeze({
+      scientificName: "Primula vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/21_kusymre_v1.webp",
+      gitBlobSha: "10a493cfb508782d0660afcf33596ff9aaf77889",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-kusymre-20261102.json"
+    }),
+    emne_flora_marianokleblom: Object.freeze({
+      scientificName: "Primula veris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/22_marianokleblom_v1.webp",
+      gitBlobSha: "337836c6e473e66c1e1e00e6163047f5ff8ff0c7",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-marianokleblom-20261102.json"
+    }),
+
     emne_flora_krypveronika: Object.freeze({
       scientificName: "Veronica filiformis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/20_krypveronika_v1.webp",
