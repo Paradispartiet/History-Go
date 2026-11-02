@@ -25,3 +25,22 @@ test('Musikkteater v2 is a verified WebP candidate and never activated without a
   assert.equal(bytes.readUIntLE(27,3)+1,1024);
   assert.equal(createHash('sha256').update(bytes).digest('hex'),c.sha256);
 });
+
+test('Teater must remain inactive until new artwork passes distinctness and color review',()=>{
+  const registry=read('data/badges/scenekunst.json');
+  const manifest=read('data/badges/underbadge_batch01_production.json');
+  const t=manifest.families.scenekunst.assets.find(a=>a.id==='teater');
+  const brief=t.redesignBrief;
+  assert.equal(t.status,'rework_required');
+  assert.equal(t.selectedImage,null);
+  assert.equal(registry.subBadgeImages?.teater,undefined);
+  assert.equal(brief.version,'v2');
+  assert.equal(brief.requiredLabel,'TEATER');
+  assert.equal(brief.letteringInsideBorder,true);
+  assert.equal(brief.status,'design_brief_only_no_approved_image');
+  assert.equal(brief.palette.primary.toUpperCase(),registry.color.toUpperCase());
+  assert.equal(brief.palette.secondary.toUpperCase(),registry.secondaryColor.toUpperCase());
+  assert.ok(brief.prohibitedMotifs.includes('comedy_tragedy_masks'));
+  assert.equal(brief.noExistingArtReuse,true);
+  assert.equal(brief.approvalStatus,'pending_new_independent_artwork');
+});
