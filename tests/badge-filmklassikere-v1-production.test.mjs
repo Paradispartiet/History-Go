@@ -11,6 +11,16 @@ test('Filmklassikere: correct two labels and independent image required before a
  assert.equal(a.selectedImage,null);
  assert.equal(f.subBadgeImages?.klassikere,undefined);
  assert.equal(b.upperLabel,'FILMKLASSIKERE');
+ assert.equal(b.visualAcceptance.topLabel,'FILMKLASSIKERE');
+ assert.equal(b.visualAcceptance.bottomLabel,'FILM & TV');
+ assert.equal(b.visualAcceptance.status,'blocked_until_new_genuine_embroidery_asset');
+ assert.equal(b.visualAcceptance.imageFileApproved,false);
+ assert.equal(b.visualAcceptance.imageFileSHA256,null);
+ assert.ok(b.rejectedAttempts>=7);
+ assert.ok(b.visualAcceptance.explicitlyForbidden.includes('NYHETER OG REPORTASJE'));
+ assert.ok(b.visualAcceptance.explicitlyForbidden.includes('flat_vector_placeholder'));
+ assert.ok(b.visualAcceptance.qualityCriteria.includes('manual visual review before category link'));
+ assert.equal(a.quality.visualApproved,false);
  assert.equal(b.lowerLabel,'FILM & TV');
  assert.equal(b.status,'artwork_required_no_accepted_image');
  assert.equal(b.visualApproved,false);assert.equal(b.technicalApproved,false);
