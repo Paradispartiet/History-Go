@@ -97,7 +97,7 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   assert.equal(card.classList.contains("is-place-sheet-phase1"), true);
   assert.equal(window.document.getElementById("pcFrontCardFlip").parentElement?.classList.contains("pc-sheet-hero-media"), true);
   assert.equal(window.document.querySelector(".pc-text")?.parentElement?.classList.contains("pc-sheet-hero-copy"), true);
-  const nav = shell.querySelector('[data-hg-place-sheet-nav="1"]');
+  const nav = card.querySelector(':scope > [data-hg-place-sheet-nav="1"]');
   const aboutButton = nav?.querySelector('[data-hg-place-sheet-jump="about"]');
   const sideStack = shell.querySelector(".pc-sheet-explore-grid .pc-side-stack");
   const collectionLinks = Array.from(nav?.querySelectorAll('[data-hg-place-sheet-collection-link]') || []);
@@ -105,8 +105,9 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   const hero = shell.querySelector("[data-hg-place-sheet-hero]");
   const intro = shell.querySelector("[data-hg-place-sheet-intro]");
   const media = shell.querySelector("[data-hg-place-sheet-media]");
-  assert.equal(hero?.nextElementSibling, nav, "navigation immediately follows the landscape hero");
-  assert.equal(nav.nextElementSibling, intro, "place description follows navigation");
+  assert.equal(nav.parentElement, card, "navigation is docked outside the scrollable body");
+  assert.equal(card.lastElementChild, nav, "navigation is the bottom row of PlaceCard");
+  assert.equal(hero?.nextElementSibling, intro, "place description immediately follows the landscape hero");
   assert.equal(intro?.nextElementSibling, media, "front image and About follow the description");
   assert.equal(media?.querySelector(".pc-sheet-about")?.previousElementSibling?.id, "pcFrontCardFlip", "About text sits directly after the floating frontImage");
   assert.equal(media?.nextElementSibling?.classList.contains("pc-sheet-explore-grid"), true, "collection rounds follow all About text");
@@ -151,6 +152,7 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   await window.openPlaceCard(micro);
   assert.equal(card.querySelector('[data-hg-place-sheet-shell="1"]'), null);
   assert.equal(card.classList.contains("is-place-sheet-phase1"), false);
+  assert.equal(card.querySelector('[data-hg-place-sheet-nav="1"]'), null, "Micro does not retain a bottom section bar");
   const grid = card.querySelector(":scope > .pc-body > .pc-grid");
   assert.ok(grid?.querySelector("#pcFrontCardFlip"));
   assert.ok(grid?.querySelector(".pc-side-stack"));
