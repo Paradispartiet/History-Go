@@ -18,6 +18,9 @@ on:
       - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
       - 'js/ui/nature-flora-approved.js'
+      - 'data/natur/flora/illustration-quality-prikktvetann-20261102.json'
+      - 'scripts/test-flora-prikktvetann-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/30_prikktvetann_v1.webp'
       - 'data/natur/flora/illustration-quality-review-20261028.json'
       - 'data/natur/flora/illustration-quality-batch01-20261028.json'
       - 'scripts/test-flora-approved-release.mjs'
@@ -178,6 +181,7 @@ jobs:
       - run: node scripts/test-flora-stankstorkenebb-b09.mjs
       - run: node scripts/test-flora-perleblomst-b09.mjs
       - run: node scripts/test-flora-prikkperikum-b09.mjs
+      - run: node scripts/test-flora-prikktvetann-b09.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -200,6 +204,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-51-black-mobile-desktop
+          name: flora-approved-52-black-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
