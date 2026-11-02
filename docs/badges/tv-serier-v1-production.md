@@ -2,7 +2,7 @@
 Dato: 2. november 2026
 
 ## Status
-**Produksjonskontrakt – ingen ny bildefil ferdig og ingen ny undermerkereferanse aktivert.**
+**Ferdig integrert – WebP aktivert i kategori-registeret i arbeidsgrenen.**
 
 Film & TV har fra før tre godkjente, aktive undermerker: Spillefilm v2, Kortfilm v1 og Dokumentarfilm v1. Alle skal beholdes. Syv Scenekunst-undermerker og samtlige godkjente hovedmerker skal også være urørt.
 
@@ -26,3 +26,15 @@ To bildegenereringer i denne produksjonsrunden gjentok feilaktig **DOKUMENTARFIL
 6. Kjør `node --test tests/badge-tv-serier-v1-production.test.mjs tests/badge-underbadge-batch01.test.mjs`.
 
 **Ikke merge som ferdig bildekategori før illustrasjonen er korrekt og bildefilen integrert.**
+
+## Integrert TV-serier v1 – 2. november 2026
+- Fil: `bilder/merker/film_tv/undermerker/tv_serier-brodert-v1.webp`, 448212 byte.
+- SHA-256: `63fe4ce0804be6842605359abee6501350ce1b012239157e6c76aa6b3d047a44`.
+- Topptekst **TV-SERIER**, nedre tekst **FILM & TV**, begge brodert inni ringkanten.
+- Motiv: TV-skjerm med tre episoderuter, avspillingslinje, sesongbokser 1–3 og fjernkontroll. Liten filmklapper er kun en dekorativ birolle.
+- 1024 × 1024 WebP med alfa. Visuell kontroll i 1024 og 64 px.
+- Originalt selvstendig motiv, ikke utsnitt fra kontaktark.
+- Spillefilm, Kortfilm, Dokumentarfilm og alle sju Scenekunst-merker er urørt.
+- Målrettet test: `node --test tests/badge-tv-serier-v1-production.test.mjs tests/badge-underbadge-batch01.test.mjs`.
+
+![TV-serier v1](../../bilder/merker/film_tv/undermerker/tv_serier-brodert-v1.webp)
