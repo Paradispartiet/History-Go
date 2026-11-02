@@ -1,0 +1,407 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "historisk_museum",
+  "scope": "place",
+  "status": "partial",
+  "reviewed_at": "2026-11-01",
+  "profile_hint": "narrow_3x7",
+  "review_note": "21 kandidatspørsmål koblet til konkrete historiske kilder og museets fagområder. Historiske bygge- og organisasjonsfakta er kontrollert mot Historisk museum og UiO. Metode- og etikkspørsmål er merket for siste faglige kildekontroll, og quiz er ikke aktivert.",
+  "sources": {
+    "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html": {
+      "url": "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Historien til museumsbygget"
+    },
+    "https://www.khm.uio.no/": {
+      "url": "https://www.khm.uio.no/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kulturhistorisk museum – samlinger, forskning og organisasjon"
+    },
+    "https://www.riksantikvaren.no/fredninger/historisk-museum-i-oslo-fredet/": {
+      "url": "https://www.riksantikvaren.no/fredninger/historisk-museum-i-oslo-fredet/",
+      "source_type": "official",
+      "review_status": "partial",
+      "review_note": "Fredning og bygningsvern"
+    },
+    "https://www.uio.no/om/finn-fram/omrader/sentrum/se06/": {
+      "url": "https://www.uio.no/om/finn-fram/omrader/sentrum/se06/",
+      "source_type": "official",
+      "review_status": "partial",
+      "review_note": "Universitetets bygningsinformasjon og Frederiks gate 2"
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring",
+      "em_his_samtid_ettertid_fortelling"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "considered_curriculum": {
+    "note": "Stedsspesifikk historie om universitetsbygningen, jugendstil, samlingskategorier og etiske kildegrenser. Ikke en generell museumshistorie eller årstallsprøve."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/historisk_museum_sets.json",
+      "data/quizcards/historie/manifest.json",
+      "data/places/historie-production/historisk_museum.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv quiz på canonical targetId i manifest."
+    },
+    "decisions": [
+      "Bevar eksisterende Historie-Place og separate Tullinløkka-Place.",
+      "Ikke publiser kandidatene før canonical Knowledge og fagrevisjon."
+    ],
+    "knowledge_migration": "Nye Knowledge-enheter må genereres deterministisk uten å endre eldre quizprogresjon."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "21 kildeførte spørsmål fordelt på sted/arkitektur, samlingene som materielle kilder og kildekritikk/etikk; ingen ren datoøving."
+  },
+  "held_back_candidates": [
+    "Vær nøye med at museets samlinger og utstillinger ikke er det samme.",
+    "Ikke antyd at en utdatert etnografisk merkelapp er faglig nøytral.",
+    "Et spørsmål om fredning må knyttes til fredningsdokumentet, ikke bare formidle vern generelt.",
+    "Kildeskille: Riksantikvaren daterer oppføringen til 1897–1902, mens SNL skriver reist 1898–1902. 1904 er samstemt åpningsår. Unngå eksakt byggestart som quizfasit; kilden må forklares før v4.2-sluttføring."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "identitet_arkitektur",
+      "statement": "Historisk museum er del av Kulturhistorisk museum ved Universitetet i Oslo.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Nåværende institusjon",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "identitet_arkitektur",
+      "statement": "Museumshuset ligger i Frederiks gate 2 ved Tullinløkka.",
+      "source_ids": [
+        "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html"
+      ],
+      "source_location": "Bygning, sted og formidling",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "identitet_arkitektur",
+      "statement": "Bygningen ble reist for universitetets arkeologiske, etnografiske og numismatiske samlinger.",
+      "source_ids": [
+        "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html"
+      ],
+      "source_location": "Museumsbyggets åpning og samlinger",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "identitet_arkitektur",
+      "statement": "Henrik Bull overtok etter den opprinnelige arkitektkonkurransevinneren Karl August Henriksen.",
+      "source_ids": [
+        "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html"
+      ],
+      "source_location": "Bygningens arkitekter",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "identitet_arkitektur",
+      "statement": "Museet er et eksempel på jugendpreget museumsarkitektur fra århundreskiftet.",
+      "source_ids": [
+        "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html"
+      ],
+      "source_location": "Bygningens arkitekter",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "identitet_arkitektur",
+      "statement": "Fredningen gjelder bygningens kulturhistoriske verdi, ikke et krav om uforanderlige utstillinger.",
+      "source_ids": [
+        "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html"
+      ],
+      "source_location": "Museumsbygningens utforming",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "identitet_arkitektur",
+      "statement": "Museumsbygningen i Frederiks gate er en egen stedlig identitet, mens Tullinløkka er et område.",
+      "source_ids": [
+        "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html"
+      ],
+      "source_location": "Bygning, sted og formidling",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_08",
+      "order": 8,
+      "planned_phase": "opening",
+      "family": "samling_og_institusjon",
+      "statement": "Arkeologiske funn kan si noe om levesett også når skriftlige kilder mangler.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Arkeologiske og numismatiske samlinger",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_09",
+      "order": 9,
+      "planned_phase": "opening",
+      "family": "samling_og_institusjon",
+      "statement": "Numismatikk bruker blant annet mynter til å studere økonomi, handel og makt.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Arkeologiske og numismatiske samlinger",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_10",
+      "order": 10,
+      "planned_phase": "opening",
+      "family": "samling_og_institusjon",
+      "statement": "En gjenstands kontekst kan være like opplysende som selve objektet.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Arkeologiske og numismatiske samlinger",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_11",
+      "order": 11,
+      "planned_phase": "opening",
+      "family": "samling_og_institusjon",
+      "statement": "Mynter kan vise statsautoritet, symboler og økonomiske forbindelser.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Arkeologiske og numismatiske samlinger",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_12",
+      "order": 12,
+      "planned_phase": "opening",
+      "family": "samling_og_institusjon",
+      "statement": "En samling kan være varig, mens kunnskap og formidling utvikles.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Etnografiske samlinger",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_13",
+      "order": 13,
+      "planned_phase": "opening",
+      "family": "samling_og_institusjon",
+      "statement": "Universitetsmuseet har ansvar for å undersøke, bevare og formidle samlinger.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Nåværende institusjon",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_14",
+      "order": 14,
+      "planned_phase": "opening",
+      "family": "samling_og_institusjon",
+      "statement": "Romrekkefølge, lys og etiketter styrer hvordan publikum oppfatter sammenhenger.",
+      "source_ids": [
+        "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html"
+      ],
+      "source_location": "Museumsbygningens utforming",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "kildekritikk_og_etikk",
+      "statement": "Daterte utstillingskataloger kan dokumentere utvalg og fortolkning i en bestemt periode.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Nåværende institusjon",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "kildekritikk_og_etikk",
+      "statement": "Hvordan objekter ble samlet inn og forklart, er selv en del av historien.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Etnografiske samlinger",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "kildekritikk_og_etikk",
+      "statement": "Eierskap og opprinnelse kan være tema i diskusjoner om samlingers historie og ansvar.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Etnografiske samlinger",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "kildekritikk_og_etikk",
+      "statement": "Kulturhistorisk museum har langsiktige oppgaver selv når publikumsutstillingene fornyes.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Nåværende institusjon",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "kildekritikk_og_etikk",
+      "statement": "God kildekritikk viser både hva materialet kan støtte og hva det ikke kan avgjøre.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Arkeologiske og numismatiske samlinger",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "kildekritikk_og_etikk",
+      "statement": "Den fredede arkitekturen uttrykker syn på dannelse, samlinger og offentlig institusjonsbygging omkring 1900.",
+      "source_ids": [
+        "https://www.historiskmuseum.no/om-museet/om-bygningane/index.html"
+      ],
+      "source_location": "Bygningens arkitekter",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_historisk_museum_b05_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "kildekritikk_og_etikk",
+      "statement": "Museet må forstås både som bygning, forskningsinstitusjon og offentlig arena for kritisk historieformidling.",
+      "source_ids": [
+        "https://www.khm.uio.no/"
+      ],
+      "source_location": "Nåværende institusjon",
+      "review_status": "partial",
+      "use_decision": "usable_with_stated_limitations",
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    }
+  ]
+}
