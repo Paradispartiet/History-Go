@@ -162,6 +162,7 @@ jobs:
       - run: node scripts/test-flora-krypsoleie-b09.mjs
       - run: node scripts/test-flora-krypveronika-b09.mjs
       - run: node scripts/test-flora-primula-b09.mjs
+      - run: node scripts/test-flora-lungeurt-b09.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -184,6 +185,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-44-black-mobile-desktop
+          name: flora-approved-45-black-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore
