@@ -57,7 +57,8 @@ test("Canonical Blå retains its actual Brand and original People without recrea
   assert.deepEqual(mapping.blaa, ["bla"]);
   assert.deepEqual(runtime.brands, [brand]);
   assert.equal(runtime.place.id, "blaa");
-  assert.deepEqual(runtime.people.map(p => p.id), ["jan_garbarek", "bugge_wesseltoft"]);
+  assert.deepEqual(runtime.people.map(p => p.id), ["bugge_wesseltoft", "martin_revheim", "kjell_einar_karlsen"]);
+  assert.ok(runtime.people.every(p => p.id !== "jan_garbarek"), "Keep the person profile but do not invent a Blå concert link");
   assert.equal(runtime.place.place_card_profile, undefined); // no fabricated collection
 });
 
