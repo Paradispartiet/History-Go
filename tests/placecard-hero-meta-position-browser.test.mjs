@@ -100,17 +100,19 @@ try{
    assert.equal(m.statusParent,"pcStatusBar","progress action keeps its host at "+width);
    assert.equal(m.categoryParent,"pcMeta","category stays inside image at "+width);
    assert.equal(m.titleParent,"pc-title-row","title stays in hero heading row at "+width);
-   assert.ok(m.status.y>=m.epoke.bottom-1 && m.status.bottom<=m.hero.bottom+1,
-     "status inside image below epoch at "+width+": "+JSON.stringify(m));
+   assert.ok(m.status.y>=m.hero.y-1 && m.status.bottom<=m.title.y+1,
+     "Ta quiz is above the heading in the image at "+width+": "+JSON.stringify(m));
    assert.ok(m.title.x>=m.hero.x-1 && m.title.x<=m.hero.x+26
      && m.title.y>=m.hero.y-1 && m.title.bottom<=m.category.y+1,
-     "title lower-left above category at "+width+": "+JSON.stringify(m));
+     "title left beneath Ta quiz at "+width+": "+JSON.stringify(m));
    assert.ok(m.category.y>=m.title.bottom-1
      && m.category.x>=m.hero.x-1 && m.category.right<=m.hero.right+1,
      "category beneath heading at "+width+": "+JSON.stringify(m));
-   assert.ok(m.favorite.y>m.people.y && m.favorite.y>m.badge.y
-     && m.favorite.x>=m.people.right-8 && m.favorite.right<=m.badge.x+8,
-     "favorite star centered below the People and Merker icons at "+width+": "+JSON.stringify(m));
+   assert.ok(m.favorite.x>=m.title.right-1
+     && m.favorite.x<=m.title.right+19
+     && m.favorite.y>=m.title.y-12 && m.favorite.y<=m.title.y+8
+     && m.favorite.width<=29,
+     "smaller favorite sits slightly above and directly beside title at "+width+": "+JSON.stringify(m));
    assert.ok(m.epoke.y>=m.category.bottom-1,"epoch stays below category at "+width);
    assert.ok(m.category.bottom<=m.hero.bottom+1
      && m.epoke.bottom<=m.hero.bottom+1,"metadata stays inside landscape hero at "+width);
