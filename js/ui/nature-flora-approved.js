@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_penstorkenebb: Object.freeze({
+      scientificName: "Geranium robertianum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/27_stankstorkenebb_v1.webp",
+      gitBlobSha: "a057aae517028ebb753b97f76eb11a44bb83ed50",
+      reviewedAt: "2026-11-02",
+      stage: "blomstring og fruktsetting",
+      evidence: "data/natur/flora/illustration-quality-stankstorkenebb-20261102.json"
+    }),
     emne_flora_ormehode: Object.freeze({
       scientificName: "Echium vulgare",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/26_ormehode_v1.webp",
