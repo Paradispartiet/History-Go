@@ -28,4 +28,4 @@ assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261102-15"'));
 assert(!html.includes('src="js/ui/nature-flora-photographs.js'));
 assert(!ui.includes("photoCredit")&&ui.includes("Illustrasjon under arbeid"));
 assert(css.includes('body[data-nature-kind="flora"] .ne-photo,')&&css.includes('background:#000!important'));
-console.log("Hvit tvetann: exact WebP SHA256/Git SHA, true alpha, species record, 36 approvals, black display.");
+console.log("Hvit tvetann: exact WebP SHA256/Git SHA, true alpha, species record, 37 approvals, black display.");
