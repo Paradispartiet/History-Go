@@ -7,10 +7,13 @@ on:
       - .github/workflows/hon-sync-runtime-20261102.yml
 permissions:
   contents: write
+concurrency:
+  group: house-of-nerds-runtime-sync-20261102
+  cancel-in-progress: true
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,26 +21,34 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Build canonical Subkultur runtime and epoch
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate canonical Knowledge, Subkultur runtime and epoch
         run: |
+          npm run knowledge:canonical:write
           node tools/materialize-subkultur-runtime-v1.mjs --write
           npm run epoker:places:build
-      - name: Verify generated files
+      - name: Verify generated outputs
         run: |
+          npm run knowledge:canonical:check
           node tools/materialize-subkultur-runtime-v1.mjs --check
           npm run epoker:places:check
-      - name: Commit bounded generated projections
+      - name: Commit narrowly scoped generated changes
         shell: bash
         run: |
           set -euo pipefail
           git status --short
+          git diff --stat
           changed=$(git diff --name-only | wc -l)
-          test "$changed" -le 2
-          git add -- data/fag/subkultur/subkultur_runtime_manifest.json data/epoker/epoke-place-index.json
-          test "$(git diff --cached --name-only | wc -l)" -eq "$changed"
+          test "$changed" -le 8
+          unexpected=$(git diff --name-only | grep -Ev '^(data/fag/subkultur/subkultur_runtime_manifest.json|data/epoker/epoke-place-index.json|data/knowledge/subjects/subkultur/knowledge_units.generated.json|reports/knowledge-id-backfill.json)$' || true)
+          if [[ -n "$unexpected" ]]; then echo "Unapproved generated changes: $unexpected"; exit 1; fi
+          git add -A -- data/fag/subkultur/subkultur_runtime_manifest.json data/epoker/epoke-place-index.json data/knowledge/subjects/subkultur/knowledge_units.generated.json reports/knowledge-id-backfill.json
           if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -m "Sync House of Nerds Subkultur runtime and epoch index"
+            git commit -m "Sync canonical House of Nerds Knowledge and runtime"
+            git fetch origin place/house-of-nerds-integration-20261102
+            git rebase origin/place/house-of-nerds-integration-20261102
             git push origin HEAD:place/house-of-nerds-integration-20261102
           fi
