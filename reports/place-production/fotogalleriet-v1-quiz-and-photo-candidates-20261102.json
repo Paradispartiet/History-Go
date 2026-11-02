@@ -779,7 +779,7 @@
     "questionCount": 10
   },
   "images": {
-    "status": "research_candidates_pending_clearance",
+    "status": "candidates_rejected_for_v1_card_photography",
     "policy": "image and frontImage must be distinct original photographs with different source photo IDs and source hashes; never crops of the same photograph",
     "candidatePhotos": [
       {
@@ -790,7 +790,7 @@
         "license": "CC BY 2.0",
         "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
         "photographedAt": "2007-08-24T20:22:00",
-        "usageDecision": "not yet approved: verify depicted artworks, suitability, attribution"
+        "usageDecision": "rejected_for_image_or_frontImage: foregrounded exhibition artwork fills most of frame, gallery architecture not identifiable, separate artwork rights unresolved"
       },
       {
         "role": "possible frontImage",
@@ -800,9 +800,16 @@
         "license": "CC BY 2.0",
         "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
         "photographedAt": "2007-08-24T19:28:00",
-        "usageDecision": "not yet approved: verify depicted artworks, suitability, attribution"
+        "usageDecision": "rejected_for_image_or_frontImage: installation/collage artwork dominates gallery wall; exhibition-specific, not a clear documentary photo of the institution; artwork rights unresolved"
       }
-    ]
+    ],
+    "requiredNextSteps": [
+      "Find two separately authored/licensed photos that clearly identify Fotogalleriet (entrance/facade, and a distinct view of interior or historic site)",
+      "Verify two distinct original photo identifiers, source SHA256s and source-page licenses",
+      "Verify any visible artistic works and people do not create unresolved reuse rights",
+      "Document full credits and convert into separate local WebP assets, never using the same original for image and frontImage"
+    ],
+    "siteSpecificLicensingNote": "SNL exterior/vernissage photographs are marked limited reuse, and Oslo Art Guide facade photo has no verified reusable CC license. Neither may be copied into History Go based solely on public display."
   },
   "qualityGates": [
     "Compare original photo IDs and sourceSha256, not just output WebP bytes",
