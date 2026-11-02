@@ -1,0 +1,50 @@
+name: The Villa – licensed Commons photos one shot
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/build-the-villa-licensed-media-20261102.mjs'
+      - '.github/workflows/the-villa-licensed-media-one-shot.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: the-villa-licensed-images-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    if: github.event.pull_request.number == 6935 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/the-villa-v1-source-quiz-20261102
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Fetch independently licensed sources and generate three native WebP derivatives
+        run: node scripts/build-the-villa-licensed-media-20261102.mjs
+      - name: Verify licensed sources and independent originals
+        run: |
+          node --test tests/the-villa-v1-content.test.mjs
+          node -e 'const p=require("./data/places/subkultur/oslo/places_subkultur/the_villa.json");if(!p.image||!p.frontImage||!p.cardImage||p.imageMeta.sourcePage===p.frontImageMeta.sourcePage||p.imageMeta.originalSha256===p.frontImageMeta.originalSha256)process.exit(1)'
+          test -s bilder/places/candidates/oslo-v1-20261102/the_villa_hero.webp
+          test -s bilder/places/candidates/oslo-v1-20261102/the_villa_portrait.webp
+          test -s bilder/places/candidates/oslo-v1-20261102/the_villa_card.webp
+      - name: Commit only site media and canonical references, remove one-shot workflow
+        env:
+          REF: content/the-villa-v1-source-quiz-20261102
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/candidates/oslo-v1-20261102/the_villa_hero.webp bilder/places/candidates/oslo-v1-20261102/the_villa_portrait.webp bilder/places/candidates/oslo-v1-20261102/the_villa_card.webp data/places/subkultur/oslo/places_subkultur/the_villa.json data/runtime/place-open/the_villa.json
+          git rm .github/workflows/the-villa-licensed-media-one-shot.yml
+          git diff --cached --check
+          git commit -m 'The Villa: integrer to ulike CC BY-SA-originalbilder som tre WebP'
+          git push origin "HEAD:$REF"
