@@ -77,6 +77,7 @@ try{
     {name:"perleblomst",label:"Perleblomst",term:"perleblomst",path:"b09/28_perleblomst_v1.webp"},
     {name:"prikkperikum",label:"Prikkperikum",term:"prikkperikum",path:"b09/29_prikkperikum_v1.webp"},
     {name:"prikktvetann",label:"Prikktvetann",term:"prikktvetann",path:"b09/30_prikktvetann_v1.webp"},
+    {name:"reinfann",label:"Reinfann",term:"reinfann",path:"b09/31_reinfann_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){

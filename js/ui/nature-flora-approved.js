@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_reinfann: Object.freeze({
+      scientificName: "Tanacetum vulgare",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/31_reinfann_v1.webp",
+      gitBlobSha: "5efb130ebf1da42f34b09e7aa30174647e76022b",
+      reviewedAt: "2026-11-02",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-reinfann-20261102.json"
+    }),
     emne_flora_prikktvetann: Object.freeze({
       scientificName: "Lamium maculatum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/30_prikktvetann_v1.webp",
