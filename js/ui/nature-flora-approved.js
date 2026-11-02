@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_hvitmaure: Object.freeze({
+      scientificName: "Galium boreale",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/16_hvitmaure_v1.webp",
+      gitBlobSha: "9fa573ed27d6d8a61fe4ab5ac49f41d04926f7c8",
+      reviewedAt: "2026-11-02",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-hvitmaure-20261102.json"
+    }),
     emne_flora_hvittvetann: Object.freeze({
       scientificName: "Lamium album",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/15_hvittvetann_v1.webp",

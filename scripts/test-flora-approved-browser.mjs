@@ -61,7 +61,8 @@ try{
     {name:"haredylle",label:"Haredylle",term:"haredylle",path:"b09/12_haredylle_v1.webp"},
     {name:"humleblom",label:"Humleblom",term:"humleblom",path:"b09/13_humleblom_v1.webp"},
     {name:"hvitbergknapp",label:"Hvit bergknapp",term:"hvit bergknapp",path:"b09/14_hvitbergknapp_v1.webp"},
-    {name:"hvittvetann",label:"Hvit tvetann",term:"hvit tvetann",path:"b09/15_hvittvetann_v1.webp"}
+    {name:"hvittvetann",label:"Hvit tvetann",term:"hvit tvetann",path:"b09/15_hvittvetann_v1.webp"},
+    {name:"hvitmaure",label:"Hvitmaure",term:"hvitmaure",path:"b09/16_hvitmaure_v1.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
