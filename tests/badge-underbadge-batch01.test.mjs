@@ -20,7 +20,7 @@ const approvedMain={
 };
 test('legacy candidates and the activated Scenekunst and Film underbadges are registered correctly',()=>{
  assert.equal(plan.version,1);
- assert.equal(plan.status,'seven_scenekunst_eight_film_active_remaining_film_pending');
+ assert.equal(plan.status,'seven_scenekunst_nine_film_active_remaining_film_pending');
  assert.deepEqual(plan.pilot.map(p=>p.categoryId+'/'+p.subId),firstPilotKeys);
  const counts={scenekunst:7,by:10,film_tv:12};
  const activated={"sceneproduksjon":"bilder/merker/scenekunst/undermerker/sceneproduksjon-brodert-v3.webp","regi":"bilder/merker/scenekunst/undermerker/regi-brodert-v3.webp","dramaturgi":"bilder/merker/scenekunst/undermerker/dramaturgi-brodert-v3.webp","dans":"bilder/merker/scenekunst/undermerker/dans-brodert-v2.webp","performance":"bilder/merker/scenekunst/undermerker/performance-brodert-v2.webp","teater":"bilder/merker/scenekunst/undermerker/teater-brodert-v2.webp","musikkteater":"bilder/merker/scenekunst/undermerker/musikkteater-brodert-v3.webp"};
@@ -33,14 +33,14 @@ test('legacy candidates and the activated Scenekunst and Film underbadges are re
   assert.equal(family.assets.length,count);
   assert.deepEqual(family.assets.map(a=>a.id),parent.sub);
   if(id==='scenekunst') assert.deepEqual(parent.subBadgeImages,activated);
-  else if(id==='film_tv') assert.deepEqual(parent.subBadgeImages,{spillefilm:'bilder/merker/film_tv/undermerker/spillefilm-brodert-v2.webp',kortfilm:'bilder/merker/film_tv/undermerker/kortfilm-brodert-v1.webp',dokumentarfilm:'bilder/merker/film_tv/undermerker/dokumentarfilm-brodert-v1.webp',tv_serier:'bilder/merker/film_tv/undermerker/tv_serier-brodert-v1.webp',nyheter_og_reportasje:'bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp',klassikere:'bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp',norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v1.webp'});
+  else if(id==='film_tv') assert.deepEqual(parent.subBadgeImages,{spillefilm:'bilder/merker/film_tv/undermerker/spillefilm-brodert-v2.webp',kortfilm:'bilder/merker/film_tv/undermerker/kortfilm-brodert-v1.webp',dokumentarfilm:'bilder/merker/film_tv/undermerker/dokumentarfilm-brodert-v1.webp',tv_serier:'bilder/merker/film_tv/undermerker/tv_serier-brodert-v1.webp',nyheter_og_reportasje:'bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp',klassikere:'bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp',norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v1.webp',filmlocations:'bilder/merker/film_tv/undermerker/filmlocations-brodert-v1.webp'});
   else assert.equal(parent.subBadgeImages,undefined,id+' other underbadges remain inactive');
   for(const asset of family.assets){
    const path='bilder/merker/'+id+'/undermerker/'+asset.id+'-brodert-v1.webp';
    assert.equal(asset.proposedFile,path);
    const activeImage=id==='scenekunst'?activated[asset.id]:id==='film_tv'?parent.subBadgeImages?.[asset.id]||null:null;
    assert.equal(asset.selectedImage,activeImage||null,id+'/'+asset.id);
-   assert.equal(asset.quality.visualApproved,id==='film_tv'&&['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler'].includes(asset.id));
+   assert.equal(asset.quality.visualApproved,id==='film_tv'&&['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler','filmlocations'].includes(asset.id));
    assert.ok(asset.label.length>=3&&asset.motif.length>=25);
    if(asset.status==='rendered_candidate'||asset.status==='rework_required'){
      if(asset.status==='rework_required'){
@@ -63,7 +63,7 @@ test('legacy candidates and the activated Scenekunst and Film underbadges are re
      assert.equal(createHash('sha256').update(content).digest('hex'),asset.sha256,id+'/'+asset.id+' SHA-256');
    }else if(asset.status==='integrated'){
      assert.equal(id,'film_tv');
-     assert.ok(['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler'].includes(asset.id));
+     assert.ok(['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler','filmlocations'].includes(asset.id));
      assert.equal(asset.quality.visualApproved,true);
      assert.ok(existsSync(resolve(root,asset.selectedImage)));
    }else{
