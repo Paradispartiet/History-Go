@@ -1,25 +1,24 @@
 # History Go – Spillefilm undermerke v2
-2. november 2026
 
-## Status
-Produksjonen er åpnet etter at Scenekunst 7/7 ble merget til `main` i PR #6906. Dette er en **produksjonskontrakt** for Film & TV sitt første undermerke, ikke en ferdig illustrasjon.
+## Publisert i PR
+- Nytt separat brodert undermerke: `bilder/merker/film_tv/undermerker/spillefilm-brodert-v2.webp`.
+- **1024 × 1024 WebP**, transparent, **510 186 byte**.
+- SHA-256: `6d2bb5097dd1c0de21e817358ef2d45e1ddd75daaf8b400eaf38147997387db7`.
+- `SPILLEFILM` er sydd i bue øverst, **inne i merket**, med et filmklapperbrett, manus og kort filmstrimmel.
+- Magenta `#C2188B` og liljehvit `#E7F8FF`, med nøytrale svarte/grå sting i dybden.
+- Nytt motiv uten filmkamera og projeksjonslys fra hovedmerket. Det gamle `spillefilm-brodert-v1.webp` beholdes som avvist arbeidsutkast.
 
-Eksisterende `spillefilm-brodert-v1.webp` er avvist: det dupliserer hovedmerkets filmkamera og bruker dominerende gult. Det gamle bildet beholdes som arkiv, **ikke aktivert**.
+## Visuell og teknisk kontroll
+Originalillustrasjonen ble produsert som et selvstendig bilde, ikke klippet fra et kontaktark. Det ble kontrollert i full oppløsning og med nedskalering til 64 px. Bildekanten er sydd, motiv og tekst lesbare. Visuell vurdering godkjent 2. november 2026.
 
-## Bildemotiv
-- Rund brodert stoffpatch med kraftig, naturtro sydd kant, dybde og tekstur.
-- `SPILLEFILM` som tydelig buet tekst **inni øvre innerkant**, ikke utenfor.
-- Motiv: **filmklapperbrett + åpent manus + kort filmstrimmel med bildefelter**. Ingen kamera, projektor eller lyskaster som kopierer Film & TV-hovedmerket.
-- Magenta `#C2188B` som primærfarge. Liljehvit `#E7F8FF` som tydelig sekundærfarge. Små grå/svarte nøytrale tråder kan gi dybde. Ingen dominerende gull eller gult.
-- Bare **ett merke per selvstendige WebP**, 1024 × 1024 med alfa. Ikke klipp fra samlebilde.
-- Motivet skal være gjenkjennelig ned til 64 px.
+`data/badges/film_tv.json` har nå én aktiv undermerkereferanse: `subBadgeImages.spillefilm`. Alle 7 Scenekunst-undermerker og 19 hovedmerker bevares uendret.
 
-## Implementeringsregel
-1. Først visuell kvalitetskontroll av reelt bilde på full størrelse og 64 px; sjekk bokstavene.
-2. Etter godkjenning: last opp `bilder/merker/film_tv/undermerker/spillefilm-brodert-v2.webp` og verifiser byte, SHA-256, 1024 × 1024, alfa.
-3. Oppdater `subBadgeImages.spillefilm` i `data/badges/film_tv.json` og `selectedImage` i `data/badges/underbadge_batch01_production.json`.
-4. Kjør målrettet test. **Før dette skal ingen Film & TV-undermerker aktiveres.**
+Kjør målrettede tester:
+```bash
+node --test tests/badge-spillefilm-v2-production.test.mjs tests/badge-underbadge-batch01.test.mjs
+```
 
-Neste etter Spillefilm: Kortfilm og Dokumentarfilm, etter samme kontrakt med hvert sitt særmotiv.
+## Videre
+Neste undermerke: **Kortfilm** (`film_tv/kortfilm`), deretter **Dokumentarfilm**. Produksjonen skal være én selvstendig WebP per undermerke, med navn sydd i kanten og egen komposisjon.
 
-Ingen av de 19 hovedmerkene eller ferdige Scenekunst-undermerkene skal endres.
+![Spillefilm v2](../../bilder/merker/film_tv/undermerker/spillefilm-brodert-v2.webp)
