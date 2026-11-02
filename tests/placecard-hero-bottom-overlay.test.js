@@ -7,11 +7,11 @@ const root = path.join(__dirname, "..");
 const css = fs.readFileSync(path.join(root, "css", "placeCard.css"), "utf8");
 const heroCss = css.slice(css.indexOf("/* PlaceCard landscape hero:"), css.indexOf("/* Direct Place Sheet:"));
 assert.ok(heroCss.includes("justify-content: flex-end;"), "Hero content must sit at the bottom");
-assert.match(heroCss, /#pcMeta\\{\\s*order: 0;/, "Category and epoch must precede the heading");
-assert.match(heroCss, /\\.pc-title-row\\{\\s*order: 1;/, "Heading must follow category and epoch");
-assert.match(heroCss, /#pcStatusBar\\{\\s*order:2;/, "Action must follow the heading");
-assert.match(css, /rgba\\(0,0,0,\\.90\\) 100%/, "Photo bottom must have a contrast gradient");
-assert.match(heroCss, /#pcMeta > \\*\\{[^}]*color: #fff;/s, "Metadata must remain white");
+assert.match(heroCss, /#pcMeta\{\s*order: 0;/, "Category and epoch must precede the heading");
+assert.match(heroCss, /\.pc-title-row\{\s*order: 1;/, "Heading must follow category and epoch");
+assert.match(heroCss, /#pcStatusBar\{\s*order:2;/, "Action must follow the heading");
+assert.match(css, /rgba\(0,0,0,\.90\) 100%/, "Photo bottom must have a contrast gradient");
+assert.match(heroCss, /#pcMeta > \*\{[^}]*color: #fff;/s, "Metadata must remain white");
 
 let summary = { status: "unknown", visited: false, quizCompleted: false, nextAction: "quiz" };
 const calls = [];
