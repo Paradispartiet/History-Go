@@ -1916,9 +1916,7 @@
         }
       });
     }
-    const hero = shell4.querySelector("[data-hg-place-sheet-hero]");
-    if (hero && hero.nextElementSibling !== nav) hero.insertAdjacentElement("afterend", nav);
-    else if (!hero && shell4.firstElementChild !== nav) shell4.prepend(nav);
+    if (nav.parentElement !== shell4) shell4.appendChild(nav);
     nav.dataset.placeId = text16(place.id);
     return nav;
   }
