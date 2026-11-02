@@ -1,0 +1,31 @@
+name: House of Nerds one-shot scenario People generation
+on:
+  push:
+    branches: [place/house-of-nerds-person-evidence-20261101]
+    paths: [.github/workflows/hon-one-shot-scenario-people.yml]
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.ref == 'refs/heads/place/house-of-nerds-person-evidence-20261101'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+      - run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+      - name: Stage scenario People generated files
+        shell: bash
+        run: |
+          set -eu
+          git add -- data/Civication/scenarioPeople/generated/subkultur.json data/Civication/scenarioPeople_index.json
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Regenerate canonical scenario People catalog for House of Nerds"
+            git push origin HEAD:place/house-of-nerds-person-evidence-20261101
+          fi
