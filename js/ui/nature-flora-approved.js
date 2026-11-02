@@ -5,6 +5,15 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_perleblomst: Object.freeze({
+      scientificName: "Muscari spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/28_perleblomst_v1.webp",
+      gitBlobSha: "1bc873a3e3a30d552e2e77d25f21319c5a1ce93b",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      taxonomicScope: "genus-representative",
+      evidence: "data/natur/flora/illustration-quality-perleblomst-20261102.json"
+    }),
     emne_flora_penstorkenebb: Object.freeze({
       scientificName: "Geranium robertianum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/27_stankstorkenebb_v1.webp",
