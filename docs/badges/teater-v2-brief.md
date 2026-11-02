@@ -24,3 +24,12 @@ WebP-filen er lagt inn som inaktiv kandidat med SHA-256 `bfa38522935c7895a495a2b
 - Faktisk fil: [Teater v2](../../bilder/merker/scenekunst/undermerker/teater-brodert-v2.webp).
 - WebP 1024×1024, 449 234 byte, SHA-256 `bfa38522935c7895a495a2b470b77120e9164037c5832e6125d8448f305948ad`.
 - **Ikke visuelt sluttgodkjent; ikke aktivert**. Ingen eksisterende Scenekunst-undermerker eller -hovedmerker er endret.
+
+## Ferdigstilt 2. november 2026
+Teater v2 er visuelt sluttvurdert med eget scenemotiv: én skuespiller i grått foran publikum, brodert sceneteppe og lyskastere. **Ingen teatermasker**. Navnet **TEATER** er sydd inne i øvre kant.
+
+- Aktiv fil: `bilder/merker/scenekunst/undermerker/teater-brodert-v2.webp`
+- Oppløsning: 1024 × 1024 WebP med alfa
+- Filstørrelse: 449 234 byte
+- SHA-256: `bfa38522935c7895a495a2b470b77120e9164037c5832e6125d8448f305948ad`
+- Aktiv kobling: `data/badges/scenekunst.json -> subBadgeImages.teater`.
