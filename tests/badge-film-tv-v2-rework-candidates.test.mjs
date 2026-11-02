@@ -21,9 +21,9 @@ for (const [id, name, length, hash] of files) {
     assert.equal(createHash('sha256').update(b).digest('hex'), hash);
   });
 }
-test('published images remain the original v1 until visual signoff', () => {
+test('published images now use reviewed circular v3 replacements', () => {
   const film = JSON.parse(readFileSync(new URL('../data/badges/film_tv.json', import.meta.url), 'utf8'));
-  assert.equal(film.subBadgeImages.filmfestivaler, 'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v1.webp');
-  assert.equal(film.subBadgeImages.filmlocations, 'bilder/merker/film_tv/undermerker/filmlocations-brodert-v1.webp');
+  assert.equal(film.subBadgeImages.filmfestivaler, 'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp');
+  assert.equal(film.subBadgeImages.filmlocations, 'bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp');
   assert.equal(Object.keys(film.subBadgeImages).length, 9);
 });
