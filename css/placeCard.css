@@ -2119,13 +2119,12 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   min-height: clamp(148px, 25vw, 205px);
 }
 
-/* Hero v3: white, legible title at lower RIGHT; category/epoch and
-   next-action at lower LEFT. Controls remain the original live nodes, at
-   upper RIGHT. The compact title travels upward with the half-height crop. */
+/* Bottom-left title above category/epoch/action. Top-right People/star/Merker
+   form a close triangle; real DOM controls and sticky photo remain intact. */
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content{
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1.28fr);
-  grid-template-rows:minmax(52px,1fr) auto auto;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:minmax(68px,1fr) auto auto auto;
   align-content:stretch;
   align-items:end;
   gap:5px 10px;
@@ -2133,12 +2132,12 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   color:#fff;
 }
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row{
-  order:1;
-  grid-column:2;
-  grid-row:2 / 4;
+  order:0;
+  grid-column:1;
+  grid-row:2;
   display:flex;
   align-items:flex-end;
-  justify-content:flex-end;
+  justify-content:flex-start;
   align-self:end;
   width:100%;
   min-width:0;
@@ -2151,49 +2150,38 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   width:100%;
   margin:0;
   padding:0;
-  color:#fff;
-  text-align:right;
+  color:#fff !important;
+  text-align:left;
   overflow-wrap:break-word;
   text-shadow:0 2px 7px #000,0 1px 16px rgba(0,0,0,.85);
 }
-/* These absolute positions use .pc-heading-content as containing block,
-   NOT the title row; icons do not affect headline wrapping/height. */
-#placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > .pc-reader-toggle{
-  position:absolute;
-  top:12px;
-  left:14px;
-  right:auto;
-  grid-area:auto;
-  margin:0;
-}
-#placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcFavorite{
-  position:absolute;
-  top:12px;
-  right:14px;
-  left:auto;
-  grid-area:auto;
-  margin:0;
-}
-#placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcBadgesIcon{
-  position:absolute;
-  top:12px;
-  right:62px;
-  left:auto;
-  grid-area:auto;
-  margin:0;
-}
+/* Upper-right triangle: People and Merker above, star centered slightly below. */
+#placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcFavorite,
+#placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcBadgesIcon,
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcPeopleIcon{
   position:absolute;
-  top:12px;
-  right:122px;
   left:auto;
   grid-area:auto;
   margin:0;
+  z-index:3;
+}
+#placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcFavorite{
+  top:46px;
+  right:76px;
+  z-index:4;
+}
+#placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcBadgesIcon{
+  top:12px;
+  right:14px;
+}
+#placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcPeopleIcon{
+  top:12px;
+  right:94px;
 }
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta{
-  order:0;
+  order:1;
   grid-column:1;
-  grid-row:2;
+  grid-row:3;
   display:flex;
   flex-flow:row wrap;
   align-items:center;
@@ -2234,7 +2222,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcStatusBar{
   order:2;
   grid-column:1;
-  grid-row:3;
+  grid-row:4;
   justify-self:start;
   align-self:end;
   width:auto;
@@ -2270,24 +2258,20 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   body.hg-app.hg-phone #placeCard .pc-heading-hero.has-photo-source .pc-heading-content{
     padding:12px;
     gap:4px 8px;
-    grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);
-    grid-template-rows:minmax(48px,1fr) auto auto;
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:minmax(60px,1fr) auto auto auto;
   }
   #placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcPeopleIcon{
     top:10px;
-    right:100px;
+    right:84px;
   }
   #placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcBadgesIcon{
     top:10px;
-    right:56px;
-  }
-  #placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcFavorite{
-    top:10px;
     right:12px;
   }
-  #placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > .pc-reader-toggle{
-    top:10px;
-    left:12px;
+  #placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcFavorite{
+    top:37px;
+    right:54px;
   }
   #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta > *{
     font-size:11px;
@@ -2297,10 +2281,69 @@ body.hg-app.hg-phone #placeCard #pcDesc{
     padding:3px 6px;
   }
 }
-/* This wrapper stays full-size while its parent is cropped. Move its
-   content upward by the crop distance so the bottom title remains visible. */
+/* The original heading scrolls with the retained lower half of the photograph. */
 body.hg-app #placeCard.is-original-photo-pinned .pc-heading-hero.has-photo-source .pc-heading-content{
   transform:translateY(calc(-1 * var(--pc-hero-collapse-offset, 0px)));
+}
+/* The collapse arrow belongs above the fixed bottom Om/Fortellinger tabs,
+   not underneath them. Keep the existing JavaScript click handler. */
+body.hg-app #placeCard.is-place-sheet-direct > #pcCollapseBtn{
+  position:absolute;
+  bottom:74px;
+  right:14px;
+  z-index:35;
+  width:38px;
+  height:38px;
+  background:rgba(8,10,16,.91);
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow:0 3px 12px rgba(0,0,0,.5);
+  pointer-events:auto;
+}
+body.hg-app #placeCard.is-place-sheet-direct > #pcCollapseBtn:focus-visible{
+  outline:2px solid #f6c800;
+  outline-offset:2px;
+}
+
+/* The newer Place Sheet stylesheet may load after this one; the
+   user-selected left title always wins over its former right alignment. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+ .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row #pcTitle{
+  text-align:left !important;
+}
+/* The reader button follows “Om stedet” in the editorial content;
+   it is not part of the photo's floating controls. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-height:30px;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+ .pc-sheet-canonical-about > h3 > .pc-reader-toggle{
+  display:inline-flex;
+  flex:0 0 30px;
+  align-items:center;
+  justify-content:center;
+  width:30px;
+  height:30px;
+  margin:0;
+  padding:0;
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:50%;
+  background:rgba(18,18,18,.92);
+  color:#fff;
+  cursor:pointer;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+ .pc-sheet-canonical-about > h3 > .pc-reader-toggle[aria-pressed="true"]{
+  background:#f6d15a;
+  border-color:#f6d15a;
+  color:#191919;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+ .pc-sheet-canonical-about > h3 > .pc-reader-toggle:focus-visible{
+  outline:2px solid #f6d15a;
+  outline-offset:2px;
 }
 
 /* Direct Place Sheet: the image, section navigation and collection surface
