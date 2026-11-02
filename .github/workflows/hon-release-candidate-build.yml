@@ -26,7 +26,6 @@ jobs:
         run: |
           node scripts/build-quiz-production-context.mjs --category subkultur --target house_of_nerds --output data/quiz/production_context/subkultur/house_of_nerds.json
           npm run knowledge:canonical:write
-          node scripts/build-fagverk-release-manifest.mjs
       - name: Build People, Civication, chronology and Place-open
         run: |
           npm run civication:history-people:build
@@ -35,6 +34,7 @@ jobs:
           npm run place-open:build
           node tools/materialize-subkultur-runtime-v1.mjs --write
           node scripts/audit-subkultur-runtime-final-v1.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
       - name: Verify generated data and quiz parity
         run: |
           npm run knowledge:canonical:check
