@@ -42,13 +42,13 @@ test('every answer, source and Knowledge identifier is explicit and source-backe
 
 test('staged Knowledge IDs match the canonical generator deterministically', () => {
   const normalize = value => String(value ?? '').trim().toLowerCase()
-    .normalize('NFKD').replace(/[\\u0300-\\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, ' ').replace(/\\s+/g, ' ').trim();
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
   const kuId = (subject, claim) => {
     const normalized = normalize(claim);
-    const prefix = normalized.replace(/\\s+/g, '_').slice(0, 24) || 'item';
+    const prefix = normalized.replace(/\s+/g, '_').slice(0, 24) || 'item';
     const digest = createHash('sha256')
-      .update(subject + '\\0' + normalized, 'utf8').digest('hex').slice(0, 10);
+      .update(subject + '\0' + normalized, 'utf8').digest('hex').slice(0, 10);
     return `ku_${subject}_${prefix}_${digest}`;
   };
   const idToClaim = new Map();
