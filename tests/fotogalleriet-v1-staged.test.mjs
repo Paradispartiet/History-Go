@@ -65,6 +65,31 @@ test('staged Knowledge IDs match the canonical generator deterministically', () 
   assert.ok(idToClaim.size > 10, '21 quiz questions should span multiple distinct claims');
 });
 
+test('staged Knowledge handoff covers all 21 quizzes and ten QuizCards', () => {
+  const handoff = read('reports/place-production/fotogalleriet/knowledge-handoff-20261102.json');
+  assert.equal(handoff.status, 'staged_reviewed_not_registered_or_published');
+  assert.equal(handoff.placeId, place.id);
+  assert.equal(handoff.counts.fullquiz, 21);
+  assert.equal(handoff.counts.quizcard, 10);
+  assert.equal(handoff.counts.uniqueKnowledgeUnits, handoff.units.length);
+  const byId = new Map(handoff.units.map(u => [u.knowledge_unit_id, u]));
+  assert.equal(byId.size, handoff.units.length);
+  for (const q of all) {
+    const unit = byId.get(q.primary_knowledge_unit_id);
+    assert.ok(unit, q.id);
+    assert.equal(unit.canonical_claim, q.knowledge, q.id);
+    assert.ok(unit.question_ids.includes(q.id), q.id);
+    assert.ok(unit.quiz_ids.includes(q.quiz_id), q.quiz_id);
+    assert.ok(unit.sources.includes(q.source_urls[0]), q.id + ': source missing');
+  }
+  for (const card of cards.cards.flatMap(c => c.questions)) {
+    const unit = byId.get(card.primary_knowledge_unit_id);
+    assert.ok(unit, card.id);
+    assert.ok(unit.card_question_ids.includes(card.id), card.id);
+    assert.ok(unit.quiz_ids.includes(card.sourceQuizId), card.sourceQuizId);
+  }
+});
+
 test('ten QuizCard questions are exact references to the fullquiz', () => {
   assert.equal(cards.production_status, 'staged_not_registered_in_quizcard_manifest');
   assert.equal(cards.cards.length, 1);
