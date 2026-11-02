@@ -1,0 +1,72 @@
+{
+  "schema": "history_go_place_photo_clearance_review_v1",
+  "placeId": "fotogalleriet",
+  "reviewedAt": "2026-11-02",
+  "reviewStatus": "blocked_awaiting_two_documentary_originals",
+  "policy": "image and frontImage must use two different original documentary photographs, not crops or derivatives of the same original. Rights must cover local WebP redistribution; record sourceSha256, sourcePage, originalId, author, license and credit for each original.",
+  "sourceReview": [
+    {
+      "sourcePage": "https://snl.no/Fotogalleriet",
+      "subject": "2018 exterior/vernissage photograph outside Fotogalleriet at Møllergata 34",
+      "licenseObservation": "Photo labelled Begrenset gjenbruk (restricted reuse)",
+      "decision": "do_not_copy_or_publish_without_permission",
+      "roleCandidate": "facade",
+      "blockingReason": "No demonstrated local redistribution permission"
+    },
+    {
+      "sourcePage": "https://www.osloartguide.no/en/venues/fotogalleriet/exhibitions/window-exhibition-agenda-x",
+      "subject": "street-facing gallery facade/window exhibition",
+      "licenseObservation": "Reuse rights not established",
+      "decision": "do_not_copy_or_publish_without_permission",
+      "roleCandidate": "facade",
+      "blockingReason": "No verified photo redistribution license; artwork in window may carry separate rights"
+    },
+    {
+      "sourcePage": "https://www.oslobilder.no/OMU/OB.F24240",
+      "subject": "Møllergata street scene dated 1969, with Møllergata 34 listed as depicted address; photo by Thorbjørn Gustavsen, Oslo Museum OB.F24240",
+      "licenseObservation": "Listing says Creative Commons 3.0 but exact conditions and original file should be rechecked before any use",
+      "decision": "historical_context_only_not_place_card",
+      "roleCandidate": "context",
+      "blockingReason": "Predates Fotogalleriet's 1977 establishment and does not document the gallery as an institution"
+    },
+    {
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fotogalleriet-L1170234.jpg",
+      "subject": "exhibition artwork dominates interior",
+      "licenseObservation": "CC BY 2.0 photographic license, artwork permissions unresolved",
+      "decision": "rejected_for_both_photo_slots",
+      "roleCandidate": "none",
+      "blockingReason": "Not a clearly identifiable documentary photo of the gallery; visible artworks pose independent rights questions"
+    },
+    {
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fotogalleriet-talk_talk!.jpg",
+      "subject": "interior installation/collage artworks",
+      "licenseObservation": "CC BY 2.0 photographic license, artwork permissions unresolved",
+      "decision": "rejected_for_both_photo_slots",
+      "roleCandidate": "none",
+      "blockingReason": "Exhibition-specific artwork rather than documentary place photo"
+    }
+  ],
+  "requiredPhotoSlots": [
+    {
+      "role": "image",
+      "preferredSubject": "Distinct recognizable exterior of the current Møllergata 34 gallery entrance/facade",
+      "status": "missing_rights_clear_original"
+    },
+    {
+      "role": "frontImage",
+      "preferredSubject": "A second separately photographed perspective of the gallery (interior without uncleared artworks, or a licensed historic Fotogalleriet site photo)",
+      "status": "missing_rights_clear_original"
+    }
+  ],
+  "activationRequirements": [
+    "Verify both photographs actually depict Fotogalleriet, with place and time accurately described",
+    "Confirm right to copy, crop, adapt and redistribute each original as local WebP in History Go",
+    "Review artwork and identifiable persons in frame for additional permission requirements",
+    "Record different source IDs and different sourceSha256 hashes; never treat alternate crops as different originals",
+    "Prepare two local WebP assets with accurate photographer attribution and source links",
+    "Run: node scripts/check-distinct-place-photos.mjs --place data/places/kunst/oslo/places_kunst/fotogalleriet.json --require-both",
+    "After image gate, finish Knowledge registry and quiz/QuizCard manifest synchronization, browser tests and v1 production closeout"
+  ],
+  "livePlacePhotosChanged": false,
+  "canMergeAsCompleteV1": false
+}
