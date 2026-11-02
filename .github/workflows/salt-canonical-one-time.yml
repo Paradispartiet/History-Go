@@ -1,0 +1,45 @@
+name: SALT one-time generated data synchronization
+on:
+  push:
+    branches:
+      - content/salt-v1-fagverk-people-quiz-20261102
+    paths:
+      - .github/workflows/salt-canonical-one-time.yml
+permissions:
+  contents: write
+concurrency:
+  group: salt-generated-onetime
+  cancel-in-progress: false
+jobs:
+  regenerate:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate Place-open, Fagverk release, Knowledge and diagnostics
+        run: |
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run knowledge:canonical:write
+      - name: Commit only relevant generated artifacts
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/place-open/salt.json data/runtime/people-all data/runtime/people-all.json data/fagverk/fagverk_release.json data/quiz/musikk/salt_sets_merged.json data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json reports/knowledge-id-backfill.json
+          git diff --cached --stat
+          if ! git diff --cached --quiet; then
+            git commit -m "SALT: synchronize generated Place-open People Knowledge and Fagverk release"
+            git restore .
+            git fetch origin content/salt-v1-fagverk-people-quiz-20261102
+            git rebase origin/content/salt-v1-fagverk-people-quiz-20261102
+            git push origin HEAD:content/salt-v1-fagverk-people-quiz-20261102
+          fi
