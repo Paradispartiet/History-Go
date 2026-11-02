@@ -799,15 +799,57 @@
         {
           "id": "tv_serier",
           "label": "TV-serier",
-          "motif": "Fjernsynsskjerm med tre ruter for episoder og en fjernkontroll",
-          "avoid": "Skal ikke forveksles med nyheter",
-          "productionPriority": 2,
+          "motif": "Ett brodert fjernsyn med tre tydelige episodebilder (samme karakter i ulike scener), en liten fjernkontroll og tre diskrete episodemarkører; hovedfokus på serieformat.",
+          "avoid": "Ingen dokumentarintervju, feltkamera, filmklapper, stoppeklokke eller nyhetsstudio; ikke bruk feil tittel DOKUMENTARFILM.",
+          "productionPriority": 1,
           "status": "planned",
           "selectedImage": null,
           "proposedFile": "bilder/merker/film_tv/undermerker/tv_serier-brodert-v1.webp",
           "quality": {
             "visualApproved": false,
             "technicalApproved": false
+          },
+          "productionBrief": {
+            "version": "v1",
+            "status": "artwork_required_no_accepted_image",
+            "titleInsidePatch": "TV-SERIER",
+            "parentLabelInsidePatch": "FILM & TV",
+            "layout": {
+              "top": "TV-SERIER in curved upper INNER rim",
+              "center": "screen with three visually distinct episodic scenes",
+              "bottom": "FILM & TV in curved lower INNER rim at ~48% of upper title size"
+            },
+            "palette": {
+              "primary": "#C2188B",
+              "secondary": "#E7F8FF"
+            },
+            "width": 1024,
+            "height": 1024,
+            "format": "WebP-alpha",
+            "independentMotif": "Et fjernsyn med tre episoderuter i et fortellende TV-serieunivers: samme fiktive hovedperson vises i tre ulike situasjoner. En diskret fjernkontroll under skjermen markerer fjernsynsformatet.",
+            "strictAvoid": [
+              "dokumentarfilm_label",
+              "documentary_interview",
+              "movie_camera_as_primary_subject",
+              "clapperboard",
+              "stopwatch",
+              "newsroom",
+              "contact_sheet_crop",
+              "text_outside_patch",
+              "dominant_gold"
+            ],
+            "labelRules": {
+              "subcategory": "TV-SERIER",
+              "parent": "FILM & TV",
+              "parentSizeRelativeToSubcategory": 0.48,
+              "textEmbroidered": true
+            },
+            "rejectedAttempts": 2,
+            "rejectedReason": "To bildeproduksjoner etter at Dokumentarfilm ble merget, gjentok feilaktig DOKUMENTARFILM-illustrasjonen. Ingen av bildene ble akseptert.",
+            "visualApproved": false,
+            "technicalApproved": false,
+            "selectedImage": null,
+            "targetPath": "bilder/merker/film_tv/undermerker/tv_serier-brodert-v1.webp"
           }
         },
         {
