@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_krypveronika: Object.freeze({
+      scientificName: "Veronica filiformis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/20_krypveronika_v1.webp",
+      gitBlobSha: "85110ad6d12e4ef371726d4f9ff999f4abfe814e",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-krypveronika-20261102.json"
+    }),
     emne_flora_krypsoleie: Object.freeze({
       scientificName: "Ranunculus repens",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/19_krypsoleie_v1.webp",
