@@ -73,6 +73,7 @@ try{
     {name:"markjordbaer",label:"Markjordbær",term:"markjordbær",path:"b09/24_markjordbaer_v1.webp"},
     {name:"meldestokk",label:"Meldestokk",term:"meldestokk",path:"b09/25_meldestokk_v1.webp"},
     {name:"ormehode",label:"Ormehode",term:"ormehode",path:"b09/26_ormehode_v1.webp"},
+    {name:"stankstorkenebb",label:"Stankstorkenebb",term:"stankstorkenebb",path:"b09/27_stankstorkenebb_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
