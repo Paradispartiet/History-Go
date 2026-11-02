@@ -20,7 +20,7 @@ jobs:
           node-version: '22'
       - name: Build canonical Subkultur runtime and epoch
         run: |
-          node tools/materialize-subkultur-runtime-v1.mjs
+          node tools/materialize-subkultur-runtime-v1.mjs --write
           npm run epoker:places:build
       - name: Verify generated files
         run: |
