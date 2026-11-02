@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_markjordbaer: Object.freeze({
+      scientificName: "Fragaria vesca",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/24_markjordbaer_v1.webp",
+      gitBlobSha: "c08bbd0f1b98b6c10c6755e0915e4844e43caae8",
+      reviewedAt: "2026-11-02",
+      stage: "blomstring og fruktsetting",
+      evidence: "data/natur/flora/illustration-quality-markjordbaer-20261102.json"
+    }),
     emne_flora_lungeurt: Object.freeze({
       scientificName: "Pulmonaria spp.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/23_lungeurt_v1.webp",

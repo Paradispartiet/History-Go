@@ -70,6 +70,7 @@ try{
     {name:"kusymre",label:"Kusymre",term:"kusymre",path:"b09/21_kusymre_v1.webp"},
     {name:"marianokleblom",label:"Marianøkleblom",term:"marianøkleblom",path:"b09/22_marianokleblom_v1.webp"},
     {name:"lungeurt",label:"Lungeurt",term:"lungeurt",path:"b09/23_lungeurt_v1.webp"},
+    {name:"markjordbaer",label:"Markjordbær",term:"markjordbær",path:"b09/24_markjordbaer_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
