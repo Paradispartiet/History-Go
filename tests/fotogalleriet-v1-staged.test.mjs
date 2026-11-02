@@ -99,3 +99,21 @@ test('Fotogalleriet concepts are semantically bound to the curated Fagverk', () 
     assert.deepEqual(cq.concepts, byQuiz.get(cq.sourceQuizId).concepts);
   }
 });
+
+test('Fotogalleriet People links include two sourced founders without unlicensed portraits', () => {
+  const people = read('data/people/kunst/oslo/people_kunst_oslo.json');
+  const runtime = read('data/runtime/place-open/fotogalleriet.json');
+  const founders = people.filter(p => ['tom_sandberg_fotograf','dag_alveng_fotograf'].includes(p.id));
+  assert.equal(founders.length, 2);
+  assert.equal(runtime.people.length, 2);
+  for (const person of founders) {
+    assert.equal(person.placeId, 'fotogalleriet');
+    assert.deepEqual(person.places, ['fotogalleriet']);
+    assert.equal(person.category, 'kunst');
+    assert.ok(person.popupDesc.length > 300);
+    assert.ok(person.externalLinks.some(source => source.url.startsWith('https://snl.no/')));
+    assert.equal(person.image, '');
+    assert.equal(person.cardImage, '');
+    assert.deepEqual(runtime.people.find(x => x.id === person.id), person);
+  }
+});
