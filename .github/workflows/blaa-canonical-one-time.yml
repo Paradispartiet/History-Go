@@ -39,6 +39,7 @@ jobs:
           git diff --cached --stat
           if ! git diff --cached --quiet; then
             git commit -m "Blå: synchronize generated Place-open People Knowledge and Fagverk release"
+            git restore .
             for attempt in 1 2 3; do
               git fetch origin content/blaa-v1-fagverk-people-quiz-20261102
               git rebase origin/content/blaa-v1-fagverk-people-quiz-20261102
