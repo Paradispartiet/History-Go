@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_prikktvetann: Object.freeze({
+      scientificName: "Lamium maculatum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/30_prikktvetann_v1.webp",
+      gitBlobSha: "6fd16ab8d8473c97b12eaa5f06e0d40d2be08c46",
+      reviewedAt: "2026-11-02",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-prikktvetann-20261102.json"
+    }),
     emne_flora_prikkperikum: Object.freeze({
       scientificName: "Hypericum perforatum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/29_prikkperikum_v1.webp",
