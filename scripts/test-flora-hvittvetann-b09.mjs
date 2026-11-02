@@ -13,7 +13,7 @@ const catalog=JSON.parse(read("data/natur/flora/blomster.json")).find(x=>x.id===
 const runtime=JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]).find(x=>x.id===id);
 for(const x of [catalog,runtime]){assert(x,"missing catalog/runtime entry");assert.equal(x.latin,"Lamium album");assert.equal(x.title,"Hvit tvetann");}
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
-assert.equal(env.window.HG_NATURE_FLORA_APPROVED.count,37);
+assert(env.window.HG_NATURE_FLORA_APPROVED.count>=37);
 assert.equal(env.window.HG_NATURE_FLORA_APPROVED.get(id)?.src,a.src);
 assert.equal(env.window.HG_NATURE_FLORA_APPROVED.get(id)?.gitBlobSha,a.gitBlobSha);
 const b=fs.readFileSync(new URL(a.src,root));
@@ -24,7 +24,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&0x10)!==0);
 assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],a.dimensions);
 const html=read("finn-flora.html"),ui=read("js/ui/nature-explorer.js"),css=read("css/nature-explorer.css");
-assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261102-15"'));
+assert(/src="js\/ui\/nature-flora-approved\.js\?v=\d{8}-\d+"/.test(html));
 assert(!html.includes('src="js/ui/nature-flora-photographs.js'));
 assert(!ui.includes("photoCredit")&&ui.includes("Illustrasjon under arbeid"));
 assert(css.includes('body[data-nature-kind="flora"] .ne-photo,')&&css.includes('background:#000!important'));

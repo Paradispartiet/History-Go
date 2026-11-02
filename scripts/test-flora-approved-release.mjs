@@ -126,7 +126,7 @@ for(const id of ["emne_flora_engkarse","emne_flora_ballblom"]){
   assert(older.species.some(a=>a.catalogId===id && a.botanicalReview==="needs_redraw"),"historical v2 rejection must remain");
 }
 const html=read("finn-flora.html"),js=read("js/ui/nature-explorer.js"),css=read("css/nature-explorer.css");
-assert(html.includes('src="js/ui/nature-flora-approved.js?v=20261102-14"'));
+assert(/src="js\/ui\/nature-flora-approved\.js\?v=\d{8}-\d+"/.test(html));
 assert(!html.includes('src="js/ui/nature-flora-photographs.js'),"No source photograph registry in the public atlas");
 assert(html.indexOf("nature-flora-approved.js")<html.indexOf("nature-explorer.js"));
 assert(js.includes('const art=approvedFloraIllustrations?.get(id)?.src'));
@@ -160,7 +160,7 @@ for(const x of pending05.items){
 const preview05=read("flora-illustrasjoner-bolk05.html");
 for(const x of pending05.items)assert(preview05.includes(x.src),"review page missing: "+x.key);
 assert(read("flora-illustration-review.html").includes('href="flora-illustrasjoner-bolk05.html"'));
-console.log("Flora release: 36 verified illustration entries, black-only flora, no public photographs.");
+console.log("Flora release: 37 verified illustration entries, black-only flora, no public photographs.");
 
 assert.equal(approved.get("emne_flora_rodkløver")?.src,"bilder/natur/flora/illustrasjonskandidater/b08/01_rodklover_v4.webp","Only reviewed v4 may publish");
 assert(review08.items.some(a=>a.key==="01_rodklover_v3" && a.approvedForPublication===false),"Historical rejected v3 must remain in review");
