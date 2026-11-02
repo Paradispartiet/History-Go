@@ -67,6 +67,8 @@ try{
     {name:"kattefot",label:"Kattefot",term:"kattefot",path:"b09/18_kattefot_v1.webp"},
     {name:"krypsoleie",label:"Krypsoleie",term:"krypsoleie",path:"b09/19_krypsoleie_v1.webp"},
     {name:"krypveronika",label:"Krypveronika",term:"krypveronika",path:"b09/20_krypveronika_v1.webp"}
+    {name:"kusymre",label:"Kusymre",term:"kusymre",path:"b09/21_kusymre_v1.webp"},
+    {name:"marianokleblom",label:"Marianøkleblom",term:"marianøkleblom",path:"b09/22_marianokleblom_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
