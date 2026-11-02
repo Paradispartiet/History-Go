@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 // Narrow, read-only validator for canonical v4.2 packets in Oslo bolk 05.
-// Do not promote needs_research packets or change shared validator rules.
+// Read-only validation of six source-reviewed production packets. Do not change shared rules.
 import fs from 'node:fs';
 import {validatePacket} from './validate-place-description-production-v4_2.mjs';
 
 const scope=[
  ['folketeateret','scenekunst','places_scenekunst','ready_v4_2'],
  ['kunstnernes_hus','kunst','places_kunst','ready_v4_2'],
- ['historisk_museum','historie','places_historie','needs_research'],
+ ['historisk_museum','historie','places_historie','ready_v4_2'],
  ['ibsen_museum_teater','litteratur','places_litteratur','ready_v4_2'],
- ['blitzhuset','subkultur','places_subkultur','needs_research'],
+ ['blitzhuset','subkultur','places_subkultur','ready_v4_2'],
  ['kulturkirken_jakob_litteratur','musikk','places_musikk','ready_v4_2']
 ];
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
