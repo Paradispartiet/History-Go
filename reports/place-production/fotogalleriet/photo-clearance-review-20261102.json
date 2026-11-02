@@ -2,7 +2,7 @@
   "schema": "history_go_place_photo_clearance_review_v1",
   "placeId": "fotogalleriet",
   "reviewedAt": "2026-11-02",
-  "reviewStatus": "blocked_awaiting_two_documentary_originals",
+  "reviewStatus": "blocked_one_potential_historical_address_photo_requires_visual_check_and_current_location_photo_still_missing",
   "policy": "image and frontImage must use two different original documentary photographs, not crops or derivatives of the same original. Rights must cover local WebP redistribution; record sourceSha256, sourcePage, originalId, author, license and credit for each original.",
   "sourceReview": [
     {
@@ -44,6 +44,24 @@
       "decision": "rejected_for_both_photo_slots",
       "roleCandidate": "none",
       "blockingReason": "Exhibition-specific artwork rather than documentary place photo"
+    },
+    {
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg",
+      "subject": "Exterior of the building labelled Oscars gate 50–50B, photographed 5 April 2016; Fotogalleriet originally occupied a converted cellar at Oscars gate 50A in 1977.",
+      "photographer": "Jan-Tore Egge (Wikimedia Commons user Vinguru)",
+      "photographedAt": "2016-04-05",
+      "originalLicense": "CC BY-SA 4.0",
+      "originalLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "licenseObservation": "Uploader's own photograph released CC BY-SA 4.0, with attribution and share-alike requirements; permissible redistribution and adaptation under that license, subject to compliance.",
+      "decision": "candidate_historic_address_only_pending_visual_verification",
+      "roleCandidate": "historical_context_or_secondary_image_if_identity_verified",
+      "blockingReason": "The photo is from 2016, not 1977, and its description covers Oscars gate 50–50B; verify the depicted portion includes no. 50A and whether the former Fotogalleriet entrance is identifiable. Never label it as the present Møllergata gallery or a historic 1977 scene.",
+      "outstandingChecks": [
+        "Identify exact Oscars gate 50A frontage/entrance within original",
+        "Confirm current building relation to Fotogalleriet's 1977 basement address",
+        "Only then download the photographic original, calculate SHA256 and prepare credited local WebP",
+        "Retain CC BY-SA 4.0 notice and attribution if used"
+      ]
     }
   ],
   "requiredPhotoSlots": [
@@ -55,7 +73,8 @@
     {
       "role": "frontImage",
       "preferredSubject": "A second separately photographed perspective of the gallery (interior without uncleared artworks, or a licensed historic Fotogalleriet site photo)",
-      "status": "missing_rights_clear_original"
+      "status": "missing_approved_original_historical_candidate_unverified",
+      "candidateSource": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg"
     }
   ],
   "activationRequirements": [
