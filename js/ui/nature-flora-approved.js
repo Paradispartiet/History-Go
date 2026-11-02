@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_hvittvetann: Object.freeze({
+      scientificName: "Lamium album",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/15_hvittvetann_v1.webp",
+      gitBlobSha: "44a541b7931cf837fc14a0c2b1d599f1bfef3d4e",
+      reviewedAt: "2026-11-02",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-hvittvetann-20261102.json"
+    }),
     emne_flora_geitrams: Object.freeze({
       "scientificName": "Chamerion angustifolium",
       "src": "bilder/natur/flora/illustrasjonskandidater/b06/02_geitrams.webp",
