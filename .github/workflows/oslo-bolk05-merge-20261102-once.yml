@@ -1,0 +1,90 @@
+name: Oslo bolk 05 - rebase main generated Knowledge once
+on:
+  push:
+    branches:
+      - research/oslo-sentrum-bolk05-tekst-20261101
+    paths:
+      - .github/workflows/oslo-bolk05-merge-20261102-once.yml
+permissions:
+  contents: write
+concurrency:
+  group: oslo-bolk05-merge-main-20261102
+  cancel-in-progress: false
+jobs:
+  sync-main:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Merge latest main; allow only generated Knowledge conflicts
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if git merge --no-ff --no-commit origin/main; then
+            echo 'Clean main merge'
+          else
+            mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+            test "${#conflicts[@]}" -gt 0
+            for conflict in "${conflicts[@]}"; do
+              case "$conflict" in
+                data/knowledge/knowledge_units.generated.json|reports/knowledge-id-backfill.json)
+                  git checkout --ours -- "$conflict"
+                  git add -- "$conflict"
+                  ;;
+                *)
+                  echo "::error::Unexpected conflict: $conflict"
+                  exit 1
+                  ;;
+              esac
+            done
+            test -z "$(git diff --name-only --diff-filter=U)"
+          fi
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Regenerate and check combined canonical Knowledge
+        run: |
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+      - name: Verify six Oslo-bolk05 source packets and linked quizzes
+        run: |
+          npm run epoker:places:build
+          npm run epoker:places:check
+          node scripts/build-oslo-bolk05-quizzes.mjs --check
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {validatePacket} from './scripts/validate-place-description-production-v4_2.mjs';
+          for(const id of ['folketeateret','kunstnernes_hus','historisk_museum','ibsen_museum_teater','blitzhuset','kulturkirken_jakob_litteratur']){
+            const packetPath='data/places/production/'+id+'.json';
+            const packet=JSON.parse(fs.readFileSync(packetPath,'utf8'));
+            const place=JSON.parse(fs.readFileSync(packet.placeFile,'utf8'));
+            const result=validatePacket({packet,place,packetFile:packetPath});
+            if(packet.status!=='ready_v4_2'||result.issues.length)throw Error(id+': '+JSON.stringify(result.issues));
+            const runtime=JSON.parse(fs.readFileSync('data/runtime/place-open/'+id+'.json','utf8'));
+            if(runtime.place.desc!==place.desc||runtime.place.popupDesc!==place.popupDesc)throw Error('Runtime mismatch '+id);
+            console.log(id,'ready',packet.claims.length,'claims');
+          }
+          NODE
+      - name: Commit main merge with generated outputs; never push to main
+        env:
+          BRANCH_NAME: research/oslo-sentrum-bolk05-tekst-20261101
+        run: |
+          set -euo pipefail
+          git add -- data/knowledge/ reports/knowledge-contract-audit.json reports/knowledge-id-backfill.json
+          git add -- data/quiz/ data/epoker/epoke-place-index.json
+          git rm -- .github/workflows/oslo-bolk05-merge-20261102-once.yml
+          git diff --cached --check
+          git commit -m "Merge new main into Oslo bolk 05 and regenerate canonical Knowledge"
+          git fetch origin "$BRANCH_NAME"
+          if [ "$(git rev-parse "origin/$BRANCH_NAME")" != "$(git rev-parse HEAD^1)" ]; then
+            echo "::error::Branch advanced while merge ran; refuse overwrite"
+            exit 1
+          fi
+          git push origin "HEAD:$BRANCH_NAME"
