@@ -63,7 +63,8 @@ try{
     {name:"hvitbergknapp",label:"Hvit bergknapp",term:"hvit bergknapp",path:"b09/14_hvitbergknapp_v1.webp"},
     {name:"hvittvetann",label:"Hvit tvetann",term:"hvit tvetann",path:"b09/15_hvittvetann_v1.webp"},
     {name:"hvitmaure",label:"Hvitmaure",term:"hvitmaure",path:"b09/16_hvitmaure_v1.webp"},
-    {name:"jordreve",label:"Jordreve",term:"jordreve",path:"b09/17_jordreve_v1.webp"}
+    {name:"jordreve",label:"Jordreve",term:"jordreve",path:"b09/17_jordreve_v1.webp"},
+    {name:"kattefot",label:"Kattefot",term:"kattefot",path:"b09/18_kattefot_v1.webp"}
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
