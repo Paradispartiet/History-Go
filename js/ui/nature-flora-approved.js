@@ -5,6 +5,15 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_lungeurt: Object.freeze({
+      scientificName: "Pulmonaria spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/23_lungeurt_v1.webp",
+      gitBlobSha: "747b129ec71ed52ff69f51bdac8843f741c093a0",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      taxonomicScope: "genus-representative",
+      evidence: "data/natur/flora/illustration-quality-lungeurt-20261102.json"
+    }),
     emne_flora_kusymre_marianokleblom: Object.freeze({
       scientificName: "Primula vulgaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/21_kusymre_v1.webp",
