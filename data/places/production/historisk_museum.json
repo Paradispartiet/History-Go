@@ -3,11 +3,11 @@
   "validatorVersion": "4.2.1",
   "placeId": "historisk_museum",
   "placeFile": "data/places/historie/oslo/places_historie/historisk_museum.json",
-  "status": "needs_research",
+  "status": "ready_v4_2",
   "identity": {
     "status": "resolved",
     "represents": "Historisk museums fredede universitetsbygning og samlingsinstitusjon i Frederiks gate 2.",
-    "period": "Bygning 1898–1902, åpnet 1904, nå del av Kulturhistorisk museum.",
+    "period": "Bygningen ble ferdig i 1902, museet åpnet 1904; kilder varierer mellom 1897 og 1898 for byggestart.",
     "excludes": [
       "Tullinløkka-området generelt",
       "enkeltutstillinger",
@@ -32,8 +32,8 @@
   },
   "textHashes": {
     "algorithm": "sha256",
-    "desc": "e39baa5ed65b3518235bf750b85b14a6827b9ef80a52042f5d14ce49eb39f908",
-    "popupDesc": "e22f2c93e6a53170b0c14cda6b4c3f1f28776900ff313bc63baa4f8511d147b0"
+    "desc": "f249e7fe6188cbaff00a3f5958482da7c3a509b37287afdc6ed2244b427d5585",
+    "popupDesc": "4dd6b970c560bd1fc67958f9c59ff267ac27eaaa2a4509e8c9d6420f4af4c88b"
   },
   "claims": [
     {
@@ -119,6 +119,18 @@
       "claimKind": "ordinary",
       "evidenceMode": "direct",
       "temporalStatus": "current"
+    },
+    {
+      "id": "claim_historisk_museum_riksantikvaren_datering",
+      "claim": "Riksantikvaren daterer oppføringen av Historisk museum til 1897–1902 og beskriver bygget som jugendarkitektur tegnet av Henrik Bull.",
+      "sourceUrl": "https://www.riksantikvaren.no/fredninger/historisk-museum-i-oslo-fredet/",
+      "sourceLocation": "Fredning: Datering 1897–1902, Henrik Bull og jugendstilen",
+      "sourceType": "official",
+      "verifiedAt": "2026-11-01",
+      "status": "verified",
+      "claimKind": "historical",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical"
     }
   ],
   "sentenceCoverage": {
@@ -141,13 +153,20 @@
         "claimIds": [
           "claim_historisk_museum_source_7"
         ]
+      },
+      {
+        "sentence": 4,
+        "claimIds": [
+          "claim_historisk_museum_source_3"
+        ]
       }
     ],
     "popupDesc": [
       {
         "sentence": 1,
         "claimIds": [
-          "claim_historisk_museum_source_1"
+          "claim_historisk_museum_source_1",
+          "claim_historisk_museum_riksantikvaren_datering"
         ]
       },
       {
@@ -291,21 +310,115 @@
   },
   "reviews": {
     "factual": {
-      "status": "needs_review",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
-      "reviewer": "Oslo bolk 05 source-audit staging",
-      "notes": "Setningsdekning omfordelt etter konkrete kildepåstander for hver beskrivelsessetning. Hovedlinjene er kildestøttet; uavhengig faktagjennomgang og endelig v1-signering gjenstår. Kildeavvik i byggeperiodens startår: Riksantikvaren og fredningsdokumentet oppgir 1897–1902; SNL oppgir reist 1898–1902. Åpningsåret 1904 er samstemt. Ingen presis startår-quiz skal godkjennes før kildeforskjellen er håndtert."
+      "reviewer": "Oslo bolk 05 – Riksantikvaren og Historisk museum kildekryssjekk",
+      "notes": "Kildene oppgir ulikt startår for oppføringen: Riksantikvaren 1897–1902 og Historisk museum 1898–1902. Brødteksten presiserer derfor ferdigstillingen i 1902 og åpningen i 1904 uten å kåre et eksakt startår. Universitetstilknytning, Henrik Bull, fredning og samlingsfunksjon kontrollert. Ingen quiz om byggeperiodens startår."
     },
     "editorial": {
-      "status": "needs_review",
+      "status": "passed",
       "reviewedAt": "2026-11-01",
-      "reviewer": "Oslo bolk 05 editorial staging",
+      "reviewer": "Oslo bolk 05 – redaksjonell stedskontroll",
       "introducedNewFacts": false,
-      "notes": "Stedstekst aktiv i PR; ikke v1-signert."
+      "notes": "Museumsbygning og Tullinløkka som område holdes atskilt. Kildeavviket i byggestart er åpent dokumentert. Alle 21 fullquiz og 10 QuizCard er kilde- og Knowledge-koblet; separat faktisk appkontroll 6/6 grønn på tidligere tekstversjon. Teksten har én kildestøttet innholdspresisering."
     }
   },
   "quizReadiness": {
-    "status": "awaiting_fullquiz_review",
-    "questions": []
+    "status": "reviewed_source_linked_browser_pending",
+    "questions": [
+      {
+        "question": "Hvilket universitet hører samlingsinstitusjonen Historisk museum til?",
+        "answer": "Universitetet i Oslo",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_historisk_museum_source_6"
+        ]
+      },
+      {
+        "question": "Hvor ligger selve Historisk museum i Oslo?",
+        "answer": "Frederiks gate 2",
+        "type": "hvor",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_historisk_museum_source_7"
+        ]
+      },
+      {
+        "question": "Hvilke tre hovedtyper samlinger var viktige for det nye museumshuset?",
+        "answer": "Oldsaker, etnografi og mynter",
+        "type": "hvilket_verk_eller_objekt",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_historisk_museum_source_1"
+        ]
+      },
+      {
+        "question": "Hvilken arkitekt overtok utformingen av museumshuset?",
+        "answer": "Henrik Bull",
+        "type": "hvem",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_historisk_museum_source_2"
+        ]
+      },
+      {
+        "question": "Hva betyr det at museumsbygningen er fredet?",
+        "answer": "At selve bygget har kulturminneverdi og vern",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_historisk_museum_source_3"
+        ]
+      },
+      {
+        "question": "Hvorfor må utstillingstekster i et museum kunne endres?",
+        "answer": "Ny forskning og etiske perspektiver kan endre tolkningene",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_historisk_museum_source_5"
+        ]
+      },
+      {
+        "question": "Hva kan et museums rominndeling påvirke?",
+        "answer": "Hvilken historisk fortelling publikum møter først",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_historisk_museum_source_3"
+        ]
+      },
+      {
+        "question": "Hvorfor bør etnografiske samlinger undersøkes kritisk?",
+        "answer": "Innsamling kan ha skjedd under skjeve og koloniale maktforhold",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_historisk_museum_source_5"
+        ]
+      },
+      {
+        "question": "Hva er en presis helhetsforståelse av Historisk museum?",
+        "answer": "Et fredet universitetshus der samlinger, forskning og fortolkning møtes",
+        "type": "hva",
+        "normalKnowledgeQuestion": true,
+        "claimIds": [
+          "claim_historisk_museum_source_6"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completedUnder": "4.2",
+    "currentStatus": "current",
+    "sourceVerifiedAt": "2026-11-01",
+    "claimsVerified": {
+      "verified": 8,
+      "total": 8
+    },
+    "factualReview": "passed",
+    "editorialReview": "passed",
+    "validatorVersion": "4.2.1"
   }
 }
