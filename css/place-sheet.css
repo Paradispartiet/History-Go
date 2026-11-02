@@ -108,6 +108,38 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonica
   text-transform: uppercase;
 }
 
+/* Speaker belongs immediately after “Om stedet”, not in the hero photo. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-height:30px;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3 > .pc-reader-toggle{
+  display:inline-flex;
+  flex:0 0 30px;
+  align-items:center;
+  justify-content:center;
+  width:30px;
+  height:30px;
+  padding:0;
+  margin:0;
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:50%;
+  background:rgba(18,18,18,.92);
+  color:#fff;
+  cursor:pointer;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3 > .pc-reader-toggle[aria-pressed="true"]{
+  background:#f6d15a;
+  border-color:#f6d15a;
+  color:#191919;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3 > .pc-reader-toggle:focus-visible{
+  outline:2px solid #f6d15a;
+  outline-offset:2px;
+}
+
 /* Keep the complete short description in About, beside and below frontImage.
    The legacy PlaceCard excerpt limits must not truncate editorial reading. */
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about #pcDesc{
