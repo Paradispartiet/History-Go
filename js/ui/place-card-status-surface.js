@@ -164,11 +164,33 @@
     global.location.href = "profile.html#collectionCardsSection";
   }
 
+  // Keep the existing category, epoch and action nodes in one live row.
+  // The metadata runtime may replace #pcMeta children; never move the status
+  // button inside #pcMeta, or it will disappear on progressive reopen.
+  function ensureHeroInfoRow() {
+    const hero = document.getElementById("pcHeaderHero");
+    const meta = document.getElementById("pcMeta");
+    const status = document.getElementById("pcStatusBar");
+    if (!hero || !meta || !status || !hero.contains(meta) || !hero.contains(status)) {
+      return status || meta;
+    }
+    let row = document.getElementById("pcHeroInfoRow");
+    if (!row) {
+      row = document.createElement("div");
+      row.id = "pcHeroInfoRow";
+      row.className = "pc-hero-info-row";
+      meta.parentNode.insertBefore(row, meta);
+    }
+    if (meta.parentElement !== row) row.appendChild(meta);
+    if (status.parentElement !== row) row.appendChild(status);
+    return status;
+  }
+
   function renderStatus(place) {
     const reader = getReader();
-    // The status host lives in the bottom-right of the landscape hero.
+    // Keep the action after the epoch, sharing the metadata line above title.
     // Retain pcMeta as a fallback for older standalone fixtures.
-    const statusHost = document.getElementById("pcStatusBar") || document.getElementById("pcMeta");
+    const statusHost = ensureHeroInfoRow();
     if (!reader || !statusHost || !place) return null;
 
     currentPlace = place;
