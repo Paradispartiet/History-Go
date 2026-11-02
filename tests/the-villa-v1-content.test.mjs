@@ -92,5 +92,15 @@ test("QuizCard ten questions match fullquiz and two images cannot share one sour
     assert.notEqual(canonical.image,canonical.frontImage);
     assert.notEqual(canonical.imageMeta?.sourcePage,canonical.frontImageMeta?.sourcePage,
       "image and frontImage must have different original photographs, not just crops");
+    assert.match(canonical.imageMeta?.originalSha256||" ",/^[a-f0-9]{64}$/);
+    assert.match(canonical.frontImageMeta?.originalSha256||" ",/^[a-f0-9]{64}$/);
+    assert.notEqual(canonical.imageMeta.originalSha256,canonical.frontImageMeta.originalSha256,
+      "The two media derivatives must be built from different source photo bytes");
+    for(const key of ["image","frontImage","cardImage"]) {
+      assert(fs.existsSync(canonical[key]),"Missing local WebP: "+canonical[key]);
+      assert(fs.statSync(canonical[key]).size>10000,"Empty local WebP: "+canonical[key]);
+    }
+    assert.equal(canonical.imageMeta.license,"CC BY-SA 4.0");
+    assert.equal(canonical.frontImageMeta.license,"CC BY-SA 4.0");
   }
 });
