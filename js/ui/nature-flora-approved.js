@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_ormehode: Object.freeze({
+      scientificName: "Echium vulgare",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/26_ormehode_v1.webp",
+      gitBlobSha: "7f83fcce4e1ba246dea7c73a1d31bc2589b8bc08",
+      reviewedAt: "2026-11-02",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-ormehode-20261102.json"
+    }),
     emne_flora_meldestokk: Object.freeze({
       scientificName: "Chenopodium album",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/25_meldestokk_v1.webp",
