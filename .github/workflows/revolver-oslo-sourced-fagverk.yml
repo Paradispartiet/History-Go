@@ -1,0 +1,28 @@
+name: Revolver Oslo – source and Fagverk QA
+
+on:
+  pull_request:
+    paths:
+      - 'data/places/subkultur/oslo/places_subkultur/revolver_oslo.json'
+      - 'data/runtime/place-open/revolver_oslo.json'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'tests/revolver-oslo-sourced-fagverk-20261102.test.mjs'
+      - '.github/workflows/revolver-oslo-sourced-fagverk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: revolver-oslo-source-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  targeted-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/revolver-oslo-sourced-fagverk-20261102.test.mjs
