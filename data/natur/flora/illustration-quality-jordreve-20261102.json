@@ -2,7 +2,7 @@
   "schema": "history-go-flora-single-species-review-v1",
   "batch": "09",
   "date": "2026-11-02",
-  "status": "reviewed_local_binary_pending_github_upload_and_ci",
+  "status": "exact_source_webp_uploaded_ci_pending",
   "baselineApproved": 38,
   "approvedCountAfterRelease": 39,
   "publicationRule": "Do not merge until exact source WebP uploaded and verified by Git blob SHA/SHA256, and illustration-contract and approved-flora-browser are green on final PR head. Retain 38 originals, black #000 art stage, no photo fallbacks.",
@@ -39,10 +39,9 @@
       ],
       "observations": "Illustrasjonen viser en krypende, forgreinet jordrevematte med horisontale, hårkledde utløpere og små røtter ved flere ledd. Opprette blomsterstengler bærer motsatte, rundaktige eller nyreformede blad med tydelig rundtannete kanter og nettformet nervatur. Blåfiolette toleppede blomster sitter i små grupper i bladhjørnene, med mørke fiolette flekker på underleppen.",
       "limitations": "En stilisert feltguideillustrasjon, ikke en diagnostisk bestemmelsesnøkkel. Blomster og flekkmønstre er overtydeliggjort for gjenkjennelighet, og det firkantede tverrsnittet av de krypende stenglene er ikke fullt dokumentert av motivet. Relativ blomst-, blad- og internodestørrelse er skjønnsmessig. Artsbestemmelse må kontrolleres i levende materiale.",
-      "technicalVerification": "Locally generated 1024 × 1536 alpha WebP; 356440 bytes, SHA256 a52521d367b6f3070e387f4a6b3a7c6f90ddc15dbf0c379468e5fe515da0ade0, Git blob SHA c63341e153213897a685ce9c8693841ceee771f8. Source has actual alpha=0 at 908916 pixels; verified WEBP VP8X alpha flag and reviewed black #000 composite. Binary not yet uploaded to GitHub.",
+      "technicalVerification": "Exact original alpha WebP uploaded to GitHub on PR branch as 356440-byte blob; SHA256 a52521d367b6f3070e387f4a6b3a7c6f90ddc15dbf0c379468e5fe515da0ade0 and Git blob SHA c63341e153213897a685ce9c8693841ceee771f8 verified. Source image has actual alpha=0 at 908916 pixels, WEBP VP8X alpha flag and 1024 × 1536 dimensions. Black #000 composite reviewed.",
       "publicationBlockedBy": [
-        "Upload the exact 356440-byte original alpha WebP to PR branch at the src path.",
-        "Both mandatory CI checks illustration-contract and approved-flora-browser must pass on final head.",
+        "Both mandatory CI checks illustration-contract and approved-flora-browser must pass on final PR head.",
         "Merge and confirm GitHub Pages afterwards."
       ]
     }
