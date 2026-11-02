@@ -30,6 +30,6 @@
 - Ingen personprofil opprettes før identitet, reell klubbtilknytning og eventuelt profilbilde er kontrollert.
 
 ## V1-kvalitet
-- Fullfør en-kanal medie- og Knowledge-generering, som fjerner den midlertidige skrive-workflowen.
-- Målrettede kontrakttester og reell mobil-/desktoptest av PlaceCard, QuizCard og Fagverk må bestås før v1.
-- Inntil dette: **v1_candidate**, ikke formelt godkjent og ikke merget.
+- Utført: GitHub Actions-bildejobb integrerte tre lokale fotografiske WebP-derivater, synkroniserte Place-open, genererte Knowledge og Fagverk-release og fjernet den midlertidige skrive-workflowen.
+- Målrettede kontrakttester og reell mobil-/desktoptest av PlaceCard, QuizCard og Fagverk skal kjøres på commit etter generering. Tidligere feil gjaldt kjøring før bildene og Knowledge var tilgjengelige.
+- Inntil verifisert browser/QA: **v1_candidate_pending_browser**, ikke formelt godkjent og ikke merget.
