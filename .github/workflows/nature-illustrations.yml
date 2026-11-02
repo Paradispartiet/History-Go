@@ -22,6 +22,9 @@ on:
       - 'data/natur/flora/illustration-quality-batch01-20261028.json'
       - 'scripts/test-flora-approved-release.mjs'
       - 'scripts/test-flora-approved-browser.mjs'
+      - 'data/natur/flora/illustration-quality-meldestokk-20261102.json'
+      - 'scripts/test-flora-meldestokk-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/25_meldestokk_v1.webp'
       - 'finn-fauna.html'
       - 'scripts/test-nature-illustrations.mjs'
       - 'scripts/test-nature-flora-photos.mjs'
@@ -162,6 +165,9 @@ jobs:
       - run: node scripts/test-flora-krypsoleie-b09.mjs
       - run: node scripts/test-flora-krypveronika-b09.mjs
       - run: node scripts/test-flora-primula-b09.mjs
+      - run: node scripts/test-flora-lungeurt-b09.mjs
+      - run: node scripts/test-flora-markjordbaer-b09.mjs
+      - run: node scripts/test-flora-meldestokk-b09.mjs
       - run: node scripts/test-flora-art-candidates-batch06.mjs
       - run: node scripts/test-flora-revision-batch04.mjs
       - run: node scripts/test-flora-illustration-review.mjs
@@ -184,6 +190,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: flora-approved-44-black-mobile-desktop
+          name: flora-approved-47-black-mobile-desktop
           path: artifacts/flora-approval/*.png
           if-no-files-found: ignore

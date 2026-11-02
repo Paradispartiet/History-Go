@@ -5,6 +5,31 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_meldestokk: Object.freeze({
+      scientificName: "Chenopodium album",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/25_meldestokk_v1.webp",
+      gitBlobSha: "bbbb6dd2f5149629016ddb138f8fdc6806a00875",
+      reviewedAt: "2026-11-02",
+      stage: "blomstring og frøsetting",
+      evidence: "data/natur/flora/illustration-quality-meldestokk-20261102.json"
+    }),
+    emne_flora_markjordbaer: Object.freeze({
+      scientificName: "Fragaria vesca",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/24_markjordbaer_v1.webp",
+      gitBlobSha: "c08bbd0f1b98b6c10c6755e0915e4844e43caae8",
+      reviewedAt: "2026-11-02",
+      stage: "blomstring og fruktsetting",
+      evidence: "data/natur/flora/illustration-quality-markjordbaer-20261102.json"
+    }),
+    emne_flora_lungeurt: Object.freeze({
+      scientificName: "Pulmonaria spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/23_lungeurt_v1.webp",
+      gitBlobSha: "747b129ec71ed52ff69f51bdac8843f741c093a0",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      taxonomicScope: "genus-representative",
+      evidence: "data/natur/flora/illustration-quality-lungeurt-20261102.json"
+    }),
     emne_flora_kusymre_marianokleblom: Object.freeze({
       scientificName: "Primula vulgaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/21_kusymre_v1.webp",
