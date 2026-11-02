@@ -114,13 +114,6 @@
     document.body.appendChild(script);
   }
 
-  function statusLabel(summary) {
-    if (summary?.status === "completed") return "Fullført";
-    if (summary?.quizCompleted) return "Quiz fullført";
-    if (summary?.visited) return "Besøkt";
-    return "Ikke fullført";
-  }
-
   function isShownAction(id) {
     const el = document.getElementById(id);
     if (!el || el.hidden) return false;
@@ -134,32 +127,38 @@
   }
 
   function remainingActionLabel(summary) {
-    if (summary?.nextAction === "completed") return "Ferdig her";
-    if (summary?.nextAction === "visit" && isShownAction("pcVisit")) return "Gjenstår: Registrer besøk";
-    if (!summary?.quizCompleted && isVisibleAction("pcQuiz")) return "Gjenstår: Ta quiz";
-    if (isShownAction("pcVisit")) return "Gjenstår: Registrer besøk";
-    if (isVisibleAction("pcObserve")) return "Gjenstår: Observer";
-    if (isVisibleAction("pcRoute")) return "Gjenstår: Følg rute";
-    return "Gjenstår: Utforsk videre";
+    if (summary?.nextAction === "completed") return "Se samling";
+    if (summary?.nextAction === "visit" && isVisibleAction("pcVisit")) return "Registrer besøk";
+    if (!summary?.quizCompleted && isVisibleAction("pcQuiz")) return "Ta quiz";
+    if (isVisibleAction("pcVisit")) return "Registrer besøk";
+    if (isVisibleAction("pcObserve")) return "Observer";
+    if (isVisibleAction("pcRoute")) return "Følg rute";
+    return "Utforsk videre";
   }
 
   function activateStatus(summary) {
+    if (summary?.nextAction === "completed") {
+      global.location.href = "profile.html#collectionCardsSection";
+      return;
+    }
+    if (summary?.nextAction === "visit" && isVisibleAction("pcVisit")) {
+      document.getElementById("pcVisit")?.click();
+      return;
+    }
     if (!summary?.quizCompleted && isVisibleAction("pcQuiz")) {
       document.getElementById("pcQuiz")?.click();
       return;
     }
-    if (summary?.nextAction === "visit") {
-      if (isVisibleAction("pcVisit")) {
-        document.getElementById("pcVisit")?.click();
-        return;
-      }
-      if (isVisibleAction("pcRoute")) {
-        document.getElementById("pcRoute")?.click();
-        return;
-      }
+    if (isVisibleAction("pcVisit")) {
+      document.getElementById("pcVisit")?.click();
+      return;
     }
     if (isVisibleAction("pcObserve")) {
       document.getElementById("pcObserve")?.click();
+      return;
+    }
+    if (isVisibleAction("pcRoute")) {
+      document.getElementById("pcRoute")?.click();
       return;
     }
     global.location.href = "profile.html#collectionCardsSection";
@@ -167,7 +166,7 @@
 
   function renderStatus(place) {
     const reader = getReader();
-    // A standalone status row lives immediately above the landscape hero.
+    // The status host lives in the bottom-right of the landscape hero.
     // Retain pcMeta as a fallback for older standalone fixtures.
     const statusHost = document.getElementById("pcStatusBar") || document.getElementById("pcMeta");
     if (!reader || !statusHost || !place) return null;
@@ -179,10 +178,6 @@
     const summary = reader.getPlaceProgressSummary(placeId, {
       category: safeText(place.category || place.categoryId)
     });
-    const parts = [statusLabel(summary)];
-    if (summary.favorite) parts.push("Favoritt");
-    parts.push(remainingActionLabel(summary));
-
     let row = /** @type {HTMLButtonElement|null} */ (statusHost.querySelector(`[${ROW_ATTR}]`));
     if (!row) {
       row = document.createElement("button");
@@ -191,8 +186,8 @@
       row.className = "pc-progress-status-line";
       statusHost.appendChild(row);
     }
-    row.textContent = `Status: ${parts.join(" · ")}`;
-    row.setAttribute("aria-label", `${row.textContent}. Åpne neste handling.`);
+    row.textContent = remainingActionLabel(summary);
+    row.setAttribute("aria-label", `Neste handling: ${row.textContent}. Åpne.`);
     row.title = "Åpne neste handling";
     row.dataset.status = safeText(summary.status || "unknown");
     row.dataset.visited = summary.visited ? "1" : "0";
