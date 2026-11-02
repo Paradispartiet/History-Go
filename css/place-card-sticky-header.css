@@ -13,12 +13,13 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   isolation: isolate;
 }
 
-/* Retain the original image's object-fit geometry while the outer wrapper
-   reveals less from its bottom. Neither icons nor text are resized. */
+/* Slide the original full-height photo upwards as its wrapper collapses.
+   This crops the TOP, keeping the bottom-right heading readable. */
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-hero #pcHeaderHero {
   height: var(--pc-original-hero-height);
   min-height: var(--pc-original-hero-height);
   flex: 0 0 auto;
+  transform: translate3d(0, calc(var(--pc-visible-hero-height) - var(--pc-original-hero-height)), 0);
 }
 
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-hero .pc-heading-content {
@@ -26,19 +27,14 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   min-height: var(--pc-original-hero-height);
 }
 
-/* Original section navigation now sticks immediately below the real
-   pinned photo. The nav remains the same DOM node under the hero. */
-body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-section-nav {
-  top: var(--pc-visible-hero-height);
+/* The Om/Fortellinger section bar is docked at the PlaceCard bottom,
+   outside the scroll container; it must not follow the sticky photograph. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned > .pc-sheet-section-nav{
+  top:auto;
 }
 
-/* Existing title only. Local luminance is sampled from the actual image. */
-#placeCard .pc-heading-hero.has-image[data-pc-contrast="dark"] #pcTitle {
-  color: #111923 !important;
-  text-shadow: 0 1px 2px rgba(255,255,255,.85), 0 0 9px rgba(255,255,255,.55);
-}
-
-#placeCard .pc-heading-hero.has-image[data-pc-contrast="light"] #pcTitle {
-  color: #fff !important;
-  text-shadow: 0 2px 5px rgba(0,0,0,.96), 0 0 13px rgba(0,0,0,.66);
+/* Consistent white heading on bright and dark photographs. */
+#placeCard .pc-heading-hero.has-image #pcTitle{
+  color:#fff !important;
+  text-shadow:0 2px 7px rgba(0,0,0,.98),0 0 14px rgba(0,0,0,.86);
 }
