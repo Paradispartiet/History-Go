@@ -1,0 +1,26 @@
+name: House of Nerds quiz–QuizCard parity
+on:
+  pull_request:
+    paths:
+      - data/quiz/subkultur/house_of_nerds_sets.json
+      - data/quiz/production_briefs/subkultur/house_of_nerds.json
+      - data/quiz/manifest.json
+      - data/quizcards/subkultur/house_of_nerds_quizcard_v1.json
+      - data/quizcards/subkultur/manifest.json
+      - tests/house-of-nerds-quizcard-parity.test.mjs
+      - .github/workflows/house-of-nerds-quizcard-parity.yml
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/house-of-nerds-quizcard-parity.test.mjs
