@@ -3,7 +3,7 @@ import fs from "node:fs";
 import crypto from "node:crypto";
 import vm from "node:vm";
 const root=new URL("../",import.meta.url),read=p=>fs.readFileSync(new URL(p,root),"utf8");
-const doc=JSON.parse(read("data/natur/flora/illustration-quality-russblastjerne-20261102.json")),a=doc.items[0],id="emne_flora_russblastjerne";
+const doc=JSON.parse(read("data/natur/flora/illustration-quality-russblastjerne-20261102.json")),a=doc.items[0],id="emne_flora_russblaastjerne";
 assert.equal(doc.baselineApproved,53);assert.equal(doc.approvedCountAfterRelease,54);
 assert.equal(doc.items.length,1);assert.equal(a.scientificName,"Scilla siberica");
 assert.equal(a.reviewStatus,"approved");assert.equal(a.approvedForPublication,true);
