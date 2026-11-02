@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_russblaastjerne: Object.freeze({
+      scientificName: "Scilla siberica",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/32_russblastjerne_v1.webp",
+      gitBlobSha: "a89e49d8f90fa26f7e5c8ed5b2d63ae0ca3b5f4c",
+      reviewedAt: "2026-11-02",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-russblastjerne-20261102.json"
+    }),
     emne_flora_reinfann: Object.freeze({
       scientificName: "Tanacetum vulgare",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/31_reinfann_v1.webp",
