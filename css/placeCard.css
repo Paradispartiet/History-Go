@@ -2075,215 +2075,197 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 }
 
 
-/* PlaceCard landscape hero: category and epoch above a bottom-left title,
-   with the next action in the bottom-right corner of the photo.
-   Scoped rules also beat the lazily loaded shortcut stylesheet. */
-#placeCard .pc-text > #pcStatusBar{
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0 0 7px;
-  padding: 0;
-}
-
-#placeCard .pc-text > #pcStatusBar:empty{
-  display: none;
-}
-
-#placeCard #pcStatusBar > .pc-progress-status-line{
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  min-height: 29px;
-  box-sizing: border-box;
-  padding: 6px 11px;
-  border: 1px solid rgba(255,255,255,.22);
-  border-radius: 9px;
-  background: rgba(255,255,255,.09);
-  color: rgba(255,255,255,.92);
-  font: 700 clamp(12px,1.2vw,14px)/1.3 system-ui, sans-serif;
-  letter-spacing: .035em;
-  text-transform: uppercase;
-  text-align: left;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  cursor: pointer;
-}
-
-#placeCard #pcStatusBar > .pc-progress-status-line:focus-visible{
-  outline: 2px solid #f6d15a;
-  outline-offset: 2px;
-}
+/* PlaceCard photo overlay: live controls at upper right, white title lower right.
+   Category, epoch and the short next action share the line above the title.
+   The real header is kept for the original half-collapse behavior. */
+#placeCard .pc-text > #pcStatusBar:empty{ display:none; }
 
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content{
-  flex: 1 1 auto;
-  min-height: clamp(148px, 25vw, 205px);
+  flex:1 1 auto;
+  min-height:clamp(148px,25vw,205px);
 }
 
 #placeCard .pc-heading-hero .pc-heading-content{
-  justify-content: flex-end;
-  gap: 5px;
+  justify-content:flex-end;
+  align-items:stretch;
+  gap:5px;
+  /* Reserve the upper part of the photo for the live action circles. */
+  padding-top:clamp(56px,7vw,76px);
 }
 
-/* Keep the original live audio, favorite, People and Merker controls
-   below the bottom-left heading without moving or cloning DOM nodes. */
 #placeCard .pc-heading-hero .pc-heading-content .pc-title-row{
-  order: 1;
-  display: grid;
-  grid-template-columns: 34px 32px minmax(0, 1fr) auto auto;
-  grid-template-rows: auto auto;
-  column-gap: 8px;
-  row-gap: 7px;
-  align-items: start;
-  margin: 0;
-  flex: 0 0 auto;
+  display:contents;
 }
 
 #placeCard .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
-  order: 0;
-  grid-column: 1 / -1;
-  grid-row: 1;
-  min-width: 0;
-  overflow-wrap: anywhere;
-  color: #fff;
-  text-shadow: 0 2px 7px rgba(0,0,0,.95), 0 1px 2px #000;
-}
-
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > .pc-reader-toggle{
-  grid-column: 1;
-  grid-row: 2;
-  justify-self: start;
-  align-self: start;
-}
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite{
-  grid-column: 2;
-  grid-row: 2;
-  justify-self: start;
-  align-self: start;
-}
-
-/* Keep People and Merker on the right of the controls row. */
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon{
-  grid-column: 4;
-  grid-row: 2;
-  margin-left: 0;
-  align-self: end;
-}
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
-  grid-column: 5;
-  grid-row: 2;
-  margin-right: 0;
-  margin-left: 0;
-  align-self: end;
-}
-
-@media (max-width: 520px){
-  #placeCard .pc-heading-hero .pc-heading-content .pc-title-row{
-    grid-template-columns: 30px 32px minmax(0, 1fr) auto auto;
-    column-gap: 6px;
-    row-gap: 6px;
-  }
-}
-
-/* Meta belongs above the title, left-aligned on both mobile and desktop. */
-#placeCard .pc-heading-hero .pc-heading-content #pcMeta{
-  order: 0;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  align-self: stretch;
-  justify-content: flex-start;
-  gap: 5px 7px;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 0 4px;
-  padding: 0;
-  color: #fff;
-  text-align: left;
-}
-
-#placeCard .pc-heading-hero .pc-heading-content #pcMeta > *{
-  grid-column: auto;
-  grid-row: auto;
-  flex: 0 1 auto;
-  align-self: center;
-  width: auto;
-  max-width: 100%;
-  min-width: 0;
-  margin: 0 !important;
-  color: #fff;
-  text-align: left;
-  white-space: normal !important;
-  overflow-wrap: anywhere;
-  text-overflow: clip;
-  line-height: 1.15;
-  text-shadow: 0 1px 3px rgba(0,0,0,.9);
-}
-
-#placeCard .pc-heading-hero .pc-heading-content #pcMeta > .pc-category-meta{
-  padding: 5px 9px;
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 999px;
-  background: rgba(0,0,0,.48);
-}
-
-#placeCard .pc-heading-hero .pc-heading-content #pcMeta > .pc-epoke{
-  flex-basis: auto;
-  padding: 4px 8px;
-  border: 1px solid rgba(255,255,255,.22);
-  border-radius: 999px;
-  background: rgba(0,0,0,.38);
-}
-
-@media (max-width: 520px){
-  #placeCard .pc-text > #pcStatusBar{
-    margin-bottom: 5px;
-  }
-  #placeCard #pcStatusBar > .pc-progress-status-line{
-    font-size: 11px;
-    padding: 5px 8px;
-  }
-  #placeCard .pc-heading-hero .pc-heading-content #pcMeta{
-    max-width: 100%;
-    gap: 4px;
-  }
-  #placeCard .pc-heading-hero .pc-heading-content #pcMeta > *{
-    font-size: 11px;
-  }
-}
-
-/* Compact next-action label at the bottom right, after the title and controls. */
-#placeCard .pc-heading-hero .pc-heading-content #pcStatusBar{
   order:2;
+  grid-column:auto !important;
+  grid-row:auto !important;
   flex:0 0 auto;
   align-self:flex-end;
-  width:auto;
+  justify-self:end;
+  min-width:0;
   max-width:100%;
-  margin:5px 0 0;
+  width:100%;
+  margin:4px 0 0 !important;
   padding:0;
+  color:#fff !important;
   text-align:right;
+  overflow-wrap:break-word;
+  text-shadow:0 2px 7px rgba(0,0,0,.98),0 0 14px rgba(0,0,0,.85);
 }
-#placeCard .pc-heading-hero #pcStatusBar > .pc-progress-status-line{
+
+/* Do not put the favorite star below the title. All three live icons share
+   the upper-right corner and never sit inside the text flow. */
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite,
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon,
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
+  position:absolute;
+  grid-column:auto !important;
+  grid-row:auto !important;
+  order:initial;
+  margin:0;
+  z-index:2;
+  align-self:auto;
+}
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite{
+  top:20px;
+  right:136px;
+}
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon{
+  top:10px;
+  right:72px;
+}
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
+  top:10px;
+  right:12px;
+}
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > .pc-reader-toggle{
+  position:absolute;
+  top:12px;
+  left:14px;
+  grid-column:auto !important;
+  grid-row:auto !important;
+  margin:0;
+  z-index:2;
+}
+
+/* Stable wrapper for meta + next-action button. Their DOM nodes remain live. */
+#placeCard .pc-heading-hero .pc-heading-content #pcHeroInfoRow{
+  order:1;
+  display:flex;
+  flex-flow:row wrap;
+  justify-content:flex-start;
+  align-items:center;
+  align-self:stretch;
+  column-gap:7px;
+  row-gap:5px;
+  width:100%;
+  min-width:0;
+  margin:0;
+  padding:0;
+}
+#placeCard .pc-heading-hero .pc-heading-content #pcMeta{
+  order:0;
+  display:flex;
+  flex-flow:row wrap;
+  flex:0 1 auto;
+  justify-content:flex-start;
+  align-items:center;
+  gap:5px 7px;
   width:auto;
   max-width:100%;
-  min-height:20px;
-  padding:3px 7px;
-  border-radius:6px;
-  background:rgba(0,0,0,.63);
+  min-width:0;
+  margin:0;
+  padding:0;
   color:#fff;
-  border-color:rgba(255,255,255,.26);
-  backdrop-filter:blur(7px);
-  font:700 10px/1.18 system-ui,sans-serif;
-  letter-spacing:.015em;
   text-align:left;
 }
-@media (max-width:520px){
-  #placeCard .pc-heading-hero .pc-heading-content #pcStatusBar{
-    margin-top:4px;
+#placeCard .pc-heading-hero .pc-heading-content #pcMeta > *{
+  grid-column:auto;
+  grid-row:auto;
+  flex:0 1 auto;
+  align-self:center;
+  width:auto;
+  max-width:100%;
+  min-width:0;
+  margin:0 !important;
+  color:#fff;
+  text-align:left;
+  white-space:normal !important;
+  overflow-wrap:anywhere;
+  text-overflow:clip;
+  line-height:1.15;
+  text-shadow:0 1px 4px #000;
+}
+#placeCard .pc-heading-hero .pc-heading-content #pcMeta > .pc-category-meta{
+  padding:5px 9px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  background:rgba(0,0,0,.56);
+}
+#placeCard .pc-heading-hero .pc-heading-content #pcMeta > .pc-epoke{
+  flex-basis:auto;
+  padding:4px 8px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  background:rgba(0,0,0,.50);
+}
+
+#placeCard .pc-heading-hero .pc-heading-content #pcHeroInfoRow > #pcStatusBar{
+  order:1;
+  display:flex;
+  flex:0 0 auto;
+  width:auto;
+  max-width:100%;
+  margin:0;
+  padding:0;
+  align-self:center;
+}
+#placeCard .pc-heading-hero #pcStatusBar > .pc-progress-status-line{
+  display:block;
+  width:auto;
+  max-width:100%;
+  min-height:22px;
+  padding:4px 8px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:7px;
+  background:rgba(0,0,0,.70);
+  color:#fff !important;
+  font:700 11px/1.18 system-ui,sans-serif;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  text-align:left;
+  cursor:pointer;
+}
+#placeCard #pcStatusBar > .pc-progress-status-line:focus-visible{
+  outline:2px solid #f6d15a;
+  outline-offset:2px;
+}
+
+@media(max-width:520px){
+  #placeCard .pc-heading-hero .pc-heading-content{
+    padding-top:55px;
+  }
+  #placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite{
+    top:14px;
+    right:105px;
+  }
+  #placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon{
+    top:10px;
+    right:56px;
+  }
+  #placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
+    top:10px;
+    right:12px;
+  }
+  #placeCard .pc-heading-hero .pc-heading-content #pcMeta > *{
+    font-size:11px;
   }
   #placeCard .pc-heading-hero #pcStatusBar > .pc-progress-status-line{
-    min-height:18px;
-    padding:2px 5px;
-    font-size:9px;
+    min-height:19px;
+    padding:3px 6px;
+    font-size:10px;
   }
 }
 
@@ -2318,8 +2300,8 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   margin: 10px 0 12px;
 }
 
-/* Align frontImage and collection rounds with the text's content insets.
-   Only the landscape hero and section navigation remain edge-to-edge. */
+/* Align frontImage and collection rounds with text insets.
+   The landscape hero is full width; the bottom section nav is outside .pc-body. */
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-shell
   > :not(.pc-sheet-hero):not(.pc-sheet-section-nav){
   padding-left: 22px;
