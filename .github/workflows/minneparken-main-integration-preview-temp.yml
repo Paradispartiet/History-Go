@@ -123,6 +123,33 @@ jobs:
           assert.equal(card.collections.includes('minneparken_gamlebyen_quizcard_v1.json'),false);
           console.log('PASS main+Minneparken semantic source union and fail-closed gate F/G/H');
           NODE
+      - name: Install Chromium for integrated UI regression tests
+        run: npx playwright install --with-deps chromium
+      - name: Real browser regression after merging latest main (still no push)
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/minneparken-readonly-app-browser.test.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const id='minneparken_gamlebyen';
+          const qPath='data/quiz/manifest.json',cPath='data/quizcards/historie/manifest.json';
+          const file='data/quiz/historie/'+id+'_sets.json',card=id+'_quizcard_v1.json';
+          const quiz=JSON.parse(fs.readFileSync(qPath,'utf8'));
+          const cards=JSON.parse(fs.readFileSync(cPath,'utf8'));
+          assert.ok(!(quiz.files||[]).includes(file));
+          assert.ok(!(quiz.sets||[]).some(s=>s.targetId===id));
+          assert.ok(!cards.collections.includes(card));
+          quiz.sets.push({targetId:id,file});
+          cards.collections.push(card);
+          fs.writeFileSync(qPath,JSON.stringify(quiz,null,2)+'\n');
+          fs.writeFileSync(cPath,JSON.stringify(cards,null,2)+'\n');
+          console.log('Quizzes activated in throwaway merge rehearsal only');
+          NODE
+          node scripts/verify-minneparken-quizcard-real-browser.mjs
+          node scripts/verify-place-quiz-browser.mjs minneparken_gamlebyen
+          echo 'PASS merged real app: fullquiz 21/21, QuizCard 10/10, dated photo and Fagverk'
       - name: Record generated diff and merged preview; still no commit or push
         if: always()
         shell: bash
