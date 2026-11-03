@@ -1,0 +1,50 @@
+name: Oslo Prosjektrom v1 app QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/oslo-prosjektrom-v1-app-qa.yml'
+      - 'scripts/verify-oslo-prosjektrom-placecard-browser.mjs'
+      - 'data/places/kunst/oslo/places_kunst/oslo_prosjektrom.json'
+      - 'data/runtime/place-open/oslo_prosjektrom.json'
+      - 'data/quiz/kunst/oslo_prosjektrom_sets.json'
+      - 'data/quizcards/kunst/oslo_prosjektrom_quizcard_v1.json'
+      - 'assets/places/oslo_prosjektrom/**'
+  workflow_dispatch:
+concurrency:
+  group: oslo-prosjektrom-v1-app-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  app-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Resolve Chrome
+        shell: bash
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Run strict local contract test
+        run: node --test tests/oslo-prosjektrom-v1-content.test.mjs
+      - name: Test actual PlaceCard and QuizCard on mobile and desktop
+        run: node scripts/verify-oslo-prosjektrom-placecard-browser.mjs
+      - name: Play the full 21-question quiz on mobile and desktop
+        run: node scripts/verify-place-quiz-browser.mjs oslo_prosjektrom
+      - name: Store screenshots and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-prosjektrom-v1-browser-qa
+          path: |
+            artifacts/oslo-prosjektrom-v1/
+            artifacts/place-quiz/oslo_prosjektrom/
+          if-no-files-found: ignore
+          retention-days: 14
