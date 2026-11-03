@@ -38,8 +38,9 @@ assert(a.visualChecks.blackBackgroundReviewed && a.visualChecks.fullImageReviewe
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert(approved?.count >= 59, "Smørbukk #59 must be approved");
+// Knoppurt reuses the approved Engknoppurt original. Count distinct artworks, not catalog aliases.
+assert.equal(approved?.count, 58, "Smørbukk original must be included alongside the previous 57 artworks");
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
 assert(read("finn-flora.html").includes("nature-flora-approved.js"));
-console.log("Smørbukk #59: taxonomy corrected, exact WebP, true alpha, SHA256 and Git SHA, 59 approved illustrations.");
+console.log("Smørbukk #59: taxonomy corrected, exact WebP, true alpha, SHA256 and Git SHA, 58 distinct original illustrations and the approved Smørbukk species.");
