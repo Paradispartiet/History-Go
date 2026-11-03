@@ -1,6 +1,6 @@
 # Minneparken – dokumentert fotokilde og historisk bruksavgrensning (2026-11-03)
 
-**Status: etterprøvd lisenskandidat; filen skal ikke regnes som integrert uten lokal binary-/browserkontroll.**
+**Status: foto og provenance integrert i draft-grenen; binær, kilde og kanonisk stedsindeks verifisert. Endelig synlig mobil-/desktop-foto-QA gjenstår før bildefronten kan regnes som testet.**
 
 ## Kontrollert kilde
 
@@ -33,3 +33,11 @@ Korrekt bruk i PlaceCard krever både datert og synlig bildetekst:
 5. For full visuell ferdigstillelse gjenstår fortsatt separat kontroll av produktfoto, frontkort-format, historisk/nyere visuell dekning, responsiv beskjæring og eventuelle flere motiv.
 
 **Merk:** Et generisk «HISTORY GO»-motiv eller en bildefeil i kortet er ikke et reelt fotografi. En offentlig domene-/fri lisens er nødvendig, men ikke alene tilstrekkelig for bildeporten.
+
+## Verifisert integrasjon i PR (3. november 2026)
+
+- [Actions #41589236323](https://github.com/Paradispartiet/History-Go/actions/runs/41589236323) bestod original-JPEG, 3 072 × 2 304 px, visuell proveniensmetadata og historisk datering, og committet **kun** `bilder/places/minneparken_gamlebyen_2007.jpg` (1 491 694 byte) og stedfilens `image`, `cardImage`, `imageMeta`, `imageCredit`, `imageLicense`, `imageSourceUrl`.
+- [Actions #41590135371](https://github.com/Paradispartiet/History-Go/actions/runs/41590135371) kjørte den **offisielle** `places:index:build` og `places:index:check` med strikt bestått resultat; indeksen ble bygget over 1 538 steder. `tools/build_places_index.mts` og `tools/check_places_index_sync.mts` fører nå gjennom `imageMeta` som kanonisk lettfelt, slik at historisk datering kan vises av appen.
+- Før synkronisering feilet den ekte browserkontrollen: kildefilen var korrekt, men appens runtime-indeks manglet `image` og `imageMeta`. Denne feilen ble reparert ved å endre **indeksflyten**, ikke ved å forbigå testene.
+- **Visuell sluttport:** mobil-/desktop-test med faktisk bilde, kildeår og kortflipp må fullføres på den **synkroniserte** indeksen. En vellykket indekskontroll er nødvendig, men ikke alene et browserbevis. Gate F forblir `N/A` uansett bildets tekniske status.
+
