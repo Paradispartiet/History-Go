@@ -1,0 +1,76 @@
+name: Temporary Minneparken quiz and QuizCard real browser QA
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-quiz-browser-preview-temp.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Preflight all staged quiz, Knowledge IDs, and QuizCard source parity
+        run: node --test tests/minneparken-quiz-source-parity.test.mjs
+      - name: Real-app quiz 3x7 and QuizCard flip / expand on desktop and mobile
+        shell: bash
+        run: |
+          set -euo pipefail
+          temp="$(mktemp -d "$RUNNER_TEMP/minneparken-browser-XXXXXX")"
+          cleanup() {
+            cd "$GITHUB_WORKSPACE"
+            mkdir -p artifacts/minneparken-browser-qa
+            if [ -d "$temp/repo/artifacts/minneparken-quizcard-real-browser" ]; then
+              cp -r "$temp/repo/artifacts/minneparken-quizcard-real-browser" artifacts/minneparken-browser-qa/
+            fi
+            if [ -d "$temp/repo/artifacts/place-quiz/minneparken_gamlebyen" ]; then
+              cp -r "$temp/repo/artifacts/place-quiz/minneparken_gamlebyen" artifacts/minneparken-browser-qa/fullquiz
+            fi
+            git worktree remove --force "$temp/repo" || true
+            rm -rf "$temp"
+          }
+          trap cleanup EXIT
+          git worktree add --detach "$temp/repo" HEAD
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$temp/repo/node_modules"
+          cd "$temp/repo"
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const id = 'minneparken_gamlebyen';
+          const qpath = 'data/quiz/manifest.json';
+          const cpath = 'data/quizcards/historie/manifest.json';
+          const file = `data/quiz/historie/${id}_sets.json`;
+          const card = `${id}_quizcard_v1.json`;
+          const qm = JSON.parse(fs.readFileSync(qpath,'utf8'));
+          const cm = JSON.parse(fs.readFileSync(cpath,'utf8'));
+          if ((qm.files || []).includes(file) || (qm.sets || []).some(s => s.targetId === id) || cm.collections.includes(card)) {
+            throw Error('Quiz or QuizCard is already active; aborting disposable injection');
+          }
+          qm.sets.push({targetId:id,file});
+          cm.collections.push(card);
+          fs.writeFileSync(qpath,JSON.stringify(qm,null,2)+'\n');
+          fs.writeFileSync(cpath,JSON.stringify(cm,null,2)+'\n');
+          console.log('Quiz and QuizCard manifest activation exists in DISPOSABLE worktree only');
+          NODE
+          node scripts/verify-minneparken-quizcard-real-browser.mjs
+          node scripts/verify-place-quiz-browser.mjs minneparken_gamlebyen
+          echo "PASS real-app fullquiz and QuizCard on desktop/mobile in disposable copy"
+      - name: Upload browser screenshots and acceptance reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-real-quiz-browser-qa
+          path: artifacts/minneparken-browser-qa/
+          retention-days: 30
+          if-no-files-found: warn
