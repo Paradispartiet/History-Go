@@ -42,4 +42,28 @@ jobs:
             }
           }
           console.log('Civication map baseline exact unresolved:', JSON.stringify({ files: files.length, missing_count: missing.length, missing }));
+          const indexById = new Map(index.map(row => [String(row.id), row]));
+          const mismatches = [];
+          for (const file of files) {
+            const data = read(path.join('data/Civication/map', file));
+            for (const [id, mapping] of Object.entries(data.mappings || {})) {
+              const row = indexById.get(String(mapping.historyGoPlaceId));
+              if (!row) continue;
+              const source = read('data/' + row.sourceFile);
+              const candidates = Array.isArray(source) ? source : Array.isArray(source.places) ? source.places : [source];
+              const place = candidates.find(candidate => String(candidate.id) === String(row.id));
+              if (!place) continue;
+              const diffs = {};
+              for (const key of ['name','lat','lon','emne_ids']) {
+                const actual = mapping[key] ?? (key === 'emne_ids' ? [] : null);
+                const expected = place[key] ?? (key === 'emne_ids' ? [] : null);
+                if (JSON.stringify(actual) !== JSON.stringify(expected)) diffs[key] = { actual, expected };
+              }
+              if (mapping.historyGoSourceFile !== data.sourceFile && mapping.historyGoSourceFile !== row.sourceFile)
+                diffs.historyGoSourceFile = { actual: mapping.historyGoSourceFile, expected: row.sourceFile };
+              if (Object.keys(diffs).length) mismatches.push({ file, id, canonicalId: row.id, diffs });
+            }
+          }
+          console.log('Civication map baseline canonical differences:', JSON.stringify({ count: mismatches.length, mismatches }));
+
           NODE
