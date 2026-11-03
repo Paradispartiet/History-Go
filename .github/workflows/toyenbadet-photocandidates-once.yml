@@ -1,4 +1,4 @@
-name: Tøyenbadet modern image — one-time generated data sync
+name: Tøyenbadet Asplan Viak authentic brandmark — one-time import
 on:
   push:
     branches: [feat/toyenbadet-modern-photos-20261103]
@@ -7,45 +7,66 @@ on:
 permissions:
   contents: write
 jobs:
-  sync:
+  import:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
           ref: feat/toyenbadet-modern-photos-20261103
           persist-credentials: true
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: '22'
-          cache: 'npm'
-      - run: npm ci --no-audit --no-fund
-      - name: Generate only source-owned Place projections
+          python-version: '3.12'
+      - run: python -m pip install --quiet Pillow
+      - name: Transfer official original wordmark without recreating it
         shell: bash
         run: |
           set -euo pipefail
-          npm run places:index:build
-          npm run place-open:build
-          node --test tests/toyenbadet-modern-photos-before-after.test.mjs
-          node - <<'JS'
-          const fs=require('node:fs');
-          const source=JSON.parse(fs.readFileSync('data/places/sport/europa/norway/oslo_sport/toyenbadet.json','utf8'));
-          const opened=JSON.parse(fs.readFileSync('data/runtime/place-open/toyenbadet.json','utf8'));
-          if(opened.place?.image!==source.image) throw Error('stale generated image');
-          if(opened.place?.for_na?.nowImage!==source.for_na.nowImage) throw Error('stale generated before-after');
-          if(Object.hasOwn(opened.place,'cardImage')) throw Error('deprecated cardImage survived generation');
-          console.log('Tøyenbadet modern image and for_na generated parity: PASS');
-          JS
-      - name: Commit only Tøyenbadet-related generated projections
+          python - <<'PY'
+          import urllib.request, io, json, os, hashlib, time
+          from PIL import Image
+          source='https://www.asplanviak.no/content/uploads/2025/03/asplanviak_logo_hovedlogo_minthvit_rgb.png'
+          target='bilder/kort/brands/asplan_viak.webp'
+          for attempt in range(3):
+           try:
+            req=urllib.request.Request(source,headers={'User-Agent':'Mozilla/5.0 (HistoryGo referential brand asset review)'})
+            with urllib.request.urlopen(req,timeout=40) as rsp: raw=rsp.read()
+            break
+           except Exception:
+            if attempt==2: raise
+            time.sleep(2)
+          im=Image.open(io.BytesIO(raw)).convert('RGBA')
+          original_size=[im.width,im.height]
+          if im.width<500 or im.height<200: raise RuntimeError('Logo is unexpectedly small')
+          alpha=im.getchannel('A').getextrema()
+          if alpha[0]>20: raise RuntimeError('Expected transparent brand mark, got opaque background')
+          im.thumbnail((820,440),Image.Resampling.LANCZOS)
+          canvas=Image.new('RGBA',(900,520),(0,0,0,0))
+          canvas.alpha_composite(im,((900-im.width)//2,(520-im.height)//2))
+          os.makedirs('bilder/kort/brands',exist_ok=True)
+          canvas.save(target,'WEBP',quality=95,method=6,exact=True)
+          out=open(target,'rb').read()
+          meta={
+           'schema':'history_go_brand_asset_attribution_v1','brandId':'asplan_viak','path':target,
+           'sourcePage':'https://www.asplanviak.no/profilmanual/','sourceAsset':source,
+           'assetKind':'logo','sourceForm':'original_official_current_logo','creator':'Asplan Viak',
+           'credit':'Asplan Viak – official brand assets','rightsBasis':'referential_trademark_identification; publicly downloadable official logo for software and documents, no affiliation or endorsement implied',
+           'license':'Original trademark; not Creative Commons','usageContext':'referential_identification','noEndorsement':True,
+           'sourceDimensions':original_size,'outputDimensions':[900,520],
+           'transformation':'Aspect-preserving downscale and transparent padding; no repainting or reconstruction of any logo element',
+           'sourceSha256':hashlib.sha256(raw).hexdigest(),'assetSha256':hashlib.sha256(out).hexdigest(),
+           'reviewStatus':'source_verified_visual_review_pending','dateVerified':'2026-11-03'
+          }
+          with open('data/brands/asplan_viak_logo_provenance.json','w') as fp: json.dump(meta,fp,ensure_ascii=False,indent=2)
+          print('Official Asplan Viak logo imported, sha256='+meta['assetSha256'])
+          PY
+      - name: Commit official brandmark for review
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/places/places_index.json data/runtime/place-open/toyenbadet.json
-          if git diff --cached --quiet; then
-            echo 'Generated Tøyenbadet data already in sync'
-          else
-            git commit -m 'build(toyenbadet): synchronize canonical modern hero and before-after runtime'
-            git push origin HEAD:refs/heads/feat/toyenbadet-modern-photos-20261103
-          fi
+          git add bilder/kort/brands/asplan_viak.webp data/brands/asplan_viak_logo_provenance.json
+          git commit -m 'assets(asplan-viak): source-tracked official brandmark for History Go'
+          git push origin HEAD:refs/heads/feat/toyenbadet-modern-photos-20261103
