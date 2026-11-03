@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_skogfiol: Object.freeze({
+      scientificName: "Viola riviniana",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/34_skogfiol_v1.webp",
+      gitBlobSha: "a28a6281ec9ecf7aac3ad38efb86fb8e98dc3f5c",
+      reviewedAt: "2026-11-03",
+      stage: "vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-skogfiol-20261103.json"
+    }),
     emne_flora_sandarve: Object.freeze({
       scientificName: "Arenaria serpyllifolia",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/33_sandarve_v1.webp",
