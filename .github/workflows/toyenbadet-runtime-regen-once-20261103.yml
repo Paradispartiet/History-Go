@@ -29,6 +29,14 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Validate canonical Stories
         run: npm run check:stories
+      - name: Incorporate latest main before regenerating global indexes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
       - name: Regenerate canonical outputs and inspect exact drift
         shell: bash
         run: |
@@ -67,5 +75,7 @@ jobs:
           git diff --cached --check
           if ! git diff --cached --quiet; then
             git commit -m 'Tøyenbadet: synchronize generated leksikon and source-backed epoke index'
+          fi
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/content/toyenbadet-vferdig-20261103)" ]; then
             git push origin HEAD:content/toyenbadet-vferdig-20261103
           fi
