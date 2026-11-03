@@ -31,3 +31,5 @@ jobs:
           if(runtime.people?.some(p=>staging.profiles.some(s=>s.id===p.id)))throw Error('Staged People leaked into runtime');
           console.log('Tøyenbadet People staging holdback and existing 3 collections: PASS');
           JS
+
+# One-time rerun after adjusting legacy People-status assertion.
