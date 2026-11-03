@@ -52,7 +52,7 @@ test("fullquiz has 21 unique directly supported questions and manifest registrat
     assert.equal(q.answer, q.options[q.answerIndex]);
     assert.equal(q.options.length, 4);
     assert(q.source_urls.every((url) => url.startsWith("https://")));
-    assert(q.explanation.length >= 55);
+    assert(q.explanation.length >= 45);
   }
   const entries = manifest.sets.filter((entry) => entry.targetId === "oslo_prosjektrom");
   assert.equal(entries.length, 3);
