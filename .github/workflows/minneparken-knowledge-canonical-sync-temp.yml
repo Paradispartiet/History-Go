@@ -83,7 +83,7 @@ jobs:
           console.log(JSON.stringify(report));
           if(unapproved.length)throw Error('Unrelated generator drift: '+unapproved.join(', '));
           if(!found.includes('data/knowledge/knowledge_units.generated.json'))throw Error('Canonical registry did not change');
-        NODE
+          NODE
           git add data/quiz/historie/minneparken_gamlebyen_sets.json
           git add data/quizcards/historie/minneparken_gamlebyen_quizcard_v1.json
           git add data/knowledge/knowledge_units.generated.json
