@@ -57,7 +57,7 @@ try{
        const h=document.querySelector("#pcHeaderImage"),f=document.querySelector("#pcFrontImage");
        return {hero:{src:h.currentSrc,width:h.naturalWidth,height:h.naturalHeight},front:{src:f.currentSrc,width:f.naturalWidth,height:f.naturalHeight}};
      });
-     assert.match(imgs.hero.src,/toyenbadet_historic_2013_hero\.webp$/,vp.name+" licensed 2013 header");
+     assert.match(imgs.hero.src,/toyenbadet_historic_2013_hero\.webp$/,vp.name+" licensed modern 2026 header");
      assert.match(imgs.front.src,/toyenbadet_historic_1980_portrait\.webp$/,vp.name+" licensed 1980 front");
      assert.equal(imgs.hero.width,1400);
      assert.equal(imgs.hero.height,900);
