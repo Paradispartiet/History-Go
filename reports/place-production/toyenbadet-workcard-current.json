@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "PR_6988_browser_qa_passed__pending_merge",
+  "branch_status": "objects_source_bound_illustrated__feature_branch_pending_QA",
   "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
-  "active_phase": "Autentisk 2026-hero, historisk Før/etter, Asplan Viak og NM-konkurranse er integrert og kontrollert i faktisk mobil- og desktopvisning. People og Objects mangler fortsatt kvalifiserte visuelle medlemmer før vFerdig.",
+  "active_phase": "To dokumenterte sports-/tilretteleggingsobjekter med egne, originaltegnede og eksplisitt merkede skjematiske SVG-bilder er canonical; People-kandidatclaims for mesterskapsutøvere og begge arkitekter kontrollert. Runtime/browser-QA for Objects gjenstår; People har fortsatt manglende identitets-/lisensgodkjente portretter.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -62,31 +62,44 @@
   },
   "content_plan": {
     "people": {
-      "status": "BLOCKED",
+      "status": "CLAIMS_VERIFIED__PORTRAITS_BLOCKED",
       "candidates": [
-        "Gert Walter Thuesen – arkitekt for 1976-badet",
-        "Sverre Gullesen – offentlig kunst på det nye badet",
-        "Ida Madsen Følling – Vektløs på heissjakten",
-        "Aphra Shemza – Ocean Rise, temporær installasjon",
-        "Halvard Heskestad Waage – hovedarkitekt for det nye Tøyenbadet (Asplan Viak)"
+        "Henrik Christiansen – NM beste herre 2026 (svømmer, født 1996)",
+        "Hedda Øritsland – NM beste dame og norsk rekord 100 meter fri 2026",
+        "Halvard Heskestad Waage – hovedarkitekt for nytt bad",
+        "Gert Walter Thuesen – arkitekt for gamle bad"
       ],
-      "reason": "Kunstsamlingen dokumenterer tre direkte stedstilknyttede kunstnere; autentiske, rettighetsavklarte portrettbilder og canonical People-profilkoblinger er ennå ikke materialisert. Ingen fyllpersoner.",
+      "reason": "To mesterskapsutøvere med særskilt dokumentert prestasjon på badet samt arkitektene bak gammel og ny bygning er forsket med direkte claims-kilder i reports/place-production/toyenbadet-people-claims-20261103.json. Portrettlisens/identitet er ikke godkjent for noen kandidat. Commons-kategorien Henrik Christiansen viser feil person (skøyteløper) og skal aldri brukes. Samlingen forblir blokkert.",
       "source_urls": [
-        "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet",
-        "https://www.asplanviak.no/kvartalet/arkitektur/toyenbadet/"
+        "https://svomming.no/nyheter/nm-langbane-i-oslo-leverer-spenning-og-fantastisk-stemning/",
+        "https://www.asplanviak.no/kvartalet/arkitektur/toyenbadet/",
+        "https://oslobyleksikon.no/side/T%C3%B8yenbadet"
       ]
     },
     "objects": {
-      "status": "BLOCKED",
-      "candidates": [
-        "Startpaller og konkurranse-/tidtakingsutstyr ved 50-metersbassenget – undersøk dokumentasjon av konkrete, stedstilknyttede gjenstander, ikke godkjent medlem",
-        "Mobil heis for hjelp ned i vannet – dokumentert anleggsutstyr hos Oslo kommune, men ikke kvalifisert som signaturobjekt og mangler medlemsbilde"
+      "status": "SOURCE_VERIFIED_ASSETS_LOCAL__PENDING_BROWSER_QA",
+      "accepted": [
+        {
+          "id": "toyenbadet_startpall_nummer_8",
+          "why": "Fotografi fra det nye Tøyenbadet viser nummerert startpall 8 ved 50-metersbassenget",
+          "sourceUrl": "https://www.bygg.no/bildekarusell-idrettsanlegg-oslo/oslos-storste-badeanlegg-apner-dorene/2621730",
+          "image": "bilder/objects/toyenbadet_startpall_8_illustrasjon.svg",
+          "imageKind": "illustration",
+          "note": "Illustrasjonen er generell og dokumenterer ikke produsent/modell"
+        },
+        {
+          "id": "toyenbadet_mobil_bassengheis",
+          "why": "Oslo kommune oppgir én mobil heis for nedløfting i vannet ved opplæringsbassengfasilitetene",
+          "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/svommehaller-i-oslo/toyenbadet",
+          "image": "bilder/objects/toyenbadet_mobil_bassengheis_illustrasjon.svg",
+          "imageKind": "illustration",
+          "note": "Illustrasjonen er generell og dokumenterer ikke produsent/modell"
+        }
       ],
-      "reason": "Korreksjon mot docs/PLACE_OBJECTS_CANONICAL.md: Gullesens Uten tittel (bauta/orm) og Føllings Vektløs er offentlige kunstverk, og hører normalt under kunstverk/produksjoner, ikke automatisk under Objects. Idrettsutstyr med dokumentert fysisk stedstilknytning skal undersøkes først. Oslo kommune dokumenterer en mobil heis ved bassengene, men ingen sammenhengende, bildeklargjort Objects-samling er foreløpig dokumentert. Source-bounded holdback; ingen fyllobjekter eller uverifiserte previewbilder.",
-      "source_urls": [
-        "https://www.oslo.kommune.no/natur-kultur-og-fritid/svommehaller-i-oslo/toyenbadet/",
-        "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet"
-      ]
+      "rejected": [
+        "Gullesens permanente kunstverk og Føllings Vektløs er ikke sports-Objects; hører til produksjoner/kunstverk."
+      ],
+      "reason": "To stedsspesifikke fysiske gjenstander med separate funksjoner og autoritative kilder. Bildene er originale, tydelig merkede skjematiske illustrasjoner, ikke fotografier eller fabrikk-/modellrekonstruksjoner. Objektsamlingen aktiveres først når browser-preview og popup er kontrollert."
     },
     "brands": {
       "status": "PASS_BROWSER",
@@ -155,10 +168,11 @@
     }
   },
   "collection_ids": [
+    "objects",
     "brands",
     "competitions"
   ],
-  "collection_decision": "To kildebårne, bildeklare samlinger: Brands (Asplan Viak) og Competitions (NM langbane 2026). People og Objects er fremdeles holdt tilbake pga. uferdige medlemsevidenser.",
+  "collection_decision": "Objects: to dokumenterte fysiske, stedstilknyttede gjenstander (startpall nr. 8 og mobil heis), hver med original eksplisitt merket skjematisk SVG. Brands: Asplan Viak autentisk offisiell logo. Competitions: NM langbane 2026. People fortsatt SOURCE-VERIFIED BUT BLOCKED portraits, ingen feilperson eller mangelfull popup.",
   "media_gate": {
     "status": "PASS_CANONICAL_GENERATED_AND_MOBILE_DESKTOP_BROWSER",
     "hero": {
@@ -251,7 +265,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "Autentisk 2026-foto, Før/etter og to bildestøttede samlinger integrert og faktisk browser-QA bestått (mobil + desktop, run 41589971756). People- og Objects-samlinger står fremdeles BLOCKED uten ferdige canonical medlemmer/portretter og objektmedier; derfor blocked_vferdig med historisk 23/30-vurdering, ikke ny vFerdig-godkjenning."
+    "note": "Originale dokumenterte Objects er lagt i canonical med kildeførte, lokalt lagrede SVG-fagillustrasjoner av startpall og mobil heis. Faktabaserte People-kandidater er claim-mappet og identitetskollisjon avdekket. Ingen vFerdig-status før browser-QA av Objects og rettighetsklarerte People-bilder. Historisk score 23/30 beholdes til sluttrevisjon."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
@@ -274,7 +288,11 @@
     "bilder/kort/brands/asplan_viak.webp",
     "data/brands/brands_master.json",
     "data/brands/asplan_viak_logo_provenance.json",
-    "tests/toyenbadet-asplan-viak-brand.test.mjs"
+    "tests/toyenbadet-asplan-viak-brand.test.mjs",
+    "bilder/objects/toyenbadet_startpall_8_illustrasjon.svg",
+    "bilder/objects/toyenbadet_mobil_bassengheis_illustrasjon.svg",
+    "reports/place-production/toyenbadet-people-claims-20261103.json",
+    "tests/toyenbadet-source-backed-objects.test.mjs"
   ],
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
