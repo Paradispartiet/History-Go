@@ -10,6 +10,9 @@ on:
       - 'data/quizcards/kunst/oslo_prosjektrom_quizcard_v1.json'
       - 'assets/places/oslo_prosjektrom/**'
   workflow_dispatch:
+concurrency:
+  group: oslo-prosjektrom-v1-app-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
