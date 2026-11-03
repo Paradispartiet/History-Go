@@ -21,5 +21,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify nine candidate images and protected badges
-        run: node --test tests/badge-underbadge-batch01.test.mjs
+      - name: Verify By subbadges and protected badge images
+        run: node --test tests/badge-underbadge-batch01.test.mjs tests/badge-by-klassisk-arkitektur-v2-production.test.mjs tests/badge-by-modernisme-v1-production.test.mjs
