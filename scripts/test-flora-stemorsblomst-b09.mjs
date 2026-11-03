@@ -9,7 +9,8 @@ const a=doc.items[0],id="emne_flora_stemorsblomst_forvillet";
 assert.equal(doc.baselineApproved,61);
 assert.equal(doc.approvedCountAfterRelease,62);
 assert.equal(a.catalogId,id);
-assert.equal(a.scientificName,"Viola tricolor");
+assert.equal(a.scientificName,"Viola tricolor m.fl.");
+assert.equal(a.illustratedScientificName,"Viola tricolor");
 assert.equal(a.approvedForPublication,true);
 assert.equal(a.reviewStatus,"approved");
 for(const x of [
