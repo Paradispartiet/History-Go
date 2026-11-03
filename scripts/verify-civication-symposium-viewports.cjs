@@ -80,6 +80,10 @@ async function main() {
         await page.waitForFunction(() => document.body.classList.contains('civi-mini-mode'),
           null, { timeout: 20000 });
         const history = page.locator('[data-lifestory-symposium] summary').first();
+        await history.waitFor({ state: 'attached', timeout: 20000 });
+        // The book follows the playable scene below the fold in the real
+        // scrollable Min dag panel; scroll there like a player would.
+        await history.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
         await history.waitFor({ state: 'visible', timeout: 20000 });
         await history.click();
         const book = page.locator('[data-lifestory-symposium]').first();
