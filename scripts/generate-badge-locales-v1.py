@@ -48,6 +48,83 @@ def fabric_band(im, category, sub, foot, preserve_header=False):
     out.putalpha(im.getchannel('A'))
     return out
 
+
+
+def replace_embroidered_letters(canvas, original, category, sub):
+    """Remove the old *letter stitches*, not the entire title fabric.
+
+    The former annular paint-over erased woven detail, stars and decorative
+    trim. This isolates the cream-colored yarn and its shadow, reconstructs
+    only those pixels with local source textile and leaves the rest untouched.
+    """
+    w,h=original.size
+    yy,xx=np.mgrid[:h,:w]
+    cx,cy=w*.5,h*.515
+    radial=np.hypot(xx-cx,yy-cy)
+    angle=np.abs(np.arctan2(xx-cx,cy-yy))
+    outer={'klassisk_arkitektur':503,'sceneproduksjon':491}.get(sub,478)
+    inner={'klassisk_arkitektur':351,'teater':337,'dans':337,
+           'sceneproduksjon':335,'musikkteater':347}.get(sub,345)
+    theta=math.radians(84 if sub=='klassisk_arkitektur'
+                       else 78 if sub=='sceneproduksjon'
+                       else 73 if category=='scenekunst' else 66)
+    roi=(radial>=inner)&(radial<=outer)&(angle<theta)&(yy>=58)&(yy<306)
+    raw=np.asarray(original.convert('RGB'),dtype=np.int16)
+    rr,gg,bb=raw[:,:,0],raw[:,:,1],raw[:,:,2]
+    cream=(rr>128)&(gg>95)&(bb>58)&((rr-gg)>8)&((gg-bb)>1)
+    # Protect the two gold/cream stars adjacent to the Modernisme caption.
+    if category=='by' and sub=='modernisme':
+        for sx in (210,820):
+            roi &= ((xx-sx)**2+(yy-237)**2)>53**2
+    seed=np.uint8(cream&roi)*255
+    # Reconnect threads within each letter and remove the dark stitched outline.
+    mask=Image.fromarray(seed,'L').filter(ImageFilter.MaxFilter(7))
+    mask=mask.filter(ImageFilter.MinFilter(5))
+    mask=mask.filter(ImageFilter.MaxFilter(17))
+    if not np.any(np.asarray(mask)):
+        raise ValueError(f"No source title glyph detected for {category}/{sub}")
+    m=np.asarray(mask)>0
+
+    # Search for a small, genuine woven-textile swatch in the source's
+    # non-lettered header. No synthetic paint or external artwork.
+    arr=np.asarray(original.convert('RGB'),dtype=np.float32)
+    candidates=[]
+    for y in range(110,275,12):
+        for x in range(115,886,12):
+            patch=arr[y:y+32,x:x+32]
+            if patch.shape!=(32,32,3): continue
+            if m[y:y+32,x:x+32].any():continue
+            if np.asarray(original.getchannel('A'))[y:y+32,x:x+32].min()<250:continue
+            med=np.median(patch,axis=(0,1))
+            bright=np.mean(np.max(patch,axis=2)>155)
+            if category=='by':
+                ok=(med[0]<83 and med[1]<106 and med[2]<132)
+            else:
+                ok=(med[0]>med[1]*1.22 and med[0]>med[2]*1.09
+                    and 35<med[0]<185 and med[1]<112)
+            if not ok or bright>.05:continue
+            sigma=float(patch.std(axis=(0,1)).mean())
+            if 3<sigma<37:
+                candidates.append((abs(sigma-15),x,y,med))
+    if not candidates:
+        raise ValueError(f"No clean textile swatch for {category}/{sub}")
+    _,tx,ty,_=min(candidates,key=lambda z:z[0])
+    swatch=arr[ty:ty+32,tx:tx+32]
+    # Matching the swatch's median to dark yarn near the original lettering
+    # keeps the inner black/blue and velvet-red panels consistent.
+    neighborhood=roi&(~m)
+    if category=='by': neighborhood &= (rr<110)&(gg<112)&(bb<145)
+    else: neighborhood &= (rr>gg*1.2)&(rr>bb*1.05)&(rr<185)&(gg<115)
+    target=np.median(arr[neighborhood],axis=0) if np.any(neighborhood) else np.median(swatch,axis=(0,1))
+    texture=swatch[(yy+17)%32,(xx+9)%32]
+    texture=np.clip(texture+target-np.median(swatch,axis=(0,1)),0,255)
+    feather=np.asarray(mask.filter(ImageFilter.GaussianBlur(1.15)),dtype=np.float32)[:,:,None]/255
+    out=np.clip(np.asarray(canvas.convert('RGB'),dtype=np.float32)*(1-feather)
+                +texture*feather,0,255).astype(np.uint8)
+    fixed=Image.fromarray(out,'RGB').convert('RGBA')
+    fixed.putalpha(original.getchannel('A'))
+    return fixed
+
 def top_title(canvas, caption, category):
     w,h=canvas.size
     R=w*.406
@@ -108,7 +185,7 @@ def main():
                 if title==source_title and bottom is None:
                     shutil.copyfile(src,dst)
                 else:
-                    result=fabric_band(original,category,sub,bottom is not None,preserve_header=(title==source_title))
+                    result=fabric_band(original,category,sub,bottom is not None,preserve_header=True)
                     if category=='by' and sub=='modernisme':
                         # Preserve the original cream stitched stars beside the upper caption.
                         from PIL import ImageFilter
@@ -119,6 +196,7 @@ def main():
                             side=side.filter(ImageFilter.GaussianBlur(3))
                             result=Image.composite(original,result,side)
                     if title!=source_title:
+                        result=replace_embroidered_letters(result,original,category,sub)
                         top_title(result,title,category)
                     if bottom: bottom_title(result,bottom,sub=='klassisk_arkitektur')
                     # Compositing translated letterforms changes alpha at antialiased
