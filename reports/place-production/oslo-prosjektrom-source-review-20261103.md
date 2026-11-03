@@ -36,6 +36,6 @@ Lokalhistoriewiki har et fotografi angitt som «Platous gate 18» av Chris Nybor
 
 ## Test og publiseringsavgrensning
 
-Fullquiz 3 × 7 = 21 spørsmål og QuizCard med de første 10 identiske spørsmålene er kildebygget og manifestregistrert. Fagverk og Place-open er oppdatert; Fagverk-release-digester er deterministisk oppdatert og relevant CI ble grønn. Canonical Knowledge-migrering og faktiske bilder/PlaceCard-browser-QA er fortsatt ufullført. Fram til disse portene består: **v1-kandidat, ikke ferdig/merget**.
+Fullquiz 3 × 7 = 21 spørsmål og QuizCard med de første 10 identiske spørsmålene er kildebygget og manifestregistrert. Fagverk og Place-open er oppdatert; Fagverk-release-digester er deterministisk oppdatert og relevant CI ble grønn. Canonical Knowledge er nå generert og koblet i 21/21 fullquizspørsmål og 10/10 QuizCard-spørsmål, bekreftet av målrettet GitHub Actions-kjøring. Rettighetsklarerte bilder og faktisk PlaceCard-/QuizCard-browser-QA på mobil og desktop er fortsatt ufullført. Fram til disse portene består: **v1-kandidat, ikke ferdig/merget**.
 
 Kvalitetsprofil (foreløpig): Korrekthet 4/5 · Dekning 2/5 · Redaksjon 4/5 · Teknikk 2/5 · Ansvarlighet 5/5 · Etterprøvbarhet 4/5 = **21/30**.
