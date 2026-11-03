@@ -52,7 +52,8 @@ test('all six previous Film & TV and seven Scenekunst underbadges stay unchanged
     klassikere: 'bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp',
     norsk_film_og_tv: imagePath
   };
-  assert.deepEqual(f.subBadgeImages, expected);
+  for (const [id, value] of Object.entries(expected)) assert.equal(f.subBadgeImages[id], value, id);
+  assert.equal(Object.keys(f.subBadgeImages).length, 12);
   assert.equal(Object.keys(s.subBadgeImages).length, 7);
   for (const id of s.sub) assert.ok(s.subBadgeImages[id]);
 });
