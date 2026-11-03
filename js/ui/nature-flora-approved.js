@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_skogstorkenebb: Object.freeze({
+      scientificName: "Geranium sylvaticum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/35_skogstorkenebb_v1.webp",
+      gitBlobSha: "f260e6747c79fff07b0b777e9419049dd373fd76",
+      reviewedAt: "2026-11-03",
+      stage: "sommerblomstring_og_fruktsetting",
+      evidence: "data/natur/flora/illustration-quality-skogstorkenebb-20261103.json"
+    }),
     emne_flora_skogfiol: Object.freeze({
       scientificName: "Viola riviniana",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/34_skogfiol_v1.webp",
