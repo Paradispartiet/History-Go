@@ -183,7 +183,8 @@
     "media/manifest.json",
     "naeringsliv/manifest.json",
     "natur/manifest.json",
-    "politikk/manifest.json"
+    "politikk/manifest.json",
+    "sport/manifest.json"
   ]);
   var FALLBACK_COLLECTIONS = Object.freeze([
     "by/topp10_by_kort_batch1.json",
