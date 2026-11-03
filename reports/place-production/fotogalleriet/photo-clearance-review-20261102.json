@@ -2,16 +2,20 @@
   "schema": "history_go_place_photo_clearance_review_v1",
   "placeId": "fotogalleriet",
   "reviewedAt": "2026-11-03",
-  "reviewStatus": "blocked_two_documentary_originals_no_photo_permission_official_facade_source_located",
+  "reviewStatus": "blocked_two_distinct_site_photograph_sources_identified_but_no_reuse_rights_or_originals",
   "policy": "image and frontImage must use two different original documentary photographs, not crops or derivatives of the same original. Rights must cover local WebP redistribution; record sourceSha256, sourcePage, originalId, author, license and credit for each original.",
   "sourceReview": [
     {
       "sourcePage": "https://snl.no/Fotogalleriet",
-      "subject": "2018 exterior/vernissage photograph outside Fotogalleriet at Møllergata 34",
-      "licenseObservation": "Photo labelled Begrenset gjenbruk (restricted reuse)",
+      "subject": "Opening of Vårutstillingen in May 2018 outside Fotogalleriet at Møllergata 34, with original gallery frontage/entrance visible and a crowd of identifiable people, as captioned by Store norske leksikon.",
+      "licenseObservation": "SNL explicitly labels its image 'Begrenset gjenbruk' (restricted reuse). Filename and public display do not confer rights to redistribute or make WebP derivatives; the crowd presents additional editorial/privacy considerations.",
       "decision": "do_not_copy_or_publish_without_permission",
-      "roleCandidate": "facade",
-      "blockingReason": "No demonstrated local redistribution permission"
+      "roleCandidate": "possible_second_distinct_2018_documentary_exterior_photo_if_rights_people_and_provenance_cleared",
+      "blockingReason": "Photographer/rights holder and commercial WebP reuse permission not established; distinguish original photo from 2023 facade photo by originalId/hash, and evaluate identifiable persons before any reuse.",
+      "sourceEvidence": "https://snl.no/Fotogalleriet (Virksomhet image caption), inspected 2026-11-03",
+      "originalFileProvenance": "https://media.snl.no/media/174918/standard_compressed_FFF_2018_05_Varutstillingen_Vernissage_HighRes-1Istvan_Virag.jpg",
+      "photographer": "not independently verified; filename indicates Istvan Virag, other coverage credits Istvan Virag for Vårutstillingen photos but that does not by itself prove attribution of this exact 2018 exposure",
+      "photographedAt": "2018-05 (opening, from SNL caption)"
     },
     {
       "sourcePage": "https://www.osloartguide.no/en/venues/fotogalleriet/exhibitions/window-exhibition-agenda-x",
@@ -98,8 +102,9 @@
     {
       "role": "frontImage",
       "preferredSubject": "A second separately photographed perspective of the gallery (interior without uncleared artworks, or a licensed historic Fotogalleriet site photo)",
-      "status": "missing_approved_original_50a_entrance_not_identified",
-      "candidateSource": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg"
+      "status": "missing_approved_original_2018_vernissage_or_50a_historical_candidate",
+      "candidateSource": "https://snl.no/Fotogalleriet",
+      "alternativeCandidateSource": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg"
     }
   ],
   "activationRequirements": [
@@ -160,5 +165,29 @@
       "decision": "street_context_only_not_image_or_frontImage"
     }
   ],
-  "researchOutcome": "Visual inspection of Fotogalleriet's own 2023 Annual Report printed p.38/PDF p.44 confirms a clearly identifiable current Møllergata 34 facade/entrance photograph (Momentum 12 summer 2023). Photographer, original file and permission for local WebP reuse in a possible paid app are not established. Existing gallery Gmail draft updated with exact PDF page but NOT sent. Separate Preus archival inquiry remains a draft, and its archive does not guarantee a 1977 50A entrance photograph. Both photo roles remain blocked; no live images or quiz/Knowledge activation."
+  "researchOutcome": "Current Møllergata 34 documentary facade photo in official 2023 report and distinct May 2018 Vårutstillingen exterior photo in SNL provide two candidate originals of the same gallery site, but both are unlicensed for History Go commercial/local WebP reuse; 2018 image additionally contains identifiable public visitors. Gallery draft updated to request permissions and originals, not sent. Historical Oscars gate 50A entrance still unverified. No live photos, no activation.",
+  "proposedIndependentOriginalPair": {
+    "proposalStatus": "two_distinct_existing_images_identified_rights_and_originals_not_cleared",
+    "currentFacade": {
+      "source": "Fotogalleriet official 2023 annual report, printed p.38/PDF p.44",
+      "sourcePage": "https://fotogalleriet.no/wp-content/uploads/2024/04/240415-Annual-Report_compressed_pagenumber.pdf#page=44",
+      "photoDate": "2023 summer",
+      "photographer": "unknown",
+      "rights": "pending",
+      "artworkClearance": "pending"
+    },
+    "secondGalleryContext": {
+      "source": "SNL Fotogalleriet image caption: May 2018 Vårutstillingen opening at Møllergata 34",
+      "sourcePage": "https://snl.no/Fotogalleriet",
+      "photoDate": "2018-05",
+      "photographer": "unconfirmed; file name hints Istvan Virag",
+      "rights": "restricted_reuse_permission_needed",
+      "peopleClearance": "pending",
+      "photoSubject": "gallery frontage and entry during public vernissage, NOT the 1977 former cellar"
+    },
+    "independentOriginality": "Different documented photographic subjects/dates (2018 versus 2023); compare original IDs and SHA256 of authorized source files before acceptance.",
+    "acceptance": "Neither image can be activated until each original is supplied by rights holder with explicit copying, adaptation and commercial publication permission. Alternative is gallery-supplied separate original photos without artwork/people clearance blockers.",
+    "galleryOutreach": "Existing draft to post@fotogalleriet.no updated 2026-11-03 with both exact cited candidate URLs; NOT sent.",
+    "formerAddressNote": "1977 Oscars gate 50A photo may still be researched as historical context, but is not logically required if two distinct genuine Møllergata 34 gallery documentary photos can be cleared."
+  }
 }
