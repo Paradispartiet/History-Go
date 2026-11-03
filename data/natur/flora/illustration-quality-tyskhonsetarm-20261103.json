@@ -2,10 +2,10 @@
   "schema": "history-go-flora-single-species-review-v1",
   "batch": "09",
   "date": "2026-11-03",
-  "status": "local_webp_ready_binary_upload_pending",
+  "status": "approved_original_verified_git_blob",
   "baselineApproved": 66,
   "approvedCountAfterRelease": 67,
-  "publicationRule": "Do not activate the species or merge until exact original WebP blob has been transferred to the PR branch and both required GitHub checks pass.",
+  "publicationRule": "Retain all 66 approved originals, preserve both canonical/legacy IDs and quizzes. Merge only after exact WebP Git blob and required CI pass.",
   "items": [
     {
       "name": "Tysk hønsetarm",
@@ -24,13 +24,14 @@
         1024,
         1536
       ],
-      "reviewStatus": "candidate",
-      "approvedForPublication": false,
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
       "visualChecks": {
         "transparent": true,
         "localWebPVerified": true,
         "blackBackgroundReviewed": true,
-        "fullImageReviewed": true
+        "fullImageReviewed": true,
+        "originalAlphaVerified": true
       },
       "sourceReferences": [
         "https://efloras.org/florataxon.aspx?flora_id=1&taxon_id=242000918",
@@ -39,11 +40,13 @@
       "observations": "Krypende tynne rødlige stengler, motsatte små eggformede blader og små grønne begerblader rundt uanselige blomster som vanligvis mangler hvite kronblader. Original akvarellillustrasjon på transparent bakgrunn, 1024 x 1536.",
       "limitations": "The illustration is a pedagogical rendering and must not be claimed as a field-verified specimen. An additional catalog alias exists in the runtime flora data; keep both legacy IDs and quizzes intact.",
       "publicationBlockedBy": [
-        "Upload exact binary WebP to PR branch and verify Git blob SHA.",
-        "Apply verified catalog integration and alias without changing quiz ID.",
-        "Pass illustration-contract and approved-flora-browser on final head.",
-        "Confirm deployment after merge."
-      ]
+        "Wait for illustration-contract and approved-flora-browser checks on latest PR commit before merge.",
+        "Confirm GitHub Pages deployment after merge."
+      ],
+      "reviewedAt": "2026-11-03",
+      "stage": "var_og_forsommerblomstring",
+      "botanicalVisualDecision": "visually_recognizable_Stellaria_pallida_without_showy_petals",
+      "technicalVerification": "Exact original WebP 1024x1536 RGBA; SHA256 5185828bf27bbafba63b2637963ca6b6028ae7c1441c2182a54fde00da65c7aa; Git blob 293651ec74359a58d1cf1c23a4b3c53fa7133b92; black background reviewed."
     }
   ]
 }
