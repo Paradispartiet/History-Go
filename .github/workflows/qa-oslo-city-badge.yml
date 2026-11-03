@@ -1,0 +1,28 @@
+name: Oslo-specific By badge
+on:
+  pull_request:
+    paths:
+      - 'bilder/merker/by/oslo-brodert-v1.webp'
+      - 'data/cities/oslo/badge.json'
+      - 'js/map.ts'
+      - 'js/map.js'
+      - 'tests/oslo-city-badge-routing.test.mjs'
+      - '.github/workflows/qa-oslo-city-badge.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-city-badge-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  city-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/oslo-city-badge-routing.test.mjs
