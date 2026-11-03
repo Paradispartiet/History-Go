@@ -86,7 +86,7 @@ test('Minneparken 10-question QuizCard has exact canonical quiz and answer-key p
     assert.ok(original, q.sourceQuestionId);
     assert.equal(q.number, i + 1);
     assert.equal(q.sourceQuizId, original.quiz_id);
-    for (const field of ['question', 'options', 'answer', 'answerIndex', 'knowledge', 'claim_id', 'source_urls']) {
+    for (const field of ['question', 'options', 'answer', 'answerIndex', 'knowledge', 'claim_id', 'source_urls', 'method_id', 'topic_hook_id', 'thinker_id', 'theory_ref', 'guidance_basis']) {
       assert.deepEqual(q[field], original[field], `QuizCard question ${i+1} mismatch in ${field}`);
     }
     assert.equal(collection.answerKey[i].number, i + 1);
