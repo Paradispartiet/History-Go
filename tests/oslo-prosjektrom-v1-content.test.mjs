@@ -86,9 +86,20 @@ test("4.2 source-review packet hashes exact published text and covers all senten
   }
 });
 
-test("Knowledge parity is complete while image rights and live app QA remain blockers", () => {
-  assert.equal(place.image, undefined, "Do not silently publish an unverified image");
-  assert.equal(place.frontImage, undefined, "Do not silently publish an unverified portrait");
+test("Two distinct, accredited documentary atelier-quarter photos and canonical Knowledge", () => {
+  assert.match(place.image || "", /^assets\\/places\\/oslo_prosjektrom\\/.*header\\.webp$/);
+  assert.match(place.frontImage || "", /^assets\\/places\\/oslo_prosjektrom\\/.*portrait\\.webp$/);
+  assert.notEqual(place.image, place.frontImage);
+  for (const image of [place.image, place.frontImage]) {
+    assert(fs.existsSync(image), "Missing local WebP image: " + image);
+    assert(fs.statSync(image).size > 30000, "Unexpectedly small photo: " + image);
+  }
+  assert.equal(place.imageMeta.license, "CC BY-SA 4.0");
+  assert.equal(place.frontImageMeta.license, "CC BY-SA 4.0");
+  assert.match(place.imageCaption, /34A.*Platous gate 18/);
+  assert.match(place.frontImageCaption, /34C.*ikke galleriets publikumsinngang/i);
+  assert.equal(runtime.place.image, place.image);
+  assert.equal(runtime.place.frontImage, place.frontImage);
   const qs = quiz.sets.flatMap((set) => set.questions);
   assert.equal(cards.production_status, "knowledge_linked");
   assert(qs.every((q) => q.knowledge_link_status === "linked" && q.primary_knowledge_unit_id && q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id)));
