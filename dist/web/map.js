@@ -687,7 +687,6 @@
       const source = String(place && (place.sourceFile || place._sourceFile || place.file) || "").replace(/\\/g, "/").replace(/^\.?\//, "").replace(/^data\//, "").toLowerCase();
       return source.startsWith("places/by/oslo/") ? OSLO_CITY_BADGE_KEY : category;
     }
-
     function ensurePlaceBadgeImages() {
       var _a;
       const setBadges = (badges) => {
