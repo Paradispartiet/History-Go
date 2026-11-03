@@ -1,0 +1,49 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-03",
+  "status": "local_webp_ready_binary_upload_pending",
+  "baselineApproved": 66,
+  "approvedCountAfterRelease": 67,
+  "publicationRule": "Do not activate the species or merge until exact original WebP blob has been transferred to the PR branch and both required GitHub checks pass.",
+  "items": [
+    {
+      "name": "Tysk hønsetarm",
+      "catalogId": "emne_flora_tyskhonsetarm",
+      "alternativeCatalogIds": [
+        "emne_flora_tysk_honsetarm"
+      ],
+      "scientificName": "Stellaria pallida",
+      "existingQuizId": "quiz_nature_flora_tyskhonsetarm",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/45_tysk_honsetarm_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/45_tysk_honsetarm_v1.webp",
+      "gitBlobSha": "293651ec74359a58d1cf1c23a4b3c53fa7133b92",
+      "sha256": "5185828bf27bbafba63b2637963ca6b6028ae7c1441c2182a54fde00da65c7aa",
+      "sizeBytes": 163054,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "candidate",
+      "approvedForPublication": false,
+      "visualChecks": {
+        "transparent": true,
+        "localWebPVerified": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://efloras.org/florataxon.aspx?flora_id=1&taxon_id=242000918",
+        "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=sp&name=Stellaria~pallida&page=nswfl"
+      ],
+      "observations": "Krypende tynne rødlige stengler, motsatte små eggformede blader og små grønne begerblader rundt uanselige blomster som vanligvis mangler hvite kronblader. Original akvarellillustrasjon på transparent bakgrunn, 1024 x 1536.",
+      "limitations": "The illustration is a pedagogical rendering and must not be claimed as a field-verified specimen. An additional catalog alias exists in the runtime flora data; keep both legacy IDs and quizzes intact.",
+      "publicationBlockedBy": [
+        "Upload exact binary WebP to PR branch and verify Git blob SHA.",
+        "Apply verified catalog integration and alias without changing quiz ID.",
+        "Pass illustration-contract and approved-flora-browser on final head.",
+        "Confirm deployment after merge."
+      ]
+    }
+  ]
+}
