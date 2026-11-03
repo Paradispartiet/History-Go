@@ -1166,9 +1166,11 @@
           + "</li>";
       }).join("") + "</ul>"
       + "<h4>Møter og avtaler</h4><ul>" + (book.moter.map((m) => "<li>Dag " + escapeHtml(m.dag) + " · " + escapeHtml(m.navn) + " · " + escapeHtml(m.sted.navn) + ": " + escapeHtml(({ avtalt: "Avtalt", gjennomfort: "Gjennomført", avslaatt: "Avslått", avbrutt: "Avbrutt" })[m.status]) + "</li>").join("") || "<li>Ingen møter avtalt ennå.</li>") + "</ul>"
-      + "<h4>Steder</h4><ul>" + book.steder.map((p) => "<li>" + escapeHtml(p.navn) + "</li>").join("") + "</ul>"
+      + (book.steder?.length ? "<h4>Steder</h4><ul>" + book.steder.map((p) => "<li>" + escapeHtml(p.navn) + "</li>").join("") + "</ul>" : "")
       + "<h4>Åpne scener</h4><ul>" + (plans || "<li>Ingen flere planlagte scener.</li>") + "</ul>"
       + "<h4>Tidslinje</h4><ol>" + (timeline || "<li>Ingen valg tatt ennå.</li>") + "</ol>"
+      + (book.rolleBytter?.length ? "<h4>Rollebytter</h4><ul>" + book.rolleBytter.map((r) => "<li>Livsdag " + escapeHtml(r.livsdag) + ": " + escapeHtml(r.fra) + " → " + escapeHtml(r.til) + "</li>").join("") + "</ul>" : "")
+      + (book.tidligereRoller?.length ? "<h4>Tidligere roller – faktiske valg</h4>" + book.tidligereRoller.map((role) => "<h5>" + escapeHtml(role.rolle) + "</h5><ol>" + role.tidslinje.map((entry) => "<li><strong>Dag " + escapeHtml(entry.dag) + " · " + escapeHtml(entry.sceneTittel) + "</strong><p>" + escapeHtml(entry.valgTekst) + "</p>" + (entry.konsekvensTekst ? "<p>" + escapeHtml(entry.konsekvensTekst) + "</p>" : "") + "</li>").join("") + "</ol>").join("") : "")
       + "</details></section>";
   }
 

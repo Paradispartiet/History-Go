@@ -431,8 +431,13 @@
    * @param {any} state @param {any} content @returns {any|null}
    */
   function getSymposium(state, content) {
-    const book = content.role.symposium;
-    if (!book) return null;
+    // A role without a bespoke chapter book still has a real, persisted life.
+    // Keep legacy authored books unchanged; the fallback reads only canonical state.
+    const configuredBook = content.role?.symposium || null;
+    const book = configuredBook || {
+      tittel: (content.role?.navn || "Rollen") + " – livshistorien",
+      rollebroer: [], steder: [], moter: []
+    };
     const selected = content.fortsettelse?.hovedtraad || state.tidligereValg[book.hovedtraadFlagg];
     const foreground = content.threads.find((t) => t.id === (selected || book.standardTraad));
     const bridges = (book.rollebroer || []).filter((b) => b.threadId === foreground?.id);
@@ -446,13 +451,34 @@
       const person = authoredPerson ? Object.assign({}, authoredPerson, { navn: cast?.navn || authoredPerson.navn }) : null;
       return Object.assign({}, entry, { sted, person });
     });
-    const avtaler = content.scenes.filter((s) =>
+    // Without an authored Symposium contract, an eligible future scene is NOT
+    // automatically a booked meeting. Do not invent appointments.
+    const avtaler = !configuredBook ? [] : content.scenes.filter((s) =>
       s.dag >= state.dag && state.spilteScener.indexOf(s.id) === -1 &&
       isThreadPlayable(state, s.threadId) && conditionsMet(state, s)
     ).filter((s) => s.dag > state.dag || content.faser.findIndex((f) => f.id === s.fase) >= content.faser.findIndex((f) => f.id === state.fase))
       .map((s) => ({ id: s.id, dag: s.dag, fase: s.fase, tittel: s.tittel, sted: steder.find((p) => p.id === s.stedId) || null }));
+    // Inactive role snapshots live in the same versioned Life Story state.
+    // They hold completed, user-played events, never forecast chapters.
+    const activeArchiveIds = new Set((state.arkiv || []).map((entry) => entry.sceneId + ":" + entry.valgId));
+    const tidligereRoller = Object.entries(state.rolleTilstander || {})
+      .filter(([roleId, snapshot]) => roleId !== state.rolle && Array.isArray(snapshot?.arkiv) && snapshot.arkiv.length)
+      .map(([roleId, snapshot]) => ({
+        rolle: roleId,
+        // Shared private scenes are hydrated into the active role. Display them
+        // once, not once again for each previously held job.
+        tidslinje: snapshot.arkiv.filter((entry) => !activeArchiveIds.has(entry.sceneId + ":" + entry.valgId))
+          .map((entry) => Object.assign({}, entry))
+      }))
+      .filter((entry) => entry.tidslinje.length)
+      .map((entry) => Object.assign(entry, { antallValg: entry.tidslinje.length }));
+    const rolleBytter = (state.rolleBytter || []).map((entry) => ({
+      fra: entry.fra, til: entry.til, livsdag: entry.livsdag
+    }));
     return {
       tittel: book.tittel,
+      tidligereRoller,
+      rolleBytter,
       kapitler: (state.kapittelArkiv || []).slice(),
       hovedtraad: foreground || null,
       rollebro: bridges.find((b) => b.role_scope === selectedRole) || (bridges.length === 1 ? bridges[0] : null),

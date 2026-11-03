@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "PR_7005_ALL_FOUR_COLLECTIONS_REAL_BROWSER_QA_PASSED__PENDING_MERGE",
-  "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
-  "active_phase": "People, Objects, Brands og Competitions er nå alle kilde- og bildekontrollert, materialisert i Place-open og testet i faktisk mobil- og desktopvisning (run 41615335018). People har Anne Lindboe med korrekt Wikimedia Commons-foto fra 2023 og dokumentert deltakelse på åpningen 6. januar 2025. Fire mer relevante biografiutkast står fortsatt i staging uten godkjente portretter, og samlet vFerdig/redaksjonell kvalitet er ikke sluttgodkjent.",
+  "branch_status": "PR_7005_MERGED_MAIN_ALL_FOUR_COLLECTIONS_BROWSER_CI_PASSED__VFERDIG_BLOCKED_EDITORIAL",
+  "live_status": "pages_success_main_1e8b3632_run_41624901416",
+  "active_phase": "PR #7005 er merget til main som første bilde- og identitetsgodkjente People-kort (Anne Lindboe). Fire PlaceCard-samlinger er aktivert og bestått i ekte app på mobil 390px og desktop 1440px; 15/15 PR-CI på commit 0af0268 var grønne. Pages success på nyere main commit 1e8b3632 (run 41624901416). vFerdig er fremdeles blokkert av fire kvalifiserte People-kandidater uten sikre publiserbare portretter og en separat redaksjonell sluttgodkjenning.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -34,9 +34,12 @@
       "https://unsplash.com/photos/modern-glass-building-with-park-path-HR21MwYowNY",
       "https://unsplash.com/photos/bicycle-path-beside-white-building-WvWK5YDDet4",
       "https://unsplash.com/license",
-      "https://www.asplanviak.no/profilmanual/"
+      "https://www.asplanviak.no/profilmanual/",
+      "https://commons.wikimedia.org/wiki/File:Anne_Lindboe_(1).jpg",
+      "https://www.bygg.no/toyenbadet-har-apnet-forberedt-pa-storinnrykk/2739915",
+      "https://svomming.no/nyheter/nm-langbane-i-oslo-leverer-spenning-og-fantastisk-stemning/"
     ],
-    "review_note": "Kommunale primærkilder, Oslo byleksikon, Svømmeforbundet og stevnedata er vurdert. Rettigheter til nytt bilde og kategorisamlingenes medlemspreview er ikke avklart."
+    "review_note": "Kilde- og rettighetskontroll av de PUBLISERTE mediene er gjennomført: moderne eksteriør (2026), historiske bilder, Asplan Viak-logo og Anne Lindboes identifiserte Commons-portrett fra 2023 (ikke foto fra badet), samt skjematiske Objects og NM-preview. Fire dokumentert relevante People-kandidater står fortsatt i staging uten godkjente identifiserbare, gjenbrukbare portretter. Derfor forblir samlet source_review delvis godkjent."
   },
   "identity": "Kommunalt bade- og idrettsanlegg i Helgesens gate 90 i Tøyenparken; opprinnelig bygning 1976–2020, nytt anlegg åpnet 2025; dette er ett canonical Place.",
   "null_measurement": {
@@ -58,7 +61,8 @@
     "related": "tomt i place-open",
     "stories": "tomt i place-open",
     "factuality_claim_package": "tidligere fraværende, ny v4.2-pakke i grenen",
-    "before_after": "Canonical for_na med autentiske bilder fra 2013 og 2026; kildekoblet og lokalt lagret; browser QA pågår."
+    "before_after": "Canonical for_na med autentiske bilder fra 2013 og 2026; kildekoblet og lokalt lagret; browser QA pågår.",
+    "baseline_context": "Historisk produksjons-nullmåling fra før People/Brands/Objects-integrasjonen; IKKE nåværende status. Se current_verified_measurement nedenfor."
   },
   "content_plan": {
     "people": {
@@ -139,7 +143,7 @@
       "candidates": [
         "NM langbane 2.–5. juli 2026"
       ],
-      "reason": "Egen konkurranserecord med Medley og NSF, original illustrasjon (klart skilt fra foto) og canonical PlaceCard-profil. Mobil-/desktopvisning og popup må verifiseres før PASS."
+      "reason": "Eget canonical NM-langbane-2026-medlem med Medley/NSF, originalt illustrert preview og korrekt PlaceCard-kobling. Faktisk mobil/desktop-browser-QA og popupkontroll er bestått; eldre tekst om at test må gjennomføres var utdatert."
     },
     "stories": {
       "status": "PASS_GENERATED_AND_STORIES_GOVERNANCE",
@@ -163,7 +167,7 @@
       "reason": "Språkleksikonet har fire kildebelagte oppføringer, registrert i manifest og place-open. Språkleksikon v2 har bestått CI på forrige head."
     },
     "chronology": {
-      "status": "PASS_REGENERATED_PENDING_EXACT_HEAD_CI",
+      "status": "PASS",
       "anchors": [
         1976,
         2008,
@@ -173,19 +177,19 @@
         2025,
         2026
       ],
-      "reason": "Åtte kildekoblede kronologipunkter inkludert offentlig kunst er lagt inn; eksakt HEAD-gate etter regenerering gjenstår."
+      "reason": "Åtte kildekoblede kronologipunkter og epokeindeks er materialisert; Epoch viewer quality og Place-open payloads bestod i 15/15 CI på siste #7005 HEAD."
     },
     "fagverk": {
       "status": "PASS_BROWSER",
-      "reason": "Stedseiet standard Fagverk med emne- og kapittelkoblinger ligger i main; ny publiseringskontroll mangler."
+      "reason": "Stedseiet standard Fagverk ligger i main; lenker og innhold rendres i faktisk mobil/desktop-test på PR #7005."
     },
     "quiz": {
       "status": "PASS_BROWSER",
-      "reason": "Fullquiz 21 og QuizCard 10 ligger i main; ny Knowledge-, manifest- og browserkontroll mangler."
+      "reason": "21 fullquizspørsmål og 10 QuizCard-spørsmål bevart i main; faktisk mobil-/desktop-QA med QuizCard-vending bestått på PR #7005."
     },
     "leksikon": {
-      "status": "PASS_REGENERATED_PENDING_EXACT_HEAD_CI",
-      "reason": "Hovedartikkel om 1976/2025 og NM; ny kildebundet kunsthistorie og åtte årspunkter er lagt til. Runtime og browser må verifiseres."
+      "status": "PASS",
+      "reason": "Hovedartikkel, kunsthistorie og åtte årspunkter er materialisert; Place-open og Place description governance bestod på siste #7005 HEAD."
     }
   },
   "collection_ids": [
@@ -256,15 +260,15 @@
   "universal_core": {
     "identity": "PASS",
     "coordinates": "PASS",
-    "claims_and_editorial": "PR-kandidat – 21 claim-ID-er og 22 setninger, krever CI",
+    "claims_and_editorial": "PASS faktagrunnlag: 21 stedsclaims, 22 setningskoblinger i 4.2-pakke; Place description governance bestod på siste #7005 HEAD. Separat samlet vFerdig-redaksjonsvurdering gjenstår.",
     "fagverk": "PASS eksisterende",
-    "quiz": "PASS eksisterende – retest på PR-head",
-    "photos": "PASS_CANONICAL: nytt 2026-bilde av gjeldende bad, historisk førfoto og stående 1980-frontImage, alle lokalt lagret og lisensiert; runtime og faktisk UI-kontroll gjenstår.",
+    "quiz": "PASS: 21 fullquizspørsmål og 10 QuizCard-spørsmål bekreftet på PR #7005 med mobil/desktop-app-test.",
+    "photos": "PASS publiserte medier: lokalt 2026-hero, 2013 Før/etter, stående 1980-frontImage, Anne Lindboe-portrett fra 2023; lokale SHA256-/provenienspakker og faktisk bildelasting testet.",
     "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
-    "chronology": "Åtte kildebelagte kronologipunkter er materialisert, og global epokeindeks regenerert etter oppdatering fra main; ny eksakt-HEAD-test følger.",
-    "collections": "2 canonical PlaceCard-samlinger med ekte medlemmer og lokale assets aktivert; browser-kontroll og runtime-paritet gjenstår.",
-    "browser_QA": "PASS: GitHub Actions #41615335018 på 2026-11-03. Faktisk PlaceCard testet mobil 390px og desktop 1440px, alle fire samlinger med bildestøttede medlemmer, korrekt 2026 hero, Før/etter 2013–2026, QuizCard-vending og Fagverk.",
-    "runtime": "PASS: People/Civication-indeks, place-open/toyenbadet, places_index og people-image-attributions regenerert fra canonical. Akkurat én registrert People-record for Anne Lindboe og fire collection_ids; staged fire kandidater ble ikke inkludert."
+    "chronology": "PASS: åtte årspunkter og generert epokeindeks, CI bestått på siste #7005 HEAD.",
+    "collections": "PASS: fire aktive, kildebaserte PlaceCard-samlinger med 1 People, 2 Objects, 1 Brand og 1 Competition, alle previewbilder lastet i appen på mobil og desktop. Fire ekstra People-drafts er ikke aktivert.",
+    "browser_QA": "PASS: 15/15 GitHub Actions på #7005 siste commit 0af0268, inkludert faktisk Tøyenbadet PlaceCard (mobil 390px / desktop 1440px), bilder, fire samlinger, QuizCard og Fagverk. Se run 41622405233.",
+    "runtime": "PASS: generator-kontroll for people-all/part-007.json, Civication Scenario People, place-open/toyenbadet og øvrige place-open-payloads i #7005 (15/15 grønn CI)."
   },
   "test_plan": [
     "node scripts/validate-place-description-production-v4_2.mjs --help / målrettet endringskontroll",
@@ -290,7 +294,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "Fire PlaceCard-samlinger er nå aktive og målrettet browser-testet på 390px/1440px. People har ett dokumentert og bilderettighetsklart medlem, Anne Lindboe (åpningsseremonien i 2025); fire sterkere stedsrelevante personprofiler mangler portretter og beholdes i staging. vFerdig-status blocked_vferdig og tidligere totalvurdering 23/30 er beholdt inntil endelig redaksjonell fullprofilvurdering og øvrige People-kandidater er behandlet. Ingen kunstige score-forhøyelser."
+    "note": "23/30 – uendret med vilje. Alle fire samlinger, PlaceCard, bilder og runtime er i main og bestod PR #7005 (15/15 CI + 390/1440px browser). Tøyenbadet er teknisk integrert, men fire sterke, stedsknyttede People-kandidater mangler publiserbare portretter. Redaksjonell helhetsgodkjenning er ikke attestert. Ikke deklarer vFerdig på grunnlag av tekniske PASS."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
@@ -398,5 +402,53 @@
         "final_content_plan"
       ]
     }
+  },
+  "current_verified_measurement": {
+    "verified_at": "2026-11-03",
+    "verified_against": "PR #7005 squash-merge d38e9df0499c3b94a56df63eb11921c1c189fa98; Pages run 41624901416 på senere main commit 1e8b3632612ab0e17ecabf1ea651c26ee951123a",
+    "people": "1 aktiv: Anne Lindboe, med to lokale, rettighetsdokumenterte WebP-varianter; 4 andre kildeverifiserte kandidater i staging uten portretter",
+    "objects": "2 aktive: startpall 8 og mobil bassengheis, begge markert som skjematiske illustrasjoner",
+    "brands": "1 aktiv: Asplan Viak, offisiell logo og prosjektkobling",
+    "competitions": "1 aktiv: NM langbane 2026",
+    "collections": [
+      "people",
+      "objects",
+      "brands",
+      "competitions"
+    ],
+    "quiz": "21 fullquizspørsmål bevart",
+    "quizcard": "10 QuizCard-spørsmål bevart; faktisk vending testet",
+    "source_photos": "2026-eksteriør, 2013 Før/etter, 1980 stående frontImage og Anne Lindboe Commons-portrett; proveniens dokumentert",
+    "browser": "GitHub Actions #41622405233 og 15/15 PR-CI bestått på siste #7005 HEAD",
+    "runtime": "Genererte People-shards, Civication scenario People og Place-open ble synkronisert før #7005 merge",
+    "editorial_closeout": "BLOCKED – portrett-/identitets- og lisensgate for fire staging-profiler; samlet kvalitetsvurdering er fortsatt 23/30"
+  },
+  "closeout_audit": {
+    "schema": "history_go_place_closeout_audit_v1",
+    "date": "2026-11-03",
+    "published_in_main": true,
+    "published_technical_scope": "v1 with four image-backed collections and Anne Lindboe",
+    "pr_7005_url": "https://github.com/Paradispartiet/History-Go/pull/7005",
+    "pr_7005_merge_commit": "d38e9df0499c3b94a56df63eb11921c1c189fa98",
+    "ci_15_of_15": "https://github.com/Paradispartiet/History-Go/commit/0af02684deae44c7bda266629596c63113e090c1/checks",
+    "pages_deploy": "https://github.com/Paradispartiet/History-Go/actions/runs/41624901416",
+    "remaining_blockers": [
+      {
+        "kind": "image_rights_identity",
+        "person_ids": [
+          "henrik_christiansen_svommer",
+          "hedda_oritsland",
+          "halvard_heskestad_waage",
+          "gert_walter_thuesen"
+        ],
+        "requirement": "For hver kandidat: autentisk identitet, dokumenterte fri rettigheter og fysisk, lokalt bilde med attribusjon, før manifestintegrasjon. Ingen pressefoto/identitetsfremmede illustrasjoner."
+      },
+      {
+        "kind": "editorial_final_review",
+        "requirement": "Kvalitetsscore og historisk helhet må evalueres på siste komplette innhold før vFerdig."
+      }
+    ],
+    "decision": "blocked_vferdig",
+    "no_status_inflation": true
   }
 }
