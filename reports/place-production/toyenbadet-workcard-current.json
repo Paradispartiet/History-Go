@@ -82,8 +82,9 @@
       "reason": "Egen konkurranserecord med Medley og NSF, original illustrasjon (klart skilt fra foto) og canonical PlaceCard-profil. Mobil-/desktopvisning og popup må verifiseres før PASS."
     },
     "stories": {
-      "status": "BLOCKED",
-      "reason": "NM 2026 har konkret hendelsesevidens; ingen selvstendig dokumentert Story med legitimt bilde og korrekt eierbinding er integrert."
+      "status": "PASS_CANDIDATE_PENDING_RUNTIME_AND_BROWSER",
+      "story_id": "st_toyenbadet_fra_gammelt_til_nytt_bad_2019",
+      "reason": "Kildebundet episode_v1-story med reell beslutning om rehabilitering kontra nybygg, tap av 50 m-basseng, vernevurdering og dokumenterte videreføringer. Registrert i begge Stories-manifester. Integritetstest, generert runtime og faktisk visning gjenstår."
     },
     "before_after": {
       "status": "BLOCKED",
@@ -166,7 +167,9 @@
     "node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/toyenbadet-workcard-current.json",
     "node --test tests/oslo-ts-toyenbadet-parity.test.mjs",
     "npm run place-open:check",
-    "Målrettet browser QA på mobil og desktop og faktisk QuizCard-flip"
+    "Målrettet browser QA på mobil og desktop og faktisk QuizCard-flip",
+    "npm run check:stories",
+    "Nettleser: Story åpner riktig sted, kilde- og fotoattribusjon, mobil/desktop"
   ],
   "quality_assessment": {
     "correctness": 4,
@@ -189,7 +192,10 @@
     "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_historic_2013_hero.webp",
     "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_historic_1980_portrait.webp",
     "data/lesespor/oslo/lesespor_oslo_sport.json",
-    "bilder/kort/competitions/nm_langbane_2026_toyenbadet.svg"
+    "bilder/kort/competitions/nm_langbane_2026_toyenbadet.svg",
+    "data/stories/stories_toyenbadet.json",
+    "data/stories/stories_manifest.json",
+    "data/stories/stories_episode_v1_manifest.json"
   ],
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
