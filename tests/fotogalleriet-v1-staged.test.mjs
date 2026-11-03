@@ -174,17 +174,23 @@ test('staging remains absent from active quiz manifest until photo and productio
   assert.ok(!serialized.includes('fotogalleriet'), 'Fotogalleriet must not be registered in the active quiz manifest while staged');
   const stagedFile = 'reports/place-production/fotogalleriet/quiz-sets-staged.json';
   assert.ok(!serialized.includes(stagedFile), 'draft quiz file must not be exposed as an active source');
-  assert.ok(!place.image && !place.frontImage, 'no unlicensed photo can be activated during staging');
+  assert.ok(place.image && place.frontImage, 'two original illustrations must now be in place');
+  assert.notEqual(place.image, place.frontImage);
+  assert.equal(place.imageMeta.assetType, 'ai_generated_illustration');
+  assert.equal(place.frontImageMeta.assetType, 'ai_generated_illustration');
+  assert.match(place.imageCaption, /Illustrasjon.*AI-generert/u);
+  assert.match(place.frontImageCaption, /Illustrasjon.*AI-generert/u);
 });
 
-test('photo rights review must remain blocked until two independently licensed originals are verified', () => {
+test('documentary source photos remain blocked while independent original illustrations are accepted', () => {
   const review = read('reports/place-production/fotogalleriet/photo-clearance-review-20261102.json');
   assert.equal(review.placeId, place.id);
   assert.equal(review.canMergeAsCompleteV1, false);
   assert.equal(review.livePlacePhotosChanged, false);
+  assert.equal(review.livePlaceIllustrationsChanged, true);
   assert.equal(review.requiredPhotoSlots.length, 2);
   assert.deepEqual(review.requiredPhotoSlots.map(slot => slot.role), ['image', 'frontImage']);
-  assert.ok(review.requiredPhotoSlots.every(slot => slot.status.startsWith('missing_')));
+  assert.ok(review.requiredPhotoSlots.every(slot => slot.status === 'fulfilled_with_original_ai_generated_illustration'));
   const blockedSources = review.sourceReview.filter(item =>
     /^(?:do_not_|rejected_|histor(?:ic|ical)_|candidate_)/.test(item.decision)
     || item.decision.includes('not_approved'));
@@ -230,4 +236,26 @@ test('Knowledge handoff has exact reverse coverage without orphan or duplicate c
   assert.deepEqual([...seenQ].sort(), [...byQuestionId.keys()].sort());
   assert.deepEqual([...seenQuiz].sort(), [...byQuizId.keys()].sort());
   assert.deepEqual([...seenCard].sort(), [...cardsById.keys()].sort());
+});
+test('two on-repo AI WebPs are independent originals with correct hashes and visible labels', () => {
+  const metadata = read('bilder/places/fotogalleriet/illustration_metadata.json');
+  assert.equal(metadata.placeId, place.id);
+  assert.equal(metadata.assets.length, 2);
+  const seenOriginals = new Set();
+  for (const asset of metadata.assets) {
+    const location = place[asset.role];
+    assert.equal(location, asset.path);
+    const raw = fs.readFileSync(new URL('../' + location, import.meta.url));
+    assert.equal(raw.subarray(0, 4).toString(), 'RIFF');
+    assert.equal(raw.subarray(8, 12).toString(), 'WEBP');
+    assert.equal(raw.length, asset.bytes);
+    const hash = createHash('sha256').update(raw).digest('hex');
+    assert.equal(hash, asset.sha256);
+    assert.equal(place[asset.role + 'Meta'].sourceSha256, hash);
+    assert.equal(place[asset.role + 'Meta'].assetType, 'ai_generated_illustration');
+    assert.match(place[asset.role + 'Caption'], /Illustrasjon.*AI-generert/u);
+    assert.ok(!seenOriginals.has(hash), 'two slots reuse one generated original');
+    seenOriginals.add(hash);
+  }
+  assert.equal(seenOriginals.size, 2);
 });

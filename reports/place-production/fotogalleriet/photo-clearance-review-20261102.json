@@ -2,7 +2,7 @@
   "schema": "history_go_place_photo_clearance_review_v1",
   "placeId": "fotogalleriet",
   "reviewedAt": "2026-11-03",
-  "reviewStatus": "ai_illustrations_generated_locally_reference_photos_not_published_assets_pending_repo_commit",
+  "reviewStatus": "ai_illustration_originals_committed_and_active_place_pending_full_v1_qa",
   "policy": "Two distinctly sourced original visuals are required for image and frontImage. If reuse rights to documentary photographs are not already granted, do not request permissions: create two independent, naturalistic AI-generated illustrations instead. Use different source generation IDs and hashes; label each 'Illustrasjon – AI-generert', do not present as a historical photograph or reproduce protected artworks. Preserve third-party exhibition photos as references only.",
   "sourceReview": [
     {
@@ -96,17 +96,21 @@
     {
       "role": "image",
       "preferredSubject": "Distinct recognizable exterior of the current Møllergata 34 gallery entrance/facade",
-      "status": "missing_committed_original_ai_webp_facade",
-      "candidateSource": "https://fotogalleriet.no/wp-content/uploads/2024/04/240415-Annual-Report_compressed_pagenumber.pdf#page=44",
-      "proposedAsset": "fotogalleriet-fasade-illustrasjon.webp"
+      "status": "fulfilled_with_original_ai_generated_illustration",
+      "candidateSource": "https://github.com/Paradispartiet/History-Go/blob/main/bilder/places/fotogalleriet/fotogalleriet_fasade_illustrasjon.webp",
+      "proposedAsset": "fotogalleriet-fasade-illustrasjon.webp",
+      "assetPath": "bilder/places/fotogalleriet/fotogalleriet_fasade_illustrasjon.webp",
+      "originalSha256": "1932243d25cb8951420c369006241ec74537f59d00cceff386c760dd2a5461ad"
     },
     {
       "role": "frontImage",
       "preferredSubject": "A second separately photographed perspective of the gallery (interior without uncleared artworks, or a licensed historic Fotogalleriet site photo)",
-      "status": "missing_committed_original_ai_webp_exhibition",
-      "candidateSource": "https://snl.no/Fotogalleriet",
+      "status": "fulfilled_with_original_ai_generated_illustration",
+      "candidateSource": "https://github.com/Paradispartiet/History-Go/blob/main/bilder/places/fotogalleriet/fotogalleriet_utstillingsrom_illustrasjon.webp",
       "alternativeCandidateSource": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg",
-      "proposedAsset": "fotogalleriet-utstilling-illustrasjon.webp"
+      "proposedAsset": "fotogalleriet-utstilling-illustrasjon.webp",
+      "assetPath": "bilder/places/fotogalleriet/fotogalleriet_utstillingsrom_illustrasjon.webp",
+      "originalSha256": "8a7e6e1ab3a61a11031c2a55a39781a5cd683c8a7b4bbb8f03169377797d9c4a"
     }
   ],
   "activationRequirements": [
@@ -165,7 +169,7 @@
       "decision": "street_context_only_not_image_or_frontImage"
     }
   ],
-  "researchOutcome": "Documented 2019–2025 exhibition photography as reference only. Two independent naturalistic original illustrations (facade and imaginary photography exhibition) have been generated and packaged as WebP with hashes; their bytes are not yet committed to GitHub, so no live Place fields or media activation. No permission contact requested or sent.",
+  "researchOutcome": "User explicitly chose newly generated, distinct AI illustrations instead of permission requests. Two original WebP files are committed in GitHub and now referenced in canonical Place and place-open runtime with visible illustration captions. Source exhibition photographs remain references only and were not copied. Quiz/Knowledge and mobile/iPad QA remain separate release gates.",
   "proposedIndependentOriginalPair": {
     "proposalStatus": "two_distinct_existing_images_identified_rights_and_originals_not_cleared",
     "currentFacade": {
@@ -206,23 +210,25 @@
     "selectedMotifs": [
       {
         "role": "image",
-        "subject": "Naturalistic exterior of contemporary Fotogalleriet at Møllergata 34, street-level view of entrance",
-        "contextSources": [
-          "https://fotogalleriet.no/wp-content/uploads/2024/04/240415-Annual-Report_compressed_pagenumber.pdf#page=44"
+        "status": "committed_and_activated_in_canonical_place_pending_v1_tests",
+        "assetPath": "bilder/places/fotogalleriet/fotogalleriet_fasade_illustrasjon.webp",
+        "outputSha256": "1932243d25cb8951420c369006241ec74537f59d00cceff386c760dd2a5461ad",
+        "dimensions": [
+          1400,
+          933
         ],
-        "illustrationCredit": "History Go – AI-generert illustrasjon",
-        "status": "illustration_created_in_conversation_not_uploaded_to_repo"
+        "credit": "History Go – AI-generert illustrasjon"
       },
       {
         "role": "frontImage",
-        "subject": "Naturalistic view inside a contemporary photography gallery, inspired by Fotogalleriet's exhibition-programme spaces; all pictured artwork fictional and original",
-        "contextSources": [
-          "https://www.mariesjovold.no/now/2022/6/23/vrutstillingen-2022-at-fotogalleriet-in-oslo",
-          "https://www.mariesjovold.no/now/2024/11/21/exhibition-at-fotogalleriet-oslo",
-          "https://www.hildehonerud.com/it-is-a-light-which-objectifies-everything-and-confirms-nothing"
+        "status": "committed_and_activated_in_canonical_place_pending_v1_tests",
+        "assetPath": "bilder/places/fotogalleriet/fotogalleriet_utstillingsrom_illustrasjon.webp",
+        "outputSha256": "8a7e6e1ab3a61a11031c2a55a39781a5cd683c8a7b4bbb8f03169377797d9c4a",
+        "dimensions": [
+          1400,
+          788
         ],
-        "illustrationCredit": "History Go – AI-generert illustrasjon",
-        "status": "visual_reference_selected_generation_not_yet_uploaded"
+        "credit": "History Go – AI-generert illustrasjon"
       }
     ],
     "packaging": {
@@ -328,5 +334,6 @@
       "imageRights": "not established",
       "decision": "reference_only_not_copied"
     }
-  ]
+  ],
+  "livePlaceIllustrationsChanged": true
 }
