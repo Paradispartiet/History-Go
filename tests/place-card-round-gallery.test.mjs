@@ -6,7 +6,7 @@ import { JSDOM } from "jsdom";
 const script = fs.readFileSync("js/ui/place-card-round-gallery.js", "utf8");
 const stylesheet = fs.readFileSync("css/place-card-round-gallery.css", "utf8");
 
-test("PlaceCard displays full, uncropped round images between relevant sections and Brands after About", async () => {
+test("PlaceCard keeps People and Badges in the right-hand collection grid while other artwork expands and Brands follows About", async () => {
   const html = [
     '<!doctype html><html><body class="hg-app">',
     '<div id="placeCard" class="is-unified-place is-place-sheet-direct" data-current-place-id="test-place">',
@@ -38,8 +38,9 @@ test("PlaceCard displays full, uncropped round images between relevant sections 
   const { document } = window;
   const card = document.getElementById("placeCard");
   const shell = document.querySelector('[data-hg-place-sheet-shell="1"]');
-  const clickCounts = { people: 0, brands: 0 };
+  const clickCounts = { people: 0, badges: 0, brands: 0 };
   document.getElementById("pcPeopleIcon").addEventListener("click", () => clickCounts.people++);
+  document.getElementById("pcBadgesIcon").addEventListener("click", () => clickCounts.badges++);
   document.getElementById("pcBrandsIcon").addEventListener("click", () => clickCounts.brands++);
 
   window.eval(script);
@@ -49,15 +50,26 @@ test("PlaceCard displays full, uncropped round images between relevant sections 
   };
   await flush();
 
-  const people = document.querySelector('[data-pc-round-gallery-item="pcPeopleIcon"]');
+  const people = document.getElementById("pcPeopleIcon");
+  const badges = document.getElementById("pcBadgesIcon");
+  const works = document.querySelector('[data-pc-round-gallery-item="pcWorksIcon"]');
   const nature = document.querySelector('[data-pc-round-gallery-item="pcNatureIcon"]');
   const brands = document.querySelector('[data-pc-round-gallery-brand="1"]');
   const history = shell.querySelector('[data-hg-place-sheet-section="history"]');
   const explore = shell.querySelector(".pc-sheet-explore-grid");
   const about = shell.querySelector(".pc-sheet-canonical-about");
 
-  assert.ok(people && nature && brands, "Each source appears in its editorial position");
-  assert.equal(history.nextElementSibling, people.parentElement, "People artwork follows the history section");
+  const originalGrid = explore.querySelector(".pc-side-stack > .pc-icons-quad");
+  assert.ok(people && badges && nature && works && brands, "Original controls and expanded artwork are present");
+  assert.equal(people.parentElement, originalGrid, "People stays in the original top-right collection grid");
+  assert.equal(badges.parentElement, originalGrid, "Badges stays in the original top-right collection grid");
+  assert.equal(people.hidden, false, "People remains visible");
+  assert.equal(badges.hidden, false, "Badges remains visible");
+  assert.equal(people.hasAttribute("data-pc-round-gallery-source"), false, "People is never hidden as a gallery source");
+  assert.equal(badges.hasAttribute("data-pc-round-gallery-source"), false, "Badges is never hidden as a gallery source");
+  assert.equal(document.querySelector('[data-pc-round-gallery-item="pcPeopleIcon"]'), null, "No duplicate People artwork below History");
+  assert.equal(document.querySelector('[data-pc-round-gallery-item="pcBadgesIcon"]'), null, "No duplicate Badges artwork below Learning");
+  assert.equal(history.nextElementSibling, works.parentElement, "Works artwork still follows the history section");
   assert.equal(explore.nextElementSibling, nature.parentElement, "Nature follows the introduction and collection surface");
   assert.equal(about.lastElementChild, brands, "Brands appears at the end of the entire About text");
   assert.equal(brands.querySelector("img").getAttribute("src"), "/brand-logo.png");
@@ -66,16 +78,21 @@ test("PlaceCard displays full, uncropped round images between relevant sections 
 
   assert.match(stylesheet, /\.pc-round-gallery-item\s*>\s*img\s*\{[^}]*object-fit:contain/s);
   assert.match(stylesheet, /#pcBrandsIcon\s*\{\s*display:none\s*!important/s);
+  assert.match(stylesheet, /\[data-pc-round-gallery-source="1"\]:not\(#pcPeopleIcon\):not\(#pcBadgesIcon\)/,
+    "The gallery hide rule explicitly exempts People and Badges");
   assert.equal(people.querySelector("img").getAttribute("src"), "/people-portrait.jpg");
 
   people.click();
+  badges.click();
   brands.querySelector("button").click();
-  assert.deepEqual(clickCounts, { people: 1, brands: 1 }, "Existing popup handlers receive image clicks");
+  assert.deepEqual(clickCounts, { people: 1, badges: 1, brands: 1 }, "Existing People, Badges, and Brands popup handlers still work");
 
   document.getElementById("pcPeopleIcon").querySelector("img").src = "/new-people.jpg";
   await flush();
-  assert.equal(document.querySelector('[data-pc-round-gallery-item="pcPeopleIcon"] img').getAttribute("src"),
-    "/new-people.jpg", "Reused card refreshes the artwork without duplicating it");
+  assert.equal(people.querySelector("img").getAttribute("src"),
+    "/new-people.jpg", "People preview updates in its original right-side location");
+  assert.equal(people.parentElement, originalGrid, "People remains in place after an image update");
+  assert.equal(document.querySelector('[data-pc-round-gallery-item="pcPeopleIcon"]'), null, "People is not duplicated after an image update");
 
   card.dataset.currentPlaceId = "next-place";
   shell.dataset.placeId = "next-place";
@@ -86,10 +103,15 @@ test("PlaceCard displays full, uncropped round images between relevant sections 
   assert.equal(about.querySelector('[data-pc-round-gallery-brand="1"] img').getAttribute("src"),
     "/new-brand.png");
 
-  document.getElementById("pcPeopleIcon").hidden = true;
+  people.hidden = true;
   await flush();
+  assert.equal(people.parentElement, originalGrid, "People stays in the original grid even when hidden by its owner");
   assert.equal(document.querySelector('[data-pc-round-gallery-item="pcPeopleIcon"]'), null,
-    "Hidden collections do not leave an orphan gallery");
+    "Hiding People never creates a gallery copy");
+  people.hidden = false;
+  await flush();
+  assert.equal(people.parentElement, originalGrid, "People returns to the same right-side position");
+  assert.equal(badges.parentElement, originalGrid, "Badges stays in place when People visibility changes");
 
   dom.window.close();
 });
