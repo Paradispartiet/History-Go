@@ -1,0 +1,46 @@
+name: Tøyenbadet generated-index parity (one-shot)
+on:
+  push:
+    branches: [content/toyenbadet-vferdig-20261103]
+    paths:
+      - '.github/workflows/toyenbadet-runtime-regen-once-20261103.yml'
+permissions:
+  contents: write
+concurrency:
+  group: toyenbadet-runtime-regen-once-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/toyenbadet-vferdig-20261103
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical outputs and inspect exact drift
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run place-open:build
+          npm run epoker:places:build
+          echo 'GENERATED_DIFF_BEGIN'
+          git status --short | head -80
+          echo 'GENERATED_DIFF_END'
+      - name: Stage only Tøyenbadet-related generated indexes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/runtime/place-open/toyenbadet.json data/runtime/leksikon-all/part-009.json data/epoker/epoke-place-index.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m 'Tøyenbadet: synchronize generated leksikon and source-backed epoke index'
+            git push origin HEAD:content/toyenbadet-vferdig-20261103
+          fi
