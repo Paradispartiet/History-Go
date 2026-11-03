@@ -1,0 +1,65 @@
+name: Tøyenbadet – one-time licensed photo import
+on:
+  push:
+    branches:
+      - feat/toyenbadet-asplanviak-link-20261103
+    paths:
+      - .github/workflows/toyenbadet-unsplash-one-time.yml
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.event.head_commit.message == 'chore: import licensed Tøyenbadet photo candidates'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Import and verify source images from Unsplash
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv /tmp/toyen-image-venv
+          /tmp/toyen-image-venv/bin/pip install --disable-pip-version-check --quiet Pillow
+          /tmp/toyen-image-venv/bin/python - <<'PY'
+          import os, io, json, hashlib
+          from urllib.request import Request, urlopen
+          from PIL import Image, ImageOps
+          out_dir='bilder/places/candidates/oslo-vferdig-20261103'
+          os.makedirs(out_dir,exist_ok=True)
+          photos=[
+            ('toyenbadet_modern_2026_marek_lumi_hero.webp','1790583879980-b45f4de032c9','https://unsplash.com/photos/modern-glass-building-with-park-path-HR21MwYowNY','Modern glass building beside path at Tøyenbadet'),
+            ('toyenbadet_modern_2026_marek_lumi_path.webp','1790583893045-60db0113f559','https://unsplash.com/photos/bicycle-path-beside-white-building-WvWK5YDDet4','Cycling path beside newer Tøyenbadet'),
+          ]
+          assets=[]
+          for target,photo_id,source,caption in photos:
+              src='https://images.unsplash.com/photo-'+photo_id+'?fm=jpg&q=90&w=2200'
+              req=Request(src,headers={'User-Agent':'Mozilla/5.0 (compatible; HistoryGo-licensed-photo-import/1.0)'})
+              with urlopen(req,timeout=55) as response: data=response.read()
+              if len(data)<30000: raise RuntimeError('Source photo too small: '+target)
+              im=Image.open(io.BytesIO(data))
+              im.load()
+              if im.width<1000 or im.height<700: raise RuntimeError('Photo dimensions insufficient '+str(im.size))
+              original=list(im.size)
+              im=ImageOps.fit(im.convert('RGB'),(1400,900),method=Image.Resampling.LANCZOS)
+              path=os.path.join(out_dir,target)
+              im.save(path,'WEBP',quality=87,method=6)
+              with open(path,'rb') as f: digest=hashlib.sha256(f.read()).hexdigest()
+              assets.append(dict(path=path,sourcePage=source,photoId=photo_id,creator='Marek Lumi',license='Unsplash License',licenseUrl='https://unsplash.com/license',imageKind='documentary_photo_2026',sourceDimensions=original,outputDimensions=[1400,900],sha256=digest,caption=caption,visualReview='pending_manual_review',sourceAttribution='Photo by Marek Lumi on Unsplash',verifiedSourceDate='2026-11-03'))
+          manifest={'schema':'history_go_media_candidates_v1','place_id':'toyenbadet','purpose':'Modern 2026 exterior photographs for before-after and PlaceCard hero review','images':assets,'note':'Both photos are tagged Tøyenbadet, Helgesens gate, Oslo on the author\'s Unsplash pages; visual QA required before activation.'}
+          with open(os.path.join(out_dir,'toyenbadet_2026_unsplash_candidates.json'),'w') as f: json.dump(manifest,f,ensure_ascii=False,indent=2)
+          print(json.dumps(manifest,ensure_ascii=False,indent=2))
+          PY
+      - name: Commit candidate assets and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_modern_2026_marek_lumi_hero.webp
+          git add bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_modern_2026_marek_lumi_path.webp
+          git add bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_2026_unsplash_candidates.json
+          git rm .github/workflows/toyenbadet-unsplash-one-time.yml
+          git commit -m "assets: add source-tracked Tøyenbadet 2026 Unsplash photos for visual review"
+          git push origin HEAD:feat/toyenbadet-asplanviak-link-20261103
