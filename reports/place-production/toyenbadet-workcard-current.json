@@ -5,7 +5,7 @@
   "status": "blocked_vferdig",
   "branch_status": "v1_merget_main_PR_6970__vFerdig_oppfolging_i_PR_6979",
   "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
-  "active_phase": "Kildebasert v1 er publisert; vFerdig venter på medieavklaring for 2025-bygget og samlinger.",
+  "active_phase": "v1 publisert; Asplan Viak-kobling i oppfølgings-PR. To Unsplash-lisensierte 2026-fotokilder funnet; lokale filer og visuell kontroll gjenstår før vFerdig.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -30,7 +30,10 @@
       "https://www.medley.no/stevne.aspx?stevneid=5545",
       "https://commons.wikimedia.org/wiki/File:2013-05_T%C3%B8yenbadet.jpg",
       "https://www.oslo.kommune.no/natur-kultur-og-fritid/svommehaller-i-oslo/toyenbadet/",
-      "https://www.asplanviak.no/prosjekter/det-nye-toyenbadet/"
+      "https://www.asplanviak.no/prosjekter/det-nye-toyenbadet/",
+      "https://unsplash.com/photos/modern-glass-building-with-park-path-HR21MwYowNY",
+      "https://unsplash.com/photos/bicycle-path-beside-white-building-WvWK5YDDet4",
+      "https://unsplash.com/license"
     ],
     "review_note": "Kommunale primærkilder, Oslo byleksikon, Svømmeforbundet og stevnedata er vurdert. Rettigheter til nytt bilde og kategorisamlingenes medlemspreview er ikke avklart."
   },
@@ -108,8 +111,8 @@
       "reason": "Kildebundet episode_v1-story med reell beslutning om rehabilitering kontra nybygg, tap av 50 m-basseng, vernevurdering og dokumenterte videreføringer. Registrert i begge Stories-manifester. Integritetstest, generert runtime og faktisk visning gjenstår."
     },
     "before_after": {
-      "status": "BLOCKED",
-      "reason": "2013-foto av revet bad er rettighetsbelagt, men nytt egenlisensiert foto av 2025-bygget mangler."
+      "status": "LICENSED_2026_PHOTO_SOURCES_FOUND__ASSET_AND_VISUAL_QA_PENDING",
+      "reason": "To originale 2026-fotografier av Marek Lumi, stedfestet til Tøyenbadet, er publisert under Unsplash License, som tillater bearbeiding og gjenbruk. Bildene er ennå ikke overført og visuelt kontrollert i repoet. Det gamle 2013-fotografiet beholdes som førbilde. Før/etter skal først aktiveres etter dokumentarisk motivkontroll og lokal WebP + runtime-paritet."
     },
     "news": {
       "status": "BEGRUNNET N/A",
@@ -169,7 +172,29 @@
       "size": "900x1350",
       "sha256": "ce6acec149f1873986125681dc547351304a2e76d365003e727cca74e0b7410f"
     },
-    "caveat": "Historical hero/portrait images show only demolished 1976 building. Identified photos of 2025 facility belong to Oslo kommune, Oslobygg or Asplan Viak; public online display is not evidence of a reuse licence. Request written reuse permission or locate independently verified open-license photo. Objects and People remain gated."
+    "caveat": "Historiske bilder av 1976-badet er publisert. Nye, fritt gjenbrukbare 2026-fotokandidater er nå identifisert hos fotograf Marek Lumi på Unsplash (to kilde- og lisensverifiserte sider), men lokale bildefiler, korrekt fotomotiv og runtime-visning er ennå ikke verifisert. Ingen nye bilder aktivert.",
+    "modern_photo_candidates": [
+      {
+        "sourcePage": "https://unsplash.com/photos/modern-glass-building-with-park-path-HR21MwYowNY",
+        "creator": "Marek Lumi",
+        "license": "Unsplash License",
+        "licenseUrl": "https://unsplash.com/license",
+        "publishedAt": "2026-09-28",
+        "subjectLocation": "Tøyenbadet, Helgesens gate, Oslo",
+        "proposedUse": "New 2025 facility exterior; potential modern hero",
+        "status": "source_license_verified__binary_not_ingested__visual_qa_pending"
+      },
+      {
+        "sourcePage": "https://unsplash.com/photos/bicycle-path-beside-white-building-WvWK5YDDet4",
+        "creator": "Marek Lumi",
+        "license": "Unsplash License",
+        "licenseUrl": "https://unsplash.com/license",
+        "publishedAt": "2026-09-28",
+        "subjectLocation": "Tøyenbadet, Helgesens gate, Oslo",
+        "proposedUse": "Second exterior view for before-after comparison",
+        "status": "source_license_verified__binary_not_ingested__visual_qa_pending"
+      }
+    ]
   },
   "universal_core": {
     "identity": "PASS",
@@ -202,7 +227,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "v1 merge PR #6970 og Pages success er verifisert. vFerdig er fortsatt blokkert av foto av 2025-anlegget, rettighetsklarerte People-/Objects-medier, autentisk Brand-preview og endelig full mobil-/desktop-QA. Objektresearch korrigert iht. canonical Objects-kontrakt: permanente kunstverk er ikke automatisk sports-Objects."
+    "note": "v1 merge PR #6970 og Pages success er verifisert. vFerdig er fortsatt blokkert av foto av 2025-anlegget, rettighetsklarerte People-/Objects-medier, autentisk Brand-preview og endelig full mobil-/desktop-QA. Objektresearch korrigert iht. canonical Objects-kontrakt: permanente kunstverk er ikke automatisk sports-Objects. Ny, fri bildelisensmulighet (Marek Lumi / Unsplash) er kildekontrollert, men ikke integrert, så kvalitetspoeng og vFerdig-status endres ikke."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
