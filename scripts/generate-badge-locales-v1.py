@@ -14,7 +14,7 @@ CATALOG = json.loads((ROOT/'data/badges/badge_locales_by_scenekunst_v1.json').re
 LOCALES = ('en','es','pt','fr')
 FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'
 
-def fabric_band(im, category, sub, foot):
+def fabric_band(im, category, sub, foot, preserve_header=False):
     w,h=im.size
     yy,xx=np.mgrid[:h,:w].astype('float32')
     r=np.hypot(xx-w*.5, yy-h*.515)/w
@@ -24,6 +24,8 @@ def fabric_band(im, category, sub, foot):
     hi=(.485 if sub=='klassisk_arkitektur' else .469 if category=='by' else .468)
     ramp=lambda x,a,b: np.clip((x-a)/(b-a),0,1)
     opacity = ramp(r,lo,lo+.010)*(1-ramp(r,hi-.010,hi))*(1-ramp(angle,limit-.075,limit))*(1-ramp(yy,h*.28,h*.30))
+    if preserve_header:
+        opacity *= 0
     rgb=np.asarray(im.convert('RGB'),dtype='float32')
     rng=np.random.default_rng(112)
     noise=rng.normal(0,2.2,(h,w)).astype('float32')
@@ -106,7 +108,7 @@ def main():
                 if title==source_title and bottom is None:
                     shutil.copyfile(src,dst)
                 else:
-                    result=fabric_band(original,category,sub,bottom is not None)
+                    result=fabric_band(original,category,sub,bottom is not None,preserve_header=(title==source_title))
                     if category=='by' and sub=='modernisme':
                         # Preserve the original cream stitched stars beside the upper caption.
                         from PIL import ImageFilter
