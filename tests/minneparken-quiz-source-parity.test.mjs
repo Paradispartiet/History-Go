@@ -141,7 +141,7 @@ test('Minneparken 10-question QuizCard has exact canonical quiz and answer-key p
     assert.ok(original, q.sourceQuestionId);
     assert.equal(q.number, i + 1);
     assert.equal(q.sourceQuizId, original.quiz_id);
-    for (const field of ['question', 'options', 'answer', 'answerIndex', 'knowledge', 'claim_id', 'source_urls', 'sources', 'primary_knowledge_unit_id', 'knowledge_unit_ids', 'method_id', 'topic_hook_id', 'thinker_id', 'theory_ref', 'guidance_basis']) {
+    for (const field of ['question', 'options', 'answer', 'answerIndex', 'knowledge', 'claim_id', 'source_urls', 'sources', 'primary_knowledge_unit_id', 'knowledge_unit_ids', 'knowledge_link_status', 'method_id', 'topic_hook_id', 'thinker_id', 'theory_ref', 'guidance_basis']) {
       assert.deepEqual(q[field], original[field], `QuizCard question ${i+1} mismatch in ${field}`);
     }
     assert.equal(collection.answerKey[i].number, i + 1);
@@ -171,6 +171,12 @@ test('Minneparken release is fail-closed while canonical Knowledge or Historie g
     assert.equal(quizActive, false, 'Do not activate fullquiz before all canonical Knowledge links exist');
     assert.equal(cardActive, false, 'Do not activate QuizCard before all canonical Knowledge links exist');
     assert.notEqual(history.gates?.G?.status, 'PASS', 'Gate G cannot pass without canonical Knowledge');
+  }
+  // Canonical Knowledge can be prepared before editorial approval. Runtime
+  // manifest activation still requires explicit Historie gate G PASS.
+  if (history.gates?.G?.status !== 'PASS' || history.status !== 'ready') {
+    assert.equal(quizActive, false, 'Knowledge links alone do not authorize live Minneparken quiz');
+    assert.equal(cardActive, false, 'Knowledge links alone do not authorize live Minneparken QuizCard');
   }
   if (history.status === 'ready') {
     for (const gate of ['F', 'G', 'H']) {
