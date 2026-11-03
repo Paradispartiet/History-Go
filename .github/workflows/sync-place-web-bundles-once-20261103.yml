@@ -1,0 +1,50 @@
+name: Sync generated PlaceCard web bundles (one-shot)
+on:
+  push:
+    branches:
+      - fix/main-integrity-place-web-bundles-20261103
+    paths:
+      - reports/maintenance/sync-place-web-bundles-20261103.txt
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/main-integrity-place-web-bundles-20261103
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Generate exact web bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run build:web
+          git status --short -- dist/web
+          while IFS= read -r file; do
+            case "$file" in
+              dist/web/place-card-quizcards-patch.js|dist/web/place-unified-surface.js|dist/web/place-unified-surface.js.map)
+                ;;
+              *)
+                echo "Unexpected web build difference: $file" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git diff --name-only -- dist/web)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- dist/web/place-card-quizcards-patch.js dist/web/place-unified-surface.js dist/web/place-unified-surface.js.map
+          git rm .github/workflows/sync-place-web-bundles-once-20261103.yml reports/maintenance/sync-place-web-bundles-20261103.txt
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m "build(web): sync PlaceCard and QuizCard generated bundles"
+          npm run build:web:check
+          git push origin HEAD:refs/heads/fix/main-integrity-place-web-bundles-20261103
