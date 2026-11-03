@@ -7,6 +7,10 @@ Sted: `oslo_prosjektrom` · Kunst · Platous gate 18 (nåværende publikumsinnga
 
 Kunstnerstyrt visningsrom/atelierfellesskap, med første galleriutstilling ifølge virksomheten i 2006. Oslo Art Guide oppgir dagens inngang i Platous gate 18 og omkring 150 kunstnere i atelierfellesskapet. Dagens adresse er ikke dokumentasjon for at nøyaktig samme lokale ble brukt ved oppstarten. Kilde for første utstilling: <https://www.osloartguide.no/steder/oslo-prosjektrom>. Geonorge-markør og eksisterende ID videreføres uendret.
 
+## Historisk bygningskontekst
+
+Et dokumentert atelier i prosjektromfellesskapet har adresse Schweigaards gate 34A, i Landbrukskvartalet. Her lå Kristiania Melkeforsynings administrasjonsbygning fra 1913 med butikk ved hjørnet av Platous gate. Etter flyttingen av meieridriften fra området i 1976 ble de tidligere bygningene brukt til andre virksomheter. Dette beskriver kvartalets historie; ingen kilde dokumenterer at galleriet har brukt alle anleggets tidligere produksjonsrom. Kilder: <https://osloopen.no/en/kunstnere/6505>, <https://lokalhistoriewiki.no/wiki/Schweigaards_gate_(Oslo)> og <https://www.landbrukskvartalet.no/produksjonshistorie>.
+
 ## Kildeprøvde hendelser og aktører
 
 - Galleriet oppgir tolv utstillinger årlig, og at både eksterne og interne kunstnere kan søke om utstillingsplass. <https://osloprosjektrom.blogspot.com/>
