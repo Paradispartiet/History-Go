@@ -234,9 +234,12 @@ def main():
                 assert np.array_equal(np.asarray(inspect.getchannel('A')),np.asarray(original.getchannel('A'))),f'Alpha changed: {dst}'
                 # A localized caption must never replace a building, actor,
                 # instrument, flower or other interior motif.
-                top_safe=425 if category=='by' else 405
-                assert np.array_equal(np.asarray(inspect)[top_safe:770,:,:3],
-                                      np.asarray(original)[top_safe:770,:,:3]), (
+                top_safe=430 if category=='by' else 405
+                # By footer translations begin near y=750, so protect the
+                # architecture between header and footer, not the footer.
+                bottom_safe=715 if category=='by' else 770
+                assert np.array_equal(np.asarray(inspect)[top_safe:bottom_safe,:,:3],
+                                      np.asarray(original)[top_safe:bottom_safe,:,:3]), (
                     f'Non-caption illustration changed: {dst}')
                 manifest['entries'].append({'category':category,'id':sub,'locale':locale,
                     'path':dst.relative_to(ROOT).as_posix(),'label':title,'footer':bottom,
