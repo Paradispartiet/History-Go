@@ -75,9 +75,23 @@ async function main() {
             && w.CivicationLifestoryUI?.getCurrentSceneInfo?.();
         }, null, { timeout: 20000 });
         const tab = page.locator('.civi-footer button[data-category="minDag"]');
+        const navState = await page.evaluate(() => {
+          const selected = document.querySelector('[data-lifestory-symposium] summary');
+          const section = document.querySelector('#civiLifestorySection');
+          const footer = document.querySelector('.civi-footer button[data-category="minDag"]');
+          const css = el => el ? { display: getComputedStyle(el).display, visibility: getComputedStyle(el).visibility,
+            rect: (() => { const b = el.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height }; })() } : null;
+          return { body: document.body.className, section: css(section),
+            footer: css(footer), history: css(selected),
+            categories: [...document.querySelectorAll('.civi-footer button[data-category]')].map(b => ({
+              category: b.dataset.category, display: getComputedStyle(b).display
+            })) };
+        });
+        console.log('Symposium viewport navigation', name, JSON.stringify(navState));
+        await page.screenshot({ path: path.join(reportDir, name + '-before.png'), fullPage: false });
         if (await tab.isVisible()) await tab.click();
         const history = page.locator('[data-lifestory-symposium] summary').first();
-        await history.waitFor({ state: 'visible', timeout: 20000 });
+        await history.waitFor({ state: 'visible', timeout: 10000 });
         await history.click();
         const book = page.locator('[data-lifestory-symposium]').first();
         await book.locator('h4').first().waitFor({ state: 'visible' });
