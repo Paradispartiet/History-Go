@@ -139,8 +139,10 @@ try {
     assert.equal(layout.count,1,"One canonical on-site surface at "+width);
     assert.equal(layout.parentClass,"pc-sheet-explore-grid","Events/Møtes belong to the collections section at "+width);
     assert.equal(layout.previousClass,"pc-side-stack","Events/Møtes follow the collection rounds at "+width);
-    assert.ok(Math.abs(layout.front.x - layout.rounds.x) <= 2,
-      "frontImage and rounds share the same left margin at "+width+": "+JSON.stringify(layout));
+    assert.ok(Math.abs(layout.front.x - layout.rightColumn.x) <= 2,
+      "frontImage and collection column share the same outer left margin at "+width+": "+JSON.stringify(layout));
+    assert.ok(layout.rounds.x >= layout.rightColumn.x - 1 && layout.rounds.right <= layout.rightColumn.right + 1,
+      "collection tiles remain within the padded column at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.intro.x >= layout.front.right - 1,
       "the first description line begins to the right of frontImage at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.aboutHeading.x >= layout.front.right - 1,
