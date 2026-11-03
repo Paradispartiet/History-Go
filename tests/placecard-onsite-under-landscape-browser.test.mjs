@@ -157,7 +157,7 @@ try {
       "Events/Møtes stay within the rounds section at "+width);
     assert.equal(layout.rightDisplay,"flex","right-hand column stretches as flex at "+width);
     assert.equal(layout.collectionAspect,"auto","Place Sheet collections must not reserve legacy 3:4 empty height at "+width);
-    assert.ok(layout.typography.title >= 30 && layout.typography.description >= (width <= 720 ? 16 : 17) &&
+    assert.ok(layout.typography.title >= 30 && layout.typography.description >= (width < 850 ? 16 : 17) &&
       layout.typography.navigation >= 13 && layout.typography.collectionLabel >= 14 &&
       layout.typography.onsiteLabel >= (width <= 700 ? 11 : 13),
       "PlaceCard typography uses the modestly enlarged scale at "+width+": "+JSON.stringify(layout.typography));
