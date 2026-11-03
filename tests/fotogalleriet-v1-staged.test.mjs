@@ -186,7 +186,7 @@ test('photo rights review must remain blocked until two independently licensed o
   assert.deepEqual(review.requiredPhotoSlots.map(slot => slot.role), ['image', 'frontImage']);
   assert.ok(review.requiredPhotoSlots.every(slot => slot.status.startsWith('missing_')));
   const blockedSources = review.sourceReview.filter(item =>
-    /^(?:do_not_|rejected_|historic_|candidate_)/.test(item.decision)
+    /^(?:do_not_|rejected_|histor(?:ic|ical)_|candidate_)/.test(item.decision)
     || item.decision.includes('not_approved'));
   assert.equal(blockedSources.length, review.sourceReview.length,
     'photo source was silently approved without completing v1 release gate');
