@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "PR_kandidat_synkronisert_med_main",
-  "live_status": "ikke_live",
-  "active_phase": "Kildeklar v1-integrasjon og sluttkontroll på faktisk mobil/desktop; vFerdig blokkert av medie- og profilrettigheter",
+  "branch_status": "v1_merget_main_PR_6970__vFerdig_oppfolging_i_PR_6979",
+  "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
+  "active_phase": "Kildebasert v1 er publisert; vFerdig venter på medieavklaring for 2025-bygget og samlinger.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -28,7 +28,9 @@
       "https://www.arkitektur.no/aktuelt/arkitektur/det-nye-toeyenbadet-vanvittig-mye-energi-som-gaar-med/",
       "https://svomming.no/nyheter/klart-for-nm-langbane/",
       "https://www.medley.no/stevne.aspx?stevneid=5545",
-      "https://commons.wikimedia.org/wiki/File:2013-05_T%C3%B8yenbadet.jpg"
+      "https://commons.wikimedia.org/wiki/File:2013-05_T%C3%B8yenbadet.jpg",
+      "https://www.oslo.kommune.no/natur-kultur-og-fritid/svommehaller-i-oslo/toyenbadet/",
+      "https://www.asplanviak.no/prosjekter/det-nye-toyenbadet/"
     ],
     "review_note": "Kommunale primærkilder, Oslo byleksikon, Svømmeforbundet og stevnedata er vurdert. Rettigheter til nytt bilde og kategorisamlingenes medlemspreview er ikke avklart."
   },
@@ -60,22 +62,24 @@
         "Gert Walter Thuesen – arkitekt for 1976-badet",
         "Sverre Gullesen – offentlig kunst på det nye badet",
         "Ida Madsen Følling – Vektløs på heissjakten",
-        "Aphra Shemza – Ocean Rise, temporær installasjon"
+        "Aphra Shemza – Ocean Rise, temporær installasjon",
+        "Halvard Heskestad Waage – hovedarkitekt for det nye Tøyenbadet (Asplan Viak)"
       ],
       "reason": "Kunstsamlingen dokumenterer tre direkte stedstilknyttede kunstnere; autentiske, rettighetsavklarte portrettbilder og canonical People-profilkoblinger er ennå ikke materialisert. Ingen fyllpersoner.",
       "source_urls": [
-        "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet"
+        "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet",
+        "https://www.asplanviak.no/kvartalet/arkitektur/toyenbadet/"
       ]
     },
     "objects": {
       "status": "BLOCKED",
       "candidates": [
-        "Sverre Gullesen – Uten tittel (bauta), 2024",
-        "Sverre Gullesen – Uten tittel (orm), 2024",
-        "Ida Madsen Følling – Vektløs, 2024"
+        "Startpaller og konkurranse-/tidtakingsutstyr ved 50-metersbassenget – undersøk dokumentasjon av konkrete, stedstilknyttede gjenstander, ikke godkjent medlem",
+        "Mobil heis for hjelp ned i vannet – dokumentert anleggsutstyr hos Oslo kommune, men ikke kvalifisert som signaturobjekt og mangler medlemsbilde"
       ],
-      "reason": "Tre permanente, stedsspesifikke, fysisk identifiserbare kunstverk er dokumentert av Oslo kommunes kunstsamling. Medlemsbilder hos kunstsamlingen har ikke dokumentert gjenbrukslisens, og er derfor ikke overført. Tidligere N/A var feil etter for snevert søk.",
+      "reason": "Korreksjon mot docs/PLACE_OBJECTS_CANONICAL.md: Gullesens Uten tittel (bauta/orm) og Føllings Vektløs er offentlige kunstverk, og hører normalt under kunstverk/produksjoner, ikke automatisk under Objects. Idrettsutstyr med dokumentert fysisk stedstilknytning skal undersøkes først. Oslo kommune dokumenterer en mobil heis ved bassengene, men ingen sammenhengende, bildeklargjort Objects-samling er foreløpig dokumentert. Source-bounded holdback; ingen fyllobjekter eller uverifiserte previewbilder.",
       "source_urls": [
+        "https://www.oslo.kommune.no/natur-kultur-og-fritid/svommehaller-i-oslo/toyenbadet/",
         "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet"
       ]
     },
@@ -85,9 +89,10 @@
         "Asplan Viak – arkitektfirma med direkte prosjektrolle",
         "Lambertseter SK, Oslo IL Svømming og SK Speed – arrangørklubber for NM 2026"
       ],
-      "reason": "Asplan Viak har dokumentert arkitektrolle og må vurderes som Brand-kandidat med selvstendig identitet; originale logo-/skiltbilder og canonical kvalifisering mangler. NM-klubber skal ikke konstrueres til Brands.",
+      "reason": "Eksisterende canonical Brand `asplan_viak` gjenbrukes og har dokumentert arkitekt-, landskapsarkitekt- og rådgiverrolle ved nye Tøyenbadet. Medlemsbilde, rettighetsgrunnlag og faktisk PlaceCard-popup-test gjenstår. Ingen ny duplikat-Brand. NM-klubber skal ikke konstrueres til Brands.",
       "source_urls": [
-        "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet"
+        "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet",
+        "https://www.asplanviak.no/prosjekter/det-nye-toyenbadet/"
       ]
     },
     "competitions": {
@@ -164,7 +169,7 @@
       "size": "900x1350",
       "sha256": "ce6acec149f1873986125681dc547351304a2e76d365003e727cca74e0b7410f"
     },
-    "caveat": "Both depict the original Tøyenbadet demolished in 2020. No image of new 2025 building is licensed in this package. Final actual app/mobile validation not yet done."
+    "caveat": "Historical hero/portrait images show only demolished 1976 building. Identified photos of 2025 facility belong to Oslo kommune, Oslobygg or Asplan Viak; public online display is not evidence of a reuse licence. Request written reuse permission or locate independently verified open-license photo. Objects and People remain gated."
   },
   "universal_core": {
     "identity": "PASS",
@@ -197,7 +202,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "Regenerert mot main og rettet browser-assert for place_card_profile_v2_curated. Mangler fortsatt rettighetsklarert foto av 2025-bygningen og kildekoblede People-/Objects-medlemsbilder og full grønn eksakt-HEAD-browser-CI; derfor ikke vFerdig. Ingen bilder er brukt uten bekreftet lisens."
+    "note": "v1 merge PR #6970 og Pages success er verifisert. vFerdig er fortsatt blokkert av foto av 2025-anlegget, rettighetsklarerte People-/Objects-medier, autentisk Brand-preview og endelig full mobil-/desktop-QA. Objektresearch korrigert iht. canonical Objects-kontrakt: permanente kunstverk er ikke automatisk sports-Objects."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
