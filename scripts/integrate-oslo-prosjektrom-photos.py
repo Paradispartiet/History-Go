@@ -40,6 +40,7 @@ for field,name,url,source_page,size,address,transformation in PHOTOS:
         "locationContext":"Schweigaards gate "+address+"; dette er ikke dokumentasjon av inngangen i Platous gate 18.",
         "transformation":transformation+" (WebP). Original fotografi 25. mai 2023.",
         "originHashSha256":hashlib.sha256(raw).hexdigest(),
+        "sourceSha256":hashlib.sha256(raw).hexdigest(),
         "localAssetHashSha256":hashlib.sha256(out.read_bytes()).hexdigest()
     }
     print(field,rel,size,len(out.read_bytes()),source_page)
