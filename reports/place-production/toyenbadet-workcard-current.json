@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "modern_2026_photography_before_after_in_feature_branch__pending_PR_merge",
+  "branch_status": "PR_6988_browser_qa_passed__pending_merge",
   "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
-  "active_phase": "2026-toppbilde, Før/etter og kildebåret Asplan Viak Brand aktivert i canonical data. Generering, faktisk browser-test og People/Objects-avklaring gjenstår før vFerdig.",
+  "active_phase": "Autentisk 2026-hero, historisk Før/etter, Asplan Viak og NM-konkurranse er integrert og kontrollert i faktisk mobil- og desktopvisning. People og Objects mangler fortsatt kvalifiserte visuelle medlemmer før vFerdig.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -89,19 +89,19 @@
       ]
     },
     "brands": {
-      "status": "PASS_CANONICAL_PENDING_RUNTIME_AND_BROWSER",
+      "status": "PASS_BROWSER",
       "candidates": [
         "Asplan Viak – arkitektfirma med direkte prosjektrolle",
         "Lambertseter SK, Oslo IL Svømming og SK Speed – arrangørklubber for NM 2026"
       ],
-      "reason": "Eksisterende canonical Asplan Viak Brand er koblet direkte til Tøyenbadet og har ekte minthvit hovedlogo fra Asplan Viaks offisielle profilmanual. Lokal WebP 900x520 og SHA-256 er registrert; identitetsmarkering er referensiell og innebærer ingen tilknytning. PlaceCard har aktivert Brands, men runtime og mobil/desktop-popup må verifiseres.",
+      "reason": "Asplan Viaks eksisterende canonical Brand er stedskoblet og har et autentisk, manuelt visuelt godkjent lokalt logoasset fra offisiell profilmanual. Browserkontroll bekreftet den ett-medlems bildestøttede Brands-samlingen i mobil og desktop. Ingen ny Brand-identitet eller uautorisert samarbeidspåstand.",
       "source_urls": [
         "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet",
         "https://www.asplanviak.no/prosjekter/det-nye-toyenbadet/"
       ]
     },
     "competitions": {
-      "status": "PASS_BROWSER_DIAGNOSTIC_PENDING_FINAL_CI",
+      "status": "PASS_BROWSER",
       "candidates": [
         "NM langbane 2.–5. juli 2026"
       ],
@@ -110,11 +110,11 @@
     "stories": {
       "status": "PASS_GENERATED_AND_STORIES_GOVERNANCE",
       "story_id": "st_toyenbadet_fra_gammelt_til_nytt_bad_2019",
-      "reason": "Kildebundet episode_v1-story med reell beslutning om rehabilitering kontra nybygg, tap av 50 m-basseng, vernevurdering og dokumenterte videreføringer. Registrert i begge Stories-manifester. Integritetstest, generert runtime og faktisk visning gjenstår."
+      "reason": "Kildebundet episode_v1-story registrert i begge manifester; materialisert i Place-open. Egne Stories- og kildekontroller fra v1 beholdt; siste mobil/desktop-test fokuserer på kort, samlinger, før/etter, QuizCard og Fagverk."
     },
     "before_after": {
-      "status": "PASS_CANONICAL_PENDING_RUNTIME_AND_BROWSER",
-      "reason": "2013-bildet av revet bad og Marek Lumis 2026-bilde av dagens Tøyenbadet er to reelle, lisensierte motiver fra samme sted. Nytt for_na har stedstro tekst og forklarer at kamerastandpunktene er ulike, så en geometrisk bildeoverlegg-sammenligning ville være misvisende."
+      "status": "PASS_BROWSER",
+      "reason": "2013- og 2026-fotografier av samme badested er kilde- og lisensdokumentert med eksplisitt ulike kamerastandpunkter. Egen for_na registrert i canonical og runtime; begge bildene dekoder i mobil/desktop nettlesertest."
     },
     "news": {
       "status": "BEGRUNNET N/A",
@@ -142,11 +142,11 @@
       "reason": "Åtte kildekoblede kronologipunkter inkludert offentlig kunst er lagt inn; eksakt HEAD-gate etter regenerering gjenstår."
     },
     "fagverk": {
-      "status": "PASS_EXISTING_PENDING_LIVE_CHECK",
+      "status": "PASS_BROWSER",
       "reason": "Stedseiet standard Fagverk med emne- og kapittelkoblinger ligger i main; ny publiseringskontroll mangler."
     },
     "quiz": {
-      "status": "PASS_EXISTING_PENDING_LIVE_CHECK",
+      "status": "PASS_BROWSER",
       "reason": "Fullquiz 21 og QuizCard 10 ligger i main; ny Knowledge-, manifest- og browserkontroll mangler."
     },
     "leksikon": {
@@ -160,7 +160,7 @@
   ],
   "collection_decision": "To kildebårne, bildeklare samlinger: Brands (Asplan Viak) og Competitions (NM langbane 2026). People og Objects er fremdeles holdt tilbake pga. uferdige medlemsevidenser.",
   "media_gate": {
-    "status": "PASS_SOURCE_IMAGES__GENERATED_AND_BROWSER_PENDING",
+    "status": "PASS_CANONICAL_GENERATED_AND_MOBILE_DESKTOP_BROWSER",
     "hero": {
       "path": "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_2026_marek_lumi_glass.webp",
       "sourcePage": "https://unsplash.com/photos/modern-glass-building-with-park-path-HR21MwYowNY",
@@ -177,7 +177,7 @@
       "size": "900x1350",
       "sha256": "ce6acec149f1873986125681dc547351304a2e76d365003e727cca74e0b7410f"
     },
-    "caveat": "2026-foto av nye Tøyenbadet er lastet ned, lagret i 1400x900 WebP, kilde- og lisensverifisert samt visuelt godkjent for hero. 2013-bildet av gamle badet er bevart som for_na.beforeImage, og historisk 1980-portrett beholdt for QuizCard-flip. Det andre Unsplash-fotoet viser sykkeltrasé og et tilstøtende lite bygg; kun kontekstfoto, ikke PlaceCard-hero eller for_na.",
+    "caveat": "Nytt Tøyenbadet 2026-eksteriør publisert av Marek Lumi er originalt fotografi og lokal WebP med kilde og Unsplash License. Historisk 2013 førbilde og 1980 frontImage bevart. Begge før/etter-bildefiler og hovedbilder lastet i faktisk app på mobil og desktop; andre 2026 sykkelvei-foto brukes ikke som bygningsfoto.",
     "modern_photo_candidates": [
       {
         "sourcePage": "https://unsplash.com/photos/modern-glass-building-with-park-path-HR21MwYowNY",
@@ -227,8 +227,8 @@
     "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
     "chronology": "Åtte kildebelagte kronologipunkter er materialisert, og global epokeindeks regenerert etter oppdatering fra main; ny eksakt-HEAD-test følger.",
     "collections": "2 canonical PlaceCard-samlinger med ekte medlemmer og lokale assets aktivert; browser-kontroll og runtime-paritet gjenstår.",
-    "browser_QA": "Begge viewport-diagnostikker viser Competition-preview med faktisk lastet bilde, korrekt én-samlingsprofil og NM-innhold; full test kjøres med oppdatert v2_curated-forventning.",
-    "runtime": "Global place-open/leksikon/lesespor/Stories/epokeindeks regenerert og pushet etter merge av main, uten legacy cardImage."
+    "browser_QA": "PASS: browser run 41589971756 (3. november 2026), både mobile og desktop: 2026-hero, originalt stående frontImage, Før/etter-fotofiler, 2 medlemseide samlinger, QuizCard-vending og Fagverk.",
+    "runtime": "PASS: Tøyenbadet Place-open og places_index regenerert fra canonical med 2026-hero, 2013–2026 for_na, 2 collection_ids og Asplan Viak-logo, uten cardImage."
   },
   "test_plan": [
     "node scripts/validate-place-description-production-v4_2.mjs --help / målrettet endringskontroll",
@@ -251,7 +251,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "To faktiske, kildebårne PlaceCard-samlinger er nå canonical: Asplan Viak med offisiell logo og NM 2026 med redaksjonell illustrasjon. Nye Tøyenbadet har autentisk toppfoto og Før/etter 2013–2026. Status beholdes blocked_vferdig (23/30) til runtime/browser-QA er bekreftet og People/Objects er ferdig."
+    "note": "Autentisk 2026-foto, Før/etter og to bildestøttede samlinger integrert og faktisk browser-QA bestått (mobil + desktop, run 41589971756). People- og Objects-samlinger står fremdeles BLOCKED uten ferdige canonical medlemmer/portretter og objektmedier; derfor blocked_vferdig med historisk 23/30-vurdering, ikke ny vFerdig-godkjenning."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
