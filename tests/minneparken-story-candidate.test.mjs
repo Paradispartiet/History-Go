@@ -19,15 +19,15 @@ const narrativeText = `${asText(story.summary)} ${asText(story.story)}`.trim().t
 const matches = (pattern) => narrativeText.match(pattern)?.length ?? 0;
 
 function canonicalScore() {
-  const narrative = Math.min(3 + matches(/\\bkonflikt|strid|debatt|drama\\b/g), 5);
-  const historical = Math.min(2 + matches(/\\bkrig|valg|regjering|okkupasjon\\b/g) +
-    matches(/\\bbyutvikling|industri|arbeider\\b/g), 5);
+  const narrative = Math.min(3 + matches(/\bkonflikt|strid|debatt|drama\b/g), 5);
+  const historical = Math.min(2 + matches(/\bkrig|valg|regjering|okkupasjon\b/g) +
+    matches(/\bbyutvikling|industri|arbeider\b/g), 5);
   const n = story.sources.length;
   const source = n >= 3 ? 5 : n === 2 ? 4 : n === 1 ? 3 : 1;
-  const play_value = Math.min(3 + matches(/\\bmorsom|absurd|merkelig|underlig\\b/g) +
-    matches(/\\bkonflikt|skandale|drama|vendepunkt\\b/g), 5);
-  const originality = Math.min(3 + matches(/\\buvanlig|unik|første gang|sjelden\\b/g) +
-    matches(/\\bmerkelig|underlig|absurd\\b/g), 5);
+  const play_value = Math.min(3 + matches(/\bmorsom|absurd|merkelig|underlig\b/g) +
+    matches(/\bkonflikt|skandale|drama|vendepunkt\b/g), 5);
+  const originality = Math.min(3 + matches(/\buvanlig|unik|første gang|sjelden\b/g) +
+    matches(/\bmerkelig|underlig|absurd\b/g), 5);
   return { narrative, historical, source, play_value, originality,
     total: narrative + historical + source + play_value + originality };
 }
