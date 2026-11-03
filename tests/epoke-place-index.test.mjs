@@ -307,7 +307,7 @@ test("Gamlebyen leksikon chronology materializes only reviewed exact anchors", (
   const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);
 
   assert.deepEqual(yearsFor("clemenskirken_ruin_oslo"), [1920, 1970, 2000]);
-  assert.deepEqual(yearsFor("minneparken_gamlebyen"), [1932, 2024]);
+  assert.deepEqual(yearsFor("minneparken_gamlebyen"), [1918, 1928, 1932, 2024]);
   assert.deepEqual(yearsFor("saxegarden"), [1334, 1624]);
   assert.equal(chronologyMilestonesFor("clemenskirken_ruin_oslo").some((milestone) => milestone.year === 1135), false);
 });
