@@ -8,7 +8,7 @@
 ## Gjennomførte endringer
 
 1. **Canonical Place:** `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11/minneparken_gamlebyen.json` har omarbeidet `desc` og `popupDesc` uten intern History Go-/quiz-/produksjonsprosa. Kildenes lokale byhistorie, parkvedtaket i 1918, planvedtaket i 1928, åpningen i 1932, veiinngrep på 1960-tallet og tilbakeføring i 2024–2025 er bevart og utvidet. Tre relevante, eksisterende underbadges er satt: `middelalder`, `byhistorie`, `kulturminner_og_bevaring`. Verifisert parkgeometri, koordinater og radius ble ikke endret.
-2. **Beskrivelse og claim-arbeid:** `data/places/production/minneparken_gamlebyen.json` er opprettet med resolved identitet, 19 claim-poster, kildelokasjoner, 3+16 setningskoblinger, SHA-256-hasher og åtte spørsmål som kun er quiz-readiness. **Status er `needs_research`**, ikke `ready_v4_2`, siden full validator og uavhengig review mangler. Disse spørsmålene er ikke en publisert quiz.
+2. **Beskrivelse og claim-arbeid:** `data/places/production/minneparken_gamlebyen.json` er opprettet med resolved identitet, 19 claim-poster, kildelokasjoner, 3+16 setningskoblinger, SHA-256-hasher og ti spørsmål som kun er quiz-readiness. **Status er `needs_research`**, ikke `ready_v4_2`, siden full validator og uavhengig review mangler. Disse spørsmålene er ikke en publisert quiz.
 3. **Historie-faglig rapport:** `data/places/historie-production/minneparken_gamlebyen.json` dokumenterer kilder, stedseierskap, interessekonflikten i 1918, endringene og usikkerheten. **Status `blocked`**. Gate F (fersk fysisk status), G (fullquiz) og H (canonical chronology/Stories) er åpne.
 4. **Fagverk-sted:** Place-eid `history_go_place_fagverk_v2`, `standard`, med egen historisk fagartikkel (211 ord), fire emnekoblede linser, fem undersøkelsesspørsmål, ni begreper, to observerbare spor med tolkningsgrenser og fire eksterne kildeadresser. Smalt indeksledd er føyd til `data/fagverk/fagverk_registry.json`. **Curated er redaksjonell innholdsstatus, ikke bekreftet live side eller full Place-closeout.**
 5. **Språkleksikon:** Ny kildebasert stedsspesifikk fil og oppdatert `data/leksikon/sprak/manifest.json`: `Minneparken`, `Ruinparken`, `St. Halvards plass`, `apsis`, `Olavsklostret`. Dialekt er ikke oppdiktet.
@@ -35,7 +35,7 @@
 | Leksikon-kronologi og epoke | DELVIS PASS | Fire kildebelagte leksikonår; canonical chronology/epokeindeks og seertest gjenstår |
 | People / Objects / Brands / historiske hendelser | IKKE AVKLART | Source-bounded kandidataudit og eventuelle materialiserte medlemmer med bilder; ingen filler |
 | Stedsbilder / `frontImage` | BLOCKED | Ingen dokumentert, faktisk stående PlaceCard-fil og lisensmetadata integrert |
-| Quiz / QuizCard / Knowledge | BLOCKED | Ingen fullquiz/QuizCard/flip-paritet materialisert eller vist; kun åtte research-spørsmål i packet |
+| Quiz / QuizCard / Knowledge | BLOCKED | Ingen fullquiz/QuizCard/flip-paritet materialisert eller vist; kun ti research-spørsmål i packet |
 | Runtime og genererte avledninger | **BLOCKED** | `places_index.json`, `data/runtime/place-open/minneparken_gamlebyen.json`, Fagverk release/coverage og eventuelle oversettelser må bygges med canonical scripts, ikke håndrettes |
 | CI og browser-QA | **BLOCKED** | Ikke kjørt relevant full node-test/CI-/browserpakke; PR må holdes i draft |
 
