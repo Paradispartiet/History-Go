@@ -103,7 +103,7 @@ try{
          && objectIcon?.dataset.collectionItemCount==="2"
          && objectImg?.complete&&objectImg.naturalWidth>0
          && objectIcon?.querySelector(".pc-object-preview-disclosure")?.textContent?.includes("Illustrasjon")
-         && peopleIcon?.dataset.collectionItemCount==="1"
+         && peopleIcon?.dataset.collectionItemCount==="5"
          && peopleImg?.complete&&peopleImg.naturalWidth>0
          && peopleImg?.getAttribute("src")?.includes("anne_lindboe_2023_cc_by_sa");
      },null,{timeout:30000});

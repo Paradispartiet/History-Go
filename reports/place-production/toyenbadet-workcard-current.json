@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "PR_7005_MERGED_MAIN_ALL_FOUR_COLLECTIONS_BROWSER_CI_PASSED__VFERDIG_BLOCKED_EDITORIAL",
+  "branch_status": "PR_AI_ILLUSTRATED_PEOPLE_FOUR_CANDIDATES_BUILD_IN_PROGRESS",
   "live_status": "pages_success_main_1e8b3632_run_41624901416",
-  "active_phase": "PR #7005 er merget til main som første bilde- og identitetsgodkjente People-kort (Anne Lindboe). Fire PlaceCard-samlinger er aktivert og bestått i ekte app på mobil 390px og desktop 1440px; 15/15 PR-CI på commit 0af0268 var grønne. Pages success på nyere main commit 1e8b3632 (run 41624901416). vFerdig er fremdeles blokkert av fire kvalifiserte People-kandidater uten sikre publiserbare portretter og en separat redaksjonell sluttgodkjenning.",
+  "active_phase": "Fire nye kanoniske People-profiler med feltaudit er opprettet og fire WebP-illustrasjoner er lagt inn med synlig AI-ILLUSTRASJON-merking. Originalt Anne Lindboe-foto beholdt. Generert runtime og samlet browser-test må passere på PR-head før merge. Full redaksjonell vFerdig-vurdering er fortsatt utestående.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -39,7 +39,7 @@
       "https://www.bygg.no/toyenbadet-har-apnet-forberedt-pa-storinnrykk/2739915",
       "https://svomming.no/nyheter/nm-langbane-i-oslo-leverer-spenning-og-fantastisk-stemning/"
     ],
-    "review_note": "Kilde- og rettighetskontroll av de PUBLISERTE mediene er gjennomført: moderne eksteriør (2026), historiske bilder, Asplan Viak-logo og Anne Lindboes identifiserte Commons-portrett fra 2023 (ikke foto fra badet), samt skjematiske Objects og NM-preview. Fire dokumentert relevante People-kandidater står fortsatt i staging uten godkjente identifiserbare, gjenbrukbare portretter. Derfor forblir samlet source_review delvis godkjent."
+    "review_note": "Steds- og personbiografiske kilder er kontrollert. Fire nye originale AI-genererte maleriillustrasjoner er tydelig merket og ikke avledet fra opphavsrettslig usikre pressebilder; de utgir seg verken for foto eller dokumentert ansiktslikhet. Redaksjonell sluttvurdering av hele Place er fortsatt utestående."
   },
   "identity": "Kommunalt bade- og idrettsanlegg i Helgesens gate 90 i Tøyenparken; opprinnelig bygning 1976–2020, nytt anlegg åpnet 2025; dette er ett canonical Place.",
   "null_measurement": {
@@ -66,7 +66,7 @@
   },
   "content_plan": {
     "people": {
-      "status": "PASS_BROWSER_ONE_APPROVED__FOUR_STAGED_PENDING_PORTRAITS",
+      "status": "FOUR_NEW_AI_ILLUSTRATED_PROFILES_PENDING_PR_CI",
       "accepted": [
         {
           "person_id": "anne_lindboe",
@@ -84,16 +84,73 @@
             "https://www.bygg.no/toyenbadet-har-apnet-forberedt-pa-storinnrykk/2739915",
             "https://www.dagsavisen.no/nyheter/her-stuper-de-inn-det-nye-toyenbadet-kjempeviktig-og-verdt-hver-eneste-krone/9687632"
           ]
+        },
+        {
+          "person_id": "henrik_christiansen_svommer",
+          "name": "Henrik Christiansen",
+          "role": "Svømmer ved NM 2026",
+          "image": "bilder/kort/people/henrik_christiansen_svommer_illustration.webp",
+          "cardImage": "bilder/kort/people/henrik_christiansen_svommer_illustration.webp",
+          "rights": "original_ai_generated_artwork",
+          "imageKind": "ai_generated_illustration",
+          "nonDocumentary": true,
+          "facialLikenessVerified": false,
+          "sourceUrls": [
+            "https://www.olympedia.org/athletes/135349",
+            "https://svomming.no/nyheter/nm-langbane-i-oslo-leverer-spenning-og-fantastisk-stemning/"
+          ]
+        },
+        {
+          "person_id": "hedda_oritsland",
+          "name": "Hedda Øritsland",
+          "role": "Svømmer ved NM 2026",
+          "image": "bilder/kort/people/hedda_oritsland_illustration.webp",
+          "cardImage": "bilder/kort/people/hedda_oritsland_illustration.webp",
+          "rights": "original_ai_generated_artwork",
+          "imageKind": "ai_generated_illustration",
+          "nonDocumentary": true,
+          "facialLikenessVerified": false,
+          "sourceUrls": [
+            "https://svomming.no/nyheter/nm-langbane-i-oslo-leverer-spenning-og-fantastisk-stemning/",
+            "https://www.teamnor.no/profiler/padleforbundet/hedda-oritsland/",
+            "https://www.abcnyheter.no/sport/norsk-ol-utover-bytter-idrett-foler-jeg-har-noe-uoppgjort/426692"
+          ]
+        },
+        {
+          "person_id": "halvard_heskestad_waage",
+          "name": "Halvard Heskestad Waage",
+          "role": "Hovedarkitekt for nye Tøyenbadet",
+          "image": "bilder/kort/people/halvard_heskestad_waage_illustration.webp",
+          "cardImage": "bilder/kort/people/halvard_heskestad_waage_illustration.webp",
+          "rights": "original_ai_generated_artwork",
+          "imageKind": "ai_generated_illustration",
+          "nonDocumentary": true,
+          "facialLikenessVerified": false,
+          "sourceUrls": [
+            "https://www.asplanviak.no/kvartalet/arkitektur/toyenbadet/",
+            "https://www.asplanviak.no/presserom/"
+          ]
+        },
+        {
+          "person_id": "gert_walter_thuesen",
+          "name": "Gert Walter Thuesen",
+          "role": "Arkitekt for Tøyenbadet fra 1976",
+          "image": "bilder/kort/people/gert_walter_thuesen_illustration.webp",
+          "cardImage": "bilder/kort/people/gert_walter_thuesen_illustration.webp",
+          "rights": "original_ai_generated_artwork",
+          "imageKind": "ai_generated_illustration",
+          "nonDocumentary": true,
+          "facialLikenessVerified": false,
+          "sourceUrls": [
+            "https://oslobyleksikon.no/side/T%C3%B8yenbadet",
+            "https://www.arkitektur.no/aktuelt/arkitektur/det-nye-toeyenbadet-vanvittig-mye-energi-som-gaar-med/",
+            "https://riksantikvaren.no/eksempelsamling/modernisering-pa-betongens-premisser/"
+          ]
         }
       ],
-      "staged": [
-        "henrik_christiansen_svommer",
-        "hedda_oritsland",
-        "halvard_heskestad_waage",
-        "gert_walter_thuesen"
-      ],
-      "pendingImages": "Alle fire staged personer mangler bilde med korrekt fri lisens og/eller trygg identitet. Commons Henrik Christiansen er skøyteløper 1983, ikke svømmer 1996.",
-      "reason": "People viser ett kilde-/portrettgodkjent historisk medlem, Anne Lindboe, deltakende ordfører ved åpningen 2025. Kommunal og redaksjonell stedskilde, 7 kartlagte claims, lokalt Commons-foto med CC BY-SA og visuell lisenskontroll. Faktisk People-preview besto mobil/desktop. Henrik Christiansen, Hedda Øritsland, Halvard Heskestad Waage og Gert Walter Thuesen forblir upublisert i staging fordi portretter ikke oppfyller identitet/lisens-kontrakten.",
+      "staged": [],
+      "pendingImages": "De fire originale bildeillustrasjonene finnes i PR; dokumentariske foto er fortsatt ikke identifisert og kreves ikke som erstatning for tydelig illustrert People-kort.",
+      "reason": "Fem dokumenterte, bildestøttede People-profiler: Anne Lindboes autentiske 2023-fotografi og fire nye, eksplisitt merkede, originale AI-illustrasjoner. De nye portrettene er ikke fotografiske identitetsbevis. Alle fire kvalifiserte historiske profiler har eget claim-register. Runtime/UI-integrasjon gjenstår å kontrollere på PR-head.",
       "source_urls": [
         "https://www.bygg.no/toyenbadet-har-apnet-forberedt-pa-storinnrykk/2739915",
         "https://commons.wikimedia.org/wiki/File:Anne_Lindboe_(1).jpg",
@@ -198,7 +255,7 @@
     "brands",
     "competitions"
   ],
-  "collection_decision": "People: Anne Lindboe, ordfører ved den offisielle åpningen, med verifisert 2023 Wikimedia Commons-portrait (Helfla, CC BY-SA 4.0, NOT taken at bath). Objects: startpall 8 og mobil bassengheis med skjematiske illustrasjoner. Brands: Asplan Viak med original logo. Competitions: NM langbane 2026. Fire tidligere People-profiler er staged uten bilde og ikke aktivert.",
+  "collection_decision": "People: 5 kildebårne personer, hvorav Anne Lindboe har autentisk Commons-portrett (2023, Helfla/CC BY-SA) og fire har tydelig merkede ikke-dokumentariske AI-illustrasjoner. Objects: 2 merkede skjematiske illustrasjoner. Brands: Asplan Viak. Competitions: NM langbane 2026. Alle fire samlinger består fortsatt.",
   "media_gate": {
     "status": "PASS_CANONICAL_GENERATED_AND_MOBILE_DESKTOP_BROWSER",
     "hero": {
@@ -294,7 +351,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "23/30 – uendret med vilje. Alle fire samlinger, PlaceCard, bilder og runtime er i main og bestod PR #7005 (15/15 CI + 390/1440px browser). Tøyenbadet er teknisk integrert, men fire sterke, stedsknyttede People-kandidater mangler publiserbare portretter. Redaksjonell helhetsgodkjenning er ikke attestert. Ikke deklarer vFerdig på grunnlag av tekniske PASS."
+    "note": "23/30 – foreløpig beholdt uten kunstig oppjustering. Fire tidligere bildeblokkerte, kildekontrollerte People-kandidater har nå egne originale, tydelig merkede AI-illustrasjoner i PR. PlaceCard-runtime og mobil/desktop-UI-kontroll på ny PR-head må bestås, etterfulgt av redaksjonell helhetsgodkjenning."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
@@ -434,21 +491,11 @@
     "pages_deploy": "https://github.com/Paradispartiet/History-Go/actions/runs/41624901416",
     "remaining_blockers": [
       {
-        "kind": "image_rights_identity",
-        "person_ids": [
-          "henrik_christiansen_svommer",
-          "hedda_oritsland",
-          "halvard_heskestad_waage",
-          "gert_walter_thuesen"
-        ],
-        "requirement": "For hver kandidat: autentisk identitet, dokumenterte fri rettigheter og fysisk, lokalt bilde med attribusjon, før manifestintegrasjon. Ingen pressefoto/identitetsfremmede illustrasjoner."
-      },
-      {
         "kind": "editorial_final_review",
-        "requirement": "Kvalitetsscore og historisk helhet må evalueres på siste komplette innhold før vFerdig."
+        "requirement": "Vurder stedsfaglig kvalitet og fem personprofiler samlet etter siste PR-browsertest; oppdater score og vFerdig-status først ved faktisk attestert sluttkontroll."
       }
     ],
-    "decision": "blocked_vferdig",
+    "decision": "blocked_vferdig_until_final_editorial_and_browser_review",
     "no_status_inflation": true
   }
 }
