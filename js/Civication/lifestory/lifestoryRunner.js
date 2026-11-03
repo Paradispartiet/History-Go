@@ -431,21 +431,44 @@
    * @param {any} state @param {any} content @returns {any|null}
    */
   function getSymposium(state, content) {
-    const book = content.role.symposium;
-    if (!book) return null;
-    const selected = content.fortsettelse?.hovedtraad || state.tidligereValg[book.hovedtraadFlagg];
+    // All playable Life Story roles have a read-only book of *recorded* choices.
+    // The original arbeidsledig Symposium remains the richer author-owned view.
+    // Other roles do not acquire fictitious appointments, chapters or authority.
+    const authoredBook = content.role.symposium || null;
+    const book = authoredBook || {
+      tittel: String(content.role.navn || content.role.id || "Mitt liv") + " – livshistorien"
+    };
+    const selected = content.fortsettelse?.hovedtraad ||
+      (book.hovedtraadFlagg ? state.tidligereValg[book.hovedtraadFlagg] : null);
     const foreground = content.threads.find((t) => t.id === (selected || book.standardTraad));
     const bridges = (book.rollebroer || []).filter((b) => b.threadId === foreground?.id);
     const selectedRole = book.rollevalgFlagg && state.tidligereValg[book.rollevalgFlagg];
     const steder = book.steder || [];
-    const timeline = state.arkiv.map((entry) => {
+    const people = content.role.personer || [];
+    const timeline = (state.arkiv || []).map((entry) => {
       const scene = content.scenes.find((s) => s.id === entry.sceneId);
       const sted = steder.find((p) => p.id === scene?.stedId) || null;
-      const authoredPerson = content.role.personer.find((p) => p.id === scene?.avsender) || null;
+      const authoredPerson = people.find((p) => p.id === scene?.avsender) || null;
       const cast = entry.personRepresentanter?.[authoredPerson?.id];
       const person = authoredPerson ? Object.assign({}, authoredPerson, { navn: cast?.navn || authoredPerson.navn }) : null;
       return Object.assign({}, entry, { sted, person });
     });
+    // Prior roles keep independent snapshots in the SAME versioned Life Story
+    // state. Do not pretend their role-local days have a common chronology.
+    // Render each prior archive under its own role instead of replaying scenes
+    // or inferring meetings, approvals, pay or unplayed outcomes.
+    const rollehistorikk = Object.entries(state.rolleTilstander || {})
+      .filter(([roleId, snapshot]) => roleId !== state.rolle && Array.isArray(snapshot?.arkiv) && snapshot.arkiv.length > 0)
+      .map(([roleId, snapshot]) => ({
+        rolle: roleId,
+        tidslinje: snapshot.arkiv.map((entry) => ({
+          dag: entry.dag,
+          fase: entry.fase,
+          sceneTittel: entry.sceneTittel,
+          valgTekst: entry.valgTekst,
+          konsekvensTekst: entry.konsekvensTekst || ""
+        }))
+      }));
     const avtaler = content.scenes.filter((s) =>
       s.dag >= state.dag && state.spilteScener.indexOf(s.id) === -1 &&
       isThreadPlayable(state, s.threadId) && conditionsMet(state, s)
@@ -457,10 +480,11 @@
       hovedtraad: foreground || null,
       rollebro: bridges.find((b) => b.role_scope === selectedRole) || (bridges.length === 1 ? bridges[0] : null),
       rollebroer: bridges,
-      personer: content.role.personer.map((p) => Object.assign({}, p, { relasjon: state.relasjoner[p.id] })),
+      personer: people.map((p) => Object.assign({}, p, { relasjon: state.relasjoner[p.id] })),
       steder,
       traader: content.threads.filter((t) => state.threadState[t.id]).map((t) => Object.assign({}, t, state.threadState[t.id])),
       tidslinje: timeline,
+      rollehistorikk,
       moter: (book.moter || []).filter((m) => state.tidligereValg[m.avtalt] || state.tidligereValg[m.avslaatt]).map((m) => Object.assign({}, m, {
         sted: steder.find((p) => p.id === m.stedId),
         status: state.tidligereValg[m.avslaatt] ? "avslaatt" : state.tidligereValg[m.avbrutt] ? "avbrutt" : state.tidligereValg[m.gjennomfort] ? "gjennomfort" : "avtalt"
