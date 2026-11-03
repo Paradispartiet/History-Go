@@ -42,13 +42,10 @@ test("unified Place surface keeps public entry points and canonical section set"
 });
 
 test("unified renderer is critical runtime while Phase 6 adds direct Place Sheet styling", () => {
-  assert.match(
-    statusSurface,
-    /ensureScript\("dist\/web\/place-unified-surface\.js\?v=20260912-onsite-under-explore1"\)/,
-    "Unified Place Surface must load with the primary PlaceCard/popup runtime"
-  );
+  const unifiedVersion = statusSurface.match(/ensureScript\("dist\/web\/place-unified-surface\.js\?v=([0-9]{8}-[a-z0-9-]+)"\)/)?.[1];
+  assert.ok(unifiedVersion, "Unified Place Surface must load with the primary PlaceCard/popup runtime");
   const directIndex = config.indexOf('"js/ui/place-popup-direct-tabs.js"');
-  const unifiedIndex = config.indexOf('"dist/web/place-unified-surface.js?v=20260912-onsite-under-explore1"');
+  const unifiedIndex = config.indexOf('"dist/web/place-unified-surface.js?v=' + unifiedVersion + '"');
   assert.ok(directIndex >= 0, "direct-tabs runtime must remain loaded for Micro compatibility");
   assert.ok(unifiedIndex > directIndex, "unified runtime must install after canonical legacy popup routing");
   assert.ok(runtime.length > 500, "committed TypeScript bundle must exist");

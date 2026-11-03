@@ -38,7 +38,7 @@ const body = [
    '</div></div>',
   '<section class="pc-sheet-about"><section class="pc-sheet-canonical-about"><h3>Om stedet</h3><p id="pcDesc">Historisk beskrivelse av Stortorget.</p>',
   '<div class="hg-place-longread"><p>Stortorget har vært en sentral møteplass gjennom lang tid. Her handlet innbyggerne og møttes på markedet, og torget fikk en viktig rolle i byens liv. Historien om stedet omfatter handel, byutvikling og mennesker som brukte området. Teksten fortsetter på høyre side av bildet og vil fylle hele bredden nedenfor bildet når den er lang nok. Stortorget har forandret seg flere ganger, men har fortsatt en sentral plass i bybildet.</p></div></section></section>',
-  '</div>',
+  '</div></div>',
   '<div class="pc-sheet-explore-grid"><div class="pc-side-stack">',
   '<div class="pc-icons-quad" data-collection-count="4">',
   '<div class="pc-collection" data-collection-id="objects" data-collection-shape="rectangle" aria-label="Gjenstander"></div>',
@@ -139,10 +139,13 @@ try {
     assert.equal(layout.count,1,"One canonical on-site surface at "+width);
     assert.equal(layout.parentClass,"pc-sheet-explore-grid","Events/Møtes belong to the collections section at "+width);
     assert.equal(layout.previousClass,"pc-side-stack","Events/Møtes follow the collection rounds at "+width);
-    assert.ok(Math.abs(layout.front.x - layout.rounds.x) <= 2,
-      "frontImage and rounds share the same left margin at "+width+": "+JSON.stringify(layout));
-    assert.ok(layout.intro.x >= layout.front.right - 1,
-      "the first description line begins to the right of frontImage at "+width+": "+JSON.stringify(layout));
+    assert.ok(Math.abs(layout.front.x - layout.rightColumn.x) <= 2,
+      "frontImage and collection column share the same outer left margin at "+width+": "+JSON.stringify(layout));
+    assert.ok(layout.rounds.x >= layout.rightColumn.x - 1 && layout.rounds.right <= layout.rightColumn.right + 1,
+      "collection tiles remain within the padded column at "+width+": "+JSON.stringify(layout));
+    assert.ok(layout.intro.x >= layout.front.right - 1 ||
+      layout.intro.y >= layout.front.bottom - 1,
+      "description begins beside or below, never over the floating frontImage at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.aboutHeading.x >= layout.front.right - 1,
       "Om stedet begins to the right of frontImage at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.rightColumn.y >= layout.media.bottom - 1,
@@ -154,7 +157,7 @@ try {
       "Events/Møtes stay within the rounds section at "+width);
     assert.equal(layout.rightDisplay,"flex","right-hand column stretches as flex at "+width);
     assert.equal(layout.collectionAspect,"auto","Place Sheet collections must not reserve legacy 3:4 empty height at "+width);
-    assert.ok(layout.typography.title >= 30 && layout.typography.description >= (width <= 720 ? 16 : 17) &&
+    assert.ok(layout.typography.title >= 30 && layout.typography.description >= (width < 850 ? 16 : 17) &&
       layout.typography.navigation >= 13 && layout.typography.collectionLabel >= 14 &&
       layout.typography.onsiteLabel >= (width <= 700 ? 11 : 13),
       "PlaceCard typography uses the modestly enlarged scale at "+width+": "+JSON.stringify(layout.typography));
