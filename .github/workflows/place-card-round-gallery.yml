@@ -10,6 +10,13 @@ on:
       - ".github/workflows/place-card-round-gallery.yml"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: place-card-round-gallery-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   round-gallery:
     runs-on: ubuntu-latest
