@@ -41,7 +41,7 @@ test('legacy candidates and the activated Scenekunst and Film underbadges are re
    assert.equal(asset.proposedFile,path);
    const activeImage=id==='scenekunst'?activated[asset.id]:(id==='film_tv'||id==='by')?(parent.subBadgeImages?.[asset.id]||null):null;
    assert.equal(asset.selectedImage,activeImage||null,id+'/'+asset.id);
-   assert.equal(asset.quality.visualApproved,(id==='film_tv'&&['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler','filmlocations','film_og_tv_produksjon','arkiv_og_kanon','visningssteder'].includes(asset.id))||(id==='by'&&['klassisk_arkitektur','modernisme','funksjonalisme','brutalisme','postmodernisme'].includes(asset.id)));
+   assert.equal(asset.quality.visualApproved,(id==='film_tv'&&['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler','filmlocations','film_og_tv_produksjon','arkiv_og_kanon','visningssteder'].includes(asset.id))||(id==='by'&&['klassisk_arkitektur','modernisme','funksjonalisme','brutalisme','postmodernisme','samtidsarkitektur'].includes(asset.id)));
    assert.ok(asset.label.length>=3&&asset.motif.length>=25);
    if(asset.status==='rendered_candidate'||asset.status==='rework_required'){
      if(asset.status==='rework_required'){
@@ -65,7 +65,7 @@ test('legacy candidates and the activated Scenekunst and Film underbadges are re
    }else if(asset.status==='integrated'){
      assert.ok(id==='film_tv'||id==='by');
      if(id==='film_tv') assert.ok(['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler','filmlocations','film_og_tv_produksjon','arkiv_og_kanon','visningssteder'].includes(asset.id));
-     else assert.ok(['klassisk_arkitektur','modernisme','funksjonalisme','brutalisme','postmodernisme'].includes(asset.id));
+     else assert.ok(['klassisk_arkitektur','modernisme','funksjonalisme','brutalisme','postmodernisme','samtidsarkitektur'].includes(asset.id));
      assert.equal(asset.quality.visualApproved,true);
      assert.ok(existsSync(resolve(root,asset.selectedImage)));
    }else{
