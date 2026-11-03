@@ -85,6 +85,7 @@ try{
     {name:"smalkjempe",label:"Smalkjempe",term:"Smalkjempe",path:"b09/36_smalkjempe_v1.webp"},
     {name:"smorbukk",label:"Smørbukk",term:"Smørbukk",path:"b09/37_smorbukk_v1.webp"},
     {name:"smaengkall",label:"Småengkall",term:"Småengkall",path:"b09/38_smaengkall_v1.webp"},
+    {name:"snoklokke",label:"Snøklokke",term:"Snøklokke",path:"b09/39_snoklokke_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
