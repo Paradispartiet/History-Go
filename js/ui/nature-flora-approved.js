@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_sandarve: Object.freeze({
+      scientificName: "Arenaria serpyllifolia",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/33_sandarve_v1.webp",
+      gitBlobSha: "098a4c460c4b289e79b651e5da7de582e75b7728",
+      reviewedAt: "2026-11-02",
+      stage: "blomstring_og_frostander",
+      evidence: "data/natur/flora/illustration-quality-sandarve-20261102.json"
+    }),
     emne_flora_russblaastjerne: Object.freeze({
       scientificName: "Scilla siberica",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/32_russblastjerne_v1.webp",
