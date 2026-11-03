@@ -74,6 +74,7 @@ try{
      src:img.getAttribute('src'),complete:img.complete,naturalWidth:img.naturalWidth,
      hasFrontImage:Boolean(img.currentSrc&&img.naturalWidth>0)
    }));
+   await page.screenshot({path:path.join(output,profile.name+'-front-historical-photo.png'),fullPage:true});
    assert.equal(await flip.evaluate(el=>el.classList.contains('is-flipped')),false);
    await flip.click({timeout:15000});
    await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:15000});
