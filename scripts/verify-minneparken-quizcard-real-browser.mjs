@@ -69,6 +69,11 @@ try{
      historicalCaption=await page.locator('.pc-photo-caption').first().innerText();
      assert.match(historicalCaption,/2007/,'Historic photo must show capture year to players');
      assert.match(historicalCaption,/2024/,'Historic photo must explain why it is not the 2024/2026 state');
+     const captionBox=await page.locator('.pc-photo-caption').first().boundingBox();
+     const heroQuizBox=await page.locator('#pcStatusBar > .pc-progress-status-line').first().boundingBox();
+     assert.ok(captionBox&&heroQuizBox,'Both dated caption and quiz action must have on-screen geometry');
+     assert.ok(captionBox.y+captionBox.height+5 <= heroQuizBox.y,
+       'Historical photo caption must not overlap the hero quiz action: '+JSON.stringify({captionBox,heroQuizBox}));
    }
    const imageState=await page.locator('#pcFrontImage').evaluate(img=>({
      src:img.getAttribute('src'),complete:img.complete,naturalWidth:img.naturalWidth,
