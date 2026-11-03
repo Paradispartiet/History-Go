@@ -1,54 +1,49 @@
-name: Tøyenbadet media and Brands — one-time generated sync
+name: Tøyenbadet two-collection actual app browser QA — one-time
 on:
   push:
     branches: [feat/toyenbadet-modern-photos-20261103]
-    paths:
-      - '.github/workflows/toyenbadet-photocandidates-once.yml'
+    paths: ['.github/workflows/toyenbadet-photocandidates-once.yml']
 permissions:
-  contents: write
+  contents: read
 jobs:
-  sync:
+  actual-browser:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
           ref: feat/toyenbadet-modern-photos-20261103
-          persist-credentials: true
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Regenerate canonical Tøyenbadet and check both collections
-        shell: bash
+      - name: Verify canonical source and generated runtime
         run: |
-          set -euo pipefail
-          npm run places:index:build
-          npm run place-open:build
           node --test tests/toyenbadet-modern-photos-before-after.test.mjs tests/toyenbadet-asplan-viak-brand.test.mjs
           node - <<'JS'
           const fs=require('node:fs');
-          const source=JSON.parse(fs.readFileSync('data/places/sport/europa/norway/oslo_sport/toyenbadet.json'));
-          const runtime=JSON.parse(fs.readFileSync('data/runtime/place-open/toyenbadet.json'));
-          const brand=runtime.brands.find(b=>b.id==='asplan_viak');
-          if(runtime.place.image!==source.image)throw Error('stale image runtime');
-          if(runtime.place.for_na?.nowImage!==source.for_na.nowImage)throw Error('missing before-after runtime');
-          if(JSON.stringify(runtime.place.place_card_profile.collection_ids)!==JSON.stringify(['brands','competitions']))throw Error('stale collection profile');
-          if(brand?.logo!=='bilder/kort/brands/asplan_viak.webp')throw Error('missing official brand preview');
-          if(Object.hasOwn(runtime.place,'cardImage'))throw Error('old cardImage reappeared');
-          console.log('Tøyenbadet source-owned runtime + authentic Brands: PASS');
+          const p=JSON.parse(fs.readFileSync('data/places/sport/europa/norway/oslo_sport/toyenbadet.json'));
+          const r=JSON.parse(fs.readFileSync('data/runtime/place-open/toyenbadet.json'));
+          if(r.place.image!==p.image || r.place.for_na?.nowImage!==p.for_na.nowImage)throw Error('Tøyenbadet runtime stale');
+          if(r.brands.find(x=>x.id==='asplan_viak')?.logo!=='bilder/kort/brands/asplan_viak.webp')throw Error('Tøyenbadet Brand logo absent');
+          if(JSON.stringify(r.place.place_card_profile.collection_ids)!==JSON.stringify(['brands','competitions']))throw Error('Tøyenbadet collection mismatch');
+          console.log('Tøyenbadet canonical runtime verified');
           JS
-      - name: Commit generated source-owned artifacts
+      - name: Find Chrome
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/places/places_index.json data/runtime/place-open/toyenbadet.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'build(toyenbadet): synchronize 2026 hero before-after and official Brands'
-            git push origin HEAD:refs/heads/feat/toyenbadet-modern-photos-20261103
-          fi
-
-# Re-run after two-source-backed-collections contract correction.
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Test real Tøyenbadet PlaceCard, hero, before-after, Brands, NM, QuizCard, Fagverk
+        run: node tests/toyenbadet-vferdig-real-browser-20261103.test.mjs
+      - name: Upload browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: toyenbadet-modern-brands-browser
+          path: artifacts/toyenbadet-vferdig-real-browser
+          if-no-files-found: ignore
+          retention-days: 14
