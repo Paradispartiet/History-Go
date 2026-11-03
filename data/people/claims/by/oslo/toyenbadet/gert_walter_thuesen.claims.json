@@ -1,0 +1,130 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "gert_walter_thuesen",
+  "profile_file": "data/people/by/oslo/toyenbadet/gert_walter_thuesen.json",
+  "identity": {
+    "canonical_identity": "Den norske arkitekten Gert Walter Thuesen, arkitekt for Tøyenbadet fra 1976; ikke fotografisk identifisert i arkivpost OB.RD0091a.",
+    "identity_status": "verified",
+    "not": []
+  },
+  "claims": [
+    {
+      "id": "gt_identity",
+      "claim": "Den gamle Tøyenbadet-bygningen ble tegnet av arkitekt Gert Walter Thuesen.",
+      "source_url": "https://www.arkitektur.no/aktuelt/arkitektur/det-nye-toeyenbadet-vanvittig-mye-energi-som-gaar-med/",
+      "source_location": "Bildebeskrivelse av gamle Tøyenbadet",
+      "source_type": "editorial",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-03",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "gt_year",
+      "claim": "Tøyenbadet stod ferdig i 1976 og den gamle bygningen ble revet i 2020.",
+      "source_url": "https://oslobyleksikon.no/side/T%C3%B8yenbadet",
+      "source_location": "Innledning og Nytt bad",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-03",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "gt_roof",
+      "claim": "Det gamle badet hadde et karakteristisk hvelvet tak.",
+      "source_url": "https://www.arkitektur.no/aktuelt/arkitektur/det-nye-toeyenbadet-vanvittig-mye-energi-som-gaar-med/",
+      "source_location": "Bildebeskrivelse og enkel og lesbar form",
+      "source_type": "editorial",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-03",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "gt_stavanger",
+      "claim": "Gert Walter Thuesen og Jacob Grytten fikk etter arkitektkonkurranse i 1964 oppdraget med Stavanger svømmehall, ferdig 1979.",
+      "source_url": "https://riksantikvaren.no/eksempelsamling/modernisering-pa-betongens-premisser/",
+      "source_location": "Historikk",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-03",
+      "status": "verified",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "gt_identity"
+    ],
+    "year": [
+      "gt_year"
+    ],
+    "placeId": [
+      "gt_identity"
+    ],
+    "places[toyenbadet]": [
+      "gt_identity"
+    ],
+    "kindLabel": [
+      "gt_identity"
+    ],
+    "source_urls": [
+      "gt_identity",
+      "gt_year",
+      "gt_roof",
+      "gt_stavanger"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "gt_identity",
+          "gt_year",
+          "gt_roof"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "gt_identity",
+          "gt_year"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "gt_roof"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "gt_stavanger"
+        ]
+      }
+    ]
+  },
+  "image_provenance": {
+    "source": "original_ai_generated_illustration",
+    "isPhotographicEvidence": false,
+    "isFaceIdentityProof": false,
+    "depictionDisclaimer": "AI-illustrasjon, ikke et dokumentert historisk portrett",
+    "file": "bilder/kort/people/gert_walter_thuesen_illustration.webp",
+    "sha256": "92bf2cee6a50612eb40bd8e05ff4791b6bacaf7ec10ee601ecb67567a44a8ec8"
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-11-03",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
