@@ -1,0 +1,43 @@
+name: Civication PA intro case materialization (one-shot)
+on:
+  push:
+    branches:
+      - civication/pa-intro-persistent-call-case-20261103
+    paths:
+      - .github/workflows/civication-pa-intro-materialize-once.yml
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify intro case branches, reload and authority boundaries
+        run: node tests/civication-produksjonsassistent-intro-persistent-case.test.js
+      - name: Rebuild canonical compiled scene registry
+        run: node scripts/build-civication-scene-registry.mjs --write
+      - name: Rebuild derived career gameplay matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Rebuild derived Role World rollout readiness
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Verify materialized case and preserve generated results
+        run: |
+          node tests/civication-produksjonsassistent-intro-persistent-case.test.js
+          git status --short
+      - name: Commit generated files only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json data/Civication/roleWorldRolloutReadiness.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Materialize PA intro persistent case in canonical indexes"
+            git push origin HEAD:civication/pa-intro-persistent-call-case-20261103
+          fi
