@@ -24,6 +24,8 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Preflight all staged quiz, Knowledge IDs, and QuizCard source parity
         run: node --test tests/minneparken-quiz-source-parity.test.mjs
+      - name: Verify licensed historic photo bytes and provenance
+        run: node --test tests/minneparken-historical-photo-provenance.test.mjs
       - name: Real-app quiz 3x7 and QuizCard flip / expand on desktop and mobile
         shell: bash
         run: |
