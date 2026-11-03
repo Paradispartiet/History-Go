@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "people_one_approved_three_other_collections_unmodified__pending_browser_and_merge",
+  "branch_status": "PR_7005_ALL_FOUR_COLLECTIONS_REAL_BROWSER_QA_PASSED__PENDING_MERGE",
   "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
-  "active_phase": "People har fått Anne Lindboe med godkjent CC BY-SA-portrett, direkte kildebelagt ved åpningen 6. januar 2025. Stedskortets fire samlinger er nå canonical: People, Objects, Brands og Competitions. Fire tidligere personkandidater har fremdeles utkast uten identitets-/lisensgodkjente portretter og publiseres ikke. Faktisk mobil/desktop og People-indeks krever QA før status kan løftes.",
+  "active_phase": "People, Objects, Brands og Competitions er nå alle kilde- og bildekontrollert, materialisert i Place-open og testet i faktisk mobil- og desktopvisning (run 41615335018). People har Anne Lindboe med korrekt Wikimedia Commons-foto fra 2023 og dokumentert deltakelse på åpningen 6. januar 2025. Fire mer relevante biografiutkast står fortsatt i staging uten godkjente portretter, og samlet vFerdig/redaksjonell kvalitet er ikke sluttgodkjent.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -62,7 +62,7 @@
   },
   "content_plan": {
     "people": {
-      "status": "ANNE_LINDBOE_LICENSED__FOUR_OTHER_PORTRAITS_BLOCKED",
+      "status": "PASS_BROWSER_ONE_APPROVED__FOUR_STAGED_PENDING_PORTRAITS",
       "accepted": [
         {
           "person_id": "anne_lindboe",
@@ -89,12 +89,13 @@
         "gert_walter_thuesen"
       ],
       "pendingImages": "Alle fire staged personer mangler bilde med korrekt fri lisens og/eller trygg identitet. Commons Henrik Christiansen er skøyteløper 1983, ikke svømmer 1996.",
-      "reason": "Anne Lindboe er en identitets- og lisensverifisert kilde til den historiske åpningen; kilde-, foto- og claim-evidens dokumentert. Fire ytterligere personligheter forblir i staging fremfor falske eller urettmessige portretter. Før endelig vFerdig må faktisk full UI-kontroll for fire samlinger bestås og redaksjonell vurdering avgjøre om resten av People-utvalget krever ferdigstilling.",
+      "reason": "People viser ett kilde-/portrettgodkjent historisk medlem, Anne Lindboe, deltakende ordfører ved åpningen 2025. Kommunal og redaksjonell stedskilde, 7 kartlagte claims, lokalt Commons-foto med CC BY-SA og visuell lisenskontroll. Faktisk People-preview besto mobil/desktop. Henrik Christiansen, Hedda Øritsland, Halvard Heskestad Waage og Gert Walter Thuesen forblir upublisert i staging fordi portretter ikke oppfyller identitet/lisens-kontrakten.",
       "source_urls": [
         "https://www.bygg.no/toyenbadet-har-apnet-forberedt-pa-storinnrykk/2739915",
         "https://commons.wikimedia.org/wiki/File:Anne_Lindboe_(1).jpg",
         "https://www.dagsavisen.no/nyheter/her-stuper-de-inn-det-nye-toyenbadet-kjempeviktig-og-verdt-hver-eneste-krone/9687632"
-      ]
+      ],
+      "browserRun": "https://github.com/Paradispartiet/History-Go/actions/runs/41615335018"
     },
     "objects": {
       "status": "PASS_BROWSER",
@@ -262,8 +263,8 @@
     "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
     "chronology": "Åtte kildebelagte kronologipunkter er materialisert, og global epokeindeks regenerert etter oppdatering fra main; ny eksakt-HEAD-test følger.",
     "collections": "2 canonical PlaceCard-samlinger med ekte medlemmer og lokale assets aktivert; browser-kontroll og runtime-paritet gjenstår.",
-    "browser_QA": "PASS: GitHub Actions run 41594599553 (2026-11-03) verified actual mobile and desktop PlaceCard: hero, Før/etter, 3 loaded collections including 2 Objects with image/disclosure, Asplan Viak, NM, QuizCard flip and Fagverk.",
-    "runtime": "PASS: places_index og data/runtime/place-open/toyenbadet.json regenerert fra canonical med 2 Objects, 3 collection_ids, riktig Asplan Viak Brand, NM 2026, 2026 hero og Før/etter."
+    "browser_QA": "PASS: GitHub Actions #41615335018 på 2026-11-03. Faktisk PlaceCard testet mobil 390px og desktop 1440px, alle fire samlinger med bildestøttede medlemmer, korrekt 2026 hero, Før/etter 2013–2026, QuizCard-vending og Fagverk.",
+    "runtime": "PASS: People/Civication-indeks, place-open/toyenbadet, places_index og people-image-attributions regenerert fra canonical. Akkurat én registrert People-record for Anne Lindboe og fire collection_ids; staged fire kandidater ble ikke inkludert."
   },
   "test_plan": [
     "node scripts/validate-place-description-production-v4_2.mjs --help / målrettet endringskontroll",
@@ -289,7 +290,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "Fire samlinger er nå canonical, People har ett rettighets- og identitetsverifisert medlem (Anne Lindboe) som deltok i åpningsseremonien 6. januar 2025. Hennes portrett ble tatt i 2023 og er tydelig attribuert med CC BY-SA 4.0. De andre fire biografiutkastene forblir i staging, uten bilde. Målrettede bilde-, People-indeks-, runtime- og mobil/desktop-kontroller gjenstår på siste head før vFerdig kan vurderes. Historisk score 23/30 holdes foreløpig."
+    "note": "Fire PlaceCard-samlinger er nå aktive og målrettet browser-testet på 390px/1440px. People har ett dokumentert og bilderettighetsklart medlem, Anne Lindboe (åpningsseremonien i 2025); fire sterkere stedsrelevante personprofiler mangler portretter og beholdes i staging. vFerdig-status blocked_vferdig og tidligere totalvurdering 23/30 er beholdt inntil endelig redaksjonell fullprofilvurdering og øvrige People-kandidater er behandlet. Ingen kunstige score-forhøyelser."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
