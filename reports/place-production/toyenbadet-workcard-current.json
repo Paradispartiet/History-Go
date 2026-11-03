@@ -58,13 +58,26 @@
       "status": "BLOCKED",
       "candidates": [
         "Gert Walter Thuesen – arkitekt for 1976-badet",
-        "Dokumenterte idrettsutøvere og arrangører for NM 2026 må identifiseres stedsspesifikt"
+        "Sverre Gullesen – offentlig kunst på det nye badet",
+        "Ida Madsen Følling – Vektløs på heissjakten",
+        "Aphra Shemza – Ocean Rise, temporær installasjon"
       ],
-      "reason": "Ingen canonical direkte Place-linked, bildeklart People-medlem er kontrollert. Ingen filler eller persondubletter."
+      "reason": "Kunstsamlingen dokumenterer tre direkte stedstilknyttede kunstnere; autentiske, rettighetsavklarte portrettbilder og canonical People-profilkoblinger er ennå ikke materialisert. Ingen fyllpersoner.",
+      "source_urls": [
+        "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet"
+      ]
     },
     "objects": {
-      "status": "BEGRUNNET N/A",
-      "reason": "Det finnes bassenger og stupebrett som anleggsdeler, men ingen identifisert særskilt fysisk gjenstand med egen objektidentitet, kildefortelling og bilde. Generisk svømmeutstyr er ikke et stedsspesifikt Object."
+      "status": "BLOCKED",
+      "candidates": [
+        "Sverre Gullesen – Uten tittel (bauta), 2024",
+        "Sverre Gullesen – Uten tittel (orm), 2024",
+        "Ida Madsen Følling – Vektløs, 2024"
+      ],
+      "reason": "Tre permanente, stedsspesifikke, fysisk identifiserbare kunstverk er dokumentert av Oslo kommunes kunstsamling. Medlemsbilder hos kunstsamlingen har ikke dokumentert gjenbrukslisens, og er derfor ikke overført. Tidligere N/A var feil etter for snevert søk.",
+      "source_urls": [
+        "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet"
+      ]
     },
     "brands": {
       "status": "BLOCKED",
@@ -72,7 +85,10 @@
         "Asplan Viak – arkitektfirma med direkte prosjektrolle",
         "Lambertseter SK, Oslo IL Svømming og SK Speed – arrangørklubber for NM 2026"
       ],
-      "reason": "Selvstendig identitet og tilknytning er plausible, men autentiske rettighetsavklarte logoer og canonical Brand-koblinger er ikke gjennomgått; Tøyenbadet som egen place-first identitet skal ikke speiles kunstig."
+      "reason": "Asplan Viak har dokumentert arkitektrolle og må vurderes som Brand-kandidat med selvstendig identitet; originale logo-/skiltbilder og canonical kvalifisering mangler. NM-klubber skal ikke konstrueres til Brands.",
+      "source_urls": [
+        "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet"
+      ]
     },
     "competitions": {
       "status": "PASS_CANDIDATE_PENDING_BROWSER",
@@ -103,16 +119,17 @@
       "reason": "Språkleksikonet har fire kildebelagte oppføringer, registrert i manifest og place-open. Språkleksikon v2 har bestått CI på forrige head."
     },
     "chronology": {
-      "status": "BLOCKED",
+      "status": "PASS_CANDIDATE_PENDING_EXACT_HEAD_CI",
       "anchors": [
         1976,
         2008,
         2019,
         2020,
+        2024,
         2025,
         2026
       ],
-      "reason": "Seks kronologipunkter er lagt inn i kanonisk leksikon, men generert epokeindeks må synkroniseres og testes før PASS."
+      "reason": "Åtte kildekoblede kronologipunkter inkludert offentlig kunst er lagt inn; eksakt HEAD-gate etter regenerering gjenstår."
     },
     "fagverk": {
       "status": "PASS_EXISTING_PENDING_LIVE_CHECK",
@@ -123,8 +140,8 @@
       "reason": "Fullquiz 21 og QuizCard 10 ligger i main; ny Knowledge-, manifest- og browserkontroll mangler."
     },
     "leksikon": {
-      "status": "PASS_CANDIDATE",
-      "reason": "Egen dokumentert idrettshistorisk hovedartikkel og seks kronologipunkter lagt i manifest og stedets place-open; exact-head generatorparitet gjenstår."
+      "status": "PASS_CANDIDATE_PENDING_EXACT_HEAD_CI",
+      "reason": "Hovedartikkel om 1976/2025 og NM; ny kildebundet kunsthistorie og åtte årspunkter er lagt til. Runtime og browser må verifiseres."
     }
   },
   "collection_ids": [
@@ -158,7 +175,7 @@
     "photos": "PASS_CANONICAL_ASSETS: separate license-tracked historic hero and true 900x1350 portrait; visual browser QA remains blocked.",
     "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
     "chronology": "KONKRET INNHOLD LAGT INN: Seks source-backed år i nytt leksikon; epokeindeks-generering og exact-head test gjenstår.",
-    "collections": "PARTIAL: one sourced NM 2026 competition with original vector preview. Pending browser collection/popup QA; People and Brands separately BLOCKED, Objects N/A.",
+    "collections": "PARTIAL: dokumentert konkurransesamling for NM 2026; People og Objects har reelle, uferdige kandidater fra Oslo kommunes kunstsamling og skal ikke feilmerkes N/A.",
     "browser_QA": "BLOCKED",
     "runtime": "synkronisert JSON i arbeidsgren, generatorkontroll ikke kjørt"
   },
@@ -180,7 +197,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "Dokumentert egen konkurransesamling er integrert, men People/Brands, Før-etter og sluttkontroll av samling/popup og endelig CI er fremdeles blokkerende. Ikke vFerdig."
+    "note": "Kildedokumentert offentlig kunst er integrert i leksikon og kandidataudit. People og Objects mangler rettighetsklarerte preview/portrettbilder og canonical materialisering. Endelig browser og CI er ikke bekreftet. Ikke vFerdig."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
