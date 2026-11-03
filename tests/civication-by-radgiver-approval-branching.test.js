@@ -93,7 +93,7 @@ async function selected(s){
  const state=s.getState();
  state.mail_runtime_v1={role_plan_id:plan.id,step_index:stepIndex,consumed_ids:[]};
  const rows=await window.CivicationMailRuntime.makeCandidateMailsForActiveRole(active,state);
- return rows.map(x=>x.id);
+ return JSON.parse(JSON.stringify(rows.map(x=>x.id)));
 }
 (async()=>{
  const yes=await selected(approved.s);
