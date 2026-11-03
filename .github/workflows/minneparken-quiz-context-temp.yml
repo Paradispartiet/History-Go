@@ -1,0 +1,48 @@
+name: Temporary Minneparken canonical quiz-context build
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-quiz-context-temp.yml
+permissions:
+  contents: write
+jobs:
+  build:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build canonical Minneparken quiz context
+        run: |
+          node scripts/build-quiz-production-context.mjs --category historie --target minneparken_gamlebyen --output data/quiz/production_context/historie/minneparken_gamlebyen.json
+          node scripts/build-quiz-production-context.mjs --category historie --target minneparken_gamlebyen --output data/quiz/production_context/historie/minneparken_gamlebyen.json --check
+      - name: Confirm 3x7 source-backed set plan
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const p = JSON.parse(fs.readFileSync('data/quiz/production_context/historie/minneparken_gamlebyen.json','utf8'));
+          assert.equal(p.profile, 'narrow_3x7');
+          assert.deepEqual(p.set_plan.map(s => s.planned_questions), [7,7,7]);
+          assert.deepEqual(p.set_plan.map(s => s.phase), ['opening','bridge','final']);
+          assert.equal(p.claim_bank.length, 21);
+          console.log('PASS canonical Minneparken context: 21 claims, 3x7 planned; not quiz release');
+          NODE
+      - name: Persist generated context only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/historie/minneparken_gamlebyen.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build: materialize Minneparken canonical quiz production context"
+            git push origin HEAD:content/minneparken-kildebasert-leksikon-20261103
+          fi
