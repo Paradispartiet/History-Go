@@ -1,0 +1,36 @@
+name: Temporary Minneparken production validation
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-validation-temp.yml
+permissions:
+  contents: read
+jobs:
+  validate:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Validate description claim packets
+        run: node scripts/validate-place-description-production-v4_2.mjs --all
+      - name: Validate Historie production report
+        run: node scripts/audit-historie-place-production.mjs --all
+      - name: Verify description and Historie contracts
+        run: node --test tests/place-description-production-v4_2.test.mjs tests/historie-place-production.test.mjs
+      - name: Verify generated data and release
+        run: |
+          npm run place-open:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run build:web:check
