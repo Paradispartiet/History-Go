@@ -33,10 +33,11 @@ test('Tøyenbadet: two original historical photographs remain available and corr
   assert.equal(place.for_na.beforeImage, oldImage);
   assert.equal(place.for_na.beforeImageMeta.creator, 'Chell Hill');
   assert.equal(place.for_na.beforeImageMeta.license, 'CC BY-SA 3.0');
-  assert.equal(place.for_na.beforeImageMeta.date, '2013-05-25');
+  assert.equal(place.for_na.beforeImageMeta.date, '2013-05');
   assert.equal(place.for_na.nowImage, newImage);
   assert.equal(place.for_na.nowImageMeta.creator, 'Marek Lumi');
   assert.equal(place.for_na.nowImageMeta.date, '2026-09-28');
+  assert.equal(place.for_na.nowImageMeta.dateType, 'publication_date_not_verified_capture_date');
   assert.match(place.for_na.now, /6. januar 2025/);
 });
 
