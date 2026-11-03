@@ -89,6 +89,7 @@ try{
     {name:"stemorsblomst",label:"Stemorsblomst \\(forvillet\\)",term:"Stemorsblomst",path:"b09/40_stemorsblomst_v1.webp"},
     {name:"strandvindel",label:"Strandvindel",term:"Strandvindel",path:"b09/41_strandvindel_v1.webp"},
     {name:"taklok",label:"Takløk",term:"Takløk",path:"b09/42_taklok_v1.webp"},
+    {name:"timian",label:"Timian",term:"Timian",path:"b09/43_timian_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
