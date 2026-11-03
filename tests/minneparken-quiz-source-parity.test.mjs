@@ -94,3 +94,34 @@ test('Minneparken 10-question QuizCard has exact canonical quiz and answer-key p
     assert.equal(collection.answerKey[i].answerIndex, q.answerIndex);
   }
 });
+
+
+test('Minneparken release is fail-closed while canonical Knowledge or Historie gates are incomplete', () => {
+  const quizManifest = load('data/quiz/manifest.json');
+  const cardManifest = load('data/quizcards/historie/manifest.json');
+  const history = load(`data/places/historie-production/${ID}.json`);
+  const quizFile = `data/quiz/historie/${ID}_sets.json`;
+  const cardFile = `${ID}_quizcard_v1.json`;
+  const quizActive = (quizManifest.files || []).includes(quizFile) ||
+    (quizManifest.sets || []).some((entry) => entry?.targetId === ID || entry?.file === quizFile);
+  const cardActive = (cardManifest.collections || []).includes(cardFile);
+  const hasKnowledge = questions.every((q) => q.knowledge_link_status === 'linked' &&
+    q.primary_knowledge_unit_id &&
+    q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id));
+  const hasCardKnowledge = card.cards[0].questions.every((q) =>
+    q.knowledge_link_status === 'linked' &&
+    q.primary_knowledge_unit_id &&
+    q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id));
+  if (!hasKnowledge || !hasCardKnowledge) {
+    assert.equal(quizActive, false, 'Do not activate fullquiz before all canonical Knowledge links exist');
+    assert.equal(cardActive, false, 'Do not activate QuizCard before all canonical Knowledge links exist');
+    assert.notEqual(history.gates?.G?.status, 'PASS', 'Gate G cannot pass without canonical Knowledge');
+  }
+  if (history.status === 'ready') {
+    for (const gate of ['F', 'G', 'H']) {
+      assert.equal(history.gates?.[gate]?.status, 'PASS', `Historie ready requires gate ${gate} PASS`);
+    }
+    assert.equal(quizActive, true);
+    assert.equal(cardActive, true);
+  }
+});
