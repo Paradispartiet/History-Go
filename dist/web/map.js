@@ -621,7 +621,7 @@
         entry.element.style.borderColor = !markerBorder || markerBorder.toLowerCase() === markerFill.toLowerCase() ? "#17212a" : markerBorder;
         entry.element.style.opacity = ["review", "unknown"].includes(feature.properties.coordinateTrust) ? "0.9" : "1";
         entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 4px rgba(0,0,0,.3)";
-        const badgeSrc = isBadgeMarkerMode() ? placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "" : "";
+        const badgeSrc = isBadgeMarkerMode() ? feature.properties.badgeSrc || "" : "";
         if (badgeSrc !== entry.badgeSrc) {
           (_b = entry.badgeImage) == null ? void 0 : _b.remove();
           entry.badgeSrc = badgeSrc;
@@ -679,6 +679,19 @@
       var _a;
       return String(((_a = window.catIdFromDisplay) == null ? void 0 : _a.call(window, value)) || value || "").trim().toLowerCase();
     }
+
+    // Oslo artwork is a city-scoped exception, never the global By category badge.
+    const OSLO_CITY_BADGE = "bilder/merker/by/cities/oslo-by-brodert-v1.webp";
+    function badgeImageForPlace(place) {
+      const category = badgeCategoryId(place && place.category);
+      const fallback = placeBadgeImages.get(category) || "";
+      // Only actual places/by/oslo source records qualify; names and coordinates are not proof.
+      const sourceFile = String((place && place.sourceFile) || "")
+        .trim().replace(/\\/g, "/").replace(/^\/?(?:data\/)?/, "");
+      if (category === "by" && sourceFile.startsWith("places/by/oslo/")) return OSLO_CITY_BADGE;
+      return fallback;
+    }
+
     function ensurePlaceBadgeImages() {
       var _a;
       const setBadges = (badges) => {
@@ -871,7 +884,7 @@
           entry.label.textContent = name;
           entry.element.setAttribute("aria-label", name);
         }
-        const badgeSrc = isBadgeMarkerMode() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM ? placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "" : "";
+        const badgeSrc = isBadgeMarkerMode() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM ? feature.properties.badgeSrc || "" : "";
         if (badgeSrc !== entry.badgeSrc) {
           (_i = entry.badgeImage) == null ? void 0 : _i.remove();
           entry.badgeSrc = badgeSrc;
@@ -1062,12 +1075,14 @@
         const base = catColor(p.category);
         const fill = isVisited ? lighten(base, 0.25) : base;
         const border = getPlaceMarkerBorder(p.category, base);
+        const badgeSrcForPlace = badgeImageForPlace(p);
         features.push({
           type: "Feature",
           properties: {
             id: p.id,
             name: p.name || "",
-            badgeAvailable: isBadgeMarkerMode() && placeBadgeImages.has(badgeCategoryId(p.category)) ? 1 : 0,
+            badgeAvailable: isBadgeMarkerMode() && !!badgeSrcForPlace ? 1 : 0,
+            badgeSrc: badgeSrcForPlace,
             category: p.category || "",
             visited: isVisited ? 1 : 0,
             isAreaPlace: isAreaPlace(p) ? 1 : 0,
