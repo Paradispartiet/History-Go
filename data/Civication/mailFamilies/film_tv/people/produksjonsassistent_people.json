@@ -53,7 +53,23 @@
                   "trust": 2,
                   "quality": 1,
                   "risk": -1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_people_line_hasteonske_A_decision",
+                    "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "alternative_location_access_requested",
+                    "note": "Alternativ rute er forberedt; Saras adgangsgodkjenning er forespurt, ikke gitt."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_people_line_hasteonske_A_flag",
+                    "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                    "flag": "alternate_access_approval_requested"
+                  }
+                ]
               }
             },
             {
@@ -71,10 +87,66 @@
                   "status": 1,
                   "risk": 2,
                   "trust": -1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_people_line_hasteonske_B_decision",
+                    "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                    "to_status": "needs_review",
+                    "to_phase": "unapproved_transport_relocation",
+                    "note": "Sjåføren har fått en ny inngang før Sara har godkjent den; ruteendringen er ikke godkjent."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_people_line_hasteonske_B_flag",
+                    "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                    "flag": "access_change_not_authorized"
+                  }
+                ]
               }
             }
-          ]
+          ],
+          "work_context": {
+            "object_ids": [
+              "film_tv_pa_intro_coordination_case_001"
+            ],
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "priority": "high"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "upsert",
+                "event_id": "film_tv_pa_people_line_hasteonske_case_observed",
+                "work_object": {
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                  "kind": "production_call_and_access_handoff_case",
+                  "role_scope": "produksjonsassistent",
+                  "institution_id": "film_tv_produksjonsenhet_001",
+                  "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                  "people_refs": [
+                    "line_produksjonskoordinator",
+                    "amir_innspillingsleder",
+                    "sara_lokasjonsansvarlig"
+                  ],
+                  "place_refs": [
+                    "produksjonskontor_callbord",
+                    "opptakslokasjon_inngang",
+                    "sett_sikkerhetssone"
+                  ],
+                  "open_questions": [
+                    "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                    "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                    "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                    "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                  ],
+                  "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ]
     },

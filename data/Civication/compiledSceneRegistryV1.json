@@ -33567,7 +33567,23 @@
                 "quality": 2,
                 "risk": -2,
                 "trust": 2
-              }
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_conflict_sperret_sideinngang_A_decision",
+                  "note": "Crewet er samlet under tak med foreslått venteflyt; Saras sikkerhetsklarering må bekreftes før adgang.",
+                  "op": "transition",
+                  "to_phase": "safety_check_pending_crew_wait",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_conflict_sperret_sideinngang_A_flag",
+                  "flag": "crew_waiting_for_safety_clearance",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Du beskytter både mennesker og tidsplan ved å koordinere rundt grensen.",
             "id": "A",
@@ -33585,7 +33601,23 @@
                 "risk": 4,
                 "status": 1,
                 "trust": -3
-              }
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_conflict_sperret_sideinngang_B_decision",
+                  "note": "Kamera og lyd ble bedt om å gå inn før rømningsvei og kabler er kontrollert; innslippet er ikke godkjent.",
+                  "op": "transition",
+                  "to_phase": "unauthorized_entry_attempt",
+                  "to_status": "needs_review",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_conflict_sperret_sideinngang_B_flag",
+                  "flag": "unauthorized_entry_attempt_reported",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "En produksjonsassistent kan ikke oppheve en uferdig sikkerhetskontroll.",
             "id": "B",
@@ -33599,6 +33631,39 @@
         ],
         "competency": "avvikshandtering",
         "consequence_axis": "sikkerhet_og_tillit_vs_forsinkelsesrisiko",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_conflict_sperret_sideinngang_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "production_call_and_access_handoff_case",
+                "open_questions": [
+                  "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                  "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                  "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                  "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                ],
+                "people_refs": [
+                  "line_produksjonskoordinator",
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig"
+                ],
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                "work_object_id": "film_tv_pa_intro_coordination_case_001"
+              }
+            }
+          ]
+        },
         "from": "Sara, lokasjonsansvarlig",
         "id": "film_tv_pa_conflict_sperret_sideinngang",
         "mail_family": "produksjonsassistent_lokasjonskonflikt",
@@ -33619,7 +33684,14 @@
         ],
         "subject": "Sideinngangen er ikke frigitt",
         "summary": "Crewet står i regnet, men sideinngangen mangler sikkerhetskontroll og kan ikke åpnes ennå.",
-        "task_domain": "lokasjon_og_logistikk"
+        "task_domain": "lokasjon_og_logistikk",
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_intro_coordination_case_001"
+          ],
+          "priority": "high"
+        }
       },
       "id": "film_tv_pa_conflict_sperret_sideinngang",
       "mail_type": "conflict",
@@ -33629,7 +33701,23 @@
         "choices": [
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_conflict_sperret_sideinngang_A_decision",
+                  "note": "Crewet er samlet under tak med foreslått venteflyt; Saras sikkerhetsklarering må bekreftes før adgang.",
+                  "op": "transition",
+                  "to_phase": "safety_check_pending_crew_wait",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_conflict_sperret_sideinngang_A_flag",
+                  "flag": "crew_waiting_for_safety_clearance",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Du beskytter både mennesker og tidsplan ved å koordinere rundt grensen.",
             "id": "A",
@@ -33638,7 +33726,23 @@
           },
           {
             "effects": {
-              "score_delta": -1
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_conflict_sperret_sideinngang_B_decision",
+                  "note": "Kamera og lyd ble bedt om å gå inn før rømningsvei og kabler er kontrollert; innslippet er ikke godkjent.",
+                  "op": "transition",
+                  "to_phase": "unauthorized_entry_attempt",
+                  "to_status": "needs_review",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_conflict_sperret_sideinngang_B_flag",
+                  "flag": "unauthorized_entry_attempt_reported",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "En produksjonsassistent kan ikke oppheve en uferdig sikkerhetskontroll.",
             "id": "B",
@@ -33658,7 +33762,39 @@
         "day_phase": "any",
         "delivery": "mail",
         "domain": "work",
-        "effects": {},
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_conflict_sperret_sideinngang_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "production_call_and_access_handoff_case",
+                "open_questions": [
+                  "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                  "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                  "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                  "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                ],
+                "people_refs": [
+                  "line_produksjonskoordinator",
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig"
+                ],
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                "work_object_id": "film_tv_pa_intro_coordination_case_001"
+              }
+            }
+          ]
+        },
         "id": "film_tv_pa_conflict_sperret_sideinngang",
         "interaction_mode": "decision",
         "knowledge_contract": {
@@ -33678,9 +33814,16 @@
         "scene_kind": "conflict",
         "schema": "civication_scene_v1",
         "thread_id": "produksjonsassistent.mail.film_tv_pa_conflict_sperret_sideinngang",
-        "version": 1
+        "version": 1,
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_intro_coordination_case_001"
+          ],
+          "priority": "high"
+        }
       },
-      "source_hash": "d8e13b695f8583236e23886bd75a15a9cc8791502a6deeda3ccee27a01f74790",
+      "source_hash": "fec6a2a5b9a9a2225a5295056fe14a7419bb30676481be2df7b7762f379b0f92",
       "source_path": "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -34513,7 +34656,23 @@
                 "quality": 2,
                 "risk": -1,
                 "trust": 1
-              }
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_event_scene_rekkefolge_endret_A_decision",
+                  "note": "Amirs besluttede scenerekkefølge er logget og sendt med mottakerliste; kvitteringer fra avdelingene er ennå ikke bekreftet.",
+                  "op": "transition",
+                  "to_phase": "change_notice_receipts_requested",
+                  "to_status": "awaiting_confirmation",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_event_scene_rekkefolge_endret_A_flag",
+                  "flag": "decision_broadcast_receipts_requested",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Kort tekst og eksplisitte mottakere gjør endringen håndterbar.",
             "id": "A",
@@ -34530,7 +34689,23 @@
               "stats": {
                 "energy": -2,
                 "risk": 2
-              }
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_event_scene_rekkefolge_endret_B_decision",
+                  "note": "Endringen er formidlet muntlig, men mottakerstatus og komplett sporbar logg mangler.",
+                  "op": "transition",
+                  "to_phase": "verbal_changes_without_receipts",
+                  "to_status": "needs_reconciliation",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_event_scene_rekkefolge_endret_B_flag",
+                  "flag": "untracked_verbal_delivery",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Noen får beskjed raskt, men ingen ser hvem som fortsatt mangler den.",
             "id": "B",
@@ -34544,6 +34719,39 @@
         ],
         "competency": "sporbarhet",
         "consequence_axis": "koordinert_omstilling_vs_nytt_avvik",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_event_scene_rekkefolge_endret_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "production_call_and_access_handoff_case",
+                "open_questions": [
+                  "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                  "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                  "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                  "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                ],
+                "people_refs": [
+                  "line_produksjonskoordinator",
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig"
+                ],
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                "work_object_id": "film_tv_pa_intro_coordination_case_001"
+              }
+            }
+          ]
+        },
         "from": "Amir, innspillingsleder",
         "id": "film_tv_pa_event_scene_rekkefolge_endret",
         "mail_family": "produksjonsassistent_avvikshendelse",
@@ -34564,7 +34772,14 @@
         ],
         "subject": "Scene 14 flyttes foran scene 11",
         "summary": "En medvirkende må dra tidlig, og tre avdelinger trenger samme endring i løpet av få minutter.",
-        "task_domain": "avvik_og_overlevering"
+        "task_domain": "avvik_og_overlevering",
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_intro_coordination_case_001"
+          ],
+          "priority": "high"
+        }
       },
       "id": "film_tv_pa_event_scene_rekkefolge_endret",
       "mail_type": "event",
@@ -34574,7 +34789,23 @@
         "choices": [
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_event_scene_rekkefolge_endret_A_decision",
+                  "note": "Amirs besluttede scenerekkefølge er logget og sendt med mottakerliste; kvitteringer fra avdelingene er ennå ikke bekreftet.",
+                  "op": "transition",
+                  "to_phase": "change_notice_receipts_requested",
+                  "to_status": "awaiting_confirmation",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_event_scene_rekkefolge_endret_A_flag",
+                  "flag": "decision_broadcast_receipts_requested",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Kort tekst og eksplisitte mottakere gjør endringen håndterbar.",
             "id": "A",
@@ -34583,7 +34814,23 @@
           },
           {
             "effects": {
-              "score_delta": 0
+              "score_delta": 0,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_event_scene_rekkefolge_endret_B_decision",
+                  "note": "Endringen er formidlet muntlig, men mottakerstatus og komplett sporbar logg mangler.",
+                  "op": "transition",
+                  "to_phase": "verbal_changes_without_receipts",
+                  "to_status": "needs_reconciliation",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_event_scene_rekkefolge_endret_B_flag",
+                  "flag": "untracked_verbal_delivery",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Noen får beskjed raskt, men ingen ser hvem som fortsatt mangler den.",
             "id": "B",
@@ -34603,7 +34850,39 @@
         "day_phase": "any",
         "delivery": "mail",
         "domain": "work",
-        "effects": {},
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_event_scene_rekkefolge_endret_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "production_call_and_access_handoff_case",
+                "open_questions": [
+                  "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                  "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                  "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                  "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                ],
+                "people_refs": [
+                  "line_produksjonskoordinator",
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig"
+                ],
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                "work_object_id": "film_tv_pa_intro_coordination_case_001"
+              }
+            }
+          ]
+        },
         "id": "film_tv_pa_event_scene_rekkefolge_endret",
         "interaction_mode": "decision",
         "knowledge_contract": {
@@ -34623,9 +34902,16 @@
         "scene_kind": "milestone",
         "schema": "civication_scene_v1",
         "thread_id": "produksjonsassistent.mail.film_tv_pa_event_scene_rekkefolge_endret",
-        "version": 1
+        "version": 1,
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_intro_coordination_case_001"
+          ],
+          "priority": "high"
+        }
       },
-      "source_hash": "48be3313a066c1df85b62844b50fbdca1202ca4c613ba174237979a5a0030ab9",
+      "source_hash": "2c729979039f3f1c04768291a2a00b75f0aebcdd7344a857bccc5b3fb982aeed",
       "source_path": "data/Civication/mailFamilies/film_tv/event/produksjonsassistent_event.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -35463,12 +35749,28 @@
                 "quality": 2,
                 "risk": -2,
                 "trust": 2
-              }
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_A_decision",
+                  "note": "Amirs versjonsbekreftelse er forespurt; versjon og endringslogg kan først sendes som godkjent etter svar.",
+                  "op": "transition",
+                  "to_phase": "call_version_approval_pending",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_A_flag",
+                  "flag": "call_version_approval_requested",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
-            "feedback": "Det koster tre minutter, men alle får samme grunnlag.",
+            "feedback": "Det tar noen minutter å avklare beslutningseier. Mottak og godkjenning må fortsatt bekreftes før alle kan handle etter samme call.",
             "id": "A",
             "label": "Be Amir bekrefte versjon og logg endringen",
-            "reply": "Jeg stanser videresendingen, ber om én eksplisitt bekreftelse og sender canonical lenke til berørte avdelinger.",
+            "reply": "Jeg stanser videresendingen og ber Amir bekrefte gjeldende versjon. Etter svar sender jeg én lenke med endringslogg og ber om mottakskvittering.",
             "tags": [
               "process",
               "trust"
@@ -35481,7 +35783,23 @@
                 "risk": 3,
                 "status": 1,
                 "trust": -2
-              }
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_B_decision",
+                  "note": "Versjon 8 ble sendt uten Amirs godkjenning; mottakerne har en ubekreftet call-versjon.",
+                  "op": "transition",
+                  "to_phase": "unapproved_call_version_sent",
+                  "to_status": "needs_review",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_B_flag",
+                  "flag": "unapproved_call_version_sent",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Transporten kjører, men ingen kan forklare hva som faktisk ble godkjent.",
             "id": "B",
@@ -35499,7 +35817,23 @@
                 "energy": 1,
                 "quality": -2,
                 "risk": 2
-              }
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_C_decision",
+                  "note": "Begge versjoner ble sendt til avdelingene; én gyldig beslutning og kvittering mangler.",
+                  "op": "transition",
+                  "to_phase": "parallel_call_versions_sent",
+                  "to_status": "needs_reconciliation",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_C_flag",
+                  "flag": "parallel_call_versions_sent",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Du flytter versjonskonflikten nedover i produksjonen.",
             "id": "C",
@@ -35513,6 +35847,39 @@
         ],
         "competency": "tidsplanpresisjon",
         "consequence_axis": "felles_flyt_vs_forsinkelse",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_job_to_call_sheet_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "production_call_and_access_handoff_case",
+                "open_questions": [
+                  "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                  "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                  "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                  "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                ],
+                "people_refs": [
+                  "line_produksjonskoordinator",
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig"
+                ],
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                "work_object_id": "film_tv_pa_intro_coordination_case_001"
+              }
+            }
+          ]
+        },
         "from": "Line, produksjonskoordinator",
         "id": "film_tv_pa_job_to_call_sheet",
         "mail_family": "produksjonsassistent_call_sheet",
@@ -35533,7 +35900,14 @@
         "stage": "stable",
         "subject": "To call sheets, én opptaksstart",
         "summary": "Lys bruker versjon 7, transport bruker versjon 8, og begge ber deg bekrefte hvilken plan som gjelder før første bil kjører.",
-        "task_domain": "call_og_tidsplan"
+        "task_domain": "call_og_tidsplan",
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_intro_coordination_case_001"
+          ],
+          "priority": "high"
+        }
       },
       "id": "film_tv_pa_job_to_call_sheet",
       "mail_type": "job",
@@ -35543,16 +35917,48 @@
         "choices": [
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_A_decision",
+                  "note": "Amirs versjonsbekreftelse er forespurt; versjon og endringslogg kan først sendes som godkjent etter svar.",
+                  "op": "transition",
+                  "to_phase": "call_version_approval_pending",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_A_flag",
+                  "flag": "call_version_approval_requested",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
-            "feedback": "Det koster tre minutter, men alle får samme grunnlag.",
+            "feedback": "Det tar noen minutter å avklare beslutningseier. Mottak og godkjenning må fortsatt bekreftes før alle kan handle etter samme call.",
             "id": "A",
             "label": "Be Amir bekrefte versjon og logg endringen",
-            "reply": "Jeg stanser videresendingen, ber om én eksplisitt bekreftelse og sender canonical lenke til berørte avdelinger."
+            "reply": "Jeg stanser videresendingen og ber Amir bekrefte gjeldende versjon. Etter svar sender jeg én lenke med endringslogg og ber om mottakskvittering."
           },
           {
             "effects": {
-              "score_delta": -1
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_B_decision",
+                  "note": "Versjon 8 ble sendt uten Amirs godkjenning; mottakerne har en ubekreftet call-versjon.",
+                  "op": "transition",
+                  "to_phase": "unapproved_call_version_sent",
+                  "to_status": "needs_review",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_B_flag",
+                  "flag": "unapproved_call_version_sent",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Transporten kjører, men ingen kan forklare hva som faktisk ble godkjent.",
             "id": "B",
@@ -35561,7 +35967,23 @@
           },
           {
             "effects": {
-              "score_delta": -1
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_C_decision",
+                  "note": "Begge versjoner ble sendt til avdelingene; én gyldig beslutning og kvittering mangler.",
+                  "op": "transition",
+                  "to_phase": "parallel_call_versions_sent",
+                  "to_status": "needs_reconciliation",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_job_to_call_sheet_C_flag",
+                  "flag": "parallel_call_versions_sent",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Du flytter versjonskonflikten nedover i produksjonen.",
             "id": "C",
@@ -35581,7 +36003,39 @@
         "day_phase": "any",
         "delivery": "mail",
         "domain": "work",
-        "effects": {},
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_job_to_call_sheet_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "production_call_and_access_handoff_case",
+                "open_questions": [
+                  "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                  "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                  "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                  "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                ],
+                "people_refs": [
+                  "line_produksjonskoordinator",
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig"
+                ],
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                "work_object_id": "film_tv_pa_intro_coordination_case_001"
+              }
+            }
+          ]
+        },
         "id": "film_tv_pa_job_to_call_sheet",
         "interaction_mode": "decision",
         "knowledge_contract": {
@@ -35601,9 +36055,16 @@
         "scene_kind": "task",
         "schema": "civication_scene_v1",
         "thread_id": "produksjonsassistent.mail.film_tv_pa_job_to_call_sheet",
-        "version": 1
+        "version": 1,
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_intro_coordination_case_001"
+          ],
+          "priority": "high"
+        }
       },
-      "source_hash": "abbbff3e9b6e151c0fcc7bde04fc6ea940b4b119af99d64cdc98cbf48d3b9513",
+      "source_hash": "b65c1713ee4bd2dfa07b2911ebb6732caf4934f5aa520363122c2f0493f44886",
       "source_path": "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -36287,7 +36748,23 @@
                 "quality": 1,
                 "risk": -1,
                 "trust": 2
-              }
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_people_line_hasteonske_A_decision",
+                  "note": "Alternativ rute er forberedt; Saras adgangsgodkjenning er forespurt, ikke gitt.",
+                  "op": "transition",
+                  "to_phase": "alternative_location_access_requested",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_people_line_hasteonske_A_flag",
+                  "flag": "alternate_access_approval_requested",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Line får hjelp uten at du later som du eier lokasjonen.",
             "id": "A",
@@ -36305,7 +36782,23 @@
                 "risk": 2,
                 "status": 1,
                 "trust": -1
-              }
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_people_line_hasteonske_B_decision",
+                  "note": "Sjåføren har fått en ny inngang før Sara har godkjent den; ruteendringen er ikke godkjent.",
+                  "op": "transition",
+                  "to_phase": "unapproved_transport_relocation",
+                  "to_status": "needs_review",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_people_line_hasteonske_B_flag",
+                  "flag": "access_change_not_authorized",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Du ser effektiv ut helt til adgangsspørsmålet møter porten.",
             "id": "B",
@@ -36319,6 +36812,39 @@
         ],
         "competency": "kommunikasjon",
         "consequence_axis": "tillit_vs_adgangsrisiko",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_people_line_hasteonske_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "production_call_and_access_handoff_case",
+                "open_questions": [
+                  "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                  "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                  "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                  "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                ],
+                "people_refs": [
+                  "line_produksjonskoordinator",
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig"
+                ],
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                "work_object_id": "film_tv_pa_intro_coordination_case_001"
+              }
+            }
+          ]
+        },
         "from": "Line, produksjonskoordinator",
         "id": "film_tv_pa_people_line_hasteonske",
         "mail_family": "produksjonsassistent_settfolk",
@@ -36339,7 +36865,14 @@
         ],
         "subject": "Kan du bare flytte transporten?",
         "summary": "Line trenger bilen ved en annen inngang og ber deg endre kjøreplanen før lokasjonsansvarlig svarer.",
-        "task_domain": "avdelingskoordinering"
+        "task_domain": "avdelingskoordinering",
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_intro_coordination_case_001"
+          ],
+          "priority": "high"
+        }
       },
       "id": "film_tv_pa_people_line_hasteonske",
       "mail_type": "people",
@@ -36349,7 +36882,23 @@
         "choices": [
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_people_line_hasteonske_A_decision",
+                  "note": "Alternativ rute er forberedt; Saras adgangsgodkjenning er forespurt, ikke gitt.",
+                  "op": "transition",
+                  "to_phase": "alternative_location_access_requested",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_people_line_hasteonske_A_flag",
+                  "flag": "alternate_access_approval_requested",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Line får hjelp uten at du later som du eier lokasjonen.",
             "id": "A",
@@ -36358,7 +36907,23 @@
           },
           {
             "effects": {
-              "score_delta": -1
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_people_line_hasteonske_B_decision",
+                  "note": "Sjåføren har fått en ny inngang før Sara har godkjent den; ruteendringen er ikke godkjent.",
+                  "op": "transition",
+                  "to_phase": "unapproved_transport_relocation",
+                  "to_status": "needs_review",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_people_line_hasteonske_B_flag",
+                  "flag": "access_change_not_authorized",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001"
+                }
+              ]
             },
             "feedback": "Du ser effektiv ut helt til adgangsspørsmålet møter porten.",
             "id": "B",
@@ -36378,7 +36943,39 @@
         "day_phase": "any",
         "delivery": "mail",
         "domain": "work",
-        "effects": {},
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_people_line_hasteonske_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "production_call_and_access_handoff_case",
+                "open_questions": [
+                  "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                  "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                  "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                  "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                ],
+                "people_refs": [
+                  "line_produksjonskoordinator",
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig"
+                ],
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                "work_object_id": "film_tv_pa_intro_coordination_case_001"
+              }
+            }
+          ]
+        },
         "id": "film_tv_pa_people_line_hasteonske",
         "interaction_mode": "decision",
         "knowledge_contract": {
@@ -36398,9 +36995,16 @@
         "scene_kind": "relationship",
         "schema": "civication_scene_v1",
         "thread_id": "produksjonsassistent.mail.film_tv_pa_people_line_hasteonske",
-        "version": 1
+        "version": 1,
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_intro_coordination_case_001"
+          ],
+          "priority": "high"
+        }
       },
-      "source_hash": "cc8f3491b00652d8cac5b5f91d523604aaa42eab3f25e4c21abe3bd672d7e8d7",
+      "source_hash": "6edfbec06082ecea88ab2162be589fa19ebddb2c56d86f572171972064ed7c08",
       "source_path": "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -289518,7 +290122,7 @@
     "file_count": 7,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "91bb9e6341e9c8987ff3ef700debe21934ff4af4b79fdf52ad367a5de8e05d47",
+  "registry_hash": "7a0beb24557bee520a7002649cc07ed03be7722882fe5854ee07a1fb5f66d784",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
