@@ -86,8 +86,15 @@ test("4.2 source-review packet hashes exact published text and covers all senten
   }
 });
 
-test("image-dependent v1 closeout remains an explicit blocker until rights and live app QA pass", () => {
+test("Knowledge parity is complete while image rights and live app QA remain blockers", () => {
   assert.equal(place.image, undefined, "Do not silently publish an unverified image");
   assert.equal(place.frontImage, undefined, "Do not silently publish an unverified portrait");
-  assert.equal(cards.production_status, "pending_knowledge_generation");
+  const qs = quiz.sets.flatMap((set) => set.questions);
+  assert.equal(cards.production_status, "knowledge_linked");
+  assert(qs.every((q) => q.knowledge_link_status === "linked" && q.primary_knowledge_unit_id && q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id)));
+  assert(cards.cards[0].questions.every((q) => q.knowledge_link_status === "linked" && q.primary_knowledge_unit_id && q.knowledge_unit_ids?.includes(q.primary_knowledge_unit_id)));
+  for (const q of cards.cards[0].questions) {
+    const full = qs.find((item) => item.id === q.sourceQuestionId);
+    assert.deepEqual(q.knowledge_unit_ids, full?.knowledge_unit_ids);
+  }
 });
