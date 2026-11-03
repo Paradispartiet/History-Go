@@ -1,0 +1,45 @@
+name: Civication By-rådgiver approval branch check (one-shot)
+on:
+  push:
+    branches:
+      - civication/by-radgiver-approval-guard-20261103
+    paths:
+      - .github/workflows/civication-by-approval-once.yml
+permissions:
+  contents: write
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify two approval branches through actual MailRuntime
+        run: node tests/civication-by-radgiver-approval-branching.test.js
+      - name: Verify original role world realism pilot is unchanged
+        run: node tests/civication-by-radgiver-role-world-realism-pilot.test.js
+      - name: Materialize canonical compiled scene registry
+        run: node scripts/build-civication-scene-registry.mjs --write
+      - name: Materialize derived career gameplay matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Materialize derived Role World readiness
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Verify both approval paths after materialization
+        run: |
+          node tests/civication-by-radgiver-approval-branching.test.js
+          node tests/civication-by-radgiver-role-world-realism-pilot.test.js
+      - name: Commit only derived indexes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json data/Civication/roleWorldRolloutReadiness.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Materialize Lillebekk conditional approval followup in canonical indexes"
+            git push origin HEAD:civication/by-radgiver-approval-guard-20261103
+          fi
