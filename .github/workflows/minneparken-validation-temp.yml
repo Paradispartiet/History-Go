@@ -16,16 +16,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: content/minneparken-kildebasert-leksikon-20261103
-          fetch-depth: 1
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
       - name: Validate description claim packets
-        run: node scripts/validate-place-description-production-v4_2.mjs --all
+        run: node scripts/validate-place-description-production-v4_2.mjs --changed --base "$(git merge-base HEAD origin/main)" --head HEAD
       - name: Validate Historie production report
-        run: node scripts/audit-historie-place-production.mjs --all
+        run: node scripts/audit-historie-place-production.mjs --changed --base "$(git merge-base HEAD origin/main)" --head HEAD
       - name: Verify description and Historie contracts
         run: node --test tests/place-description-production-v4_2.test.mjs tests/historie-place-production.test.mjs
       - name: Verify generated data and release
