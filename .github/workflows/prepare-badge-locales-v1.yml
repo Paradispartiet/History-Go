@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feat/by-scene-badge-languages-20261103
+      - feat/by-postmodernisme-v1-20261103
   workflow_dispatch:
 permissions:
   contents: write
@@ -33,5 +34,5 @@ jobs:
             echo "No new image candidates"
           else
             git commit -m "Generate localized badge candidates [skip ci]"
-            git push origin HEAD:feat/by-scene-badge-languages-20261103
+            git push origin HEAD:feat/by-postmodernisme-v1-20261103
           fi
