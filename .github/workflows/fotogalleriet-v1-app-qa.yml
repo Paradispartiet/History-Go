@@ -1,0 +1,59 @@
+name: Fotogalleriet v1 app QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/fotogalleriet-v1-app-qa.yml'
+      - 'scripts/verify-fotogalleriet-placecard-browser.mjs'
+      - 'tests/fotogalleriet-v1-staged.test.mjs'
+      - 'data/places/kunst/oslo/places_kunst/fotogalleriet.json'
+      - 'data/runtime/place-open/fotogalleriet.json'
+      - 'bilder/places/fotogalleriet/**'
+      - 'data/quiz/kunst/fotogalleriet_sets.json'
+      - 'data/quizcards/kunst/fotogalleriet_quizcard_v1.json'
+  push:
+    branches:
+      - research/fotogalleriet-v1-tekst-20261102
+    paths:
+      - '.github/workflows/fotogalleriet-v1-app-qa.yml'
+      - 'scripts/verify-fotogalleriet-placecard-browser.mjs'
+permissions:
+  contents: read
+concurrency:
+  group: fotogalleriet-v1-app-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Locate Chrome
+        shell: bash
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Targeted Fotogalleriet content and illustration checks
+        run: |
+          node --test tests/fotogalleriet-v1-staged.test.mjs
+          node scripts/check-distinct-place-photos.mjs --place data/places/kunst/oslo/places_kunst/fotogalleriet.json --require-both
+      - name: Test PlaceCard and QuizCard on desktop, phone and iPad-sized viewports
+        run: node scripts/verify-fotogalleriet-placecard-browser.mjs
+      - name: Complete real fullquiz playthrough on mobile and desktop
+        run: node scripts/verify-place-quiz-browser.mjs fotogalleriet
+      - name: Save visual acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fotogalleriet-v1-mobile-ipad-browser
+          path: |
+            artifacts/fotogalleriet-v1/
+            artifacts/place-quiz/fotogalleriet/
+          if-no-files-found: ignore
+          retention-days: 14
