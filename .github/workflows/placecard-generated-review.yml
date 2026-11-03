@@ -1,0 +1,37 @@
+name: Temporary PlaceCard generated payload diagnostics
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/placecard-generated-review.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: placecard-generated-review-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inspect-generated-payload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Regenerate deterministic payloads without committing
+        run: |
+          node scripts/build-place-open-payloads.mjs
+          git diff --name-only data/runtime > generated-drift.txt
+          cp data/runtime/place-open/oslo_prosjektrom.json place-open-oslo-prosjektrom.json
+          cat generated-drift.txt
+      - name: Upload only the reviewed generated payload and changed filenames
+        uses: actions/upload-artifact@v4
+        with:
+          name: placecard-generated-payload-diagnostics
+          path: |
+            generated-drift.txt
+            place-open-oslo-prosjektrom.json
+          retention-days: 2
