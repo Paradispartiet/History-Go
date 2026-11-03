@@ -131,7 +131,7 @@ try{
     await test.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await test.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await test.locator("#natureSearch").fill(species.term||species.name);
-    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
+    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
     await fallback.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:20000});
     assert.equal(await fallback.locator("img").count(),0);
     await fallback.click();
