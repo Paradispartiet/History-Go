@@ -1,0 +1,105 @@
+name: Temporary Minneparken nonplayable canonical Knowledge synchronization
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-knowledge-canonical-sync-temp.yml
+permissions:
+  contents: write
+jobs:
+  sync:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify quiz not playable, source identities and canonical IDs before write
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test tests/minneparken-quiz-source-parity.test.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const id='minneparken_gamlebyen';
+          const qs=read('data/quiz/manifest.json');
+          const cards=read('data/quizcards/historie/manifest.json');
+          const h=read('data/places/historie-production/'+id+'.json');
+          assert.ok(!qs.sets.some(s=>s.targetId===id));
+          assert.ok(!qs.files.includes('data/quiz/historie/'+id+'_sets.json'));
+          assert.ok(!cards.collections.includes(id+'_quizcard_v1.json'));
+          assert.equal(h.status,'blocked');
+          for(const gate of ['F','G','H'])assert.equal(h.gates[gate].status,'N/A');
+          console.log('PASS preflight: no playable Minneparken or approved Historie gates');
+          NODE
+      - name: Generate real canonical registry with nonplayable reviewed source input
+        run: npm run knowledge:canonical:write
+      - name: Mirror exact canonical Knowledge links in inactive QuizCard
+        run: node scripts/sync-minneparken-quizcard-knowledge.mjs
+      - name: Check deterministic regeneration, full strict contract and the 32 new units
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run knowledge:canonical:check
+          node --test tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-story-candidate.test.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const report=read('reports/knowledge-contract-audit.json');
+          assert.equal(report.questions_with_errors,0,'Do not hide existing Knowledge errors');
+          const q=read('data/quiz/historie/minneparken_gamlebyen_sets.json');
+          assert.equal(q.sets.flatMap(s=>s.questions).filter(q=>q.knowledge_link_status==='linked').length,21);
+          console.log('PASS 21 linked questions, strict canonical Knowledge contracts, runtime blocked');
+          NODE
+      - name: Reject unrelated generator drift and commit only reviewed Knowledge changes to draft
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import cp from 'node:child_process';
+          const found=cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const approved=new Set([
+            'data/quiz/historie/minneparken_gamlebyen_sets.json',
+            'data/quizcards/historie/minneparken_gamlebyen_quizcard_v1.json',
+            'data/knowledge/knowledge_units.generated.json',
+            'reports/knowledge-id-backfill.json',
+          ]);
+          const unapproved=found.filter(p=>!approved.has(p));
+          const report={schema:'minneparken_knowledge_registry_sync_v1',mode:'canonical_nonplayable_quiz_source',allowed:[...approved],modified:found,unapproved,quiz_manifest_unchanged:true,quizcard_manifest_unchanged:true,Historie_gates:'F/G/H N/A'};
+          fs.mkdirSync('artifacts/minneparken-knowledge-sync',{recursive:true});
+          fs.writeFileSync('artifacts/minneparken-knowledge-sync/audit.json',JSON.stringify(report,null,2)+'\n');
+          console.log(JSON.stringify(report));
+          if(unapproved.length)throw Error('Unrelated generator drift: '+unapproved.join(', '));
+          if(!found.includes('data/knowledge/knowledge_units.generated.json'))throw Error('Canonical registry did not change');
+        NODE
+          git add data/quiz/historie/minneparken_gamlebyen_sets.json
+          git add data/quizcards/historie/minneparken_gamlebyen_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json
+          git add reports/knowledge-id-backfill.json
+          git diff --cached --check
+          git diff --cached --stat
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "build: register 32 source-backed Minneparken Knowledge units without quiz activation"
+          git push origin HEAD:content/minneparken-kildebasert-leksikon-20261103
+          echo 'PASS canonical Knowledge recorded in draft; runtime and Historie gates remain blocked'
+      - name: Upload Knowledge scope report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-knowledge-canonical-sync-audit
+          path: artifacts/minneparken-knowledge-sync/
+          retention-days: 30
+          if-no-files-found: warn
