@@ -63,7 +63,7 @@ jobs:
           npm run places:index:build
           npm run knowledge:canonical:write
           npm run place-open:build
-          node scripts/build-fagverk-release-manifest.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
       - name: Targeted Fotogalleriet verification
         run: |
           node --test tests/fotogalleriet-v1-staged.test.mjs
@@ -73,7 +73,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add data/places/places_index.json data/runtime/place-open/fotogalleriet.json data/knowledge/ data/fagverk/fagverk_release.json
+          git add data/places/places_index.json data/runtime/place-open/fotogalleriet.json data/knowledge/ data/fagverk/fagverk_release.json data/quiz/kunst/fotogalleriet_sets.json reports/knowledge-id-backfill.json
           echo "Selected generated changes:"
           git diff --cached --stat
           if ! git diff --cached --quiet; then
