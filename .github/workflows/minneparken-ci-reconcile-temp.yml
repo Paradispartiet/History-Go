@@ -1,0 +1,104 @@
+name: Temporary Minneparken narrow generated-artifact repair
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-ci-reconcile-temp.yml
+permissions:
+  contents: write
+jobs:
+  reconcile-narrow-artifacts:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Pin branch and install
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = 'f866b75ff729f908cd884030812ff06f96101313'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          npm ci --no-audit --no-fund
+      - name: Rebuild only source-derived artifacts and check scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run place-open:build
+          npm run place-open:check
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/minneparken-place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const file='data/places/place_image_backlog_summary.json';
+          const saved=JSON.parse(fs.readFileSync(file,'utf8'));
+          const audit=JSON.parse(fs.readFileSync('/tmp/minneparken-place-image-audit.json','utf8'));
+          assert.equal(saved.totalPlaces,audit.totalPlaces);
+          const next={
+            validLocal:audit.summary.local,
+            validRemote:audit.summary.remote,
+            optionalMissing:audit.summary.optional,
+            missing:audit.summary.missing,
+            invalidLocalPath:audit.summary.invalid,
+            remaining:audit.summary.missing+audit.summary.invalid
+          };
+          assert.equal(next.validLocal,214);
+          assert.equal(next.missing,1101);
+          saved.summary={...saved.summary,...next};
+          fs.writeFileSync(file,JSON.stringify(saved,null,2)+'\n');
+          console.log('Verified place image summary:',JSON.stringify(next));
+          NODE
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          node scripts/build-quiz-production-context.mjs --category historie --target minneparken_gamlebyen --output data/quiz/production_context/historie/minneparken_gamlebyen.json
+          node scripts/build-quiz-production-context.mjs --category historie --target minneparken_gamlebyen --output data/quiz/production_context/historie/minneparken_gamlebyen.json --check
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const id='minneparken_gamlebyen';
+          const h=read('data/places/historie-production/'+id+'.json');
+          assert.equal(h.status,'blocked');
+          for(const gate of ['F','G','H']) assert.equal(h.gates[gate].status,'N/A');
+          assert.ok(!read('data/quiz/manifest.json').sets.some(x=>x.targetId===id));
+          assert.ok(!read('data/quizcards/historie/manifest.json').collections.includes(id+'_quizcard_v1.json'));
+          assert.ok(!read('data/stories/stories_manifest.json').files.some(x=>x.path==='data/stories/stories_'+id+'.json'));
+          const q=read('data/quiz/historie/'+id+'_sets.json').sets.flatMap(s=>s.questions);
+          assert.equal(q.filter(x=>x.knowledge_link_status==='linked').length,21);
+          assert.equal(new Set(q.flatMap(x=>x.knowledge_unit_ids)).size,32);
+          console.log('PASS: staged, F/G/H N/A, 21 questions and 32 Knowledge units');
+          NODE
+          node --test tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-story-candidate.test.mjs tests/minneparken-historical-photo-provenance.test.mjs
+          node --input-type=module <<'NODE'
+          import cp from 'node:child_process';
+          const changed=cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const allowed=new Set([
+            'data/runtime/place-open/minneparken_gamlebyen.json',
+            'data/places/place_image_backlog_summary.json',
+            'data/quiz/production_context/historie/minneparken_gamlebyen.json'
+          ]);
+          console.log('Generated files changed:',JSON.stringify(changed));
+          if(!changed.length) throw Error('Expected generated repairs but no changed files found');
+          const unknown=changed.filter(p=>!allowed.has(p));
+          if(unknown.length)throw Error('Generator changed unreviewed paths: '+unknown.join(', '));
+          NODE
+      - name: Commit generated outputs to PR branch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- data/runtime/place-open/minneparken_gamlebyen.json data/places/place_image_backlog_summary.json data/quiz/production_context/historie/minneparken_gamlebyen.json
+          git diff --cached --check
+          git diff --cached --stat
+          git diff --quiet
+          git commit -m 'ci: reconcile Minneparken place-open image backlog and quiz context'
+          git push origin HEAD:content/minneparken-kildebasert-leksikon-20261103
+          echo 'PASS: branch-only generated artifacts. No release, manifest activation or merge.'
