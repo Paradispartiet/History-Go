@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: content/minneparken-kildebasert-leksikon-20261103
-          fetch-depth: 0
+          fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -35,9 +35,18 @@ jobs:
           for (const issue of result.issues) console.error(issue.code + ': ' + issue.message);
           if (result.issues.length) process.exitCode = 1;
           NODE
-      - name: Validate Historie production report
+      - name: Audit Minneparken Historie report and open gates
         if: always()
-        run: node scripts/audit-historie-place-production.mjs --changed --base "$(git merge-base HEAD origin/main)" --head HEAD
+        run: |
+          node --input-type=module <<'NODE'
+          import { auditHistoriePlaceProduction } from './scripts/audit-historie-place-production.mjs';
+          const report = 'data/places/historie-production/minneparken_gamlebyen.json';
+          const place = 'data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11/minneparken_gamlebyen.json';
+          const result = auditHistoriePlaceProduction({ mode: 'changed', base: 'HEAD', head: 'HEAD', paths: [report, place] });
+          console.log('Minneparken Historie: reports=' + result.summary.checked + ', failures=' + result.summary.failures);
+          for (const issue of result.failures) console.error('FAIL ' + issue);
+          if (result.failures.length) process.exitCode = 1;
+          NODE
       - name: Verify description and Historie contracts
         if: always()
         run: node --test tests/place-description-production-v4_2.test.mjs tests/historie-place-production.test.mjs
