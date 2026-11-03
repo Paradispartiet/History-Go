@@ -70,7 +70,7 @@ try{
        const icon=document.getElementById("pcCategoryCollectionIcon");
        const list=document.getElementById("pcCategoryCollectionList");
        const img=icon?.querySelector("img");
-       return card?.dataset.collectionProfileSource==="place_card_profile_v2"
+       return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
          && card?.dataset.collectionCount==="1"
          && icon?.dataset.collectionId==="competitions"
          && icon?.dataset.previewStatus==="member-image"
