@@ -1,0 +1,35 @@
+name: TEMP Birkelunden deterministic context sync
+on:
+  push:
+    branches:
+      - agent/birkelunden-photo-source-20261103
+    paths:
+      - .github/workflows/temp-birkelunden-context-sync.yml
+permissions:
+  contents: write
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Merge latest main and rebuild only Birkelunden's derived quiz context
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+          node scripts/build-quiz-production-context.mjs --category by --target birkelunden --output data/quiz/production_context/by/birkelunden.json
+          node scripts/build-quiz-production-context.mjs --category by --target birkelunden --output data/quiz/production_context/by/birkelunden.json --check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          node --test tests/birkelunden-place-images.test.mjs
+          git add data/quiz/production_context/by/birkelunden.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(quiz): refresh Birkelunden deterministic context after photo binding'
+          fi
+          git push origin "HEAD:${GITHUB_REF_NAME}"
