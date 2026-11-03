@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_stemorsblomst_forvillet: Object.freeze({
+      scientificName: "Viola tricolor",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/40_stemorsblomst_v1.webp",
+      gitBlobSha: "4400ff7a9d88ad738b8634e937284e128240fd03",
+      reviewedAt: "2026-11-03",
+      stage: "blomstring_og_knopper",
+      evidence: "data/natur/flora/illustration-quality-stemorsblomst-20261103.json"
+    }),
     emne_flora_snoklokke: Object.freeze({
       scientificName: "Galanthus nivalis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/39_snoklokke_v1.webp",
