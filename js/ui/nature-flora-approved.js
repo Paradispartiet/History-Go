@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_snoklokke: Object.freeze({
+      scientificName: "Galanthus nivalis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/39_snoklokke_v1.webp",
+      gitBlobSha: "dda093727954c14ffa0a66c68619293ae0e74ab8",
+      reviewedAt: "2026-11-03",
+      stage: "sen_vinter_tidlig_vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-snoklokke-20261103.json"
+    }),
     emne_flora_smaengkall: Object.freeze({
       scientificName: "Rhinanthus minor",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/38_smaengkall_v1.webp",
