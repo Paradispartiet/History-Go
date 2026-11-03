@@ -88,13 +88,14 @@ def replace_embroidered_letters(canvas, original, category, sub):
     # Search for a small, genuine woven-textile swatch in the source's
     # non-lettered header. No synthetic paint or external artwork.
     arr=np.asarray(original.convert('RGB'),dtype=np.float32)
+    source_alpha=np.asarray(original.getchannel('A'))
     candidates=[]
     for y in range(110,275,12):
         for x in range(115,886,12):
             patch=arr[y:y+32,x:x+32]
             if patch.shape!=(32,32,3): continue
             if m[y:y+32,x:x+32].any():continue
-            if np.asarray(original.getchannel('A'))[y:y+32,x:x+32].min()<250:continue
+            if source_alpha[y:y+32,x:x+32].min()<250:continue
             med=np.median(patch,axis=(0,1))
             bright=np.mean(np.max(patch,axis=2)>155)
             if category=='by':
