@@ -1,0 +1,71 @@
+name: Tøyenbadet four-collection People actual app QA — one time
+on:
+  push:
+    branches: [feat/toyenbadet-people-anne-lindboe-20261103]
+    paths: ['.github/workflows/toyenbadet-anne-lindboe-qa-once-20261103.yml']
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/toyenbadet-people-anne-lindboe-20261103
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build exactly the source-owned indices and audit approved People
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run civication:history-people:build
+          npm run places:index:build
+          npm run place-open:build
+          npm run people:images:attributions:write
+          node --test tests/toyenbadet-anne-lindboe-people.test.mjs tests/toyenbadet-source-backed-objects.test.mjs tests/toyenbadet-modern-photos-before-after.test.mjs tests/toyenbadet-asplan-viak-brand.test.mjs
+          node - <<'JS'
+          const fs=require('node:fs');
+          const source=JSON.parse(fs.readFileSync('data/places/sport/europa/norway/oslo_sport/toyenbadet.json'));
+          const runtime=JSON.parse(fs.readFileSync('data/runtime/place-open/toyenbadet.json'));
+          if(JSON.stringify(source.place_card_profile.collection_ids)!==JSON.stringify(['people','objects','brands','competitions']))throw Error('four-collection canonical mismatch');
+          if(JSON.stringify(runtime.place.place_card_profile.collection_ids)!==JSON.stringify(source.place_card_profile.collection_ids))throw Error('four-collection generated parity mismatch');
+          const anne=runtime.people.filter(p=>p.id==='anne_lindboe');
+          if(anne.length!==1 || anne[0].imageMeta?.license!=='CC BY-SA 4.0' || anne[0].profileStatus!=='ready_people_v1')throw Error('licensed Anne Lindboe not resolved exactly once');
+          if(!fs.existsSync(anne[0].image)||!fs.existsSync(anne[0].cardImage))throw Error('People image or card image absent');
+          if(runtime.people.length!==1)throw Error('staged unlicensed People leaked into runtime');
+          console.log('Tøyenbadet licensed People + Objects + Brands + Competition runtime: PASS');
+          JS
+      - name: Persist source-owned generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/Civication/historyPeople_index.json data/places/places_index.json data/runtime/place-open/toyenbadet.json data/people/people_image_attributions.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(toyenbadet): synchronize licensed Anne Lindboe and all four PlaceCard collections'
+            git push origin HEAD:feat/toyenbadet-people-anne-lindboe-20261103
+          fi
+      - name: Find Chromium for actual app
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Browser check mobile and desktop, all four preview collections, QuizCard and Fagverk
+        run: node tests/toyenbadet-vferdig-real-browser-20261103.test.mjs
+      - name: Store screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: toyenbadet-anne-people-browser
+          path: artifacts/toyenbadet-vferdig-real-browser
+          if-no-files-found: ignore
+          retention-days: 14
