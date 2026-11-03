@@ -74,15 +74,13 @@ async function main() {
           return w.CivicationLifestoryState?.load?.()?.rolle === 'arealplanlegger'
             && w.CivicationLifestoryUI?.getCurrentSceneInfo?.();
         }, null, { timeout: 20000 });
+        // Min dag is the initial page; touching its footer button reopens a
+        // popup and hides this already-visible panel. Wait for boot to settle
+        // instead of toggling the tab just to make the test pass.
+        await page.waitForFunction(() => document.body.classList.contains('civi-mini-mode'),
+          null, { timeout: 20000 });
         const history = page.locator('[data-lifestory-symposium] summary').first();
-        // The authentic Min dag surface is initially open. Pressing the
-        // already-active footer tab would open a different popup and hide it.
-        if (!(await history.isVisible())) {
-          const tab = page.locator('.civi-footer button[data-category="minDag"]');
-          await tab.waitFor({ state: 'visible', timeout: 10000 });
-          await tab.click();
-        }
-        await history.waitFor({ state: 'visible', timeout: 10000 });
+        await history.waitFor({ state: 'visible', timeout: 20000 });
         await history.click();
         const book = page.locator('[data-lifestory-symposium]').first();
         await book.locator('h4').first().waitFor({ state: 'visible' });
