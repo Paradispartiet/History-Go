@@ -1,0 +1,51 @@
+name: Flora place-open shard sync (one-shot)
+on:
+  push:
+    branches:
+      - fix/flora-place-open-shard-sync-20261103
+    paths:
+      - reports/maintenance/flora-place-open-trigger-20261103.txt
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/flora-place-open-shard-sync-20261103
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Generate and verify only stale flora runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run place-open:build
+          echo "Runtime generator changes:"
+          git status --short -- data/runtime
+          while IFS= read -r file; do
+            case "$file" in
+              data/runtime/nature-all/flora-001.json)
+                ;;
+              *)
+                echo "Unexpected generated runtime change: $file" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git diff --name-only -- data/runtime)
+          npm run place-open:check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/runtime/nature-all/flora-001.json
+          git rm .github/workflows/flora-runtime-one-shot-20261103.yml reports/maintenance/flora-place-open-trigger-20261103.txt
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m "build(runtime): synchronize generated flora place-open shard"
+          git push origin HEAD:refs/heads/fix/flora-place-open-shard-sync-20261103
