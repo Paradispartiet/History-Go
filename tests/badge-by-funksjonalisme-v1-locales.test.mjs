@@ -14,8 +14,8 @@ const expected={
 };
 test("Funksjonalisme has four localized review-only WebPs with original silhouette",()=>{
   assert.equal(manifest.status,"review_required_not_active");
-  assert.equal(manifest.entries.length,40);
-  assert.equal(Object.keys(source.subBadgeImages).length,3);
+  assert.equal(manifest.entries.length,44);
+  assert.equal(Object.keys(source.subBadgeImages).length,4);
   assert.deepEqual(manifest.locales,["en","es","pt","fr"]);
   const matches=manifest.entries.filter(e=>e.category==="by"&&e.id==="funksjonalisme");
   assert.equal(matches.length,4);

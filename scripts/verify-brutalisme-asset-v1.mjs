@@ -31,5 +31,10 @@ for (const [lang, v] of Object.entries(rec.variants)) {
 if (process.argv.includes('--require-assets')) {
   assert.equal(pending.length,0,'Missing locale images: '+pending.join(','));
 }
+if (rec.status === 'integrated_v1_active') {
+  assert.equal(by.subBadgeImages.brutalisme,rec.sourceImage,'active By image routing');
+  assert.deepEqual(rec.quality,{visualApproved:true,technicalApproved:true,registered:true});
+  assert.equal(pending.length,0,'integrated badge cannot have missing WebP files');
+}
 if (pending.length) console.log('Brutalisme awaits source files: '+pending.join(', '));
 else console.log('Brutalisme: five WebP files and source hashes verified.');
