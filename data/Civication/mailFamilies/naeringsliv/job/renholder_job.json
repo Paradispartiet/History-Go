@@ -154,7 +154,23 @@
                   "manager_trust": 2,
                   "time_pressure": 1,
                   "stress": 1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_room_looked_clean_A_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "in_progress",
+                    "to_phase": "beroringspunkter_prioritert",
+                    "note": "Berøringspunkter og synlige flater inngår i utført sjekkliste; faktisk kvalitet må fortsatt etterkontrolleres."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_room_looked_clean_A_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "touchpoints_priority_recorded"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -187,7 +203,23 @@
                   "hygiene_quality": -2,
                   "future_risk": 2,
                   "stress": -1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_room_looked_clean_B_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "needs_review",
+                    "to_phase": "synlig_renhold_uten_kontaktflatekontroll",
+                    "note": "Gulv, bord og avfall er prioritert; berøringspunkter gjenstår og skal ikke signeres som hygienisk ferdige."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_room_looked_clean_B_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "touchpoints_not_verified"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -219,7 +251,23 @@
                   "stress": 2,
                   "room_standard": 2,
                   "schedule_risk": 2
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_room_looked_clean_C_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "needs_replan",
+                    "to_phase": "tidsbruk_uten_prioritering",
+                    "note": "Grundig arbeid er valgt, men resttid og romstandard må planlegges mot resten av ruten."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_room_looked_clean_C_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "time_budget_unclear"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -237,7 +285,53 @@
           ],
           "role_id": "naer_renholder",
           "role_key": "renholder",
-          "task_kind": "prioriteringsvalg"
+          "task_kind": "prioriteringsvalg",
+          "work_context": {
+            "object_ids": [
+              "renholder_fellesareal_kvalitetslogg_001"
+            ],
+            "institution_id": "renholder_drift_fellesareal_001",
+            "priority": "high"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "upsert",
+                "event_id": "renholder_job_renholder_week1_room_looked_clean_case_observed",
+                "work_object": {
+                  "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                  "kind": "cleaning_zone_quality_case",
+                  "role_scope": "renholder",
+                  "institution_id": "renholder_drift_fellesareal_001",
+                  "title": "Renholdsrute: møterom, toalett og resepsjon – faktisk utført kvalitet",
+                  "people_refs": [
+                    "kari_driftsleder",
+                    "amina_erfaren_renholder",
+                    "leo_ny_vikar"
+                  ],
+                  "place_refs": [
+                    "lilleborg_fabrikker",
+                    "møterom",
+                    "toalett_sone",
+                    "resepsjon"
+                  ],
+                  "knowledge_refs": [
+                    "renhold_beroringspunkter",
+                    "renhold_dosering_og_hms",
+                    "renhold_tidsavvik"
+                  ],
+                  "open_questions": [
+                    "Er berøringspunktene kontrollert, eller er bare synlige flater tatt?",
+                    "Kan toalettsonens hygienekrav oppfylles innen den bestilte tiden?",
+                    "Er middel og dosering kontrollert for sensitiv resepsjonsflate?",
+                    "Hvilke avvik er meldt, og hva venter faktisk på etterkontroll?"
+                  ],
+                  "confidentiality": "interne_arbeidsnotater_uten_personopplysninger",
+                  "shared": false
+                }
+              }
+            ]
+          }
         },
         {
           "mail_type": "job",
@@ -440,7 +534,23 @@
                   "time_pressure": 2,
                   "stress": 2,
                   "future_risk": -2
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_twelve_minutes_twenty_needed_A_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "deviation_reported",
+                    "to_phase": "hygiene_prioritert_og_tidsavvik_meldt",
+                    "note": "Hygienekritiske oppgaver prioriteres og avviket 12 mot cirka 20 minutter meldes til Kari; ingen godkjenning antas."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_twelve_minutes_twenty_needed_A_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "time_deviation_reported"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -472,7 +582,23 @@
                   "hygiene_quality": -3,
                   "future_risk": 3,
                   "stagnation": 1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_twelve_minutes_twenty_needed_B_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "needs_review",
+                    "to_phase": "tidsplan_holdt_med_restarbeid",
+                    "note": "Planlagt tid holdes ved å gjøre synlige oppgaver først; hygienekritiske restpunkter er ikke bekreftet."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_twelve_minutes_twenty_needed_B_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "time_pressure_hygiene_gap"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -504,7 +630,23 @@
                   "traceability": -2,
                   "stress": 2,
                   "schedule_risk": 3
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_twelve_minutes_twenty_needed_C_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "needs_replan",
+                    "to_phase": "ekstra_tid_uten_avviksmelding",
+                    "note": "Omtrent 20 minutter er brukt uten avviksmelding; neste sone og realistisk rute må avklares."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_twelve_minutes_twenty_needed_C_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "unreported_time_overrun"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -522,7 +664,54 @@
           ],
           "role_id": "naer_renholder",
           "role_key": "renholder",
-          "task_kind": "prioriteringsvalg"
+          "task_kind": "prioriteringsvalg",
+          "work_context": {
+            "object_ids": [
+              "renholder_fellesareal_kvalitetslogg_001"
+            ],
+            "institution_id": "renholder_drift_fellesareal_001",
+            "priority": "high",
+            "rework_of_scene_id": "job_renholder_week1_room_looked_clean"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "upsert",
+                "event_id": "renholder_job_renholder_week1_twelve_minutes_twenty_needed_case_observed",
+                "work_object": {
+                  "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                  "kind": "cleaning_zone_quality_case",
+                  "role_scope": "renholder",
+                  "institution_id": "renholder_drift_fellesareal_001",
+                  "title": "Renholdsrute: møterom, toalett og resepsjon – faktisk utført kvalitet",
+                  "people_refs": [
+                    "kari_driftsleder",
+                    "amina_erfaren_renholder",
+                    "leo_ny_vikar"
+                  ],
+                  "place_refs": [
+                    "lilleborg_fabrikker",
+                    "møterom",
+                    "toalett_sone",
+                    "resepsjon"
+                  ],
+                  "knowledge_refs": [
+                    "renhold_beroringspunkter",
+                    "renhold_dosering_og_hms",
+                    "renhold_tidsavvik"
+                  ],
+                  "open_questions": [
+                    "Er berøringspunktene kontrollert, eller er bare synlige flater tatt?",
+                    "Kan toalettsonens hygienekrav oppfylles innen den bestilte tiden?",
+                    "Er middel og dosering kontrollert for sensitiv resepsjonsflate?",
+                    "Hvilke avvik er meldt, og hva venter faktisk på etterkontroll?"
+                  ],
+                  "confidentiality": "interne_arbeidsnotater_uten_personopplysninger",
+                  "shared": false
+                }
+              }
+            ]
+          }
         },
         {
           "mail_type": "job",
@@ -582,7 +771,23 @@
                   "hygiene_quality": 3,
                   "manager_trust": 3,
                   "stress": 1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_wrong_chemical_surface_A_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "in_progress",
+                    "to_phase": "riktig_middel_sjekket",
+                    "note": "Flate og produktinformasjon kontrolleres før egnet middel og dosering velges; ikke påstå skade eller ferdigkontroll."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_wrong_chemical_surface_A_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "surface_method_checked"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -622,7 +827,23 @@
                   "hms_safety": -2,
                   "future_risk": 3,
                   "stress": -1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_wrong_chemical_surface_B_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "needs_review",
+                    "to_phase": "sterkere_middel_valgt_risiko",
+                    "note": "Sterkere middel velges før underlaget er avklart. Potensiell skade og HMS-avvik noteres for kontroll, ikke som konstatert helseskade."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_wrong_chemical_surface_B_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "chemical_surface_risk_requires_check"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -654,7 +875,23 @@
                   "room_standard": -1,
                   "traceability": 2,
                   "time_pressure": 1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_wrong_chemical_surface_C_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "deviation_reported",
+                    "to_phase": "flate_utsatt_for_faglig_avklaring",
+                    "note": "Ukjent flekk blir stående under tydelig avvik; Kari eller kvalifisert fagperson må avklare trygg metode."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_wrong_chemical_surface_C_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "surface_chemistry_escalated"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -672,7 +909,54 @@
           ],
           "role_id": "naer_renholder",
           "role_key": "renholder",
-          "task_kind": "prioriteringsvalg"
+          "task_kind": "prioriteringsvalg",
+          "work_context": {
+            "object_ids": [
+              "renholder_fellesareal_kvalitetslogg_001"
+            ],
+            "institution_id": "renholder_drift_fellesareal_001",
+            "priority": "high",
+            "rework_of_scene_id": "job_renholder_week1_room_looked_clean"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "upsert",
+                "event_id": "renholder_job_renholder_week1_wrong_chemical_surface_case_observed",
+                "work_object": {
+                  "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                  "kind": "cleaning_zone_quality_case",
+                  "role_scope": "renholder",
+                  "institution_id": "renholder_drift_fellesareal_001",
+                  "title": "Renholdsrute: møterom, toalett og resepsjon – faktisk utført kvalitet",
+                  "people_refs": [
+                    "kari_driftsleder",
+                    "amina_erfaren_renholder",
+                    "leo_ny_vikar"
+                  ],
+                  "place_refs": [
+                    "lilleborg_fabrikker",
+                    "møterom",
+                    "toalett_sone",
+                    "resepsjon"
+                  ],
+                  "knowledge_refs": [
+                    "renhold_beroringspunkter",
+                    "renhold_dosering_og_hms",
+                    "renhold_tidsavvik"
+                  ],
+                  "open_questions": [
+                    "Er berøringspunktene kontrollert, eller er bare synlige flater tatt?",
+                    "Kan toalettsonens hygienekrav oppfylles innen den bestilte tiden?",
+                    "Er middel og dosering kontrollert for sensitiv resepsjonsflate?",
+                    "Hvilke avvik er meldt, og hva venter faktisk på etterkontroll?"
+                  ],
+                  "confidentiality": "interne_arbeidsnotater_uten_personopplysninger",
+                  "shared": false
+                }
+              }
+            ]
+          }
         },
         {
           "mail_type": "job",
@@ -733,7 +1017,23 @@
                   "hms_safety": 3,
                   "training_path": 4,
                   "stress": 1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_invisible_work_A_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "awaiting_review",
+                    "to_phase": "faglig_ukeoppsummering_innsendt",
+                    "note": "Oppsummering av hygiene, tidsavvik, kjemi og belastning er sendt; Kari har ennå ikke godkjent etterkontroll."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_invisible_work_A_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "professional_week_summary_submitted"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -765,7 +1065,23 @@
                   "stagnation": 3,
                   "future_risk": 3,
                   "training_path": -1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_invisible_work_B_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "needs_review",
+                    "to_phase": "generell_ukeoppsummering_mangler_spor",
+                    "note": "Uken oppsummeres som grei, men dokumentasjonen sier ikke hvilke hygienekontroller som faktisk er utført."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_invisible_work_B_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "generic_summary_missing_evidence"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -797,7 +1113,23 @@
                   "manager_trust": -1,
                   "conflict": 1,
                   "stagnation": 2
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_invisible_work_C_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "needs_review",
+                    "to_phase": "tidskritikk_uten_faglig_plan",
+                    "note": "Tidsmangel beskrives, men konkrete prioriteringer, tiltak og restpunkter er ikke dokumentert."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_invisible_work_C_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "time_pressure_without_action_plan"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -829,7 +1161,23 @@
                   "manager_trust": 3,
                   "future_risk": -2,
                   "stress": 1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "renholder_job_renholder_week1_invisible_work_D_decision",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "to_status": "awaiting_review",
+                    "to_phase": "opplaringsbehov_innmeldt",
+                    "note": "Behov for veiledet opplæring er meldt før selvstendig rute; ingen innvilget opplæring eller avtalt møte antas."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "renholder_job_renholder_week1_invisible_work_D_flag",
+                    "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                    "flag": "training_requested_not_approved"
+                  }
+                ]
               },
               "next_bias": {
                 "prefer_mail_types": [
@@ -847,7 +1195,54 @@
           ],
           "role_id": "naer_renholder",
           "role_key": "renholder",
-          "task_kind": "prioriteringsvalg"
+          "task_kind": "prioriteringsvalg",
+          "work_context": {
+            "object_ids": [
+              "renholder_fellesareal_kvalitetslogg_001"
+            ],
+            "institution_id": "renholder_drift_fellesareal_001",
+            "priority": "high",
+            "rework_of_scene_id": "job_renholder_week1_room_looked_clean"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "upsert",
+                "event_id": "renholder_job_renholder_week1_invisible_work_case_observed",
+                "work_object": {
+                  "work_object_id": "renholder_fellesareal_kvalitetslogg_001",
+                  "kind": "cleaning_zone_quality_case",
+                  "role_scope": "renholder",
+                  "institution_id": "renholder_drift_fellesareal_001",
+                  "title": "Renholdsrute: møterom, toalett og resepsjon – faktisk utført kvalitet",
+                  "people_refs": [
+                    "kari_driftsleder",
+                    "amina_erfaren_renholder",
+                    "leo_ny_vikar"
+                  ],
+                  "place_refs": [
+                    "lilleborg_fabrikker",
+                    "møterom",
+                    "toalett_sone",
+                    "resepsjon"
+                  ],
+                  "knowledge_refs": [
+                    "renhold_beroringspunkter",
+                    "renhold_dosering_og_hms",
+                    "renhold_tidsavvik"
+                  ],
+                  "open_questions": [
+                    "Er berøringspunktene kontrollert, eller er bare synlige flater tatt?",
+                    "Kan toalettsonens hygienekrav oppfylles innen den bestilte tiden?",
+                    "Er middel og dosering kontrollert for sensitiv resepsjonsflate?",
+                    "Hvilke avvik er meldt, og hva venter faktisk på etterkontroll?"
+                  ],
+                  "confidentiality": "interne_arbeidsnotater_uten_personopplysninger",
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ],
       "threads": [
