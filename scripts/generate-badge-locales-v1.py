@@ -76,9 +76,9 @@ def replace_embroidered_letters(canvas, original, category, sub):
         # The curved original title finishes near the lower outer corners.
         # Extend only those side-glyph zones; never touch the sky or pediment.
         roi &= ((yy<=300)|(radial>=414))
-        sides=((((xx>=95)&(xx<235)&(yy>=185)&(yy<344)&(radial>373))|
-                ((xx>753)&(xx<=930)&(yy>=170)&(yy<347)&(radial>359)))
-        roi |= sides
+        left_side = (xx>=95)&(xx<235)&(yy>=185)&(yy<344)&(radial>373)
+        right_side = (xx>753)&(xx<=930)&(yy>=170)&(yy<347)&(radial>359)
+        roi |= (left_side | right_side)
     elif sub=='dans':
         # Avoid the dancer's hands, head and drapery beneath the old DANS.
         # The old caption's D and S descend farther than the middle letters.
