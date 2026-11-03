@@ -82,6 +82,7 @@ try{
     {name:"sandarve",label:"Sandarve",term:"sandarve",path:"b09/33_sandarve_v1.webp"},
     {name:"skogfiol",label:"Skogfiol",term:"Skogfiol",path:"b09/34_skogfiol_v1.webp"},
     {name:"skogstorkenebb",label:"Skogstorkenebb",term:"Skogstorkenebb",path:"b09/35_skogstorkenebb_v1.webp"},
+    {name:"smalkjempe",label:"Smalkjempe",term:"Smalkjempe",path:"b09/36_smalkjempe_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){

@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_smalkjempe: Object.freeze({
+      scientificName: "Plantago lanceolata",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/36_smalkjempe_v1.webp",
+      gitBlobSha: "2dfbf434b6a84354fc014dac0934c443ebfe9177",
+      reviewedAt: "2026-11-03",
+      stage: "sommerblomstring_og_fruktsetting",
+      evidence: "data/natur/flora/illustration-quality-smalkjempe-20261103.json"
+    }),
     emne_flora_skogstorkenebb: Object.freeze({
       scientificName: "Geranium sylvaticum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/35_skogstorkenebb_v1.webp",
