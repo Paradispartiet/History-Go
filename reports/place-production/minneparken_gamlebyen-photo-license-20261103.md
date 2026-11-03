@@ -1,6 +1,6 @@
 # Minneparken – dokumentert fotokilde og historisk bruksavgrensning (2026-11-03)
 
-**Status: foto og provenance integrert i draft-grenen; binær, kilde og kanonisk stedsindeks verifisert. Endelig synlig mobil-/desktop-foto-QA gjenstår før bildefronten kan regnes som testet.**
+**Status: public-domain-foto, lisens-/datometadata og kanonisk stedsindeks integrert. Ekte bildevisning og historisk bildetekst er verifisert på mobil og desktop i Playwright; lesbar plassering av bildeteksten mot quizhandlingen etterjusteres og retestes. Fersk 2026-tilstand er ikke verifisert.**
 
 ## Kontrollert kilde
 
@@ -39,5 +39,5 @@ Korrekt bruk i PlaceCard krever både datert og synlig bildetekst:
 - [Actions #41589236323](https://github.com/Paradispartiet/History-Go/actions/runs/41589236323) bestod original-JPEG, 3 072 × 2 304 px, visuell proveniensmetadata og historisk datering, og committet **kun** `bilder/places/minneparken_gamlebyen_2007.jpg` (1 491 694 byte) og stedfilens `image`, `cardImage`, `imageMeta`, `imageCredit`, `imageLicense`, `imageSourceUrl`.
 - [Actions #41590135371](https://github.com/Paradispartiet/History-Go/actions/runs/41590135371) kjørte den **offisielle** `places:index:build` og `places:index:check` med strikt bestått resultat; indeksen ble bygget over 1 538 steder. `tools/build_places_index.mts` og `tools/check_places_index_sync.mts` fører nå gjennom `imageMeta` som kanonisk lettfelt, slik at historisk datering kan vises av appen.
 - Før synkronisering feilet den ekte browserkontrollen: kildefilen var korrekt, men appens runtime-indeks manglet `image` og `imageMeta`. Denne feilen ble reparert ved å endre **indeksflyten**, ikke ved å forbigå testene.
-- **Visuell sluttport:** mobil-/desktop-test med faktisk bilde, kildeår og kortflipp må fullføres på den **synkroniserte** indeksen. En vellykket indekskontroll er nødvendig, men ikke alene et browserbevis. Gate F forblir `N/A` uansett bildets tekniske status.
+- **Visuell browserkontroll:** [Actions #41589585887](https://github.com/Paradispartiet/History-Go/actions/runs/41589585887), forsøk 2, bestod faktisk foto, caption, fullquiz og QuizCard på mobil og desktop. [Artefakt #13210245690](https://github.com/Paradispartiet/History-Go/actions/runs/41589585887/artifacts/13210245690) inneholder frontfoto, flipp/forstørrelse og quizskjermbilder. JSON-oppsummeringen viser `naturalWidth: 3072`, `hasFrontImage: true`, 0 browserfeil og nøyaktig datert historisk bildetekst i begge viewporter. Manuell skjermbildevurdering avdekket at bildeteksten lå for tett på `TAKE QUIZ`, selv om funksjonstesten bestod. CSS er justert; en ny test krever minst 5 px faktisk geometriavstand mellom tekst og knapp i begge visninger. [Retest #41591420607](https://github.com/Paradispartiet/History-Go/actions/runs/41591420607) må gjennomføres før plasseringen godkjennes. Gate F forblir `N/A` uansett bildets tekniske status.
 
