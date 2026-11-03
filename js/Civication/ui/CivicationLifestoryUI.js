@@ -1139,6 +1139,15 @@
       + "<p>" + escapeHtml(e.valgTekst) + "</p>"
       + (e.konsekvensTekst ? "<p>" + escapeHtml(e.konsekvensTekst) + "</p>" : "") + "</li>").join("");
     const plans = book.avtaler.map((a) => "<li>Dag " + escapeHtml(a.dag) + " · " + escapeHtml(viewPhaseName(a.fase)) + ": " + escapeHtml(a.tittel) + (a.sted ? " · " + escapeHtml(a.sted.navn) : "") + "</li>").join("");
+    // Role-local snapshots are historical records, not a fabricated global calendar.
+    const previousRoles = (book.rollehistorikk || []).map((role) =>
+      "<section><h5>" + escapeHtml(role.rolle) + "</h5><ol>" +
+      role.tidslinje.map((e) => "<li><strong>Dag " + escapeHtml(e.dag) + " · " +
+        escapeHtml(viewPhaseName(e.fase)) + " · " + escapeHtml(e.sceneTittel) + "</strong>" +
+        "<p>" + escapeHtml(e.valgTekst) + "</p>" +
+        (e.konsekvensTekst ? "<p>" + escapeHtml(e.konsekvensTekst) + "</p>" : "") +
+        "</li>").join("") + "</ol></section>"
+    ).join("");
     return "<section><details data-lifestory-symposium data-lifestory-disclosure=\"full-history\"><summary>Hele livshistorien</summary>"
       + "<h4>" + escapeHtml(book.tittel) + "</h4>"
       + (book.kapitler?.length ? "<h4>Avsluttede kapitler</h4><ul>" + book.kapitler.map((k) => "<li><strong>" + escapeHtml(k.tittel) + "</strong> · dag " + escapeHtml(k.fraDag) + "–" + escapeHtml(k.tilDag) + "<p>" + escapeHtml(k.ending.navn) + "</p><p>" + escapeHtml(k.ending.tekst) + "</p></li>").join("") + "</ul>" : "")
@@ -1169,6 +1178,7 @@
       + "<h4>Steder</h4><ul>" + book.steder.map((p) => "<li>" + escapeHtml(p.navn) + "</li>").join("") + "</ul>"
       + "<h4>Åpne scener</h4><ul>" + (plans || "<li>Ingen flere planlagte scener.</li>") + "</ul>"
       + "<h4>Tidslinje</h4><ol>" + (timeline || "<li>Ingen valg tatt ennå.</li>") + "</ol>"
+      + (previousRoles ? "<h4>Tidligere roller</h4>" + previousRoles : "")
       + "</details></section>";
   }
 
