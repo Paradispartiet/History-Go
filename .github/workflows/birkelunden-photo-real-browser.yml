@@ -10,6 +10,9 @@ on:
       - 'bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg'
 permissions:
   contents: read
+concurrency:
+  group: birkelunden-photo-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   real-browser-photo:
     runs-on: ubuntu-latest
