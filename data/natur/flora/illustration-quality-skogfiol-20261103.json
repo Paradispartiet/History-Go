@@ -1,0 +1,52 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-03",
+  "status": "binary_transfer_pending",
+  "baselineApproved": 55,
+  "approvedCountAfterRelease": 56,
+  "publicationRule": "Do not merge before the exact WebP has been committed to the branch with matching SHA-256 and Git blob SHA; verify that the image is visible against black #000 without photos, preserve 55 already approved illustrations, and require illustration-contract and approved-flora-browser success on the final head.",
+  "items": [
+    {
+      "name": "Skogfiol",
+      "catalogId": "emne_flora_skogfiol",
+      "scientificName": "Viola riviniana",
+      "taxonomicScope": "species",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/34_skogfiol_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/34_skogfiol_v1.webp",
+      "gitBlobSha": "a28a6281ec9ecf7aac3ad38efb86fb8e98dc3f5c",
+      "sha256": "42b5da9adb26166ab2966397a06a98487ff48c2ffb2b72c4fa365508f0749421",
+      "sizeBytes": 312938,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "visual_candidate",
+      "approvedForPublication": false,
+      "botanicalVisualDecision": "visually_recognizable_candidate_not_yet_in_repository",
+      "reviewedAt": "2026-11-03",
+      "stage": "vårblomstring",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": false,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://www.rhs.org.uk/plants/19012/viola-riviniana/details",
+        "https://fermanagh.bsbi.org/viola-riviniana-rchb",
+        "https://www.naturfakta.no/planter/?id=647",
+        "https://skogkurs.no/wp-content/uploads/Felthandbok-viktige-arter-for-miljoregistreringer-i-skog.pdf"
+      ],
+      "observations": "Flerårig skogfiol med en lav rosett og enkelte blad på stenglene. De tynne, omtrent hjerteformede bladene er kortstilkete til langstilkete og svakt tannete langs kanten. Blomstene står enkeltvis og har fem blåfiolette kronblad, mørkere nektarårer på det nedre kronbladet og et hvitlig, butt, noe oppbøyd spor med hakk. Artsillustrasjonen viser blomster både forfra og fra siden for å få frem sporen.",
+      "limitations": "Dette er en digital botanisk illustrasjon og ikke en fullstendig bestemmelsesnøkkel. Dimensjonene er idealisert og enkelte blad, blomster og røtter er forstørret for lesbarhet. Skogfiol kan forveksles med andre fioler, spesielt Viola reichenbachiana. Den transparente WebP-filen er laget ved teknisk frilegging av en RGB-kilde med innbakt rutebakgrunn; kildealfakanalen ble ikke generert direkte. Den nye filen er kontrollert visuelt på svart, men full godkjenning forutsetter inspeksjon av den eksakte GitHub-filen.",
+      "technicalVerification": "1024 x 1536 WebP RGBA produced locally; 312938 bytes. SHA256 42b5da9adb26166ab2966397a06a98487ff48c2ffb2b72c4fa365508f0749421, Git blob SHA a28a6281ec9ecf7aac3ad38efb86fb8e98dc3f5c. Transparency was reconstructed from the generated image to remove embedded grey checkerboard background; preview checked against #000.",
+      "publicationBlockedBy": [
+        "Upload exact binary source WebP to the PR branch at the documented src.",
+        "Verify source hashes, embedded alpha and black background. Review the illustrated pale spur against references.",
+        "Set reviewStatus approved and approvedForPublication true only after that visual and binary review.",
+        "Add canonical approved-registry link, release contract, browser tests and workflow routing; require both mandatory CI checks green before merge."
+      ]
+    }
+  ]
+}
