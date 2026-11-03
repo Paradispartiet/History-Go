@@ -2,7 +2,7 @@
   "schema": "history_go_place_photo_clearance_review_v1",
   "placeId": "fotogalleriet",
   "reviewedAt": "2026-11-03",
-  "reviewStatus": "blocked_current_facade_photo_missing_and_historic_50a_entrance_not_identified",
+  "reviewStatus": "blocked_two_documentary_originals_no_photo_permission_official_facade_source_located",
   "policy": "image and frontImage must use two different original documentary photographs, not crops or derivatives of the same original. Rights must cover local WebP redistribution; record sourceSha256, sourcePage, originalId, author, license and credit for each original.",
   "sourceReview": [
     {
@@ -71,13 +71,29 @@
         "decision": "do_not_activate_as_fotogalleriet_place_photo_pending_address_unit_identification",
         "verificationNeeded": "Independent evidence locating the basement/entrance at Oscars gate 50A in this exact facade, such as a historical entrance image, archive floor plan, or documented address-door mapping."
       }
+    },
+    {
+      "sourcePage": "https://fotogalleriet.no/wp-content/uploads/2024/04/240415-Annual-Report_compressed_pagenumber.pdf#page=44",
+      "subject": "2023 exhibition-programme annual report, printed page 38 (PDF page 44): wide view of Fotogalleriet's Møllergata 34 facade and central glazed entrance, showing Momentum 12 window exhibition in July–August 2023.",
+      "sourceType": "gallery_official_annual_report",
+      "evidenceStatus": "verified_direct_visual_inspection_2026-11-03",
+      "observed": "Original facade depicted with entrance centered between signed window displays. The report's gallery address heading is Møllergata 34 and same page describes Fotogalleriet's venue during Momentum 12 in 2023.",
+      "photographer": "not_identified_in_examined_page",
+      "photographedAt": "2023 summer (exhibition timing), specific capture date not verified",
+      "licenseObservation": "Public PDF publication establishes visibility, not permission to extract, crop, locally redistribute or include photograph in a commercial app. Photograph and exhibition window artworks may have separate rightsholders.",
+      "decision": "do_not_copy_or_publish_without_permission",
+      "roleCandidate": "current_facade",
+      "blockingReason": "Missing name/consent from original photographer and explicit WebP/adaptation/redistribution rights from relevant rightsholders. Gallery Gmail draft updated with source PDF and exact page for a focused request; draft is not sent.",
+      "requestStatus": "gmail_draft_updated_not_sent_2026-11-03",
+      "nextStep": "Seek original image with photographer credit and written authorization to use/crop/convert and locally distribute in History Go; clarify visible artworks in window."
     }
   ],
   "requiredPhotoSlots": [
     {
       "role": "image",
       "preferredSubject": "Distinct recognizable exterior of the current Møllergata 34 gallery entrance/facade",
-      "status": "missing_rights_clear_original"
+      "status": "missing_rights_clear_original_facade_2023_report_candidate",
+      "candidateSource": "https://fotogalleriet.no/wp-content/uploads/2024/04/240415-Annual-Report_compressed_pagenumber.pdf#page=44"
     },
     {
       "role": "frontImage",
@@ -122,7 +138,7 @@
       "contact": "post@fotogalleriet.no",
       "request": "Ask for two independent original files, photographer/source and capture date, exact entrance location, artwork/person clearance, redistribution and cropped/WebP derivative permission for a freely accessible History Go educational PlaceCard, and preferred credit/license wording. Do not assume publicly published website images are freely reusable.",
       "status": "rights_request_prepared_not_sent_no_permission",
-      "outreachStatus": "gmail_draft_previously_prepared_not_sent_confirmed_2026-11-03",
+      "outreachStatus": "gmail_draft_updated_with_2023_annual_report_facade_page_38_not_sent_2026-11-03",
       "rightsStatus": "no_license_granted"
     }
   ],
@@ -144,5 +160,5 @@
       "decision": "street_context_only_not_image_or_frontImage"
     }
   ],
-  "researchOutcome": "Confirmed no Commons documentary photo unambiguously depicts current signed Møllergata 34 entrance or former 50A gallery entrance with rights. Two unsent Gmail drafts now exist: one to Fotogalleriet requesting licensed current facade and independent original; one to Preus museum archive contact requesting evidence of original 1977 entrance and license. No photographs activated. The Preus archive inventory focuses mainly on later 1980s/early 1990s records; presence of 1977 entrance photo is unverified."
+  "researchOutcome": "Visual inspection of Fotogalleriet's own 2023 Annual Report printed p.38/PDF p.44 confirms a clearly identifiable current Møllergata 34 facade/entrance photograph (Momentum 12 summer 2023). Photographer, original file and permission for local WebP reuse in a possible paid app are not established. Existing gallery Gmail draft updated with exact PDF page but NOT sent. Separate Preus archival inquiry remains a draft, and its archive does not guarantee a 1977 50A entrance photograph. Both photo roles remain blocked; no live images or quiz/Knowledge activation."
 }
