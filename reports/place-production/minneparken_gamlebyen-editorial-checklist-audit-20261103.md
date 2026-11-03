@@ -118,3 +118,16 @@ Denne kandidatenes status er en kontrollert avgrensning, ikke en beslutning om a
 - Oslo kommunes [Minneparken-side](https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/) omtaler gangsti og tilgjengeliggjøring som planlagte tiltak. [Middelalder-Oslo, november 2025](https://www.middelalder.no/middelalderbyen-i-dag/middelalderbeltet/589-minneparken-og-hallvardskatedralen) dokumenterer at deler av anlegget ikke var fullført den gangen. Ingen av disse beviser faktisk ferdigstatus **3. november 2026**. Historie-gate F forblir blokkert til fersk, etterprøvbar tilstandsbekreftelse finnes.
 
 **Status etter validatorrunde:** Kilde-/setningspakken og de kontrollerte tekniske avledningene har bestått sine målrettede tester, men Historie-gate F, fullquiz/QuizCard, to forskjellige publiserbare bilder, PlaceCard-medlemmer, mobil-/desktopbrowser-QA og ordinær CI på endelig PR-head er fortsatt sperrer. **Ikke `v1`, `vFerdig`, V3 `complete`, merge eller publisering.**
+
+## Målrettet valideringsbevis etter reparasjonsrunden
+
+GitHub Actions [#41578664470](https://github.com/Paradispartiet/History-Go/actions/runs/41578664470) ble kjørt på den isolerte PR-grenen etter web-reparasjonen. Den samlede kjøringen er **rød fordi Historie-rapporten ærlig forblir blokkert**, ikke fordi de øvrige målrettede kontrollene feilet.
+
+- `validatePacket` for bare `data/places/production/minneparken_gamlebyen.json`, med canonical Place lastet fra `placeFile`: **0 issues**.
+- `tests/place-description-production-v4_2.test.mjs` og `tests/historie-place-production.test.mjs`: **21/21 bestått**.
+- `npm run place-open:check`, `npm run epoker:places:check`, Fagverk-release `--check` og `npm run build:web:check`: **alle bestått**. Web-bunt er i synk.
+- Historie `--changed` med Minneparkens rapport: **én rapport kontrollert, to feil**: `status må være ready før Historie-stedet kan godkjennes` og `gate F må være PASS for et ferdig Historie-sted`. Ingen av disse portene skal omgås eller settes til PASS uten kildebevis. Portene G/H (fullquiz, canonical chronology/Story-review) forblir redaksjonelt åpne selv om denne validatoren bare rapporterte F.
+- Repository-vid `--all` for description-pakker kontrollerte 269 pakker og viste flere hundre avvik i katalogen. Denne brede kontrollen er **ikke** en presis tilstandsvurdering av Minneparken og skal ikke omtales som en egen place-feil.
+- Engangsworkflowen som samlet bevisene ble slettet fra grenen i `2916feb7c0efcd468f081101daef71edd384420e` etter at jobbene var sendt til GitHub. Ingen midlertidig QA-workflow skal inngå i sluttdiffen.
+
+**Konklusjon:** Beskrivelsesregistrering og genererte tekniske overflater er nå testet grønt for denne endringsrunden. Historie, fullquiz/QuizCard, rettighetsklarerte bilder, samlingsmedlemmer og faktisk Minneparken-browser-QA er fortsatt sperrer for v1/vFerdig og merge.
