@@ -40,7 +40,7 @@ test('Every sentence and factual place link has a documented direct claim',()=>{
       assert.ok(mapped.field_claim_map[key].every(id=>claims.has(id)),'unknown field claim');
     }
     for(const [kind,words] of [['desc',person.desc],['popupDesc',person.popupDesc]]){
-      const sentences=words.split(/(?<=[.!?])\\s+(?=[A-ZÆØÅ])/).filter(Boolean);
+      const sentences=words.split(/(?<=[.!?])\s+(?=[A-ZÆØÅ])/).filter(Boolean);
       const maps=mapped.sentence_claim_map[kind];
       assert.equal(maps.length,sentences.length,'sentence mapping count mismatch '+person.id+' '+kind);
       for(const s of maps){
