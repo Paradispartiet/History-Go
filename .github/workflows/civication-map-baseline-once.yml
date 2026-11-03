@@ -18,7 +18,18 @@ jobs:
           const fs = require('node:fs');
           const path = require('node:path');
           const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
-          const canonical = new Set(read('data/places/places_index.json').map(x => String(x.id)));
+          const index = read('data/places/places_index.json');
+          const canonical = new Set(index.map(x => String(x.id)));
+          const candidates = index.filter(x => /(?:bla|blå|trikk|tram|brenneriveien)/i.test(String(x.id) + ' ' + String(x.name || '')));
+          const inspected = candidates.slice(0, 40).map(row => {
+            const data = read('data/' + row.sourceFile);
+            const list = Array.isArray(data) ? data : Array.isArray(data.places) ? data.places : [data];
+            const found = list.find(p => String(p.id) === String(row.id));
+            return { id: row.id, sourceFile: row.sourceFile,
+              name: found?.name || null, lat: found?.lat, lon: found?.lon,
+              emne_ids: found?.emne_ids || [] };
+          });
+          console.log('Civication canonical candidates:', JSON.stringify(inspected));
           const files = fs.readdirSync('data/Civication/map').filter(n => /^historyGoPlaceMapping\..+\.json$/.test(n));
           const missing = [];
           for (const file of files) {
