@@ -5,7 +5,7 @@
   "status": "blocked_vferdig",
   "branch_status": "modern_2026_photography_before_after_in_feature_branch__pending_PR_merge",
   "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
-  "active_phase": "Visuelt kontrollert dokumentarfoto av 2025-bygget, egen Før/etter 2013–2026 og oppdatert canonical Place. Generated runtime og mobil/desktop må bekreftes; People/Objects/Brands forblir blokkert.",
+  "active_phase": "2026-toppbilde, Før/etter og kildebåret Asplan Viak Brand aktivert i canonical data. Generering, faktisk browser-test og People/Objects-avklaring gjenstår før vFerdig.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -33,7 +33,8 @@
       "https://www.asplanviak.no/prosjekter/det-nye-toyenbadet/",
       "https://unsplash.com/photos/modern-glass-building-with-park-path-HR21MwYowNY",
       "https://unsplash.com/photos/bicycle-path-beside-white-building-WvWK5YDDet4",
-      "https://unsplash.com/license"
+      "https://unsplash.com/license",
+      "https://www.asplanviak.no/profilmanual/"
     ],
     "review_note": "Kommunale primærkilder, Oslo byleksikon, Svømmeforbundet og stevnedata er vurdert. Rettigheter til nytt bilde og kategorisamlingenes medlemspreview er ikke avklart."
   },
@@ -88,12 +89,12 @@
       ]
     },
     "brands": {
-      "status": "BLOCKED",
+      "status": "PASS_CANONICAL_PENDING_RUNTIME_AND_BROWSER",
       "candidates": [
         "Asplan Viak – arkitektfirma med direkte prosjektrolle",
         "Lambertseter SK, Oslo IL Svømming og SK Speed – arrangørklubber for NM 2026"
       ],
-      "reason": "Eksisterende canonical Brand `asplan_viak` gjenbrukes og har dokumentert arkitekt-, landskapsarkitekt- og rådgiverrolle ved nye Tøyenbadet. Medlemsbilde, rettighetsgrunnlag og faktisk PlaceCard-popup-test gjenstår. Ingen ny duplikat-Brand. NM-klubber skal ikke konstrueres til Brands.",
+      "reason": "Eksisterende canonical Asplan Viak Brand er koblet direkte til Tøyenbadet og har ekte minthvit hovedlogo fra Asplan Viaks offisielle profilmanual. Lokal WebP 900x520 og SHA-256 er registrert; identitetsmarkering er referensiell og innebærer ingen tilknytning. PlaceCard har aktivert Brands, men runtime og mobil/desktop-popup må verifiseres.",
       "source_urls": [
         "https://www.kunstsamlingen.no/kunstprosjekter/toyenbadet",
         "https://www.asplanviak.no/prosjekter/det-nye-toyenbadet/"
@@ -154,9 +155,10 @@
     }
   },
   "collection_ids": [
+    "brands",
     "competitions"
   ],
-  "collection_decision": "Ingen PlaceCard-samlinger merkes PASS uten canonical medlem, rettighetsklarert medlemsbilde og faktiske popup-/mobiltester.",
+  "collection_decision": "To kildebårne, bildeklare samlinger: Brands (Asplan Viak) og Competitions (NM langbane 2026). People og Objects er fremdeles holdt tilbake pga. uferdige medlemsevidenser.",
   "media_gate": {
     "status": "PASS_SOURCE_IMAGES__GENERATED_AND_BROWSER_PENDING",
     "hero": {
@@ -205,6 +207,14 @@
       "size": "1400x900",
       "sha256": "67fc12a6f9c077280a1291fc223f2186baee404cc1a4e025fc5b0c698bc4396d",
       "use": "for_na.beforeImage"
+    },
+    "brand": {
+      "path": "bilder/kort/brands/asplan_viak.webp",
+      "sourcePage": "https://www.asplanviak.no/profilmanual/",
+      "assetSha256": "9d2feeff172d64f99656261b17bbf73b052e645107a574be9620cc5281fd105d",
+      "visualReview": "2026-11-03: checked authentic transparent minthvit wordmark and symbol against official Asplan Viak profile manual; no recreation, no endorsement",
+      "rightsBasis": "referential_trademark_identification; publicly downloadable official logo for software and documents, no affiliation or endorsement implied",
+      "status": "PASS_LOCAL_AND_VISUAL"
     }
   },
   "universal_core": {
@@ -216,7 +226,7 @@
     "photos": "PASS_CANONICAL: nytt 2026-bilde av gjeldende bad, historisk førfoto og stående 1980-frontImage, alle lokalt lagret og lisensiert; runtime og faktisk UI-kontroll gjenstår.",
     "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
     "chronology": "Åtte kildebelagte kronologipunkter er materialisert, og global epokeindeks regenerert etter oppdatering fra main; ny eksakt-HEAD-test følger.",
-    "collections": "PARTIAL: dokumentert konkurransesamling for NM 2026; People og Objects har reelle, uferdige kandidater fra Oslo kommunes kunstsamling og skal ikke feilmerkes N/A.",
+    "collections": "2 canonical PlaceCard-samlinger med ekte medlemmer og lokale assets aktivert; browser-kontroll og runtime-paritet gjenstår.",
     "browser_QA": "Begge viewport-diagnostikker viser Competition-preview med faktisk lastet bilde, korrekt én-samlingsprofil og NM-innhold; full test kjøres med oppdatert v2_curated-forventning.",
     "runtime": "Global place-open/leksikon/lesespor/Stories/epokeindeks regenerert og pushet etter merge av main, uten legacy cardImage."
   },
@@ -229,7 +239,8 @@
     "npm run check:stories",
     "Nettleser: Story åpner riktig sted, kilde- og fotoattribusjon, mobil/desktop",
     "node --test tests/toyenbadet-modern-photos-before-after.test.mjs",
-    "Regenerer places_index og place-open fra canonical; verifiser moderne hero + for_na i faktisk mobil/desktop UI"
+    "Regenerer places_index og place-open fra canonical; verifiser moderne hero + for_na i faktisk mobil/desktop UI",
+    "node --test tests/toyenbadet-asplan-viak-brand.test.mjs"
   ],
   "quality_assessment": {
     "correctness": 4,
@@ -240,7 +251,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "Nytt 2026-hero og før/etter 2013–2026 er kildemessig og visuelt klargjort, men status og poeng forblir 23/30 til generated paritet og faktisk browser QA er bestått. People/Objects/Brands er ennå ikke ferdig kvalifisert med bilder."
+    "note": "To faktiske, kildebårne PlaceCard-samlinger er nå canonical: Asplan Viak med offisiell logo og NM 2026 med redaksjonell illustrasjon. Nye Tøyenbadet har autentisk toppfoto og Før/etter 2013–2026. Status beholdes blocked_vferdig (23/30) til runtime/browser-QA er bekreftet og People/Objects er ferdig."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
@@ -259,7 +270,11 @@
     "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_2026_marek_lumi_glass.webp",
     "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_2026_marek_lumi_bicycle.webp",
     "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_modern_media_candidates.json",
-    "tests/toyenbadet-modern-photos-before-after.test.mjs"
+    "tests/toyenbadet-modern-photos-before-after.test.mjs",
+    "bilder/kort/brands/asplan_viak.webp",
+    "data/brands/brands_master.json",
+    "data/brands/asplan_viak_logo_provenance.json",
+    "tests/toyenbadet-asplan-viak-brand.test.mjs"
   ],
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
