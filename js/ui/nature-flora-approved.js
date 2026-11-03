@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_smaengkall: Object.freeze({
+      scientificName: "Rhinanthus minor",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/38_smaengkall_v1.webp",
+      gitBlobSha: "6d1e5faea142ec030d3eb0daeb9605a22bd626c2",
+      reviewedAt: "2026-11-03",
+      stage: "sommerblomstring_og_modne_frokapsler",
+      evidence: "data/natur/flora/illustration-quality-smaengkall-20261103.json"
+    }),
     emne_flora_smor_bukk: Object.freeze({
       scientificName: "Hylotelephium maximum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/37_smorbukk_v1.webp",
