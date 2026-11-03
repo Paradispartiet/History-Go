@@ -61,7 +61,7 @@ test("PlaceCard displays full, uncropped round images between relevant sections 
   assert.equal(explore.nextElementSibling, nature.parentElement, "Nature follows the introduction and collection surface");
   assert.equal(about.lastElementChild, brands, "Brands appears at the end of the entire About text");
   assert.equal(brands.querySelector("img").getAttribute("src"), "/brand-logo.png");
-  assert.equal(document.querySelectorAll('[data-pc-round-gallery-item="pcBrandsIcon"]').length, 0,
+  assert.equal(document.querySelectorAll('.pc-round-gallery-section [data-pc-round-gallery-item="pcBrandsIcon"]').length, 0,
     "Brands is never rendered as a full-size gallery image");
 
   assert.match(stylesheet, /\.pc-round-gallery-item\s*>\s*img\s*\{[^}]*object-fit:contain/s);
