@@ -34,7 +34,7 @@ assert(a.visualChecks.blackBackgroundReviewed && a.visualChecks.fullImageReviewe
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
 const approved = env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved?.count,58);
+assert(approved?.count >= 58, "Previously approved 58 artworks must remain available");
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
 const html=read("finn-flora.html");
