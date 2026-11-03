@@ -77,7 +77,7 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     "js/ui/psychology-room-entry.js",
     "js/ui/badges.js",
     "js/ui/personal-collection-map-bridge.js",
-    "dist/web/place-unified-surface.js?v=20260912-onsite-under-explore1"
+    "dist/web/place-unified-surface.js?v=20261102-visible-layout6"
   ];
 
   const placeholderType = "application/x-history-go-deferred";

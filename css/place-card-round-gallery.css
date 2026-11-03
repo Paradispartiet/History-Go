@@ -1,0 +1,126 @@
+/* Full-size, uncropped images belonging to PlaceCard's editorial sections.
+   Original collection controls stay in DOM for their popup handlers. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct
+  [data-pc-round-gallery-source="1"],
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct
+  #pcBrandsIcon{
+  display:none !important;
+}
+
+/* Use the complete artwork rather than cutting it into a circular thumbnail. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct .pc-round-gallery-section{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:20px;
+  width:100%;
+  min-width:0;
+  margin:24px 0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct .pc-round-gallery-item{
+  display:block;
+  width:100%;
+  min-width:0;
+  padding:0;
+  margin:0;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:16px;
+  background:#111923;
+  overflow:hidden;
+  cursor:pointer;
+  text-align:left;
+  box-sizing:border-box;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct .pc-round-gallery-item > img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+  max-height:none;
+  object-fit:contain;
+  object-position:center;
+  border-radius:0;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct .pc-round-gallery-label{
+  display:block;
+  padding:12px 16px;
+  color:#f5f5f5;
+  font-size:15px;
+  font-weight:750;
+  line-height:1.35;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct
+  .pc-round-gallery-item:focus-visible,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct
+  .pc-round-gallery-brand-button:focus-visible,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct
+  .pc-round-gallery-brand-link:focus-visible{
+  outline:3px solid #f6d15a;
+  outline-offset:3px;
+}
+
+/* Brands is a modest, uncropped logo at the END of the 'Om stedet' prose,
+   not a full-width image or another token in the collection grid. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct .pc-round-gallery-brand{
+  display:flex;
+  align-items:center;
+  margin:22px 0 0;
+  padding:18px 0 0;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct .pc-round-gallery-brand-button{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  max-width:100%;
+  padding:10px 14px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;
+  background:rgba(255,255,255,.055);
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct
+  .pc-round-gallery-brand-button > img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:min(180px,55vw);
+  max-height:118px;
+  object-fit:contain;
+  border-radius:6px;
+  background:#fff;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct
+  .pc-round-gallery-brand-button > .pc-round-gallery-label{
+  padding:0;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-direct .pc-round-gallery-brand-link{
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px;
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:10px 14px;
+  cursor:pointer;
+}
+
+@media (max-width:520px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-direct .pc-round-gallery-section{
+    gap:16px;
+    margin:18px 0;
+  }
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-direct .pc-round-gallery-label{
+    padding:10px 12px;
+  }
+}

@@ -57,25 +57,45 @@ try{
        const h=document.querySelector("#pcHeaderImage"),f=document.querySelector("#pcFrontImage");
        return {hero:{src:h.currentSrc,width:h.naturalWidth,height:h.naturalHeight},front:{src:f.currentSrc,width:f.naturalWidth,height:f.naturalHeight}};
      });
-     assert.match(imgs.hero.src,/toyenbadet_historic_2013_hero\.webp$/,vp.name+" licensed 2013 header");
+     assert.match(imgs.hero.src,/toyenbadet_2026_marek_lumi_glass\.webp$/,vp.name+" licensed modern 2026 header");
      assert.match(imgs.front.src,/toyenbadet_historic_1980_portrait\.webp$/,vp.name+" licensed 1980 front");
      assert.equal(imgs.hero.width,1400);
      assert.equal(imgs.hero.height,900);
      assert.equal(imgs.front.width,900);
      assert.equal(imgs.front.height,1350);
+     // The historical before/after is source-owned and both photographs decode in the actual app.
+     await page.waitForFunction(()=>{
+       const p=window.HGPlaceOpen?.getPlace?.("toyenbadet")||window.PLACES?.find(x=>x?.id==="toyenbadet");
+       return p?.for_na?.beforeImage&&p?.for_na?.nowImage;
+     },null,{timeout:30000});
+     const beforeAfter=await page.evaluate(async()=>{
+       const p=window.HGPlaceOpen?.getPlace?.("toyenbadet")||window.PLACES?.find(x=>x?.id==="toyenbadet");
+       const paths=[p.for_na.beforeImage,p.for_na.nowImage];
+       const photos=await Promise.all(paths.map(src=>new Promise((resolve,reject)=>{
+         const img=new Image();img.onload=()=>resolve({src,width:img.naturalWidth,height:img.naturalHeight});img.onerror=()=>reject(new Error("before/after photo failed: "+src));img.src=src;
+       })));
+       return {title:p.for_na.title,photos};
+     });
+     assert.match(beforeAfter.title,/2013 og 2026/);
+     assert.equal(beforeAfter.photos.length,2);
+     assert.ok(beforeAfter.photos.every(p=>p.width>0&&p.height>0));
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("has-quiz-card"),null,{timeout:30000});
-     // The single curated Sport collection must be visible, image-backed and non-empty.
+     // The two source-backed Sport collections must be visible and image-backed.
      await page.waitForFunction(()=>{
        const card=document.getElementById("placeCard");
        const icon=document.getElementById("pcCategoryCollectionIcon");
        const list=document.getElementById("pcCategoryCollectionList");
        const img=icon?.querySelector("img");
+       const brandIcon=document.getElementById("pcBrandsIcon");
+       const brandImg=brandIcon?.querySelector("img");
        return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
-         && card?.dataset.collectionCount==="1"
+         && card?.dataset.collectionCount==="2"
          && icon?.dataset.collectionId==="competitions"
          && icon?.dataset.previewStatus==="member-image"
          && img?.complete&&img.naturalWidth>0
-         && list?.textContent?.includes("NM langbane");
+         && list?.textContent?.includes("NM langbane")
+         && brandIcon?.dataset.collectionItemCount==="1"
+         && brandImg?.complete&&brandImg.naturalWidth>0;
      },null,{timeout:30000});
      const flip=page.locator("#pcFrontCardFlip");
      await flip.click();

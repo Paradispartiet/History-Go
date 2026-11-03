@@ -5,6 +5,23 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_taklok: Object.freeze({
+      scientificName: "Sempervivum spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/42_taklok_v1.webp",
+      gitBlobSha: "7f113e39c77246b0108639ea0b0826289be752be",
+      reviewedAt: "2026-11-03",
+      stage: "blomstring_og_rosetter",
+      evidence: "data/natur/flora/illustration-quality-taklok-20261103.json"
+    }),
+
+    emne_flora_strandvindel: Object.freeze({
+      scientificName: "Calystegia sepium",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/41_strandvindel_v1.webp",
+      gitBlobSha: "060b5c4b85715031bb3be1311874ac84217b480f",
+      reviewedAt: "2026-11-03",
+      stage: "blomstring",
+      evidence: "data/natur/flora/illustration-quality-strandvindel-20261103.json"
+    }),
     emne_flora_stemorsblomst_forvillet: Object.freeze({
       scientificName: "Viola tricolor m.fl.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/40_stemorsblomst_v1.webp",
