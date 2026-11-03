@@ -1,0 +1,25 @@
+name: Temporary Minneparken staged Story and quiz guards
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-story-qa-temp.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check staged Story score, evidence and non-activation
+        run: node --test tests/minneparken-story-candidate.test.mjs
+      - name: Re-check staged quiz source parity and release guard
+        run: node --test tests/minneparken-quiz-source-parity.test.mjs
