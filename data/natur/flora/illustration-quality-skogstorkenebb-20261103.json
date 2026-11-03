@@ -2,7 +2,7 @@
   "schema": "history-go-flora-single-species-review-v1",
   "batch": "09",
   "date": "2026-11-03",
-  "status": "binary_transfer_pending",
+  "status": "source_uploaded_ci_pending",
   "baselineApproved": 56,
   "approvedCountAfterRelease": 57,
   "publicationRule": "Do not merge until the exact original alpha WebP has been transferred, SHA-256 and Git blob SHA match, full botanical black-background review is approved, and illustration-contract and approved-flora-browser both pass on final head; preserve the 56 previously approved illustrations.",
@@ -21,9 +21,9 @@
         1024,
         1536
       ],
-      "reviewStatus": "visual_candidate",
-      "approvedForPublication": false,
-      "botanicalVisualDecision": "visually_recognizable_candidate_not_yet_uploaded",
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
       "reviewedAt": "2026-11-03",
       "stage": "sommerblomstring_og_fruktsetting",
       "visualChecks": {
@@ -40,12 +40,10 @@
       ],
       "observations": "Skogstorkenebb er en opprett flerårig urt med hårete stengler, grove, tydelig handdelte og tannete blad med fem til sju fliker, og rødfiolette til blåfiolette femkronbladete blomster, ofte i par på forgreinete stilker. De har lys midtsone, fine mørke årer og synlige pollenbærere. Etter blomstring dannes karakteristiske lange, spisse fruktnebb. En grov rotstokk og finrøtter vises.",
       "limitations": "Illustrasjonen kombinerer blomster, hengende knopper og frukter på ett stilisert eksemplar. Kronbladenes og bladflikenes størrelser er noe forstørret for gjenkjennelighet på små skjermer. Planten kan variere i fiolettnyanse og ha lysere blomster. Dette er en botanisk artsillustrasjon, ikke en sikker bestemmelsesnøkkel. Full godkjenning krever visuell gjennomgang av eksakt WebP i GitHub og en kontrollert rendering med svart #000 bakgrunn.",
-      "technicalVerification": "Locally produced 1024x1536 RGBA image with original alpha, 862697 fully transparent pixels. WebP 481590 bytes; SHA256 1db93474b58cfb69fb7f81a92b4127d217616ab18b0d9fda8db595935c44eeaf; Git blob f260e6747c79fff07b0b777e9419049dd373fd76. Black #000 composited preview inspected.",
+      "technicalVerification": "Locally produced 1024x1536 RGBA image with original alpha, 862697 fully transparent pixels. WebP 481590 bytes; SHA256 1db93474b58cfb69fb7f81a92b4127d217616ab18b0d9fda8db595935c44eeaf; Git blob f260e6747c79fff07b0b777e9419049dd373fd76. Black #000 composited preview inspected. GitHub original blob matched locally derived SHA after exact upload.",
       "publicationBlockedBy": [
-        "Upload the exact local WebP original to the candidate file path.",
-        "Verify hashes, alpha and final black-background botanical appearance.",
-        "Set reviewStatus approved and approvedForPublication true after source is uploaded and reviewed.",
-        "Integrate approved registry, release, browser, and CI; both required checks green before merge."
+        "Both required CI jobs illustration-contract and approved-flora-browser must pass on final PR head.",
+        "GitHub Pages deployment must be checked separately after merge."
       ]
     }
   ]
