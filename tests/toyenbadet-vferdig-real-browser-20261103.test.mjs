@@ -92,7 +92,28 @@ try{
      console.log("PASS Tøyenbadet media, QuizCard flip and Fagverk:",vp.name);
      results.push({viewport:vp.name,status:"passed",images:imgs});
    }catch(error){
-     results.push({viewport:vp.name,status:"failed",error:String(error.stack||error)});
+     const diagnostic=page ? await page.evaluate(()=>{
+       const card=document.getElementById("placeCard");
+       const icon=document.getElementById("pcCategoryCollectionIcon");
+       const list=document.getElementById("pcCategoryCollectionList");
+       const img=icon?.querySelector("img");
+       return {
+         currentPlace:card?.dataset.currentPlaceId,
+         collectionSource:card?.dataset.collectionProfileSource,
+         collectionCount:card?.dataset.collectionCount,
+         categoryId:icon?.dataset.collectionId,
+         previewStatus:icon?.dataset.previewStatus,
+         imageSrc:img?.getAttribute("src"),
+         imageLoaded:img?.complete&&img.naturalWidth>0,
+         listText:list?.textContent?.slice(0,300),
+         iconExists:!!icon,
+         cardVisible:!!card&&getComputedStyle(card).display!=="none",
+         appReady:window.__HG_APP_READY__,
+         routerReady:window.__HG_ROUTER_STARTED__
+       };
+     }).catch(e=>({evaluateError:String(e)})) : null;
+     console.error("Tøyenbadet browser diagnostic:",vp.name,JSON.stringify(diagnostic));
+     results.push({viewport:vp.name,status:"failed",error:String(error.stack||error),diagnostic});
      if(page)await page.screenshot({path:path.join(out,vp.name+"-failure.png"),fullPage:true,timeout:10000}).catch(()=>{});
    }finally{await ctx.close();}
  }
