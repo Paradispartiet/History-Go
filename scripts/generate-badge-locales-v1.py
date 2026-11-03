@@ -109,7 +109,10 @@ def main():
                     result=fabric_band(original,category,sub,bottom is not None)
                     top_title(result,title,category)
                     if bottom: bottom_title(result,bottom,sub=='klassisk_arkitektur')
-                    result.save(dst,'WEBP',lossless=True,method=5)
+                    # Compositing translated letterforms changes alpha at antialiased
+                    # patch edges. Restore the exact original silhouette before export.
+                    result.putalpha(original.getchannel('A'))
+                    result.save(dst,'WEBP',lossless=True,method=5,exact=True)
                 inspect=Image.open(dst).convert('RGBA')
                 assert inspect.size==original.size
                 assert np.array_equal(np.asarray(inspect.getchannel('A')),np.asarray(original.getchannel('A'))),f'Alpha changed: {dst}'
