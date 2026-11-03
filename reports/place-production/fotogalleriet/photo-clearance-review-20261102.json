@@ -2,8 +2,8 @@
   "schema": "history_go_place_photo_clearance_review_v1",
   "placeId": "fotogalleriet",
   "reviewedAt": "2026-11-03",
-  "reviewStatus": "blocked_two_distinct_site_photograph_sources_identified_but_no_reuse_rights_or_originals",
-  "policy": "image and frontImage must use two different original documentary photographs, not crops or derivatives of the same original. Rights must cover local WebP redistribution; record sourceSha256, sourcePage, originalId, author, license and credit for each original.",
+  "reviewStatus": "ai_illustrations_generated_locally_reference_photos_not_published_assets_pending_repo_commit",
+  "policy": "Two distinctly sourced original visuals are required for image and frontImage. If reuse rights to documentary photographs are not already granted, do not request permissions: create two independent, naturalistic AI-generated illustrations instead. Use different source generation IDs and hashes; label each 'Illustrasjon – AI-generert', do not present as a historical photograph or reproduce protected artworks. Preserve third-party exhibition photos as references only.",
   "sourceReview": [
     {
       "sourcePage": "https://snl.no/Fotogalleriet",
@@ -96,26 +96,26 @@
     {
       "role": "image",
       "preferredSubject": "Distinct recognizable exterior of the current Møllergata 34 gallery entrance/facade",
-      "status": "missing_rights_clear_original_facade_2023_report_candidate",
-      "candidateSource": "https://fotogalleriet.no/wp-content/uploads/2024/04/240415-Annual-Report_compressed_pagenumber.pdf#page=44"
+      "status": "missing_committed_original_ai_webp_facade",
+      "candidateSource": "https://fotogalleriet.no/wp-content/uploads/2024/04/240415-Annual-Report_compressed_pagenumber.pdf#page=44",
+      "proposedAsset": "fotogalleriet-fasade-illustrasjon.webp"
     },
     {
       "role": "frontImage",
       "preferredSubject": "A second separately photographed perspective of the gallery (interior without uncleared artworks, or a licensed historic Fotogalleriet site photo)",
-      "status": "missing_approved_original_2018_vernissage_or_50a_historical_candidate",
+      "status": "missing_committed_original_ai_webp_exhibition",
       "candidateSource": "https://snl.no/Fotogalleriet",
-      "alternativeCandidateSource": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg"
+      "alternativeCandidateSource": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg",
+      "proposedAsset": "fotogalleriet-utstilling-illustrasjon.webp"
     }
   ],
   "activationRequirements": [
-    "Verify both photographs actually depict Fotogalleriet, with place and time accurately described",
-    "Confirm right to copy, crop, adapt and redistribute each original as local WebP in History Go",
-    "Review artwork and identifiable persons in frame for additional permission requirements",
-    "Record different source IDs and different sourceSha256 hashes; never treat alternate crops as different originals",
-    "Prepare two local WebP assets with accurate photographer attribution and source links",
-    "Run: node scripts/check-distinct-place-photos.mjs --place data/places/kunst/oslo/places_kunst/fotogalleriet.json --require-both",
-    "After image gate, finish Knowledge registry and quiz/QuizCard manifest synchronization, browser tests and v1 production closeout",
-    "Do not classify the 2016 Oscars gate 50–50B photo as Fotogalleriet's 1977 entrance without independent 50A address-unit evidence."
+    "Commit two independent, original AI-generated WebP assets at distinct local paths to History Go, and record SHA256 and separate source generation IDs.",
+    "Credit both images as 'History Go – AI-generert illustrasjon', visibly label each as an illustration in PlaceCard and image metadata; neither depicts a verified documentary exposure or a specific historical exhibition.",
+    "Do not copy any reference exhibition photograph or the depicted copyrighted artworks into the generated illustration.",
+    "Validate distinct sources and avoid reusing crops of one AI source for both image and frontImage.",
+    "Update canonical Place and generated runtime/index consistently only after the files exist in the branch.",
+    "Run targeted place photo, staged quiz/Knowledge checks plus real iPad/mobile visual QA; then and only then consider v1 closeout and merge."
   ],
   "livePlacePhotosChanged": false,
   "canMergeAsCompleteV1": false,
@@ -165,7 +165,7 @@
       "decision": "street_context_only_not_image_or_frontImage"
     }
   ],
-  "researchOutcome": "Four authentic exhibition documentation sources from Fotogalleriet 2019, 2022, 2024, and 2025 are logged as visual references only. User rule is to avoid permission requests; produce two separately generated, photorealistic illustrations and label them. No exhibition photo is licensed for local redistribution, and none is activated. Earlier photo-rights gates remain relevant ONLY to using literal source photos, not to wholly original illustrations.",
+  "researchOutcome": "Documented 2019–2025 exhibition photography as reference only. Two independent naturalistic original illustrations (facade and imaginary photography exhibition) have been generated and packaged as WebP with hashes; their bytes are not yet committed to GitHub, so no live Place fields or media activation. No permission contact requested or sent.",
   "proposedIndependentOriginalPair": {
     "proposalStatus": "two_distinct_existing_images_identified_rights_and_originals_not_cleared",
     "currentFacade": {
@@ -193,7 +193,7 @@
   "illustrationProduction": {
     "decisionDate": "2026-11-03",
     "route": "original_naturalistic_illustrations_instead_of_requesting_reuse_permissions",
-    "ownerDecision": "Do not contact rightsholders for picture permissions. Find free-license source media when usable, otherwise create original photorealistic illustrations of the documented venue and gallery contexts.",
+    "ownerDecision": "No permission requests: use originally generated naturalistic illustrations whenever directly reusable, clearly licensed documentary photos are unavailable.",
     "activeContactRequests": "none; prior Gmail drafts unsent and not part of production path",
     "clearRules": [
       "Illustrations are not documentary photographs; label them clearly in UI and metadata as illustration.",
@@ -224,7 +224,39 @@
         "illustrationCredit": "History Go – AI-generert illustrasjon",
         "status": "visual_reference_selected_generation_not_yet_uploaded"
       }
-    ]
+    ],
+    "packaging": {
+      "status": "two_distinct_webp_illustrations_generated_and_packaged_in_conversation_not_uploaded_to_repository",
+      "userDownload": "fotogalleriet-v1-illustrasjoner.zip",
+      "generatedAt": "2026-11-03",
+      "assets": [
+        {
+          "role": "image",
+          "stagedFile": "fotogalleriet-fasade-illustrasjon.webp",
+          "outputSha256": "3e2c403dd64585a0bb3d1a491e42ae55d9064f5d559b3fc9c902a87c34c35bdb",
+          "dimensions": [
+            1440,
+            960
+          ],
+          "description": "Conceptual photographic realism of gallery facade; not a confirmed exact image of current Møllergata 34 facade.",
+          "imageLabel": "Illustrasjon – AI-generert",
+          "artworksDepicted": "none"
+        },
+        {
+          "role": "frontImage",
+          "stagedFile": "fotogalleriet-utstilling-illustrasjon.webp",
+          "outputSha256": "933d0add15a46adc6980e5f05959d0f0af8f1bb536124ae68cdd3cc2cabad1c7",
+          "dimensions": [
+            1440,
+            960
+          ],
+          "description": "Fictional contemporary photography exhibition inspired by general Fotogalleriet installation context; all artworks invented.",
+          "imageLabel": "Illustrasjon – AI-generert",
+          "artworksDepicted": "all fictitious original designs"
+        }
+      ],
+      "publicationGate": "Do not set active image/frontImage until actual binary WebP assets are committed to the repository; confirm both exact hashes, labelled AI provenance, correct image credits, generated runtime, and iPad/mobile visual QA."
+    }
   },
   "exhibitionVisualReferences": [
     {
@@ -253,6 +285,46 @@
       "event": "Window Exhibition 2025",
       "sourcePage": "https://fotogalleriet.no/exhibition/the-window-exhibition-2025/",
       "visualNotes": "Five windows used for photography displays; installation documentation attributed to Dev Dhunsi",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Indoctrination: Multivalent Gestures (2023)",
+      "sourcePage": "https://kunstkritikk.com/un-doctrinated/",
+      "photographer": "Julie Hrnčířová (first installation image in the review)",
+      "visualNotes": "White-walled main gallery, freestanding blue rectangular structure, dark corridor with video projection",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "4:59 by Julie Poly (2023)",
+      "sourcePage": "https://www.oslofotokunstskole.no/blogg/an-exhibition-about-resistance",
+      "photographer": "Julie Hrncirova (installation views)",
+      "visualNotes": "Wallpapered photographic installation with informal frames, intimate-scale display and visitors",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Vårutstillingen 2024",
+      "sourcePage": "https://fotogalleriet.no/wp-content/uploads/2025/05/report_43.pdf",
+      "photographer": "Tor S. Ulstein (installation view credited in Fotogalleriet report)",
+      "visualNotes": "Mixed photographic and installation pieces displayed across exhibition rooms",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Vårutstillingen 2025",
+      "sourcePage": "https://fotogalleriet.no/wp-content/uploads/2026/03/Fotogalleriet_AnnualReport_2025.pdf",
+      "photographer": "Tor Ulstein / KUNSTDOK (installation photographs in annual report)",
+      "visualNotes": "Contemporary installation views credited to Tor Ulstein / KUNSTDOK in the official 2025 report",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Tredje Rom (2025)",
+      "sourcePage": "https://fotogalleriet.no/event/tredje-rom-public-programme/",
+      "photographer": "Jan Khür / Studio Abrakadabra (installation photo; image edit Nasha Perez)",
+      "visualNotes": "2025 Fotogalleriet exhibition and installation context",
       "imageRights": "not established",
       "decision": "reference_only_not_copied"
     }
