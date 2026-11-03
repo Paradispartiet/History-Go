@@ -4,6 +4,9 @@ on:
     branches: [content/toyenbadet-vferdig-20261103]
     paths:
       - '.github/workflows/toyenbadet-runtime-regen-once-20261103.yml'
+      - 'data/stories/stories_toyenbadet.json'
+      - 'data/stories/stories_manifest.json'
+      - 'data/stories/stories_episode_v1_manifest.json'
 permissions:
   contents: write
 concurrency:
@@ -23,6 +26,8 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Validate canonical Stories
+        run: npm run check:stories
       - name: Regenerate canonical outputs and inspect exact drift
         shell: bash
         run: |
@@ -39,6 +44,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/runtime/place-open/toyenbadet.json data/runtime/leksikon-all/part-009.json data/runtime/leksikon-all.json data/runtime/lesespor-all.json data/epoker/epoke-place-index.json
+          git add -A data/runtime/stories-all/ data/runtime/stories-all.json
           git diff --cached --check
           if ! git diff --cached --quiet; then
             git commit -m 'Tøyenbadet: synchronize generated leksikon and source-backed epoke index'
