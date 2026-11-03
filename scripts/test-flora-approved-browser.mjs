@@ -87,6 +87,7 @@ try{
     {name:"smaengkall",label:"Småengkall",term:"Småengkall",path:"b09/38_smaengkall_v1.webp"},
     {name:"snoklokke",label:"Snøklokke",term:"Snøklokke",path:"b09/39_snoklokke_v1.webp"},
     {name:"stemorsblomst",label:"Stemorsblomst \\(forvillet\\)",term:"Stemorsblomst",path:"b09/40_stemorsblomst_v1.webp"},
+    {name:"strandvindel",label:"Strandvindel",term:"Strandvindel",path:"b09/41_strandvindel_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
