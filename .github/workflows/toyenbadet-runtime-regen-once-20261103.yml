@@ -32,13 +32,13 @@ jobs:
           echo 'GENERATED_DIFF_BEGIN'
           git status --short | head -80
           echo 'GENERATED_DIFF_END'
-      - name: Stage only Tøyenbadet-related generated indexes
+      - name: Stage Tøyenbadet-generated leksikon and reading-trail indexes
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/runtime/place-open/toyenbadet.json data/runtime/leksikon-all/part-009.json data/epoker/epoke-place-index.json
+          git add data/runtime/place-open/toyenbadet.json data/runtime/leksikon-all/part-009.json data/runtime/leksikon-all.json data/runtime/lesespor-all.json data/epoker/epoke-place-index.json
           git diff --cached --check
           if ! git diff --cached --quiet; then
             git commit -m 'Tøyenbadet: synchronize generated leksikon and source-backed epoke index'
