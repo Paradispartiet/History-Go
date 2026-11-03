@@ -76,7 +76,8 @@ def replace_embroidered_letters(canvas, original, category, sub):
         # The curved original title finishes near the lower outer corners.
         # Extend only those side-glyph zones; never touch the sky or pediment.
         roi &= ((yy<=300)|(radial>=414))
-        sides=(((xx<190)|(xx>835))&(yy>=300)&(yy<395)&(radial>386))
+        sides=((((xx>=95)&(xx<235)&(yy>=185)&(yy<344)&(radial>373))|
+                ((xx>753)&(xx<=930)&(yy>=170)&(yy<347)&(radial>359)))
         roi |= sides
     elif sub=='dans':
         # Avoid the dancer's hands, head and drapery beneath the old DANS.
@@ -149,6 +150,16 @@ def replace_embroidered_letters(canvas, original, category, sub):
                 +texture*feather,0,255).astype(np.uint8)
     fixed=Image.fromarray(out,'RGB').convert('RGBA')
     fixed.putalpha(original.getchannel('A'))
+    if sub=='dans':
+        # The ballerina's left hand crosses the low D of the old title.
+        # Reinstate the *exact original arm pixels*, not a painted replica.
+        protect=Image.new('L',(w,h),0)
+        ImageDraw.Draw(protect).polygon([
+            (197,249),(235,231),(283,245),(333,272),(390,299),
+            (458,322),(488,356),(455,380),(391,344),(320,311),
+            (276,283),(223,281)],fill=255)
+        protect=protect.filter(ImageFilter.GaussianBlur(1.2))
+        fixed=Image.composite(original,fixed,protect)
     return fixed
 
 def top_title(canvas, caption, category, sub=None):
