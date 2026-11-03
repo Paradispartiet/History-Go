@@ -75,11 +75,11 @@
       "reason": "Selvstendig identitet og tilknytning er plausible, men autentiske rettighetsavklarte logoer og canonical Brand-koblinger er ikke gjennomgått; Tøyenbadet som egen place-first identitet skal ikke speiles kunstig."
     },
     "competitions": {
-      "status": "BLOCKED",
+      "status": "PASS_CANDIDATE_PENDING_BROWSER",
       "candidates": [
-        "NM langbane i svømming, 2.–5. juli 2026"
+        "NM langbane 2.–5. juli 2026"
       ],
-      "reason": "Kildeverifisert stevne og plass, men canonical konkurranserecord og bildelisensiert medlemspreview mangler."
+      "reason": "Egen konkurranserecord med Medley og NSF, original illustrasjon (klart skilt fra foto) og canonical PlaceCard-profil. Mobil-/desktopvisning og popup må verifiseres før PASS."
     },
     "stories": {
       "status": "BLOCKED",
@@ -126,7 +126,9 @@
       "reason": "Egen dokumentert idrettshistorisk hovedartikkel og seks kronologipunkter lagt i manifest og stedets place-open; exact-head generatorparitet gjenstår."
     }
   },
-  "collection_ids": [],
+  "collection_ids": [
+    "competitions"
+  ],
   "collection_decision": "Ingen PlaceCard-samlinger merkes PASS uten canonical medlem, rettighetsklarert medlemsbilde og faktiske popup-/mobiltester.",
   "media_gate": {
     "status": "PASS_IMAGES_PENDING_BROWSER",
@@ -155,7 +157,7 @@
     "photos": "PASS_CANONICAL_ASSETS: separate license-tracked historic hero and true 900x1350 portrait; visual browser QA remains blocked.",
     "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
     "chronology": "KONKRET INNHOLD LAGT INN: Seks source-backed år i nytt leksikon; epokeindeks-generering og exact-head test gjenstår.",
-    "collections": "BLOCKED",
+    "collections": "PARTIAL: one sourced NM 2026 competition with original vector preview. Pending browser collection/popup QA; People and Brands separately BLOCKED, Objects N/A.",
     "browser_QA": "BLOCKED",
     "runtime": "synkronisert JSON i arbeidsgren, generatorkontroll ikke kjørt"
   },
@@ -168,14 +170,14 @@
   ],
   "quality_assessment": {
     "correctness": 4,
-    "coverage": 2,
+    "coverage": 3,
     "editorial": 4,
     "technical": 3,
     "responsibility": 5,
     "maintainability": 4,
-    "total": 22,
+    "total": 23,
     "high_quality": false,
-    "note": "Kildestyrt revisjon er gjennomført, men stedets vFerdig-scope, bilde, samlinger, universell språk/kronologi og faktisk UI-aksept er ikke oppfylt. Ferdigstatus er uttrykkelig sperret."
+    "note": "Dokumentert egen konkurransesamling er integrert, men People/Brands, Før-etter og sluttkontroll av samling/popup og endelig CI er fremdeles blokkerende. Ikke vFerdig."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
@@ -186,7 +188,8 @@
     "data/leksikon/manifest.json",
     "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_historic_2013_hero.webp",
     "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_historic_1980_portrait.webp",
-    "data/lesespor/oslo/lesespor_oslo_sport.json"
+    "data/lesespor/oslo/lesespor_oslo_sport.json",
+    "bilder/kort/competitions/nm_langbane_2026_toyenbadet.svg"
   ],
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
