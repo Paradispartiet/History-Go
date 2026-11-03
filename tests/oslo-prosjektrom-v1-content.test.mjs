@@ -23,6 +23,7 @@ test("canonical venue identity and source-backed narrative", () => {
   assert(place.popupDesc.includes("Wenche Kvalstad Eckhoff"));
   assert(place.popupDesc.includes("Marte Dahl"));
   assert(place.popupDesc.includes("Kebreab Demeke"));
+  assert(place.popupDesc.includes("Kristiania Melkeforsynings"));
   assert(!/I History Go|quizprofil|adresseaudit|spørsmålene bør/i.test(place.popupDesc));
   assert.deepEqual(runtime.place.desc, place.desc);
   assert.deepEqual(runtime.place.popupDesc, place.popupDesc);
@@ -78,7 +79,7 @@ test("4.2 source-review packet hashes exact published text and covers all senten
   assert.equal(production.textHashes.desc, digest(place.desc));
   assert.equal(production.textHashes.popupDesc, digest(place.popupDesc));
   assert.equal(production.sentenceCoverage.desc.length, 2);
-  assert.equal(production.sentenceCoverage.popupDesc.length, 12);
+  assert.equal(production.sentenceCoverage.popupDesc.length, 15);
   const claimIDs = new Set(production.claims.map((claim) => claim.id));
   for (const coverage of [...production.sentenceCoverage.desc, ...production.sentenceCoverage.popupDesc]) {
     assert(coverage.claimIds.every((id) => claimIDs.has(id)));
