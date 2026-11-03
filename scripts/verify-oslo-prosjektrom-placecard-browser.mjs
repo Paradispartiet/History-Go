@@ -14,6 +14,11 @@ const cards=JSON.parse(fs.readFileSync('data/quizcards/kunst/oslo_prosjektrom_qu
 assert.equal(cards.production_status,'knowledge_linked');
 assert.equal(cards.cards[0].questions.length,10);
 assert.equal(runtime.place.id,placeId);
+assert.equal(place.imageLicense,'CC BY-SA 4.0');
+assert.equal(place.imageMeta?.license,'CC BY-SA 4.0');
+assert.equal(place.frontImageMeta?.license,'CC BY-SA 4.0');
+assert.ok(place.image!==place.frontImage,'Venue must use distinct documentary photo sources');
+assert.ok(fs.statSync(place.image).size>50000&&fs.statSync(place.frontImage).size>50000,'Local photos must be fully materialized');
 assert.equal(runtime.place.image,place.image);
 assert.equal(runtime.place.frontImage,place.frontImage);
 assert.match(place.image||'',/oslo.prosjektrom|platous/i);
