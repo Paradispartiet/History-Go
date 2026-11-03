@@ -5,26 +5,57 @@ on:
       - research/fotogalleriet-v1-tekst-20261102
     paths:
       - reports/place-production/fotogalleriet/trigger-canonical-once.txt
-
 permissions:
   contents: write
 
 jobs:
   canonical:
     runs-on: ubuntu-latest
-    timeout-minutes: 22
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
           ref: research/fotogalleriet-v1-tekst-20261102
           fetch-depth: 0
           persist-credentials: true
-      - name: Sync latest main without discarding parallel work
+      - name: Sync newest main with semantic JSON conflict resolution
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git merge --no-edit origin/main
+          git merge --no-commit --no-ff origin/main || true
+          python3 - <<'PY'
+          import subprocess,json,pathlib
+          expected={
+              'data/fagverk/fagverk_registry.json',
+              'data/quiz/manifest.json',
+              'data/quizcards/kunst/manifest.json'
+          }
+          conflicts=set(subprocess.check_output(['git','diff','--name-only','--diff-filter=U'],text=True).splitlines())
+          if not conflicts.issubset(expected):
+              raise SystemExit('Unexpected merge conflict outside Fotogalleriet registries: '+str(sorted(conflicts-expected)))
+          def stage(n,path):
+              return json.loads(subprocess.check_output(['git','show',f':{n}:{path}']))
+          for p in sorted(conflicts):
+              theirs=stage(3,p) # latest main is authoritative
+              ours=stage(2,p) # PR has the reviewed Fotogalleriet record
+              if p.endswith('fagverk_registry.json'):
+                  theirs['placeLinks']['fotogalleriet']=ours['placeLinks']['fotogalleriet']
+              elif p.endswith('data/quiz/manifest.json'):
+                  original=[x for x in ours['sets'] if x.get('targetId')=='fotogalleriet']
+                  if len(original)!=1:raise SystemExit('Fotogalleriet manifest registration not unique')
+                  theirs['sets']=[x for x in theirs['sets'] if x.get('targetId')!='fotogalleriet']+original
+              elif p.endswith('data/quizcards/kunst/manifest.json'):
+                  name='fotogalleriet_quizcard_v1.json'
+                  theirs['collections']=[x for x in theirs['collections'] if x!=name]+[name]
+              pathlib.Path(p).write_text(json.dumps(theirs,ensure_ascii=False,indent=2)+'\n')
+              subprocess.run(['git','add',p],check=True)
+          unresolved=subprocess.check_output(['git','diff','--name-only','--diff-filter=U'],text=True).strip()
+          if unresolved:raise SystemExit('Merge still unresolved: '+unresolved)
+          PY
+          git commit --no-edit
       - name: Setup repo Node tooling
         uses: ./.github/actions/setup-node-npm
       - name: Generate canonical place index, Knowledge and place-open
@@ -32,14 +63,17 @@ jobs:
           npm run places:index:build
           npm run knowledge:canonical:write
           npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs --write
       - name: Targeted Fotogalleriet verification
         run: |
           node --test tests/fotogalleriet-v1-staged.test.mjs
           node scripts/check-distinct-place-photos.mjs --place data/places/kunst/oslo/places_kunst/fotogalleriet.json --require-both
           npm run knowledge:canonical:check
       - name: Commit only generated canonical outputs
+        shell: bash
         run: |
-          git add data/places/places_index.json data/runtime/place-open/fotogalleriet.json data/knowledge/
+          set -euo pipefail
+          git add data/places/places_index.json data/runtime/place-open/fotogalleriet.json data/knowledge/ data/fagverk/fagverk_release.json
           echo "Selected generated changes:"
           git diff --cached --stat
           if ! git diff --cached --quiet; then
