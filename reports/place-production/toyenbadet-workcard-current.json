@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "PR_6994_OBJECTS_MOBILE_DESKTOP_QA_SUCCESS__PENDING_MERGE",
+  "branch_status": "people_profiler_claim_mapped_staging_PR_pending_merge",
   "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
-  "active_phase": "Objects, Brands og Competitions er kildebåret, lokalt illustrert og testet i faktisk mobil- og desktop-PlaceCard. Fire relevante People-kandidater har kilde- og identitetskontrollerte claims, men mangler fremdeles rettighetsklarerte portretter før People-samlingen kan aktiveres.",
+  "active_phase": "People: fire redaksjonelt gjennomarbeidede personprofiler er nå lagt i ikke-manifest-aktiv staging, med 19 dokumenterte claims, stedskobling og sentence-/field-claim-mapping. Personene kan ikke aktiveres før lovlig og korrekt identifisert portrett er lokalt lagret og visuelt testet. Objects, Brands og Competitions forblir publisert.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -62,18 +62,48 @@
   },
   "content_plan": {
     "people": {
-      "status": "CLAIMS_VERIFIED__PORTRAITS_BLOCKED",
+      "status": "DRAFTS_READY__LICENSED_PORTRAITS_BLOCKED",
       "candidates": [
-        "Henrik Christiansen – NM beste herre 2026 (svømmer, født 1996)",
-        "Hedda Øritsland – NM beste dame og norsk rekord 100 meter fri 2026",
-        "Halvard Heskestad Waage – hovedarkitekt for nytt bad",
-        "Gert Walter Thuesen – arkitekt for gamle bad"
+        "Henrik Christiansen (svømmer) – Kongepokal herrer og beste herre på Tøyenbadet NM 2026",
+        "Hedda Øritsland – norsk 100m fri-rekord 55,32, Kongepokal damer og beste dame på Tøyenbadet NM 2026",
+        "Halvard Heskestad Waage – hovedarkitekt for nytt Tøyenbad fra 2025",
+        "Gert Walter Thuesen – arkitekt bak 1976-bygningen"
       ],
-      "reason": "To mesterskapsutøvere med særskilt dokumentert prestasjon på badet samt arkitektene bak gammel og ny bygning er forsket med direkte claims-kilder i reports/place-production/toyenbadet-people-claims-20261103.json. Portrettlisens/identitet er ikke godkjent for noen kandidat. Commons-kategorien Henrik Christiansen viser feil person (skøyteløper) og skal aldri brukes. Samlingen forblir blokkert.",
+      "staging": "data/people/staging/toyenbadet_people_20261103.json",
+      "claims": "reports/place-production/toyenbadet-people-field-claims-20261103.json",
+      "claimsCount": 19,
+      "identityReview": "Henrik Christiansen-swimmer født 1996, IKKE Commons-kategori for navnelik skøyteløper født 1983. Gert Walter Thuesen OB.RD0091a avbilder en kvinne og kan ikke brukes som arkitektens portrett.",
+      "rejectedImages": [
+        {
+          "personId": "henrik_christiansen_svommer",
+          "source": "https://commons.wikimedia.org/wiki/Category:Henrik_Christiansen",
+          "reason": "wrong person (speed skater, born 1983)"
+        },
+        {
+          "personId": "hedda_oritsland",
+          "source": "https://www.abcnyheter.no/sport/norsk-ol-utover-bytter-idrett-foler-jeg-har-noe-uoppgjort/426692",
+          "reason": "NTB press photo, reuse rights not granted"
+        },
+        {
+          "personId": "halvard_heskestad_waage",
+          "source": "https://www.asplanviak.no/kvartalet/arkitektur/toyenbadet/",
+          "reason": "identity reference portrait only; not licensed for reuse"
+        },
+        {
+          "personId": "gert_walter_thuesen",
+          "source": "https://oslobilder.no/OMU/OB.RD0091a",
+          "reason": "associated archive name, photo depicts a woman in interior, not identity-confirmed as architect"
+        }
+      ],
+      "reason": "Fire stedstilknytninger og 19 profilclaims er gjennomgått. Fire redaksjonelle personbiografier og felt-/setningskart ligger klare i staging, men fri portrettlisens mangler for alle fire. Ingen profiler er lagt i People-manifest, og People-samlingen er fortsatt inaktiv.",
       "source_urls": [
         "https://svomming.no/nyheter/nm-langbane-i-oslo-leverer-spenning-og-fantastisk-stemning/",
+        "https://www.olympedia.org/athletes/135349",
+        "https://www.teamnor.no/profiler/padleforbundet/hedda-oritsland/",
         "https://www.asplanviak.no/kvartalet/arkitektur/toyenbadet/",
-        "https://oslobyleksikon.no/side/T%C3%B8yenbadet"
+        "https://www.arkitektur.no/aktuelt/arkitektur/det-nye-toeyenbadet-vanvittig-mye-energi-som-gaar-med/",
+        "https://oslobyleksikon.no/side/T%C3%B8yenbadet",
+        "https://riksantikvaren.no/eksempelsamling/modernisering-pa-betongens-premisser/"
       ]
     },
     "objects": {
@@ -265,7 +295,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "Tre bildeklare samlinger (Objects, Brands, Competitions) ligger i canonical og er testet på faktisk mobil og desktop (run 41594599553). To Objects har dokumenterte stedskilder og tydelig merkede egne tekniske illustrasjoner. Fire People-kandidater er kilde-/identitetskontrollert, men People-publikasjon er blokkert på portrettrettigheter; vFerdig kan ikke godkjennes. Historisk score 23/30 holdes frem til samlet quality review."
+    "note": "Tre samlinger (Objects, Brands, Competitions) bestått faktisk mobil/desktop. People har nå 4 nye staged biografier med 19 source-backed claims og claim mapping. Portretter er ikke lisensiert eller identitetsverifisert; People er derfor fortsatt inaktiv og vFerdig status blocked_vferdig. Godkjenning og kvalitetspoeng endres ikke uten full bildeport og visual QA."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
@@ -292,7 +322,10 @@
     "bilder/objects/toyenbadet_startpall_8_illustrasjon.svg",
     "bilder/objects/toyenbadet_mobil_bassengheis_illustrasjon.svg",
     "reports/place-production/toyenbadet-people-claims-20261103.json",
-    "tests/toyenbadet-source-backed-objects.test.mjs"
+    "tests/toyenbadet-source-backed-objects.test.mjs",
+    "data/people/staging/toyenbadet_people_20261103.json",
+    "reports/place-production/toyenbadet-people-field-claims-20261103.json",
+    "tests/toyenbadet-people-staging-source-gate.test.mjs"
   ],
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
