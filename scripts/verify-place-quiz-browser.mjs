@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Full real-app quiz playthrough, including persisted progress and reward.
+// Fotogalleriet acceptance uses --ipad to add portrait/landscape touch playthroughs.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
