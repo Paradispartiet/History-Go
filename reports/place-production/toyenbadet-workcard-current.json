@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "objects_source_bound_illustrated__feature_branch_pending_QA",
+  "branch_status": "PR_6994_OBJECTS_MOBILE_DESKTOP_QA_SUCCESS__PENDING_MERGE",
   "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
-  "active_phase": "To dokumenterte sports-/tilretteleggingsobjekter med egne, originaltegnede og eksplisitt merkede skjematiske SVG-bilder er canonical; People-kandidatclaims for mesterskapsutøvere og begge arkitekter kontrollert. Runtime/browser-QA for Objects gjenstår; People har fortsatt manglende identitets-/lisensgodkjente portretter.",
+  "active_phase": "Objects, Brands og Competitions er kildebåret, lokalt illustrert og testet i faktisk mobil- og desktop-PlaceCard. Fire relevante People-kandidater har kilde- og identitetskontrollerte claims, men mangler fremdeles rettighetsklarerte portretter før People-samlingen kan aktiveres.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -77,7 +77,7 @@
       ]
     },
     "objects": {
-      "status": "SOURCE_VERIFIED_ASSETS_LOCAL__PENDING_BROWSER_QA",
+      "status": "PASS_BROWSER",
       "accepted": [
         {
           "id": "toyenbadet_startpall_nummer_8",
@@ -99,7 +99,7 @@
       "rejected": [
         "Gullesens permanente kunstverk og Føllings Vektløs er ikke sports-Objects; hører til produksjoner/kunstverk."
       ],
-      "reason": "To stedsspesifikke fysiske gjenstander med separate funksjoner og autoritative kilder. Bildene er originale, tydelig merkede skjematiske illustrasjoner, ikke fotografier eller fabrikk-/modellrekonstruksjoner. Objektsamlingen aktiveres først når browser-preview og popup er kontrollert."
+      "reason": "To dokumenterte fysiske objekter ved Tøyenbadet, hvert med en original skjematisk illustrasjon tydelig merket «Illustrasjon – ikke fotografi». Både local source, generert Place-open og faktisk Chrome-test i mobil/desktop har bestått. Browser-QA run 41594599553 kontrollerte 3 samlinger, riktig SVG-preview og disclosures."
     },
     "brands": {
       "status": "PASS_BROWSER",
@@ -241,8 +241,8 @@
     "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
     "chronology": "Åtte kildebelagte kronologipunkter er materialisert, og global epokeindeks regenerert etter oppdatering fra main; ny eksakt-HEAD-test følger.",
     "collections": "2 canonical PlaceCard-samlinger med ekte medlemmer og lokale assets aktivert; browser-kontroll og runtime-paritet gjenstår.",
-    "browser_QA": "PASS: browser run 41589971756 (3. november 2026), både mobile og desktop: 2026-hero, originalt stående frontImage, Før/etter-fotofiler, 2 medlemseide samlinger, QuizCard-vending og Fagverk.",
-    "runtime": "PASS: Tøyenbadet Place-open og places_index regenerert fra canonical med 2026-hero, 2013–2026 for_na, 2 collection_ids og Asplan Viak-logo, uten cardImage."
+    "browser_QA": "PASS: GitHub Actions run 41594599553 (2026-11-03) verified actual mobile and desktop PlaceCard: hero, Før/etter, 3 loaded collections including 2 Objects with image/disclosure, Asplan Viak, NM, QuizCard flip and Fagverk.",
+    "runtime": "PASS: places_index og data/runtime/place-open/toyenbadet.json regenerert fra canonical med 2 Objects, 3 collection_ids, riktig Asplan Viak Brand, NM 2026, 2026 hero og Før/etter."
   },
   "test_plan": [
     "node scripts/validate-place-description-production-v4_2.mjs --help / målrettet endringskontroll",
@@ -265,7 +265,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "Originale dokumenterte Objects er lagt i canonical med kildeførte, lokalt lagrede SVG-fagillustrasjoner av startpall og mobil heis. Faktabaserte People-kandidater er claim-mappet og identitetskollisjon avdekket. Ingen vFerdig-status før browser-QA av Objects og rettighetsklarerte People-bilder. Historisk score 23/30 beholdes til sluttrevisjon."
+    "note": "Tre bildeklare samlinger (Objects, Brands, Competitions) ligger i canonical og er testet på faktisk mobil og desktop (run 41594599553). To Objects har dokumenterte stedskilder og tydelig merkede egne tekniske illustrasjoner. Fire People-kandidater er kilde-/identitetskontrollert, men People-publikasjon er blokkert på portrettrettigheter; vFerdig kan ikke godkjennes. Historisk score 23/30 holdes frem til samlet quality review."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
