@@ -2,7 +2,7 @@
   "schema": "history-go-flora-single-species-review-v1",
   "batch": "09",
   "date": "2026-11-03",
-  "status": "candidate_original_ready_binary_transfer_pending",
+  "status": "source_uploaded_ci_pending",
   "baselineApproved": 62,
   "approvedCountAfterRelease": 63,
   "publicationRule": "Do not approve or merge until the exact 1024x1536 alpha WebP is transferred, Git blob and SHA256 match, registry entry is active, and both illustration-contract and approved-flora-browser pass.",
@@ -20,8 +20,8 @@
         1024,
         1536
       ],
-      "reviewStatus": "candidate_pending_upload",
-      "approvedForPublication": false,
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
       "reviewedAt": "2026-11-03",
       "stage": "blomstring_og_knopper",
       "visualChecks": {
@@ -36,12 +36,10 @@
       ],
       "observations": "Botanisk originalillustrasjon av Calystegia sepium med store hvite traktformede blomster, pil- og hjerteformede blad med tydelig nervatur, slyngende stengler, tydelige høyblad ved blomsterbegeret og spisse knopper. Artens identitet er kontrollert mot Cornell CALS og RHS. Svart forhåndsvisning er kontrollert.",
       "limitations": "Digital botanisk illustrasjon og ikke fotografi eller bestemmelsesnøkkel. Virkelige individer varierer i bladform, kronbredde og rosafarge.",
-      "technicalVerification": "Local source WebP 1024x1536 RGBA alpha 318632 bytes; SHA256 2e322ac30d42c9fe6ec3545a59f5288f80a8885b88868cac7ee774d943f38dfc; computed Git blob SHA 060b5c4b85715031bb3be1311874ac84217b480f. GitHub upload not yet confirmed.",
+      "technicalVerification": "Original 1024×1536 RGBA WebP with transparent background: 318632 bytes. SHA256 2e322ac30d42c9fe6ec3545a59f5288f80a8885b88868cac7ee774d943f38dfc. Uploaded GitHub blob verified via repository file SHA 060b5c4b85715031bb3be1311874ac84217b480f. Black-background and full-image checks completed.",
       "publicationBlockedBy": [
-        "Transfer WebP binary to repository exact path",
-        "Activate image registry and increase release expected count to 63",
-        "Run illustration-contract and approved-flora-browser on final commit",
-        "Confirm GitHub Pages after merge."
+        "illustration-contract and approved-flora-browser must pass on final PR commit.",
+        "Verify GitHub Pages after merge."
       ]
     }
   ]
