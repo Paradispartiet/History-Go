@@ -64,6 +64,19 @@ try{
      assert.equal(imgs.front.width,900);
      assert.equal(imgs.front.height,1350);
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("has-quiz-card"),null,{timeout:30000});
+     // The single curated Sport collection must be visible, image-backed and non-empty.
+     await page.waitForFunction(()=>{
+       const card=document.getElementById("placeCard");
+       const icon=document.getElementById("pcCategoryCollectionIcon");
+       const list=document.getElementById("pcCategoryCollectionList");
+       const img=icon?.querySelector("img");
+       return card?.dataset.collectionProfileSource==="place_card_profile_v2"
+         && card?.dataset.collectionCount==="1"
+         && icon?.dataset.collectionId==="competitions"
+         && icon?.dataset.previewStatus==="member-image"
+         && img?.complete&&img.naturalWidth>0
+         && list?.textContent?.includes("NM langbane");
+     },null,{timeout:30000});
      const flip=page.locator("#pcFrontCardFlip");
      await flip.click();
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("is-flipped"),null,{timeout:10000});
