@@ -7,14 +7,14 @@
   const card = document.getElementById("placeCard");
   if (!card) return;
 
+  // People and Badges remain in the original right-hand PlaceCard collection grid.
+  // Only other rounds are expanded into full-size editorial images.
   const rounds = [
     { id: "pcNatureIcon", section: "about", label: "Natur" },
-    { id: "pcPeopleIcon", section: "history", label: "Personer" },
     { id: "pcWorksIcon", section: "history", label: "Verk" },
     { id: "pcFortellingerIcon", section: "stories", label: "Fortellinger" },
     { id: "pcForNaIcon", section: "before-after", label: "Før og nå" },
     { id: "pcLeksikonIcon", section: "language", label: "Leksikon" },
-    { id: "pcBadgesIcon", section: "learning", label: "Badges" },
     { id: "pcPlayIcon", section: "learning", label: "Lek" },
     { id: "pcTrainingIcon", section: "learning", label: "Trening" },
     { id: "pcTasksIcon", section: "learning", label: "Oppgaver" },
