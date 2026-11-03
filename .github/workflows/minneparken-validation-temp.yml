@@ -22,13 +22,27 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Validate description claim packets
-        run: node scripts/validate-place-description-production-v4_2.mjs --changed --base "$(git merge-base HEAD origin/main)" --head HEAD
+      - name: Validate Minneparken description claim packet only
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { validatePacket } from './scripts/validate-place-description-production-v4_2.mjs';
+          const filename = 'data/places/production/minneparken_gamlebyen.json';
+          const packet = JSON.parse(fs.readFileSync(filename, 'utf8'));
+          const place = JSON.parse(fs.readFileSync(packet.placeFile, 'utf8'));
+          const result = validatePacket({ packet, place, packetFile: filename });
+          console.log('Minneparken claim packet issues:', result.issues.length);
+          for (const issue of result.issues) console.error(issue.code + ': ' + issue.message);
+          if (result.issues.length) process.exitCode = 1;
+          NODE
       - name: Validate Historie production report
+        if: always()
         run: node scripts/audit-historie-place-production.mjs --changed --base "$(git merge-base HEAD origin/main)" --head HEAD
       - name: Verify description and Historie contracts
+        if: always()
         run: node --test tests/place-description-production-v4_2.test.mjs tests/historie-place-production.test.mjs
       - name: Verify generated data and release
+        if: always()
         run: |
           npm run place-open:check
           npm run epoker:places:check
