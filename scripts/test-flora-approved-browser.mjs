@@ -91,6 +91,7 @@ try{
     {name:"taklok",label:"Takløk",term:"Takløk",path:"b09/42_taklok_v1.webp"},
     {name:"timian",label:"Timian",term:"Timian",path:"b09/43_timian_v1.webp"},
     {name:"tveskjeggveronika",label:"Tveskjeggveronika",term:"Tveskjeggveronika",path:"b09/44_tveskjeggveronika_v1.webp"},
+    {name:"tyskhonsetarm",label:"Tysk hønsetarm",term:"Tysk hønsetarm",path:"b09/45_tysk_honsetarm_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
@@ -103,7 +104,7 @@ try{
     await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await page.locator("#natureSearch").fill(species.term||species.name);
     const title=species.label||species.term||species.name;
-    const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
+    const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
     await card.waitFor();
     await card.locator("img").evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
     assert((await card.locator("img").getAttribute("src")).endsWith(species.path));
@@ -130,7 +131,7 @@ try{
     await test.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await test.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await test.locator("#natureSearch").fill(species.term||species.name);
-    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
+    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
     await fallback.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:20000});
     assert.equal(await fallback.locator("img").count(),0);
     await fallback.click();

@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_tyskhonsetarm: Object.freeze({
+      scientificName: "Stellaria pallida",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/45_tysk_honsetarm_v1.webp",
+      gitBlobSha: "293651ec74359a58d1cf1c23a4b3c53fa7133b92",
+      reviewedAt: "2026-11-03",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-tyskhonsetarm-20261103.json"
+    }),
     emne_flora_tveskjeggveronika: Object.freeze({
       scientificName: "Veronica chamaedrys",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/44_tveskjeggveronika_v1.webp",
@@ -546,7 +554,7 @@
 
   });
   // One scientific species appears twice in the public catalog; reuse the same approved artwork.
-  const aliases = Object.freeze({ emne_flora_knoppurt: "emne_flora_engknoppurt" });
+  const aliases = Object.freeze({ emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
   const get = id => images[aliases[String(id)] || String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();
