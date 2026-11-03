@@ -165,6 +165,21 @@ jobs:
           test -f .git/MERGE_HEAD
           git restore --worktree -- data/quiz/manifest.json data/quizcards/historie/manifest.json
           git add data/places/places_index.json data/epoker/epoke-place-index.json data/fagverk/fagverk_release.json
+          # Latest main has a single inherited Markdown hard-break flagged by
+          # git diff --cached --check. Preserve the paragraph break with a
+          # blank line instead of weakening that whitespace gate.
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const p='reports/place-production/oslo-prosjektrom-source-review-20261103.md';
+          const original=fs.readFileSync(p,'utf8');
+          const needle='Dato: 2026-11-03  \n';
+          assert.ok(original.includes(needle),'Expected inherited whitespace line is absent; review main before changing it');
+          const updated=original.replace(needle,'Dato: 2026-11-03\n\n');
+          fs.writeFileSync(p,updated);
+          console.log('Normalized one inherited Markdown hard-break to an explicit paragraph break');
+          NODE
+          git add reports/place-production/oslo-prosjektrom-source-review-20261103.md
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
           import fs from 'node:fs';
