@@ -29,7 +29,7 @@ test('Tøyenbadet Objects: two identifiable physical items with different source
   assert.match(place.objects[0].placeSpecificReason,/startpall 8/);
   assert.ok(place.objects[0].source_urls.some(x=>x.includes('bygg.no')));
   assert.ok(place.objects[1].source_urls.some(x=>x.includes('oslo.kommune.no')));
-  assert.deepEqual(place.place_card_profile.collection_ids,['objects','brands','competitions']);
+  assert.deepEqual(place.place_card_profile.collection_ids,['people','objects','brands','competitions']);
 });
 
 test('Tøyenbadet People: real site-linked candidates are audited but no unlicensed/mistaken portrait is published',()=>{
@@ -40,7 +40,7 @@ test('Tøyenbadet People: real site-linked candidates are audited but no unlicen
   assert.ok(peopleReview.candidates.some(x=>x.id==='henrik_christiansen_svommer'&&/skøyteløperen/.test(x.identity)));
   assert.ok(peopleReview.candidates.some(x=>x.id==='hedda_oritsland'));
   assert.ok(peopleReview.discarded.some(x=>/skøyteløper/.test(x.candidate)));
-  assert.ok(!place.place_card_profile.collection_ids.includes('people'));
+  assert.ok(place.place_card_profile.collection_ids.includes('people'));
   assert.equal(work.status,'blocked_vferdig');
-  assert.equal(work.content_plan.people.status,'DRAFTS_READY__LICENSED_PORTRAITS_BLOCKED');
+  assert.equal(work.content_plan.people.status,'ANNE_LINDBOE_LICENSED__FOUR_OTHER_PORTRAITS_BLOCKED');
 });
