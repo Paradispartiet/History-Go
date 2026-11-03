@@ -35,7 +35,6 @@ jobs:
         run: |
           npm run typecheck:web
           npm run build:web
-          npm run build:web:check
           node --check dist/web/place-unified-surface.js
           node --test tests/epoke-place-index.test.mjs
 
@@ -58,5 +57,6 @@ jobs:
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git diff --cached --stat
             git commit -m 'Regenerate Place unified surface web bundle for Minneparken PR'
-            git push origin HEAD:refs/heads/content/minneparken-kildebasert-leksikon-20261103
+            npm run build:web:check
+          git push origin HEAD:refs/heads/content/minneparken-kildebasert-leksikon-20261103
           fi
