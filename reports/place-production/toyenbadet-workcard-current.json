@@ -98,20 +98,20 @@
       "reason": "Egne brukervendte lenkestier ikke materialisert."
     },
     "language": {
-      "status": "BLOCKED",
-      "reason": "Stedsspesifikk språkleksikonoppføring ikke materialisert; obligatorisk universal core."
+      "status": "PASS",
+      "reason": "Språkleksikonet har fire kildebelagte oppføringer, registrert i manifest og place-open. Språkleksikon v2 har bestått CI på forrige head."
     },
     "chronology": {
       "status": "BLOCKED",
       "anchors": [
         1976,
-        2007,
+        2008,
         2019,
         2020,
         2025,
         2026
       ],
-      "reason": "År er kildebelagte, men canonical chronology og epokeindeks ikke materialisert og testet."
+      "reason": "Seks kronologipunkter er lagt inn i kanonisk leksikon, men generert epokeindeks må synkroniseres og testes før PASS."
     },
     "fagverk": {
       "status": "PASS_EXISTING_PENDING_LIVE_CHECK",
@@ -120,6 +120,10 @@
     "quiz": {
       "status": "PASS_EXISTING_PENDING_LIVE_CHECK",
       "reason": "Fullquiz 21 og QuizCard 10 ligger i main; ny Knowledge-, manifest- og browserkontroll mangler."
+    },
+    "leksikon": {
+      "status": "PASS_CANDIDATE",
+      "reason": "Egen dokumentert idrettshistorisk hovedartikkel og seks kronologipunkter lagt i manifest og stedets place-open; exact-head generatorparitet gjenstår."
     }
   },
   "collection_ids": [],
@@ -138,8 +142,8 @@
     "fagverk": "PASS eksisterende",
     "quiz": "PASS eksisterende – retest på PR-head",
     "photos": "BLOCKED",
-    "language": "BLOCKED",
-    "chronology": "BLOCKED",
+    "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
+    "chronology": "KONKRET INNHOLD LAGT INN: Seks source-backed år i nytt leksikon; epokeindeks-generering og exact-head test gjenstår.",
     "collections": "BLOCKED",
     "browser_QA": "BLOCKED",
     "runtime": "synkronisert JSON i arbeidsgren, generatorkontroll ikke kjørt"
@@ -166,7 +170,9 @@
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
     "data/places/production/toyenbadet.json",
     "data/runtime/place-open/toyenbadet.json",
-    "reports/place-production/toyenbadet-workcard-current.json"
+    "reports/place-production/toyenbadet-workcard-current.json",
+    "data/leksikon/places/oslo/sport/leksikon_oslo_sport_toyenbadet.json",
+    "data/leksikon/manifest.json"
   ],
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
