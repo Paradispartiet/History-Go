@@ -1,8 +1,8 @@
 {
   "schema": "history_go_place_photo_clearance_review_v1",
   "placeId": "fotogalleriet",
-  "reviewedAt": "2026-11-02",
-  "reviewStatus": "blocked_one_potential_historical_address_photo_requires_visual_check_and_current_location_photo_still_missing",
+  "reviewedAt": "2026-11-03",
+  "reviewStatus": "blocked_current_facade_photo_missing_and_historic_50a_entrance_not_identified",
   "policy": "image and frontImage must use two different original documentary photographs, not crops or derivatives of the same original. Rights must cover local WebP redistribution; record sourceSha256, sourcePage, originalId, author, license and credit for each original.",
   "sourceReview": [
     {
@@ -53,15 +53,24 @@
       "originalLicense": "CC BY-SA 4.0",
       "originalLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "licenseObservation": "Uploader's own photograph released CC BY-SA 4.0, with attribution and share-alike requirements; permissible redistribution and adaptation under that license, subject to compliance.",
-      "decision": "candidate_historic_address_only_pending_visual_verification",
+      "decision": "historic_building_context_only_not_approved_for_image_or_frontImage",
       "roleCandidate": "historical_context_or_secondary_image_if_identity_verified",
-      "blockingReason": "The photo is from 2016, not 1977, and its description covers Oscars gate 50–50B; verify the depicted portion includes no. 50A and whether the former Fotogalleriet entrance is identifiable. Never label it as the present Møllergata gallery or a historic 1977 scene.",
+      "blockingReason": "Wikimedia Commons describes the whole 50–50B building, not the original Fotogalleriet unit 50A. Visual inspection confirms a general facade and number 50 but cannot positively map the 1977 cellar entry. Contemporary gallery facade Møllergata 34 is a separate, unfilled photo slot.",
       "outstandingChecks": [
         "Identify exact Oscars gate 50A frontage/entrance within original",
         "Confirm current building relation to Fotogalleriet's 1977 basement address",
         "Only then download the photographic original, calculate SHA256 and prepare credited local WebP",
         "Retain CC BY-SA 4.0 notice and attribution if used"
-      ]
+      ],
+      "visualReview": {
+        "reviewedAt": "2026-11-03",
+        "originalFileUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Oscars_gate_50%E2%80%9350B.jpg",
+        "sourceEvidence": "Wikimedia Commons original photographed 2016-04-05, 2370x2003 px, uploader/author Jan-Tore Egge (Vinguru), CC BY-SA 4.0. Commons labels only the broader address range Oscars gate 50–50B.",
+        "observed": "Original image depicts a red-brick and white-plaster corner building; a number 50 is visible on the right facade. Lower-level openings and a side passage are visible, but the specific former Fotogalleriet cellar entrance at 50A cannot be positively identified from the photo or its Commons caption.",
+        "identityConclusion": "Building/address range is documented; historical Fotogalleriet entrance 50A is not verified. A 2016 facade is not an image of the gallery operating there in 1977.",
+        "decision": "do_not_activate_as_fotogalleriet_place_photo_pending_address_unit_identification",
+        "verificationNeeded": "Independent evidence locating the basement/entrance at Oscars gate 50A in this exact facade, such as a historical entrance image, archive floor plan, or documented address-door mapping."
+      }
     }
   ],
   "requiredPhotoSlots": [
@@ -73,7 +82,7 @@
     {
       "role": "frontImage",
       "preferredSubject": "A second separately photographed perspective of the gallery (interior without uncleared artworks, or a licensed historic Fotogalleriet site photo)",
-      "status": "missing_approved_original_historical_candidate_unverified",
+      "status": "missing_approved_original_50a_entrance_not_identified",
       "candidateSource": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg"
     }
   ],
@@ -84,7 +93,8 @@
     "Record different source IDs and different sourceSha256 hashes; never treat alternate crops as different originals",
     "Prepare two local WebP assets with accurate photographer attribution and source links",
     "Run: node scripts/check-distinct-place-photos.mjs --place data/places/kunst/oslo/places_kunst/fotogalleriet.json --require-both",
-    "After image gate, finish Knowledge registry and quiz/QuizCard manifest synchronization, browser tests and v1 production closeout"
+    "After image gate, finish Knowledge registry and quiz/QuizCard manifest synchronization, browser tests and v1 production closeout",
+    "Do not classify the 2016 Oscars gate 50–50B photo as Fotogalleriet's 1977 entrance without independent 50A address-unit evidence."
   ],
   "livePlacePhotosChanged": false,
   "canMergeAsCompleteV1": false
