@@ -90,35 +90,44 @@ def replace_embroidered_letters(canvas, original, category, sub):
     arr=np.asarray(original.convert('RGB'),dtype=np.float32)
     source_alpha=np.asarray(original.getchannel('A'))
     candidates=[]
-    for y in range(110,275,12):
-        for x in range(115,886,12):
-            patch=arr[y:y+32,x:x+32]
-            if patch.shape!=(32,32,3): continue
-            if m[y:y+32,x:x+32].any():continue
-            if source_alpha[y:y+32,x:x+32].min()<250:continue
+    # Sixteen-pixel swatches fit between the border's original satin stitches.
+    n=16
+    for y in range(88,305,8):
+        for x in range(85,914,8):
+            patch=arr[y:y+n,x:x+n]
+            if patch.shape!=(n,n,3):continue
+            if m[y:y+n,x:x+n].any():continue
+            if source_alpha[y:y+n,x:x+n].min()<248:continue
             med=np.median(patch,axis=(0,1))
-            bright=np.mean(np.max(patch,axis=2)>155)
+            bright=np.mean(np.max(patch,axis=2)>168)
             if category=='by':
-                ok=(med[0]<83 and med[1]<106 and med[2]<132)
+                ok=(med[0]<118 and med[1]<131 and med[2]<155)
             else:
-                ok=(med[0]>med[1]*1.22 and med[0]>med[2]*1.09
-                    and 35<med[0]<185 and med[1]<112)
-            if not ok or bright>.05:continue
+                ok=(med[0]>med[1]*1.10 and med[0]>med[2]*1.04
+                    and 25<med[0]<207 and med[1]<138)
+            if not ok or bright>.18:continue
             sigma=float(patch.std(axis=(0,1)).mean())
-            if 3<sigma<37:
-                candidates.append((abs(sigma-15),x,y,med))
-    if not candidates:
-        raise ValueError(f"No clean textile swatch for {category}/{sub}")
-    _,tx,ty,_=min(candidates,key=lambda z:z[0])
-    swatch=arr[ty:ty+32,tx:tx+32]
-    # Matching the swatch's median to dark yarn near the original lettering
-    # keeps the inner black/blue and velvet-red panels consistent.
+            if 2.5<sigma<39:
+                candidates.append((abs(sigma-12),x,y))
+    # Reference backing tint from unaltered source, excluding the letter yarn.
     neighborhood=roi&(~m)
-    if category=='by': neighborhood &= (rr<110)&(gg<112)&(bb<145)
-    else: neighborhood &= (rr>gg*1.2)&(rr>bb*1.05)&(rr<185)&(gg<115)
-    target=np.median(arr[neighborhood],axis=0) if np.any(neighborhood) else np.median(swatch,axis=(0,1))
-    texture=swatch[(yy+17)%32,(xx+9)%32]
-    texture=np.clip(texture+target-np.median(swatch,axis=(0,1)),0,255)
+    if category=='by': neighborhood &= (rr<125)&(gg<132)&(bb<165)
+    else: neighborhood &= (rr>gg*1.13)&(rr>bb*1.04)&(rr<207)&(gg<140)
+    target=np.median(arr[neighborhood],axis=0) if np.any(neighborhood) else (
+        np.array([16,24,39]) if category=='by' else np.array([96,28,54]))
+    if candidates:
+        _,tx,ty=min(candidates,key=lambda z:z[0])
+        swatch=arr[ty:ty+n,tx:tx+n]
+        texture=swatch[(yy+17)%n,(xx+9)%n]
+        texture=np.clip(texture+target-np.median(swatch,axis=(0,1)),0,255)
+    else:
+        # Narrow script and especially the classical badge leave no
+        # untouched 16px block. Synthesize only the erased glyph yarn from
+        # the local backing tint, *never* erase the whole title annulus.
+        yarn=(np.sin((xx+yy*.35)*math.pi*2/3.4)*2.5+
+              np.sin((yy-xx*.23)*math.pi*2/2.6)*2.2)
+        texture=np.clip(target[None,None,:]+yarn[:,:,None],0,255)
+
     feather=np.asarray(mask.filter(ImageFilter.GaussianBlur(1.15)),dtype=np.float32)[:,:,None]/255
     out=np.clip(np.asarray(canvas.convert('RGB'),dtype=np.float32)*(1-feather)
                 +texture*feather,0,255).astype(np.uint8)
