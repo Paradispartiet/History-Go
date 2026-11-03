@@ -152,6 +152,9 @@ NODE
 echo "== Build places index =="
 npm run places:index:build
 
+echo "== Birkelunden image and frontImage regression =="
+node --test tests/birkelunden-place-images.test.mjs
+
 echo "== Place category override contract =="
 node tests/place-category-overrides.test.mjs
 
