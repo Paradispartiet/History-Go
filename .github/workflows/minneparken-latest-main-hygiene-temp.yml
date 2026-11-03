@@ -1,0 +1,137 @@
+name: Temporary Minneparken pinned latest-main and Knowledge hygiene QA
+on:
+  push:
+    branches: [content/minneparken-kildebasert-leksikon-20261103]
+    paths: [.github/workflows/minneparken-latest-main-hygiene-temp.yml]
+permissions:
+  contents: write
+jobs:
+  verify-and-refresh-draft:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Pin reviewed main changes and merge to staged draft
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = '3e0589c21479f97f18ddcc7a0be383e91706ff45'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch --no-tags origin main
+          test "$(git rev-parse origin/main)" = 'bcc7805f17f4b2f638e53f9d3682828cd005e394'
+          base="$(git merge-base HEAD origin/main)"
+          test "$base" = '6fd1c924c47be05bceade02fa7f0c7ffe84b98aa'
+          git diff --name-only "$base" origin/main > /tmp/minneparken-latest-main-paths.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const paths=fs.readFileSync('/tmp/minneparken-latest-main-paths.txt','utf8').trim().split('\n').filter(Boolean);
+          const expected=new Set([".github/workflows/place-card-round-gallery.yml","css/place-card-editorial-polish.css","data/Civication/map/historyGoPlaceMapping.by.json","data/Civication/map/historyGoPlaceMapping.popkultur.json","data/Civication/map/historyGoPlaceMapping.subkultur.json","index.html","js/ui/place-card-round-gallery.js","tests/civication-city-map-read-model.test.js","tests/civication-place-mapping-split-manifest.test.mjs","tests/place-card-round-gallery.test.mjs"]);
+          assert.equal(paths.length,expected.size);
+          const unexpected=paths.filter(p=>!expected.has(p));
+          if(unexpected.length)throw Error('Unreviewed main paths: '+unexpected.join(', '));
+          console.log('PASS reviewed latest-main change scope:',paths.length);
+          NODE
+          git merge --no-ff --no-commit origin/main || {
+            echo 'Conflict with newer main; no push permitted' >&2
+            git diff --name-only --diff-filter=U >&2
+            exit 1
+          }
+          test -f .git/MERGE_HEAD
+          test -z "$(git diff --name-only --diff-filter=U)"
+          echo 'PASS clean staged merge of latest reviewed main'
+      - name: Rebuild and verify deterministic data and honest publication gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run places:index:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          npm run knowledge:canonical:check
+          npm run check:stories
+          node --test tests/place-card-round-gallery.test.mjs tests/civication-city-map-read-model.test.js tests/civication-place-mapping-split-manifest.test.mjs
+          node --test tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-story-candidate.test.mjs tests/minneparken-historical-photo-provenance.test.mjs
+          test -s reports/knowledge-contract-audit.json
+          git check-ignore -q reports/knowledge-contract-audit.json
+          if git ls-files --error-unmatch reports/knowledge-contract-audit.json > /dev/null 2>&1; then
+            echo 'Full Knowledge diagnostics must not be committed' >&2; exit 1
+          fi
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const id='minneparken_gamlebyen',h=read('data/places/historie-production/'+id+'.json');
+          assert.equal(h.status,'blocked');
+          for(const gate of ['F','G','H']) assert.equal(h.gates[gate].status,'N/A');
+          assert.ok(!read('data/quiz/manifest.json').sets.some(s=>s.targetId===id));
+          assert.ok(!read('data/quizcards/historie/manifest.json').collections.includes(id+'_quizcard_v1.json'));
+          assert.ok(!read('data/stories/stories_manifest.json').files.some(s=>s.path==='data/stories/stories_'+id+'.json'));
+          const q=read('data/quiz/historie/'+id+'_sets.json').sets.flatMap(s=>s.questions);
+          assert.equal(q.filter(x=>x.knowledge_link_status==='linked').length,21);
+          assert.equal(new Set(q.flatMap(x=>x.knowledge_unit_ids)).size,32);
+          const k=read('reports/knowledge-contract-audit.json');
+          assert.equal(k.questions_with_errors,0);
+          console.log('PASS F/G/H remain N/A; 21 quiz / 32 canonical units; full report saved for Actions artifact');
+          NODE
+          REPO_HYGIENE_BASE_SHA="6fd1c924c47be05bceade02fa7f0c7ffe84b98aa" REPO_HYGIENE_HEAD_SHA=HEAD node scripts/audit-repository-hygiene-v1.mjs
+      - name: Real Minneparken mobile and desktop QA after main changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx playwright install --with-deps chromium
+          node tests/minneparken-readonly-app-browser.test.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const qf='data/quiz/manifest.json',cf='data/quizcards/historie/manifest.json';
+          const q=read(qf),c=read(cf);
+          q.sets.push({targetId:'minneparken_gamlebyen',file:'data/quiz/historie/minneparken_gamlebyen_sets.json'});
+          c.collections.push('minneparken_gamlebyen_quizcard_v1.json');
+          fs.writeFileSync(qf,JSON.stringify(q,null,2)+'\n');
+          fs.writeFileSync(cf,JSON.stringify(c,null,2)+'\n');
+          console.log('Temporary activation only in CI worktree');
+          NODE
+          node scripts/verify-minneparken-quizcard-real-browser.mjs
+          node scripts/verify-place-quiz-browser.mjs minneparken_gamlebyen
+          git restore --worktree -- data/quiz/manifest.json data/quizcards/historie/manifest.json
+      - name: Final narrow generator scope and draft-only merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import cp from 'node:child_process';
+          const changed=cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const allowed=new Set(['data/fagverk/fagverk_release.json']);
+          console.log('Generated changes after staged merge:',JSON.stringify(changed));
+          const other=changed.filter(x=>!allowed.has(x));
+          if(other.length)throw Error('Unexpected generated paths: '+other.join(', '));
+          NODE
+          git add -- data/fagverk/fagverk_release.json
+          git diff --quiet
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m 'Merge newer main into Minneparken draft with Knowledge artifact hygiene'
+          git push origin HEAD:content/minneparken-kildebasert-leksikon-20261103
+          echo 'PASS draft branch only, no publishing, no changed editorial gates'
+      - name: Preserve full Knowledge diagnostics as Actions artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-full-knowledge-contract-diagnostics
+          path: reports/knowledge-contract-audit.json
+          retention-days: 30
+          if-no-files-found: warn
