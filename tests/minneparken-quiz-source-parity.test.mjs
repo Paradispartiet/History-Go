@@ -72,6 +72,25 @@ test('Minneparken quiz has 3x7 questions, source parity and balanced canonical a
   assert.ok(Math.max(...correctSlots) - Math.min(...correctSlots) <= 3);
 });
 
+test('Each Minneparken Knowledge source resolves to its reviewed external URL', () => {
+  const reviewed = new Map(Object.entries(brief.sources));
+  assert.equal(questions.length, 21);
+  for (const q of questions) {
+    assert.equal(q.sources?.length, q.source.length, `${q.id}: Knowledge source cardinality`);
+    for (const [index, id] of q.source.entries()) {
+      const canonical = reviewed.get(id);
+      const source = q.sources[index];
+      assert.equal(canonical?.review_status, 'reviewed', `${q.id}: source review`);
+      assert.equal(source?.url, canonical?.url, `${q.id}: Knowledge source URL`);
+      assert.equal(source?.url, q.source_urls[index], `${q.id}: quiz source URL`);
+      assert.equal(source?.claim_basis, q.claim_basis, `${q.id}: source claim basis`);
+      assert.equal(source?.source_id, `src_minneparken_${id}`);
+      assert.ok(source?.title?.trim(), `${q.id}: source title missing`);
+      assert.ok(source?.url?.startsWith('https://'), `${q.id}: source not HTTPS`);
+    }
+  }
+});
+
 test('Minneparken 10-question QuizCard has exact canonical quiz and answer-key parity', () => {
   assert.equal(card.categoryId, 'historie');
   assert.equal(card.cards.length, 1);
@@ -86,7 +105,7 @@ test('Minneparken 10-question QuizCard has exact canonical quiz and answer-key p
     assert.ok(original, q.sourceQuestionId);
     assert.equal(q.number, i + 1);
     assert.equal(q.sourceQuizId, original.quiz_id);
-    for (const field of ['question', 'options', 'answer', 'answerIndex', 'knowledge', 'claim_id', 'source_urls', 'method_id', 'topic_hook_id', 'thinker_id', 'theory_ref', 'guidance_basis']) {
+    for (const field of ['question', 'options', 'answer', 'answerIndex', 'knowledge', 'claim_id', 'source_urls', 'sources', 'method_id', 'topic_hook_id', 'thinker_id', 'theory_ref', 'guidance_basis']) {
       assert.deepEqual(q[field], original[field], `QuizCard question ${i+1} mismatch in ${field}`);
     }
     assert.equal(collection.answerKey[i].number, i + 1);
