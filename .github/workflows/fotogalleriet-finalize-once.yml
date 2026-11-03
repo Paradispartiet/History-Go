@@ -1,0 +1,48 @@
+name: Fotogalleriet v1 canonical finalize (one-shot)
+on:
+  push:
+    branches:
+      - research/fotogalleriet-v1-tekst-20261102
+    paths:
+      - reports/place-production/fotogalleriet/trigger-canonical-once.txt
+
+permissions:
+  contents: write
+
+jobs:
+  canonical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/fotogalleriet-v1-tekst-20261102
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Sync latest main without discarding parallel work
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Setup repo Node tooling
+        uses: ./.github/actions/setup-node-npm
+      - name: Generate canonical place index, Knowledge and place-open
+        run: |
+          npm run places:index:build
+          npm run knowledge:canonical:write
+          npm run place-open:build
+      - name: Targeted Fotogalleriet verification
+        run: |
+          node --test tests/fotogalleriet-v1-staged.test.mjs
+          node scripts/check-distinct-place-photos.mjs --place data/places/kunst/oslo/places_kunst/fotogalleriet.json --require-both
+          npm run knowledge:canonical:check
+      - name: Commit only generated canonical outputs
+        run: |
+          git add data/places/places_index.json data/runtime/place-open/fotogalleriet.json data/knowledge/
+          echo "Selected generated changes:"
+          git diff --cached --stat
+          if ! git diff --cached --quiet; then
+            git commit -m "build(fotogalleriet): synchronize canonical Knowledge and place indexes"
+          fi
+          git push origin HEAD:refs/heads/research/fotogalleriet-v1-tekst-20261102
