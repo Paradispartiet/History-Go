@@ -1,0 +1,28 @@
+name: Civication Renholder registry regeneration (one-shot)
+on:
+  push:
+    branches:
+      - civication/renholder-persistent-zone-case-20261103
+    paths:
+      - .github/workflows/civication-renholder-registry-once.yml
+permissions:
+  contents: write
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Regenerate only canonical Civication scene registry
+        run: node scripts/build-civication-scene-registry.mjs --write
+      - name: Commit compiler output without changing authored content
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication/compiledSceneRegistryV1.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Regenerate Civication scene registry for Renholder work objects"
+            git push origin HEAD:civication/renholder-persistent-zone-case-20261103
+          fi
