@@ -128,7 +128,13 @@ test('Foto-gate: rejected Commons artwork photographs stay out of live PlaceCard
     assert.match(photo.sourcePage, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
     assert.match(photo.usageDecision, /^rejected_for_image_or_frontImage:/);
   }
-  assert.ok(!place.image && !place.frontImage, 'no rejected image is made active');
+  assert.ok(place.image && place.frontImage, 'two original generated illustrations must be active');
+  assert.equal(place.imageMeta.assetType, 'ai_generated_illustration');
+  assert.equal(place.frontImageMeta.assetType, 'ai_generated_illustration');
+  for (const source of sources) {
+    assert.notEqual(place.imageSourceUrl, source, 'rejected Commons source reused as live image');
+    assert.notEqual(place.frontImageSourceUrl, source, 'rejected Commons source reused as live frontImage');
+  }
 });
 
 test('Fotogalleriet quiz covers history and institution without date-question overload', () => {
