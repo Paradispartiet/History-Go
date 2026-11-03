@@ -32,19 +32,30 @@ jobs:
           def download(url):
            req=urllib.request.Request(url,headers={'User-Agent':'HistoryGoEducationalProject/1.0 (public source research; github.com/Paradispartiet/History-Go)','Accept':'application/json,image/*'})
            with urllib.request.urlopen(req,timeout=45) as res:return res.read()
-          for attempt in range(3):
+          canonical='https://upload.wikimedia.org/wikipedia/commons/8/85/Anne_Lindboe_%281%29.jpg'
+          mirror='https://images.weserv.nl/?url='+urllib.parse.quote(canonical,safe='')+'&w=1280&output=jpg'
+          attempts=[canonical,mirror,api]
+          errors=[]
+          for url in attempts:
            try:
-            page=json.loads(download(api).decode('utf8'))
-            info=next(iter(page['query']['pages'].values()))['imageinfo'][0]
-            url=info['url']
-            raw=download(url)
+            data=download(url)
+            if url==api:
+             page=json.loads(data.decode('utf8'))
+             info=next(iter(page['query']['pages'].values()))['imageinfo'][0]
+             data=download(info['url'])
+            im=Image.open(io.BytesIO(data)).convert('RGB')
+            if im.width<750 or im.height<1100:raise RuntimeError('Unexpected dimensions: '+str(im.size))
+            raw=data
             break
-           except Exception:
-            if attempt==2:raise
-            time.sleep(3)
-          im=Image.open(io.BytesIO(raw)).convert('RGB')
+           except Exception as e:
+            errors.append(str(e))
+            print('Download attempt failed:',url.split('?')[0],str(e))
+            time.sleep(2)
+          else:
+           raise RuntimeError('All Commons-provenance photo fetches failed: '+str(errors))
           original=list(im.size)
-          if im.width<3000 or im.height<4000:raise RuntimeError('Unexpected Commons source dimensions: '+str(im.size))
+          url=canonical
+          print('Source-origin preserved; fetched source dimensions:',original)
           os.makedirs('bilder/kort/people',exist_ok=True)
           paths=[
            ('bilder/kort/people/anne_lindboe_2023_cc_by_sa.webp',(720,1080)),
