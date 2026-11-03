@@ -26,13 +26,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = 'ee7c3b40dc822e6f096a685140b665322dcebcf0'
+          test "$(git rev-parse HEAD^)" = '064e5fb04df107fd36768045eb7ad3e1b331ebb2'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch --no-tags origin main
           git merge-base --is-ancestor 'c9be40949fcc40352c8f254dc9ed66c4fd357039' origin/main
-          test "$(git merge-base HEAD origin/main)" = 'c9be40949fcc7da4a3c7c91eb733179f66c7c757'
-          git diff --name-only 'c9be40949fcc7da4a3c7c91eb733179f66c7c757' 'c9be40949fcc40352c8f254dc9ed66c4fd357039' > /tmp/minneparken-reviewed-main-paths.txt
+          test "$(git merge-base HEAD origin/main)" = '49f1c5ed8fca7da4a3c7c91eb733179f66c7c757'
+          git diff --name-only '49f1c5ed8fca7da4a3c7c91eb733179f66c7c757' 'c9be40949fcc40352c8f254dc9ed66c4fd357039' > /tmp/minneparken-reviewed-main-paths.txt
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import assert from 'node:assert/strict';
@@ -107,7 +107,7 @@ jobs:
           assert.equal(read('reports/knowledge-contract-audit.json').questions_with_errors,0);
           console.log('PASS Knowledge 21/32 and unmodified release blockers F/G/H');
           NODE
-          REPO_HYGIENE_BASE_SHA='c9be40949fcc7da4a3c7c91eb733179f66c7c757' REPO_HYGIENE_HEAD_SHA=HEAD node scripts/audit-repository-hygiene-v1.mjs
+          REPO_HYGIENE_BASE_SHA='49f1c5ed8fca7da4a3c7c91eb733179f66c7c757' REPO_HYGIENE_HEAD_SHA=HEAD node scripts/audit-repository-hygiene-v1.mjs
       - name: Actual mobile and desktop Minneparken QA with test-only quiz
         shell: bash
         run: |
