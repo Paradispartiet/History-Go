@@ -63,6 +63,22 @@ try{
      assert.equal(imgs.hero.height,900);
      assert.equal(imgs.front.width,900);
      assert.equal(imgs.front.height,1350);
+     // The historical before/after is source-owned and both photographs decode in the actual app.
+     await page.waitForFunction(()=>{
+       const p=window.HGPlaceOpen?.getPlace?.("toyenbadet")||window.PLACES?.find(x=>x?.id==="toyenbadet");
+       return p?.for_na?.beforeImage&&p?.for_na?.nowImage;
+     },null,{timeout:30000});
+     const beforeAfter=await page.evaluate(async()=>{
+       const p=window.HGPlaceOpen?.getPlace?.("toyenbadet")||window.PLACES?.find(x=>x?.id==="toyenbadet");
+       const paths=[p.for_na.beforeImage,p.for_na.nowImage];
+       const photos=await Promise.all(paths.map(src=>new Promise((resolve,reject)=>{
+         const img=new Image();img.onload=()=>resolve({src,width:img.naturalWidth,height:img.naturalHeight});img.onerror=()=>reject(new Error("before/after photo failed: "+src));img.src=src;
+       })));
+       return {title:p.for_na.title,photos};
+     });
+     assert.match(beforeAfter.title,/2013 og 2026/);
+     assert.equal(beforeAfter.photos.length,2);
+     assert.ok(beforeAfter.photos.every(p=>p.width>0&&p.height>0));
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("has-quiz-card"),null,{timeout:30000});
      // The two source-backed Sport collections must be visible and image-backed.
      await page.waitForFunction(()=>{
