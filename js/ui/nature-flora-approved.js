@@ -5,6 +5,15 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_tveskjeggveronika: Object.freeze({
+      scientificName: "Veronica chamaedrys",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/44_tveskjeggveronika_v1.webp",
+      gitBlobSha: "f722f50caf8ebd23a0bb51b20d98a3bc00ae6367",
+      reviewedAt: "2026-11-03",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-tveskjeggveronika-20261103.json"
+    }),
+
     emne_flora_timian: Object.freeze({
       scientificName: "Thymus serpyllum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/43_timian_v1.webp",
