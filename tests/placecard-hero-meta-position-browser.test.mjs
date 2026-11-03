@@ -79,8 +79,9 @@ await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
 let browser;
 try{
  browser=await chromium.launch({headless:true});
- for(const [width,height] of [[320,700],[390,844],[768,1024],[1024,900],[1440,900]]){
-   const page=await browser.newPage({viewport:{width,height}});
+ // Add iPad portrait/landscape touch interaction to the existing desktop/mobile checks.
+ for(const [width,height,hasTouch] of [[320,700,false],[390,844,false],[768,1024,false],[1024,900,false],[1440,900,false],[820,1180,true],[1180,820,true]]){
+   const page=await browser.newPage({viewport:{width,height},hasTouch});
    await page.goto(`http://127.0.0.1:${server.address().port}/__audit__/hero-geometry.html`,{waitUntil:"load"});
    const m=await page.evaluate(()=>{
      const rect=sel=>{
@@ -118,9 +119,13 @@ try{
      && m.epoke.bottom<=m.hero.bottom+1,"metadata stays inside landscape hero at "+width);
    assert.ok(m.people.right<=m.badge.x+1,"People remains next to Merker at "+width);
    assert.equal(m.overflow,false,"no horizontal scroll at "+width);
-   await page.locator("#pcStatusBar > button").click();
-   await page.locator("#pcMeta > .pc-category-meta").click();
-   await page.locator("#pcMeta > .pc-epoke").click();
+   const activate=async selector => {
+     const target=page.locator(selector);
+     if(hasTouch) await target.tap(); else await target.click();
+   };
+   await activate("#pcStatusBar > button");
+   await activate("#pcMeta > .pc-category-meta");
+   await activate("#pcMeta > .pc-epoke");
    assert.deepEqual(await page.evaluate(()=>window.__clicks),{status:1,category:1,epoke:1},
      "three controls retain click handling at "+width);
    await page.close();
