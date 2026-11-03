@@ -1,0 +1,49 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-03",
+  "status": "source_uploaded_ci_pending",
+  "baselineApproved": 60,
+  "approvedCountAfterRelease": 61,
+  "publicationRule": "Merge only when the exact GitHub WebP matches both hashes, transparent alpha displays correctly against pure black, botanical details are visually recognizable, and illustration-contract plus approved-flora-browser pass on final head. Preserve the original 60 species and stable progress IDs.",
+  "items": [
+    {
+      "name": "Snøklokke",
+      "catalogId": "emne_flora_snoklokke",
+      "scientificName": "Galanthus nivalis",
+      "taxonomicScope": "species",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/39_snoklokke_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/39_snoklokke_v1.webp",
+      "gitBlobSha": "dda093727954c14ffa0a66c68619293ae0e74ab8",
+      "sha256": "15e5d7e9af32dd2bb2d153c23ad16638bcb9e907610aa56f6800ca248bc964c2",
+      "sizeBytes": 233926,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
+      "reviewedAt": "2026-11-03",
+      "stage": "sen_vinter_tidlig_vårblomstring",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": false,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://www.rhs.org.uk/plants/7568/galanthus-nivalis/details",
+        "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:64496-1",
+        "https://www.kew.org/plants/common-snowdrop"
+      ],
+      "observations": "Snøklokke er en liten flerårig løkplante med smale, parallellnervete grågrønne blad som kommer fra basis. De hengende hvite blomstene bæres enkeltvis på bøyd stilk med tre lange ytre og tre kortere indre blomsterblad; de indre bladene har grønne tegninger nær spissen. Platen viser tre løk med røtter og tre hengende blomster for gjenkjennelighet mot svart bakgrunn.",
+      "limitations": "Digital botanisk plansje av tre individer samlet i én komposisjon, ikke en artsnøkkel. Generatorens kilde var RGB med nesten hvit bakgrunn. Alfakanalen i den publiserte WebP ble derfor rekonstruert ved maskering av sammenhengende hvit bakgrunn og interne lyse hulrom, deretter kontrollert visuelt mot #000. OriginalAlphaVerified er derfor false, men publisert WebP inneholder en verifiserbar alfakanal. Hvite blomsterblad og løkform er forenklet; reelle planter kan ha varierende grønne tegninger.",
+      "technicalVerification": "Source illustration 1024x1536 RGB. Prepared 233926-byte RGBA WebP with alpha range 0-255, 1147891 fully transparent pixels; black #000 composite visually inspected. Exact SHA256 15e5d7e9af32dd2bb2d153c23ad16638bcb9e907610aa56f6800ca248bc964c2 and Git blob dda093727954c14ffa0a66c68619293ae0e74ab8 verified against upload to current PR branch.",
+      "publicationBlockedBy": [
+        "Require green illustration-contract and approved-flora-browser on the final PR SHA.",
+        "Verify GitHub Pages after merge."
+      ]
+    }
+  ]
+}

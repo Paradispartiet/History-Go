@@ -12,8 +12,8 @@ test('Arkiv og filmkanon: approved v1 and alpha WebP',()=>{
  assert.equal(film.color.toUpperCase(),'#C2188B');
  assert.equal(film.secondaryColor.toUpperCase(),'#E7F8FF');
  assert.equal(film.subBadgeImages.arkiv_og_kanon,path);
- assert.equal(Object.keys(film.subBadgeImages).length,11);
- assert.equal(manifest.status,'seven_scenekunst_eleven_film_active_remaining_film_pending');
+ assert.equal(Object.keys(film.subBadgeImages).length,12);
+ assert.equal(manifest.status,'seven_scenekunst_twelve_film_active_complete');
  assert.equal(badge.status,'integrated');
  assert.equal(badge.selectedImage,path);
  assert.deepEqual(badge.quality,{visualApproved:true,technicalApproved:true});
@@ -45,7 +45,8 @@ test('all ten previous Film & TV and seven Scenekunst badge refs preserved',()=>
   "norsk_film_og_tv": "bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp",
   "filmfestivaler": "bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp",
   "filmlocations": "bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp",
-  "film_og_tv_produksjon": "bilder/merker/film_tv/undermerker/film_og_tv_produksjon-brodert-v1.webp"
+  "film_og_tv_produksjon": "bilder/merker/film_tv/undermerker/film_og_tv_produksjon-brodert-v1.webp",
+  "visningssteder": "bilder/merker/film_tv/undermerker/visningssteder-brodert-v1.webp"
 });
  assert.equal(Object.keys(scene.subBadgeImages).length,7);
  for(const id of scene.sub) assert.ok(scene.subBadgeImages[id]);

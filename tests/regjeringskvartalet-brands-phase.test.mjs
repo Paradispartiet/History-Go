@@ -29,7 +29,8 @@ test('Regjeringskvartalet har fjorten canonicale Brand-koblinger', () => {
     assert.ok(brand, id);
     assert.deepEqual(
       brand.place_ids,
-      id === 'statsbygg' ? ['regjeringskvartalet', 'tullin', '22_juli_senteret'] : ['regjeringskvartalet']
+      id === 'statsbygg' ? ['regjeringskvartalet', 'tullin', '22_juli_senteret'] :
+      id === 'asplan_viak' ? ['regjeringskvartalet', 'toyenbadet'] : ['regjeringskvartalet']
     );
     assert.equal(brand.state, 'catalog');
     assert.equal(brand.verification, 'verified');
@@ -37,6 +38,14 @@ test('Regjeringskvartalet har fjorten canonicale Brand-koblinger', () => {
     assert.ok(brand.source_urls.every(url => url.startsWith('https://')));
     assert.match(brand.popupdesc, /Regjeringskvartal/i);
   }
+});
+
+test('Tøyenbadet gjenbruker Asplan Viak uten å lage en ny Brand', () => {
+  assert.deepEqual(brandsByPlace.toyenbadet, ['asplan_viak']);
+  const brand = byId.get('asplan_viak');
+  assert.ok(brand);
+  assert.deepEqual(brand.place_ids, ['regjeringskvartalet', 'toyenbadet']);
+  assert.ok(brand.source_urls.includes('https://www.asplanviak.no/prosjekter/det-nye-toyenbadet/'));
 });
 
 test('Brand-settet dekker arkitektur, rådgivning, entreprise og offentlige aktørbrands', () => {

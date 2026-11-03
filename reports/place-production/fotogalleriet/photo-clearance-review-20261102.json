@@ -1,0 +1,339 @@
+{
+  "schema": "history_go_place_photo_clearance_review_v1",
+  "placeId": "fotogalleriet",
+  "reviewedAt": "2026-11-03",
+  "reviewStatus": "ai_illustration_originals_committed_and_active_place_pending_full_v1_qa",
+  "policy": "Two distinctly sourced original visuals are required for image and frontImage. If reuse rights to documentary photographs are not already granted, do not request permissions: create two independent, naturalistic AI-generated illustrations instead. Use different source generation IDs and hashes; label each 'Illustrasjon – AI-generert', do not present as a historical photograph or reproduce protected artworks. Preserve third-party exhibition photos as references only.",
+  "sourceReview": [
+    {
+      "sourcePage": "https://snl.no/Fotogalleriet",
+      "subject": "Opening of Vårutstillingen in May 2018 outside Fotogalleriet at Møllergata 34, with original gallery frontage/entrance visible and a crowd of identifiable people, as captioned by Store norske leksikon.",
+      "licenseObservation": "SNL explicitly labels its image 'Begrenset gjenbruk' (restricted reuse). Filename and public display do not confer rights to redistribute or make WebP derivatives; the crowd presents additional editorial/privacy considerations.",
+      "decision": "do_not_copy_or_publish_without_permission",
+      "roleCandidate": "possible_second_distinct_2018_documentary_exterior_photo_if_rights_people_and_provenance_cleared",
+      "blockingReason": "Photographer/rights holder and commercial WebP reuse permission not established; distinguish original photo from 2023 facade photo by originalId/hash, and evaluate identifiable persons before any reuse.",
+      "sourceEvidence": "https://snl.no/Fotogalleriet (Virksomhet image caption), inspected 2026-11-03",
+      "originalFileProvenance": "https://media.snl.no/media/174918/standard_compressed_FFF_2018_05_Varutstillingen_Vernissage_HighRes-1Istvan_Virag.jpg",
+      "photographer": "not independently verified; filename indicates Istvan Virag, other coverage credits Istvan Virag for Vårutstillingen photos but that does not by itself prove attribution of this exact 2018 exposure",
+      "photographedAt": "2018-05 (opening, from SNL caption)"
+    },
+    {
+      "sourcePage": "https://www.osloartguide.no/en/venues/fotogalleriet/exhibitions/window-exhibition-agenda-x",
+      "subject": "street-facing gallery facade/window exhibition",
+      "licenseObservation": "Reuse rights not established",
+      "decision": "do_not_copy_or_publish_without_permission",
+      "roleCandidate": "facade",
+      "blockingReason": "No verified photo redistribution license; artwork in window may carry separate rights"
+    },
+    {
+      "sourcePage": "https://www.oslobilder.no/OMU/OB.F24240",
+      "subject": "Møllergata street scene dated 1969, with Møllergata 34 listed as depicted address; photo by Thorbjørn Gustavsen, Oslo Museum OB.F24240",
+      "licenseObservation": "Listing says Creative Commons 3.0 but exact conditions and original file should be rechecked before any use",
+      "decision": "historical_context_only_not_place_card",
+      "roleCandidate": "context",
+      "blockingReason": "Predates Fotogalleriet's 1977 establishment and does not document the gallery as an institution"
+    },
+    {
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fotogalleriet-L1170234.jpg",
+      "subject": "exhibition artwork dominates interior",
+      "licenseObservation": "CC BY 2.0 photographic license, artwork permissions unresolved",
+      "decision": "rejected_for_both_photo_slots",
+      "roleCandidate": "none",
+      "blockingReason": "Not a clearly identifiable documentary photo of the gallery; visible artworks pose independent rights questions"
+    },
+    {
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fotogalleriet-talk_talk!.jpg",
+      "subject": "interior installation/collage artworks",
+      "licenseObservation": "CC BY 2.0 photographic license, artwork permissions unresolved",
+      "decision": "rejected_for_both_photo_slots",
+      "roleCandidate": "none",
+      "blockingReason": "Exhibition-specific artwork rather than documentary place photo"
+    },
+    {
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg",
+      "subject": "Exterior of the building labelled Oscars gate 50–50B, photographed 5 April 2016; Fotogalleriet originally occupied a converted cellar at Oscars gate 50A in 1977.",
+      "photographer": "Jan-Tore Egge (Wikimedia Commons user Vinguru)",
+      "photographedAt": "2016-04-05",
+      "originalLicense": "CC BY-SA 4.0",
+      "originalLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "licenseObservation": "Uploader's own photograph released CC BY-SA 4.0, with attribution and share-alike requirements; permissible redistribution and adaptation under that license, subject to compliance.",
+      "decision": "historic_building_context_only_not_approved_for_image_or_frontImage",
+      "roleCandidate": "historical_context_or_secondary_image_if_identity_verified",
+      "blockingReason": "Wikimedia Commons describes the whole 50–50B building, not the original Fotogalleriet unit 50A. Visual inspection confirms a general facade and number 50 but cannot positively map the 1977 cellar entry. Contemporary gallery facade Møllergata 34 is a separate, unfilled photo slot.",
+      "outstandingChecks": [
+        "Identify exact Oscars gate 50A frontage/entrance within original",
+        "Confirm current building relation to Fotogalleriet's 1977 basement address",
+        "Only then download the photographic original, calculate SHA256 and prepare credited local WebP",
+        "Retain CC BY-SA 4.0 notice and attribution if used"
+      ],
+      "visualReview": {
+        "reviewedAt": "2026-11-03",
+        "originalFileUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Oscars_gate_50%E2%80%9350B.jpg",
+        "sourceEvidence": "Wikimedia Commons original photographed 2016-04-05, 2370x2003 px, uploader/author Jan-Tore Egge (Vinguru), CC BY-SA 4.0. Commons labels only the broader address range Oscars gate 50–50B.",
+        "observed": "Original image depicts a red-brick and white-plaster corner building; a number 50 is visible on the right facade. Lower-level openings and a side passage are visible, but the specific former Fotogalleriet cellar entrance at 50A cannot be positively identified from the photo or its Commons caption.",
+        "identityConclusion": "Building/address range is documented; historical Fotogalleriet entrance 50A is not verified. A 2016 facade is not an image of the gallery operating there in 1977.",
+        "decision": "do_not_activate_as_fotogalleriet_place_photo_pending_address_unit_identification",
+        "verificationNeeded": "Independent evidence locating the basement/entrance at Oscars gate 50A in this exact facade, such as a historical entrance image, archive floor plan, or documented address-door mapping."
+      }
+    },
+    {
+      "sourcePage": "https://fotogalleriet.no/wp-content/uploads/2024/04/240415-Annual-Report_compressed_pagenumber.pdf#page=44",
+      "subject": "2023 exhibition-programme annual report, printed page 38 (PDF page 44): wide view of Fotogalleriet's Møllergata 34 facade and central glazed entrance, showing Momentum 12 window exhibition in July–August 2023.",
+      "sourceType": "gallery_official_annual_report",
+      "evidenceStatus": "verified_direct_visual_inspection_2026-11-03",
+      "observed": "Original facade depicted with entrance centered between signed window displays. The report's gallery address heading is Møllergata 34 and same page describes Fotogalleriet's venue during Momentum 12 in 2023.",
+      "photographer": "not_identified_in_examined_page",
+      "photographedAt": "2023 summer (exhibition timing), specific capture date not verified",
+      "licenseObservation": "Public PDF publication establishes visibility, not permission to extract, crop, locally redistribute or include photograph in a commercial app. Photograph and exhibition window artworks may have separate rightsholders.",
+      "decision": "do_not_copy_or_publish_without_permission",
+      "roleCandidate": "current_facade",
+      "blockingReason": "Missing name/consent from original photographer and explicit WebP/adaptation/redistribution rights from relevant rightsholders. Gallery Gmail draft updated with source PDF and exact page for a focused request; draft is not sent.",
+      "requestStatus": "gmail_draft_updated_not_sent_2026-11-03",
+      "nextStep": "Seek original image with photographer credit and written authorization to use/crop/convert and locally distribute in History Go; clarify visible artworks in window."
+    }
+  ],
+  "requiredPhotoSlots": [
+    {
+      "role": "image",
+      "preferredSubject": "Distinct recognizable exterior of the current Møllergata 34 gallery entrance/facade",
+      "status": "fulfilled_with_original_ai_generated_illustration",
+      "candidateSource": "https://github.com/Paradispartiet/History-Go/blob/main/bilder/places/fotogalleriet/fotogalleriet_fasade_illustrasjon.webp",
+      "proposedAsset": "fotogalleriet-fasade-illustrasjon.webp",
+      "assetPath": "bilder/places/fotogalleriet/fotogalleriet_fasade_illustrasjon.webp",
+      "originalSha256": "1932243d25cb8951420c369006241ec74537f59d00cceff386c760dd2a5461ad"
+    },
+    {
+      "role": "frontImage",
+      "preferredSubject": "A second separately photographed perspective of the gallery (interior without uncleared artworks, or a licensed historic Fotogalleriet site photo)",
+      "status": "fulfilled_with_original_ai_generated_illustration",
+      "candidateSource": "https://github.com/Paradispartiet/History-Go/blob/main/bilder/places/fotogalleriet/fotogalleriet_utstillingsrom_illustrasjon.webp",
+      "alternativeCandidateSource": "https://commons.wikimedia.org/wiki/File:Oscars_gate_50%E2%80%9350B.jpg",
+      "proposedAsset": "fotogalleriet-utstilling-illustrasjon.webp",
+      "assetPath": "bilder/places/fotogalleriet/fotogalleriet_utstillingsrom_illustrasjon.webp",
+      "originalSha256": "8a7e6e1ab3a61a11031c2a55a39781a5cd683c8a7b4bbb8f03169377797d9c4a"
+    }
+  ],
+  "activationRequirements": [
+    "Commit two independent, original AI-generated WebP assets at distinct local paths to History Go, and record SHA256 and separate source generation IDs.",
+    "Credit both images as 'History Go – AI-generert illustrasjon', visibly label each as an illustration in PlaceCard and image metadata; neither depicts a verified documentary exposure or a specific historical exhibition.",
+    "Do not copy any reference exhibition photograph or the depicted copyrighted artworks into the generated illustration.",
+    "Validate distinct sources and avoid reusing crops of one AI source for both image and frontImage.",
+    "Update canonical Place and generated runtime/index consistently only after the files exist in the branch.",
+    "Run targeted place photo, staged quiz/Knowledge checks plus real iPad/mobile visual QA; then and only then consider v1 closeout and merge."
+  ],
+  "livePlacePhotosChanged": false,
+  "canMergeAsCompleteV1": false,
+  "researchLeads": [
+    {
+      "sourcePage": "https://arkiv.preusmuseum.no/nor/Oppdag-samlingene/Historiske-arkiver.html",
+      "institution": "Preus museum",
+      "lead": "The museum explicitly lists an organizational archive for Stiftelsen Fotogalleriet (1977–1990). Archive existence is confirmed; no specific exterior photo of the 1977 Oscars gate 50A basement entrance has been located or licensed.",
+      "contact": "post@preusmuseum.no",
+      "contactSource": "https://preusmuseum.no/besok-oss",
+      "request": "Ask if photographic documentary material depicts the 1977 Fotogalleriet premises or the entrance at Oscars gate 50A, and request catalog IDs, original photographer/date, pictured address-unit evidence, copy availability, and explicit public WebP reuse/attribution terms.",
+      "status": "documented_archive_not_searched_at_item_level_no_photo_permission",
+      "archiveInventorySource": "https://arkiv.preusmuseum.no/nor/content/download/1146/13840/file/Arkivoversikt_001.pdf",
+      "archiveNotes": "Archive inventory lists Stiftelsen Fotogalleriet as accession NMFF.2003:6, ~3 linear metres. Its described content is exhibition arrangements, staff, accounts and budget, likely late 1980s to early 1990s; does not establish a 1977 entrance photograph. FFF archive (1974 onward) is a separate possible route and its inventory mentions some photographic material.",
+      "archiveContact": "hege.oulie@preusmuseum.no",
+      "archiveContactSource": "https://arkiv.preusmuseum.no/nor/Oppdag-samlingene/Historiske-arkiver.html",
+      "outreachStatus": "gmail_draft_prepared_not_sent_2026-11-03",
+      "requestStatus": "ready_for_user_review_not_sent",
+      "rightsStatus": "no_license_granted"
+    },
+    {
+      "sourcePage": "https://fotogalleriet.no/visit/",
+      "institution": "Fotogalleriet",
+      "lead": "The gallery itself confirms current visiting location at Møllergata 34. Request two different original documentary photographs if possible: exterior of the current signed entrance, and a second genuinely distinct interior/other documented gallery location photograph without clearance-problematic artworks.",
+      "contact": "post@fotogalleriet.no",
+      "request": "Ask for two independent original files, photographer/source and capture date, exact entrance location, artwork/person clearance, redistribution and cropped/WebP derivative permission for a freely accessible History Go educational PlaceCard, and preferred credit/license wording. Do not assume publicly published website images are freely reusable.",
+      "status": "rights_request_prepared_not_sent_no_permission",
+      "outreachStatus": "gmail_draft_updated_with_2023_annual_report_facade_page_38_not_sent_2026-11-03",
+      "rightsStatus": "no_license_granted"
+    }
+  ],
+  "commonsStreetSceneChecks": [
+    {
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2019-08-23_Oslo_05_-_M%C3%B8llergata.jpg",
+      "photographer": "Nemo bis",
+      "photographedAt": "2019-08-23",
+      "license": "CC BY-SA 3.0",
+      "evaluation": "Wide view along Møllergata, not a documented or clearly identifiable photograph of Fotogalleriet's Møllergata 34 entrance.",
+      "decision": "street_context_only_not_image_or_frontImage"
+    },
+    {
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2019-08-23_Oslo_06_-_M%C3%B8llergata.jpg",
+      "photographer": "Nemo bis",
+      "photographedAt": "2019-08-23",
+      "license": "CC BY-SA 3.0",
+      "evaluation": "Narrower street view along Møllergata, with no documented specific identification of Fotogalleriet entrance at Møllergata 34.",
+      "decision": "street_context_only_not_image_or_frontImage"
+    }
+  ],
+  "researchOutcome": "User explicitly chose newly generated, distinct AI illustrations instead of permission requests. Two original WebP files are committed in GitHub and now referenced in canonical Place and place-open runtime with visible illustration captions. Source exhibition photographs remain references only and were not copied. Quiz/Knowledge and mobile/iPad QA remain separate release gates.",
+  "proposedIndependentOriginalPair": {
+    "proposalStatus": "two_distinct_existing_images_identified_rights_and_originals_not_cleared",
+    "currentFacade": {
+      "source": "Fotogalleriet official 2023 annual report, printed p.38/PDF p.44",
+      "sourcePage": "https://fotogalleriet.no/wp-content/uploads/2024/04/240415-Annual-Report_compressed_pagenumber.pdf#page=44",
+      "photoDate": "2023 summer",
+      "photographer": "unknown",
+      "rights": "pending",
+      "artworkClearance": "pending"
+    },
+    "secondGalleryContext": {
+      "source": "SNL Fotogalleriet image caption: May 2018 Vårutstillingen opening at Møllergata 34",
+      "sourcePage": "https://snl.no/Fotogalleriet",
+      "photoDate": "2018-05",
+      "photographer": "unconfirmed; file name hints Istvan Virag",
+      "rights": "restricted_reuse_permission_needed",
+      "peopleClearance": "pending",
+      "photoSubject": "gallery frontage and entry during public vernissage, NOT the 1977 former cellar"
+    },
+    "independentOriginality": "Different documented photographic subjects/dates (2018 versus 2023); compare original IDs and SHA256 of authorized source files before acceptance.",
+    "acceptance": "Neither image can be activated until each original is supplied by rights holder with explicit copying, adaptation and commercial publication permission. Alternative is gallery-supplied separate original photos without artwork/people clearance blockers.",
+    "galleryOutreach": "Existing draft to post@fotogalleriet.no updated 2026-11-03 with both exact cited candidate URLs; NOT sent.",
+    "formerAddressNote": "1977 Oscars gate 50A photo may still be researched as historical context, but is not logically required if two distinct genuine Møllergata 34 gallery documentary photos can be cleared."
+  },
+  "illustrationProduction": {
+    "decisionDate": "2026-11-03",
+    "route": "original_naturalistic_illustrations_instead_of_requesting_reuse_permissions",
+    "ownerDecision": "No permission requests: use originally generated naturalistic illustrations whenever directly reusable, clearly licensed documentary photos are unavailable.",
+    "activeContactRequests": "none; prior Gmail drafts unsent and not part of production path",
+    "clearRules": [
+      "Illustrations are not documentary photographs; label them clearly in UI and metadata as illustration.",
+      "Use verified exterior/interior geometry as architectural context without making an unsupported claim that details exactly reproduce the former 1977 venue.",
+      "Do not copy, reconstruct pixel-for-pixel or fabricate the specific protected artworks displayed in reference exhibition photos.",
+      "Keep two independently generated original visual assets for image and frontImage (different generation seeds/files and SHA256), not crops of one source.",
+      "Store originals, local WebP, prompt/provenance, generation date, credit 'History Go – AI-generert illustrasjon' and source reference URLs.",
+      "Keep historical originals merely as research references; do not publish nonlicensed photos or imply generated imagery is authentic."
+    ],
+    "selectedMotifs": [
+      {
+        "role": "image",
+        "status": "committed_and_activated_in_canonical_place_pending_v1_tests",
+        "assetPath": "bilder/places/fotogalleriet/fotogalleriet_fasade_illustrasjon.webp",
+        "outputSha256": "1932243d25cb8951420c369006241ec74537f59d00cceff386c760dd2a5461ad",
+        "dimensions": [
+          1400,
+          933
+        ],
+        "credit": "History Go – AI-generert illustrasjon"
+      },
+      {
+        "role": "frontImage",
+        "status": "committed_and_activated_in_canonical_place_pending_v1_tests",
+        "assetPath": "bilder/places/fotogalleriet/fotogalleriet_utstillingsrom_illustrasjon.webp",
+        "outputSha256": "8a7e6e1ab3a61a11031c2a55a39781a5cd683c8a7b4bbb8f03169377797d9c4a",
+        "dimensions": [
+          1400,
+          788
+        ],
+        "credit": "History Go – AI-generert illustrasjon"
+      }
+    ],
+    "packaging": {
+      "status": "two_distinct_webp_illustrations_generated_and_packaged_in_conversation_not_uploaded_to_repository",
+      "userDownload": "fotogalleriet-v1-illustrasjoner.zip",
+      "generatedAt": "2026-11-03",
+      "assets": [
+        {
+          "role": "image",
+          "stagedFile": "fotogalleriet-fasade-illustrasjon.webp",
+          "outputSha256": "3e2c403dd64585a0bb3d1a491e42ae55d9064f5d559b3fc9c902a87c34c35bdb",
+          "dimensions": [
+            1440,
+            960
+          ],
+          "description": "Conceptual photographic realism of gallery facade; not a confirmed exact image of current Møllergata 34 facade.",
+          "imageLabel": "Illustrasjon – AI-generert",
+          "artworksDepicted": "none"
+        },
+        {
+          "role": "frontImage",
+          "stagedFile": "fotogalleriet-utstilling-illustrasjon.webp",
+          "outputSha256": "933d0add15a46adc6980e5f05959d0f0af8f1bb536124ae68cdd3cc2cabad1c7",
+          "dimensions": [
+            1440,
+            960
+          ],
+          "description": "Fictional contemporary photography exhibition inspired by general Fotogalleriet installation context; all artworks invented.",
+          "imageLabel": "Illustrasjon – AI-generert",
+          "artworksDepicted": "all fictitious original designs"
+        }
+      ],
+      "publicationGate": "Do not set active image/frontImage until actual binary WebP assets are committed to the repository; confirm both exact hashes, labelled AI provenance, correct image credits, generated runtime, and iPad/mobile visual QA."
+    }
+  },
+  "exhibitionVisualReferences": [
+    {
+      "event": "Vårutstillingen 2019",
+      "sourcePage": "https://www.hildehonerud.com/it-is-a-light-which-objectifies-everything-and-confirms-nothing",
+      "visualNotes": "White cube interior with striking yellow floor and wall-mounted photographic prints",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Vårutstillingen 2022",
+      "sourcePage": "https://www.mariesjovold.no/now/2022/6/23/vrutstillingen-2022-at-fotogalleriet-in-oslo",
+      "visualNotes": "White gallery wall with framed photography and a freestanding timber display structure",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "FFF 50th anniversary exhibition 2024",
+      "sourcePage": "https://www.mariesjovold.no/now/2024/11/21/exhibition-at-fotogalleriet-oslo",
+      "corroboration": "https://fotogalleriet.no/wp-content/uploads/2025/05/report_43.pdf",
+      "visualNotes": "Dense salon-hung photo display, with separate book section; annual report credits installation photo to Ole Lovold",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Window Exhibition 2025",
+      "sourcePage": "https://fotogalleriet.no/exhibition/the-window-exhibition-2025/",
+      "visualNotes": "Five windows used for photography displays; installation documentation attributed to Dev Dhunsi",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Indoctrination: Multivalent Gestures (2023)",
+      "sourcePage": "https://kunstkritikk.com/un-doctrinated/",
+      "photographer": "Julie Hrnčířová (first installation image in the review)",
+      "visualNotes": "White-walled main gallery, freestanding blue rectangular structure, dark corridor with video projection",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "4:59 by Julie Poly (2023)",
+      "sourcePage": "https://www.oslofotokunstskole.no/blogg/an-exhibition-about-resistance",
+      "photographer": "Julie Hrncirova (installation views)",
+      "visualNotes": "Wallpapered photographic installation with informal frames, intimate-scale display and visitors",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Vårutstillingen 2024",
+      "sourcePage": "https://fotogalleriet.no/wp-content/uploads/2025/05/report_43.pdf",
+      "photographer": "Tor S. Ulstein (installation view credited in Fotogalleriet report)",
+      "visualNotes": "Mixed photographic and installation pieces displayed across exhibition rooms",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Vårutstillingen 2025",
+      "sourcePage": "https://fotogalleriet.no/wp-content/uploads/2026/03/Fotogalleriet_AnnualReport_2025.pdf",
+      "photographer": "Tor Ulstein / KUNSTDOK (installation photographs in annual report)",
+      "visualNotes": "Contemporary installation views credited to Tor Ulstein / KUNSTDOK in the official 2025 report",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    },
+    {
+      "event": "Tredje Rom (2025)",
+      "sourcePage": "https://fotogalleriet.no/event/tredje-rom-public-programme/",
+      "photographer": "Jan Khür / Studio Abrakadabra (installation photo; image edit Nasha Perez)",
+      "visualNotes": "2025 Fotogalleriet exhibition and installation context",
+      "imageRights": "not established",
+      "decision": "reference_only_not_copied"
+    }
+  ],
+  "livePlaceIllustrationsChanged": true
+}

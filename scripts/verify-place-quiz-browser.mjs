@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Full real-app quiz playthrough, including persisted progress and reward.
+// Fotogalleriet acceptance uses --ipad to add portrait/landscape touch playthroughs.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -36,9 +37,16 @@ await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const base = 'http://127.0.0.1:' + server.address().port;
 const output = path.join(root, 'artifacts', 'place-quiz', placeId);
 fs.mkdirSync(output, {recursive:true});
+// Preserve the existing two-profile contract for other Places. Opt into iPad
+// acceptance on the Fotogalleriet workflow with --ipad.
+const withIpad = process.argv.includes('--ipad');
 const profiles = [
   {name:'desktop', viewport:{width:1440,height:1000}},
-  {name:'mobile', viewport:{width:390,height:844}, isMobile:true, hasTouch:true}
+  {name:'mobile', viewport:{width:390,height:844}, isMobile:true, hasTouch:true},
+  ...(withIpad ? [
+    {name:'ipad-portrait', viewport:{width:820,height:1180}, hasTouch:true},
+    {name:'ipad-landscape', viewport:{width:1024,height:768}, hasTouch:true}
+  ] : [])
 ];
 let browser;
 const reports = [];
@@ -90,7 +98,7 @@ try {
           const correct = page.locator('#quizChoices').getByRole('button',{name:q.answer,exact:true});
           assert.equal(await correct.count(),1,q.id+': correct answer must occur exactly once');
           assert.equal((await correct.innerText()).trim(),q.answer,q.id+': rendered answer diverges');
-          if (profile.isMobile) {
+          if (profile.hasTouch) {
             // Keep the acceptance test faithful to an actual phone: touch the
             // rendered choice, rather than force-clicking an animated element.
             // Long mobile labels may animate as they wrap; retry only if the

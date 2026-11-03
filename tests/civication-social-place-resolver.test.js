@@ -69,9 +69,10 @@ const brandByPlace = readJson('data/brands/brands_by_place.json');
 const by = loadPrefix('places/by/oslo/');
 const litteratur = loadPrefix('places/litteratur/oslo/');
 const subkultur = loadPrefix('places/subkultur/oslo/');
+const musikk = loadPrefix('places/musikk/oslo/');
 const sport = loadPrefix('places/sport/europa/norway/oslo_sport/');
 const playgrounds = loadPrefix('places/sport/europa/norway/places_oslo_lekeplasser_trening/');
-const places = [].concat(by, litteratur, subkultur, sport, playgrounds);
+const places = [].concat(by, litteratur, subkultur, musikk, sport, playgrounds);
 const canonicalPlaces = loadAllCanonicalPlaces();
 const canonicalSourceIds = new Set(canonicalPlaces.map((p) => String(p.id)));
 const opts = { brandMaster, brandByPlace, places };
@@ -79,6 +80,7 @@ const opts = { brandMaster, brandByPlace, places };
 assert.ok(by.length >= 90, `forventet minst 90 By-steder, fikk ${by.length}`);
 assert.ok(litteratur.some((p) => p.id === 'alexander_kiellands_plass'));
 assert.ok(subkultur.some((p) => p.id === 'bla'));
+assert.ok(musikk.some((p) => p.id === 'blaa'), 'Blås kanoniske venue-sted skal være lastet fra musikk');
 assert.ok(sport.length && playgrounds.length);
 assert.ok(canonicalSourceIds.has('ekebergparken'), 'hele canonical manifestet skal inneholde Ekebergparken');
 assert.deepStrictEqual(
@@ -112,7 +114,7 @@ assert.strictEqual(java.lat, 59.9273);
 assert.strictEqual(java.lon, 10.7414);
 
 for (const [kind, wanted] of Object.entries({
-  culture: ['youngstorget->mono', 'bla->bla', 'olaf_ryes_plass->parkteatret'],
+  culture: ['youngstorget->mono', 'blaa->bla', 'olaf_ryes_plass->parkteatret'],
   book_library: ['deichman_bjorvika->(place)'],
   hospitality_food: ['karl_johan->grand_cafe', 'bjorvika->maaemo'],
   retail_social: ['markveien->froken_dianas_salonger', 'grensen_kjopesenter->outland']

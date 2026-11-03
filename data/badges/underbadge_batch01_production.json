@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created": "2026-10-31",
-  "status": "seven_scenekunst_eleven_film_active_remaining_film_pending",
+  "status": "seven_scenekunst_twelve_film_active_complete",
   "disclaimer": "All seven Scenekunst underbadges are mapped to approved separate WebPs. Older v1 prototypes remain in the repository only as historical rejected candidates. By and Film & TV underbadges remain unactivated.",
   "parentProtection": "Do not alter any existing main badge or approved subbadge images.",
   "style": {
@@ -431,7 +431,7 @@
       "primaryColor": "#808080",
       "secondaryColor": "#404040",
       "parentImage": "bilder/merker/by-brodert-v6.webp",
-      "status": "production_specification",
+      "status": "two_active_remaining_by_pending",
       "assets": [
         {
           "id": "klassisk_arkitektur",
@@ -439,24 +439,55 @@
           "motif": "Klassisk søyle med kapitél og trekantgavl, symmetrisk steinrelieff",
           "avoid": "Enkelt tydelig arkitekturmønster, ikke moderne skyskraper",
           "productionPriority": 1,
-          "status": "rendered_candidate",
-          "selectedImage": null,
+          "status": "integrated",
+          "selectedImage": "bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp",
           "proposedFile": "bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v1.webp",
           "quality": {
-            "visualApproved": false,
-            "technicalApproved": false
+            "visualApproved": true,
+            "technicalApproved": true
           },
-          "candidateImage": "bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v1.webp",
-          "bytes": 253744,
-          "sha256": "fb5b35cc3dd8d4e0d385dc594ac32da3ffd116d0e8e0df70b41b96f1c33425d6",
+          "candidateImage": "bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp",
+          "bytes": 440936,
+          "sha256": "afc067c69e126821c31ab04ca4681f98e46a518c50ead2ccb82d6d3a3e5a5d92",
           "width": 1024,
           "height": 1024,
-          "origin": "cropped from authored three-badge composition; circular background isolated and upscaled; not independently generated",
+          "origin": "independently generated round embroidered patch, grey palette as defined in by.json",
           "letteringInsideBorder": true,
           "visualReview": {
-            "result": "pending_final_review",
-            "date": "2026-11-01",
-            "note": "Distinct neoclassical facade and realistic textile rendering; final user approval still pending."
+            "date": "2026-11-03",
+            "result": "approved",
+            "reviewedAtSizes": [
+              1024,
+              64
+            ],
+            "note": "Standalone round patch, dark grey satin-stitched border; KLASSISK ARKITEKTUR above and BY below, realistic classic architectural motif; old v1 candidate retained."
+          },
+          "previousCandidate": {
+            "image": "bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v1.webp",
+            "bytes": 253744,
+            "sha256": "fb5b35cc3dd8d4e0d385dc594ac32da3ffd116d0e8e0df70b41b96f1c33425d6",
+            "origin": "cropped from authored three-badge composition; circular background isolated and upscaled; not independently generated",
+            "status": "rendered_candidate"
+          },
+          "productionBrief": {
+            "version": "v2",
+            "status": "fulfilled_v2_active",
+            "topLabel": "KLASSISK ARKITEKTUR",
+            "bottomLabel": "BY",
+            "palette": {
+              "primary": "#808080",
+              "secondary": "#404040"
+            },
+            "border": "dark grey #404040 raised embroidery, no gold border",
+            "illustration": "Classical columned building with pediment, stone steps, bronze lion, lilacs and lamppost, realistic sewn textile",
+            "selectedImage": "bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp",
+            "visualApproved": true,
+            "technicalApproved": true,
+            "sha256": "afc067c69e126821c31ab04ca4681f98e46a518c50ead2ccb82d6d3a3e5a5d92",
+            "bytes": 440936,
+            "width": 1024,
+            "height": 1024,
+            "alpha": true
           }
         },
         {
@@ -465,12 +496,25 @@
           "motif": "Rektangulær bygning med flatt tak, horisontale vindusbånd og ren geometri",
           "avoid": "Ikke klassisk ornamentikk",
           "productionPriority": 2,
-          "status": "planned",
-          "selectedImage": null,
+          "status": "integrated",
+          "selectedImage": "bilder/merker/by/undermerker/modernisme-brodert-v1.webp",
           "proposedFile": "bilder/merker/by/undermerker/modernisme-brodert-v1.webp",
           "quality": {
-            "visualApproved": false,
-            "technicalApproved": false
+            "visualApproved": true,
+            "technicalApproved": true
+          },
+          "candidateImage": "bilder/merker/by/undermerker/modernisme-brodert-v1.webp",
+          "bytes": 540416,
+          "sha256": "39d0403eb18789c1526c1f1825fa0caccca199958784c479039fb3cf152aaa5e",
+          "width": 1024,
+          "height": 1024,
+          "letteringInsideBorder": true,
+          "origin": "independently generated embroidered architectural badge, no neoclassical imagery",
+          "visualReview": {
+            "date": "2026-11-03",
+            "result": "production_visual_check_passed",
+            "reviewedAtSizes": [1024, 64],
+            "note": "MODERNISME upper arc, BY lower arc; flat-roofed buildings with continuous ribbon windows and straight concrete forms; charcoal and gray braided thread border without gold"
           }
         },
         {
@@ -1414,15 +1458,61 @@
         {
           "id": "visningssteder",
           "label": "Visningssteder",
-          "motif": "Kinosal med projektorlys mot lerret og synlige seterader",
-          "avoid": "Ikke bruk et generisk fjernsyn",
+          "motif": "Kinosal med realistisk brodert filmprojektor, synlig gyllen lyskjegle mot kinolerret, burgunderrøde seterader og scenetepper",
+          "avoid": "Ingen generisk TV, flate ikoner, beskyttede logoer eller filmstills",
           "productionPriority": 2,
-          "status": "planned",
-          "selectedImage": null,
+          "status": "integrated",
+          "selectedImage": "bilder/merker/film_tv/undermerker/visningssteder-brodert-v1.webp",
           "proposedFile": "bilder/merker/film_tv/undermerker/visningssteder-brodert-v1.webp",
           "quality": {
-            "visualApproved": false,
-            "technicalApproved": false
+            "visualApproved": true,
+            "technicalApproved": true
+          },
+          "width": 1024,
+          "height": 1024,
+          "bytes": 577588,
+          "sha256": "abb3129cccd305b3c4e338c09a6299320cbd2a988a81cae103631a9086ac4618",
+          "productionBrief": {
+            "version": "v1",
+            "status": "fulfilled_v1_active",
+            "topLabel": "VISNINGSSTEDER",
+            "bottomLabel": "FILM & TV",
+            "palette": {
+              "primary": "#C2188B",
+              "secondary": "#E7F8FF"
+            },
+            "illustration": "Individuelt rundt brodert kinomerke med sølvfarget historisk filmprojektor på stativ, synlig lyskjegle, filmlerret med fiktiv filmnedtelling og flere burgunderrøde seterader, broderte røde scenetepper og tykk magentasatin-kant. Hevet kremhvit tittel i øvre innerbue og mindre FILM & TV på nedre indre bånd.",
+            "avoid": [
+              "flat_vector_icon",
+              "generic_television",
+              "copyrighted_film_still",
+              "protected_cinema_logo",
+              "generic_gold_border"
+            ],
+            "requirements": [
+              "one_original_round_badge",
+              "1024x1024_alpha_webp",
+              "verified_sha256",
+              "64px_visual_review",
+              "preserve_prior_eleven_badges"
+            ],
+            "selectedImage": "bilder/merker/film_tv/undermerker/visningssteder-brodert-v1.webp",
+            "visualApproved": true,
+            "technicalApproved": true,
+            "sha256": "abb3129cccd305b3c4e338c09a6299320cbd2a988a81cae103631a9086ac4618",
+            "bytes": 577588,
+            "width": 1024,
+            "height": 1024,
+            "alpha": true
+          },
+          "visualReview": {
+            "date": "2026-11-03",
+            "result": "approved",
+            "reviewedAtSizes": [
+              1024,
+              64
+            ],
+            "note": "Sammenlignet med Filmklassikere og de korrigerte v3-merkene. Rund tykk magentasatin-søm, realistisk løftet trådtekstur og lesbare øvre/nedre tekstbuer. Projektor, lyskjegle og røde seterader forblir gjenkjennelige ved 64px."
           }
         }
       ]

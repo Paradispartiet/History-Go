@@ -1,6 +1,6 @@
 # Birkelunden – aktivt stedproduksjonskort
 
-- Oppdatert: 2026-08-24
+- Oppdatert: 2026-11-03 (CI- og ferdigstatus; produksjonsinnholdet er fra 2026-08-24)
 - Place ID: `birkelunden`
 - Canonical source: `data/places/by/oslo/places/birkelunden.json`
 - Aktiv 7G baseline `main`: `090c299adba3d6a39f5f45f4ab930b2504e9200f`
@@ -50,8 +50,8 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 | 7E Nyheter | **FERDIG OG MERGET** (#5276) |
 | 7F Lesespor | **FERDIG OG MERGET** (#5280) |
 | 7G Kilder | **FERDIG OG MERGET** |
-| 7H Språk | **GODKJENT CHECKPOINT – FINAL PR-GRENSE** |
-| 8–24 | **MATERIALISERT OG REVIEWET – FINAL CI/MAIN GATE GJENSTÅR** |
+| 7H Språk | **FERDIG OG MERGET** (#5283) |
+| 8–24 | **FERDIG OG MERGET** (#5283); automatiske sluttkontroller verifisert |
 
 ## 7A – Om, låst
 
@@ -342,4 +342,12 @@ Etter grønn 7G-merge starter **7H – Språk** fra fersk `main`. Språkleksikon
 - Completion audit: `reports/place-production/birkelunden-phase8-24-completion-audit-v1.md`.
 - Completion report: `reports/place-production/birkelunden_content_factory_completion_v1.json`.
 
-Final ferdigstatus kan først skrives etter grønn PR-head, merge og kontroll av fersk `main`.
+## Statusavstemming – 3. november 2026
+
+- Ferdigproduksjon: [PR #5283](https://github.com/Paradispartiet/History-Go/pull/5283) merget 24. august 2026 til `main`, mergecommit `ff39e551c8c35996836858f4e4177c6f97bb57c5`.
+- Fullføring-PR-ens sluttkontroller: **63/63 success**, inkludert Data checks, Knowledge checks, Place rounds governance, Language layer checks og Fagverk.
+- Etter merge: **48/49 success**, mens én Pages-publisering ble avbrutt (ikke registrert som feil). En senere [Pages-publisering på main](https://github.com/Paradispartiet/History-Go/actions/runs/41592409276) er grønn.
+- Canonical Birkelunden, 35 quizspørsmål, areal, historikk, images/for-na, People, Objects, Brand og Structures er bevart uendret i denne statusavstemmingen.
+- **Begrensning:** Dette er verifiserte GitHub-kontroller. Faktisk manuell Chromium/Safari-visning av hele stedskortet på mobil og iPad er ikke dokumentert i denne avstemmingen og skal ikke fremstilles som utført.
+
+Produksjonsinnholdet er ferdig og merget; automatiske sluttester er dokumentert bestått. Ingen ny stedspakke eller parallell implementasjon er nødvendig.

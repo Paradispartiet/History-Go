@@ -1,0 +1,32 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+const read=(p)=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url),'utf8'));
+const path='bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp';
+const expectedSHA='afc067c69e126821c31ab04ca4681f98e46a518c50ead2ccb82d6d3a3e5a5d92';
+test('Klassisk arkitektur v2 is active with verified grey embroidered WebP',()=>{
+ const by=read('data/badges/by.json');
+ const manifest=read('data/badges/underbadge_batch01_production.json');
+ const a=manifest.families.by.assets.find(x=>x.id==='klassisk_arkitektur');
+ assert.equal(by.color,'#808080');assert.equal(by.secondaryColor,'#404040');
+ assert.equal(by.subBadgeImages.klassisk_arkitektur,path);
+ assert.equal(a.status,'integrated');assert.equal(a.selectedImage,path);
+ assert.deepEqual(a.quality,{visualApproved:true,technicalApproved:true});
+ assert.equal(a.productionBrief.topLabel,'KLASSISK ARKITEKTUR');
+ assert.equal(a.productionBrief.bottomLabel,'BY');
+ assert.equal(a.productionBrief.border,'dark grey #404040 raised embroidery, no gold border');
+ assert.equal(a.previousCandidate.image,'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v1.webp');
+ const b=readFileSync(new URL('../'+path,import.meta.url));
+ assert.equal(b.length,440936);assert.equal(b.toString('ascii',0,4),'RIFF');
+ assert.equal(b.toString('ascii',8,12),'WEBP');assert.equal(b.toString('ascii',12,16),'VP8X');
+ assert.ok(b[20]&0x10);
+ assert.equal(b.readUIntLE(24,3)+1,1024);assert.equal(b.readUIntLE(27,3)+1,1024);
+ assert.equal(createHash('sha256').update(b).digest('hex'),expectedSHA);
+});
+test('the other nine By entries, 12 Film & TV and seven Scenekunst badges are preserved',()=>{
+ const by=read('data/badges/by.json'),film=read('data/badges/film_tv.json'),stage=read('data/badges/scenekunst.json');
+ assert.equal(by.sub.length,10);assert.equal(Object.keys(by.subBadgeImages).length,2);
+ assert.equal(Object.keys(film.subBadgeImages).length,12);
+ assert.equal(Object.keys(stage.subBadgeImages).length,7);
+});

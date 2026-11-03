@@ -28,6 +28,8 @@
   let lastPlaceMarkerFeatures = [];
   const MAX_TOUCH_DETAIL_MARKERS = 240;
   const placeBadgeImages = new Map();
+  const OSLO_CITY_BADGE_KEY = "city_oslo_by";
+  const OSLO_CITY_BADGE_IMAGE = "bilder/merker/by/oslo-brodert-v1.webp";
   let placeBadgeLoadStarted = false;
   // Badge-mode experiment; original dots and squares remain available.
   let markerMode = "badges";
@@ -742,7 +744,7 @@
         ? "#17212a" : markerBorder;
       entry.element.style.opacity = ["review", "unknown"].includes(feature.properties.coordinateTrust) ? "0.9" : "1";
       entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 4px rgba(0,0,0,.3)";
-      const badgeSrc = isBadgeMarkerMode() ? (placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "") : "";
+      const badgeSrc = isBadgeMarkerMode() ? (placeBadgeImages.get((feature.properties.badgeKey || badgeCategoryId(feature.properties.category))) || "") : "";
       if (badgeSrc !== entry.badgeSrc) {
         entry.badgeImage?.remove();
         entry.badgeSrc = badgeSrc;
@@ -800,6 +802,14 @@
     return String((window as any).catIdFromDisplay?.(value) || value || "").trim().toLowerCase();
   }
 
+  function badgeKeyForPlace(place) {
+    const category = badgeCategoryId(place && place.category);
+    if (category !== "by") return category;
+    const source = String((place && (place.sourceFile || place._sourceFile || place.file)) || "")
+      .replace(/\\/g, "/").replace(/^\.?\//, "").replace(/^data\//, "").toLowerCase();
+    return source.startsWith("places/by/oslo/") ? OSLO_CITY_BADGE_KEY : category;
+  }
+
   function ensurePlaceBadgeImages() {
     const setBadges = (badges) => {
       for (const badge of Array.isArray(badges) ? badges : []) {
@@ -807,6 +817,7 @@
         const image = String(badge?.image || "").trim();
         if (id && /\.(png|jpe?g|webp|gif|svg)(\?.*)?$/i.test(image)) placeBadgeImages.set(id, image);
       }
+      placeBadgeImages.set(OSLO_CITY_BADGE_KEY, OSLO_CITY_BADGE_IMAGE);
       if (lastPlaceMarkerFeatures.length && MAP) drawPlaceMarkers();
     };
     const existing = (window as any).BADGES;
@@ -927,9 +938,9 @@
     const lat0 = Number(center.lat ?? START.lat);
     let visible = features.filter(feature => {
       if (feature?.properties?.mapLod !== PLACE_MAP_LOD_DETAIL) return false;
-      if (zoom < PLACE_DETAIL_MIN_ZOOM && !(badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))) return false;
+      if (zoom < PLACE_DETAIL_MIN_ZOOM && !(badgesReady && placeBadgeImages.has((feature.properties.badgeKey || badgeCategoryId(feature.properties.category))))) return false;
       if (!useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM &&
-          !(badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))) return false;
+          !(badgesReady && placeBadgeImages.has((feature.properties.badgeKey || badgeCategoryId(feature.properties.category))))) return false;
       const coords = feature.geometry?.coordinates;
       if (!Array.isArray(coords) || coords.length < 2) return false;
       return typeof bounds?.contains !== "function" || bounds.contains(coords);
@@ -945,9 +956,9 @@
     // calculation as proof that there are no places to display.
     if (!visible.length) {
       visible = features.filter(feature => feature?.properties?.mapLod === PLACE_MAP_LOD_DETAIL &&
-          (zoom >= PLACE_DETAIL_MIN_ZOOM || (badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))) &&
+          (zoom >= PLACE_DETAIL_MIN_ZOOM || (badgesReady && placeBadgeImages.has((feature.properties.badgeKey || badgeCategoryId(feature.properties.category))))) &&
           (useNativeTouchDetailMarkers() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM ||
-            (badgesReady && placeBadgeImages.has(badgeCategoryId(feature.properties.category)))))
+            (badgesReady && placeBadgeImages.has((feature.properties.badgeKey || badgeCategoryId(feature.properties.category))))))
         .sort((a, b) => {
           const [ax, ay] = a.geometry.coordinates;
           const [bx, by] = b.geometry.coordinates;
@@ -1010,7 +1021,7 @@
         entry.element.setAttribute("aria-label", name);
       }
       const badgeSrc = isBadgeMarkerMode() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM
-        ? (placeBadgeImages.get(badgeCategoryId(feature.properties.category)) || "") : "";
+        ? (placeBadgeImages.get((feature.properties.badgeKey || badgeCategoryId(feature.properties.category))) || "") : "";
       if (badgeSrc !== entry.badgeSrc) {
         entry.badgeImage?.remove();
         entry.badgeSrc = badgeSrc;
@@ -1215,8 +1226,9 @@
         properties: {
           id: p.id,
           name: p.name || "",
-          badgeAvailable: isBadgeMarkerMode() && placeBadgeImages.has(badgeCategoryId(p.category)) ? 1 : 0,
+          badgeAvailable: isBadgeMarkerMode() && placeBadgeImages.has(badgeKeyForPlace(p)) ? 1 : 0,
           category: p.category || "",
+          badgeKey: badgeKeyForPlace(p),
           visited: isVisited ? 1 : 0,
           isAreaPlace: isAreaPlace(p) ? 1 : 0,
           mapLod: getMapLod(p),
@@ -1541,6 +1553,7 @@
     getCoordinateTrust,
     isAreaPlace,
     getMapLod,
+    badgeKeyForPlace,
     setMarkerMode,
     getMarkerMode: () => markerMode,
 

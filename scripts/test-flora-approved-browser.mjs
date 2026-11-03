@@ -80,6 +80,15 @@ try{
     {name:"reinfann",label:"Reinfann",term:"reinfann",path:"b09/31_reinfann_v1.webp"},
     {name:"russblastjerne",label:"Russblåstjerne",term:"Russblåstjerne",path:"b09/32_russblastjerne_v1.webp"},
     {name:"sandarve",label:"Sandarve",term:"sandarve",path:"b09/33_sandarve_v1.webp"},
+    {name:"skogfiol",label:"Skogfiol",term:"Skogfiol",path:"b09/34_skogfiol_v1.webp"},
+    {name:"skogstorkenebb",label:"Skogstorkenebb",term:"Skogstorkenebb",path:"b09/35_skogstorkenebb_v1.webp"},
+    {name:"smalkjempe",label:"Smalkjempe",term:"Smalkjempe",path:"b09/36_smalkjempe_v1.webp"},
+    {name:"smorbukk",label:"Smørbukk",term:"Smørbukk",path:"b09/37_smorbukk_v1.webp"},
+    {name:"smaengkall",label:"Småengkall",term:"Småengkall",path:"b09/38_smaengkall_v1.webp"},
+    {name:"snoklokke",label:"Snøklokke",term:"Snøklokke",path:"b09/39_snoklokke_v1.webp"},
+    {name:"stemorsblomst",label:"Stemorsblomst \\(forvillet\\)",term:"Stemorsblomst",path:"b09/40_stemorsblomst_v1.webp"},
+    {name:"strandvindel",label:"Strandvindel",term:"Strandvindel",path:"b09/41_strandvindel_v1.webp"},
+    {name:"taklok",label:"Takløk",term:"Takløk",path:"b09/42_taklok_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
