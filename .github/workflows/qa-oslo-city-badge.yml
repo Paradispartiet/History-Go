@@ -10,6 +10,13 @@ on:
       - '.github/workflows/qa-oslo-city-badge.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: oslo-city-badge-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   city-badge:
     runs-on: ubuntu-latest
