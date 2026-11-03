@@ -75,6 +75,7 @@ jobs:
             'data/quizcards/historie/minneparken_gamlebyen_quizcard_v1.json',
             'data/knowledge/knowledge_units.generated.json',
             'reports/knowledge-id-backfill.json',
+            'reports/knowledge-contract-audit.json',
           ]);
           const unapproved=found.filter(p=>!approved.has(p));
           const report={schema:'minneparken_knowledge_registry_sync_v1',mode:'canonical_nonplayable_quiz_source',allowed:[...approved],modified:found,unapproved,quiz_manifest_unchanged:true,quizcard_manifest_unchanged:true,Historie_gates:'F/G/H N/A'};
@@ -88,6 +89,7 @@ jobs:
           git add data/quizcards/historie/minneparken_gamlebyen_quizcard_v1.json
           git add data/knowledge/knowledge_units.generated.json
           git add reports/knowledge-id-backfill.json
+          git add reports/knowledge-contract-audit.json
           git diff --cached --check
           git diff --cached --stat
           git config user.name "github-actions[bot]"
