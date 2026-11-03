@@ -168,3 +168,66 @@ test('Fotogalleriet People links include two sourced founders without unlicensed
     assert.deepEqual(runtime.people.find(x => x.id === person.id), person);
   }
 });
+test('staging remains absent from active quiz manifest until photo and production gates pass', () => {
+  const manifest = read('data/quiz/manifest.json');
+  const serialized = JSON.stringify(manifest);
+  assert.ok(!serialized.includes('fotogalleriet'), 'Fotogalleriet must not be registered in the active quiz manifest while staged');
+  const stagedFile = 'reports/place-production/fotogalleriet/quiz-sets-staged.json';
+  assert.ok(!serialized.includes(stagedFile), 'draft quiz file must not be exposed as an active source');
+  assert.ok(!place.image && !place.frontImage, 'no unlicensed photo can be activated during staging');
+});
+
+test('photo rights review must remain blocked until two independently licensed originals are verified', () => {
+  const review = read('reports/place-production/fotogalleriet/photo-clearance-review-20261102.json');
+  assert.equal(review.placeId, place.id);
+  assert.equal(review.canMergeAsCompleteV1, false);
+  assert.equal(review.livePlacePhotosChanged, false);
+  assert.equal(review.requiredPhotoSlots.length, 2);
+  assert.deepEqual(review.requiredPhotoSlots.map(slot => slot.role), ['image', 'frontImage']);
+  assert.ok(review.requiredPhotoSlots.every(slot => slot.status.startsWith('missing_')));
+  const blockedSources = review.sourceReview.filter(item =>
+    /^(?:do_not_|rejected_|historic_|candidate_)/.test(item.decision)
+    || item.decision.includes('not_approved'));
+  assert.equal(blockedSources.length, review.sourceReview.length,
+    'photo source was silently approved without completing v1 release gate');
+  assert.ok(review.researchLeads.every(lead => lead.rightsStatus === 'no_license_granted'));
+  assert.ok(review.researchLeads.every(lead => /not_sent/.test(lead.outreachStatus)),
+    'requests must not be reported as sent without external confirmation');
+});
+
+test('Knowledge handoff has exact reverse coverage without orphan or duplicate claims', () => {
+  const handoff = read('reports/place-production/fotogalleriet/knowledge-handoff-20261102.json');
+  const byQuestionId = new Map(all.map(q => [q.id, q]));
+  const byQuizId = new Map(all.map(q => [q.quiz_id, q]));
+  const cardsById = new Map(cards.cards.flatMap(card => card.questions).map(q => [q.id, q]));
+  assert.equal(handoff.units.length, 17);
+  const seenQ = new Set(), seenCard = new Set(), seenQuiz = new Set();
+  for (const unit of handoff.units) {
+    assert.equal(unit.status, 'reviewed_staged_not_canonical');
+    assert.equal(unit.subject_id, 'kunst');
+    assert.equal(unit.claim_ids.length, 1);
+    assert.ok(unit.sources.length > 0);
+    assert.ok(unit.question_ids.length > 0);
+    for (const id of unit.question_ids) {
+      assert.ok(!seenQ.has(id), 'quiz question appears in multiple knowledge units: ' + id);
+      seenQ.add(id);
+      const quizQuestion = byQuestionId.get(id);
+      assert.ok(quizQuestion, 'orphan knowledge question ID: ' + id);
+      assert.equal(quizQuestion.primary_knowledge_unit_id, unit.knowledge_unit_id);
+      assert.equal(quizQuestion.claim_id, unit.claim_ids[0]);
+    }
+    for (const quizId of unit.quiz_ids) {
+      assert.ok(!seenQuiz.has(quizId), 'quiz ID appears in multiple knowledge units: ' + quizId);
+      seenQuiz.add(quizId);
+      assert.equal(byQuizId.get(quizId)?.primary_knowledge_unit_id, unit.knowledge_unit_id);
+    }
+    for (const cardQuestionId of unit.card_question_ids) {
+      assert.ok(!seenCard.has(cardQuestionId), 'QuizCard ID appears in multiple knowledge units: ' + cardQuestionId);
+      seenCard.add(cardQuestionId);
+      assert.equal(cardsById.get(cardQuestionId)?.primary_knowledge_unit_id, unit.knowledge_unit_id);
+    }
+  }
+  assert.deepEqual([...seenQ].sort(), [...byQuestionId.keys()].sort());
+  assert.deepEqual([...seenQuiz].sort(), [...byQuizId.keys()].sort());
+  assert.deepEqual([...seenCard].sort(), [...cardsById.keys()].sort());
+});
