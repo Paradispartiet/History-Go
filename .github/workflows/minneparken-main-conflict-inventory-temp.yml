@@ -27,6 +27,8 @@ jobs:
           git rev-parse HEAD > artifacts/minneparken-main-merge/pr-head.txt
           git rev-parse origin/main > artifacts/minneparken-main-merge/main-head.txt
           git merge-base HEAD origin/main > artifacts/minneparken-main-merge/merge-base.txt
+          git config user.name 'History-Go read-only merge QA'
+          git config user.email 'qa-merge-readonly@users.noreply.github.com'
           set +e
           git -c merge.conflictStyle=diff3 merge --no-ff --no-commit origin/main > artifacts/minneparken-main-merge/merge-stdout.txt 2>&1
           result=$?
@@ -58,6 +60,11 @@ jobs:
           console.log(JSON.stringify(summary));
           NODE
           if test -f .git/MERGE_HEAD; then git merge --abort; fi
+          if test "$result" -ne 0 && test "$result" -ne 1; then
+            echo 'Merge did not actually run; inventory is INVALID:' >&2
+            cat artifacts/minneparken-main-merge/merge-stdout.txt >&2
+            exit 1
+          fi
           git diff --quiet
           echo 'Read-only inventory complete. No commit, merge, PR status change, or push.'
       - name: Preserve exact conflicts and source-aware patches
