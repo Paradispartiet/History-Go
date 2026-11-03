@@ -54,7 +54,23 @@
                   "trust": 2,
                   "risk": -2,
                   "energy": -1
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_conflict_sperret_sideinngang_A_decision",
+                    "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "safety_check_pending_crew_wait",
+                    "note": "Crewet er samlet under tak med foreslått venteflyt; Saras sikkerhetsklarering må bekreftes før adgang."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_conflict_sperret_sideinngang_A_flag",
+                    "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                    "flag": "crew_waiting_for_safety_clearance"
+                  }
+                ]
               }
             },
             {
@@ -72,10 +88,66 @@
                   "status": 1,
                   "risk": 4,
                   "trust": -3
-                }
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_conflict_sperret_sideinngang_B_decision",
+                    "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                    "to_status": "needs_review",
+                    "to_phase": "unauthorized_entry_attempt",
+                    "note": "Kamera og lyd ble bedt om å gå inn før rømningsvei og kabler er kontrollert; innslippet er ikke godkjent."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_conflict_sperret_sideinngang_B_flag",
+                    "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                    "flag": "unauthorized_entry_attempt_reported"
+                  }
+                ]
               }
             }
-          ]
+          ],
+          "work_context": {
+            "object_ids": [
+              "film_tv_pa_intro_coordination_case_001"
+            ],
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "priority": "high"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "upsert",
+                "event_id": "film_tv_pa_conflict_sperret_sideinngang_case_observed",
+                "work_object": {
+                  "work_object_id": "film_tv_pa_intro_coordination_case_001",
+                  "kind": "production_call_and_access_handoff_case",
+                  "role_scope": "produksjonsassistent",
+                  "institution_id": "film_tv_produksjonsenhet_001",
+                  "title": "Første opptaksstart: call 7/8, sideinngang og endret scenerekkefølge",
+                  "people_refs": [
+                    "line_produksjonskoordinator",
+                    "amir_innspillingsleder",
+                    "sara_lokasjonsansvarlig"
+                  ],
+                  "place_refs": [
+                    "produksjonskontor_callbord",
+                    "opptakslokasjon_inngang",
+                    "sett_sikkerhetssone"
+                  ],
+                  "open_questions": [
+                    "Hvilken call-versjon er faktisk godkjent av Amir, og hvem har mottatt den?",
+                    "Er Saras adgangsgodkjenning dokumentert før bilen eller crew flyttes?",
+                    "Er kontroll av rømningsvei og kabelgate bekreftet før innslipp?",
+                    "Har sminke, rekvisitt og transport kvittert for den nye rekkefølgen?"
+                  ],
+                  "confidentiality": "intern_produksjon_kun_nodvendig_tilgang",
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ]
     },
