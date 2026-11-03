@@ -92,6 +92,7 @@ try{
     {name:"timian",label:"Timian",term:"Timian",path:"b09/43_timian_v1.webp"},
     {name:"tveskjeggveronika",label:"Tveskjeggveronika",term:"Tveskjeggveronika",path:"b09/44_tveskjeggveronika_v1.webp"},
     {name:"tyskhonsetarm",label:"Tysk hønsetarm",term:"Tysk hønsetarm",path:"b09/45_tysk_honsetarm_v1.webp"},
+    {name:"vassarve",label:"Vassarve",term:"Vassarve",path:"b09/46_vassarve_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
