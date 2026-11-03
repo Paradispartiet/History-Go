@@ -124,6 +124,38 @@ while (!state.dagFerdig) {
 }
 assert.ok(state.arkiv.some((e) => e.sceneId === "d2_runde_med_amina"), "Amina-runden ble spilt på dag 2");
 
+// --- Symposium skal vise faktisk historie også uten en authored Symposium-bok.
+const ownBook = Runner.getSymposium(state, content);
+assert.ok(ownBook, "Renholder skal ha samme lesbare historie som andre roller");
+assert.strictEqual(ownBook.tittel, "Renholder – livshistorien");
+assert.deepStrictEqual(ownBook.tidslinje.map(e => e.sceneId), state.arkiv.map(e => e.sceneId));
+assert.deepStrictEqual(ownBook.moter, [], "ingen oppdiktede møter/avtaler");
+assert.deepStrictEqual(ownBook.rollehistorikk, [], "ingen fantomroller");
+
+// Jobbskifte arkiverer den faktiske renholderhistorien, ikke et nytt plott.
+const unemployedEntry = manifest.roles.arbeidsledig;
+const unemployedContent = Content.buildContent({
+  role: readJson(unemployedEntry.role),
+  phaseDefinitions: readJson(manifest.shared.phaseDefinitions),
+  roleThreads: readJson(unemployedEntry.threads),
+  roleScenes: readJson(unemployedEntry.scenes),
+  lifeThreads: readJson(manifest.life.threads),
+  lifeScenes: readJson(manifest.life.scenes)
+});
+const afterSwitch = State.selectRole(JSON.parse(JSON.stringify(state)), unemployedContent);
+const switchedBook = Runner.getSymposium(afterSwitch, unemployedContent);
+assert.strictEqual(switchedBook.rollehistorikk.length, 1);
+assert.strictEqual(switchedBook.rollehistorikk[0].rolle, "renholder");
+assert.deepStrictEqual(switchedBook.rollehistorikk[0].tidslinje.map(e => e.sceneTittel),
+  state.arkiv.map(e => e.sceneTittel), "hvert tidligere spillervalg beholdes uten omskriving");
+assert.deepStrictEqual(switchedBook.moter, [], "ingen tidligere kollega oppretter møte av seg selv");
+const restored = JSON.parse(JSON.stringify(afterSwitch));
+assert.deepStrictEqual(Runner.getSymposium(restored, unemployedContent).rollehistorikk,
+  switchedBook.rollehistorikk, "rolleboken må overleve save/load");
+const returned = State.selectRole(restored, content);
+assert.deepStrictEqual(Runner.getSymposium(returned, content).tidslinje.map(e => e.sceneId),
+  state.arkiv.map(e => e.sceneId), "tilbake til jobben gjenfinner original historie");
+
 // --- Motsatt gren: ikke meldt avvik => etterspillet, ikke vernerunden ---
 let state2 = State.createInitialState(content);
 guard = 0;
@@ -149,5 +181,6 @@ assert.ok(uiSource.includes('DEFAULT_ROLE_ID = "arbeidsledig"'),
   "startkontrakten: du starter arbeidsledig (jobb via quiz/merker)");
 assert.ok(uiSource.includes("lifestoryRole"), "dev-/testparameteren ?lifestoryRole= finnes");
 assert.ok(uiSource.includes("civication_lifestory_role_v1"), "dev-parameteren persisteres i localStorage");
+assert.ok(uiSource.includes("Tidligere roller"), "Symposium skal vise arkiv fra byttede roller");
 
 console.log("civication lifestory renholder ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
