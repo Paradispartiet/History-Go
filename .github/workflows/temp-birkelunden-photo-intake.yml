@@ -1,4 +1,4 @@
-name: TEMP Birkelunden two-original photo intake
+name: TEMP Birkelunden media runtime synchronization
 on:
   push:
     branches:
@@ -8,30 +8,48 @@ on:
 permissions:
   contents: write
 jobs:
-  fetch_originals:
+  sync_runtime:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout branch
-        uses: actions/checkout@v4
-      - name: Fetch and verify two distinct Wikimedia Commons originals
+      - uses: actions/checkout@v4
+      - name: Synchronize the existing index row and place-open record
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p bilder/places
-          curl --fail --location --retry 3 --retry-delay 2 --user-agent 'HistoryGo/1.0 (licensed source archival)' 'https://upload.wikimedia.org/wikipedia/commons/5/51/Birkelunden_%28121153%29.jpg' --output bilder/places/birkelunden_hero_tore_saetre_2015.jpg
-          curl --fail --location --retry 3 --retry-delay 2 --user-agent 'HistoryGo/1.0 (licensed source archival)' 'https://upload.wikimedia.org/wikipedia/commons/3/33/Birkelunden.jpg' --output bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg
-          file --mime-type bilder/places/birkelunden_hero_tore_saetre_2015.jpg bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg
-          test "$(file --brief --mime-type bilder/places/birkelunden_hero_tore_saetre_2015.jpg)" = "image/jpeg"
-          test "$(file --brief --mime-type bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg)" = "image/jpeg"
-          test "$(wc -c < bilder/places/birkelunden_hero_tore_saetre_2015.jpg)" -gt 200000
-          test "$(wc -c < bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg)" -gt 200000
-          sha256sum bilder/places/birkelunden_hero_tore_saetre_2015.jpg bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg
-      - name: Commit archived licensed originals
+          node <<'NODE'
+          const fs=require("fs");
+          const read=p=>JSON.parse(fs.readFileSync(p,"utf8"));
+          const src=read("data/places/by/oslo/places/birkelunden.json");
+          const indexPath="data/places/places_index.json";
+          const all=read(indexPath);
+          const row=all.find(p=>p.id==="birkelunden");
+          if (!row || !src.frontImage || !src.image || src.frontImage===src.image) throw Error("Missing distinct images");
+          const keys=["image","cardImage","frontImage"];
+          const order=["id","name","lat","lon","r","category","subcategory_id","placeTier","micro_place_profile","year","desc","aliases","image","cardImage","frontImage","hidden","stub","groundhopper","placeScope","mapLod","locatorType","sourceProvider","sourceObjectId","address","geocodeAccuracy","coordRole","coordType","coordStatus","coordSource","coordVerifiedAt","coordNote","sourceFile"];
+          const next={...row};
+          for(const k of keys)next[k]=src[k];
+          const ordered={};
+          for(const k of order)if(Object.hasOwn(next,k))ordered[k]=next[k];
+          for(const k of Object.keys(next))if(!Object.hasOwn(ordered,k))ordered[k]=next[k];
+          Object.assign(row,{});
+          all[all.indexOf(row)]=ordered;
+          fs.writeFileSync(indexPath,JSON.stringify(all,null,2)+"\n");
+          const runtimePath="data/runtime/place-open/birkelunden.json";
+          const runtime=read(runtimePath);
+          if(runtime.place.id!=="birkelunden")throw Error("Unexpected runtime place");
+          for(const key of ["image","cardImage","frontImage","imageMeta","frontImageMeta","frontImageSourceUrl"])runtime.place[key]=src[key];
+          const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==="object"?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
+          fs.writeFileSync(runtimePath,JSON.stringify(stable(runtime))+"\n");
+          NODE
+      - name: Validate binary hashes, distinct originals and runtime parity
+        run: node --test tests/birkelunden-place-images.test.mjs
+      - name: Commit only Birkelunden-generated parity files
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add bilder/places/birkelunden_hero_tore_saetre_2015.jpg bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg
-          git commit -m 'assets(birkelunden): archive two distinct licensed photographs'
+          git add data/places/places_index.json data/runtime/place-open/birkelunden.json
+          git diff --cached --check
+          git commit -m 'build(birkelunden): sync image and frontImage into index and place-open'
           git push origin "HEAD:${GITHUB_REF_NAME}"
