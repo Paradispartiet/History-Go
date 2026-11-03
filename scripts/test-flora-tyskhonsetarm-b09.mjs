@@ -35,7 +35,7 @@ assert.deepEqual([1 + data.readUIntLE(24,3), 1 + data.readUIntLE(27,3)], [1024,1
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"), env);
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count, 67);
+assert(approved.count >= 67, "At least 67 approved originals must remain, allowing later flora releases");
 for (const id of [item.catalogId, "emne_flora_tysk_honsetarm"]) {
   assert.equal(approved.get(id)?.src, item.src);
   assert.equal(approved.get(id)?.gitBlobSha, item.gitBlobSha);

@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_vassarve: Object.freeze({
+      scientificName: "Stellaria media",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/46_vassarve_v1.webp",
+      gitBlobSha: "54069d8d04a4c9a27e03f1f6733785ac1b7efee6",
+      reviewedAt: "2026-11-03",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-vassarve-20261103.json"
+    }),
     emne_flora_tyskhonsetarm: Object.freeze({
       scientificName: "Stellaria pallida",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/45_tysk_honsetarm_v1.webp",
