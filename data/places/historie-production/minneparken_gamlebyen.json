@@ -203,13 +203,13 @@
   },
   "quizOpening": {
     "status": "N/A",
-    "rationale": "De første 2 × 7 fullquizspørsmålene er materialisert og har bestått teknisk åpning/progresjonstest. QuizCard-kandidat er kildeparitetstestet (10 spørsmål). Knowledge-koblinger og interaktiv runtime-/flip-/mobil-/desktop-slutt-QA gjenstår; quiz er ikke aktivert."
+    "rationale": "Første 2 × 7 fullquizspørsmål er materialisert og godkjent av teknisk åpning-/progresjonskontroll, og QuizCard-kandidat på 10 følger fullquizens kilde og fasit. 32 deterministiske Knowledge-ID-er er forhåndsberegnet og verifisert i isolert canonical generator, men Knowledge-status er fortsatt pending uten aktivt registry, og interaktiv quiz-/QuizCard-QA gjenstår."
   },
   "chronologyStories": {
     "status": "N/A",
     "chronologyReviewed": true,
     "storiesReviewed": true,
-    "rationale": "Chronology-oppføringene 1918/1928/1932/2024 er kildekontrollert, og epokeindeks er teknisk verifisert. En inaktiv episode_v1-kandidat i data/stories/stories_minneparken_gamlebyen.json har bestått isolert struktur-/scoretest, men er ikke en aktiv Story eller redaksjonelt godkjent produksjonsfortelling. Manifestaktivering og full runtime-QA er fortsatt åpne."
+    "rationale": "Kildebelagt kronologi og epokeindeks er teknisk kontrollert. Inaktiv episode_v1-Story-kandidat har bestått format-/score-/kildekontrakt og full Stories-integritet med midlertidige manifestoppføringer i isolert worktree. Den er ennå ikke redaksjonelt eller narrativt sluttgodkjent og er ikke manifestregistrert i PR."
   },
   "gates": {
     "A": {
@@ -251,11 +251,11 @@
     },
     "G": {
       "status": "N/A",
-      "rationale": "Fullquiz med 3 × 7 spørsmål og QuizCard-kandidat med 10 er materialisert og kilde-/kontraktstestet i GitHub Actions #41582069626 (tredje forsøk, success). Første 2 × 7 oppfyller den tekniske normalåpningskontrollen. Canonical Knowledge-ID-er står fortsatt pending, og quiz/QuizCard er ikke aktivert i spillmanifestene eller sluttkontrollert med faktisk runtime, flip og mobil-/desktop-QA. Gate G forblir åpen."
+      "rationale": "Kilde- og kontraktstestet fullquiz (3 × 7) og QuizCard-kandidat (10) finnes, med 14 teknisk godkjente normale åpningsspørsmål. Den ekte canonical Knowledge-generatoren er prøvd i isolert Git-worktree (Actions #41586343590): 21/21 spørsmål, 32 unike KU-er, 32/32 enheter med etterprøvbare eksterne URL-er og 0 Knowledge-kontraktsfeil. De deterministiske ID-ene er nå forhåndsinnført i kandidatfilene, men alle 21 spørsmål har fortsatt knowledge_link_status pending; enhetene er ikke skrevet til det aktive Knowledge-registeret, og verken quiz eller QuizCard er manifestaktivert. Uavhengig innholdsreview og runtime-/flip-QA mangler. Gate G forblir N/A."
     },
     "H": {
       "status": "N/A",
-      "rationale": "Kildebelagt kronologi for 1918, 1928, 1932 og 2024 er materialisert i leksikonet, og epokeindeks ble teknisk kontrollert i Actions #41578664470. En selvstendig, kildebelagt Story-kandidat om avdekkingen av ruinene i 2024 er nå materialisert som inaktiv episode_v1 og bestod målrettet format-, kilde- og scoretest i Actions #41583940933. Storyen er ikke registrert i aktive Stories-/episode-v1-manifester, og uavhengig narrativ redaksjonskontroll, full story-integritet og runtime-sluttkontroll gjenstår. Gate H forblir N/A."
+      "rationale": "Kildebelagt kronologi for 1918/1928/1932/2024 er materialisert og epokeindeksen teknisk kontrollert. Selvstendig episode_v1-Story-kandidat om ruinavdekkingen i 2024 finnes. Den fulle canonical Stories-integritetskontrollen bestod etter midlertidig registrering i begge manifestene i isolert Git-worktree (Actions #41586542715); ingen Story er publisert i den virkelige PR-grenen. Uavhengig narrativ redaksjonsgodkjenning, full interaktiv runtime-/mobil-QA og redaksjonell sluttvurdering gjenstår. Gate H forblir N/A."
     }
   },
   "review": {
