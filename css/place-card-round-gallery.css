@@ -1,7 +1,7 @@
 /* Full-size, uncropped images belonging to PlaceCard's editorial sections.
-   Original collection controls stay in DOM for their popup handlers. */
+   People and Badges retain their original right-hand controls, with no hiding. */
 body.hg-app #placeCard.is-unified-place.is-place-sheet-direct
-  [data-pc-round-gallery-source="1"],
+  [data-pc-round-gallery-source="1"]:not(#pcPeopleIcon):not(#pcBadgesIcon),
 body.hg-app #placeCard.is-unified-place.is-place-sheet-direct
   #pcBrandsIcon{
   display:none !important;

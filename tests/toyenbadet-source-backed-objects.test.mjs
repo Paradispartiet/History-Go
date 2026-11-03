@@ -42,5 +42,5 @@ test('Tøyenbadet People: real site-linked candidates are audited but no unlicen
   assert.ok(peopleReview.discarded.some(x=>/skøyteløper/.test(x.candidate)));
   assert.ok(!place.place_card_profile.collection_ids.includes('people'));
   assert.equal(work.status,'blocked_vferdig');
-  assert.equal(work.content_plan.people.status,'CLAIMS_VERIFIED__PORTRAITS_BLOCKED');
+  assert.equal(work.content_plan.people.status,'DRAFTS_READY__LICENSED_PORTRAITS_BLOCKED');
 });
