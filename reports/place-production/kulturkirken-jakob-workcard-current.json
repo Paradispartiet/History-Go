@@ -32,11 +32,11 @@
     "productions"
   ],
   "object_category_boundary": "Instrumenter og lydutstyr er Objects; musikkverk/utgivelser er Productions; altertavlen og utstillingsverk hører i Kunst-laget og skal ikke brukes som musikk-Objects-fyll.",
-  "active_phase": "foundation_exact_head_validation",
-  "active_file_scope": "Musikk classification + Kunst secondary badge + v4.2 evidence + Fagverk + Leksikon + Språkleksikon + synchronized places_index/place-open",
-  "active_merge_boundary": "foundation_and_category_correction",
-  "branch_status": "agent/kulturkirken-jakob-foundation-20260916",
-  "live_status": "not_live",
+  "active_phase": "source_review_for_member_collections",
+  "active_file_scope": "reports/place-production/kulturkirken-jakob-collections-source-review-20261103.json + current workcard (no Place record or quiz edits)",
+  "active_merge_boundary": "evidence_and_workcard_only_no_runtime_or_member_release",
+  "branch_status": "agent/kulturkirken-jakob-collections-evidence-20261103",
+  "live_status": "real_app_local_chromium_4_viewports_passed_pr_7011; latest_GitHub_Pages_live_not_verified",
   "preserve": {
     "coordinates": "Behold verifisert Hausmanns gate 14-anchor; kategoriendringen endrer ikke fysisk identitet.",
     "place_id": "Behold kulturkirken_jakob_litteratur som stabil teknisk ID i denne produksjonen for å unngå cascade-brudd; semantikken eies av category/source path, ikke ID-suffikset."
@@ -59,10 +59,14 @@
     "language": "produced_and_registered",
     "fagverk_source": "curated_standard_musikk",
     "fagverk_registry": "registered",
-    "quiz_profile": "full_musikk_quiz_pending_existing_legacy_audit",
+    "quiz_profile": "active_musikk_narrow_3x7_21_question_quiz_and_10_question_quizcard",
     "generated_runtime": "synchronized",
-    "exact_head_ci": "pending",
-    "places_index": "synchronized"
+    "exact_head_ci": "PR_7011_browser_test_and_routing_governance_passed_merged",
+    "places_index": "synchronized",
+    "image": "existing_external_public_domain_photo_real_app_4x_passed",
+    "frontImage": "existing_local_CC_BY_SA_4_portrait_real_app_4x_passed",
+    "quizCard": "10_of_10_rendered_in_real_app_4x_passed",
+    "place_card_collections": "canonical_place_card_profile_not_registered; members_not_published"
   },
   "legacy_audit": {
     "old_category": "litteratur",
@@ -77,26 +81,29 @@
     "decision": "Legacy Litteratur quiz og migrerte People-relasjoner er ikke canonical evidens for Musikk-produksjonen; de revideres i senere subsystemfase."
   },
   "next_required": [
-    "Pass exact-head foundation/category-move CI and merge this boundary",
-    "Audit and clean legacy People relations against direct place evidence",
-    "Materialize four image-ready collections: People, Objects, Brands, Productions",
-    "Produce portrait frontImage with provenance",
-    "Produce Story and Lesespor where source audit passes",
-    "Audit dormant Litteratur quiz, build governed Musikk quiz from full Musikk package and dedicated QuizCard",
-    "Regenerate remaining indexes/Knowledge and complete manual final QA"
+    "Review candidate identities from fresh source audit; do not reuse stale literary People or add filler",
+    "Before changing canonical Place/collections, re-read current required rules and record a fresh rule_preflight",
+    "Validate People with direct venue evidence and copyright-safe portraits",
+    "Prepare Objects for the documented piano, organ and sound rig only with member-level identity/source and authentic or labelled illustrative visuals",
+    "Confirm existing KKV Brand registry and approved wordmark, avoiding duplicate venue/place",
+    "Source-check named Musikk Productions independently of concerts and calendar events",
+    "Publish only approved PlaceCard member collections and regenerate place-open/indices",
+    "Improve repeated popupDesc paragraphs using v4.2 source→claim and text-hash workflow",
+    "Complete actual full 21-question quiz playthrough, Story/Lesespor audits and real mobile/iPad member-round QA",
+    "Do not mark v1/vFerdig until 27/30 quality, relevant CI, merge and post-merge site verification"
   ],
-  "verified_at": "2026-09-16",
+  "verified_at": "2026-11-03",
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
     "status": "PASS",
     "place_id": "kulturkirken_jakob_litteratur",
     "category": "musikk",
-    "recorded_at": "2026-09-16T07:03:22.727Z",
+    "recorded_at": "2026-11-03T11:45:14.382Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
         "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
-        "sha256": "0ae766b2808115bbdff45fcf18056cc96e0058cae1f37c6ed9ce3d8ae1679091"
+        "sha256": "eacaec225d5a1c61e43ed6cbe9754bc007ecff3818dfd630940dd4f4870ba7f5"
       },
       {
         "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
@@ -104,7 +111,7 @@
       },
       {
         "path": "docs/PLACE_PRODUCTION_PROFILES.md",
-        "sha256": "0cfdc52b458645d8c22396c6d4adacb1a0661d9eab1f0d2baaab27b9cfa21490"
+        "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
       },
       {
         "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -112,7 +119,7 @@
       },
       {
         "path": "data/places/README_place_rounds.md",
-        "sha256": "0d61d07992306ca5a694a5cd7b010bd1466430c937787d0e2fcb61ff168f765b"
+        "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
       },
       {
         "path": "data/badges/index.json",
@@ -124,7 +131,7 @@
       },
       {
         "path": "docs/PLACE_OBJECTS_CANONICAL.md",
-        "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
+        "sha256": "fbd5e39905942e116c1fef9e375253c54f93d292b82bac03379d011f38fe93c6"
       },
       {
         "path": "data/brands/brand_rules_v1_1.json",
@@ -132,7 +139,7 @@
       },
       {
         "path": "data/badges/musikk.json",
-        "sha256": "8fe858a176d6df15be68087aa4552c01eb7d9ebeaaa091d38e99bb2de2fba428"
+        "sha256": "459f0ac680a3b831adb064c32aebfbe11764b26db19efc083931dd6e8c81b82c"
       }
     ],
     "contract_snapshot": {
@@ -159,5 +166,27 @@
   "legacy_cleanup": {
     "stale_litteratur_quiz": "retire_with_governed_musikk_quiz",
     "note": "Legacy Litteratur-quizen er ikke manifestaktiv og beholdes bare som revisjonsgrunnlag fram til governed Musikk-quiz erstatter den. Tre legacy People-koblinger er fortsatt holdback/research og teller ikke som produsert People-samling."
+  },
+  "current_main_baseline": {
+    "reviewed_at": "2026-11-03",
+    "evidence_main_sha": "877d2382ed69d402ccd3e40d0320cccbeeb711ca",
+    "source_review": "reports/place-production/kulturkirken-jakob-collections-source-review-20261103.json",
+    "browser_test": "tests/kulturkirken-jakob-v1-real-browser.test.mjs",
+    "browser_pr": "https://github.com/Paradispartiet/History-Go/pull/7011",
+    "browser_result": "4/4 Chromium viewports (390/820/1180/1440): two decoded independent images and ten rendered QuizCard questions",
+    "source_place_status": "ready_v4_2",
+    "source_place_category": "musikk",
+    "source_place_secondary_badges": [
+      "kunst"
+    ],
+    "image_fields_present": [
+      "image",
+      "frontImage"
+    ],
+    "quiz_question_count": 21,
+    "quizcard_question_count": 10,
+    "canonical_place_card_profile_present": false,
+    "editorial_note": "Existing popupDesc repeats the 1985 closure and 1986 KKV initiative; substantive rewrite must be source-backed and reconciled with the v4.2 description production package and generated data.",
+    "old_preflight": "September 2026 rule_preflight retained as historical evidence; rerun current preflight before substantive Place production."
   }
 }
