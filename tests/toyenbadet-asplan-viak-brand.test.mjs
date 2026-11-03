@@ -37,10 +37,10 @@ test('Official brandmark is authentic, locally image-backed and not an invented 
 });
 
 test('Tøyenbadet: Brands and NM competitions are only chosen image-backed collections', () => {
-  assert.deepEqual(place.place_card_profile.collection_ids,['brands','competitions']);
+  assert.deepEqual(place.place_card_profile.collection_ids,['objects','brands','competitions']);
   assert.equal(place.competitions.length,1);
   assert.ok(fs.existsSync(place.competitions[0].image));
   assert.equal(place.competitions[0].id,'nm_langbane_2026_toyenbadet');
   assert.equal(place.place_card_profile.collection_ids.includes('people'),false);
-  assert.equal(place.place_card_profile.collection_ids.includes('objects'),false);
+  assert.equal(place.objects.length,2);
 });
