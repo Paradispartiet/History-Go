@@ -1,0 +1,25 @@
+name: PlaceCard round images regression
+
+on:
+  pull_request:
+    paths:
+      - "js/ui/place-card-round-gallery.js"
+      - "css/place-card-round-gallery.css"
+      - "index.html"
+      - "tests/place-card-round-gallery.test.mjs"
+      - ".github/workflows/place-card-round-gallery.yml"
+  workflow_dispatch:
+
+jobs:
+  round-gallery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Verify full images, Brands placement and popup forwarding
+        run: node --test tests/place-card-round-gallery.test.mjs
