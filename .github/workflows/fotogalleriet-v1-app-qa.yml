@@ -10,12 +10,6 @@ on:
       - 'bilder/places/fotogalleriet/**'
       - 'data/quiz/kunst/fotogalleriet_sets.json'
       - 'data/quizcards/kunst/fotogalleriet_quizcard_v1.json'
-  push:
-    branches:
-      - research/fotogalleriet-v1-tekst-20261102
-    paths:
-      - '.github/workflows/fotogalleriet-v1-app-qa.yml'
-      - 'scripts/verify-fotogalleriet-placecard-browser.mjs'
 permissions:
   contents: read
 concurrency:
