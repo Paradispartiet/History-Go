@@ -11,6 +11,7 @@ const mappingFiles = fs
   .readdirSync(path.join(ROOT, "data", "Civication", "map"))
   .filter((name) => /^historyGoPlaceMapping\..+\.json$/.test(name));
 const approvedRetiredIds = new Set([
+  "trikk_17_18", // archived route overlay from removed monolithic By source
   "vulkan_murvegger",
   "hausmannsgate_aksen",
   "kolstadgata_toyen_vegger",
