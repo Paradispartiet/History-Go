@@ -28,3 +28,29 @@ for cat in ("by","scenekunst"):
         path=out/f"{cat}-{group_no}.jpg"
         sheet.save(path,"JPEG",quality=68,subsampling=2,optimize=True)
         print(f"{path}: {path.stat().st_size} bytes")
+
+
+# Full-resolution comparison of the two remaining delicate title areas.
+for category,sub,source in (
+    ("by","klassisk_arkitektur","bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp"),
+    ("scenekunst","dans","bilder/merker/scenekunst/undermerker/dans-brodert-v2.webp"),
+):
+    reference=Image.open(ROOT/source).convert("RGBA")
+    translated=Image.open(ROOT/f"bilder/merker/{category}/locales/en/{sub}.webp").convert("RGBA")
+    # All pixels retain their original coordinate system.
+    # Header crop includes the entire label, dancer's outstretched arm,
+    # classical sky and lower side letters.
+    crop_box=(64,65,960,490)
+    w,h=896,425
+    result=Image.new("RGB",(w*2, h+30),(19,22,29))
+    draw=ImageDraw.Draw(result)
+    for n,im in enumerate((reference,translated)):
+        cut=im.crop(crop_box)
+        dark=Image.new("RGBA",cut.size,(19,22,29,255))
+        dark.alpha_composite(cut)
+        result.paste(dark.convert("RGB"),(n*w,30))
+    draw.text((8,7),f"{category}/{sub}: original Norwegian title",font=font,fill=(255,255,255))
+    draw.text((w+8,7),f"{category}/{sub}: translated EN title",font=font,fill=(255,255,255))
+    path=out/f"{category}-{sub}-highres-compare.jpg"
+    result.save(path,"JPEG",quality=78,subsampling=2,optimize=True)
+    print(f"{path}: {path.stat().st_size} bytes")
