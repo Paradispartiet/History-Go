@@ -92,7 +92,7 @@ try{
        const objectImg=objectIcon?.querySelector("img");
        const peopleIcon=document.getElementById("pcPeopleIcon");
        const peopleImg=peopleIcon?.querySelector("img");
-       return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
+       return ["place_card_profile_v2_curated","place_card_profile_v2"].includes(card?.dataset.collectionProfileSource)
          && card?.dataset.collectionCount==="4"
          && icon?.dataset.collectionId==="competitions"
          && icon?.dataset.previewStatus==="member-image"
@@ -135,6 +135,11 @@ try{
          previewStatus:icon?.dataset.previewStatus,
          imageSrc:img?.getAttribute("src"),
          imageLoaded:img?.complete&&img.naturalWidth>0,
+         peopleCount:document.getElementById("pcPeopleIcon")?.dataset.collectionItemCount,
+         peopleImage:document.querySelector("#pcPeopleIcon img")?.getAttribute("src"),
+         peopleImageLoaded:!!document.querySelector("#pcPeopleIcon img")?.complete && document.querySelector("#pcPeopleIcon img")?.naturalWidth>0,
+         objectCount:document.getElementById("pcObjectsIcon")?.dataset.collectionItemCount,
+         brandCount:document.getElementById("pcBrandsIcon")?.dataset.collectionItemCount,
          listText:list?.textContent?.slice(0,300),
          iconExists:!!icon,
          cardVisible:!!card&&getComputedStyle(card).display!=="none",
