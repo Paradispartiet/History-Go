@@ -37,6 +37,21 @@ const PRESERVED_QUIZ_KNOWLEDGE_SOURCES = [
   'data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json',
 ];
 
+/**
+ * Reviewed quiz candidates may contribute canonical Knowledge units BEFORE they
+ * become playable. This input list does NOT touch quiz/QuizCard runtime manifests.
+ * Every staged candidate must pass strict source and stable-ID checks below.
+ * The active manifest remains the single authorization to serve quiz questions.
+ */
+const KNOWLEDGE_ONLY_UNPUBLISHED_QUIZ_SOURCES = [
+  {
+    file: 'data/quiz/historie/minneparken_gamlebyen_sets.json',
+    targetId: 'minneparken_gamlebyen',
+    categoryId: 'historie',
+    questionCount: 21,
+  },
+];
+
 const KNOWLEDGE_MANIFEST_PATH = path.join(KNOWLEDGE_ROOT, 'knowledge_manifest.json');
 const UNIT_REGISTRY_PATH = path.join(KNOWLEDGE_ROOT, 'knowledge_units.generated.json');
 const CONCEPT_REGISTRY_PATH = path.join(KNOWLEDGE_ROOT, 'concepts.generated.json');
@@ -306,6 +321,37 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
     const data = await readJson<JsonObject | JsonObject[]>(full);
     fileData.set(relative, data);
     rows.push(...collectQuestions(data, relative));
+  }
+
+  // Register reviewed Knowledge ahead of a still-blocked playable quiz.
+  // This does not add a single question to the runtime quiz manifest.
+  for (const staged of KNOWLEDGE_ONLY_UNPUBLISHED_QUIZ_SOURCES) {
+    if (files.includes(staged.file)) continue; // Once published, the active row is canonical.
+    const candidate = await readJson<JsonObject>(path.resolve(ROOT, staged.file));
+    if (candidate.targetId !== staged.targetId || candidate.categoryId !== staged.categoryId
+      || !Array.isArray(candidate.sets) || candidate.sets.length !== 3) {
+      throw new Error(`Invalid Knowledge-only quiz candidate identity/sets: ${staged.file}`);
+    }
+    const candidates = collectQuestions(candidate, staged.file);
+    if (candidates.length !== staged.questionCount || candidates.some(({ question }) => {
+      const q = question;
+      const sources = Array.isArray(q.sources) ? q.sources : [];
+      const ids = list(q.knowledge_unit_ids);
+      return q.targetId !== staged.targetId || q.categoryId !== staged.categoryId
+        || !clean(q.quiz_id) || !clean(q.emne_id)
+        || !clean(q.primary_knowledge_unit_id) || !ids.includes(clean(q.primary_knowledge_unit_id))
+        || !sources.length
+        || sources.some((source: unknown) => !isObject(source)
+          || !/^https:\/\//.test(clean(source.url)) || clean(source.review_status) !== 'reviewed');
+    })) {
+      throw new Error(`Knowledge-only quiz candidate missing canonical IDs or reviewed external evidence: ${staged.file}`);
+    }
+    const activeIds = new Set(rows.map(row => questionId(row.question, row.file, row.location)));
+    if (candidates.some(row => activeIds.has(questionId(row.question, row.file, row.location)))) {
+      throw new Error(`Knowledge-only quiz candidate duplicates an active question: ${staged.file}`);
+    }
+    fileData.set(staged.file, candidate);
+    rows.push(...candidates);
   }
   // Preserve Knowledge ownership of retired questions without adding a quiz
   // target, set or gameplay question. Current active rows always take priority.
