@@ -460,13 +460,18 @@
       .map((s) => ({ id: s.id, dag: s.dag, fase: s.fase, tittel: s.tittel, sted: steder.find((p) => p.id === s.stedId) || null }));
     // Inactive role snapshots live in the same versioned Life Story state.
     // They hold completed, user-played events, never forecast chapters.
+    const activeArchiveIds = new Set((state.arkiv || []).map((entry) => entry.sceneId + ":" + entry.valgId));
     const tidligereRoller = Object.entries(state.rolleTilstander || {})
       .filter(([roleId, snapshot]) => roleId !== state.rolle && Array.isArray(snapshot?.arkiv) && snapshot.arkiv.length)
       .map(([roleId, snapshot]) => ({
         rolle: roleId,
-        tidslinje: snapshot.arkiv.map((entry) => Object.assign({}, entry)),
-        antallValg: snapshot.arkiv.length
-      }));
+        // Shared private scenes are hydrated into the active role. Display them
+        // once, not once again for each previously held job.
+        tidslinje: snapshot.arkiv.filter((entry) => !activeArchiveIds.has(entry.sceneId + ":" + entry.valgId))
+          .map((entry) => Object.assign({}, entry))
+      }))
+      .filter((entry) => entry.tidslinje.length)
+      .map((entry) => Object.assign(entry, { antallValg: entry.tidslinje.length }));
     const rolleBytter = (state.rolleBytter || []).map((entry) => ({
       fra: entry.fra, til: entry.til, livsdag: entry.livsdag
     }));
