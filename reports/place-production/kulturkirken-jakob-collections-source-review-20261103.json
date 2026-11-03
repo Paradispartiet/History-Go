@@ -1,0 +1,179 @@
+{
+  "schema": "history_go_kulturkirken_jakob_collection_source_review_v1",
+  "place_id": "kulturkirken_jakob_litteratur",
+  "reviewed_at": "2026-11-03",
+  "canonical_category": "musikk",
+  "canonical_underbadge_ids": [
+    "konsertsteder"
+  ],
+  "secondary_badge_ids": [
+    "kunst"
+  ],
+  "existing_artifacts": {
+    "place": "data/places/musikk/oslo/places_musikk/kulturkirken_jakob_litteratur.json",
+    "runtime": "data/runtime/place-open/kulturkirken_jakob_litteratur.json",
+    "quiz": "data/quiz/musikk/kulturkirken_jakob_litteratur_sets.json",
+    "quizcard": "data/quizcards/musikk/kulturkirken_jakob_litteratur_quizkort_v1.json",
+    "place_card_profile_registered": false,
+    "fullquiz_questions": 21,
+    "fullquiz_sets": 3,
+    "quizcard_questions": 10,
+    "photo_main": "remote Wikimedia Commons documentary photo (public domain; existing canonical field)",
+    "photo_front": "local 800×1050 WebP (CC BY-SA 4.0; existing canonical field)",
+    "verified_app_browser": "PR #7011, Chromium 390 / 820 / 1180 / 1440 px — 4/4 passed for two decoded distinct images and QuizCard",
+    "fullquiz_app_playthrough": "not_verified_in_this_phase",
+    "existing_fagverk": "curated_standard_musikk"
+  },
+  "sources": [
+    {
+      "id": "jakob_official_about",
+      "url": "https://www.jakob.no/om-jakob/",
+      "kind": "institutional_primary",
+      "supports": [
+        "KKV as operator",
+        "concert and exhibition functions",
+        "Jakobs Brønn exhibition venue"
+      ]
+    },
+    {
+      "id": "jakob_official_history",
+      "url": "https://www.jakob.no/om-jakob/historie/",
+      "kind": "institutional_primary",
+      "supports": [
+        "former parish church closed in 1985",
+        "KKV pursuit from 1986",
+        "restoration and opening in 2000",
+        "building settlement and cracking"
+      ],
+      "limitation": "Venue-authored retrospective; disputed causal or legal claims require independent checks"
+    },
+    {
+      "id": "jakob_official_room",
+      "url": "https://www.jakob.no/utleie/kirkerommet",
+      "kind": "institutional_primary",
+      "supports": [
+        "Steinway D grand piano",
+        "digital Allan church organ",
+        "L'Acoustics concert sound rig",
+        "flexible staged church hall"
+      ],
+      "limitation": "Current equipment and configuration can change; reverify before publishing device-specific Objects"
+    },
+    {
+      "id": "arts_council_2005",
+      "url": "https://www.kulturdirektoratet.no/documents/10157/94616b8c-3f3d-46df-a985-4c62b825ecc1",
+      "kind": "official_archival_evaluation",
+      "supports": [
+        "historical ownership and operating distinction",
+        "opening-era musical activities"
+      ],
+      "limitation": "Historical source from 2005, not evidence for current equipment or current participants; verify exact performer-to-place links separately"
+    }
+  ],
+  "collection_candidates": {
+    "people": {
+      "status": "RESEARCH",
+      "reason": "Do not reuse legacy literature-person associations or infer a concert appearance from program context. Identify performers and founders with a direct documented relationship to this actual venue, and individually validate portrait rights.",
+      "approved_members": []
+    },
+    "objects": {
+      "status": "BLOCKED_ASSETS",
+      "reason": "Venue equipment is source-grounded but no independent entity-level provenance and licensed/clearly marked previews have yet been approved.",
+      "candidates": [
+        {
+          "label": "Steinway D-flygel",
+          "owner": "objects",
+          "source_id": "jakob_official_room",
+          "verification": "equipment identity and current presence need fresh confirmation",
+          "preview": "missing"
+        },
+        {
+          "label": "Digitalt Allan-kirkeorgel",
+          "owner": "objects",
+          "source_id": "jakob_official_room",
+          "verification": "specific instrument at venue; must not be merged with physical church building",
+          "preview": "missing"
+        },
+        {
+          "label": "L’Acoustics lydrigg",
+          "owner": "objects",
+          "source_id": "jakob_official_room",
+          "verification": "rig/type to re-check against latest technical rider",
+          "preview": "missing"
+        }
+      ],
+      "approved_members": []
+    },
+    "brands": {
+      "status": "BLOCKED_IDENTITY_ASSET",
+      "candidate": {
+        "label": "Kirkelig Kulturverksted (KKV)",
+        "owner": "brands",
+        "source_ids": [
+          "jakob_official_about",
+          "arts_council_2005"
+        ],
+        "relationship": "independent long-running operating organisation, not another Place or an invented venue logo",
+        "requires": [
+          "canonical Brand duplicate check",
+          "verified genuine wordmark/logo and permitted delivery",
+          "direct place link"
+        ]
+      },
+      "approved_members": []
+    },
+    "productions": {
+      "status": "RESEARCH",
+      "reason": "Musikk category expression needs identifiable, named musical works/recordings/productions actually connected to this venue. A generic concert calendar, 2000 opening, Jakobs Brønn gallery, or church building is not automatically a Musikk Production.",
+      "approved_members": []
+    }
+  },
+  "conditional_systems": {
+    "story": {
+      "status": "RESEARCH",
+      "narrative_spine": "A closed parish church with dangerous cracking becomes a staged music and art venue after a lengthy KKV restoration initiative (1985→1986→2000). Do not invent dialogues, private motives or undocumented concerts.",
+      "source_ids": [
+        "jakob_official_history",
+        "arts_council_2005"
+      ]
+    },
+    "reading_trails": {
+      "status": "CANDIDATE",
+      "primary_url": "https://www.jakob.no/om-jakob/historie/",
+      "requires": [
+        "re-check direct readable link",
+        "source registry and canonical Lesespor format"
+      ]
+    },
+    "before_after": {
+      "status": "RESEARCH",
+      "requires": [
+        "two documented comparable views",
+        "date/provenance and right to publish each image"
+      ]
+    }
+  },
+  "next_actions": [
+    "Re-run current place-production rule preflight before substantive canonical Place/collections edits; September 2026 workcard hashes are old",
+    "Audit existing People/Brand registries and preserve approved identities; no duplicates",
+    "Obtain original or explicitly labelled illustrative member assets for equipment, bound to identity and source",
+    "Materialize only source-approved members and register place_card_profile.collection_ids with PASS members",
+    "Verify named music Productions independently; no filler or program-to-work promotion",
+    "Complete source-backed Story/Lesespor research if qualifying",
+    "Run full 21-question quiz playthrough and real app member-round UI QA on mobile/iPad/desktop before v1 or vFerdig"
+  ],
+  "production_status": "IN_PROGRESS_NOT_V1_COMPLETE",
+  "quality_gate": {
+    "scope": "source-candidate baseline, not a place or member release",
+    "scores": {
+      "correctness_and_evidence": 4,
+      "coverage": 4,
+      "editorial": 4,
+      "technical": 4,
+      "safety": 5,
+      "maintainability": 5
+    },
+    "total": 26,
+    "conclusion": "Source audit is useful for next phase; strict 27/30 high-quality release threshold not yet met. No canonical members are approved or published by this audit."
+  }
+}
