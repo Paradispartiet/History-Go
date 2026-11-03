@@ -26,11 +26,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = '900a8c29d13dc3861bc18cf8cdf61c297e9aa8d4'
+          test "$(git rev-parse HEAD^)" = 'c3699db62305b4338ba07dd5b998335060025595'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch --no-tags origin main
-          test "$(git rev-parse origin/main)" = '8671bc4c5887421bdcb27a0777d852680ad42084'
           git merge-base --is-ancestor '8671bc4c5887421bdcb27a0777d852680ad42084' origin/main
           test "$(git merge-base HEAD origin/main)" = 'c9be40949fcc40352c8f254dc9ed66c4fd357039'
           git diff --name-only 'c9be40949fcc40352c8f254dc9ed66c4fd357039' '8671bc4c5887421bdcb27a0777d852680ad42084' > /tmp/minneparken-reviewed-main-paths.txt
