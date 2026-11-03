@@ -155,9 +155,9 @@ def replace_embroidered_letters(canvas, original, category, sub):
         # Reinstate the *exact original arm pixels*, not a painted replica.
         protect=Image.new('L',(w,h),0)
         ImageDraw.Draw(protect).polygon([
-            (197,249),(235,231),(283,245),(333,272),(390,299),
-            (458,322),(488,356),(455,380),(391,344),(320,311),
-            (276,283),(223,281)],fill=255)
+            (188,239),(225,222),(272,238),(330,275),(395,326),
+            (462,365),(511,401),(482,449),(426,400),(376,363),
+            (320,316),(264,279),(209,286)],fill=255)
         protect=protect.filter(ImageFilter.GaussianBlur(1.2))
         fixed=Image.composite(original,fixed,protect)
     return fixed
