@@ -54,7 +54,7 @@ try{
    const flip=page.locator('#pcFrontCardFlip');
    assert.equal(await flip.count(),1);
    assert.equal(await page.locator('#pcQuizCardContent .pc-rendered-quiz-list li').count(),10);
-   const cardText=await page.locator('#pcQuizCardContent').innerText();
+   const cardText=await page.locator('#pcQuizCardContent').textContent(); // Back-face is not visually exposed until flipped
    assert.match(cardText,/Minneparken/);
    assert.match(cardText,/Historiequiz/);
    for(const question of card.questions){assert.ok(cardText.includes(question.question),'Missing rendered QuizCard question: '+question.number);}
@@ -66,6 +66,9 @@ try{
    assert.equal(await flip.evaluate(el=>el.classList.contains('is-flipped')),false);
    await flip.click({timeout:15000});
    await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:15000});
+   const visibleAfterFlip=await page.locator('#pcQuizCardContent').innerText();
+   assert.match(visibleAfterFlip,/Minneparken/,'QuizCard text must be visibly rendered after a real flip');
+   for(const question of card.questions){assert.ok(visibleAfterFlip.includes(question.question),'Not visible after flipping: '+question.number);}
    await page.screenshot({path:path.join(output,profile.name+'-quizcard-flipped.png'),fullPage:true});
    await page.locator('#pcQuizExpandBtn').click({timeout:15000});
    await page.waitForFunction(()=>document.querySelector('#pcQuizExpanded')?.hidden===false,null,{timeout:15000});
