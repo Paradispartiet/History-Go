@@ -32,7 +32,7 @@ jobs:
           git status --short -- data/runtime
           while IFS= read -r file; do
             case "$file" in
-              data/runtime/nature-all/flora-001.json)
+              data/runtime/nature-all/flora-001.json|data/runtime/place-open/oslo_prosjektrom.json|data/runtime/place-open/regjeringskvartalet.json|data/runtime/place-open/toyenbadet.json)
                 ;;
               *)
                 echo "Unexpected generated runtime change: $file" >&2
@@ -43,9 +43,10 @@ jobs:
           npm run place-open:check
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- data/runtime/nature-all/flora-001.json
+          git diff --numstat -- data/runtime
+          git add -- data/runtime/nature-all/flora-001.json data/runtime/place-open/oslo_prosjektrom.json data/runtime/place-open/regjeringskvartalet.json data/runtime/place-open/toyenbadet.json
           git rm .github/workflows/flora-runtime-one-shot-20261103.yml reports/maintenance/flora-place-open-trigger-20261103.txt
           git diff --cached --check
           git diff --cached --stat
-          git commit -m "build(runtime): synchronize generated flora place-open shard"
+          git commit -m "build(runtime): sync four canonical place-open outputs"
           git push origin HEAD:refs/heads/fix/flora-place-open-shard-sync-20261103
