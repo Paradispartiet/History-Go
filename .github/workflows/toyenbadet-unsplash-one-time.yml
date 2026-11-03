@@ -5,17 +5,23 @@ on:
       - feat/toyenbadet-asplanviak-link-20261103
     paths:
       - .github/workflows/toyenbadet-unsplash-one-time.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/toyenbadet-unsplash-one-time.yml
 permissions:
   contents: write
 jobs:
   import:
-    if: github.event.head_commit.message == 'chore: import licensed Tøyenbadet photo candidates'
+    if: github.event_name == 'pull_request' || github.event.head_commit.message == 'chore: import licensed Tøyenbadet photo candidates'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
+          ref: feat/toyenbadet-asplanviak-link-20261103
       - name: Import and verify source images from Unsplash
         shell: bash
         run: |
