@@ -37,7 +37,7 @@
 | People / Objects / Brands / historiske hendelser | IKKE AVKLART | Source-bounded kandidataudit og eventuelle materialiserte medlemmer med bilder; ingen filler |
 | Stedsbilder / `frontImage` | BLOCKED | Ingen dokumentert, faktisk stående PlaceCard-fil og lisensmetadata integrert |
 | Quiz / QuizCard / Knowledge | BLOCKED | Ingen fullquiz/QuizCard/flip-paritet materialisert eller vist; kun ti research-spørsmål i packet |
-| Runtime og genererte avledninger | **BLOCKED** | `places_index.json`, `data/runtime/place-open/minneparken_gamlebyen.json`, Fagverk release/coverage og eventuelle oversettelser må bygges med canonical scripts, ikke håndrettes |
+| Runtime og genererte avledninger | **BLOCKED** | `places_index.json`, `data/runtime/place-open/minneparken_gamlebyen.json`, Place- og Fagverk-release/epoke er generert og sjekket via GitHub Actions; Fagverk coverage, full browser-/i18n-QA og relevante oversettelser må fortsatt kontrolleres |
 | CI og browser-QA | **BLOCKED** | Ikke kjørt relevant full node-test/CI-/browserpakke; PR må holdes i draft |
 
 ### Bildekandidater (ikke publisert)
@@ -55,7 +55,7 @@ Ingen av disse er lagt til som `image`/`frontImage`. Hovedbilde og stående bild
 - Source-bundne `placeId`-er er like, og 24 beskrivelsessetninger har 24 claimkoblinger.
 - Historie-rapportens kilde-ID-er er definert; valgte underbadges finnes i `data/badges/historie.json`.
 
-**Utførte kontroller:** Statisk JSON-/referanseinspeksjon og GitHub Actions-generering (jobben 41575722410) med `places:index:check`, `place-open:check`, `epoker:places:check` og Fagverk-release-`--check` bestod. Den siste artikkelutvidelsen kom etter jobben; en ny regenereringsjobb er satt i gang. Full Historie/description-/Fagverk-validering og faktisk browser-QA er ennå **ikke** godkjent.
+**Utførte kontroller:** Statisk JSON-/referanseinspeksjon og GitHub Actions-generering (jobben 41575722410) med `places:index:check`, `place-open:check`, `epoker:places:check` og Fagverk-release-`--check` bestod. Deretter bestod også regenereringsjobb 41576163672, og Place-open-payloaden er lest tilbake: alle 335 ordene i `popupDesc` samsvarer byte-for-byte med Place-kilden. Full Historie/description-/Fagverk-validering og faktisk browser-QA er ennå **ikke** godkjent.
 
 ## Påkrevd neste integrasjonsrunde
 
@@ -73,8 +73,16 @@ Ingen av disse er lagt til som `image`/`frontImage`. Hovedbilde og stående bild
 | Korrekthet og evidens | 4/5 | Kildedrevet nytt stoff, 19 setningskoblinger; formell validator og uavhengig review mangler |
 | Dekning og ferdigstillelse | 2/5 | Historietekst, Fagverk og Språk implementert; bilder/quiz/CI/QA mangler |
 | Faglig/redaksjonell kvalitet | 4/5 | Stedlig byhistorie og konflikt, egne spørsmål og lesbare historiske lag |
-| Teknisk integritet | 2/5 | Statisk kontroll og en bestått genereringsrunde for stedsindeks, epoke, place-open og Fagverk; siste tekstutvidelse krever ny place-open-synk |
+| Teknisk integritet | 3/5 | Statisk kontroll og to beståtte genereringsrunder med stedsindeks-, epoke-, place-open- og Fagverk-kontroll; manuell app- og fulltest mangler |
 | Sikkerhet og ansvarlighet | 4/5 | Åpne lisens- og tidsstatusspørsmål er ikke framstilt som godkjent |
 | Etterprøvbarhet og vedlikehold | 4/5 | Egen claim-/kilde-/Historie-rapport og source-avgrenset diff; preflight mangler |
 
-**20/30. Ikke godkjent som fullført eller mergeklart.** Ingen UI-, runtime- eller CI-gate kan ersattes med denne rapporten.
+**21/30. Ikke godkjent som fullført eller mergeklart.** Ingen UI-, runtime- eller CI-gate kan ersattes med denne rapporten.
+
+
+## Integrasjonsbevis, ferdigstilt 2026-11-03
+
+- GitHub Actions `41575722410` og `41576163672`: `npm run places:index:build/check`, `npm run place-open:build/check`, `npm run epoker:places:build/check` og Fagverk-release build/`--check` fullført med suksess.
+- `data/runtime/place-open/minneparken_gamlebyen.json` er lest tilbake fra grenen: `place.popupDesc ===` canonical Place-`popupDesc`, **335 ord**.
+- Den midlertidige workflowen `.github/workflows/minneparken-regenerate-temp.yml` ble slettet fra arbeidsgrenen etter verifisering; den skal ikke inngå i sluttdiffen.
+- Ingen publiserings-/deploy- eller mergehandling er utført. Historieproduksjon, quiz/QuizCard, People/Objects/Brand-kandidater, bilder med proveniens og mobil-/desktopbrowser står fortsatt som sperrer.
