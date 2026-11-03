@@ -33,8 +33,9 @@ jobs:
            req=urllib.request.Request(url,headers={'User-Agent':'HistoryGoEducationalProject/1.0 (public source research; github.com/Paradispartiet/History-Go)','Accept':'application/json,image/*'})
            with urllib.request.urlopen(req,timeout=45) as res:return res.read()
           canonical='https://upload.wikimedia.org/wikipedia/commons/8/85/Anne_Lindboe_%281%29.jpg'
-          mirror='https://images.weserv.nl/?url='+urllib.parse.quote(canonical,safe='')+'&w=1280&output=jpg'
-          attempts=[canonical,mirror,api]
+          thumbnail='https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Anne_Lindboe_%281%29.jpg/960px-Anne_Lindboe_%281%29.jpg'
+          mirror='https://images.weserv.nl/?url=thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Anne_Lindboe_%281%29.jpg/960px-Anne_Lindboe_%281%29.jpg&w=960&output=jpg'
+          attempts=[thumbnail,mirror,canonical,api]
           errors=[]
           for url in attempts:
            try:
