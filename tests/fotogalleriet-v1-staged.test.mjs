@@ -168,18 +168,13 @@ test('Fotogalleriet People links include two sourced founders without unlicensed
     assert.deepEqual(runtime.people.find(x => x.id === person.id), person);
   }
 });
-test('staging remains absent from active quiz manifest until photo and production gates pass', () => {
+test('source staging files remain review-only and do not leak into active manifests', () => {
   const manifest = read('data/quiz/manifest.json');
-  const serialized = JSON.stringify(manifest);
-  assert.ok(!serialized.includes('fotogalleriet'), 'Fotogalleriet must not be registered in the active quiz manifest while staged');
-  const stagedFile = 'reports/place-production/fotogalleriet/quiz-sets-staged.json';
-  assert.ok(!serialized.includes(stagedFile), 'draft quiz file must not be exposed as an active source');
-  assert.ok(place.image && place.frontImage, 'two original illustrations must now be in place');
-  assert.notEqual(place.image, place.frontImage);
-  assert.equal(place.imageMeta.assetType, 'ai_generated_illustration');
-  assert.equal(place.frontImageMeta.assetType, 'ai_generated_illustration');
-  assert.match(place.imageCaption, /Illustrasjon.*AI-generert/u);
-  assert.match(place.frontImageCaption, /Illustrasjon.*AI-generert/u);
+  const serialized=JSON.stringify(manifest);
+  assert.ok(!serialized.includes('reports/place-production/fotogalleriet/quiz-sets-staged.json'));
+  assert.equal(quiz.production_context.status, 'staged_not_registered_in_quiz_manifest');
+  assert.equal(cards.production_status, 'staged_not_registered_in_quizcard_manifest');
+  assert.ok(place.image && place.frontImage, 'original illustrative assets need to be active');
 });
 
 test('documentary source photos remain blocked while independent original illustrations are accepted', () => {
@@ -258,4 +253,34 @@ test('two on-repo AI WebPs are independent originals with correct hashes and vis
     seenOriginals.add(hash);
   }
   assert.equal(seenOriginals.size, 2);
+});
+test('active quiz and QuizCard manifests include Fotogalleriet and preserve source-reviewed questions', () => {
+  const active = read('data/quiz/kunst/fotogalleriet_sets.json');
+  const activeCards = read('data/quizcards/kunst/fotogalleriet_quizcard_v1.json');
+  const quizManifest = read('data/quiz/manifest.json');
+  const cardManifest = read('data/quizcards/kunst/manifest.json');
+  const registrations = quizManifest.sets.filter(row => row.targetId === 'fotogalleriet');
+  assert.equal(registrations.length, 1);
+  assert.equal(registrations[0].categoryId, 'kunst');
+  assert.equal(registrations[0].file, 'data/quiz/kunst/fotogalleriet_sets.json');
+  assert.ok(cardManifest.collections.includes('fotogalleriet_quizcard_v1.json'));
+  assert.deepEqual(active.sets.map(s => s.questions.length), [7, 7, 7]);
+  const activeQuestions = active.sets.flatMap(s => s.questions);
+  assert.equal(activeQuestions.length, 21);
+  for (let i = 0; i < activeQuestions.length; i++) {
+    const source = all[i];
+    const current = activeQuestions[i];
+    for (const field of ['id','quiz_id','targetId','question','options','answer','answerIndex','primary_knowledge_unit_id','claim_id']) {
+      assert.deepEqual(current[field], source[field], 'changed reviewed content: '+current.id+' '+field);
+    }
+    assert.equal(current.knowledge_link_status,'linked');
+  }
+  assert.equal(activeCards.cards[0].questions.length,10);
+  for (let i=0;i<activeCards.cards[0].questions.length;i++){
+    const cq=activeCards.cards[0].questions[i];
+    const staged=cards.cards[0].questions[i];
+    assert.equal(cq.sourceQuizId,staged.sourceQuizId);
+    assert.equal(cq.sourceQuizFile,'data/quiz/kunst/fotogalleriet_sets.json');
+    assert.equal(cq.knowledge_link_status,'linked');
+  }
 });
