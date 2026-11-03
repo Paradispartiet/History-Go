@@ -22,4 +22,6 @@ jobs:
         with:
           node-version: '22'
       - name: Verify By subbadges and protected badge images
-        run: node --test tests/badge-underbadge-batch01.test.mjs tests/badge-by-klassisk-arkitektur-v2-production.test.mjs tests/badge-by-modernisme-v1-production.test.mjs
+        run: |
+          node --test tests/badge-underbadge-batch01.test.mjs tests/badge-by-klassisk-arkitektur-v2-production.test.mjs tests/badge-by-modernisme-v1-production.test.mjs tests/badge-by-funksjonalisme-v1-production.test.mjs tests/badge-by-funksjonalisme-v1-locales.test.mjs tests/badge-by-brutalisme-v1-production.test.mjs
+          node scripts/verify-brutalisme-asset-v1.mjs --require-assets
