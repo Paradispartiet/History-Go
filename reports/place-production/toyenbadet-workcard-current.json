@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "v1_merget_main_PR_6970__vFerdig_oppfolging_i_PR_6979",
+  "branch_status": "modern_2026_photography_before_after_in_feature_branch__pending_PR_merge",
   "live_status": "pages_success_PR_6970_commit_13c2ad82357fbaade53d8652de8a736808c9056d",
-  "active_phase": "v1 publisert; Asplan Viak-kobling i oppfølgings-PR. To Unsplash-lisensierte 2026-fotokilder funnet; lokale filer og visuell kontroll gjenstår før vFerdig.",
+  "active_phase": "Visuelt kontrollert dokumentarfoto av 2025-bygget, egen Før/etter 2013–2026 og oppdatert canonical Place. Generated runtime og mobil/desktop må bekreftes; People/Objects/Brands forblir blokkert.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -47,7 +47,7 @@
     "quiz": "3x7 / 21 spørsmål bevart",
     "quizcard": "10 spørsmål bevart",
     "knowledge": "tidligere generert; exact-head paritet ikke rerun",
-    "images": "ett liggende historisk Commons-foto brukt tre ganger; frontImage mangler ekte portrettfil",
+    "images": "Nytt 2026-eksteriør med lokal Unsplash-lisensiert 1400x900 WebP som hero; historisk 2013-bilde er Før/etter-førbilde; 1980-portrett står fortsatt som frontImage.",
     "people": "0 aktive i place-open",
     "brands": "0 aktive",
     "objects": "ingen verifisert PlaceCard-samling",
@@ -56,7 +56,8 @@
     "chronology": "ikke dokumentert materialisert",
     "related": "tomt i place-open",
     "stories": "tomt i place-open",
-    "factuality_claim_package": "tidligere fraværende, ny v4.2-pakke i grenen"
+    "factuality_claim_package": "tidligere fraværende, ny v4.2-pakke i grenen",
+    "before_after": "Canonical for_na med autentiske bilder fra 2013 og 2026; kildekoblet og lokalt lagret; browser QA pågår."
   },
   "content_plan": {
     "people": {
@@ -111,8 +112,8 @@
       "reason": "Kildebundet episode_v1-story med reell beslutning om rehabilitering kontra nybygg, tap av 50 m-basseng, vernevurdering og dokumenterte videreføringer. Registrert i begge Stories-manifester. Integritetstest, generert runtime og faktisk visning gjenstår."
     },
     "before_after": {
-      "status": "LICENSED_2026_PHOTO_SOURCES_FOUND__ASSET_AND_VISUAL_QA_PENDING",
-      "reason": "To originale 2026-fotografier av Marek Lumi, stedfestet til Tøyenbadet, er publisert under Unsplash License, som tillater bearbeiding og gjenbruk. Bildene er ennå ikke overført og visuelt kontrollert i repoet. Det gamle 2013-fotografiet beholdes som førbilde. Før/etter skal først aktiveres etter dokumentarisk motivkontroll og lokal WebP + runtime-paritet."
+      "status": "PASS_CANONICAL_PENDING_RUNTIME_AND_BROWSER",
+      "reason": "2013-bildet av revet bad og Marek Lumis 2026-bilde av dagens Tøyenbadet er to reelle, lisensierte motiver fra samme sted. Nytt for_na har stedstro tekst og forklarer at kamerastandpunktene er ulike, så en geometrisk bildeoverlegg-sammenligning ville være misvisende."
     },
     "news": {
       "status": "BEGRUNNET N/A",
@@ -157,13 +158,15 @@
   ],
   "collection_decision": "Ingen PlaceCard-samlinger merkes PASS uten canonical medlem, rettighetsklarert medlemsbilde og faktiske popup-/mobiltester.",
   "media_gate": {
-    "status": "PASS_IMAGES_PENDING_BROWSER",
+    "status": "PASS_SOURCE_IMAGES__GENERATED_AND_BROWSER_PENDING",
     "hero": {
-      "path": "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_historic_2013_hero.webp",
-      "sourcePage": "https://commons.wikimedia.org/wiki/File:2013-05_T%C3%B8yenbadet.jpg",
-      "license": "CC BY-SA 3.0",
+      "path": "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_2026_marek_lumi_glass.webp",
+      "sourcePage": "https://unsplash.com/photos/modern-glass-building-with-park-path-HR21MwYowNY",
+      "license": "Unsplash License",
       "size": "1400x900",
-      "sha256": "67fc12a6f9c077280a1291fc223f2186baee404cc1a4e025fc5b0c698bc4396d"
+      "sha256": "9f78b5d05b374a1766579ca5e46205b54dae9c724db0cb4fccec76a57dbe2e07",
+      "credit": "Marek Lumi / Unsplash",
+      "visualReview": "PASS - new Tøyenbadet contemporary glazed facade and park path"
     },
     "portrait": {
       "path": "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_historic_1980_portrait.webp",
@@ -172,7 +175,7 @@
       "size": "900x1350",
       "sha256": "ce6acec149f1873986125681dc547351304a2e76d365003e727cca74e0b7410f"
     },
-    "caveat": "Historiske bilder av 1976-badet er publisert. Nye, fritt gjenbrukbare 2026-fotokandidater er nå identifisert hos fotograf Marek Lumi på Unsplash (to kilde- og lisensverifiserte sider), men lokale bildefiler, korrekt fotomotiv og runtime-visning er ennå ikke verifisert. Ingen nye bilder aktivert.",
+    "caveat": "2026-foto av nye Tøyenbadet er lastet ned, lagret i 1400x900 WebP, kilde- og lisensverifisert samt visuelt godkjent for hero. 2013-bildet av gamle badet er bevart som for_na.beforeImage, og historisk 1980-portrett beholdt for QuizCard-flip. Det andre Unsplash-fotoet viser sykkeltrasé og et tilstøtende lite bygg; kun kontekstfoto, ikke PlaceCard-hero eller for_na.",
     "modern_photo_candidates": [
       {
         "sourcePage": "https://unsplash.com/photos/modern-glass-building-with-park-path-HR21MwYowNY",
@@ -182,7 +185,7 @@
         "publishedAt": "2026-09-28",
         "subjectLocation": "Tøyenbadet, Helgesens gate, Oslo",
         "proposedUse": "New 2025 facility exterior; potential modern hero",
-        "status": "source_license_verified__binary_not_ingested__visual_qa_pending"
+        "status": "downloaded_local_webp__visual_approved__canonical_hero"
       },
       {
         "sourcePage": "https://unsplash.com/photos/bicycle-path-beside-white-building-WvWK5YDDet4",
@@ -192,9 +195,17 @@
         "publishedAt": "2026-09-28",
         "subjectLocation": "Tøyenbadet, Helgesens gate, Oslo",
         "proposedUse": "Second exterior view for before-after comparison",
-        "status": "source_license_verified__binary_not_ingested__visual_qa_pending"
+        "status": "downloaded_local_webp__context_only__rejected_as_building_hero"
       }
-    ]
+    ],
+    "historicalHero": {
+      "path": "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_historic_2013_hero.webp",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2013-05_T%C3%B8yenbadet.jpg",
+      "license": "CC BY-SA 3.0",
+      "size": "1400x900",
+      "sha256": "67fc12a6f9c077280a1291fc223f2186baee404cc1a4e025fc5b0c698bc4396d",
+      "use": "for_na.beforeImage"
+    }
   },
   "universal_core": {
     "identity": "PASS",
@@ -202,7 +213,7 @@
     "claims_and_editorial": "PR-kandidat – 21 claim-ID-er og 22 setninger, krever CI",
     "fagverk": "PASS eksisterende",
     "quiz": "PASS eksisterende – retest på PR-head",
-    "photos": "PASS_CANONICAL_ASSETS: separate license-tracked historic hero and true 900x1350 portrait; visual browser QA remains blocked.",
+    "photos": "PASS_CANONICAL: nytt 2026-bilde av gjeldende bad, historisk førfoto og stående 1980-frontImage, alle lokalt lagret og lisensiert; runtime og faktisk UI-kontroll gjenstår.",
     "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
     "chronology": "Åtte kildebelagte kronologipunkter er materialisert, og global epokeindeks regenerert etter oppdatering fra main; ny eksakt-HEAD-test følger.",
     "collections": "PARTIAL: dokumentert konkurransesamling for NM 2026; People og Objects har reelle, uferdige kandidater fra Oslo kommunes kunstsamling og skal ikke feilmerkes N/A.",
@@ -216,7 +227,9 @@
     "npm run place-open:check",
     "Målrettet browser QA på mobil og desktop og faktisk QuizCard-flip",
     "npm run check:stories",
-    "Nettleser: Story åpner riktig sted, kilde- og fotoattribusjon, mobil/desktop"
+    "Nettleser: Story åpner riktig sted, kilde- og fotoattribusjon, mobil/desktop",
+    "node --test tests/toyenbadet-modern-photos-before-after.test.mjs",
+    "Regenerer places_index og place-open fra canonical; verifiser moderne hero + for_na i faktisk mobil/desktop UI"
   ],
   "quality_assessment": {
     "correctness": 4,
@@ -227,7 +240,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "v1 merge PR #6970 og Pages success er verifisert. vFerdig er fortsatt blokkert av foto av 2025-anlegget, rettighetsklarerte People-/Objects-medier, autentisk Brand-preview og endelig full mobil-/desktop-QA. Objektresearch korrigert iht. canonical Objects-kontrakt: permanente kunstverk er ikke automatisk sports-Objects. Ny, fri bildelisensmulighet (Marek Lumi / Unsplash) er kildekontrollert, men ikke integrert, så kvalitetspoeng og vFerdig-status endres ikke."
+    "note": "Nytt 2026-hero og før/etter 2013–2026 er kildemessig og visuelt klargjort, men status og poeng forblir 23/30 til generated paritet og faktisk browser QA er bestått. People/Objects/Brands er ennå ikke ferdig kvalifisert med bilder."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
@@ -242,7 +255,11 @@
     "bilder/kort/competitions/nm_langbane_2026_toyenbadet.svg",
     "data/stories/stories_toyenbadet.json",
     "data/stories/stories_manifest.json",
-    "data/stories/stories_episode_v1_manifest.json"
+    "data/stories/stories_episode_v1_manifest.json",
+    "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_2026_marek_lumi_glass.webp",
+    "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_2026_marek_lumi_bicycle.webp",
+    "bilder/places/candidates/oslo-vferdig-20261103/toyenbadet_modern_media_candidates.json",
+    "tests/toyenbadet-modern-photos-before-after.test.mjs"
   ],
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
