@@ -226,7 +226,7 @@ test("Badge-markører vises på alle zoom, og gamle prikker er reversible", () =
     assert.match(code, /function mapBadgeDiameter\(zoom\)/, name + ": mangler skalerbare badges");
     assert.match(code, /badgeAvailable/, name + ": må skjule de gamle prikkene kun ved Badge");
     assert.match(code, /const badgesReady = isBadgeMarkerMode\(\) && placeBadgeImages.size > 0/, name + ": må beholde prikkefallback");
-    assert.match(code, /\.has\((?:badgeCategoryId\(feature\.properties\.category\)|\(feature\.properties\.badgeKey \|\| badgeCategoryId\(feature\.properties\.category\)\))\)/, name + ": badger må knyttes til riktig kategori eller geografisk avgrenset bymerke");
+    assert.match(code, /\.has\((?:badgeCategoryId\(feature\.properties\.category\)|\(?feature\.properties\.badgeKey \|\| badgeCategoryId\(feature\.properties\.category\)\)?)\)/, name + ": badger må knyttes til riktig kategori eller geografisk avgrenset bymerke");
     assert.match(code, /getMarkerMode: \(\) => markerMode/, name + ": tilbakekobling må kunne bekreftes");
   }
   assert.match(source, /const showBadge = isBadgeMarkerMode\(\) && !!entry.badgeImage\?\.complete/);

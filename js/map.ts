@@ -802,7 +802,7 @@
     return String((window as any).catIdFromDisplay?.(value) || value || "").trim().toLowerCase();
   }
 
-    function badgeKeyForPlace(place) {
+  function badgeKeyForPlace(place) {
     const category = badgeCategoryId(place && place.category);
     if (category !== "by") return category;
     const source = String((place && (place.sourceFile || place._sourceFile || place.file)) || "")
@@ -810,7 +810,7 @@
     return source.startsWith("places/by/oslo/") ? OSLO_CITY_BADGE_KEY : category;
   }
 
-function ensurePlaceBadgeImages() {
+  function ensurePlaceBadgeImages() {
     const setBadges = (badges) => {
       for (const badge of Array.isArray(badges) ? badges : []) {
         const id = badgeCategoryId(badge?.id);
