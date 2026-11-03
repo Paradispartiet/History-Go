@@ -2,7 +2,7 @@
   "schema": "history_go_content_factory_completion_v1",
   "place_id": "birkelunden",
   "reviewed_at": "2026-08-24",
-  "status": "production_ready_ci_pending",
+  "status": "production_complete_ci_verified_browser_qa_unconfirmed",
   "preservation": {
     "park_area_m2": 16300,
     "protected_cultural_environment_area_approx_dekar": 116,
@@ -106,6 +106,17 @@
     "Olaf Ryes plass som Birkelunden-proxy",
     "større 116-dekar kulturmiljø som parkgeometri"
   ],
+  "post_merge_verification": {
+    "checked_at": "2026-11-03",
+    "canonical_completion_pr": "https://github.com/Paradispartiet/History-Go/pull/5283",
+    "merge_commit": "ff39e551c8c35996836858f4e4177c6f97bb57c5",
+    "pr_head_checks": "63/63 completed successfully",
+    "post_merge_checks": "48/49 succeeded; one Pages deployment was cancelled",
+    "later_main_pages_deployment": "https://github.com/Paradispartiet/History-Go/actions/runs/41592409276",
+    "later_main_pages_deployment_state": "success",
+    "live_browser_qa": "not independently verified for mobile and iPad in this audit",
+    "scope": "Status reconciliation only; canonical Place, quiz, images and registries unchanged"
+  },
   "final_gate": {
     "required": [
       "targeted_regression",
@@ -116,6 +127,6 @@
       "full_ci",
       "main_verification"
     ],
-    "state": "pending_final_pr_head"
+    "state": "ci_and_postmerge_main_verified_browser_qa_unconfirmed"
   }
 }
