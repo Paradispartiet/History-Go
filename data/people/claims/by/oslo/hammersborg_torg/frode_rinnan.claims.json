@@ -68,6 +68,17 @@
       "temporal_status": "historical",
       "verified_at": "2026-09-01",
       "evidence_level": "direct"
+    },
+    {
+      "id": "grini_documented_role",
+      "claim": "Frode Rinnan og Odd Nansen fikk en stor del av planarbeidet for Grinis utvidelse før begge ble deportert til Sachsenhausen i september 1943.",
+      "status": "verified",
+      "source_url": "https://snl.no/Grini_-_tysk_fangeleir",
+      "source_location": "Fra fengsel til fangeleir",
+      "source_type": "encyclopedia",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-01",
+      "evidence_level": "explicit"
     }
   ],
   "field_claim_map": {
@@ -88,6 +99,9 @@
     ],
     "image": [
       "image_identity"
+    ],
+    "places[grini_fangeleir]": [
+      "grini_documented_role"
     ]
   },
   "sentence_claim_map": {
@@ -104,7 +118,8 @@
       {
         "sentence": 1,
         "claim_ids": [
-          "identity"
+          "identity",
+          "education"
         ]
       },
       {
@@ -122,17 +137,17 @@
       {
         "sentence": 4,
         "claim_ids": [
-          "identity"
+          "grini_documented_role"
         ]
       }
     ]
   },
   "completion": {
     "completed_under": "people_profile_v1.0",
-    "claims_verified": "5/5",
+    "claims_verified": "6/6",
     "fact_review": "passed",
     "editorial_review": "passed",
-    "source_verified_at": "2026-09-01",
+    "source_verified_at": "2026-11-01",
     "validator_version": "1.0.0",
     "current_status": "ready_people_v1"
   }

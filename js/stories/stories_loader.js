@@ -260,6 +260,63 @@
       return inFlight;
     },
 
+    async openAll() {
+      await this.init();
+      const popupFn = window.makePopup;
+      if (typeof popupFn !== "function") {
+        window.showToast?.("Stories-visningen er ikke lastet ennå.");
+        return false;
+      }
+
+      const stories = this.all;
+      const renderMatches = (term) => {
+        const query = String(term || "").trim().toLocaleLowerCase("nb-NO");
+        const matches = query
+          ? stories.filter((story) => [story.title, story.type, story.story, story.summary]
+              .some(value => String(value || "").toLocaleLowerCase("nb-NO").includes(query)))
+          : stories;
+        const rows = matches.slice(0, 30).map((story) => {
+          const placeId = String(story.place_id || "").trim();
+          const place = placeId ? resolvePlaceById(placeId) : null;
+          const locationLabel = place?.name || placeId;
+          const excerpt = String(story.story || story.summary || "").slice(0, 240);
+          return `
+            <article class="hg-welcome-story-item">
+              <div class="hg-welcome-story-label">${escapeHtml(story.type || "Historie")}</div>
+              <h3>${escapeHtml(story.title || "Fortelling")}</h3>
+              <p>${escapeHtml(excerpt)}${String(story.story || story.summary || "").length > 240 ? "…" : ""}</p>
+              ${placeId ? `<a href="index.html#/place/${encodeURIComponent(placeId)}">Se stedet: ${escapeHtml(locationLabel)} ↗</a>` : ""}
+            </article>`;
+        }).join("");
+        return `
+          <p class="hg-welcome-story-count">${matches.length} ${matches.length === 1 ? "fortelling" : "fortellinger"} funnet${matches.length > 30 ? " · viser de første 30, søk for flere" : ""}</p>
+          <div class="hg-welcome-story-results">${rows || '<p>Ingen fortellinger passer søket.</p>'}</div>`;
+      };
+
+      popupFn(`
+        <section class="hg-welcome-stories" aria-label="Stories">
+          <header class="hg-welcome-stories-header">
+            <button class="hg-welcome-stories-back" type="button" data-close-popup
+                    aria-label="Tilbake til kartet" title="Tilbake til kartet">
+              <span aria-hidden="true">←</span>
+            </button>
+            <h2>Stories</h2>
+          </header>
+          <p>Oppdag historiske fortellinger og utforsk stedene de handler om.</p>
+          <label for="hgWelcomeStoriesSearch">Søk etter en fortelling</label>
+          <input id="hgWelcomeStoriesSearch" type="search" autocomplete="off"
+                 placeholder="Søk på tittel, tema eller innhold">
+          <div id="hgWelcomeStoriesMatches" aria-live="polite">${renderMatches("")}</div>
+        </section>`, "hg-welcome-stories-popup");
+
+      const input = /** @type {HTMLInputElement | null} */ (document.getElementById("hgWelcomeStoriesSearch"));
+      const results = document.getElementById("hgWelcomeStoriesMatches");
+      input?.addEventListener("input", () => {
+        if (results) results.innerHTML = renderMatches(input.value);
+      });
+      return true;
+    },
+
     async openPlace(placeId) {
       const id = String(placeId || "").trim();
       if (!id) return;

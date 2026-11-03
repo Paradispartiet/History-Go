@@ -1,0 +1,51 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-01",
+  "status": "reviewed_binary_verified_pending_ci",
+  "baselineApproved": 26,
+  "approvedCountAfterRelease": 27,
+  "publicationRule": "Approve this exact SHA-verified 1024×1536 alpha WebP only if both illustration-contract and approved-flora-browser pass on final PR head; preserve all previous 26 approvals and the named CC BY-SA 4.0 photo fallback. Check Pages after merge.",
+  "items": [
+    {
+      "name": "Firkantperikum",
+      "catalogId": "emne_flora_firkantperikum",
+      "scientificName": "Hypericum maculatum",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/05_firkantperikum_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/05_firkantperikum_v1.webp",
+      "gitBlobSha": "ea1d0ad4f916927f3b4da59a1817353fc8b4686e",
+      "sha256": "10616b88cddb89f7d466f2257354e80d84de3c8fd34c4615bf654508a754aacc",
+      "sizeBytes": 266358,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
+      "reviewedAt": "2026-11-01",
+      "stage": "blomstring",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": false,
+        "alphaVerifiedAfterConversion": true,
+        "blackBackgroundReviewed": true,
+        "whiteBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://www.nibio.no/tema/landskap/nibio-landvik-norsk-kompetansesenter-for-blomstereng-og-naturfro/spirer-og-smaplanter-av-markblomster/firkantperikum-hypericum-maculatum",
+        "https://artsdatabanken.no/arter/takson/133813",
+        "https://snl.no/firkantperikum",
+        "https://www.nibio.no/tema/mat/plantegenetiske-ressurser/genetiske-ressurser-i-naturen/prikkperikum-krydder-og-antidepressiva"
+      ],
+      "photoFallbackRegistry": "js/ui/nature-flora-photographs.js",
+      "observations": "Botanical field-guide candidate shows erect purplish-brown stems marked by longitudinal ridges, opposite oval to elliptic entire leaves and terminal branched clusters of bright yellow five-petalled flowers. Black glandular speckles and short streaks appear on petals and flowering buds; flowers carry numerous yellow filamentous stamens. The illustration aims to distinguish Hypericum maculatum from H. perforatum through the four-ridged upright stem and broader, comparatively blunt sepals. Photo-reference is retained for confirmation.",
+      "limitations": "Illustration exaggerates dark gland spots, number of flowers and the symmetry of leaf pairs; the four ridges are represented by shaded longitudinal highlights but cannot be counted reliably without examining a specimen. Calyx and narrow buds are partly stylized, so the subtle distinction between broad-blunt Hypericum maculatum sepals and long-pointed H. perforatum sepals needs field photographs. This image cannot provide species certainty on its own.",
+      "technicalVerification": "The generated 1024×1536 source PNG had an opaque RGB checkerboard simulation, not an original alpha channel. Background pixels were segmented from RGB using chroma and brightness thresholds and small speckles removed before conversion to true 1024×1536 VP8X WebP with alpha. Final SHA256 and Git blob SHA are measured from exact resulting WebP bytes; checked on white and dark backgrounds. GitHub create_blob returned the identical SHA1.",
+      "publicationBlockedBy": [
+        "Both illustration-contract and approved-flora-browser must pass on final PR head before merge"
+      ]
+    }
+  ]
+}

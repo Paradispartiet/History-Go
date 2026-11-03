@@ -107,6 +107,7 @@ try {
           image: getComputedStyle(document.getElementById(id), "::before").backgroundImage,
           borderWidth: getComputedStyle(document.getElementById(id)).borderTopWidth,
           text: document.getElementById(id).textContent.trim(),
+          fontSize: getComputedStyle(document.getElementById(id)).fontSize,
           background: getComputedStyle(document.getElementById(id)).backgroundColor
         })),
         onsite: [...document.querySelectorAll("#pcOnSiteFooter button")].map(el => ({
@@ -114,7 +115,8 @@ try {
           image: getComputedStyle(el.querySelector(".pc-onsite-action-icon"), "::before").backgroundImage,
           borderWidth: getComputedStyle(el).borderTopWidth,
           background: getComputedStyle(el).backgroundColor,
-          label: el.getAttribute("aria-label")
+          label: el.getAttribute("aria-label"),
+          labelDisplay: getComputedStyle(el.querySelector(".pc-onsite-action-label")).display
         })),
         onsiteBoxHidden: document.getElementById("pcEventsBox").hidden,
         footerOnsiteHidden: document.getElementById("pcOnSiteFooter").hidden,
@@ -147,9 +149,16 @@ try {
       `all five principal icons render at ${width}`);
     assert.equal(new Set(actual.icons.map(icon => icon.image)).size, 5,
       `different pictogram per action at ${width}`);
+    // The text remains accessible to assistive technology, but only the
+    // distance/visit status should be visually printed next to its icon.
     assert.deepEqual(actual.icons.map(icon => icon.text),
       ["Ta quiz", "Registrer besøk", "Rute", "Observer", "Notat"],
-      `visible labels identify every action at ${width}`);
+      `semantic action names remain at ${width}`);
+    assert.ok(actual.icons.filter(icon => icon.id !== "pcVisit")
+      .every(icon => icon.fontSize === "0px"),
+      `Quiz, Route, Observe and Note hide visible text at ${width}`);
+    assert.notEqual(actual.icons.find(icon => icon.id === "pcVisit").fontSize, "0px",
+      `live distance/visit status remains legible at ${width}`);
     assert.ok(actual.icons.every(icon => icon.borderWidth === "0px"),
       `all footer buttons are entirely unframed at ${width}`);
     assert.ok(actual.icons.every(icon => icon.background === "rgba(0, 0, 0, 0)"),
@@ -164,6 +173,10 @@ try {
       `Event and Meet icons render at ${width}`);
     assert.notEqual(actual.onsite[0].image, actual.onsite[1].image,
       `Events and Meet are visually distinct at ${width}`);
+    assert.equal(actual.onsite.find(icon => icon.action === "events").labelDisplay, "none",
+      `Events uses icon-only presentation at ${width}`);
+    assert.notEqual(actual.onsite.find(icon => icon.action === "meet").labelDisplay, "none",
+      `Møtes keeps its visible label at ${width}`);
     assert.ok(actual.onsite.every(icon => icon.borderWidth === "0px" && icon.background === "rgba(0, 0, 0, 0)"),
       `Events and Meet are unframed like the other footer actions at ${width}`);
     assert.equal(actual.footerOnsiteHidden, false, `on-site footer actions visible at ${width}`);

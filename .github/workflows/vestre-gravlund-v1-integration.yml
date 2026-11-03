@@ -1,0 +1,85 @@
+name: Vestre gravlund v1 integration and browser smoke
+on:
+  push:
+    branches:
+      - content/oslo-aav-vestre-gravlund-v1-20261027
+    paths:
+      - '.github/workflows/vestre-gravlund-v1-integration.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: vestre-gravlund-v1-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/content/oslo-aav-vestre-gravlund-v1-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-aav-vestre-gravlund-v1-20261027
+          fetch-depth: 120
+          persist-credentials: true
+      - name: Sync main retaining all unrelated Places
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if ! git merge --no-edit origin/main; then
+            mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+            for file in "${conflicts[@]}"; do
+              case "$file" in
+                data/fag/fag_manifest.json|data/fagverk/fagverk_registry.json|data/quiz/manifest.json|data/quizcards/historie/manifest.json)
+                  git checkout --theirs -- "$file" ;;
+                *) echo "Unexpected conflict: $file" >&2; exit 1;;
+              esac
+            done
+            node scripts/reconcile-vestre-gravlund-registries.mjs
+            git add data/fag/fag_manifest.json data/fagverk/fagverk_registry.json data/quiz/manifest.json data/quizcards/historie/manifest.json
+            git commit -m "Merge latest main preserving Vestre gravlund registration"
+          fi
+          node scripts/reconcile-vestre-gravlund-registries.mjs
+          git add data/fag/fag_manifest.json data/fagverk/fagverk_registry.json data/quiz/manifest.json data/quizcards/historie/manifest.json
+          if ! git diff --cached --quiet; then git commit -m "Reconcile Vestre gravlund registries"; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate quiz context
+        run: node scripts/build-quiz-production-context.mjs --category historie --target vestre_gravlund --output data/quiz/production_context/historie/vestre_gravlund.json
+      - name: Generate canonical Knowledge
+        run: npm run knowledge:canonical:write
+      - name: Sync QuizCard Knowledge
+        run: node scripts/sync-vestre-gravlund-quizcard-knowledge.mjs
+      - name: Generate Place-open and Fagverk release
+        run: |
+          npm run place-open:build
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Run targeted unit tests
+        run: node --test tests/vestre-gravlund-v1-parity.test.mjs
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify app on phone and desktop
+        run: node tests/vestre-gravlund-real-app-browser-20261027.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vestre_gravlund-browser
+          path: artifacts/vestre_gravlund-browser/
+          if-no-files-found: ignore
+      - name: Push generated artifacts only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/quiz/production_context/historie/vestre_gravlund.json
+          git add data/quiz/historie/vestre_gravlund_sets.json data/quizcards/historie/vestre_gravlund_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/vestre_gravlund.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then git commit -m "Vestre gravlund: publish canonical quiz, Knowledge and runtime"; fi
+          git push origin HEAD:content/oslo-aav-vestre-gravlund-v1-20261027

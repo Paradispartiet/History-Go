@@ -6,6 +6,8 @@ import { chromium } from "playwright";
 
 const root = process.cwd();
 const index = fs.readFileSync(path.join(root, "index.html"), "utf8");
+const liveLayout = index.match(/<style id="hg-placecard-live-layout-v6">[\s\S]*?<\/style>/)?.[0];
+assert.ok(liveLayout, "Load the production PlaceCard layout in the test fixture");
 assert.equal((index.match(/<link[^>]*place-card-sticky-header\.css/g) || []).length, 1,
   "Original hero CSS loads once");
 assert.equal((index.match(/<script[^>]*place-card-sticky-header\.js/g) || []).length, 1,
@@ -20,6 +22,7 @@ const files = [
 const fixture = `<!doctype html><html lang="nb"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ${files.filter(x=>x.endsWith(".css")).map(file=>`<link rel="stylesheet" href="${file}">`).join("")}
+${liveLayout}
 <style>
 html,body{margin:0;background:#111;color:white;font-family:system-ui;}
 #placeCard{top:12px;bottom:12px}
@@ -35,19 +38,18 @@ html,body{margin:0;background:#111;color:white;font-family:system-ui;}
 <img id="pcHeaderImage" class="pc-heading-image" alt="">
 <div class="pc-heading-content">
 <div class="pc-title-row"><h2 id="pcTitle">Olaf Ryes plass</h2>
-<button id="pcReaderToggle" class="pc-reader-toggle" type="button">Lyd</button>
 <button id="pcFavorite" class="pc-favorite-btn" type="button">☆</button>
 <button id="pcPeopleIcon" class="pc-round" type="button">Person</button>
 <button id="pcBadgesIcon" class="pc-round" type="button">Medier</button>
 </div>
 <div id="pcMeta" class="pc-meta"><button class="pc-category-meta" type="button">MEDIER · 1980–1999</button>
 <button class="pc-epoke" type="button">Epoke: Kommersialisering, kabel og konkurranse</button></div>
-<div id="pcStatusBar" class="pc-status-bar"><button class="pc-progress-status-line" type="button">STATUS: IKKE FULLFØRT · TA QUIZ</button></div>
+<div id="pcStatusBar" class="pc-status-bar"><button class="pc-progress-status-line" type="button">Ta quiz</button></div>
 </div></div></div></div>
 <nav class="pc-sheet-section-nav"><button type="button">Om</button><button type="button">Fortellinger</button></nav>
 <div class="pc-sheet-intro"><p id="pcDesc">Historisk beskrivelse</p></div>
 <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
-<section class="pc-sheet-canonical-about">Langt historisk innhold</section>
+<section class="pc-sheet-canonical-about"><h3><span>Om stedet</span><button id="pcReaderToggle" class="pc-reader-toggle" type="button">Lyd</button></h3><p>Langt historisk innhold</p></section>
 </section></div></div>
 <script defer src="/js/ui/place-card-sticky-header.js"></script>
 </body></html>`;
@@ -87,7 +89,7 @@ try {
       document.getElementById("pcHeaderHero").classList.add("has-photo-source","has-image");
     });
     await page.waitForFunction(()=>document.querySelector("#placeCard")?.classList.contains("is-original-photo-pinned")
-      && document.querySelector("#pcHeaderHero")?.dataset.pcContrast==="dark");
+      && document.querySelector("#pcHeaderHero")?.dataset.pcContrast==="light");
     const initial=await page.evaluate(()=>{
       const rect=(s)=>{const r=document.querySelector(s).getBoundingClientRect();
         return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
@@ -100,6 +102,8 @@ try {
         badgeX:rect("#pcBadgesIcon").x,
         peopleX:rect("#pcPeopleIcon").x,
         title:rect("#pcTitle"),
+        category:rect("#pcMeta > .pc-category-meta"),
+        epoch:rect("#pcMeta > .pc-epoke"),
         hero:rect("#pcHeaderHero"),
         card:rect("#placeCard"),
         shell:rect(".pc-sheet-shell"),
@@ -113,6 +117,7 @@ try {
         border:getComputedStyle(document.querySelector("#placeCard")).borderLeftWidth,
         status:rect("#pcStatusBar > .pc-progress-status-line"),
         audio:rect("#pcReaderToggle"),
+        audioParent:document.querySelector("#pcReaderToggle")?.parentElement?.tagName,
         favorite:rect("#pcFavorite"),
         people:rect("#pcPeopleIcon"),
         badge:rect("#pcBadgesIcon"),
@@ -134,23 +139,30 @@ try {
     }
     assert.ok(initial.intro.left >= initial.card.left,
       "Editorial content remains inside the card at "+width+"px");
-    assert.equal(initial.titleColor,"rgb(17, 25, 35)","Bright original image uses dark title");
-    const verifyBelowTitle = (geom, stage) => {
+    assert.equal(initial.titleColor,"rgb(255, 255, 255)","Heading must stay white on a bright photo");
+    assert.equal(initial.audioParent,"H3","Reader follows Om stedet in About, outside the photo");
+    assert.ok(initial.audio.top>=initial.hero.bottom,"Reader is below the hero");
+    const verifyHeroLayout = (geom, stage) => {
       const desc = stage + " at " + width + "px: " + JSON.stringify(geom);
-      assert.ok(geom.audio.top >= geom.title.bottom + 2 && geom.audio.top <= geom.title.bottom + 18,
-        "Audio must sit directly below the place heading: " + desc);
-      assert.ok(Math.abs(geom.audio.left - geom.title.left) <= 2,
-        "Audio starts at the left edge of the heading: " + desc);
-      assert.ok(geom.favorite.left >= geom.audio.right - 1 && geom.favorite.left - geom.audio.right <= 12,
-        "Favorite stays beside audio in the second row: " + desc);
-      assert.ok(Math.abs(geom.audio.top - geom.favorite.top) <= 2,
-        "Audio and favorite share the row below the title: " + desc);
-      assert.ok(geom.people.left >= geom.favorite.right - 1 && geom.people.right <= geom.badge.left + 1,
-        "People and badge stay right of the audio/favorite controls: " + desc);
-      assert.ok(geom.people.top >= geom.title.bottom + 2 && geom.badge.top >= geom.title.bottom + 2,
-        "Right-hand circles share the lower action row beneath the title: " + desc);
+      assert.ok(geom.status.bottom <= geom.title.top + 2,
+        "Quiz action sits above the title: " + desc);
+      assert.ok(geom.favorite.left >= geom.title.right - 2
+        && geom.favorite.left - geom.title.right <= 20
+        && geom.favorite.width <= 30,
+        "Small star sits immediately to the right of the title: " + desc);
+      assert.ok(geom.favorite.top >= geom.title.top - 12
+        && geom.favorite.top <= geom.title.top + 8,
+        "Star is slightly raised in the title line: " + desc);
+      assert.ok(geom.category.top >= geom.title.bottom - 2,
+        "Category follows the place heading: " + desc);
+      assert.ok(geom.epoch.top >= geom.category.bottom - 2,
+        "Epoch is on a separate line: " + desc);
+      assert.ok(geom.people.right <= geom.badge.left + 1
+        && geom.people.top <= geom.title.top
+        && geom.badge.top <= geom.title.top,
+        "People and badges remain together at the top right: " + desc);
     };
-    verifyBelowTitle(initial, "before scroll");
+    verifyHeroLayout(initial, "before scroll");
     assert.ok(initial.status.bottom<=initial.hero.bottom+1,
       "Small status remains INSIDE original full-size image");
     assert.ok(initial.status.height<=28,
@@ -185,7 +197,8 @@ try {
           &&document.querySelector("#pcBadgesIcon")===window.__initialBadges,
         duplicate:document.querySelectorAll(".pc-sticky-image-header").length,
         hero:r("#pcHeaderHero"), visible:r(".pc-sheet-hero"),
-        title:r("#pcTitle"), audio:r("#pcReaderToggle"), favorite:r("#pcFavorite"),
+        title:r("#pcTitle"), category:r("#pcMeta > .pc-category-meta"),
+        epoch:r("#pcMeta > .pc-epoke"), audio:r("#pcReaderToggle"), favorite:r("#pcFavorite"),
         badge:r("#pcBadgesIcon"), people:r("#pcPeopleIcon"),
         status:r("#pcStatusBar"), meta:r("#pcMeta"), nav:r(".pc-sheet-section-nav"),
         scroller:r(".pc-body"), scrollTop:document.querySelector(".pc-body").scrollTop,
@@ -201,20 +214,18 @@ try {
     assert.equal(scrolled.duplicate,0,"Never creates a different-format heading");
     assert.equal(scrolled.titleFont,initial.titleFont,"No title restyling during scroll");
     assert.ok(scrolled.sameImage,"Photo source never changes");
-    verifyBelowTitle(scrolled, "after scroll");
+    verifyHeroLayout(scrolled, "after scroll");
     assert.ok(scrolled.visible.top <= scrolled.scroller.top + 1
       && scrolled.visible.top >= scrolled.scroller.top-1, "Same original image remains pinned: "+JSON.stringify(scrolled));
     assert.ok(scrolled.visible.height<=initial.heading-40,
       "Actual original image must shrink significantly during scroll; not just a few pixels: "+JSON.stringify(scrolled));
     assert.ok(scrolled.title.bottom<=scrolled.visible.bottom+1,"Title stays visible");
-    assert.ok(scrolled.audio.bottom<=scrolled.visible.bottom+1
-      && scrolled.favorite.bottom<=scrolled.visible.bottom+1,
-      "Audio and favorite remain inside pinned original image");
-    assert.ok(scrolled.people.bottom<=scrolled.visible.bottom+1
-      && scrolled.badge.bottom<=scrolled.visible.bottom+1,"Icon circles stay visible");
-    assert.ok(scrolled.meta.bottom>scrolled.visible.bottom+1
-      && scrolled.status.bottom>scrolled.visible.bottom+1,
-      "Metadata and status stay in the original image DOM, but the lower edge scrolls away");
+    assert.ok(scrolled.favorite.bottom<=scrolled.visible.bottom+1,
+      "Favorite follows the title inside the pinned photograph");
+    assert.ok(scrolled.category.bottom<=scrolled.visible.bottom+1,
+      "Category follows the visible lower edge as the photo collapses");
+    assert.ok(scrolled.audio.top>scrolled.visible.bottom,
+      "Audio remains in the editorial About section");
     assert.ok(scrolled.nav.top>=scrolled.visible.bottom-1,"Navigation follows pinned image");
 
     // Do not click the status while clipped: it is intentionally part of the
@@ -227,7 +238,7 @@ try {
     });
     await page.waitForFunction(()=>document.querySelector("#pcHeaderHero")?.dataset.pcContrast==="light");
     assert.equal(await page.evaluate(()=>getComputedStyle(document.querySelector("#pcTitle")).color),
-      "rgb(255, 255, 255)","Dark original image uses light title");
+      "rgb(255, 255, 255)","Dark original image also uses a white title");
     await page.evaluate(()=>document.querySelector(".pc-body").scrollTop=0);
     await page.waitForFunction(()=>document.querySelector(".pc-body").scrollTop===0);
     await page.waitForFunction(()=>{

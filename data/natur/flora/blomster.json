@@ -75,6 +75,79 @@
     "quiz_ids":["quiz_nature_flora_bitterbergknapp"]
   },
   {
+    "id": "emne_flora_blaklokke",
+    "title": "Blåklokke",
+    "latin": "Campanula rotundifolia",
+    "taxonomy": {
+      "norsk_navn": "Blåklokke",
+      "latin_navn": "Campanula rotundifolia",
+      "familie": "Campanulaceae"
+    },
+    "habitat": {
+      "biotop": [
+        "tørre enger",
+        "åpne bakker",
+        "bergknauser",
+        "veikanter"
+      ],
+      "jord": [
+        "veldrenerte",
+        "skrinn"
+      ],
+      "lys": [
+        "sol",
+        "halvskygge"
+      ],
+      "fukt": [
+        "tørr",
+        "moderat"
+      ]
+    },
+    "fenologi": {
+      "blomstring": [
+        "juni",
+        "juli",
+        "august",
+        "september"
+      ],
+      "strategi": "Flerårig eng- og tørrbakkeplante med lang blomstringsperiode."
+    },
+    "kjennetegn": [
+      "hengende blåfiolette klokkeformede blomster med fem sammenvokste kronfliker",
+      "smale, ofte linjeformede blader på stengelen",
+      "runde til hjerteformede grunnblad kan være synlige tidlig i sesongen"
+    ],
+    "økologi": {
+      "rolle": [
+        "nektar- og pollenressurs"
+      ],
+      "samspill": [
+        "pollinerende insekter",
+        "åpne engmiljøer"
+      ]
+    },
+    "bykontekst": {
+      "typiske_steder": [
+        "tørre blomsterenger",
+        "lysåpne skogkanter",
+        "bergknauser"
+      ]
+    },
+    "observasjonstips": [
+      "Se etter blåfiolette hengende klokker på tynne, opprette stengler.",
+      "Skill blomsten fra større hageklokker ved spinkel vekstform og smale stengelblad."
+    ],
+    "quiz_hooks": [
+      "gjenkjenning",
+      "habitat",
+      "forveksling"
+    ],
+    "quiz_ids": [],
+    "source_urls": [
+      "https://www.rhs.org.uk/plants/2969/campanula-rotundifolia/details"
+    ]
+  },
+  {
     "id":"emne_flora_blaknapp",
     "title":"Blåknapp",
     "latin":"Succisa pratensis",
@@ -316,10 +389,11 @@
   },
   {
     "id":"emne_flora_gullsoleie",
-    "title":"Gullsoleie",
+    "aliases":["Gullsoleie"],
+    "title":"Nyresoleier",
     "latin":"Ranunculus auricomus agg.",
     "related_flora_id":"flora_gullsoleie",
-    "taxonomy":{"norsk_navn":"Gullsoleie","latin_navn":"Ranunculus auricomus","familie":"Ranunculaceae"},
+    "taxonomy":{"norsk_navn":"Nyresoleier","latin_navn":"Ranunculus auricomus agg.","familie":"Ranunculaceae"},
     "habitat":{"biotop":["skogkanter","parkdrag","halvskygge","litt fuktige kanter"],"jord":["moderat","næringsrik"],"lys":["halvskygge","sol"],"fukt":["moderat"]},
     "fenologi":{"blomstring":["april","mai"],"strategi":"Tidlig vår-/vårblomst i skogdrag og parkkanter; ofte i små bestander."},
     "kjennetegn":["gule blomster (ofte litt ‘uregelmessige’)","blader kan være dypt flikete og varierende","tidlig sesong"],
@@ -556,18 +630,33 @@
   },
   {
     "id":"emne_flora_kusymre_marianokleblom",
-    "title":"Kusymre / Marianøkleblom",
-    "latin":"Primula spp.",
+    "title":"Kusymre",
+    "latin":"Primula vulgaris",
     "related_flora_id":"flora_kusymre_marianokleblom",
-    "taxonomy":{"norsk_navn":"Kusymre / Marianøkleblom","latin_navn":"Primula","familie":"Primulaceae"},
-    "habitat":{"biotop":["parkdrag","enger (kalk/urterik)","lyse skogkanter"],"jord":["moderat","kalkrik"],"lys":["sol","halvskygge"],"fukt":["moderat"]},
-    "fenologi":{"blomstring":["april","mai"],"strategi":"Klassiske vårblomster som folk forventer (både vilt og plantet/forvillet lokalt)."},
-    "kjennetegn":["gule blomster i skjerm/klase","bladrosett","tydelig vårpreg"],
+    "taxonomy":{"norsk_navn":"Kusymre","latin_navn":"Primula vulgaris","familie":"Primulaceae"},
+    "habitat":{"biotop":["skogkanter","løvskog","grasmark","hager"],"jord":["humusrik","moderat"],"lys":["halvskygge","sol"],"fukt":["moderat"]},
+    "fenologi":{"blomstring":["mars","april","mai"],"strategi":"Vårplante med enkeltblomster direkte fra basalrosetten."},
+    "kjennetegn":["Store blekgule blomster, hver på sin egen blomsterstilk","Dypere gult svelg på enkle, femflikete kroner","Rynkete avlange blad i en lav rosett"],
     "økologi":{"rolle":["vårressurs"],"samspill":["vårinsekter","urterike drag"]},
-    "bykontekst":{"typiske_steder":["parkdrag","urterike skråninger"],"oslo_observert_typisk":["utvalgte drag/enger","noen parker"]},
-    "observasjonstips":["Se i april/mai: gule ‘nøkler’ i små klaser."],
+    "bykontekst":{"typiske_steder":["hager","skogkanter","parkdrag"],"oslo_observert_typisk":["dyrket eller forvillet i hager og parker"]},
+    "observasjonstips":["Kusymre har separate større blomster, ikke mange små blomster i en høy skjerm."],
     "quiz_hooks":["sesong","gjenkjenning"],
     "quiz_ids":["quiz_nature_flora_kusymre_marianokleblom"]
+  },
+  {
+    "id":"emne_flora_marianokleblom",
+    "title":"Marianøkleblom",
+    "latin":"Primula veris",
+    "related_flora_id":"flora_kusymre_marianokleblom",
+    "taxonomy":{"norsk_navn":"Marianøkleblom","latin_navn":"Primula veris","familie":"Primulaceae"},
+    "habitat":{"biotop":["kalkrike enger","naturbeitemarker","lyse skogkanter"],"jord":["kalkrik","veldrenert"],"lys":["sol","halvskygge"],"fukt":["moderat"]},
+    "fenologi":{"blomstring":["april","mai","juni"],"strategi":"Vårplante med mange små hengende blomster samlet på høy stengel."},
+    "kjennetegn":["Mange små gullgule hengende blomster i skjerm på høy stilk","Oransje markeringer i den rørformede blomsterkronen","Rynkete rosettblad og håret blomsterstengel"],
+    "økologi":{"rolle":["vårressurs"],"samspill":["vårinsekter","urterike drag"]},
+    "bykontekst":{"typiske_steder":["kalkbakker","naturbeitemarker","lyse skogkanter"],"oslo_observert_typisk":["lokale forekomster i Oslofjordområdet"]},
+    "observasjonstips":["Se etter nøkkelknippeformet blomsterskjerm.","Arten er sårbar (VU) i Norge – ikke plukk ville planter."],
+    "quiz_hooks":["sesong","gjenkjenning"],
+    "quiz_ids":[]
   },
   {
     "id":"emne_flora_lungeurt",
@@ -646,10 +735,10 @@
   },
   {
     "id":"emne_flora_penstorkenebb",
-    "title":"Penstorkenebb",
+    "title":"Stankstorkenebb",
     "latin":"Geranium robertianum",
     "related_flora_id":"flora_penstorkenebb",
-    "taxonomy":{"norsk_navn":"Penstorkenebb","latin_navn":"Geranium robertianum","familie":"Geraniaceae"},
+    "taxonomy":{"norsk_navn":"Stankstorkenebb","latin_navn":"Geranium robertianum","familie":"Geraniaceae"},
     "habitat":{"biotop":["stikanter","murer","skyggefulle kanter","parkkanter"],"jord":["moderat"],"lys":["halvskygge","skygge"],"fukt":["moderat"]},
     "fenologi":{"blomstring":["mai","juni","juli","august"],"strategi":"Kant- og murplante som ofte dukker opp i skyggefulle steder."},
     "kjennetegn":["små rosa blomster","flikete blader","kan bli rødlig i sol/tørke","tydelig ‘storkenebb-frukt’ senere"],
@@ -823,6 +912,82 @@
     "observasjonstips":["Tidlig vår: blå tepper i parker = ofte scilla."],
     "quiz_hooks":["sesong","gjenkjenning"],
     "quiz_ids":["quiz_nature_flora_russblaastjerne"]
+  },
+  {
+    "id": "emne_flora_ryllik",
+    "title": "Ryllik",
+    "latin": "Achillea millefolium",
+    "taxonomy": {
+      "norsk_navn": "Ryllik",
+      "latin_navn": "Achillea millefolium",
+      "familie": "Asteraceae"
+    },
+    "habitat": {
+      "biotop": [
+        "tørre enger",
+        "veikanter",
+        "åpne gressbakker",
+        "plenkanter"
+      ],
+      "jord": [
+        "veldrenerte",
+        "moderat næringsrik",
+        "skrinn"
+      ],
+      "lys": [
+        "sol"
+      ],
+      "fukt": [
+        "tørr",
+        "moderat"
+      ]
+    },
+    "fenologi": {
+      "blomstring": [
+        "juni",
+        "juli",
+        "august",
+        "september"
+      ],
+      "strategi": "Flerårig engplante som trives i solrike, veldrenerte miljøer."
+    },
+    "kjennetegn": [
+      "svært finflikete, fjærlignende blad",
+      "flate eller svakt hvelvede samlinger av mange små blomsterkurver",
+      "små hvite, tidvis svakt rosa randblomster rundt hver gulhvit midtskive"
+    ],
+    "økologi": {
+      "rolle": [
+        "ressurs for pollinatorer",
+        "engplante"
+      ],
+      "samspill": [
+        "bier",
+        "svevefluer",
+        "tørrenger"
+      ]
+    },
+    "bykontekst": {
+      "typiske_steder": [
+        "engpartier",
+        "veikanter",
+        "solrike plener"
+      ]
+    },
+    "observasjonstips": [
+      "Se på de fint oppdelte bladene, ikke bare blomsterfargen.",
+      "Ikke forveksle samlingen av små kurver med én enkelt skjermblomst."
+    ],
+    "quiz_hooks": [
+      "gjenkjenning",
+      "bladform",
+      "forveksling"
+    ],
+    "quiz_ids": [],
+    "source_urls": [
+      "https://www.rhs.org.uk/plants/311/achillea-millefolium-common-yarrow-devil-s-nettle-hundred-leaved-grass-lace-plant-milfoil-nose-pepper-nosebleed-old-man-s-pepper-sanguinary-savory-tea-soldier-s-woundwort-thousand-weed-thousand-leaf-thousand-seal-milddail/details",
+      "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:2294-2/general-information"
+    ]
   },
   {
     "id":"emne_flora_sandarve",
@@ -1012,12 +1177,13 @@
     "taxonomy":{"norsk_navn":"Tiriltunge","latin_navn":"Lotus corniculatus","familie":"Fabaceae"},
     "habitat":{"biotop":["eng","parkenger"],"jord":["moderat"],"lys":["sol"],"fukt":["tørr til moderat"]},
     "fenologi":{"blomstring":["juni","juli","august"],"strategi":"Lav engplante i lite klipte flater."},
-    "kjennetegn":["gule blomster med rødt","fem småblad"],
+    "kjennetegn":["gule erteblomster med ofte rødoransje knopper","fem småblad fordelt som tre ytterst og et separat par ved bladstilkens grunn","smale belger som ofte spriker fra ett punkt"],
     "økologi":{"rolle":["pollinatorplante"],"samspill":["humler"]},
     "bykontekst":{"typiske_steder":["blomsterenger"],"oslo_observert_typisk":["Tøyenparken","Bygdøy"]},
-    "observasjonstips":["Typisk blomstereng-art."],
+    "observasjonstips":["Se etter gule erteblomster i små grupper på lysåpne enger.","Kontroller at de fem småbladene sitter i en 3+2-ordning, ikke som en vifte fra samme punkt."],
     "quiz_hooks":["gjenkjenning"],
-    "quiz_ids":["quiz_nature_flora_tiriltunge"]
+    "quiz_ids":["quiz_nature_flora_tiriltunge"],
+    "source_urls":["https://www.rhs.org.uk/plants/99960/lotus-corniculatus/details","https://www.plantlife.org.uk/plants-and-fungi/birds-foot-trefoil/"]
   },
   {
     "id":"emne_flora_tveskjeggveronika",

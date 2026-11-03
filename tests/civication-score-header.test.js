@@ -56,10 +56,12 @@ const header = window.document.getElementById("civiLifestoryHeaderStatus");
 window.CivicationDashboardUI.updateHeaderStatus({ state: life, view: { fase: { navn: "Morgen" } } });
 const btn = header.querySelector("#civiScoreTrigger");
 assert.ok(btn && btn.tagName === "BUTTON", "score is an accessible interactive button");
-assert.equal(btn.textContent, "56");
+assert.equal(btn.querySelector(".civi-score-trigger-number").textContent, "56");
+assert.ok(btn.textContent.includes("Status og verdier"), "the score is part of the status control");
 assert.match(btn.getAttribute("aria-label"), /56 av 100/);
 assert.ok(header.textContent.includes("Museumsvert") && header.textContent.includes("Dag 3"));
-assert.ok(!header.textContent.includes("Psyke") && !header.textContent.includes("PC"));
+assert.ok(header.textContent.includes("Psyke 60") && header.textContent.includes("Energi 80"));
+assert.ok(header.textContent.includes("Fortellingspenger -50000") && !header.textContent.includes("PC"));
 window.CivicationCalendar = {
   getClock: () => ({ dayIndex: 8 }),
   getPhase: () => "workday",
@@ -76,6 +78,10 @@ const dialog = window.document.getElementById("civiScoreDialog");
 assert.ok(dialog?.hasAttribute("open"), "score breakdown opens on click");
 assert.ok(dialog.textContent.includes("Skills") && dialog.textContent.includes("Ikke målt"));
 assert.ok(dialog.textContent.includes("Omdømme") && dialog.textContent.includes("Fortellingspenger"));
+assert.ok(dialog.textContent.includes("Livssituasjon") && dialog.textContent.includes("Museumsvert"));
+assert.ok(dialog.textContent.includes("Psyke") && dialog.textContent.includes("Energi"));
+assert.ok(dialog.textContent.includes("Dag") && dialog.textContent.includes("Fase"));
+assert.ok(dialog.textContent.includes("-50000"), "currency remains visible without entering score");
 dialog.querySelector(".civi-score-close").click();
 assert.equal(dialog.hasAttribute("open"), false, "dialog close works");
 
@@ -85,6 +91,7 @@ window.localStorage.removeItem("hg_capital_v1");
 window.CivicationSkills = null;
 window.CivicationPsyche = null;
 window.CivicationState = { getState: () => ({}), getActivePosition: () => null };
+assert.equal(window.CivicationScoreUI.getModel({ state: {}, lifeRole: "Arbeidsledig" }).status[0][1], "Arbeidsledig");
 assert.equal(window.CivicationScoreUI.getModel({ state: {} }).score, null,
   "missing capability measurements are not quietly reported as a real zero");
 console.log("civication-score-header: PASS");

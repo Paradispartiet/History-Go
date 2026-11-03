@@ -40,7 +40,7 @@
     return stack;
   }
 
-  function showTargetUnlock(detail) {
+  function showTargetUnlock(detail, onFinished) {
     const kind = detail?.kind === "place" ? "place" : "person";
     const isPlaceQuizReward = kind === "place" && !!detail?.quizId;
     const name = String(detail?.name || "").trim() || (kind === "place" ? tUI("ui.unlock.place", "Sted") : tUI("ui.unlock.newPerson", "Ny person"));
@@ -77,11 +77,16 @@
     stack.appendChild(card);
     requestAnimationFrame(() => card.classList.add("is-visible"));
 
+    let dismissed = false;
     function dismiss() {
-      if (!card.parentNode) return;
+      if (dismissed) return;
+      dismissed = true;
       card.classList.remove("is-visible");
       card.classList.add("is-leaving");
-      setTimeout(() => card.remove(), 250);
+      setTimeout(() => {
+        card.remove();
+        onFinished?.();
+      }, 250);
     }
 
     card.querySelector(".nature-unlock-close").addEventListener("click", dismiss);
@@ -115,7 +120,10 @@
 
   window.addEventListener("hg:target-unlock", (e) => {
     const event = /** @type {CustomEvent} */ (e);
-    try { showTargetUnlock(event.detail); } catch (err) {
+    try {
+      if (window.HGToastRuntime?.enqueueReward) window.HGToastRuntime.enqueueReward(done => showTargetUnlock(event.detail, done));
+      else showTargetUnlock(event.detail);
+    } catch (err) {
       if (window.DEBUG) console.warn("[TargetUnlockToast]", err);
     }
   });

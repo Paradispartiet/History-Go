@@ -203,11 +203,12 @@
   }
 
   function backButton(target = "home") {
-    return `<button class="psychology-room-back" type="button" data-psych-back="${escapeHtml(target)}">← Tilbake</button>`;
+    const label = target === "home" ? "Tilbake til Psykologirommet" : "Tilbake i Psykologirommet";
+    return `<button class="psychology-room-back psychology-room-back-nav" type="button" data-psych-back="${escapeHtml(target)}" aria-label="${label}" title="${label}">←</button>`;
   }
 
   function pathBackButton(pathId) {
-    return `<button class="psychology-room-back" type="button" data-psych-back-path="${escapeHtml(pathId)}">← Tilbake</button>`;
+    return `<button class="psychology-room-back psychology-room-back-nav" type="button" data-psych-back-path="${escapeHtml(pathId)}" aria-label="Tilbake til 7-dagersløpet" title="Tilbake til 7-dagersløpet">←</button>`;
   }
 
   function bindBack() {

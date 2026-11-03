@@ -8,6 +8,7 @@ on:
       - "js/social/HGSocialMeetUI.js"
       - "tests/hg-social-meet-aha-private-chat.test.js"
       - "tests/hg-social-meet-unified-ui.test.js"
+      - "tests/hg-social-meet-map-opt-in.test.js"
       - "tests/social-meet-spotmeeting-browser-smoke.test.js"
       - "tests/explore-events-social-meet.test.mjs"
       - "package.json"
@@ -33,5 +34,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - name: Social Meet and AHA Chat browser smoke
         run: npm run test:social-meet-spotmeeting-smoke
+      - name: Møtes map explicit opt-in and backend failures
+        run: node tests/hg-social-meet-map-opt-in.test.js
       - name: Explore and Møtes entry contracts
         run: node --test tests/explore-events-social-meet.test.mjs

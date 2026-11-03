@@ -76,10 +76,25 @@ function hide(){
   }
 
   function init(){
-    el = document.getElementById("placeCard");
-    if (!el) return;
+    const nextEl = document.getElementById("placeCard");
+    if (!nextEl) return;
 
+    // bootBackground calls init() again after the first PlaceCard may have
+    // opened. Rebinding must never reset the existing sheet to hidden.
+    if (el === nextEl) {
+      bindCollapseButton();
+      return;
+    }
+
+    el = nextEl;
     bindCollapseButton();
+
+    // Preserve an already open sheet if a new DOM node was mounted.
+    if (el.classList.contains("is-open") && el.dataset.currentPlaceId) {
+      el.setAttribute("aria-hidden", "false");
+      state = STATES.OPEN;
+      return;
+    }
 
     el.classList.remove("is-open", "is-collapsed", "is-hidden");
     el.classList.add("is-hidden");

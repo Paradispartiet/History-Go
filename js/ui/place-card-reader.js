@@ -24,7 +24,20 @@
   toggle.type = "button";
   toggle.className = "pc-reader-toggle";
   toggle.innerHTML = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+  // One live reader button: beside the About heading for standard Places,
+  // back in the legacy title row for Micro and other PlaceCard layouts.
+  function syncReaderPlacement() {
+    const aboutHeading = card.classList.contains("is-place-sheet-direct")
+      ? card.querySelector('.pc-sheet-canonical-about > h3')
+      : null;
+    if (aboutHeading) {
+      if (toggle.parentElement !== aboutHeading) aboutHeading.appendChild(toggle);
+    } else if (toggle.parentElement !== titleRow) {
+      titleRow.insertBefore(toggle, document.getElementById("pcFavorite"));
+    }
+  }
   titleRow.insertBefore(toggle, document.getElementById("pcFavorite"));
+  syncReaderPlacement();
 
   // Panelet ligger utenfor .pc-body slik at det blir stående når stedsteksten rulles.
   const controls = document.createElement("div");
@@ -328,6 +341,7 @@
   // Re-check the live DOM when async Place Sheet sections are hydrated. Do
   // not interrupt a speaking chunk; the next onend will see new content.
   function onEditorialUpdate() {
+    syncReaderPlacement();
     if (!enabled || inFlight || !usablePlace()) return;
     // An async renderer may deliver its last section even after the
     // phase reports full-ready. Continue when new unread prose appears.

@@ -1,0 +1,349 @@
+/* Common navigation slot; module-specific header controls remain intact. */
+.hg-universal-back {
+  display: inline-flex;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  min-width: 38px;
+  max-width: 38px;
+  height: 38px;
+  min-height: 38px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 9px;
+  background: rgba(255,255,255,.045);
+  color: #f2f3f6;
+  font: 600 12px/1.25 system-ui, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+.hg-universal-back-arrow { color: #ffe34c; font-size: 18px; line-height: 1; }
+.hg-universal-back:hover { background: rgba(255,227,76,.08); border-color: rgba(255,227,76,.32); }
+.hg-universal-back:focus-visible { outline: 2px solid #ffe34c; outline-offset: 2px; }
+body.hg-app .site-header > .hg-universal-back { margin-right: 6px; }
+.topbar-left > .hg-universal-back { margin-right: 12px; }
+.kv2-appbar > .hg-universal-back, .fagverk-topbar > .hg-universal-back { margin-right: 8px; }
+.profile-header-left > .hg-universal-back { margin-right: 2px; }
+.emner-header-nav > .hg-universal-back { align-self: flex-start; }
+main.main > header > .hg-universal-back { margin-bottom: 8px; }
+@media (max-width: 460px) {
+  .topbar-left > .hg-universal-back { margin-right: 7px; }
+}
+
+/* Keep the History Go logo at the left; the icon-only back link fits in the
+   existing space between its right edge and the header controls. */
+body.hg-app header.site-header > .hg-universal-back {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 18px);
+  left: calc(env(safe-area-inset-left, 0px) + 78px);
+  z-index: 22;
+  margin: 0;
+}
+@media (max-width: 860px) {
+  /* Match the compact header logo size with sufficient specificity to beat theme.css. */
+  body.hg-app header.site-header > .hg-brand {
+    width: 54px;
+    height: 54px;
+    top: 1px;
+  }
+  body.hg-app header.site-header > .hg-universal-back {
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    height: 34px;
+    min-height: 34px;
+    left: calc(env(safe-area-inset-left, 0px) + 64px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+@media (max-width: 380px) {
+  body.hg-app header.site-header > .hg-brand {
+    width: 46px;
+    height: 46px;
+    top: 5px;
+  }
+  body.hg-app header.site-header > .hg-universal-back {
+    left: calc(env(safe-area-inset-left, 0px) + 55px);
+  }
+}
+
+/* Keep the return affordance available while long subpages scroll. */
+body.hg-fagverk-portal-page .fagverk-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 120;
+}
+.emner-header-nav > .hg-universal-back,
+main.main > header > .hg-universal-back {
+  position: fixed;
+  top: calc(10px + env(safe-area-inset-top, 0px));
+  left: calc(12px + env(safe-area-inset-left, 0px));
+  z-index: 1100;
+  box-shadow: 0 6px 24px rgba(0,0,0,.45);
+  background: rgba(9,11,16,.95);
+}
+
+/* The logo opens History Go's start menu. Its top edge must remain inside
+   the header; the enlarged artwork may extend below, never above it. */
+body.hg-app header.site-header > .hg-brand {
+  position: absolute;
+  left: calc(6px + env(safe-area-inset-left, 0px));
+  top: 2px;
+  width: 112px;
+  height: 112px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 21;
+}
+body.hg-app header.site-header > .hg-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+body.hg-app header.site-header > .hg-brand:focus-visible {
+  outline: 2px solid #ffe34c;
+  outline-offset: -8px;
+  border-radius: 12px;
+}
+body.hg-app header.site-header > .hg-brand:hover { filter: brightness(1.1); }
+body.hg-app header.site-header > .hg-universal-back {
+  left: calc(124px + env(safe-area-inset-left, 0px));
+}
+@media (max-width: 860px) {
+  body.hg-app header.site-header > .hg-brand {
+    width: 94px;
+    height: 94px;
+    top: 2px;
+  }
+  body.hg-app header.site-header > .hg-universal-back {
+    left: calc(107px + env(safe-area-inset-left, 0px));
+  }
+}
+@media (max-width: 380px) {
+  body.hg-app header.site-header > .hg-brand {
+    width: 84px;
+    height: 84px;
+    top: 2px;
+  }
+  body.hg-app header.site-header > .hg-universal-back {
+    left: calc(96px + env(safe-area-inset-left, 0px));
+  }
+}
+
+/* When the back arrow is present, the 390px header needs compact controls
+   so the enlarged logo, arrow and first actionable control never overlap. */
+@media (max-width: 520px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions {
+    gap: 2px;
+    padding-left: 0;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 72px;
+    min-width: 72px;
+    max-width: 72px;
+    flex: 0 0 72px;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) #nearbyExploreToggle {
+    width: 32px;
+    min-width: 32px;
+    padding: 0;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) #nearbyExploreToggle .nearby-explore-icon {
+    display: inline;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) #nearbyExploreToggle .nearby-explore-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+@media (max-width: 350px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+    flex: 0 0 44px;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) #geoStatus { display: none; }
+}
+
+
+/* Fixed house shortcut: always opens the main History Go map. */
+.hg-universal-home {
+  display: inline-flex;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  min-width: 38px;
+  max-width: 38px;
+  height: 38px;
+  min-height: 38px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 9px;
+  background: rgba(255,255,255,.045);
+  color: #ffe34c;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+.hg-universal-home img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.hg-universal-home:hover { background: rgba(255,227,76,.08); border-color: rgba(255,227,76,.32); }
+.hg-universal-home:focus-visible { outline: 2px solid #ffe34c; outline-offset: 2px; }
+.profile-header-left > .hg-universal-home,
+.topbar-left > .hg-universal-home,
+.kv2-appbar > .hg-universal-home,
+.fagverk-topbar > .hg-universal-home,
+.sprakatlas-topbar > .hg-universal-home,
+.ne-header > .hg-universal-home { margin-right: 5px; }
+.emner-header-nav > .hg-universal-home,
+main.main > header > .hg-universal-home {
+  position: fixed;
+  top: calc(10px + env(safe-area-inset-top, 0px));
+  left: calc(58px + env(safe-area-inset-left, 0px));
+  z-index: 1100;
+  box-shadow: 0 6px 24px rgba(0,0,0,.45);
+  background: rgba(9,11,16,.95);
+}
+body.hg-app header.site-header > .hg-universal-home {
+  position: absolute;
+  z-index: 22;
+  margin: 0;
+  left: calc(168px + env(safe-area-inset-left, 0px));
+  top: calc(env(safe-area-inset-top, 0px) + 18px);
+}
+body.hg-app header.site-header:not(:has(> .hg-universal-back)) > .hg-universal-home {
+  left: calc(124px + env(safe-area-inset-left, 0px));
+}
+body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { margin-left: 212px; }
+@media (max-width: 860px) {
+  body.hg-app header.site-header > .hg-universal-home {
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    height: 34px;
+    min-height: 34px;
+    left: calc(145px + env(safe-area-inset-left, 0px));
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  body.hg-app header.site-header:not(:has(> .hg-universal-back)) > .hg-universal-home {
+    left: calc(107px + env(safe-area-inset-left, 0px));
+  }
+  body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { margin-left: 182px; }
+  body.hg-app header.site-header:not(:has(> .hg-universal-back)) .top-actions { margin-left: 145px; }
+}
+@media (max-width: 520px) {
+  /* The small map-home logo supersedes the redundant map-mode shortcut on phones. */
+  body.hg-app header.site-header:has(> .hg-universal-home) .top-actions #btnSeeMap { display: none; }
+  body.hg-app header.site-header:has(> .hg-universal-home) .top-actions { gap: 3px; }
+}
+@media (max-width: 380px) {
+  /* Navigation occupies reserved space; logo before back arrow. */
+body.hg-app header.site-header { align-items: center; padding-top: 0; padding-bottom: 0; }
+body.hg-app header.site-header > .hg-universal-home {
+  position: absolute; z-index: 22; margin: 0;
+  left: calc(124px + env(safe-area-inset-left, 0px)); top: 18px;
+}
+body.hg-app header.site-header:has(> .hg-universal-home) > .hg-universal-back {
+  left: calc(168px + env(safe-area-inset-left, 0px));
+}
+body.hg-app header.site-header > .top-actions,
+body.hg-app.hg-phone header.site-header > .top-actions {
+  flex: 1 1 auto; min-width: 0; max-width: none;
+  margin-left: 124px; padding: 0;
+  align-self: center; align-content: center; justify-content: flex-end;
+  overflow: visible;
+}
+body.hg-app header.site-header:has(> .hg-universal-back) > .top-actions { margin-left: 172px; }
+body.hg-app header.site-header:has(> .hg-universal-home) > .top-actions { margin-left: 216px; }
+@media (max-width: 860px) {
+  body.hg-app header.site-header > .hg-universal-home {
+    width: 34px; min-width: 34px; max-width: 34px;
+    height: 34px; min-height: 34px;
+    left: calc(107px + env(safe-area-inset-left, 0px));
+    top: 50%; transform: translateY(-50%);
+  }
+  body.hg-app header.site-header:has(> .hg-universal-home) > .hg-universal-back {
+    left: calc(147px + env(safe-area-inset-left, 0px));
+  }
+  body.hg-app header.site-header > .top-actions,
+  body.hg-app.hg-phone header.site-header > .top-actions {
+    margin-left: 108px; padding: 0; flex-wrap: nowrap; gap: 4px;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) > .top-actions { margin-left: 149px; }
+  body.hg-app header.site-header:has(> .hg-universal-home) > .top-actions { margin-left: 189px; }
+}
+@media (max-width: 380px) {
+  body.hg-app header.site-header > .hg-universal-home {
+    left: calc(96px + env(safe-area-inset-left, 0px));
+  }
+  body.hg-app header.site-header:has(> .hg-universal-home) > .hg-universal-back {
+    left: calc(136px + env(safe-area-inset-left, 0px));
+  }
+  body.hg-app header.site-header > .top-actions,
+  body.hg-app.hg-phone header.site-header > .top-actions {
+    margin-left: 98px; padding: 0; gap: 3px;
+  }
+  body.hg-app header.site-header:has(> .hg-universal-back) > .top-actions { margin-left: 174px; }
+  body.hg-app header.site-header:has(> .hg-universal-home) > .top-actions { margin-left: 214px; }
+  /* Map mode can be opened via Explore; keep profile, position and menu. */
+  body.hg-app header.site-header #btnSeeMap { display: none; }
+  body.hg-app header.site-header .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header .top-actions #miniProfile {
+    width: 52px; min-width: 52px; max-width: 52px; flex: 0 0 52px;
+  }
+  body.hg-app header.site-header #nearbyExploreToggle {
+    width: 28px; min-width: 28px; flex: 0 0 28px; padding: 0;
+  }
+  body.hg-app header.site-header #geoStatus {
+    width: 16px; min-width: 16px; flex: 0 0 16px;
+  }
+}
+
+/* Standalone headers also keep the home logo left of the back arrow. */
+.emner-header-nav > .hg-universal-home,
+main.main > header > .hg-universal-home {
+  left: calc(12px + env(safe-area-inset-left, 0px));
+}
+.emner-header-nav > .hg-universal-back,
+main.main > header > .hg-universal-back {
+  left: calc(58px + env(safe-area-inset-left, 0px));
+}
+
+/* At 320–380px the profile must actually shrink; override the earlier
+   :has()-specific 72px rule so the rightmost menu is never pushed offscreen. */
+@media (max-width: 380px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 52px; min-width: 52px; max-width: 52px; flex: 0 0 52px;
+  }
+}
+@media (max-width: 350px) {
+  body.hg-app header.site-header:has(> .hg-universal-back) .top-actions #miniProfile,
+  body.hg-app.hg-phone header.site-header:has(> .hg-universal-back) .top-actions #miniProfile {
+    width: 44px; min-width: 44px; max-width: 44px; flex: 0 0 44px;
+  }
+}

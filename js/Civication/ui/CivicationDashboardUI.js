@@ -7,7 +7,7 @@
 
 /**
  * @typedef {{ kind: string, label: string }} CiviHeaderChip
- * @typedef {{ state?: any, view?: any, includeEmptyRole?: boolean }} CiviHeaderStatusOptions
+ * @typedef {{ state?: any, view?: any, lifeRole?: string, includeEmptyRole?: boolean }} CiviHeaderStatusOptions
  */
 
 (function () {
@@ -159,8 +159,12 @@
     chips.push({ kind: "day", label: "Dag " + calendarDay });
     chips.push({ kind: "phase", label: shellPhaseLabel ||
       (view.dagFerdig ? "Dagen er over" : String(view.fase?.navn || lifeState.fase || "Morgen")) });
-    // Numeric capabilities belong behind the score circle. Currency is not
-    // a 0–100 stat and remains visible in the economy section.
+    // Vital meters and narrative money come from the same saved Life Story as
+    // the status dialog; currency is never counted towards the 0–100 score.
+    const meters = lifeState.meters || {};
+    if (Number.isFinite(meters.psyke)) chips.push({ kind: "vital", label: "Psyke " + meters.psyke });
+    if (Number.isFinite(meters.energi)) chips.push({ kind: "vital", label: "Energi " + meters.energi });
+    if (Number.isFinite(meters.penger)) chips.push({ kind: "money", label: "Fortellingspenger " + meters.penger });
 
     return chips.filter(function (chip) { return chip && chip.label; });
   }

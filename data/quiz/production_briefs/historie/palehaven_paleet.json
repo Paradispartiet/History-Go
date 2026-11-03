@@ -1,0 +1,551 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "palehaven_paleet",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-10-27",
+  "profile_hint": "narrow_3x7",
+  "review_note": "21 spørsmål er kontrollert mot publiserte kommunale artikler og Oslo byleksikon. Ingen årstall som fasitsvar. Historisk Paleet er revet. Kildebaserte slutninger holdes adskilt fra detaljer om enkeltpersoners motiv.",
+  "sources": {
+    "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommunes formidling av Ankerfamilien, Paléhaven, trelast og hageanlegg."
+    },
+    "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommunes formidling av Paleet som kongebolig og 1814-hendelsene."
+    },
+    "https://oslobyleksikon.no/side/Pal%C3%A9hagen": {
+      "url": "https://oslobyleksikon.no/side/Pal%C3%A9hagen",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Oslo byleksikon om Paléhagens opprinnelige utforming, offentlig adgang og senere inngrep."
+    },
+    "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29": {
+      "url": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Oslo byleksikon om bygningens utforming, eierskap, bruk og rivning."
+    }
+  },
+  "selected_curriculum": {
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_tid_periodisering"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie",
+      "data/quiz/_archive"
+    ],
+    "active_before": {
+      "status": "not_found_in_pr_diff"
+    },
+    "decisions": [
+      "No existing package on this PR branch; check main again before activating."
+    ],
+    "knowledge_migration": "No migration assumed; require builder verification."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Et avgrenset bygnings- og hageanlegg med én stedsåpning, ett historisk utdypingssett og én kildekritisk avslutning."
+  },
+  "held_back_candidates": [
+    "No year-only answer prompts",
+    "Never depict the demolished historical Paleet as a standing building"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_palehaven_paleet_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Paléhagen regnes som byens første park og ble åpnet for publikum av eierne.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Pal%C3%A9hagen",
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Pal%C3%A9hagen",
+          "locator": "Innledning og offentlig adgang"
+        },
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Innledning og offentlig adgang"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Paleet ble sterkt skadet ved brann i 1942, og ruinen ble revet.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+          "locator": "Innledning om brannen og rivningen"
+        },
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "Innledning om brannen og rivningen"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Paleet tjente som residens for stattholdere og kongebolig før det nye Slottet.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+        "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "Kongebolig og stattholdere"
+        },
+        {
+          "url": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+          "locator": "Kongebolig og stattholdere"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christian Ancher oppførte Paleet som privat bolig.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+        "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Ankerfamiliens praktbygg og historikk"
+        },
+        {
+          "url": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+          "locator": "Ankerfamiliens praktbygg og historikk"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Paleet fikk fire fløyer rundt en gårdsplass, og fløyene var én etasje høye.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+        "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Paleets utforming"
+        },
+        {
+          "url": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+          "locator": "Paleets utforming"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bernt Anker overtok eiendommen etter faren Christian Ancher.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+        "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Bernt Anker og eiendommens overdragelse"
+        },
+        {
+          "url": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+          "locator": "Bernt Anker og eiendommens overdragelse"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bernt Anker testamenterte Paleet til offentlig bruk, og eiendommen gikk til staten etter hans død.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+        "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Testament og senere bruk"
+        },
+        {
+          "url": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+          "locator": "Testament og senere bruk"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Stattholder Christian August bodde i Paleet før 1814.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "En gave fra byens rikeste mann"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Christian Frederik brukte Paleet som residens under de politiske begivenhetene i 1814.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "Norsk selvstendighet erklært i Paleet"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Christian Frederik sa til svenske utsendinger i Paleet at han ville hevde norsk selvstendighet.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "Norsk selvstendighet erklært i Paleet"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Karl Johan benyttet Paleet til kongelige opphold, mottakelser og statsråd.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "I union med Sverige"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Bernt Anker reiste en minnestøtte for Mathia Anker i Paléhagen.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+        "https://oslobyleksikon.no/side/Pal%C3%A9hagen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Mathia Anker / minnestøtten"
+        },
+        {
+          "url": "https://oslobyleksikon.no/side/Pal%C3%A9hagen",
+          "locator": "Mathia Anker / minnestøtten"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo byleksikon omtaler en lindeallé som gjenværende del av Paléhagen.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Pal%C3%A9hagen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Pal%C3%A9hagen",
+          "locator": "Avsluttende avsnitt om byutvikling"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Fra lysthuset kunne man se plankestabler og skip knyttet til trelasthandelen.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Paléhaven, lysthuset og havnen"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Paleet skiftet funksjon fra privat praktbolig til statlig residens.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Testament og kongebolig"
+        },
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "Testament og kongebolig"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Historiske kart og avbildninger kan brukes for å undersøke det revne Paleets plassering og utforming.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+          "locator": "Bygningens historikk og foto"
+        },
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "Bygningens historikk og foto"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Gjenstander fra Paleet er bevart ved Norsk Folkemuseum og kan belyse interiøret.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "Kongelige møbler"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Det historiske Paleet er en revet residens på en annen eiendom enn det moderne kjøpesenteret med samme navn.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Paleet_%28tidligere_residens%29",
+          "locator": "Innledning og adressen til den tidligere residensen"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Elitekilder til Paleet gir ikke i seg selv et dekkende bilde av alle brukere og deres erfaringer.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Bernt Anker og kongelig hoffhold"
+        },
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "Bernt Anker og kongelig hoffhold"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Senere gate- og havneutbygging har redusert og forandret Paléhagens utstrekning.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Pal%C3%A9hagen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Pal%C3%A9hagen",
+          "locator": "Hagens tapte arealer"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_palehaven_paleet_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Paléhagen var en hage/park tilknyttet Paleet, som var privat og senere kongelig residens.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+        "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+        "https://oslobyleksikon.no/side/Pal%C3%A9hagen"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/palehaven-og-paleet",
+          "locator": "Anleggets hage og bygning"
+        },
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/paleet-den-forste-kongeboligen",
+          "locator": "Anleggets hage og bygning"
+        },
+        {
+          "url": "https://oslobyleksikon.no/side/Pal%C3%A9hagen",
+          "locator": "Anleggets hage og bygning"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    }
+  ]
+}

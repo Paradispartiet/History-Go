@@ -11,14 +11,20 @@ const onsiteCss = fs.readFileSync("css/place-onsite-surface.css", "utf8");
 test("Place Sheet orders photo, section navigation, description and collection visuals", () => {
   assert.match(
     shellSource,
-    /<div class="pc-sheet-hero"[^>]*>[\s\S]*?<div class="pc-sheet-hero-copy"[^>]*><\/div>[\s\S]*?<div class="pc-sheet-hero-media"[^>]*>[\s\S]*?data-hg-place-sheet-collections/,
-    "copy must precede the front image and collection host"
+    /<div class="pc-sheet-hero"[^>]*>[\s\S]*?<div class="pc-sheet-hero-copy"[^>]*><\/div>[\s\S]*?<div class="pc-sheet-hero-media"[^>]*><\/div>[\s\S]*?<div class="pc-sheet-explore-grid" data-hg-place-sheet-collections/,
+    "the media and collection hosts follow the introductory copy"
   );
   assert.match(shellSource, /intro\.appendChild\(description\)/, "description follows the photo and navigation");
   assert.match(shellSource, /media\.prepend\(front\)/, "frontImage remains owned by hero-media");
   assert.match(shellSource, /collections\.appendChild\(sideStack\)/, "visual collection rounds remain in PlaceCard media");
-  assert.match(css, /\.pc-sheet-hero-media\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:minmax\(0,330px\) minmax\(0,1fr\)/);
-  assert.match(css, /\.pc-sheet-explore-grid\{[\s\S]*?margin:0;[\s\S]*?background:transparent/);
+  assert.match(css, /\.pc-sheet-hero-media\{[\s\S]*?display:flow-root;/);
+  assert.match(css, /\.pc-sheet-hero-media \.pc-frontcard\{[\s\S]*?float:left;/);
+  assert.match(css, /\.pc-sheet-explore-grid\{[\s\S]*?margin:24px 0 0;[\s\S]*?background:transparent/);
+  assert.match(shellSource, /media\.appendChild\(aboutSlot\)/, "About text shares the image flow context");
+  assert.match(shellSource, /heading\.insertAdjacentElement\("afterend", description\)/, "the live short text begins inside About");
+  assert.match(shellSource, /aboutSlot\.replaceChildren\(aboutOwner\)/, "desc-only places still receive an About heading");
+  assert.match(css, /\.pc-sheet-canonical-about #pcDesc\{[\s\S]*?-webkit-line-clamp:unset;[\s\S]*?overflow:visible;/);
+  assert.match(shellSource, /<div class="pc-sheet-explore-grid" data-hg-place-sheet-collections/);
 });
 
 test("Place Sheet collection visuals have no dark background box", () => {
@@ -30,14 +36,15 @@ test("Place Sheet keeps only text-section links and puts Events/Møtes below col
   assert.doesNotMatch(shellSource, /data-hg-place-sheet-collection-link|syncCollectionNav/);
   assert.match(shellSource, /collections\.appendChild\(events\)/);
   assert.match(onsiteRuntime, /rounds\.after\(box\)/);
+  assert.match(onsiteRuntime, /\.pc-sheet-shell > \.pc-sheet-explore-grid/);
   assert.match(onsiteRuntime, /ensureBelowCollections\(\)/);
   assert.match(onsiteRuntime, /childList: true/);
   assert.doesNotMatch(shellSource, /insertAfter\?\.after\(sideStack\)/);
 });
 
-test("Place Sheet header scrolls horizontally without moving collection images into it", () => {
-  assert.match(shellSource, /hero\.insertAdjacentElement\("afterend", nav\)/, "text navigation sits below the place photo");
-  assert.match(phase6Css, /\.pc-sheet-section-nav\{[\s\S]*?position:sticky;[\s\S]*?top:0;[\s\S]*?overflow-x:auto;/);
+test("Place Sheet bottom section bar scrolls horizontally without moving collection images into it", () => {
+  assert.match(shellSource, /host\.appendChild\(nav\)/, "text navigation is docked after the scroll container");
+  assert.match(phase6Css, /> \.pc-sheet-section-nav\{[\s\S]*?position:relative;[\s\S]*?overflow-x:auto;/);
   assert.doesNotMatch(phase6Css, /> \.pc-side-stack/);
   assert.doesNotMatch(phase6Css, /> #pcEventsBox/);
   assert.match(onsiteCss, /\.pc-sheet-explore-grid > #pcEventsBox\{/);

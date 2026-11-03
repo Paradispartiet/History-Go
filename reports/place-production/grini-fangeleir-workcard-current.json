@@ -1,0 +1,180 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "grini_fangeleir",
+  "category": "historie",
+  "status": "complete",
+  "maturity": "vFerdig_candidate",
+  "production_profile": "major",
+  "profile_status": "confirmed",
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "grini_fangeleir",
+    "category": "historie",
+    "recorded_at": "2026-11-01T11:36:21.635Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "eacaec225d5a1c61e43ed6cbe9754bc007ecff3818dfd630940dd4f4870ba7f5"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "fbd5e39905942e116c1fef9e375253c54f93d292b82bac03379d011f38fe93c6"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/historie.json",
+        "sha256": "4ecef75c319b6e84fd404537545c9baf7e00aa79ad3a9a12d25aa1b25a3a817a"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "historical_events"
+      ],
+      "category_expression": "historical_events",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  },
+  "live_status": "not_live_until_merge",
+  "updated_at": "2026-11-01",
+  "reviewer": "Codex (AI), ikke attestert som menneskelig fagredaktørsignatur",
+  "blocked": [],
+  "place_card_profile": {
+    "collections": [
+      "people",
+      "objects",
+      "brands",
+      "historical_events"
+    ],
+    "status": "PASS"
+  },
+  "coordinateDecision": "ALLEREDE FERDIG — preserve historical anchor, visitor anchor and 360m gameplay radius",
+  "sourceReview": [
+    "https://snl.no/Grini_-_tysk_fangeleir",
+    "https://mia.no/grinimuseet/om-grini-fangeleir",
+    "https://www.nasjonalarkivet.no/nordmenn-i-fangenskap-under-andre-verdenskrig/",
+    "https://mia.no/grinimuseet/en/grini-museum"
+  ],
+  "completed": {
+    "description": "3 ingress- og 29 hovedtekstsetninger; 34 claims/hash bevart",
+    "images": "Separat lisensiert historisk hovedfoto og reelt portrettfoto",
+    "quiz": "10x7 aktiv canonical; 70 claim-koblinger; 3 opprinnelige Knowledge-enheter bevart",
+    "fagverk": "Full article, 4 linser, 5 spørsmål, 10 begreper, 2 spor, 5 kilder",
+    "historie": "39 A–H-kontroller, null feil; én Leksikon-eier og seks datopunkter med tekst",
+    "story": "Stabil ID; episode_v1, 16/25 beregnet score; frigjøring 7.–11. mai",
+    "collections": "2 People, 2 identifiserte arkivbøker, 1 historisk Brand, 1 hendelse; alle åpnet på mobil/desktop",
+    "news_reading": "Kildeavgrenset MiA-plannotis og to direkte åpne arkivlesespor",
+    "language_player": "Knowledge V2, favoritt, eksplisitt besøkskontroll og quiz/progresjon/belønning faktisk testet"
+  },
+  "not_applicable": {
+    "before_after": "Ingen avklart lisensiert sammeutsnitt-par. Relevant ABH-portpar har uavklart gjenbruksrett. Se kandidatreview.",
+    "other": "Ingen oppdiktede onsite-fengselsoppgaver, kalenderhendelser, ruter, natur-/sports-/lekesamlinger eller nye reward-eiere."
+  },
+  "browser_evidence": {
+    "run_url": "https://github.com/Paradispartiet/History-Go/actions/runs/41304682294",
+    "head_sha": "0bce0be00f9f559dd0b349537929c3032aae7798",
+    "artifact_id": 13082751785,
+    "desktop_questions": 70,
+    "mobile_questions": 70,
+    "learning_events_each": 10,
+    "reward_each": 1,
+    "quiz_physical_visit_each": false,
+    "page_errors": 0
+  },
+  "quality": {
+    "reviewer": "Codex (AI), ikke attestert som menneskelig fagredaktørsignatur",
+    "dimensions": [
+      {
+        "dimension": "Korrekthet og evidens",
+        "score": 5,
+        "evidence": "Konkrete People-claims med SNL-avsnitt; to identifiserte arkivbøker og direkte Digitalarkivet; Baker Hansens egen historikk og museumskurator; eksisterende 34 tekstclaims og 70 quizclaims bevart. Datoavvik 12/14 juni og planlagt rehabilitering er avgrenset eksplisitt."
+      },
+      {
+        "dimension": "Dekning og ferdigstillelse",
+        "score": 5,
+        "evidence": "Alle fire samlinger og alle åtte relevante faner kontrollert på begge skjermbredder; full gjennomspilling av 70/70 spørsmål to ganger; begrunnet N/A for manglende publiserbart Før/etter-par og ikke relevante aktiviteter."
+      },
+      {
+        "dimension": "Faglig/redaksjonell kvalitet",
+        "score": 4,
+        "evidence": "Hele stedsteksten og ny tekst gjennomgått; arkivadministrasjon skilles fra fangenes minnebok, frigjøringens flere dager og deportasjonsdødsfall skilles fra dødsfall på stedet. Ingen uavhengig menneskelig fagredaktørsignatur er attestert."
+      },
+      {
+        "dimension": "Teknisk integritet",
+        "score": 4,
+        "evidence": "Fire Grini-jobber PASS på 0bce0be00f9f559dd0b349537929c3032aae7798. 2x70 faktiske nettlesersvar, 2240 omstokkinger, 11 rendererregresjoner, Knowledge-paritet, index/runtime/release-determinisme. Separate katalogfeil og isolert eldre Place Sheet-fixture er dokumentert; ingen terskler svekket."
+      },
+      {
+        "dimension": "Sikkerhet og ansvarlighet",
+        "score": 5,
+        "evidence": "Historisk leir, aktivt fengsel og offentlig museum skilt; ingen prison-entry-oppgaver. Syntetisk fjernposisjon avviser besøk, offentlig museumsposisjon godtar; quiz alene gir ikke fysisk besøk. Ekte lisensierte foto, merket skjematisk illustrasjon, offisiell logo uten påstått fri lisens eller sponsing."
+      },
+      {
+        "dimension": "Vedlikeholdbarhet og etterprøvbarhet",
+        "score": 5,
+        "evidence": "Kanoniske eiere og gamle stabile IDs bevart; idempotent materialiserer med SHA-låst offisiell logo; permanente nettleser- og rendererregresjoner og CI-artefakt med alle skjermbilder/JSON."
+      }
+    ],
+    "total": 28,
+    "maximum": 30,
+    "minimum_dimension": 4,
+    "result": "PASS",
+    "scope": "Hele Grini-leveransen fra #6759, #6851 og #6858; publisering krever merge og deploy-readback. Automatikk beviser ikke uavhengig historikerfaglig enighet."
+  },
+  "final_review": "reports/place-production/grini-fangeleir-final-review-2026-11-01.json",
+  "prior_reviews": [
+    "reports/place-production/grini-fangeleir-quiz-source-review-2026-10-30.json",
+    "reports/place-production/grini-fangeleir-place-closeout-2026-11-01.json"
+  ],
+  "baseline_limits": {
+    "comparison_base": "8ed25f850cd0a486bf282ada14111fd1112cf6a9",
+    "fagverk": "57 feillinjer byte-identiske mot baseline; ingen ny Grini-feil.",
+    "people": "33 feil / 34 outputlinjer byte-identiske; to endrede målprofiler validert separat med null feil.",
+    "subkultur": "Tre foreldede genererte filer / fire outputlinjer byte-identiske.",
+    "quiz_context": "391 eksisterende katalogavvik; Grini har null.",
+    "place_sheet_fixture": "CI 41304682289: eldre isolert onsite-fixture venter forgjeves på Events/Møtes ved linje 83. Testen og onsite-controlleren er uendret mot main 87a50c776bbf11f4adb7dfd088c28a3483bab028; den laster ingen endret Grini-/news-/chronology-kode. Eneste endring i fixture-serverte filer er CSS scroll-margin-top for seksjonshopp; den kan ikke opprette/fjerne Events/Møtes-noder som fixture venter på. Faktisk Grini-app består på begge bredder.",
+    "main_integrity": "Tidligere main-run 41303886874 stoppet på manglende Akerselva frontImage i gammel index. Kandidatens regenererte index består places:index:check og bevarer Akerselva-kilden."
+  },
+  "human_expert_signoff": "Ikke attestert; navngitt KI-kildekontroll er dokumentert. Eldre åpne signeringsmatriser er historikk, ikke utfylte menneskesignaturer."
+}

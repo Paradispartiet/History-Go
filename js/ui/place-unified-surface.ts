@@ -90,8 +90,8 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   function ensureStylesheet(): void {
     const styles = [
       [STYLE_FLAG, "css/place-unified-surface.css"],
-      [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261011-arbeiderbladet-ui4"],
-      [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
+      [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261027-about-image-inset1"],
+      [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css?v=20261102-sticky-bottom2"]
     ] as const;
     for (const [flag, href] of styles) {
       if (document.querySelector(`link[${flag}="1"]`)) continue;
@@ -152,8 +152,15 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     const section = placeSheetSectionTarget(id);
     if (!(section instanceof HTMLElement)) return false;
 
-    try { section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" }); }
-    catch { section.scrollIntoView?.(); }
+    const scroller = card()?.querySelector<HTMLElement>(":scope > .pc-body");
+    if (id === "about" && scroller) {
+      // About includes the introduction beside the portrait. Returning to the
+      // card start also lets its real sticky photograph expand before reading.
+      scroller.scrollTop = 0;
+    } else {
+      try { section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" }); }
+      catch { section.scrollIntoView?.(); }
+    }
     if (options.focus) {
       if (!section.hasAttribute("tabindex")) section.setAttribute("tabindex", "-1");
       try { section.focus({ preventScroll: true }); } catch { section.focus?.(); }

@@ -1,0 +1,49 @@
+name: Rockefeller v1 browser QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/rockefeller-v1-browser.yml'
+      - 'scripts/verify-rockefeller-fagverk-browser.mjs'
+      - 'data/places/musikk/oslo/places_musikk/rockefeller.json'
+      - 'data/runtime/place-open/rockefeller.json'
+      - 'data/quiz/musikk/rockefeller_sets_merged.json'
+      - 'data/quizcards/musikk/topp10_musikk_oslo_v1_batch01.json'
+      - 'js/fagverk-sted.js'
+      - 'fagverk-sted.html'
+permissions:
+  contents: read
+concurrency:
+  group: rockefeller-v1-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Resolve Chrome for actual browser QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Check Rockefeller Fagverk in mobile and desktop browsers
+        run: node scripts/verify-rockefeller-fagverk-browser.mjs
+      - name: Play Rockefeller's full quiz in mobile and desktop browsers
+        run: node scripts/verify-place-quiz-browser.mjs rockefeller
+      - name: Save only QA screenshots and results as Actions artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rockefeller-v1-browser-${{ github.sha }}
+          path: |
+            artifacts/rockefeller-v1-browser/
+            artifacts/place-quiz/rockefeller/
+          if-no-files-found: ignore
+          retention-days: 14

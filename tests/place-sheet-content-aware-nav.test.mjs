@@ -98,7 +98,8 @@ test("navigation uses actual rendered sections rather than the fixed list", asyn
 
     // Use the actual asynchronous Sources slot; never insert a duplicate.
     await until(() => window.HGPlaceSheetState?.snapshot?.()?.phase === "full-ready");
-    const shell = nav.closest('[data-hg-place-sheet-shell="1"]');
+    assert.equal(nav.parentElement?.id, "placeCard", "section navigation must stay at card bottom");
+    const shell = window.document.querySelector('[data-hg-place-sheet-shell="1"]');
     const sources = shell.querySelector('[data-hg-place-sheet-section="sources"]');
     assert.ok(sources);
     sources.dataset.placeId = grabein.id;

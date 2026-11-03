@@ -1,0 +1,539 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "avisen_tiden_radhusgata_10",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-10-27",
+  "profile_hint": "narrow_3x7",
+  "review_note": "21 kildekontrollerte spørsmål basert på Oslo kommune og SNL; Kielfredens utelatelse og Wulfsbergs politiske rolle presenteres uten spekulasjon om personlige motiver.",
+  "sources": {
+    "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommunes artikkel om Wulfsberg, trykkeriet, Kiel-nyheten og grunnlovsdebatt."
+    },
+    "https://snl.no/Tiden_%28Oslo%29": {
+      "url": "https://snl.no/Tiden_%28Oslo%29",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "SNLs artikkel om to utgivelsesperioder, pressehistorie og økonomiske vilkår."
+    },
+    "https://snl.no/Niels_Wulfsberg": {
+      "url": "https://snl.no/Niels_Wulfsberg",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "SNL biografiske opplysninger om Wulfsbergs stillinger og senere pressevirksomhet."
+    }
+  },
+  "selected_curriculum": {
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_tid_periodisering"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie"
+    ],
+    "active_before": {
+      "status": "not_found_in_pr_diff"
+    },
+    "decisions": [
+      "Confirm no main overlap before activation."
+    ],
+    "knowledge_migration": "Pending actual canonical builder."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Trykkeristedet gir tre læringsfaser: presseproduksjon, historiske hendelser og kildekritisk forståelse av offentlighet."
+  },
+  "held_back_candidates": [
+    "No date recall answer prompts",
+    "Disputed or speculative motive claims held back"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Niels Wulfsberg var utgiver av avisen Tiden.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Avisen Tiden / Historie"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Avisen Tiden / Historie"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rådhusgata 10 rommet Wulfsbergs bokhandel, forlag og trykkeri.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Avisen Tiden, første avsnitt"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christopher Grøndahl var faktor ved trykkeriet knyttet til Wulfsberg.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Avisen Tiden, trykkeriet"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Tiden blir av mange regnet som Norges første moderne nyhetsavis.",
+      "source_ids": [
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Norges første moderne nyhetsavis"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Tidens ekstrablad om Kiel-freden unnlot å formidle Norges avståelse til Sverige tydelig.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Separatistiske toner / Kielfreden"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Separatistiske toner / Kielfreden"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Wulfsberg trykte en journal med grunnlovsutkast og sammenligningsstoff om forfatninger i 1814.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Wulfsberg i 1814"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Wulfsberg arbeidet som prest ved Vår Frelsers kirke i Christiania.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Avisen Tiden / Historie"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Avisen Tiden / Historie"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Tiden opphørte en periode på grunn av svak økonomi før den kom ut igjen.",
+      "source_ids": [
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Historie og Norges første moderne nyhetsavis"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Wulfsberg startet Morgenbladet i 1819.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29",
+        "https://snl.no/Niels_Wulfsberg"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Wulfsberg i 1814 / Historie"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Wulfsberg i 1814 / Historie"
+        },
+        {
+          "url": "https://snl.no/Niels_Wulfsberg",
+          "locator": "Wulfsberg i 1814 / Historie"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Wulfsberg arbeidet i den norske regjeringsavdelingen i Stockholm etter 1814.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Wulfsberg i 1814 / Historie"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Wulfsberg i 1814 / Historie"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Tidens politiske stoff om krigen vakte bekymring i København.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Separatistiske toner"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grunnloven § 100 fastslår ytringsfriheten og trykkefriheten.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Ytrings- og trykkefrihet"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Tiden kom ut i to perioder, 1808–1811 og 1813–1814.",
+      "source_ids": [
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Historie"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Bevarte avisutgaver er primærkilder til Tidens faktiske publiserte tekst.",
+      "source_ids": [
+        "https://snl.no/Tiden_%28Oslo%29",
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Aviseillustrasjon og omtale av ekstrabladet"
+        },
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Aviseillustrasjon og omtale av ekstrabladet"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Tiden trykte fredsnyheten uten tydelig å opplyse om Norges avståelse til Sverige.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Kielfreden og ekstrabladet"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Kielfreden og ekstrabladet"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Wulfsbergs avisutgivelser og offentlige politiske formuleringer endret seg gjennom 1814.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Wulfsberg i 1814"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Rådhusgata 10 var arena for publisering, mens de konstitusjonelle beslutningene ble tatt i andre organer.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Wulfsberg i 1814 / Ytrings- og trykkefrihet"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En kildekritisk sammenligning av avis og traktat kan dokumentere utelatelser.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Kielfreden og ekstrabladet"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Kielfreden og ekstrabladet"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Senere minnemarkeringer erstatter ikke originalavisen som kilde til nøyaktig trykt ordlyd.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Avisens historikk og bevarte eksemplarer"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Avisens historikk og bevarte eksemplarer"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Avisproduksjon i Rådhusgata var avhengig av materiell infrastruktur for å nå leserne.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Bokhandel, forlag og avisproduksjon"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Bokhandel, forlag og avisproduksjon"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_avisen_tiden_radhusgata_10_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tiden belyser politisk offentlighet, nyhetsformidling og kontroll i tiden omkring 1814.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+        "https://snl.no/Tiden_%28Oslo%29"
+      ],
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+          "locator": "Ytrings- og trykkefrihet / Historie"
+        },
+        {
+          "url": "https://snl.no/Tiden_%28Oslo%29",
+          "locator": "Ytrings- og trykkefrihet / Historie"
+        }
+      ],
+      "source_origin": "external",
+      "review_status": "reviewed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    }
+  ]
+}

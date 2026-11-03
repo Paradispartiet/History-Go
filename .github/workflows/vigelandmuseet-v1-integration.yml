@@ -1,0 +1,89 @@
+name: Vigelandmuseet v1 photo, canonical integration and app smoke
+on:
+  push:
+    branches:
+      - content/oslo-aav-vigelandmuseet-v1-20261027
+    paths:
+      - '.github/workflows/vigelandmuseet-v1-integration.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: vigelandmuseet-v1-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/content/oslo-aav-vigelandmuseet-v1-20261027'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-aav-vigelandmuseet-v1-20261027
+          fetch-depth: 120
+          persist-credentials: true
+      - name: Sync main without losing other Places
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if ! git merge --no-edit origin/main; then
+            mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+            for file in "${conflicts[@]}"; do
+              case "$file" in
+                data/fag/fag_manifest.json|data/fagverk/fagverk_registry.json|data/quiz/manifest.json|data/quizcards/kunst/manifest.json)
+                  git checkout --theirs -- "$file" ;;
+                *) echo "Unexpected merge conflict: $file" >&2; exit 1;;
+              esac
+            done
+            node scripts/reconcile-vigelandmuseet-registries.mjs
+            git add data/fag/fag_manifest.json data/fagverk/fagverk_registry.json data/quiz/manifest.json data/quizcards/kunst/manifest.json
+            git commit -m "Merge main preserving Vigelandmuseet registrations"
+          fi
+          node scripts/reconcile-vigelandmuseet-registries.mjs
+          git add data/fag/fag_manifest.json data/fagverk/fagverk_registry.json data/quiz/manifest.json data/quizcards/kunst/manifest.json
+          if ! git diff --cached --quiet; then git commit -m "Reconcile Vigelandmuseet registrations"; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Create both public-domain photograph variants
+        run: node scripts/build-vigelandmuseet-photos.mjs
+      - name: Generate source-reviewed quiz context
+        run: node scripts/build-quiz-production-context.mjs --category kunst --target vigelandmuseet --output data/quiz/production_context/kunst/vigelandmuseet.json
+      - name: Generate canonical Knowledge
+        run: npm run knowledge:canonical:write
+      - name: Synchronize QuizCard Knowledge
+        run: node scripts/sync-vigelandmuseet-quizcard-knowledge.mjs
+      - name: Regenerate Place-open and Fagverk
+        run: |
+          npm run place-open:build
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Targeted data and image contract tests
+        run: node --test tests/vigelandmuseet-v1-parity.test.mjs
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify real app at 390 and 1440 pixels
+        run: node tests/vigelandmuseet-real-app-browser-20261027.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vigelandmuseet-browser
+          path: artifacts/vigelandmuseet-browser/
+          if-no-files-found: ignore
+      - name: Commit only required generated artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/places/kunst/oslo/places_kunst/vigelandmuseet.json
+          git add bilder/places/oslo-aav-20261027/vigelandmuseet_hero.webp bilder/places/oslo-aav-20261027/vigelandmuseet_portrait.webp
+          git add data/quiz/production_context/kunst/vigelandmuseet.json
+          git add data/quiz/kunst/vigelandmuseet_sets.json data/quizcards/kunst/vigelandmuseet_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/vigelandmuseet.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then git commit -m "Vigelandmuseet: activate images, Knowledge and runtime"; fi
+          git push origin HEAD:content/oslo-aav-vigelandmuseet-v1-20261027

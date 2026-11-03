@@ -1,0 +1,49 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-01",
+  "status": "reviewed_binary_verified_pending_ci",
+  "baselineApproved": 32,
+  "approvedCountAfterRelease": 33,
+  "publicationRule": "Only publish exact SHA-verified 1024x1536 transparent WebP, preserve 32 earlier approvals, render on black #000 with no public photographs; require illustration-contract and approved-flora-browser green on final PR head.",
+  "items": [
+    {
+      "name": "Gulmaure",
+      "catalogId": "emne_flora_gulmaure",
+      "scientificName": "Galium verum",
+      "taxonomicScope": "species",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/11_gulmaure_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/11_gulmaure_v1.webp",
+      "gitBlobSha": "6f1d1d29598a30cc04cff7ccc85c0fc9dfa8756c",
+      "sha256": "a4a6ad7ef464989d2cdf850048fc010dcbfa999f150736990916d6dfc1d571f3",
+      "sizeBytes": 222906,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
+      "reviewedAt": "2026-11-01",
+      "stage": "sommerblomstring",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": false,
+        "alphaVerifiedAfterConversion": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://artsdatabanken.no/arter/takson/62186",
+        "https://www.rhs.org.uk/plants/7596/galium-verum/details",
+        "https://nibio.brage.unit.no/nibio-xmlui/bitstream/11250/2561360/2/NIBIO_BOK_2018_4_7.pdf"
+      ],
+      "observations": "Representative botanical watercolor of Galium verum showing ascending slender branching stems with whorls of fine linear needle-like green leaves (usually eight per node), and dense branching yellow summer-flower panicles. Rootstock and fine rootlets shown. Sources support the overall growth form, yellow flower clusters and narrow leaves arranged in whorls.",
+      "limitations": "Representative illustration only, not a species diagnosis: individual flowers are enlarged and stylized, and some appear to have five lobes instead of the usual four. The flower lobes cannot be reliably counted here, and plant dimensions are not to scale. Check scientific reference photographs to confirm corolla shape and minute leaf characters; the picture is for recognition from the overall habit.",
+      "technicalVerification": "Generated 1024x1536 RGB on pure black. A feathered alpha mask was extracted from the near-black background (maximum channel intensity 7 to 30); saved as 1024x1536 VP8X WebP with alpha, quality 91 and method 6. Final file size 222906 bytes. SHA256 and Git blob SHA measured directly on final binary and GitHub returned identical blob SHA. Visually reviewed over a black #000 stage.",
+      "publicationBlockedBy": [
+        "Both relevant PR CI checks must pass on the last head before merge."
+      ]
+    }
+  ]
+}

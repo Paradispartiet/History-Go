@@ -1,0 +1,40 @@
+name: Blå venue identity deduplication
+
+on:
+  pull_request:
+    paths:
+      - "data/places/place_exclusions.json"
+      - "data/places/musikk/oslo/places_musikk/blaa.json"
+      - "data/places/subkultur/oslo/places_subkultur/bla.json"
+      - "data/runtime/place-open/bla.json"
+      - "data/runtime/place-open/blaa.json"
+      - "data/stories/stories_bla.json"
+      - "data/stories/stories_blaa.json"
+      - "data/stories/stories_manifest.json"
+      - "data/runtime/stories-all/part-001.json"
+      - "data/brands/brands_by_place.json"
+      - "data/brands/brands_master.json"
+      - "tests/blaa-venue-identity-dedup.test.mjs"
+      - "reports/place-production/blaa-venue-identity-dedup.md"
+      - ".github/workflows/blaa-venue-identity-dedup.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  blaa-identity:
+    name: Verify sole Blå marker, migrated Story/Brand and original quiz
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run scoped Blå venue identity contract
+        run: node --test tests/blaa-venue-identity-dedup.test.mjs

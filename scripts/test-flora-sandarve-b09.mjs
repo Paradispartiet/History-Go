@@ -1,0 +1,32 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import crypto from "node:crypto";
+const root = new URL("../", import.meta.url);
+const read = (p) => fs.readFileSync(new URL(p,root),"utf8");
+const doc = JSON.parse(read("data/natur/flora/illustration-quality-sandarve-20261102.json"));
+const a = doc.items[0], id = "emne_flora_sandarve";
+assert.equal(doc.baselineApproved,54);
+assert.equal(doc.approvedCountAfterRelease,55);
+assert.equal(doc.items.length,1);
+assert.equal(a.catalogId,id);
+assert.equal(a.scientificName,"Arenaria serpyllifolia");
+const cat = JSON.parse(read("data/natur/flora/blomster.json")).find(x=>x.id===id);
+const run = JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]).find(x=>x.id===id);
+for (const x of [cat,run]) {
+  assert(x, "Sandarve missing catalog/runtime");
+  assert.equal(x.latin,"Arenaria serpyllifolia");
+  assert.equal(x.title,"Sandarve");
+}
+const src = new URL(a.src,root);
+assert(fs.existsSync(src),"Original WebP not yet uploaded to the PR branch");
+const b=fs.readFileSync(src);
+assert.equal(b.length,a.sizeBytes);
+assert.equal(crypto.createHash("sha256").update(b).digest("hex"),a.sha256);
+assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),a.gitBlobSha);
+assert.equal(b.toString("ascii",0,4),"RIFF");
+assert.equal(b.toString("ascii",8,12),"WEBP");
+assert.equal(b.toString("ascii",12,16),"VP8X");
+assert((b[20]&0x10)!==0,"WebP must contain transparency");
+assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],a.dimensions);
+assert.equal(a.approvedForPublication,true,"Do not publish until the source has been uploaded and validated");
+console.log("Sandarve: 1024×1536, exact SHA256 and Git blob hash, alpha, species linkage.");

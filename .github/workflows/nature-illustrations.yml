@@ -1,0 +1,225 @@
+name: Nature atlas illustrations
+
+on:
+  pull_request:
+    paths:
+      - 'js/ui/nature-illustrations.js'
+      - 'js/ui/nature-illustrations-batch03.js'
+      - 'js/ui/nature-illustrations-batch04.js'
+      - 'js/ui/nature-illustrations-batch05.js'
+      - 'js/ui/nature-illustrations-batch06.js'
+      - 'js/ui/nature-illustrations-batch07.js'
+      - 'js/ui/nature-illustrations-batch08.js'
+      - 'js/ui/nature-illustrations-batch09.js'
+      - 'js/ui/nature-illustrations-batch10.js'
+      - 'js/ui/nature-illustrations-batch11.js'
+      - 'js/ui/nature-botanical-studies.js'
+      - 'js/ui/nature-explorer.js'
+      - 'js/ui/nature-flora-photographs.js'
+      - 'finn-flora.html'
+      - 'js/ui/nature-flora-approved.js'
+      - 'data/natur/flora/illustration-quality-prikktvetann-20261102.json'
+      - 'scripts/test-flora-prikktvetann-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/30_prikktvetann_v1.webp'
+      - 'data/natur/flora/illustration-quality-reinfann-20261102.json'
+      - 'scripts/test-flora-reinfann-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/31_reinfann_v1.webp'
+      - 'data/natur/flora/illustration-quality-russblastjerne-20261102.json'
+      - 'scripts/test-flora-russblastjerne-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/32_russblastjerne_v1.webp'
+      - 'data/natur/flora/illustration-quality-skogfiol-20261103.json'
+      - 'scripts/test-flora-skogfiol-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/34_skogfiol_v1.webp'
+      - 'data/natur/flora/illustration-quality-skogstorkenebb-20261103.json'
+      - 'scripts/test-flora-skogstorkenebb-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/35_skogstorkenebb_v1.webp'
+      - 'data/natur/flora/illustration-quality-review-20261028.json'
+      - 'data/natur/flora/illustration-quality-batch01-20261028.json'
+      - 'scripts/test-flora-approved-release.mjs'
+      - 'scripts/test-flora-approved-browser.mjs'
+      - 'data/natur/flora/illustration-quality-meldestokk-20261102.json'
+      - 'scripts/test-flora-meldestokk-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/25_meldestokk_v1.webp'
+      - 'data/natur/flora/illustration-quality-ormehode-20261102.json'
+      - 'scripts/test-flora-ormehode-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/26_ormehode_v1.webp'
+      - 'data/natur/flora/illustration-quality-stankstorkenebb-20261102.json'
+      - 'scripts/test-flora-stankstorkenebb-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/27_stankstorkenebb_v1.webp'
+      - 'finn-fauna.html'
+      - 'scripts/test-nature-illustrations.mjs'
+      - 'scripts/test-nature-flora-photos.mjs'
+      - 'scripts/test-flora-illustration-review.mjs'
+      - 'js/ui/flora-illustration-review.js'
+      - 'data/natur/flora/illustration-candidates-batch01.json'
+      - 'data/natur/flora/illustration-candidates-batch02.json'
+      - 'data/natur/flora/illustration-candidates-batch03.json'
+      - 'data/natur/flora/illustration-revision-batch04.json'
+      - 'data/natur/flora/illustration-revision-batch05.json'
+      - 'flora-illustrasjoner-bolk05.html'
+      - 'flora-illustrasjoner-bolk06.html'
+      - 'data/natur/flora/illustration-quality-batch06-20261028.json'
+      - 'data/natur/flora/illustration-quality-batch07-20261028.json'
+      - 'bilder/natur/flora/illustrasjonskandidater/b07/**'
+      - 'scripts/test-flora-batch07-upload.mjs'
+      - 'scripts/test-flora-art-candidates-batch08.mjs'
+      - 'data/natur/flora/illustration-quality-bekkeblom-20261031.json'
+      - 'data/natur/flora/illustration-quality-bergmynte-20261031.json'
+      - 'data/natur/flora/illustration-quality-bitterbergknapp-20261031.json'
+      - 'data/natur/flora/illustration-quality-blodstorkenebb-20261031.json'
+      - 'data/natur/flora/illustration-quality-blaknapp-20261031.json'
+      - 'data/natur/flora/illustration-quality-burot-20261031.json'
+      - 'data/natur/flora/illustration-quality-enghumleblom-20261101.json'
+      - 'data/natur/flora/illustration-quality-engknoppurt-20261101.json'
+      - 'data/natur/flora/illustration-quality-engsmelle-20261101.json'
+      - 'data/natur/flora/illustration-quality-engtjaereblom-20261101.json'
+      - 'data/natur/flora/illustration-quality-firkantperikum-20261101.json'
+      - 'scripts/test-flora-firkantperikum-b09.mjs'
+      - 'data/natur/flora/illustration-quality-forglemmegei-20261101.json'
+      - 'scripts/test-flora-forglemmegei-b09.mjs'
+      - 'data/natur/flora/illustration-quality-gjetertaske-20261101.json'
+      - 'scripts/test-flora-gjetertaske-b09.mjs'
+      - 'scripts/test-flora-gulaks-b09.mjs'
+      - 'data/natur/flora/illustration-quality-gulaks-20261101.json'
+      - 'data/natur/flora/illustration-quality-nyresoleier-20261101.json'
+      - 'scripts/test-flora-nyresoleier-b09.mjs'
+      - 'data/natur/flora/illustration-quality-gullstjerne-20261101.json'
+      - 'data/natur/flora/illustration-quality-gulmaure-20261101.json'
+      - 'scripts/test-flora-gulmaure-b09.mjs'
+      - 'data/natur/flora/illustration-quality-haredylle-20261101.json'
+      - 'scripts/test-flora-haredylle-b09.mjs'
+      - 'scripts/test-flora-humleblom-b09.mjs'
+      - 'data/natur/flora/illustration-quality-humleblom-20261101.json'
+      - 'data/natur/flora/illustration-quality-hvitbergknapp-20261102.json'
+      - 'scripts/test-flora-hvitbergknapp-b09.mjs'
+      - 'data/natur/flora/illustration-quality-hvittvetann-20261102.json'
+      - 'scripts/test-flora-hvittvetann-b09.mjs'
+      - 'data/natur/flora/illustration-quality-hvitmaure-20261102.json'
+      - 'scripts/test-flora-hvitmaure-b09.mjs'
+      - 'data/natur/flora/illustration-quality-jordreve-20261102.json'
+      - 'scripts/test-flora-jordreve-b09.mjs'
+      - 'data/natur/flora/illustration-quality-kattefot-20261102.json'
+      - 'scripts/test-flora-kattefot-b09.mjs'
+      - 'scripts/test-flora-gullstjerne-b09.mjs'
+      - 'css/nature-explorer.css'
+      - 'js/ui/nature-explorer.js'
+      - 'scripts/test-flora-engtjaereblom-b09.mjs'
+      - 'scripts/test-flora-engsmelle-b09.mjs'
+      - 'scripts/test-flora-engknoppurt-b09.mjs'
+      - 'scripts/test-flora-enghumleblom-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/**'
+      - 'scripts/test-flora-burot-b08.mjs'
+      - 'scripts/test-flora-blaknapp-b08.mjs'
+      - 'scripts/test-flora-blodstorkenebb-b08.mjs'
+      - 'scripts/test-flora-bitterbergknapp-b08.mjs'
+      - 'scripts/test-flora-bergmynte-b08.mjs'
+      - 'scripts/test-flora-bekkeblom-b08.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b08/**'
+      - 'data/natur/flora/illustration-quality-batch08-20261030.json'
+      - 'data/natur/flora/illustration-candidates-batch06.json'
+      - 'bilder/natur/flora/illustrasjonskandidater/b06/**'
+      - 'scripts/test-flora-art-candidates-batch06.mjs'
+      - 'data/natur/flora/illustration-quality-batch05-20261028.json'
+      - 'data/natur/flora/illustration-candidates-batch05.json'
+      - 'bilder/natur/flora/illustrasjonskandidater/b05/**'
+      - 'data/natur/flora/illustration-candidates-batch04.json'
+      - 'bilder/natur/flora/illustrasjonskandidater/b04/**'
+      - 'flora-illustrasjoner-bolk04.html'
+      - 'scripts/test-flora-revision-batch04.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b03/**'
+      - 'flora-illustrasjoner-bolk03.html'
+      - 'scripts/test-flora-art-candidates-batch03.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b02/**'
+      - 'flora-illustrasjoner-bolk02.html'
+      - 'scripts/test-flora-art-candidates-batch02.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b01/**'
+      - 'flora-illustrasjoner-bolk01.html'
+      - 'scripts/test-flora-art-candidates.mjs'
+      - 'flora-illustration-review.html'
+      - '.github/workflows/nature-illustrations.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nature-illustrations-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  illustration-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/test-nature-illustrations.mjs
+      - run: node scripts/test-nature-flora-photos.mjs
+      - run: node scripts/test-flora-approved-release.mjs
+      - run: node scripts/test-flora-batch07-upload.mjs --require-published
+      - run: node scripts/test-flora-art-candidates-batch08.mjs
+      - run: node scripts/test-flora-bekkeblom-b08.mjs --require-assets
+      - run: node scripts/test-flora-bergmynte-b08.mjs
+      - run: node scripts/test-flora-bitterbergknapp-b08.mjs
+      - run: node scripts/test-flora-blodstorkenebb-b08.mjs
+      - run: node scripts/test-flora-blaknapp-b08.mjs
+      - run: node scripts/test-flora-burot-b08.mjs
+      - run: node scripts/test-flora-enghumleblom-b09.mjs
+      - run: node scripts/test-flora-engknoppurt-b09.mjs
+      - run: node scripts/test-flora-engsmelle-b09.mjs
+      - run: node scripts/test-flora-engtjaereblom-b09.mjs
+      - run: node scripts/test-flora-firkantperikum-b09.mjs
+      - run: node scripts/test-flora-forglemmegei-b09.mjs
+      - run: node scripts/test-flora-gjetertaske-b09.mjs
+      - run: node scripts/test-flora-gulaks-b09.mjs
+      - run: node scripts/test-flora-nyresoleier-b09.mjs
+      - run: node scripts/test-flora-gullstjerne-b09.mjs
+      - run: node scripts/test-flora-gulmaure-b09.mjs
+      - run: node scripts/test-flora-haredylle-b09.mjs
+      - run: node scripts/test-flora-humleblom-b09.mjs
+      - run: node scripts/test-flora-hvitbergknapp-b09.mjs
+      - run: node scripts/test-flora-hvittvetann-b09.mjs
+      - run: node scripts/test-flora-hvitmaure-b09.mjs
+      - run: node scripts/test-flora-jordreve-b09.mjs
+      - run: node scripts/test-flora-kattefot-b09.mjs
+      - run: node scripts/test-flora-krypsoleie-b09.mjs
+      - run: node scripts/test-flora-krypveronika-b09.mjs
+      - run: node scripts/test-flora-primula-b09.mjs
+      - run: node scripts/test-flora-lungeurt-b09.mjs
+      - run: node scripts/test-flora-markjordbaer-b09.mjs
+      - run: node scripts/test-flora-meldestokk-b09.mjs
+      - run: node scripts/test-flora-ormehode-b09.mjs
+      - run: node scripts/test-flora-stankstorkenebb-b09.mjs
+      - run: node scripts/test-flora-perleblomst-b09.mjs
+      - run: node scripts/test-flora-prikkperikum-b09.mjs
+      - run: node scripts/test-flora-prikktvetann-b09.mjs
+      - run: node scripts/test-flora-reinfann-b09.mjs
+      - run: node scripts/test-flora-russblastjerne-b09.mjs
+      - run: node scripts/test-flora-skogfiol-b09.mjs
+      - run: node scripts/test-flora-skogstorkenebb-b09.mjs
+      - run: node scripts/test-flora-art-candidates-batch06.mjs
+      - run: node scripts/test-flora-revision-batch04.mjs
+      - run: node scripts/test-flora-illustration-review.mjs
+      - run: node scripts/test-flora-art-candidates.mjs
+      - run: node scripts/test-flora-art-candidates-batch02.mjs
+      - run: node scripts/test-flora-art-candidates-batch03.mjs
+
+  approved-flora-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-flora-approved-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flora-approved-54-black-mobile-desktop
+          path: artifacts/flora-approval/*.png
+          if-no-files-found: ignore

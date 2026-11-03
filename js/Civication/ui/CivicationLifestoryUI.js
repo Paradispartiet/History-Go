@@ -696,6 +696,13 @@
     const stamp = lifestyleStamp();
     if (stamp) items.push(["Livsstil", (stamp.icon ? stamp.icon + " " : "") + stamp.name]);
     const capacity = window.CivicationLifestoryRunner?.capacityWarning?.(state) || "";
+    // Real Civication shell owns the unified status dialog in the header.
+    // Keep this disclosure only in isolated/legacy views without ScoreUI.
+    if (window.CivicationScoreUI?.renderHeader) {
+      return capacity
+        ? '<p class="muted" role="status" data-lifestory-capacity-warning>' + escapeHtml(capacity) + '</p>'
+        : "";
+    }
     return '<details class="civi-lifestory-disclosure civi-lifestory-status-details" data-lifestory-disclosure="status"><summary>Status og verdier</summary>' + "<div class=\"civi-lifestory-status\" aria-label=\"Statuslinje\">" + items.map(([label, value]) =>
       "<span class=\"civi-lifestory-status-chip\"><small>" + escapeHtml(label) + "</small><strong>" + escapeHtml(value) + "</strong></span>"
     ).join("") + "</div></details>" + (capacity
@@ -1174,7 +1181,9 @@
     if (!header) return;
 
     if (window.CivicationDashboardUI?.updateHeaderStatus) {
-      window.CivicationDashboardUI.updateHeaderStatus({ state, view });
+      window.CivicationDashboardUI.updateHeaderStatus({
+        state, view, lifeRole: content?.role?.navn || ""
+      });
       return;
     }
 

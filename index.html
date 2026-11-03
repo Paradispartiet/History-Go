@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="nb" dir="ltr">
 <head>
+  <!-- Protected app: never render content before the AHA session is verified. -->
+  <style>html:not(.hg-auth-verified) body{visibility:hidden!important}</style>
+  <script src="js/aha.js" onload="this.dataset.hgLoaded='1'"></script>
+  <script src="js/auth/require-login.js?v=20261027-1"></script>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
   <title>History Go</title>
@@ -45,19 +50,19 @@
   <link rel="stylesheet" href="css/quiz.css">
   <link rel="stylesheet" href="css/overlay.css">
   <link rel="stylesheet" href="css/effects.css">
-  <link rel="stylesheet" href="css/map.css?v=20261024-black-place-labels2">
-  <link rel="stylesheet" href="css/placeCard.css?v=20261018-compact-quizcard-title1">
-  <link rel="stylesheet" href="css/place-card-sticky-header.css?v=20261011-photo-scroll-compact3">
+  <link rel="stylesheet" href="css/map.css?v=20261028-badges-readable-close5">
+  <link rel="stylesheet" href="css/placeCard.css?v=20261102-visible-layout6">
+  <link rel="stylesheet" href="css/place-card-sticky-header.css?v=20261102-half-crop2">
   <link rel="stylesheet" href="css/place-card-reader.css?v=20261010-continuous2">
-  <link rel="stylesheet" href="css/place-onsite-surface.css?v=20261009-type-scale1">
+  <link rel="stylesheet" href="css/place-onsite-surface.css?v=20261027-about-image-inset1">
   <link rel="stylesheet" href="css/wonderkammer.css">
-  <link rel="stylesheet" href="css/footer.css?v=20261018-mini-reopen1">
+  <link rel="stylesheet" href="css/footer.css?v=20261027-icon-only1">
   <link rel="stylesheet" href="css/sheets.css">
   <link rel="stylesheet" href="css/historical-routes.css">
   <link rel="stylesheet" href="css/caravan.css">
   <link rel="stylesheet" href="css/nature.css">
   <link rel="stylesheet" href="css/people.css">
-  <link rel="stylesheet" href="css/onboarding.css">
+  <link rel="stylesheet" href="css/onboarding.css?v=20261027-compact-dialog-back1">
   <link rel="stylesheet" href="css/popups.css">
   <link rel="stylesheet" href="css/popup-polish.css">
   <link rel="stylesheet" href="css/place-popup-v2.css">
@@ -67,6 +72,59 @@
   <!-- Console CSS -->
   <link rel="stylesheet" href="js/console/console.css">
 
+  <link rel="stylesheet" href="css/universal-header-nav.css?v=20261028-header-alignment1">
+  <script defer src="js/ui/universal-header-nav.js?v=20261028-logo-before-back1"></script>
+  <!-- Critical PlaceCard layout recovery: remains correct if Safari restores
+       an older CSS resource from browser/service-worker cache. -->
+  <meta name="hg-placecard-layout" content="20261102-visible-layout6">
+  <style id="hg-placecard-live-layout-v6">
+    body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+      .pc-heading-hero.has-photo-source .pc-heading-content{
+      display:grid!important;
+      grid-template-columns:minmax(0,1fr)!important;
+      grid-template-rows:minmax(68px,1fr) auto auto auto!important;
+    }
+    body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+      .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row{
+      order:1!important;grid-column:1!important;grid-row:3!important;
+      display:flex!important;align-items:flex-start!important;
+      justify-content:flex-start!important;gap:7px!important;
+    }
+    body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+      .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row #pcTitle{
+      flex:0 1 auto!important;width:auto!important;min-width:0!important;
+      max-width:calc(100% - 35px)!important;text-align:left!important;
+    }
+    body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+      .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcFavorite{
+      position:static!important;top:auto!important;right:auto!important;left:auto!important;
+      order:1!important;flex:0 0 28px!important;width:28px!important;height:28px!important;
+      min-width:28px!important;min-height:28px!important;
+      align-self:flex-start!important;margin:-2px 0 0 1px!important;
+      font-size:16px!important;z-index:auto!important;
+    }
+    body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+      .pc-heading-hero.has-photo-source .pc-heading-content #pcStatusBar{
+      order:0!important;grid-column:1!important;grid-row:2!important;
+      justify-self:start!important;align-self:end!important;
+    }
+    body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+      .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta{
+      order:2!important;grid-column:1!important;grid-row:4!important;
+    }
+    body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+      .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta > .pc-epoke{
+      flex-basis:100%!important;
+    }
+    @media(max-width:520px){
+      body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+        .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row > #pcFavorite{
+        flex-basis:24px!important;width:24px!important;height:24px!important;
+        min-width:24px!important;min-height:24px!important;
+        margin-top:-1px!important;font-size:15px!important;
+      }
+    }
+  </style>
 </head>
 
 <body class="hg-app">
@@ -87,7 +145,7 @@
   <!-- HEADER -->
 <header class="site-header">
 
-  <img class="hg-brand" src="bilder/logo_historygo.PNG" alt="History GO">
+  <button id="hgHomeLogo" class="hg-brand" type="button" aria-label="Åpne History Go-startsiden" title="Åpne startsiden"><img src="bilder/logo_historygo.PNG" alt="" aria-hidden="true"></button>
    
   <div class="top-actions">
     <button id="nearbyExploreToggle"
@@ -204,6 +262,10 @@
           <button id="btnKaravane" class="header-menu-action" type="button" role="menuitem" aria-label="Karavane" title="Karavane">
             <span class="header-menu-action-icon" aria-hidden="true">🧭</span>
             <span class="header-menu-action-label">Ruter / Utforsk</span>
+          </button>
+          <button class="header-menu-action" type="button" role="menuitem" data-hg-sign-out aria-label="Logg ut" title="Logg ut">
+            <span class="header-menu-action-icon" aria-hidden="true">↪</span>
+            <span class="header-menu-action-label">Logg ut</span>
           </button>
 
         </div>
@@ -360,7 +422,7 @@
         "dist/web/knowledgeV2.js",
         "js/hgSocialGuards.js",
         "js/knowledgeMatch.js",
-        "js/ui/header-menu.js?v=20260912-onsite-under-explore1",
+        "js/ui/header-menu.js?v=20261027-nature-pages1",
         "js/ui/psychology-room-entry.js",
         "js/ui/badges.js"
       ];
@@ -379,7 +441,7 @@
     }, { once: true });
   </script>
 
-  <script defer src="js/ui/place-card-sticky-header.js?v=20261011-photo-scroll-compact3"></script>
-  <script type="module" src="./js/app.js?v=20261024-native-place-names1"></script>
+  <script defer src="js/ui/place-card-sticky-header.js?v=20261102-half-crop2"></script>
+  <script type="module" src="./js/app.js?v=20261102-visible-layout6"></script>
 </body>
 </html>

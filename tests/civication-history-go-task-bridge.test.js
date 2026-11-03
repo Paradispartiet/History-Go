@@ -287,4 +287,37 @@ function results() {
   assert.strictEqual(getTask(taskId).history_go.completion_source, "reads_leksikon", "source reads_leksikon");
 }
 
+// --- 11. Exact quiz evidence: unrelated category merits and quiz progress are not sufficient ---
+{
+  freshEnv();
+  const taskId = seedOpenTask({
+    task_kind: "history_go_knowledge",
+    target_type: "knowledge",
+    quiz_id: "quiz_oslo_42",
+    category_id: "historie",
+    completion_mode: "quiz_completed"
+  });
+  global.localStorage.setItem("merits_by_category", JSON.stringify({
+    historie: { points: 200 }
+  }));
+  global.localStorage.setItem("quiz_progress", JSON.stringify({
+    historie: { completed: ["unrelated_quiz"] }
+  }));
+  global.localStorage.setItem("hg_quiz_sets_v1", JSON.stringify({
+    unrelated_quiz: { completed: true, score: 10, total: 10 }
+  }));
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 0,
+    "unrelated progress must not mark the requested quiz completed");
+  assert.strictEqual(getTask(taskId).history_go, undefined);
+
+  global.localStorage.setItem("hg_quiz_sets_v1", JSON.stringify({
+    quiz_oslo_42: { completed: true, score: 8, total: 10 }
+  }));
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 1,
+    "an exact persisted quiz completion is sufficient");
+  assert.strictEqual(getTask(taskId).history_go.completion_source, "quiz_sets");
+  assert.strictEqual(getTask(taskId).history_go.correct, false,
+    "completion and perfect score are distinct");
+}
+
 console.log("civication history-go task bridge ok");

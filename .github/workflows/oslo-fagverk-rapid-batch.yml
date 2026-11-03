@@ -5,6 +5,11 @@ on:
       - '.github/workflows/oslo-fagverk-rapid-batch.yml'
       - 'tests/oslo-three-places-fagverk-batch-20261021.test.mjs'
       - 'tests/oslo-batch04-fagverk-20261021.test.mjs'
+      - 'tests/oslo-next-five-real-app-browser-20261027.mjs'
+      - 'tests/oslo-next-six-quiz-parity.test.mjs'
+      - 'data/quiz/historie/kontraskjaeret_sets.json'
+      - 'data/quiz/by/egertorget_sets.json'
+      - 'data/quizcards/historie/kontraskjaeret_quizkort_v1.json'
       - 'data/places/naeringsliv/oslo/places_naeringsliv/*.json'
       - 'data/places/historie/oslo/places_historie/sagene_skole.json'
       - 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json'
@@ -45,3 +50,28 @@ jobs:
         run: npm run place-open:check
       - name: Existing Place Fagverk contracts
         run: node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-substance-audit.test.mjs
+  five-oslo-real-app:
+    name: Five Oslo Places — mobile and desktop real app
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install Chromium dependencies
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Verify five-place quiz and Knowledge parity
+        run: node --test tests/oslo-next-six-quiz-parity.test.mjs
+      - name: Test actual app on mobile and desktop
+        run: node tests/oslo-next-five-real-app-browser-20261027.mjs
+      - name: Retain screenshots and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-next-five-mobile-desktop
+          path: artifacts/oslo-next-five-browser/
+          if-no-files-found: warn

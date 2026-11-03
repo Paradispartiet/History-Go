@@ -1,0 +1,830 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "vitenskap",
+  "targetId": "universitetets_gamle_hovedbygning",
+  "reviewed_at": "2026-10-28",
+  "source_review_basis": "University of Oslo official building pages, SNL and Oslo byleksikon, checked 2026-10-28.",
+  "sources": {
+    "uio": {
+      "url": "https://www.uio.no/om/finn-fram/omrader/sentrum/se01/",
+      "source_type": "university_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-28"
+    },
+    "academica": {
+      "url": "https://www.uio.no/om/finn-fram/omrader/sentrum/se02/",
+      "source_type": "university_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-28"
+    },
+    "bibliotheca": {
+      "url": "https://www.uio.no/om/finn-fram/omrader/sentrum/se03/",
+      "source_type": "university_primary_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-28"
+    },
+    "byleks": {
+      "url": "https://oslobyleksikon.no/side/Universitetet_i_Oslo",
+      "source_type": "reference_encyclopedia",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-28"
+    },
+    "snl": {
+      "url": "https://snl.no/Universitetet_i_Oslo",
+      "source_type": "reference_encyclopedia",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-28"
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_vit_byens_vitenskapssteder",
+      "em_vit_kunnskapsgeografi"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [],
+    "thinker_ids": [],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/vitenskap/manifest.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Reuse existing verified Place identity and coordinates.",
+      "Avoid duplicate marker for the Universitetsplassen.",
+      "Document distinctions from Blindern and the old chemistry building."
+    ],
+    "knowledge_migration": "Generate canonical Knowledge IDs."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Three historical campus buildings, intellectual history, scientific geography and source interpretation."
+  },
+  "held_back_candidates": [
+    "Conflating Aula's 1911 building date with the three main buildings in the 1850s.",
+    "Conflating main campus with the separate Old chemistry building."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anlegget ved Karl Johans gate 47 består av Domus Media, Domus Academica og Domus Bibliotheca.",
+      "source_ids": [
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_byens_vitenskapssteder"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christian Heinrich Grosch utformet de tre universitetsbygningene, med innspill fra Karl Friedrich Schinkel.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_byens_vitenskapssteder"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Domus Media ligger midt i den klassisistiske bygningstrioen og har en tempelfront med joniske søyler.",
+      "source_ids": [
+        "byleks",
+        "uio"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_byens_vitenskapssteder"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grosch fikk arkitektoniske innspill fra den tyske arkitekten Karl Friedrich Schinkel i Berlin.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_byens_vitenskapssteder"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grunnsteinen ble lagt 2. september 1841, på 30-årsdagen for opprettelsen av universitetet.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Domus Bibliotheca huset Universitetsbiblioteket inntil biblioteket flyttet i 1913.",
+      "source_ids": [
+        "byleks",
+        "bibliotheca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_byens_vitenskapssteder"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Domus Academica kalles Urbygningen på grunn av klokken i fasaden mot Karl Johans gate.",
+      "source_ids": [
+        "byleks",
+        "academica"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_byens_vitenskapssteder"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "De monumentale byggene ga forskning og embetsutdanning en synlig posisjon i hovedstadens offentlige rom.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Universitetets aula ble oppført som tilbygg til Domus Media til hundreårsjubileet i 1911.",
+      "source_ids": [
+        "snl",
+        "uio"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_byens_vitenskapssteder"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Edvard Munchs monumentale utsmykning av universitetets aula ble fullført i 1916.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_byens_vitenskapssteder"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det juridiske fakultet er en sentral bruker av de gamle sentrumsbygningene i dag.",
+      "source_ids": [
+        "uio",
+        "academica",
+        "bibliotheca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Sentrumsanlegget er bygd på 1800-tallet, mens Blindern ble bygget ut fra 1900-tallet og er et eget fysisk campusområde.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Den gamle festsalen ligger i Domus Academica og har et halvrundt, dekorert auditorium.",
+      "source_ids": [
+        "academica",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_byens_vitenskapssteder"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Domus Bibliotheca ble ombygd og har fått nye bibliotek- og undervisningsfunksjoner etter at det opprinnelige universitetsbiblioteket flyttet.",
+      "source_ids": [
+        "byleks",
+        "bibliotheca"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Universitetsanleggets klassisistiske formspråk knyttet institusjonen til antikkens arkitektur og offentlige dannelsesidealer.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Anlegget ble tatt i bruk i perioden 1851–1854; en enkelt dato kan skjule forskjeller mellom bygningene.",
+      "source_ids": [
+        "byleks",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Universitetet ble grunnlagt i 1811 og tok sentrumsanlegget i bruk flere tiår senere; institusjonens historie er ikke identisk med bygningens.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "De tre bygningene danner et sammenhengende universitetsrom mot Karl Johans gate.",
+      "source_ids": [
+        "byleks",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Aulamaleriene viser hvordan monumental kunst ble en del av universitetets offentlige identitet og kulturhistorie.",
+      "source_ids": [
+        "byleks",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Aulaen kom i 1911 og senere rehabiliteringer endret deler av bygningenes bruk; observasjoner i dag må sammenholdes med historiske kilder.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    },
+    {
+      "claim_id": "claim_universitetets_gamle_hovedbygning_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Hovedanlegget symboliserte universitetets plass i hovedstaden og bandt forskning, utdanning og offentlighet sammen fra midten av 1800-tallet.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_vit_kunnskapsgeografi"
+    }
+  ],
+  "candidate_questions": [
+    {
+      "number": 1,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_01",
+      "planned_phase": "opening",
+      "question": "Hvilke tre bygninger utgjør universitetets gamle hovedanlegg ved Karl Johans gate?",
+      "options": [
+        "Domus Media, Domus Academica og Domus Bibliotheca",
+        "Stortinget, Slottet og Nationaltheatret",
+        "Observatoriet, Historisk museum og Nasjonalbiblioteket",
+        "Domus Juridica, Georg Sverdrups hus og Realfagbygget"
+      ],
+      "answer": "Domus Media, Domus Academica og Domus Bibliotheca",
+      "answerIndex": 0,
+      "knowledge": "Anlegget ved Karl Johans gate 47 består av Domus Media, Domus Academica og Domus Bibliotheca.",
+      "source_ids": [
+        "byleks"
+      ],
+      "emne_id": "em_vit_byens_vitenskapssteder",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 2,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_02",
+      "planned_phase": "opening",
+      "question": "Hvilken arkitekt tegnet hovedanlegget i sentrum?",
+      "options": [
+        "Arnstein Arneberg",
+        "Christian Heinrich Grosch",
+        "Sverre Fehn",
+        "Erling Viksjø"
+      ],
+      "answer": "Christian Heinrich Grosch",
+      "answerIndex": 1,
+      "knowledge": "Christian Heinrich Grosch utformet de tre universitetsbygningene, med innspill fra Karl Friedrich Schinkel.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_byens_vitenskapssteder",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 3,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_03",
+      "planned_phase": "opening",
+      "question": "Hva er navnet på midtbygningen med søylefronten?",
+      "options": [
+        "Domus Bibliotheca",
+        "Domus Academica",
+        "Domus Media",
+        "Domus Juridica"
+      ],
+      "answer": "Domus Media",
+      "answerIndex": 2,
+      "knowledge": "Domus Media ligger midt i den klassisistiske bygningstrioen og har en tempelfront med joniske søyler.",
+      "source_ids": [
+        "byleks",
+        "uio"
+      ],
+      "emne_id": "em_vit_byens_vitenskapssteder",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 4,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_04",
+      "planned_phase": "opening",
+      "question": "Hvem bidro med arkitektonisk rådgivning fra Berlin?",
+      "options": [
+        "Edvard Munch",
+        "Henrik Bull",
+        "Holger Sinding-Larsen",
+        "Karl Friedrich Schinkel"
+      ],
+      "answer": "Karl Friedrich Schinkel",
+      "answerIndex": 3,
+      "knowledge": "Grosch fikk arkitektoniske innspill fra den tyske arkitekten Karl Friedrich Schinkel i Berlin.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_byens_vitenskapssteder",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 5,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_05",
+      "planned_phase": "opening",
+      "question": "Hva markerte grunnsteinsnedleggelsen ved universitetsanlegget i 1841?",
+      "options": [
+        "At det var 30 år siden universitetets grunnleggelse",
+        "At Blindern-campus åpnet",
+        "At Historisk museum ble ferdig",
+        "At de første Aulamaleriene var ferdige"
+      ],
+      "answer": "At det var 30 år siden universitetets grunnleggelse",
+      "answerIndex": 0,
+      "knowledge": "Grunnsteinen ble lagt 2. september 1841, på 30-årsdagen for opprettelsen av universitetet.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 6,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_06",
+      "planned_phase": "opening",
+      "question": "Hva er den historiske funksjonen til Domus Bibliotheca?",
+      "options": [
+        "Den var først og fremst astronomisk observatorium",
+        "Den huset Universitetsbiblioteket",
+        "Den var universitetets kjemiske laboratorium",
+        "Den ble oppført som rådhus"
+      ],
+      "answer": "Den huset Universitetsbiblioteket",
+      "answerIndex": 1,
+      "knowledge": "Domus Bibliotheca huset Universitetsbiblioteket inntil biblioteket flyttet i 1913.",
+      "source_ids": [
+        "byleks",
+        "bibliotheca"
+      ],
+      "emne_id": "em_vit_byens_vitenskapssteder",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 7,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_07",
+      "planned_phase": "opening",
+      "question": "Hva er Domus Academica særlig kjent som?",
+      "options": [
+        "Arkivbygningen",
+        "Vikingskipshuset",
+        "Urbygningen",
+        "Universitetets eldste studentbolig"
+      ],
+      "answer": "Urbygningen",
+      "answerIndex": 2,
+      "knowledge": "Domus Academica kalles Urbygningen på grunn av klokken i fasaden mot Karl Johans gate.",
+      "source_ids": [
+        "byleks",
+        "academica"
+      ],
+      "emne_id": "em_vit_byens_vitenskapssteder",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 8,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_08",
+      "planned_phase": "bridge",
+      "question": "Hva slags kunnskapshistorisk endring synliggjorde de monumentale universitetsbygningene?",
+      "options": [
+        "At all forskning ble flyttet ut av Oslo",
+        "At universitetsundervisning opphørte",
+        "At vitenskap ble en privat virksomhet",
+        "At forskning og embetsutdanning fikk en tydelig plass i hovedstadens sentrum"
+      ],
+      "answer": "At forskning og embetsutdanning fikk en tydelig plass i hovedstadens sentrum",
+      "answerIndex": 3,
+      "knowledge": "De monumentale byggene ga forskning og embetsutdanning en synlig posisjon i hovedstadens offentlige rom.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 9,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_09",
+      "planned_phase": "bridge",
+      "question": "Hva ble åpnet som tilbygg til Domus Media til universitetets hundreårsjubileum?",
+      "options": [
+        "Universitetets aula",
+        "Universitetsbiblioteket på Blindern",
+        "Den gamle kjemibygningen",
+        "Domus Juridica"
+      ],
+      "answer": "Universitetets aula",
+      "answerIndex": 0,
+      "knowledge": "Universitetets aula ble oppført som tilbygg til Domus Media til hundreårsjubileet i 1911.",
+      "source_ids": [
+        "snl",
+        "uio"
+      ],
+      "emne_id": "em_vit_byens_vitenskapssteder",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 10,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_10",
+      "planned_phase": "bridge",
+      "question": "Hvem malte den monumentale utsmykningen i Universitetets aula?",
+      "options": [
+        "Harriet Backer",
+        "Edvard Munch",
+        "Christian Krohg",
+        "Emanuel Vigeland"
+      ],
+      "answer": "Edvard Munch",
+      "answerIndex": 1,
+      "knowledge": "Edvard Munchs monumentale utsmykning av universitetets aula ble fullført i 1916.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_byens_vitenskapssteder",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 11,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_11",
+      "planned_phase": "bridge",
+      "question": "Hvilken akademisk virksomhet bruker i dag særlig sentrumsbygningene?",
+      "options": [
+        "Farmasøytisk institutt",
+        "Det matematisk-naturvitenskapelige fakultet",
+        "Det juridiske fakultet",
+        "Universitetets kjemisk-tekniske institutt"
+      ],
+      "answer": "Det juridiske fakultet",
+      "answerIndex": 2,
+      "knowledge": "Det juridiske fakultet er en sentral bruker av de gamle sentrumsbygningene i dag.",
+      "source_ids": [
+        "uio",
+        "academica",
+        "bibliotheca"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 12,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_12",
+      "planned_phase": "bridge",
+      "question": "Hvorfor er det faglig viktig å skille sentrumskomplekset fra Blindern?",
+      "options": [
+        "Fordi bare det første er et universitet",
+        "Fordi Blindern er et museum",
+        "Fordi de to navnene viser til to forskjellige byer",
+        "Fordi de er ulike fysiske campusmiljøer fra forskjellige utbyggingsperioder"
+      ],
+      "answer": "Fordi de er ulike fysiske campusmiljøer fra forskjellige utbyggingsperioder",
+      "answerIndex": 3,
+      "knowledge": "Sentrumsanlegget er bygd på 1800-tallet, mens Blindern ble bygget ut fra 1900-tallet og er et eget fysisk campusområde.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 13,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_13",
+      "planned_phase": "bridge",
+      "question": "Hvilken bygning hadde universitetets gamle festsal?",
+      "options": [
+        "Domus Academica",
+        "Domus Bibliotheca",
+        "Det astronomiske observatorium",
+        "Det gamle kjemilaboratoriet"
+      ],
+      "answer": "Domus Academica",
+      "answerIndex": 0,
+      "knowledge": "Den gamle festsalen ligger i Domus Academica og har et halvrundt, dekorert auditorium.",
+      "source_ids": [
+        "academica",
+        "byleks"
+      ],
+      "emne_id": "em_vit_byens_vitenskapssteder",
+      "question_type": "fact",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 14,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_14",
+      "planned_phase": "bridge",
+      "question": "Hva viser at det gamle universitetsanlegget fikk nye funksjoner over tid?",
+      "options": [
+        "At hele anlegget ble revet på 1900-tallet",
+        "At det gamle bibliotekbygget senere ble brukt til juridisk bibliotek og undervisning",
+        "At de tre husene ble gjort om til jernbanestasjon",
+        "At alle bygningene ble flyttet til Blindern"
+      ],
+      "answer": "At det gamle bibliotekbygget senere ble brukt til juridisk bibliotek og undervisning",
+      "answerIndex": 1,
+      "knowledge": "Domus Bibliotheca ble ombygd og har fått nye bibliotek- og undervisningsfunksjoner etter at det opprinnelige universitetsbiblioteket flyttet.",
+      "source_ids": [
+        "byleks",
+        "bibliotheca"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 15,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_15",
+      "planned_phase": "final",
+      "question": "Hva sier klassisistisk arkitektur ved universitetet om 1800-tallets idealer?",
+      "options": [
+        "At universitetet ble bygd uten arkitektoniske forbilder",
+        "At alle fagmiljøer var organisert som laboratorier",
+        "At antikkens formspråk ble brukt for å uttrykke kunnskap, orden og offentlig verdighet",
+        "At fasadene ble utformet for moderne biltrafikk"
+      ],
+      "answer": "At antikkens formspråk ble brukt for å uttrykke kunnskap, orden og offentlig verdighet",
+      "answerIndex": 2,
+      "knowledge": "Universitetsanleggets klassisistiske formspråk knyttet institusjonen til antikkens arkitektur og offentlige dannelsesidealer.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 16,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_16",
+      "planned_phase": "final",
+      "question": "Hvordan bør man vurdere en opplysning om at én universitetsbygning «åpnet i 1852»?",
+      "options": [
+        "Som bevis for at alle fakulteter flyttet samme dag",
+        "Som datoen for Aulamaleriene",
+        "Som årstallet for hele universitetets opprettelse",
+        "Ved å skille mellom byggefaser og når de ulike delene faktisk ble tatt i bruk"
+      ],
+      "answer": "Ved å skille mellom byggefaser og når de ulike delene faktisk ble tatt i bruk",
+      "answerIndex": 3,
+      "knowledge": "Anlegget ble tatt i bruk i perioden 1851–1854; en enkelt dato kan skjule forskjeller mellom bygningene.",
+      "source_ids": [
+        "byleks",
+        "snl"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 17,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_17",
+      "planned_phase": "final",
+      "question": "Hvordan kan man undersøke forskjellen mellom bygningshistorie og universitetshistorie?",
+      "options": [
+        "Ved å bruke både dokumentasjon av bygningene og universitetets institusjonshistorie",
+        "Ved bare å telle antall vinduer",
+        "Ved å anta at universitetet ble grunnlagt da fasaden stod ferdig",
+        "Ved å bruke den nåværende timeplanen som eneste kilde"
+      ],
+      "answer": "Ved å bruke både dokumentasjon av bygningene og universitetets institusjonshistorie",
+      "answerIndex": 0,
+      "knowledge": "Universitetet ble grunnlagt i 1811 og tok sentrumsanlegget i bruk flere tiår senere; institusjonens historie er ikke identisk med bygningens.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 18,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_18",
+      "planned_phase": "final",
+      "question": "Hva forteller de tre bygningenes plassering rundt Universitetsplassen?",
+      "options": [
+        "At universitetet var plassert tilfeldig mellom bolighus",
+        "At campus ble planlagt som et representativt, samlet offentlig anlegg",
+        "At universitetsanlegget opprinnelig var en militærleir",
+        "At de var bygd på samme grunnmur"
+      ],
+      "answer": "At campus ble planlagt som et representativt, samlet offentlig anlegg",
+      "answerIndex": 1,
+      "knowledge": "De tre bygningene danner et sammenhengende universitetsrom mot Karl Johans gate.",
+      "source_ids": [
+        "byleks",
+        "snl"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 19,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_19",
+      "planned_phase": "final",
+      "question": "Hva kan Edvard Munchs aulamalerier brukes til å undersøke?",
+      "options": [
+        "Den nøyaktige temperaturen i Christiania i 1916",
+        "Antallet studenter på Blindern i 1852",
+        "Hvordan kunst og offentlig kunnskapskultur møttes i universitetets rom",
+        "Universitetets opprinnelige kemiske måleapparater"
+      ],
+      "answer": "Hvordan kunst og offentlig kunnskapskultur møttes i universitetets rom",
+      "answerIndex": 2,
+      "knowledge": "Aulamaleriene viser hvordan monumental kunst ble en del av universitetets offentlige identitet og kulturhistorie.",
+      "source_ids": [
+        "byleks",
+        "snl"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 20,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_20",
+      "planned_phase": "final",
+      "question": "Hva er en kildekritisk begrensning ved å bruke dagens fasader for å beskrive universitetet i 1850-årene?",
+      "options": [
+        "Bygningene har aldri vært endret",
+        "Bygningshistorie er alltid uten dokumentasjon",
+        "Dagens fasader er mer pålitelige enn historiske dokumenter alene",
+        "Senere tilbygg, restaurering og bruksendringer kan gjøre dagens anlegg ulikt det opprinnelige"
+      ],
+      "answer": "Senere tilbygg, restaurering og bruksendringer kan gjøre dagens anlegg ulikt det opprinnelige",
+      "answerIndex": 3,
+      "knowledge": "Aulaen kom i 1911 og senere rehabiliteringer endret deler av bygningenes bruk; observasjoner i dag må sammenholdes med historiske kilder.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "concept_theory",
+      "review_status": "source_reviewed_ready_for_package"
+    },
+    {
+      "number": 21,
+      "claim_id": "claim_universitetets_gamle_hovedbygning_21",
+      "planned_phase": "final",
+      "question": "Hvilken oppsummering beskriver best den gamle universitetsbygningens historiske rolle?",
+      "options": [
+        "Et fysisk uttrykk for universitetets plass i den framvoksende norske hovedstaten",
+        "Et privat forretningsbygg uten tilknytning til undervisning",
+        "En ren kjemilaboratoriebygning",
+        "Et senere vedlegg til Blindern-campus"
+      ],
+      "answer": "Et fysisk uttrykk for universitetets plass i den framvoksende norske hovedstaten",
+      "answerIndex": 0,
+      "knowledge": "Hovedanlegget symboliserte universitetets plass i hovedstaden og bandt forskning, utdanning og offentlighet sammen fra midten av 1800-tallet.",
+      "source_ids": [
+        "snl",
+        "byleks"
+      ],
+      "emne_id": "em_vit_kunnskapsgeografi",
+      "question_type": "context",
+      "review_status": "source_reviewed_ready_for_package"
+    }
+  ],
+  "quizCard_candidate_source_question_numbers": [
+    1,
+    2,
+    3,
+    6,
+    8,
+    9,
+    11,
+    13,
+    16,
+    21
+  ],
+  "note": "Documentary Commons photograph CC BY-SA 4.0 with creator credit Ssu."
+}

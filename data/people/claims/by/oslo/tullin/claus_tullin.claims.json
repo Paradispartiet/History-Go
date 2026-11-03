@@ -1,0 +1,184 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "claus_tullin",
+  "place_id": "tullin",
+  "profile_file": "data/people/by/oslo/tullin/claus_tullin.json",
+  "identity": {
+    "canonical_identity": "Claus Tullin, kjøpmann og hoffintendant (1764–1830).",
+    "name_variants": [
+      "Claus Tullin"
+    ],
+    "not": [
+      "Christian Braunmann Tullin, dikter og far til Claus",
+      "Claus Terkildsen Koefoed"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Claus Tullin (1764–1830) var kjøpmann og hoffintendant i Christiania.",
+      "source_url": "https://blogg.oslobyarkiv.no/blog/tag/1700-tallet/",
+      "source_location": "Tullinløkka-avsnittet",
+      "source_type": "municipal_archive",
+      "status": "verified",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "kinship",
+      "claim": "Claus var sønn av dikteren Christian Braunmann Tullin.",
+      "source_url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
+      "source_location": "Innledningen",
+      "source_type": "encyclopedia",
+      "status": "verified",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "eponym",
+      "claim": "Tullinløkka er oppkalt etter Claus Tullin, ikke etter hans far.",
+      "source_url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
+      "source_location": "Innledningen",
+      "source_type": "encyclopedia",
+      "status": "verified",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "purchase",
+      "claim": "Claus Tullin kjøpte Ruseløkken i 1807.",
+      "source_url": "https://oslobyleksikon.no/side/Rusel%C3%B8kken_%28l%C3%B8kke%29",
+      "source_location": "Historien om Ruseløkken",
+      "source_type": "encyclopedia",
+      "status": "verified",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "widow",
+      "claim": "Claus Tullins enke solgte Ruseløkken til slottskommisjonen i 1837.",
+      "source_url": "https://oslobyleksikon.no/side/Rusel%C3%B8kken_%28l%C3%B8kke%29",
+      "source_location": "Eiendomsoverdragelsen",
+      "source_type": "encyclopedia",
+      "status": "verified",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "wife",
+      "claim": "Claus var gift med Henriette Wilster, skuespiller ved Christiania Privattheater.",
+      "source_url": "https://blogg.oslobyarkiv.no/blog/tag/1700-tallet/",
+      "source_location": "Tullinløkka-avsnittet",
+      "source_type": "municipal_archive",
+      "status": "verified",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "split",
+      "claim": "Tullinløkka ble skilt ut fra Ruseløkken i 1869.",
+      "source_url": "https://dok.statsbygg.no/wp-content/uploads/2016/04/kvu-tullinlokkaomradet.pdf",
+      "source_location": "Historiske milepæler",
+      "source_type": "state_building_authority",
+      "status": "verified",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-28",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "year": [
+      "purchase"
+    ],
+    "placeId": [
+      "eponym",
+      "purchase"
+    ],
+    "places[tullin]": [
+      "eponym",
+      "purchase"
+    ],
+    "image": []
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity",
+          "purchase",
+          "eponym"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "kinship",
+          "eponym"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "purchase"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "widow",
+          "wife"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claim_ids": [
+          "widow",
+          "split"
+        ]
+      },
+      {
+        "sentence": 6,
+        "claim_ids": [
+          "eponym"
+        ]
+      },
+      {
+        "sentence": 7,
+        "claim_ids": [
+          "kinship",
+          "eponym"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "7/7",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-10-28",
+    "validator_version": "1.0.0",
+    "current_status": "source_curated_media_pending",
+    "pending": "Authentic individually licensed portrait unavailable; initials retained and visible-round holdback preserved."
+  }
+}

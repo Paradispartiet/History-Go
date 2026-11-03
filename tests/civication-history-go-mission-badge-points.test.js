@@ -48,4 +48,29 @@ const noCategory = { ...openGoal, category_id: null };
 assert.equal(api.evaluateCompletion(noCategory).completed, false,
   "an unselected path is an exploration guide, not an unlock");
 
-console.log("History Go Civication mission toast follows genuine badge threshold");
+
+// An unrelated category merit or category-level quiz_progress entry must never
+// complete a specific Civication quiz mission.
+const quizGoal = { ...mission, target_type: "knowledge", quiz_id: "quiz_oslo_42",
+  category_id: "historie", completion_mode: "quiz_completed", payload: {} };
+storage.set("merits_by_category", JSON.stringify({ historie: { points: 120 } }));
+storage.set("quiz_progress", JSON.stringify({ historie: { completed: ["quiz_other"] } }));
+assert.equal(api.evaluateCompletion(quizGoal).completed, false,
+  "category progress is not evidence for this specific quiz");
+storage.set("hg_quiz_sets_v1", JSON.stringify({
+  quiz_other: { completed: true, score: 10, total: 10 }
+}));
+assert.equal(api.evaluateCompletion(quizGoal).completed, false,
+  "a different completed quiz cannot complete the mission");
+storage.set("hg_quiz_sets_v1", JSON.stringify({
+  quiz_oslo_42: { completed: true, score: 7, total: 10 }
+}));
+const completedQuiz = api.evaluateCompletion(quizGoal);
+assert.equal(completedQuiz.completed, true);
+assert.equal(completedQuiz.correct, false, "non-perfect quiz is completed but not perfect");
+assert.equal(completedQuiz.source, "quiz_sets");
+storage.set("hg_unlocks_v1", JSON.stringify({ byQuiz: { quiz_oslo_42: { quizId: "quiz_oslo_42" } } }));
+assert.equal(api.evaluateCompletion(quizGoal).correct, true,
+  "canonical perfect-quiz unlock is valid positive evidence");
+
+console.log("History Go Civication mission toast follows genuine badge threshold and exact quiz results");

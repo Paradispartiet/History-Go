@@ -1,0 +1,56 @@
+name: Oslo Prosjektrom Knowledge sync
+
+on:
+  push:
+    branches:
+      - place/oslo-prosjektrom-v1-20261103
+    paths:
+      - .github/workflows/oslo-prosjektrom-knowledge-sync.yml
+      - scripts/sync-oslo-prosjektrom-quizcard-knowledge.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  knowledge-sync:
+    name: Generate and commit canonical Knowledge links
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: place/oslo-prosjektrom-v1-20261103
+          persist-credentials: true
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Generate canonical Knowledge records
+        run: npm run knowledge:canonical:write
+      - name: Copy canonical links into QuizCard without changing questions
+        run: node scripts/sync-oslo-prosjektrom-quizcard-knowledge.mjs
+      - name: Run focused venue tests
+        run: node --test tests/oslo-prosjektrom-v1-content.test.mjs
+      - name: Commit only canonical registries and Oslo Prosjektrom files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/quiz/kunst/oslo_prosjektrom_sets.json
+          git add data/quizcards/kunst/oslo_prosjektrom_quizcard_v1.json
+          git add data/knowledge/
+          git add reports/knowledge-id-backfill.json
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git diff --cached --stat
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Complete Oslo Prosjektrom canonical Knowledge migration"
+          git push origin HEAD:place/oslo-prosjektrom-v1-20261103
+          echo "Canonical Knowledge changes pushed to PR branch."

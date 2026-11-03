@@ -21,6 +21,16 @@ const t = (id, title, definition, question, mechanism, distinction, methodIds, e
 });
 
 const THEORY_CANON_BY_TOPIC = Object.freeze({
+  em_sub_scene_fellesskap: {
+    thinkers: [{
+      id: 'will_straw',
+      name: 'Will Straw',
+      role: 'musikkscener som gjentatt samhandling mellom artister, arrangører, publikum og steder',
+      tier: 'core',
+      works: ['Systems of Articulation, Logics of Change: Communities and Scenes in Popular Music'],
+      source_url: 'https://doi.org/10.1080/09502389100490311'
+    }]
+  },
   em_sub_rett_til_byen: {
     thinkers: [{
       id: 'henri_lefebvre',

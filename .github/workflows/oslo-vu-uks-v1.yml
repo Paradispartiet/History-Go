@@ -1,0 +1,42 @@
+name: Oslo V-U UKS targeted integration
+on:
+  push:
+    branches: [content/oslo-vu-uks-v1-20261028]
+    paths:
+      - '.github/workflows/oslo-vu-uks-v1.yml'
+      - 'data/quiz/production_briefs/kunst/unge_kunstneres_samfund.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-vu-uks-v1-20261028
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate canonical Knowledge
+        run: |
+          npm run knowledge:canonical:write
+          node scripts/sync-uks-quizcard.mjs
+      - name: Generate runtime and Fagverk release
+        run: |
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Run targeted test
+        run: node --test tests/oslo-vu-uks-parity.test.mjs
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/kunst/unge_kunstneres_samfund_sets.json data/quizcards/kunst/unge_kunstneres_samfund_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/runtime/place-open/unge_kunstneres_samfund.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then git commit -m "UKS: generated Knowledge and runtime"; fi
+          git push origin HEAD:content/oslo-vu-uks-v1-20261028

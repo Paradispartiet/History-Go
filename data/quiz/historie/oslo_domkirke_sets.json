@@ -1,50 +1,82 @@
 {
   "targetId": "oslo_domkirke",
   "categoryId": "historie",
-  "generator_version": "historie_v5_1_recreated_missing_manifest_file",
+  "title": "Oslo domkirke",
+  "sources": {
+    "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/kirkebygget/": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/kirkebygget/",
+    "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/var-frelsers-kirke/": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/var-frelsers-kirke/",
+    "https://snl.no/Oslo_domkirke": "https://snl.no/Oslo_domkirke",
+    "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/glassmaleriene-i-oslo-domkirke/": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/glassmaleriene-i-oslo-domkirke/",
+    "https://oslobyleksikon.no/side/Brannvakten": "https://oslobyleksikon.no/side/Brannvakten",
+    "https://www.kongehuset.no/nyheter/jernroser-ved-domkirken": "https://www.kongehuset.no/nyheter/jernroser-ved-domkirken",
+    "https://www.kirken.no/nb-NO/om-kirken/aktuelt/minnegudstjeneste%20i%20oslo%20domkirke/": "https://www.kirken.no/nb-NO/om-kirken/aktuelt/minnegudstjeneste%20i%20oslo%20domkirke/",
+    "https://www.kirken.no/nn-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/kirkeklokkene/": "https://www.kirken.no/nn-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/kirkeklokkene/"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "source_review_status": "reviewed",
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Tre faser om bybrann, bygning/kunst og felles minne. Ingen spørsmål spør bare etter årstall."
+    },
+    "existing_quiz_audit": {
+      "active_before": {
+        "set_count": 1,
+        "question_count": 2
+      },
+      "decisions": [
+        "Replaced two generic History Go metaspørsmål with 21 concrete sourced questions.",
+        "Legacy five-item quiz with a factual error remains on disk but must be removed from active manifest.",
+        "Canonical Knowledge to be rematerialized before merge."
+      ]
+    }
+  },
   "sets": [
     {
       "set_id": "historie_oslo_domkirke_set_1",
       "order": 1,
-      "mode": "history_intro_story",
+      "level": 1,
+      "phase": "opening",
+      "title": "Fra brann til ny hovedkirke",
       "questions": [
         {
-          "id": "oslo_domkirke_quiz_1",
+          "id": "oslo_domkirke_v1_quiz_01",
           "quiz_id": "historie_oslo_domkirke_set_1_q1",
           "categoryId": "historie",
           "placeId": "oslo_domkirke",
-          "personId": "",
-          "natureId": "",
           "targetId": "oslo_domkirke",
           "question_scope": "place",
-          "question": "Hva gjør Oslo domkirke viktig i byens historie?",
+          "question": "Hva skjedde med kirken som lå ved Christiania torg før dagens domkirke ble bygget?",
           "options": [
-            "den fungerer som et sentralt kirkelig og offentlig rom i Oslo",
-            "den var en tysk fangeleir under andre verdenskrig",
-            "den var hovedbygningen på Eidsvoll Verk"
+            "Den ble flyttet stein for stein til Stortorvet",
+            "Den brant i bybrannen i 1686",
+            "Den ble bygd om til tollbod",
+            "Den ble slått sammen med Akershus slottskirke"
           ],
-          "answer": "den fungerer som et sentralt kirkelig og offentlig rom i Oslo",
-          "answerIndex": 0,
-          "knowledge": "Oslo domkirke kan brukes som anker for kirkemakt, offentlighet, seremonier og historiske minneformer i byen.",
+          "answer": "Den brant i bybrannen i 1686",
+          "answerIndex": 1,
+          "knowledge": "Hellige Trefoldighets kirke ved Christiania torg gikk tapt i brannen i 1686; Vår Frelsers kirke ble etterfølgeren.",
           "difficulty": 1,
           "question_type": "fact",
           "epoke_domain": "historie",
-          "emne_id": "em_his_kirke_kloster_middelalder",
-          "related_emner": [
-            "em_his_middelalder_oslo",
-            "em_his_minnesteder_historiebruk"
-          ],
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
           "tags": [
             "oslo_domkirke",
-            "kirke",
-            "offentlighet"
+            "fact"
           ],
           "source": [
-            "History Go place/person profiles using oslo_domkirke as history anchor"
+            "https://snl.no/Oslo_domkirke"
           ],
-          "primary_knowledge_unit_id": "ku_historie_oslo_domkirke_kan_brukes_8ee7e639d8",
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_01",
+          "claim_basis": "Hellige Trefoldighets kirke ved Christiania torg gikk tapt i brannen i 1686; Vår Frelsers kirke ble etterfølgeren.",
+          "primary_knowledge_unit_id": "ku_historie_hellige_trefoldighets_ki_e0db0efd16",
           "knowledge_unit_ids": [
-            "ku_historie_oslo_domkirke_kan_brukes_8ee7e639d8"
+            "ku_historie_hellige_trefoldighets_ki_e0db0efd16"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -52,42 +84,840 @@
           "knowledge_link_status": "linked"
         },
         {
-          "id": "oslo_domkirke_quiz_2",
+          "id": "oslo_domkirke_v1_quiz_02",
           "quiz_id": "historie_oslo_domkirke_set_1_q2",
           "categoryId": "historie",
           "placeId": "oslo_domkirke",
-          "personId": "",
-          "natureId": "",
           "targetId": "oslo_domkirke",
           "question_scope": "place",
-          "question": "Hvorfor brukes Oslo domkirke-området som anker for flere middelalderpersoner i History Go?",
+          "question": "Hvilket navn hadde den nåværende Oslo domkirke da den ble innviet?",
           "options": [
-            "fordi området representerer kirkelig makt, tro og historisk minne",
-            "fordi stedet bare handler om moderne kjøpesentre",
-            "fordi det var et bilverksted på 1900-tallet"
+            "Vår Frelsers kirke",
+            "Hellige Trefoldighets kirke",
+            "Hallvardskirken",
+            "Trefoldighetskirken på Hammersborg"
           ],
-          "answer": "fordi området representerer kirkelig makt, tro og historisk minne",
+          "answer": "Vår Frelsers kirke",
           "answerIndex": 0,
-          "knowledge": "Flere personprofiler knytter Oslo domkirke til middelalderens forhold mellom kirke, kongemakt og byens historiske identitet.",
+          "knowledge": "Kirken ved Stortorvet ble innviet som Vår Frelsers kirke i 1697.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_kirke_kloster_middelalder",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/var-frelsers-kirke/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_02",
+          "claim_basis": "Kirken ved Stortorvet ble innviet som Vår Frelsers kirke i 1697.",
+          "primary_knowledge_unit_id": "ku_historie_kirken_ved_stortorvet_bl_11f3e0e640",
+          "knowledge_unit_ids": [
+            "ku_historie_kirken_ved_stortorvet_bl_11f3e0e640"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_03",
+          "quiz_id": "historie_oslo_domkirke_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvorfor ble den nye kirken lagt utenfor Christianias daværende bymurer?",
+          "options": [
+            "Fordi domkirken skulle ligge ved en jernbanestasjon",
+            "Fordi kirkegården måtte ligge ved havnen",
+            "For å bygge den oppå den gamle Hallvardskatedralen",
+            "For å ta hensyn til byens militære forsvar"
+          ],
+          "answer": "For å ta hensyn til byens militære forsvar",
+          "answerIndex": 3,
+          "knowledge": "Plasseringen utenfor vollene skulle unngå konflikt med forsvarsanlegget rundt Christiania.",
+          "difficulty": 1,
+          "question_type": "context",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "context"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/var-frelsers-kirke/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_03",
+          "claim_basis": "Plasseringen utenfor vollene skulle unngå konflikt med forsvarsanlegget rundt Christiania.",
+          "primary_knowledge_unit_id": "ku_historie_plasseringen_utenfor_vol_89e8a1cc48",
+          "knowledge_unit_ids": [
+            "ku_historie_plasseringen_utenfor_vol_89e8a1cc48"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_04",
+          "quiz_id": "historie_oslo_domkirke_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvilken tidligere domkirke stod i middelalderens Oslo, på et annet sted enn dagens kirke?",
+          "options": [
+            "Vestre Aker kirke",
+            "Uranienborg kirke",
+            "Hallvardskatedralen",
+            "Trefoldighetskirken på Hammersborg"
+          ],
+          "answer": "Hallvardskatedralen",
+          "answerIndex": 2,
+          "knowledge": "Hallvardskatedralen tilhører den gamle middelalderbyen; Oslo domkirke ved Stortorvet er et langt senere kirkebygg.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_middelalder_oslo",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://snl.no/Oslo_domkirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_04",
+          "claim_basis": "Hallvardskatedralen tilhører den gamle middelalderbyen; Oslo domkirke ved Stortorvet er et langt senere kirkebygg.",
+          "primary_knowledge_unit_id": "ku_historie_hallvardskatedralen_tilh_ffc0abf4fe",
+          "knowledge_unit_ids": [
+            "ku_historie_hallvardskatedralen_tilh_ffc0abf4fe"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_05",
+          "quiz_id": "historie_oslo_domkirke_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvem bidro med sentrale deler av den første kirkeutsmykningen?",
+          "options": [
+            "Det nye Stortingets medlemmer",
+            "Velstående borgere som ga inventar i gave",
+            "En komité fra Nationaltheatret",
+            "Byens elektriske sporvei"
+          ],
+          "answer": "Velstående borgere som ga inventar i gave",
+          "answerIndex": 1,
+          "knowledge": "Gaver fra byens borgere finansierte blant annet altertavle, prekestol og døpefont i Vår Frelsers kirke.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/var-frelsers-kirke/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_05",
+          "claim_basis": "Gaver fra byens borgere finansierte blant annet altertavle, prekestol og døpefont i Vår Frelsers kirke.",
+          "primary_knowledge_unit_id": "ku_historie_gaver_fra_byens_borgere__8f324cca30",
+          "knowledge_unit_ids": [
+            "ku_historie_gaver_fra_byens_borgere__8f324cca30"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_06",
+          "quiz_id": "historie_oslo_domkirke_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hva har navnet Kirkeristen ved domkirken sammenheng med?",
+          "options": [
+            "Rister som hindret husdyr i å gå inn på kirkegården",
+            "Jernstenger som bar sporveiens ledninger",
+            "En risteplattform for kirkeklokkene",
+            "Rister brukt til å sile drikkevann"
+          ],
+          "answer": "Rister som hindret husdyr i å gå inn på kirkegården",
+          "answerIndex": 0,
+          "knowledge": "Ferister ved kirkegårdens adkomster skulle holde beitedyr ute; navnet lever videre i området.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_spor_materialitet",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://snl.no/Oslo_domkirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_06",
+          "claim_basis": "Ferister ved kirkegårdens adkomster skulle holde beitedyr ute; navnet lever videre i området.",
+          "primary_knowledge_unit_id": "ku_historie_ferister_ved_kirkegarden_84e872bcca",
+          "knowledge_unit_ids": [
+            "ku_historie_ferister_ved_kirkegarden_84e872bcca"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_07",
+          "quiz_id": "historie_oslo_domkirke_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hva er den beste måten å skille dagens domkirke fra byens tidligere kirker på?",
+          "options": [
+            "Regne alle kirker med ordet domkirke som samme bygning",
+            "Bruke byggestil alene til å fastslå kirkens navn",
+            "Anta at en eldre gjenstand betyr at hele bygningen er like gammel",
+            "Sammenholde kirkested, bygning og hvilken tidsperiode kilden gjelder"
+          ],
+          "answer": "Sammenholde kirkested, bygning og hvilken tidsperiode kilden gjelder",
+          "answerIndex": 3,
+          "knowledge": "En kirkes institusjonshistorie kan gå lenger tilbake enn det stående bygget; dagens domkirke må ikke forveksles med eldre domkirker i Oslo.",
+          "difficulty": 1,
+          "question_type": "analysis",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "analysis"
+          ],
+          "source": [
+            "https://snl.no/Oslo_domkirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_07",
+          "claim_basis": "En kirkes institusjonshistorie kan gå lenger tilbake enn det stående bygget; dagens domkirke må ikke forveksles med eldre domkirker i Oslo.",
+          "primary_knowledge_unit_id": "ku_historie_en_kirkes_institusjonshi_740585c303",
+          "knowledge_unit_ids": [
+            "ku_historie_en_kirkes_institusjonshi_740585c303"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_oslo_domkirke_set_2",
+      "order": 2,
+      "level": 2,
+      "phase": "development",
+      "title": "Ombygging og utsmykning",
+      "questions": [
+        {
+          "id": "oslo_domkirke_v1_quiz_08",
+          "quiz_id": "historie_oslo_domkirke_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvem ledet den store nygotiske ombyggingen på 1800-tallet?",
+          "options": [
+            "Arnstein Arneberg",
+            "Christian Heinrich Grosch",
+            "Alexis de Chateauneuf",
+            "Hugo Lous Mohr"
+          ],
+          "answer": "Alexis de Chateauneuf",
+          "answerIndex": 2,
+          "knowledge": "Alexis de Chateauneuf ledet ombyggingen på 1850-tallet, med forhøyet tårn og nygotisk kirkerom.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/kirkebygget/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_08",
+          "claim_basis": "Alexis de Chateauneuf ledet ombyggingen på 1850-tallet, med forhøyet tårn og nygotisk kirkerom.",
+          "primary_knowledge_unit_id": "ku_historie_alexis_de_chateauneuf_le_11c77c0621",
+          "knowledge_unit_ids": [
+            "ku_historie_alexis_de_chateauneuf_le_11c77c0621"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_09",
+          "quiz_id": "historie_oslo_domkirke_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvilket synlig spor kan fortelle at tårnet ble bygget om?",
+          "options": [
+            "En støpt årstallsplate under hver vinduskarm",
+            "En forskjell mellom mursteinsfargene i eldre og nyere partier",
+            "En synlig jernbaneskinne gjennom skipet",
+            "En malt pil som viser den opprinnelige takhøyden"
+          ],
+          "answer": "En forskjell mellom mursteinsfargene i eldre og nyere partier",
+          "answerIndex": 1,
+          "knowledge": "Påbygget på tårnet fikk annen tegl enn den eldre kirkekroppen, og fargeforskjellen kan fremdeles ses.",
           "difficulty": 2,
           "question_type": "analysis",
           "epoke_domain": "historie",
-          "emne_id": "em_his_middelalder_oslo",
-          "related_emner": [
-            "em_his_kongemakt_kirke_konflikt",
-            "em_his_kirke_kloster_middelalder"
-          ],
+          "emne_id": "em_his_spor_materialitet",
+          "related_emner": [],
           "tags": [
             "oslo_domkirke",
-            "middelalder",
-            "kirkelig_makt"
+            "analysis"
           ],
           "source": [
-            "History Go people profiles: kong_sverre, olav_den_hellige, biskop_nikolas_arnason"
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/kirkebygget/"
           ],
-          "primary_knowledge_unit_id": "ku_historie_flere_personprofiler_kny_5f1757550a",
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_09",
+          "claim_basis": "Påbygget på tårnet fikk annen tegl enn den eldre kirkekroppen, og fargeforskjellen kan fremdeles ses.",
+          "primary_knowledge_unit_id": "ku_historie_pabygget_pa_tarnet_fikk__5707a7aa3f",
           "knowledge_unit_ids": [
-            "ku_historie_flere_personprofiler_kny_5f1757550a"
+            "ku_historie_pabygget_pa_tarnet_fikk__5707a7aa3f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_10",
+          "quiz_id": "historie_oslo_domkirke_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvilken stil fikk kirkerommet ved ombyggingen på 1850-tallet?",
+          "options": [
+            "Nygotikk",
+            "Rokokko",
+            "Funksjonalisme",
+            "Art nouveau"
+          ],
+          "answer": "Nygotikk",
+          "answerIndex": 0,
+          "knowledge": "Under Chateauneufs ombygging ble mye barokkinventar tatt ut og interiøret gitt et nygotisk formspråk.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/kirkebygget/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_10",
+          "claim_basis": "Under Chateauneufs ombygging ble mye barokkinventar tatt ut og interiøret gitt et nygotisk formspråk.",
+          "primary_knowledge_unit_id": "ku_historie_under_chateauneufs_ombyg_2e281cd02a",
+          "knowledge_unit_ids": [
+            "ku_historie_under_chateauneufs_ombyg_2e281cd02a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_11",
+          "quiz_id": "historie_oslo_domkirke_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hva skjedde med viktige eldre inventardeler ved restaureringen omkring 1950?",
+          "options": [
+            "De ble brukt som byggematerialer i Brannvakten",
+            "De ble sendt til Hovedøya for permanent lagring",
+            "De ble erstattet med kopier av Nationaltheatrets dekorasjoner",
+            "De ble hentet tilbake og gjeninnsatt"
+          ],
+          "answer": "De ble hentet tilbake og gjeninnsatt",
+          "answerIndex": 3,
+          "knowledge": "Barokkens altertavle, prekestol og døpefont ble hentet tilbake ved restaureringen ledet av Arnstein Arneberg.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/kirkebygget/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_11",
+          "claim_basis": "Barokkens altertavle, prekestol og døpefont ble hentet tilbake ved restaureringen ledet av Arnstein Arneberg.",
+          "primary_knowledge_unit_id": "ku_historie_barokkens_altertavle_pre_4505855d35",
+          "knowledge_unit_ids": [
+            "ku_historie_barokkens_altertavle_pre_4505855d35"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_12",
+          "quiz_id": "historie_oslo_domkirke_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvem ledet restaureringen som ga kirkerommet et tydeligere barokkpreg igjen?",
+          "options": [
+            "Alexis de Chateauneuf",
+            "Wilhelm von Hanno",
+            "Arnstein Arneberg",
+            "Christian Heinrich Grosch"
+          ],
+          "answer": "Arnstein Arneberg",
+          "answerIndex": 2,
+          "knowledge": "Arneberg ledet restaureringen frem mot 1950 og tegnet et nytt kapell på sørsiden.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/kirkebygget/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_12",
+          "claim_basis": "Arneberg ledet restaureringen frem mot 1950 og tegnet et nytt kapell på sørsiden.",
+          "primary_knowledge_unit_id": "ku_historie_arneberg_ledet_restaurer_a12e05ade1",
+          "knowledge_unit_ids": [
+            "ku_historie_arneberg_ledet_restaurer_a12e05ade1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_13",
+          "quiz_id": "historie_oslo_domkirke_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hva er spesielt med de store takmaleriene i Oslo domkirke?",
+          "options": [
+            "De er bevarte middelalderfresker fra Hallvardskatedralen",
+            "De er moderne arbeider av Hugo Lous Mohr fra 1900-tallet",
+            "De er malerier av Edvard Munch fra 1890-årene",
+            "De ble malt av Gustav Vigeland i barokktiden"
+          ],
+          "answer": "De er moderne arbeider av Hugo Lous Mohr fra 1900-tallet",
+          "answerIndex": 1,
+          "knowledge": "Hugo Lous Mohr malte takdekoren i 1936–1950; motivene bygger på trosbekjennelsen, men maleriene er moderne, ikke originale barokkmalerier.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://snl.no/Oslo_domkirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_13",
+          "claim_basis": "Hugo Lous Mohr malte takdekoren i 1936–1950; motivene bygger på trosbekjennelsen, men maleriene er moderne, ikke originale barokkmalerier.",
+          "primary_knowledge_unit_id": "ku_historie_hugo_lous_mohr_malte_tak_59d9acbefd",
+          "knowledge_unit_ids": [
+            "ku_historie_hugo_lous_mohr_malte_tak_59d9acbefd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_14",
+          "quiz_id": "historie_oslo_domkirke_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvem laget de mest kjente glassmaleriene i domkirkens kor?",
+          "options": [
+            "Emanuel Vigeland",
+            "Edvard Munch",
+            "Borgar Hauglid",
+            "Henrik Sørensen"
+          ],
+          "answer": "Emanuel Vigeland",
+          "answerIndex": 0,
+          "knowledge": "Emanuel Vigeland tegnet en serie glassmalerier til koret i årene omkring 1910–1916.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/glassmaleriene-i-oslo-domkirke/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_14",
+          "claim_basis": "Emanuel Vigeland tegnet en serie glassmalerier til koret i årene omkring 1910–1916.",
+          "primary_knowledge_unit_id": "ku_historie_emanuel_vigeland_tegnet__80e70133e5",
+          "knowledge_unit_ids": [
+            "ku_historie_emanuel_vigeland_tegnet__80e70133e5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_oslo_domkirke_set_3",
+      "order": 3,
+      "level": 3,
+      "phase": "final",
+      "title": "Byens fellesskap og minnespor",
+      "questions": [
+        {
+          "id": "oslo_domkirke_v1_quiz_15",
+          "quiz_id": "historie_oslo_domkirke_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hva minnes glassmaleriene som Borgar Hauglid laget i kirkens sideskip?",
+          "options": [
+            "Ofrene for bybrannen i 1686",
+            "Grunnleggelsen av Universitetet i Oslo",
+            "De første bygningsarbeiderne på T-banen",
+            "Falne under andre verdenskrig"
+          ],
+          "answer": "Falne under andre verdenskrig",
+          "answerIndex": 3,
+          "knowledge": "Borgar Hauglids 16 glassmalerier i sideskipene kom som en gave til minne om falne fra andre verdenskrig.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/oslo-domkirken/om-domkirken/om-oslo-domkike/les-mer-om-oslo-domkirke/glassmaleriene-i-oslo-domkirke/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_15",
+          "claim_basis": "Borgar Hauglids 16 glassmalerier i sideskipene kom som en gave til minne om falne fra andre verdenskrig.",
+          "primary_knowledge_unit_id": "ku_historie_borgar_hauglids_16_glass_cdffffb72a",
+          "knowledge_unit_ids": [
+            "ku_historie_borgar_hauglids_16_glass_cdffffb72a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_16",
+          "quiz_id": "historie_oslo_domkirke_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hva viser orgelet om forskjellen mellom historisk fasade og musikkinstrument?",
+          "options": [
+            "Hele orgelverket har vært uendret siden innvielsen",
+            "Kirken har aldri hatt et pipeorgel",
+            "Den gamle barokkfasaden omgir et nyere hovedorgel",
+            "Orgelhuset ble bygget som jernbanehall"
+          ],
+          "answer": "Den gamle barokkfasaden omgir et nyere hovedorgel",
+          "answerIndex": 2,
+          "knowledge": "Deler av kirkens gamle orgelfasade er bevart, mens den nåværende hovedorgelmekanikken er langt nyere.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_spor_materialitet",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "analysis"
+          ],
+          "source": [
+            "https://snl.no/Oslo_domkirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_16",
+          "claim_basis": "Deler av kirkens gamle orgelfasade er bevart, mens den nåværende hovedorgelmekanikken er langt nyere.",
+          "primary_knowledge_unit_id": "ku_historie_deler_av_kirkens_gamle_o_fdcac70520",
+          "knowledge_unit_ids": [
+            "ku_historie_deler_av_kirkens_gamle_o_fdcac70520"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_17",
+          "quiz_id": "historie_oslo_domkirke_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvilken arkitekt tegnet Brannvakten og basarene ved domkirken?",
+          "options": [
+            "Arnstein Arneberg",
+            "Christian Heinrich Grosch",
+            "Emanuel Vigeland",
+            "Alexis de Chateauneuf"
+          ],
+          "answer": "Christian Heinrich Grosch",
+          "answerIndex": 1,
+          "knowledge": "Christian Heinrich Grosch tegnet Brannvakten ved domkirken og de nærliggende basarene; det er bygninger ved kirken, ikke del av den opprinnelige kirken.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Brannvakten"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_17",
+          "claim_basis": "Christian Heinrich Grosch tegnet Brannvakten ved domkirken og de nærliggende basarene; det er bygninger ved kirken, ikke del av den opprinnelige kirken.",
+          "primary_knowledge_unit_id": "ku_historie_christian_heinrich_grosc_10d7d36fca",
+          "knowledge_unit_ids": [
+            "ku_historie_christian_heinrich_grosc_10d7d36fca"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_18",
+          "quiz_id": "historie_oslo_domkirke_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hvordan ble domkirkens tårn tidligere brukt i byens brannberedskap?",
+          "options": [
+            "Som utsiktspunkt for brannvakter",
+            "Som verksted for å støpe brannpumper",
+            "Som garasje for byens første brannbil",
+            "Som vannreservoar for slukningsarbeid"
+          ],
+          "answer": "Som utsiktspunkt for brannvakter",
+          "answerIndex": 0,
+          "knowledge": "Brannvakter holdt utkikk fra domkirkens tårn. Den egne Brannvakten ved siden av hadde en annen funksjon som stasjonsbygning.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_spor_materialitet",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Brannvakten"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_18",
+          "claim_basis": "Brannvakter holdt utkikk fra domkirkens tårn. Den egne Brannvakten ved siden av hadde en annen funksjon som stasjonsbygning.",
+          "primary_knowledge_unit_id": "ku_historie_brannvakter_holdt_utkikk_00165de434",
+          "knowledge_unit_ids": [
+            "ku_historie_brannvakter_holdt_utkikk_00165de434",
+            "ku_historie_den_egne_brannvakten_ved_8896667a41"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_19",
+          "quiz_id": "historie_oslo_domkirke_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hva gjorde plassen foran domkirken til et spontant minnested etter 22. juli 2011?",
+          "options": [
+            "Det ble reist en ny triumfbue",
+            "Plassen ble gjort om til en utstillingshall",
+            "Det ble åpnet et permanent museum i tårnet",
+            "Folk la ned blomster og tente lys"
+          ],
+          "answer": "Folk la ned blomster og tente lys",
+          "answerIndex": 3,
+          "knowledge": "Blomster og lys fra publikum samlet seg ved domkirken etter terrorangrepene og ble et sterkt felles minneuttrykk.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kirken.no/nb-NO/om-kirken/aktuelt/minnegudstjeneste%20i%20oslo%20domkirke/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_19",
+          "claim_basis": "Blomster og lys fra publikum samlet seg ved domkirken etter terrorangrepene og ble et sterkt felles minneuttrykk.",
+          "primary_knowledge_unit_id": "ku_historie_blomster_og_lys_fra_publ_3390a6c984",
+          "knowledge_unit_ids": [
+            "ku_historie_blomster_og_lys_fra_publ_3390a6c984"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_20",
+          "quiz_id": "historie_oslo_domkirke_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hva kjennetegner minnesmerket Jernrosene ved Oslo domkirke?",
+          "options": [
+            "Et barokt jernrekkverk fra kirkens første byggeår",
+            "En statue av en eneveldig konge",
+            "Smidde roser laget gjennom deltakelse fra blant annet etterlatte og berørte",
+            "En minnetavle laget av farget glass fra 1850"
+          ],
+          "answer": "Smidde roser laget gjennom deltakelse fra blant annet etterlatte og berørte",
+          "answerIndex": 2,
+          "knowledge": "Jernrosene er et minnesmerke med rundt tusen smidde roser. Berørte av 22. juli var blant dem som deltok i arbeidet.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "fact"
+          ],
+          "source": [
+            "https://www.kongehuset.no/nyheter/jernroser-ved-domkirken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_20",
+          "claim_basis": "Jernrosene er et minnesmerke med rundt tusen smidde roser. Berørte av 22. juli var blant dem som deltok i arbeidet.",
+          "primary_knowledge_unit_id": "ku_historie_jernrosene_er_et_minnesm_3bf7326cc9",
+          "knowledge_unit_ids": [
+            "ku_historie_jernrosene_er_et_minnesm_3bf7326cc9",
+            "ku_historie_ber_rte_av_22_juli_var_b_0c5e0b8495"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_domkirke_v1_quiz_21",
+          "quiz_id": "historie_oslo_domkirke_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "oslo_domkirke",
+          "targetId": "oslo_domkirke",
+          "question_scope": "place",
+          "question": "Hva er en kildekritisk trygg tolkning av de forskjellige kunstverkene i Oslo domkirke?",
+          "options": [
+            "Alt inventar er like gammelt som kirkens yttervegger",
+            "De ble skapt i ulike perioder og må dateres hver for seg",
+            "Glassmaleriene beviser at kirken ble bygget på 1900-tallet",
+            "Takmaleriene beviser at det ikke fantes et eldre interiør"
+          ],
+          "answer": "De ble skapt i ulike perioder og må dateres hver for seg",
+          "answerIndex": 1,
+          "knowledge": "Kirkens altertavle, glassmalerier og takmalerier stammer fra ulike tider. Materialer og datering må vurderes enkeltvis for å forstå historiske lag.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "epoke_domain": "historie",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "related_emner": [],
+          "tags": [
+            "oslo_domkirke",
+            "analysis"
+          ],
+          "source": [
+            "https://snl.no/Oslo_domkirke"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_oslo_domkirke_v1_quiz_21",
+          "claim_basis": "Kirkens altertavle, glassmalerier og takmalerier stammer fra ulike tider. Materialer og datering må vurderes enkeltvis for å forstå historiske lag.",
+          "primary_knowledge_unit_id": "ku_historie_kirkens_altertavle_glass_b5b89be04a",
+          "knowledge_unit_ids": [
+            "ku_historie_kirkens_altertavle_glass_b5b89be04a",
+            "ku_historie_materialer_og_datering_m_e115725186"
           ],
           "concept_ids": [],
           "term_ids": [],

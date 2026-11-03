@@ -1,0 +1,59 @@
+name: Jaeger Oslo – factual source, Fagverk and real-browser QA
+
+on:
+  pull_request:
+    paths:
+      - 'data/places/subkultur/oslo/places_subkultur/jaeger_oslo.json'
+      - 'data/runtime/place-open/jaeger_oslo.json'
+      - 'data/quiz/musikk/jaeger_oslo_sets_merged.json'
+      - 'data/quiz/manifest.json'
+      - 'data/quizcards/musikk/topp10_musikk_oslo_v1_batch01.json'
+      - 'tests/jaeger-oslo-v1-contract-20261102.test.mjs'
+      - 'tests/jaeger-oslo-real-browser.test.mjs'
+      - '.github/workflows/jaeger-oslo-v1-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jaeger-oslo-v1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  targeted-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/jaeger-oslo-v1-contract-20261102.test.mjs
+  browser-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Locate installed Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Jaeger real-app mobile and desktop
+        run: node tests/jaeger-oslo-real-browser.test.mjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jaeger-oslo-real-browser
+          path: artifacts/jaeger-oslo-real-browser
+          if-no-files-found: ignore
+          retention-days: 14

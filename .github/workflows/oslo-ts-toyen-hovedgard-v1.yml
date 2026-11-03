@@ -1,0 +1,42 @@
+name: Oslo T-S Tøyen hovedgård integration
+on:
+  push:
+    branches: [content/oslo-ts-bolk03-toyen-hovedgard-20261028]
+    paths:
+      - '.github/workflows/oslo-ts-toyen-hovedgard-v1.yml'
+      - 'data/quiz/production_briefs/historie/toyen_hovedgard.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ts-bolk03-toyen-hovedgard-20261028
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Canonical Knowledge and card parity
+        run: |
+          npm run knowledge:canonical:write
+          node scripts/sync-toyen-hovedgard-quizcard.mjs
+      - name: Generate runtime and Fagverk release
+        run: |
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Targeted place and quiz test
+        run: node --test tests/oslo-ts-toyen-hovedgard-parity.test.mjs
+      - name: Commit generated artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/historie/toyen_hovedgard_sets.json data/quizcards/historie/toyen_hovedgard_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/runtime/place-open/toyen_hovedgard.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then git commit -m "Tøyen hovedgård: generated Knowledge and runtime"; fi
+          git push origin HEAD:content/oslo-ts-bolk03-toyen-hovedgard-20261028

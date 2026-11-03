@@ -1,0 +1,918 @@
+{
+  "targetId": "mustadgarden_kongens_gate_3",
+  "placeId": "mustadgarden_kongens_gate_3",
+  "categoryId": "historie",
+  "title": "Mustadgården – Kongens gate 3",
+  "sources": {
+    "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli": "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli",
+    "https://oslobyleksikon.no/side/Kongens_gate": "https://oslobyleksikon.no/side/Kongens_gate"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/mustadgarden_kongens_gate_3.json",
+    "context_artifact": "data/quiz/production_context/historie/mustadgarden_kongens_gate_3.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie"
+      ],
+      "active_before": {
+        "status": "not_found_in_pr_diff"
+      },
+      "decisions": [
+        "Recheck main for any existing quiz before activation."
+      ],
+      "knowledge_migration": "Requires actual canonical builder."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Et sted med bygningshistorie, eierskap og et konseptkunstverk; tre sett dekker fakta, tidslag og anvendt kildekritikk."
+    },
+    "held_back_candidates": [
+      "No exact original build-year quiz answer",
+      "No unsupported claim that the current facade is as old as the original stone house",
+      "No date-answer recall"
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "historie_mustadgarden_kongens_gate_3_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Bygården og eierne",
+      "questions": [
+        {
+          "id": "mustadgarden_kongens_gate_3_q01",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_1",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvilken adresse har Mustadgården i Kvadraturen?",
+          "options": [
+            "Kongens gate 3",
+            "Kongens gate 13",
+            "Karl Johans gate 3",
+            "Rådhusgata 3"
+          ],
+          "answer": "Kongens gate 3",
+          "answerIndex": 0,
+          "knowledge": "Mustadgården ligger i Kongens gate 3. Gården har både eldre bygningshistorie og et moderne kunstverk på fasaden.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_01",
+          "claim_basis": "Oslo byleksikon omtaler Mustadgården på Kongens gate 3.",
+          "primary_knowledge_unit_id": "ku_historie_mustadgarden_ligger_i_ko_2a7c7e2729",
+          "knowledge_unit_ids": [
+            "ku_historie_mustadgarden_ligger_i_ko_2a7c7e2729",
+            "ku_historie_garden_har_bade_eldre_by_74dfc071d5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q02",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_1",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hva kjennetegner Mustadgårdens bygningshistorie?",
+          "options": [
+            "Den består utelukkende av en etterkrigsbygning",
+            "Den er et ubrutt middelalderslott",
+            "Den har en eldre bygningskjerne og senere omfattende ombygging",
+            "Den er flyttet fra Stortorget"
+          ],
+          "answer": "Den har en eldre bygningskjerne og senere omfattende ombygging",
+          "answerIndex": 2,
+          "knowledge": "Bygården har en eldre steinhuskjerne som ble omformet på 1800-tallet. Den synlige fasaden forteller ikke hele historien.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_02",
+          "claim_basis": "Mustadgården hadde en eldre steinhuskjerne og ble senere ombygd.",
+          "primary_knowledge_unit_id": "ku_historie_bygarden_har_en_eldre_st_d9ba90064e",
+          "knowledge_unit_ids": [
+            "ku_historie_bygarden_har_en_eldre_st_d9ba90064e",
+            "ku_historie_den_synlige_fasaden_fort_d0e479f184"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q03",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_1",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvem var arkitekt for den større ombyggingen av gården på 1800-tallet?",
+          "options": [
+            "Christian H. Grosch",
+            "Jacob Wilhelm Nordan",
+            "Arnstein Arneberg",
+            "Lars Backer"
+          ],
+          "answer": "Jacob Wilhelm Nordan",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon knytter J. W. Nordan til utvidelsen til tre etasjer. En yngre fasade kan dekke en eldre bygningskjerne.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_03",
+          "claim_basis": "Jacob Wilhelm Nordan var arkitekt for den større ombyggingen av Kongens gate 3.",
+          "primary_knowledge_unit_id": "ku_historie_oslo_byleksikon_knytter__1a69213a24",
+          "knowledge_unit_ids": [
+            "ku_historie_oslo_byleksikon_knytter__1a69213a24",
+            "ku_historie_nordan_til_utvidelsen_ti_c7e9067abd",
+            "ku_historie_en_yngre_fasade_kan_dekk_3564a20b53"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q04",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_1",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvilken senere næringsdrivende ble knyttet til gårdens navn?",
+          "options": [
+            "Bernt Anker",
+            "Niels Wulfsberg",
+            "Henrik Ibsen",
+            "Ole Mustad"
+          ],
+          "answer": "Ole Mustad",
+          "answerIndex": 3,
+          "knowledge": "Gården ble ombygd for jernvarehandler Ole Mustad, som ga opphav til det senere navnet Mustadgården.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_04",
+          "claim_basis": "Jernvarehandler Ole Mustad var knyttet til ombyggingen og gårdens senere navn.",
+          "primary_knowledge_unit_id": "ku_historie_garden_ble_ombygd_for_je_b78ea0a754",
+          "knowledge_unit_ids": [
+            "ku_historie_garden_ble_ombygd_for_je_b78ea0a754"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q05",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_1",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvilket eldre arkitektonisk trekk beskrives ved gården før ombyggingen?",
+          "options": [
+            "Karnapp og gavl mot gaten",
+            "En stor barokkkuppel",
+            "En romansk steinportal",
+            "To symmetriske kirkespir"
+          ],
+          "answer": "Karnapp og gavl mot gaten",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon beskriver eldre Kongens gate 3 som et steinhus med karnapp og gavl mot gaten.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_05",
+          "claim_basis": "Eldre Kongens gate 3 var et steinhus med karnapp og gavl mot gaten.",
+          "primary_knowledge_unit_id": "ku_historie_oslo_byleksikon_beskrive_842e676825",
+          "knowledge_unit_ids": [
+            "ku_historie_oslo_byleksikon_beskrive_842e676825"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q06",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_1",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hva ble den eldre gården ombygd til på 1800-tallet?",
+          "options": [
+            "Et kapell uten leiligheter",
+            "En jernbanestasjon",
+            "En treetasjes bygård",
+            "Et nytt militært kanonbatteri"
+          ],
+          "answer": "En treetasjes bygård",
+          "answerIndex": 2,
+          "knowledge": "Den eldre gården ble påbygd til tre etasjer. Dette viser at byggehistorie kan omfatte flere tydelige etapper.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_06",
+          "claim_basis": "Mustadgården ble ombygd til tre etasjer.",
+          "primary_knowledge_unit_id": "ku_historie_den_eldre_garden_ble_pab_046488be61",
+          "knowledge_unit_ids": [
+            "ku_historie_den_eldre_garden_ble_pab_046488be61",
+            "ku_historie_dette_viser_at_byggehist_0363de6971"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q07",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_1",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvor lå et pakkhus som tilhørte samme eiendom?",
+          "options": [
+            "Ved Akerselva",
+            "Mot Nedre Slottsgate",
+            "På Eidsvolls plass",
+            "På motsatt side av Bjørvika"
+          ],
+          "answer": "Mot Nedre Slottsgate",
+          "answerIndex": 1,
+          "knowledge": "Eiendommens pakkhus vendte mot Nedre Slottsgate og ble selv bygget om senere.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_07",
+          "claim_basis": "Et pakkhus på eiendommen lå mot Nedre Slottsgate.",
+          "primary_knowledge_unit_id": "ku_historie_eiendommens_pakkhus_vend_ec902613f4",
+          "knowledge_unit_ids": [
+            "ku_historie_eiendommens_pakkhus_vend_ec902613f4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_mustadgarden_kongens_gate_3_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "title": "Den røde prikk og byens kunst",
+      "questions": [
+        {
+          "id": "mustadgarden_kongens_gate_3_q08",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_2",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvem laget kunstverket «Den røde prikk» på fasaden?",
+          "options": [
+            "Per Krohg",
+            "Gustav Vigeland",
+            "Arnold Haukeland",
+            "Otto Künzli"
+          ],
+          "answer": "Otto Künzli",
+          "answerIndex": 3,
+          "knowledge": "Den sveitsiske smykkekunstneren Otto Künzli står bak den røde prikken på fasaden.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_08",
+          "claim_basis": "Otto Künzli skapte kunstverket Den røde prikk i Kongens gate 3.",
+          "primary_knowledge_unit_id": "ku_historie_den_sveitsiske_smykkekun_d4e4f7fcfa",
+          "knowledge_unit_ids": [
+            "ku_historie_den_sveitsiske_smykkekun_d4e4f7fcfa"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q09",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_2",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvor på bygningen finner man «Den røde prikk»?",
+          "options": [
+            "Et stykke oppe på veggen mot gaten",
+            "Midt på brosteinen i bakgården",
+            "På taket av pakkhuset",
+            "Inne i en underjordisk kjeller"
+          ],
+          "answer": "Et stykke oppe på veggen mot gaten",
+          "answerIndex": 0,
+          "knowledge": "Kunstverket er en synlig rød prikk plassert høyt på den utvendige veggen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_09",
+          "claim_basis": "Den røde prikk er plassert et godt stykke opp på fasaden i Kongens gate 3.",
+          "primary_knowledge_unit_id": "ku_historie_kunstverket_er_en_synlig_a312a63cbf",
+          "knowledge_unit_ids": [
+            "ku_historie_kunstverket_er_en_synlig_a312a63cbf"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q10",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_2",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hva signaliserer en liten rød prikk ofte i et kunstgalleri?",
+          "options": [
+            "At kunstverket er restaurert",
+            "At det skal fjernes",
+            "At kunstverket er solgt",
+            "At det er et privat museum"
+          ],
+          "answer": "At kunstverket er solgt",
+          "answerIndex": 2,
+          "knowledge": "Gallerier bruker ofte en rød markering for solgte kunstverk. Künzli gjør denne markeringen til et selvstendig verk.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_10",
+          "claim_basis": "En rød prikk kan i kunstgallerier symbolisere at et verk er solgt.",
+          "primary_knowledge_unit_id": "ku_historie_gallerier_bruker_ofte_en_acc9866ea8",
+          "knowledge_unit_ids": [
+            "ku_historie_gallerier_bruker_ofte_en_acc9866ea8",
+            "ku_historie_kunzli_gj_r_denne_marker_69a01ef666"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q11",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_2",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvilket galleri var knyttet til oppføringen av Künzlis verk?",
+          "options": [
+            "Kunstnernes Hus",
+            "Ram Galleri",
+            "Galleri F 15",
+            "Nasjonalgalleriet"
+          ],
+          "answer": "Ram Galleri",
+          "answerIndex": 1,
+          "knowledge": "Künzli hadde utstilling på Ram Galleri, som da holdt til i Kongens gate 3.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_11",
+          "claim_basis": "Den røde prikk ble satt opp i forbindelse med Künzlis utstilling på Ram Galleri.",
+          "primary_knowledge_unit_id": "ku_historie_kunzli_hadde_utstilling__50268884e8",
+          "knowledge_unit_ids": [
+            "ku_historie_kunzli_hadde_utstilling__50268884e8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q12",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_2",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvem eier kunstverket «Den røde prikk», ifølge kommunens omtale?",
+          "options": [
+            "Oslo Børs",
+            "Norsk Folkemuseum",
+            "Stortinget",
+            "Ram Galleri"
+          ],
+          "answer": "Ram Galleri",
+          "answerIndex": 3,
+          "knowledge": "Oslo kommunes kunstomtale oppgir Ram Galleri som eier av selve verket.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_12",
+          "claim_basis": "Den røde prikk eies av Ram Galleri.",
+          "primary_knowledge_unit_id": "ku_historie_oslo_kommunes_kunstomtal_18a9b57f63",
+          "knowledge_unit_ids": [
+            "ku_historie_oslo_kommunes_kunstomtal_18a9b57f63"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q13",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_2",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hva var Künzlis opprinnelige idé med røde prikker på bygninger?",
+          "options": [
+            "Å markere bygninger der han hadde utstillinger",
+            "Å vise gamle branntomter",
+            "Å merke historiske festningsmurer",
+            "Å tegne inn byens første trikketrasé"
+          ],
+          "answer": "Å markere bygninger der han hadde utstillinger",
+          "answerIndex": 0,
+          "knowledge": "Kunstneren ville feste tilsvarende prikker på bygninger der han stilte ut. Den utvendige plasseringen gir konseptet en byromsdimensjon.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_13",
+          "claim_basis": "Künzli ønsket å plassere slike prikker på bygninger hvor han hadde utstillinger.",
+          "primary_knowledge_unit_id": "ku_historie_kunstneren_ville_feste_t_73078588f3",
+          "knowledge_unit_ids": [
+            "ku_historie_kunstneren_ville_feste_t_73078588f3",
+            "ku_historie_den_utvendige_plassering_37088d4a48"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q14",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_2",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hva blir selve «kunstverket» i Künzlis lek med et galleri som er merket solgt?",
+          "options": [
+            "Alle kjellerne i Kvadraturen",
+            "Bare en rød papirbit",
+            "Gallerirommet og bygningen blir del av idéen",
+            "Et nytt portrett av byggherren"
+          ],
+          "answer": "Gallerirommet og bygningen blir del av idéen",
+          "answerIndex": 2,
+          "knowledge": "Ved å forstørre den kjente salgsmarkeringen på veggen antydes at galleriet selv er verket som er solgt.",
+          "difficulty": 2,
+          "question_type": "comparison",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_14",
+          "claim_basis": "Künzlis verk flytter den røde salgsprikken fra et objekt i galleriet til galleriets fasade.",
+          "primary_knowledge_unit_id": "ku_historie_ved_a_forst_rre_den_kjen_b87373338b",
+          "knowledge_unit_ids": [
+            "ku_historie_ved_a_forst_rre_den_kjen_b87373338b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_mustadgarden_kongens_gate_3_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "title": "Arkitektur som kilde",
+      "questions": [
+        {
+          "id": "mustadgarden_kongens_gate_3_q15",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_3",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvorfor kan vi ikke datere hele Mustadgården ut fra den synlige fasadestilen?",
+          "options": [
+            "Fordi arkitektur ikke endres",
+            "Fordi fasaden er påvirket av en senere ombygging enn husets eldste kjerne",
+            "Fordi alle bygårder har samme byggedato",
+            "Fordi gården står under vann"
+          ],
+          "answer": "Fordi fasaden er påvirket av en senere ombygging enn husets eldste kjerne",
+          "answerIndex": 1,
+          "knowledge": "Stil og byggeår må undersøkes hver for seg. Mustadgårdens eldste bygning og senere ombygging er ulike historiske lag.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_15",
+          "claim_basis": "Mustadgårdens eldre kjerne og senere ombygde fasade er fra ulike bygningsfaser.",
+          "primary_knowledge_unit_id": "ku_historie_stil_og_byggear_ma_under_9ffaf9b3ae",
+          "knowledge_unit_ids": [
+            "ku_historie_stil_og_byggear_ma_under_9ffaf9b3ae",
+            "ku_historie_mustadgardens_eldste_byg_fa928620d7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q16",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_3",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hva forteller Mustad-navnet om gården?",
+          "options": [
+            "At den var grunnlagt av Otto Künzli",
+            "At det aldri fantes tidligere eiere",
+            "At den har vært et kongelig palass",
+            "At en senere eier eller virksomhet preger hvilket navn vi bruker"
+          ],
+          "answer": "At en senere eier eller virksomhet preger hvilket navn vi bruker",
+          "answerIndex": 3,
+          "knowledge": "Et bygningsnavn trenger ikke vise til den første beboeren eller byggefasen.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_16",
+          "claim_basis": "Navnet Mustadgården knytter bygningen til en senere næringsdrivende og eierhistorie.",
+          "primary_knowledge_unit_id": "ku_historie_et_bygningsnavn_trenger__a1dfbea323",
+          "knowledge_unit_ids": [
+            "ku_historie_et_bygningsnavn_trenger__a1dfbea323"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q17",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_3",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hva er forskjellen mellom bygningen og «Den røde prikk»?",
+          "options": [
+            "Gården er et eldre hus med mange faser, prikken er et moderne selvstendig verk",
+            "Begge ble reist som del av Akershus festning",
+            "Prikken ble skåret inn i murene ved grunnleggelsen",
+            "Kunsten erstattet hele bygningen"
+          ],
+          "answer": "Gården er et eldre hus med mange faser, prikken er et moderne selvstendig verk",
+          "answerIndex": 0,
+          "knowledge": "Kunstverket er en senere intervensjon på en eldre fasade. De to elementene har ulike historiske og kunstfaglige kilder.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli",
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_17",
+          "claim_basis": "Kongens gate 3 er en flerfaset historisk bygning, mens Den røde prikk er et eget nyere kunstverk.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kunstverket_er_en_senere_313afc842e",
+          "knowledge_unit_ids": [
+            "ku_historie_kunstverket_er_en_senere_313afc842e",
+            "ku_historie_de_to_elementene_har_uli_82ad6cf403"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q18",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_3",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvorfor er Künzlis verk et eksempel på konseptuell kunst?",
+          "options": [
+            "Fordi det er malt i gull",
+            "Fordi det viser en realistisk utsikt over fjorden",
+            "Fordi idéen om kjøp, verdi og kunstmarked er viktigere enn dekorasjonen alene",
+            "Fordi det er en kopi av et middelaldersegl"
+          ],
+          "answer": "Fordi idéen om kjøp, verdi og kunstmarked er viktigere enn dekorasjonen alene",
+          "answerIndex": 2,
+          "knowledge": "Prikken får en idé om salg og kunstens varekarakter til å virke utenfor galleriets vanlige rom.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_18",
+          "claim_basis": "Künzlis verk undersøker forholdet mellom galleri, verdi, salg og kunstverk.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_prikken_far_en_ide_om_sa_646dc5898c",
+          "knowledge_unit_ids": [
+            "ku_historie_prikken_far_en_ide_om_sa_646dc5898c"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q19",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_3",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvordan bør en formidler omtale gårdens opprinnelige byggeår?",
+          "options": [
+            "Oppgi alle eldre dateringstradisjoner som sikre",
+            "Vise at den eldste kjernen dateres omtrent, og skille fra senere ombygging",
+            "Utelate alle omtaler av bygningsfaser",
+            "Ta årstallet fra den nyeste butikkfasaden"
+          ],
+          "answer": "Vise at den eldste kjernen dateres omtrent, og skille fra senere ombygging",
+          "answerIndex": 1,
+          "knowledge": "Et omtrentlig anslag for den gamle kjernen må ikke forveksles med sikker datering av hele dagens bygning.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_19",
+          "claim_basis": "Oslo byleksikon daterer den opprinnelige steinhuskjernen til omkring 1640 og omtaler senere ombygginger.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_et_omtrentlig_anslag_for_95d8c6910e",
+          "knowledge_unit_ids": [
+            "ku_historie_et_omtrentlig_anslag_for_95d8c6910e"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q20",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_3",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hva kan en fasadefotografi alene ikke gi sikkert svar på?",
+          "options": [
+            "Om fasaden har vinduer",
+            "Om det står kunst på ytterveggen",
+            "Om huset ligger i Kongens gate",
+            "Nøyaktig alder på skjulte konstruksjoner bak en yngre fasade"
+          ],
+          "answer": "Nøyaktig alder på skjulte konstruksjoner bak en yngre fasade",
+          "answerIndex": 3,
+          "knowledge": "Bygningsarkeologi, arkiv og materialundersøkelse trengs for å dokumentere skjulte eldre lag.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_20",
+          "claim_basis": "Fasadens synlige utforming dokumenterer ikke nødvendigvis skjulte bygningsdelers alder.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bygningsarkeologi_arkiv__e3bc7266a8",
+          "knowledge_unit_ids": [
+            "ku_historie_bygningsarkeologi_arkiv__e3bc7266a8"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "knut_kjeldstadli",
+          "work": "Fortida er ikke hva den en gang var",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "knut_kjeldstadli",
+            "work": "Fortida er ikke hva den en gang var",
+            "why_it_helps": "Kjeldstadlis kildekritikk skiller det synlige fasadeuttrykket fra dokumentasjon av eldre konstruksjoner. Fotografiet er et historisk spor, men alene kan det ikke datere skjulte bygningsdeler."
+          }
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3_q21",
+          "quiz_id": "historie_mustadgarden_kongens_gate_3_set_3",
+          "categoryId": "historie",
+          "targetId": "mustadgarden_kongens_gate_3",
+          "placeId": "mustadgarden_kongens_gate_3",
+          "question_scope": "place",
+          "question": "Hvorfor er Kongens gate 3 et godt sted å studere både arkitektur og kunst?",
+          "options": [
+            "Eldre murverk, senere ombygginger og Künzlis fasadekunst møtes på samme adresse",
+            "Gården har alltid vært et nasjonalt kunstmuseum",
+            "Fasaden ble laget utelukkende for dagens galleri",
+            "Den rommet byens første operative jernbane"
+          ],
+          "answer": "Eldre murverk, senere ombygginger og Künzlis fasadekunst møtes på samme adresse",
+          "answerIndex": 0,
+          "knowledge": "Én adresse rommer flere faser av byggeskikk, virksomhet og samtidskunst som kan undersøkes med forskjellige kilder.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/den-rode-prikk-otto-kunzli",
+            "https://oslobyleksikon.no/side/Kongens_gate"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_mustadgarden_kongens_gate_3_21",
+          "claim_basis": "Kongens gate 3 kombinerer en eldre bygård med et senere kunstverk på fasaden.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_en_adresse_rommer_flere__7189e236e6",
+          "knowledge_unit_ids": [
+            "ku_historie_en_adresse_rommer_flere__7189e236e6"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

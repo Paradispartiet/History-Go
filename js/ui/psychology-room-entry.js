@@ -106,7 +106,7 @@
     const link = document.createElement("link");
     link.id = "psychology-room-css";
     link.rel = "stylesheet";
-    link.href = "css/psychologyRoom.css";
+    link.href = "css/psychologyRoom.css?v=20261027-compact-dialog-back1";
     document.head.appendChild(link);
   }
 
@@ -126,7 +126,7 @@
 
       const script = document.createElement("script");
       script.id = "psychology-room-script";
-      script.src = "js/psychologyRoom.js";
+      script.src = "js/psychologyRoom.js?v=20261027-compact-dialog-back1";
       script.onload = () => resolve();
       script.onerror = reject;
       document.body.appendChild(script);
@@ -156,6 +156,9 @@
       window.showToast?.("Psykologirommet kunne ikke lastes");
     }
   }
+
+  // Reuse the canonical lazy-loaded room from welcome and header entry points.
+  window.HGPsychologyRoomEntry = { open: openRoom };
 
   function init() {
     const button = document.getElementById("btnOpenPsychologyRoom");

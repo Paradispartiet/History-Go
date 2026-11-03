@@ -1,0 +1,291 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "vinmonopolet_lager",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/vinmonopolet_lager.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Vinmonopolets tidligere sentralanlegg på Hasle var et produksjons-, tappe-, lager- og distribusjonsanlegg som senere ble ombrukt til Vinslottet.",
+    "anchorType": "production_site",
+    "placeObjectDistinction": "Det historiske industrianlegget skilles fra Vinmonopolets utsalgsbutikker, Arcus som senere selskap, og dagens selvstendige handels- og boligvirksomheter.",
+    "temporalScope": {
+      "start": "1933",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Fra sentralanlegget ble tatt i bruk til dokumentert ombruk som Vinslottet og dagens publikumsfunksjoner."
+    },
+    "sourceIds": [
+      "source_oslo_byleksikon_hasle",
+      "source_lokalhistoriewiki_sentralanlegg",
+      "source_vinslottet_operator"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_felt_arbeid_verdiskaping",
+      "siteSpecificRationale": "Statlig organisert produksjon og senere eierskifte viser arbeidsdeling, verdiskaping og ombruk av industriell kapital.",
+      "caseIds": [
+        "case_vinmonopolet_hasle_produksjon_ombruk"
+      ]
+    },
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Hasle-anlegget samlet tapping, lager og utsending med forbindelser til byens distribusjon og industriområder.",
+      "caseIds": [
+        "case_vinmonopolet_hasle_produksjon_ombruk"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oslo_byleksikon_hasle",
+      "url": "https://oslobyleksikon.no/side/Haslevangen",
+      "sourceLocation": "Historikken til Vinmonopolets sentralanlegg i Haslevangen 16",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-27",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo byleksikon gir en stedsspesifikk beskrivelse av arkitekturen, driften og senere bruk.",
+      "limitations": "Oppslaget dokumenterer hovedlinjene, ikke komplette regnskaper, bemanningsserier eller produksjonsvolumer."
+    },
+    {
+      "id": "source_lokalhistoriewiki_sentralanlegg",
+      "url": "https://lokalhistoriewiki.no/wiki/Vinmonopolets_sentralanlegg",
+      "sourceLocation": "Sentralanleggets historie, arkitektur, vern og ombygging",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-10-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Lokalhistoriewiki samler stedshistoriske opplysninger med henvisninger til eldre dokumentasjon.",
+      "limitations": "Teksten gir utvalgte hendelser, men ikke fullstendige originalkilder for hver driftsopplysning."
+    },
+    {
+      "id": "source_vinslottet_operator",
+      "url": "https://www.vinslottet.no/om-vinslottet",
+      "sourceLocation": "Beskrivelse av dagens Vinslottet og nåværende virksomheter",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-10-27",
+      "temporalCoverage": "current",
+      "provenance": "Vinslottets egen presentasjon av dagens handels- og publikumsfunksjoner.",
+      "limitations": "Aktøren beskriver sin egen nåværende virksomhet og er ikke en uavhengig kilde til historiske lønnsomhetsmål."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_vinmonopolet_hasle_produksjon_ombruk",
+      "claim": "Det tidligere sentralanlegget bandt sammen produksjon, flaskeskylling, tapping, lagring og distribusjon. Bygget fikk senere ny økonomisk funksjon som bolig- og handelssenter.",
+      "unitOfAnalysis": {
+        "unit": "Vinmonopolets sentralanlegg på Hasle",
+        "boundary": "Analysen gjelder det historiske bygningsanlegget, ikke hele detaljhandelsmonopolet eller alle butikker i Oslo.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1933",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Fra sentralanlegget ble tatt i bruk til dokumentert ombruk som Vinslottet og dagens publikumsfunksjoner."
+        },
+        "sourceIds": [
+          "source_oslo_byleksikon_hasle",
+          "source_lokalhistoriewiki_sentralanlegg",
+          "source_vinslottet_operator"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Vinmonopolet og senere Arcus/Vectura",
+          "roleOrInterest": "Organiserte produksjon, tapping, lager og distribusjon før utflyttingen fra Hasle.",
+          "economicPosition": "Kontrollerte produksjonsanlegg og lagerlogistikk innen skiftende eier- og selskapsstrukturer.",
+          "sourceIds": [
+            "source_oslo_byleksikon_hasle",
+            "source_lokalhistoriewiki_sentralanlegg"
+          ]
+        },
+        {
+          "name": "Ansatte og transportører",
+          "roleOrInterest": "Utførte håndtering, tapping, lagring, intern logistikk og vareutsending.",
+          "economicPosition": "Bidro med fagkompetanse og arbeidskraft, men kildene gir ikke sammenlignbare lønns- og arbeidsvilkårsserier.",
+          "sourceIds": [
+            "source_oslo_byleksikon_hasle",
+            "source_lokalhistoriewiki_sentralanlegg"
+          ]
+        },
+        {
+          "name": "Eiendomsutviklere, næringsdrivende og beboere",
+          "roleOrInterest": "Bruker tidligere industrilokaler og ombygde arealer til handel, tjenester og boliger.",
+          "economicPosition": "Forvalter, investerer i og bruker lokaler som ikke lenger har opprinnelig tapperifunksjon.",
+          "sourceIds": [
+            "source_lokalhistoriewiki_sentralanlegg",
+            "source_vinslottet_operator"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Produksjonsarealer, maskiner, emballasje, innsatsvarer, arbeidskraft og transportkapasitet inngikk i sentralanleggets drift.",
+            "sourceIds": [
+              "source_oslo_byleksikon_hasle",
+              "source_lokalhistoriewiki_sentralanlegg"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Anlegget samlet produksjon, flaskeskylling, tapping, lagring og ekspedisjon av varer til distribusjon.",
+          "sourceIds": [
+            "source_oslo_byleksikon_hasle",
+            "source_lokalhistoriewiki_sentralanlegg"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Vin og brennevin ble håndtert og sendt videre i en organisert varekjede; dagens anlegg tilbyr i stedet boliger, handel og service.",
+            "sourceIds": [
+              "source_oslo_byleksikon_hasle",
+              "source_lokalhistoriewiki_sentralanlegg",
+              "source_vinslottet_operator"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Det tidligere anlegget viser integrert vareflyt, men dokumenterte kilder gir ikke sikre tidsserier for netto verdiskaping eller lønnsomhet.",
+          "sourceIds": [
+            "source_oslo_byleksikon_hasle",
+            "source_lokalhistoriewiki_sentralanlegg"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_infrastrukturanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Kildedaterte bygningsfunksjoner, eierskifte i 1996, dokumentert utflytting og synlig ombygging brukes som historiske indikatorer.",
+        "unit": "industrielt bygningsanlegg",
+        "period": "1933–2026",
+        "comparability": "Ulike driftsetapper sammenlignes funksjonelt, ikke ved likeartede tall for produktivitet eller bemanning.",
+        "dataLimitations": "Materialet mangler sammenhengende produksjonsvolum, regnskaper, lønnstall og dokumenterte effekter på nabolagets økonomi.",
+        "sourceIds": [
+          "source_oslo_byleksikon_hasle",
+          "source_lokalhistoriewiki_sentralanlegg",
+          "source_vinslottet_operator"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Eierskap og organisering endret seg gjennom statlig monopol, Arcus-delingen og senere eiendomsutvikling.",
+        "laborPosition": "Arbeidere utførte produksjon og varehåndtering, men kildene kan ikke fastslå lønnsnivå eller forhandlingsmakt.",
+        "beneficiaries": [
+          "Vinmonopolets varekjede fikk et sentralt produksjons- og logistikksted.",
+          "Dagens brukere får boliger, handel og tjenester i det tidligere industrimiljøet."
+        ],
+        "costRiskBearers": [
+          "Anleggseiere bar investerings-, moderniserings- og ombyggingskostnader.",
+          "Ansatte og tilknyttede leverandører kunne bli berørt av flyttingen, uten at konkrete virkninger her er tallfestet."
+        ],
+        "sourceIds": [
+          "source_oslo_byleksikon_hasle",
+          "source_lokalhistoriewiki_sentralanlegg",
+          "source_vinslottet_operator"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Historisk drift var avhengig av produksjonsutstyr og logistikk; dagens ombruk krever vedlikehold og forvaltning av et vernet industrihistorisk bygningsmiljø.",
+          "sourceIds": [
+            "source_oslo_byleksikon_hasle",
+            "source_lokalhistoriewiki_sentralanlegg",
+            "source_vinslottet_operator"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene gir ikke pålitelig, stedsspesifikk dokumentasjon for tallfestede utslipp, støy eller fortrengning; ingen effekter tallfestes."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Oslo byleksikons stedshistorie sammenholdes med Lokalhistoriewiki og dagens egenpresentasjon av Vinslottet.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Materialet dokumenterer endret bruk og eierorganisering, men isolerer ikke én forklaring på utflyttingen eller ombruket.",
+        "alternativeExplanations": [
+          "Endret marked og organisasjon, produksjonsteknologi, eiendomsverdi og kommunal planlegging kan ha virket samtidig."
+        ],
+        "uncertainty": "Få sammenlignbare bedriftsøkonomiske serier og ulike kildeformål begrenser kausale slutninger.",
+        "sourceIds": [
+          "source_oslo_byleksikon_hasle",
+          "source_lokalhistoriewiki_sentralanlegg",
+          "source_vinslottet_operator"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "mixed",
+    "statement": "Vinslottet har publikumsrettet handel, tjenester og boliger, mens Vinmonopolets opprinnelige tapping og lagerdrift ikke lenger pågår her.",
+    "originalEconomicRoleRelationship": "Dagens bruk viderefører deler av anleggets fasader og volum, ikke den opprinnelige produksjonsvirksomheten eller dens eierskap.",
+    "checkedAt": "2026-10-27",
+    "sourceIds": [
+      "source_lokalhistoriewiki_sentralanlegg",
+      "source_vinslottet_operator"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Dette kanoniske stedet bruker eksisterende fem fullquizsett à seks spørsmål (30 totalt), ikke Næringsliv-protokollens separate 7+7-startpakke."
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Det eksisterende historiesporet om statlig produksjon og anleggets ombruk er beholdt; tidslinjefilen er regenerert etter dateringsrettelsen."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_vinmonopolet_hasle_produksjon_ombruk.valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_vinmonopolet_hasle_produksjon_ombruk.actors",
+        "case_vinmonopolet_hasle_produksjon_ombruk.distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_vinmonopolet_hasle_produksjon_ombruk.measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_vinmonopolet_hasle_produksjon_ombruk.comparisonAndCausality",
+        "presentOperation"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Eksisterende quizmodell er 5×6, med egen bestått 30/10-paritet og reell mobil- og desktopgjennomspilling."
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History Go – Oslo Å–V produksjonskontroll",
+    "reviewedAt": "2026-10-27",
+    "notes": "Historisk produksjon, Arcus-organisering og Vinslottets ombruk holdes atskilt. Det hevdes ikke målte økonomiske effekter. Bildeopphav og lisens for eksisterende foto er uavklart og spores separat i #6667."
+  }
+}

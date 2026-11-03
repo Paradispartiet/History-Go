@@ -1,0 +1,924 @@
+{
+  "targetId": "avisen_tiden_radhusgata_10",
+  "placeId": "avisen_tiden_radhusgata_10",
+  "categoryId": "historie",
+  "title": "Avisen Tiden – Rådhusgata 10",
+  "sources": {
+    "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden": "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+    "https://snl.no/Tiden_%28Oslo%29": "https://snl.no/Tiden_%28Oslo%29",
+    "https://snl.no/Niels_Wulfsberg": "https://snl.no/Niels_Wulfsberg"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/avisen_tiden_radhusgata_10.json",
+    "context_artifact": "data/quiz/production_context/historie/avisen_tiden_radhusgata_10.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie"
+      ],
+      "active_before": {
+        "status": "not_found_in_pr_diff"
+      },
+      "decisions": [
+        "Confirm no main overlap before activation."
+      ],
+      "knowledge_migration": "Pending actual canonical builder."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Trykkeristedet gir tre læringsfaser: presseproduksjon, historiske hendelser og kildekritisk forståelse av offentlighet."
+    },
+    "held_back_candidates": [
+      "No date recall answer prompts",
+      "Disputed or speculative motive claims held back"
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "historie_avisen_tiden_radhusgata_10_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Avisen, bokhandelen og trykkeriet",
+      "questions": [
+        {
+          "id": "avisen_tiden_radhusgata_10_q01",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_1",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvem sto bak utgivelsen av avisen Tiden i Christiania?",
+          "options": [
+            "Christian Magnus Falsen",
+            "Niels Wulfsberg",
+            "Henrik Ibsen",
+            "Peter Christen Asbjørnsen"
+          ],
+          "answer": "Niels Wulfsberg",
+          "answerIndex": 1,
+          "knowledge": "Niels Wulfsberg var prest, bokhandler og en sentral norsk pressepioner. Han utga Tiden fra virksomheten i Rådhusgata.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_01",
+          "claim_basis": "Niels Wulfsberg var utgiver av avisen Tiden.",
+          "primary_knowledge_unit_id": "ku_historie_niels_wulfsberg_var_pres_dac175e41f",
+          "knowledge_unit_ids": [
+            "ku_historie_niels_wulfsberg_var_pres_dac175e41f",
+            "ku_historie_han_utga_tiden_fra_virks_5693ecaea5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q02",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_1",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvilke virksomheter fant man sammen med avisen i Rådhusgata 10?",
+          "options": [
+            "Bokhandel, forlag og trykkeri",
+            "Tollbod og posthus",
+            "Bank og børs",
+            "Universitet og bibliotek"
+          ],
+          "answer": "Bokhandel, forlag og trykkeri",
+          "answerIndex": 0,
+          "knowledge": "Wulfsberg kombinerte bokhandel og forlag med trykkeri og avisproduksjon.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_02",
+          "claim_basis": "Rådhusgata 10 rommet Wulfsbergs bokhandel, forlag og trykkeri.",
+          "primary_knowledge_unit_id": "ku_historie_wulfsberg_kombinerte_bok_acbbd39abd",
+          "knowledge_unit_ids": [
+            "ku_historie_wulfsberg_kombinerte_bok_acbbd39abd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q03",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_1",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvem ledet trykkeriarbeidet i Wulfsbergs gård?",
+          "options": [
+            "Karl Johan",
+            "Bernt Anker",
+            "Christopher Grøndahl",
+            "Iver Huitfeldt"
+          ],
+          "answer": "Christopher Grøndahl",
+          "answerIndex": 2,
+          "knowledge": "Trykkeriet ble drevet av faktor Christopher Grøndahl. Avisproduksjon var praktisk håndverk, ikke bare redaktørens skriving.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_03",
+          "claim_basis": "Christopher Grøndahl var faktor ved trykkeriet knyttet til Wulfsberg.",
+          "primary_knowledge_unit_id": "ku_historie_trykkeriet_ble_drevet_av_6966b781ad",
+          "knowledge_unit_ids": [
+            "ku_historie_trykkeriet_ble_drevet_av_6966b781ad",
+            "ku_historie_avisproduksjon_var_prakt_5151dc9ab8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q04",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_1",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva er avisen Tiden særlig kjent for i norsk pressehistorie?",
+          "options": [
+            "Å være den første norske radioavisen",
+            "Å være et senere partiorgan for Arbeiderpartiet",
+            "Å være Norges første illustrerte ukeblad",
+            "Å være blant de første moderne nyhetsavisene"
+          ],
+          "answer": "Å være blant de første moderne nyhetsavisene",
+          "answerIndex": 3,
+          "knowledge": "Tiden ga regelmessig plass til dagsaktuelle nyheter og blir omtalt som en tidlig moderne nyhetsavis.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_04",
+          "claim_basis": "Tiden blir av mange regnet som Norges første moderne nyhetsavis.",
+          "primary_knowledge_unit_id": "ku_historie_tiden_ga_regelmessig_pla_4ec0187fdd",
+          "knowledge_unit_ids": [
+            "ku_historie_tiden_ga_regelmessig_pla_4ec0187fdd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q05",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_1",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva lot den omtalte Tiden-meldingen om Kiel-freden være å si tydelig?",
+          "options": [
+            "At nyheten kom til Christiania",
+            "At Danmark hadde avstått Norge til Sverige",
+            "At fred var inngått i Norden",
+            "At et ekstra avisblad var trykt"
+          ],
+          "answer": "At Danmark hadde avstått Norge til Sverige",
+          "answerIndex": 1,
+          "knowledge": "Avisen formidlet fredsnyheten, men ikke den sentrale opplysningen om at Norge var avstått til Sverige.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_05",
+          "claim_basis": "Tidens ekstrablad om Kiel-freden unnlot å formidle Norges avståelse til Sverige tydelig.",
+          "primary_knowledge_unit_id": "ku_historie_avisen_formidlet_fredsny_567daaa671",
+          "knowledge_unit_ids": [
+            "ku_historie_avisen_formidlet_fredsny_567daaa671"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q06",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_1",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva bidro Wulfsberg til å trykke våren 1814?",
+          "options": [
+            "Journal med grunnlovsutkast og andre forfatningstekster",
+            "En ferdig norsk grunnlov underskrevet av kongen",
+            "Referater fra kommunestyret i Oslo",
+            "Kart over den nye jernbanen"
+          ],
+          "answer": "Journal med grunnlovsutkast og andre forfatningstekster",
+          "answerIndex": 0,
+          "knowledge": "Han trykte materiale til grunnlovsdebatten, blant annet forslag og oversettelser av andre lands forfatninger.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_06",
+          "claim_basis": "Wulfsberg trykte en journal med grunnlovsutkast og sammenligningsstoff om forfatninger i 1814.",
+          "primary_knowledge_unit_id": "ku_historie_han_trykte_materiale_til_c3f2cceb76",
+          "knowledge_unit_ids": [
+            "ku_historie_han_trykte_materiale_til_c3f2cceb76"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q07",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_1",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvilken av disse stillingene hadde Wulfsberg også?",
+          "options": [
+            "Offiser i Akershus festning",
+            "Byskriver i Bergen",
+            "Prest ved Vår Frelsers kirke",
+            "Professor ved det tekniske universitetet"
+          ],
+          "answer": "Prest ved Vår Frelsers kirke",
+          "answerIndex": 2,
+          "knowledge": "Wulfsberg var teolog og prest, men engasjerte seg særlig i bokhandel, trykking og aviser.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_07",
+          "claim_basis": "Wulfsberg arbeidet som prest ved Vår Frelsers kirke i Christiania.",
+          "primary_knowledge_unit_id": "ku_historie_wulfsberg_var_teolog_og__565946b763",
+          "knowledge_unit_ids": [
+            "ku_historie_wulfsberg_var_teolog_og__565946b763"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_avisen_tiden_radhusgata_10_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "title": "Nyheter og politisk omveltning",
+      "questions": [
+        {
+          "id": "avisen_tiden_radhusgata_10_q08",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_2",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva skjedde med Tiden mellom de to utgivelsesperiodene?",
+          "options": [
+            "Den ble gjort til kongelig hovedavis uten pause",
+            "Den gikk inn etter økonomiske vanskeligheter",
+            "Den flyttet til Tromsø og fikk nytt navn",
+            "Den ble slått sammen med Dagbladet"
+          ],
+          "answer": "Den gikk inn etter økonomiske vanskeligheter",
+          "answerIndex": 1,
+          "knowledge": "Papirprisene og pengeverdien svekket avisen økonomisk. Den kom senere tilbake i en ny periode.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_08",
+          "claim_basis": "Tiden opphørte en periode på grunn av svak økonomi før den kom ut igjen.",
+          "primary_knowledge_unit_id": "ku_historie_papirprisene_og_pengever_47baef20f2",
+          "knowledge_unit_ids": [
+            "ku_historie_papirprisene_og_pengever_47baef20f2",
+            "ku_historie_den_kom_senere_tilbake_i_ce67eed76d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q09",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_2",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvilken avis bidro Wulfsberg senere til å starte i Christiania?",
+          "options": [
+            "Aftenposten",
+            "Verdens Gang",
+            "Dagsavisen",
+            "Morgenbladet"
+          ],
+          "answer": "Morgenbladet",
+          "answerIndex": 3,
+          "knowledge": "Etter opphold i Stockholm var Wulfsberg med på å etablere dagsavisen Morgenbladet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29",
+            "https://snl.no/Niels_Wulfsberg"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_09",
+          "claim_basis": "Wulfsberg startet Morgenbladet i 1819.",
+          "primary_knowledge_unit_id": "ku_historie_etter_opphold_i_stockhol_cdca1a9dea",
+          "knowledge_unit_ids": [
+            "ku_historie_etter_opphold_i_stockhol_cdca1a9dea"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q10",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_2",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvor arbeidet Wulfsberg i tiden etter 1814?",
+          "options": [
+            "I den norske regjeringsavdelingen i Stockholm",
+            "Som havnesjef i Bergen",
+            "Som direktør for Nasjonalgalleriet",
+            "Som rektor ved universitetet"
+          ],
+          "answer": "I den norske regjeringsavdelingen i Stockholm",
+          "answerIndex": 0,
+          "knowledge": "Han dro til Stockholm og var blant annet arkivar ved den norske statsrådsavdelingen der.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_10",
+          "claim_basis": "Wulfsberg arbeidet i den norske regjeringsavdelingen i Stockholm etter 1814.",
+          "primary_knowledge_unit_id": "ku_historie_han_dro_til_stockholm_og_b8cb49be60",
+          "knowledge_unit_ids": [
+            "ku_historie_han_dro_til_stockholm_og_b8cb49be60"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q11",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_2",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva ble tydelig da Tiden skrev kritisk om krigen mot britene?",
+          "options": [
+            "At aviser ikke kunne trykkes i Norge",
+            "At avisen utelukkende skrev om handel",
+            "At avisstoff kunne vekke politisk bekymring hos myndighetene",
+            "At Wulfsberg ledet regjeringen"
+          ],
+          "answer": "At avisstoff kunne vekke politisk bekymring hos myndighetene",
+          "answerIndex": 2,
+          "knowledge": "Avisens kritiske stoff ble lagt merke til i København og viser pressens forhold til datidens politiske kontroll.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_11",
+          "claim_basis": "Tidens politiske stoff om krigen vakte bekymring i København.",
+          "primary_knowledge_unit_id": "ku_historie_avisens_kritiske_stoff_b_622e8a377a",
+          "knowledge_unit_ids": [
+            "ku_historie_avisens_kritiske_stoff_b_622e8a377a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q12",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_2",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvilken bestemmelse i Grunnloven fikk særlig betydning for trykkefrihet?",
+          "options": [
+            "§ 17 om provisoriske anordninger",
+            "§ 100 om ytringsfrihet",
+            "§ 49 om folkets lovgivende makt",
+            "§ 1 om riksform"
+          ],
+          "answer": "§ 100 om ytringsfrihet",
+          "answerIndex": 1,
+          "knowledge": "Grunnlovens § 100 ble et viktig vern for ytringer og trykk, selv om medienes faktiske frihet også utviklet seg videre.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_12",
+          "claim_basis": "Grunnloven § 100 fastslår ytringsfriheten og trykkefriheten.",
+          "primary_knowledge_unit_id": "ku_historie_grunnlovens_100_ble_et_v_1ad64201d2",
+          "knowledge_unit_ids": [
+            "ku_historie_grunnlovens_100_ble_et_v_1ad64201d2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q13",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_2",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva forteller det at Tiden kom både før og under begivenhetene i 1814?",
+          "options": [
+            "At avisen var en kringkastingsstasjon",
+            "At den bare kom ut etter unionsoppløsningen",
+            "At den ble startet av Stortinget",
+            "At den virket gjennom flere politisk forskjellige faser"
+          ],
+          "answer": "At den virket gjennom flere politisk forskjellige faser",
+          "answerIndex": 3,
+          "knowledge": "Avisens to perioder viser både pressens økonomiske vilkår og en politisk offentlighet i endring.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_13",
+          "claim_basis": "Tiden kom ut i to perioder, 1808–1811 og 1813–1814.",
+          "primary_knowledge_unit_id": "ku_historie_avisens_to_perioder_vise_26657314eb",
+          "knowledge_unit_ids": [
+            "ku_historie_avisens_to_perioder_vise_26657314eb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q14",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_2",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva er en viktig kilde når vi vil se nøyaktig hva Tiden publiserte?",
+          "options": [
+            "Bevarte aviseeksemplarer",
+            "En senere historisk roman",
+            "En plakett uten kildehenvisning",
+            "En tilfeldig moderne avisforside"
+          ],
+          "answer": "Bevarte aviseeksemplarer",
+          "answerIndex": 0,
+          "knowledge": "Bevarte utgaver lar oss lese den trykte ordlyden og sammenligne med andre samtidige dokumenter.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "https://snl.no/Tiden_%28Oslo%29",
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_14",
+          "claim_basis": "Bevarte avisutgaver er primærkilder til Tidens faktiske publiserte tekst.",
+          "primary_knowledge_unit_id": "ku_historie_bevarte_utgaver_lar_oss__a69e7df011",
+          "knowledge_unit_ids": [
+            "ku_historie_bevarte_utgaver_lar_oss__a69e7df011"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_avisen_tiden_radhusgata_10_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "title": "Kildekritikk og offentlighet",
+      "questions": [
+        {
+          "id": "avisen_tiden_radhusgata_10_q15",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_3",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvorfor kan én avisutgave gi et skjevt bilde av Kielfreden?",
+          "options": [
+            "Fordi fredsavtalen ikke eksisterte",
+            "Fordi den kan gjengi et utvalg av opplysninger, påvirket av redaksjon og sensur",
+            "Fordi datidens aviser aldri trykte politisk stoff",
+            "Fordi alle leserne kjente avtalen fra før"
+          ],
+          "answer": "Fordi den kan gjengi et utvalg av opplysninger, påvirket av redaksjon og sensur",
+          "answerIndex": 1,
+          "knowledge": "Teksten må leses opp mot selve avtalen og andre samtidige kilder: det som trykkes, er ikke nødvendigvis alt som har skjedd.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_15",
+          "claim_basis": "Tiden trykte fredsnyheten uten tydelig å opplyse om Norges avståelse til Sverige.",
+          "primary_knowledge_unit_id": "ku_historie_teksten_ma_leses_opp_mot_8ad0550815",
+          "knowledge_unit_ids": [
+            "ku_historie_teksten_ma_leses_opp_mot_8ad0550815"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q16",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_3",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvorfor kan Wulfsbergs politiske formuleringer ha skiftet i 1814?",
+          "options": [
+            "Fordi settere ikke kunne norsk",
+            "Fordi han aldri leste politiske nyheter",
+            "Fordi han ønsket å skrive skjønnlitteratur",
+            "Fordi avisen virket i en omskiftelig politisk situasjon med mulige interesser og press"
+          ],
+          "answer": "Fordi avisen virket i en omskiftelig politisk situasjon med mulige interesser og press",
+          "answerIndex": 3,
+          "knowledge": "Kildene viser ulike hyllester gjennom året. Vi kan undersøke konteksten, men bør ikke fastslå en bestemt indre motivasjon bare fra avistekst.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_16",
+          "claim_basis": "Wulfsbergs avisutgivelser og offentlige politiske formuleringer endret seg gjennom 1814.",
+          "primary_knowledge_unit_id": "ku_historie_kildene_viser_ulike_hyll_7fcb4309e9",
+          "knowledge_unit_ids": [
+            "ku_historie_kildene_viser_ulike_hyll_7fcb4309e9",
+            "ku_historie_vi_kan_unders_ke_konteks_5dbf0332cd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q17",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_3",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva er forskjellen mellom et trykkeri og et politisk beslutningsorgan i 1814?",
+          "options": [
+            "Trykkeriet formidlet tekst, mens politiske organer tok beslutninger",
+            "Begge kunne vedta lover på egen hånd",
+            "Trykkerier hadde enerett på å velge konge",
+            "Et trykkeri var alltid en del av riksforsamlingen"
+          ],
+          "answer": "Trykkeriet formidlet tekst, mens politiske organer tok beslutninger",
+          "answerIndex": 0,
+          "knowledge": "Rådhusgata var en del av medieoffentligheten, ikke stedet hvor Eidsvollsforsamlingen vedtok Grunnloven.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_17",
+          "claim_basis": "Rådhusgata 10 var arena for publisering, mens de konstitusjonelle beslutningene ble tatt i andre organer.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_radhusgata_var_en_del_av_547bc9b6cf",
+          "knowledge_unit_ids": [
+            "ku_historie_radhusgata_var_en_del_av_547bc9b6cf"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q18",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_3",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvordan kan vi kontrollere hva Tiden utelot om Kielfreden?",
+          "options": [
+            "Ved å stole på senere minneplaketter alene",
+            "Ved å se bare på dagens gatenavn",
+            "Ved å sammenligne avisens ordlyd med fredsavtalen og samtidige kilder",
+            "Ved å telle antall bokhandlere i Christiania"
+          ],
+          "answer": "Ved å sammenligne avisens ordlyd med fredsavtalen og samtidige kilder",
+          "answerIndex": 2,
+          "knowledge": "Sammenligning av primærkilder viser forskjellen mellom avtalens innhold og det som ble kommunisert til leserne.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_18",
+          "claim_basis": "En kildekritisk sammenligning av avis og traktat kan dokumentere utelatelser.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_sammenligning_av_prim_rk_b9bcf4bac4",
+          "knowledge_unit_ids": [
+            "ku_historie_sammenligning_av_prim_rk_b9bcf4bac4"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "knut_kjeldstadli",
+          "work": "Fortida er ikke hva den en gang var",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "knut_kjeldstadli",
+            "work": "Fortida er ikke hva den en gang var",
+            "why_it_helps": "Kjeldstadlis kildekritiske tilnærming viser hvorfor avisens ordlyd må sammenholdes med traktatteksten: en trykt melding dokumenterer hva leserne fikk vite, ikke alt avtalen faktisk bestemte."
+          }
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q19",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_3",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva kan en senere minneplakett ved Rådhusgata 10 ikke alene bevise?",
+          "options": [
+            "At avisen eksisterte",
+            "Den nøyaktige ordlyden i et bestemt nummer av Tiden",
+            "At gaten fortsatt finnes",
+            "At stedet har et historisk navn"
+          ],
+          "answer": "Den nøyaktige ordlyden i et bestemt nummer av Tiden",
+          "answerIndex": 1,
+          "knowledge": "Et minnesmerke kan vise senere fortolkning av historien, men den trykte utgaven må undersøkes for ordlyden.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_19",
+          "claim_basis": "Senere minnemarkeringer erstatter ikke originalavisen som kilde til nøyaktig trykt ordlyd.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_et_minnesmerke_kan_vise__b83bd9a115",
+          "knowledge_unit_ids": [
+            "ku_historie_et_minnesmerke_kan_vise__b83bd9a115"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q20",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_3",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hvorfor hører papir, trykkeri og distribusjon med i historien om ytringsfrihet?",
+          "options": [
+            "Fordi papir var den eneste politiske institusjonen",
+            "Fordi bokhandel avgjorde hvem som kunne være konge",
+            "Fordi de ikke hadde noen betydning for leserne",
+            "Fordi rett til å ytre seg også krevde praktiske muligheter til å spre tekster"
+          ],
+          "answer": "Fordi rett til å ytre seg også krevde praktiske muligheter til å spre tekster",
+          "answerIndex": 3,
+          "knowledge": "Trykkefrihet var ikke bare et rettslig spørsmål. Produksjon og distribusjon avgjorde om budskap kunne nå publikum.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_20",
+          "claim_basis": "Avisproduksjon i Rådhusgata var avhengig av materiell infrastruktur for å nå leserne.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_trykkefrihet_var_ikke_ba_39c7f2b58b",
+          "knowledge_unit_ids": [
+            "ku_historie_trykkefrihet_var_ikke_ba_39c7f2b58b",
+            "ku_historie_produksjon_og_distribusj_428c882784"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10_q21",
+          "quiz_id": "historie_avisen_tiden_radhusgata_10_set_3",
+          "categoryId": "historie",
+          "targetId": "avisen_tiden_radhusgata_10",
+          "placeId": "avisen_tiden_radhusgata_10",
+          "question_scope": "place",
+          "question": "Hva gjør avisen Tiden til en interessant kilde til demokratiets fremvekst?",
+          "options": [
+            "Den viser forholdet mellom nyhetsformidling, makt og offentlig debatt",
+            "Den dokumenterer alle velgeres meninger",
+            "Den viser at all sensur opphørte straks",
+            "Den forteller at Kongens gate var riksforsamlingens møtested"
+          ],
+          "answer": "Den viser forholdet mellom nyhetsformidling, makt og offentlig debatt",
+          "answerIndex": 0,
+          "knowledge": "Tiden belyser en offentlighet der informasjon, sensur og forfatningsdebatt var sammenflettet, men den dekker ikke hele folkets erfaring.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/avisen-tiden",
+            "https://snl.no/Tiden_%28Oslo%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_avisen_tiden_radhusgata_10_21",
+          "claim_basis": "Tiden belyser politisk offentlighet, nyhetsformidling og kontroll i tiden omkring 1814.",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_tiden_belyser_en_offentl_333669ca8b",
+          "knowledge_unit_ids": [
+            "ku_historie_tiden_belyser_en_offentl_333669ca8b"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "guidance_basis": [
+            "data/fag/historie/historiepensum_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

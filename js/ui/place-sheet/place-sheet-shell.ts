@@ -59,7 +59,9 @@ function isMicro(place: PlaceSheetPlace | null | undefined): boolean {
 }
 
 function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLElement {
-  let nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
+  const host = card();
+  let nav = host?.querySelector<HTMLElement>(':scope > [data-hg-place-sheet-nav="1"]')
+    || shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
   if (!(nav instanceof HTMLElement)) {
     nav = document.createElement("nav");
     nav.className = "pc-sheet-section-nav";
@@ -81,9 +83,9 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
       }
     });
   }
-  const hero = shell.querySelector<HTMLElement>("[data-hg-place-sheet-hero]");
-  if (hero && hero.nextElementSibling !== nav) hero.insertAdjacentElement("afterend", nav);
-  else if (!hero && shell.firstElementChild !== nav) shell.prepend(nav);
+  // The section bar belongs at the bottom of the actual PlaceCard frame,
+  // outside its scrolling .pc-body. It remains one live node across reopens.
+  if (host && nav.parentElement !== host) host.appendChild(nav);
   nav.dataset.placeId = text(place.id);
   return nav;
 }
@@ -110,7 +112,8 @@ function hasSectionContent(shell: HTMLElement, placeId: string, sectionId: strin
 }
 
 function syncSectionNav(shell: HTMLElement): void {
-  const nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
+  const nav = card()?.querySelector<HTMLElement>(':scope > [data-hg-place-sheet-nav="1"]')
+    || shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
   const placeId = text(shell.dataset.placeId);
   if (!(nav instanceof HTMLElement) || !placeId) return;
   nav.querySelectorAll<HTMLButtonElement>("[data-hg-place-sheet-jump]").forEach(button => {
@@ -156,9 +159,8 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
       <div class="pc-sheet-intro" data-hg-place-sheet-intro></div>
-      <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-        <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-      </div>
+      <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
+      <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
@@ -212,8 +214,10 @@ function ensureAboutSlot(shell: HTMLElement): HTMLElement | null {
     aboutSlot.className = "pc-sheet-about";
     aboutSlot.setAttribute("data-hg-place-sheet-about", "1");
     aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
-    const anchor = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]") || shell.querySelector<HTMLElement>("[data-hg-place-sheet-hero]");
-    if (anchor?.nextSibling) shell.insertBefore(aboutSlot, anchor.nextSibling);
+    // About shares the image's flow context, so text wraps beside the
+    // floated frontImage and continues at full width beneath it.
+    const media = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]");
+    if (media) media.appendChild(aboutSlot);
     else shell.appendChild(aboutSlot);
   }
   return aboutSlot;
@@ -262,7 +266,28 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
 
   movePrimaryNodes(shell, place);
   const aboutSlot = ensureAboutSlot(shell);
-  if (aboutSlot) mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })?.classList.add("pc-sheet-canonical-about");
+  if (aboutSlot) {
+    // The live short description belongs beside frontImage too, not above it.
+    // Move it back to the intro on each mount before the canonical owner
+    // replaces its children; this preserves the same node across place changes.
+    let aboutOwner = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
+    if (!(aboutOwner instanceof HTMLElement)) {
+      // Places whose popupDesc equals desc (or that have only desc) still
+      // need an About heading and text beside their photograph.
+      aboutSlot.hidden = false;
+      aboutOwner = document.createElement("section");
+      aboutOwner.className = "hg-section hg-place-section hg-place-about-section";
+      aboutOwner.setAttribute("data-hg-place-sheet-owner", "about");
+      const heading = document.createElement("h3");
+      heading.textContent = "Om stedet";
+      aboutOwner.appendChild(heading);
+      aboutSlot.replaceChildren(aboutOwner);
+    }
+    aboutOwner.classList.add("pc-sheet-canonical-about");
+    const description = shell.querySelector<HTMLElement>("#pcDesc");
+    const heading = aboutOwner.querySelector("h3");
+    if (description && heading) heading.insertAdjacentElement("afterend", description);
+  }
   const historySlot = ensureHistorySlot(shell);
   if (historySlot) {
     mountCanonicalHistory(historySlot, place)?.classList.add("pc-sheet-canonical-history");
@@ -313,6 +338,7 @@ export function restoreLegacyPlaceCardStructure(): void {
   if (events instanceof HTMLElement) legacyGrid.appendChild(events);
 
   shell?.remove();
+  root.querySelector(':scope > [data-hg-place-sheet-nav="1"]')?.remove();
   root.classList.remove("is-place-sheet-phase1", "is-place-sheet-direct");
   delete root.dataset.hgPlaceSheetPhase;
 }

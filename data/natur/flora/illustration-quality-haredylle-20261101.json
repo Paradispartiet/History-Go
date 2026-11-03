@@ -1,0 +1,52 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-01",
+  "status": "reviewed_binary_verified_pending_ci",
+  "baselineApproved": 33,
+  "approvedCountAfterRelease": 34,
+  "publicationRule": "Publish only exact 1024×1536 WebP with real alpha and matching SHA256 and Git SHA. Preserve all 33 prior approvals and black #000 display with no photos; require green illustration-contract and approved-flora-browser on final PR head and verify Pages after merge.",
+  "items": [
+    {
+      "name": "Haredylle",
+      "catalogId": "emne_flora_haredylle",
+      "scientificName": "Crepis capillaris",
+      "taxonomicScope": "species",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/12_haredylle_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/12_haredylle_v1.webp",
+      "gitBlobSha": "3f81267f338ce635c8de0296fa61f9647d72bcc2",
+      "sha256": "4a36a7ca70af33562744205ff82f1a7c4a13e8c89db0763e2ade63491b72f6ad",
+      "sizeBytes": 238810,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
+      "reviewedAt": "2026-11-01",
+      "stage": "blomstring og frøsetting",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": false,
+        "alphaVerifiedAfterConversion": true,
+        "blackBackgroundReviewed": true,
+        "whiteBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://www.worldfloraonline.org/taxon/wfo-0000030643",
+        "https://vicflora.rbg.vic.gov.au/flora/taxon/e838757a-9e49-4643-88cf-0d9b6ed446a8",
+        "https://www2.dijon.inrae.fr/hyppa/hyppa-a/cvpca_ah.htm",
+        "https://fermanagh.bsbi.org/crepis-capillaris-l-wallr"
+      ],
+      "observations": "Field-guide watercolor of Crepis capillaris shows tall slender branching stems carrying numerous rather small bright yellow composite flowerheads, lower basal rosette with jagged backward-pointing lobes, relatively narrow upper leaves clasping the stems, cylindrical green involucral bracts, unopened buds and a few white-pappus seedheads. The branch structure and small multiple capitula visually distinguish this species from a single-head dandelion.",
+      "limitations": "The illustration enlarges flower heads, white seedheads and some involucral bracts for legibility and combines different flowering and fruiting stages. Basal leaf shapes vary markedly between specimens and may wither in the season. The tiny glandular hairs of the peduncles and cypsela texture are stylized; do not rely solely on this image for conclusive species identification. Consult a field specimen and the botanical reference sources for final identification.",
+      "technicalVerification": "Generated 1024×1536 RGB on black. A thresholded alpha mask using maximum RGB channel brightness 4–31 converted the source to RGBA before lossily encoding a 1024×1536 WebP at quality 92, method 6. Final 238810-byte binary has true transparency, SHA256 and Git blob SHA checked independently; GitHub create_blob returned identical SHA. Black and white previews reviewed.",
+      "publicationBlockedBy": [
+        "Both relevant PR CI jobs must pass on last PR head before merge.",
+        "Confirm GitHub Pages deployment success after merge."
+      ]
+    }
+  ]
+}

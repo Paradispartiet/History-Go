@@ -199,12 +199,12 @@
   function ensureBelowCollections() {
     const card = document.getElementById("placeCard");
     const box = document.getElementById("pcEventsBox");
-    // On standard Places the collections grid is to the right of frontImage.
+    // On standard Places the collection rounds follow the About text.
     // Reuse the canonical Events/Møtes node directly BELOW those collections,
     // never in the top navigation, above the description or in a duplicate box.
     // Micro Places retain their own legacy grid placement.
     if (!card?.classList.contains("is-place-sheet-direct") || !box || !card.contains(box)) return;
-    const collections = card.querySelector(".pc-sheet-hero-media > .pc-sheet-explore-grid");
+    const collections = card.querySelector(".pc-sheet-shell > .pc-sheet-explore-grid");
     const rounds = collections?.querySelector(":scope > .pc-side-stack");
     if (!collections || !rounds) return;
     if (box.parentElement !== collections || rounds.nextElementSibling !== box) {

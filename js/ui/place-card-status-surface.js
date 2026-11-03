@@ -43,7 +43,7 @@
   // The existing owners then reuse these links instead of re-inserting stale
   // unversioned CSS after the larger PlaceCard typography has loaded.
   function loadPlaceSheetTypographyStyles() {
-    const version = "20261009-type-scale1";
+    const version = "20261102-visible-layout6";
     const styles = [
       ["data-hg-place-unified-style", "css/place-unified-surface.css"],
       ["data-hg-place-sheet-style", "css/place-sheet.css"],
@@ -74,7 +74,7 @@
     // Unified Place Surface is a primary PlaceCard presentation layer, not a
     // low-priority post-ready extra. Its own installer waits fail-closed for
     // popup/direct-tab dependencies before patching the public entry points.
-    ensureScript("dist/web/place-unified-surface.js?v=20260912-onsite-under-explore1");
+    ensureScript("dist/web/place-unified-surface.js?v=20261102-visible-layout6");
     ensureScript("js/ui/nature-detailed-map.js");
     ensureScript("js/ui/place-rounds-visual-collections.js");
     ensureScript("js/ui/micro-place-card.js");
@@ -83,7 +83,7 @@
     ensureScript("js/ui/place-rounds-fill-layout.js");
     ensureStylesheet("css/place-popup-shortcuts.css");
     ensureScript("js/ui/place-popup-shortcuts.js");
-    ensureStylesheet("css/place-onsite-surface.css?v=20261009-type-scale1");
+    ensureStylesheet("css/place-onsite-surface.css?v=20261027-about-image-inset1");
     ensureScript("js/ui/place-onsite-surface.js?v=20261009-right-collections2");
   }
 
@@ -114,13 +114,6 @@
     document.body.appendChild(script);
   }
 
-  function statusLabel(summary) {
-    if (summary?.status === "completed") return "Fullført";
-    if (summary?.quizCompleted) return "Quiz fullført";
-    if (summary?.visited) return "Besøkt";
-    return "Ikke fullført";
-  }
-
   function isShownAction(id) {
     const el = document.getElementById(id);
     if (!el || el.hidden) return false;
@@ -134,32 +127,38 @@
   }
 
   function remainingActionLabel(summary) {
-    if (summary?.nextAction === "completed") return "Ferdig her";
-    if (summary?.nextAction === "visit" && isShownAction("pcVisit")) return "Gjenstår: Registrer besøk";
-    if (!summary?.quizCompleted && isVisibleAction("pcQuiz")) return "Gjenstår: Ta quiz";
-    if (isShownAction("pcVisit")) return "Gjenstår: Registrer besøk";
-    if (isVisibleAction("pcObserve")) return "Gjenstår: Observer";
-    if (isVisibleAction("pcRoute")) return "Gjenstår: Følg rute";
-    return "Gjenstår: Utforsk videre";
+    if (summary?.nextAction === "completed") return "Se samling";
+    if (summary?.nextAction === "visit" && isVisibleAction("pcVisit")) return "Registrer besøk";
+    if (!summary?.quizCompleted && isVisibleAction("pcQuiz")) return "Ta quiz";
+    if (isVisibleAction("pcVisit")) return "Registrer besøk";
+    if (isVisibleAction("pcObserve")) return "Observer";
+    if (isVisibleAction("pcRoute")) return "Følg rute";
+    return "Utforsk videre";
   }
 
   function activateStatus(summary) {
+    if (summary?.nextAction === "completed") {
+      global.location.href = "profile.html#collectionCardsSection";
+      return;
+    }
+    if (summary?.nextAction === "visit" && isVisibleAction("pcVisit")) {
+      document.getElementById("pcVisit")?.click();
+      return;
+    }
     if (!summary?.quizCompleted && isVisibleAction("pcQuiz")) {
       document.getElementById("pcQuiz")?.click();
       return;
     }
-    if (summary?.nextAction === "visit") {
-      if (isVisibleAction("pcVisit")) {
-        document.getElementById("pcVisit")?.click();
-        return;
-      }
-      if (isVisibleAction("pcRoute")) {
-        document.getElementById("pcRoute")?.click();
-        return;
-      }
+    if (isVisibleAction("pcVisit")) {
+      document.getElementById("pcVisit")?.click();
+      return;
     }
     if (isVisibleAction("pcObserve")) {
       document.getElementById("pcObserve")?.click();
+      return;
+    }
+    if (isVisibleAction("pcRoute")) {
+      document.getElementById("pcRoute")?.click();
       return;
     }
     global.location.href = "profile.html#collectionCardsSection";
@@ -167,7 +166,7 @@
 
   function renderStatus(place) {
     const reader = getReader();
-    // A standalone status row lives immediately above the landscape hero.
+    // The status host lives in the bottom-right of the landscape hero.
     // Retain pcMeta as a fallback for older standalone fixtures.
     const statusHost = document.getElementById("pcStatusBar") || document.getElementById("pcMeta");
     if (!reader || !statusHost || !place) return null;
@@ -179,10 +178,6 @@
     const summary = reader.getPlaceProgressSummary(placeId, {
       category: safeText(place.category || place.categoryId)
     });
-    const parts = [statusLabel(summary)];
-    if (summary.favorite) parts.push("Favoritt");
-    parts.push(remainingActionLabel(summary));
-
     let row = /** @type {HTMLButtonElement|null} */ (statusHost.querySelector(`[${ROW_ATTR}]`));
     if (!row) {
       row = document.createElement("button");
@@ -191,8 +186,8 @@
       row.className = "pc-progress-status-line";
       statusHost.appendChild(row);
     }
-    row.textContent = `Status: ${parts.join(" · ")}`;
-    row.setAttribute("aria-label", `${row.textContent}. Åpne neste handling.`);
+    row.textContent = remainingActionLabel(summary);
+    row.setAttribute("aria-label", `Neste handling: ${row.textContent}. Åpne.`);
     row.title = "Åpne neste handling";
     row.dataset.status = safeText(summary.status || "unknown");
     row.dataset.visited = summary.visited ? "1" : "0";

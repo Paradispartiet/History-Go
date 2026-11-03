@@ -22,24 +22,22 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero{
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media{
-  display:grid;
-  grid-template-columns:minmax(0,330px) minmax(0,1fr);
-  gap:clamp(18px,3vw,32px);
-  align-items:start;
+  /* The front image floats within About: paragraphs can continue below it. */
+  display:flow-root;
   min-width:0;
   margin-top:24px;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard{
-  width:100%;
+  float:left;
+  width:min(39%, 330px);
   max-width:330px;
   max-height:none;
   aspect-ratio:3 / 4;
   height:auto;
   min-height:0;
   align-self:start;
-  margin:0;
-  justify-self:start;
+  margin:0 clamp(14px,2.5vw,26px) 16px 0;
   border-radius:24px;
   border:1px solid rgba(255,255,255,.12);
   box-shadow:0 20px 48px rgba(0,0,0,.42);
@@ -86,9 +84,10 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-cop
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-about{
-  margin-top: 20px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,.10);
+  margin:0;
+  padding:0;
+  border:0;
+  min-width:0;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about{
@@ -107,6 +106,54 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonica
   font-weight: 900;
   letter-spacing: .11em;
   text-transform: uppercase;
+}
+
+/* Speaker belongs immediately after “Om stedet”, not in the hero photo. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-height:30px;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3 > .pc-reader-toggle{
+  display:inline-flex;
+  flex:0 0 30px;
+  align-items:center;
+  justify-content:center;
+  width:30px;
+  height:30px;
+  padding:0;
+  margin:0;
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:50%;
+  background:rgba(18,18,18,.92);
+  color:#fff;
+  cursor:pointer;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3 > .pc-reader-toggle[aria-pressed="true"]{
+  background:#f6d15a;
+  border-color:#f6d15a;
+  color:#191919;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about > h3 > .pc-reader-toggle:focus-visible{
+  outline:2px solid #f6d15a;
+  outline-offset:2px;
+}
+
+/* Keep the complete short description in About, beside and below frontImage.
+   The legacy PlaceCard excerpt limits must not truncate editorial reading. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about #pcDesc{
+  display:block;
+  -webkit-line-clamp:unset;
+  -webkit-box-orient:initial;
+  overflow:visible;
+  order:initial;
+  width:auto;
+  max-width:none;
+  margin:0 0 16px;
+  padding:0;
+  font-size:clamp(16px,2vw,19px);
+  line-height:1.6;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-about .hg-place-longread{
@@ -155,7 +202,7 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-section-
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid{
   width:100%;
   min-width:0;
-  margin:0;
+  margin:24px 0 0;
   padding:0;
   border:0;
   background:transparent;
@@ -310,8 +357,7 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media{
-    grid-template-columns:minmax(128px,.86fr) minmax(0,1.14fr);
-    gap:12px;
+    margin-top:18px;
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard{
@@ -360,50 +406,23 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
     overflow-wrap:break-word;
   }
 
-  /* Keep the complete historical title above the original live icon row.
-     Audio/favorite stay below the heading; People/Merker remain at the right. */
-  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row{
-    display:grid;
-    grid-template-columns:32px 32px minmax(0,1fr) 38px 38px;
-    grid-template-rows:auto 38px;
-    column-gap:6px;
-    row-gap:12px;
-    align-items:start;
-  }
-  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
-    grid-column:1 / -1;
-    grid-row:1;
+  /* Retain typography for the long title, but not the retired second-row
+     action grid: favorite now sits immediately beside every place heading. */
+  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1
+    .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
     font-size:clamp(24px,7vw,31px);
     overflow-wrap:normal;
     word-break:normal;
     hyphens:none;
   }
-  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row > .pc-reader-toggle{
-    grid-column:1;
-    grid-row:2;
-  }
-  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite{
-    grid-column:2;
-    grid-row:2;
-  }
-  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon{
-    grid-column:4;
-    grid-row:2;
-  }
-  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
-    grid-column:5;
-    grid-row:2;
-  }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media{
-    grid-template-columns:minmax(120px,.82fr) minmax(0,1.18fr);
-    gap:10px;
+    margin-top:14px;
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard{
-    width:100%;
-    justify-self:start;
-    margin:0;
+    width:41%;
+    margin:0 12px 12px 0;
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-shape="rectangle"]:not([hidden]){
@@ -935,4 +954,18 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-cop
   body.hg-app #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-answer-key{
     overflow-wrap:anywhere;
   }
+}
+
+/* Keep the long-name overrides compatible with the lower-left heading,
+   above category/epoch. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+  .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row{
+  display:flex;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+  .pc-heading-hero.has-photo-source .pc-heading-content .pc-title-row #pcTitle{
+  grid-area:auto;
+  padding-right:0;
+  text-align:left;
+  overflow-wrap:break-word;
 }

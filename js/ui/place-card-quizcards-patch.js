@@ -177,6 +177,7 @@
   var QUIZ_CARD_MANIFESTS = Object.freeze([
     "by/manifest.json",
     "historie/manifest.json",
+    "kunst/manifest.json",
     "litteratur/manifest.json",
     "scenekunst/manifest.json",
     "media/manifest.json",

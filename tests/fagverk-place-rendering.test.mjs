@@ -29,7 +29,7 @@ function modelFixture(subject, emners) {
 }
 
 async function render(place, subjectModel) {
-  const html = fs.readFileSync('fagverk-sted.html', 'utf8').replace(/<script[\s\S]*?<\/body>/u, '</body>');
+  const html = fs.readFileSync('fagverk-sted.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gu, '');
   const dom = new JSDOM(html, { runScripts: 'outside-only', url: `https://history-go.test/fagverk-sted.html?place=${place.id}` });
   const { window } = dom;
   window.fetch = async () => ({ ok: true, json: async () => registry });

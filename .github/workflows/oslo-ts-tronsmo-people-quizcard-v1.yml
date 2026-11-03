@@ -1,0 +1,38 @@
+name: Oslo T-S Tronsmo People v1 and QuizCard parity
+on:
+  push:
+    branches: [content/oslo-ts-bolk03-tronsmo-people-v1-20261028]
+    paths:
+      - '.github/workflows/oslo-ts-tronsmo-people-quizcard-v1.yml'
+      - 'tests/oslo-ts-tronsmo-people-quizcard-v1.test.mjs'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ts-bolk03-tronsmo-people-v1-20261028
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate Place-open and People runtime
+        run: npm run place-open:build
+      - name: Four targeted Tronsmo parity and People checks
+        run: node --test tests/oslo-ts-tronsmo-people-quizcard-v1.test.mjs
+      - name: Commit generated Tronsmo runtime
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/people-all/ data/runtime/place-open/tronsmo_bokhandel.json
+          if ! git diff --cached --quiet; then git commit -m "Tronsmo: refresh four People in Place-open runtime"; fi
+          git restore .
+          git fetch origin content/oslo-ts-bolk03-tronsmo-people-v1-20261028
+          git rebase origin/content/oslo-ts-bolk03-tronsmo-people-v1-20261028
+          git push origin HEAD:content/oslo-ts-bolk03-tronsmo-people-v1-20261028

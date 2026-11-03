@@ -71,10 +71,37 @@
     const score = scored.length
       ? Math.round(scored.reduce((sum,item) => sum + item.score, 0) / scored.length)
       : null;
-    return { score, count: scored.length, groups,
+    const currency = life?.meters && isScore(life.meters.penger) ? life.meters.penger : null;
+    // One overview for the header and the dialog. Never mix currency into the
+    // measured 0–100 average or invent a career from a story/demo role.
+    const activeRole = root.CivicationDashboardUI?.getCanonicalActiveRoleTitle?.() || "";
+    const storyRole = String(options.lifeRole || "").trim();
+    const clockDay = Number(root.CivicationCalendar?.getClock?.()?.dayIndex);
+    const day = Number.isInteger(clockDay) && clockDay >= 1
+      ? clockDay : (life?.dag || null);
+    const shellPhase = root.CivicationCalendar?.getPhase?.();
+    const phase = shellPhase
+      ? (root.CivicationCalendar?.getPhaseLabel?.(shellPhase) || shellPhase)
+      : (options.view?.dagFerdig ? "Dagen er over"
+        : (options.view?.fase?.navn || life?.fase || ""));
+    const status = [
+      ["Rolle", activeRole || storyRole || "Ingen aktiv rolle"],
+      ["Dag", day],
+      ["Fase", phase],
+      ["Psyke", life?.meters?.psyke],
+      ["Energi", life?.meters?.energi],
+      ["Fortellingsøkonomi", currency]
+    ].filter(([,value]) => value !== null && value !== undefined && value !== "");
+    try {
+      const stamp = root.HG_Lifestyle?.getStamp?.();
+      if (stamp && Number(stamp.score) > 0) {
+        status.push(["Livsstil", (stamp.icon ? stamp.icon + " " : "") + stamp.name]);
+      }
+    } catch { /* Optional lifestyle UI must not block status or gameplay. */ }
+    return { score, count: scored.length, groups, status,
       // Money is unbounded and does not belong to an arithmetic mean of capabilities.
       excluded: ["PC-saldo", "Fortellingspenger"],
-      currency: life?.meters && isScore(life.meters.penger) ? life.meters.penger : null };
+      currency };
   }
 
   let lastOptions = {};
@@ -106,11 +133,22 @@
   function fillDialog(model) {
     const panel = ensureDialog();
     panel.replaceChildren();
-    const heading = element("h2", "", "Dine verdier");
+    const heading = element("h2", "", "Status og verdier");
     heading.id = "civiScoreHeading";
     panel.appendChild(heading);
+    const situation = element("section", "civi-score-overview");
+    situation.appendChild(element("h3", "", "Livssituasjon"));
+    const overview = element("dl", "civi-score-overview-grid");
+    for (const [name, value] of model.status) {
+      const item = element("div", "civi-score-overview-item");
+      item.appendChild(element("dt", "", name));
+      item.appendChild(element("dd", "", value));
+      overview.appendChild(item);
+    }
+    situation.appendChild(overview);
+    panel.appendChild(situation);
     panel.appendChild(element("p", "civi-score-explain",
-      "Nåværende score: " + (model.score === null ? "ikke beregnet" : model.score + " / 100")
+      "Samlet score: " + (model.score === null ? "ikke beregnet" : model.score + " / 100")
       + ". Gjennomsnitt av " + model.count + " målte verdier, med lik vekt per verdi."));
     for (const group of model.groups) {
       const section = element("section", "civi-score-group");
@@ -154,9 +192,11 @@
     const model = getModel(lastOptions);
     // Reuse the same focusable button through all profile/daily redraws.
     if (!trigger?.isConnected || trigger.parentElement !== host) {
-      trigger = element("button", "civi-score-circle");
+      trigger = element("button", "civi-score-circle civi-score-trigger");
       trigger.id = "civiScoreTrigger";
       trigger.type = "button";
+      trigger.appendChild(element("span", "civi-score-trigger-label", "Status og verdier"));
+      trigger.appendChild(element("span", "civi-score-trigger-number"));
       trigger.addEventListener("click", () => {
         const snapshot = getModel(lastOptions);
         fillDialog(snapshot);
@@ -165,10 +205,11 @@
       });
       host.appendChild(trigger);
     }
-    trigger.textContent = model.score === null ? "–" : String(model.score);
-    trigger.setAttribute("aria-label", "Din score " +
+    trigger.querySelector(".civi-score-trigger-number").textContent =
+      model.score === null ? "–" : String(model.score);
+    trigger.setAttribute("aria-label", "Status og verdier. Din score " +
       (model.score === null ? "ikke beregnet" : model.score + " av 100") + ". Vis alle verdier");
-    trigger.title = "Se alle verdier";
+    trigger.title = "Åpne status og verdier";
     if (dialog?.open) fillDialog(model);
   }
   root.CivicationScoreUI = { getModel, renderHeader, closeDialog };

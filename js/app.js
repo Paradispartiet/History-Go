@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  // No app state, map, quiz or background boot before authenticated entry.
+  if (!window.HGLoginGate || !(await window.HGLoginGate.ready)) return;
   document.body?.classList.remove("hg-loaded", "hg-load-failed");
 
   const releaseQueuedToasts = gateToastsUntilAppReady();
@@ -31,8 +33,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadHGSocialMatchGraph", () => loadScriptOnce("js/social/HGSocialMatchGraph.js"));
     await safeRun("loadHGSocialMeetSupabaseClient", () => loadScriptOnce("js/social/HGSocialMeetSupabaseClient.js?v=20260913-social-ready1"));
     await safeRun("loadHGSocialMeetAdapter", () => loadScriptOnce("js/social/HGSocialMeetAdapter.js?v=20260913-place-status1"));
+    await safeRun("loadHGSocialMeetProfileBridge", () => loadScriptOnce("js/social/HGSocialMeetProfileBridge.js?v=20261028-map-motes-optin1"));
     await safeRun("loadHGSpotmeeting", () => loadScriptOnce("js/social/HGSpotmeeting.js"));
-    await safeRun("loadHGSpotmeetingUI", () => loadScriptOnce("js/social/HGSpotmeetingUI.js?v=20260913-place-status1"));
+    await safeRun("loadHGSpotmeetingUI", () => loadScriptOnce("js/social/HGSpotmeetingUI.js?v=20261028-map-motes-optin1"));
     await safeRun("loadHGSocialMeetUI", () => loadScriptOnce("js/social/HGSocialMeetUI.js?v=20260912-live-surfaces2"));
     await safeRun("loadHGSpotmeetingPlaceCardDemo", () => loadScriptOnce("js/social/HGSpotmeetingPlaceCardDemo.js"));
     await safeRun("loadHGSocialMatchGraphPanel", () => loadScriptOnce("js/social/HGSocialMatchGraphPanel.js"));
@@ -64,11 +67,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadViewportManager", () => loadScriptOnce("js/core/viewportManager.js"));
     await safeRun("loadDom", () => loadScriptOnce("js/ui/dom.js"));
     await safeRun("loadToast", () => loadScriptOnce("js/ui/toast.js"));
-    await safeRun("loadOnboardingWelcome", () => loadScriptOnce("js/ui/onboarding-welcome.js"));
+    await safeRun("loadOnboardingWelcome", () => loadScriptOnce("js/ui/onboarding-welcome.js?v=20261027-logo-home1"));
     await safeRun("loadNatureUnlockToast", () => loadScriptOnce("js/ui/nature-unlock-toast.js"));
     await safeRun("loadPersonPlaceUnlockToast", () => loadScriptOnce("js/ui/person-place-unlock-toast.js"));
     await safeRun("loadBadgeUnlockToast", () => loadScriptOnce("js/ui/badge-unlock-toast.js"));
-    await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20261024-native-place-names1"));
+    await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20261028-badges-readable-close5"));
     await safeRun("loadAhaMusicBridge", () => loadScriptOnce("js/integrations/aha-music.js"));
     await safeRun("loadNearbyPlaceSelector", () => loadScriptOnce("dist/web/nearbyPlaceSelector.js"));
     await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js"));
@@ -118,8 +121,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261018-footer-actions2"));
-    await safeRun("loadPlaceCardReader", () => loadScriptOnce("js/ui/place-card-reader.js?v=20261010-editorial6"));
-    await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20261018-footer-actions2"));
+    await safeRun("loadPlaceCardReader", () => loadScriptOnce("js/ui/place-card-reader.js?v=20261102-visible-layout6"));
+    await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20261027-about-image-inset1"));
     await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
     await safeRun("loadPlacePopupV2", () => loadScriptOnce("js/ui/place-popup-v2.js"));
     await safeRun("loadPlacePopupTabs", () => loadScriptOnce("js/ui/place-popup-tabs.js"));
@@ -145,7 +148,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadEpokerRuntime", () => loadScriptOnce("js/epoker-runtime.js"));
     await safeRun("loadTimeResolver", () => loadScriptOnce("js/time-resolver.js"));
     await safeRun("loadPlaceCardEpoke", () => loadScriptOnce("js/ui/place-card-epoke.js"));
-    await safeRun("loadPlaceCardStatusSurface", () => loadScriptOnce("js/ui/place-card-status-surface.js?v=20260912-onsite-under-explore1"));
+    await safeRun("loadPlaceCardStatusSurface", () => loadScriptOnce("js/ui/place-card-status-surface.js?v=20261102-visible-layout6"));
 
     await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
     await safeRun("bottomSheetController.init", () => window.bottomSheetController?.init?.());

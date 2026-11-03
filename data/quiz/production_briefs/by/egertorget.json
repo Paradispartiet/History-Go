@@ -1,0 +1,498 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "egertorget",
+  "scope": "place",
+  "reviewed_at": "2026-10-27",
+  "review_note": "Alle registrerte nettsider åpnet og lest; konkrete lokatorer i påstandsbanken. Påstandsbank ferdigstilt før spørsmål materialiseres.",
+  "sources": {
+    "https://www.oppdagkvadraturen.no/stoppesteder/egertorget": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Lest hele artikkelen. Navneopphav og rivningsdetaljer spriker fra SNL; brukes ikke som sikker fasit."
+    },
+    "https://snl.no/Egertorget": {
+      "url": "https://snl.no/Egertorget",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Lest artikkel med regulering, Samson, Horngården og T-bane. Navneopphav avviker fra kommunal side."
+    },
+    "https://oslobyleksikon.no/side/Egertorget": {
+      "url": "https://oslobyleksikon.no/side/Egertorget",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Lest hele artikkelen; gangtrafikk, gatenett og Krøllen kontrollert. Freia-datering utelatt på grunn av sprik."
+    }
+  },
+  "selected_curriculum": {
+    "pensum_module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_offentlige_rom_motesteder"
+    ],
+    "topic_hook_ids": [
+      "urb_offentlig_rom_ide"
+    ],
+    "method_ids": [
+      "met_feltobservasjon"
+    ],
+    "thinker_ids": [
+      "jan_gehl"
+    ],
+    "works": [
+      "Life Between Buildings"
+    ]
+  },
+  "considered_not_selected": [
+    {
+      "selection": "Andre kategoriemner og hooks",
+      "reason": "Ingen selvstendig dokumentert lokal problemstilling utover stedets fysiske endring, bruk og kildeavgrensning."
+    }
+  ],
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz",
+      "data/quiz/_archive",
+      "data/knowledge/knowledge_units.generated.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen egen aktiv eller arkivert målpakke funnet ved rekursivt navnesøk. Kandidatutkast erstattes etter kildekontroll.",
+      "Kryssomtale i Karl Johans gate-quiz beholdes hos sin eksisterende eier; ingen Knowledge-ID overtas."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eksisterende målpakke slettes eller overskrives."
+    }
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Avgrenset plass/bygård: kildegrunnlaget bærer én konkret åpning, historisk utdyping og én analytisk avslutning; videre sett ville gjenta samme bygnings- og brukshistorie."
+  },
+  "held_back_candidates": [
+    "Årstallpugging og udokumenterte motivforklaringer",
+    "Datering eller navneopphav med uløst kildesprik fremsettes ikke som sikker fasit"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_egertorget_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Egertorget er en utvidelse av Karl Johans gate.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Egertorget",
+          "locator": "Innledningen"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fra høyden på Egertorget ses Slottet mot vest.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+          "locator": "Avsnittet Her fra det høyeste punktet"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Jernbanetorget ligger i utsikten østover.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+          "locator": "Avsnittet Her fra det høyeste punktet"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Slotsveien og Østre Gade ble bundet sammen ved Egertorget.",
+      "source_ids": [
+        "https://snl.no/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Egertorget",
+          "locator": "Hovedavsnittet om reguleringen"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Freia-reklamen står på Thunegården.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+          "locator": "Forretningsgårder"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nilius Martinius Thune startet gullsmedverksted ved torget.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+          "locator": "Forretningsgårder"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Wilhelm Bismarck Samson etablerte bakeri ved torget.",
+      "source_ids": [
+        "https://snl.no/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Egertorget",
+          "locator": "Avsnittene om Egergården og bakeriet"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Lars Backer tegnet Horngården.",
+      "source_ids": [
+        "https://snl.no/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Egertorget",
+          "locator": "Avsnittet Horngården"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Horngården fikk åtte etasjer etter at planen om tolv ble redusert.",
+      "source_ids": [
+        "https://snl.no/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Egertorget",
+          "locator": "Avsnittet Horngården"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Nedgangen ved Egertorget fører til Stortinget stasjon.",
+      "source_ids": [
+        "https://snl.no/Egertorget",
+        "https://oslobyleksikon.no/side/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Egertorget",
+          "locator": "SNL: Horngården; byleksikon: siste avsnitt"
+        },
+        {
+          "url": "https://oslobyleksikon.no/side/Egertorget",
+          "locator": "SNL: Horngården; byleksikon: siste avsnitt"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Krøllen var et smug fra nåværende Egertorget mot Lille Grensen.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Egertorget",
+          "locator": "Avsnittet om Krøllen"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Egertorget har stor gangtrafikk i flere retninger.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Egertorget",
+          "locator": "Innledningen"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Torgets form ble til som restareal da gatene ble knyttet sammen.",
+      "source_ids": [
+        "https://snl.no/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Egertorget",
+          "locator": "Hovedavsnittet om reguleringen"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "T-banenedgangens buede betongtak ble fjernet etter kritikk av virkningen på Horngården.",
+      "source_ids": [
+        "https://snl.no/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Egertorget",
+          "locator": "Avsnittene om nedgang og gjenåpning"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Vestlig sentrumsvekst ga nye vilkår for virksomhetene ved Egertorget.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+          "locator": "Mellom det gamle og nye Christiania; Forretningsgårder"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Samson-bakeriet og Thunes verksted representerer ulike næringsfunksjoner ved samme plass.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+        "https://snl.no/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+          "locator": "Kommunen: Forretningsgårder; SNL: bakeriet"
+        },
+        {
+          "url": "https://snl.no/Egertorget",
+          "locator": "Kommunen: Forretningsgårder; SNL: bakeriet"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Gågate og T-bane gjør plassen til del av både lokalt og større transportnett.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Egertorget",
+          "locator": "Innledningen; avsnittet om T-bane"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Utsikt langs aksen er orientering; sosialt opphold må undersøkes separat.",
+      "source_ids": [
+        "https://www.oppdagkvadraturen.no/stoppesteder/egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://www.oppdagkvadraturen.no/stoppesteder/egertorget",
+          "locator": "Avsnittet om høyeste punkt"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Gangtrafikk er ikke i seg selv et mål på oppholdskvalitet.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Egertorget",
+          "locator": "Innledningen"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ulike historiske byggehøyder viser forskjellen mellom plan og realisering.",
+      "source_ids": [
+        "https://snl.no/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://snl.no/Egertorget",
+          "locator": "Avsnittet Horngården"
+        }
+      ]
+    },
+    {
+      "claim_id": "claim_egertorget_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Gehl-inspirert observasjon skiller nødvendig ferdsel fra frivillig opphold på Egertorget.",
+      "source_ids": [
+        "https://oslobyleksikon.no/side/Egertorget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "review_status": "reviewed",
+      "sourceLocation": [
+        {
+          "url": "https://oslobyleksikon.no/side/Egertorget",
+          "locator": "Innledningen"
+        }
+      ]
+    }
+  ]
+}

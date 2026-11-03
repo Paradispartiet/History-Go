@@ -125,7 +125,11 @@ try{
     assert.equal(state.peopleRole,"button");
     assert.equal(state.peopleTab,0);
     assert.equal(state.peopleImage,portrait,"linked person's portrait is reused");
-    assert.ok(state.star.right <= state.people.x + 1,"People follows favourite button at "+width);
+    assert.ok(state.star.x >= state.title.right - 2 && state.star.x <= state.title.right + 19
+      && state.star.width <= 30 && state.star.y <= state.title.y + 8,
+      "small favorite belongs directly beside the title at "+width);
+    assert.ok(state.people.y <= state.title.y && state.badge.y <= state.title.y,
+      "People and Merker stay at the upper right, not in the title row flow, at "+width);
     assert.ok(state.people.right <= state.badge.x + 1,"People immediately precedes Merker at "+width);
     assert.ok(state.people.y >= state.hero.y - 1 && state.people.bottom <= state.hero.bottom + 1
       && state.badge.bottom <= state.hero.bottom + 1,"both rounds stay on landscape hero at "+width);

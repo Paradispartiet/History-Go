@@ -1,0 +1,33 @@
+name: Rockefeller historical Story correction
+
+on:
+  pull_request:
+    paths:
+      - "data/stories/stories_rockefeller.json"
+      - "data/runtime/stories-all/part-005.json"
+      - "data/runtime/place-open/rockefeller.json"
+      - "data/epoker/epoke-place-index.json"
+      - "tests/rockefeller-torggata-bad-story.test.mjs"
+      - "reports/place-production/rockefeller-torggata-bad-story.md"
+      - ".github/workflows/rockefeller-torggata-bad-story.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rockefeller-story:
+    name: Verify Torggata bad Story, epoch, original quiz and licensed photo
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run scoped Rockefeller historic Story regression
+        run: node --test tests/rockefeller-torggata-bad-story.test.mjs

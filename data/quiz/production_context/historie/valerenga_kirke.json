@@ -1,0 +1,584 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "valerenga_kirke",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1785,
+    "selection_sha256": "af78ee5b4dc6f513be6b8c598ca14d8995f0eafd8fa70b82f15e2fb011b69e40",
+    "category_id": "historie",
+    "target_id": "valerenga_kirke"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/valerenga_kirke.json",
+      "bytes": 11478,
+      "sha256": "88c10f37a673da4173020a8b408e2a15d5c025e28f54c6a1a47dc2c24ba3ad57"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/valerenga_kirke.json",
+      "bytes": 13539,
+      "sha256": "cbc62aa42014d5ee805dfebc8c512a9028127e246bd0bd78e7ba595481ca9c04"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1358,
+      "selection_sha256": "59d6afc6cdd8cb47722882c64c24480726a25242216dc0b5ad79da8f893249ef"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/historie/valerenga_kirke_sets.json",
+  "source_registry": {
+    "valerenga_kirken": {
+      "url": "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+      "source_type": "official_institution",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Primary parish history: property, stone, orientation, architects, 1979 fire, re-consecration, art provenance."
+    },
+    "oslo_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/V%C3%A5lerenga_kirke",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Independent local reference; includes co-authored competition design and subsequent executing architect distinction, school fire damage, later interior and art."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/fag/fag_manifest.json",
+      "data/quiz/historie/valerenga_kirke_sets.json",
+      "reports/place-production/valerenga-kirke-quiz-reviewed-20261027.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "No active target-owned quiz in canonical manifest or source category before production.",
+      "Keep canonical Place/Fagverk/photos intact and convert reviewed source candidates into the production bank."
+    ],
+    "knowledge_migration": "Canonical Knowledge generator assigns stable IDs, never construct guessed IDs."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Three distinct source-supported stages: 1902 church, fire and loss, 1984 rebuilding and conservation/interpretation. 21 verified questions, no pure-year answers."
+  },
+  "held_back_candidates": [
+    "Pure-year answer questions.",
+    "Unsupported exact restoration or organ attribution; two external references disagree about number of organ stops.",
+    "Treating Paulus-deposited Vigeland frieze as saved original frescoes.",
+    "Conflating shared competition designers with single executing architect."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_restaurering_autentisitet",
+        "title": "Restaurering, rekonstruksjon og autentisitet",
+        "score": 100
+      },
+      {
+        "id": "em_his_sosialhistorie_hverdagsliv",
+        "title": "Sosialhistorie og hverdagsliv",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_arbeiderbolig_hushold_livsvilkar",
+        "title": "Arbeiderbolig, hushold og livsvilkår",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_arbeidstid_lonn_ferdighet",
+        "title": "Arbeidstid, lønn og ferdighet",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_bevaring_restaurering_autentisitet",
+        "title": "Bevaring, restaurering og autentisitet",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_kjonn_arbeidsdeling_lonn",
+        "title": "Kjønn, arbeidsdeling og lønn",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_tidslag_samtidighet",
+        "title": "Tidslag og samtidighet i sted",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_historiske_lag_i_byrom",
+      "em_his_spor_materialitet",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_kulturminner_bevaring",
+      "em_his_restaurering_autentisitet"
+    ],
+    "topic_hook_ids": [
+      "his_spor_materialitet",
+      "his_bevaring_restaurering_autentisitet"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_restaurerings_autentisitetsanalyse"
+    ],
+    "thinker_ids": [
+      "carlo_ginzburg",
+      "alois_riegl"
+    ],
+    "works": [
+      "Clues, Myths, and the Historical Method",
+      "The Modern Cult of Monuments"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kirketomten ble hentet fra Vaalerengen hovedgård.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Vålerenga menighets historikk oppgir Holger Sinding-Larsen som arkitekt; Oslo byleksikon nevner også Heinrich Jürgensen.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hovedmurene ble oppført i iddefjordsgranitt.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kleberstein preget hjørner og innfatninger.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kirketårnet er asymmetrisk plassert.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kirkens hovedinngang ligger mot øst.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Kirkens orientering ble valgt for å møte skolen overfor.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Takreparasjon med blikkenslagere var brannårsaken.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Vålerenga skole ble også skadet under brannen.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "I hovedsak ble kirkens murvegger stående etter brannen.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Emanuel Vigeland sto bak den opprinnelige store utsmykningen.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Emanuel Vigelands fresker omfattet korsfestelsen og nattverden.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "De opprinnelige glassmaleriene gikk tapt i brannen.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Sangen Vålerenga kjerke er knyttet til brannen og lokal tilhørighet.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Asbjørn Stein sto for den nye planløsningen ved gjenreisningen.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Den tidligere kordelen fikk flere etasjer og menighetsfunksjoner.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Håkon Bleken utformet de nye glassmaleriene.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Frisen Den gode hyrde kom fra Paulus menighet etter brannen.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Et messingdøpefat fra den første kirken er bevart.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Utvendige murspor kan dokumentere materialkontinuitet, ikke bevise interiørets opprinnelige tilstand.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_valerenga_kirke_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Dagens kirke kombinerer eldre murverk, gjenoppbygde rom og nyere kunst.",
+      "source_ids": [
+        "valerenga_kirken",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "historie_valerenga_kirke_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_valerenga_kirke_quiz_01",
+        "claim_valerenga_kirke_quiz_02",
+        "claim_valerenga_kirke_quiz_03",
+        "claim_valerenga_kirke_quiz_04",
+        "claim_valerenga_kirke_quiz_05",
+        "claim_valerenga_kirke_quiz_06",
+        "claim_valerenga_kirke_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_valerenga_kirke_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_valerenga_kirke_quiz_08",
+        "claim_valerenga_kirke_quiz_09",
+        "claim_valerenga_kirke_quiz_10",
+        "claim_valerenga_kirke_quiz_11",
+        "claim_valerenga_kirke_quiz_12",
+        "claim_valerenga_kirke_quiz_13",
+        "claim_valerenga_kirke_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_valerenga_kirke_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_valerenga_kirke_quiz_15",
+        "claim_valerenga_kirke_quiz_16",
+        "claim_valerenga_kirke_quiz_17",
+        "claim_valerenga_kirke_quiz_18",
+        "claim_valerenga_kirke_quiz_19",
+        "claim_valerenga_kirke_quiz_20",
+        "claim_valerenga_kirke_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 14,
+      "context": 5,
+      "concept_theory": 2
+    },
+    "ratios": {
+      "fact": 0.667,
+      "context": 0.238,
+      "concept_theory": 0.095
+    }
+  }
+}

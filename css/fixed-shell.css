@@ -412,3 +412,192 @@ body.civi-app .civi-score-close{
 :root{ --civi-shell-header-h:94px; }
 @media(max-width:920px){ :root{ --civi-shell-header-h:94px; } }
 @media(max-width:560px){ :root{ --civi-shell-header-h:100px; } }
+
+
+/* Unified Civication status control: the number is a summary, not a separate page. */
+body.civi-app .civi-lifestory-header-status {
+  flex-wrap: wrap;
+  row-gap: 6px;
+  overflow: visible;
+}
+body.civi-app .civi-score-circle.civi-score-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  flex: 0 0 auto;
+  width: auto;
+  min-height: 40px;
+  height: 40px;
+  margin-left: 0;
+  padding: 3px 4px 3px 12px;
+  border: 1px solid rgba(255,255,255,.21);
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+  color: #f0f1f3;
+  font: 750 13px/1.15 var(--civi-font-sans,system-ui);
+  box-shadow: none;
+}
+body.civi-app .civi-score-circle.civi-score-trigger:hover {
+  background: rgba(255,255,255,.11);
+}
+body.civi-app .civi-score-trigger-label {
+  white-space: nowrap;
+}
+body.civi-app .civi-score-trigger-number {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(229,188,96,.32);
+  background: rgba(229,188,96,.09);
+  color: #f7dfaa;
+  font: 800 16px/1 var(--civi-font-sans,system-ui);
+  font-variant-numeric: tabular-nums;
+}
+body.civi-app .civi-score-overview {
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  padding-bottom: 15px;
+}
+body.civi-app .civi-score-overview h3 { margin-top: 8px; }
+body.civi-app .civi-score-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 8px;
+  margin: 0;
+}
+body.civi-app .civi-score-overview-item {
+  min-width: 0;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 10px;
+  background: rgba(255,255,255,.035);
+  padding: 10px 12px;
+}
+body.civi-app .civi-score-overview-item dt {
+  color: #adb5bf;
+  font-size: 12px;
+  font-weight: 750;
+}
+body.civi-app .civi-score-overview-item dd {
+  margin: 4px 0 0;
+  font-size: 15px;
+  font-weight: 730;
+  overflow-wrap: anywhere;
+}
+@media (max-width:760px) {
+  :root { --civi-shell-header-h: 134px; }
+  body.civi-app .civi-lifestory-header-status { gap: 5px; }
+  body.civi-app .civi-header-chip--money { display: none; }
+  body.civi-app .civi-score-circle.civi-score-trigger { min-height: 38px; height: 38px; }
+}
+@media (max-width:560px) {
+  :root { --civi-shell-header-h: 138px; }
+  body.civi-app .civi-score-circle.civi-score-trigger { margin-left: 0; }
+  body.civi-app .civi-score-trigger-label { font-size: 12px; }
+}
+
+/* 2026-10-28: the Civication navigation lives directly BELOW the header,
+   not at the bottom of the screen. The original tab handlers remain intact. */
+:root {
+  --civi-shell-header-h: 112px;
+  --civi-shell-nav-h: 58px;
+  --civi-shell-footer-h: 0px;
+}
+@media (max-width: 920px) { :root { --civi-shell-header-h: 112px; } }
+@media (max-width: 760px) { :root { --civi-shell-header-h: 112px; } }
+@media (max-width: 560px) { :root { --civi-shell-header-h: 112px; } }
+
+body.civi-app .topbar {
+  box-sizing: border-box;
+  align-content: center;
+  overflow: visible;
+}
+body.civi-app .topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+body.civi-app .topbar-left > .hg-universal-home,
+body.civi-app .topbar-left > .hg-universal-back {
+  flex: 0 0 38px;
+  margin: 0;
+}
+body.civi-app .topbar-left .app-title { min-width: 0; }
+body.civi-app .topbar-right:empty { display: none; }
+body.civi-app .civi-lifestory-header-status {
+  flex-wrap: nowrap;
+  min-height: 36px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+body.civi-app .civi-lifestory-header-status::-webkit-scrollbar { display: none; }
+body.civi-app .civi-lifestory-header-status > * { flex-shrink: 0; }
+
+body.civi-app .civi-footer {
+  position: fixed;
+  top: calc(var(--civi-shell-header-h) + var(--civi-safe-top));
+  bottom: auto;
+  left: 0; right: 0;
+  z-index: 101;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--civi-shell-nav-h);
+  min-height: 0;
+  padding: 5px max(12px, var(--civi-safe-right)) 5px max(12px, var(--civi-safe-left));
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  background: #0a0b0e;
+  border-top: 0;
+  border-bottom: 1px solid var(--civi-shell-line);
+  box-shadow: 0 9px 24px rgba(0,0,0,.2);
+}
+body.civi-app .civi-footer::-webkit-scrollbar { display: none; }
+body.civi-app .civi-footer .civi-btn {
+  flex: 0 0 auto;
+  width: auto;
+  min-height: 42px;
+  max-width: none;
+  padding: 6px 11px;
+}
+body.civi-app main,
+body.civi-app #app,
+body.civi-app #mainContent,
+body.civi-app .civi-world,
+body.civi-app #civiMapWorld,
+body.civi-app .map-container {
+  top: calc(var(--civi-shell-header-h) + var(--civi-safe-top) + var(--civi-shell-nav-h));
+  bottom: 0;
+}
+body.civi-app #placeCard,
+body.civi-app .placeCard,
+body.civi-app .place-card {
+  max-height: calc(100dvh - var(--civi-shell-header-h) - var(--civi-shell-nav-h) - var(--civi-safe-top));
+}
+body.civi-app .civi-panels {
+  padding-bottom: calc(28px + var(--civi-safe-bottom));
+}
+/* The More / Restart popover opens DOWN from the top navigation. */
+body.civi-app .civi-footer-more-menu {
+  top: calc(var(--civi-shell-header-h) + var(--civi-safe-top) + var(--civi-shell-nav-h) + 8px);
+  bottom: auto;
+}
+@media (max-width: 560px) {
+  body.civi-app .civi-footer .civi-btn { min-height: 42px; padding: 6px 10px; }
+  body.civi-app .topbar-left > .hg-universal-home,
+  body.civi-app .topbar-left > .hg-universal-back {
+    flex-basis: 34px; width: 34px; min-width: 34px; max-width: 34px;
+    height: 34px; min-height: 34px;
+  }
+}

@@ -1,18 +1,34 @@
 /* Place Sheet Phase 6 — direct standard-Place shell, no popup embedding */
-body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav{
-  position:sticky;
-  top:0;
-  z-index:8;
+/* Single persistent navigation row attached to the bottom of PlaceCard.
+   The scrollable .pc-body above it retains the original collapsing photo. */
+body.hg-app #placeCard.is-place-sheet-direct > .pc-sheet-section-nav{
+  position:relative;
+  top:auto;
+  bottom:auto;
+  z-index:12;
   display:flex;
+  flex:0 0 auto;
+  align-items:center;
   gap:8px;
   overflow-x:auto;
-  margin:10px -22px 12px;
-  padding:12px 22px 10px;
-  border-bottom:1px solid rgba(255,255,255,.10);
-  background:rgba(6,9,15,.96);
-  box-shadow:0 10px 24px rgba(0,0,0,.22);
+  overflow-y:hidden;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+  margin:0;
+  padding:10px 16px;
+  border-top:1px solid rgba(255,255,255,.16);
+  border-bottom:0;
+  background:rgba(6,9,15,.97);
+  box-shadow:0 -8px 24px rgba(0,0,0,.23);
   backdrop-filter:blur(14px);
   scrollbar-width:none;
+}
+/* Override the high-specificity margins left by the original in-scroll
+   section navigation; the dock must meet the card's bottom edge. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct > .pc-sheet-section-nav{
+  margin:0;
+  padding:10px 16px;
 }
 body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav::-webkit-scrollbar{display:none;}
 body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav button{
@@ -37,7 +53,7 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav button:focus-
   color:#f6c800;
   outline:none;
 }
-body.hg-app #placeCard.is-place-sheet-direct [data-hg-place-sheet-section]{scroll-margin-top:76px;}
+body.hg-app #placeCard.is-place-sheet-direct [data-hg-place-sheet-section]{scroll-margin-top:calc(var(--pc-visible-hero-height, 0px) + 12px);}
 /* Language still uses the canonical language owner's popup-scoped CSS internally,
    but the full popup scaffold is discarded immediately after the owner panel mounts. */
 body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-language-compat > .hg-place-language-panel{
@@ -49,8 +65,8 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-language-compat > .hg-pla
 }
 
 @media (max-width:720px){
-  body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav{
-    margin:8px -16px 10px;
-    padding:10px 16px 9px;
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct > .pc-sheet-section-nav{
+    margin:0;
+    padding:9px 12px calc(9px + env(safe-area-inset-bottom, 0px) * .2);
   }
 }

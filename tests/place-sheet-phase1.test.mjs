@@ -97,7 +97,7 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   assert.equal(card.classList.contains("is-place-sheet-phase1"), true);
   assert.equal(window.document.getElementById("pcFrontCardFlip").parentElement?.classList.contains("pc-sheet-hero-media"), true);
   assert.equal(window.document.querySelector(".pc-text")?.parentElement?.classList.contains("pc-sheet-hero-copy"), true);
-  const nav = shell.querySelector('[data-hg-place-sheet-nav="1"]');
+  const nav = card.querySelector(':scope > [data-hg-place-sheet-nav="1"]');
   const aboutButton = nav?.querySelector('[data-hg-place-sheet-jump="about"]');
   const sideStack = shell.querySelector(".pc-sheet-explore-grid .pc-side-stack");
   const collectionLinks = Array.from(nav?.querySelectorAll('[data-hg-place-sheet-collection-link]') || []);
@@ -105,10 +105,14 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   const hero = shell.querySelector("[data-hg-place-sheet-hero]");
   const intro = shell.querySelector("[data-hg-place-sheet-intro]");
   const media = shell.querySelector("[data-hg-place-sheet-media]");
-  assert.equal(hero?.nextElementSibling, nav, "navigation immediately follows the landscape hero");
-  assert.equal(nav.nextElementSibling, intro, "place description follows navigation");
-  assert.equal(intro?.nextElementSibling, media, "collection cards follow the description");
-  assert.equal(window.document.getElementById("pcDesc")?.parentElement, intro, "description retains one live owner");
+  assert.equal(nav.parentElement, card, "navigation is docked outside the scrollable body");
+  assert.equal(card.lastElementChild, nav, "navigation is the bottom row of PlaceCard");
+  assert.equal(hero?.nextElementSibling, intro, "place description immediately follows the landscape hero");
+  assert.equal(intro?.nextElementSibling, media, "front image and About follow the description");
+  assert.equal(media?.querySelector(".pc-sheet-about")?.previousElementSibling?.id, "pcFrontCardFlip", "About text sits directly after the floating frontImage");
+  assert.equal(media?.nextElementSibling?.classList.contains("pc-sheet-explore-grid"), true, "collection rounds follow all About text");
+  assert.equal(window.document.getElementById("pcDesc")?.parentElement?.classList.contains("pc-sheet-canonical-about"), true, "live description flows beside frontImage within About");
+  assert.equal(intro?.querySelector("#pcDesc"), null, "description is no longer above frontImage");
   assert.equal(collectionLinks.length, 0, "collection rounds must not appear in text navigation");
   assert.equal(nav.querySelectorAll('[data-hg-place-sheet-jump]').length, 9);
   assert.equal(sideStack.parentElement?.classList.contains("pc-sheet-explore-grid"), true);
@@ -119,7 +123,7 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   window.fetch = async () => ({ ok:false });
   window.eval(onsiteSource);
   window.HGPlaceOnSiteSurface.decorate(true);
-  const eventsBox = shell.querySelector(".pc-sheet-hero-media > .pc-sheet-explore-grid > .pc-side-stack + #pcEventsBox");
+  const eventsBox = shell.querySelector(".pc-sheet-shell > .pc-sheet-explore-grid > .pc-side-stack + #pcEventsBox");
   assert.ok(eventsBox);
   assert.equal(eventsBox.parentElement, sideStack.parentElement);
   assert.equal(nav.querySelector("#pcEventsBox"), null);
@@ -130,11 +134,25 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   );
   assert.match(shell.querySelector(".pc-sheet-canonical-about")?.textContent || "", /Lang canonical omtekst/);
   assert.equal(popupCalls, 0, "standard Place must not invoke the legacy popup renderer");
+  assert.equal(card.querySelectorAll("#pcDesc").length, 1, "no duplicate description");
+  assert.equal(card.querySelector(".pc-sheet-canonical-about #pcDesc")?.textContent, "Kort ingress.");
   assert.equal(card.querySelector('.hg-popup .hg-place-about-section'), null, "canonical popupDesc node must have one visual owner");
+
+  // A Place with no distinct longread must still show its own short text
+  // alongside the image; the canonical About renderer otherwise hides it.
+  standard.popupDesc = "Kort ingress.";
+  standard.desc = "Kort ingress."; // Match the live preview and the canonical Place input.
+  await window.openPlaceCard(standard);
+  assert.equal(card.querySelector(".pc-sheet-about")?.hidden, false);
+  assert.equal(card.querySelector(".pc-sheet-canonical-about > h3")?.textContent, "Om stedet");
+  assert.equal(card.querySelector(".pc-sheet-canonical-about #pcDesc")?.textContent, "Kort ingress.");
+  assert.equal(card.querySelectorAll("#pcDesc").length, 1);
+  assert.equal(card.querySelector(".pc-sheet-canonical-about .hg-place-longread"), null, "same text is not repeated");
 
   await window.openPlaceCard(micro);
   assert.equal(card.querySelector('[data-hg-place-sheet-shell="1"]'), null);
   assert.equal(card.classList.contains("is-place-sheet-phase1"), false);
+  assert.equal(card.querySelector('[data-hg-place-sheet-nav="1"]'), null, "Micro does not retain a bottom section bar");
   const grid = card.querySelector(":scope > .pc-body > .pc-grid");
   assert.ok(grid?.querySelector("#pcFrontCardFlip"));
   assert.ok(grid?.querySelector(".pc-side-stack"));

@@ -54,7 +54,9 @@ function newsCards(items: NewsLike[]): string {
   if (!values.length) return "";
   return `<div class="hg-place-tab-card-list pc-sheet-news-list">${values.map(item => {
     const title = text(item?.title || item?.name || item?.id || "Notis");
-    const meta = [item?.date || item?.year || item?.period, item?.category || item?.type]
+    const kind = text(item?.category || item?.type);
+    const kindLabel = kind === "news_note" ? "Notis" : kind === "historical_news" ? "Historisk nyhet" : kind;
+    const meta = [item?.date || item?.year || item?.period, kindLabel]
       .map(text).filter(Boolean).join(" · ");
     const summary = text(item?.summary?.one_liner || item?.popupDesc || item?.desc || item?.description);
     const rawSource = Array.isArray(item?.sources) ? item.sources[0] : null;
@@ -83,7 +85,7 @@ export function renderCanonicalNewsHtml(historicalNews: NewsLike[], newsNotes: N
   const content = renderNewsContentHtml(historicalNews, newsNotes);
   if (!content) return "";
   return `
-    <section class="hg-section hg-place-news-section" data-hg-place-sheet-owner="news">
+    <section class="hg-section hg-place-news-section pc-sheet-canonical-news" data-hg-place-sheet-owner="news">
       <h3>Nyheter</h3>
       ${content}
     </section>

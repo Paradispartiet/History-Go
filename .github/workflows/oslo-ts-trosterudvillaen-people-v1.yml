@@ -1,0 +1,47 @@
+name: Oslo T-S Trosterudvillaen People v1
+on:
+  push:
+    branches: [content/oslo-ts-bolk03-trosterudvillaen-people-v1-20261028]
+    paths:
+      - '.github/workflows/oslo-ts-trosterudvillaen-people-v1.yml'
+      - 'data/quiz/production_briefs/historie/trosterudvillaen.json'
+      - 'tests/oslo-ts-trosterudvillaen-people-v1.test.mjs'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ts-bolk03-trosterudvillaen-people-v1-20261028
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Canonical Knowledge and QuizCard
+        run: |
+          npm run knowledge:canonical:write
+          node scripts/sync-trosterudvillaen-quizcard.mjs
+      - name: Build Place-open, People and Fagverk
+        run: |
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Targeted content and People tests
+        run: node --test tests/oslo-ts-trosterudvillaen-people-v1.test.mjs
+      - name: Commit generated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/historie/trosterudvillaen_sets.json data/quizcards/historie/trosterudvillaen_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/trosterudvillaen.json data/fagverk/fagverk_release.json data/runtime/people-all/
+          if ! git diff --cached --quiet; then git commit -m "Trosterudvillaen: generated Knowledge and People runtime"; fi
+          git restore .
+          git fetch origin content/oslo-ts-bolk03-trosterudvillaen-people-v1-20261028
+          git rebase origin/content/oslo-ts-bolk03-trosterudvillaen-people-v1-20261028
+          git push origin HEAD:content/oslo-ts-bolk03-trosterudvillaen-people-v1-20261028

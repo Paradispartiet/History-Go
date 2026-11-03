@@ -1,0 +1,70 @@
+{
+  "schema": "history_go_grini_quiz_technical_gates_v1",
+  "place_id": "grini_fangeleir",
+  "reviewed_date": "2026-10-28",
+  "verified_commit_sha": "3d2751ddf50821b8976a89d2cc298fc0334023c4",
+  "github_actions_run_id": 40692552404,
+  "github_actions_url": "https://github.com/Paradispartiet/History-Go/actions/runs/40692552404",
+  "status": "TECHNICAL_STAGING_PASS_NOT_ACTIVE",
+  "verified_checks": {
+    "staging_preflight": {
+      "status": "PASS",
+      "tests": 4,
+      "failed": 0,
+      "answer_slots": [
+        24,
+        24,
+        22
+      ],
+      "sets": 10,
+      "questions": 70
+    },
+    "full_history_context": {
+      "status": "PASS_IN_DISPOSABLE_CHECKOUT",
+      "required_inputs": 7,
+      "canonical_context_generated": true,
+      "manifest_unchanged_on_pr": true
+    },
+    "isolated_canonical_quiz_audits": {
+      "status": "PASS_IN_DISPOSABLE_CHECKOUT",
+      "checks": [
+        "quiz-production-context",
+        "quiz-progression",
+        "quiz-theory-binding"
+      ],
+      "scope": "only grini_fangeleir target with temporary fag-manifest overlay"
+    },
+    "knowledge_migration": {
+      "status": "PASS_IN_DISPOSABLE_CHECKOUT",
+      "generator": "scripts/knowledge-canonical-data.mts --write",
+      "old_knowledge_units_preserved": 3,
+      "new_quiz_questions_with_knowledge_links": 70,
+      "old_canonical_claims_preserved": true,
+      "old_concept_links_preserved": true,
+      "legacy_question_ids_reused": false,
+      "permanent_knowledge_sync_performed": false,
+      "sources": [
+        "data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json",
+        "scripts/knowledge-canonical-data.mts"
+      ]
+    }
+  },
+  "unchanged_release_surfaces": {
+    "active_quiz_path": "data/quiz/historie/grini_fangeleir_sets.json",
+    "active_sets": 1,
+    "active_questions": 3,
+    "runtime_quiz_manifest": "data/quiz/manifest.json",
+    "fag_quiz_production_target_registered": false,
+    "persisted_canonical_context": false,
+    "merged": false,
+    "published": false
+  },
+  "release_blockers": [
+    "Independent editorial and source verification of all 70 questions, explanations, distractors and ethical framing",
+    "Commit canonical 10x7 package, fag manifest entry and actual full-input production context together, with exact hash parity",
+    "Run and review global quiz production, Knowledge regeneration and regression tests on integrated PR head",
+    "Run QuizCard flip/shuffle/progression and mobile/desktop browser verification",
+    "Complete unrelated place/Fagverk/repository production gates before vFerdig"
+  ],
+  "verdict": "PR_DRAFT_NOT_VFERDIG"
+}

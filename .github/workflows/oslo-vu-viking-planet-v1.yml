@@ -1,0 +1,47 @@
+name: The Viking Planet targeted content integration
+on:
+  push:
+    branches:
+      - content/oslo-vu-viking-planet-v1-20261028
+    paths:
+      - '.github/workflows/oslo-vu-viking-planet-v1.yml'
+      - 'data/quiz/production_briefs/historie/viking_planet_oslo.json'
+      - 'data/quizcards/historie/viking_planet_oslo_quizcard_v1.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/content/oslo-vu-viking-planet-v1-20261028'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-vu-viking-planet-v1-20261028
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate quiz context and canonical Knowledge
+        run: |
+          node scripts/build-quiz-production-context.mjs --category historie --target viking_planet_oslo --output data/quiz/production_context/historie/viking_planet_oslo.json
+          npm run knowledge:canonical:write
+          node scripts/sync-viking-planet-quizcard-knowledge.mjs
+      - name: Publish place-open and Fagverk release data
+        run: |
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Targeted test only
+        run: node --test tests/oslo-vu-viking-planet-parity.test.mjs
+      - name: Commit generated files to production PR
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/historie/viking_planet_oslo.json data/quiz/historie/viking_planet_oslo_sets.json data/quizcards/historie/viking_planet_oslo_quizcard_v1.json
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git add data/runtime/place-open/viking_planet_oslo.json data/fagverk/fagverk_release.json
+          if ! git diff --cached --quiet; then git commit -m "Viking Planet: generate canonical Knowledge and runtime"; fi
+          git push origin HEAD:content/oslo-vu-viking-planet-v1-20261028

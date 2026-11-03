@@ -155,7 +155,7 @@
     if (!rows2.length) return null;
     const html = rows2.map((row) => {
       const title = text3(row.title || row.text || row.event);
-      const summary = text3(row.summary || row.description || row.text);
+      const summary = text3(row.summary || row.description || row.desc || row.text);
       const sources = Array.isArray(row.sources) ? row.sources : [];
       const links = sources.map((source) => {
         const item = typeof source === "string" ? { url: source, title: "Kilde" } : source;
@@ -528,7 +528,9 @@
     return `<div class="hg-place-tab-card-list pc-sheet-news-list">${values.map((item) => {
       var _a;
       const title = text7((item == null ? void 0 : item.title) || (item == null ? void 0 : item.name) || (item == null ? void 0 : item.id) || "Notis");
-      const meta = [(item == null ? void 0 : item.date) || (item == null ? void 0 : item.year) || (item == null ? void 0 : item.period), (item == null ? void 0 : item.category) || (item == null ? void 0 : item.type)].map(text7).filter(Boolean).join(" \xB7 ");
+      const kind = text7((item == null ? void 0 : item.category) || (item == null ? void 0 : item.type));
+      const kindLabel = kind === "news_note" ? "Notis" : kind === "historical_news" ? "Historisk nyhet" : kind;
+      const meta = [(item == null ? void 0 : item.date) || (item == null ? void 0 : item.year) || (item == null ? void 0 : item.period), kindLabel].map(text7).filter(Boolean).join(" \xB7 ");
       const summary = text7(((_a = item == null ? void 0 : item.summary) == null ? void 0 : _a.one_liner) || (item == null ? void 0 : item.popupDesc) || (item == null ? void 0 : item.desc) || (item == null ? void 0 : item.description));
       const rawSource = Array.isArray(item == null ? void 0 : item.sources) ? item.sources[0] : null;
       const sourceUrl = safeHttpsUrl2(typeof rawSource === "string" ? rawSource : rawSource == null ? void 0 : rawSource.url);
@@ -551,7 +553,7 @@
     const content = renderNewsContentHtml(historicalNews, newsNotes);
     if (!content) return "";
     return `
-    <section class="hg-section hg-place-news-section" data-hg-place-sheet-owner="news">
+    <section class="hg-section hg-place-news-section pc-sheet-canonical-news" data-hg-place-sheet-owner="news">
       <h3>Nyheter</h3>
       ${content}
     </section>
@@ -1891,7 +1893,8 @@
     return text16(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
   }
   function ensureSectionNav(shell4, place) {
-    let nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
+    const host = card();
+    let nav = (host == null ? void 0 : host.querySelector(':scope > [data-hg-place-sheet-nav="1"]')) || shell4.querySelector('[data-hg-place-sheet-nav="1"]');
     if (!(nav instanceof HTMLElement)) {
       nav = document.createElement("nav");
       nav.className = "pc-sheet-section-nav";
@@ -1914,9 +1917,7 @@
         }
       });
     }
-    const hero = shell4.querySelector("[data-hg-place-sheet-hero]");
-    if (hero && hero.nextElementSibling !== nav) hero.insertAdjacentElement("afterend", nav);
-    else if (!hero && shell4.firstElementChild !== nav) shell4.prepend(nav);
+    if (host && nav.parentElement !== host) host.appendChild(nav);
     nav.dataset.placeId = text16(place.id);
     return nav;
   }
@@ -1933,7 +1934,8 @@
     return Boolean(owner && text16(owner.textContent) && !owner.querySelector(".hg-place-tab-empty"));
   }
   function syncSectionNav(shell4) {
-    const nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
+    const host = card();
+    const nav = (host == null ? void 0 : host.querySelector(':scope > [data-hg-place-sheet-nav="1"]')) || shell4.querySelector('[data-hg-place-sheet-nav="1"]');
     const placeId2 = text16(shell4.dataset.placeId);
     if (!(nav instanceof HTMLElement) || !placeId2) return;
     nav.querySelectorAll("[data-hg-place-sheet-jump]").forEach((button) => {
@@ -1976,9 +1978,8 @@
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
       <div class="pc-sheet-intro" data-hg-place-sheet-intro></div>
-      <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-        <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-      </div>
+      <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
+      <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
@@ -2023,8 +2024,8 @@
       aboutSlot.className = "pc-sheet-about";
       aboutSlot.setAttribute("data-hg-place-sheet-about", "1");
       aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
-      const anchor = shell4.querySelector("[data-hg-place-sheet-media]") || shell4.querySelector("[data-hg-place-sheet-hero]");
-      if (anchor == null ? void 0 : anchor.nextSibling) shell4.insertBefore(aboutSlot, anchor.nextSibling);
+      const media = shell4.querySelector("[data-hg-place-sheet-media]");
+      if (media) media.appendChild(aboutSlot);
       else shell4.appendChild(aboutSlot);
     }
     return aboutSlot;
@@ -2063,22 +2064,38 @@
     return slot2;
   }
   function mountPlaceSheetPhase1(place) {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d;
     if (!place || isMicro2(place)) return null;
     const shell4 = ensureShell(place);
     if (!(shell4 instanceof HTMLElement)) return null;
     movePrimaryNodes(shell4, place);
     const aboutSlot = ensureAboutSlot(shell4);
-    if (aboutSlot) (_a = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })) == null ? void 0 : _a.classList.add("pc-sheet-canonical-about");
+    if (aboutSlot) {
+      let aboutOwner = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
+      if (!(aboutOwner instanceof HTMLElement)) {
+        aboutSlot.hidden = false;
+        aboutOwner = document.createElement("section");
+        aboutOwner.className = "hg-section hg-place-section hg-place-about-section";
+        aboutOwner.setAttribute("data-hg-place-sheet-owner", "about");
+        const heading2 = document.createElement("h3");
+        heading2.textContent = "Om stedet";
+        aboutOwner.appendChild(heading2);
+        aboutSlot.replaceChildren(aboutOwner);
+      }
+      aboutOwner.classList.add("pc-sheet-canonical-about");
+      const description = shell4.querySelector("#pcDesc");
+      const heading = aboutOwner.querySelector("h3");
+      if (description && heading) heading.insertAdjacentElement("afterend", description);
+    }
     const historySlot = ensureHistorySlot(shell4);
     if (historySlot) {
-      (_b = mountCanonicalHistory(historySlot, place)) == null ? void 0 : _b.classList.add("pc-sheet-canonical-history");
-      (_c = mountCanonicalChronology(historySlot, place)) == null ? void 0 : _c.classList.add("pc-sheet-canonical-history");
+      (_a = mountCanonicalHistory(historySlot, place)) == null ? void 0 : _a.classList.add("pc-sheet-canonical-history");
+      (_b = mountCanonicalChronology(historySlot, place)) == null ? void 0 : _b.classList.add("pc-sheet-canonical-history");
     }
     const storiesSlot = ensureStoriesSlot(shell4);
-    if (storiesSlot) (_d = mountCanonicalStories(storiesSlot, place)) == null ? void 0 : _d.classList.add("pc-sheet-canonical-stories");
+    if (storiesSlot) (_c = mountCanonicalStories(storiesSlot, place)) == null ? void 0 : _c.classList.add("pc-sheet-canonical-stories");
     const beforeAfterSlot = ensureBeforeAfterSlot(shell4);
-    if (beforeAfterSlot) (_e = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _e.classList.add("pc-sheet-canonical-before-after");
+    if (beforeAfterSlot) (_d = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _d.classList.add("pc-sheet-canonical-before-after");
     syncSectionNav(shell4);
     observeSectionNav(shell4);
     startAutomaticPlaceSheetRender(text16(place.id));
@@ -2114,6 +2131,8 @@
     if (sideStack instanceof HTMLElement) legacyGrid.appendChild(sideStack);
     if (events instanceof HTMLElement) legacyGrid.appendChild(events);
     shell4 == null ? void 0 : shell4.remove();
+    const bottomNav = root2.querySelector(':scope > [data-hg-place-sheet-nav="1"]');
+    if (bottomNav) bottomNav.remove();
     root2.classList.remove("is-place-sheet-phase1", "is-place-sheet-direct");
     delete root2.dataset.hgPlaceSheetPhase;
   }
@@ -2213,8 +2232,8 @@
     function ensureStylesheet6() {
       const styles = [
         [STYLE_FLAG, "css/place-unified-surface.css"],
-        [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261011-arbeiderbladet-ui4"],
-        [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
+        [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261027-about-image-inset1"],
+        [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css?v=20261102-sticky-bottom2"]
       ];
       for (const [flag, href] of styles) {
         if (document.querySelector(`link[${flag}="1"]`)) continue;
@@ -2265,21 +2284,26 @@
       return shell4;
     }
     function scrollToSection(target, options = {}) {
-      var _a, _b;
+      var _a, _b, _c;
       const id = canonicalSection2(target);
       const section = placeSheetSectionTarget(id);
       if (!(section instanceof HTMLElement)) return false;
-      try {
-        section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" });
-      } catch {
-        (_a = section.scrollIntoView) == null ? void 0 : _a.call(section);
+      const scroller = (_a = card2()) == null ? void 0 : _a.querySelector(":scope > .pc-body");
+      if (id === "about" && scroller) {
+        scroller.scrollTop = 0;
+      } else {
+        try {
+          section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" });
+        } catch {
+          (_b = section.scrollIntoView) == null ? void 0 : _b.call(section);
+        }
       }
       if (options.focus) {
         if (!section.hasAttribute("tabindex")) section.setAttribute("tabindex", "-1");
         try {
           section.focus({ preventScroll: true });
         } catch {
-          (_b = section.focus) == null ? void 0 : _b.call(section);
+          (_c = section.focus) == null ? void 0 : _c.call(section);
         }
       }
       return true;

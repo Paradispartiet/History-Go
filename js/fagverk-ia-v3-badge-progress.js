@@ -29,6 +29,7 @@
     const runtimeManifest = model.source.runtimeManifest || {};
     const labels = runtimeManifest.underbadgeLabels || {};
     const domainsByUnderbadge = runtimeManifest.underbadgeDomains || {};
+    const artwork = badge?.subBadgeImages || {};
     return list(badge?.sub).map((id) => {
       const domainIds = list(domainsByUnderbadge[id]).map(text).filter((domainId) => model.domainsById.has(domainId));
       const places = model.places.filter((place) => {
@@ -39,7 +40,7 @@
         return domainIds.some((domainId) => placeDomainIds.has(domainId));
       });
       const visitedPlaces = places.filter((place) => progress.visited?.has?.(place.id)).length;
-      return { id: text(id), label: text(labels[id]) || humanize(id), domainIds, placeCount: places.length, visitedPlaces };
+      return { id: text(id), label: text(labels[id]) || humanize(id), image: text(artwork[id]), domainIds, placeCount: places.length, visitedPlaces };
     }).filter((row) => row.id);
   }
 
@@ -53,7 +54,7 @@
 
   function renderUnderbadges(rows, model) {
     if (!rows.length) return '';
-    return `<details class="fagverk-ia-badge-underbadges"><summary>Undermerker <span>${rows.length}</span></summary><div>${rows.map((row) => `<article id="underbadge-${escapeHtml(row.id)}"><strong>${escapeHtml(row.label)}</strong>${row.placeCount ? `<small>${row.visitedPlaces}/${row.placeCount} registrerte fagsteder besøkt</small>` : '<small>Gameplay-undermerke</small>'}${row.domainIds.length ? `<div class="fagverk-ia-underbadge-domains">${row.domainIds.map((domainId) => `<a href="${escapeHtml(MODEL.domainUrl(model.subject.id, domainId))}">${escapeHtml(model.domainsById.get(domainId)?.label || domainId)}</a>`).join('')}</div>` : ''}</article>`).join('')}</div></details>`;
+    return `<details class="fagverk-ia-badge-underbadges"><summary>Undermerker <span>${rows.length}</span></summary><div>${rows.map((row) => `<article id="underbadge-${escapeHtml(row.id)}">${row.image ? `<img class="fagverk-ia-underbadge-art" src="${escapeHtml(row.image)}" loading="lazy" alt="" />` : ""}<strong>${escapeHtml(row.label)}</strong>${row.placeCount ? `<small>${row.visitedPlaces}/${row.placeCount} registrerte fagsteder besøkt</small>` : '<small>Gameplay-undermerke</small>'}${row.domainIds.length ? `<div class="fagverk-ia-underbadge-domains">${row.domainIds.map((domainId) => `<a href="${escapeHtml(MODEL.domainUrl(model.subject.id, domainId))}">${escapeHtml(model.domainsById.get(domainId)?.label || domainId)}</a>`).join('')}</div>` : ''}</article>`).join('')}</div></details>`;
   }
 
   function removeRedundantLegacyAction(host, model) {

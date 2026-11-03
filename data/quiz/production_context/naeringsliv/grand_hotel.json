@@ -1,0 +1,642 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "naeringsliv",
+  "targetId": "grand_hotel",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1946,
+    "selection_sha256": "6ec0f783abc140bd7b9603aab89bf35f69b511c71696a8c8f4ea2a87d5d21a61",
+    "category_id": "naeringsliv",
+    "target_id": "grand_hotel"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "bytes": 33041,
+      "sha256": "d9ceba9645ed472e0448e274cac37ff09bb2de84c54abe44d99d59c7a260f2fd",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "bytes": 383560,
+      "sha256": "6c7c48150ebdb77d07177d015bbfe104d0eb5d206c6a9104f4bc52a7e0ee0bbe",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "bytes": 305981,
+      "sha256": "40a00fa3910248b779763d7746760140509741410aa046d4f694c367e7c6e345",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "bytes": 89971,
+      "sha256": "a109a5e6eaab0f96fdb0b14aa8139a35714b67473efa860a3f1a8448a204cad3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "bytes": 17470,
+      "sha256": "f6c4a94ebfa99cff3042ae3398ab92d633150d8fc6f4bd16d7b71679540c9585",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/naeringsliv/grand_hotel.json",
+      "bytes": 29389,
+      "sha256": "377cf4136061e8fba6220ebddbd95d91e1155be7daca33a917fa6fc8a2c7d736"
+    },
+    "target": {
+      "path": "data/places/naeringsliv/oslo/grand_hotel.json",
+      "bytes": 13115,
+      "sha256": "8bb9f3c3b69f7fa03ec09c81d40f700305e54800da1fc9291f969db9ce7bd65f"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1325,
+      "selection_sha256": "66daf6bd70ffe46f5e5192b76f992b9ff5a22fd4d4c786a6d7af6b2709045745"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_henrik_ibsen.json",
+        "matches": 1,
+        "selection_bytes": 1049,
+        "selection_sha256": "f01cd295bb8589ab0fd538757622dfcc7b05cf508d5a9e8e14c7bddab12af74d"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/grand_hotel_sets.json",
+  "source_registry": {
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Grand_Hotel",
+      "source_type": "local_reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Hotellhistorie, fasade, Grand Café og fredsprisritual"
+    },
+    "hotel": {
+      "url": "https://grand.no/om-grand",
+      "source_type": "institutional_history",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Hotellhistorie, Ibsen, bohem, bankett og kunstneriske framstillinger"
+    },
+    "heritage": {
+      "url": "https://www.oslo.kommune.no/get-file/1124255/b46ce889cb18a785bc396d2b8b5eeee23cc32eca796fe328e956d26dac450dc7",
+      "source_type": "municipal_heritage_registration",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-27",
+      "review_note": "Kommunal beskrivelse av fasade og verneverdi"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/media/manifest.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Gjenbruk canonical grand_hotel som media; ikke lag egen Grand Café-Place.",
+      "Ikke still rene dateringsspørsmål; varier mellom personer, historie, materialitet og kildekritikk."
+    ],
+    "knowledge_migration": "Generate canonical Knowledge IDs during activation."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Tre tydelige klynger: Grand Café og kultur, arkitektur og bygningslag, fredspris og offentlig mediebruk."
+  },
+  "held_back_candidates": [
+    "Udokumenterte opplysninger om nåværende gjester, sikkerhetsrutiner og private arrangementer.",
+    "Påstander om at alle personer i Per Krohgs maleri satt samtidig ved samme kafébord."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 38,
+      "topic_hooks": 60,
+      "methods": 27
+    },
+    "candidate_emner": [
+      {
+        "id": "em_naering_arbeid_verdiskaping",
+        "title": "Arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_handel_butikk_byrom",
+        "title": "Handel, butikk og byrom",
+        "score": 100
+      },
+      {
+        "id": "em_naering_omstilling_kriser_skift",
+        "title": "Omstilling, kriser og skift",
+        "score": 100
+      },
+      {
+        "id": "em_naering_tjenesteyting_og_service",
+        "title": "Tjenesteyting og service",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arbeid_som_verdiskaping",
+        "title": "Arbeid som verdiskaping",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidslivets_omstilling",
+        "title": "Arbeidslivets omstilling",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "automatisering_arbeid",
+        "title": "Automatisering og arbeid",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "byrom_som_marked",
+        "title": "Byrom som marked",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "handel_som_bystruktur",
+        "title": "Handel som bystruktur",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handelens_arbeid",
+        "title": "Handelens arbeid",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "kontorby_og_tjenester",
+        "title": "Kontorby og tjenester",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "lager_og_distribusjon",
+        "title": "Lager og distribusjon",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "lokalhandel_og_kjeder",
+        "title": "Lokalhandel og kjeder",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "omstilling_av_naeringsrom",
+        "title": "Omstilling av næringsrom",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "profesjon_kompetanse",
+        "title": "Profesjon og kompetanse",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "servering_opplevelsesokonomi",
+        "title": "Servering og opplevelsesøkonomi",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "teknologisk_omstilling",
+        "title": "Teknologisk omstilling",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "tjenester_og_servicearbeid",
+        "title": "Tjenester og servicearbeid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "transport_og_arbeid",
+        "title": "Transport og arbeid",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "varehus_og_kjopesenter",
+        "title": "Varehus og kjøpesenter",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "handel_forbruk_marked"
+    ],
+    "emne_ids": [
+      "em_naering_handel_butikk_byrom",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_tjenesteyting_og_service"
+    ],
+    "topic_hook_ids": [
+      "tjenester_og_servicearbeid",
+      "handel_som_bystruktur"
+    ],
+    "method_ids": [
+      "met_naering_byhistorisk_naeringsanalyse",
+      "met_naering_romlig_okonomisk_analyse"
+    ],
+    "thinker_ids": [
+      "georg_simmel"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_grand_hotel_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grand Hotel ligger i Karl Johans gate 31, ved hjørnet av Rosenkrantz' gate.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hotellet ble innredet i den tidligere Heiberggården, et privat bolighus på hjørnet mot Rosenkrantz' gate.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Julius Fritzner var konditor og drev hotellet som åpnet i 1874; broren Nicolai hadde kjøpt gården.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Grand Café har vært et serveringssted i hotellets bygning siden 1874, men kaféhistorie og hotelldrift er ikke det samme.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "På slutten av 1800-tallet møttes kunstnere og forfattere ved Grand Café, og stedet ble sentralt i byens offentlige samtaler.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Henrik Ibsen hadde sin daglige gang på Grand Café mot slutten av 1890-årene.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon opplyser at Ibsens stol med navneplate fra Grand Café er bevart på Bymuseet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Arkitekt Ole Sverre tegnet det store ombyggingsarbeidet i 1911–1913 som formet dagens hovedfasade.",
+      "source_ids": [
+        "byleksikon",
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det karakteristiske klokketårnet inngikk i ombyggingen fra 1911–1913; hotellvirksomheten startet i 1874.",
+      "source_ids": [
+        "hotel",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grand Hotel beskriver den lyse granittfasaden og kobbertaket på tårnet som viktige trekk fra ombyggingen.",
+      "source_ids": [
+        "hotel",
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grand Café lå først hevet over gatenivået, og publikum måtte gå opp en bratt utvendig trapp.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Per Krohg skapte maleriene knyttet til Grand Cafés ombygging på slutten av 1920-tallet.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Per Krohg malte et miljø fra en tidligere tid. Fremstillingen samler historiske personer og kan ikke leses som et samtidig fotografi.",
+      "source_ids": [
+        "hotel",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Christian Krohg var kunstner, forfatter og del av miljøet som utfordret etablerte samfunnsnormer rundt Grand Café.",
+      "source_ids": [
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Grand Hotel forteller at det ble holdt en bankett for Roald Amundsen etter sydpolferden.",
+      "source_ids": [
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Under fredsprisfeiringen har fredsprisvinnere hilst fakkeltoget fra balkongen mot Karl Johans gate.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo byleksikon omtaler hotellets autografalbum med navn fra berømte gjester, blant dem fredsprisvinnere.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_tjenesteyting_og_service"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Fasade, balkong og gate danner en synlig ramme når publikum og medier følger seremonielle hendelser.",
+      "source_ids": [
+        "byleksikon",
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Forholdet mellom balkong og offentlig gate er synlig på stedet; historiske gjester og hendelser krever skriftlige eller andre dokumentariske kilder.",
+      "source_ids": [
+        "byleksikon",
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom",
+      "method_id": "met_naering_romlig_okonomisk_analyse"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Grand Hotel åpnet i en eldre gård i 1874. Ombyggingen i 1911–1913 skapte mye av eksteriøret vi ser nå.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_grand_hotel_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Grand Hotel forbinder kaféoffentlighet, omformet byarkitektur og fredsprisvinnernes møte med publikum fra balkongen.",
+      "source_ids": [
+        "byleksikon",
+        "hotel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom",
+      "topic_hook_id": "handel_som_bystruktur",
+      "thinker_id": "georg_simmel"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_ibsen_grand_walk",
+      "source_file": "data/stories/stories_henrik_ibsen.json",
+      "summary": "Henrik Ibsen gikk nesten hver dag fra Arbins gate til Grand Café, og ble et levende monument i Kristiania."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "naeringsliv_grand_hotel_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_grand_hotel_quiz_01",
+        "claim_grand_hotel_quiz_02",
+        "claim_grand_hotel_quiz_03",
+        "claim_grand_hotel_quiz_04",
+        "claim_grand_hotel_quiz_05",
+        "claim_grand_hotel_quiz_06",
+        "claim_grand_hotel_quiz_07"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_grand_hotel_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_grand_hotel_quiz_08",
+        "claim_grand_hotel_quiz_09",
+        "claim_grand_hotel_quiz_10",
+        "claim_grand_hotel_quiz_11",
+        "claim_grand_hotel_quiz_12",
+        "claim_grand_hotel_quiz_13",
+        "claim_grand_hotel_quiz_14"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_grand_hotel_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_grand_hotel_quiz_15",
+        "claim_grand_hotel_quiz_16",
+        "claim_grand_hotel_quiz_17",
+        "claim_grand_hotel_quiz_18",
+        "claim_grand_hotel_quiz_19",
+        "claim_grand_hotel_quiz_20",
+        "claim_grand_hotel_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
+    }
+  }
+}
