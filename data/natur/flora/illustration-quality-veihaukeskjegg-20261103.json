@@ -1,0 +1,45 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-03",
+  "status": "awaiting_original_illustration",
+  "baselineApproved": 68,
+  "approvedCountAfterRelease": 69,
+  "publicationRule": "Do not publish or merge until a botanically reviewed original transparent WebP is present in the PR, its exact Git blob and alpha are validated, and mandatory illustration-contract and approved-flora-browser checks succeed.",
+  "items": [
+    {
+      "name": "Veihaukeskjegg",
+      "catalogId": "emne_flora_veihaukeskjegg",
+      "scientificName": "Crepis tectorum",
+      "existingQuizId": "quiz_nature_flora_veihaukeskjegg",
+      "plannedSrc": "bilder/natur/flora/illustrasjonskandidater/b09/47_veihaukeskjegg_v1.webp",
+      "reviewStatus": "pending_image",
+      "approvedForPublication": false,
+      "stage": "sommerblomstring",
+      "botanicalRequirements": [
+        "Yellow, all-ligulate flower heads, several to numerous on an upright branching plant",
+        "Basal lanceolate or lobed leaves and much smaller narrow clasping upper stem leaves",
+        "Two rows of involucral bracts, with short outer awl-shaped bracts and hairy longer inner bracts",
+        "Narrow flower stems, buds and a realistic taproot or basal stem; recognizably distinct from Crepis capillaris"
+      ],
+      "visualChecks": {
+        "transparent": false,
+        "originalAlphaVerified": false,
+        "blackBackgroundReviewed": false,
+        "fullImageReviewed": false
+      },
+      "sourceReferences": [
+        "https://www.worldfloraonline.org/taxon/wfo-0000072011",
+        "https://weedid.cals.vt.edu/profile/595/",
+        "https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Crepis+tectorum"
+      ],
+      "observations": "Species morphology has been checked against botanical descriptions, but an original image is not yet produced and no visual approval has been issued.",
+      "limitations": "No WebP artifact exists in this branch; no image, Git blob, dimensions, SHA256, visual review or browser QA is claimed.",
+      "publicationBlockedBy": [
+        "Create and botanically review an original 1024x1536 transparent WebP with no photographic appearance.",
+        "Upload its exact binary Git blob to the PR branch and update hashes, size, quality record, registry and browser/release tests.",
+        "Pass illustration-contract and approved-flora-browser on final head; verify GitHub Pages after merge."
+      ]
+    }
+  ]
+}
