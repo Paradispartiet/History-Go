@@ -59,6 +59,17 @@ try{
    assert.match(cardText,/Historiequiz/);
    for(const question of card.questions){assert.ok(cardText.includes(question.question),'Missing rendered QuizCard question: '+question.number);}
    for(const answer of card.answerKey){assert.ok(cardText.includes(answer.answer),'Missing answer: '+answer.number);}
+   const placeRecord=JSON.parse(fs.readFileSync('data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11/minneparken_gamlebyen.json','utf8'));
+   let historicalCaption=null;
+   if(placeRecord.imageMeta?.historicalOnly===true){
+     await page.waitForFunction(()=>{
+       const img=document.querySelector('#pcFrontImage');
+       return Boolean(img?.getAttribute('src')&&img.complete&&img.naturalWidth>0);
+     },null,{timeout:15000});
+     historicalCaption=await page.locator('.pc-photo-caption').first().innerText();
+     assert.match(historicalCaption,/2007/,'Historic photo must show capture year to players');
+     assert.match(historicalCaption,/2024/,'Historic photo must explain why it is not the 2024/2026 state');
+   }
    const imageState=await page.locator('#pcFrontImage').evaluate(img=>({
      src:img.getAttribute('src'),complete:img.complete,naturalWidth:img.naturalWidth,
      hasFrontImage:Boolean(img.currentSrc&&img.naturalWidth>0)
@@ -83,7 +94,7 @@ try{
    await page.keyboard.press('Space');
    assert.equal(await flip.evaluate(el=>el.classList.contains('is-flipped')),true,'Space should flip to quiz back');
    assert.deepEqual(pageErrors,[],'Uncaught browser errors');
-   results.push({profile:profile.name,placeId:ID,questions:10,correctAnswers:card.answerKey.length,flipped:true,expanded:true,escapeClosed:true,keyboardFlip:true,frontImage:imageState,pageErrors});
+   results.push({profile:profile.name,placeId:ID,questions:10,correctAnswers:card.answerKey.length,flipped:true,expanded:true,escapeClosed:true,keyboardFlip:true,frontImage:imageState,historicalCaption,pageErrors});
    console.log('PASS Minneparken real PlaceCard QuizCard '+profile.name+': 10/10 rendered, flip, expand, Escape, keyboard');
   }catch(error){
    await page.screenshot({path:path.join(output,profile.name+'-quizcard-failed.png'),fullPage:true}).catch(()=>{});
