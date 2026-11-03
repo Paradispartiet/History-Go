@@ -53,6 +53,18 @@ test('Historical-only photo has public-domain provenance and visible dated capti
  assert.match(place.imageSourceUrl,/commons.wikimedia.org/);
 });
 
+test('Canonical runtime index exposes the dated photograph and historical caption',()=>{
+ const index=readJson('data/places/places_index.json');
+ assert.ok(Array.isArray(index),'Expected canonical places_index array');
+ const placeInIndex=index.find(row=>row.id==='minneparken_gamlebyen');
+ assert.ok(placeInIndex,'Minneparken missing from runtime index');
+ assert.equal(placeInIndex.image,PHOTO,'Runtime index must carry historical photo');
+ assert.equal(placeInIndex.cardImage,PHOTO,'Runtime index must carry matching front card photo');
+ assert.equal(placeInIndex.imageMeta?.historicalOnly,true,'Runtime index must carry historicalOnly flag');
+ assert.match(placeInIndex.imageMeta.historicalCaption,/2007/,'Runtime index must carry dated caption');
+ assert.match(placeInIndex.imageMeta.historicalCaption,/2024/);
+});
+
 test('Historic 2007 image cannot certify present-condition gate F or Historie ready',()=>{
  assert.equal(history.gates.F.status,'N/A');
  assert.equal(history.status,'blocked');
