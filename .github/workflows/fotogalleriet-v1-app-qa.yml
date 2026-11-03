@@ -4,6 +4,7 @@ on:
     paths:
       - '.github/workflows/fotogalleriet-v1-app-qa.yml'
       - 'scripts/verify-fotogalleriet-placecard-browser.mjs'
+      - 'scripts/verify-place-quiz-browser.mjs'
       - 'tests/fotogalleriet-v1-staged.test.mjs'
       - 'data/places/kunst/oslo/places_kunst/fotogalleriet.json'
       - 'data/runtime/place-open/fotogalleriet.json'
@@ -39,8 +40,8 @@ jobs:
           node scripts/check-distinct-place-photos.mjs --place data/places/kunst/oslo/places_kunst/fotogalleriet.json --require-both
       - name: Test PlaceCard and QuizCard on desktop, phone and iPad-sized viewports
         run: node scripts/verify-fotogalleriet-placecard-browser.mjs
-      - name: Complete real fullquiz playthrough on mobile and desktop
-        run: node scripts/verify-place-quiz-browser.mjs fotogalleriet
+      - name: Complete fullquiz on desktop, mobile and iPad portrait/landscape
+        run: node scripts/verify-place-quiz-browser.mjs fotogalleriet --ipad
       - name: Save visual acceptance evidence
         if: always()
         uses: actions/upload-artifact@v4
