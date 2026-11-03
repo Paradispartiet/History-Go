@@ -87,8 +87,8 @@ test("4.2 source-review packet hashes exact published text and covers all senten
 });
 
 test("Two distinct, accredited documentary atelier-quarter photos and canonical Knowledge", () => {
-  assert.match(place.image || "", /^assets\\/places\\/oslo_prosjektrom\\/.*header\\.webp$/);
-  assert.match(place.frontImage || "", /^assets\\/places\\/oslo_prosjektrom\\/.*portrait\\.webp$/);
+  assert.ok((place.image || "").startsWith("assets/places/oslo_prosjektrom/") && place.image.endsWith("header.webp"));
+  assert.ok((place.frontImage || "").startsWith("assets/places/oslo_prosjektrom/") && place.frontImage.endsWith("portrait.webp"));
   assert.notEqual(place.image, place.frontImage);
   for (const image of [place.image, place.frontImage]) {
     assert(fs.existsSync(image), "Missing local WebP image: " + image);
