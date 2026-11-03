@@ -1,0 +1,133 @@
+name: Temporary Minneparken final main shared-people integration QA
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-toyenbadet-main-temp.yml
+permissions:
+  contents: write
+jobs:
+  integrate-to-draft-only:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Freeze and merge exact reviewed shared-people main snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = '43557fccdb9a479df6dead297c2074904f9e6381'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch --no-tags origin main
+          test "$(git rev-parse origin/main)" = 'd38e9df0499c3b94a56df63eb11921c1c189fa98'
+          test "$(git merge-base HEAD origin/main)" = '1a5ed744ee5a406500f5218c78ea95b8c9dbae7c'
+          git diff --name-only '1a5ed744ee5a406500f5218c78ea95b8c9dbae7c' 'd38e9df0499c3b94a56df63eb11921c1c189fa98' > /tmp/main-reviewed-paths.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const actual=fs.readFileSync('/tmp/main-reviewed-paths.txt','utf8').trim().split('\n').filter(Boolean);
+          const expected=new Set(["bilder/kort/people/anne_lindboe_2023_cc_by_sa.webp","bilder/kort/people/anne_lindboe_2023_cc_by_sa_card.webp","data/Civication/historyPeople_index.json","data/Civication/scenarioPeople/generated/politikk.json","data/Civication/scenarioPeople_index.json","data/people/claims/politikk/oslo/toyenbadet/anne_lindboe.claims.json","data/people/manifest.json","data/people/media/toyenbadet_anne_lindboe_asset.json","data/people/people_image_attributions.json","data/people/politikk/oslo/toyenbadet/anne_lindboe.json","data/places/sport/europa/norway/oslo_sport/toyenbadet.json","data/runtime/people-all/part-007.json","data/runtime/place-open/toyenbadet.json","reports/place-production/toyenbadet-workcard-current.json","tests/toyenbadet-anne-lindboe-people.test.mjs","tests/toyenbadet-asplan-viak-brand.test.mjs","tests/toyenbadet-modern-photos-before-after.test.mjs","tests/toyenbadet-source-backed-objects.test.mjs","tests/toyenbadet-vferdig-real-browser-20261103.test.mjs"]);
+          assert.equal(actual.length,expected.size);
+          const unreviewed=actual.filter(p=>!expected.has(p));
+          if(unreviewed.length)throw Error('New main paths requiring review: '+unreviewed.join(', '));
+          console.log('PASS reviewed shared-people paths:',actual.length);
+          NODE
+          git merge --no-ff --no-commit 'd38e9df0499c3b94a56df63eb11921c1c189fa98' || {
+            git diff --name-only --diff-filter=U
+            echo 'Unresolved merge conflict, refusing branch push' >&2
+            exit 1
+          }
+          test -f .git/MERGE_HEAD
+          test -z "$(git diff --name-only --diff-filter=U)"
+          echo 'PASS conflict-free staged main integration'
+      - name: Source integrity, canonical generators and fail-closed release review
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run places:index:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          npm run knowledge:canonical:check
+          npm run check:stories
+          node --test tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-story-candidate.test.mjs
+          node --test tests/toyenbadet-anne-lindboe-people.test.mjs tests/toyenbadet-source-backed-objects.test.mjs
+          test -s reports/knowledge-contract-audit.json
+          git check-ignore -q reports/knowledge-contract-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const id='minneparken_gamlebyen',h=read('data/places/historie-production/'+id+'.json');
+          assert.equal(h.status,'blocked');
+          for(const g of ['F','G','H'])assert.equal(h.gates[g].status,'N/A');
+          assert.ok(!read('data/quiz/manifest.json').sets.some(x=>x.targetId===id));
+          assert.ok(!read('data/quizcards/historie/manifest.json').collections.includes(id+'_quizcard_v1.json'));
+          assert.ok(!read('data/stories/stories_manifest.json').files.some(x=>x.path==='data/stories/stories_'+id+'.json'));
+          const qs=read('data/quiz/historie/'+id+'_sets.json').sets.flatMap(s=>s.questions);
+          assert.equal(qs.filter(x=>x.knowledge_link_status==='linked').length,21);
+          assert.equal(new Set(qs.flatMap(x=>x.knowledge_unit_ids)).size,32);
+          assert.equal(read('reports/knowledge-contract-audit.json').questions_with_errors,0);
+          console.log('PASS source, Knowledge and fail-closed F/G/H gates');
+          NODE
+          REPO_HYGIENE_BASE_SHA='1a5ed744ee5a406500f5218c78ea95b8c9dbae7c' REPO_HYGIENE_HEAD_SHA=HEAD node scripts/audit-repository-hygiene-v1.mjs
+      - name: Real Minneparken mobile and desktop browser with test-only quiz
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx playwright install --with-deps chromium
+          node tests/minneparken-readonly-app-browser.test.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const qf='data/quiz/manifest.json',cf='data/quizcards/historie/manifest.json';
+          const q=read(qf),c=read(cf);
+          q.sets.push({targetId:'minneparken_gamlebyen',file:'data/quiz/historie/minneparken_gamlebyen_sets.json'});
+          c.collections.push('minneparken_gamlebyen_quizcard_v1.json');
+          fs.writeFileSync(qf,JSON.stringify(q,null,2)+'\n');
+          fs.writeFileSync(cf,JSON.stringify(c,null,2)+'\n');
+          NODE
+          node scripts/verify-minneparken-quizcard-real-browser.mjs
+          node scripts/verify-place-quiz-browser.mjs minneparken_gamlebyen
+          git restore --worktree -- data/quiz/manifest.json data/quizcards/historie/manifest.json
+      - name: Verify no unrelated outputs before draft-only merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import cp from 'node:child_process';
+          const changed=cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const allowed=new Set(['data/fagverk/fagverk_release.json']);
+          console.log('Additional generated files:',JSON.stringify(changed));
+          const unexpected=changed.filter(x=>!allowed.has(x));
+          if(unexpected.length)throw Error('Unexpected generator scope: '+unexpected.join(', '));
+          NODE
+          git add -- data/fagverk/fagverk_release.json
+          git diff --quiet
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m 'Merge shared-people main refresh to Minneparken draft after full QA'
+          git push origin HEAD:content/minneparken-kildebasert-leksikon-20261103
+          echo 'PASS unpublished Minneparken; draft-branch-only main snapshot merge'
+      - name: Preserve complete Knowledge contract report as Actions artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-final-knowledge-contract
+          path: reports/knowledge-contract-audit.json
+          retention-days: 30
+          if-no-files-found: warn
