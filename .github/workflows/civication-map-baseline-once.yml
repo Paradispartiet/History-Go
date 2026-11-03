@@ -1,0 +1,34 @@
+name: Civication map baseline diagnosis (one-shot)
+on:
+  push:
+    branches:
+      - civication/map-baseline-diagnostic-20261103
+    paths:
+      - .github/workflows/civication-map-baseline-once.yml
+permissions:
+  contents: read
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Identify exact noncanonical Civication map references
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const canonical = new Set(read('data/places/places_index.json').map(x => String(x.id)));
+          const files = fs.readdirSync('data/Civication/map').filter(n => /^historyGoPlaceMapping\..+\.json$/.test(n));
+          const missing = [];
+          for (const file of files) {
+            for (const [id, mapping] of Object.entries(read(path.join('data/Civication/map', file)).mappings || {})) {
+              if (!canonical.has(String(mapping.historyGoPlaceId))) missing.push({
+                file, id, place_id: mapping.historyGoPlaceId, status: mapping.historyGoPlaceStatus || null,
+                mapRole: mapping.mapRole || null, visibleAs: mapping.visibleAs || null,
+                name: mapping.name || null, category: mapping.category || null
+              });
+            }
+          }
+          console.log('Civication map baseline exact unresolved:', JSON.stringify({ files: files.length, missing_count: missing.length, missing }));
+          NODE
