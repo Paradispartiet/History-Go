@@ -79,11 +79,24 @@ async function main() {
         // instead of toggling the tab just to make the test pass.
         await page.waitForFunction(() => document.body.classList.contains('civi-mini-mode'),
           null, { timeout: 20000 });
-        const history = page.locator('[data-lifestory-symposium] summary').first();
-        await history.waitFor({ state: 'attached', timeout: 20000 });
-        // The book follows the playable scene below the fold in the real
-        // scrollable Min dag panel; scroll there like a player would.
-        await history.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+        const histories = page.locator('[data-lifestory-symposium] summary');
+        await histories.first().waitFor({ state: 'attached', timeout: 20000 });
+        const summaryCount = await histories.count();
+        const before = [];
+        for (let i = 0; i < summaryCount; i++) {
+          const candidate = histories.nth(i);
+          before.push({ index: i, visible: await candidate.isVisible() });
+        }
+        console.log('Symposium history surfaces', name, JSON.stringify(before));
+        await page.screenshot({ path: path.join(reportDir, name + '-navigation.png') });
+        // Scroll in the actual Min dag reading surface instead of opening
+        // an unrelated footer popup. A hidden duplicate cannot be accepted.
+        for (let i = 0; i < summaryCount; i++) {
+          const candidate = histories.nth(i);
+          await candidate.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+          if (await candidate.isVisible()) break;
+        }
+        const history = page.locator('[data-lifestory-symposium] summary:visible').first();
         await history.waitFor({ state: 'visible', timeout: 20000 });
         await history.click();
         const book = page.locator('[data-lifestory-symposium]').first();
