@@ -1,0 +1,60 @@
+name: Temporary Minneparken isolated Knowledge preview
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-knowledge-preview-temp.yml
+permissions:
+  contents: read
+jobs:
+  preview:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check staged quiz / QuizCard sources without activation
+        run: node --test tests/minneparken-quiz-source-parity.test.mjs
+      - name: Build disposable canonical Knowledge preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          temp="$(mktemp -d "$RUNNER_TEMP/minneparken-knowledge-XXXXXX")"
+          cleanup() {
+            cd "$GITHUB_WORKSPACE"
+            git worktree remove --force "$temp/repo" || true
+            rm -rf "$temp"
+          }
+          trap cleanup EXIT
+          git worktree add --detach "$temp/repo" HEAD
+          cd "$temp/repo"
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path = 'data/quiz/manifest.json';
+          const quizFile = 'data/quiz/historie/minneparken_gamlebyen_sets.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          if (manifest.files.includes(quizFile) || manifest.sets.some(s => s.file === quizFile)) {
+            throw Error('Quiz is already active; refusing temporary manifest injection');
+          }
+          manifest.files.push(quizFile);
+          fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n');
+          console.log('Injected Minneparken in DISPOSABLE worktree only');
+          NODE
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          node scripts/audit-minneparken-knowledge-preview.mjs --output "$GITHUB_WORKSPACE/minneparken-knowledge-preview.json"
+          echo "Disposable worktree modified paths (not committed):"
+          git diff --name-only | head -35
+          echo "No Knowledge/quiz manifest updates are pushed from this workflow."
+      - name: Upload candidate Knowledge IDs / source evidence
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-isolated-knowledge-preview
+          path: minneparken-knowledge-preview.json
+          retention-days: 30
