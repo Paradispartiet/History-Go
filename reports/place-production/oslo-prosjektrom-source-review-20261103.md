@@ -32,10 +32,17 @@ Et dokumentert atelier i prosjektromfellesskapet har adresse Schweigaards gate 3
 
 ## Bildestatus
 
-Lokalhistoriewiki har et fotografi angitt som «Platous gate 18» av Chris Nyborg (2013): <https://lokalhistoriewiki.no/wiki/Platous_gate_(Oslo)>. Dette er en mulig adresseillustrasjon, men originalfil, motivkontroll og den konkrete bildefilens lisens er ikke kontrollert. Ingen rettighetsklarerte `image`- eller `frontImage`-filer er lagt i PR-en. Generiske gatebilder og verkfotos uten bruksrett er utelatt.
+To dokumentariske originalfotografier fra samme historiske kvartal er rettighetsklarert og integrert som **to forskjellige lokale WebP-filer**:
+
+- Bredt headerfoto: Schweigaards gate 34A, fotograf Ssu (25. mai 2023), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Schweigaards_gate_34A,_Oslo.jpg), CC BY-SA 4.0. Fil: `assets/places/oslo_prosjektrom/atelier_schweigaards_34a_header.webp` (1200 × 675).
+- Stående QuizCard-foto: Schweigaards gate 34C, fotograf Ssu (25. mai 2023), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Schweigaards_gate_34C,_Oslo.jpg), CC BY-SA 4.0. Fil: `assets/places/oslo_prosjektrom/atelier_schweigaards_34c_portrait.webp` (800 × 1200).
+
+Begge er beskjærte til webformat; originalens lisens og bearbeidelsesopplysning ligger i `imageMeta` / `frontImageMeta`. Bildene dokumenterer bebyggelsen i atelier-/Landbrukskvartalet, **ikke** galleriets registrerte publikumsinngang i Platous gate 18. En dokumentert atelieradresse er Schweigaards gate 34A. 34C vises bare som tilgrensende bygg, ikke som dokumentasjon på eget gallerirom.
+
+Lokalhistoriewikis mulige foto fra Platous gate 18 er fortsatt ikke brukt: filens konkrete lisens og originalmotiv lot seg ikke bekrefte. Ingen verkfotografier eller kunstnerportretter uten klarert bruk er lagt inn.
 
 ## Test og publiseringsavgrensning
 
-Fullquiz 3 × 7 = 21 spørsmål og QuizCard med de første 10 identiske spørsmålene er kildebygget og manifestregistrert. Fagverk og Place-open er oppdatert; Fagverk-release-digester er deterministisk oppdatert og relevant CI ble grønn. Canonical Knowledge er nå generert og koblet i 21/21 fullquizspørsmål og 10/10 QuizCard-spørsmål, bekreftet av målrettet GitHub Actions-kjøring. Rettighetsklarerte bilder og faktisk PlaceCard-/QuizCard-browser-QA på mobil og desktop er fortsatt ufullført. Fram til disse portene består: **v1-kandidat, ikke ferdig/merget**.
+Fullquiz 3 × 7 = 21 spørsmål og QuizCard med de første 10 identiske spørsmålene er manifestregistrert. Canonical Knowledge er generert i 21/21 og 10/10 spørsmål, og målrettet GitHub Actions-test er grønn. To lokale WebP-filer er nå integrert med kilde-, lisens- og krediteringsdata. Den faktiske Playwright-PlaceCard-/QuizCard-testen og full gjennomspilling på mobil og desktop er siste port før merge.
 
 Kvalitetsprofil (foreløpig): Korrekthet 4/5 · Dekning 2/5 · Redaksjon 4/5 · Teknikk 2/5 · Ansvarlighet 5/5 · Etterprøvbarhet 4/5 = **21/30**.
