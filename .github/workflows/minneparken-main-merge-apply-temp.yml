@@ -30,7 +30,7 @@ jobs:
           git config user.name 'History-Go QA only'
           git config user.email 'qa-merge-readonly@users.noreply.github.com'
           git fetch --no-tags origin main
-          if [ "$(git rev-parse origin/main)" != '698db300f613afb9a4d90ac7610d08091b26c51c' ]; then
+          if [ "$(git rev-parse origin/main)" != '84189cf1db8d7af8d04912dc45e911c3993238f5' ]; then
             echo 'Main moved since complete integration rehearsal; refusing unreviewed merge' >&2
             exit 1
           fi
@@ -110,6 +110,7 @@ jobs:
         run: |
           node --test tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-story-candidate.test.mjs
           npm run check:stories
+          node --test tests/toyenbadet-source-backed-objects.test.mjs tests/toyenbadet-asplan-viak-brand.test.mjs
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
           import fs from 'node:fs';
@@ -206,7 +207,7 @@ jobs:
           git diff --name-only HEAD > artifacts/minneparken-integration-preview/changed-paths.txt
           git diff --stat HEAD > artifacts/minneparken-integration-preview/diff-stat.txt
           git status --short > artifacts/minneparken-integration-preview/status.txt
-          echo 'Read-only merge preview; no commit or push.'
+          echo 'Guarded branch-only main merge; see recorded SHA and GitHub step status.'
       - name: Upload detailed semantic merge preview
         if: always()
         uses: actions/upload-artifact@v4
