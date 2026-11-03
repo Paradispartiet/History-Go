@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check staged quiz / QuizCard sources without activation
+      - name: Verify 32 deterministic pending KU IDs and QuizCard sources
         run: node --test tests/minneparken-quiz-source-parity.test.mjs
       - name: Build disposable canonical Knowledge preview
         shell: bash
