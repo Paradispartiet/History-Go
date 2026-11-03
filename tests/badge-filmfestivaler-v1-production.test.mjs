@@ -44,7 +44,8 @@ test('seven previous Film & TV badges and all seven Scenekunst badges are preser
     norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',
     filmfestivaler:imagePath,
     filmlocations:'bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp',
-    film_og_tv_produksjon:'bilder/merker/film_tv/undermerker/film_og_tv_produksjon-brodert-v1.webp'
+    film_og_tv_produksjon:'bilder/merker/film_tv/undermerker/film_og_tv_produksjon-brodert-v1.webp',
+    arkiv_og_kanon:'bilder/merker/film_tv/undermerker/arkiv_og_kanon-brodert-v1.webp'
   });
   assert.equal(Object.keys(stage.subBadgeImages).length,7);
   for (const id of stage.sub) assert.ok(stage.subBadgeImages[id]);

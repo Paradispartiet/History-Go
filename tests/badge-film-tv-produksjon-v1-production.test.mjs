@@ -11,8 +11,8 @@ test('Film- og TV-produksjon v1 has real alpha WebP and matching production mani
   const manifest = data('data/badges/underbadge_batch01_production.json');
   const asset = manifest.families.film_tv.assets.find(x => x.id === 'film_og_tv_produksjon');
   assert.equal(film.subBadgeImages.film_og_tv_produksjon, path);
-  assert.equal(Object.keys(film.subBadgeImages).length, 10);
-  assert.equal(manifest.status, 'seven_scenekunst_ten_film_active_remaining_film_pending');
+  assert.equal(Object.keys(film.subBadgeImages).length, 11);
+  assert.equal(manifest.status, 'seven_scenekunst_eleven_film_active_remaining_film_pending');
   assert.equal(asset.status, 'integrated');
   assert.equal(asset.selectedImage, path);
   assert.deepEqual(asset.quality, {visualApproved:true, technicalApproved:true});
@@ -44,7 +44,8 @@ test('nine earlier Film & TV and seven Scenekunst images remain active unchanged
     norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',
     filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp',
     filmlocations:'bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp',
-    film_og_tv_produksjon:path
+    film_og_tv_produksjon:path,
+    arkiv_og_kanon:'bilder/merker/film_tv/undermerker/arkiv_og_kanon-brodert-v1.webp'
   });
   assert.equal(Object.keys(scene.subBadgeImages).length, 7);
   for(const id of scene.sub) assert.ok(scene.subBadgeImages[id]);
