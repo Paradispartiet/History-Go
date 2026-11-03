@@ -63,12 +63,14 @@ def replace_embroidered_letters(canvas, original, category, sub):
     radial=np.hypot(xx-cx,yy-cy)
     angle=np.abs(np.arctan2(xx-cx,cy-yy))
     outer={'klassisk_arkitektur':503,'sceneproduksjon':491}.get(sub,478)
-    inner={'klassisk_arkitektur':351,'teater':337,'dans':337,
+    inner={'klassisk_arkitektur':351,'teater':323,'dans':263,
            'sceneproduksjon':335,'musikkteater':347}.get(sub,345)
     theta=math.radians(84 if sub=='klassisk_arkitektur'
                        else 78 if sub=='sceneproduksjon'
                        else 73 if category=='scenekunst' else 66)
-    roi=(radial>=inner)&(radial<=outer)&(angle<theta)&(yy>=58)&(yy<306)
+    roi=(radial>=inner)&(radial<=outer)&(angle<theta)&(yy>=58)&(yy<(427 if sub=='klassisk_arkitektur' else 306))
+    if sub=='klassisk_arkitektur':
+        roi &= ((yy<=300)|(radial>=414))
     raw=np.asarray(original.convert('RGB'),dtype=np.int16)
     rr,gg,bb=raw[:,:,0],raw[:,:,1],raw[:,:,2]
     cream=(rr>128)&(gg>95)&(bb>58)&((rr-gg)>8)&((gg-bb)>1)
@@ -135,10 +137,10 @@ def replace_embroidered_letters(canvas, original, category, sub):
     fixed.putalpha(original.getchannel('A'))
     return fixed
 
-def top_title(canvas, caption, category):
+def top_title(canvas, caption, category, sub=None):
     w,h=canvas.size
-    R=w*.406
-    sz=66 if category=='by' else 69
+    R=w*(.380 if sub=='dans' else .406)
+    sz=84 if sub=='dans' else 66 if category=='by' else 69
     while sz>30:
         font=ImageFont.truetype(FONT,sz)
         lengths=[font.getlength(char)+3 for char in caption]
@@ -207,7 +209,7 @@ def main():
                             result=Image.composite(original,result,side)
                     if title!=source_title:
                         result=replace_embroidered_letters(result,original,category,sub)
-                        top_title(result,title,category)
+                        top_title(result,title,category,sub)
                     if bottom: bottom_title(result,bottom,sub=='klassisk_arkitektur')
                     # Compositing translated letterforms changes alpha at antialiased
                     # patch edges. Restore the exact original silhouette before export.
