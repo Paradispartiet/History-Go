@@ -64,6 +64,33 @@
     if (label.textContent !== item.spec.label) label.textContent = item.spec.label;
     const actionLabel = "Åpne " + item.spec.label;
     if (button.getAttribute("aria-label") !== actionLabel) button.setAttribute("aria-label", actionLabel);
+
+    // Optional editorial photo caption and real credit. Use only existing
+    // DOM metadata; never infer photographers or sources from a filename.
+    // Brands retains its compact logo layout without these captions.
+    function setOptionalLine(className, text) {
+      let line = button.querySelector(":scope > ." + className);
+      if (!text) {
+        if (line) line.remove();
+        return;
+      }
+      if (!line) {
+        line = document.createElement("span");
+        line.className = className;
+        button.appendChild(line);
+      }
+      if (line.textContent !== text) line.textContent = text;
+    }
+    if (className === "pc-round-gallery-item") {
+      const detail = String(item.image.dataset.caption || item.source.dataset.imageCaption || alt).trim();
+      const credit = String(
+        item.image.dataset.credit || item.image.dataset.imageCredit ||
+        item.source.dataset.imageCredit || item.source.dataset.credit || ""
+      ).trim();
+      setOptionalLine("pc-round-gallery-caption",
+        detail && detail.toLocaleLowerCase() !== item.spec.label.toLocaleLowerCase() ? detail : "");
+      setOptionalLine("pc-round-gallery-credit", credit ? "Kilde: " + credit : "");
+    }
     // Forward to the canonical popup handler; do not create a second action path.
     button.onclick = function (event) {
       event.stopPropagation();
@@ -193,8 +220,9 @@
     subtree: true,
     childList: true,
     attributes: true,
-    attributeFilter: ["class", "hidden", "src", "data-round-ready",
-      "data-current-place-id", "data-place-id", "data-collection-id"]
+    attributeFilter: ["class", "hidden", "src", "alt",
+      "data-caption", "data-image-caption", "data-credit", "data-image-credit",
+      "data-round-ready", "data-current-place-id", "data-place-id", "data-collection-id"]
   });
   window.addEventListener("hg:place-unified-ready", schedule);
   window.addEventListener("hg:place-selected", schedule);
