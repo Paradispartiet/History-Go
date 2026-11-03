@@ -26,24 +26,24 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = '5225a2888e8a809d2d9e0a2c0d37335826fab756'
+          test "$(git rev-parse HEAD^)" = 'd27a126e2dead7ee4136372808a7c4445674d6a0'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch --no-tags origin main
-          test "$(git rev-parse origin/main)" = 'd38e9df0499c3b94a56df63eb11921c1c189fa98'
+          git cat-file -e 'e0814f58ac906e868f7e2971505f1c302cdcab50^{commit}'
           test "$(git merge-base HEAD origin/main)" = '1a5ed744ee5a406500f5218c78ea95b8c9dbae7c'
-          git diff --name-only '1a5ed744ee5a406500f5218c78ea95b8c9dbae7c' 'd38e9df0499c3b94a56df63eb11921c1c189fa98' > /tmp/main-reviewed-paths.txt
+          git diff --name-only '1a5ed744ee5a406500f5218c78ea95b8c9dbae7c' 'e0814f58ac906e868f7e2971505f1c302cdcab50' > /tmp/main-reviewed-paths.txt
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import assert from 'node:assert/strict';
           const actual=fs.readFileSync('/tmp/main-reviewed-paths.txt','utf8').trim().split('\n').filter(Boolean);
-          const expected=new Set(["bilder/kort/people/anne_lindboe_2023_cc_by_sa.webp","bilder/kort/people/anne_lindboe_2023_cc_by_sa_card.webp","data/Civication/historyPeople_index.json","data/Civication/scenarioPeople/generated/politikk.json","data/Civication/scenarioPeople_index.json","data/people/claims/politikk/oslo/toyenbadet/anne_lindboe.claims.json","data/people/manifest.json","data/people/media/toyenbadet_anne_lindboe_asset.json","data/people/people_image_attributions.json","data/people/politikk/oslo/toyenbadet/anne_lindboe.json","data/places/sport/europa/norway/oslo_sport/toyenbadet.json","data/runtime/people-all/part-007.json","data/runtime/place-open/toyenbadet.json","reports/place-production/toyenbadet-workcard-current.json","tests/toyenbadet-anne-lindboe-people.test.mjs","tests/toyenbadet-asplan-viak-brand.test.mjs","tests/toyenbadet-modern-photos-before-after.test.mjs","tests/toyenbadet-source-backed-objects.test.mjs","tests/toyenbadet-vferdig-real-browser-20261103.test.mjs"]);
+          const expected=new Set(["bilder/kort/people/anne_lindboe_2023_cc_by_sa.webp","bilder/kort/people/anne_lindboe_2023_cc_by_sa_card.webp","bilder/merker/by/locales/en/postmodernisme.webp","bilder/merker/by/locales/es/postmodernisme.webp","bilder/merker/by/locales/fr/postmodernisme.webp","bilder/merker/by/locales/pt/postmodernisme.webp","bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp","data/Civication/historyPeople_index.json","data/Civication/scenarioPeople/generated/politikk.json","data/Civication/scenarioPeople_index.json","data/badges/badge_locale_images_candidates.json","data/badges/by.json","data/badges/underbadge_batch01_production.json","data/people/claims/politikk/oslo/toyenbadet/anne_lindboe.claims.json","data/people/manifest.json","data/people/media/toyenbadet_anne_lindboe_asset.json","data/people/people_image_attributions.json","data/people/politikk/oslo/toyenbadet/anne_lindboe.json","data/places/sport/europa/norway/oslo_sport/toyenbadet.json","data/runtime/people-all/part-007.json","data/runtime/place-open/toyenbadet.json","docs/badge-locale-previews/by-2.jpg","reports/place-production/toyenbadet-workcard-current.json","tests/badge-by-brutalisme-v1-production.test.mjs","tests/badge-by-funksjonalisme-v1-locales.test.mjs","tests/badge-by-funksjonalisme-v1-production.test.mjs","tests/badge-by-klassisk-arkitektur-v2-production.test.mjs","tests/badge-by-modernisme-v1-production.test.mjs","tests/badge-by-postmodernisme-v1-production.test.mjs","tests/badge-underbadge-batch01.test.mjs","tests/toyenbadet-anne-lindboe-people.test.mjs","tests/toyenbadet-asplan-viak-brand.test.mjs","tests/toyenbadet-modern-photos-before-after.test.mjs","tests/toyenbadet-source-backed-objects.test.mjs","tests/toyenbadet-vferdig-real-browser-20261103.test.mjs"]);
           assert.equal(actual.length,expected.size);
           const unreviewed=actual.filter(p=>!expected.has(p));
           if(unreviewed.length)throw Error('New main paths requiring review: '+unreviewed.join(', '));
           console.log('PASS reviewed shared-people paths:',actual.length);
           NODE
-          git merge --no-ff --no-commit 'd38e9df0499c3b94a56df63eb11921c1c189fa98' || {
+          git merge --no-ff --no-commit 'e0814f58ac906e868f7e2971505f1c302cdcab50' || {
             git diff --name-only --diff-filter=U
             echo 'Unresolved merge conflict, refusing branch push' >&2
             exit 1
@@ -65,7 +65,7 @@ jobs:
           npm run knowledge:canonical:check
           npm run check:stories
           node --test tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-story-candidate.test.mjs
-          node --test tests/toyenbadet-anne-lindboe-people.test.mjs
+          node --test tests/badge-by-postmodernisme-v1-production.test.mjs tests/toyenbadet-anne-lindboe-people.test.mjs
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import assert from 'node:assert/strict';
