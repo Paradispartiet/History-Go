@@ -1,0 +1,25 @@
+name: Oslo-specific city badge check
+on:
+  pull_request:
+    paths:
+      - 'bilder/merker/by/cities/oslo-by-brodert-v1.webp'
+      - 'data/badges/cities/oslo.json'
+      - 'js/map.ts'
+      - 'js/map.js'
+      - 'dist/web/map.js'
+      - 'tests/badge-oslo-city-scope.test.mjs'
+      - '.github/workflows/qa-oslo-city-badge.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  city-scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify Oslo-only routing and verified image
+        run: node --test tests/badge-oslo-city-scope.test.mjs
