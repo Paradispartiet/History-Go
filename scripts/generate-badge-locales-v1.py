@@ -217,29 +217,34 @@ def main():
                 bottom=CATALOG['categoryLabels']['by'][['nb','en','es','pt','fr'].index(locale)].upper() if category=='by' else None
                 dst=ROOT/'bilder/merker'/category/'locales'/locale/f'{sub}.webp'
                 dst.parent.mkdir(parents=True,exist_ok=True)
-                # Exact source copy for same-language, same-text badges.
-                source_title=CATALOG['subLabels'][category][sub]['nb'].upper()
-                if title==source_title and bottom is None:
-                    shutil.copyfile(src,dst)
+                if category=='by' and sub=='brutalisme':
+                    pinned=json.loads((ROOT/'data/badges/brutalisme_candidate_v1.json').read_text(encoding='utf8'))['variants'][locale]
+                    if not dst.is_file() or hashlib.sha256(dst.read_bytes()).hexdigest()!=pinned['sha256']:
+                        raise ValueError(f'Brutalisme {locale} must use the approved pre-rendered WebP; never regenerate over the pinned art.')
                 else:
-                    result=fabric_band(original,category,sub,bottom is not None,preserve_header=True)
-                    if category=='by' and sub=='modernisme':
-                        # Preserve the original cream stitched stars beside the upper caption.
-                        from PIL import ImageFilter
-                        for cx in (210,825):
-                            side=Image.new('L',original.size,0)
-                            from PIL import ImageDraw
-                            ImageDraw.Draw(side).ellipse((cx-46,206,cx+46,290),fill=255)
-                            side=side.filter(ImageFilter.GaussianBlur(3))
-                            result=Image.composite(original,result,side)
-                    if title!=source_title:
-                        result=replace_embroidered_letters(result,original,category,sub)
-                        top_title(result,title,category,sub)
-                    if bottom: bottom_title(result,bottom,sub=='klassisk_arkitektur')
-                    # Compositing translated letterforms changes alpha at antialiased
-                    # patch edges. Restore the exact original silhouette before export.
-                    result.putalpha(original.getchannel('A'))
-                    result.save(dst,'WEBP',lossless=True,method=5,exact=True)
+                    # Exact source copy for same-language, same-text badges.
+                    source_title=CATALOG['subLabels'][category][sub]['nb'].upper()
+                    if title==source_title and bottom is None:
+                        shutil.copyfile(src,dst)
+                    else:
+                        result=fabric_band(original,category,sub,bottom is not None,preserve_header=True)
+                        if category=='by' and sub=='modernisme':
+                            # Preserve the original cream stitched stars beside the upper caption.
+                            from PIL import ImageFilter
+                            for cx in (210,825):
+                                side=Image.new('L',original.size,0)
+                                from PIL import ImageDraw
+                                ImageDraw.Draw(side).ellipse((cx-46,206,cx+46,290),fill=255)
+                                side=side.filter(ImageFilter.GaussianBlur(3))
+                                result=Image.composite(original,result,side)
+                        if title!=source_title:
+                            result=replace_embroidered_letters(result,original,category,sub)
+                            top_title(result,title,category,sub)
+                        if bottom: bottom_title(result,bottom,sub=='klassisk_arkitektur')
+                        # Compositing translated letterforms changes alpha at antialiased
+                        # patch edges. Restore the exact original silhouette before export.
+                        result.putalpha(original.getchannel('A'))
+                        result.save(dst,'WEBP',lossless=True,method=5,exact=True)
                 inspect=Image.open(dst).convert('RGBA')
                 assert inspect.size==original.size
                 assert np.array_equal(np.asarray(inspect.getchannel('A')),np.asarray(original.getchannel('A'))),f'Alpha changed: {dst}'
@@ -249,9 +254,17 @@ def main():
                 # By footer translations begin near y=750, so protect the
                 # architecture between header and footer, not the footer.
                 bottom_safe=715 if category=='by' else 770
-                assert np.array_equal(np.asarray(inspect)[top_safe:bottom_safe,:,:3],
-                                      np.asarray(original)[top_safe:bottom_safe,:,:3]), (
-                    f'Non-caption illustration changed: {dst}')
+                source_pixels=np.asarray(original)[top_safe:bottom_safe,:,:3]
+                locale_pixels=np.asarray(inspect)[top_safe:bottom_safe,:,:3]
+                if category=='by' and sub=='brutalisme':
+                    # Exact pinned assets were exported as quality-92 WebP.
+                    # Their central motif is unchanged, subject only to lossy compression.
+                    delta=np.abs(locale_pixels.astype('int16')-source_pixels.astype('int16'))
+                    assert float(delta.mean())<3.0 and float(np.percentile(delta,99))<12.0, (
+                        f'Non-caption illustration changed: {dst}')
+                else:
+                    assert np.array_equal(locale_pixels,source_pixels), (
+                        f'Non-caption illustration changed: {dst}')
                 manifest['entries'].append({'category':category,'id':sub,'locale':locale,
                     'path':dst.relative_to(ROOT).as_posix(),'label':title,'footer':bottom,
                     'originalSha256':original_hash,'sha256':hashlib.sha256(dst.read_bytes()).hexdigest(),
@@ -260,7 +273,7 @@ def main():
         for sub in badge['sub']:
             if sub not in badge['subBadgeImages']:
                 manifest['skipped'].append({'category':category,'id':sub,'reason':'No approved active source image'})
-    assert len(manifest['entries'])==36, f'Expected 9 active subbadges x 4 languages, got {len(manifest["entries"])}'
+    assert len(manifest['entries'])==4*sum(len(json.loads((ROOT/'data/badges'/f'{name}.json').read_text())['subBadgeImages']) for name in ('by','scenekunst')), f'Localized badge count mismatch: {len(manifest["entries"])}'
     target=ROOT/'data/badges/badge_locale_images_candidates.json'
     target.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     print(f'Generated {len(manifest["entries"])} review-only WebPs; original images unchanged')

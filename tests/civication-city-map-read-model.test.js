@@ -53,7 +53,8 @@ for (let i = 0; i < mappingFiles.length; i += 1) {
   }
 }
 
-const expectedAliases = ['akerselva', 'alnaelva', 'nrk_huset_marienlyst', 'nydalen'].sort();
+// Blå is intentionally mapped to its existing Music Place from Subkultur.
+const expectedAliases = ['akerselva', 'alnaelva', 'blaa', 'nrk_huset_marienlyst', 'nydalen'].sort();
 const sourceAliases = Array.from(occurrences.entries())
   .filter(([, list]) => list.length > 1)
   .map(([id]) => id)

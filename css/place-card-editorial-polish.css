@@ -1,0 +1,268 @@
+/* PlaceCard editorial polish (design 1–4).
+   Scoped to the direct unified Place Sheet. This intentionally does not
+   relocate, resize or restyle the original People/Badges collection controls,
+   the pinned hero geometry, or the reading/quiz actions. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct{
+  --pc-editorial-accent:#ecd07a;
+  --pc-editorial-line:rgba(236,230,216,.15);
+  --pc-editorial-text:rgba(248,249,251,.89);
+  --pc-editorial-muted:rgba(232,237,245,.70);
+  --pc-editorial-surface:rgba(18,25,35,.56);
+}
+
+/* 1. Hierarchy: retain the original photo/heading/metadata and its pinned
+   position, but improve contrast, rhythm and the prominence of the name. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-heading-hero.has-photo-source::after{
+  background:linear-gradient(180deg,
+    rgba(7,12,18,.02) 0%,
+    rgba(7,12,18,.12) 34%,
+    rgba(7,12,18,.58) 65%,
+    rgba(7,12,18,.94) 100%);
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
+  font-size:clamp(30px,4.8vw,48px);
+  font-weight:850;
+  line-height:1.06;
+  letter-spacing:-.035em;
+  text-wrap:balance;
+  color:#fff;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-heading-hero .pc-heading-content #pcMeta{
+  gap:6px 8px;
+  color:var(--pc-editorial-muted);
+  font-size:12px;
+  line-height:1.35;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-heading-hero .pc-heading-content #pcMeta > :not(.pc-epoke){
+  padding:3px 9px;
+  border:1px solid rgba(255,255,255,.20);
+  border-radius:999px;
+  background:rgba(8,14,22,.43);
+  letter-spacing:.055em;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-heading-hero .pc-heading-content #pcMeta > .pc-epoke{
+  margin-top:2px;
+  font-size:13px;
+  line-height:1.38;
+  font-weight:550;
+  color:rgba(255,255,255,.82);
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-hero-media .pc-frontcard{
+  border-radius:18px;
+  border:1px solid var(--pc-editorial-line);
+  box-shadow:0 12px 32px rgba(0,0,0,.30);
+}
+
+/* 2. Readable editorial measure and calmer type. No excerpt truncation. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-about #pcDesc,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-intro #pcDesc{
+  max-width:63ch;
+  color:var(--pc-editorial-text);
+  font-size:clamp(16px,1.9vw,18px);
+  line-height:1.7;
+  letter-spacing:.002em;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-about .hg-place-longread{
+  max-width:65ch;
+  color:var(--pc-editorial-text);
+  font-size:clamp(16px,1.8vw,17px);
+  line-height:1.76;
+  letter-spacing:.003em;
+  overflow-wrap:break-word;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-about .hg-place-longread p{
+  margin:0 0 1.1em;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-history .hg-place-timeline-copy > p,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-stories .pc-story-body{
+  max-width:65ch;
+  color:var(--pc-editorial-text);
+  font-size:15px;
+  line-height:1.7;
+}
+
+/* 3. One section rhythm, one heading style, fewer competing panels.
+   The wrappers retain their original DOM order and interaction handlers. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  :is(.pc-sheet-history,.pc-sheet-stories,.pc-sheet-before-after,.pc-sheet-language,.pc-sheet-learning,.pc-sheet-news):not([hidden]){
+  margin-top:36px;
+  padding-top:25px;
+  border-top:1px solid var(--pc-editorial-line);
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-explore{
+  margin-top:34px;
+  padding-top:24px;
+  border-top:1px solid var(--pc-editorial-line);
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  :is(.pc-sheet-canonical-about,.pc-sheet-canonical-history,.pc-sheet-canonical-stories,.pc-sheet-canonical-before-after,.pc-sheet-canonical-news) > h3{
+  margin:0 0 18px;
+  padding:0 0 0 12px;
+  border-left:3px solid var(--pc-editorial-accent);
+  color:#f8f6ef;
+  font-size:clamp(16px,2vw,19px);
+  line-height:1.35;
+  letter-spacing:-.012em;
+  font-weight:760;
+  text-transform:none;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-section-head h2{
+  color:#f8f6ef;
+  font-size:clamp(16px,2vw,19px);
+  line-height:1.35;
+  font-weight:760;
+  letter-spacing:-.012em;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-history{
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-stories .pc-story,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-news .pc-sheet-news-card{
+  border:1px solid var(--pc-editorial-line);
+  border-radius:14px;
+  background:var(--pc-editorial-surface);
+  box-shadow:none;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-stories .pc-story::before{
+  background:var(--pc-editorial-accent);
+  opacity:.72;
+}
+
+/* 4. Consistent, uncropped original images; category labels and optional
+   factual descriptions/credits below the media rather than over the artwork. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-section{
+  gap:22px;
+  margin:22px 0 28px;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-item{
+  border:1px solid var(--pc-editorial-line);
+  border-radius:14px;
+  background:#101923;
+  box-shadow:none;
+  transition:border-color .16s ease,background-color .16s ease;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-item:hover{
+  border-color:rgba(236,208,122,.52);
+  background:#182230;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-item > img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+  max-height:none;
+  aspect-ratio:auto;
+  object-fit:contain;
+  object-position:center;
+  border-radius:0;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-item > .pc-round-gallery-label{
+  padding:12px 16px 6px;
+  border-top:1px solid var(--pc-editorial-line);
+  color:#f8f6ef;
+  font-size:13px;
+  line-height:1.45;
+  font-weight:760;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-item > .pc-round-gallery-label:last-child{
+  padding-bottom:13px;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-caption,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-credit{
+  display:block;
+  padding:0 16px 10px;
+  color:var(--pc-editorial-muted);
+  font-size:13px;
+  line-height:1.55;
+  font-weight:450;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-credit{
+  color:rgba(232,237,245,.60);
+  font-size:12px;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-round-gallery-brand{
+  border-top:1px solid var(--pc-editorial-line);
+}
+/* The canonical Before/After figures should not lose their source imagery. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-before-after figure{
+  border-radius:14px;
+  border-color:var(--pc-editorial-line);
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-before-after figure img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:none;
+  aspect-ratio:auto;
+  object-fit:contain;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+  .pc-sheet-canonical-before-after figcaption{
+  padding:12px 14px;
+  color:var(--pc-editorial-muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+@media (max-width:520px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+    .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
+    font-size:clamp(25px,6.8vw,34px);
+    line-height:1.08;
+  }
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+    :is(.pc-sheet-history,.pc-sheet-stories,.pc-sheet-before-after,.pc-sheet-language,.pc-sheet-learning,.pc-sheet-news):not([hidden]){
+    margin-top:27px;
+    padding-top:19px;
+  }
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+    .pc-sheet-hero-media .pc-frontcard{
+    border-radius:15px;
+  }
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+    .pc-round-gallery-section{
+    gap:17px;
+    margin:18px 0 23px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct
+    .pc-round-gallery-item{
+    transition:none;
+  }
+}
