@@ -25,5 +25,5 @@ test('published images now use reviewed circular v3 replacements', () => {
   const film = JSON.parse(readFileSync(new URL('../data/badges/film_tv.json', import.meta.url), 'utf8'));
   assert.equal(film.subBadgeImages.filmfestivaler, 'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp');
   assert.equal(film.subBadgeImages.filmlocations, 'bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp');
-  assert.equal(Object.keys(film.subBadgeImages).length, 10);
+  assert.equal(Object.keys(film.subBadgeImages).length, 11);
 });

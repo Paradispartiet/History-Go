@@ -38,7 +38,9 @@ test('eight previous Film & TV subbadges and the seven Scenekunst subbadges are 
  nyheter_og_reportasje:'bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp',
  klassikere:'bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp',
  norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',
- filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp'
+ filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp',
+ film_og_tv_produksjon:'bilder/merker/film_tv/undermerker/film_og_tv_produksjon-brodert-v1.webp',
+ arkiv_og_kanon:'bilder/merker/film_tv/undermerker/arkiv_og_kanon-brodert-v1.webp'
  };
  const {filmlocations,...other}=f.subBadgeImages;
  assert.deepEqual(other,prior);
