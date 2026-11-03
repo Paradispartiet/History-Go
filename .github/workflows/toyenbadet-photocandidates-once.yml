@@ -4,7 +4,7 @@ on:
     branches: [feat/toyenbadet-modern-photos-20261103]
     paths: ['.github/workflows/toyenbadet-photocandidates-once.yml']
 permissions:
-  contents: read
+  contents: write
 jobs:
   actual-browser:
     runs-on: ubuntu-latest
@@ -20,6 +20,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Verify canonical source and generated runtime
         run: |
+          npm run places:index:build
+          npm run place-open:build
           node --test tests/toyenbadet-modern-photos-before-after.test.mjs tests/toyenbadet-asplan-viak-brand.test.mjs
           node - <<'JS'
           const fs=require('node:fs');
@@ -30,6 +32,17 @@ jobs:
           if(JSON.stringify(r.place.place_card_profile.collection_ids)!==JSON.stringify(['brands','competitions']))throw Error('Tøyenbadet collection mismatch');
           console.log('Tøyenbadet canonical runtime verified');
           JS
+      - name: Persist regenerated source-owned Tøyenbadet projections
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/places_index.json data/runtime/place-open/toyenbadet.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(toyenbadet): sync verified modern photos and two collections'
+            git push origin HEAD:feat/toyenbadet-modern-photos-20261103
+          fi
       - name: Find Chrome
         shell: bash
         run: |
