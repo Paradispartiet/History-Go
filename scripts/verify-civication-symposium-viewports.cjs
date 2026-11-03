@@ -74,23 +74,14 @@ async function main() {
           return w.CivicationLifestoryState?.load?.()?.rolle === 'arealplanlegger'
             && w.CivicationLifestoryUI?.getCurrentSceneInfo?.();
         }, null, { timeout: 20000 });
-        const tab = page.locator('.civi-footer button[data-category="minDag"]');
-        const navState = await page.evaluate(() => {
-          const selected = document.querySelector('[data-lifestory-symposium] summary');
-          const section = document.querySelector('#civiLifestorySection');
-          const footer = document.querySelector('.civi-footer button[data-category="minDag"]');
-          const css = el => el ? { display: getComputedStyle(el).display, visibility: getComputedStyle(el).visibility,
-            rect: (() => { const b = el.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height }; })() } : null;
-          return { body: document.body.className, section: css(section),
-            footer: css(footer), history: css(selected),
-            categories: [...document.querySelectorAll('.civi-footer button[data-category]')].map(b => ({
-              category: b.dataset.category, display: getComputedStyle(b).display
-            })) };
-        });
-        console.log('Symposium viewport navigation', name, JSON.stringify(navState));
-        await page.screenshot({ path: path.join(reportDir, name + '-before.png'), fullPage: false });
-        if (await tab.isVisible()) await tab.click();
         const history = page.locator('[data-lifestory-symposium] summary').first();
+        // The authentic Min dag surface is initially open. Pressing the
+        // already-active footer tab would open a different popup and hide it.
+        if (!(await history.isVisible())) {
+          const tab = page.locator('.civi-footer button[data-category="minDag"]');
+          await tab.waitFor({ state: 'visible', timeout: 10000 });
+          await tab.click();
+        }
         await history.waitFor({ state: 'visible', timeout: 10000 });
         await history.click();
         const book = page.locator('[data-lifestory-symposium]').first();
