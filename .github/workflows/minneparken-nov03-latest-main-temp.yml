@@ -1,0 +1,140 @@
+name: Temporary Minneparken pinned main refresh Nov 3 with full technical QA
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-nov03-latest-main-temp.yml
+permissions:
+  contents: write
+jobs:
+  verify-and-refresh-draft-only:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Pin current main and inspect exact changed paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = '9d68d237b917e20f4e678e7ca5a274d03976de1e'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch --no-tags origin main
+          test "$(git rev-parse origin/main)" = '1a5ed744ee5a406500f5218c78ea95b8c9dbae7c'
+          test "$(git merge-base HEAD origin/main)" = 'bcc7805f17f4b2f638e53f9d3682828cd005e394'
+          git diff --name-only 'bcc7805f17f4b2f638e53f9d3682828cd005e394' '1a5ed744ee5a406500f5218c78ea95b8c9dbae7c' > /tmp/minneparken-main-reviewed-paths.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const observed=fs.readFileSync('/tmp/minneparken-main-reviewed-paths.txt','utf8').trim().split('\n').filter(Boolean);
+          const expected=new Set([".github/workflows/nature-illustrations.yml",".github/workflows/qa-underbadge-pilot.yml","bilder/merker/by/locales/en/brutalisme.webp","bilder/merker/by/locales/es/brutalisme.webp","bilder/merker/by/locales/fr/brutalisme.webp","bilder/merker/by/locales/pt/brutalisme.webp","bilder/merker/by/undermerker/brutalisme-brodert-v1.webp","bilder/natur/flora/illustrasjonskandidater/b09/44_tveskjeggveronika_v1.webp","data/badges/badge_locale_images_candidates.json","data/badges/brutalisme_candidate_v1.json","data/badges/by.json","data/badges/underbadge_batch01_production.json","data/natur/flora/illustration-quality-tveskjeggveronika-20261103.json","finn-flora.html","js/ui/nature-flora-approved.js","scripts/generate-badge-locales-v1.py","scripts/test-flora-approved-browser.mjs","scripts/test-flora-approved-release.mjs","scripts/test-flora-tveskjeggveronika-b09.mjs","scripts/verify-brutalisme-asset-v1.mjs","tests/badge-by-brutalisme-v1-production.test.mjs","tests/badge-by-funksjonalisme-v1-locales.test.mjs","tests/badge-by-funksjonalisme-v1-production.test.mjs","tests/badge-by-klassisk-arkitektur-v2-production.test.mjs","tests/badge-by-modernisme-v1-production.test.mjs","tests/badge-underbadge-batch01.test.mjs"]);
+          assert.equal(observed.length,expected.size);
+          const unexpected=observed.filter(p=>!expected.has(p));
+          if(unexpected.length)throw Error('Unreviewed main paths: '+unexpected.join(', '));
+          console.log('PASS exact main-snapshot scope:',observed.length);
+          NODE
+          git merge --no-ff --no-commit '1a5ed744ee5a406500f5218c78ea95b8c9dbae7c' || {
+            echo 'Source conflict on latest main: no push allowed' >&2
+            git diff --name-only --diff-filter=U >&2
+            exit 1
+          }
+          test -f .git/MERGE_HEAD
+          test -z "$(git diff --name-only --diff-filter=U)"
+          echo 'PASS staged conflict-free main merge'
+      - name: Verify canonical generators and repository policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run places:index:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          npm run knowledge:canonical:check
+          npm run check:stories
+          node --test tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-story-candidate.test.mjs
+          node --test tests/badge-by-brutalisme-v1-production.test.mjs tests/badge-underbadge-batch01.test.mjs
+          node scripts/test-flora-tveskjeggveronika-b09.mjs
+          test -s reports/knowledge-contract-audit.json
+          git check-ignore -q reports/knowledge-contract-audit.json
+          if git ls-files --error-unmatch reports/knowledge-contract-audit.json >/dev/null 2>&1; then
+            echo 'Knowledge diagnostic must remain an Actions artifact rather than tracked report' >&2; exit 1
+          fi
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const id='minneparken_gamlebyen';
+          const h=read('data/places/historie-production/'+id+'.json');
+          assert.equal(h.status,'blocked');
+          for (const g of ['F','G','H'])assert.equal(h.gates[g].status,'N/A');
+          assert.ok(!read('data/quiz/manifest.json').sets.some(s=>s.targetId===id));
+          assert.ok(!read('data/quizcards/historie/manifest.json').collections.includes(id+'_quizcard_v1.json'));
+          assert.ok(!read('data/stories/stories_manifest.json').files.some(s=>s.path==='data/stories/stories_'+id+'.json'));
+          const q=read('data/quiz/historie/'+id+'_sets.json').sets.flatMap(s=>s.questions);
+          assert.equal(q.filter(x=>x.knowledge_link_status==='linked').length,21);
+          assert.equal(new Set(q.flatMap(x=>x.knowledge_unit_ids)).size,32);
+          const k=read('reports/knowledge-contract-audit.json');
+          assert.equal(k.questions_with_errors,0);
+          console.log('PASS 21 questions, 32 Knowledge units, no release activation, F/G/H N/A');
+          NODE
+          REPO_HYGIENE_BASE_SHA='bcc7805f17f4b2f638e53f9d3682828cd005e394' REPO_HYGIENE_HEAD_SHA=HEAD node scripts/audit-repository-hygiene-v1.mjs
+      - name: Minneparken actual mobile and desktop QA on integrated main
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx playwright install --with-deps chromium
+          node tests/minneparken-readonly-app-browser.test.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const qf='data/quiz/manifest.json', cf='data/quizcards/historie/manifest.json';
+          const q=read(qf), c=read(cf);
+          q.sets.push({targetId:'minneparken_gamlebyen',file:'data/quiz/historie/minneparken_gamlebyen_sets.json'});
+          c.collections.push('minneparken_gamlebyen_quizcard_v1.json');
+          fs.writeFileSync(qf,JSON.stringify(q,null,2)+'\n');
+          fs.writeFileSync(cf,JSON.stringify(c,null,2)+'\n');
+          console.log('Test-only quiz and QuizCard activation; never committed');
+          NODE
+          node scripts/verify-minneparken-quizcard-real-browser.mjs
+          node scripts/verify-place-quiz-browser.mjs minneparken_gamlebyen
+          git restore --worktree -- data/quiz/manifest.json data/quizcards/historie/manifest.json
+      - name: Check generated-diff scope and push tested merge to draft only
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import cp from 'node:child_process';
+          const changed=cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          console.log('Generated changes after staged merge:',JSON.stringify(changed));
+          const allowed=new Set(['data/fagverk/fagverk_release.json']);
+          const unexpected=changed.filter(p=>!allowed.has(p));
+          if(unexpected.length)throw Error('Unreviewed generated changes: '+unexpected.join(', '));
+          NODE
+          git add -- data/fagverk/fagverk_release.json
+          git diff --quiet
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m 'Merge pinned newer main into Minneparken draft after source and full browser QA'
+          git push origin HEAD:content/minneparken-kildebasert-leksikon-20261103
+          echo 'PASS branch-only merge, original F/G/H and inactive manifests maintained'
+      - name: Upload full Knowledge diagnostics from CI
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-nov03-knowledge-audit-full
+          path: reports/knowledge-contract-audit.json
+          retention-days: 30
+          if-no-files-found: warn
