@@ -203,7 +203,7 @@
   },
   "quizOpening": {
     "status": "N/A",
-    "rationale": "Første 2 × 7 fullquizspørsmål er materialisert og godkjent av teknisk åpning-/progresjonskontroll, og QuizCard-kandidat på 10 følger fullquizens kilde og fasit. 32 deterministiske Knowledge-ID-er er forhåndsberegnet og verifisert i isolert canonical generator, men Knowledge-status er fortsatt pending uten aktivt registry, og interaktiv quiz-/QuizCard-QA gjenstår."
+    "rationale": "Første 2 × 7 normale fullquizspørsmål er teknisk validert og fullquiz 3 × 7 er spilt helt gjennom på mobil og desktop. QuizCard-baksiden viser ti kilde-/fasitparitetskontrollerte spørsmål; flipp, forstørrelse, Escape og tastaturstyring fungerte i Playwright på begge formater (Actions #41587943304, forsøk 2). Endelig Knowledge-registry-synk og manifestaktivering mangler, og uavhengig redaksjonell review gjenstår. Derfor er fortsatt ingen publiseringsgodkjenning gitt."
   },
   "chronologyStories": {
     "status": "N/A",
@@ -247,11 +247,11 @@
     },
     "F": {
       "status": "N/A",
-      "rationale": "Kommunens nåværende stedsbeskrivelse er kontrollert, men sluttført tilrettelegging i november 2026 kan ikke verifiseres fra tilgjengelige nyere kilder. Gate F forblir åpen."
+      "rationale": "Lokalhistorisk kilde og foto fra 15. juli 2007 (Helge Høifødt, PD-self) er lisens-/datokontrollert og versjonert lokalt i PR, men historisk bilde er IKKE ny befaring eller dokumentasjon av ferdig fysisk parktilstand i november 2026. Kommunens stedsbeskrivelse og status fra november 2025 dokumenterer ikke sluttføring i 2026. Gate F forblir N/A."
     },
     "G": {
       "status": "N/A",
-      "rationale": "Kilde- og kontraktstestet fullquiz (3 × 7) og QuizCard-kandidat (10) finnes, med 14 teknisk godkjente normale åpningsspørsmål. Den ekte canonical Knowledge-generatoren er prøvd i isolert Git-worktree (Actions #41586343590): 21/21 spørsmål, 32 unike KU-er, 32/32 enheter med etterprøvbare eksterne URL-er og 0 Knowledge-kontraktsfeil. De deterministiske ID-ene er nå forhåndsinnført i kandidatfilene, men alle 21 spørsmål har fortsatt knowledge_link_status pending; enhetene er ikke skrevet til det aktive Knowledge-registeret, og verken quiz eller QuizCard er manifestaktivert. Uavhengig innholdsreview og runtime-/flip-QA mangler. Gate G forblir N/A."
+      "rationale": "Fullquiz med 3 × 7 spørsmål og QuizCard med 10 spørsmål er kilde-, fasit- og progresjonsvalidert. Ekte Playwright-gjennomspilling av hele fullquizen og QuizCard-flipp/forstørrelse bestod på mobil og desktop i isolert runtime (Actions #41587943304, forsøk 2), inkludert belønning uten fysisk besøksregistrering. Canonical Knowledge-generator i isolert worktree produserte 32 deterministiske KU-ID-er for 21/21 spørsmål med 32/32 verifiserte kildelenker. Alle quizspørsmål har likevel knowledge_link_status pending; KU-ene er ikke i aktivt committed register, quiz-/QuizCard-manifester er ikke aktivert og uavhengig innholdsreview gjenstår. Gate G forblir N/A."
     },
     "H": {
       "status": "N/A",
