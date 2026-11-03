@@ -1,0 +1,155 @@
+name: Temporary Minneparken c9be latest main technical replay
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+    paths:
+      - .github/workflows/minneparken-final-c9be-tech-replay-temp.yml
+permissions:
+  contents: write
+jobs:
+  verify-and-merge-into-draft-only:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/minneparken-kildebasert-leksikon-20261103
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Freeze scope, integrate exact main snapshot, reject unknown conflicts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = 'ee7c3b40dc822e6f096a685140b665322dcebcf0'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor 'c9be40949fcc40352c8f254dc9ed66c4fd357039' origin/main
+          test "$(git merge-base HEAD origin/main)" = 'c9be40949fcc7da4a3c7c91eb733179f66c7c757'
+          git diff --name-only 'c9be40949fcc7da4a3c7c91eb733179f66c7c757' 'c9be40949fcc40352c8f254dc9ed66c4fd357039' > /tmp/minneparken-reviewed-main-paths.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const observed=fs.readFileSync('/tmp/minneparken-reviewed-main-paths.txt','utf8').trim().split('\n').filter(Boolean);
+          const expected=new Set([".github/workflows/kulturkirken-jakob-v1-real-browser.yml",".github/workflows/nature-illustrations.yml","bilder/natur/flora/illustrasjonskandidater/b09/45_tysk_honsetarm_v1.webp","data/natur/flora/illustration-quality-tyskhonsetarm-20261103.json","finn-flora.html","js/ui/nature-flora-approved.js","scripts/test-flora-approved-browser.mjs","scripts/test-flora-approved-release.mjs","scripts/test-flora-tyskhonsetarm-b09.mjs","tests/kulturkirken-jakob-v1-real-browser.test.mjs"]);
+          assert.equal(observed.length,expected.size);
+          for(const p of observed)assert.ok(expected.has(p),'Unreviewed main file: '+p);
+          console.log('Reviewed latest main change set:',observed.length);
+          NODE
+          git merge --no-ff --no-commit 'c9be40949fcc40352c8f254dc9ed66c4fd357039' || true
+          test -f .git/MERGE_HEAD
+          mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+          printf 'Merge conflicts: %s\n' "${conflicts[*]:-none}"
+          for p in "${conflicts[@]}"; do
+            case "$p" in
+              data/places/places_index.json|data/places/place_image_backlog_summary.json|data/fagverk/fagverk_release.json)
+                git checkout --ours -- "$p"
+                git add -- "$p"
+                ;;
+              *)
+                echo "Unexpected conflict; refusing any branch push: $p" >&2
+                exit 1
+                ;;
+            esac
+          done
+          test -z "$(git diff --name-only --diff-filter=U)"
+          git merge-base --is-ancestor 'c9be40949fcc40352c8f254dc9ed66c4fd357039' origin/main
+      - name: Rebuild derived content, source and policy checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          npm run places:index:check
+          npm run epoker:places:check
+          npm run place-open:build
+          npm run place-open:check
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/minneparken-main-1e8-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p='data/places/place_image_backlog_summary.json';
+          const saved=JSON.parse(fs.readFileSync(p,'utf8'));
+          const audit=JSON.parse(fs.readFileSync('/tmp/minneparken-main-1e8-image-audit.json','utf8'));
+          saved.totalPlaces=audit.totalPlaces;
+          saved.summary={validLocal:audit.summary.local,validRemote:audit.summary.remote,optionalMissing:audit.summary.optional,missing:audit.summary.missing,invalidLocalPath:audit.summary.invalid,remaining:audit.summary.missing+audit.summary.invalid};
+          saved.generatedFromCommit='c9be40949fcc';
+          saved.note='Aggregater verifisert mot full Place-bildeaudit etter kontrollert Minneparken/Birkelunden main-integrasjon 2026-11-03. Kategorioversikten er et eldre detaljuttrekk og må regenereres separat ved kategorirevisjon.';
+          fs.writeFileSync(p,JSON.stringify(saved,null,2)+'\n');
+          NODE
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          npm run knowledge:canonical:check
+          npm run check:stories
+          node scripts/test-flora-tyskhonsetarm-b09.mjs
+          node --test tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-story-candidate.test.mjs tests/birkelunden-place-images.test.mjs tests/civication-symposium-role-history.test.js
+          test -s reports/knowledge-contract-audit.json
+          git check-ignore -q reports/knowledge-contract-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const id='minneparken_gamlebyen', h=read('data/places/historie-production/'+id+'.json');
+          assert.equal(h.status,'blocked');
+          for(const g of ['F','G','H'])assert.equal(h.gates[g].status,'N/A');
+          assert.ok(!read('data/quiz/manifest.json').sets.some(x=>x.targetId===id));
+          assert.ok(!read('data/quizcards/historie/manifest.json').collections.includes(id+'_quizcard_v1.json'));
+          assert.ok(!read('data/stories/stories_manifest.json').files.some(x=>x.path==='data/stories/stories_'+id+'.json'));
+          const qs=read('data/quiz/historie/'+id+'_sets.json').sets.flatMap(s=>s.questions);
+          assert.equal(qs.filter(x=>x.knowledge_link_status==='linked').length,21);
+          assert.equal(new Set(qs.flatMap(x=>x.knowledge_unit_ids)).size,32);
+          assert.equal(read('reports/knowledge-contract-audit.json').questions_with_errors,0);
+          console.log('PASS Knowledge 21/32 and unmodified release blockers F/G/H');
+          NODE
+          REPO_HYGIENE_BASE_SHA='c9be40949fcc7da4a3c7c91eb733179f66c7c757' REPO_HYGIENE_HEAD_SHA=HEAD node scripts/audit-repository-hygiene-v1.mjs
+      - name: Actual mobile and desktop Minneparken QA with test-only quiz
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx playwright install --with-deps chromium
+          node tests/minneparken-readonly-app-browser.test.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const qf='data/quiz/manifest.json', cf='data/quizcards/historie/manifest.json';
+          const q=read(qf),c=read(cf);
+          q.sets.push({targetId:'minneparken_gamlebyen',file:'data/quiz/historie/minneparken_gamlebyen_sets.json'});
+          c.collections.push('minneparken_gamlebyen_quizcard_v1.json');
+          fs.writeFileSync(qf,JSON.stringify(q,null,2)+'\n');
+          fs.writeFileSync(cf,JSON.stringify(c,null,2)+'\n');
+          NODE
+          node scripts/verify-minneparken-quizcard-real-browser.mjs
+          node scripts/verify-place-quiz-browser.mjs minneparken_gamlebyen
+          git restore --worktree -- data/quiz/manifest.json data/quizcards/historie/manifest.json
+      - name: Verify generated diff scope, push to draft only if fully green
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import cp from 'node:child_process';
+          const changed=cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const allowed=new Set(['data/places/places_index.json','data/runtime/place-open/birkelunden.json','data/fagverk/fagverk_release.json','data/places/place_image_backlog_summary.json']);
+          console.log('Unstaged generated diffs:',JSON.stringify(changed));
+          const extra=changed.filter(p=>!allowed.has(p));
+          if(extra.length)throw Error('Unreviewed generated paths: '+extra.join(', '));
+          NODE
+          git add -- data/places/places_index.json data/runtime/place-open/birkelunden.json data/fagverk/fagverk_release.json data/places/place_image_backlog_summary.json
+          git diff --quiet
+          git diff --cached --check
+          git commit -m 'Merge reviewed Birkelunden and Civication main snapshot to Minneparken draft after full QA'
+          git push origin HEAD:content/minneparken-kildebasert-leksikon-20261103
+          echo 'PASS draft-branch-only merge; main and active manifests untouched'
+      - name: Upload canonical Knowledge contract audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-main-1e8-knowledge-contract
+          path: reports/knowledge-contract-audit.json
+          retention-days: 30
+          if-no-files-found: warn
