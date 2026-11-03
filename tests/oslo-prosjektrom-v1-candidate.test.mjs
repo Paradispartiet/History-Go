@@ -63,9 +63,9 @@ test("Oslo Prosjektrom: curated place Fagverk and source-to-claim package", () =
   assert.equal(place.fagverk.lenses.length, 3);
   assert.equal(fagverkRegistry.placeLinks[place.id].status, "curated");
   assert.equal(production.placeId, place.id);
-  assert.equal(production.claims.length, 33);
+  assert.equal(production.claims.length, 36);
   assert.equal(production.sentenceCoverage.desc.length, 2);
-  assert.equal(production.sentenceCoverage.popupDesc.length, 12);
+  assert.equal(production.sentenceCoverage.popupDesc.length, 15);
   const knownClaims = new Set(production.claims.map((claim) => claim.id));
   for (const coverage of [...production.sentenceCoverage.desc, ...production.sentenceCoverage.popupDesc])
     assert.ok(coverage.claimIds.every((id) => knownClaims.has(id)));
