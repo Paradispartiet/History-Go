@@ -7,8 +7,8 @@
 
 ## Gjennomførte endringer
 
-1. **Canonical Place:** `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11/minneparken_gamlebyen.json` har omarbeidet `desc` og `popupDesc` uten intern History Go-/quiz-/produksjonsprosa. Kildenes lokale byhistorie, parkvedtaket i 1918, planvedtaket i 1928, åpningen i 1932, veiinngrep på 1960-tallet og tilbakeføring i 2024–2025 er bevart og utvidet. Tre relevante, eksisterende underbadges er satt: `middelalder`, `byhistorie`, `kulturminner_og_bevaring`. Verifisert parkgeometri, koordinater og radius ble ikke endret.
-2. **Beskrivelse og claim-arbeid:** `data/places/production/minneparken_gamlebyen.json` er opprettet med resolved identitet, 19 claim-poster, kildelokasjoner, 3+16 setningskoblinger, SHA-256-hasher og ti spørsmål som kun er quiz-readiness. **Status er `needs_research`**, ikke `ready_v4_2`, siden full validator og uavhengig review mangler. Disse spørsmålene er ikke en publisert quiz.
+1. **Canonical Place (335 ord i `popupDesc`):** `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11/minneparken_gamlebyen.json` har omarbeidet `desc` og `popupDesc` uten intern History Go-/quiz-/produksjonsprosa. Kildenes lokale byhistorie, parkvedtaket i 1918, planvedtaket i 1928, åpningen i 1932, veiinngrep på 1960-tallet og tilbakeføring i 2024–2025 er bevart og utvidet. Tre relevante, eksisterende underbadges er satt: `middelalder`, `byhistorie`, `kulturminner_og_bevaring`. Verifisert parkgeometri, koordinater og radius ble ikke endret.
+2. **Beskrivelse og claim-arbeid:** `data/places/production/minneparken_gamlebyen.json` er opprettet med resolved identitet, 24 claim-poster, kildelokasjoner, 3+21 setningskoblinger, SHA-256-hasher og ti spørsmål som kun er quiz-readiness. **Status er `needs_research`**, ikke `ready_v4_2`, siden full validator og uavhengig review mangler. Disse spørsmålene er ikke en publisert quiz.
 3. **Historie-faglig rapport:** `data/places/historie-production/minneparken_gamlebyen.json` dokumenterer kilder, stedseierskap, interessekonflikten i 1918, endringene og usikkerheten. **Status `blocked`**. Gate F (fersk fysisk status), G (fullquiz) og H (canonical chronology/Stories) er åpne.
 4. **Fagverk-sted:** Place-eid `history_go_place_fagverk_v2`, `standard`, med egen historisk fagartikkel (211 ord), fire emnekoblede linser, fem undersøkelsesspørsmål, ni begreper, to observerbare spor med tolkningsgrenser og fire eksterne kildeadresser. Smalt indeksledd er føyd til `data/fagverk/fagverk_registry.json`. **Curated er redaksjonell innholdsstatus, ikke bekreftet live side eller full Place-closeout.**
 5. **Språkleksikon:** Ny kildebasert stedsspesifikk fil og oppdatert `data/leksikon/sprak/manifest.json`: `Minneparken`, `Ruinparken`, `St. Halvards plass`, `apsis`, `Olavsklostret`. Dialekt er ikke oppdiktet.
@@ -20,6 +20,7 @@
 - [Oslo byleksikon – Minneparken](https://oslobyleksikon.no/side/Minneparken): stedets navn, lokalbefolkningens park, 1918, 1928, 1932 og Harry Fett.
 - [Oslo kommune – Nå blir det mer liv i Middelalderbyen](https://aktuelt.oslo.kommune.no/na-blir-det-mer-liv-i-middelalderbyen) (28. juni 2024): arbeidet med å fjerne betongdekket og planlagt offentlig tilgjengelighet.
 - [Middelalder-Oslo – Minneparken og Hallvardskatedralen](https://www.middelalder.no/middelalderbyen-i-dag/middelalderbeltet/589-minneparken-og-hallvardskatedralen), Petter Molaug november 2025: sørmur og apside, manglende sti og plen. **Ikke bevis for november 2026.**
+- [Middelalder-Oslo – Minneparken og Hallvardskatedralen (september 2025)](https://www.middelalder.no/oslo-i-middelalderen/arkeologiske-funn/576-minneparken-og-hallvardskatedralen): frostvern, apsidemur og åpne materialvalg.
 - [Store norske leksikon – apsis](https://snl.no/apsis): fagordets betydning.
 
 ## Sjekkliste og status
@@ -28,11 +29,11 @@
 | --- | --- | --- |
 | Canonical Place-identitet og kart | DELVIS PASS | Egne Minneparken-koordinater og `area_anchor` beholdt; full geografisk slutt-QA mangler |
 | Badge/underbadge | DELVIS PASS | Historie og tre eksisterende underbadges er valgt etter stedskilder; formell `rule_preflight` mangler |
-| `desc`, `popupDesc` og claims | DELVIS PASS | Historieteksten er revidert; 19 claim-koblinger/hashes; canonical validator og separat uavhengig gjennomgang mangler |
+| `desc`, `popupDesc` og claims | DELVIS PASS | Historieteksten er revidert; 24 claim-koblinger/hashes; canonical validator og separat uavhengig gjennomgang mangler |
 | Historie-faglig evidens | BLOCKED | Rapport materialisert som `blocked`; gates F/G/H krever videre arbeid |
-| Fagverk-sted | DELVIS PASS | Egen standard-blokk og registry-oppføring finnes; Fagverk release, test og reell browser-QA gjenstår |
+| Fagverk-sted | DELVIS PASS | Egen standard-blokk og registry-oppføring finnes; Fagverk-release er deterministisk regenerert og kontrollert av GitHub Actions; noen andre Fagverk-sider har separate testavvik, og reell browser-QA gjenstår |
 | Språkleksikon | DELVIS PASS | Fem navne- og begrepsposter i språkmanifest; faktisk Språk-fane må klikkes/testes |
-| Leksikon-kronologi og epoke | DELVIS PASS | Fire kildebelagte leksikonår; canonical chronology/epokeindeks og seertest gjenstår |
+| Leksikon-kronologi og epoke | DELVIS PASS | Fire kildebelagte leksikonår; epokeindeksen er bygget og `--check` bestod, men canonical claim-/chronology- og seertest gjenstår |
 | People / Objects / Brands / historiske hendelser | IKKE AVKLART | Source-bounded kandidataudit og eventuelle materialiserte medlemmer med bilder; ingen filler |
 | Stedsbilder / `frontImage` | BLOCKED | Ingen dokumentert, faktisk stående PlaceCard-fil og lisensmetadata integrert |
 | Quiz / QuizCard / Knowledge | BLOCKED | Ingen fullquiz/QuizCard/flip-paritet materialisert eller vist; kun ti research-spørsmål i packet |
@@ -51,10 +52,10 @@ Ingen av disse er lagt til som `image`/`frontImage`. Hovedbilde og stående bild
 - Alle ti inspiserte JSON-/schemafiler kunne parses.
 - `fagverk` har samtlige nødvendige toppfelt, korrekt `standard`-innholdsmengde, resolverte fag-/emne-/kapittel-ID-er i registryet og navngitte `externalLinks` for alle fire kilder.
 - Språkmanifestet peker på riktig fil; fem oppføringer har kildeadresser med HTTPS.
-- Source-bundne `placeId`-er er like, og 19 beskrivelsessetninger har 19 claimkoblinger.
+- Source-bundne `placeId`-er er like, og 24 beskrivelsessetninger har 24 claimkoblinger.
 - Historie-rapportens kilde-ID-er er definert; valgte underbadges finnes i `data/badges/historie.json`.
 
-**Dette er statiske inspeksjoner i GitHub-connectoren.** Node-validatorer, skjemavalidering via Ajv, bygget index/release, faktisk UI og manuelle interaksjoner er **ikke** kjørt.
+**Utførte kontroller:** Statisk JSON-/referanseinspeksjon og GitHub Actions-generering (jobben 41575722410) med `places:index:check`, `place-open:check`, `epoker:places:check` og Fagverk-release-`--check` bestod. Den siste artikkelutvidelsen kom etter jobben; en ny regenereringsjobb er satt i gang. Full Historie/description-/Fagverk-validering og faktisk browser-QA er ennå **ikke** godkjent.
 
 ## Påkrevd neste integrasjonsrunde
 
@@ -72,7 +73,7 @@ Ingen av disse er lagt til som `image`/`frontImage`. Hovedbilde og stående bild
 | Korrekthet og evidens | 4/5 | Kildedrevet nytt stoff, 19 setningskoblinger; formell validator og uavhengig review mangler |
 | Dekning og ferdigstillelse | 2/5 | Historietekst, Fagverk og Språk implementert; bilder/quiz/CI/QA mangler |
 | Faglig/redaksjonell kvalitet | 4/5 | Stedlig byhistorie og konflikt, egne spørsmål og lesbare historiske lag |
-| Teknisk integritet | 2/5 | Statisk parsing/strukturkontroll, men generatorer, indekser og runtime ikke oppdatert |
+| Teknisk integritet | 2/5 | Statisk kontroll og en bestått genereringsrunde for stedsindeks, epoke, place-open og Fagverk; siste tekstutvidelse krever ny place-open-synk |
 | Sikkerhet og ansvarlighet | 4/5 | Åpne lisens- og tidsstatusspørsmål er ikke framstilt som godkjent |
 | Etterprøvbarhet og vedlikehold | 4/5 | Egen claim-/kilde-/Historie-rapport og source-avgrenset diff; preflight mangler |
 
