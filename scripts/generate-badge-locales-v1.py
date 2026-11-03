@@ -73,7 +73,18 @@ def replace_embroidered_letters(canvas, original, category, sub):
     max_y=339 if sub=='klassisk_arkitektur' else (318 if sub=='dans' else 306)
     roi=(radial>=inner)&(radial<=outer)&(angle<theta)&(yy>=58)&(yy<max_y)
     if sub=='klassisk_arkitektur':
+        # The curved original title finishes near the lower outer corners.
+        # Extend only those side-glyph zones; never touch the sky or pediment.
         roi &= ((yy<=300)|(radial>=414))
+        sides=(((xx<190)|(xx>835))&(yy>=300)&(yy<395)&(radial>386))
+        roi |= sides
+    elif sub=='dans':
+        # Avoid the dancer's hands, head and drapery beneath the old DANS.
+        # The old caption's D and S descend farther than the middle letters.
+        glyph_area=(((xx>=270)&(xx<405)&(yy<278))|
+                    ((xx>=405)&(xx<607)&(yy<245))|
+                    ((xx>=607)&(xx<763)&(yy<277)))
+        roi &= glyph_area
     raw=np.asarray(original.convert('RGB'),dtype=np.int16)
     rr,gg,bb=raw[:,:,0],raw[:,:,1],raw[:,:,2]
     cream=(rr>128)&(gg>95)&(bb>58)&((rr-gg)>8)&((gg-bb)>1)
@@ -221,6 +232,12 @@ def main():
                 inspect=Image.open(dst).convert('RGBA')
                 assert inspect.size==original.size
                 assert np.array_equal(np.asarray(inspect.getchannel('A')),np.asarray(original.getchannel('A'))),f'Alpha changed: {dst}'
+                # A localized caption must never replace a building, actor,
+                # instrument, flower or other interior motif.
+                top_safe=425 if category=='by' else 405
+                assert np.array_equal(np.asarray(inspect)[top_safe:770,:,:3],
+                                      np.asarray(original)[top_safe:770,:,:3]), (
+                    f'Non-caption illustration changed: {dst}')
                 manifest['entries'].append({'category':category,'id':sub,'locale':locale,
                     'path':dst.relative_to(ROOT).as_posix(),'label':title,'footer':bottom,
                     'originalSha256':original_hash,'sha256':hashlib.sha256(dst.read_bytes()).hexdigest(),
