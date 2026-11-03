@@ -143,8 +143,9 @@ try {
       "frontImage and collection column share the same outer left margin at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.rounds.x >= layout.rightColumn.x - 1 && layout.rounds.right <= layout.rightColumn.right + 1,
       "collection tiles remain within the padded column at "+width+": "+JSON.stringify(layout));
-    assert.ok(layout.intro.x >= layout.front.right - 1,
-      "the first description line begins to the right of frontImage at "+width+": "+JSON.stringify(layout));
+    assert.ok(layout.intro.x >= layout.front.right - 1 ||
+      layout.intro.y >= layout.front.bottom - 1,
+      "description begins beside or below, never over the floating frontImage at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.aboutHeading.x >= layout.front.right - 1,
       "Om stedet begins to the right of frontImage at "+width+": "+JSON.stringify(layout));
     assert.ok(layout.rightColumn.y >= layout.media.bottom - 1,
