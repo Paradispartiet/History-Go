@@ -5,6 +5,30 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_smor_bukk: Object.freeze({
+      scientificName: "Hylotelephium maximum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/37_smorbukk_v1.webp",
+      gitBlobSha: "28dc7efcb0b3083acda652756346a4d5a28778cc",
+      reviewedAt: "2026-11-03",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-smorbukk-20261103.json"
+    }),
+    emne_flora_smalkjempe: Object.freeze({
+      scientificName: "Plantago lanceolata",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/36_smalkjempe_v1.webp",
+      gitBlobSha: "2dfbf434b6a84354fc014dac0934c443ebfe9177",
+      reviewedAt: "2026-11-03",
+      stage: "sommerblomstring_og_fruktsetting",
+      evidence: "data/natur/flora/illustration-quality-smalkjempe-20261103.json"
+    }),
+    emne_flora_skogstorkenebb: Object.freeze({
+      scientificName: "Geranium sylvaticum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/35_skogstorkenebb_v1.webp",
+      gitBlobSha: "f260e6747c79fff07b0b777e9419049dd373fd76",
+      reviewedAt: "2026-11-03",
+      stage: "sommerblomstring_og_fruktsetting",
+      evidence: "data/natur/flora/illustration-quality-skogstorkenebb-20261103.json"
+    }),
     emne_flora_skogfiol: Object.freeze({
       scientificName: "Viola riviniana",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/34_skogfiol_v1.webp",

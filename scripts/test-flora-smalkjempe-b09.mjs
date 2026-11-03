@@ -1,0 +1,42 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import crypto from "node:crypto";
+import vm from "node:vm";
+const root = new URL("../", import.meta.url);
+const read = p => fs.readFileSync(new URL(p, root), "utf8");
+const doc = JSON.parse(read("data/natur/flora/illustration-quality-smalkjempe-20261103.json"));
+const a = doc.items[0], id = "emne_flora_smalkjempe";
+assert.equal(doc.baselineApproved, 57);
+assert.equal(doc.approvedCountAfterRelease, 58);
+assert.equal(a.catalogId,id);
+assert.equal(a.scientificName,"Plantago lanceolata");
+assert.equal(a.approvedForPublication,true,"Smalkjempe is not approved for release");
+const cat = JSON.parse(read("data/natur/flora/blomster.json")).find(x=>x.id===id);
+const runtime = JSON.parse(read("data/runtime/nature-all/flora-001.json"))
+  .flatMap(x=>x.kind==="emne_pack"?x.items:[x]).find(x=>x.id===id);
+for(const x of [cat,runtime]) {
+  assert(x,"Missing canonical catalog/runtime entry");
+  assert.equal(x.latin,"Plantago lanceolata");
+  assert.equal(x.title,"Smalkjempe");
+}
+const src = new URL(a.src,root);
+assert(fs.existsSync(src),"Original smalkjempe WebP is not present on the PR branch");
+const b=fs.readFileSync(src);
+assert.equal(b.length,a.sizeBytes);
+assert.equal(crypto.createHash("sha256").update(b).digest("hex"),a.sha256);
+assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),a.gitBlobSha);
+assert.equal(b.toString("ascii",0,4),"RIFF");
+assert.equal(b.toString("ascii",8,12),"WEBP");
+assert.equal(b.toString("ascii",12,16),"VP8X");
+assert((b[20]&0x10)!==0,"WebP must contain original alpha");
+assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],a.dimensions);
+assert(a.visualChecks.blackBackgroundReviewed && a.visualChecks.fullImageReviewed);
+const env={window:{}};
+vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env);
+const approved = env.window.HG_NATURE_FLORA_APPROVED;
+assert(approved?.count >= 58, "Previously approved 58 artworks must remain available");
+assert.equal(approved.get(id)?.src,a.src);
+assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
+const html=read("finn-flora.html");
+assert(html.includes("nature-flora-approved.js"),"Flora page must use approved registry");
+console.log("Smalkjempe #58: original byte hashes, alpha, 1024x1536, botanical catalog and black display verified.");

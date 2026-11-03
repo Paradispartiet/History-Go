@@ -1,0 +1,50 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-03",
+  "status": "source_uploaded_ci_pending",
+  "baselineApproved": 56,
+  "approvedCountAfterRelease": 57,
+  "publicationRule": "Do not merge until the exact original alpha WebP has been transferred, SHA-256 and Git blob SHA match, full botanical black-background review is approved, and illustration-contract and approved-flora-browser both pass on final head; preserve the 56 previously approved illustrations.",
+  "items": [
+    {
+      "name": "Skogstorkenebb",
+      "catalogId": "emne_flora_skogstorkenebb",
+      "scientificName": "Geranium sylvaticum",
+      "taxonomicScope": "species",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/35_skogstorkenebb_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/35_skogstorkenebb_v1.webp",
+      "gitBlobSha": "f260e6747c79fff07b0b777e9419049dd373fd76",
+      "sha256": "1db93474b58cfb69fb7f81a92b4127d217616ab18b0d9fda8db595935c44eeaf",
+      "sizeBytes": 481590,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "botanicalVisualDecision": "visually_recognizable_field_guide_level",
+      "reviewedAt": "2026-11-03",
+      "stage": "sommerblomstring_og_fruktsetting",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://www.rhs.org.uk/plants/97052/geranium-sylvaticum/details",
+        "https://nibio.brage.unit.no/nibio-xmlui/bitstream/11250/2561360/2/NIBIO_BOK_2018_4_7.pdf",
+        "https://s46339.pcdn.co/wp-content/uploads/Felthandbok-viktige-arter-for-miljoregistreringer-i-skog.pdf",
+        "https://snl.no/skogstorkenebb"
+      ],
+      "observations": "Skogstorkenebb er en opprett flerårig urt med hårete stengler, grove, tydelig handdelte og tannete blad med fem til sju fliker, og rødfiolette til blåfiolette femkronbladete blomster, ofte i par på forgreinete stilker. De har lys midtsone, fine mørke årer og synlige pollenbærere. Etter blomstring dannes karakteristiske lange, spisse fruktnebb. En grov rotstokk og finrøtter vises.",
+      "limitations": "Illustrasjonen kombinerer blomster, hengende knopper og frukter på ett stilisert eksemplar. Kronbladenes og bladflikenes størrelser er noe forstørret for gjenkjennelighet på små skjermer. Planten kan variere i fiolettnyanse og ha lysere blomster. Dette er en botanisk artsillustrasjon, ikke en sikker bestemmelsesnøkkel. Full godkjenning krever visuell gjennomgang av eksakt WebP i GitHub og en kontrollert rendering med svart #000 bakgrunn.",
+      "technicalVerification": "Locally produced 1024x1536 RGBA image with original alpha, 862697 fully transparent pixels. WebP 481590 bytes; SHA256 1db93474b58cfb69fb7f81a92b4127d217616ab18b0d9fda8db595935c44eeaf; Git blob f260e6747c79fff07b0b777e9419049dd373fd76. Black #000 composited preview inspected. GitHub original blob matched locally derived SHA after exact upload.",
+      "publicationBlockedBy": [
+        "Both required CI jobs illustration-contract and approved-flora-browser must pass on final PR head.",
+        "GitHub Pages deployment must be checked separately after merge."
+      ]
+    }
+  ]
+}
