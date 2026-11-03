@@ -38,7 +38,7 @@ const body = [
    '</div></div>',
   '<section class="pc-sheet-about"><section class="pc-sheet-canonical-about"><h3>Om stedet</h3><p id="pcDesc">Historisk beskrivelse av Stortorget.</p>',
   '<div class="hg-place-longread"><p>Stortorget har vært en sentral møteplass gjennom lang tid. Her handlet innbyggerne og møttes på markedet, og torget fikk en viktig rolle i byens liv. Historien om stedet omfatter handel, byutvikling og mennesker som brukte området. Teksten fortsetter på høyre side av bildet og vil fylle hele bredden nedenfor bildet når den er lang nok. Stortorget har forandret seg flere ganger, men har fortsatt en sentral plass i bybildet.</p></div></section></section>',
-  '</div>',
+  '</div></div>',
   '<div class="pc-sheet-explore-grid"><div class="pc-side-stack">',
   '<div class="pc-icons-quad" data-collection-count="4">',
   '<div class="pc-collection" data-collection-id="objects" data-collection-shape="rectangle" aria-label="Gjenstander"></div>',
