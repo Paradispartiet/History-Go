@@ -86,3 +86,23 @@ Ingen av disse er lagt til som `image`/`frontImage`. Hovedbilde og stående bild
 - `data/runtime/place-open/minneparken_gamlebyen.json` er lest tilbake fra grenen: `place.popupDesc ===` canonical Place-`popupDesc`, **335 ord**.
 - Den midlertidige workflowen `.github/workflows/minneparken-regenerate-temp.yml` ble slettet fra arbeidsgrenen etter verifisering; den skal ikke inngå i sluttdiffen.
 - Ingen publiserings-/deploy- eller mergehandling er utført. Historieproduksjon, quiz/QuizCard, People/Objects/Brand-kandidater, bilder med proveniens og mobil-/desktopbrowser står fortsatt som sperrer.
+
+## Supplerende kandidataudit og teknisk reparasjon (3. november 2026)
+
+### Reparererte, etterprøvbare CI-kontrakter
+
+- Den tidligere feilen i `tests/epoke-place-index.test.mjs` kom av en utdatert forventning om bare 1932 og 2024. Etter kildebelagt utvidelse av Minneparkens leksikonkronologi er de gjennomgåtte ankerårene **1918, 1928, 1932 og 2024**. Testen ble oppdatert i commit `e7e2e8e9e1864c56bc7e361a7bc6aba276dd5f40`, uten å slette kildestøttede hendelser.
+- `dist/web/place-unified-surface.js` og sourcemap var ute av synk. En avgrenset engangsjobb regenererte disse filene i commit `2d2cc9ed0b7c8ffba1e59ddf417333b861055bf9`. GitHub Actions [#41577777123](https://github.com/Paradispartiet/History-Go/actions/runs/41577777123) bestod med TypeScript-kontroll, web-bygg, `build:web:check` og den oppdaterte epoketesten.
+- Den midlertidige web-workflowen ble slettet etter kjøringen i commit `761e37482e3a73c960941bb406cbc86b973ca6c4`; den skal ikke inngå i sluttdiffen.
+- Ordinær PR-CI på endelig head er fortsatt en separat port. Tidligere røde Fagverk-jobber omfatter `the_villa` og `jaeger_oslo`. Deres Place-filer hadde identisk blob-SHA i den inspiserte PR-grenen og i `main`, og skal ikke maskeres med svakere auditor eller feilaktig fremstilles som en ny Minneparken-feil.
+
+### Source-bounded kandidatgjennomgang: PlaceCard-samlinger
+
+| Kandidatfamilie | Konkret lokal evidens | Foreløpig avgjørelse og hindring |
+| --- | --- | --- |
+| People | Oslo byleksikons omtale av **Gerhard Fischer** (arkeologisk arbeid og godkjent parkplan i 1928) og **Harry Fett** (tale ved åpningen i 1932). | **KANDIDATER / IKKE MATERIALISERT**. Kontroller eksisterende canonical People-ID-er, stedstilknytning, personprofilkontrakten og bildeproveniens før samling kan opprettes. Ingen konstruerte personer. |
+| Objects | Kilder omtaler grunnmurer, apside, kirkegård og betonglokk. Dette er primært anlegg, ruiner og materiell kulturarv på stedet, ikke uten videre selvstendige, flyttbare Objects. | **IKKE AVKLART**. Kilder som dokumenterer konkrete enkeltgjenstander med korrekt objekttilhørighet må undersøkes. Ikke opprett Object bare fra ruin-/strukturbetegnelser. |
+| Brands | Minneparken er en navngitt offentlig ruinpark. Det inspiserte stedsstoffet identifiserer ikke en selvstendig merkevare som kvalifiserer bare fordi den har en steds- eller forvalternavn. | **IKKE AVKLART / INGEN MATERIALISERING**. Før `N/A` kreves egen kontroll av canonical brand-katalog, brands-by-place og kandidatspesifikk begrunnelse. |
+| Historiske hendelser | Bystyrevedtaket i **1918**, parkplanen i **1928**, åpningen i **1932** og endringene i **2024** er kildebelagt og materialisert som leksikon-/epokeankere. | **KANDIDATER / PLACECARD BLOCKED**. En epokelinje er ikke automatisk en canonical historical-events-samling eller en fullført Story. Eierskap, manifest og lastbare previewbilder må kontrolleres før samlingsflaten erklæres ferdig. |
+
+Denne kandidatenes status er en kontrollert avgrensning, ikke en beslutning om at alle fire samlinger skal vises. I tråd med `PLACE_PRODUCTION_PROFILES.md` velges én til fire **faktisk ferdige og kildebårne** samlinger, ikke fyll for å oppnå antall. Ny v1-/vFerdig-status er fortsatt blokkert av bilder, fullquiz/QuizCard, Historie-portene F/G/H og faktisk mobil-/desktop-QA av Minneparken.
