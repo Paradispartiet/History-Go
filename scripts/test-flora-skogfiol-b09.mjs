@@ -51,7 +51,7 @@ const approved = env.window.HG_NATURE_FLORA_APPROVED;
 assert(approved, "Approved registry missing");
 assert.equal(approved.get(id)?.src, a.src, "Skogfiol image is not linked to approved registry");
 assert.equal(approved.get(id)?.gitBlobSha, a.gitBlobSha);
-assert.equal(approved.count, 56, "Approved species count incorrect");
+assert(approved.count >= 56, "Skogfiol must remain in the approved species registry");
 const html = read("finn-flora.html");
 assert(html.includes("nature-flora-approved.js"), "Flora page has not linked approved registry");
 console.log("Skogfiol #56 exact WebP, true alpha, SHA256, Git SHA, species records, registry and black display verified.");
