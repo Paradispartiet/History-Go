@@ -6,7 +6,7 @@
   "use strict";
   const images = Object.freeze({
     emne_flora_stemorsblomst_forvillet: Object.freeze({
-      scientificName: "Viola tricolor",
+      scientificName: "Viola tricolor m.fl.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/40_stemorsblomst_v1.webp",
       gitBlobSha: "4400ff7a9d88ad738b8634e937284e128240fd03",
       reviewedAt: "2026-11-03",
