@@ -3,9 +3,9 @@
   "place_id": "toyenbadet",
   "category": "sport",
   "status": "blocked_vferdig",
-  "branch_status": "PR_kandidat",
+  "branch_status": "PR_kandidat_synkronisert_med_main",
   "live_status": "ikke_live",
-  "active_phase": "fullproduksjon – kilder og entity-/media-kvalifisering",
+  "active_phase": "Kildeklar v1-integrasjon og sluttkontroll på faktisk mobil/desktop; vFerdig blokkert av medie- og profilrettigheter",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -91,14 +91,14 @@
       ]
     },
     "competitions": {
-      "status": "PASS_CANDIDATE_PENDING_BROWSER",
+      "status": "PASS_BROWSER_DIAGNOSTIC_PENDING_FINAL_CI",
       "candidates": [
         "NM langbane 2.–5. juli 2026"
       ],
       "reason": "Egen konkurranserecord med Medley og NSF, original illustrasjon (klart skilt fra foto) og canonical PlaceCard-profil. Mobil-/desktopvisning og popup må verifiseres før PASS."
     },
     "stories": {
-      "status": "PASS_CANDIDATE_PENDING_RUNTIME_AND_BROWSER",
+      "status": "PASS_GENERATED_AND_STORIES_GOVERNANCE",
       "story_id": "st_toyenbadet_fra_gammelt_til_nytt_bad_2019",
       "reason": "Kildebundet episode_v1-story med reell beslutning om rehabilitering kontra nybygg, tap av 50 m-basseng, vernevurdering og dokumenterte videreføringer. Registrert i begge Stories-manifester. Integritetstest, generert runtime og faktisk visning gjenstår."
     },
@@ -119,7 +119,7 @@
       "reason": "Språkleksikonet har fire kildebelagte oppføringer, registrert i manifest og place-open. Språkleksikon v2 har bestått CI på forrige head."
     },
     "chronology": {
-      "status": "PASS_CANDIDATE_PENDING_EXACT_HEAD_CI",
+      "status": "PASS_REGENERATED_PENDING_EXACT_HEAD_CI",
       "anchors": [
         1976,
         2008,
@@ -140,7 +140,7 @@
       "reason": "Fullquiz 21 og QuizCard 10 ligger i main; ny Knowledge-, manifest- og browserkontroll mangler."
     },
     "leksikon": {
-      "status": "PASS_CANDIDATE_PENDING_EXACT_HEAD_CI",
+      "status": "PASS_REGENERATED_PENDING_EXACT_HEAD_CI",
       "reason": "Hovedartikkel om 1976/2025 og NM; ny kildebundet kunsthistorie og åtte årspunkter er lagt til. Runtime og browser må verifiseres."
     }
   },
@@ -174,10 +174,10 @@
     "quiz": "PASS eksisterende – retest på PR-head",
     "photos": "PASS_CANONICAL_ASSETS: separate license-tracked historic hero and true 900x1350 portrait; visual browser QA remains blocked.",
     "language": "PASS: Fire manifestkoblede, kildebelagte språkoppføringer; Språkleksikon v2-grønn CI på tidligere head.",
-    "chronology": "KONKRET INNHOLD LAGT INN: Seks source-backed år i nytt leksikon; epokeindeks-generering og exact-head test gjenstår.",
+    "chronology": "Åtte kildebelagte kronologipunkter er materialisert, og global epokeindeks regenerert etter oppdatering fra main; ny eksakt-HEAD-test følger.",
     "collections": "PARTIAL: dokumentert konkurransesamling for NM 2026; People og Objects har reelle, uferdige kandidater fra Oslo kommunes kunstsamling og skal ikke feilmerkes N/A.",
-    "browser_QA": "BLOCKED",
-    "runtime": "synkronisert JSON i arbeidsgren, generatorkontroll ikke kjørt"
+    "browser_QA": "Begge viewport-diagnostikker viser Competition-preview med faktisk lastet bilde, korrekt én-samlingsprofil og NM-innhold; full test kjøres med oppdatert v2_curated-forventning.",
+    "runtime": "Global place-open/leksikon/lesespor/Stories/epokeindeks regenerert og pushet etter merge av main, uten legacy cardImage."
   },
   "test_plan": [
     "node scripts/validate-place-description-production-v4_2.mjs --help / målrettet endringskontroll",
@@ -197,7 +197,7 @@
     "maintainability": 4,
     "total": 23,
     "high_quality": false,
-    "note": "Kildedokumentert offentlig kunst er integrert i leksikon og kandidataudit. People og Objects mangler rettighetsklarerte preview/portrettbilder og canonical materialisering. Endelig browser og CI er ikke bekreftet. Ikke vFerdig."
+    "note": "Regenerert mot main og rettet browser-assert for place_card_profile_v2_curated. Mangler fortsatt rettighetsklarert foto av 2025-bygningen og kildekoblede People-/Objects-medlemsbilder og full grønn eksakt-HEAD-browser-CI; derfor ikke vFerdig. Ingen bilder er brukt uten bekreftet lisens."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
