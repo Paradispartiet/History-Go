@@ -55,5 +55,5 @@ test('Tøyenbadet: before/after is substantive, source-based and honest about di
   assert.ok(other && fs.existsSync(other.path));
   assert.notEqual(other.path, place.image);
   assert.notEqual(other.path, place.for_na.nowImage);
-  assert.equal(place.place_card_profile.collection_ids.length, 1, 'other collections must not be activated without validated member previews');
+  assert.deepEqual(place.place_card_profile.collection_ids, ['brands', 'competitions'], 'only the verified Asplan Viak and NM collections may be activated');
 });
