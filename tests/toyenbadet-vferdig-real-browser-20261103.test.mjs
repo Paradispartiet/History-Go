@@ -80,7 +80,7 @@ try{
      assert.equal(beforeAfter.photos.length,2);
      assert.ok(beforeAfter.photos.every(p=>p.width>0&&p.height>0));
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("has-quiz-card"),null,{timeout:30000});
-     // The three source-backed Sport collections must be visible and image-backed.
+     // All four source-backed collections must be visible with genuine loaded preview assets.
      await page.waitForFunction(()=>{
        const card=document.getElementById("placeCard");
        const icon=document.getElementById("pcCategoryCollectionIcon");
@@ -90,8 +90,10 @@ try{
        const brandImg=brandIcon?.querySelector("img");
        const objectIcon=document.getElementById("pcObjectsIcon");
        const objectImg=objectIcon?.querySelector("img");
-       return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
-         && card?.dataset.collectionCount==="3"
+       const peopleIcon=document.getElementById("pcPeopleIcon");
+       const peopleImg=peopleIcon?.querySelector("img");
+       return ["place_card_profile_v2_curated","place_card_profile_v2"].includes(card?.dataset.collectionProfileSource)
+         && card?.dataset.collectionCount==="4"
          && icon?.dataset.collectionId==="competitions"
          && icon?.dataset.previewStatus==="member-image"
          && img?.complete&&img.naturalWidth>0
@@ -100,7 +102,10 @@ try{
          && brandImg?.complete&&brandImg.naturalWidth>0
          && objectIcon?.dataset.collectionItemCount==="2"
          && objectImg?.complete&&objectImg.naturalWidth>0
-         && objectIcon?.querySelector(".pc-object-preview-disclosure")?.textContent?.includes("Illustrasjon");
+         && objectIcon?.querySelector(".pc-object-preview-disclosure")?.textContent?.includes("Illustrasjon")
+         && peopleIcon?.dataset.collectionItemCount==="1"
+         && peopleImg?.complete&&peopleImg.naturalWidth>0
+         && peopleImg?.getAttribute("src")?.includes("anne_lindboe_2023_cc_by_sa");
      },null,{timeout:30000});
      const flip=page.locator("#pcFrontCardFlip");
      await flip.click();
@@ -130,6 +135,11 @@ try{
          previewStatus:icon?.dataset.previewStatus,
          imageSrc:img?.getAttribute("src"),
          imageLoaded:img?.complete&&img.naturalWidth>0,
+         peopleCount:document.getElementById("pcPeopleIcon")?.dataset.collectionItemCount,
+         peopleImage:document.querySelector("#pcPeopleIcon img")?.getAttribute("src"),
+         peopleImageLoaded:!!document.querySelector("#pcPeopleIcon img")?.complete && document.querySelector("#pcPeopleIcon img")?.naturalWidth>0,
+         objectCount:document.getElementById("pcObjectsIcon")?.dataset.collectionItemCount,
+         brandCount:document.getElementById("pcBrandsIcon")?.dataset.collectionItemCount,
          listText:list?.textContent?.slice(0,300),
          iconExists:!!icon,
          cardVisible:!!card&&getComputedStyle(card).display!=="none",
