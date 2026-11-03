@@ -203,7 +203,7 @@
   },
   "quizOpening": {
     "status": "N/A",
-    "rationale": "Første 2 × 7 normale fullquizspørsmål er teknisk validert og fullquiz 3 × 7 er spilt helt gjennom på mobil og desktop. QuizCard-baksiden viser ti kilde-/fasitparitetskontrollerte spørsmål; flipp, forstørrelse, Escape og tastaturstyring fungerte i Playwright på begge formater (Actions #41587943304, forsøk 2). Endelig Knowledge-registry-synk og manifestaktivering mangler, og uavhengig redaksjonell review gjenstår. Derfor er fortsatt ingen publiseringsgodkjenning gitt."
+    "rationale": "Åpningsdelen (2 × 7 normale spørsmål) er både kvalitets-, Knowledge- og real-browser-kontrollert. Alle 21 spørsmål har nå kanoniske Knowledge-lenker og QuizCard speiler ti av dem; mobil/desktop-throughplay bestod med belønning og uten fysisk besøksregistrering på sammenslått main (Actions #41608954142). Uavhengig redaksjonelt akseptstempel og godkjent aktivisering i quiz-/QuizCard-manifest mangler, så denne tekniske fullføringen er ingen publiseringsgodkjenning."
   },
   "chronologyStories": {
     "status": "N/A",
@@ -251,11 +251,11 @@
     },
     "G": {
       "status": "N/A",
-      "rationale": "Fullquiz med 3 × 7 spørsmål og QuizCard med 10 spørsmål er kilde-, fasit- og progresjonsvalidert. Ekte Playwright-gjennomspilling av hele fullquizen og QuizCard-flipp/forstørrelse bestod på mobil og desktop i isolert runtime (Actions #41587943304, forsøk 2), inkludert belønning uten fysisk besøksregistrering. Canonical Knowledge-generator i isolert worktree produserte 32 deterministiske KU-ID-er for 21/21 spørsmål med 32/32 verifiserte kildelenker. Alle quizspørsmål har likevel knowledge_link_status pending; KU-ene er ikke i aktivt committed register, quiz-/QuizCard-manifester er ikke aktivert og uavhengig innholdsreview gjenstår. Gate G forblir N/A."
+      "rationale": "Alle 21 fullquizspørsmålene er nå koblet til totalt 32 reelle kanoniske Knowledge-enheter i det committe registeret (commit 0c8ff446), og alle ti QuizCard-spørsmål har samsvarende status 'linked'. Offisiell Knowledge-generator, deterministisk --check og kontrakttester bestod i Actions #41608081923 med 0 kontraktsfeil (advarsler i øvrig materiale er ikke godkjenningsbevis). Seneste sammenslåtte app bestod fullquiz 3×7 og QuizCard 10/10 på mobil og desktop i Actions #41608954142, uten falsk fysisk besøksregistrering. Quiz og QuizCard er fortsatt ute av aktive runtime-manifester. Uavhengig redaksjonell påstands-/fasitgodkjenning, signert releasebeslutning og eksplisitt manifestaktivering gjenstår. Gate G forblir N/A."
     },
     "H": {
       "status": "N/A",
-      "rationale": "Kildebelagt kronologi for 1918/1928/1932/2024 er materialisert og epokeindeksen teknisk kontrollert. Selvstendig episode_v1-Story-kandidat om ruinavdekkingen i 2024 finnes. Den fulle canonical Stories-integritetskontrollen bestod etter midlertidig registrering i begge manifestene i isolert Git-worktree (Actions #41586542715); ingen Story er publisert i den virkelige PR-grenen. Uavhengig narrativ redaksjonsgodkjenning, full interaktiv runtime-/mobil-QA og redaksjonell sluttvurdering gjenstår. Gate H forblir N/A."
+      "rationale": "Kildebundet kronologi 1918/1928/1932/2024 er materialisert og epokeindeksen kontrollert. En inaktiv episode_v1-Story om avdekking av ruinene i 2024 er materialisert; full canonical Stories-integritetskontroll bestod i isolert prøveaktivering (Actions #41586542715), og kontrollen bestod også etter siste main-fletting (Actions #41608954142). Fortellingen er fortsatt ikke aktivert i Stories-manifestene; uavhengig narrativ redaksjonsgodkjenning, Story-runtime-aksept og signert sluttvurdering mangler. Gate H forblir N/A."
     }
   },
   "review": {
