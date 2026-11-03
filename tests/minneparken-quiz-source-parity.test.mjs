@@ -4,6 +4,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 
 const ROOT = process.cwd();
@@ -91,6 +92,41 @@ test('Each Minneparken Knowledge source resolves to its reviewed external URL', 
   }
 });
 
+// Mirrors the canonical SHA-256 / claim-splitting policy, so stale IDs cannot
+// survive an editorial change to a Knowledge explanation.
+const cleanKnowledge = (value) => String(value ?? '').trim();
+const normalizeKnowledge = (value) => cleanKnowledge(value).toLowerCase().normalize('NFKD')
+  .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
+const splitKnowledgeClaims = (value) => {
+  const source = cleanKnowledge(value).replace(/\s+/g, ' ');
+  if (!source) return [];
+  const protectedText = source
+    .replace(/\b(bl|ca|dvs|dr|f\.eks|mfl|mr|nr|osv|prof|st)\./gi, (match) => match.replace('.', '∯'))
+    .replace(/(\d)\.(\d)/g, '$1∯$2');
+  return protectedText.split(/(?<=[.!?])\s+(?=[A-ZÆØÅ0-9])/)
+    .map((part) => part.replaceAll('∯', '.').trim())
+    .filter((part) => part.length >= 12 && !part.endsWith('?'));
+};
+const canonicalPreviewId = (claim) => {
+  const normalized = normalizeKnowledge(claim);
+  const stem = normalized.replace(/\s+/g, '_').replace(/^_+|_+$/g, '').slice(0, 24) || 'item';
+  const digest = createHash('sha256').update('historie\0' + normalized, 'utf8').digest('hex').slice(0, 10);
+  return 'ku_historie_' + stem + '_' + digest;
+};
+
+test('Staged canonical Knowledge IDs remain deterministic and explicitly unactivated', () => {
+  const allIds = new Set();
+  for (const q of questions) {
+    const expectedClaims = splitKnowledgeClaims(q.knowledge);
+    const expectedIds = (expectedClaims.length ? expectedClaims : [q.knowledge]).map(canonicalPreviewId);
+    assert.deepEqual(q.knowledge_unit_ids, expectedIds, q.id + ' stale canonical ID(s)');
+    assert.equal(q.primary_knowledge_unit_id, expectedIds[0], q.id);
+    assert.ok(['pending', 'linked'].includes(q.knowledge_link_status), q.id);
+    expectedIds.forEach((id) => allIds.add(id));
+  }
+  assert.equal(allIds.size, 32, 'Source-reviewed candidate has 32 independently identified Knowledge claims');
+});
+
 test('Minneparken 10-question QuizCard has exact canonical quiz and answer-key parity', () => {
   assert.equal(card.categoryId, 'historie');
   assert.equal(card.cards.length, 1);
@@ -105,7 +141,7 @@ test('Minneparken 10-question QuizCard has exact canonical quiz and answer-key p
     assert.ok(original, q.sourceQuestionId);
     assert.equal(q.number, i + 1);
     assert.equal(q.sourceQuizId, original.quiz_id);
-    for (const field of ['question', 'options', 'answer', 'answerIndex', 'knowledge', 'claim_id', 'source_urls', 'sources', 'method_id', 'topic_hook_id', 'thinker_id', 'theory_ref', 'guidance_basis']) {
+    for (const field of ['question', 'options', 'answer', 'answerIndex', 'knowledge', 'claim_id', 'source_urls', 'sources', 'primary_knowledge_unit_id', 'knowledge_unit_ids', 'method_id', 'topic_hook_id', 'thinker_id', 'theory_ref', 'guidance_basis']) {
       assert.deepEqual(q[field], original[field], `QuizCard question ${i+1} mismatch in ${field}`);
     }
     assert.equal(collection.answerKey[i].number, i + 1);
