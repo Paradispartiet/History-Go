@@ -80,7 +80,7 @@ try{
      assert.equal(beforeAfter.photos.length,2);
      assert.ok(beforeAfter.photos.every(p=>p.width>0&&p.height>0));
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("has-quiz-card"),null,{timeout:30000});
-     // The two source-backed Sport collections must be visible and image-backed.
+     // The three source-backed Sport collections must be visible and image-backed.
      await page.waitForFunction(()=>{
        const card=document.getElementById("placeCard");
        const icon=document.getElementById("pcCategoryCollectionIcon");
@@ -88,14 +88,19 @@ try{
        const img=icon?.querySelector("img");
        const brandIcon=document.getElementById("pcBrandsIcon");
        const brandImg=brandIcon?.querySelector("img");
+       const objectIcon=document.getElementById("pcObjectsIcon");
+       const objectImg=objectIcon?.querySelector("img");
        return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
-         && card?.dataset.collectionCount==="2"
+         && card?.dataset.collectionCount==="3"
          && icon?.dataset.collectionId==="competitions"
          && icon?.dataset.previewStatus==="member-image"
          && img?.complete&&img.naturalWidth>0
          && list?.textContent?.includes("NM langbane")
          && brandIcon?.dataset.collectionItemCount==="1"
-         && brandImg?.complete&&brandImg.naturalWidth>0;
+         && brandImg?.complete&&brandImg.naturalWidth>0
+         && objectIcon?.dataset.collectionItemCount==="2"
+         && objectImg?.complete&&objectImg.naturalWidth>0
+         && objectIcon?.querySelector(".pc-object-preview-disclosure")?.textContent?.includes("Illustrasjon");
      },null,{timeout:30000});
      const flip=page.locator("#pcFrontCardFlip");
      await flip.click();
