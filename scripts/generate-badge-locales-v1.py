@@ -62,15 +62,23 @@ def replace_embroidered_letters(canvas, original, category, sub):
     cx,cy=w*.5,h*.515
     radial=np.hypot(xx-cx,yy-cy)
     angle=np.abs(np.arctan2(xx-cx,cy-yy))
-    outer={'klassisk_arkitektur':503,'sceneproduksjon':491}.get(sub,478)
-    inner={'klassisk_arkitektur':351,'teater':323,'dans':263,
-           'sceneproduksjon':335,'musikkteater':347}.get(sub,345)
-    theta=math.radians(84 if sub=='klassisk_arkitektur'
-                       else 78 if sub=='sceneproduksjon'
-                       else 73 if category=='scenekunst' else 66)
-    roi=(radial>=inner)&(radial<=outer)&(angle<theta)&(yy>=58)&(yy<(427 if sub=='klassisk_arkitektur' else 306))
+    # Match the full original letter arc rather than flattening its
+    # entire textile header. Dance sits lower; classical title reaches
+    # farther into both extreme sides of the badge.
+    outer={'klassisk_arkitektur':557,'sceneproduksjon':501,
+           'dans':501,'teater':501}.get(sub,495)
+    inner={'klassisk_arkitektur':294,'teater':226,'dans':192,
+           'sceneproduksjon':303,'musikkteater':319}.get(sub,309)
+    theta=math.radians(89 if sub=='klassisk_arkitektur'
+                       else 83 if sub=='sceneproduksjon'
+                       else 79 if sub in ('teater','dans') else 73)
+    max_y={'klassisk_arkitektur':427,'dans':337,
+           'teater':330,'sceneproduksjon':310}.get(sub,315)
+    roi=(radial>=inner)&(radial<=outer)&(angle<theta)&(yy>=48)&(yy<max_y)
     if sub=='klassisk_arkitektur':
-        roi &= ((yy<=300)|(radial>=414))
+        # Avoid the central architectural pediment while still erasing
+        # the two outlying letters along the 3/9 o'clock positions.
+        roi &= ((yy<=300)|(radial>=418))
     raw=np.asarray(original.convert('RGB'),dtype=np.int16)
     rr,gg,bb=raw[:,:,0],raw[:,:,1],raw[:,:,2]
     cream=(rr>128)&(gg>95)&(bb>58)&((rr-gg)>8)&((gg-bb)>1)
