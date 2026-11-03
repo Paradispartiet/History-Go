@@ -260,7 +260,7 @@ def main():
         for sub in badge['sub']:
             if sub not in badge['subBadgeImages']:
                 manifest['skipped'].append({'category':category,'id':sub,'reason':'No approved active source image'})
-    assert len(manifest['entries'])==36, f'Expected 9 active subbadges x 4 languages, got {len(manifest["entries"])}'
+    assert len(manifest['entries'])==4*sum(len(json.loads((ROOT/'data/badges'/f'{name}.json').read_text())['subBadgeImages']) for name in ('by','scenekunst')), f'Localized badge count mismatch: {len(manifest["entries"])}'
     target=ROOT/'data/badges/badge_locale_images_candidates.json'
     target.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     print(f'Generated {len(manifest["entries"])} review-only WebPs; original images unchanged')

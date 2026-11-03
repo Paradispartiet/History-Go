@@ -5,6 +5,15 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_timian: Object.freeze({
+      scientificName: "Thymus serpyllum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/43_timian_v1.webp",
+      gitBlobSha: "8afe4243f368358688ff53ef77261a1f63bc0a1e",
+      reviewedAt: "2026-11-03",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-timian-20261103.json"
+    }),
+
     emne_flora_taklok: Object.freeze({
       scientificName: "Sempervivum spp.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/42_taklok_v1.webp",
