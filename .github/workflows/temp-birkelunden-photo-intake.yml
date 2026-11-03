@@ -1,0 +1,37 @@
+name: TEMP Birkelunden two-original photo intake
+on:
+  push:
+    branches:
+      - agent/birkelunden-photo-source-20261103
+    paths:
+      - .github/workflows/temp-birkelunden-photo-intake.yml
+permissions:
+  contents: write
+jobs:
+  fetch_originals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+      - name: Fetch and verify two distinct Wikimedia Commons originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p bilder/places
+          curl --fail --location --retry 3 --retry-delay 2 --user-agent 'HistoryGo/1.0 (licensed source archival)' 'https://upload.wikimedia.org/wikipedia/commons/5/51/Birkelunden_%28121153%29.jpg' --output bilder/places/birkelunden_hero_tore_saetre_2015.jpg
+          curl --fail --location --retry 3 --retry-delay 2 --user-agent 'HistoryGo/1.0 (licensed source archival)' 'https://upload.wikimedia.org/wikipedia/commons/3/33/Birkelunden.jpg' --output bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg
+          file --mime-type bilder/places/birkelunden_hero_tore_saetre_2015.jpg bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg
+          test "$(file --brief --mime-type bilder/places/birkelunden_hero_tore_saetre_2015.jpg)" = "image/jpeg"
+          test "$(file --brief --mime-type bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg)" = "image/jpeg"
+          test "$(wc -c < bilder/places/birkelunden_hero_tore_saetre_2015.jpg)" -gt 200000
+          test "$(wc -c < bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg)" -gt 200000
+          sha256sum bilder/places/birkelunden_hero_tore_saetre_2015.jpg bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg
+      - name: Commit archived licensed originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/birkelunden_hero_tore_saetre_2015.jpg bilder/places/birkelunden_front_oslo_byarkiv_1920.jpg
+          git commit -m 'assets(birkelunden): archive two distinct licensed photographs'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
