@@ -33,6 +33,19 @@ jobs:
           bla.historyGoSourceFile = 'places/musikk/oslo/places_musikk/blaa.json';
           bla.emne_ids = ['em_musikk_jazz_improvisasjon','em_musikk_scene_klubb_livekultur'];
           fs.writeFileSync(subFile, JSON.stringify(sub, null, 2) + '\n');
+          const grandRow = read('data/places/places_index.json').find(x => x.id === 'grand_hotel');
+          if (!grandRow) throw Error('canonical Grand Hotel missing');
+          const grandSource = read('data/' + grandRow.sourceFile);
+          const grandPlace = (Array.isArray(grandSource) ? grandSource
+            : Array.isArray(grandSource.places) ? grandSource.places : [grandSource])
+            .find(x => x.id === 'grand_hotel');
+          if (!grandPlace?.emne_ids?.length) throw Error('canonical Grand Hotel emner missing');
+          const popFile = 'data/Civication/map/historyGoPlaceMapping.popkultur.json';
+          const pop = read(popFile);
+          if (pop.mappings?.map_grand_hotel?.historyGoPlaceId !== 'grand_hotel')
+            throw Error('Grand Hotel mapping changed');
+          pop.mappings.map_grand_hotel.emne_ids = grandPlace.emne_ids;
+          fs.writeFileSync(popFile, JSON.stringify(pop, null, 2) + '\n');
           const testFile = 'tests/civication-place-mapping-split-manifest.test.mjs';
           let test = fs.readFileSync(testFile, 'utf8');
           const anchor = '  "vulkan_murvegger",';
@@ -45,7 +58,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Civication/map/historyGoPlaceMapping.by.json data/Civication/map/historyGoPlaceMapping.subkultur.json tests/civication-place-mapping-split-manifest.test.mjs
+          git add data/Civication/map/historyGoPlaceMapping.by.json data/Civication/map/historyGoPlaceMapping.subkultur.json data/Civication/map/historyGoPlaceMapping.popkultur.json tests/civication-place-mapping-split-manifest.test.mjs
           if ! git diff --cached --quiet; then
             git commit -m "Align Blå canonical Place and retired tram overlay snapshot"
             git push origin HEAD:civication/fix-noncanonical-map-references-20261103
