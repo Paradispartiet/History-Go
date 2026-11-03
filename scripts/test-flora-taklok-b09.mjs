@@ -37,7 +37,7 @@ assert(a.visualChecks.blackBackgroundReviewed&&a.visualChecks.fullImageReviewed)
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,64);
+assert(approved.count>=64,"Future species additions must retain Takløk");
 assert.equal(approved.get(id)?.scientificName,a.scientificName);
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);

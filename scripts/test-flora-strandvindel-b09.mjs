@@ -32,7 +32,7 @@ const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
 assert.equal(a.approvedForPublication,true,"Requires explicit approval after original upload");
-assert.equal(approved.count,63);
+assert(approved.count>=63,"Prior Strandvindel artwork must remain approved as registry expands");
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
 console.log("Strandvindel #63: complete botanic and binary approval verified.");
