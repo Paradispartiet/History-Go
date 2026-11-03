@@ -14,8 +14,8 @@ const expected={
 };
 test("Funksjonalisme has four localized review-only WebPs with original silhouette",()=>{
   assert.equal(manifest.status,"review_required_not_active");
-  assert.equal(manifest.entries.length,40);
-  assert.equal(Object.keys(source.subBadgeImages).length,3);
+  assert.equal(manifest.entries.length,44);
+  assert.equal(Object.keys(source.subBadgeImages).length,4);
   assert.deepEqual(manifest.locales,["en","es","pt","fr"]);
   const matches=manifest.entries.filter(e=>e.category==="by"&&e.id==="funksjonalisme");
   assert.equal(matches.length,4);
@@ -29,10 +29,18 @@ test("Funksjonalisme has four localized review-only WebPs with original silhouet
     assert.equal(item.bytes,bin.length);
     assert.equal(bin.toString("ascii",0,4),"RIFF");
     assert.equal(bin.toString("ascii",8,12),"WEBP");
-    assert.equal(bin.toString("ascii",12,16),"VP8X");
-    assert.equal(bin.readUIntLE(24,3)+1,1024);
-    assert.equal(bin.readUIntLE(27,3)+1,1024);
-    assert.ok(bin[20]&0x10);
+    const encoding=bin.toString("ascii",12,16);
+    assert.ok(["VP8X","VP8L"].includes(encoding),"valid extended or lossless WebP");
+    if(encoding==="VP8X"){
+      assert.equal(bin.readUIntLE(24,3)+1,1024);
+      assert.equal(bin.readUIntLE(27,3)+1,1024);
+      assert.ok(bin[20]&0x10);
+    }else{
+      const bits=bin.readUInt32LE(21);
+      assert.equal((bits&0x3fff)+1,1024);
+      assert.equal(((bits>>>14)&0x3fff)+1,1024);
+      assert.ok((bits>>>28)&1,"lossless alpha present");
+    }
     assert.equal(createHash("sha256").update(bin).digest("hex"),sha);
   }
 });
