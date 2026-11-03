@@ -79,6 +79,9 @@ try{
     {name:"prikktvetann",label:"Prikktvetann",term:"prikktvetann",path:"b09/30_prikktvetann_v1.webp"},
     {name:"reinfann",label:"Reinfann",term:"reinfann",path:"b09/31_reinfann_v1.webp"},
     {name:"russblastjerne",label:"Russblåstjerne",term:"Russblåstjerne",path:"b09/32_russblastjerne_v1.webp"},
+    {name:"sandarve",label:"Sandarve",term:"sandarve",path:"b09/33_sandarve_v1.webp"},
+    {name:"skogfiol",label:"Skogfiol",term:"Skogfiol",path:"b09/34_skogfiol_v1.webp"},
+    {name:"skogstorkenebb",label:"Skogstorkenebb",term:"Skogstorkenebb",path:"b09/35_skogstorkenebb_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
