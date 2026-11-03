@@ -9,6 +9,7 @@ on:
       - 'data/places/**'
       - 'scripts/check-distinct-place-photos.mjs'
       - 'tests/distinct-place-photo-originals.test.mjs'
+      - 'tests/fotogalleriet-v1-staged.test.mjs'
       - 'data/leksikon/places/oslo/historie/leksikon_oslo_historie.json'
       - 'data/quiz/**'
       - 'js/quizzes.js'
@@ -217,6 +218,7 @@ jobs:
           PHOTO_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           node --test tests/distinct-place-photo-originals.test.mjs
+          node --test tests/fotogalleriet-v1-staged.test.mjs
           node scripts/check-distinct-place-photos.mjs --changed --base "$PHOTO_BASE_SHA" --head "$PHOTO_HEAD_SHA"
       - name: Run generic places check
         shell: bash

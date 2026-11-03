@@ -5,6 +5,38 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_snoklokke: Object.freeze({
+      scientificName: "Galanthus nivalis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/39_snoklokke_v1.webp",
+      gitBlobSha: "dda093727954c14ffa0a66c68619293ae0e74ab8",
+      reviewedAt: "2026-11-03",
+      stage: "sen_vinter_tidlig_vårblomstring",
+      evidence: "data/natur/flora/illustration-quality-snoklokke-20261103.json"
+    }),
+    emne_flora_smaengkall: Object.freeze({
+      scientificName: "Rhinanthus minor",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/38_smaengkall_v1.webp",
+      gitBlobSha: "6d1e5faea142ec030d3eb0daeb9605a22bd626c2",
+      reviewedAt: "2026-11-03",
+      stage: "sommerblomstring_og_modne_frokapsler",
+      evidence: "data/natur/flora/illustration-quality-smaengkall-20261103.json"
+    }),
+    emne_flora_smor_bukk: Object.freeze({
+      scientificName: "Hylotelephium maximum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/37_smorbukk_v1.webp",
+      gitBlobSha: "28dc7efcb0b3083acda652756346a4d5a28778cc",
+      reviewedAt: "2026-11-03",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-smorbukk-20261103.json"
+    }),
+    emne_flora_smalkjempe: Object.freeze({
+      scientificName: "Plantago lanceolata",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/36_smalkjempe_v1.webp",
+      gitBlobSha: "2dfbf434b6a84354fc014dac0934c443ebfe9177",
+      reviewedAt: "2026-11-03",
+      stage: "sommerblomstring_og_fruktsetting",
+      evidence: "data/natur/flora/illustration-quality-smalkjempe-20261103.json"
+    }),
     emne_flora_skogstorkenebb: Object.freeze({
       scientificName: "Geranium sylvaticum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/35_skogstorkenebb_v1.webp",
