@@ -19,9 +19,9 @@ def fabric_band(im, category, sub, foot):
     yy,xx=np.mgrid[:h,:w].astype('float32')
     r=np.hypot(xx-w*.5, yy-h*.515)/w
     angle=np.abs(np.arctan2(xx-w*.5,h*.515-yy))
-    limit=math.radians(64 if category=='scenekunst' or sub=='klassisk_arkitektur' else 59)
-    lo=.343 if category=='by' else .365
-    hi=.448 if category=='by' else .455
+    limit=math.radians(77 if sub=='klassisk_arkitektur' else (73 if sub=='sceneproduksjon' else 64 if category=='scenekunst' else 59))
+    lo=(.32 if category=='by' else {'teater':.30,'dans':.29,'sceneproduksjon':.29,'musikkteater':.345,'regi':.32,'dramaturgi':.32}.get(sub,.34))
+    hi=(.485 if sub=='klassisk_arkitektur' else .469 if category=='by' else .468)
     ramp=lambda x,a,b: np.clip((x-a)/(b-a),0,1)
     opacity = ramp(r,lo,lo+.010)*(1-ramp(r,hi-.010,hi))*(1-ramp(angle,limit-.075,limit))*(1-ramp(yy,h*.28,h*.30))
     rgb=np.asarray(im.convert('RGB'),dtype='float32')
@@ -33,8 +33,8 @@ def fabric_band(im, category, sub, foot):
     cloth=np.clip(col[None,None,:]+(noise+fabric_yarn)[:,:,None],0,255)
     rgb=rgb*(1-opacity[:,:,None])+cloth*opacity[:,:,None]
     if foot:
-        dx=(xx-w*.5)/(w*(.156 if sub=='klassisk_arkitektur' else .130))
-        dy=(yy-h*.838)/(h*.058)
+        dx=(xx-w*.5)/(w*(.156 if sub=='klassisk_arkitektur' else .148))
+        dy=(yy-h*(.838 if sub=='klassisk_arkitektur' else .813))/(h*(.058 if sub=='klassisk_arkitektur' else .070))
         cover=np.clip((1.1-(dx*dx+dy*dy))/.18,0,1)
         if sub=='klassisk_arkitektur': bg=np.array([238,211,167])
         else:
@@ -107,7 +107,17 @@ def main():
                     shutil.copyfile(src,dst)
                 else:
                     result=fabric_band(original,category,sub,bottom is not None)
-                    top_title(result,title,category)
+                    if category=='by' and sub=='modernisme':
+                        # Preserve the original cream stitched stars beside the upper caption.
+                        from PIL import ImageFilter
+                        for cx in (210,825):
+                            side=Image.new('L',original.size,0)
+                            from PIL import ImageDraw
+                            ImageDraw.Draw(side).ellipse((cx-46,206,cx+46,290),fill=255)
+                            side=side.filter(ImageFilter.GaussianBlur(3))
+                            result=Image.composite(original,result,side)
+                    if title!=source_title:
+                        top_title(result,title,category)
                     if bottom: bottom_title(result,bottom,sub=='klassisk_arkitektur')
                     # Compositing translated letterforms changes alpha at antialiased
                     # patch edges. Restore the exact original silhouette before export.
