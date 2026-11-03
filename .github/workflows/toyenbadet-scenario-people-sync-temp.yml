@@ -1,0 +1,34 @@
+name: Tøyenbadet scenario People final sync (temporary)
+on:
+  push:
+    branches:
+      - feat/toyenbadet-four-illustrated-people-20261103
+    paths:
+      - .github/workflows/toyenbadet-scenario-people-sync-temp.yml
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate and check Civication scenario People
+        run: |
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          node --test tests/toyenbadet-illustrated-people.test.mjs tests/toyenbadet-people-staging-source-gate.test.mjs
+      - name: Commit only generated scenario index
+        run: |
+          git status --short
+          git add data/Civication/scenarioPeople/generated/by.json data/Civication/scenarioPeople/generated/sport.json data/Civication/scenarioPeople_index.json
+          if git diff --cached --quiet; then echo "Already in sync"; exit 0; fi
+          git diff --cached --stat
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "chore(toyenbadet): sync scenario People against history People index"
+          git push origin HEAD:${{ github.ref_name }}
