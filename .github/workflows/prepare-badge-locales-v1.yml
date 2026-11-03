@@ -34,5 +34,5 @@ jobs:
             echo "No new image candidates"
           else
             git commit -m "Generate localized badge candidates [skip ci]"
-            git push origin HEAD:feat/by-scene-badge-languages-20261103
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
