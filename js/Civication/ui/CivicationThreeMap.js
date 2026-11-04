@@ -153,6 +153,7 @@
   let landmarkGroup = null;
   let microWorldGroup = null;
   let microWorldSetPeriod = null;
+  let microWorldSetDetailVisible = null;
   let INVISIBLE_HIT_MAT = null;
 
   let W = 0, H = 0;
@@ -185,7 +186,7 @@
   const _stats = {
     placeMarkers: 0, instancedBuildings: 0, genericBuildings: 0, highRiseCount: 0,
     trees: 0, landmarks: 0, roadSegments: 0, landmarkCountByType: {},
-    localObjects: 0, parkObjects: 0, waterfrontObjects: 0, microWorldObjects: 0, microWorldDrawGroups: 0, microWorldSkipped: 0,
+    localObjects: 0, parkObjects: 0, waterfrontObjects: 0, microWorldObjects: 0, microWorldDrawGroups: 0, microWorldSkipped: 0, microWorldFineObjects: 0,
     visiblePlaceMiniatures: 0, placeMiniatureTypes: {}, hiddenDuplicateLandmarkPlaces: 0,
     placeLodLevel: null, culledPlaces: 0, nudgedPlaces: 0, clickableLandmarkPlaces: [],
     miniatureMeshTotal: 0, detailedMiniatures: 0, lowDetailMiniatures: 0
@@ -860,17 +861,21 @@
     _stats.microWorldObjects = 0;
     _stats.microWorldDrawGroups = 0;
     _stats.microWorldSkipped = 0;
+    _stats.microWorldFineObjects = 0;
     if (window.CIVICATION_MICROWORLD_ENABLED === false) return;
     const kit = window.CivicationMapMicroWorld;
     if (!kit || typeof kit.create !== "function") return;
     try {
-      const result = kit.create({ THREE, nx2x, ny2z, groundY: GROUND_Y, clearZones: LANDMARK_CLEAR_ZONES });
+      const result = kit.create({ THREE, nx2x, ny2z, groundY: GROUND_Y,
+        clearZones: LANDMARK_CLEAR_ZONES, showFine: zoom >= 2.1 });
       if (result && result.group) {
         microWorldGroup = result.group;
         scene.add(microWorldGroup);
         _stats.microWorldObjects = result.count || 0;
         _stats.microWorldDrawGroups = result.drawGroups || 0;
         _stats.microWorldSkipped = result.skipped || 0;
+        _stats.microWorldFineObjects = result.fineCount || 0;
+        microWorldSetDetailVisible = typeof result.setDetailVisible === "function" ? result.setDetailVisible : null;
         microWorldSetPeriod = typeof result.setPeriod === "function" ? result.setPeriod : null;
         if (microWorldSetPeriod) microWorldSetPeriod(activeVisualPeriod || "morning");
       }
@@ -3533,6 +3538,7 @@
     // De minste figurene ville bare blitt visuell støy på full oversikt.
     // Slå av hele gruppen ved laveste zoom; ingen ekstra opprettelse eller draw calls.
     if (microWorldGroup) microWorldGroup.visible = zoom >= 0.95;
+    if (microWorldSetDetailVisible) microWorldSetDetailVisible(zoom >= 2.1);
     dirty = true;
     // Del B: zoom/pan/resize gikk alle gjennom updateCamera -> varsle kartlag
     // (CivicationCityLayer) så HTML-markører kan re-projiseres mot 3D-kameraet.
@@ -4087,6 +4093,8 @@
       microWorldObjects: _stats.microWorldObjects,
       microWorldDrawGroups: _stats.microWorldDrawGroups,
       microWorldSkipped: _stats.microWorldSkipped,
+      microWorldFineObjects: _stats.microWorldFineObjects,
+      microWorldVisibleObjects: zoom < 0.95 ? 0 : _stats.microWorldObjects - (zoom < 2.1 ? _stats.microWorldFineObjects : 0),
       visualPeriod: activeVisualPeriod,
       districtProfiles: Object.keys(DISTRICT_VISUAL_PROFILES).length,
       landmarks: _stats.landmarks,
