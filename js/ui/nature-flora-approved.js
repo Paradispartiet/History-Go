@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_varkaal: Object.freeze({
+      scientificName: "Ficaria verna",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/51_varkaal_v1.webp",
+      gitBlobSha: "0e1778c94ab078fdf8408e93048338a2a0580c22",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-varkaal-20261104.json"
+    }),
     emne_flora_varerteknapp: Object.freeze({
       scientificName: "Lathyrus vernus",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/50_varerteknapp_v1.webp",
