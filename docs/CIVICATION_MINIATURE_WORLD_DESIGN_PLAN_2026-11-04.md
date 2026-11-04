@@ -101,3 +101,15 @@ Første sammenhengende prototype på PR #7047:
 - **Tester utvidet:** posisjoner holdes utenfor den faktiske rendererens klare soner, og simulert instansering skal bevare samme totale geometri og redusere antall grupper.
 
 **Neste kontroll før merge:** full GitHub CI på den siste PR-headen, vanlig karttest-suite, browser smoke, manuell Safari/desktop-visuell kontroll og reell FPS-/draw-call-måling. Ingen produksjonsklar-status er erklært.
+
+## Implementeringslogg – mikrokvartaler og detalj-LOD
+
+- Eget dataark i js/Civication/ui/CivicationMicroWorldDistricts.js med **14 kuraterte småmiljøer** i stilisert Oslo. Seks nye miljøer er synlige ved standardzoom; åtte gir nærbildedetaljer først ved innzooming.
+- Totalt **25 miniatyrmiljøer, 158 småobjekter og 15 forskjellige objekttyper**, inkludert små kiosker, søppelbøtter, blomsterstander, parasoller og en diskret fontene. Hvert objekt består av enkle, gjentatte Three.js-former i samme avdempede palett.
+- **Totrinns detaljstyring:** 107 basisobjekter ved vanlig zoom, 51 ekstra fra zoom 2,1. Hele mikroverdenen skjules under zoom 0,95. Dette gir roligere oversikt og nye oppdagelser ved innzooming.
+- **Instansering etter detaljnivå, geometri og materiale.** Isolert JavaScript-kontroll: 583 kildedelmesh fra de 158 figurene fordeles på 80 instansgrupper (inkludert grupper skjult ved standardzoom). Antall grupper er ikke identisk med oppmålte GPU-draw calls.
+- **Validering:** 158 unike normaliserte koordinater, 158 plasseringer utenfor de eksisterende landmark-klareringssonene, ingen egne placeId eller nye klikkmål. Ekstra props kan slås av med eksisterende funksjonsbryter.
+- **Testregresjon:** karttesten laster bydelsdatamodulen og kontrollerer begge LOD-nivåer, avslag nær landemerker, instansantall, sammenheng med 3D-hovedkart og døgnlysets emissivverdier.
+- **CI:** GitHub TypeScript guard og Civication browser smoke var grønne på forrige prototype-commit. Dette beviser ikke at nyeste 158-prop-head er godkjent; CI, mobilinspeksjon og virkelig FPS-måling gjenstår før merge.
+
+Faglig avgrensning: Håndvalgte miniatyrklynger er estetiske stedsvignetter i det stiliserte Oslo-kartet, ikke påstander om nøyaktige geografiske koordinater eller ekte virksomheters plassering. Eventuell videre utvidelse bør først inspiseres visuelt på mobil ved lav, normal og høy zoom.
