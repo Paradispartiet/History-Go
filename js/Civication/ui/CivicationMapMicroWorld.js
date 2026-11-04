@@ -79,10 +79,11 @@
     for (const area of CLUSTERS) {
       for (const item of area.items) {
         result.push({
-          area: area.id, kind: item[0],
-          x: Number((area.x + item[1]).toFixed(5)),
-          y: Number((area.y + item[2]).toFixed(5)),
-          rotation: item[3] || 0
+          area: area.id,
+          kind: String(item[0]),
+          x: Number((area.x + Number(item[1])).toFixed(5)),
+          y: Number((area.y + Number(item[2])).toFixed(5)),
+          rotation: Number(item[3]) || 0
         });
       }
     }
