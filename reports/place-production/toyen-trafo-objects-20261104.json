@@ -2,39 +2,45 @@
   "place_id": "toyen_trafo",
   "date": "2026-11-04",
   "status": "in_progress_not_vferdig",
-  "scope": "Objects collection – bounded physical architectural components",
-  "evidence": [
+  "scope": "Objects candidate audit, illustrated Story detail",
+  "objects_primary_function": "Historical electric substation: transformation and distribution of electricity; later cultural adaptive reuse",
+  "objects_candidate_families": [
+    "documented transformer or substation switchgear",
+    "period-specific voltmeter, insulators, electric distribution machinery",
+    "identified conservation-area workshop tools or museum collection with direct site provenance"
+  ],
+  "objects_accepted": [],
+  "objects_held_back": [
     {
-      "id": "toyen_trafo_kobberkledd_tarnhjelm",
-      "source": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/toyen-trafo/",
-      "why": "Municipal cultural property description directly identifies copper-clad tower helm."
+      "id": "toyen_trafo_tarnhjelm",
+      "reason": "Copper-clad roof element is an architectural detail without independent physical-object identity; belongs to site interpretation or Structures, not Objects."
     },
     {
       "id": "toyen_trafo_smarutede_vinduer",
-      "source": "https://egt-historielag.no/bydelene/arkitektur",
-      "why": "Local history architecture description directly identifies small-pane, slit-like windows."
+      "reason": "Small-pane building windows are facade details; not independently sourced, identifiable historical Objects."
+    },
+    {
+      "id": "electrical_machine_candidate",
+      "reason": "No source-controlled identifiable individual transformer, switchgear, period meter or tool with site provenance and object image has been confirmed."
     }
   ],
-  "accepted_objects": 2,
-  "illustrations": 2,
-  "image_policy": "Two distinct, original SVG schematic illustrations, with visible ILLUSTRASJON – IKKE FOTOGRAFI labels. Not traced from source photos. No claims to authentic proportions or specific glazing/tin age.",
-  "rejected_candidates": [
-    "Historical transformers or high-voltage switchgear: no object-specific surviving examples or photos verified at the original building.",
-    "Generic artist studio tools: not directly documented as one identifiable item at this place.",
-    "Brands or People identities: not substituted for physical Objects."
+  "objects_status": "SOURCE-BOUNDED HOLDBACK",
+  "place_card_profile_decision": "No Objects collection activated; source retains no place_card_profile until another candidate collection qualifies.",
+  "image_policy": "One original 900x520 non-photographic, clearly labeled SVG building-detail illustration is attached to the source-backed historical Story only. No Object identity is inferred from the artwork.",
+  "story_image": "bilder/stories/toyen_trafo/kobberkledd_tarnhjelm_illustrasjon.svg",
+  "sources": [
+    "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/toyen-trafo/",
+    "https://oslobyleksikon.no/side/T%C3%B8yen_transformatorstasjon",
+    "https://trafokunstnerhus.no/historie/"
   ],
-  "source_review": "Site-specific 1915 building details confirmed in public Oslo municipality and local architecture descriptions; distinction between 1915 building and newer neighboring substation maintained.",
-  "gates": {
-    "canonical": "PASS – two distinct site-specific historical architectural members",
-    "generated_place_open": "PASS – 1538 regenerated and verified; Tøyen trafo canonical/runtime objects and profile match",
-    "source_object_status": "two candidates source grounded",
-    "visual_browser": "PASS JSDOM actual PlaceCard renderer (2 object items, SVG previews, source links and illustration disclosure); real Chromium visual QA not yet documented",
-    "overall": "PASS_SOURCED_OBJECTS_ONLY_NOT_VFERDIG"
-  },
-  "not_vferdig": [
-    "People portrait assets and biographies",
-    "Canonical Brands/actors with visually approved badges",
-    "Lesespor, before/after comparison and editorial closeout"
+  "rule_authority": "docs/PLACE_OBJECTS_CANONICAL.md §1, §3, §4, §5A; data/places/README_place_rounds.md",
+  "rule_review": "Object must be a specific physical artifact with independent documented identity, historically relevant function and visual membership evidence; ordinary building details do not qualify. Under Næringsliv + Industri, electric equipment is the primary research lane. Missing evidence must not be hidden by art or unrelated cultural objects.",
+  "remaining_before_vferdig": [
+    "Actual site-specific Objects with individual identity/provenance and preview, or documented full source-bounded exception policy",
+    "Source-backed People with appropriate illustrative/photo visuals",
+    "Canonical Brands or source-bounded holdback",
+    "Lesespor and other contextual sections",
+    "Editorial closeout and browser review"
   ],
-  "run_evidence": "https://github.com/Paradispartiet/History-Go/actions/runs/41920507992"
+  "not_vferdig": true
 }
