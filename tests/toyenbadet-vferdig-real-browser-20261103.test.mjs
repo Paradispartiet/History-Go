@@ -113,11 +113,25 @@ try{
      assert.match(await page.locator("#pcQuizCardContent").innerText(),/Tøyenbadet/i);
      // Canonical popup contract: exactly eight visible tabs, including Språk, no Mer.
      await page.waitForFunction(()=>typeof window.showPlacePopup==="function" && !!window.HGPlacePopupTabs,null,{timeout:25000});
-     await page.evaluate(async()=>{
+     const popupInvocation=await page.evaluate(async()=>{
        const selected=window.HGPlaceOpen?.getPlace?.("toyenbadet") || window.PLACES?.find(x=>x?.id==="toyenbadet");
        if(!selected)throw new Error("Tøyenbadet missing for popup");
-       await window.showPlacePopup(selected);
+       const original=window.makePopup;
+       const observed={selectedId:selected.id,makePopupType:typeof original,closePopupType:typeof window.closePopup,makePopupCalls:0,afterMakePopupCount:0};
+       if(typeof original==="function"){
+         window.makePopup=function(...args){
+           observed.makePopupCalls++;
+           const result=original.apply(this,args);
+           observed.afterMakePopupCount=document.querySelectorAll(".hg-popup").length;
+           return result;
+         };
+       }
+       try{ await window.showPlacePopup(selected); }
+       finally{ if(typeof original==="function")window.makePopup=original; }
+       observed.afterAwaitPopupCount=document.querySelectorAll(".hg-popup").length;
+       return observed;
      });
+     console.log("Tøyenbadet popup invocation:",vp.name,JSON.stringify(popupInvocation));
      const popupDiagnostic=await page.evaluate(()=>({
        popupCount:document.querySelectorAll(".hg-popup").length,
        popupClasses:[...document.querySelectorAll(".hg-popup")].map(x=>x.className).slice(0,4),
