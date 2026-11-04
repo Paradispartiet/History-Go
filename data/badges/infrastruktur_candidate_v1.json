@@ -17,7 +17,8 @@
     "localTechnicalVerified": true,
     "visualApproved": false,
     "repositoryBinaryVerified": false,
-    "registered": false
+    "registered": false,
+    "smallSizeReviewed": true
   },
   "variants": {
     "nb": {
@@ -58,5 +59,30 @@
   },
   "imageEquivalence": "Central motif rectangle x=220..799, y=320..717 compared pixel-for-pixel across all five outputs; verified identical.",
   "activationRule": "Transfer all five exact WebPs; verify WebP headers/dimensions/alpha and SHA-256; visually approve at 1024/128/64; activate only Norwegian original and retain localized assets inactive until runtime supports them.",
-  "currentBlocker": "Five binary WebP files are not uploaded to GitHub. Candidate illustration not yet approved."
+  "currentBlocker": "Five binary WebP files are not uploaded to GitHub. Candidate illustration not yet approved.",
+  "visualReview": {
+    "date": "2026-11-04",
+    "reviewedAtSizes": [
+      1024,
+      128,
+      64
+    ],
+    "motifReadableAt64": true,
+    "longHeadingFullyLegibleAt64": false,
+    "fullSeriesApproval": false,
+    "notes": "Motif and localized captions visually checked at normal and thumbnail sizes; explicit final approval still required."
+  },
+  "binaryVerification": {
+    "localArchiveFileCount": 5,
+    "localHashesMatchManifest": true,
+    "transparentCorners": true,
+    "centralMotifPixelEqualAcrossLocales": true,
+    "centralAreaXYXY": [
+      220,
+      320,
+      800,
+      718
+    ],
+    "repositoryHashesVerified": false
+  }
 }
