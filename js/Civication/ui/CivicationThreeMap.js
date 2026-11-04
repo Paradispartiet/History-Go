@@ -144,6 +144,9 @@
   let host = null;
   let renderer = null;
   let scene = null;
+  let worldHemisphere = null;
+  let worldSun = null;
+  let worldFill = null;
   let camera = null;
   let raycaster = null;
   let placeGroup = null;
@@ -897,23 +900,49 @@
     pmrem.dispose();
   }
 
+  // Spillets fase styrer bare lyssettingen. Vi setter verdier ved fasebytte,
+  // ikke hver frame, og holder nattlys sterkt nok til lesbare stedskort/bygg.
+  const WORLD_LIGHTING = Object.freeze({
+    morning: { hemi: 0.63, sun: 1.19, fill: 0.36, sky: 0x101820, sunColor: 0xf3dfc7, x: -23, y: 21, z: 16 },
+    day:     { hemi: 0.66, sun: 1.36, fill: 0.36, sky: 0x0e141c, sunColor: 0xfff4e4, x: -19, y: 30, z: 16 },
+    evening: { hemi: 0.59, sun: 1.10, fill: 0.38, sky: 0x101723, sunColor: 0xe4c5b5, x: 16, y: 24, z: 14 },
+    night:   { hemi: 0.49, sun: 0.76, fill: 0.37, sky: 0x0d1520, sunColor: 0xc4d0dc, x: -19, y: 30, z: 16 }
+  });
+  let activeVisualPeriod = null;
+
+  function applyWorldMood() {
+    if (!scene || !worldSun || !worldHemisphere || !worldFill) return;
+    const requested = window.CivicationWorldMood?.getPeriod?.() || "morning";
+    const period = Object.prototype.hasOwnProperty.call(WORLD_LIGHTING, requested) ? requested : "morning";
+    if (period === activeVisualPeriod) return;
+    const mood = WORLD_LIGHTING[period];
+    worldHemisphere.intensity = mood.hemi;
+    worldSun.intensity = mood.sun;
+    worldSun.color.setHex(mood.sunColor);
+    worldSun.position.set(mood.x, mood.y, mood.z);
+    worldFill.intensity = mood.fill;
+    scene.background?.setHex?.(mood.sky);
+    scene.fog?.color?.setHex?.(mood.sky);
+    activeVisualPeriod = period;
+    dirty = true;
+  }
+
   function buildLights() {
-    // Lysere, varmere dagslys så de ekte modellenes farger spretter, uten å
-    // blåse ut PBR-flatene. Himmel-/omgivelseslys løftet, sol varmere og
-    // sterkere, litt mer kjølig fill for dybde.
-    scene.add(new THREE.HemisphereLight(0xe2ecf5, 0x474d3c, 0.66));
-    const sun = new THREE.DirectionalLight(0xfff4e4, 1.36);
-    sun.position.set(-19, 30, 16); // konsekvent mykt lys oppe-til-venstre (skalert med brettet)
-    sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
-    const sc = sun.shadow.camera;
+    worldHemisphere = new THREE.HemisphereLight(0xe2ecf5, 0x474d3c, 0.66);
+    scene.add(worldHemisphere);
+    worldSun = new THREE.DirectionalLight(0xfff4e4, 1.36);
+    worldSun.position.set(-19, 30, 16);
+    worldSun.castShadow = true;
+    worldSun.shadow.mapSize.set(2048, 2048);
+    const sc = worldSun.shadow.camera;
     sc.left = -22; sc.right = 22; sc.top = 22; sc.bottom = -22; sc.near = 1; sc.far = 100;
-    sun.shadow.bias = -0.0004;
-    sun.shadow.normalBias = 0.5;
-    scene.add(sun);
-    const fill = new THREE.DirectionalLight(0xccdcee, 0.36);
-    fill.position.set(13, 11, -11);
-    scene.add(fill);
+    worldSun.shadow.bias = -0.0004;
+    worldSun.shadow.normalBias = 0.5;
+    scene.add(worldSun);
+    worldFill = new THREE.DirectionalLight(0xccdcee, 0.36);
+    worldFill.position.set(13, 11, -11);
+    scene.add(worldFill);
+    applyWorldMood();
   }
 
   // ---------------------------------------------------------------------------
@@ -3898,6 +3927,8 @@
     window.addEventListener("pointermove", onPointerMove, { passive: false });
     window.addEventListener("pointerup", onPointerUp);
     window.addEventListener("pointercancel", onPointerUp);
+    window.addEventListener("civi:visualPeriodChanged", applyWorldMood);
+    window.addEventListener("civi:dayPhaseChanged", applyWorldMood);
     window.addEventListener("resize", resize);
     window.addEventListener("orientationchange", () => setTimeout(resize, 120));
     document.getElementById("btnCiviMap")?.addEventListener("click", () => setTimeout(() => { resize(); dirty = true; }, 30));
@@ -4041,6 +4072,7 @@
       parkObjects: _stats.parkObjects,
       waterfrontObjects: _stats.waterfrontObjects,
       microWorldObjects: _stats.microWorldObjects,
+      visualPeriod: activeVisualPeriod,
       districtProfiles: Object.keys(DISTRICT_VISUAL_PROFILES).length,
       landmarks: _stats.landmarks,
       landmarkCountByType: Object.assign({}, _stats.landmarkCountByType),
