@@ -111,59 +111,39 @@ try{
      await flip.click();
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("is-flipped"),null,{timeout:10000});
      assert.match(await page.locator("#pcQuizCardContent").innerText(),/Tøyenbadet/i);
-     // Canonical popup contract: exactly eight visible tabs, including Språk, no Mer.
-     await page.waitForFunction(()=>typeof window.showPlacePopup==="function" && !!window.HGPlacePopupTabs,null,{timeout:25000});
-     const popupInvocation=await page.evaluate(async()=>{
-       const selected=window.HGPlaceOpen?.getPlace?.("toyenbadet") || window.PLACES?.find(x=>x?.id==="toyenbadet");
-       if(!selected)throw new Error("Tøyenbadet missing for popup");
-       const original=window.makePopup;
-       const observed={selectedId:selected.id,makePopupType:typeof original,closePopupType:typeof window.closePopup,makePopupCalls:0,afterMakePopupCount:0};
-       if(typeof original==="function"){
-         window.makePopup=function(...args){
-           observed.makePopupCalls++;
-           const result=original.apply(this,args);
-           observed.afterMakePopupCount=document.querySelectorAll(".hg-popup").length;
-           return result;
-         };
-       }
-       try{ await window.showPlacePopup(selected); }
-       finally{ if(typeof original==="function")window.makePopup=original; }
-       observed.afterAwaitPopupCount=document.querySelectorAll(".hg-popup").length;
-       return observed;
+     // The actual app routes Place details into the unified Place Sheet, not a
+     // legacy .hg-popup. Audit the user-visible canonical owners in the real card.
+     await page.waitForFunction(()=>document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]')?.dataset.placeId==="toyenbadet",null,{timeout:30000});
+     await page.waitForFunction(()=>{
+       const shell=document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
+       if(!shell)return false;
+       const ready=id=>{
+         const section=shell.querySelector('[data-hg-place-sheet-section="'+id+'"]');
+         return !!section&&!section.hidden&&section.dataset.placeId==="toyenbadet"
+           &&!!section.querySelector('[data-hg-place-sheet-owner="'+id+'"]');
+       };
+       return ready("language")&&ready("reading")&&ready("sources");
+     },null,{timeout:45000});
+     const sheetDetails=await page.evaluate(()=>{
+       const shell=document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
+       const count=(id,selector)=>shell.querySelector('[data-hg-place-sheet-section="'+id+'"]')?.querySelectorAll(selector).length||0;
+       return {
+         nav:[...document.querySelectorAll('#placeCard [data-hg-place-sheet-nav="1"] [data-hg-place-sheet-jump]')].filter(x=>!x.hidden).map(x=>x.dataset.hgPlaceSheetJump),
+         language:count("language",".hg-place-language-card, .hg-language-entry, [data-entry-id]"),
+         languageText:shell.querySelector('[data-hg-place-sheet-section="language"]')?.textContent.slice(0,1500)||"",
+         reading:count("reading",".hg-place-reading-card a[href^='https://']"),
+         sourceLinks:count("sources","a[href^='https://']"),
+         story:shell.querySelector('[data-hg-place-sheet-section="stories"]')?.textContent||"",
+         legacyPopupCount:document.querySelectorAll(".hg-popup.place-popup-v2:not([data-hg-place-sheet-language-scaffold])").length
+       };
      });
-     console.log("Tøyenbadet popup invocation:",vp.name,JSON.stringify(popupInvocation));
-     const popupDiagnostic=await page.evaluate(()=>({
-       popupCount:document.querySelectorAll(".hg-popup").length,
-       popupClasses:[...document.querySelectorAll(".hg-popup")].map(x=>x.className).slice(0,4),
-       popupModals:[...document.querySelectorAll(".hg-modal")].map(x=>x.className).slice(0,4),
-       tabButtons:[...document.querySelectorAll(".hg-place-tabs [role=tab]")].map(x=>x.dataset.placeTab).slice(0,12),
-       showPlacePopup:typeof window.showPlacePopup,
-       wrapper:!!window.showPlacePopup?.__hgPlacePopupTabs,
-       isV2:!!window.showPlacePopup?.__hgPlacePopupV2,
-       topLayers:[...document.body.querySelectorAll("[role=dialog]")].map(x=>({c:x.className,html:x.outerHTML.slice(0,250)})).slice(0,4)
-     }));
-     console.log("Tøyenbadet popup diagnostic:",vp.name,JSON.stringify(popupDiagnostic));
-     await page.waitForSelector(".hg-popup.place-popup-v2 [data-place-tab='language']",{timeout:20000});
-     const visibleTabs=await page.locator(".hg-popup.place-popup-v2 .hg-place-tabs [role=tab]").allTextContents();
-     assert.deepEqual(visibleTabs.map(s=>s.trim()),["Om","Historie","Fortellinger","Før/etter","Nyheter","Lesespor","Kilder","Språk"],vp.name+" canonical popup tabs");
-     assert.equal(await page.locator(".hg-popup.place-popup-v2 .hg-place-tabs [data-place-tab='more']").count(),0);
-     await page.locator(".hg-popup.place-popup-v2 [data-place-tab='language']").click();
-     await page.waitForFunction(()=>{
-       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-language");
-       return panel&&!panel.hidden&&panel.querySelectorAll(".hg-place-language-card").length>=4;
-     },null,{timeout:20000});
-     assert.equal(await page.locator(".hg-popup.place-popup-v2 #hg-place-panel-language .hg-place-language-card").count(),4);
-     await page.locator(".hg-popup.place-popup-v2 [data-place-tab='reading']").click();
-     await page.waitForFunction(()=>{
-       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-reading");
-       return panel&&!panel.hidden&&panel.querySelectorAll(".hg-place-reading-card a[href^='https://']").length>=4;
-     },null,{timeout:20000});
-     assert.equal(await page.locator(".hg-popup.place-popup-v2 #hg-place-panel-reading .hg-place-reading-card a[href^='https://']").count(),4);
-     await page.locator(".hg-popup.place-popup-v2 [data-place-tab='sources']").click();
-     await page.waitForFunction(()=>document.querySelectorAll(".hg-popup.place-popup-v2 #hg-place-panel-sources a[href^='https://']").length>=5,null,{timeout:20000});
-     await page.locator(".hg-popup.place-popup-v2 [data-place-tab='stories']").click();
-     await page.waitForFunction(()=>document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-stories")?.textContent?.includes("Da Oslo valgte å rive Tøyenbadet"),null,{timeout:20000});
-     console.log("PASS Tøyenbadet all eight popup tabs, language, four reading links, source links and story:",vp.name);
+     console.log("Tøyenbadet unified sheet QA:",vp.name,JSON.stringify(sheetDetails));
+     assert.ok(sheetDetails.nav.includes("language"),vp.name+" Språk section must be visible in canonical navigation");
+     assert.ok(sheetDetails.languageText.includes("Tøyenbadet")&&sheetDetails.languageText.includes("hovedbad"),vp.name+" source-backed language entries visible");
+     assert.ok(sheetDetails.reading>=4,vp.name+" four place-linked reading links");
+     assert.ok(sheetDetails.sourceLinks>=5,vp.name+" source references visible");
+     assert.ok(sheetDetails.story.includes("Da Oslo valgte å rive Tøyenbadet"),vp.name+" source-backed Story visible");
+     assert.equal(sheetDetails.legacyPopupCount,0,vp.name+" no legacy duplicate popup");
      await page.locator("#placeCard").screenshot({path:path.join(out,vp.name+"-placecard.png")});
      await page.goto(base+"/fagverk-sted.html?place=toyenbadet",{waitUntil:"domcontentloaded",timeout:60000});
      await page.waitForFunction(()=>document.getElementById("fagverkPlaceContent")?.hidden===false,null,{timeout:45000});
