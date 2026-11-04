@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_akervindel: Object.freeze({
+      scientificName: "Convolvulus arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/56_akervindel_v1.webp",
+      gitBlobSha: "914150925a8e8f59cbbbbc31660317f2ac783360",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-akervindel-20261105.json"
+    }),
     emne_flora_akerveronika: Object.freeze({
       scientificName: "Veronica arvensis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/55_akerveronika_v1.webp",

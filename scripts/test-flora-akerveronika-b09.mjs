@@ -35,7 +35,7 @@ assert(a.visualChecks.blackBackgroundReviewed&&a.visualChecks.fullImageReviewed)
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,77);
+assert(approved.count>=77,"Åkerveronika and all previously approved originals must remain");
 assert.equal(approved.get(id)?.scientificName,latin);
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
