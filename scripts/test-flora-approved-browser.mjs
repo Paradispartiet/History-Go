@@ -94,6 +94,7 @@ try{
     {name:"tyskhonsetarm",label:"Tysk hønsetarm",term:"Tysk hønsetarm",path:"b09/45_tysk_honsetarm_v1.webp"},
     {name:"vassarve",label:"Vassarve",term:"Vassarve",path:"b09/46_vassarve_v1.webp"},
     {name:"veihaukeskjegg",label:"Veihaukeskjegg",term:"Veihaukeskjegg",path:"b09/47_veihaukeskjegg_v1.webp"},
+    {name:"villkarse",label:"Villkarse",term:"Villkarse",path:"b09/48_villkarse_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
