@@ -70,16 +70,21 @@
     wood: 0x827262, stone: 0xa69e8b, steel: 0x535c5f,
     fabric: 0x8a9081, coat: 0x687983, coatAlt: 0x8d776c,
     skin: 0xc0a88e, leaf: 0x637b5c, leafAlt: 0x74856c,
-    lamp: 0xd4c9a9, earth: 0x746452, canopy: 0xa6a18c
+    lamp: 0xd4c9a9, earth: 0x746452, canopy: 0xa6a18c,
+    water: 0x5a7880, flower: 0x939582
   });
-  const VALID_KINDS = new Set(["bench", "person", "lamp", "bicycle", "planter", "bollard", "market", "cafe_table", "dog", "transit_stop"]);
+  const VALID_KINDS = new Set(["bench", "person", "lamp", "bicycle", "planter", "bollard", "market", "cafe_table", "dog", "transit_stop", "kiosk", "waste_bin", "flower_stand", "parasol", "fountain"]);
 
   function getBlueprint() {
     const result = [];
-    for (const area of CLUSTERS) {
+    const extraAreas = Array.isArray(root.CivicationMicroWorldDistricts)
+      ? root.CivicationMicroWorldDistricts : [];
+    for (const area of CLUSTERS.concat(extraAreas)) {
+      const tier = "tier" in area && Number(area.tier) === 2 ? 2 : 1;
       for (const item of area.items) {
         result.push({
           area: area.id,
+          tier,
           kind: String(item[0]),
           x: Number((area.x + Number(item[1])).toFixed(5)),
           y: Number((area.y + Number(item[2])).toFixed(5)),
@@ -195,6 +200,30 @@
         }
         cube(g, 0.12, 0.018, 0.054, COLORS.wood, 0, 0.09, -0.035);
         cube(g, 0.052, 0.073, 0.015, COLORS.fabric, -0.105, 0.23, -0.045);
+      } else if (kind === "kiosk") {
+        cube(g, 0.20, 0.20, 0.15, COLORS.stone, 0, 0.13, 0);
+        cube(g, 0.24, 0.018, 0.18, COLORS.canopy, 0, 0.24, 0);
+        cube(g, 0.11, 0.083, 0.009, COLORS.steel, -0.02, 0.16, 0.077);
+        cube(g, 0.06, 0.015, 0.07, COLORS.wood, 0.035, 0.075, 0.084);
+      } else if (kind === "waste_bin") {
+        cylinder(g, 0.040, 0.11, COLORS.steel, 0, 0.063, 0);
+        cylinder(g, 0.049, 0.012, COLORS.stone, 0, 0.126, 0);
+      } else if (kind === "flower_stand") {
+        cube(g, 0.20, 0.07, 0.095, COLORS.wood, 0, 0.067, 0);
+        for (let i = -1; i <= 1; i++) {
+          ball(g, 0.032, i === 0 ? COLORS.flower : COLORS.leafAlt, i * 0.062, 0.131, 0);
+        }
+      } else if (kind === "parasol") {
+        cylinder(g, 0.009, 0.26, COLORS.steel, 0, 0.13, 0);
+        add(g, geometry("parasol-canopy",
+          () => new THREE.CylinderGeometry(0.035, 0.165, 0.062, 8)),
+          COLORS.canopy, 0, 0.270, 0);
+        cylinder(g, 0.035, 0.010, COLORS.stone, 0, 0.010, 0);
+      } else if (kind === "fountain") {
+        cylinder(g, 0.13, 0.035, COLORS.stone, 0, 0.034, 0);
+        cylinder(g, 0.105, 0.010, COLORS.water, 0, 0.057, 0);
+        cylinder(g, 0.013, 0.067, COLORS.stone, 0, 0.09, 0);
+        ball(g, 0.025, COLORS.water, 0, 0.137, 0);
       } else if (kind === "market") {
         cube(g, 0.21, 0.10, 0.13, COLORS.wood, 0, 0.08, 0);
         cube(g, 0.28, 0.025, 0.20, COLORS.canopy, 0, 0.245, 0);
@@ -207,6 +236,8 @@
     const objects = safeBlueprint(opts.clearZones, opts.clearMargin);
     const batching = typeof THREE.InstancedMesh === "function";
     const batches = new Map();
+    const fineMeshes = [];
+    const fineCount = objects.filter((item) => item.tier === 2).length;
     objects.forEach((item, index) => {
       if (!VALID_KINDS.has(item.kind)) return;
       const miniature = makePiece(item.kind, index);
@@ -218,11 +249,15 @@
       miniature.rotation.y = item.rotation;
       if (!batching) {
         group.add(miniature);
+        if (item.tier === 2) fineMeshes.push(miniature);
       } else {
         miniature.updateMatrixWorld(true);
+        const tierKey = item.tier === 2 ? "fine" : "base";
+        let byGeometry = batches.get(tierKey);
+        if (!byGeometry) { byGeometry = new Map(); batches.set(tierKey, byGeometry); }
         for (const part of miniature.children) {
-          let byMaterial = batches.get(part.geometry);
-          if (!byMaterial) { byMaterial = new Map(); batches.set(part.geometry, byMaterial); }
+          let byMaterial = byGeometry.get(part.geometry);
+          if (!byMaterial) { byMaterial = new Map(); byGeometry.set(part.geometry, byMaterial); }
           let batch = byMaterial.get(part.material);
           if (!batch) { batch = []; byMaterial.set(part.material, batch); }
           batch.push(part.matrixWorld.clone());
@@ -232,8 +267,9 @@
     // Instancing: én draw call per felles geometri/materiale i stedet for
     // én draw call per del av hver benk, person og sykkel.
     if (batching) {
-      for (const [geo, byMaterial] of batches) {
-        for (const [mat, matrices] of byMaterial) {
+      for (const [tierKey, byGeometry] of batches) {
+        for (const [geo, byMaterial] of byGeometry) {
+          for (const [mat, matrices] of byMaterial) {
           const instance = new THREE.InstancedMesh(geo, mat, matrices.length);
           matrices.forEach((matrix, i) => instance.setMatrixAt(i, matrix));
           instance.instanceMatrix.needsUpdate = true;
@@ -242,9 +278,15 @@
           instance.castShadow = false;
           instance.receiveShadow = false;
           group.add(instance);
+          if (tierKey === "fine") fineMeshes.push(instance);
+          }
         }
       }
     }
+    function setDetailVisible(show) {
+      fineMeshes.forEach((node) => { node.visible = show === true; });
+    }
+    setDetailVisible(opts.showFine === true);
     function setPeriod(period) {
       const lamp = materials.get(COLORS.lamp);
       if (lamp) {
@@ -256,6 +298,7 @@
     return {
       group, count: objects.length, drawGroups: group.children.length,
       skipped: getBlueprint().length - objects.length, batched: batching, setPeriod,
+      fineCount, baseCount: objects.length - fineCount, setDetailVisible,
       areas: Array.from(new Set(objects.map((item) => item.area)))
     };
   }
