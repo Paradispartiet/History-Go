@@ -153,6 +153,32 @@ check("projectWorldToScreen returnerer null ved ugyldig input/viewport/renderer"
   assert.strictEqual(M.projectWorldToScreen(0.5, 0.5), null);
 });
 
+
+check("zoom med finger eller mus holder samme miniatyrpunkt under pekeren", () => {
+  const width = 390, height = 844;
+  const base = { x: 0.22, y: 24.75, z: 21.3 };
+  const horizontal = Math.hypot(base.x, base.z);
+  const distance = Math.hypot(base.x, base.y, base.z);
+  const worldPointAt = (px, py) => {
+    const state = M.getTransformState();
+    const units = 2 * 15.9 / (height * state.zoom);
+    const dx = px - width / 2, dy = py - height / 2;
+    return {
+      x: state.panX + units * (dx * base.z / horizontal + dy * base.x / horizontal * distance / base.y),
+      z: state.panZ + units * (-dx * base.x / horizontal + dy * base.z / horizontal * distance / base.y)
+    };
+  };
+  M.setStateForTesting({ active: true, THREE: FAKE_THREE, camera: makeCamera(), renderer: {}, W: width, H: height });
+  M.reset();
+  for (const [px, py, next] of [[70, 145, 2.5], [0, 0, 3.6], [390, 844, 1.8]]) {
+    const before = worldPointAt(px, py);
+    M.zoomAt(next, px, py);
+    const after = worldPointAt(px, py);
+    assert.ok(Math.hypot(before.x - after.x, before.z - after.z) < 1e-9,
+      "bakkeankeret må ikke flytte seg ved " + px + "," + py);
+  }
+});
+
 console.log("CivicationThreeMap – transform-event (Del B)");
 
 check("civi:threeMapTransformChanged dispatches ved reset() med riktig detail", () => {
