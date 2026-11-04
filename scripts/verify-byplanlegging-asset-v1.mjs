@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Byplanlegging (7/10) candidate contract. Does not activate images.
+// Byplanlegging (7/10) production contract; verify exact original and locale assets.
 import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -11,19 +11,20 @@ const by=read('data/badges/by.json');
 assert.equal(c.id,'byplanlegging');
 assert.equal(c.categoryId,'by');
 assert.deepEqual(c.size,[1024,1024]);
-assert.equal(c.status,'candidate_pending_binary_upload');
+assert.equal(c.status,'integrated');
+assert.equal(c.quality.registered,true);
+assert.equal(c.quality.technicalApproved,true);
 assert.equal(by.sub.length,10);
 assert.deepEqual(Object.keys(by.subBadgeImages),[
   'klassisk_arkitektur','modernisme','funksjonalisme',
-  'brutalisme','postmodernisme','samtidsarkitektur'
+  'brutalisme','postmodernisme','samtidsarkitektur','byplanlegging'
 ]);
-assert.equal(by.subBadgeImages.byplanlegging,undefined,'Do not activate pending artwork');
+assert.equal(by.subBadgeImages.byplanlegging,c.sourceImage,'Activate original only');
 assert.deepEqual(Object.keys(c.variants),['nb','en','es','pt','fr']);
 
-let absent=[];
 for (const [locale,v] of Object.entries(c.variants)) {
   const file=new URL(v.path,root);
-  if(!existsSync(file)) {absent.push(locale);continue}
+  assert.ok(existsSync(file),locale+' missing WebP');
   const buf=readFileSync(file);
   assert.equal(buf.length,v.bytes,locale+' bytes');
   assert.equal(buf.toString('ascii',0,4),'RIFF',locale+' RIFF');
@@ -34,8 +35,4 @@ for (const [locale,v] of Object.entries(c.variants)) {
   assert.ok(buf[20]&0x10,locale+' transparent alpha flag');
   assert.equal(createHash('sha256').update(buf).digest('hex'),v.sha256,locale+' SHA-256');
 }
-if(process.argv.includes('--require-assets')) {
-  assert.equal(absent.length,0,'Missing WebP files: '+absent.join(','));
-}
-if(absent.length)console.log('Byplanlegging candidate awaiting files: '+absent.join(', '));
-else console.log('Byplanlegging: all 5 WebP files verified; still needs visual approval and activation.');
+console.log('Byplanlegging 7/10: all five pinned WebP files are verified; original is active and locale files remain inactive.');
