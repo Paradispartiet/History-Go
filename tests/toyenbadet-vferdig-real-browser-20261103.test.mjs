@@ -112,6 +112,36 @@ try{
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("is-flipped"),null,{timeout:10000});
      assert.match(await page.locator("#pcQuizCardContent").innerText(),/Tøyenbadet/i);
      await page.locator("#placeCard").screenshot({path:path.join(out,vp.name+"-placecard.png")});
+     // Full vFerdig popup QA: eight visible tabs, real language, reading tracks and sources.
+     await page.evaluate(async () => {
+       const place = window.HGPlaceOpen?.getPlace?.("toyenbadet") || window.PLACES?.find(p => p?.id === "toyenbadet");
+       if (!place || typeof window.showPlacePopup !== "function") throw new Error("Tøyenbadet popup API missing");
+       await window.showPlacePopup(place);
+     });
+     const tabBar=page.locator(".hg-popup.place-popup-v2 .hg-place-tabs");
+     await tabBar.waitFor({state:"visible",timeout:20000});
+     const actualTabs=await tabBar.locator("[role=tab]").allTextContents();
+     assert.deepEqual(actualTabs,["Om","Historie","Fortellinger","Før/etter","Nyheter","Lesespor","Kilder","Språk"]);
+     assert.equal(await tabBar.locator('[data-place-tab="more"]').count(),0);
+     await tabBar.locator('[data-place-tab="language"]').click();
+     await page.waitForFunction(()=>{
+       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-language");
+       return panel && !panel.hidden && panel.querySelectorAll(".hg-place-language-card").length===4;
+     },null,{timeout:25000});
+     assert.match(await page.locator(".hg-popup.place-popup-v2 #hg-place-panel-language").innerText(),/Tøyenbadet|hovedbad|NM langbane|blågrønt tak/);
+     assert.equal(await tabBar.locator('[data-place-tab="language"]').getAttribute("aria-selected"),"true");
+     await tabBar.locator('[data-place-tab="reading"]').click();
+     await page.waitForFunction(()=>{
+       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-reading");
+       return panel && !panel.hidden && panel.querySelectorAll(".hg-place-reading-card").length===4;
+     },null,{timeout:20000});
+     await tabBar.locator('[data-place-tab="sources"]').click();
+     await page.waitForFunction(()=>{
+       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-sources");
+       return panel && !panel.hidden && panel.querySelectorAll("a[href^=https]").length>=5;
+     },null,{timeout:20000});
+     await page.locator(".hg-popup.place-popup-v2").screenshot({path:path.join(out,vp.name+"-popup-sources.png")});
+     console.log("PASS Tøyenbadet eight popup tabs, four language entries and four open reading tracks:",vp.name);
      await page.goto(base+"/fagverk-sted.html?place=toyenbadet",{waitUntil:"domcontentloaded",timeout:60000});
      await page.waitForFunction(()=>document.getElementById("fagverkPlaceContent")?.hidden===false,null,{timeout:45000});
      assert.match(await page.locator("#fagverkPlaceTitle").innerText(),/Tøyenbadet/i);
