@@ -161,10 +161,18 @@
         cube(g, 0.018, 0.09, 0.025, COLORS.steel, 0.09, 0.055, 0);
       } else if (kind === "person") {
         const jacket = index % 3 ? COLORS.coat : COLORS.coatAlt;
+        // Lesbar silhuett i nærvisning: skuldre, armer, hår og sko fremfor en
+        // ren sylinder. Alle delene deler eksisterende instans-batcher.
         cylinder(g, 0.025, 0.082, jacket, 0, 0.115, 0);
+        cube(g, 0.075, 0.020, 0.034, jacket, 0, 0.154, 0);
+        cube(g, 0.017, 0.068, 0.022, jacket, -0.045, 0.115, 0);
+        cube(g, 0.017, 0.068, 0.022, jacket, 0.045, 0.115, 0);
         ball(g, 0.027, COLORS.skin, 0, 0.187, 0);
+        ball(g, 0.026, COLORS.wood, 0, 0.211, -0.005);
         cube(g, 0.017, 0.052, 0.017, COLORS.steel, -0.012, 0.035, 0);
         cube(g, 0.017, 0.052, 0.017, COLORS.steel, 0.012, 0.035, 0);
+        cube(g, 0.026, 0.015, 0.039, COLORS.steel, -0.012, 0.009, 0.009);
+        cube(g, 0.026, 0.015, 0.039, COLORS.steel, 0.012, 0.009, 0.009);
       } else if (kind === "lamp") {
         cylinder(g, 0.011, 0.28, COLORS.steel, 0, 0.14, 0);
         ball(g, 0.03, COLORS.lamp, 0, 0.292, 0);
