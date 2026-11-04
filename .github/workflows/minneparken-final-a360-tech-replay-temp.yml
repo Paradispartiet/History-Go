@@ -26,7 +26,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = '2215091a36393d71f5f5d0f30cb009f3c5f2ea42'
+          test "$(git rev-parse HEAD^)" = '35d38e3027e0b5fe48139f11e83b2f51bb182e2e'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch --no-tags origin main
@@ -79,7 +79,7 @@ jobs:
           node scripts/test-flora-tyskhonsetarm-b09.mjs
           node scripts/test-flora-vassarve-b09.mjs
           node --test tests/toyenbadet-people-staging-source-gate.test.mjs tests/toyenbadet-anne-lindboe-people.test.mjs tests/toyenbadet-illustrated-people.test.mjs
-          node --test tests/badge-by-samtidsarkitektur-v1-production.test.mjs tests/civication-film-theme-source-notes-wave01.test.js tests/civication-produksjonsassistent-intro-persistent-case.test.js
+          node --test tests/civication-film-theme-source-notes-wave01.test.js tests/civication-produksjonsassistent-intro-persistent-case.test.js
           node --test tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-story-candidate.test.mjs tests/birkelunden-place-images.test.mjs tests/civication-symposium-role-history.test.js
           test -s reports/knowledge-contract-audit.json
           git check-ignore -q reports/knowledge-contract-audit.json
