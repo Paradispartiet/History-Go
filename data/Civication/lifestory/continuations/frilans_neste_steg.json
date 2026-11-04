@@ -438,6 +438,66 @@
       }
     },
     {
+      "id": "c04_kundesvar_godkjent",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Styrelederen har lest utkastet",
+      "tekst": "Styrelederen skriver at tid, sted og påmeldingslenke stemmer. Styret godkjenner teksten slik den er og bruker den i invitasjonen. «Send faktura for de avtalte 1 200 kronene.»",
+      "valg": [
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver godkjenningen sammen med tilbudet",
+          "konsekvensTekst": "Invitasjonen er godkjent. Du legger fakturaen på lista over ting du må gjøre. Ingen betaling er mottatt.",
+          "effekter": {
+            "flagg": {
+              "c04_sluttstatus": "godkjent"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_bestilling": "bestilt",
+          "c04_leveranse": "levert"
+        }
+      }
+    },
+    {
+      "id": "c04_kundesvar_avbestilt",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Foreningen trekker bestillingen",
+      "tekst": "Styrelederen takker for at du varslet. De måtte sende ut invitasjonen i går og brukte en kort tekst de skrev selv. Hun bekrefter at de trekker bestillingen og ber om å få vite hvor langt du hadde kommet.",
+      "valg": [
+        {
+          "id": "arkiver",
+          "tekst": "Bekreft avbestillingen og oppgi hva som var gjort",
+          "konsekvensTekst": "Du skriver at utkastet var påbegynt og legger ved tidsnotatet. Saken om eventuelt honorar står åpen. Ingen ny leveransefrist er avtalt.",
+          "effekter": {
+            "flagg": {
+              "c04_sluttstatus": "avbestilt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_bestilling": "bestilt",
+          "c04_leveranse": "fristproblem_varslet"
+        }
+      }
+    },
+    {
       "id": "d13_frilans_kapittel_slutt",
       "threadId": "frilans_etter_forste_kapittel",
       "dag": 13,
