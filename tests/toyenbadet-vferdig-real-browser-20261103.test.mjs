@@ -118,6 +118,17 @@ try{
        if(!selected)throw new Error("Tøyenbadet missing for popup");
        await window.showPlacePopup(selected);
      });
+     const popupDiagnostic=await page.evaluate(()=>({
+       popupCount:document.querySelectorAll(".hg-popup").length,
+       popupClasses:[...document.querySelectorAll(".hg-popup")].map(x=>x.className).slice(0,4),
+       popupModals:[...document.querySelectorAll(".hg-modal")].map(x=>x.className).slice(0,4),
+       tabButtons:[...document.querySelectorAll(".hg-place-tabs [role=tab]")].map(x=>x.dataset.placeTab).slice(0,12),
+       showPlacePopup:typeof window.showPlacePopup,
+       wrapper:!!window.showPlacePopup?.__hgPlacePopupTabs,
+       isV2:!!window.showPlacePopup?.__hgPlacePopupV2,
+       topLayers:[...document.body.querySelectorAll("[role=dialog]")].map(x=>({c:x.className,html:x.outerHTML.slice(0,250)})).slice(0,4)
+     }));
+     console.log("Tøyenbadet popup diagnostic:",vp.name,JSON.stringify(popupDiagnostic));
      await page.waitForSelector(".hg-popup.place-popup-v2 [data-place-tab='language']",{timeout:20000});
      const visibleTabs=await page.locator(".hg-popup.place-popup-v2 .hg-place-tabs [role=tab]").allTextContents();
      assert.deepEqual(visibleTabs.map(s=>s.trim()),["Om","Historie","Fortellinger","Før/etter","Nyheter","Lesespor","Kilder","Språk"],vp.name+" canonical popup tabs");
