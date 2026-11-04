@@ -49,6 +49,7 @@
     "js/Civication/systems/civicationBrandEmployerBridge.js",
     "js/Civication/merits-and-jobs.js",
     "js/Civication/core/civicationCalendar.js",
+    "js/Civication/ui/CivicationWorldMood.js",
     "js/Civication/core/civicationTaskEngine.js",
     "js/Civication/core/civicationChoiceAffordance.js",
     "js/Civication/core/civicationWorkRhythm.js",
