@@ -99,6 +99,7 @@ try{
     {name:"varerteknapp",label:"Vårerteknapp",term:"Vårerteknapp",path:"b09/50_varerteknapp_v1.webp"},
     {name:"varkaal",label:"Vårkål[^,]*",term:"Vårkål",path:"b09/51_varkaal_v1.webp"},
     {name:"varmure",label:"Vårmure",term:"Vårmure",path:"b09/52_varmure_v1.webp"},
+    {name:"akervindel",label:"Åkervindel",term:"Åkervindel",path:"b09/56_akervindel_v1.webp"},
     {name:"akerveronika",label:"Åkerveronika",term:"Åkerveronika",path:"b09/55_akerveronika_v1.webp"},
     {name:"akerdylle",label:"Åkerdylle",term:"Åkerdylle",path:"b09/54_akerdylle_v1.webp"},
     {name:"varpengeurt",label:"Vårpengeurt",term:"Vårpengeurt",path:"b09/53_varpengeurt_v1.webp"},
