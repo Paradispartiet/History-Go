@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_villkarse: Object.freeze({
+      scientificName: "Cardamine hirsuta",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/48_villkarse_v1.webp",
+      gitBlobSha: "fc13c33ad601be3209de7a9724f5ab3192b344cf",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-villkarse-20261104.json"
+    }),
     emne_flora_veihaukeskjegg: Object.freeze({
       scientificName: "Crepis tectorum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/47_veihaukeskjegg_v1.webp",
