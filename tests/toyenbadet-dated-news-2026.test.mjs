@@ -32,9 +32,9 @@ test('Two dated Tøyenbadet operations news notes are source-owned, not present-
     assert.doesNotMatch(note.popupDesc,/i dag er badet (åpent|stengt)/i);
   }
   assert.equal(news[0].date,'2026-08-28');
-  assert.match(news[0].popupDesc,/7\\. september/);
+  assert.ok(news[0].popupDesc.includes('7. september'));
   assert.equal(news[1].date,'2026-10-16');
-  assert.match(news[1].popupDesc,/20\\. oktober/);
+  assert.ok(news[1].popupDesc.includes('20. oktober'));
   assert.match(news[1].popupDesc,/planlagt/);
 });
 
