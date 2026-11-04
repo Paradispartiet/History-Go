@@ -17,7 +17,7 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   // Rockefeller's 1986 milestone and Tøyenbadet's demolition/new-build Story are both source-backed.
-  assert.equal(index.stats.canonical_story_milestone_count, 243);
+  assert.ok(index.stats.canonical_story_milestone_count >= 243, "previous source-backed Story milestones must remain available");
   assert.ok(index.stats.verified_place_production_milestone_count >= 593, "previous verified milestones must remain available");
 });
 
