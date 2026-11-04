@@ -146,6 +146,11 @@ try{
      assert.equal(sheetDetails.legacyPopupCount,0,vp.name+" no legacy duplicate popup");
      // A recent, source-backed closure notice must appear in Nyheter as dated history,
      // not remain misclassified as N/A or imply that the bath is closed today.
+     console.log("Tøyenbadet news precondition:",vp.name,JSON.stringify(await page.evaluate(()=>{
+       const s=document.querySelector('#placeCard [data-hg-place-sheet-section="news"]');
+       return {present:!!s,hidden:s?.hidden,placeId:s?.dataset.placeId,text:s?.textContent?.slice(0,1200),
+         links:[...s?.querySelectorAll('a[href]')||[]].map(x=>x.href)};
+     })));
      await page.waitForFunction(()=>{
        const section=document.querySelector('#placeCard [data-hg-place-sheet-section="news"]');
        return section && !section.hidden && section.dataset.placeId==="toyenbadet"
@@ -216,6 +221,11 @@ try{
        const list=document.getElementById("pcCategoryCollectionList");
        const img=icon?.querySelector("img");
        return {
+         newsDebug:(()=>{
+           const s=card?.querySelector('[data-hg-place-sheet-section="news"]');
+           return {visible:s&&!s.hidden,placeId:s?.dataset.placeId,text:s?.textContent?.slice(0,2500),
+             links:[...s?.querySelectorAll('a[href]')||[]].map(x=>x.href)};
+         })(),
          currentPlace:card?.dataset.currentPlaceId,
          collectionSource:card?.dataset.collectionProfileSource,
          collectionCount:card?.dataset.collectionCount,
