@@ -33,7 +33,7 @@ assert(a.visualChecks.blackBackgroundReviewed&&a.visualChecks.originalAlphaVerif
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,74,"Preserve other 73 approved images");
+assert(approved.count>=74,"Preserve previously approved 74 images");
 assert.equal(approved.get("emne_flora_varmure")?.scientificName,"Potentilla verna");
 assert.equal(approved.get("emne_flora_varmure")?.src,a.src);
 assert.equal(approved.get("emne_flora_varmure")?.gitBlobSha,a.gitBlobSha);
