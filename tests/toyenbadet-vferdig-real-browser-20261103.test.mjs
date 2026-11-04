@@ -144,6 +144,17 @@ try{
      assert.ok(sheetDetails.sourceLinks>=5,vp.name+" source references visible");
      assert.ok(sheetDetails.story.includes("Da Oslo valgte å rive Tøyenbadet"),vp.name+" source-backed Story visible");
      assert.equal(sheetDetails.legacyPopupCount,0,vp.name+" no legacy duplicate popup");
+     // A recent, source-backed closure notice must appear in Nyheter as dated history,
+     // not remain misclassified as N/A or imply that the bath is closed today.
+     await page.waitForFunction(()=>{
+       const section=document.querySelector('#placeCard [data-hg-place-sheet-section="news"]');
+       return section && !section.hidden && section.dataset.placeId==="toyenbadet"
+         && section.textContent?.includes("Klormaskinfeil førte til én dags stenging")
+         && section.textContent?.includes("2026-10-16")
+         && !!section.querySelector('a[href*="ma-stenge-toyenbadet-etter-funn-av-feil"]');
+     },null,{timeout:35000});
+     assert.ok(await page.locator('#placeCard [data-hg-place-sheet-section="news"] .pc-sheet-news-card').count()>=1,vp.name+" verified maintenance news");
+     console.log("PASS Tøyenbadet dated 2026-10-20 maintenance notice in canonical Nyheter:",vp.name);
      await page.locator("#placeCard").screenshot({path:path.join(out,vp.name+"-placecard.png")});
      // Canonical PlaceSheet replaced legacy modal popup. Validate the *visible owner*
      // sections, never the hidden compatibility popup used to build Språk markup.
