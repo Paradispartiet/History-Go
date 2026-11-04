@@ -184,7 +184,7 @@
   const _stats = {
     placeMarkers: 0, instancedBuildings: 0, genericBuildings: 0, highRiseCount: 0,
     trees: 0, landmarks: 0, roadSegments: 0, landmarkCountByType: {},
-    localObjects: 0, parkObjects: 0, waterfrontObjects: 0, microWorldObjects: 0,
+    localObjects: 0, parkObjects: 0, waterfrontObjects: 0, microWorldObjects: 0, microWorldDrawGroups: 0, microWorldSkipped: 0,
     visiblePlaceMiniatures: 0, placeMiniatureTypes: {}, hiddenDuplicateLandmarkPlaces: 0,
     placeLodLevel: null, culledPlaces: 0, nudgedPlaces: 0, clickableLandmarkPlaces: [],
     miniatureMeshTotal: 0, detailedMiniatures: 0, lowDetailMiniatures: 0
@@ -857,15 +857,19 @@
   // Modulen skal aldri kunne stoppe 3D-kartet ved feil; ingen spilltilstand endres.
   function buildMicroWorld() {
     _stats.microWorldObjects = 0;
+    _stats.microWorldDrawGroups = 0;
+    _stats.microWorldSkipped = 0;
     if (window.CIVICATION_MICROWORLD_ENABLED === false) return;
     const kit = window.CivicationMapMicroWorld;
     if (!kit || typeof kit.create !== "function") return;
     try {
-      const result = kit.create({ THREE, nx2x, ny2z, groundY: GROUND_Y });
+      const result = kit.create({ THREE, nx2x, ny2z, groundY: GROUND_Y, clearZones: LANDMARK_CLEAR_ZONES });
       if (result && result.group) {
         microWorldGroup = result.group;
         scene.add(microWorldGroup);
         _stats.microWorldObjects = result.count || 0;
+        _stats.microWorldDrawGroups = result.drawGroups || 0;
+        _stats.microWorldSkipped = result.skipped || 0;
       }
     } catch (error) {
       console.warn("[CivicationThreeMap] mikroliv feilet; kartet fortsetter:", error);
@@ -4077,6 +4081,8 @@
       parkObjects: _stats.parkObjects,
       waterfrontObjects: _stats.waterfrontObjects,
       microWorldObjects: _stats.microWorldObjects,
+      microWorldDrawGroups: _stats.microWorldDrawGroups,
+      microWorldSkipped: _stats.microWorldSkipped,
       visualPeriod: activeVisualPeriod,
       districtProfiles: Object.keys(DISTRICT_VISUAL_PROFILES).length,
       landmarks: _stats.landmarks,
