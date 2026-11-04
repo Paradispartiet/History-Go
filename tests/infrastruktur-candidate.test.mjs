@@ -8,11 +8,15 @@ test('Infrastruktur is an unactivated 8/10 candidate preserving all seven existi
   const by=read('data/badges/by.json');
   const c=read('data/badges/infrastruktur_candidate_v1.json');
   assert.equal(by.sub.length,10);
-  assert.equal(Object.keys(by.subBadgeImages).length,7);
-  assert.equal(by.subBadgeImages.infrastruktur,undefined);
-  assert.equal(c.status,'produced_awaiting_binary_transfer');
-  assert.equal(c.quality.registered,false);
-  assert.equal(c.quality.visualApproved,false);
+  assert.equal(Object.keys(by.subBadgeImages).length,c.status==='integrated'?8:7);
+  assert.deepEqual(Object.keys(by.subBadgeImages).slice(0,7),[
+    'klassisk_arkitektur','modernisme','funksjonalisme','brutalisme',
+    'postmodernisme','samtidsarkitektur','byplanlegging'
+  ]);
+  assert.equal(by.subBadgeImages.infrastruktur,c.status==='integrated'?c.sourceImage:undefined);
+  assert.ok(['produced_awaiting_binary_transfer','binary_verified_awaiting_approval','integrated'].includes(c.status));
+  assert.equal(c.quality.registered,c.status==='integrated');
+  if(c.status==='integrated') assert.equal(c.quality.visualApproved,true);
   assert.equal(c.sourceImage,'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp');
   assert.deepEqual(Object.keys(c.variants),['nb','en','es','pt','fr']);
   assert.deepEqual(c.size,[1024,1024]);
@@ -27,6 +31,8 @@ test('All five Infrastruktur WebPs are absent or all have exact SHA-256, size, a
   }
   const found=files.filter(f=>existsSync(f.url));
   assert.ok(found.length===0 || found.length===5,'Partial upload of Infrastruktur WebPs must fail CI');
+  if(c.quality.repositoryBinaryVerified) assert.equal(found.length,5,'Verified assets must exist');
+  if(c.status==='integrated') assert.equal(found.length,5,'Integrated assets must exist');
   if(found.length===0){
     assert.equal(c.quality.repositoryBinaryVerified,false);
     return;
