@@ -93,6 +93,21 @@ setup();
 const M = global.window.CivicationThreeMap;
 assert.ok(M, "window.CivicationThreeMap skal være registrert");
 
+check("Civication 3D-kart starter nærmere byen og bruker mobiltilpasset zoom", () => {
+  assert.strictEqual(M.recommendedStartZoom(1200), 1.56);
+  assert.strictEqual(M.recommendedStartZoom(390), 1.72);
+  assert.strictEqual(M.recommendedStartZoom(640), 1.72);
+  assert.strictEqual(M.recommendedStartZoom(641), 1.56);
+  M.setStateForTesting({ active: true, THREE: FAKE_THREE, camera: makeCamera(), renderer: {}, W: 390, H: 844 });
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.72, "mobile reset should frame the city closer");
+  M.setStateForTesting({ W: 1200, H: 800 });
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.56, "desktop reset should frame the city closer");
+  M.zoomOut();
+  assert.ok(M.getZoom() < 1.56, "kartoversikten må fortsatt kunne zoomes ut");
+});
+
 console.log("CivicationThreeMap – projeksjons-API (Del A)");
 
 [
