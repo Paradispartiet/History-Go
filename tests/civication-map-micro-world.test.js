@@ -62,6 +62,10 @@ test("bygger små dekorobjekter uten å opprette klikkbare steder", () => {
     assert.ok(miniature.position.y > 0.12);
     assert.ok(miniature.children.length >= 1);
   }
+  const pedestrians = built.group.children.filter((item) => item.name.endsWith("-person"));
+  assert.ok(pedestrians.length > 0, "miniatyrverden har mennesker");
+  assert.ok(pedestrians.every((item) => item.children.length >= 10),
+    "mennesker har tydelig hode, overkropp, armer, bein og sko");
 });
 
 test("rich map laster modulen før 3D og faller tilbake ved feil", () => {
@@ -76,6 +80,14 @@ test("rich map laster modulen før 3D og faller tilbake ved feil", () => {
   assert.match(renderer, /clearZones: LANDMARK_CLEAR_ZONES/);
   assert.match(renderer, /microWorldSetPeriod\(period\)/);
   assert.match(renderer, /microWorldSetDetailVisible\(zoom >= 2\.1\)/);
+  assert.match(renderer, /nearBuildingGroup.visible = zoom >= 2\.1/);
+  assert.match(renderer, /nearRoadGroup.visible = zoom >= 2\.1/);
+  assert.match(renderer, /const doors = new THREE\.InstancedMesh/);
+  assert.match(renderer, /const canopies = new THREE\.InstancedMesh/);
+  assert.match(renderer, /nearRoadGroup\.add\(extrudeShape\(ribbonPolygon\(points, width \* 1\.62\)/);
+  assert.match(renderer, /crossing: true/);
+  assert.match(renderer, /nearBuildingEntrances: _stats\.nearBuildingEntrances/);
+  assert.match(renderer, /nearRoadCrossings: _stats\.nearRoadCrossings/);
   assert.match(renderer, /mikroliv feilet; kartet fortsetter/);
 });
 
