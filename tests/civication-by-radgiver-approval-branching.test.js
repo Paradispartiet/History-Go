@@ -15,6 +15,7 @@ const Authority=require(path.join(ROOT,'js/Civication/core/civicationInstitution
 const files={
  job:'data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json',
  event:'data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json',
+ knowledge:'data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json',
  followup:'data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json',
  consequence:'data/Civication/mailFamilies/by/consequence/by_radgiver_plan_consequence.json'
 };
@@ -23,6 +24,7 @@ const byId=new Map(mails.map(m=>[m.id,m]));
 const ids={
  open:'by_radgiver_realism_case_open_001',
  request:'by_radgiver_realism_approval_request_001',
+ knowledge:'by_radgiver_realism_knowledge_radhus_001',
  grant:'by_radgiver_realism_approval_grant_001',
  notGranted:'by_radgiver_realism_approval_still_missing_001',
  return:'by_radgiver_realism_return_to_case_001',
@@ -56,6 +58,12 @@ function route(openChoice,requestChoice){
  const adapter=Work.createAdapter(s);
  play(adapter,ids.open,openChoice,0);
  play(adapter,ids.request,requestChoice,1);
+ if(requestChoice==='A') {
+   assert.equal(Rhythm.evaluateScene(byId.get(ids.knowledge),s.getState()).eligible,true);
+   play(adapter,ids.knowledge,'A',2);
+   assert.equal(adapter.getWorkObject('by_radgiver_lillebekk_plan_case_001').status,'awaiting_approval',
+     'professional learning must not erase the pending manager approval');
+ }
  return {s,adapter};
 }
 const approved=route('A','A');
