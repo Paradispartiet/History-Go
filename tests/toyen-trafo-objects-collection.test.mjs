@@ -14,7 +14,8 @@ test("Tøyen trafo refuses to misclassify architectural details as Objects", () 
   assert.equal(place.id, "toyen_trafo");
   assert.equal(place.objects, undefined);
   assert.equal(place.place_card_profile, undefined);
-  assert.deepEqual(runtime.objects, []);
+  assert.equal(runtime.place.objects, undefined);
+  assert.equal(runtime.objects, undefined);
   assert.equal(runtime.place_card_profile, undefined);
   assert.equal(report.objects_status, "SOURCE-BOUNDED HOLDBACK");
   assert.equal(report.objects_accepted.length, 0);
