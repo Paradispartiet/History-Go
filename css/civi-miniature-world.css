@@ -30,8 +30,8 @@ body.civi-app .civi-day-miniature-label {
   text-transform: uppercase;
 }
 
-body.civi-app .civi-day-miniature-label::after {
-  content: "Morgen";
+body.civi-app .civi-day-miniature-period {
+  display: block;
   color: #c6b8a7;
   font-size: .83rem;
   font-weight: 650;
@@ -54,9 +54,9 @@ body.civi-app .civi-day-miniature-art {
   overflow: hidden;
 }
 
-body.civi-app[data-civi-visual-period="day"] .civi-day-miniature-label::after { content: "Dag"; color: #b4c5b4; }
-body.civi-app[data-civi-visual-period="evening"] .civi-day-miniature-label::after { content: "Kveld"; color: #c7b0a3; }
-body.civi-app[data-civi-visual-period="night"] .civi-day-miniature-label::after { content: "Natt"; color: #aebacf; }
+body.civi-app[data-civi-visual-period="day"] .civi-day-miniature-label .civi-day-miniature-period { color: #b4c5b4; }
+body.civi-app[data-civi-visual-period="evening"] .civi-day-miniature-label .civi-day-miniature-period { color: #c7b0a3; }
+body.civi-app[data-civi-visual-period="night"] .civi-day-miniature-label .civi-day-miniature-period { color: #aebacf; }
 body.civi-app[data-civi-visual-period="day"] .civi-day-miniature-art { background-position: 33.333% 50%; }
 body.civi-app[data-civi-visual-period="evening"] .civi-day-miniature-art { background-position: 66.667% 50%; }
 body.civi-app[data-civi-visual-period="night"] .civi-day-miniature-art { background-position: 100% 50%; }
