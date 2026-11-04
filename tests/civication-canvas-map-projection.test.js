@@ -135,6 +135,17 @@ check("projectPlaceToWorld/Screen returnerer null når koordinater mangler (gjet
   assert.strictEqual(M.projectPlaceToScreen({ id: "no_coords" }), null);
 });
 
+
+check("Oslo-oversikt og byutsnitt fungerer også i Canvas-fallback", () => {
+  M.setTransformForTesting({ width: 390, height: 844, zoom: 3, cx: 0.7, cy: 0.7 });
+  M.overview();
+  assert.strictEqual(M.getZoom(), 1);
+  assert.strictEqual(M.getTransformState().cx, 0.5);
+  assert.strictEqual(M.getTransformState().cy, 0.5);
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.34);
+});
+
 console.log("CivicationCanvasMap – transform-event (Del A)");
 
 check("civi:canvasMapTransformChanged dispatches ved zoom (etter state-oppdatering)", () => {
