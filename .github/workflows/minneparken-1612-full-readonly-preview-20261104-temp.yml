@@ -68,7 +68,9 @@ jobs:
           npm ci --no-audit --no-fund
           npm run places:index:build
           npm run places:index:check
+          npm run epoker:places:build
           npm run epoker:places:check
+          git diff --stat -- data/epoker/epoke-place-index.json
           npm run place-open:build
           npm run place-open:check
           node scripts/build-fagverk-release-manifest.mjs
@@ -143,12 +145,12 @@ jobs:
           node --input-type=module <<'NODE'
           import cp from 'node:child_process';
           const changed=cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
-          const allowed=new Set(['data/places/places_index.json','data/runtime/place-open/birkelunden.json','data/fagverk/fagverk_release.json','data/places/place_image_backlog_summary.json']);
+          const allowed=new Set(['data/places/places_index.json','data/runtime/place-open/birkelunden.json','data/fagverk/fagverk_release.json','data/places/place_image_backlog_summary.json','data/epoker/epoke-place-index.json']);
           console.log('Unstaged generated diffs:',JSON.stringify(changed));
           const extra=changed.filter(p=>!allowed.has(p));
           if(extra.length)throw Error('Unreviewed generated paths: '+extra.join(', '));
           NODE
-          git add -- data/places/places_index.json data/runtime/place-open/birkelunden.json data/fagverk/fagverk_release.json data/places/place_image_backlog_summary.json
+          git add -- data/places/places_index.json data/runtime/place-open/birkelunden.json data/fagverk/fagverk_release.json data/places/place_image_backlog_summary.json data/epoker/epoke-place-index.json
           git diff --quiet
           git diff --cached --check
           echo 'PASS read-only rehearsal: no commits, no pushes, manifests and F/G/H unchanged'
