@@ -89,10 +89,10 @@ jobs:
           git add -- data/epoker/epoke-place-index.json data/leksikon/sprak/manifest.json tests/epoke-place-index.test.mjs
           test -z "$(git diff --name-only --diff-filter=U)"
           git merge-base --is-ancestor '25ae9bbd33b4ca5f01e59d4caea5e190aa16a468' origin/main
-          git cat-file -e '2dc04b8180de0fc353c7965308cd6ccec586c4ac^{commit}'
+          git cat-file -e 'b1c31157fde58a39ce5a9c705c2b5553c2f6e7ed^{commit}'
           git cat-file -e 'ff4ee7ea66e89699ec18ea493b5512c5d5f312eb^{commit}'
           for p in docs/PEOPLE_AI_ILLUSTRATION_RULE.md tests/badge-by-samtidsarkitektur-v1-production.test.mjs; do
-            git show '2dc04b8180de0fc353c7965308cd6ccec586c4ac':"$p" > "$p"
+            git show 'b1c31157fde58a39ce5a9c705c2b5553c2f6e7ed':"$p" > "$p"
             git add -- "$p"
           done
           for p in scripts/verify-byplanlegging-asset-v1.mjs tests/badge-by-byplanlegging-v1-production.test.mjs; do
