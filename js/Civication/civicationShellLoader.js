@@ -175,6 +175,7 @@
   const RICH_MAP_SCRIPTS = [
     "js/Civication/ui/CivicationOsloMapCalibration.js",
     "js/Civication/ui/CivicationCanvasMap.js",
+    "js/Civication/ui/CivicationMapMicroWorld.js",
     "js/Civication/ui/CivicationThreeMap.js"
   ];
 
