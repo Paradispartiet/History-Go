@@ -113,3 +113,16 @@ Første sammenhengende prototype på PR #7047:
 - **CI:** GitHub TypeScript guard og Civication browser smoke var grønne på forrige prototype-commit. Dette beviser ikke at nyeste 158-prop-head er godkjent; CI, mobilinspeksjon og virkelig FPS-måling gjenstår før merge.
 
 Faglig avgrensning: Håndvalgte miniatyrklynger er estetiske stedsvignetter i det stiliserte Oslo-kartet, ikke påstander om nøyaktige geografiske koordinater eller ekte virksomheters plassering. Eventuell videre utvidelse bør først inspiseres visuelt på mobil ved lav, normal og høy zoom.
+
+## Implementeringslogg – større, lesbart kartutsnitt
+
+Brukerfeedback: kartet og miniatyrene oppleves for små selv etter flere nye detaljer. Kodegjennomgangen viste at selve kartcontaineren allerede dekker hele skjermen; det er **kameraets avstand/standardzoom** som gjør byen liten. Derfor endres utsnitt, ikke UI-containerens CSS eller byens kanoniske koordinater.
+
+- **WebGL / Three.js:** standardzoom endret fra 1,24 til 1,56 på større skjermer (omtrent +26 % opplevd lineær skala), og 1,72 ved viewportbredde opptil 640 px (omtrent +39 %). Samme nivå benyttes ved kartets nullstillingsknapp.
+- **Canvas fallback:** startzoom og nullstilling bruker nå 1,22 (desktop) / 1,34 (mobil), med 1,0 som fortsatt tilgjengelig minstezoom for full oversikt.
+- **Trygg integrasjon:** Panorering, berøringsbevegelser, projeksjon av steder og treffområder følger uendret samme kartkamera og zoomtilstand som før. Ingen geometri, spilløkonomi, stedsdata eller historieprogresjon endres.
+- **Mikrodetaljer:** med større startutsnitt er 107 basisobjekter tydeligere. De 51 ekstra forblir forbeholdt innzooming fra zoom 2,1, slik at forsiden ikke blir overfylt.
+- **Testet isolert:** faktiske Three.js-/CanvasMap-moduler evaluert med stubbede kamera-/DOM-objekter. Reset ga henholdsvis 1,72/1,56 og 1,34/1,22 for mobil/desktop; utzooming fungerte i begge kartmotorene.
+- **Automatiske tester:** egne regresjonskontroller lagt til eksisterende projektor-/kartzoomtester. Verifiser resultatet på faktisk iPhone/Safari og desktop før merge, særlig at aktuelle sentrumsområder fyller skjermen uten at stedsklikk skjules.
+
+Den økte startzoomen er bevisst moderat. Hvis visuell gjennomgang viser at mobilutsnittet blir for trangt, justeres verdiene før publisering; ikke øk etter gjetning alene.
