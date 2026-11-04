@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_varerteknapp: Object.freeze({
+      scientificName: "Lathyrus vernus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/50_varerteknapp_v1.webp",
+      gitBlobSha: "4f5a386eb138d1ff6f6aacb8e8798a6ff73d3256",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-varerteknapp-20261104.json"
+    }),
     emne_flora_vararve: Object.freeze({
       scientificName: "Draba verna",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/49_vararve_v1.webp",
