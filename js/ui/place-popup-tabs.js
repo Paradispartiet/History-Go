@@ -14,8 +14,7 @@
     ["news", "Nyheter"],
     ["reading", "Lesespor"],
     ["sources", "Kilder"],
-    ["language", "Språk"],
-    ["more", "Mer"] // Internal staging only; never added to the visible tablist.
+    ["more", "Mer"]
   ]);
 
   const text = value => String(value == null ? "" : value).trim();
@@ -342,20 +341,16 @@
     }).join("")}</div>`;
   }
 
-  function renderLanguage(languageArticle) {
-    const entries = list(languageArticle?.entries);
-    return entries.length ? section("Språkleksikon", languageCards(entries))
-      : '<div class="hg-place-tab-empty">Språkoppføringer for dette stedet er ennå ikke ferdigstilt.</div>';
-  }
-
-  function renderMore(article, objectArticles) {
+  function renderMore(article, objectArticles, languageArticle) {
     const interpretation = article?.interpretation && typeof article.interpretation === "object" ? article.interpretation : {};
     const artifacts = [...list(article?.artifacts), ...list(article?.objects), ...list(objectArticles)];
+    const languageEntries = list(languageArticle?.entries);
     return [
       artifacts.length ? section("Spor og objekter", cards(artifacts, true)) : "",
       strings(interpretation.what_to_notice).length ? section("Legg merke til", `<ul>${strings(interpretation.what_to_notice).map(value => `<li>${esc(value)}</li>`).join("")}</ul>`) : "",
       strings(interpretation.why_it_matters).length ? section("Hvorfor det betyr noe", `<ul>${strings(interpretation.why_it_matters).map(value => `<li>${esc(value)}</li>`).join("")}</ul>`) : "",
-      strings(interpretation.counterpoints).length ? section("Motpunkter", `<ul>${strings(interpretation.counterpoints).map(value => `<li>${esc(value)}</li>`).join("")}</ul>`) : ""
+      strings(interpretation.counterpoints).length ? section("Motpunkter", `<ul>${strings(interpretation.counterpoints).map(value => `<li>${esc(value)}</li>`).join("")}</ul>`) : "",
+      languageEntries.length ? section("Språkleksikon", languageCards(languageEntries)) : ""
     ].join("");
   }
 
@@ -509,8 +504,7 @@
     append(tabs.panels.reading, renderLesespor(lesespor, placeId), "reading");
     const hasExistingSourceProfile = Boolean(tabs.panels.sources.querySelector(".hg-place-sources-section"));
     append(tabs.panels.sources, renderSources(place, visibleArticles, !hasExistingSourceProfile), "sources");
-    append(tabs.panels.language, renderLanguage(language), "language");
-    append(tabs.panels.more, renderMore(main, buckets.objects), "more");
+    append(tabs.panels.more, renderMore(main, buckets.objects, language), "more");
 
     if (visibleArticles.length && typeof global.HGLeksikon?.leksikonReadRecordsForPlace === "function") {
       try {
@@ -566,7 +560,7 @@
     global.HGPlacePopupTabs = {
       decoratePopup: decorate,
       resolveLesespor: loadLesespor,
-      tabs: TAB_DEFS.filter(([id]) => id !== "more").map(([id, label]) => ({ id, label }))
+      tabs: TAB_DEFS.map(([id, label]) => ({ id, label }))
     };
     global[INSTALL_FLAG] = true;
     return true;
