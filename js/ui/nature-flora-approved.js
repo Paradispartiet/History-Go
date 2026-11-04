@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_akerveronika: Object.freeze({
+      scientificName: "Veronica arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/55_akerveronika_v1.webp",
+      gitBlobSha: "0f5502735919f07ba0e8eb863c004c2afb21553a",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-akerveronika-20261104.json"
+    }),
     emne_flora_akerdylle: Object.freeze({
       scientificName: "Sonchus arvensis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/54_akerdylle_v1.webp",
