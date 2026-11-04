@@ -2,10 +2,10 @@
   "schema": "history_go_place_workcard_v2",
   "place_id": "toyenbadet",
   "category": "sport",
-  "status": "blocked_vferdig",
-  "branch_status": "PR_7018_MERGED_MAIN_FIVE_PEOPLE_16_OF_16_CI_GREEN",
+  "status": "complete",
+  "branch_status": "PR_7031_MERGED_MAIN_NEWS_AND_FULL_BROWSER_QA; VFERDIG_EDITORIAL_ATTESTATION",
   "live_status": "pages_success_main_1e8b3632_run_41624901416",
-  "active_phase": "Tøyenbadets PlaceCard og fem historisk kildebelagte People er i main. Anne Lindboe har autentisk Commons-foto; de fire øvrige profilene har original, tydelig merket AI-illustrasjon uten påstand om faktisk ansiktslikhet. PR #7018 fikk 16/16 grønne CI-jobber, inkludert mobil/desktop, Place-open og Civication. Bare siste redaksjonelle helhetsvurdering gjenstår før vFerdig.",
+  "active_phase": "SLUTTFØRT – faglig og redaksjonell helhetskontroll 4. november 2026. Fem People, fire kildebårne samlinger, nyhetsnotis, Språk, Lesespor, Før/etter, Story, Fagverk og QuizCard er verifisert på faktisk Place Sheet mobil/desktop; kildegrenser og illustrative medier er beholdt.",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Tøyenbadet har en betydelig kommunal anleggs- og samfunnshistorie fra 1976 til 2026; NM, arkitektur, svømming og offentlig tilgang gir standardbredde.",
@@ -19,7 +19,7 @@
   ],
   "badge_routing": "Sport → People, Objects, Brands, Competitions; ingen fyllekort eller Related som samling.",
   "source_review": {
-    "status": "partially_verified",
+    "status": "verified",
     "sources": [
       "https://oslobyleksikon.no/side/T%C3%B8yenbadet",
       "https://aktuelt.oslo.kommune.no/det-nye-toyenbadet-er-apent",
@@ -37,9 +37,10 @@
       "https://www.asplanviak.no/profilmanual/",
       "https://commons.wikimedia.org/wiki/File:Anne_Lindboe_(1).jpg",
       "https://www.bygg.no/toyenbadet-har-apnet-forberedt-pa-storinnrykk/2739915",
-      "https://svomming.no/nyheter/nm-langbane-i-oslo-leverer-spenning-og-fantastisk-stemning/"
+      "https://svomming.no/nyheter/nm-langbane-i-oslo-leverer-spenning-og-fantastisk-stemning/",
+      "https://www.vartoslo.no/bydel-gamle-oslo-bymiljoetaten-monica-t-olsen/ma-stenge-toyenbadet-etter-funn-av-feil/1319069"
     ],
-    "review_note": "Steds- og personbiografiske kilder er kontrollert. Fire nye originale AI-genererte maleriillustrasjoner er tydelig merket og ikke avledet fra opphavsrettslig usikre pressebilder; de utgir seg verken for foto eller dokumentert ansiktslikhet. Redaksjonell sluttvurdering av hele Place er fortsatt utestående."
+    "review_note": "Endelig stedsreview 2026-11-04: 21/21 stedspåstander i 4.2-pakken kildeverifisert med eget faktareview og språk-/redaksjonsreview. Fem kildebelagte People (ett autentisk foto og fire synlig AI-merkede ikke-dokumentariske maleriillustrasjoner uten påstand om ansiktslikhet); Objects, Brand, Competition og Stories er eieravgrenset og testet. Fire språkoppslag, fire åpne Lesespor, omfattende kildeflate og faktisk Før/etter 2013–2026. Fersksøk fant VårtOslos/offisiell oppdatering om en avgrenset klormaskin-stenging 20.10.2026; dette er nå korrekt datert Nyheter-notis, ikke en aktuell stengingsmelding. Mobil-/desktop-browser (390/1440 px) på PR #7031 har bestått inklusive nyheten. Ingen uløste redaksjonelle blokkere dokumentert."
   },
   "identity": "Kommunalt bade- og idrettsanlegg i Helgesens gate 90 i Tøyenparken; opprinnelig bygning 1976–2020, nytt anlegg åpnet 2025; dette er ett canonical Place.",
   "null_measurement": {
@@ -203,21 +204,26 @@
       "reason": "Eget canonical NM-langbane-2026-medlem med Medley/NSF, originalt illustrert preview og korrekt PlaceCard-kobling. Faktisk mobil/desktop-browser-QA og popupkontroll er bestått; eldre tekst om at test må gjennomføres var utdatert."
     },
     "stories": {
-      "status": "PASS_GENERATED_AND_STORIES_GOVERNANCE",
+      "status": "PASS_BROWSER",
       "story_id": "st_toyenbadet_fra_gammelt_til_nytt_bad_2019",
-      "reason": "Kildebundet episode_v1-story registrert i begge manifester; materialisert i Place-open. Egne Stories- og kildekontroller fra v1 beholdt; siste mobil/desktop-test fokuserer på kort, samlinger, før/etter, QuizCard og Fagverk."
+      "reason": "Kildebundet episode om rivevedtaket 2019, brukerkonsekvensene og nytt hovedbad i 2025 er materialisert; faktisk mobil-/desktop-rendering og separat Stories-governance bestått."
     },
     "before_after": {
       "status": "PASS_BROWSER",
       "reason": "2013- og 2026-fotografier av samme badested er kilde- og lisensdokumentert med eksplisitt ulike kamerastandpunkter. Egen for_na registrert i canonical og runtime; begge bildene dekoder i mobil/desktop nettlesertest."
     },
     "news": {
-      "status": "BEGRUNNET N/A",
-      "reason": "Historiske åpning-/mesterskapshendelser er bedre egnet til historikk og eventuelt Stories; ikke en aktuell nyhetsmodul."
+      "status": "PASS_BROWSER",
+      "reason": "Fersk redaksjonell kontroll avdekket dokumentert klormaskinfeil og en avgrenset stenging tirsdag 20. oktober 2026. En kort 2026-10-16-datert source-backed Leksikon `news_note` er registrert; ikke en falsk påstand om dagens åpningstid. Nyheter-fanen og eksterne kildeknapper bestod faktisk mobil/desktop-test PR #7031, run #41902900089.",
+      "source_urls": [
+        "https://www.vartoslo.no/bydel-gamle-oslo-bymiljoetaten-monica-t-olsen/ma-stenge-toyenbadet-etter-funn-av-feil/1319069",
+        "https://www.oslo.kommune.no/natur-kultur-og-fritid/svommehaller-i-oslo/toyenbadet"
+      ],
+      "browserRun": "https://github.com/Paradispartiet/History-Go/actions/runs/41902900089"
     },
     "lesespor": {
-      "status": "PASS_CANDIDATE",
-      "reason": "Fire direkte stedstilknyttede åpne lenkespor med kilder til historikk, åpning, arkitektur og NM, kun lenker uten gjengivelse av vernet fulltekst; krever browser-kontroll."
+      "status": "PASS_BROWSER",
+      "reason": "Fire åpne, direkte stedstilknyttede tekstspor vises i riktig Place Sheet-eier på mobil 390 og desktop 1440 px. Fire lastende HTTPS-lenker og ingen betalingsmurmarkeringer, bekreftet i PR #7023 og #7031."
     },
     "language": {
       "status": "PASS",
@@ -340,18 +346,19 @@
     "node --test tests/toyenbadet-asplan-viak-brand.test.mjs",
     "node --test tests/toyenbadet-anne-lindboe-people.test.mjs",
     "npm run civication:history-people:build",
-    "npm run people:images:attributions:write"
+    "npm run people:images:attributions:write",
+    "node tests/toyenbadet-vferdig-real-browser-20261103.test.mjs (Nyheter, Språk, Lesespor, Stories og Fagverk)"
   ],
   "quality_assessment": {
     "correctness": 4,
-    "coverage": 3,
+    "coverage": 5,
     "editorial": 4,
-    "technical": 3,
+    "technical": 5,
     "responsibility": 5,
     "maintainability": 4,
-    "total": 23,
-    "high_quality": false,
-    "note": "23/30 – ikke justert uten ny redaksjonell helhetsvurdering. PR #7018 er merget med fem kildekontrollerte People, fire nye originale, tydelig AI-merkede illustrasjoner og 16/16 beståtte GitHub Actions inkl. mobil og desktop. Technisk People-/PlaceCard-/Civication-integrasjon er fullført; samlet sluttreview er eneste utestående vFerdig-port."
+    "total": 27,
+    "high_quality": true,
+    "note": "27/30 etter faktisk sluttvurdering 2026-11-04: correctness 4 (21/21 kildeverifiserte claims og tydelig 1976/2025-avgrensning); coverage 5 (alle kvalifiserte PlaceCard- og popupflater inkl. fersk nyhetsnotis); editorial 4 (konkret historisk prosa, kvalitetssikret Story/Lesespor/Før-etter); technical 5 (CI, genererte indekser, mobil 390/desktop 1440, bildepreview, QuizCard-flip og Fagverk bestått); responsibility 5 (autentiske fotokrediteringer og AI-illustrasjonsmerking uten falsk ansiktslikhet); maintainability 4 (kanoniske eiere, stabile referanser, kun målrettede endringer). Poeng ikke satt til 30 da visuelt uttrykk og redaksjonelt omfang alltid kan forbedres."
   },
   "active_file_scope": [
     "data/places/sport/europa/norway/oslo_sport/toyenbadet.json",
@@ -461,8 +468,8 @@
     }
   },
   "current_verified_measurement": {
-    "verified_at": "2026-11-03",
-    "verified_against": "PR #7018 main squash-merge fd1a93e157e36848f3b3dcba36b3d96f4ac5f794; last PR head 981207da6df59f93f1c6426b478e12d9600d6075; 16/16 GitHub CI success",
+    "verified_at": "2026-11-04",
+    "verified_against": "PR #7031 merget til main 83a847b87b739a88e1705822445f50c13caad917; PR #7023 merget til main 504d14726ddd44c8927a70be03106dfdb8ed018a; Tøyenbadet actual browser run #41902900089 grønn 390/1440 px; 21/21 4.2 claims",
     "people": "5 aktive: Anne Lindboe (autentisk lisensiert foto), Henrik Christiansen, Hedda Øritsland, Halvard Heskestad Waage og Gert Walter Thuesen (4 originale, ikke-dokumentariske og tydelig AI-merkede maleriillustrasjoner)",
     "objects": "2 aktive: startpall 8 og mobil bassengheis, korrekt som skjematiske illustrasjoner",
     "brands": "1 aktiv: Asplan Viak, offisiell logo og dokumentert prosjektkobling",
@@ -476,30 +483,49 @@
     "quiz": "21 fullquizspørsmål bevart",
     "quizcard": "10 QuizCard-spørsmål bevart; faktisk vending testet",
     "source_photos": "2026-eksteriør, 2013 Før/etter, stående 1980 frontImage og ekte 2023-portrett av Anne Lindboe; øvrige fire ikke-dokumentariske AI-illustrasjoner med synlig tekst",
-    "browser": "Tøyenbadet real app browser QA success #41636047217, samt samtlige 16/16 PR #7018 CI-jobs",
+    "browser": "Tøyenbadet real app browser QA success #41902900089: news, language (4), lesespor (4), sources, Story, all 4 collections, QuizCard-flip, local images og Fagverk on 390px mobile and 1440px desktop.",
     "runtime": "5 People i Place-open; People shards, Civication historyPeople og scenarioPeople regenerert og kontrollert",
-    "editorial_closeout": "BLOCKED – siste redaksjonelle helhetsgjennomgang og manuell quality-gate-attestasjon gjenstår; 23/30 inntil faktisk vurdering."
+    "editorial_closeout": "PASS – seksdelte quality-gate vurdert 2026-11-04, 27/30; verken publiserte People-bilder eller kildebaserte popupfaner mangler.",
+    "news": "1 dokumentert, datert driftsnotis om klormaskinfeil publisert 16.10.2026 og dagsstenging 20.10.2026; ingen påstand om at badet er stengt nå. Nyheter integrert i Leksikon, Place-open og browser test bestått."
   },
   "closeout_audit": {
     "schema": "history_go_place_closeout_audit_v1",
-    "date": "2026-11-03",
+    "date": "2026-11-04",
     "published_in_main": true,
-    "published_technical_scope": "v1 with four image-backed collections and five People: one licensed real photograph and four clearly marked original AI illustrations",
+    "published_technical_scope": "vFerdig innholdsgrunnlag i main: 5 People (1 fotografi, 4 AI-illustrasjoner), 2 Objects, 1 Brand, 1 Competition; 21 spørsmål fullquiz, 10 QuizCard, historisk Story, Før/etter, Språk, fire Lesespor, datert Nyheter og kildeflate.",
     "pr_7005_url": "https://github.com/Paradispartiet/History-Go/pull/7005",
     "pr_7005_merge_commit": "d38e9df0499c3b94a56df63eb11921c1c189fa98",
     "ci_15_of_15": "https://github.com/Paradispartiet/History-Go/commit/0af02684deae44c7bda266629596c63113e090c1/checks",
     "pages_deploy": "https://github.com/Paradispartiet/History-Go/actions/runs/41624901416",
-    "remaining_blockers": [
-      {
-        "kind": "editorial_final_review",
-        "requirement": "Gjennomfør og attester stedets samlede redaksjonelle kvalitetsvurdering etter siste fem-People-browser-QA. Ingen ytterligere publiserte People-bilder mangler."
-      }
-    ],
-    "decision": "blocked_vferdig_pending_final_editorial_review",
+    "remaining_blockers": [],
+    "decision": "complete_vferdig_after_editorial_final_review",
     "no_status_inflation": true,
     "pr_7018_url": "https://github.com/Paradispartiet/History-Go/pull/7018",
     "pr_7018_merge_commit": "fd1a93e157e36848f3b3dcba36b3d96f4ac5f794",
     "pr_7018_ci": "https://github.com/Paradispartiet/History-Go/commit/981207da6df59f93f1c6426b478e12d9600d6075/checks",
-    "pages_deploy_pending": "https://github.com/Paradispartiet/History-Go/actions/runs/41637206326"
+    "pages_deploy_pending": "https://github.com/Paradispartiet/History-Go/actions/runs/41637206326",
+    "pr_7023_url": "https://github.com/Paradispartiet/History-Go/pull/7023",
+    "pr_7023_merge_commit": "504d14726ddd44c8927a70be03106dfdb8ed018a",
+    "pr_7031_url": "https://github.com/Paradispartiet/History-Go/pull/7031",
+    "pr_7031_merge_commit": "83a847b87b739a88e1705822445f50c13caad917",
+    "pr_7031_browser_qa": "https://github.com/Paradispartiet/History-Go/actions/runs/41902900089",
+    "editorial_final_review": {
+      "reviewed_at": "2026-11-04",
+      "decision": "APPROVED",
+      "quality_score": "27/30",
+      "evidence": [
+        "Canonical place 4.2 package: 21/21 verified, factual and editorial reviews passed",
+        "Place Sheet QA 390/1440 px in actual app run 41902900089; Nyheter, Språk, Lesespor, Story, Kilder, Fagverk and QuizCard flip",
+        "Visual review of Tøyenbadet mobile/desktop PlaceCard and Fagverk browser screenshots",
+        "Five source-backed People, four labeled original AI illustrations, documentary images with dates and attribution",
+        "Four natural and distinct PlaceCard collections, each with genuine loaded member previews",
+        "Before/after 2013 vs 2026 uses separate original documentary photographs and discloses viewpoint differences",
+        "One recent dated operations notice is presented as historical News rather than current opening information"
+      ],
+      "non_blocking_limitations": [
+        "AI-illustrasjonene er kunstneriske personbilder uten verifisert fotografisk ansiktslikhet; denne grensen er eksplisitt markert.",
+        "Rammeverk og språk kan utvikles videre i senere produksjonsversjoner uten at dette opphever ferdigstatus."
+      ]
+    }
   }
 }

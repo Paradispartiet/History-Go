@@ -246,6 +246,108 @@
       }
     },
     {
+      "id": "c04_foreningen_bestiller",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Styrelederen svarer på tilbudet",
+      "tekst": "Lea videresender svaret fra styrelederen: «Vi bestiller invitasjonen på 150 ord med én korrekturrunde for 1 200 kr, som i tilbudet ditt. Førsteutkast i morgen klokka 15. Jeg sender deg adresse og påmeldingslenke her.» Forsida og nyhetsbrevet er tatt ut.",
+      "valg": [
+        {
+          "id": "registrer",
+          "tekst": "Før inn invitasjonsutkastet med frist i morgen klokka 15",
+          "konsekvensTekst": "Du noterer hva som er bestilt og når utkastet skal sendes. Fakturaen får vente til leveransen er ferdig.",
+          "effekter": {
+            "flagg": {
+              "c04_bestilling": "bestilt",
+              "c04_frist": 12
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekstoppfolging": "tilbud_sendt"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_foreningen_har_ikke_svart",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Fortsatt ingen leveranseliste",
+      "tekst": "Lea har purret styrelederen. Foreningen har ennå ikke samlet ønskene sine i én liste eller svart på budsjettet.",
+      "valg": [
+        {
+          "id": "hold_apen",
+          "tekst": "La forespørselen stå åpen uten å sette av arbeidstid",
+          "konsekvensTekst": "Du lar saken ligge i innboksen. Ingen tekst skal leveres i morgen.",
+          "effekter": {
+            "flagg": {
+              "c04_bestilling": "apen"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekstoppfolging": "venter_pa_svar"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_invitasjon_leveranse",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 12,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Utkastet skal inn før klokka 15",
+      "tekst": "Invitasjonen er nesten ferdig. Styrelederen sendte adressen og påmeldingslenka i går. Det gjenstår å sjekke at lenka åpner riktig skjema, og at tid og sted stemmer med bestillingen.",
+      "valg": [
+        {
+          "id": "send",
+          "tekst": "Sjekk lenka, tid og sted. Send utkastet til styrelederen.",
+          "konsekvensTekst": "Førsteutkastet er levert. Styrelederen har én korrekturrunde igjen. Det er ennå ingen betaling registrert.",
+          "effekter": {
+            "flagg": {
+              "c04_leveranse": "levert"
+            }
+          }
+        },
+        {
+          "id": "varsle",
+          "tekst": "Varsle styrelederen før fristen og foreslå et nytt tidspunkt",
+          "konsekvensTekst": "Styrelederen vet at utkastet blir forsinket. Den opprinnelige fristen står til styrelederen eventuelt bekrefter en ny.",
+          "effekter": {
+            "flagg": {
+              "c04_leveranse": "fristproblem_varslet"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_bestilling": "bestilt",
+          "c04_frist": 12
+        }
+      },
+      "avsender": "lea"
+    },
+    {
       "id": "d13_frilans_vurdering",
       "threadId": "frilans_etter_forste_kapittel",
       "dag": 13,
@@ -332,6 +434,66 @@
       "conditions": {
         "flagg": {
           "frilans_neste_valg": "avsta"
+        }
+      }
+    },
+    {
+      "id": "c04_kundesvar_godkjent",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Styrelederen har lest utkastet",
+      "tekst": "Styrelederen skriver at tid, sted og påmeldingslenke stemmer. Styret godkjenner teksten slik den er og bruker den i invitasjonen. «Send faktura for de avtalte 1 200 kronene.»",
+      "valg": [
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver godkjenningen sammen med tilbudet",
+          "konsekvensTekst": "Invitasjonen er godkjent. Du legger fakturaen på lista over ting du må gjøre. Ingen betaling er mottatt.",
+          "effekter": {
+            "flagg": {
+              "c04_sluttstatus": "godkjent"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_bestilling": "bestilt",
+          "c04_leveranse": "levert"
+        }
+      }
+    },
+    {
+      "id": "c04_kundesvar_avbestilt",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Foreningen trekker bestillingen",
+      "tekst": "Styrelederen takker for at du varslet. De måtte sende ut invitasjonen i går og brukte en kort tekst de skrev selv. Hun bekrefter at de trekker bestillingen og ber om å få vite hvor langt du hadde kommet.",
+      "valg": [
+        {
+          "id": "arkiver",
+          "tekst": "Bekreft avbestillingen og oppgi hva som var gjort",
+          "konsekvensTekst": "Du skriver at utkastet var påbegynt og legger ved tidsnotatet. Saken om eventuelt honorar står åpen. Ingen ny leveransefrist er avtalt.",
+          "effekter": {
+            "flagg": {
+              "c04_sluttstatus": "avbestilt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_bestilling": "bestilt",
+          "c04_leveranse": "fristproblem_varslet"
         }
       }
     },

@@ -5,6 +5,62 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_akerveronika: Object.freeze({
+      scientificName: "Veronica arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/55_akerveronika_v1.webp",
+      gitBlobSha: "0f5502735919f07ba0e8eb863c004c2afb21553a",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-akerveronika-20261104.json"
+    }),
+    emne_flora_akerdylle: Object.freeze({
+      scientificName: "Sonchus arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/54_akerdylle_v1.webp",
+      gitBlobSha: "de93f9b14a7aa7a049f40b344e5284ddfbfd90f9",
+      reviewedAt: "2026-11-04",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-akerdylle-20261104.json"
+    }),
+    emne_flora_varpengeurt: Object.freeze({
+      scientificName: "Noccaea caerulescens",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/53_varpengeurt_v1.webp",
+      gitBlobSha: "949882e56dd3786be44bfe0323bf60dba15ea348",
+      reviewedAt: "2026-11-04",
+      stage: "varblomstring",
+      evidence: "data/natur/flora/illustration-quality-varpengeurt-20261104.json"
+    }),
+    emne_flora_varmure: Object.freeze({
+      scientificName: "Potentilla verna",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/52_varmure_v1.webp",
+      gitBlobSha: "b5c91c9233a2aea1eb42466eccd9d85e00bd4e3c",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-varmure-20261104.json"
+    }),
+    emne_flora_varkaal: Object.freeze({
+      scientificName: "Ficaria verna",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/51_varkaal_v1.webp",
+      gitBlobSha: "0e1778c94ab078fdf8408e93048338a2a0580c22",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-varkaal-20261104.json"
+    }),
+    emne_flora_varerteknapp: Object.freeze({
+      scientificName: "Lathyrus vernus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/50_varerteknapp_v1.webp",
+      gitBlobSha: "4f5a386eb138d1ff6f6aacb8e8798a6ff73d3256",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-varerteknapp-20261104.json"
+    }),
+    emne_flora_vararve: Object.freeze({
+      scientificName: "Draba verna",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/49_vararve_v1.webp",
+      gitBlobSha: "6194f3d09af4bf90efa038ff7534a56b5a1d24ca",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-vararve-20261104.json"
+    }),
     emne_flora_villkarse: Object.freeze({
       scientificName: "Cardamine hirsuta",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/48_villkarse_v1.webp",
