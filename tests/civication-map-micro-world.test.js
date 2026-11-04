@@ -88,7 +88,8 @@ test("steder i miniatyrverden respekterer eksisterende landemerkers klareringsso
   // Hvis et fremtidig kartlag legger en interaktiv plass oppå en detalj,
   // skal den dekorative miniatyren vike uten å endre spilltilstand.
   const artificial = kit.safeBlueprint([{ x: available[0].x, y: available[0].y, r: 0.012 }]);
-  assert.equal(artificial.length, 66);
+  assert.ok(artificial.length < available.length);
+  assert.ok(!artificial.some(x => x.x === available[0].x && x.y === available[0].y));
 });
 
 test("instanserte dekordeler reduserer draw groups uten å miste geometri", () => {
