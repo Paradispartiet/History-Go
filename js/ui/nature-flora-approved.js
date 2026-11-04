@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_akerdylle: Object.freeze({
+      scientificName: "Sonchus arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/54_akerdylle_v1.webp",
+      gitBlobSha: "de93f9b14a7aa7a049f40b344e5284ddfbfd90f9",
+      reviewedAt: "2026-11-04",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-akerdylle-20261104.json"
+    }),
     emne_flora_varpengeurt: Object.freeze({
       scientificName: "Noccaea caerulescens",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/53_varpengeurt_v1.webp",
