@@ -126,3 +126,17 @@ Brukerfeedback: kartet og miniatyrene oppleves for små selv etter flere nye det
 - **Automatiske tester:** egne regresjonskontroller lagt til eksisterende projektor-/kartzoomtester. Verifiser resultatet på faktisk iPhone/Safari og desktop før merge, særlig at aktuelle sentrumsområder fyller skjermen uten at stedsklikk skjules.
 
 Den økte startzoomen er bevisst moderat. Hvis visuell gjennomgang viser at mobilutsnittet blir for trangt, justeres verdiene før publisering; ikke øk etter gjetning alene.
+
+## Implementeringslogg – forankret zoom og «Hele Oslo»
+
+Etter større startutsnitt var mobilens pinch-zoom fortsatt sentrert på skjermen, ikke fingrenes posisjon. Dette er korrigert i den kanoniske Three.js-kartmotoren:
+
+- **Finger-/museforankret zoom:** zoom-anker beregnes på det skråstilte modellbrettets bakkeplan, inkludert kameratilt og svak vinkel i horisontalplanet. Ved innzooming skal det samme gatepunktet ligge på samme skjermkoordinat. To-fingerflytting panorerer også, selv når fingrene ikke endrer avstand.
+- **Nullstill riktig:** 3D-kartet oppdaterer stedmodellenes LOD og utsnitt etter kameraets nye posisjon, også når nullstilling går fra et høyt til et lavere zoomnivå. Eksisterende place-raycasting er uendret.
+- **To tydelige kartvisninger:** «⤢» vender tilbake til den større byvisningen (1,56 på desktop; 1,72 på mobil), mens en ny diskret «Oslo»-knapp viser hele kartet. Begge funksjonene er implementert i både Three.js og Canvas fallback, med tekstlig aria-label.
+- **Faktisk full mobiloversikt i 3D:** oversiktszoom beregnes fra modellbrettets størrelse og tilgjengelig viewportbredde. Minste tillatte 3D-zoom er nå 0,32, siden tidligere 0,5 ikke kunne passe et 33,4-enheters brett i smal portrettvisning.
+- **Isolert kodekontroll:** ved 390 × 844 px gir 3D-oversikt zoom 0,41984 og synlig bredde 35 verdensenheter; tilsvarende byvisning 1,72. Canvas går til 1,0 for oversikt og 1,34 for byvisning. Koordinatankeret holdt seg innenfor numerisk avrundingsfeil ved zoom både i sentrum og på viewportkantene.
+- **Tester:** regresjonstester lagt til for 3D-forankring, panoramaoversikt, full brettbredde, riktig nullstilling og Canvas-fallback.
+- **Visuell QA gjenstår:** tidligere GitHub browser-smoke-artefakt inneholdt «Min dag» og «Personer», men ikke eget skjermbilde av kartmodus. Disse skjermbildene beviser derfor **ikke** utseendet på 3D-miniatyrene. Kartet bør inspiseres ved både mobil-/desktop-zoom før merge.
+
+Det er fortsatt bare rendering og kartnavigasjon som er endret; all spilltilstand og det faktiske stedskataloginnholdet er uendret.
