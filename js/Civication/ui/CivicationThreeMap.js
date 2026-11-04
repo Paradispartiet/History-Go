@@ -168,6 +168,8 @@
   let placeGroup = null;
   let landmarkGroup = null;
   let microWorldGroup = null;
+  let nearRoadGroup = null;
+  let nearBuildingGroup = null;
   let microWorldSetPeriod = null;
   let microWorldSetDetailVisible = null;
   let INVISIBLE_HIT_MAT = null;
@@ -201,7 +203,7 @@
 
   const _stats = {
     placeMarkers: 0, instancedBuildings: 0, genericBuildings: 0, highRiseCount: 0,
-    trees: 0, landmarks: 0, roadSegments: 0, landmarkCountByType: {},
+    trees: 0, landmarks: 0, roadSegments: 0, nearRoadCrossings: 0, nearBuildingEntrances: 0, landmarkCountByType: {},
     localObjects: 0, parkObjects: 0, waterfrontObjects: 0, microWorldObjects: 0, microWorldDrawGroups: 0, microWorldSkipped: 0, microWorldFineObjects: 0,
     visiblePlaceMiniatures: 0, placeMiniatureTypes: {}, hiddenDuplicateLandmarkPlaces: 0,
     placeLodLevel: null, culledPlaces: 0, nudgedPlaces: 0, clickableLandmarkPlaces: [],
@@ -668,10 +670,41 @@
   const ROAD_MARKING = 0xd9cc9c;
   function addRoad(g, points, width, y, opts) {
     const o = opts || {};
+    // Kantstein/fortau leses først i nærvisningen. Ett bånd per hovedgate,
+    // uten egne markører eller flere oppdateringer per frame.
+    if (nearRoadGroup && o.marking) {
+      nearRoadGroup.add(extrudeShape(ribbonPolygon(points, width * 1.62), 0.010,
+        0xb5ab99, y - 0.012, { cast: false, receive: false }));
+    }
     g.add(buildRoadRibbon(points, width, o.color != null ? o.color : ROAD_ASPHALT, y));
     if (o.marking) {
       // Tynn (0.004 høy) stripe like over asfalttoppen (0.018).
       g.add(extrudeShape(ribbonPolygon(points, Math.max(0.0012, width * 0.14)), 0.004, ROAD_MARKING, y + 0.02, { cast: false, receive: false }));
+    }
+    // Et fåtall sebrastriper gir gatene skala ved tett zoom. Delte materialer
+    // og geometri per kryssing holder kostnaden lav på mobil.
+    if (nearRoadGroup && o.crossing && points.length >= 2) {
+      const i = Math.floor((points.length - 1) / 2);
+      const a = points[i], b = points[i + 1];
+      const dx = (b[0] - a[0]) * MAP_W, dz = (b[1] - a[1]) * MAP_D;
+      const len = Math.hypot(dx, dz);
+      if (len > 0.1) {
+        const ux = dx / len, uz = dz / len;
+        const cx = nx2x((a[0] + b[0]) / 2), cz = ny2z((a[1] + b[1]) / 2);
+        const widthWorld = Math.min(width * MAP_W * 0.7, 0.19);
+        const stripeWidth = Math.min(0.045, len / 18);
+        const stripeGap = stripeWidth * 1.8;
+        const stripeGeo = new THREE.BoxGeometry(stripeWidth, 0.004, widthWorld);
+        const stripeMat = toMat(0xe1d6c6);
+        for (let j = -2; j <= 2; j++) {
+          const stripe = new THREE.Mesh(stripeGeo, stripeMat);
+          stripe.position.set(cx + ux * j * stripeGap, y + 0.027, cz + uz * j * stripeGap);
+          stripe.rotation.y = -Math.atan2(uz, ux);
+          stripe.castShadow = false; stripe.receiveShadow = false;
+          nearRoadGroup.add(stripe);
+        }
+        _stats.nearRoadCrossings++;
+      }
     }
   }
 
@@ -680,6 +713,9 @@
     const g = new THREE.Group();
     const baseY = GROUND_Y + 0.04;
     _stats.roadSegments = 0;
+    _stats.nearRoadCrossings = 0;
+    nearRoadGroup = new THREE.Group();
+    nearRoadGroup.name = "CivicationNearRoadDetails";
 
     // Akerselva-korridoren – tydelig blå elv som renner nord–sør gjennom byen
     // og munner ut i fjorden. Bredere og litt mørkere enn før så den leser som elv.
@@ -705,13 +741,13 @@
     // nord for Pipervika-bukta (gikk før rett over vannet).
     addRoad(g,
       [[0.44, 0.60], [0.50, 0.585], [0.56, 0.595], [0.59, 0.635], [0.548, 0.652], [0.505, 0.640], [0.472, 0.620], [0.44, 0.622], [0.44, 0.60]],
-      0.010, baseY, { marking: true }
+      0.010, baseY, { marking: true, crossing: true }
     );
 
     // Ring 2 – større bue nord for sentrum.
     addRoad(g,
       [[0.28, 0.535], [0.38, 0.47], [0.50, 0.45], [0.62, 0.46], [0.70, 0.505]],
-      0.013, baseY, { marking: true }
+      0.013, baseY, { marking: true, crossing: true }
     );
 
     // E18 / havneakse langs fjorden vest–øst, i to synlige deler med
@@ -742,6 +778,8 @@
     addRoad(g, [[0.626, 0.518], [0.662, 0.552], [0.690, 0.562]], 0.008, baseY, { color: shade(ROAD_ASPHALT, 0.0) });
 
     scene.add(g);
+    nearRoadGroup.visible = false;
+    scene.add(nearRoadGroup);
   }
 
 
@@ -1234,6 +1272,40 @@
       if (capMesh.instanceColor) capMesh.instanceColor.needsUpdate = true;
       scene.add(capMesh);
     }
+    // Ved nærzoom får et utvalg av de instansierte bygningene tydelige dører
+    // og overdekninger, uten å lage ett draw call per hus eller endre hitflater.
+    // Utsnittets eksisterende fasadetekstur står fortsatt for vinduene.
+    nearBuildingGroup = new THREE.Group();
+    nearBuildingGroup.name = "CivicationNearBuildingDetails";
+    const entrances = blocks.filter((b, i) => i % 3 === 0 && b.h >= 0.34).slice(0, 360);
+    if (entrances.length) {
+      const doors = new THREE.InstancedMesh(geo, toMat(0x3e4f59), entrances.length);
+      const canopies = new THREE.InstancedMesh(geo, toMat(0xbfae91), entrances.length);
+      entrances.forEach((b, i) => {
+        const doorH = Math.min(0.20, b.h * 0.33);
+        const doorW = Math.min(0.12, b.fw * 0.29);
+        const front = b.fd / 2 + 0.009;
+        q.setFromAxisAngle(up, b.rot);
+        pos.set(b.x + Math.sin(b.rot) * front, GROUND_Y + doorH / 2 + 0.005,
+          b.z + Math.cos(b.rot) * front);
+        scl.set(doorW, doorH, 0.016);
+        m.compose(pos, q, scl);
+        doors.setMatrixAt(i, m);
+        pos.set(b.x + Math.sin(b.rot) * (front + 0.022), GROUND_Y + doorH + 0.018,
+          b.z + Math.cos(b.rot) * (front + 0.022));
+        scl.set(doorW * 1.32, 0.024, 0.072);
+        m.compose(pos, q, scl);
+        canopies.setMatrixAt(i, m);
+      });
+      [doors, canopies].forEach((mesh) => {
+        mesh.instanceMatrix.needsUpdate = true;
+        mesh.castShadow = false; mesh.receiveShadow = false;
+        nearBuildingGroup.add(mesh);
+      });
+    }
+    nearBuildingGroup.visible = false;
+    scene.add(nearBuildingGroup);
+    _stats.nearBuildingEntrances = entrances.length;
     _stats.instancedBuildings = blocks.length;
     _stats.genericBuildings = blocks.length;
     // «Høyhus» i den generiske massen: skal nå være svært få (Oslo-profil).
@@ -3555,6 +3627,8 @@
     // Slå av hele gruppen ved laveste zoom; ingen ekstra opprettelse eller draw calls.
     if (microWorldGroup) microWorldGroup.visible = zoom >= 0.95;
     if (microWorldSetDetailVisible) microWorldSetDetailVisible(zoom >= 2.1);
+    if (nearBuildingGroup) nearBuildingGroup.visible = zoom >= 2.1;
+    if (nearRoadGroup) nearRoadGroup.visible = zoom >= 2.1;
     dirty = true;
     // Del B: zoom/pan/resize gikk alle gjennom updateCamera -> varsle kartlag
     // (CivicationCityLayer) så HTML-markører kan re-projiseres mot 3D-kameraet.
@@ -4155,6 +4229,8 @@
       nudgedPlaces: _stats.nudgedPlaces || 0,
       clickableLandmarkPlaces: (_stats.clickableLandmarkPlaces || []).map((x) => Object.assign({}, x)),
       genericBuildings: _stats.genericBuildings,
+      nearBuildingEntrances: _stats.nearBuildingEntrances,
+      nearRoadCrossings: _stats.nearRoadCrossings,
       instancedBuildings: _stats.instancedBuildings,
       highRiseCount: _stats.highRiseCount,
       trees: _stats.trees,
