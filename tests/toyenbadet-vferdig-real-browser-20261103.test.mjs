@@ -146,7 +146,7 @@ try{
      assert.equal(await news.locator(".pc-sheet-news-card").count(),2);
      const newsText=await news.innerText();
      assert.match(newsText,/august 2026/i);
-     assert.match(newsText,/20\\. oktober 2026/);
+     assert.ok(newsText.includes('20. oktober 2026'));
      assert.equal(await news.locator(".pc-sheet-news-card a[href^=https]").count(),2);
      const language=sheet.locator('[data-hg-place-sheet-section="language"]');
      assert.equal(await language.locator('[data-language-entry]').count(),4);
