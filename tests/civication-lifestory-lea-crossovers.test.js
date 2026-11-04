@@ -177,10 +177,11 @@ for (const arc of arcs) for (const variant of arc.variants) {
     paths++;
   }
 }
-for (const [choice, status] of [
-  ['avgrens', 'tilbud_sendt'],
-  ['avklar', 'venter_pa_svar'],
-  ['avsla', 'avslatt']
+for (const [choice, status, response, delivery] of [
+  ['avgrens', 'tilbud_sendt', 'bestilt', 'send'],
+  ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle'],
+  ['avklar', 'venter_pa_svar', 'apen', null],
+  ['avsla', 'avslatt', undefined, null]
 ]) {
   const opening = progress(S.createInitialState(base), base, 7, {d2_en_retning: 'prosjekt'});
   let saved = opening.saved;
@@ -189,9 +190,18 @@ for (const [choice, status] of [
   ({saved, content} = progress(saved, content, 8, {c04_tekstforesporsel: choice}));
   assert.equal(saved.tidligereValg.c04_tekststatus, status);
   R.startNextDay(saved, content);
-  ({saved} = progress(saved, restore(clone(saved)), 9));
+  ({saved, content} = progress(saved, restore(clone(saved)), 9));
   assert.equal(saved.tidligereValg.c04_tekstoppfolging, status);
-  assert.equal(saved.meters.penger, money, 'a request or estimate never pays out');
+  R.startNextDay(saved, content);
+  ({saved, content} = progress(saved, content, 10));
+  content = startChapter(saved, content, 'frilans_neste_steg');
+  ({saved, content} = progress(saved, content, 11));
+  assert.equal(saved.tidligereValg.c04_bestilling, response);
+  assert.equal(saved.tidligereValg.c04_frist, delivery ? 12 : undefined);
+  R.startNextDay(saved, content);
+  ({saved} = progress(saved, restore(clone(saved)), 12, {c04_invitasjon_leveranse: delivery}));
+  assert.equal(saved.tidligereValg.c04_leveranse, {send:'levert', varsle:'fristproblem_varslet'}[delivery]);
+  assert.equal(saved.meters.penger, money, 'an order or delivery is not a payment');
 }
 
 delete globalThis.CivicationLifePositions;
