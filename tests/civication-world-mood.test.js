@@ -11,6 +11,7 @@ function setup(initialPhase = "morning") {
   const attributes = new Map();
   const clock = { phase: initialPhase };
   const changes = [];
+  const phaseText = { textContent: "" };
   const browser = {
     CivicationCalendar: {
       getPhase: () => clock.phase,
@@ -18,7 +19,8 @@ function setup(initialPhase = "morning") {
     },
     document: {
       readyState: "complete",
-      body: { setAttribute: (k, v) => attributes.set(k, v) }
+      body: { setAttribute: (k, v) => attributes.set(k, v) },
+      querySelector: (selector) => selector === ".civi-day-miniature-period" ? phaseText : null
     },
     addEventListener: (name, cb) => {
       listeners.set(name, cb);
@@ -27,7 +29,7 @@ function setup(initialPhase = "morning") {
     CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options.detail; } }
   };
   vm.runInNewContext(source, { window: browser });
-  return { browser, clock, listeners, attributes, changes };
+  return { browser, clock, listeners, attributes, changes, phaseText };
 }
 
 test("åtte kanoniske faser bruker fire dempede visuelle perioder", () => {
@@ -46,12 +48,14 @@ test("åtte kanoniske faser bruker fire dempede visuelle perioder", () => {
 });
 
 test("følger spillklokken, oppdaterer kun DOM og sender ett signal per overgang", () => {
-  const { browser, clock, listeners, attributes, changes } = setup("morning");
+  const { browser, clock, listeners, attributes, changes, phaseText } = setup("morning");
   assert.equal(attributes.get("data-civi-visual-period"), "morning");
+  assert.equal(phaseText.textContent, "Morgen");
   assert.deepEqual(changes, ["morning"]);
   clock.phase = "lunch";
   listeners.get("civi:dayPhaseChanged")();
   assert.equal(attributes.get("data-civi-visual-period"), "day");
+  assert.equal(phaseText.textContent, "Dag");
   assert.deepEqual(changes, ["morning", "day"]);
   clock.phase = "workday"; // same visual bucket: no redundant scene updates
   browser.CivicationWorldMood.sync();
@@ -59,6 +63,7 @@ test("følger spillklokken, oppdaterer kun DOM og sender ett signal per overgang
   clock.phase = "day_end";
   listeners.get("storage")({ key: "hg_civi_calendar_v1" });
   assert.equal(attributes.get("data-civi-visual-period"), "night");
+  assert.equal(phaseText.textContent, "Natt");
   assert.deepEqual(changes, ["morning", "day", "night"]);
   assert.equal(clock.phase, "day_end", "calendar is never mutated");
 });
