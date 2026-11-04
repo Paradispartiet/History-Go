@@ -74,7 +74,11 @@ test("scene lighting and Min dag illustration are wired without changing game ch
   assert.match(three, /civi:visualPeriodChanged/);
   assert.match(three, /function applyWorldMood/);
   assert.match(html, /css\/civi-world-mood\.css/);
-  assert.match(css, /#civiLifestorySection > h2::after/);
+  const miniCss = fs.readFileSync(path.join(root, "css/civi-miniature-world.css"), "utf8");
+  assert.match(html, /civi-day-miniature-header/);
+  assert.match(html, /css\/civi-miniature-world\.css/);
+  assert.match(miniCss, /\.civi-day-miniature-art/);
+  assert.doesNotMatch(css, /#civiLifestorySection > h2::after/);
   assert.match(css, /data-civi-visual-period/);
   assert.match(sprite, /<svg/);
   assert.match(sprite, /<\/svg>/);
