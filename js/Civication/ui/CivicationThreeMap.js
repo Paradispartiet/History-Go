@@ -88,7 +88,14 @@
   // så landemerkene ikke klemmes/overlapper.
   const CAM_BASE = { x: 0.22, y: 24.75, z: 21.3 };
   const TILT = Math.atan2(CAM_BASE.y, CAM_BASE.z); // radianer
-  const START_ZOOM = 1.24;   // startutsnitt: fjord + sentrum + nord/vest-landemerker
+  // Kartflaten er allerede fullskjerm: byen trenger et nærmere startkamera.
+  // Større detaljer på mobil, med full zoom-ut og uendret pan/place-raycast.
+  const START_ZOOM = 1.56;
+  const MOBILE_START_ZOOM = 1.72;
+  function recommendedStartZoom(width) {
+    const w = Number(width);
+    return Number.isFinite(w) && w > 0 && w <= 640 ? MOBILE_START_ZOOM : START_ZOOM;
+  }
   const START_PAN = { x: 0.31, z: -0.44 };
 
   // Fargepalett – varm modellmaling, dyp fjord, dempet industri, grønn Marka.
@@ -3814,7 +3821,7 @@
   }
   function zoomIn() { setZoom(zoom * ZOOM_STEP); }
   function zoomOut() { setZoom(zoom / ZOOM_STEP); }
-  function reset() { zoom = START_ZOOM; panX = START_PAN.x; panZ = START_PAN.z; updateCamera(); }
+  function reset() { zoom = recommendedStartZoom(W || host?.clientWidth || window.innerWidth); panX = START_PAN.x; panZ = START_PAN.z; updateCamera(); }
   function getZoom() { return zoom; }
 
   function panBy(dxPx, dyPx) {
@@ -4029,7 +4036,7 @@
     buildMicroWorld();
     buildLandmarks();
 
-    zoom = START_ZOOM;
+    zoom = recommendedStartZoom(host.clientWidth || window.innerWidth);
     panX = START_PAN.x;
     panZ = START_PAN.z;
 
@@ -4102,7 +4109,7 @@
       roadSegments: _stats.roadSegments,
       clearZones: LANDMARK_CLEAR_ZONES.map((z) => Object.assign({}, z)),
       clearZoneCount: LANDMARK_CLEAR_ZONES.length,
-      startZoom: START_ZOOM,
+      startZoom: recommendedStartZoom(W || host?.clientWidth || window.innerWidth),
       cameraBase: Object.assign({}, CAM_BASE),
       rendererType,
       renderer: rendererType,
@@ -4124,6 +4131,7 @@
     zoomIn,
     zoomOut,
     getZoom,
+    recommendedStartZoom,
     // Del A/B – stabilt projeksjons- og transform-API (speiler CanvasMap).
     projectWorldToScreen,
     projectNormalizedToScreen,
