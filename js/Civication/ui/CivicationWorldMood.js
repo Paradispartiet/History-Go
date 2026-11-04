@@ -50,6 +50,8 @@
     const doc = root.document;
     if (!doc || !doc.body) return period;
     doc.body.setAttribute("data-civi-visual-period", period);
+    const label = doc.querySelector?.(".civi-day-miniature-period");
+    if (label) label.textContent = ({ morning: "Morgen", day: "Dag", evening: "Kveld", night: "Natt" })[period] || "Morgen";
     if (period !== lastPeriod) {
       lastPeriod = period;
       if (typeof root.dispatchEvent === "function" && typeof root.CustomEvent === "function") {
