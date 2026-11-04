@@ -63,8 +63,6 @@
     // Bevar popup-kontrakten gjennom wrapper-kjeden. place-popup-tabs.js bruker
     // disse markørene for å vite at den kan dekorere den eksisterende V2-popupen.
     wrapped.__hgPlacePopupV2 = previous.__hgPlacePopupV2 === true || global.__HG_PLACE_POPUP_V2_INSTALLED__ === true;
-    wrapped.__hgPlacePopupTabs = previous.__hgPlacePopupTabs === true;
-    wrapped.__hgPlacePopupDirectTabs = previous.__hgPlacePopupDirectTabs === true;
     wrapped.__previous = previous;
     global.showPlacePopup = wrapped;
     global[FLAG] = true;
