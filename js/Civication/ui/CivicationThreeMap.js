@@ -3812,22 +3812,55 @@
   // ---------------------------------------------------------------------------
   // Zoom / pan / klikk
   // ---------------------------------------------------------------------------
-  function setZoom(z) {
-    const nz = clamp(z, MIN_ZOOM, MAX_ZOOM);
-    if (Math.abs(nz - zoom) < 0.0005) return;
-    zoom = nz;
-    if (placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
-    updateCamera();
+  // Ortografisk kamera ser skrått ned på et XZ-brett. Den nøyaktige
+  // piksel→bakke-konverteringen tar hensyn til både tilt og svak yaw.
+  // Dermed ligger samme gate/benk under fingeren ved pinch og zoom med mus.
+  function groundOffsetForPixels(dx, dy, unitsPerPixel) {
+    const horizontal = Math.hypot(CAM_BASE.x, CAM_BASE.z);
+    const distance = Math.hypot(horizontal, CAM_BASE.y);
+    const rightX = CAM_BASE.z / horizontal;
+    const rightZ = -CAM_BASE.x / horizontal;
+    const downFactor = distance / CAM_BASE.y;
+    return {
+      x: unitsPerPixel * (dx * rightX + dy * -rightZ * downFactor),
+      z: unitsPerPixel * (dx * rightZ + dy * rightX * downFactor)
+    };
   }
+
+  function zoomAt(value, px, py) {
+    const nz = clamp(value, MIN_ZOOM, MAX_ZOOM);
+    if (!Number.isFinite(nz) || Math.abs(nz - zoom) < 0.0005) return;
+    // Pikselkoordinatet på bakkeplanet skal bli stående i ro under zoom.
+    if (W > 0 && H > 0) {
+      const dx = clamp(Number(px) || W / 2, 0, W) - W / 2;
+      const dy = clamp(Number(py) || H / 2, 0, H) - H / 2;
+      const oldUnit = (2 * VIEW) / (H * zoom);
+      const newUnit = (2 * VIEW) / (H * nz);
+      const displacement = groundOffsetForPixels(dx, dy, oldUnit - newUnit);
+      panX += displacement.x;
+      panZ += displacement.z;
+    }
+    zoom = nz;
+    // Oppdater kamera først: place-LOD og culling må bruke NYTT utsnitt.
+    updateCamera();
+    if (placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
+  }
+  function setZoom(z) { zoomAt(z, W / 2, H / 2); }
   function zoomIn() { setZoom(zoom * ZOOM_STEP); }
   function zoomOut() { setZoom(zoom / ZOOM_STEP); }
-  function reset() { zoom = recommendedStartZoom(W || host?.clientWidth || window.innerWidth); panX = START_PAN.x; panZ = START_PAN.z; updateCamera(); }
+  function reset() {
+    zoom = recommendedStartZoom(W || host?.clientWidth || window.innerWidth);
+    panX = START_PAN.x; panZ = START_PAN.z;
+    updateCamera();
+    if (_lastLod && placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
+  }
   function getZoom() { return zoom; }
 
   function panBy(dxPx, dyPx) {
-    const unitsPerPx = (camera.right - camera.left) / (W * camera.zoom || 1);
-    panX -= dxPx * unitsPerPx;
-    panZ -= (dyPx * unitsPerPx) / Math.max(0.2, Math.cos(TILT)); // bakken trekker seg unna i dybden
+    if (!W || !H) return;
+    const offset = groundOffsetForPixels(dxPx, dyPx, (2 * VIEW) / (H * zoom));
+    panX -= offset.x;
+    panZ -= offset.z;
     updateCamera();
   }
 
@@ -3838,9 +3871,14 @@
     const r = host.getBoundingClientRect();
     return { px: clamp(e.clientX - r.left, 0, W), py: clamp(e.clientY - r.top, 0, H) };
   }
-  function pinchDist() {
+  function pinchState() {
     const pts = [...pointers.values()];
-    return Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) || 1;
+    const rect = host.getBoundingClientRect();
+    return {
+      dist: Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) || 1,
+      px: clamp((pts[0].x + pts[1].x) / 2 - rect.left, 0, W),
+      py: clamp((pts[0].y + pts[1].y) / 2 - rect.top, 0, H)
+    };
   }
   function ignoreTarget(t) {
     return !!(t && t.closest && t.closest(
@@ -3852,14 +3890,20 @@
     if (!active || !inMapMode() || ignoreTarget(e.target)) return;
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pointers.size === 1) { panPrev = { x: e.clientX, y: e.clientY }; downPt = { x: e.clientX, y: e.clientY }; moved = false; }
-    else if (pointers.size === 2) { panPrev = null; pinchPrev = pinchDist(); }
+    else if (pointers.size === 2) { panPrev = null; pinchPrev = pinchState(); }
   }
   function onPointerMove(e) {
     if (!pointers.has(e.pointerId)) return;
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pointers.size >= 2) {
-      const now = pinchDist();
-      if (pinchPrev) { e.preventDefault(); const r = now / pinchPrev; if (r && Number.isFinite(r)) setZoom(zoom * r); }
+      const now = pinchState();
+      if (pinchPrev) {
+        e.preventDefault();
+        const dx = now.px - pinchPrev.px, dy = now.py - pinchPrev.py;
+        if (dx || dy) panBy(dx, dy);
+        const ratio = now.dist / pinchPrev.dist;
+        if (Number.isFinite(ratio) && ratio > 0) zoomAt(zoom * ratio, now.px, now.py);
+      }
       pinchPrev = now; moved = true; return;
     }
     if (panPrev) {
@@ -3888,7 +3932,8 @@
   function onWheel(e) {
     if (!active || !inMapMode()) return;
     e.preventDefault();
-    setZoom(zoom * (e.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP));
+    const { px, py } = relPos(e);
+    zoomAt(zoom * (e.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP), px, py);
   }
   function openPlace(placeId) {
     if (placeId == null) return;
@@ -4131,6 +4176,7 @@
     zoomIn,
     zoomOut,
     getZoom,
+    zoomAt,
     recommendedStartZoom,
     // Del A/B – stabilt projeksjons- og transform-API (speiler CanvasMap).
     projectWorldToScreen,
