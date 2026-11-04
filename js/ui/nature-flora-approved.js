@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_vararve: Object.freeze({
+      scientificName: "Draba verna",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/49_vararve_v1.webp",
+      gitBlobSha: "6194f3d09af4bf90efa038ff7534a56b5a1d24ca",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-vararve-20261104.json"
+    }),
     emne_flora_villkarse: Object.freeze({
       scientificName: "Cardamine hirsuta",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/48_villkarse_v1.webp",
