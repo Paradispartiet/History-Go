@@ -114,7 +114,10 @@
 
     function material(color) {
       if (!materials.has(color)) materials.set(color, new THREE.MeshStandardMaterial({
-        color, roughness: 0.92, metalness: 0.02
+        color, roughness: 0.92, metalness: 0.02,
+        // Lyktens eget glass får svakt emissivt lys, uten nye lyskilder.
+        emissive: color === COLORS.lamp ? 0x726048 : 0x000000,
+        emissiveIntensity: 0
       }));
       return materials.get(color);
     }
@@ -241,9 +244,17 @@
         }
       }
     }
+    function setPeriod(period) {
+      const lamp = materials.get(COLORS.lamp);
+      if (lamp) {
+        const levels = { morning: 0.065, day: 0.018, evening: 0.18, night: 0.32 };
+        lamp.emissiveIntensity = Object.prototype.hasOwnProperty.call(levels, period) ? levels[period] : levels.day;
+      }
+    }
+    setPeriod(opts.period || "morning");
     return {
       group, count: objects.length, drawGroups: group.children.length,
-      skipped: getBlueprint().length - objects.length, batched: batching,
+      skipped: getBlueprint().length - objects.length, batched: batching, setPeriod,
       areas: Array.from(new Set(objects.map((item) => item.area)))
     };
   }
