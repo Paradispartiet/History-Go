@@ -22,7 +22,7 @@ test("By Modernisme badge has exact 1024px gray embroidered image, correct routi
     funksjonalisme:"bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp",
     brutalisme:"bilder/merker/by/undermerker/brutalisme-brodert-v1.webp",
     postmodernisme:"bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp",
-    samtidsarkitektur:"bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp"
+    samtidsarkitektur:"bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp",byplanlegging:"bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp"
   });
   assert.equal(by.sub.length,10);
   assert.equal(asset.status,"integrated");
@@ -40,8 +40,8 @@ test("By Modernisme badge has exact 1024px gray embroidered image, correct routi
 });
 test("other By candidates are inactive and 12 Film & TV plus 7 Scenekunst remain active",()=>{
   const by=read("data/badges/by.json"),film=read("data/badges/film_tv.json"),scene=read("data/badges/scenekunst.json");
-  assert.equal(Object.keys(by.subBadgeImages).length,6);
+  assert.equal(Object.keys(by.subBadgeImages).length,7);
   assert.equal(Object.keys(film.subBadgeImages).length,12);
   assert.equal(Object.keys(scene.subBadgeImages).length,7);
-  for(const id of by.sub.slice(6))assert.equal(by.subBadgeImages[id],undefined);
+  for(const id of by.sub.slice(7))assert.equal(by.subBadgeImages[id],undefined);
 });

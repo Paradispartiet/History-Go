@@ -9,7 +9,7 @@ const sha='147c5114f96cd883343bca5f45931a78de25d8070f795f9d77696daa316fbb88';
 test('Samtidsarkitektur is sixth original 1024px embroidered By image',()=>{
  const by=read('data/badges/by.json'),plan=read('data/badges/underbadge_batch01_production.json');
  assert.equal(by.sub.length,10);
- assert.equal(Object.keys(by.subBadgeImages).length,6);
+ assert.equal(Object.keys(by.subBadgeImages).length,7);
  assert.equal(by.subBadgeImages.samtidsarkitektur,source);
  const a=plan.families.by.assets.find(x=>x.id==='samtidsarkitektur');
  assert.equal(a.status,'integrated');
@@ -24,7 +24,7 @@ test('Samtidsarkitektur is sixth original 1024px embroidered By image',()=>{
  assert.equal(b.readUIntLE(27,3)+1,1024);
  assert.ok(b[20]&0x10);
  assert.equal(createHash('sha256').update(b).digest('hex'),sha);
- for(const id of by.sub.slice(6))assert.equal(by.subBadgeImages[id],undefined);
+ for(const id of by.sub.slice(7))assert.equal(by.subBadgeImages[id],undefined);
 });
 test('Samtidsarkitektur EN ES PT FR variants are stored but inactive',()=>{
  const manifest=read('data/badges/badge_locale_images_candidates.json');

@@ -11,7 +11,7 @@ test("By Funksjonalisme is the third registered badge and preserves canonical em
   const manifest=read("data/badges/underbadge_batch01_production.json");
   const asset=manifest.families.by.assets.find(a=>a.id==="funksjonalisme");
   assert.equal(by.subBadgeImages.funksjonalisme,expectedPath);
-  assert.equal(Object.keys(by.subBadgeImages).length,6);
+  assert.equal(Object.keys(by.subBadgeImages).length,7);
   assert.equal(by.color,"#808080");
   assert.equal(by.secondaryColor,"#404040");
   assert.deepEqual(asset.quality,{visualApproved:true,technicalApproved:true});
@@ -28,5 +28,5 @@ test("By Funksjonalisme is the third registered badge and preserves canonical em
   assert.ok(image[20]&0x10);
   assert.equal(createHash("sha256").update(image).digest("hex"),expectedSha);
   assert.equal(asset.sha256,expectedSha);
-  for(const id of by.sub.slice(6)) assert.equal(by.subBadgeImages[id],undefined);
+  for(const id of by.sub.slice(7)) assert.equal(by.subBadgeImages[id],undefined);
 });
