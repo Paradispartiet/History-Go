@@ -111,6 +111,34 @@ try{
      await flip.click();
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("is-flipped"),null,{timeout:10000});
      assert.match(await page.locator("#pcQuizCardContent").innerText(),/Tøyenbadet/i);
+     // Canonical popup contract: exactly eight visible tabs, including Språk, no Mer.
+     await page.waitForFunction(()=>typeof window.showPlacePopup==="function" && !!window.HGPlacePopupTabs,null,{timeout:25000});
+     await page.evaluate(async()=>{
+       const selected=window.HGPlaceOpen?.getPlace?.("toyenbadet") || window.PLACES?.find(x=>x?.id==="toyenbadet");
+       if(!selected)throw new Error("Tøyenbadet missing for popup");
+       await window.showPlacePopup(selected);
+     });
+     await page.waitForSelector(".hg-popup.place-popup-v2 [data-place-tab='language']",{timeout:20000});
+     const visibleTabs=await page.locator(".hg-popup.place-popup-v2 .hg-place-tabs [role=tab]").allTextContents();
+     assert.deepEqual(visibleTabs.map(s=>s.trim()),["Om","Historie","Fortellinger","Før/etter","Nyheter","Lesespor","Kilder","Språk"],vp.name+" canonical popup tabs");
+     assert.equal(await page.locator(".hg-popup.place-popup-v2 .hg-place-tabs [data-place-tab='more']").count(),0);
+     await page.locator(".hg-popup.place-popup-v2 [data-place-tab='language']").click();
+     await page.waitForFunction(()=>{
+       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-language");
+       return panel&&!panel.hidden&&panel.querySelectorAll(".hg-place-language-card").length>=4;
+     },null,{timeout:20000});
+     assert.equal(await page.locator(".hg-popup.place-popup-v2 #hg-place-panel-language .hg-place-language-card").count(),4);
+     await page.locator(".hg-popup.place-popup-v2 [data-place-tab='reading']").click();
+     await page.waitForFunction(()=>{
+       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-reading");
+       return panel&&!panel.hidden&&panel.querySelectorAll(".hg-place-reading-card a[href^='https://']").length>=4;
+     },null,{timeout:20000});
+     assert.equal(await page.locator(".hg-popup.place-popup-v2 #hg-place-panel-reading .hg-place-reading-card a[href^='https://']").count(),4);
+     await page.locator(".hg-popup.place-popup-v2 [data-place-tab='sources']").click();
+     await page.waitForFunction(()=>document.querySelectorAll(".hg-popup.place-popup-v2 #hg-place-panel-sources a[href^='https://']").length>=5,null,{timeout:20000});
+     await page.locator(".hg-popup.place-popup-v2 [data-place-tab='stories']").click();
+     await page.waitForFunction(()=>document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-stories")?.textContent?.includes("Da Oslo valgte å rive Tøyenbadet"),null,{timeout:20000});
+     console.log("PASS Tøyenbadet all eight popup tabs, language, four reading links, source links and story:",vp.name);
      await page.locator("#placeCard").screenshot({path:path.join(out,vp.name+"-placecard.png")});
      await page.goto(base+"/fagverk-sted.html?place=toyenbadet",{waitUntil:"domcontentloaded",timeout:60000});
      await page.waitForFunction(()=>document.getElementById("fagverkPlaceContent")?.hidden===false,null,{timeout:45000});
