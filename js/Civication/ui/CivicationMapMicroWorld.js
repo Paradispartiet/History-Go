@@ -44,6 +44,23 @@
       ["bicycle", -0.007, -0.002, 0.3], ["planter", 0.006, -0.006, 0.2],
       ["lamp", -0.006, 0.005, 0]
     ] },
+    { id: "sagene", x: 0.515, y: 0.395, items: [
+      ["bench", -0.006, 0.003, 0.2], ["bench", 0.008, -0.004, -0.1],
+      ["person", 0.003, 0.005, 0.9], ["person", -0.003, -0.004, -0.3],
+      ["lamp", 0.010, 0.006, 0], ["bicycle", -0.010, -0.003, 0.3],
+      ["planter", 0.002, -0.010, 0], ["cafe_table", -0.005, 0.009, 0.2]
+    ] },
+    { id: "kampen", x: 0.655, y: 0.605, items: [
+      ["bench", 0.002, 0.007, -0.4], ["person", -0.006, 0.002, 1],
+      ["person", 0.009, -0.004, -0.5], ["dog", -0.003, -0.005, 0.5],
+      ["planter", 0.004, -0.009, 0], ["lamp", -0.009, 0.009, 0],
+      ["bicycle", 0.009, 0.008, 0.2]
+    ] },
+    { id: "majorstuen", x: 0.345, y: 0.505, items: [
+      ["transit_stop", 0.000, 0.002, 0.4], ["person", -0.007, -0.006, 0],
+      ["person", 0.008, 0.006, -0.4], ["bicycle", 0.009, -0.008, 0.3],
+      ["bollard", -0.009, 0.007, 0], ["lamp", 0.004, -0.009, 0]
+    ] },
     { id: "frogner", x: 0.372, y: 0.505, items: [
       ["bench", 0, -0.003, -0.5], ["person", 0.006, 0.001, 0],
       ["lamp", -0.007, 0.003, 0], ["planter", 0.006, 0.005, 0.2]
@@ -55,7 +72,7 @@
     skin: 0xc0a88e, leaf: 0x637b5c, leafAlt: 0x74856c,
     lamp: 0xd4c9a9, earth: 0x746452, canopy: 0xa6a18c
   });
-  const VALID_KINDS = new Set(["bench", "person", "lamp", "bicycle", "planter", "bollard", "market"]);
+  const VALID_KINDS = new Set(["bench", "person", "lamp", "bicycle", "planter", "bollard", "market", "cafe_table", "dog", "transit_stop"]);
 
   function getBlueprint() {
     const result = [];
@@ -70,6 +87,17 @@
       }
     }
     return result;
+  }
+
+  // Landemerker beholder luft rundt seg: hold miniatyrliv utenfor de samme
+  // normaliserte klareringssonene som det kanoniske 3D-kartet bruker.
+  function safeBlueprint(clearZones, margin = 0.005) {
+    const zones = Array.isArray(clearZones) ? clearZones : [];
+    const safeMargin = Number.isFinite(margin) ? Math.max(0, margin) : 0.005;
+    return getBlueprint().filter((item) => !zones.some((z) => (
+      z && Number.isFinite(z.x) && Number.isFinite(z.y) && Number.isFinite(z.r)
+      && Math.hypot(item.x - z.x, item.y - z.y) < Math.max(0, z.r) + safeMargin
+    )));
   }
 
   // Delte geometrier og materialer gjør mange små detaljer rimelige å rendre.
@@ -146,6 +174,23 @@
         }
       } else if (kind === "bollard") {
         cylinder(g, 0.018, 0.115, COLORS.stone, 0, 0.058, 0);
+      } else if (kind === "cafe_table") {
+        cylinder(g, 0.064, 0.013, COLORS.stone, 0, 0.14, 0);
+        cylinder(g, 0.009, 0.13, COLORS.steel, 0, 0.067, 0);
+        cube(g, 0.035, 0.075, 0.045, COLORS.wood, 0.115, 0.065, 0);
+        cube(g, 0.035, 0.075, 0.045, COLORS.wood, -0.115, 0.065, 0);
+      } else if (kind === "dog") {
+        cube(g, 0.095, 0.044, 0.035, COLORS.earth, 0, 0.07, 0);
+        ball(g, 0.031, COLORS.earth, 0.056, 0.093, 0);
+        cube(g, 0.012, 0.05, 0.012, COLORS.wood, -0.032, 0.025, -0.014);
+        cube(g, 0.012, 0.05, 0.012, COLORS.wood, 0.030, 0.025, 0.014);
+      } else if (kind === "transit_stop") {
+        cube(g, 0.29, 0.013, 0.14, COLORS.canopy, 0, 0.29, 0);
+        for (const x of [-0.125, 0.125]) {
+          cube(g, 0.013, 0.28, 0.013, COLORS.steel, x, 0.14, -0.055);
+        }
+        cube(g, 0.12, 0.018, 0.054, COLORS.wood, 0, 0.09, -0.035);
+        cube(g, 0.052, 0.073, 0.015, COLORS.fabric, -0.105, 0.23, -0.045);
       } else if (kind === "market") {
         cube(g, 0.21, 0.10, 0.13, COLORS.wood, 0, 0.08, 0);
         cube(g, 0.28, 0.025, 0.20, COLORS.canopy, 0, 0.245, 0);
@@ -155,7 +200,9 @@
       return g;
     }
 
-    const objects = getBlueprint();
+    const objects = safeBlueprint(opts.clearZones, opts.clearMargin);
+    const batching = typeof THREE.InstancedMesh === "function";
+    const batches = new Map();
     objects.forEach((item, index) => {
       if (!VALID_KINDS.has(item.kind)) return;
       const miniature = makePiece(item.kind, index);
@@ -165,10 +212,41 @@
       const surfaceOffset = park ? 0.103 : (quay ? 0.065 : 0.073);
       miniature.position.set(opts.nx2x(item.x), ground + surfaceOffset, opts.ny2z(item.y));
       miniature.rotation.y = item.rotation;
-      group.add(miniature);
+      if (!batching) {
+        group.add(miniature);
+      } else {
+        miniature.updateMatrixWorld(true);
+        for (const part of miniature.children) {
+          let byMaterial = batches.get(part.geometry);
+          if (!byMaterial) { byMaterial = new Map(); batches.set(part.geometry, byMaterial); }
+          let batch = byMaterial.get(part.material);
+          if (!batch) { batch = []; byMaterial.set(part.material, batch); }
+          batch.push(part.matrixWorld.clone());
+        }
+      }
     });
-    return { group, count: objects.length, areas: CLUSTERS.map((x) => x.id) };
+    // Instancing: én draw call per felles geometri/materiale i stedet for
+    // én draw call per del av hver benk, person og sykkel.
+    if (batching) {
+      for (const [geo, byMaterial] of batches) {
+        for (const [mat, matrices] of byMaterial) {
+          const instance = new THREE.InstancedMesh(geo, mat, matrices.length);
+          matrices.forEach((matrix, i) => instance.setMatrixAt(i, matrix));
+          instance.instanceMatrix.needsUpdate = true;
+          // Objektene er spredt over kartet; bevar alle også ved panorering.
+          instance.frustumCulled = false;
+          instance.castShadow = false;
+          instance.receiveShadow = false;
+          group.add(instance);
+        }
+      }
+    }
+    return {
+      group, count: objects.length, drawGroups: group.children.length,
+      skipped: getBlueprint().length - objects.length, batched: batching,
+      areas: Array.from(new Set(objects.map((item) => item.area)))
+    };
   }
 
-  root.CivicationMapMicroWorld = { create, getBlueprint, validKinds: () => Array.from(VALID_KINDS) };
+  root.CivicationMapMicroWorld = { create, getBlueprint, safeBlueprint, validKinds: () => Array.from(VALID_KINDS) };
 })(typeof window !== "undefined" ? window : globalThis);
