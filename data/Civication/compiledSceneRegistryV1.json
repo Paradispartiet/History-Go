@@ -12806,7 +12806,8 @@
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
           ],
-          "priority": "urgent"
+          "priority": "urgent",
+          "waiting_for_actor_id": "elin_plansjef"
         }
       },
       "id": "by_radgiver_realism_approval_grant_001",
@@ -12921,10 +12922,329 @@
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
           ],
-          "priority": "urgent"
+          "priority": "urgent",
+          "waiting_for_actor_id": "elin_plansjef"
         }
       },
-      "source_hash": "45073ed73af441c31bfe063f28061b7b760e0cfb0a2f40f8943f7aaa0c7aee23",
+      "source_hash": "8bbc80bd5638b1e30d594444cd4bfb6128250bffd24a206ede8fdac56d497513",
+      "source_path": "data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "branch_flags": {
+          "A": [
+            "ledergodkjenning_anmodet_etter_rework"
+          ],
+          "B": [
+            "ledergodkjenning_mangler_og_sak_venter"
+          ]
+        },
+        "category": "by",
+        "choice_axis": "ettersporbar_anmodning_vs_uttalt_venting",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 1,
+                "trust": 1
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_late_approval_requested",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "venter_pa_leder"
+                    ],
+                    "institution_id": "oslo_kommune_planavdeling_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "politisk_lesbarhet",
+                      "juridisk_presisjon"
+                    ],
+                    "open_questions": [
+                      "Har Elin godkjent saken med dokumenterte forbehold?"
+                    ],
+                    "people_refs": [
+                      "elin_plansjef",
+                      "nora_planjuss"
+                    ],
+                    "phase": "ledergjennomgang",
+                    "place_refs": [
+                      "oslo_radhus"
+                    ],
+                    "role_scope": "by_radgiver_plan",
+                    "shared": true,
+                    "status": "pending",
+                    "title": "Plansjefens godkjenning av Lillebekk før politisk oversendelse",
+                    "work_object_id": "by_radgiver_lillebekk_approval_001"
+                  }
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_late_approval_case_pending",
+                  "note": "Elin har mottatt en formell anmodning etter omarbeidingen; saken er ennå ikke godkjent.",
+                  "op": "transition",
+                  "to_phase": "anmodning_sendt_etter_rework",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_late_approval_flag",
+                  "flag": "ledergodkjenning_anmodet_etter_rework",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Anmodningen blir registrert som ventende. Elin har ennå ikke godkjent oversendelsen.",
+            "id": "A",
+            "label": "Send revidert saksgrunnlag til Elin for formell godkjenning",
+            "reply": "Jeg sender nå en eksplisitt anmodning til Elin og Nora med utestående lov-, fag- og kapasitetsforbehold.",
+            "tags": [
+              "authority",
+              "professionalism"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "quality": 1,
+                "risk": -1
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_no_approval_still_blocked",
+                  "note": "Saksgrunnlaget er ikke godkjent; rework eller juridisk kapasitet må avklares før oversendelse.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_kapasitet_og_ny_ledersak",
+                  "to_status": "blocked",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_no_approval_open_flag",
+                  "flag": "ledergodkjenning_mangler_og_sak_venter",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken blir stående åpen, med ansvar og ressursbehov synlige. Ingen godkjenning er opprettet.",
+            "id": "B",
+            "label": "Behold saken åpen og dokumenter hvorfor fristen ikke kan holdes",
+            "reply": "Jeg registrerer hva som mangler, og ber Elin prioritere juridisk kapasitet eller ny frist før saken sendes.",
+            "tags": [
+              "capacity",
+              "transparency"
+            ]
+          }
+        ],
+        "competency": "saksflyt_og_eksplisitt_myndighetsgrense",
+        "consequence_axis": "gyldig_godkjenningsspor_vs_fortsatt_blokkert_sak",
+        "cooldown": 8,
+        "day_phase": "morning",
+        "from": "Elin, plansjef",
+        "id": "by_radgiver_realism_approval_still_missing_001",
+        "interaction_mode": "decision",
+        "learning_focus": [
+          "approval_request",
+          "rework",
+          "professional_boundary"
+        ],
+        "mail_family": "role_world_realism_approval_followup",
+        "mail_type": "followup",
+        "narrative_arc": "lederlinje_uten_automatisk_godkjenning",
+        "next_bias": {
+          "tags": [
+            "rework",
+            "approval_request",
+            "document_handoff"
+          ],
+          "weight": 1
+        },
+        "person_id": "elin_plansjef",
+        "phase": "mastery",
+        "place_id": "radhuset_planavdeling",
+        "planned_only": true,
+        "pressure": "frist_og_manglende_godkjenningsanmodning",
+        "priority": 52,
+        "purpose": "Gi faktisk oppfølging til spilleren som ikke ba om godkjenning ved første frist, uten å konstruere en lederbeslutning.",
+        "repeatable": false,
+        "role_scope": "by_radgiver_plan",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Elin bekrefter at Lillebekk ikke har et registrert godkjenningspunkt til politisk oversendelse.",
+          "Å skrive en bedre anbefaling eller melde en kapasitetskonflikt er faglig arbeid, men ikke det samme som å be om eller få formell godkjenning.",
+          "Du kan sende revidert grunnlag til leder og planjurist nå, eller holde saken åpen mens tidsplanen avklares. Ingen av handlingene gir politisk vedtak."
+        ],
+        "stage": "stable",
+        "stakes": "Politisk oversendelse må fortsatt være sperret, samtidig som spillerens tidligere arbeid og kapasitetsvalg er synlige.",
+        "subject": "Lillebekk er ikke godkjent: revisjon eller formell anmodning gjenstår",
+        "summary": "Det foreligger ingen registrert ledergodkjenning. En revidert anbefaling eller eskalert kapasitetskonflikt er ikke i seg selv en formell godkjenningsanmodning.",
+        "tags": [
+          "followup",
+          "no_approval",
+          "rework",
+          "by_radgiver_plan",
+          "lillebekk"
+        ],
+        "task_domain": "etterarbeid_uten_ledergodkjenning",
+        "task_kind": "followup",
+        "thread_key": "by_radgiver_lillebekk_realism_001",
+        "triggers_on_choice": {
+          "A": [
+            "role_world_realism_return_to_case"
+          ],
+          "B": [
+            "role_world_realism_return_to_case"
+          ]
+        },
+        "work_context": {
+          "deadline_ref": "politisk_utvalg",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "by_radgiver_realism_approval_request_001"
+        }
+      },
+      "id": "by_radgiver_realism_approval_still_missing_001",
+      "mail_type": "followup",
+      "role_scope": "by_radgiver_plan",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_late_approval_requested",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "venter_pa_leder"
+                    ],
+                    "institution_id": "oslo_kommune_planavdeling_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "politisk_lesbarhet",
+                      "juridisk_presisjon"
+                    ],
+                    "open_questions": [
+                      "Har Elin godkjent saken med dokumenterte forbehold?"
+                    ],
+                    "people_refs": [
+                      "elin_plansjef",
+                      "nora_planjuss"
+                    ],
+                    "phase": "ledergjennomgang",
+                    "place_refs": [
+                      "oslo_radhus"
+                    ],
+                    "role_scope": "by_radgiver_plan",
+                    "shared": true,
+                    "status": "pending",
+                    "title": "Plansjefens godkjenning av Lillebekk før politisk oversendelse",
+                    "work_object_id": "by_radgiver_lillebekk_approval_001"
+                  }
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_late_approval_case_pending",
+                  "note": "Elin har mottatt en formell anmodning etter omarbeidingen; saken er ennå ikke godkjent.",
+                  "op": "transition",
+                  "to_phase": "anmodning_sendt_etter_rework",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_late_approval_flag",
+                  "flag": "ledergodkjenning_anmodet_etter_rework",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Anmodningen blir registrert som ventende. Elin har ennå ikke godkjent oversendelsen.",
+            "id": "A",
+            "label": "Send revidert saksgrunnlag til Elin for formell godkjenning",
+            "reply": "Jeg sender nå en eksplisitt anmodning til Elin og Nora med utestående lov-, fag- og kapasitetsforbehold."
+          },
+          {
+            "effects": {
+              "score_delta": 0,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_no_approval_still_blocked",
+                  "note": "Saksgrunnlaget er ikke godkjent; rework eller juridisk kapasitet må avklares før oversendelse.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_kapasitet_og_ny_ledersak",
+                  "to_status": "blocked",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_no_approval_open_flag",
+                  "flag": "ledergodkjenning_mangler_og_sak_venter",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken blir stående åpen, med ansvar og ressursbehov synlige. Ingen godkjenning er opprettet.",
+            "id": "B",
+            "label": "Behold saken åpen og dokumenter hvorfor fristen ikke kan holdes",
+            "reply": "Jeg registrerer hva som mangler, og ber Elin prioritere juridisk kapasitet eller ny frist før saken sendes."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Elin bekrefter at Lillebekk ikke har et registrert godkjenningspunkt til politisk oversendelse.",
+            "Å skrive en bedre anbefaling eller melde en kapasitetskonflikt er faglig arbeid, men ikke det samme som å be om eller få formell godkjenning.",
+            "Du kan sende revidert grunnlag til leder og planjurist nå, eller holde saken åpen mens tidsplanen avklares. Ingen av handlingene gir politisk vedtak."
+          ],
+          "subject": "Lillebekk er ikke godkjent: revisjon eller formell anmodning gjenstår",
+          "summary": "Det foreligger ingen registrert ledergodkjenning. En revidert anbefaling eller eskalert kapasitetskonflikt er ikke i seg selv en formell godkjenningsanmodning."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_radgiver_realism_approval_still_missing_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "radhuset_planavdeling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_radgiver_realism_approval_still_missing_001",
+          "source_path": "data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_radgiver_lillebekk_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "politisk_utvalg",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "by_radgiver_realism_approval_request_001"
+        }
+      },
+      "source_hash": "0991d1a63d9b0e46cf655269aa868559fa19d6e0608eb71d70432e62d2bf4eb7",
       "source_path": "data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -18231,10 +18551,10 @@
               "work_object_ops": [
                 {
                   "event_id": "by_radgiver_lillebekk_history_go_applied",
-                  "note": "History Go-læringen fra Oslo rådhus er brukt til å skille lovkrav, administrativ anbefaling og politisk valg i beslutningsgrunnlaget.",
+                  "note": "Rådhus-læringen er brukt til å skille lovkrav, administrativ anbefaling og politisk valg. Saken venter fortsatt på Elins faktiske ledergodkjenning; kun faggrunnlaget er forbedret.",
                   "op": "transition",
                   "to_phase": "myndighetsgrense_og_alternativer_revidert",
-                  "to_status": "in_progress",
+                  "to_status": "awaiting_approval",
                   "work_object_id": "by_radgiver_lillebekk_plan_case_001"
                 },
                 {
@@ -18377,10 +18697,10 @@
               "work_object_ops": [
                 {
                   "event_id": "by_radgiver_lillebekk_history_go_applied",
-                  "note": "History Go-læringen fra Oslo rådhus er brukt til å skille lovkrav, administrativ anbefaling og politisk valg i beslutningsgrunnlaget.",
+                  "note": "Rådhus-læringen er brukt til å skille lovkrav, administrativ anbefaling og politisk valg. Saken venter fortsatt på Elins faktiske ledergodkjenning; kun faggrunnlaget er forbedret.",
                   "op": "transition",
                   "to_phase": "myndighetsgrense_og_alternativer_revidert",
-                  "to_status": "in_progress",
+                  "to_status": "awaiting_approval",
                   "work_object_id": "by_radgiver_lillebekk_plan_case_001"
                 },
                 {
@@ -18468,7 +18788,7 @@
           "waiting_for_actor_id": "elin_plansjef"
         }
       },
-      "source_hash": "aefba22387bea3a27c2fd514d3d1f4adfaa873004b51eb5157b0ef4cbf1b8676",
+      "source_hash": "f3761f29cb1294e38405c99d218bb980719a6689700e4749d91490ae659f6452",
       "source_path": "data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -290122,7 +290442,7 @@
     "file_count": 7,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "7a0beb24557bee520a7002649cc07ed03be7722882fe5854ee07a1fb5f66d784",
+  "registry_hash": "ca4a2e487eff51befac9c3e9ad4def75162cddaab138a0528d750a1c1756ef96",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -290268,6 +290588,7 @@
       "by_areal_followup_007",
       "by_areal_followup_008",
       "by_radgiver_realism_approval_grant_001",
+      "by_radgiver_realism_approval_still_missing_001",
       "by_radgiver_situated_team_trust_followup_001",
       "by_radgiver_situated_manager_trust_followup_001",
       "by_areal_knowledge_001",
@@ -292219,7 +292540,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 756,
     "role_count": 89,
-    "scene_count": 1885,
+    "scene_count": 1886,
     "shadowed_duplicate_count": 0
   },
   "version": 1

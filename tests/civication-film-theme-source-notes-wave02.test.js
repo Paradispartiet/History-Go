@@ -26,17 +26,16 @@ for(const note of notes.entries){
  assert.ok(note.original_civication_conflict.length>85);
  assert.ok(note.persistent_consequence.length>60);
  assert.ok(note.avoid.length>=2);
- if(original.runtime==='registered_first_installment'){
-   assert.equal(note.existing_runtime_path,original.runtime_path);
-   assert.ok(fs.existsSync(path.join(root,original.runtime_path)));
-   const body=read(original.runtime_path);
-   assert.ok(body.threads.some(t=>t.id==='wave_a_'+note.type_id.toLowerCase()),
-      note.type_id+' must have actual authored story thread');
-   assert.ok(body.scenes.length>0);
+ assert.equal(original.runtime,'registered_first_installment');
+ assert.equal(note.existing_runtime_path,original.runtime_path);
+ const body=read(original.runtime_path);
+ if(note.type_id==='C04'){
+   assert.equal(body.role_scope,note.role_id);
+   assert.ok(body.scenes.some(s=>s.id==='c04_tekstforesporsel'&&s.valg.length===3));
+   assert.equal(body.scenes.filter(s=>s.id.startsWith('c04_tekstoppfolging_')).length,3);
  }else{
-   assert.equal(note.type_id,'C04','only C04 is intentionally not playable in this wave');
-   assert.equal(original.runtime,'no_new_scenes');
-   assert.equal(note.existing_runtime_path,null);
+   assert.ok(body.threads.some(t=>t.id==='wave_a_'+note.type_id.toLowerCase()));
+   assert.ok(body.scenes.length>0);
  }
 }
-console.log('Civication film wave02: C02/C03 anchored to actual scenes; C04 explicitly unplayed; no claimed close reading');
+console.log('Civication film wave02: C02–C04 anchored to authored scenes; no claimed close reading');

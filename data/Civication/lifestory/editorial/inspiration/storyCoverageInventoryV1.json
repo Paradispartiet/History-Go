@@ -1,7 +1,7 @@
 {
   "schema": "civication_story_coverage_inventory_v1",
   "legacy_register": "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-  "status_note": "24 synopsis-kandidater; de åtte påbegynte buene har nå første bolk (33 scener/66 valg) og en grenavhengig oppfølgingsbolk (41 scener/82 valg) i eksisterende pakker. Se begge bindingsfiler. Hele buer med minst fire kapitler og nærlesningsbasert kildegodkjenning er ikke ferdige.",
+  "status_note": "24 synopsis-kandidater; de åtte påbegynte buene har nå første bolk (33 scener/66 valg) og en grenavhengig oppfølgingsbolk (41 scener/82 valg) i eksisterende pakker. Se begge bindingsfiler. C04 har i tillegg en første spillbar del i Lea-fortsettelsen. Hele buer med minst fire kapitler og nærlesningsbasert kildegodkjenning er ikke ferdige.",
   "updated_date": "2026-10-18",
   "types": [
     {
@@ -203,9 +203,9 @@
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
       "blueprint": "missing",
-      "runtime": "no_new_scenes",
+      "runtime": "registered_first_installment",
       "blueprint_id": null,
-      "runtime_path": null,
+      "runtime_path": "data/Civication/lifestory/continuations/frilans_med_lea.json",
       "evidence_refs": [
         "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
         "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json"
@@ -219,10 +219,12 @@
       "role_adaptations": [
         {
           "role_id": "naeringsliv_frilanser",
-          "applicability": "candidate",
+          "applicability": "runtime_first_installment",
           "reason": "Lea får en forespørsel om liten tekstjobb som vokser før pris og frist er avtalt.",
           "blueprint_ids": [],
-          "runtime_paths": []
+          "runtime_paths": [
+            "data/Civication/lifestory/continuations/frilans_med_lea.json"
+          ]
         },
         {
           "role_id": "ekspeditor",
