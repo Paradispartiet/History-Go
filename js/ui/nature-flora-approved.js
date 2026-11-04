@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_varmure: Object.freeze({
+      scientificName: "Potentilla verna",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/52_varmure_v1.webp",
+      gitBlobSha: "b5c91c9233a2aea1eb42466eccd9d85e00bd4e3c",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-varmure-20261104.json"
+    }),
     emne_flora_varkaal: Object.freeze({
       scientificName: "Ficaria verna",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/51_varkaal_v1.webp",
