@@ -52,14 +52,12 @@ test('More interpretation separates observation, significance and limits', () =>
   assert.match(main.interpretation.counterpoints.join(' '), /beviser ikke.*rettssikkerheten/i);
 });
 
-test('The visible Språk renderer keeps glossary context and safe source links', () => {
+test('The More renderer shows glossary context and safe source links', () => {
   assert.match(runtime, /function languageCards\(items\)/);
   assert.match(runtime, /item\?\.context/);
   assert.match(runtime, /class="hg-place-more-source"/);
   assert.match(runtime, /target="_blank" rel="noopener noreferrer"/);
-  assert.match(runtime, /section\("Språkleksikon", languageCards\(entries\)\)/);
-  assert.match(runtime, /\["language", "Språk"\]/);
-  assert.match(runtime, /append\(tabs\.panels\.language, renderLanguage\(language\), "language"\)/);
+  assert.match(runtime, /section\("Språkleksikon", languageCards\(languageEntries\)\)/);
   assert.match(styles, /\.hg-place-tab-card \.hg-place-more-source/);
   assert.match(styles, /\.hg-place-language-card \.hg-place-language-context/);
 });
