@@ -152,6 +152,7 @@
   let placeGroup = null;
   let landmarkGroup = null;
   let microWorldGroup = null;
+  let microWorldSetPeriod = null;
   let INVISIBLE_HIT_MAT = null;
 
   let W = 0, H = 0;
@@ -870,6 +871,8 @@
         _stats.microWorldObjects = result.count || 0;
         _stats.microWorldDrawGroups = result.drawGroups || 0;
         _stats.microWorldSkipped = result.skipped || 0;
+        microWorldSetPeriod = typeof result.setPeriod === "function" ? result.setPeriod : null;
+        if (microWorldSetPeriod) microWorldSetPeriod(activeVisualPeriod || "morning");
       }
     } catch (error) {
       console.warn("[CivicationThreeMap] mikroliv feilet; kartet fortsetter:", error);
@@ -930,6 +933,7 @@
     scene.background?.setHex?.(mood.sky);
     scene.fog?.color?.setHex?.(mood.sky);
     activeVisualPeriod = period;
+    if (microWorldSetPeriod) microWorldSetPeriod(period);
     dirty = true;
   }
 
