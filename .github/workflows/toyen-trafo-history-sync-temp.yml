@@ -1,0 +1,41 @@
+name: Tøyen trafo historical runtime sync (temporary)
+on:
+  push:
+    branches:
+      - content/toyen-trafo-history-story-20261104
+    paths:
+      - .github/workflows/toyen-trafo-history-sync-temp.yml
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Leksikon and Story, regenerate canonical indexes
+        run: |
+          npm ci --no-audit --no-fund
+          npm run place-open:build
+          npm run epoker:places:build
+          npm run place-open:check
+          npm run epoker:places:check
+          node --test tests/toyen-trafo-history-story-contract.test.mjs
+          npm run check:stories
+          git status --short
+      - name: Commit generated indexes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/runtime/leksikon-all data/runtime/place-open data/epoker/epoke-place-index.json
+          git diff --cached --name-only
+          if ! git diff --cached --quiet; then
+            git commit -m "build(toyen trafo): synchronize Leksikon, Story and epoke Place-open"
+            git push origin HEAD:content/toyen-trafo-history-story-20261104
+          fi
