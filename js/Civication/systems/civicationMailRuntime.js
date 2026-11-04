@@ -430,6 +430,15 @@
         if (!id || consumedIds.has(id)) return false;
         if (wantedType && norm(mail?.mail_type) !== wantedType) return false;
         if (strictFamily && allowedFamilies.size && !allowedFamilies.has(norm(mail?.mail_family))) return false;
+        // Planned mail must honor the same persistent-work prerequisites as the
+        // canonical day builder. Otherwise a leader response can be delivered
+        // after rework/escalation even though no approval request exists.
+        const work = mail?.work_context || {};
+        if (work.waiting_for_actor_id || work.rework_of_scene_id || work.rework_of_object_transition) {
+          const evaluator = window.CivicationWorkRhythm?.evaluateScene;
+          if (typeof evaluator !== "function" || !options.state ||
+              evaluator(mail, options.state, { phase: step?.phase }).eligible !== true) return false;
+        }
         return true;
       })
       .map(mail => toRuntimeMail(active, plan, step, mail, stepIndex));
@@ -463,20 +472,22 @@
     const current = getCurrentStep(plan, runtime);
     const currentIndex = sequence.find(row => row.step === current)?.index ?? Math.max(0, Number(runtime.step_index || 0));
 
-    let candidates = candidatesForStep(active, plan, current, currentIndex, mails, consumedIds, { strictFamily: true });
+    let candidates = candidatesForStep(active, plan, current, currentIndex, mails, consumedIds, { strictFamily: true, state });
 
     if (!candidates.length) {
       const fallbackTypes = Array.isArray(current?.fallback_types) ? current.fallback_types.map(norm).filter(Boolean) : [];
       for (const fallbackType of fallbackTypes) {
         candidates = candidatesForStep(active, plan, current, currentIndex, mails, consumedIds, {
           type: fallbackType,
-          strictFamily: true
+          strictFamily: true,
+          state
         });
         if (candidates.length) break;
 
         candidates = candidatesForStep(active, plan, current, currentIndex, mails, consumedIds, {
           type: fallbackType,
-          strictFamily: false
+          strictFamily: false,
+          state
         });
         if (candidates.length) break;
       }
@@ -485,7 +496,7 @@
     if (!candidates.length) {
       for (const row of sequence) {
         if (row.index === currentIndex) continue;
-        candidates = candidatesForStep(active, plan, row.step, row.index, mails, consumedIds, { strictFamily: true });
+        candidates = candidatesForStep(active, plan, row.step, row.index, mails, consumedIds, { strictFamily: true, state });
         if (candidates.length) break;
       }
     }

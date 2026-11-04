@@ -187,11 +187,13 @@ function provePilotSequence() {
   assert.equal(waiting.eligible, true);
   assert.equal(waiting.state, 'waiting');
   applyScene(adapter, knowledge, 'A', '2026-08-23T13:00:00Z');
+  // A manager response is a waiting-for-actor step until an actual grant is
+  // recorded. It is not a generic interruption that can confer authority.
+  assert.equal(rhythm.evaluateScene(grant, state.getState()).state, 'waiting');
   applyScene(adapter, grant, 'A', '2026-08-24T08:00:00Z');
   const readyForRework = rhythm.evaluateScene(rework, state.getState(), { day_index: 2, phase: 'forenoon' });
   assert.equal(readyForRework.eligible, true);
   assert.equal(readyForRework.state, 'rework');
-  assert.equal(rhythm.evaluateScene(grant, state.getState()).state, 'interrupt');
   assert.equal(rhythm.evaluateScene(request, state.getState()).handoff_to_actor_id, 'elin_plansjef');
   assert.equal(rhythm.evaluateScene(send, state.getState(), { day_index: 2, phase: 'evening' }).deadline_state, 'overdue');
 
