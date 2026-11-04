@@ -32,13 +32,6 @@ jobs:
           git fetch --no-tags origin main
           git fetch --no-tags origin fix/webp-locale-people-hygiene-20261104
           git merge-base --is-ancestor 'b8865e6fd52766ed94ce1b79db18c4be58a7bca2' origin/main
-          git cat-file -e '9ba30085ba6cace1dbba6fb0a829a27aa32fdbd7^{commit}'
-          for p in docs/PEOPLE_AI_ILLUSTRATION_RULE.md tests/badge-by-samtidsarkitektur-v1-production.test.mjs; do
-            git show '9ba30085ba6cace1dbba6fb0a829a27aa32fdbd7':"$p" > "$p"
-            git add -- "$p"
-          done
-          git diff --cached --check
-          echo 'PASS isolated main + unmerged upstream fix, no refs updated'
           test "$(git merge-base HEAD origin/main)" = '8671bc4c5887421bdcb27a0777d852680ad42084'
           git diff --name-only '8671bc4c5887421bdcb27a0777d852680ad42084' 'b8865e6fd52766ed94ce1b79db18c4be58a7bca2' > /tmp/minneparken-reviewed-main-paths.txt
           node --input-type=module <<'NODE'
@@ -57,6 +50,13 @@ jobs:
           if (( ${#conflicts[@]} )); then echo "Unexpected merge conflicts; no push" >&2; exit 1; fi
           test -z "$(git diff --name-only --diff-filter=U)"
           git merge-base --is-ancestor 'b8865e6fd52766ed94ce1b79db18c4be58a7bca2' origin/main
+          git cat-file -e '9ba30085ba6cace1dbba6fb0a829a27aa32fdbd7^{commit}'
+          for p in docs/PEOPLE_AI_ILLUSTRATION_RULE.md tests/badge-by-samtidsarkitektur-v1-production.test.mjs; do
+            git show '9ba30085ba6cace1dbba6fb0a829a27aa32fdbd7':"$p" > "$p"
+            git add -- "$p"
+          done
+          git diff --cached --check
+          echo 'PASS isolated main + unmerged upstream fix, no refs updated'
       - name: Rebuild derived content, source and policy checks
         shell: bash
         run: |
