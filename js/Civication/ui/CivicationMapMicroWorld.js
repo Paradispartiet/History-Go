@@ -12,13 +12,13 @@
       ["lamp", -0.009, 0.004, 0], ["lamp", 0.010, -0.003, 0],
       ["planter", 0.001, -0.009, 0.2]
     ] },
-    { id: "toyenparken", x: 0.625, y: 0.485, items: [
+    { id: "toyenparken", x: 0.625, y: 0.474, items: [
       ["bench", -0.007, 0.004, -0.6], ["bench", 0.006, -0.004, 0.7],
       ["person", 0.002, 0.007, 0.5], ["person", -0.002, -0.005, -0.6],
       ["lamp", -0.009, -0.004, 0], ["bicycle", 0.009, 0.003, 0.2],
       ["planter", 0, -0.008, 0]
     ] },
-    { id: "botanisk", x: 0.610, y: 0.505, items: [
+    { id: "toyenhage", x: 0.598, y: 0.474, items: [
       ["bench", -0.004, 0.003, 0.5], ["person", 0.004, -0.002, -0.7],
       ["planter", 0, 0.006, -0.3], ["planter", -0.004, -0.004, 0.4],
       ["lamp", 0.007, 0.002, 0]
@@ -29,12 +29,12 @@
       ["lamp", 0.008, 0.001, 0], ["bollard", -0.009, 0.003, 0],
       ["bollard", 0.010, -0.004, 0]
     ] },
-    { id: "bjorvika", x: 0.610, y: 0.665, items: [
+    { id: "bjorvika_nord", x: 0.635, y: 0.606, items: [
       ["lamp", -0.007, 0.001, 0], ["lamp", 0.008, -0.002, 0],
       ["person", 0.004, 0.004, 0.6], ["bicycle", -0.003, -0.004, -0.3],
       ["bench", -0.001, 0.003, 0.3], ["bollard", 0.010, 0.004, 0]
     ] },
-    { id: "toyen_torg", x: 0.626, y: 0.518, items: [
+    { id: "toyen_nabolag", x: 0.672, y: 0.503, items: [
       ["market", 0, 0, -0.15], ["person", -0.005, -0.002, 0.6],
       ["person", 0.005, 0.002, -0.6], ["planter", -0.007, 0.005, 0],
       ["lamp", 0.007, -0.005, 0]
@@ -207,8 +207,8 @@
       if (!VALID_KINDS.has(item.kind)) return;
       const miniature = makePiece(item.kind, index);
       miniature.name = "decor-" + item.area + "-" + item.kind;
-      const park = item.area === "st_hanshaugen" || item.area === "toyenparken" || item.area === "botanisk";
-      const quay = item.area === "aker_brygge" || item.area === "bjorvika";
+      const park = item.area === "st_hanshaugen" || item.area === "toyenparken" || item.area === "toyenhage";
+      const quay = item.area === "aker_brygge";
       const surfaceOffset = park ? 0.103 : (quay ? 0.065 : 0.073);
       miniature.position.set(opts.nx2x(item.x), ground + surfaceOffset, opts.ny2z(item.y));
       miniature.rotation.y = item.rotation;
