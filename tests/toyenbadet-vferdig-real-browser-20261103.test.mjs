@@ -111,6 +111,39 @@ try{
      await flip.click();
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("is-flipped"),null,{timeout:10000});
      assert.match(await page.locator("#pcQuizCardContent").innerText(),/Tøyenbadet/i);
+     // The actual app routes Place details into the unified Place Sheet, not a
+     // legacy .hg-popup. Audit the user-visible canonical owners in the real card.
+     await page.waitForFunction(()=>document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]')?.dataset.placeId==="toyenbadet",null,{timeout:30000});
+     await page.waitForFunction(()=>{
+       const shell=document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
+       if(!shell)return false;
+       const ready=id=>{
+         const section=shell.querySelector('[data-hg-place-sheet-section="'+id+'"]');
+         return !!section&&!section.hidden&&section.dataset.placeId==="toyenbadet"
+           &&!!section.querySelector('[data-hg-place-sheet-owner="'+id+'"]');
+       };
+       return ready("language")&&ready("reading")&&ready("sources");
+     },null,{timeout:45000});
+     const sheetDetails=await page.evaluate(()=>{
+       const shell=document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
+       const count=(id,selector)=>shell.querySelector('[data-hg-place-sheet-section="'+id+'"]')?.querySelectorAll(selector).length||0;
+       return {
+         nav:[...document.querySelectorAll('#placeCard [data-hg-place-sheet-nav="1"] [data-hg-place-sheet-jump]')].filter(x=>!x.hidden).map(x=>x.dataset.hgPlaceSheetJump),
+         language:count("language",".hg-place-language-card, .hg-language-entry, [data-entry-id]"),
+         languageText:shell.querySelector('[data-hg-place-sheet-section="language"]')?.textContent.slice(0,1500)||"",
+         reading:count("reading",".hg-place-reading-card a[href^='https://']"),
+         sourceLinks:count("sources","a[href^='https://']"),
+         story:shell.querySelector('[data-hg-place-sheet-section="stories"]')?.textContent||"",
+         legacyPopupCount:document.querySelectorAll(".hg-popup.place-popup-v2:not([data-hg-place-sheet-language-scaffold])").length
+       };
+     });
+     console.log("Tøyenbadet unified sheet QA:",vp.name,JSON.stringify(sheetDetails));
+     assert.ok(sheetDetails.nav.includes("language"),vp.name+" Språk section must be visible in canonical navigation");
+     assert.ok(sheetDetails.languageText.includes("Tøyenbadet")&&sheetDetails.languageText.includes("hovedbad"),vp.name+" source-backed language entries visible");
+     assert.ok(sheetDetails.reading>=4,vp.name+" four place-linked reading links");
+     assert.ok(sheetDetails.sourceLinks>=5,vp.name+" source references visible");
+     assert.ok(sheetDetails.story.includes("Da Oslo valgte å rive Tøyenbadet"),vp.name+" source-backed Story visible");
+     assert.equal(sheetDetails.legacyPopupCount,0,vp.name+" no legacy duplicate popup");
      await page.locator("#placeCard").screenshot({path:path.join(out,vp.name+"-placecard.png")});
      // Canonical PlaceSheet replaced legacy modal popup. Validate the *visible owner*
      // sections, never the hidden compatibility popup used to build Språk markup.
