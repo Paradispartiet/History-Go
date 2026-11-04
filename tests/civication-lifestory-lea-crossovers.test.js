@@ -177,6 +177,23 @@ for (const arc of arcs) for (const variant of arc.variants) {
     paths++;
   }
 }
+for (const [choice, status] of [
+  ['avgrens', 'tilbud_sendt'],
+  ['avklar', 'venter_pa_svar'],
+  ['avsla', 'avslatt']
+]) {
+  const opening = progress(S.createInitialState(base), base, 7, {d2_en_retning: 'prosjekt'});
+  let saved = opening.saved;
+  let content = startChapter(saved, opening.content, 'frilans_med_lea');
+  const money = saved.meters.penger;
+  ({saved, content} = progress(saved, content, 8, {c04_tekstforesporsel: choice}));
+  assert.equal(saved.tidligereValg.c04_tekststatus, status);
+  R.startNextDay(saved, content);
+  ({saved} = progress(saved, restore(clone(saved)), 9));
+  assert.equal(saved.tidligereValg.c04_tekstoppfolging, status);
+  assert.equal(saved.meters.penger, money, 'a request or estimate never pays out');
+}
+
 delete globalThis.CivicationLifePositions;
 assert.equal(handoffs,6);
 assert.equal(paths,48);

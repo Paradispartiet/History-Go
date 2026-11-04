@@ -251,6 +251,140 @@
       }
     },
     {
+      "id": "c04_tekstforesporsel",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 8,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kan du ta nettsida også?",
+      "tekst": "Lea har sagt at du kan skrive korte tekster. Nå spør hun om en forening kan få en invitasjon på 150 ord til fredag. Før du rekker å svare, videresender hun et nytt spørsmål: Kan du ta forsida og nyhetsbrevet samtidig? Du har allerede satt av morgendagen til en rettelse du har lovet en annen kunde.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Send et pristilbud på 1 200 kr for invitasjonen og én korrekturrunde",
+          "konsekvensTekst": "Du priser bare invitasjonen. Arbeidet kan begynne når foreningen har bekreftet omfang og frist skriftlig. Du beholder tida til den gamle rettelsen.",
+          "effekter": {
+            "flagg": {
+              "c04_tekststatus": "tilbud_sendt"
+            }
+          }
+        },
+        {
+          "id": "avklar",
+          "tekst": "Be om én leveranseliste, budsjett og navn på den som kan bestille",
+          "konsekvensTekst": "Lea sender spørsmålene videre. Du holder ingen tid av til foreningen mens du venter på svar.",
+          "effekter": {
+            "flagg": {
+              "c04_tekststatus": "venter_pa_svar"
+            }
+          }
+        },
+        {
+          "id": "avsla",
+          "tekst": "Takk nei og behold tida til rettelsen du allerede har lovet",
+          "konsekvensTekst": "Lea gir foreningen beskjed om at de må finne en annen skribent. Du har ingen ny leveranse i kalenderen.",
+          "effekter": {
+            "flagg": {
+              "c04_tekststatus": "avslatt"
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_tekstoppfolging_tilbud_sendt",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 9,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Da får vi forsida på fredag?»",
+      "tekst": "Lea videresender et svar fra foreningen. De spør om forsida blir ferdig fredag. Tilbudet ditt gjelder invitasjonen. Ingen har bekreftet det ennå.",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Send tilbudet på nytt og presiser hva prisen dekker",
+          "konsekvensTekst": "Prisen på 1 200 kr gjelder fortsatt invitasjonen og én korrekturrunde. Forsida krever en egen avtale. Tilbudet venter på svar.",
+          "effekter": {
+            "flagg": {
+              "c04_tekstoppfolging": "tilbud_sendt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekststatus": "tilbud_sendt"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_tekstoppfolging_venter_pa_svar",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 9,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den som kan bestille, er på jobb",
+      "tekst": "Lea har fått beskjed om at styrelederen kan svare i kveld. I innboksen ligger fremdeles to ulike lister over hva foreningen vil ha.",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "La forespørselen stå åpen og send den lovede rettelsen",
+          "konsekvensTekst": "Den gamle kunden får rettelsen. Foreningen må fortsatt svare på omfang, budsjett og hvem som bestiller.",
+          "effekter": {
+            "flagg": {
+              "c04_tekstoppfolging": "venter_pa_svar"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekststatus": "venter_pa_svar"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_tekstoppfolging_avslatt",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 9,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En tekst mindre i kalenderen",
+      "tekst": "Den gamle kunden spør om en manglende lenke i rettelsen. Lea har allerede gitt foreningen beskjed om at du takket nei.",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Rett lenka og send den avtalte fila",
+          "konsekvensTekst": "Du leverer rettelsen som avtalt. Forespørselen fra foreningen står som avslått.",
+          "effekter": {
+            "flagg": {
+              "c04_tekstoppfolging": "avslatt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekststatus": "avslatt"
+        }
+      }
+    },
+    {
       "id": "d10_frilans_mote",
       "threadId": "frilans_videre_med_lea",
       "dag": 10,
