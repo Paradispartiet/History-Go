@@ -160,7 +160,10 @@
       if (!VALID_KINDS.has(item.kind)) return;
       const miniature = makePiece(item.kind, index);
       miniature.name = "decor-" + item.area + "-" + item.kind;
-      miniature.position.set(opts.nx2x(item.x), ground + 0.06, opts.ny2z(item.y));
+      const park = item.area === "st_hanshaugen" || item.area === "toyenparken" || item.area === "botanisk";
+      const quay = item.area === "aker_brygge" || item.area === "bjorvika";
+      const surfaceOffset = park ? 0.103 : (quay ? 0.065 : 0.073);
+      miniature.position.set(opts.nx2x(item.x), ground + surfaceOffset, opts.ny2z(item.y));
       miniature.rotation.y = item.rotation;
       group.add(miniature);
     });
