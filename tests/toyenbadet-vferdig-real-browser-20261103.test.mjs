@@ -135,6 +135,10 @@ try{
        assert.equal(await button.count(),1,vp.name+" missing "+sectionId+" jump button");
        assert.equal(await button.evaluate(el=>el.hidden),false,vp.name+" "+sectionId+" navigation button incorrectly hidden");
      }
+     await page.waitForFunction(()=>["language","reading","sources"].every(id=>{
+       const el=document.querySelector('#placeCard [data-hg-place-sheet-nav="1"] [data-hg-place-sheet-jump="'+id+'"]');
+       return el && !el.hidden;
+     }),null,{timeout:15000});
      const language=sheet.locator('[data-hg-place-sheet-section="language"]');
      assert.equal(await language.locator('[data-language-entry]').count(),4);
      assert.match(await language.innerText(),/Tøyenbadet/);
@@ -147,7 +151,7 @@ try{
      // Follow the real unified navigation path, not the hidden legacy modal scaffold.
      const opened=await page.evaluate(async () => {
        const p=window.HGPlaceOpen?.getPlace?.("toyenbadet");
-       return window.HGPlaceUnifiedSurface?.openSection?.(p,"language");
+       return window.HGPlaceUnifiedSurface?.open?.(p,"language");
      });
      assert.equal(opened,true,vp.name+" unified language navigation failed");
      await page.locator('#placeCard').screenshot({path:path.join(out,vp.name+"-place-sheet-language.png")});
