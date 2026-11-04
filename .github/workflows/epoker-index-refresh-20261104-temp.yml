@@ -1,0 +1,66 @@
+name: Temporary Epoker generated index refresh 20261104
+on:
+  push:
+    branches:
+      - fix/epoker-place-index-refresh-20261104
+    paths:
+      - .github/workflows/epoker-index-refresh-20261104-temp.yml
+permissions:
+  contents: write
+jobs:
+  refresh-index-on-repair-branch-only:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/epoker-place-index-refresh-20261104
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Pin reviewed main snapshot and check clean checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = '1612ecc497a9be8eaa37fc11e70d11af36e71802'
+          test "$(git merge-base HEAD '1612ecc497a9be8eaa37fc11e70d11af36e71802')" = '1612ecc497a9be8eaa37fc11e70d11af36e71802'
+          test -z "$(git status --porcelain)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Rebuild exact canonical Epoker index and verify source consistency
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run places:index:check
+          npm run epoker:places:build
+          npm run epoker:places:check
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import crypto from 'node:crypto';
+          const p='data/epoker/epoke-place-index.json';
+          const b=fs.readFileSync(p);
+          if(b.length<1024)throw Error('Unexpected short index; no publish');
+          JSON.parse(b.toString('utf8'));
+          console.log('Epoker regenerated JSON bytes:',b.length,'sha256:',crypto.createHash('sha256').update(b).digest('hex'));
+          NODE
+      - name: Enforce exact one-file scope; push to repair branch, never main
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t changed < <(git diff --name-only)
+          printf 'Generated diff files: %s\n' "${changed[*]:-none}"
+          test "${#changed[@]}" -eq 1
+          test "${changed[0]}" = 'data/epoker/epoke-place-index.json'
+          test -z "$(git ls-files --others --exclude-standard)"
+          git diff --check
+          git add -- data/epoker/epoke-place-index.json
+          git diff --cached --check
+          git diff --quiet
+          git commit -m 'fix(epoker): regenerate canonical place index from pinned main sources'
+          git push origin HEAD:fix/epoker-place-index-refresh-20261104
+          echo 'PASS regenerated Epoker index pushed ONLY to dedicated repair branch; main/release untouched'
