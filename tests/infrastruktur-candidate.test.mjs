@@ -36,10 +36,24 @@ test('All five Infrastruktur WebPs are absent or all have exact SHA-256, size, a
     assert.equal(b.length,v.bytes,locale+' file size mismatch');
     assert.equal(b.toString('ascii',0,4),'RIFF',locale+' RIFF');
     assert.equal(b.toString('ascii',8,12),'WEBP',locale+' WEBP');
-    assert.equal(b.toString('ascii',12,16),'VP8X',locale+' VP8X');
-    assert.equal(b.readUIntLE(24,3)+1,1024,locale+' width');
-    assert.equal(b.readUIntLE(27,3)+1,1024,locale+' height');
-    assert.ok((b[20]&0x10)!==0,locale+' missing alpha');
+    const chunk=b.toString('ascii',12,16);
+    let width,height,alpha;
+    if(chunk==='VP8X'){
+      width=b.readUIntLE(24,3)+1;
+      height=b.readUIntLE(27,3)+1;
+      alpha=Boolean(b[20]&0x10);
+    } else if(chunk==='VP8L'){
+      assert.equal(b[20],0x2f,locale+' lossless signature');
+      const bits=b.readUInt32LE(21);
+      width=(bits&0x3fff)+1;
+      height=((bits>>>14)&0x3fff)+1;
+      alpha=Boolean((bits>>>28)&1);
+    } else {
+      assert.fail(locale+' unsupported WebP chunk '+chunk);
+    }
+    assert.equal(width,1024,locale+' width');
+    assert.equal(height,1024,locale+' height');
+    assert.ok(alpha,locale+' missing alpha');
     assert.equal(createHash('sha256').update(b).digest('hex'),v.sha256,locale+' checksum mismatch');
   }
 });
