@@ -97,6 +97,7 @@ try{
     {name:"villkarse",label:"Villkarse",term:"Villkarse",path:"b09/48_villkarse_v1.webp"},
     {name:"vararve",label:"Vårarve",term:"Vårarve",path:"b09/49_vararve_v1.webp"},
     {name:"varerteknapp",label:"Vårerteknapp",term:"Vårerteknapp",path:"b09/50_varerteknapp_v1.webp"},
+    {name:"varkaal",label:"Vårkål \\(Legevårkål samlet her\\)",term:"Vårkål",path:"b09/51_varkaal_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){

@@ -31,7 +31,7 @@ assert(a.visualChecks.blackBackgroundReviewed && a.visualChecks.originalAlphaVer
 assert(a.sourceReferences.length>=2 && a.observations.length>100);
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,72);
+assert(approved.count>=72,"Prior 72 approved illustrations must remain present");
 assert.equal(approved.get(a.catalogId)?.src,a.src);
 assert.equal(approved.get(a.catalogId)?.scientificName,a.scientificName);
 assert.equal(approved.get(a.catalogId)?.gitBlobSha,a.gitBlobSha);
