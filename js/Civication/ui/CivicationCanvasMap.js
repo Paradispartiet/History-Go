@@ -797,6 +797,7 @@
   function zoomIn() { zoomAt(state.zoom * ZOOM_STEP, W / 2, H / 2); }
   function zoomOut() { zoomAt(state.zoom / ZOOM_STEP, W / 2, H / 2); }
   function reset() { state.zoom = recommendedStartZoom(W || host?.clientWidth || window.innerWidth); state.cx = 0.5; state.cy = 0.5; clampPan(); scheduleFrame(); scheduleTransformEmit(); }
+  function overview() { state.zoom = state.minZoom; state.cx = 0.5; state.cy = 0.5; clampPan(); scheduleFrame(); scheduleTransformEmit(); }
   function getZoom() { return state.zoom; }
 
   // ---------------------------------------------------------------------------
@@ -935,11 +936,13 @@
     box.className = "civi-map-zoom-controls";
     box.innerHTML =
       '<button type="button" class="civi-map-zoom-btn" data-civi-canvas-zoom-in aria-label="Zoom inn">+</button>' +
-      '<button type="button" class="civi-map-zoom-btn" data-civi-canvas-zoom-reset aria-label="Nullstill zoom">⤢</button>' +
+      '<button type="button" class="civi-map-zoom-btn" data-civi-canvas-zoom-reset aria-label="Tilbake til byutsnitt">⤢</button>' +
+      '<button type="button" class="civi-map-zoom-btn civi-map-overview-btn" data-civi-canvas-overview aria-label="Vis hele Oslo" title="Hele Oslo">Oslo</button>' +
       '<button type="button" class="civi-map-zoom-btn" data-civi-canvas-zoom-out aria-label="Zoom ut">−</button>';
     box.querySelector("[data-civi-canvas-zoom-in]").addEventListener("click", (e) => { e.preventDefault(); zoomIn(); });
     box.querySelector("[data-civi-canvas-zoom-out]").addEventListener("click", (e) => { e.preventDefault(); zoomOut(); });
     box.querySelector("[data-civi-canvas-zoom-reset]").addEventListener("click", (e) => { e.preventDefault(); reset(); });
+    box.querySelector("[data-civi-canvas-overview]").addEventListener("click", (e) => { e.preventDefault(); overview(); });
     host.appendChild(box);
   }
 
@@ -1043,6 +1046,7 @@
     init,
     render,
     reset,
+    overview,
     zoomIn,
     zoomOut,
     getZoom,
