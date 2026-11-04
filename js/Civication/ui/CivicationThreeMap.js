@@ -77,7 +77,7 @@
   const MAX_TREES = 900;
 
   const VIEW = 15.9;         // ortografisk halv-høyde ved zoom = 1 (skalert med brettet)
-  const MIN_ZOOM = 0.5;      // mer utzoom (se hele det større brettet)
+  const MIN_ZOOM = 0.32;     // la et smalt mobilutsnitt vise hele modellbrettet ved oversikt
   const MAX_ZOOM = 11.0;     // mer innzoom (helt ned på enkeltsteder)
   const ZOOM_STEP = 1.22;
   const MAX_DPR = 2;
@@ -97,6 +97,15 @@
     return Number.isFinite(w) && w > 0 && w <= 640 ? MOBILE_START_ZOOM : START_ZOOM;
   }
   const START_PAN = { x: 0.31, z: -0.44 };
+  function recommendedOverviewZoom(width, height) {
+    const w = Number(width), h = Number(height);
+    if (!Number.isFinite(w) || !Number.isFinite(h) || w <= 0 || h <= 0) return MIN_ZOOM;
+    // Et 34–35-enheters modellbrett, i en smal mobil-viewport, trenger lavere
+    // zoom enn en desktop. Ikke flytt eller endre selve koordinatene.
+    const fitWidth = 2 * VIEW * (w / h) / (MAP_W + 5);
+    const fitHeight = 2 * VIEW / (MAP_D + 5);
+    return clamp(Math.min(0.74, fitWidth, fitHeight), MIN_ZOOM, MAX_ZOOM);
+  }
 
   // Fargepalett – varm modellmaling, dyp fjord, dempet industri, grønn Marka.
   const PAL = {
@@ -3855,6 +3864,13 @@
     updateCamera();
     if (_lastLod && placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
   }
+  function overview() {
+    zoom = recommendedOverviewZoom(W || host?.clientWidth || window.innerWidth,
+      H || host?.clientHeight || window.innerHeight);
+    panX = 0; panZ = 0;
+    updateCamera();
+    if (_lastLod && placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
+  }
   function getZoom() { return zoom; }
 
   function panBy(dxPx, dyPx) {
@@ -3985,11 +4001,13 @@
     box2.className = "civi-map-zoom-controls";
     box2.innerHTML =
       '<button type="button" class="civi-map-zoom-btn" data-three-zoom-in aria-label="Zoom inn">+</button>' +
-      '<button type="button" class="civi-map-zoom-btn" data-three-zoom-reset aria-label="Nullstill zoom">⤢</button>' +
+      '<button type="button" class="civi-map-zoom-btn" data-three-zoom-reset aria-label="Tilbake til byutsnitt">⤢</button>' +
+      '<button type="button" class="civi-map-zoom-btn civi-map-overview-btn" data-three-zoom-overview aria-label="Vis hele Oslo" title="Hele Oslo">Oslo</button>' +
       '<button type="button" class="civi-map-zoom-btn" data-three-zoom-out aria-label="Zoom ut">−</button>';
     box2.querySelector("[data-three-zoom-in]").addEventListener("click", (e) => { e.preventDefault(); zoomIn(); });
     box2.querySelector("[data-three-zoom-out]").addEventListener("click", (e) => { e.preventDefault(); zoomOut(); });
     box2.querySelector("[data-three-zoom-reset]").addEventListener("click", (e) => { e.preventDefault(); reset(); });
+    box2.querySelector("[data-three-zoom-overview]").addEventListener("click", (e) => { e.preventDefault(); overview(); });
     host.appendChild(box2);
   }
 
@@ -4156,6 +4174,8 @@
       clearZones: LANDMARK_CLEAR_ZONES.map((z) => Object.assign({}, z)),
       clearZoneCount: LANDMARK_CLEAR_ZONES.length,
       startZoom: recommendedStartZoom(W || host?.clientWidth || window.innerWidth),
+      overviewZoom: recommendedOverviewZoom(W || host?.clientWidth || window.innerWidth,
+        H || host?.clientHeight || window.innerHeight),
       cameraBase: Object.assign({}, CAM_BASE),
       rendererType,
       renderer: rendererType,
@@ -4178,6 +4198,8 @@
     zoomOut,
     getZoom,
     zoomAt,
+    overview,
+    recommendedOverviewZoom,
     recommendedStartZoom,
     // Del A/B – stabilt projeksjons- og transform-API (speiler CanvasMap).
     projectWorldToScreen,
