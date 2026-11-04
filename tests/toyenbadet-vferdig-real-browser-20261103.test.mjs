@@ -119,18 +119,21 @@ try{
        const lang=shell?.querySelector('[data-hg-place-sheet-section="language"]');
        const reading=shell?.querySelector('[data-hg-place-sheet-section="reading"]');
        const sources=shell?.querySelector('[data-hg-place-sheet-section="sources"]');
+       const news=shell?.querySelector('[data-hg-place-sheet-section="news"]');
        return shell?.dataset.placeId==="toyenbadet"
          && lang && !lang.hidden && lang.dataset.placeId==="toyenbadet"
          && lang.querySelectorAll('[data-language-entry]').length===4
          && reading && !reading.hidden && reading.dataset.placeId==="toyenbadet"
          && reading.querySelectorAll(".pc-sheet-reading-card").length===4
          && sources && !sources.hidden && sources.dataset.placeId==="toyenbadet"
-         && sources.querySelectorAll('.hg-place-source-link-list a[href^="https://"]').length>=5;
+         && sources.querySelectorAll('.hg-place-source-link-list a[href^="https://"]').length>=5
+         && news && !news.hidden && news.dataset.placeId==="toyenbadet"
+         && news.querySelectorAll(".pc-sheet-news-card").length===2;
      },null,{timeout:35000});
      const sheet=page.locator('#placeCard [data-hg-place-sheet-shell="1"]');
      const sectionNav=page.locator('#placeCard [data-hg-place-sheet-nav="1"]');
      await sectionNav.waitFor({state:"attached",timeout:15000});
-     for(const sectionId of ["language","reading","sources"]) {
+     for(const sectionId of ["news","language","reading","sources"]) {
        const button=sectionNav.locator(`[data-hg-place-sheet-jump="${sectionId}"]`);
        assert.equal(await button.count(),1,vp.name+" missing "+sectionId+" jump button");
        assert.equal(await button.evaluate(el=>el.hidden),false,vp.name+" "+sectionId+" navigation button incorrectly hidden");
@@ -139,6 +142,12 @@ try{
        const el=document.querySelector('#placeCard [data-hg-place-sheet-nav="1"] [data-hg-place-sheet-jump="'+id+'"]');
        return el && !el.hidden;
      }),null,{timeout:15000});
+     const news=sheet.locator('[data-hg-place-sheet-section="news"]');
+     assert.equal(await news.locator(".pc-sheet-news-card").count(),2);
+     const newsText=await news.innerText();
+     assert.match(newsText,/august 2026/i);
+     assert.match(newsText,/20\\. oktober 2026/);
+     assert.equal(await news.locator(".pc-sheet-news-card a[href^=https]").count(),2);
      const language=sheet.locator('[data-hg-place-sheet-section="language"]');
      assert.equal(await language.locator('[data-language-entry]').count(),4);
      assert.match(await language.innerText(),/Tøyenbadet/);
@@ -155,7 +164,7 @@ try{
      });
      assert.equal(opened,true,vp.name+" unified language navigation failed");
      await page.locator('#placeCard').screenshot({path:path.join(out,vp.name+"-place-sheet-language.png")});
-     console.log("PASS Tøyenbadet unified PlaceSheet: four Språk, four Lesespor, sources and navigation:",vp.name);
+     console.log("PASS Tøyenbadet unified PlaceSheet: two dated Nyheter, four Språk, four Lesespor, sources and navigation:",vp.name);
      await page.goto(base+"/fagverk-sted.html?place=toyenbadet",{waitUntil:"domcontentloaded",timeout:60000});
      await page.waitForFunction(()=>document.getElementById("fagverkPlaceContent")?.hidden===false,null,{timeout:45000});
      assert.match(await page.locator("#fagverkPlaceTitle").innerText(),/Tøyenbadet/i);
