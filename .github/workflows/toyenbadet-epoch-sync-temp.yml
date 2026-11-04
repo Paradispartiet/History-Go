@@ -23,7 +23,7 @@ jobs:
         run: |
           npm run epoker:places:build
           npm run epoker:places:check
-          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+          # Index is generated first; separate CI handles regression tests with dependencies.
           git status --short
       - name: Commit only generated index
         run: |
