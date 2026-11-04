@@ -199,9 +199,12 @@ for (const [choice, status, response, delivery] of [
   assert.equal(saved.tidligereValg.c04_bestilling, response);
   assert.equal(saved.tidligereValg.c04_frist, delivery ? 12 : undefined);
   R.startNextDay(saved, content);
-  ({saved} = progress(saved, restore(clone(saved)), 12, {c04_invitasjon_leveranse: delivery}));
+  ({saved, content} = progress(saved, restore(clone(saved)), 12, {c04_invitasjon_leveranse: delivery}));
   assert.equal(saved.tidligereValg.c04_leveranse, {send:'levert', varsle:'fristproblem_varslet'}[delivery]);
-  assert.equal(saved.meters.penger, money, 'an order or delivery is not a payment');
+  R.startNextDay(saved, content);
+  ({saved} = progress(saved, restore(clone(saved)), 13));
+  assert.equal(saved.tidligereValg.c04_sluttstatus, {send:'godkjent', varsle:'avbestilt'}[delivery]);
+  assert.equal(saved.meters.penger, money, 'approval or cancellation is not a payment');
 }
 
 delete globalThis.CivicationLifePositions;
