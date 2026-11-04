@@ -32,7 +32,7 @@ Maskinlesbare kildehenvisninger og kontroll mot faktisk runtime ligger i [filmTh
 
 **Original Civication-situasjon:** En frilanser får en entusiastisk forespørsel mens eldre ubetalte rettelser, avtalt leveranse og fritid fortsatt må håndteres. Spillerens muligheter er å be om tydelig scope og honorar, sende et *uforpliktende* estimat eller avvise forespørselen. Et ja i innboksen kan ikke bli kontrakt av seg selv.
 
-**Viktig status:** C04 har `runtime: no_new_scenes` i det kanoniske registeret. Dette er en produksjonsspesifikasjon **ikke en implementert spillbue**. Den skal ikke fremstilles som spillbar før en faktisk scene, flere legitime valg og vedvarende arbeidsobjekt er skrevet og testet.
+**Spillbar første del:** I Lea-fortsettelsen på dag 8 kan spilleren sende et avgrenset tilbud, be om avklaring eller takke nei. På dag 9 følger én av tre scener opp det lagrede svaret. Foreningen har ennå ikke godkjent en bestilling. Den planlagte fortellingsbuen på fire kapitler gjenstår.
 
 ## Restport
 
