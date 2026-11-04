@@ -202,9 +202,12 @@ for (const [choice, status, response, delivery] of [
   ({saved, content} = progress(saved, restore(clone(saved)), 12, {c04_invitasjon_leveranse: delivery}));
   assert.equal(saved.tidligereValg.c04_leveranse, {send:'levert', varsle:'fristproblem_varslet'}[delivery]);
   R.startNextDay(saved, content);
-  ({saved} = progress(saved, restore(clone(saved)), 13));
+  ({saved, content} = progress(saved, restore(clone(saved)), 13));
   assert.equal(saved.tidligereValg.c04_sluttstatus, {send:'godkjent', varsle:'avbestilt'}[delivery]);
-  assert.equal(saved.meters.penger, money, 'approval or cancellation is not a payment');
+  content = startChapter(saved, content, 'frilans_etter_neste_steg');
+  ({saved} = progress(saved, restore(clone(saved)), 14));
+  assert.equal(saved.tidligereValg.c04_oppgjor, {send:'faktura_sendt', varsle:'honorar_til_avklaring'}[delivery]);
+  assert.equal(saved.meters.penger, money, 'an invoice or an open fee is not a payment');
 }
 
 delete globalThis.CivicationLifePositions;
