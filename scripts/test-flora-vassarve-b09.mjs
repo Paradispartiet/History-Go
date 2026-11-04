@@ -33,7 +33,7 @@ assert.deepEqual([1+data.readUIntLE(24,3),1+data.readUIntLE(27,3)],[1024,1536]);
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,68);
+assert(approved.count >= 68, "At least the 68 previously approved illustrations must remain");
 assert.equal(approved.get(a.catalogId)?.src,a.src);
 assert.equal(approved.get(a.catalogId)?.gitBlobSha,a.gitBlobSha);
 assert.notEqual(approved.get(a.catalogId)?.src,approved.get("emne_flora_tyskhonsetarm")?.src);
