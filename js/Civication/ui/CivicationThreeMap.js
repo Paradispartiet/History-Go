@@ -151,6 +151,7 @@
   let raycaster = null;
   let placeGroup = null;
   let landmarkGroup = null;
+  let microWorldGroup = null;
   let INVISIBLE_HIT_MAT = null;
 
   let W = 0, H = 0;
@@ -862,7 +863,8 @@
     try {
       const result = kit.create({ THREE, nx2x, ny2z, groundY: GROUND_Y });
       if (result && result.group) {
-        scene.add(result.group);
+        microWorldGroup = result.group;
+        scene.add(microWorldGroup);
         _stats.microWorldObjects = result.count || 0;
       }
     } catch (error) {
@@ -3520,6 +3522,9 @@
     camera.position.set(CAM_BASE.x + panX, CAM_BASE.y, CAM_BASE.z + panZ);
     camera.lookAt(panX, 0, panZ);
     camera.updateProjectionMatrix();
+    // De minste figurene ville bare blitt visuell støy på full oversikt.
+    // Slå av hele gruppen ved laveste zoom; ingen ekstra opprettelse eller draw calls.
+    if (microWorldGroup) microWorldGroup.visible = zoom >= 0.95;
     dirty = true;
     // Del B: zoom/pan/resize gikk alle gjennom updateCamera -> varsle kartlag
     // (CivicationCityLayer) så HTML-markører kan re-projiseres mot 3D-kameraet.
