@@ -1,0 +1,35 @@
+name: Tøyenbadet epoch index regeneration (temporary)
+on:
+  push:
+    branches:
+      - feat/toyenbadet-dated-maintenance-news-20261104
+    paths:
+      - .github/workflows/toyenbadet-epoch-sync-temp.yml
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate and check epoch index
+        run: |
+          npm run epoker:places:build
+          npm run epoker:places:check
+          # Index is generated first; separate CI handles regression tests with dependencies.
+          git status --short
+      - name: Commit only generated index
+        run: |
+          set -euo pipefail
+          git add data/epoker/epoke-place-index.json
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "build(toyenbadet): refresh source-backed epoch index for new news records"
+            git push origin HEAD:feat/toyenbadet-dated-maintenance-news-20261104
+          fi
