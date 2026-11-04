@@ -35,7 +35,7 @@ test('Tøyen trafo: every staged sentence and place link is mapped to checked cl
       assert.ok(ids?.length && ids.every(id => claims.has(id)), p.id + ' field ' + f);
     }
     for (const field of ['desc','popupDesc']) {
-      const sentences = p[field].split(/(?<=[.!?])\\s+(?=[A-ZÆØÅ])/).filter(Boolean);
+      const sentences = p[field].split(/(?<=[.!?])\s+(?=[A-ZÆØÅ])/).filter(Boolean);
       const mapping = auditPerson.sentence_claim_map[field];
       assert.equal(sentences.length, mapping.length, p.id + ':' + field);
       for (const m of mapping) assert.ok(m.claim_ids.length && m.claim_ids.every(id => claims.has(id)));
