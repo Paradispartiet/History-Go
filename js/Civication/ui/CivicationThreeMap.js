@@ -180,7 +180,7 @@
   const _stats = {
     placeMarkers: 0, instancedBuildings: 0, genericBuildings: 0, highRiseCount: 0,
     trees: 0, landmarks: 0, roadSegments: 0, landmarkCountByType: {},
-    localObjects: 0, parkObjects: 0, waterfrontObjects: 0,
+    localObjects: 0, parkObjects: 0, waterfrontObjects: 0, microWorldObjects: 0,
     visiblePlaceMiniatures: 0, placeMiniatureTypes: {}, hiddenDuplicateLandmarkPlaces: 0,
     placeLodLevel: null, culledPlaces: 0, nudgedPlaces: 0, clickableLandmarkPlaces: [],
     miniatureMeshTotal: 0, detailedMiniatures: 0, lowDetailMiniatures: 0
@@ -847,6 +847,24 @@
     });
 
     scene.add(g);
+  }
+
+  // Ekstra, ikke-klikkbare mikrodetaljer i håndvalgte parker, torg og langs kaia.
+  // Modulen skal aldri kunne stoppe 3D-kartet ved feil; ingen spilltilstand endres.
+  function buildMicroWorld() {
+    _stats.microWorldObjects = 0;
+    if (window.CIVICATION_MICROWORLD_ENABLED === false) return;
+    const kit = window.CivicationMapMicroWorld;
+    if (!kit || typeof kit.create !== "function") return;
+    try {
+      const result = kit.create({ THREE, nx2x, ny2z, groundY: GROUND_Y });
+      if (result && result.group) {
+        scene.add(result.group);
+        _stats.microWorldObjects = result.count || 0;
+      }
+    } catch (error) {
+      console.warn("[CivicationThreeMap] mikroliv feilet; kartet fortsetter:", error);
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -3958,6 +3976,7 @@
     buildCity();
     buildTrees();
     buildLocalObjects();
+    buildMicroWorld();
     buildLandmarks();
 
     zoom = START_ZOOM;
@@ -4021,6 +4040,7 @@
       localObjects: _stats.localObjects,
       parkObjects: _stats.parkObjects,
       waterfrontObjects: _stats.waterfrontObjects,
+      microWorldObjects: _stats.microWorldObjects,
       districtProfiles: Object.keys(DISTRICT_VISUAL_PROFILES).length,
       landmarks: _stats.landmarks,
       landmarkCountByType: Object.assign({}, _stats.landmarkCountByType),
