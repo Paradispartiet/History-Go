@@ -3832,8 +3832,9 @@
     if (!Number.isFinite(nz) || Math.abs(nz - zoom) < 0.0005) return;
     // Pikselkoordinatet på bakkeplanet skal bli stående i ro under zoom.
     if (W > 0 && H > 0) {
-      const dx = clamp(Number(px) || W / 2, 0, W) - W / 2;
-      const dy = clamp(Number(py) || H / 2, 0, H) - H / 2;
+      const anchorX = Number(px), anchorY = Number(py);
+      const dx = clamp(Number.isFinite(anchorX) ? anchorX : W / 2, 0, W) - W / 2;
+      const dy = clamp(Number.isFinite(anchorY) ? anchorY : H / 2, 0, H) - H / 2;
       const oldUnit = (2 * VIEW) / (H * zoom);
       const newUnit = (2 * VIEW) / (H * nz);
       const displacement = groundOffsetForPixels(dx, dy, oldUnit - newUnit);
