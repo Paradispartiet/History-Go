@@ -44,5 +44,6 @@ test("Architectural detail illustration is shown as marked Story art, never as O
   assert.deepEqual(runtime.people, []);
   assert.deepEqual(runtime.brands, []);
   assert.equal(runtime.language.entries.length, 6);
+  assert.equal(runtime.lesespor.length, 4, "Preserve four independently merged source-backed Lesespor");
   assert.equal(runtime.leksikon.length, 1);
 });
