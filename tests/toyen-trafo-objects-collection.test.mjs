@@ -11,8 +11,8 @@ const runtime=read("data/runtime/place-open/toyen_trafo.json");
 test("Tøyen trafo has exactly two evidence-based and explicitly non-photographic Objects",()=>{
   assert.equal(place.id,"toyen_trafo");
   assert.equal(place.objects?.length,2);
-  assert.deepEqual(runtime.objects,place.objects,"Generated Place-open has the same actual Objects");
-  assert.deepEqual(runtime.place_card_profile,place.place_card_profile);
+  assert.deepEqual(runtime.place.objects,place.objects,"Generated Place-open has the same actual Objects");
+  assert.deepEqual(runtime.place.place_card_profile,place.place_card_profile);
   assert.deepEqual(place.place_card_profile.collection_ids,["objects"]);
   assert.deepEqual(place.objects.map(x=>x.id),[
     "toyen_trafo_kobberkledd_tarnhjelm","toyen_trafo_smarutede_vinduer"
