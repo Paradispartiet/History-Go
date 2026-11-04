@@ -1,46 +1,104 @@
 {
   "place_id": "toyen_trafo",
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "status": "in_progress_not_vferdig",
-  "scope": "Objects candidate audit, illustrated Story detail",
+  "scope": "Objects research: arkivførte elektriske gjenstander fra Tøyen transformatorstasjon, ikke publisering",
   "objects_primary_function": "Historical electric substation: transformation and distribution of electricity; later cultural adaptive reuse",
   "objects_candidate_families": [
-    "documented transformer or substation switchgear",
-    "period-specific voltmeter, insulators, electric distribution machinery",
-    "identified conservation-area workshop tools or museum collection with direct site provenance"
+    "Arkivført apparatpult/operatørpult ved Tøyen transformatorstasjon, fotografert 1916",
+    "Arkivført kjerne for 6250 kVA transformatormotor, dokumentert på Tøyen i 1918",
+    "Kabelrull 30000 V dokumentert ved levering til Tøyen i 1923; sekundær kandidat"
   ],
   "objects_accepted": [],
   "objects_held_back": [
     {
       "id": "toyen_trafo_tarnhjelm",
-      "reason": "Copper-clad roof element is an architectural detail without independent physical-object identity; belongs to site interpretation or Structures, not Objects."
+      "reason": "Fast arkitektonisk bygningsdel, ikke selvstendig Object; beholdes som historisk Story-detalj."
     },
     {
       "id": "toyen_trafo_smarutede_vinduer",
-      "reason": "Small-pane building windows are facade details; not independently sourced, identifiable historical Objects."
+      "reason": "Fasadedetalj uten egen objektidentitet; ikke publiserbar som Object."
     },
     {
-      "id": "electrical_machine_candidate",
-      "reason": "No source-controlled identifiable individual transformer, switchgear, period meter or tool with site provenance and object image has been confirmed."
+      "id": "toyen_trafo_apparatpult_1916",
+      "reason": "Arkivkatalogen identifiserer fysisk apparatpult og Tøyen, men faktisk fotofil, teknisk avgrensning, visuell reproduksjon og nåværende gjenstandsstatus er ikke kontrollert."
+    },
+    {
+      "id": "toyen_trafo_transformatorkjerne_6250kva_1918",
+      "reason": "Oslo byarkivs katalog identifiserer en kjerne for 'transformatormotor 6250 k.v.a.' på Hovinveien 1; bilde, teknisk term og senere skjebne må kontrolleres før Objects-aktivering."
+    },
+    {
+      "id": "toyen_trafo_kabelrull_30000v_1923",
+      "reason": "Arkivført transport/lossing til stasjonen, men ikke ennå verifisert som en varig stedstilknyttet gjenstand; beholdes som sekundær kandidat."
     }
   ],
   "objects_status": "SOURCE-BOUNDED HOLDBACK",
-  "place_card_profile_decision": "No Objects collection activated; source retains no place_card_profile until another candidate collection qualifies.",
-  "image_policy": "One original 900x520 non-photographic, clearly labeled SVG building-detail illustration is attached to the source-backed historical Story only. No Object identity is inferred from the artwork.",
+  "place_card_profile_decision": "Objects forblir deaktivert. Tre arkivspesifikke gjenstandskandidater, men ingen oppfyller ennå komplett Objects-kontrakt med ferdig bilde og status.",
+  "image_policy": "Historiske katalogbilder er funnet, men det er ikke kontrollert at bildebytes kan gjenbrukes. Neste produksjon er rettighets-/proveniensavklaring eller original tydelig merket illustrasjon ('Illustrasjon – ikke fotografi'); ingen generiske illustrasjoner aktiveres som Objects.",
   "story_image": "bilder/stories/toyen_trafo/kobberkledd_tarnhjelm_illustrasjon.svg",
   "sources": [
+    "https://oslobilder.no/search?searchstring=%22Elektrisitet%22",
+    "https://oslobilder.no/BAR/A-20138/Ua/0004/091",
+    "https://oslobilder.no/BAR/A-20138/Ua/0006/055",
+    "https://www.oslobilder.no/BAR/A-20138/Ua/0004/054",
     "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/toyen-trafo/",
-    "https://oslobyleksikon.no/side/T%C3%B8yen_transformatorstasjon",
-    "https://trafokunstnerhus.no/historie/"
+    "https://oslobyleksikon.no/side/T%C3%B8yen_transformatorstasjon"
   ],
   "rule_authority": "docs/PLACE_OBJECTS_CANONICAL.md §1, §3, §4, §5A; data/places/README_place_rounds.md",
   "rule_review": "Object must be a specific physical artifact with independent documented identity, historically relevant function and visual membership evidence; ordinary building details do not qualify. Under Næringsliv + Industri, electric equipment is the primary research lane. Missing evidence must not be hidden by art or unrelated cultural objects.",
   "remaining_before_vferdig": [
-    "Actual site-specific Objects with individual identity/provenance and preview, or documented full source-bounded exception policy",
-    "Source-backed People with appropriate illustrative/photo visuals",
-    "Canonical Brands or source-bounded holdback",
-    "Lesespor and other contextual sections",
-    "Editorial closeout and browser review"
+    "Kontroll av arkivbilder/proveniens og teknisk terminologi for minst to separate historiske elektriske gjenstander",
+    "Publiserbare Object-medlemsbilder med ærlig status og korrekte kildehenvisninger",
+    "Kildekontroll og illustrasjoner for de to People-portrettene",
+    "Brands-integrasjon fra PR #7056 når CI er grønn og PR-en merget",
+    "Full redaksjonell closeout og mobil-/desktoptest"
   ],
-  "not_vferdig": true
+  "not_vferdig": true,
+  "archive_candidates": [
+    {
+      "id": "toyen_trafo_apparatpult_1916",
+      "object_type": "apparatpult",
+      "archive_title": "Tøyen transformatorstasjon, Apparatpult",
+      "date_precision": "1916",
+      "repository": "Oslo byarkiv",
+      "archive_collection": "Oslo lysverker / Oslo Energi",
+      "catalog_id": "A-20138/Ua/0004/054",
+      "source_url": "https://www.oslobilder.no/BAR/A-20138/Ua/0004/054",
+      "source_index": "https://oslobilder.no/search?searchstring=%22Elektrisitet%22",
+      "evidence": "Katalogen viser fotografi av en navngitt apparatpult ved Tøyen transformatorstasjon. Tittelen og årstallet er kjent gjennom arkivets søkeindeks; direkte bildefil ble ikke verifisert.",
+      "current_object_whereabouts": "unknown",
+      "object_image_status": "catalog_image_identified_not_integrated",
+      "publication_status": "research_candidate_no_card"
+    },
+    {
+      "id": "toyen_trafo_transformatorkjerne_6250kva_1918",
+      "object_type": "transformatorkjerne (arkivets betegnelse: kjerne for transformatormotor)",
+      "archive_title": "Tøyen transformatorstasjon, kjerne for transformatormotor 6250 k.v.a.",
+      "date_precision": "1918",
+      "repository": "Oslo byarkiv",
+      "archive_collection": "Oslo lysverker / Oslo Energi",
+      "catalog_id": "A-20138/Ua/0004/091",
+      "source_url": "https://oslobilder.no/BAR/A-20138/Ua/0004/091",
+      "source_index": "https://www.oslobilder.no/t%C3%B8yen",
+      "evidence": "Arkivposten oppgir at en person viser fram motoren, datert 1918 og stedfestet til Hovinveien 1. Den presise tekniske gjenstandsbetegnelsen krever verifikasjon mot bildet eller arkivets metadata.",
+      "current_object_whereabouts": "unknown",
+      "object_image_status": "catalog_image_identified_not_integrated",
+      "publication_status": "research_candidate_no_card"
+    },
+    {
+      "id": "toyen_trafo_kabelrull_30000v_1923",
+      "object_type": "kabelrull under transport",
+      "archive_title": "Transport av 30000V kabelrull til Tøyen transformatorstasjon",
+      "date_precision": "1923",
+      "repository": "Oslo byarkiv",
+      "archive_collection": "Oslo lysverker / Oslo Energi",
+      "catalog_id": "A-20138/Ua/0006/055",
+      "source_url": "https://oslobilder.no/BAR/A-20138/Ua/0006/055",
+      "evidence": "Arkivfoto beskriver lossing av kabelrull fra vogn ved Hovinveien 1; fotoet beviser transporthendelse, men ikke at rullen ble et permanent objekt ved stasjonen.",
+      "current_object_whereabouts": "unknown",
+      "object_image_status": "catalog_image_identified_not_integrated",
+      "publication_status": "secondary_candidate_no_card"
+    }
+  ],
+  "source_review": "Ny kildekontroll 2026-11-05 endrer tidligere påstand om at det ikke fantes fotoidentifiserte elektriske objekter: Oslobilder/Oslo byarkiv har minst to arkivførte gjenstander (apparatpult 1916, kjerne 1918) med konkret Tøyen-tilknytning. Gamle arkitekturdetaljer forblir avvist. Bildeinnhold for de to gjenstandene og bevaringsstatus er ikke endelig gjennomgått."
 }
