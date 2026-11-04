@@ -77,3 +77,16 @@ Trinn A er isolert bak window.CIVICATION_MICROWORLD_ENABLED !== false. Slå av m
 ## Videre status
 
 Denne planen er varig prosjektgrunnlag. Trinn A er implementert som en første kodeendring på separat gren og må verifiseres før den anses ferdig. Trinn B–D er ikke gjennomført.
+
+## Implementeringslogg – 2026-11-04
+
+Første sammenhengende prototype på PR #7047:
+
+- **Mikroverden på 3D-kart:** 46 dekorative objekter i 8 områder med 7 små objekttyper. Geometrien bruker gjenbrukte materialer og enkle former. Dekor skaper ingen nye stedskort eller interaksjonsmål. Antallet kan leses via microWorldObjects i getSceneStats().
+- **Kontroll på detaljtetthet:** mikrogruppen er synlig ved vanlig startzoom, men skjules under zoom 0.95 for å unngå visuell støy og unødvendige draw calls ved maksimal oversikt. Ytelse er ikke målt på fysisk mobil ennå.
+- **Felles døgnrytme:** CivicationWorldMood leser kanonisk kalender og oversetter de 8 spillfasene til morgen/dag/kveld/natt. Kartlys og himmeltone oppdateres kun ved faktisk visuell faseendring.
+- **«Min dag»:** én liten 90×64 illustrasjon med samme miniatyrgate i fire lysforhold og en tekstetikett for aktiv døgnfase. Ekstra/duplisert heldagsstripe er fjernet; kort og valg har kun diskrete tonale aksenter.
+- **Tester:** tests/civication-map-micro-world.test.js og tests/civication-world-mood.test.js er registrert under npm run test:civication-map.
+- **Verifisert i tilgjengelig verktøymiljø:** syntaks for begge moduler, kartintegrasjon og testfiler; deterministisk geometri (46 unike koordinater, 8 områder, 7 typer); opprettelse av 46 dekormodeller uten placeId; og spillkalenderens fire visuelle faseutganger. Dette er ikke en full Node-, CI-, mobil- eller WebGL-regresjon.
+
+**Gjenstående før merge:** Godkjent GitHub CI, full kartregresjon, manuell WebGL-/Canvas-fallback på mobil og desktop, og visuell kontroll av skalering/kontrast/overlapp. Etter dette fortsetter trinn B og D med flere steder, stilmessig kategorioversettelse og ytelsesstyrt utvidelse. Ikke hev at prosjektet er ferdig eller live basert på denne prototypen.
