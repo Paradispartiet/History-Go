@@ -10,7 +10,7 @@ test("Tøyen trafo: two unique source-mapped People profiles", () => {
   const manifest=read("data/people/manifest.json");
   const ids = new Set();
   for(const [id,file,claimsFile] of entries){
-    assert.ok(manifest.files.includes(file.replace(/^data\\//, "")), "canonical profile must be registered");
+    assert.ok(manifest.files.includes(file.slice(5)), "canonical profile must be registered");
     const profile=read(file)[0], claims=read(claimsFile);
     assert.equal(profile.id,id);
     assert.equal(profile.placeId,"toyen_trafo");
