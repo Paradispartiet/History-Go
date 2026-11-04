@@ -179,6 +179,26 @@ check("zoom med finger eller mus holder samme miniatyrpunkt under pekeren", () =
   }
 });
 
+
+check("Oslo-oversikt gir hele 3D-brettet på smale skjermer og kan gå tilbake", () => {
+  const width = 390, height = 844;
+  M.setStateForTesting({ active: true, THREE: FAKE_THREE, camera: makeCamera(), renderer: {}, W: width, H: height });
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.72);
+  M.overview();
+  const fitted = M.recommendedOverviewZoom(width, height);
+  assert.strictEqual(M.getZoom(), fitted);
+  assert.ok(fitted < 0.5, "smalt mobilutsnitt trenger mer utzoom enn gammel nedre grense");
+  const state = M.getTransformState();
+  assert.strictEqual(state.panX, 0);
+  assert.strictEqual(state.panZ, 0);
+  const boardWidth = 30 + 3.4;
+  const visibleWidth = 2 * 15.9 * (width / height) / fitted;
+  assert.ok(visibleWidth >= boardWidth, "hele brettbredden må være synlig");
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.72);
+});
+
 console.log("CivicationThreeMap – transform-event (Del B)");
 
 check("civi:threeMapTransformChanged dispatches ved reset() med riktig detail", () => {
