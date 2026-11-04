@@ -76,7 +76,7 @@ Trinn A er isolert bak window.CIVICATION_MICROWORLD_ENABLED !== false. Slå av m
 
 ## Videre status
 
-Denne planen er varig prosjektgrunnlag. Trinn A er implementert som en første kodeendring på separat gren og må verifiseres før den anses ferdig. Trinn B–D er ikke gjennomført.
+Denne planen er varig prosjektgrunnlag. Trinn A er implementert som en første kodeendring på separat gren og må verifiseres før den anses ferdig. Trinn B (lokalmiljøer/instansering) og C (fasebasert stemning) er påbegynt som prototype. Trinn D gjenstår.
 
 ## Implementeringslogg – 2026-11-04
 
@@ -90,3 +90,14 @@ Første sammenhengende prototype på PR #7047:
 - **Verifisert i tilgjengelig verktøymiljø:** syntaks for begge moduler, kartintegrasjon og testfiler; deterministisk geometri (46 unike koordinater, 8 områder, 7 typer); opprettelse av 46 dekormodeller uten placeId; og spillkalenderens fire visuelle faseutganger. Dette er ikke en full Node-, CI-, mobil- eller WebGL-regresjon.
 
 **Gjenstående før merge:** Godkjent GitHub CI, full kartregresjon, manuell WebGL-/Canvas-fallback på mobil og desktop, og visuell kontroll av skalering/kontrast/overlapp. Etter dette fortsetter trinn B og D med flere steder, stilmessig kategorioversettelse og ytelsesstyrt utvidelse. Ikke hev at prosjektet er ferdig eller live basert på denne prototypen.
+
+## Implementeringslogg – videre utvidelse av kartet
+
+- **11 nærmiljøer, 67 håndplasserte props og 10 typer** er nå i mikroverdensmodulen. De nye typene er kafébord, liten hund og kollektivholdeplass; flere små scener er lagt til ved Sagene, Kampen og Majorstuen. Fargebruken forblir dempet og illustrasjonene små.
+- **Klareringssoner:** plasseringene bruker kartets egne LANDMARK_CLEAR_ZONES med 0,005 normalisert sikkerhetsmargin. Ved en fremtidig kartendring filtreres dekor automatisk bort dersom det havner innenfor en vernet sone; ingen landemerkers klikkmål overstyres.
+- **Instansering:** gjentatte mesh som deler geometri og materialer tegnes gjennom Three.js InstancedMesh i støttede miljøer; en enkel ikke-instansiert reservegren finnes for testing/eldre runtime. En isolert JS-simulering av de 67 objektene ga 251 delmesh redusert til 31 instansgrupper. Dette er **ikke** en målt faktisk GPU-/mobil-ytelse.
+- **Ytterligere døgnstemning:** gatelyktenes materialer får en knapt synlig lysgrad på dagtid og en forsiktig varm emissiv komponent på kvelden/natten, uten ekstra lyskilder eller animasjonsløkker. Den samme spillfasen styrer kartets generelle lys.
+- **Av/på og diagnostikk:** eksisterende funksjonsbryter for mikrodekor er beholdt. Ny statistikk: microWorldDrawGroups og microWorldSkipped.
+- **Tester utvidet:** posisjoner holdes utenfor den faktiske rendererens klare soner, og simulert instansering skal bevare samme totale geometri og redusere antall grupper.
+
+**Neste kontroll før merge:** full GitHub CI på den siste PR-headen, vanlig karttest-suite, browser smoke, manuell Safari/desktop-visuell kontroll og reell FPS-/draw-call-måling. Ingen produksjonsklar-status er erklært.
