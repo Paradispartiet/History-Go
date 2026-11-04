@@ -1,0 +1,35 @@
+name: Temporary Byplanlegging VP8L real file QA
+on:
+  push:
+    branches:
+      - fix/byplanlegging-webp-vp8l-20261104
+    paths:
+      - .github/workflows/byplanlegging-webp-vp8l-20261104-temp.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact reviewed source and diff scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = '6ad5cb420f931747206f903a49c5636e7f9a8197'
+          git merge-base --is-ancestor '83a847b87b739a88e1705822445f50c13caad917' HEAD
+          git diff --check '83a847b87b739a88e1705822445f50c13caad917' HEAD
+          git diff --name-only '83a847b87b739a88e1705822445f50c13caad917' HEAD | sort
+      - name: Validate Byplanlegging five real WebPs with strict checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/verify-byplanlegging-asset-v1.mjs
+          node --test tests/badge-by-byplanlegging-v1-production.test.mjs tests/badge-by-funksjonalisme-v1-locales.test.mjs tests/badge-by-postmodernisme-v1-production.test.mjs
