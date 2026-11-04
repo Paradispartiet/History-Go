@@ -112,36 +112,46 @@ try{
      await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("is-flipped"),null,{timeout:10000});
      assert.match(await page.locator("#pcQuizCardContent").innerText(),/Tøyenbadet/i);
      await page.locator("#placeCard").screenshot({path:path.join(out,vp.name+"-placecard.png")});
-     // Full vFerdig popup QA: eight visible tabs, real language, reading tracks and sources.
-     await page.evaluate(async () => {
-       const place = window.HGPlaceOpen?.getPlace?.("toyenbadet") || window.PLACES?.find(p => p?.id === "toyenbadet");
-       if (!place || typeof window.showPlacePopup !== "function") throw new Error("Tøyenbadet popup API missing");
-       await window.showPlacePopup(place);
+     // Canonical PlaceSheet replaced legacy modal popup. Validate the *visible owner*
+     // sections, never the hidden compatibility popup used to build Språk markup.
+     await page.waitForFunction(() => {
+       const shell=document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
+       const lang=shell?.querySelector('[data-hg-place-sheet-section="language"]');
+       const reading=shell?.querySelector('[data-hg-place-sheet-section="reading"]');
+       const sources=shell?.querySelector('[data-hg-place-sheet-section="sources"]');
+       return shell?.dataset.placeId==="toyenbadet"
+         && lang && !lang.hidden && lang.dataset.placeId==="toyenbadet"
+         && lang.querySelectorAll('[data-language-entry]').length===4
+         && reading && !reading.hidden && reading.dataset.placeId==="toyenbadet"
+         && reading.querySelectorAll(".pc-sheet-reading-card").length===4
+         && sources && !sources.hidden && sources.dataset.placeId==="toyenbadet"
+         && sources.querySelectorAll('.hg-place-source-link-list a[href^="https://"]').length>=5;
+     },null,{timeout:35000});
+     const sheet=page.locator('#placeCard [data-hg-place-sheet-shell="1"]');
+     const sectionNav=page.locator('#placeCard [data-hg-place-sheet-nav="1"]');
+     await sectionNav.waitFor({state:"attached",timeout:15000});
+     for(const sectionId of ["language","reading","sources"]) {
+       const button=sectionNav.locator(`[data-hg-place-sheet-jump="${sectionId}"]`);
+       assert.equal(await button.count(),1,vp.name+" missing "+sectionId+" jump button");
+       assert.equal(await button.evaluate(el=>el.hidden),false,vp.name+" "+sectionId+" navigation button incorrectly hidden");
+     }
+     const language=sheet.locator('[data-hg-place-sheet-section="language"]');
+     assert.equal(await language.locator('[data-language-entry]').count(),4);
+     assert.match(await language.innerText(),/Tøyenbadet/);
+     assert.match(await language.innerText(),/blågrønt tak/);
+     const reading=sheet.locator('[data-hg-place-sheet-section="reading"]');
+     assert.equal(await reading.locator(".pc-sheet-reading-card").count(),4);
+     assert.equal(await reading.locator('.pc-sheet-reading-card a[href^="https://"]').count(),4);
+     const sources=sheet.locator('[data-hg-place-sheet-section="sources"]');
+     assert.ok(await sources.locator('.hg-place-source-link-list a[href^="https://"]').count()>=5);
+     // Follow the real unified navigation path, not the hidden legacy modal scaffold.
+     const opened=await page.evaluate(async () => {
+       const p=window.HGPlaceOpen?.getPlace?.("toyenbadet");
+       return window.HGPlaceUnifiedSurface?.openSection?.(p,"language");
      });
-     const tabBar=page.locator(".hg-popup.place-popup-v2 .hg-place-tabs");
-     await tabBar.waitFor({state:"visible",timeout:20000});
-     const actualTabs=await tabBar.locator("[role=tab]").allTextContents();
-     assert.deepEqual(actualTabs,["Om","Historie","Fortellinger","Før/etter","Nyheter","Lesespor","Kilder","Språk"]);
-     assert.equal(await tabBar.locator('[data-place-tab="more"]').count(),0);
-     await tabBar.locator('[data-place-tab="language"]').click();
-     await page.waitForFunction(()=>{
-       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-language");
-       return panel && !panel.hidden && panel.querySelectorAll(".hg-place-language-card").length===4;
-     },null,{timeout:25000});
-     assert.match(await page.locator(".hg-popup.place-popup-v2 #hg-place-panel-language").innerText(),/Tøyenbadet|hovedbad|NM langbane|blågrønt tak/);
-     assert.equal(await tabBar.locator('[data-place-tab="language"]').getAttribute("aria-selected"),"true");
-     await tabBar.locator('[data-place-tab="reading"]').click();
-     await page.waitForFunction(()=>{
-       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-reading");
-       return panel && !panel.hidden && panel.querySelectorAll(".hg-place-reading-card").length===4;
-     },null,{timeout:20000});
-     await tabBar.locator('[data-place-tab="sources"]').click();
-     await page.waitForFunction(()=>{
-       const panel=document.querySelector(".hg-popup.place-popup-v2 #hg-place-panel-sources");
-       return panel && !panel.hidden && panel.querySelectorAll("a[href^=https]").length>=5;
-     },null,{timeout:20000});
-     await page.locator(".hg-popup.place-popup-v2").screenshot({path:path.join(out,vp.name+"-popup-sources.png")});
-     console.log("PASS Tøyenbadet eight popup tabs, four language entries and four open reading tracks:",vp.name);
+     assert.equal(opened,true,vp.name+" unified language navigation failed");
+     await page.locator('#placeCard').screenshot({path:path.join(out,vp.name+"-place-sheet-language.png")});
+     console.log("PASS Tøyenbadet unified PlaceSheet: four Språk, four Lesespor, sources and navigation:",vp.name);
      await page.goto(base+"/fagverk-sted.html?place=toyenbadet",{waitUntil:"domcontentloaded",timeout:60000});
      await page.waitForFunction(()=>document.getElementById("fagverkPlaceContent")?.hidden===false,null,{timeout:45000});
      assert.match(await page.locator("#fagverkPlaceTitle").innerText(),/Tøyenbadet/i);
