@@ -4,6 +4,10 @@ on:
     paths:
       - 'bilder/merker/*-brodert-v*.webp'
       - 'data/badges/*.json'
+      - 'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'
+      - 'bilder/merker/by/locales/*/infrastruktur.webp'
+      - 'scripts/import-infrastruktur-assets-v1.py'
+      - 'tests/infrastruktur-candidate.test.mjs'
       - 'tests/badge-embroidered-rollout-v1.test.mjs'
       - '.github/workflows/qa-embroidered-rollout.yml'
 permissions:
@@ -24,6 +28,7 @@ jobs:
         run: |
           node --test tests/badge-embroidered-rollout-v1.test.mjs
           node --test tests/badge-embroidered-rollout-v2.test.mjs
+          node --test tests/infrastruktur-candidate.test.mjs
       - name: Generate four-badge preview
         run: |
           python -m pip install -q pillow
