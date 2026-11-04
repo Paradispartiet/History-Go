@@ -140,3 +140,15 @@ Etter større startutsnitt var mobilens pinch-zoom fortsatt sentrert på skjerme
 - **Visuell QA gjenstår:** tidligere GitHub browser-smoke-artefakt inneholdt «Min dag» og «Personer», men ikke eget skjermbilde av kartmodus. Disse skjermbildene beviser derfor **ikke** utseendet på 3D-miniatyrene. Kartet bør inspiseres ved både mobil-/desktop-zoom før merge.
 
 Det er fortsatt bare rendering og kartnavigasjon som er endret; all spilltilstand og det faktiske stedskataloginnholdet er uendret.
+
+## Implementeringslogg – tydeligere detaljer i nærvisningen (2026-11-05)
+
+Brukerprioritet: **bygninger, mennesker og gater skal bli faktisk lettere å lese når man zoomer inn**, ikke bare større på skjermen.
+
+- **Bygninger:** et deterministisk utvalg av generiske bygg får dører og små overdekninger på gatefasaden. To `THREE.InstancedMesh`-grupper gir ekstra dybde uten én draw call per bygg. Eksisterende fasadeteksturer, bygningenes plassering og landemerkeklareringer er beholdt.
+- **Mennesker:** små figurmodeller har nå skuldre, to armer, hår og sko i samme dempede palett. Delene gjenbruker geometri og materialer fra eksisterende mikroverden, også i instansmodusen.
+- **Gater:** hovedveier får et svakt fortaus-/kantsteinbånd og to kuraterte fotgjengerfelt. Nærdetaljene er dekorative og følger veiskjelettet; de introduserer ingen kartklikk, nye stedsdata eller mer GIS-presisjon enn modellen har.
+- **LOD/ytelse:** bygnings- og gatedetaljer vises først fra zoom 2,1, som de eksisterende 51 høyzoom-mikroobjektene. De opprettes én gang under oppsettet og bytter kun `visible` ved zoom, uten arbeid per animasjonsramme. Mobil-FPS og faktisk GPU-belastning er **ikke målt ennå**.
+- **Tester:** `tests/civication-map-micro-world.test.js` kontrollerer nå også menneskesilhuetter, instansbruk og nær-LOD-koblingene. Dette erstatter ikke visuell QA.
+
+**Før merge:** vis kartet på virkelig mobil i byvisning, 2,1+ nærvisning og «Hele Oslo»; se etter at dører og gangfelt verken flyter over underlaget, skjules av andre objekter eller overlesser det dempede diorama-uttrykket. Sjekk både dags- og nattfase og sammenlikn ytelse med forrige head. PR forblir draft inntil dette er bekreftet.
