@@ -35,3 +35,5 @@ jobs:
             git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "build(toyenbadet): sync dated 2026 news into canonical Place-open"
             git push origin HEAD:feat/toyenbadet-dated-maintenance-news-20261104
           fi
+
+# Retest after correcting literal date assertions; removes itself after successful generation.
