@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_varpengeurt: Object.freeze({
+      scientificName: "Noccaea caerulescens",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/53_varpengeurt_v1.webp",
+      gitBlobSha: "949882e56dd3786be44bfe0323bf60dba15ea348",
+      reviewedAt: "2026-11-04",
+      stage: "varblomstring",
+      evidence: "data/natur/flora/illustration-quality-varpengeurt-20261104.json"
+    }),
     emne_flora_varmure: Object.freeze({
       scientificName: "Potentilla verna",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/52_varmure_v1.webp",
