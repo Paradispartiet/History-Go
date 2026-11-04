@@ -1,11 +1,11 @@
 {
   "schema": "history-go-flora-single-species-review-v1",
   "batch": "09",
-  "date": "2026-11-03",
-  "status": "awaiting_original_illustration",
+  "date": "2026-11-04",
+  "status": "approved_original_verified_git_blob",
   "baselineApproved": 68,
   "approvedCountAfterRelease": 69,
-  "publicationRule": "Do not publish or merge until a botanically reviewed original transparent WebP is present in the PR, its exact Git blob and alpha are validated, and mandatory illustration-contract and approved-flora-browser checks succeed.",
+  "publicationRule": "Preserve 68 approved originals and canonical IDs. Merge only after original WebP and mandatory illustration-contract and approved-flora-browser tests pass on the final PR commit.",
   "items": [
     {
       "name": "Veihaukeskjegg",
@@ -13,8 +13,8 @@
       "scientificName": "Crepis tectorum",
       "existingQuizId": "quiz_nature_flora_veihaukeskjegg",
       "plannedSrc": "bilder/natur/flora/illustrasjonskandidater/b09/47_veihaukeskjegg_v1.webp",
-      "reviewStatus": "pending_image",
-      "approvedForPublication": false,
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
       "stage": "sommerblomstring",
       "botanicalRequirements": [
         "Yellow, all-ligulate flower heads, several to numerous on an upright branching plant",
@@ -23,23 +23,34 @@
         "Narrow flower stems, buds and a realistic taproot or basal stem; recognizably distinct from Crepis capillaris"
       ],
       "visualChecks": {
-        "transparent": false,
-        "originalAlphaVerified": false,
-        "blackBackgroundReviewed": false,
-        "fullImageReviewed": false
+        "transparent": true,
+        "originalAlphaVerified": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
       },
       "sourceReferences": [
         "https://www.worldfloraonline.org/taxon/wfo-0000072011",
-        "https://weedid.cals.vt.edu/profile/595/",
-        "https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Crepis+tectorum"
+        "https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Crepis+tectorum",
+        "https://efloras.org/florataxon.aspx?flora_id=1&taxon_id=242315479"
       ],
-      "observations": "Species morphology has been checked against botanical descriptions, but an original image is not yet produced and no visual approval has been issued.",
-      "limitations": "No WebP artifact exists in this branch; no image, Git blob, dimensions, SHA256, visual review or browser QA is claimed.",
+      "observations": "Botanical watercolor illustration of Veihaukeskjegg with branching stems bearing several bright yellow all-ligulate composite heads, green hairy involucres, narrow sessile stem leaves, toothed and lobed basal leaves, and the taproot. Inspected on a black background.",
+      "limitations": "Stylized pedagogical drawing, not a photograph or voucher specimen; hair and involucre details are simplified. Not intended to serve as a definitive identification key.",
       "publicationBlockedBy": [
-        "Create and botanically review an original 1024x1536 transparent WebP with no photographic appearance.",
-        "Upload its exact binary Git blob to the PR branch and update hashes, size, quality record, registry and browser/release tests.",
-        "Pass illustration-contract and approved-flora-browser on final head; verify GitHub Pages after merge."
-      ]
+        "Both mandatory CI jobs illustration-contract and approved-flora-browser must pass on final head.",
+        "Verify GitHub Pages deployment after merge."
+      ],
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/47_veihaukeskjegg_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/47_veihaukeskjegg_v1.webp",
+      "gitBlobSha": "4c005ceb93577864ab2d70b087518d73d3ef7e59",
+      "sha256": "b1d48c2fed07ea100c67d36cf78a9e391bbd96e4c9440a4dfd336c59246e3b95",
+      "sizeBytes": 343546,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewedAt": "2026-11-04",
+      "botanicalVisualDecision": "illustrated_Crepis_tectorum_yellow_ligulate_heads_narrow_caulin_leaves_lobed_basal_leaves",
+      "technicalVerification": "Original 1024x1536 RGBA WebP, 343546 bytes, Git blob SHA 4c005ceb93577864ab2d70b087518d73d3ef7e59, SHA256 b1d48c2fed07ea100c67d36cf78a9e391bbd96e4c9440a4dfd336c59246e3b95; original alpha verified and black-background preview inspected."
     }
   ]
 }

@@ -45,7 +45,7 @@ test('Licensed original source photo: actual WebP pixels, exact provenance, corr
   }
 });
 
-test('All seven place-linked claims map to sentences without leaking four blocked People drafts',()=>{
+test('Anne Lindboe retains seven documentary claims while four others use explicitly artificial illustration',()=>{
   assert.equal(claims.person_id,'anne_lindboe');
   assert.equal(claims.claims.length,7);
   const keys=new Set(claims.claims.map(x=>x.id));
@@ -61,5 +61,8 @@ test('All seven place-linked claims map to sentences without leaking four blocke
   }
   assert.equal(staging.profiles.length,4);
   assert.ok(staging.profiles.every(p=>p.portrait_gate.status==='blocked_rights_identification'));
+  assert.ok(staging.profiles.every(p=>p.status==='published_with_ai_illustration'));
+  assert.ok(staging.profiles.every(p=>p.image_kind==='ai_generated_illustration'));
+  assert.ok(staging.profiles.every(p=>manifest.files.includes(`people/${p.category}/oslo/toyenbadet/${p.id}.json`)));
   assert.ok(manifest.files.every(p=>!p.endsWith('toyenbadet_people_20261103.json')));
 });
