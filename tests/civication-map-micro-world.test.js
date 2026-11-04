@@ -67,6 +67,8 @@ test("rich map laster modulen før 3D og faller tilbake ved feil", () => {
   assert.match(renderer, /buildMicroWorld\(\);/);
   assert.match(renderer, /CIVICATION_MICROWORLD_ENABLED === false/);
   assert.match(renderer, /microWorldObjects: _stats\.microWorldObjects/);
+  assert.match(renderer, /clearZones: LANDMARK_CLEAR_ZONES/);
+  assert.match(renderer, /microWorldSetPeriod\(period\)/);
   assert.match(renderer, /mikroliv feilet; kartet fortsetter/);
 });
 
@@ -114,7 +116,7 @@ test("instanserte dekordeler reduserer draw groups uten å miste geometri", () =
     setMatrixAt(i, matrix) { this.matrices[i] = matrix; }
   }
   class Geometry {}
-  class Material {}
+  class Material { constructor(config) { Object.assign(this, config); } }
   const base = {
     Group, Mesh, BoxGeometry: Geometry, CylinderGeometry: Geometry,
     IcosahedronGeometry: Geometry, TorusGeometry: Geometry,
@@ -130,4 +132,11 @@ test("instanserte dekordeler reduserer draw groups uten å miste geometri", () =
   assert.equal(renderInstances, sourceMeshes);
   assert.ok(instanced.drawGroups < sourceMeshes, "færre tegnegrupper ved instansering");
   assert.ok(instanced.group.children.every(batch => batch.instanceMatrix.needsUpdate));
+  const lamp = instanced.group.children.find(batch => batch.material.color === 0xd4c9a9);
+  assert.ok(lamp, "lyktglass er en separat, gjenbrukt materialgruppe");
+  assert.equal(lamp.material.emissiveIntensity, 0.065);
+  instanced.setPeriod("night");
+  assert.equal(lamp.material.emissiveIntensity, 0.32, "svak varm nattglød");
+  instanced.setPeriod("day");
+  assert.equal(lamp.material.emissiveIntensity, 0.018, "nesten usynlig på dagtid");
 });
