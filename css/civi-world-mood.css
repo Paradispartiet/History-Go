@@ -1,0 +1,68 @@
+/* Civication: lesbar og diskret fire-fase-identitet, ingen store scenebilder.
+   Sprite: én liten miniatyrgate i fire lysforhold, fra spillets kalender. */
+body.civi-app {
+  --civi-mini-marker-x: 0%;
+  --civi-mini-marker-color: #b8a78c;
+}
+body.civi-app[data-civi-visual-period="day"] {
+  --civi-mini-marker-x: 33.3333%;
+  --civi-mini-marker-color: #aab9ad;
+}
+body.civi-app[data-civi-visual-period="evening"] {
+  --civi-mini-marker-x: 66.6667%;
+  --civi-mini-marker-color: #aa8f88;
+}
+body.civi-app[data-civi-visual-period="night"] {
+  --civi-mini-marker-x: 100%;
+  --civi-mini-marker-color: #a6b4c2;
+}
+
+/* Bruk eksisterende heading; ingen ny DOM, last eller informasjon som
+   konkurrerer med valgene i den faktiske Life Story-scenen. */
+body.civi-app #civiLifestorySection > h2::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  width: min(360px, 100%);
+  max-width: 360px;
+  aspect-ratio: 45 / 8;
+  margin-top: 12px;
+  border: 1px solid rgba(190, 199, 190, 0.13);
+  border-radius: 7px;
+  background-image:
+    linear-gradient(90deg, var(--civi-mini-marker-color), var(--civi-mini-marker-color)),
+    url("../assets/civication/day-cycle-mini.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-size: 25% 2px, 100% 100%;
+  background-position: var(--civi-mini-marker-x) bottom, center center;
+  opacity: 0.86;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+}
+
+/* Fasestemningen ligger i atmosfæren, ikke i påtrengende knappefarger. */
+body.civi-app #civiLifestoryPanel .civi-lifestory-scene {
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+body.civi-app[data-civi-visual-period="morning"] #civiLifestoryPanel .civi-lifestory-scene {
+  border-color: rgba(185, 166, 139, 0.21);
+}
+body.civi-app[data-civi-visual-period="day"] #civiLifestoryPanel .civi-lifestory-scene {
+  border-color: rgba(133, 170, 155, 0.20);
+}
+body.civi-app[data-civi-visual-period="evening"] #civiLifestoryPanel .civi-lifestory-scene {
+  border-color: rgba(166, 137, 127, 0.22);
+}
+body.civi-app[data-civi-visual-period="night"] #civiLifestoryPanel .civi-lifestory-scene {
+  border-color: rgba(127, 148, 168, 0.22);
+}
+
+@media (max-width: 420px) {
+  body.civi-app #civiLifestorySection > h2::after {
+    margin-top: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.civi-app #civiLifestoryPanel .civi-lifestory-scene {
+    transition: none;
+  }
+}
