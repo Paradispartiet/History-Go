@@ -10,7 +10,7 @@ test("Tøyen trafo: two unique source-mapped People profiles", () => {
   const manifest=read("data/people/manifest.json");
   const ids = new Set();
   for(const [id,file,claimsFile] of entries){
-    assert.ok(manifest.files.includes(file), "canonical profile must be registered");
+    assert.ok(manifest.files.includes(file.replace(/^data\\//, "")), "canonical profile must be registered");
     const profile=read(file)[0], claims=read(claimsFile);
     assert.equal(profile.id,id);
     assert.equal(profile.placeId,"toyen_trafo");
@@ -29,7 +29,7 @@ test("Tøyen trafo: two unique source-mapped People profiles", () => {
 test("Tøyen trafo: generated place-open has People and preserves approved collections",()=>{
   const payload=read("data/runtime/place-open/toyen_trafo.json");
   assert.deepEqual(payload.people.map(p=>p.id),entries.map(row=>row[0]));
-  assert.equal(payload.leksespor?.length??payload.lesespor.length,4);
+  assert.equal(payload.lesespor.length,4);
   assert.equal(payload.leksikon.length,1);
   assert.equal(payload.stories.length,1);
   assert.equal(payload.language.entries.length,6);
