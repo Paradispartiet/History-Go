@@ -1,0 +1,42 @@
+name: Temporary Oslo Politikk QuizCard hit-test diagnosis
+on:
+  push:
+    branches:
+      - qa/oslo-politikk-quizcard-diagnostic-20261105
+    paths:
+      - .github/workflows/oslo-politikk-quizcard-diagnostic-20261105-temp.yml
+      - tests/oslo-politikk-six-browser.mjs
+permissions:
+  contents: read
+jobs:
+  politikk-quizcard-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Verify QA source and diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor '9ab1eae62e9feb50021386e668366080cf2c452f' HEAD
+          git diff --check '9ab1eae62e9feb50021386e668366080cf2c452f' HEAD
+      - run: npm ci --no-audit --no-fund
+      - name: Configure system Chrome
+        shell: bash
+        run: echo "CHROME_BIN=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Probe native QuizCard flips in historical Oslo buildings
+        run: node tests/oslo-politikk-six-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: politikk-two-place-quizcard-diagnostic-20261105
+          path: artifacts/oslo-politikk-six-browser/**
+          retention-days: 7
+          if-no-files-found: ignore
