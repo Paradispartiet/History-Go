@@ -1,0 +1,48 @@
+name: History Go backend readiness probe
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/history-go-backend-readiness-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-readiness-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  probe-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check public process health, dependencies, and CORS
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import urllib.error
+          import urllib.request
+
+          base = "https://history-go-backend.onrender.com"
+          for path in ("/api/v1/health/live", "/api/v1/health/ready"):
+              url = base + path
+              request = urllib.request.Request(url, headers={"Origin": "https://paradispartiet.github.io"})
+              try:
+                  with urllib.request.urlopen(request, timeout=45) as response:
+                      status = response.status
+                      payload = json.loads(response.read(16384))
+                      cors = response.headers.get("Access-Control-Allow-Origin", "")
+              except urllib.error.HTTPError as error:
+                  status = error.code
+                  payload = json.loads(error.read(16384))
+                  cors = error.headers.get("Access-Control-Allow-Origin", "")
+              print(f"{path}: HTTP {status}, status={payload.get('status', 'unknown')}, cors={cors!r}")
+              if path.endswith("/ready"):
+                  for name, value in payload.get("checks", {}).items():
+                      print(f"  {name}: {value.get('status', 'unknown')} ({value.get('detail', 'unknown')})")
+              if path.endswith("/ready") and (status != 200 or payload.get("status") != "ok"):
+                  raise SystemExit("Backend readiness blocked; keep production Social Meet flags disabled.")
+          PY
