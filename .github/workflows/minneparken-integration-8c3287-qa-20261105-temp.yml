@@ -1,0 +1,159 @@
+name: Temporary Minneparken 8c3287 integration staging QA
+on:
+  push:
+    branches:
+      - integration/minneparken-8c3287-20261105
+    paths:
+      - .github/workflows/minneparken-integration-8c3287-qa-20261105-temp.yml
+permissions:
+  contents: write
+jobs:
+  read-only-rehearsal:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Verify pinned staging integration and release HOLD
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = 'f1742c5716cae085fdaa803214e7e4a5d2a21fba'
+          test "$(git rev-parse HEAD^)" = '8c3287eaa08d13f1e2bcacd72f74d4a24b5156b2'
+          git diff --check '8c3287eaa08d13f1e2bcacd72f74d4a24b5156b2' HEAD
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const id='minneparken_gamlebyen',h=read('data/places/historie-production/'+id+'.json');
+          const spr=read('data/leksikon/sprak/manifest.json');
+          assert.equal(h.status,'blocked');
+          for(const g of ['A','B','C','D','E'])assert.equal(h.gates[g].status,'PASS');
+          for(const g of ['F','G','H'])assert.equal(h.gates[g].status,'N/A');
+          for(const x of [id,'toyen_trafo'])assert.ok(spr.place_files[x]);
+          assert.ok(!read('data/quiz/manifest.json').sets.some(x=>x.targetId===id));
+          assert.ok(!read('data/quizcards/historie/manifest.json').collections.includes(id+'_quizcard_v1.json'));
+          assert.ok(!read('data/stories/stories_manifest.json').files.some(x=>x.path==='data/stories/stories_'+id+'.json'));
+          console.log('PASS staging HOLD and both language entries');
+          NODE
+      - name: Rebuild derived content, source and policy checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          npm run places:index:check
+          npm run epoker:places:build
+          npm run epoker:places:check
+          git diff --stat -- data/epoker/epoke-place-index.json
+          npm run place-open:build
+          npm run place-open:check
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/minneparken-staging-8c3287-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p='data/places/place_image_backlog_summary.json';
+          const saved=JSON.parse(fs.readFileSync(p,'utf8'));
+          const audit=JSON.parse(fs.readFileSync('/tmp/minneparken-staging-8c3287-image-audit.json','utf8'));
+          saved.totalPlaces=audit.totalPlaces;
+          saved.summary={validLocal:audit.summary.local,validRemote:audit.summary.remote,optionalMissing:audit.summary.optional,missing:audit.summary.missing,invalidLocalPath:audit.summary.invalid,remaining:audit.summary.missing+audit.summary.invalid};
+          saved.generatedFromCommit='8c3287eaa08d';
+          saved.note='Aggregater kontrollert etter stagingintegrasjon mot pinet main 8c3287 den 2026-11-05. Kategorioversikten er et eldre detaljuttrekk og må regenereres separat ved kategorirevisjon.';
+          fs.writeFileSync(p,JSON.stringify(saved,null,2)+'\n');
+          NODE
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          npm run knowledge:canonical:check
+          npm run check:stories
+          node scripts/test-flora-tyskhonsetarm-b09.mjs
+          node scripts/test-flora-vassarve-b09.mjs
+          node scripts/test-flora-veihaukeskjegg-b09.mjs
+          node scripts/test-flora-villkarse-b09.mjs
+          node scripts/test-flora-vararve-b09.mjs
+          node scripts/test-flora-varerteknapp-b09.mjs
+          node scripts/test-flora-varkaal-b09.mjs
+          node scripts/verify-byplanlegging-asset-v1.mjs
+          node --test tests/epoke-place-index.test.mjs
+          node --test tests/toyen-trafo-history-story-contract.test.mjs tests/toyen-trafo-language-contract.test.mjs
+          node --test tests/toyenbadet-people-staging-source-gate.test.mjs tests/toyenbadet-anne-lindboe-people.test.mjs tests/toyenbadet-illustrated-people.test.mjs
+          node --test tests/civication-film-theme-source-notes-wave01.test.js tests/civication-film-theme-source-notes-wave02.test.js tests/civication-film-theme-source-notes-wave03.test.js tests/civication-produksjonsassistent-intro-persistent-case.test.js
+          node --test tests/badge-by-samtidsarkitektur-v1-production.test.mjs tests/badge-by-funksjonalisme-v1-locales.test.mjs tests/badge-by-postmodernisme-v1-production.test.mjs tests/badge-by-byplanlegging-v1-production.test.mjs
+          node --test tests/civication-by-radgiver-approval-branching.test.js tests/civication-generalized-work-rhythm.test.js
+          node --test tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-story-candidate.test.mjs tests/birkelunden-place-images.test.mjs tests/civication-symposium-role-history.test.js
+          test -s reports/knowledge-contract-audit.json
+          git check-ignore -q reports/knowledge-contract-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const id='minneparken_gamlebyen', h=read('data/places/historie-production/'+id+'.json');
+          assert.equal(h.status,'blocked');
+          for(const g of ['F','G','H'])assert.equal(h.gates[g].status,'N/A');
+          assert.ok(!read('data/quiz/manifest.json').sets.some(x=>x.targetId===id));
+          assert.ok(!read('data/quizcards/historie/manifest.json').collections.includes(id+'_quizcard_v1.json'));
+          assert.ok(!read('data/stories/stories_manifest.json').files.some(x=>x.path==='data/stories/stories_'+id+'.json'));
+          const qs=read('data/quiz/historie/'+id+'_sets.json').sets.flatMap(s=>s.questions);
+          assert.equal(qs.filter(x=>x.knowledge_link_status==='linked').length,21);
+          assert.equal(new Set(qs.flatMap(x=>x.knowledge_unit_ids)).size,32);
+          assert.equal(read('reports/knowledge-contract-audit.json').questions_with_errors,0);
+          console.log('PASS Knowledge 21/32 and unmodified release blockers F/G/H');
+          NODE
+          REPO_HYGIENE_BASE_SHA='8c3287eaa08d13f1e2bcacd72f74d4a24b5156b2' REPO_HYGIENE_HEAD_SHA=HEAD node scripts/audit-repository-hygiene-v1.mjs
+      - name: Actual mobile and desktop Minneparken QA with test-only quiz
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx playwright install --with-deps chromium
+          node tests/minneparken-readonly-app-browser.test.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const qf='data/quiz/manifest.json', cf='data/quizcards/historie/manifest.json';
+          const q=read(qf),c=read(cf);
+          q.sets.push({targetId:'minneparken_gamlebyen',file:'data/quiz/historie/minneparken_gamlebyen_sets.json'});
+          c.collections.push('minneparken_gamlebyen_quizcard_v1.json');
+          fs.writeFileSync(qf,JSON.stringify(q,null,2)+'\n');
+          fs.writeFileSync(cf,JSON.stringify(c,null,2)+'\n');
+          NODE
+          node scripts/verify-minneparken-quizcard-real-browser.mjs
+          node scripts/verify-place-quiz-browser.mjs minneparken_gamlebyen
+          git restore --worktree -- data/quiz/manifest.json data/quizcards/historie/manifest.json
+      - name: Strict generated output allowlist, commit to staging only
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import cp from 'node:child_process';
+          const changed=cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const allowed=new Set(['data/places/places_index.json','data/runtime/place-open/birkelunden.json','data/fagverk/fagverk_release.json','data/places/place_image_backlog_summary.json','data/epoker/epoke-place-index.json']);
+          console.log('Unstaged generated diffs:',JSON.stringify(changed));
+          for(const p of changed)if(!allowed.has(p))throw Error('Unreviewed generated path: '+p);
+          NODE
+          git add -- data/places/places_index.json data/runtime/place-open/birkelunden.json data/fagverk/fagverk_release.json data/places/place_image_backlog_summary.json data/epoker/epoke-place-index.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'build(staging): regenerate Minneparken Epoker and image audit outputs'
+            git fetch --no-tags origin 'integration/minneparken-8c3287-20261105'
+            test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+            git push origin HEAD:refs/heads/'integration/minneparken-8c3287-20261105'
+            echo 'PASS: generated allowlist committed to staging only'
+          else
+            echo 'PASS: generated outputs already synchronized'
+          fi
+      - name: Upload canonical Knowledge contract audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-staging-8c3287-knowledge-contract
+          path: reports/knowledge-contract-audit.json
+          retention-days: 30
+          if-no-files-found: warn
