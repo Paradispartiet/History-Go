@@ -40,8 +40,14 @@ jobs:
           node --test tests/toyen-trafo-objects-archive.test.mjs tests/toyen-trafo-people-contract.test.mjs tests/toyen-trafo-people-illustrations.test.mjs tests/toyen-trafo-brands-contract.test.mjs
           npm run places:index:check
           npm run place-open:check
-      - name: Install Chromium for actual PlaceCard inspection
-        run: npx playwright install --with-deps chromium
+      - name: Resolve preinstalled runner Chrome for actual PlaceCard inspection
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Runner Chrome not found"; exit 1; fi
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
       - name: Verify Tøyen trafo People and Objects in mobile and desktop UI
         run: node tests/toyen-trafo-objects-real-browser.mjs
       - uses: actions/upload-artifact@v4
