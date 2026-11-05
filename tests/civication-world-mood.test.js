@@ -12,6 +12,7 @@ function setup(initialPhase = "morning") {
   const clock = { phase: initialPhase };
   const changes = [];
   const phaseText = { textContent: "" };
+  const exactPhaseText = { textContent: "" };
   const browser = {
     CivicationCalendar: {
       getPhase: () => clock.phase,
@@ -20,7 +21,8 @@ function setup(initialPhase = "morning") {
     document: {
       readyState: "complete",
       body: { setAttribute: (k, v) => attributes.set(k, v) },
-      querySelector: (selector) => selector === ".civi-day-miniature-period" ? phaseText : null
+      querySelector: (selector) => selector === ".civi-day-miniature-period" ? phaseText
+        : selector === ".civi-day-miniature-phase" ? exactPhaseText : null
     },
     addEventListener: (name, cb) => {
       listeners.set(name, cb);
@@ -29,7 +31,7 @@ function setup(initialPhase = "morning") {
     CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options.detail; } }
   };
   vm.runInNewContext(source, { window: browser });
-  return { browser, clock, listeners, attributes, changes, phaseText };
+  return { browser, clock, listeners, attributes, changes, phaseText, exactPhaseText };
 }
 
 test("åtte kanoniske faser bruker fire dempede visuelle perioder", () => {
@@ -48,22 +50,26 @@ test("åtte kanoniske faser bruker fire dempede visuelle perioder", () => {
 });
 
 test("følger spillklokken, oppdaterer kun DOM og sender ett signal per overgang", () => {
-  const { browser, clock, listeners, attributes, changes, phaseText } = setup("morning");
+  const { browser, clock, listeners, attributes, changes, phaseText, exactPhaseText } = setup("morning");
   assert.equal(attributes.get("data-civi-visual-period"), "morning");
   assert.equal(phaseText.textContent, "Morgen");
+  assert.equal(exactPhaseText.textContent, "Fase: Morgen");
   assert.deepEqual(changes, ["morning"]);
   clock.phase = "lunch";
   listeners.get("civi:dayPhaseChanged")();
   assert.equal(attributes.get("data-civi-visual-period"), "day");
   assert.equal(phaseText.textContent, "Dag");
+  assert.equal(exactPhaseText.textContent, "Fase: Lunsj");
   assert.deepEqual(changes, ["morning", "day"]);
-  clock.phase = "workday"; // same visual bucket: no redundant scene updates
+  clock.phase = "workday"; // same visual bucket: exact phase must still update
   browser.CivicationWorldMood.sync();
+  assert.equal(exactPhaseText.textContent, "Fase: Arbeidsdag");
   assert.deepEqual(changes, ["morning", "day"]);
   clock.phase = "day_end";
   listeners.get("storage")({ key: "hg_civi_calendar_v1" });
   assert.equal(attributes.get("data-civi-visual-period"), "night");
   assert.equal(phaseText.textContent, "Natt");
+  assert.equal(exactPhaseText.textContent, "Fase: Dagens slutt");
   assert.deepEqual(changes, ["morning", "day", "night"]);
   assert.equal(clock.phase, "day_end", "calendar is never mutated");
 });
@@ -81,6 +87,8 @@ test("scene lighting and Min dag illustration are wired without changing game ch
   assert.match(html, /css\/civi-world-mood\.css/);
   const miniCss = fs.readFileSync(path.join(root, "css/civi-miniature-world.css"), "utf8");
   assert.match(html, /civi-day-miniature-header/);
+  assert.match(html, /civi-day-miniature-phase/);
+  assert.match(miniCss, /\.civi-day-miniature-phase/);
   assert.match(html, /css\/civi-miniature-world\.css/);
   assert.match(miniCss, /\.civi-day-miniature-art/);
   assert.doesNotMatch(css, /#civiLifestorySection > h2::after/);
