@@ -6,7 +6,7 @@ const source='data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendom
 const id=['toyen_trafo_apparatpult_1916','toyen_trafo_transformatorkjerne_1918'];
 test('Tøyen trafo: two distinct archived technical Objects qualify, not building features',()=>{
  const p=read(source);assert.deepEqual(p.objects.map(x=>x.id),id);
- assert.deepEqual(p.place_card_profile.collection_ids,['people','objects']);
+ assert.deepEqual(p.place_card_profile.collection_ids,['people','objects','brands']);
  for(const [i,o] of p.objects.entries()){
   assert.equal(o.physicalObject,true);
   assert.ok(o.archiveReference.includes('A-20138/Ua/0004/'));
@@ -35,7 +35,7 @@ test('Tøyen trafo: generated Place-open data retains People, Brands and new Obj
  assert.deepEqual(r.people.map(x=>x.id),['thorvald_astrup','kari_rolfsen']);
  assert.ok(r.people.every(x=>x.image.endsWith('.webp')));
  assert.deepEqual(r.brands.map(x=>x.id),['oslo_teatersenter','unge_kunstneres_samfund']);
- assert.deepEqual(r.place.place_card_profile.collection_ids,['people','objects']);
+ assert.deepEqual(r.place.place_card_profile.collection_ids,['people','objects','brands']);
  assert.equal(r.stories.length,1);
  assert.equal(r.lesespor.length,4);
  assert.equal(r.language.entries.length,6);
@@ -48,6 +48,6 @@ test('Tøyen trafo: READ-FIRST evidence recorded without claiming vFerdig',()=>{
  assert.equal(card.rule_preflight?.status,'PASS');
  assert.equal(card.rule_preflight?.category,'naeringsliv');
  assert.ok(card.rule_preflight.files.some(x=>x.path==='docs/PLACE_OBJECTS_CANONICAL.md'&&x.sha256?.length===64));
- assert.deepEqual(card.collection_ids,['people','objects']);
+ assert.deepEqual(card.collection_ids,['people','objects','brands']);
  assert.equal(card.editorial_status,'not_vferdig');
 });
