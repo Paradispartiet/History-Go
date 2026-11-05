@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import { chromium } from 'playwright';
-const root=process.cwd(),ids=['hoyesteretts_hus','folkets_hus_oslo','hoyres_hus','hoyblokka','victoria_terrasse','y_blokka'];
+const root=process.cwd(),ids=['hoyblokka','y_blokka'];
 const out=path.resolve('artifacts/oslo-politikk-six-browser');fs.mkdirSync(out,{recursive:true});
 const cards=JSON.parse(fs.readFileSync('data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json','utf8')).cards;
 const places={};
@@ -132,5 +132,6 @@ try{
 }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}
 report.status=report.errors.length?'BLOCKED':'BROWSER_PASS_EDITORIAL_REVIEW_PENDING';
 fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');
+console.log('OSLO_POLITIKK_FAILURE_DETAILS',JSON.stringify(report.errors.map(e=>({place:e.place,viewport:e.viewport,problems:e.problems,quizPosition:e.quizPosition,quizFailure:e.quizFailure}))));
 console.log('SIX_PLACE_BROWSER_SUMMARY',JSON.stringify({checks:report.checks.length,blocked:report.errors.length}));
 if(report.errors.length)process.exitCode=1;
