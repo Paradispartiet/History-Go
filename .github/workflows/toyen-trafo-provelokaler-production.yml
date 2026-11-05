@@ -1,0 +1,59 @@
+name: Tøyen trafo – real rehearsal-space service
+on:
+  push:
+    branches: [content/toyen-trafo-provelokaler-production-20261105]
+    paths:
+      - 'scripts/build-toyen-trafo-provelokaler-production.mjs'
+      - 'tests/toyen-trafo-service-production.test.mjs'
+      - 'tests/toyen-trafo-service-real-browser.mjs'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - '.github/workflows/toyen-trafo-provelokaler-production.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: toyen-trafo-rehearsal-service-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    name: Materialize real OTS service and verify four PlaceCard previews
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build schematic service member and factual metadata
+        run: node scripts/build-toyen-trafo-provelokaler-production.mjs
+      - name: Materialize canonical Place data
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Check service and canonical data
+        run: |
+          node --test tests/toyen-trafo-service-production.test.mjs
+          npm run places:index:check
+          npm run place-open:check
+      - name: Test actual four-member PlaceCard UI on mobile and desktop
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/toyen-trafo-service-real-browser.mjs
+      - name: Commit original visual, member and canonical runtime
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/productions/source/toyen_trafo_provelokaler_schematic.svg
+          git add bilder/productions/toyen_trafo_oslo_teatersenter_provelokaler.webp
+          git add data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04/toyen_trafo.json
+          git add reports/place-production/toyen-trafo-workcard-current.json reports/place-production/toyen-trafo-service-production-20261105.json
+          git add data/places/places_index.json data/runtime/place-open/toyen_trafo.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Tøyen trafo: integrate verified OTS rehearsal-space service into Productions"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
