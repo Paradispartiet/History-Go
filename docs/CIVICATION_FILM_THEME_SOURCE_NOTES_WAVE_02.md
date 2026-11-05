@@ -30,9 +30,13 @@ Maskinlesbare kildehenvisninger og kontroll mot faktisk runtime ligger i [filmTh
 
 **Dramaturgisk metode:** Arbeidsdagen bygges av konkrete små avbrytelser, kundekrav og uklare forventninger, mens privatlivets plikter ikke forsvinner. Komedien viser arbeidets status og sosial ulikhet uten at hver scene må ha en stor katastrofe.
 
-**Original Civication-situasjon:** En frilanser får en entusiastisk forespørsel mens eldre ubetalte rettelser, avtalt leveranse og fritid fortsatt må håndteres. Spillerens muligheter er å be om tydelig scope og honorar, sende et *uforpliktende* estimat eller avvise forespørselen. Et ja i innboksen kan ikke bli kontrakt av seg selv.
+**Arbeidet og ansvaret:** Invitasjonen sier torsdag, påmeldingsskjemaet sier fredag, og Lea har sendt torsdag til styret. Lea kan rette styremeldingen og forsida. Styrelederen bestiller og godkjenner teksten. Frilanseren redigerer invitasjonen, sjekker lenka og må samtidig holde en frist for en annen kunde.
 
-**Spillbar første del:** I Lea-fortsettelsen på dag 8 kan spilleren sende et avgrenset tilbud, be om avklaring eller takke nei. På dag 9 følger én av tre scener opp det lagrede svaret. På dag 11 bekrefter styrelederen det avgrensede tilbudet hvis spilleren sendte og fulgte det opp. En ubesvart avklaring står fortsatt åpen. Bare en bekreftet bestilling gir et invitasjonsutkast med frist på dag 12. Spilleren kan levere utkastet eller varsle om forsinkelse. På dag 13 godkjenner styrelederen det leverte utkastet eller trekker bestillingen etter forsinkelsen. Godkjenning gir grunnlag for fakturering. Ved avbestilling står eventuelt honorar åpent. Fortellingsbuen er fortsatt under arbeid.
+- **Dag 8–9:** Spilleren kan skrive en prøveåpning og sende et avgrenset tilbud, vente på en bekreftet bestilling eller takke nei og gjøre ferdig den andre kundens rettelse. Oppfølgingen følger det lagrede valget.
+- **Dag 11–13:** Når styrelederen bestiller, får spilleren dato og påmeldingsfrist og finner lenka til årets skjema. Ved levering godkjenner styrelederen teksten etter å ha testet lenka på mobilen. Ved varslet forsinkelse sender Lea en kortversjon, og styrelederen trekker bestillingen. En ubesvart forespørsel gir ingen leveransefrist.
+
+Filmkoblingen ligger i hvordan små avbrytelser og kryssende forpliktelser preger en vanlig arbeidsdag. Scenene er spillbare i `frilans_med_lea.json` og `frilans_neste_steg.json`.
+
 
 ## Restport
 
