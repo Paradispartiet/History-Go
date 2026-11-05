@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -31,7 +32,7 @@ jobs:
       - name: Baseline quiz production context audit on unmodified main
         run: npm run audit:quiz-production-context
   grini-collections-baseline:
-    runs-on: ubuntu-latest
+    if: false # Already tested in first diagnostic run; do not repeat
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -47,7 +48,7 @@ jobs:
       - name: Grini Collections real browser on unmodified main
         run: node scripts/verify-grini-collections-browser.mjs grini_fangeleir
   oslo-politikk-mobile-baseline:
-    runs-on: ubuntu-latest
+    if: false # Already tested in first diagnostic run; do not repeat
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
