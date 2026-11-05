@@ -41,7 +41,7 @@ try{
        const card=document.querySelector('#pcFrontCardFlip'),content=document.querySelector('#pcQuizCardContent');
        return !!card?.classList.contains('has-quiz-card')&&!!content?.querySelector('.pc-rendered-quiz-card')&&content?.dataset?.placeId==='toyen_trafo';
      },null,{timeout:80000});
-     const quizContent=await page.locator('#pcQuizCardContent').innerText();
+     const quizContent=await page.locator('#pcQuizCardContent').textContent();
      assert.match(quizContent,/Tøyen/i,label+' wrong QuizCard');
      const card=page.locator('#pcFrontCardFlip');
      assert.equal(await card.evaluate(e=>e.classList.contains('is-flipped')),false);
