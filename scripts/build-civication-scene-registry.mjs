@@ -486,7 +486,8 @@ function normalizeWorkObjectOps(value, label) {
       add_flag: new Set(["op", "event_id", "work_object_id", "flag"]),
       remove_flag: new Set(["op", "event_id", "work_object_id", "flag"]),
       close: new Set(["op", "event_id", "work_object_id", "outcome"]),
-      note: new Set(["op", "event_id", "work_object_id", "note"])
+      note: new Set(["op", "event_id", "work_object_id", "note"]),
+      carry_forward_flags: new Set(["op", "event_id", "work_object_id", "from_work_object_id", "flag_mappings"])
     };
     const allowed = allowedByOp[op];
     if (!allowed) throw new Error(`${opLabel}.op er ukjent: ${op || "<tom>"}`);
@@ -505,6 +506,25 @@ function normalizeWorkObjectOps(value, label) {
     }
 
     const workObjectId = assertId(input.work_object_id, `${opLabel}.work_object_id`);
+    if (op === "carry_forward_flags") {
+      const fromId = assertId(input.from_work_object_id, `${opLabel}.from_work_object_id`);
+      if (fromId === workObjectId) throw new Error(`${opLabel} kan ikke overføre fra samme sak`);
+      if (!Array.isArray(input.flag_mappings) || input.flag_mappings.length < 1 || input.flag_mappings.length > 16) {
+        throw new Error(`${opLabel}.flag_mappings krever 1–16 koblinger`);
+      }
+      const seenTargets = new Set();
+      const flagMappings = input.flag_mappings.map((mapping, i) => {
+        const entry = assertAllowedKeys(mapping, new Set(["source_flag", "target_flag"]), `${opLabel}.flag_mappings[${i}]`);
+        const sourceFlag = assertId(entry.source_flag, `${opLabel}.source_flag`);
+        const targetFlag = assertId(entry.target_flag, `${opLabel}.target_flag`);
+        if (seenTargets.has(targetFlag)) throw new Error(`${opLabel} har duplikat målflagg ${targetFlag}`);
+        seenTargets.add(targetFlag);
+        return { source_flag: sourceFlag, target_flag: targetFlag };
+      });
+      out.push({ op, event_id: eventId, work_object_id: workObjectId, from_work_object_id: fromId, flag_mappings: flagMappings });
+      continue;
+    }
+
     if (op === "transition") {
       const transition = { op, event_id: eventId, work_object_id: workObjectId };
       if (hasOwn(input, "to_status")) {
