@@ -1,6 +1,7 @@
 # People – regel for AI-genererte illustrasjoner
 
-**Status:** fast design- og dokumentasjonsregel for History Go.  
+**Status:** fast design- og dokumentasjonsregel for History Go.
+
 **Innføring:** 2026-11-03, Tøyenbadet.
 
 Når et kildekontrollert People-medlem mangler et publiserbart portrett, kan History Go bruke en **original, tydelig illustrert** personfremstilling i stedet. Illustrasjonen er et kunstnerisk bilde, ikke dokumentasjon av utseendet.
