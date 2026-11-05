@@ -14,6 +14,7 @@ on:
       - 'scripts/verify-civication-organic-player-browser.ts'
       - 'scripts/verify-civication-people-browser.cjs'
       - 'scripts/verify-civication-visual-qa-browser.ts'
+      - 'scripts/run-civication-visual-qa-browser.ts'
       - 'css/civi-miniature-world.css'
       - 'css/civi-world-mood.css'
       - 'css/civi-three-map.css'
@@ -108,6 +109,15 @@ jobs:
             echo "Acceptance depth: ${CIVICATION_BROWSER_DEPTH}." >> "$GITHUB_STEP_SUMMARY"
           fi
           exit "${result}"
+      - name: Capture Min dag and map mobile QA
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p reports/civication-browser
+          # Separate process and port: a stalled 3D screenshot cannot consume
+          # the full 85-minute functional acceptance-test budget.
+          timeout --signal=TERM --kill-after=30s 8m node dist/scripts/run-civication-visual-qa-browser.js \
+            2>&1 | tee reports/civication-browser/visual-qa-output.log
       - name: Upload browser diagnostics
         if: always()
         uses: actions/upload-artifact@v4
