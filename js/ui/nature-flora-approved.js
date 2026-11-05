@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_balderbra: Object.freeze({
+      scientificName: "Tripleurospermum inodorum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/57_balderbra_v1.webp",
+      gitBlobSha: "ef76d51b2127e62c0df2a11ff65b70154c6c6001",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-balderbra-20261105.json"
+    }),
     emne_flora_akervindel: Object.freeze({
       scientificName: "Convolvulus arvensis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/56_akervindel_v1.webp",
