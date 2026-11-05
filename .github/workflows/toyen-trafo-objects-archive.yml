@@ -27,6 +27,10 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Record canonical READ-FIRST rule evidence for Næringsliv
+        run: |
+          node scripts/place-production-rule-preflight.mjs record --place-id toyen_trafo --category naeringsliv --workcard reports/place-production/toyen-trafo-workcard-current.json
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/toyen-trafo-workcard-current.json
       - name: Rebuild canonical Places index and Place-open
         run: |
           npm run places:index:build
@@ -50,7 +54,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/places/places_index.json data/runtime/place-open/toyen_trafo.json
+          git add data/places/places_index.json data/runtime/place-open/toyen_trafo.json reports/place-production/toyen-trafo-workcard-current.json
           if ! git diff --cached --quiet; then
             git commit -m "Tøyen trafo: sync Places index and Place-open for archived Objects"
             git push origin "HEAD:${{ github.ref_name }}"
