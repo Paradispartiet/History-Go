@@ -1,0 +1,25 @@
+name: Lillebekk saksoversikt targeted acceptance (one-shot)
+on:
+  push:
+    branches:
+      - civication/lillebekk-review-checklist-20261105
+    paths:
+      - .github/workflows/civication-lillebekk-review-once.yml
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify real case inbox review
+        run: node tests/civication-lillebekk-saksoversikt-inbox.test.js
+      - name: Verify full prior early-to-formal case chain
+        run: |
+          node tests/civication-by-radgiver-lillebekk-evidence-handoff.test.js
+          node tests/civication-by-radgiver-lillebekk-followup-continuity.test.js
+          node tests/civication-by-radgiver-role-world-realism-pilot.test.js
