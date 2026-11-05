@@ -24,8 +24,8 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       const app = globalThis as any;
       return !!app.CivicationWorldMood?.getPeriod
         && !!app.CivicationLifestoryUI?.getCurrentSceneInfo
-        && !!app.doc.querySelector('.civi-day-miniature-phase')
-        && !!app.doc.querySelector('#civiLifestoryPanel .civi-lifestory-scene');
+        && !!app.document.querySelector('.civi-day-miniature-phase')
+        && !!app.document.querySelector('#civiLifestoryPanel .civi-lifestory-scene');
     }, null, { timeout: 90000 });
 
     await page.locator('#civiLifestorySection h2').scrollIntoViewIfNeeded();
@@ -45,7 +45,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
         headerFits: !!h && !!l && !!a && a.right <= h.right + 2 && l.right <= a.left + 2,
         artSize: a ? { width: a.width, height: a.height } : null,
         sceneVisible: !!scene && (globalThis as any).getComputedStyle(scene).display !== 'none',
-        choiceCount: document.querySelectorAll('#civiLifestoryPanel [data-lifestory-choice]').length
+        choiceCount: doc.querySelectorAll('#civiLifestoryPanel [data-lifestory-choice]').length
       };
     });
     assert.match(minDag.phase, /^Fase: \S/, 'Min dag shows the real game phase');
