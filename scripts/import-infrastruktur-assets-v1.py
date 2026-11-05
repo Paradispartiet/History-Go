@@ -59,8 +59,9 @@ def main():
         raise ValueError('Languages must be nb, en, es, pt, fr')
     if list(by['subBadgeImages']) != PREVIOUS:
         raise ValueError('Existing seven By badges changed; refusing import')
-    if opts.activate and not c['quality'].get('visualApproved'):
-        raise ValueError('Visual approval required before --activate')
+    if opts.activate and not (c['quality'].get('visualApproved') and
+                              c.get('visualReview', {}).get('fullSeriesApproval')):
+        raise ValueError('Explicit badge and full By-series visual approval required before --activate')
     payloads = {}
     with ZipFile(opts.archive) as z:
         for locale, entry in c['variants'].items():
