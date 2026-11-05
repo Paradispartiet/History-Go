@@ -726,7 +726,15 @@ export async function buildQuizProductionContext({
       brief: sourceFileMetadata(targetProduction.briefRecord),
       target: sourceFileMetadata(target?.record),
       target_index: target
-        ? sourceSelectionMetadata(target.indexRecord, [target.indexItem])
+        // imageMeta is a PlaceCard presentation projection, not quiz evidence.
+        // The canonical source file remains checked separately under 'target'.
+        ? sourceSelectionMetadata(target.indexRecord, [
+            target.indexPath === "data/places/places_index.json"
+              ? Object.fromEntries(
+                  Object.entries(target.indexItem).filter(([key]) => key !== "imageMeta")
+                )
+              : target.indexItem
+          ])
         : null,
       relations: relationSources.map(({ record, matches }) => sourceSelectionMetadata(record, matches)),
       stories: storySources.map(({ record, matches }) => sourceSelectionMetadata(record, matches))

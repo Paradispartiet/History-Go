@@ -47,10 +47,20 @@ test('Byplanlegging exact WebP plus four translated files have verified transpar
   assert.equal(file.length,v.bytes,lc);
   assert.equal(file.toString('ascii',0,4),'RIFF',lc);
   assert.equal(file.toString('ascii',8,12),'WEBP',lc);
-  assert.equal(file.toString('ascii',12,16),'VP8X',lc);
-  assert.equal(file.readUIntLE(24,3)+1,1024,lc);
-  assert.equal(file.readUIntLE(27,3)+1,1024,lc);
-  assert.ok(file[20]&0x10,lc+' alpha channel');
+  const encoding=file.toString('ascii',12,16);
+  assert.ok(['VP8X','VP8L'].includes(encoding),lc+' valid extended/lossless WebP');
+  if(lc==='nb')assert.equal(encoding,'VP8X','active original remains extended WebP');
+  if(encoding==='VP8X'){
+    assert.equal(file.readUIntLE(24,3)+1,1024,lc+' width');
+    assert.equal(file.readUIntLE(27,3)+1,1024,lc+' height');
+    assert.ok(file[20]&0x10,lc+' alpha channel');
+  }else{
+    assert.equal(file[20],0x2f,lc+' lossless WebP signature');
+    const bits=file.readUInt32LE(21);
+    assert.equal((bits&0x3fff)+1,1024,lc+' width');
+    assert.equal(((bits>>>14)&0x3fff)+1,1024,lc+' height');
+    assert.ok((bits>>>28)&1,lc+' alpha channel');
+  }
   assert.equal(createHash('sha256').update(file).digest('hex'),v.sha256,lc);
   if(lc!=='nb'){
    const localeEntry=entries.find(e=>e.locale===lc);
