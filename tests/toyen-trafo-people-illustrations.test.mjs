@@ -18,6 +18,10 @@ test('Tøyen trafo People: original illustrations and honest image metadata',asy
     assert.equal(p.imageMeta.nonDocumentary,true);
     assert.equal(p.imageMeta.facialLikenessVerified,false);
     assert.equal(p.imageMeta.visibleLabel,'AI-ILLUSTRASJON');
+    assert.equal(p.imageMeta.noSourcePhotographClaim,true);
+    assert.equal(p.imageMeta.sha256,img.sha256);
+    assert.equal(p.imageMeta.width,1024);
+    assert.equal(p.imageMeta.height,1536);
     const svg=fs.readFileSync(img.source,'utf8');
     assert.ok(svg.includes('AI-ILLUSTRASJON'));
     assert.ok(!svg.includes('<image'));
