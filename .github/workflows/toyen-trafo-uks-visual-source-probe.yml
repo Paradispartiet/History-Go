@@ -1,0 +1,38 @@
+name: Tøyen trafo UKS original visual source probe
+on:
+  push:
+    branches: [research/toyen-trafo-uks-official-visual-20261105]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Inspect UKS official site media references
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re,urllib.request,urllib.parse,collections
+          url='https://www.uks.no/'
+          req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; HistoryGoResearch/1.0)'})
+          try:
+            with urllib.request.urlopen(req,timeout=35) as a:
+              html=a.read(900000).decode('utf-8','replace')
+              print('URL',a.url,'status',a.status,'bytes',len(html),'type',a.headers.get('Content-Type'))
+          except Exception as e:
+            print('FETCH_ERROR',type(e).__name__,str(e)[:240]);raise
+          print('TEXT_PREFIX',re.sub(r'\s+',' ',html[:500]))
+          print('SVG_TOKENS',html.lower().count('<svg'))
+          # Capture any image ref plus stylesheet and recognizable logo class.
+          refs=re.findall(r'(?:src|href|content|data-src|data-lazy-src)\s*=\s*["\']([^"\']+)["\']',html,re.I)
+          refs+=re.findall(r'url\(\s*["\']?([^\)"\']+)',html,re.I)
+          urls=[urllib.parse.urljoin(url,x) for x in refs if any(t in x.lower() for t in ['logo','svg','png','webp','jpg','jpeg','gif','wp-content/themes','stylesheet'])]
+          for u in list(dict.fromkeys(urls))[:140]:
+            print('ASSET',u[:350])
+          for pattern in ('logo','site-logo','header-logo','branch','uks-logo','uks_logo','wp-custom-logo','inline-svg'):
+            i=html.lower().find(pattern)
+            print('PATTERN',pattern,'POSITION',i, 'CONTEXT',re.sub(r'\s+',' ',html[max(0,i-180):i+300])[:520] if i>=0 else '')
+          print('ALL_IMAGES',len([x for x in refs if re.search(r'\.(png|svg|jpe?g|webp)',x,re.I)]))
+          PY
