@@ -74,7 +74,6 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       'mobile map must start with system HUD and zone panel minimized');
     const obstruction = await page.evaluate(() => {
       const doc = (globalThis as any).document;
-      const style = (globalThis as any).getComputedStyle;
       const map = doc.querySelector('#civiMapWorld').getBoundingClientRect();
       const hud = doc.querySelector('.civi-system-hud').getBoundingClientRect();
       const zone = doc.querySelector('.civi-system-panel').getBoundingClientRect();
@@ -89,7 +88,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
         zoneAria: zoneBtn?.getAttribute('aria-label'),
         hudTouchWidth: hudRect?.width || 0,
         zoneTouchWidth: zoneRect?.width || 0,
-        hidden: style(doc.querySelector('.civi-system-hud')).display === 'none'
+        hidden: (globalThis as any).getComputedStyle(doc.querySelector('.civi-system-hud')).display === 'none'
       };
     });
     assert.ok(!obstruction.hidden && obstruction.fraction < 0.20,
