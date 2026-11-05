@@ -65,6 +65,7 @@
     film_tv:"Filmer og serier",
     scenekunst:"Forestillinger",
     media:"Utgivelser",
+    naeringsliv:"Produksjon og tjenester",
     popkultur:"Uttrykk og utgivelser",
     subkultur:"Uttrykk og utgivelser"
   });
