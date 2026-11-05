@@ -30,6 +30,10 @@ Maskinlesbare kildehenvisninger og kontroll mot faktisk runtime ligger i [filmTh
 
 **Dramaturgisk metode:** Arbeidsdagen bygges av konkrete små avbrytelser, kundekrav og uklare forventninger, mens privatlivets plikter ikke forsvinner. Komedien viser arbeidets status og sosial ulikhet uten at hver scene må ha en stor katastrofe.
 
+**Takscenen (avgrenset analyse fra sceneomtaler):** Dante regner med avløsning og har planlagt hockey. Når avløsningen uteblir, flytter han spillet opp på butikktaket og henger opp et skilt om når han åpner igjen. En kunde følger etter. Dermed kommer butikkens krav bokstavelig talt inn på banen, og det som skulle være en pause blir en fortsettelse av konflikten på jobb. [Miramax](https://www.miramax.com/movie/clerks/) · [Roger Ebert](https://www.rogerebert.com/reviews/clerks-1994) · [Filmsite, scenereferat](https://www.filmsite.org/clerks.html)
+
+**Overført til spillet:** På dag 12 konkurrerer invitasjonen og den andre kundens leveranse om samme ettermiddag. Den gamle lenka gjør konflikten konkret. Å rette og sende bruker av tida frilanseren har lovet bort. Å varsle gir Lea tid til å skrive kortversjonen. I begge tilfeller får vi se hvem som gjør arbeidet og hva foreningen faktisk sender ut.
+
 **Arbeidet og ansvaret:** Invitasjonen sier torsdag, påmeldingsskjemaet sier fredag, og Lea har sendt torsdag til styret. Lea kan rette styremeldingen og forsida. Styrelederen bestiller og godkjenner teksten. Frilanseren redigerer invitasjonen, sjekker lenka og må samtidig holde en frist for en annen kunde.
 
 - **Dag 8–9:** Spilleren kan skrive en prøveåpning og sende et avgrenset tilbud, vente på en bekreftet bestilling eller takke nei og gjøre ferdig den andre kundens rettelse. Oppfølgingen følger det lagrede valget.
