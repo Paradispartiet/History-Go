@@ -130,6 +130,33 @@ try {
       placeId,
       { timeout: 60_000 },
     );
+    const describeCollections = () => page.evaluate(({ collections }) => {
+      const card = document.getElementById('placeCard');
+      const grid = card?.querySelector('.pc-icons-quad');
+      return {
+        ready: window.__HG_APP_READY__,
+        router: window.__HG_ROUTER_STARTED__,
+        place: card?.dataset?.currentPlaceId,
+        mode: card?.dataset?.collectionMode,
+        count: card?.dataset?.collectionCount,
+        gridCount: card?.dataset?.collectionGridCount,
+        gridHtml: grid?.outerHTML.slice(0,1200),
+        icons: collections.map(({ id, iconId }) => {
+          const el = document.getElementById(iconId);
+          const rect = el?.getBoundingClientRect();
+          return {
+            id, iconId, exists: !!el, hidden:el?.hidden,
+            ariaHidden:el?.getAttribute('aria-hidden'),
+            collectionId:el?.dataset?.collectionId,
+            display:el?getComputedStyle(el).display:null,
+            visibility:el?getComputedStyle(el).visibility:null,
+            parent:el?.parentElement?.className,
+            rect:rect?{width:rect.width,height:rect.height,top:rect.top}:null,
+          };
+        }),
+      };
+    }, {collections:expectedUiCollections});
+    console.log('GRINI_COLLECTION_DIAGNOSTIC_INITIAL',profile.name,JSON.stringify(await describeCollections()));
     await page.waitForFunction(
       ({ count, collections }) => {
         const card = document.getElementById('placeCard');
@@ -147,8 +174,12 @@ try {
         });
       },
       { count: expectedUiCollections.length, collections: expectedUiCollections },
-      { timeout: 60_000 },
-    );
+      { timeout: 12_000 },
+    ).catch(async error => {
+      console.error('GRINI_COLLECTION_DIAGNOSTIC_TIMEOUT',profile.name,JSON.stringify(await describeCollections()));
+      console.error('GRINI_COLLECTION_PAGE_ERRORS',JSON.stringify(pageErrors.slice(0,20)));
+      throw error;
+    });
     await page.waitForFunction(
       () => {
         const flip = document.getElementById('pcFrontCardFlip');
