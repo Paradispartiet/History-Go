@@ -1,0 +1,72 @@
+name: Temporary Minneparken CI diagnosis on pinned main d0af95a
+on:
+  push:
+    branches:
+      - qa/minneparken-baseline-d0af-20261105
+    paths:
+      - .github/workflows/minneparken-main-baseline-d0af-20261105-temp.yml
+permissions:
+  contents: read
+jobs:
+  quiz-context-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Enforce immutable main ancestor and diagnostics only
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=d0af95a05923347bcd2ef879575d50aab533bd95
+          git merge-base --is-ancestor "$BASE" HEAD
+          git diff --name-only "$BASE" HEAD | grep -v -x '.github/workflows/minneparken-main-baseline-d0af-20261105-temp.yml' > /tmp/unexpected.txt || true
+          test ! -s /tmp/unexpected.txt
+      - run: npm ci --no-audit --no-fund
+      - name: Baseline quiz production context audit on unmodified main
+        run: npm run audit:quiz-production-context
+  grini-collections-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Configure system Chrome
+        run: echo "CHROME_BIN=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Grini Collections real browser on unmodified main
+        run: node scripts/verify-grini-collections-browser.mjs grini_fangeleir
+  oslo-politikk-mobile-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/place-card-photo-caption.test.mjs tests/place-quizcard-hydration-stability.test.mjs
+      - name: Configure system Chrome
+        run: echo "CHROME_BIN=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Oslo Politikk real mobile and desktop on unmodified main
+        run: node tests/oslo-politikk-six-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: minneparken-baseline-oslo-politikk-d0af95a
+          path: artifacts/oslo-politikk-six-browser/**
+          if-no-files-found: ignore
+          retention-days: 7
