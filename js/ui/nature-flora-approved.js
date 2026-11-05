@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_svalerot: Object.freeze({
+      scientificName: "Vincetoxicum hirundinaria",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/61_svalerot_v1.webp",
+      gitBlobSha: "f60778d725256fd3bb8d91f293f605d1a0781e72",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-svalerot-20261105.json"
+    }),
     emne_flora_rosslyng: Object.freeze({
       scientificName: "Calluna vulgaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/60_rosslyng_v1.webp",
