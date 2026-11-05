@@ -44,14 +44,37 @@
     return classify(readPhase());
   }
 
+  // Fire lysstemninger kan dekke åtte ulike spillfaser. «Min dag» viser også
+  // nøyaktig spillfase, slik at for eksempel lunsj ikke bare heter «Dag».
+  const PHASE_LABELS = Object.freeze({
+    morning: "Morgen", forenoon: "Formiddag", workday: "Arbeidsdag",
+    lunch: "Lunsj", afternoon: "Ettermiddag", dinner: "Middag",
+    evening: "Kveld", day_end: "Dagens slutt",
+    morgen: "Morgen", formiddag: "Formiddag", arbeidsdag: "Arbeidsdag",
+    lunsj: "Lunsj", ettermiddag: "Ettermiddag", middag: "Middag",
+    kveld: "Kveld", natt: "Natt"
+  });
+  function getPhaseLabel(phase) {
+    const key = String(phase == null ? "" : phase).trim().toLowerCase();
+    const canonical = root.CivicationCalendar?.getPhaseLabel;
+    try {
+      const label = typeof canonical === "function" ? canonical(phase) : null;
+      if (typeof label === "string" && label.trim()) return label.trim();
+    } catch (_) { /* fall back to a visible and safe local label */ }
+    return PHASE_LABELS[key] || "Morgen";
+  }
+
   let lastPeriod = null;
   function sync() {
-    const period = getPeriod();
+    const phase = readPhase();
+    const period = classify(phase);
     const doc = root.document;
     if (!doc || !doc.body) return period;
     doc.body.setAttribute("data-civi-visual-period", period);
     const label = doc.querySelector?.(".civi-day-miniature-period");
     if (label) label.textContent = ({ morning: "Morgen", day: "Dag", evening: "Kveld", night: "Natt" })[period] || "Morgen";
+    const phaseLabel = doc.querySelector?.(".civi-day-miniature-phase");
+    if (phaseLabel) phaseLabel.textContent = "Fase: " + getPhaseLabel(phase);
     if (period !== lastPeriod) {
       lastPeriod = period;
       if (typeof root.dispatchEvent === "function" && typeof root.CustomEvent === "function") {
@@ -76,6 +99,6 @@
     else sync();
   }
 
-  root.CivicationWorldMood = { classify, getPeriod, sync };
+  root.CivicationWorldMood = { classify, getPeriod, getPhaseLabel, sync };
   init();
 })(typeof window !== "undefined" ? window : globalThis);
