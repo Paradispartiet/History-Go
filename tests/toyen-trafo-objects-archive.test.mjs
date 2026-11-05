@@ -40,3 +40,14 @@ test('Tøyen trafo: generated Place-open data retains People, Brands and new Obj
  assert.equal(r.lesespor.length,4);
  assert.equal(r.language.entries.length,6);
 });
+
+test('Tøyen trafo: READ-FIRST evidence recorded without claiming vFerdig',()=>{
+ const card=read('reports/place-production/toyen-trafo-workcard-current.json');
+ assert.equal(card.place_id,'toyen_trafo');
+ assert.equal(card.category,'naeringsliv');
+ assert.equal(card.rule_preflight?.status,'PASS');
+ assert.equal(card.rule_preflight?.category,'naeringsliv');
+ assert.ok(card.rule_preflight.files.some(x=>x.path==='docs/PLACE_OBJECTS_CANONICAL.md'&&x.sha256?.length===64));
+ assert.deepEqual(card.collection_ids,['people','objects']);
+ assert.equal(card.editorial_status,'not_vferdig');
+});
