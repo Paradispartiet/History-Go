@@ -88,7 +88,6 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     report.people = await verifyPeople(browser, origin, outputDir);
     console.log('Civication People browser ok', JSON.stringify(report.people));
     const acceptanceFailures: string[] = [];
-    // Visual screenshot QA runs in a separate bounded process after this gate.
     // These are independent gates. The organic job-offer test must not prevent
     // collecting the results of all 20 multi-day scenarios, or vice versa.
     // Every PR must now prove the complete unseeded 21-day Min dag journey
