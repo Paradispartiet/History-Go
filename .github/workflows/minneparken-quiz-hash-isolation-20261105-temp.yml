@@ -23,7 +23,10 @@ jobs:
       - name: Verify QA is based on exact draft head
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD~2)" = '660065d397af97c512e3844f100b3234ecd90083'
+          git merge-base --is-ancestor '660065d397af97c512e3844f100b3234ecd90083' HEAD
+          git diff --name-only '660065d397af97c512e3844f100b3234ecd90083' HEAD | sort > /tmp/scope.txt
+          printf '%s\n' '.github/workflows/minneparken-quiz-hash-isolation-20261105-temp.yml' 'scripts/quiz-production-lib.mjs' | sort > /tmp/expected.txt
+          diff -u /tmp/expected.txt /tmp/scope.txt
       - run: npm ci --no-audit --no-fund
       - name: Rebuild only Minneparken context and require only two metadata changes
         shell: bash
