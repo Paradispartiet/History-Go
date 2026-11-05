@@ -4,12 +4,15 @@ on:
     branches: [research/toyen-trafo-uks-official-visual-20261105]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   inspect:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - name: Inspect UKS official site media references
         shell: bash
         run: |
@@ -36,3 +39,28 @@ jobs:
             print('PATTERN',pattern,'POSITION',i, 'CONTEXT',re.sub(r'\s+',' ',html[max(0,i-180):i+300])[:520] if i>=0 else '')
           print('ALL_IMAGES',len([x for x in refs if re.search(r'\.(png|svg|jpe?g|webp)',x,re.I)]))
           PY
+      - name: Download and inspect exact UKS-hosted brand logo image assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p bilder/brands/source
+          curl -fL --retry 2 -A 'HistoryGoEditorialReview/1.0' -o bilder/brands/source/uks_website_logo.png https://www.uks.no/wp-content/uploads/2018/04/uks-logo.png
+          curl -fL --retry 2 -A 'HistoryGoEditorialReview/1.0' -o bilder/brands/source/uks_website_logo_3.png https://www.uks.no/wp-content/uploads/2018/04/uks-logo-3.png
+          python3 - <<'PY'
+          import os,struct,hashlib
+          for n in ['uks_website_logo.png','uks_website_logo_3.png']:
+            p='bilder/brands/source/'+n
+            b=open(p,'rb').read()
+            assert b.startswith(bytes.fromhex('89504e470d0a1a0a')), (p, b[:8])
+            width,height=struct.unpack('>II',b[16:24])
+            print('EXACT_UKS_SOURCE',n,'width',width,'height',height,'bytes',len(b),'sha256',hashlib.sha256(b).hexdigest())
+          PY
+      - name: Record research source bytes in the isolated research branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/brands/source/uks_website_logo.png bilder/brands/source/uks_website_logo_3.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Research: capture original UKS-hosted logo PNGs for visual audit"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
