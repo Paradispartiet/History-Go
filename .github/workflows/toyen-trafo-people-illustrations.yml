@@ -1,0 +1,48 @@
+name: Tøyen trafo People illustrations – original WebP
+on:
+  push:
+    branches: [content/toyen-trafo-people-illustrations-20261105]
+    paths:
+      - 'bilder/kort/people/source/toyen_trafo_*_illustration.svg'
+      - 'scripts/build-toyen-trafo-people-illustrations.mjs'
+      - '.github/workflows/toyen-trafo-people-illustrations.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: toyen-trafo-people-illustrations-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  generate:
+    name: Generate, validate and commit original illustrations
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Generate reproducible 1024x1536 WebPs and metadata
+        run: node scripts/build-toyen-trafo-people-illustrations.mjs
+      - name: Regenerate canonical Place-open data
+        run: npm run place-open:build
+      - name: Validate illustrations, runtime, and prior People contract
+        run: |
+          node --test tests/toyen-trafo-people-contract.test.mjs tests/toyen-trafo-people-illustrations.test.mjs
+          npm run place-open:check
+      - name: Commit and push generated People assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/kort/people/toyen_trafo_*_illustration.webp
+          git add data/people/by/oslo/toyen_trafo/thorvald_astrup.json data/people/kunst/oslo/toyen_trafo/kari_rolfsen.json
+          git add data/runtime/people-all/part-*.json data/runtime/place-open/toyen_trafo.json
+          git add reports/place-production/toyen-trafo-people-illustrations-20261105.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Tøyen trafo: integrate two AI-labeled original WebP People illustrations"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
