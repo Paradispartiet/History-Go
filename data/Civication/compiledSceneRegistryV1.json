@@ -6686,10 +6686,28 @@
         "choices": [
           {
             "effect": 1,
-            "feedback": "Du sikrer en sammenhengende grøntstruktur, men strammer inn det utbygger kan bygge.",
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_conflict_gront_001_A_early_decision",
+                  "note": "Forslag om bindende grøntdragsbredde og sammenheng er sendt til faglig og juridisk vurdering; kravet er ikke vedtatt.",
+                  "op": "transition",
+                  "to_phase": "grontdrag_bredde_sammenheng_anbefalt",
+                  "to_status": "awaiting_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_conflict_gront_001_A_early_flag",
+                  "flag": "green_corridor_draft_requirement_proposed",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
+            },
+            "feedback": "Grøntdragets funksjon er nå en dokumentert faglig anbefaling. Bestemmelsen er ikke vedtatt.",
             "id": "A",
-            "label": "Sett krav til bredde og sammenheng i grøntdraget",
-            "reply": "Jeg setter krav til bredde og sammenheng i grøntdraget i bestemmelsene.",
+            "label": "Anbefal krav til bredde og sammenheng for juridisk vurdering",
+            "reply": "Jeg begrunner en anbefaling om bredde og sammenheng, og sender foreslått bestemmelse til planjurist og plansjef for vurdering.",
             "tags": [
               "groentstruktur",
               "langsiktighet"
@@ -6697,10 +6715,28 @@
           },
           {
             "effect": 1,
-            "feedback": "Du gir rom for boligene byen trenger, men den økologiske sammenhengen hviler på skjøtsel i ettertid.",
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_conflict_gront_001_B_early_decision",
+                  "note": "Skjøtselsalternativ er foreslått, men juridisk grunnlag og økologisk sammenheng er fortsatt uavklart.",
+                  "op": "transition",
+                  "to_phase": "grontdrag_skjotselalternativ_uten_hjemmel",
+                  "to_status": "needs_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_conflict_gront_001_B_early_flag",
+                  "flag": "green_corridor_maintenance_only_unverified",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
+            },
+            "feedback": "Alternativet er registrert som uavklart og må prøves faglig og juridisk før det kan legges til grunn.",
             "id": "B",
-            "label": "Godta fotavtrykket og sikre grøntdraget gjennom skjøtsel",
-            "reply": "Jeg godtar fotavtrykket og sikrer grøntdraget gjennom et skjøtselskrav.",
+            "label": "Foreslå skjøtsel som alternativ og dokumenter usikkerheten",
+            "reply": "Jeg foreslår skjøtsel som alternativ, men beskriver hvorfor det ennå ikke dokumenterer sammenheng, jorddybde eller flomvei.",
             "tags": [
               "boligbehov",
               "gjennomfoering"
@@ -6710,6 +6746,43 @@
         "competency": "arealavveiing",
         "consequence_axis": "tillit_vs_juridisk_risiko",
         "cooldown": 1,
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_areal_conflict_gront_001_early_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "planning_professional_review_case",
+                "knowledge_refs": [
+                  "plankart_og_bestemmelser",
+                  "skolevei_og_grontdrag",
+                  "planfaglig_myndighetsgrense"
+                ],
+                "open_questions": [
+                  "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                  "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                  "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                  "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "signe_byokolog",
+                  "ivar_utbygger",
+                  "nora_planjuss"
+                ],
+                "place_refs": [
+                  "lillebekk_kvartal"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": false,
+                "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+              }
+            }
+          ]
+        },
         "from": "signe_byokolog",
         "id": "by_areal_conflict_gront_001",
         "learning_focus": [
@@ -6755,6 +6828,13 @@
           "B": [
             "frist_for_utvalg"
           ]
+        },
+        "work_context": {
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_early_analysis_case_001"
+          ],
+          "priority": "high"
         }
       },
       "id": "by_areal_conflict_gront_001",
@@ -6765,21 +6845,53 @@
         "choices": [
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_conflict_gront_001_A_early_decision",
+                  "note": "Forslag om bindende grøntdragsbredde og sammenheng er sendt til faglig og juridisk vurdering; kravet er ikke vedtatt.",
+                  "op": "transition",
+                  "to_phase": "grontdrag_bredde_sammenheng_anbefalt",
+                  "to_status": "awaiting_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_conflict_gront_001_A_early_flag",
+                  "flag": "green_corridor_draft_requirement_proposed",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
             },
-            "feedback": "Du sikrer en sammenhengende grøntstruktur, men strammer inn det utbygger kan bygge.",
+            "feedback": "Grøntdragets funksjon er nå en dokumentert faglig anbefaling. Bestemmelsen er ikke vedtatt.",
             "id": "A",
-            "label": "Sett krav til bredde og sammenheng i grøntdraget",
-            "reply": "Jeg setter krav til bredde og sammenheng i grøntdraget i bestemmelsene."
+            "label": "Anbefal krav til bredde og sammenheng for juridisk vurdering",
+            "reply": "Jeg begrunner en anbefaling om bredde og sammenheng, og sender foreslått bestemmelse til planjurist og plansjef for vurdering."
           },
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_conflict_gront_001_B_early_decision",
+                  "note": "Skjøtselsalternativ er foreslått, men juridisk grunnlag og økologisk sammenheng er fortsatt uavklart.",
+                  "op": "transition",
+                  "to_phase": "grontdrag_skjotselalternativ_uten_hjemmel",
+                  "to_status": "needs_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_conflict_gront_001_B_early_flag",
+                  "flag": "green_corridor_maintenance_only_unverified",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
             },
-            "feedback": "Du gir rom for boligene byen trenger, men den økologiske sammenhengen hviler på skjøtsel i ettertid.",
+            "feedback": "Alternativet er registrert som uavklart og må prøves faglig og juridisk før det kan legges til grunn.",
             "id": "B",
-            "label": "Godta fotavtrykket og sikre grøntdraget gjennom skjøtsel",
-            "reply": "Jeg godtar fotavtrykket og sikrer grøntdraget gjennom et skjøtselskrav."
+            "label": "Foreslå skjøtsel som alternativ og dokumenter usikkerheten",
+            "reply": "Jeg foreslår skjøtsel som alternativ, men beskriver hvorfor det ennå ikke dokumenterer sammenheng, jorddybde eller flomvei."
           }
         ],
         "content": {
@@ -6794,7 +6906,43 @@
         "day_phase": "any",
         "delivery": "mail",
         "domain": "work",
-        "effects": {},
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_areal_conflict_gront_001_early_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "planning_professional_review_case",
+                "knowledge_refs": [
+                  "plankart_og_bestemmelser",
+                  "skolevei_og_grontdrag",
+                  "planfaglig_myndighetsgrense"
+                ],
+                "open_questions": [
+                  "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                  "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                  "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                  "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "signe_byokolog",
+                  "ivar_utbygger",
+                  "nora_planjuss"
+                ],
+                "place_refs": [
+                  "lillebekk_kvartal"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": false,
+                "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+              }
+            }
+          ]
+        },
         "id": "by_areal_conflict_gront_001",
         "interaction_mode": "decision",
         "knowledge_contract": {
@@ -6814,9 +6962,16 @@
         "scene_kind": "conflict",
         "schema": "civication_scene_v1",
         "thread_id": "by_radgiver_plan.mail.by_areal_conflict_gront_001",
-        "version": 1
+        "version": 1,
+        "work_context": {
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_early_analysis_case_001"
+          ],
+          "priority": "high"
+        }
       },
-      "source_hash": "1a03a481de09c83d0621370c6aa25d7329bc7dbbc8e50b2e3041c165aba0c591",
+      "source_hash": "91d395471499000d1fa49d224d3afbab6c46a481bd11a1ff566a6b650034d7ed",
       "source_path": "data/Civication/mailFamilies/by/conflict/by_radgiver_plan_conflict.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -14004,6 +14159,24 @@
         "choices": [
           {
             "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_job_plankart_001_A_early_decision",
+                  "note": "Kartkonflikten er lagt i fagnotatet før internmøtet; den er ennå ikke avklart eller godkjent.",
+                  "op": "transition",
+                  "to_phase": "kartavvik_skrevne_merknader",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_job_plankart_001_A_early_flag",
+                  "flag": "map_conflict_written_for_review",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
+            },
             "feedback": "Møtet blir tyngre å forberede, men du går ikke inn i det blanke om hva kartet viser.",
             "id": "A",
             "label": "Skriv opp hovedkonflikten i kartet før møtet",
@@ -14015,6 +14188,24 @@
           },
           {
             "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_job_plankart_001_B_early_decision",
+                  "note": "Sammendraget ble brukt uten egen plankartkontroll; faktisk arealkonflikt og bestemmelseshjemmel må etterprøves.",
+                  "op": "transition",
+                  "to_phase": "kartavvik_ikke_verifisert",
+                  "to_status": "needs_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_job_plankart_001_B_early_flag",
+                  "flag": "map_conflict_not_verified",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
+            },
             "feedback": "Du sparer forberedelse og lar møtet jobbe, men konflikten kan overraske om ingen andre så den.",
             "id": "B",
             "label": "Gå inn med sammendraget og ta avvik live",
@@ -14028,6 +14219,43 @@
         "competency": "arealformal_og_hensynssoner",
         "consequence_axis": "tillit_vs_juridisk_risiko",
         "cooldown": 1,
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_areal_job_plankart_001_early_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "planning_professional_review_case",
+                "knowledge_refs": [
+                  "plankart_og_bestemmelser",
+                  "skolevei_og_grontdrag",
+                  "planfaglig_myndighetsgrense"
+                ],
+                "open_questions": [
+                  "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                  "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                  "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                  "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "signe_byokolog",
+                  "ivar_utbygger",
+                  "nora_planjuss"
+                ],
+                "place_refs": [
+                  "lillebekk_kvartal"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": false,
+                "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+              }
+            }
+          ]
+        },
         "from": "elin_plansjef",
         "id": "by_areal_job_plankart_001",
         "learning_focus": [
@@ -14073,6 +14301,13 @@
           "B": [
             "frist_for_utvalg"
           ]
+        },
+        "work_context": {
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_early_analysis_case_001"
+          ],
+          "priority": "high"
         }
       },
       "id": "by_areal_job_plankart_001",
@@ -14083,7 +14318,23 @@
         "choices": [
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_job_plankart_001_A_early_decision",
+                  "note": "Kartkonflikten er lagt i fagnotatet før internmøtet; den er ennå ikke avklart eller godkjent.",
+                  "op": "transition",
+                  "to_phase": "kartavvik_skrevne_merknader",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_job_plankart_001_A_early_flag",
+                  "flag": "map_conflict_written_for_review",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
             },
             "feedback": "Møtet blir tyngre å forberede, men du går ikke inn i det blanke om hva kartet viser.",
             "id": "A",
@@ -14092,7 +14343,23 @@
           },
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_job_plankart_001_B_early_decision",
+                  "note": "Sammendraget ble brukt uten egen plankartkontroll; faktisk arealkonflikt og bestemmelseshjemmel må etterprøves.",
+                  "op": "transition",
+                  "to_phase": "kartavvik_ikke_verifisert",
+                  "to_status": "needs_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_job_plankart_001_B_early_flag",
+                  "flag": "map_conflict_not_verified",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
             },
             "feedback": "Du sparer forberedelse og lar møtet jobbe, men konflikten kan overraske om ingen andre så den.",
             "id": "B",
@@ -14112,7 +14379,43 @@
         "day_phase": "any",
         "delivery": "mail",
         "domain": "work",
-        "effects": {},
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_areal_job_plankart_001_early_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "planning_professional_review_case",
+                "knowledge_refs": [
+                  "plankart_og_bestemmelser",
+                  "skolevei_og_grontdrag",
+                  "planfaglig_myndighetsgrense"
+                ],
+                "open_questions": [
+                  "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                  "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                  "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                  "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "signe_byokolog",
+                  "ivar_utbygger",
+                  "nora_planjuss"
+                ],
+                "place_refs": [
+                  "lillebekk_kvartal"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": false,
+                "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+              }
+            }
+          ]
+        },
         "id": "by_areal_job_plankart_001",
         "interaction_mode": "decision",
         "knowledge_contract": {
@@ -14132,9 +14435,16 @@
         "scene_kind": "task",
         "schema": "civication_scene_v1",
         "thread_id": "by_radgiver_plan.mail.by_areal_job_plankart_001",
-        "version": 1
+        "version": 1,
+        "work_context": {
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_early_analysis_case_001"
+          ],
+          "priority": "high"
+        }
       },
-      "source_hash": "1d71e21e4cf23adcd42d14c6e1629dab7bc842a40062fff1b6c69945cd1fe676",
+      "source_hash": "32f109b28477c04300a9397ab1ce49f3becd0cca2939ac787dd8b180486d6b72",
       "source_path": "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -14288,10 +14598,28 @@
         "choices": [
           {
             "effect": 1,
-            "feedback": "Du gjør arealknappheten synlig og lar anbefalingen ta ansvar.",
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_job_areal_001_A_early_decision",
+                  "note": "Arealalternativ med grøntdrag og trygg passasje er faglig anbefalt; ingen bestemmelse eller politisk prioritering er vedtatt.",
+                  "op": "transition",
+                  "to_phase": "grontdrag_prioritet_anbefalt",
+                  "to_status": "awaiting_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_job_areal_001_A_early_flag",
+                  "flag": "green_passage_recommendation_logged",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
+            },
+            "feedback": "Kriteriene blir synlige i saken, men prioriteringen er fortsatt en faglig anbefaling, ikke en vedtatt plan.",
             "id": "A",
             "label": "Beskriv konflikten tydelig og anbefal prioritet for grøntdrag og trygg passasje",
-            "reply": "Jeg beskriver konflikten tydelig og anbefaler prioritet for grøntdrag og trygg passasje.",
+            "reply": "Jeg dokumenterer arealkonflikten og anbefaler grøntdrag og trygg passasje for lederens videre vurdering.",
             "tags": [
               "area",
               "priority",
@@ -14300,6 +14628,24 @@
           },
           {
             "effect": 0,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_job_areal_001_B_early_decision",
+                  "note": "Et fleksibelt kompromiss er foreslått; krav til bredde, funksjon og drift er ennå ikke dokumentert.",
+                  "op": "transition",
+                  "to_phase": "arealkompromiss_uten_kriterier",
+                  "to_status": "needs_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_job_areal_001_B_early_flag",
+                  "flag": "area_compromise_unverified",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
+            },
             "feedback": "Det høres samlende ut, men kan ende med at alle funksjonene blir litt for svake.",
             "id": "B",
             "label": "Foreslå et fleksibelt kompromiss mellom alle tre formål",
@@ -14313,6 +14659,43 @@
         "competency": "prioritering",
         "consequence_axis": "ansvarlig_valg_vs_skjult_tap",
         "cooldown": 1,
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_radgiver_job_areal_001_early_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "planning_professional_review_case",
+                "knowledge_refs": [
+                  "plankart_og_bestemmelser",
+                  "skolevei_og_grontdrag",
+                  "planfaglig_myndighetsgrense"
+                ],
+                "open_questions": [
+                  "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                  "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                  "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                  "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "signe_byokolog",
+                  "ivar_utbygger",
+                  "nora_planjuss"
+                ],
+                "place_refs": [
+                  "lillebekk_kvartal"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": false,
+                "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+              }
+            }
+          ]
+        },
         "from": "signe_areal",
         "id": "by_radgiver_job_areal_001",
         "learning_focus": [
@@ -14342,7 +14725,14 @@
         "stakes": "Hvis du skriver kompromiss, slipper du konflikt. Hvis du prioriterer, blir saken ærligere og mer politisk krevende.",
         "subject": "Bolig, grøntdrag og varelevering vil bruke samme kant",
         "summary": "Tre gode formål konkurrerer om samme smale arealstripe, og et uklart kompromiss vil bare skjule konflikten.",
-        "task_domain": "arealavveiing"
+        "task_domain": "arealavveiing",
+        "work_context": {
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_early_analysis_case_001"
+          ],
+          "priority": "high"
+        }
       },
       "id": "by_radgiver_job_areal_001",
       "mail_type": "job",
@@ -14352,16 +14742,48 @@
         "choices": [
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_job_areal_001_A_early_decision",
+                  "note": "Arealalternativ med grøntdrag og trygg passasje er faglig anbefalt; ingen bestemmelse eller politisk prioritering er vedtatt.",
+                  "op": "transition",
+                  "to_phase": "grontdrag_prioritet_anbefalt",
+                  "to_status": "awaiting_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_job_areal_001_A_early_flag",
+                  "flag": "green_passage_recommendation_logged",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
             },
-            "feedback": "Du gjør arealknappheten synlig og lar anbefalingen ta ansvar.",
+            "feedback": "Kriteriene blir synlige i saken, men prioriteringen er fortsatt en faglig anbefaling, ikke en vedtatt plan.",
             "id": "A",
             "label": "Beskriv konflikten tydelig og anbefal prioritet for grøntdrag og trygg passasje",
-            "reply": "Jeg beskriver konflikten tydelig og anbefaler prioritet for grøntdrag og trygg passasje."
+            "reply": "Jeg dokumenterer arealkonflikten og anbefaler grøntdrag og trygg passasje for lederens videre vurdering."
           },
           {
             "effects": {
-              "score_delta": 0
+              "score_delta": 0,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_job_areal_001_B_early_decision",
+                  "note": "Et fleksibelt kompromiss er foreslått; krav til bredde, funksjon og drift er ennå ikke dokumentert.",
+                  "op": "transition",
+                  "to_phase": "arealkompromiss_uten_kriterier",
+                  "to_status": "needs_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_job_areal_001_B_early_flag",
+                  "flag": "area_compromise_unverified",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
             },
             "feedback": "Det høres samlende ut, men kan ende med at alle funksjonene blir litt for svake.",
             "id": "B",
@@ -14382,7 +14804,43 @@
         "day_phase": "any",
         "delivery": "mail",
         "domain": "work",
-        "effects": {},
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_radgiver_job_areal_001_early_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "planning_professional_review_case",
+                "knowledge_refs": [
+                  "plankart_og_bestemmelser",
+                  "skolevei_og_grontdrag",
+                  "planfaglig_myndighetsgrense"
+                ],
+                "open_questions": [
+                  "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                  "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                  "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                  "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "signe_byokolog",
+                  "ivar_utbygger",
+                  "nora_planjuss"
+                ],
+                "place_refs": [
+                  "lillebekk_kvartal"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": false,
+                "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+              }
+            }
+          ]
+        },
         "id": "by_radgiver_job_areal_001",
         "interaction_mode": "decision",
         "knowledge_contract": {
@@ -14402,9 +14860,16 @@
         "scene_kind": "task",
         "schema": "civication_scene_v1",
         "thread_id": "by_radgiver_plan.mail.by_radgiver_job_areal_001",
-        "version": 1
+        "version": 1,
+        "work_context": {
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_early_analysis_case_001"
+          ],
+          "priority": "high"
+        }
       },
-      "source_hash": "97ca5abffababeb14f56607615b095112a786dab69f43abf66fc15febc3c689b",
+      "source_hash": "510d7d211566ca00edeeb89a824ff0d943dbc1f193d6300148e95d8076b7c2a5",
       "source_path": "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -22360,6 +22825,24 @@
         "choices": [
           {
             "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_people_utbygger_001_A_early_decision",
+                  "note": "Skriftlig forespørsel er bedt om før faglig svar; rådgiveren har ikke gitt forhåndstilsagn om høyde eller parkering.",
+                  "op": "transition",
+                  "to_phase": "utbyggers_sporsmal_til_skriftlig_vurdering",
+                  "to_status": "waiting",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_people_utbygger_001_A_early_flag",
+                  "flag": "developer_formal_request_pending",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
+            },
             "feedback": "Utbygger må vente på et formelt svar, men svaret tåler å bli lest av andre senere.",
             "id": "A",
             "label": "Be om en formell skriftlig forespørsel og svar skriftlig",
@@ -22371,10 +22854,28 @@
           },
           {
             "effect": 1,
-            "feedback": "Utbygger kan planlegge videre med en gang og du bygger arbeidsrelasjon, men signalet må følges opp skriftlig for å stå seg.",
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_people_utbygger_001_B_early_decision",
+                  "note": "Et uformelt signal er gitt; det skal dokumenteres og presiseres at det ikke er kommunal godkjenning eller bindende vedtak.",
+                  "op": "transition",
+                  "to_phase": "muntlig_utbyggersignal_krever_presisering",
+                  "to_status": "needs_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_people_utbygger_001_B_early_flag",
+                  "flag": "developer_informal_signal_to_correct",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
+            },
+            "feedback": "Utbygger får et foreløpig svar, men signalet må journalføres og kan ikke brukes som kommunalt forhåndstilsagn.",
             "id": "B",
             "label": "Gi et muntlig signal nå og følg opp skriftlig",
-            "reply": "Jeg gir utbygger et muntlig signal nå og følger opp skriftlig etterpå.",
+            "reply": "Jeg gir et foreløpig, ikke-bindende faglig signal og sier uttrykkelig at høyde og parkering ikke er godkjent. Jeg følger opp skriftlig.",
             "tags": [
               "forutsigbarhet",
               "arbeidsrelasjon"
@@ -22384,6 +22885,43 @@
         "competency": "offentlig_integritet",
         "consequence_axis": "tillit_vs_juridisk_risiko",
         "cooldown": 1,
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_areal_people_utbygger_001_early_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "planning_professional_review_case",
+                "knowledge_refs": [
+                  "plankart_og_bestemmelser",
+                  "skolevei_og_grontdrag",
+                  "planfaglig_myndighetsgrense"
+                ],
+                "open_questions": [
+                  "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                  "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                  "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                  "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "signe_byokolog",
+                  "ivar_utbygger",
+                  "nora_planjuss"
+                ],
+                "place_refs": [
+                  "lillebekk_kvartal"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": false,
+                "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+              }
+            }
+          ]
+        },
         "from": "ivar_utbygger",
         "id": "by_areal_people_utbygger_001",
         "learning_focus": [
@@ -22429,6 +22967,13 @@
           "B": [
             "frist_for_utvalg"
           ]
+        },
+        "work_context": {
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_early_analysis_case_001"
+          ],
+          "priority": "high"
         }
       },
       "id": "by_areal_people_utbygger_001",
@@ -22439,7 +22984,23 @@
         "choices": [
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_people_utbygger_001_A_early_decision",
+                  "note": "Skriftlig forespørsel er bedt om før faglig svar; rådgiveren har ikke gitt forhåndstilsagn om høyde eller parkering.",
+                  "op": "transition",
+                  "to_phase": "utbyggers_sporsmal_til_skriftlig_vurdering",
+                  "to_status": "waiting",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_people_utbygger_001_A_early_flag",
+                  "flag": "developer_formal_request_pending",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
             },
             "feedback": "Utbygger må vente på et formelt svar, men svaret tåler å bli lest av andre senere.",
             "id": "A",
@@ -22448,12 +23009,28 @@
           },
           {
             "effects": {
-              "score_delta": 1
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_areal_people_utbygger_001_B_early_decision",
+                  "note": "Et uformelt signal er gitt; det skal dokumenteres og presiseres at det ikke er kommunal godkjenning eller bindende vedtak.",
+                  "op": "transition",
+                  "to_phase": "muntlig_utbyggersignal_krever_presisering",
+                  "to_status": "needs_review",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                },
+                {
+                  "event_id": "by_areal_people_utbygger_001_B_early_flag",
+                  "flag": "developer_informal_signal_to_correct",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+                }
+              ]
             },
-            "feedback": "Utbygger kan planlegge videre med en gang og du bygger arbeidsrelasjon, men signalet må følges opp skriftlig for å stå seg.",
+            "feedback": "Utbygger får et foreløpig svar, men signalet må journalføres og kan ikke brukes som kommunalt forhåndstilsagn.",
             "id": "B",
             "label": "Gi et muntlig signal nå og følg opp skriftlig",
-            "reply": "Jeg gir utbygger et muntlig signal nå og følger opp skriftlig etterpå."
+            "reply": "Jeg gir et foreløpig, ikke-bindende faglig signal og sier uttrykkelig at høyde og parkering ikke er godkjent. Jeg følger opp skriftlig."
           }
         ],
         "content": {
@@ -22468,7 +23045,43 @@
         "day_phase": "any",
         "delivery": "mail",
         "domain": "work",
-        "effects": {},
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_areal_people_utbygger_001_early_case_observed",
+              "op": "upsert",
+              "work_object": {
+                "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "planning_professional_review_case",
+                "knowledge_refs": [
+                  "plankart_og_bestemmelser",
+                  "skolevei_og_grontdrag",
+                  "planfaglig_myndighetsgrense"
+                ],
+                "open_questions": [
+                  "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                  "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                  "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                  "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "signe_byokolog",
+                  "ivar_utbygger",
+                  "nora_planjuss"
+                ],
+                "place_refs": [
+                  "lillebekk_kvartal"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": false,
+                "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001"
+              }
+            }
+          ]
+        },
         "id": "by_areal_people_utbygger_001",
         "interaction_mode": "decision",
         "knowledge_contract": {
@@ -22488,9 +23101,16 @@
         "scene_kind": "relationship",
         "schema": "civication_scene_v1",
         "thread_id": "by_radgiver_plan.mail.by_areal_people_utbygger_001",
-        "version": 1
+        "version": 1,
+        "work_context": {
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_early_analysis_case_001"
+          ],
+          "priority": "high"
+        }
       },
-      "source_hash": "4abaf6877917388d12cb494ae243172094d33e833c46f757eb5960908a37f339",
+      "source_hash": "fdd268816a3cef1f166a999c7ea09d6504aa49f2ead931a9e474ff909942af3f",
       "source_path": "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -290442,7 +291062,7 @@
     "file_count": 7,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "ca4a2e487eff51befac9c3e9ad4def75162cddaab138a0528d750a1c1756ef96",
+  "registry_hash": "1555ea6892889fa18f718704069e237e2e0bc10cd9c56bc3fdb3de57a1a87bbb",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",

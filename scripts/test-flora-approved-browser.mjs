@@ -25,6 +25,9 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"rodtvetann",label:"Rød tvetann",term:"Rød tvetann",path:"b09/59_rodtvetann_v1.webp"},
+    {name:"rodknapp",label:"Rødknapp",term:"Rødknapp",path:"b09/58_rodknapp_v1.webp"},
+    {name:"balderbra",label:"Balderbrå",term:"Balderbrå",path:"b09/57_balderbra_v1.webp"},
     {name:"hestehov",path:"b03/01_hestehov_var.webp"},
     {name:"hvitveis",path:"b01/01_hvitveis.webp"},
     {name:"blaveis",term:"blåveis",path:"b01/07_blaveis.webp"},

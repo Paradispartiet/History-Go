@@ -33,5 +33,5 @@ test("Tøyen trafo: generated place-open has People and preserves approved colle
   assert.equal(payload.leksikon.length,1);
   assert.equal(payload.stories.length,1);
   assert.equal(payload.language.entries.length,6);
-  assert.deepEqual(payload.brands,[]);
+  assert.deepEqual(payload.brands.map(x=>x.id),["oslo_teatersenter","unge_kunstneres_samfund"]);
 });
