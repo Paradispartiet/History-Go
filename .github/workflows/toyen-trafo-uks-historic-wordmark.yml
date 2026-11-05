@@ -1,0 +1,83 @@
+name: Tøyen trafo – authenticated 2014 UKS historical wordmark
+on:
+  push:
+    branches: [content/toyen-trafo-uks-historical-2014-wordmark-20261105]
+    paths:
+      - 'scripts/build-toyen-trafo-uks-wordmark-2014.mjs'
+      - 'tests/toyen-trafo-uks-wordmark-2014.test.mjs'
+      - 'tests/toyen-trafo-brand-visual.test.mjs'
+      - 'tests/toyen-trafo-brand-real-browser.mjs'
+      - '.github/workflows/toyen-trafo-uks-historic-wordmark.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: toyen-trafo-uks-wordmark-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    name: Extract actual UKS 2014 letterhead and test real app
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Download official 2014 UKS letterhead from government public archive
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error --retry 3 --retry-delay 3 --connect-timeout 20 --max-time 120 \
+            -o /tmp/toyen_trafo_uks_2014.pdf \
+            'https://www.regjeringen.no/globalassets/upload/kud/styrer_raad_utvalg/kunstavdelingen/kunstnerokonomi/ungekunstneressamfund_.pdf'
+          if ! command -v pdftoppm >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y poppler-utils
+          fi
+          pdfinfo /tmp/toyen_trafo_uks_2014.pdf | head -n 12
+          pdftoppm -f 1 -l 1 -scale-to-x 4800 -scale-to-y -1 -png -singlefile \
+            /tmp/toyen_trafo_uks_2014.pdf /tmp/toyen_trafo_uks_2014_firstpage
+      - name: Extract unchanged historical wordmark and source-bound media metadata
+        run: |
+          mkdir -p bilder/brands/source
+          node scripts/build-toyen-trafo-uks-wordmark-2014.mjs
+      - name: Refresh canonical Places index and Place-open
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Verify historical-image integrity and prior collections
+        run: |
+          node --test tests/toyen-trafo-uks-wordmark-2014.test.mjs tests/toyen-trafo-brand-visual.test.mjs tests/toyen-trafo-brands-contract.test.mjs tests/toyen-trafo-objects-archive.test.mjs tests/toyen-trafo-people-illustrations.test.mjs
+          npm run places:index:check
+          npm run place-open:check
+      - name: Use runner preinstalled browser
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Real mobile and desktop Brand UI test
+        run: node tests/toyen-trafo-brand-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toyen-trafo-uks-2014-brand-qa
+          path: artifacts/toyen-trafo-brands/
+          if-no-files-found: ignore
+      - name: Commit canonical assets and runtime
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/brands/source/toyen_trafo_uks_2014_letterhead_crop.png
+          git add bilder/brands/toyen_trafo_uks_2014_letterhead_wordmark.webp
+          git add data/brands/actors_by_place.json
+          git add data/places/places_index.json data/runtime/place-open/toyen_trafo.json
+          git add reports/place-production/toyen-trafo-uks-wordmark-2014-20261105.json
+          git add reports/place-production/toyen-trafo-brand-visuals-20261105.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Tøyen trafo: source-authentic UKS 2014 letterhead wordmark"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi

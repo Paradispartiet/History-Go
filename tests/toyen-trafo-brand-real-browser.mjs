@@ -59,6 +59,10 @@ try{
    const content=await popup.innerText();
    assert.match(content,/Oslo teatersenter/i,label+' missing approved OTS');
    assert.match(content,/Unge Kunstneres Samfund/i,label+' missing source-backed UKS actor');
+   const uksPicture=popup.locator('img[src*="toyen_trafo_uks_2014_letterhead_wordmark.webp"]').first();
+   await uksPicture.waitFor({state:'visible',timeout:15000});
+   assert.equal(await uksPicture.evaluate(img=>img instanceof HTMLImageElement&&img.complete&&img.naturalWidth>0),true,label+' historical UKS wordmark must load');
+
    assert.ok(errors.length===0,label+' runtime errors: '+errors.join(' / '));
    await page.screenshot({path:'artifacts/toyen-trafo-brands/'+label+'.png',fullPage:false});
    console.log(label+': configured People/Objects/Brands, official OTS logo displayed in About, two Brands in popup');

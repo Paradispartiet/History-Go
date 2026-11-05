@@ -1,0 +1,35 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import test from 'node:test';
+import sharp from 'sharp';
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+test('UKS historic 2014 wordmark: authentic cropped letterhead, explicitly not modern brand claim',async()=>{
+ const uks=read('data/brands/actors_by_place.json').toyen_trafo.find(a=>a.id==='unge_kunstneres_samfund');
+ const report=read('reports/place-production/toyen-trafo-uks-wordmark-2014-20261105.json');
+ assert.equal(uks.imageKind,'historical_wordmark');
+ assert.equal(uks.imageMeta.sourcePublicationDate,'2014-08-15');
+ assert.equal(uks.imageMeta.temporalScope,'historic_UKS_letterhead_2014_only');
+ assert.equal(uks.imageMeta.noContemporaryLogoClaim,true);
+ assert.equal(uks.imageMeta.no1972LogoClaim,true);
+ assert.equal(uks.imageMeta.noOpenLicenseClaim,true);
+ assert.equal(uks.imageMeta.source,'official_UKS_letterhead_as_archived_by_Norwegian_government');
+ assert.ok(uks.imageMeta.sourceUrl.includes('regjeringen.no/'));
+ assert.equal(uks.image,report.image);
+ assert.ok(!uks.imageMeta.edit.toLowerCase().includes('recreated'));
+ const source=fs.readFileSync(uks.imageMeta.cropSourceFile),webp=fs.readFileSync(uks.image);
+ assert.equal(crypto.createHash('sha256').update(source).digest('hex'),uks.imageMeta.cropSourceSha256);
+ assert.equal(crypto.createHash('sha256').update(webp).digest('hex'),uks.imageMeta.sha256);
+ assert.equal((await sharp(webp).metadata()).format,'webp');
+ assert.equal((await sharp(webp).metadata()).width,900);
+ assert.equal((await sharp(webp).metadata()).height,520);
+});
+test('Tøyen trafo: two visual Brand entries without fictional fourth collection',()=>{
+ const p=read('data/runtime/place-open/toyen_trafo.json');
+ assert.deepEqual(p.place.place_card_profile.collection_ids,['people','objects','brands']);
+ assert.deepEqual(p.brands.map(x=>x.id),['oslo_teatersenter','unge_kunstneres_samfund']);
+ assert.ok(p.brands.every(x=>x.image?.endsWith('.webp')));
+ assert.equal(p.people.length,2);
+ assert.equal(p.place.objects.length,2);
+ assert.equal(read('reports/place-production/toyen-trafo-workcard-current.json').editorial_status,'not_vferdig');
+});

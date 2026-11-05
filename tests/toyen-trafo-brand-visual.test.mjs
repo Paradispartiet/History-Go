@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 import test from 'node:test';
 import sharp from 'sharp';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-test('Tøyen trafo Brands: only one visual is an authentic source-linked OTS mark',async()=>{
+test('Tøyen trafo Brands: two distinct authentic time-bounded visual identities',async()=>{
  const rows=read('data/brands/actors_by_place.json').toyen_trafo;
  const a=rows[0],b=rows[1];
  assert.equal(a.id,'oslo_teatersenter');assert.equal(b.id,'unge_kunstneres_samfund');
@@ -12,7 +12,12 @@ test('Tøyen trafo Brands: only one visual is an authentic source-linked OTS mar
  assert.equal(a.imageMeta.source,'official_press_logo_archive');
  assert.equal(a.imageMeta.noOpenLicenseClaim,true);
  assert.ok(a.imageMeta.sourceUrl.includes('osloteatersenter.no/dokumenter/logo/'));
- assert.ok(!b.image&&!b.logo,'UKS cannot be faked as having an authenticated visual');
+ assert.ok(b.image?.endsWith('toyen_trafo_uks_2014_letterhead_wordmark.webp'));
+ assert.equal(b.imageKind,'historical_wordmark');
+ assert.equal(b.imageMeta.temporalScope,'historic_UKS_letterhead_2014_only');
+ assert.equal(b.imageMeta.noOpenLicenseClaim,true);
+ assert.ok(b.imageMeta.sourceUrl.includes('regjeringen.no/'));
+ assert.equal(b.imageMeta.noContemporaryLogoClaim,true);
  const png=fs.readFileSync(a.imageMeta.sourceFile),webp=fs.readFileSync(a.image);
  assert.equal(crypto.createHash('sha256').update(png).digest('hex'),a.imageMeta.sourceFileSha256);
  assert.equal(crypto.createHash('sha256').update(webp).digest('hex'),a.imageMeta.sha256);
@@ -24,7 +29,7 @@ test('Tøyen trafo: Brands join two approved preview collections without any inv
  assert.deepEqual(p.place.place_card_profile.collection_ids,['people','objects','brands']);
  assert.deepEqual(p.brands.map(b=>b.id),['oslo_teatersenter','unge_kunstneres_samfund']);
  assert.ok(p.brands[0].image.endsWith('.webp'));
- assert.ok(!p.brands[1].image);
+ assert.ok(p.brands[1].image?.endsWith('toyen_trafo_uks_2014_letterhead_wordmark.webp'));
  assert.equal(p.place.objects.length,2);
  assert.equal(p.people.length,2);
  assert.equal(read('reports/place-production/toyen-trafo-workcard-current.json').editorial_status,'not_vferdig');
