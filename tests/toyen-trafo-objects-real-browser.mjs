@@ -17,7 +17,7 @@ const base='http://127.0.0.1:'+server.address().port;
 fs.mkdirSync('artifacts/toyen-trafo-objects',{recursive:true});
 let browser;
 try{
- browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+ browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN || undefined,args:['--no-sandbox','--disable-dev-shm-usage']});
  for(const [label,width,height,mobile] of [['mobile',390,844,true],['desktop',1440,1000,false]]){
   const ctx=await browser.newContext({viewport:{width,height},isMobile:mobile,hasTouch:mobile,locale:'nb-NO'});
   await ctx.addInitScript(()=>{localStorage.setItem('hg_onboarding_shown_v1','1');localStorage.setItem('HG_TEST_MODE','1')});
