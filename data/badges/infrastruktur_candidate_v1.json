@@ -3,7 +3,7 @@
   "categoryId": "by",
   "id": "infrastruktur",
   "name": "Infrastruktur",
-  "status": "produced_awaiting_binary_transfer",
+  "status": "binary_verified_awaiting_approval",
   "format": "WebP",
   "size": [
     1024,
@@ -16,9 +16,10 @@
   "quality": {
     "localTechnicalVerified": true,
     "visualApproved": false,
-    "repositoryBinaryVerified": false,
+    "repositoryBinaryVerified": true,
     "registered": false,
-    "smallSizeReviewed": true
+    "smallSizeReviewed": true,
+    "technicalApproved": true
   },
   "variants": {
     "nb": {
@@ -59,7 +60,7 @@
   },
   "imageEquivalence": "Central motif rectangle x=220..799, y=320..717 compared pixel-for-pixel across all five outputs; verified identical.",
   "activationRule": "Transfer all five exact WebPs; verify WebP headers/dimensions/alpha and SHA-256; visually approve at 1024/128/64; activate only Norwegian original and retain localized assets inactive until runtime supports them.",
-  "currentBlocker": "Five binary WebP files are not uploaded to GitHub. Candidate illustration not yet approved.",
+  "currentBlocker": "Visual approval and registration still required",
   "visualReview": {
     "date": "2026-11-04",
     "reviewedAtSizes": [
@@ -83,6 +84,6 @@
       800,
       718
     ],
-    "repositoryHashesVerified": false
+    "repositoryHashesVerified": true
   }
 }
