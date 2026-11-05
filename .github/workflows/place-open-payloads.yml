@@ -41,6 +41,7 @@ on:
       - 'build/build-web.mjs'
       - 'docs/PLACE_UNIFIED_SURFACE_PLAN.md'
       - 'scripts/build-place-open-payloads.mjs'
+      - 'tests/toyen-trafo-brands-contract.test.mjs'
       - 'tests/place-open-hyperfast.test.mjs'
       - 'tests/oslo-four-canonical-app-browser.mjs'
       - 'tests/black-box-productions-placecard.test.mjs'
@@ -96,6 +97,7 @@ jobs:
         run: |
           npm run place-open:check
           npm run test:place-open
+          node --test tests/toyen-trafo-brands-contract.test.mjs
           node --test tests/black-box-productions-placecard.test.mjs
 
       - name: Verify unified Place surface build and parity contract

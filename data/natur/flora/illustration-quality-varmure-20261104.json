@@ -1,0 +1,51 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-04",
+  "status": "approved_original_verified_git_blob",
+  "baselineApproved": 73,
+  "approvedCountAfterRelease": 74,
+  "publicationRule": "Preserve all 73 published images and canonical species/quiz IDs. Correct incorrect Galium vernum taxonomy to Potentilla verna in both catalogs. Only merge after original WebP SHA and both mandatory flora CI checks pass.",
+  "items": [
+    {
+      "name": "Vårmure",
+      "catalogId": "emne_flora_varmure",
+      "scientificName": "Potentilla verna",
+      "synonym": "Potentilla tabernaemontani",
+      "existingQuizId": "quiz_nature_flora_varmure",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/52_varmure_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/52_varmure_v1.webp",
+      "gitBlobSha": "b5c91c9233a2aea1eb42466eccd9d85e00bd4e3c",
+      "sha256": "d1ed24cf811c8f853ebf6959e9866cf38b3e546e481d6e415505403bceb35245",
+      "sizeBytes": 459592,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "reviewedAt": "2026-11-04",
+      "stage": "var_og_forsommerblomstring",
+      "botanicalVisualDecision": "Potentilla_verna_five_yellow_petals_palmate_five_toothed_leaflets_and_prostrate_hairy_stems",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true
+      },
+      "sourceReferences": [
+        "https://lister.artsdatabanken.no/rodlisteforarter/2021/5627",
+        "https://snl.no/v%C3%A5rmure",
+        "https://www.worldfloraonline.org/taxon/wfo-0001009786",
+        "https://efloras.org/florataxon.aspx?flora_id=1&taxon_id=250100376"
+      ],
+      "observations": "Illustrated original of Potentilla verna (spring cinquefoil), not a Galium maure. Five separate golden petals in each flower, several toothed palmate 5-foliolate leaves, hairy prostrate reddish stems and a low matted habit. Tested on black background after background-alpha cleanup.",
+      "limitations": "Botanical illustration, not a photograph or voucher. Hair and root details simplified. Norwegian 2021 Red List VU; species must not be represented as common in Oslo.",
+      "technicalVerification": "Transparent RGBA WebP 1024x1536, 459592 bytes, SHA-256 d1ed24cf811c8f853ebf6959e9866cf38b3e546e481d6e415505403bceb35245, Git blob b5c91c9233a2aea1eb42466eccd9d85e00bd4e3c; original alpha and black background confirmed.",
+      "publicationBlockedBy": [
+        "Both required checks illustration-contract and approved-flora-browser must succeed on final PR head.",
+        "Verify GitHub Pages deployment following merge."
+      ]
+    }
+  ]
+}

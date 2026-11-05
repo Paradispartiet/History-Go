@@ -25,6 +25,11 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"svalerot",label:"Svalerot",term:"Svalerot",path:"b09/61_svalerot_v1.webp"},
+    {name:"rosslyng",label:"Røsslyng",term:"Røsslyng",path:"b09/60_rosslyng_v1.webp"},
+    {name:"rodtvetann",label:"Rød tvetann",term:"Rød tvetann",path:"b09/59_rodtvetann_v1.webp"},
+    {name:"rodknapp",label:"Rødknapp",term:"Rødknapp",path:"b09/58_rodknapp_v1.webp"},
+    {name:"balderbra",label:"Balderbrå",term:"Balderbrå",path:"b09/57_balderbra_v1.webp"},
     {name:"hestehov",path:"b03/01_hestehov_var.webp"},
     {name:"hvitveis",path:"b01/01_hvitveis.webp"},
     {name:"blaveis",term:"blåveis",path:"b01/07_blaveis.webp"},
@@ -95,6 +100,14 @@ try{
     {name:"vassarve",label:"Vassarve",term:"Vassarve",path:"b09/46_vassarve_v1.webp"},
     {name:"veihaukeskjegg",label:"Veihaukeskjegg",term:"Veihaukeskjegg",path:"b09/47_veihaukeskjegg_v1.webp"},
     {name:"villkarse",label:"Villkarse",term:"Villkarse",path:"b09/48_villkarse_v1.webp"},
+    {name:"vararve",label:"Vårarve",term:"Vårarve",path:"b09/49_vararve_v1.webp"},
+    {name:"varerteknapp",label:"Vårerteknapp",term:"Vårerteknapp",path:"b09/50_varerteknapp_v1.webp"},
+    {name:"varkaal",label:"Vårkål[^,]*",term:"Vårkål",path:"b09/51_varkaal_v1.webp"},
+    {name:"varmure",label:"Vårmure",term:"Vårmure",path:"b09/52_varmure_v1.webp"},
+    {name:"akervindel",label:"Åkervindel",term:"Åkervindel",path:"b09/56_akervindel_v1.webp"},
+    {name:"akerveronika",label:"Åkerveronika",term:"Åkerveronika",path:"b09/55_akerveronika_v1.webp"},
+    {name:"akerdylle",label:"Åkerdylle",term:"Åkerdylle",path:"b09/54_akerdylle_v1.webp"},
+    {name:"varpengeurt",label:"Vårpengeurt",term:"Vårpengeurt",path:"b09/53_varpengeurt_v1.webp"},
   ];
   for(const width of [390,1440]){
     for(const species of subjects){
