@@ -36,7 +36,7 @@
     "closed",
     "note"
   ]);
-  const APPLY_OPS = new Set(["create", "upsert", "transition", "add_flag", "remove_flag", "close", "note"]);
+  const APPLY_OPS = new Set(["create", "upsert", "transition", "add_flag", "remove_flag", "close", "note", "carry_forward_flags"]);
 
   /** @param {unknown} value */
   function text(value) {
@@ -488,6 +488,58 @@
       return persist(world).objects_by_id[workObjectId];
     }
 
+    /**
+     * Bring documented observations from an earlier work case into its formal
+     * successor, without treating the earlier recommendations as approvals.
+     * Missing early work is a no-op: no prior scene or player choice is invented.
+     * @param {unknown} targetId
+     * @param {unknown} sourceId
+     * @param {unknown} mappings
+     * @param {Record<string, unknown>} meta
+     */
+    function carryForwardFlags(targetId, sourceId, mappings, meta) {
+      const targetWorkId = requiredId(targetId, "carry_forward_flags.work_object_id");
+      const sourceWorkId = requiredId(sourceId, "carry_forward_flags.from_work_object_id");
+      if (sourceWorkId === targetWorkId) throw new Error("Kilde og mål for overføring må være forskjellige");
+      const eventId = requiredId(meta.event_id, "carry_forward_flags.event_id");
+      if (!Array.isArray(mappings) || !mappings.length || mappings.length > 16) {
+        throw new Error("carry_forward_flags krever 1–16 eksplisitte flaggkoblinger");
+      }
+      const target = getWorkObject(targetWorkId);
+      if (!target) throw new Error(`Ukjent mottakersak: ${targetWorkId}`);
+      if (target.status === "closed" || target.closed_at) throw new Error("Kan ikke overføre til avsluttet sak");
+      const source = getWorkObject(sourceWorkId);
+      if (!source) return target;
+      if (source.role_scope !== target.role_scope || source.institution_id !== target.institution_id) {
+        throw new Error("Tidlig og formell sak må tilhøre samme rolle og institusjon");
+      }
+      const available = new Set(source.flags || []);
+      const copied = [];
+      const usedTargets = new Set();
+      for (const mapping of mappings) {
+        if (!mapping || typeof mapping !== "object" || Array.isArray(mapping)) throw new Error("Ugyldig flaggkobling");
+        const fromFlag = requiredId(mapping.source_flag, "carry_forward_flags.source_flag");
+        const intoFlag = requiredId(mapping.target_flag, "carry_forward_flags.target_flag");
+        if (usedTargets.has(intoFlag)) throw new Error("Duplikat mottakerflagg");
+        usedTargets.add(intoFlag);
+        if (!available.has(fromFlag)) continue;
+        addFlag(targetWorkId, intoFlag, {
+          ...meta,
+          event_id: `${eventId}:${intoFlag}`,
+          at: meta.at
+        });
+        copied.push(intoFlag);
+      }
+      if (copied.length) {
+        appendWorkObjectHistory(targetWorkId, {
+          ...meta,
+          event_id: `${eventId}:handoff`,
+          note: `Dokumenterte funn fra ${sourceWorkId} er videreført; ${copied.length} registrerte vurderinger/avvik inngår som premisser, ikke vedtak.`
+        });
+      }
+      return getWorkObject(targetWorkId);
+    }
+
     /** @param {unknown} workContext */
     function resolveWorkContext(workContext) {
       const raw = workContext && typeof workContext === "object" && !Array.isArray(workContext)
@@ -537,6 +589,7 @@
         else if (op === "add_flag") value = addFlag(operation.work_object_id, operation.flag, meta);
         else if (op === "remove_flag") value = removeFlag(operation.work_object_id, operation.flag, meta);
         else if (op === "close") value = closeWorkObject(operation.work_object_id, meta);
+        else if (op === "carry_forward_flags") value = carryForwardFlags(operation.work_object_id, operation.from_work_object_id, operation.flag_mappings, meta);
         else value = appendWorkObjectHistory(operation.work_object_id, meta);
         results.push({ op, work_object_id: value.work_object_id, object: value });
       }
