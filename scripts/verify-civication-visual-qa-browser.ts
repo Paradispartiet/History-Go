@@ -1,0 +1,127 @@
+// Visual evidence for Civication Min dag + map. Headless mobile viewport does
+// not replace a physical iPhone/Safari review, but stops smoke passing without
+// screenshots of the actual views that this PR changes.
+import assert from 'node:assert/strict';
+import { join } from 'node:path';
+
+export default async function verifyCivicationVisualQa(browser: any, origin: string, outputDir: string) {
+  const context = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    deviceScaleFactor: 1,
+    isMobile: true,
+    hasTouch: true
+  });
+  const page = await context.newPage();
+  const pageErrors: string[] = [];
+  page.on('pageerror', (error: Error) => pageErrors.push(error.message));
+
+  const capture = async (filename: string) =>
+    page.screenshot({ path: join(outputDir, filename), fullPage: false, animations: 'disabled' });
+
+  try {
+    await page.goto(origin + '/Civication.html', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => {
+      const app = globalThis as any;
+      return !!app.CivicationWorldMood?.getPeriod
+        && !!app.CivicationLifestoryUI?.getCurrentSceneInfo
+        && !!document.querySelector('.civi-day-miniature-phase')
+        && !!document.querySelector('#civiLifestoryPanel .civi-lifestory-scene');
+    }, null, { timeout: 90000 });
+
+    await page.locator('#civiLifestorySection h2').scrollIntoViewIfNeeded();
+    const minDag = await page.evaluate(() => {
+      const header = document.querySelector('.civi-day-miniature-header');
+      const label = document.querySelector('.civi-day-miniature-label');
+      const art = document.querySelector('.civi-day-miniature-art');
+      const phase = document.querySelector('.civi-day-miniature-phase');
+      const scene = document.querySelector('#civiLifestoryPanel .civi-lifestory-scene');
+      const h = header?.getBoundingClientRect();
+      const l = label?.getBoundingClientRect();
+      const a = art?.getBoundingClientRect();
+      return {
+        period: document.querySelector('.civi-day-miniature-period')?.textContent?.trim() || '',
+        phase: phase?.textContent?.trim() || '',
+        headerFits: !!h && !!l && !!a && a.right <= h.right + 2 && l.right <= a.left + 2,
+        artSize: a ? { width: a.width, height: a.height } : null,
+        sceneVisible: !!scene && getComputedStyle(scene).display !== 'none',
+        choiceCount: document.querySelectorAll('#civiLifestoryPanel [data-lifestory-choice]').length
+      };
+    });
+    assert.match(minDag.phase, /^Fase: \S/, 'Min dag shows the real game phase');
+    assert.ok(minDag.headerFits, 'Min dag header and miniature do not overlap at 390px');
+    assert.ok(minDag.artSize?.width && minDag.artSize?.height, 'miniature illustration has dimensions');
+    assert.ok(minDag.sceneVisible, 'Min dag has an active scene or shell story');
+    await capture('min-dag-mobile-top.png');
+
+    await page.locator('#btnCiviMap').click();
+    await page.waitForFunction(() => document.body.classList.contains('civi-mapmode'), null, { timeout: 15000 });
+    await page.waitForTimeout(600);
+
+    const mapType = await page.evaluate(() => {
+      const app = globalThis as any;
+      if (app.CivicationThreeMap?.isActive?.()) return 'webgl';
+      if (app.CivicationCanvasMap?.isActive?.()) return 'canvas';
+      return 'svg';
+    });
+
+    const captureMap = async (name: string) => {
+      await page.waitForTimeout(300);
+      await capture(name);
+    };
+
+    const map = await page.evaluate(() => {
+      const host = document.querySelector('#civiMapWorld');
+      const rect = host?.getBoundingClientRect();
+      return { visible: !!rect && rect.width > 200 && rect.height > 200,
+        width: rect?.width || 0, height: rect?.height || 0 };
+    });
+    assert.ok(map.visible, 'map has a visible viewport on mobile');
+
+    const result: any = { viewport: { width: 390, height: 844 }, minDag, mapType, map, screenshots: [
+      'min-dag-mobile-top.png', 'map-mobile-city.png', 'map-mobile-overview.png', 'map-mobile-close.png'
+    ] };
+
+    if (mapType === 'webgl') {
+      result.city = await page.evaluate(() => (globalThis as any).CivicationThreeMap.getSceneStats());
+      assert.ok(result.city.microWorldObjects > 0, '3D miniature world was created');
+    }
+    await captureMap('map-mobile-city.png');
+
+    await page.evaluate(() => {
+      const app = globalThis as any;
+      const mapApi = app.CivicationThreeMap?.isActive?.() ? app.CivicationThreeMap
+        : app.CivicationCanvasMap?.isActive?.() ? app.CivicationCanvasMap : null;
+      mapApi?.overview?.();
+    });
+    await captureMap('map-mobile-overview.png');
+
+    await page.evaluate(() => {
+      const app = globalThis as any;
+      const mapApi = app.CivicationThreeMap?.isActive?.() ? app.CivicationThreeMap
+        : app.CivicationCanvasMap?.isActive?.() ? app.CivicationCanvasMap : null;
+      mapApi?.reset?.();
+      // Real near-detail tier begins at zoom 2.1 in Three.js.
+      if (mapApi?.getZoom && mapApi?.zoomIn) {
+        for (let i = 0; i < 7 && mapApi.getZoom() < 2.3; i++) mapApi.zoomIn();
+      }
+    });
+    if (mapType === 'webgl') {
+      result.close = await page.evaluate(() => (globalThis as any).CivicationThreeMap.getSceneStats());
+      assert.ok(result.close.zoom >= 2.1, '3D map reached near-detail tier');
+      assert.ok(result.close.nearBuildingEntrances > 0, 'close-up building entrances are in the scene');
+      assert.ok(result.close.nearRoadCrossings >= 2, 'close-up street crossings are in the scene');
+      assert.ok(result.close.microWorldVisibleObjects > result.city.microWorldVisibleObjects,
+        'more miniature objects are visible when zoomed in');
+    }
+    await captureMap('map-mobile-close.png');
+    assert.deepEqual(pageErrors, [], 'no browser JavaScript errors during visual QA');
+    // Headless WebGL may be unavailable in CI. Keep fallback evidence clearly
+    // labeled rather than claiming a 3D/mobile approval on a Canvas screenshot.
+    return result;
+  } catch (error) {
+    await capture('civication-mobile-visual-qa-failure.png').catch(() => {});
+    throw error;
+  } finally {
+    await context.close();
+  }
+}
