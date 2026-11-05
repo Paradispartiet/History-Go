@@ -16,7 +16,12 @@ test('Infrastruktur is an unactivated 8/10 candidate preserving all seven existi
   assert.equal(by.subBadgeImages.infrastruktur,c.status==='integrated'?c.sourceImage:undefined);
   assert.ok(['produced_awaiting_binary_transfer','binary_verified_awaiting_approval','integrated'].includes(c.status));
   assert.equal(c.quality.registered,c.status==='integrated');
-  if(c.status==='integrated') assert.equal(c.quality.visualApproved,true);
+  if(c.status==='integrated'){
+    assert.equal(c.quality.visualApproved,true);
+    assert.equal(c.visualReview.fullSeriesApproval,true,'Full By-series visual approval is required');
+    assert.equal(c.quality.repositoryBinaryVerified,true);
+    assert.equal(c.binaryVerification.repositoryHashesVerified,true);
+  }
   assert.equal(c.sourceImage,'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp');
   assert.deepEqual(Object.keys(c.variants),['nb','en','es','pt','fr']);
   assert.deepEqual(c.size,[1024,1024]);
