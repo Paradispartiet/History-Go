@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_rosslyng: Object.freeze({
+      scientificName: "Calluna vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/60_rosslyng_v1.webp",
+      gitBlobSha: "ba6314781c3b81b6d775c05f1bffe109d0ab457b",
+      reviewedAt: "2026-11-05",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-rosslyng-20261105.json"
+    }),
     emne_flora_rodtvetann: Object.freeze({
       scientificName: "Lamium purpureum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/59_rodtvetann_v1.webp",
