@@ -36,6 +36,16 @@ jobs:
           node --test tests/toyen-trafo-objects-archive.test.mjs tests/toyen-trafo-people-contract.test.mjs tests/toyen-trafo-people-illustrations.test.mjs tests/toyen-trafo-brands-contract.test.mjs
           npm run places:index:check
           npm run place-open:check
+      - name: Install Chromium for actual PlaceCard inspection
+        run: npx playwright install --with-deps chromium
+      - name: Verify Tøyen trafo People and Objects in mobile and desktop UI
+        run: node tests/toyen-trafo-objects-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toyen-trafo-objects-browser
+          path: artifacts/toyen-trafo-objects/
+          if-no-files-found: ignore
       - name: Commit generated index and runtime
         run: |
           git config user.name "github-actions[bot]"
