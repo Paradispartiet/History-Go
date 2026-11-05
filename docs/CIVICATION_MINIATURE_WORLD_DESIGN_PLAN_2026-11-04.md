@@ -152,3 +152,17 @@ Brukerprioritet: **bygninger, mennesker og gater skal bli faktisk lettere å les
 - **Tester:** `tests/civication-map-micro-world.test.js` kontrollerer nå også menneskesilhuetter, instansbruk og nær-LOD-koblingene. Dette erstatter ikke visuell QA.
 
 **Før merge:** vis kartet på virkelig mobil i byvisning, 2,1+ nærvisning og «Hele Oslo»; se etter at dører og gangfelt verken flyter over underlaget, skjules av andre objekter eller overlesser det dempede diorama-uttrykket. Sjekk både dags- og nattfase og sammenlikn ytelse med forrige head. PR forblir draft inntil dette er bekreftet.
+
+## «Min dag» – permanent del av samme forbedringsløp (2026-11-05)
+
+Denne PR-en startet som et samlet løft av Civications **«Min dag» og den levende miniatyrbyen**, ikke et isolert zoomprosjekt. Behold derfor følgende prioritering også når kartets detaljnivå videreutvikles:
+
+1. **Dagens situasjon og valg først:** «Min dag» skal fortsatt være primærpanelet, med tydelig NÅ-scene, tekst, konsekvenser og store berøringsvennlige valg. Ikke flytt dette bak dekorelementer eller endre livshistorie-/kalenderlogikken.
+2. **Konkret spilltid:** den lille, eneste miniatyrillustrasjonen beholder fire rolige lysstemninger, men viser nå også navnet på den **faktiske** spillfasen (for eksempel «Fase: Lunsj») fra `CivicationCalendar`. Flere faser kan dele samme lyssetting uten å miste nyttig informasjon.
+3. **Ett designspråk:** samme dempede farger, karakteristiske bygg, mennesker og gater i kartet og i «Min dag». Ingen ny heldagsstripe, tunge bilder eller ekstra avledende ornamenter.
+4. **Mobilopplevelse:** kontroller øverste del av «Min dag» på smale skjermer og ved lang scene-/valgteks​t. Stemningsbildet må ikke presse NÅ-scenen eller gjøre valg mindre lesbare. Sjekk at riktig fase vises ved endring innen samme lysperiode.
+5. **Virkelig QA før merge:** ta mobilskjermbilder både av *toppen av «Min dag»* (inkludert scene, illustrasjon og valg) og av 3D-kartet ved oversikt/byvisning/nærzoom. Et bilde som er scrollet ned til dagsoppsummeringen dekker ikke toppfeltet. Kjør CI etter siste commit, og mål 3D-ytelse på faktisk enhet.
+
+Implementert nå: egen `.civi-day-miniature-phase` under eksisterende stemningsetikett, oppdatert av `CivicationWorldMood.sync()` på hver kanoniske faseoppdatering. Regresjonstesten dekker overgang fra lunsj til arbeidsdag uten dupliserte lysoppdateringer. Dette er kun presentasjon, aldri ny kalenderstyring.
+
+PR forblir et utkast: CI på denne commit-en og den visuelle mobilkontrollen må godkjennes separat før publisering.
