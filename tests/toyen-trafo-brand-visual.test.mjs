@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import test from 'node:test';
+import sharp from 'sharp';
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+test('Tøyen trafo Brands: only one visual is an authentic source-linked OTS mark',async()=>{
+ const rows=read('data/brands/actors_by_place.json').toyen_trafo;
+ const a=rows[0],b=rows[1];
+ assert.equal(a.id,'oslo_teatersenter');assert.equal(b.id,'unge_kunstneres_samfund');
+ assert.equal(a.imageKind,'official_logo');
+ assert.equal(a.imageMeta.source,'official_press_logo_archive');
+ assert.equal(a.imageMeta.noOpenLicenseClaim,true);
+ assert.ok(a.imageMeta.sourceUrl.includes('osloteatersenter.no/dokumenter/logo/'));
+ assert.ok(!b.image&&!b.logo,'UKS cannot be faked as having an authenticated visual');
+ const png=fs.readFileSync(a.imageMeta.sourceFile),webp=fs.readFileSync(a.image);
+ assert.equal(crypto.createHash('sha256').update(png).digest('hex'),a.imageMeta.sourceFileSha256);
+ assert.equal(crypto.createHash('sha256').update(webp).digest('hex'),a.imageMeta.sha256);
+ const m=await sharp(webp).metadata();
+ assert.equal(m.format,'webp');assert.equal(m.width,900);assert.equal(m.height,520);
+});
+test('Tøyen trafo: Brands join two approved preview collections without any invented fourth',()=>{
+ const p=read('data/runtime/place-open/toyen_trafo.json');
+ assert.deepEqual(p.place.place_card_profile.collection_ids,['people','objects','brands']);
+ assert.deepEqual(p.brands.map(b=>b.id),['oslo_teatersenter','unge_kunstneres_samfund']);
+ assert.ok(p.brands[0].image.endsWith('.webp'));
+ assert.ok(!p.brands[1].image);
+ assert.equal(p.place.objects.length,2);
+ assert.equal(p.people.length,2);
+ assert.equal(read('reports/place-production/toyen-trafo-workcard-current.json').editorial_status,'not_vferdig');
+});

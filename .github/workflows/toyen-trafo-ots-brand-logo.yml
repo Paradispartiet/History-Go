@@ -1,0 +1,74 @@
+name: Tøyen trafo – OTS authentic Brand logo
+on:
+  push:
+    branches: [content/toyen-trafo-oslo-teatersenter-brand-logo-20261105]
+    paths:
+      - 'scripts/build-toyen-trafo-ots-brand-logo.mjs'
+      - '.github/workflows/toyen-trafo-ots-brand-logo.yml'
+      - 'tests/toyen-trafo-brand-visual.test.mjs'
+      - 'tests/toyen-trafo-objects-archive.test.mjs'
+      - 'tests/toyen-trafo-brand-real-browser.mjs'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: toyen-trafo-ots-brand-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    name: Fetch official logo, build approved assets and run contractual tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Download official logo from organization press materials
+        run: |
+          mkdir -p bilder/brands/source
+          curl --fail --location --show-error --silent --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 120 \
+            -A 'HistoryGoBrandSourceVerifier/1.0 (editorial identification)' \
+            -o bilder/brands/source/toyen_trafo_oslo_teatersenter_official_logo.png \
+            'https://osloteatersenter.no/dokumenter/logo/OTSLogo_Pos_RGB_2000x730px.png'
+      - name: Integrate source-authenticated WebP and metadata
+        run: node scripts/build-toyen-trafo-ots-brand-logo.mjs
+      - name: Refresh canonical indexes
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Validate Brands and no-filler PlaceCard
+        run: |
+          node --test tests/toyen-trafo-brand-visual.test.mjs tests/toyen-trafo-brands-contract.test.mjs tests/toyen-trafo-objects-archive.test.mjs tests/toyen-trafo-people-illustrations.test.mjs
+          npm run places:index:check
+          npm run place-open:check
+      - name: Resolve installed Chrome
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Runner Chrome not found"; exit 1; fi
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Verify actual PlaceCard on mobile and desktop
+        run: node tests/toyen-trafo-brand-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toyen-trafo-brand-browser
+          path: artifacts/toyen-trafo-brands/
+          if-no-files-found: ignore
+      - name: Commit brand source and canonical payloads
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/brands/source/toyen_trafo_oslo_teatersenter_official_logo.png
+          git add bilder/brands/toyen_trafo_oslo_teatersenter_official_logo.webp
+          git add data/brands/actors_by_place.json
+          git add data/places/places_index.json data/runtime/place-open/toyen_trafo.json
+          git add reports/place-production/toyen-trafo-brand-visuals-20261105.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Tøyen trafo: integrate verified OTS official press logo into Brands"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
