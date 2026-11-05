@@ -39,8 +39,8 @@
       "reason": "Arkivført transport/lossing til stasjonen, men ikke ennå verifisert som en varig stedstilknyttet gjenstand; beholdes som sekundær kandidat."
     }
   ],
-  "objects_status": "PRODUCED_CANONICAL_WITH_SCHEMATIC_IMAGES_PENDING_REAL_BROWSER_QA",
-  "place_card_profile_decision": "People og Objects i canonical profil; Brands forblir i popup uten visuell PlaceCard-samling. vFerdig fortsatt blokkert.",
+  "objects_status": "PASS_TWO_ARCHIVE_OBJECTS_WITH_REAL_MOBILE_DESKTOP_BROWSER_QA",
+  "place_card_profile_decision": "People og Objects er kilde- og bildeklare i canonical profil og har bestått ekte Chromium 390/1440 px. Brands er dokumentert i popup, men ikke som egen visuell samling. Full vFerdig står fortsatt åpent.",
   "image_policy": "Begge arkivførte tekniske gjenstander har en original 900x520 SVG-fagillustrasjon, tydelig merket «Illustrasjon – ikke fotografi» både i selve bildet og i metadata. Det er ingen kopi, vektorisering eller påstand om originalfotografiets eksakte motiv.",
   "story_image": "bilder/stories/toyen_trafo/kobberkledd_tarnhjelm_illustrasjon.svg",
   "sources": [
@@ -54,10 +54,8 @@
   "rule_authority": "docs/PLACE_OBJECTS_CANONICAL.md §1, §3, §4, §5A; data/places/README_place_rounds.md",
   "rule_review": "Object must be a specific physical artifact with independent documented identity, historically relevant function and visual membership evidence; ordinary building details do not qualify. Under Næringsliv + Industri, electric equipment is the primary research lane. Missing evidence must not be hidden by art or unrelated cultural objects.",
   "remaining_before_vferdig": [
-    "Reell mobil-/desktopvisning av de to Object-kortene på Tøyen trafo",
-    "Originale, dokumenterte visuelle medlemsbilder for Oslo teatersenter og UKS, eller korrekt kildeavgrenset Brands-avgjørelse",
-    "Etterkontroll av People-kortenes bilder i faktisk PlaceCard",
-    "Full redaksjonell PlaceCard-closeout"
+    "Godkjente visuelle Brand-medlemmer for Oslo teatersenter og UKS eller dokumentert samlingsavgrensning",
+    "Avsluttende redaksjonell vFerdig-gjennomgang og total profilbeslutning"
   ],
   "not_vferdig": true,
   "archive_candidates": [
@@ -106,5 +104,22 @@
       "publication_status": "secondary_candidate_no_card"
     }
   ],
-  "source_review": "Ny kildekontroll 2026-11-05 endrer tidligere påstand om at det ikke fantes fotoidentifiserte elektriske objekter: Oslobilder/Oslo byarkiv har minst to arkivførte gjenstander (apparatpult 1916, kjerne 1918) med konkret Tøyen-tilknytning. Gamle arkitekturdetaljer forblir avvist. Bildeinnhold for de to gjenstandene og bevaringsstatus er ikke endelig gjennomgått."
+  "source_review": "Ny kildekontroll 2026-11-05 endrer tidligere påstand om at det ikke fantes fotoidentifiserte elektriske objekter: Oslobilder/Oslo byarkiv har minst to arkivførte gjenstander (apparatpult 1916, kjerne 1918) med konkret Tøyen-tilknytning. Gamle arkitekturdetaljer forblir avvist. Bildeinnhold for de to gjenstandene og bevaringsstatus er ikke endelig gjennomgått.",
+  "browser_acceptance": {
+    "workflow": "Tøyen trafo – archive Objects integration",
+    "run_id": 41942555925,
+    "url": "https://github.com/Paradispartiet/History-Go/actions/runs/41942555925",
+    "test": "tests/toyen-trafo-objects-real-browser.mjs",
+    "widths": [
+      390,
+      1440
+    ],
+    "results": [
+      "People preview loaded",
+      "Objects preview loaded",
+      "2 Object members visible in popup",
+      "No reported browser page errors"
+    ],
+    "status": "PASS"
+  }
 }
