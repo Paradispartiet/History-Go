@@ -45,11 +45,11 @@
     layer.classList.toggle("is-hud-minimized",hudMinimized);
     layer.classList.toggle("is-clean-map",zonesHidden);
     const hudBtn=layer.querySelector("[data-civi-minimize-hud]");
-    if(hudBtn){hudBtn.textContent=hudMinimized?"+":"−";hudBtn.setAttribute("aria-expanded",String(!hudMinimized));}
+    if(hudBtn){hudBtn.textContent=hudMinimized?"+":"−";hudBtn.setAttribute("aria-expanded",String(!hudMinimized));hudBtn.setAttribute("aria-label",hudMinimized?"Vis kartstatus":"Minimer kartstatus");}
     const panel=layer.querySelector(".civi-system-panel");
     panel?.classList.toggle("is-minimized",panelMinimized);
     const panelBtn=layer.querySelector("[data-civi-minimize-panel]");
-    if(panelBtn){panelBtn.textContent=panelMinimized?"+":"−";panelBtn.setAttribute("aria-expanded",String(!panelMinimized));}
+    if(panelBtn){panelBtn.textContent=panelMinimized?"+":"−";panelBtn.setAttribute("aria-expanded",String(!panelMinimized));panelBtn.setAttribute("aria-label",panelMinimized?"Vis sonepanel":"Minimer sonepanel");}
     const zonesBtn=layer.querySelector("[data-civi-toggle-zones]");
     if(zonesBtn){zonesBtn.setAttribute("aria-pressed",String(!zonesHidden));zonesBtn.textContent=zonesHidden?"Velg sone":"Skjul soner";}
   }
