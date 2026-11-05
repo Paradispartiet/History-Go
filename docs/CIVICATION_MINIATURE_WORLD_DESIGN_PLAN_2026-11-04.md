@@ -166,3 +166,16 @@ Denne PR-en startet som et samlet løft av Civications **«Min dag» og den leve
 Implementert nå: egen `.civi-day-miniature-phase` under eksisterende stemningsetikett, oppdatert av `CivicationWorldMood.sync()` på hver kanoniske faseoppdatering. Regresjonstesten dekker overgang fra lunsj til arbeidsdag uten dupliserte lysoppdateringer. Dette er kun presentasjon, aldri ny kalenderstyring.
 
 PR forblir et utkast: CI på denne commit-en og den visuelle mobilkontrollen må godkjennes separat før publisering.
+
+## Mobilfunn – skjermbilder av «Min dag» og ekte WebGL-kart (2026-11-05)
+
+Playwright-artefakt fra en **senere avbrutt CI-kjøring** ga faktiske Chromium-bilder ved 390×844: `min-dag-mobile-top.png`, `map-mobile-city.png`, `map-mobile-overview.png`, `map-mobile-close.png`. Nettleserrapporten identifiserte `mapType: webgl`, byzoom **1,72** og nærzoom **2,56**. Disse er **skjermbildebevis på WebGL-rendering**, men gir ikke Safari-/iPhone-godkjenning eller målt FPS.
+
+- «Min dag»-bildet viste den lille illustrasjonen, `Fase: Morgen`, NÅ-scene og synlige valgmuligheter i riktig rekkefølge. Ingen åpenbar kollisjon mellom etikett og illustrasjon i dette utsnittet.
+- Kartbildene viste et konkret problem: de ekspanderte «Civication-kart»-/«Sone»-overleggene skjulte store deler av kartet, i alle tre zoommodusene. Å legge til mer geometri eller zoome ytterligere ville ikke løst dette.
+- **Korrigering:** `CivicationSystemMap` starter nå med minimert kartstatus og minimert sonepanel ved viewportbredde opptil 740 px. Eksisterende pluss/minus-kontroller kan åpne dem igjen, og brukerens manuelle valg overstyres ikke ved resize. Panelet viser valgt sone selv når det er minimert.
+- Mobil-CSS gjør det minimerte statusfeltet til en liten kontroll, plasserer sonebrikken på venstre side, og flytter lukkeknappen opp fra området med kartets zoom/oversiktsknapper. Ingen endringer i kartsteds-ID, kamera eller spilllogikk.
+- Ny Node-regresjonstester mobil-/desktopstandard og breddeendring; Playwright-kontrollen sjekker også begge minimeringene i faktisk UI og tar nye skjermbilder.
+- **Testkjedesikkerhet:** visuelle skjermbilder er flyttet til en egen, avgrenset prosess *etter* den funksjonelle 21-dagers «Min dag»-gjennomgangen. Ytre grense er åtte minutter, slik at screenshot-problemer ikke stopper selve livshistorietesten.
+
+**Gjenstår:** ny CI på siste commit, nye skjermbilder som faktisk viser frigjort kartflate, inspeksjon av detaljgeometri mot nærbildet og reell ytelses-/Safari-test på enheten. PR er fortsatt draft og ikke publisert.
