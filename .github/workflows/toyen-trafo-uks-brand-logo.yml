@@ -1,0 +1,66 @@
+name: Tøyen trafo – authentic UKS Brand logo
+on:
+  push:
+    branches: [content/toyen-trafo-uks-authentic-brand-logo-20261105]
+    paths:
+      - 'scripts/build-toyen-trafo-uks-brand-logo.mjs'
+      - 'tests/toyen-trafo-brand-visual.test.mjs'
+      - 'tests/toyen-trafo-brand-real-browser.mjs'
+      - '.github/workflows/toyen-trafo-uks-brand-logo.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: toyen-trafo-uks-brand-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    name: Verify source, generate UKS WebP, and validate canonical Brands
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Fetch exact UKS official website OG-logo PNG
+        run: |
+          mkdir -p bilder/brands/source
+          curl -fL --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 120 \
+            -A 'HistoryGoEditorialVerifier/1.0' \
+            -o bilder/brands/source/toyen_trafo_uks_official_logo_2018.png \
+            'https://www.uks.no/wp-content/uploads/2018/04/uks-logo-3.png'
+      - name: Validate pinned source and build source-authenticated WebP
+        run: node scripts/build-toyen-trafo-uks-brand-logo.mjs
+      - name: Regenerate canonical Place-open and indexes
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Record READ-FIRST provenance and validate existing place/brand contracts
+        run: |
+          node scripts/place-production-rule-preflight.mjs record --place-id toyen_trafo --category naeringsliv --workcard reports/place-production/toyen-trafo-workcard-current.json
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/toyen-trafo-workcard-current.json
+          node --test tests/toyen-trafo-brand-visual.test.mjs tests/toyen-trafo-brands-contract.test.mjs tests/toyen-trafo-objects-archive.test.mjs tests/toyen-trafo-people-illustrations.test.mjs
+          npm run places:index:check
+          npm run place-open:check
+      - name: Confirm visible historical and current organization identities in browser
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/toyen-trafo-brand-real-browser.mjs
+      - name: Commit original UKS image, derived WebP, and updated runtime
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/brands/source/toyen_trafo_uks_official_logo_2018.png
+          git add bilder/brands/toyen_trafo_uks_official_logo.webp
+          git add data/brands/actors_by_place.json data/runtime/place-open/toyen_trafo.json data/places/places_index.json
+          git add reports/place-production/toyen-trafo-brand-visuals-20261105.json reports/place-production/toyen-trafo-workcard-current.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Tøyen trafo: integrate verified original UKS website logo"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
