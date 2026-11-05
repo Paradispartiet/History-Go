@@ -251,6 +251,140 @@
       }
     },
     {
+      "id": "c04_tekstforesporsel",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 8,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Torsdag i e-posten, fredag på skjemaet",
+      "tekst": "«Har du ti minutter?» skriver Lea. «Det er invitasjonen til vårsamlingen. Jeg får den ikke under to hundre ord.» Du åpner utkastet. Der står torsdag. Påmeldingsskjemaet sier fredag. «Hva har dere booket?» spør du. «Fredag. Søren, torsdag står i e-posten jeg sendte til styret også.» Lea kan rette styremeldingen, men styrelederen må bestille selve tekstjobben. Du har lovet en annen kunde en rettelse i morgen.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Skriv om åpningen med fredag og send Lea et avgrenset tilbud",
+          "konsekvensTekst": "Du flytter datoen til første linje: «Fredag møtes vi til vårsamling.» Du sender Lea den linja som prøve og tilbyr å ferdigstille invitasjonen med én korrekturrunde for 1 200 kr. Lea tar den gamle styremeldingen.",
+          "effekter": {
+            "flagg": {
+              "c04_tekststatus": "tilbud_sendt"
+            }
+          }
+        },
+        {
+          "id": "avklar",
+          "tekst": "Be Lea rette styremeldingen og få en bekreftet bestilling først",
+          "konsekvensTekst": "«Jeg retter torsdagen nå,» svarer Lea. Du ber henne avklare hvem som bestiller og når teksten skal være klar. Du holder av morgendagen til rettelsen du allerede har lovet.",
+          "effekter": {
+            "flagg": {
+              "c04_tekststatus": "venter_pa_svar"
+            }
+          }
+        },
+        {
+          "id": "avsla",
+          "tekst": "Si fra om datoen og takk nei til å skrive invitasjonen",
+          "konsekvensTekst": "«Da retter jeg datoen og skriver resten selv,» sier Lea. Du sender henne lenka til skjemaet der fredag står, så hun har riktig versjon foran seg.",
+          "effekter": {
+            "flagg": {
+              "c04_tekststatus": "avslatt"
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_tekstoppfolging_tilbud_sendt",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 9,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Kan vi bruke samme tekst på forsida?»",
+      "tekst": "«Jeg har rettet torsdagen i styretråden,» skriver Lea. «Styrelederen lurte på om invitasjonen også kan brukes på forsida.» På nettsida står fortsatt fjorårets arrangement. Foreningen har ennå ikke svart på tilbudet.",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Forklar hva som må endres, og hold tilbudet til invitasjonen",
+          "konsekvensTekst": "Du peker ut den gamle datoen på forsida. Lea kan fjerne den selv. Tilbudet på 1 200 kr gjelder invitasjonen og én korrekturrunde og venter fortsatt på svar.",
+          "effekter": {
+            "flagg": {
+              "c04_tekstoppfolging": "tilbud_sendt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekststatus": "tilbud_sendt"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_tekstoppfolging_venter_pa_svar",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 9,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Fredag er rettet i styretråden",
+      "tekst": "«Datoen er rettet,» skriver Lea. «Styrelederen må se på hva vi rekker å bestille.» Det ligger fortsatt ingen bekreftet oppgave til deg fra foreningen. Rettelsen til den andre kunden er klar til å sendes.",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Send den lovede rettelsen til den andre kunden",
+          "konsekvensTekst": "Kunden får rettelsen. Spørsmålet fra foreningen blir liggende til Lea kan gi deg en konkret bestilling.",
+          "effekter": {
+            "flagg": {
+              "c04_tekstoppfolging": "venter_pa_svar"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekststatus": "venter_pa_svar"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_tekstoppfolging_avslatt",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 9,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Rettelsen som allerede var avtalt",
+      "tekst": "Den andre kunden har markert en lenke som fremdeles peker til forrige versjon. Det er den fila du hadde satt av tid til å rette.",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Bytt lenka, test den og send fila",
+          "konsekvensTekst": "Lenka åpner riktig versjon. Du sender den avtalte rettelsen. Lea håndterer foreningens invitasjon videre.",
+          "effekter": {
+            "flagg": {
+              "c04_tekstoppfolging": "avslatt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekststatus": "avslatt"
+        }
+      }
+    },
+    {
       "id": "d10_frilans_mote",
       "threadId": "frilans_videre_med_lea",
       "dag": 10,

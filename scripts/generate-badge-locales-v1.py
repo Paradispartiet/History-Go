@@ -217,10 +217,13 @@ def main():
                 bottom=CATALOG['categoryLabels']['by'][['nb','en','es','pt','fr'].index(locale)].upper() if category=='by' else None
                 dst=ROOT/'bilder/merker'/category/'locales'/locale/f'{sub}.webp'
                 dst.parent.mkdir(parents=True,exist_ok=True)
-                if category=='by' and sub=='brutalisme':
-                    pinned=json.loads((ROOT/'data/badges/brutalisme_candidate_v1.json').read_text(encoding='utf8'))['variants'][locale]
+                if category=='by' and sub in ('brutalisme','byplanlegging'):
+                    # Retain exact visually reviewed, previously rendered source artwork
+                    # rather than trying to re-inpaint already signed-off titles.
+                    pinned_file=f'{sub}_candidate_v1.json'
+                    pinned=json.loads((ROOT/'data/badges'/pinned_file).read_text(encoding='utf8'))['variants'][locale]
                     if not dst.is_file() or hashlib.sha256(dst.read_bytes()).hexdigest()!=pinned['sha256']:
-                        raise ValueError(f'Brutalisme {locale} must use the approved pre-rendered WebP; never regenerate over the pinned art.')
+                        raise ValueError(f'{sub} {locale} must keep the pinned reviewed WebP; do not regenerate over approved art.')
                 else:
                     # Exact source copy for same-language, same-text badges.
                     source_title=CATALOG['subLabels'][category][sub]['nb'].upper()
@@ -257,8 +260,8 @@ def main():
                 source_pixels=np.asarray(original)[top_safe:bottom_safe,:,:3]
                 locale_pixels=np.asarray(inspect)[top_safe:bottom_safe,:,:3]
                 if category=='by' and sub=='brutalisme':
-                    # Exact pinned assets were exported as quality-92 WebP.
-                    # Their central motif is unchanged, subject only to lossy compression.
+                    # Brutalisme candidates were exported in lossy WebP; allow only
+                    # the quantified compression delta in the central motif.
                     delta=np.abs(locale_pixels.astype('int16')-source_pixels.astype('int16'))
                     assert float(delta.mean())<3.0 and float(np.percentile(delta,99))<12.0, (
                         f'Non-caption illustration changed: {dst}')

@@ -9,13 +9,14 @@ const expected='f87aa141d10d49d7b0737691fbb78ba436b93a3ba61a48238c4bef60f640bc12
 test('By Postmodernisme is fifth original 1024px WebP without altering other badges',()=>{
  const by=read('data/badges/by.json'), prod=read('data/badges/underbadge_batch01_production.json');
  assert.equal(by.sub.length,10);
- assert.equal(Object.keys(by.subBadgeImages).length,5);
+ assert.equal(Object.keys(by.subBadgeImages).length,7);
  assert.deepEqual(by.subBadgeImages,{
   klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp',
   modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v1.webp',
   funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp',
   brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v1.webp',
   postmodernisme:imagePath,
+  samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp',byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp',
  });
  assert.equal(by.color,'#808080');
  assert.equal(by.secondaryColor,'#404040');
@@ -32,5 +33,5 @@ test('By Postmodernisme is fifth original 1024px WebP without altering other bad
  assert.equal(file.readUIntLE(24,3)+1,1024);
  assert.equal(file.readUIntLE(27,3)+1,1024);
  assert.equal(createHash('sha256').update(file).digest('hex'),expected);
- for(const id of by.sub.slice(5)) assert.equal(by.subBadgeImages[id],undefined);
+ for(const id of by.sub.slice(7)) assert.equal(by.subBadgeImages[id],undefined);
 });

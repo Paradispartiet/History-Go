@@ -8,14 +8,17 @@ const audit=json('reports/place-production/toyenbadet-people-field-claims-202611
 const canonical=json('data/places/sport/europa/norway/oslo_sport/toyenbadet.json');
 const manifest=json('data/people/manifest.json');
 
-test('Four source-backed Tøyenbadet People drafts remain unpublished pending licensed portrait review',()=>{
+test('Four source-backed Tøyenbadet People profiles use labeled AI illustrations, not unlicensed photographs',()=>{
   assert.equal(stage.placeId, 'toyenbadet');
   assert.equal(stage.profiles.length, 4);
   assert.deepEqual(stage.profiles.map(p=>p.id).sort(),audit.profiles.map(p=>p.person_id).sort());
-  assert.ok(stage.profiles.every(p=>p.status==='staging_not_in_manifest'));
+  assert.ok(stage.profiles.every(p=>p.status==='published_with_ai_illustration'));
+  assert.ok(stage.profiles.every(p=>p.image_kind==='ai_generated_illustration'));
+  assert.ok(stage.profiles.every(p=>p.portrait_gate.illustrationOverride==='approved_as_non_documentary_AI_illustration_not_real_photo'));
   assert.ok(stage.profiles.every(p=>p.placeId==='toyenbadet' && p.places.length===1 && p.places[0]==='toyenbadet'));
   assert.ok(stage.profiles.every(p=>p.portrait_gate.status==='blocked_rights_identification'));
-  assert.ok(stage.profiles.every(p=>!p.image&&!p.cardImage));
+  assert.ok(stage.profiles.every(p=>p.image && p.cardImage && fs.existsSync(p.image) && fs.existsSync(p.cardImage)));
+  assert.ok(stage.profiles.every(p=>manifest.files.includes(`people/${p.category}/oslo/toyenbadet/${p.id}.json`)));
   assert.equal(canonical.place_card_profile.collection_ids.includes('people'),true,
     'Anne Lindboe is approved and People must stay active after PR #7005');
   assert.deepEqual(canonical.place_card_profile.collection_ids,['people','objects','brands','competitions']);
@@ -30,13 +33,13 @@ test('Already-approved Anne Lindboe remains in canonical People and is not confu
   assert.ok(fs.existsSync(approved[0].image) && fs.existsSync(approved[0].cardImage));
   assert.ok(manifest.files.includes('people/politikk/oslo/toyenbadet/anne_lindboe.json'));
   const runtime=json('data/runtime/place-open/toyenbadet.json');
-  assert.deepEqual(runtime.people.map(x=>x.id),['anne_lindboe']);
-  assert.ok(stage.profiles.every(p=>!runtime.people.some(x=>x.id===p.id)),
-    'Unlicensed staged People must not enter Place-open');
+  assert.deepEqual(new Set(runtime.people.map(x=>x.id)), new Set(['anne_lindboe', ...stage.profiles.map(p=>p.id)]));
+  assert.equal(runtime.people.length,5,'Five published, distinct historical People must reach Place-open');
+  assert.ok(stage.profiles.every(p=>runtime.people.some(x=>x.id===p.id && x.image?.includes('_illustration.webp'))));
 });
 
 test('Every sentence and factual place link has a documented direct claim',()=>{
-  assert.equal(audit.publicationDecision,'hold_all_four_until_portrait_and_identity_review_pass');
+  assert.equal(audit.publicationDecision,'publish_four_as_labeled_original_ai_illustrations_no_photographic_identity_claim');
   const byId=new Map(audit.profiles.map(p=>[p.person_id,p]));
   for(const person of stage.profiles){
     const mapped=byId.get(person.id);
@@ -63,7 +66,9 @@ test('Every sentence and factual place link has a documented direct claim',()=>{
         assert.ok(s.claim_ids.every(id=>claims.has(id)));
       }
     }
-    assert.equal(mapped.imageReview.can_publish,false);
+    assert.equal(mapped.imageReview.can_publish,true);
+    assert.equal(mapped.imageReview.nonDocumentary,true);
+    assert.equal(mapped.imageReview.status,'approved_original_ai_illustration');
   }
 });
 test('Henrik Christiansen image source homonym may not become an identity match',()=>{
@@ -75,16 +80,17 @@ test('Henrik Christiansen image source homonym may not become an identity match'
   assert.match(audit.profiles.find(p=>p.person_id===henrik.id).identity.not[0],/1983/);
 });
 
-test('Portrait research is explicit, licensing-safe, and keeps all four profiles inactive',()=>{
+test('Authentic-photo research stays blocked; clearly marked AI artwork is authorized instead',()=>{
   for (const p of stage.profiles) {
     const gate=p.portrait_gate;
     assert.equal(gate.status,'blocked_rights_identification');
-    assert.equal(gate.assetPublicationDecision,'reject_until_identity_and_reuse_license_verified');
+    assert.equal(gate.assetPublicationDecision,'publish_original_ai_illustration_only');
     assert.ok(gate.photoSourcesReviewed?.length>0,'Missing explicit photo review for '+p.id);
     assert.ok(gate.photoSourcesReviewed.every(x=>x.url.startsWith('https://') && x.decision==='reject_as_canonical_portrait' && x.reason.length>15));
-    assert.equal(p.status,'staging_not_in_manifest');
-    assert.equal(p.image,'');
-    assert.equal(p.cardImage,'');
+    assert.equal(p.status,'published_with_ai_illustration');
+    assert.equal(p.image,p.cardImage);
+    assert.match(p.image,/_illustration\.webp$/);
+    assert.ok(fs.existsSync(p.image));
   }
   const henrik=stage.profiles.find(p=>p.id==='henrik_christiansen_svommer');
   assert.ok(henrik.portrait_gate.photoSourcesReviewed.some(x=>x.url.includes('Category:Henrik_Christiansen')&&x.reason.includes('1983')));

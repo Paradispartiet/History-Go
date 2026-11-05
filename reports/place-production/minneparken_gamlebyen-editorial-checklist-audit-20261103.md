@@ -1,8 +1,12 @@
 # Minneparken — stedssjekkliste, status 2026-11-03
 
-**Place ID:** `minneparken_gamlebyen`  
-**Branch:** `content/minneparken-kildebasert-leksikon-20261103`  
-**PR:** #6966 (draft)  
+
+
+**Place ID:** `minneparken_gamlebyen`
+
+**Branch:** `content/minneparken-kildebasert-leksikon-20261103`
+
+**PR:** #6966 (draft)
 **Samlet status:** **DELVIS IMPLEMENTERT / BLOCKED for merge, ikke v1, vFerdig eller V3 complete**.
 
 ## Gjennomførte endringer
@@ -205,4 +209,3 @@ Denne delen **erstatter teknisk foreldede statusformuleringer i tidligere kontro
 - **Siste kontrollert main-fletting på draft-grenen:** [Actions #41608954142](https://github.com/Paradispartiet/History-Go/actions/runs/41608954142) verifiserte eksakt innkommende main-endringsmengde, flettet fast Git-snapshot, regenererte Fagverk-release med den offisielle byggekoden og bestod Places, Epo­ker, Fagverk, full canonical Knowledge, Story-integritet, Minneparken-/Tøyenbadet-/Civication-tester og browsergjennomspilling på både mobil og desktop. Fullquiz **21/21**, QuizCard **10/10**, kildebelagt historisk frontfoto og ingen falske fysiske besøk ble bekreftet. Integrasjonen ble pushet **kun til PR-grenen** i [merge-commit d00f76f](https://github.com/Paradispartiet/History-Go/commit/d00f76f57c88ab58d43119a7326996a7dd468aea). PR er fortsatt draft; en helt fersk main-commit etter snapshotet kan skape ny divergens uten å ugyldiggjøre det testede snapshotet.
 - **Rydding:** Midlertidige sync-/main-flette-workflows er fjernet etter testgjennomføring. Permanente kilde-, Knowledge-, foto-, QuizCard- og Story-tester er beholdt.
 - **Beslutning: HOLD, ikke release.** Historie `status: blocked`, porter A–E `PASS`, F/G/H `N/A`. Gate F mangler dokumentert fysisk 2026-tilstand. G og H mangler uavhengig redaksjonell signatur og eksplisitt Story-/quiz-aktivering. Se den separate, oppdaterte [release- og overleveringsbeslutningen](minneparken_gamlebyen-release-readiness-20261103.md) med konkrete akseptkriterier. Ingen produksjonsmanifestaktivisering, merge til main eller deploy er utført.
-
