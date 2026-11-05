@@ -5,7 +5,6 @@ import { join } from 'path';
 import verifyArbeidsledig from './verify-civication-arbeidsledig-browser.js';
 import verifyOrganicPlayer from './verify-civication-organic-player-browser.js';
 import verifyThreeWeekLife from './verify-civication-21-day-browser.js';
-import verifyVisualQa from './verify-civication-visual-qa-browser.js';
 
 let playwright: any;
 try { playwright = require('playwright'); } catch { console.error('Playwright not installed'); process.exit(2); }
@@ -89,20 +88,7 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     report.people = await verifyPeople(browser, origin, outputDir);
     console.log('Civication People browser ok', JSON.stringify(report.people));
     const acceptanceFailures: string[] = [];
-    // Capture the actual top of «Min dag» and three map modes at mobile width.
-    // Chromium screenshots are review evidence, never a claim of physical
-    // iPhone/Safari approval or FPS certification.
-    try {
-      report.visualQa = await verifyVisualQa(browser, origin, outputDir);
-      console.log('Civication Min dag + mobile map visual QA', JSON.stringify({
-        mapType: report.visualQa.mapType, screenshots: report.visualQa.screenshots,
-        city: report.visualQa.city?.zoom, close: report.visualQa.close?.zoom
-      }));
-    } catch (error) {
-      report.visualQaError = String((error as Error)?.message || error);
-      acceptanceFailures.push('visualQa');
-      console.error('Civication visual QA capture failed:', report.visualQaError);
-    }
+    // Visual screenshot QA runs in a separate bounded process after this gate.
     // These are independent gates. The organic job-offer test must not prevent
     // collecting the results of all 20 multi-day scenarios, or vice versa.
     // Every PR must now prove the complete unseeded 21-day Min dag journey
