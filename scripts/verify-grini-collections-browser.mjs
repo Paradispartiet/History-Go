@@ -130,56 +130,35 @@ try {
       placeId,
       { timeout: 60_000 },
     );
-    const describeCollections = () => page.evaluate(({ collections }) => {
-      const card = document.getElementById('placeCard');
-      const grid = card?.querySelector('.pc-icons-quad');
-      return {
-        ready: window.__HG_APP_READY__,
-        router: window.__HG_ROUTER_STARTED__,
-        place: card?.dataset?.currentPlaceId,
-        mode: card?.dataset?.collectionMode,
-        count: card?.dataset?.collectionCount,
-        gridCount: card?.dataset?.collectionGridCount,
-        gridHtml: grid?.outerHTML.slice(0,1200),
-        icons: collections.map(({ id, iconId }) => {
-          const el = document.getElementById(iconId);
-          const rect = el?.getBoundingClientRect();
-          return {
-            id, iconId, exists: !!el, hidden:el?.hidden,
-            ariaHidden:el?.getAttribute('aria-hidden'),
-            collectionId:el?.dataset?.collectionId,
-            display:el?getComputedStyle(el).display:null,
-            visibility:el?getComputedStyle(el).visibility:null,
-            parent:el?.parentElement?.className,
-            rect:rect?{width:rect.width,height:rect.height,top:rect.top}:null,
-          };
-        }),
-      };
-    }, {collections:expectedUiCollections});
-    console.log('GRINI_COLLECTION_DIAGNOSTIC_INITIAL',profile.name,JSON.stringify(await describeCollections()));
     await page.waitForFunction(
       ({ count, collections }) => {
         const card = document.getElementById('placeCard');
         if (card?.dataset?.collectionMode !== 'place-card-collections-v2') return false;
         if (Number(card?.dataset?.collectionCount || 0) !== count) return false;
+        const editorial = card.classList.contains('is-unified-place')
+          && card.classList.contains('is-place-sheet-direct');
         return collections.every(({ iconId, id }) => {
           const el = document.getElementById(iconId);
           if (!(el instanceof HTMLElement)) return false;
           const rect = el.getBoundingClientRect();
-          return el.hidden !== true
-            && el.getAttribute('aria-hidden') !== 'true'
-            && rect.width > 0
-            && rect.height > 0
-            && el.dataset.collectionId === id;
+          if (el.hidden || el.getAttribute('aria-hidden') === 'true' || el.dataset.collectionId !== id) return false;
+          if (id === 'brands' && editorial) {
+            // The canonical Brands action remains in the old grid, while the
+            // visible, uncropped logo belongs at the end of the About section.
+            const gallery = card.querySelector('.pc-sheet-canonical-about [data-pc-round-gallery-brand="1"]');
+            const button = gallery?.querySelector('button');
+            const image = button?.querySelector('img');
+            const box = button?.getBoundingClientRect();
+            return getComputedStyle(el).display === 'none'
+              && box?.width > 0 && box?.height > 0
+              && image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
+          }
+          return rect.width > 0 && rect.height > 0;
         });
       },
       { count: expectedUiCollections.length, collections: expectedUiCollections },
-      { timeout: 12_000 },
-    ).catch(async error => {
-      console.error('GRINI_COLLECTION_DIAGNOSTIC_TIMEOUT',profile.name,JSON.stringify(await describeCollections()));
-      console.error('GRINI_COLLECTION_PAGE_ERRORS',JSON.stringify(pageErrors.slice(0,20)));
-      throw error;
-    });
+      { timeout: 60_000 },
+    );
     await page.waitForFunction(
       () => {
         const flip = document.getElementById('pcFrontCardFlip');
@@ -223,13 +202,21 @@ try {
         inCollectionGrid: Boolean(el?.closest('.pc-icons-quad')),
         itemCount: Number(el?.dataset?.collectionItemCount || 0),
         previewLoaded: image instanceof HTMLImageElement ? image.complete && image.naturalWidth > 0 : false,
+        brandInEditorialAbout: id === 'brands' && Boolean(
+          document.querySelector('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button')?.getBoundingClientRect().width > 0
+        ),
+        brandSourceHiddenByEditorialLayout: id === 'brands' && getComputedStyle(el).display === 'none',
       };
     }), expectedUiCollections);
 
     const popupChecks = [];
     for (const expected of expectedUiCollections) {
       const before = await page.evaluate(() => window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0);
-      await page.locator(`#${expected.iconId}`).click();
+      // The visible About-section Brands button delegates to the canonical popup.
+      const action = expected.id === 'brands'
+        ? page.locator('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button')
+        : page.locator(`#${expected.iconId}`);
+      await action.click();
       await page.waitForFunction(
         (count) => (window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0) > count,
         before,
@@ -383,6 +370,8 @@ try {
           ? item.inTitleRow && !item.inCollectionGrid
           : item.inCollectionGrid && item.position === expectedUiCollections.filter(row => row.id !== 'people').findIndex(row => row.id === item.id))
       ),
+      brandEditorialPlacement: collectionState.find(item => item.id === 'brands')?.brandInEditorialAbout === true
+        && collectionState.find(item => item.id === 'brands')?.brandSourceHiddenByEditorialLayout === true,
       collectionItemsPresent: collectionState.every((item) => item.itemCount >= 1),
       collectionPreviewsLoaded: collectionState.every((item) => item.previewLoaded === true),
       collectionPopups: popupChecks.every((item) => item.hasContent && item.title.trim().length > 0),
