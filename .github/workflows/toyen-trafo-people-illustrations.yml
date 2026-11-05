@@ -31,10 +31,16 @@ jobs:
         run: node scripts/build-toyen-trafo-people-illustrations.mjs
       - name: Regenerate canonical Place-open data
         run: npm run place-open:build
+      - name: Rebuild Civication People indexes from updated canonical profiles
+        run: |
+          npm run civication:history-people:build
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
       - name: Validate illustrations, runtime, and prior People contract
         run: |
           node --test tests/toyen-trafo-people-contract.test.mjs tests/toyen-trafo-people-illustrations.test.mjs
           npm run place-open:check
+          npm run civication:history-people:check
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
       - name: Commit and push generated People assets
         run: |
           git config user.name "github-actions[bot]"
@@ -43,6 +49,7 @@ jobs:
           git add data/people/by/oslo/toyen_trafo/thorvald_astrup.json data/people/kunst/oslo/toyen_trafo/kari_rolfsen.json
           git add data/runtime/people-all/part-*.json data/runtime/place-open/toyen_trafo.json
           git add reports/place-production/toyen-trafo-people-illustrations-20261105.json
+          git add data/Civication/historyPeople_index.json data/Civication/scenarioPeople_index.json data/Civication/scenarioPeople/generated/by.json data/Civication/scenarioPeople/generated/kunst.json
           if ! git diff --cached --quiet; then
             git commit -m "Tøyen trafo: integrate two AI-labeled original WebP People illustrations"
             git push origin "HEAD:${{ github.ref_name }}"
