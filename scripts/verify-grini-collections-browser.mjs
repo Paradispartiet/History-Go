@@ -268,11 +268,21 @@ try {
       await panel.waitFor({state:'visible',timeout:15000});
       await page.waitForFunction(sectionId=>{
         const section=document.querySelector('#placeCard [data-hg-place-sheet-section="'+sectionId+'"]');
-        const nav=document.querySelector('#placeCard [data-hg-place-sheet-nav]');
-        return section&&nav&&section.getBoundingClientRect().top>=nav.getBoundingClientRect().bottom-2;
+        const nav=document.querySelector('#placeCard > [data-hg-place-sheet-nav]');
+        const body=document.querySelector('#placeCard .pc-body');
+        if(!section||!nav||!body)return false;
+        const a=section.getBoundingClientRect(), n=nav.getBoundingClientRect(), b=body.getBoundingClientRect();
+        // Navigation is permanently at the BOTTOM of PlaceCard: verify the
+        // selected section starts in the visible reading pane ABOVE the nav.
+        return a.height>24 && n.height>0 && a.top>=b.top-2
+          && a.top<n.top-2 && a.bottom>b.top+24;
       },id,{timeout:15000}).catch(async error=>{
-        const geometry=await panel.evaluate(el=>({top:el.getBoundingClientRect().top,navBottom:document.querySelector('#placeCard [data-hg-place-sheet-nav]').getBoundingClientRect().bottom,scrollTop:document.querySelector('#placeCard .pc-body').scrollTop}));
-        throw new Error('Section start covered: '+id+' '+JSON.stringify(geometry),{cause:error});
+        const geometry=await panel.evaluate(el=>{
+          const r=x=>{const b=x?.getBoundingClientRect();return b?{top:b.top,bottom:b.bottom,height:b.height}:null};
+          const body=document.querySelector('#placeCard .pc-body');
+          return {section:r(el),nav:r(document.querySelector('#placeCard > [data-hg-place-sheet-nav]')),body:r(body),scrollTop:body?.scrollTop};
+        });
+        throw new Error('Selected section not visible above bottom navigation: '+id+' '+JSON.stringify(geometry),{cause:error});
       });
       if(id==='history') assert.match(await panel.innerText(),/1941|1942/);
       if(id==='stories') assert.match(await panel.innerText(),/Beskjeden om frihet/);
