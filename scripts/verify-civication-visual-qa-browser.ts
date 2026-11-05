@@ -72,6 +72,32 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       (globalThis as any).CivicationSystemMap?.getPresentationState?.() || null);
     assert.ok(overlay?.hudMinimized && overlay?.panelMinimized,
       'mobile map must start with system HUD and zone panel minimized');
+    const obstruction = await page.evaluate(() => {
+      const doc = (globalThis as any).document;
+      const style = (globalThis as any).getComputedStyle;
+      const map = doc.querySelector('#civiMapWorld').getBoundingClientRect();
+      const hud = doc.querySelector('.civi-system-hud').getBoundingClientRect();
+      const zone = doc.querySelector('.civi-system-panel').getBoundingClientRect();
+      const visibleArea = (rect: any) => Math.max(0, rect.width) * Math.max(0, rect.height);
+      const hudBtn = doc.querySelector('[data-civi-minimize-hud]');
+      const zoneBtn = doc.querySelector('[data-civi-minimize-panel]');
+      const hudRect = hudBtn?.getBoundingClientRect();
+      const zoneRect = zoneBtn?.getBoundingClientRect();
+      return {
+        fraction: (visibleArea(hud) + visibleArea(zone)) / visibleArea(map),
+        hudAria: hudBtn?.getAttribute('aria-label'),
+        zoneAria: zoneBtn?.getAttribute('aria-label'),
+        hudTouchWidth: hudRect?.width || 0,
+        zoneTouchWidth: zoneRect?.width || 0,
+        hidden: style(doc.querySelector('.civi-system-hud')).display === 'none'
+      };
+    });
+    assert.ok(!obstruction.hidden && obstruction.fraction < 0.20,
+      'compact map panels must occupy less than 20% of the map viewport');
+    assert.equal(obstruction.hudAria, 'Vis kartstatus');
+    assert.equal(obstruction.zoneAria, 'Vis sonepanel');
+    assert.ok(obstruction.hudTouchWidth >= 40 && obstruction.zoneTouchWidth >= 40,
+      'map panel controls must retain touch-friendly sizes');
 
     const captureMap = async (name: string) => {
       await page.waitForTimeout(300);
@@ -86,7 +112,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     });
     assert.ok(map.visible, 'map has a visible viewport on mobile');
 
-    const result: any = { viewport: { width: 390, height: 844 }, minDag, mapType, map, overlay, screenshots: [
+    const result: any = { viewport: { width: 390, height: 844 }, minDag, mapType, map, overlay, obstruction, screenshots: [
       'min-dag-mobile-top.png', 'map-mobile-city.png', 'map-mobile-overview.png', 'map-mobile-close.png'
     ] };
 
