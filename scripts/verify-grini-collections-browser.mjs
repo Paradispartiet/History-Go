@@ -254,9 +254,12 @@ try {
     await page.evaluate(id=>window.showPlacePopup(window.PLACES.find(p=>p.id===id)),placeId);
     const sheet=page.locator('#placeCard [data-hg-place-sheet-shell]');
     await sheet.waitFor({state:'visible',timeout:30000});
+    // The section navigation is a direct child of PlaceCard, outside its scroll body.
+    const nav=page.locator('#placeCard > [data-hg-place-sheet-nav="1"]');
+    await nav.waitFor({state:'visible',timeout:30000});
     const tabChecks=[];
     for(const id of ['about','history','stories','news','reading','sources','language','learning']) {
-      const jump=sheet.locator('[data-hg-place-sheet-jump="'+id+'"]');
+      const jump=nav.locator('[data-hg-place-sheet-jump="'+id+'"]');
       await jump.waitFor({state:'visible',timeout:30000});
       // Sticky navigation and scrollIntoView can make pointer auto-scrolling
       // oscillate on narrow viewports; exercise the actual keyboard action.
@@ -283,9 +286,9 @@ try {
       tabChecks.push({id,textLength:(await panel.innerText()).length});
       await page.screenshot({path:path.join(outDir,profile.name+'-section-'+id+'.png')});
     }
-    assert.equal(await sheet.locator('[data-hg-place-sheet-jump="before-after"]').isHidden(),true,'No invented before/after pair may be shown');
+    assert.equal(await nav.locator('[data-hg-place-sheet-jump="before-after"]').isHidden(),true,'No invented before/after pair may be shown');
     fs.writeFileSync(path.join(outDir,profile.name+'-tabs.json'),JSON.stringify(tabChecks,null,2));
-    await sheet.locator('[data-hg-place-sheet-jump="about"]').press('Enter');
+    await nav.locator('[data-hg-place-sheet-jump="about"]').press('Enter');
     const beforeFlipText = await page.locator('#pcQuizCardContent').textContent();
     await page.locator('#pcFrontCardFlip').click();
     await page.waitForFunction(
