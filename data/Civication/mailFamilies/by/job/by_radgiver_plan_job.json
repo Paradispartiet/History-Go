@@ -1940,13 +1940,14 @@
           "place_id": "radhuset_planavdeling",
           "thread_key": "by_radgiver_lillebekk_realism_001",
           "subject": "Lillebekk blir din sak: skoleveien finnes i hverdagen, men ikke i beslutningsgrunnlaget",
-          "summary": "Elin gir deg ansvar for å gjøre Lillebekk behandlingsklar. Det formelle kartet ser ryddig ut, men befaring og medvirkning viser en faktisk skolevei og et grøntdrag med overvannsfunksjon som ikke er godt nok dokumentert.",
+          "summary": "Elin gir deg ansvar for å gjøre Lillebekk behandlingsklar. Det formelle kartet ser ryddig ut, men befaring og medvirkning viser en faktisk skolevei og et grøntdrag med overvannsfunksjon som ikke er godt nok dokumentert. Dersom du har arbeidet med Lillebekk tidligere, følger bare faktisk registrerte faglige funn og åpne avvik med til den formelle behandlingen.",
           "purpose": "Åpne én vedvarende plansak som må overleve gjennom analyse, godkjenning, History Go-læring, rework og politisk oversendelse.",
           "stakes": "Hvis saken behandles som en serie enkeltmailer kan ansvar og usikkerhet forsvinne. Hvis den holdes som én sak må hvert senere valg stå i et spor som andre kan etterprøve.",
           "situation": [
             "Utbygger trenger forutsigbarhet før prosjekteringen går videre.",
             "Hanne har dokumentert faktisk skolevei, mens Signe peker på at grøntdraget også fungerer som flomvei.",
-            "Elin ber deg eie det faglige grunnlaget, men minner om at du ikke eier det politiske vedtaket."
+            "Elin ber deg eie det faglige grunnlaget, men minner om at du ikke eier det politiske vedtaket.",
+            "Tidligere registrerte analyser og avvik kan gjenbrukes som sporbar saksdokumentasjon. Det er ikke en godkjenning, og ubesvarte spørsmål forblir åpne."
           ],
           "task_domain": "vedvarende_reguleringssak",
           "task_kind": "job",
@@ -2009,6 +2010,70 @@
                   ],
                   "shared": true
                 }
+              },
+              {
+                "op": "carry_forward_flags",
+                "event_id": "by_radgiver_lillebekk_early_evidence_handoff_001",
+                "from_work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                "flag_mappings": [
+                  {
+                    "source_flag": "map_conflict_written_for_review",
+                    "target_flag": "early_map_conflict_documented"
+                  },
+                  {
+                    "source_flag": "map_conflict_not_verified",
+                    "target_flag": "early_map_conflict_not_verified"
+                  },
+                  {
+                    "source_flag": "green_corridor_draft_requirement_proposed",
+                    "target_flag": "early_green_corridor_requirement_proposed"
+                  },
+                  {
+                    "source_flag": "green_corridor_maintenance_only_unverified",
+                    "target_flag": "early_green_corridor_unsecured"
+                  },
+                  {
+                    "source_flag": "school_route_pre_occupancy_condition_proposed",
+                    "target_flag": "early_school_route_condition_proposed"
+                  },
+                  {
+                    "source_flag": "school_route_timing_unverified",
+                    "target_flag": "early_school_route_timing_unverified"
+                  },
+                  {
+                    "source_flag": "developer_informal_signal_to_correct",
+                    "target_flag": "early_developer_signal_needs_correction"
+                  },
+                  {
+                    "source_flag": "developer_signal_unrecorded",
+                    "target_flag": "early_developer_signal_unrecorded"
+                  },
+                  {
+                    "source_flag": "participation_comments_evaluated",
+                    "target_flag": "early_participation_evaluated"
+                  },
+                  {
+                    "source_flag": "participation_record_missing",
+                    "target_flag": "early_participation_record_missing"
+                  },
+                  {
+                    "source_flag": "stormwater_condition_proposed",
+                    "target_flag": "early_stormwater_condition_proposed"
+                  },
+                  {
+                    "source_flag": "stormwater_unsecured_in_plan",
+                    "target_flag": "early_stormwater_unsecured"
+                  },
+                  {
+                    "source_flag": "material_risks_stated_for_politics",
+                    "target_flag": "early_material_risks_visible"
+                  },
+                  {
+                    "source_flag": "material_risks_not_explicit",
+                    "target_flag": "early_material_risks_hidden"
+                  }
+                ]
               }
             ]
           },
