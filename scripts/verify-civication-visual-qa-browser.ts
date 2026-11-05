@@ -24,26 +24,27 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       const app = globalThis as any;
       return !!app.CivicationWorldMood?.getPeriod
         && !!app.CivicationLifestoryUI?.getCurrentSceneInfo
-        && !!document.querySelector('.civi-day-miniature-phase')
-        && !!document.querySelector('#civiLifestoryPanel .civi-lifestory-scene');
+        && !!app.doc.querySelector('.civi-day-miniature-phase')
+        && !!app.doc.querySelector('#civiLifestoryPanel .civi-lifestory-scene');
     }, null, { timeout: 90000 });
 
     await page.locator('#civiLifestorySection h2').scrollIntoViewIfNeeded();
     const minDag = await page.evaluate(() => {
-      const header = document.querySelector('.civi-day-miniature-header');
-      const label = document.querySelector('.civi-day-miniature-label');
-      const art = document.querySelector('.civi-day-miniature-art');
-      const phase = document.querySelector('.civi-day-miniature-phase');
-      const scene = document.querySelector('#civiLifestoryPanel .civi-lifestory-scene');
+      const doc = (globalThis as any).document;
+      const header = doc.querySelector('.civi-day-miniature-header');
+      const label = doc.querySelector('.civi-day-miniature-label');
+      const art = doc.querySelector('.civi-day-miniature-art');
+      const phase = doc.querySelector('.civi-day-miniature-phase');
+      const scene = doc.querySelector('#civiLifestoryPanel .civi-lifestory-scene');
       const h = header?.getBoundingClientRect();
       const l = label?.getBoundingClientRect();
       const a = art?.getBoundingClientRect();
       return {
-        period: document.querySelector('.civi-day-miniature-period')?.textContent?.trim() || '',
+        period: doc.querySelector('.civi-day-miniature-period')?.textContent?.trim() || '',
         phase: phase?.textContent?.trim() || '',
         headerFits: !!h && !!l && !!a && a.right <= h.right + 2 && l.right <= a.left + 2,
         artSize: a ? { width: a.width, height: a.height } : null,
-        sceneVisible: !!scene && getComputedStyle(scene).display !== 'none',
+        sceneVisible: !!scene && (globalThis as any).getComputedStyle(scene).display !== 'none',
         choiceCount: document.querySelectorAll('#civiLifestoryPanel [data-lifestory-choice]').length
       };
     });
@@ -54,7 +55,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     await capture('min-dag-mobile-top.png');
 
     await page.locator('#btnCiviMap').click();
-    await page.waitForFunction(() => document.body.classList.contains('civi-mapmode'), null, { timeout: 15000 });
+    await page.waitForFunction(() => (globalThis as any).document.body.classList.contains('civi-mapmode'), null, { timeout: 15000 });
     await page.waitForTimeout(600);
 
     const mapType = await page.evaluate(() => {
@@ -70,7 +71,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     };
 
     const map = await page.evaluate(() => {
-      const host = document.querySelector('#civiMapWorld');
+      const host = (globalThis as any).document.querySelector('#civiMapWorld');
       const rect = host?.getBoundingClientRect();
       return { visible: !!rect && rect.width > 200 && rect.height > 200,
         width: rect?.width || 0, height: rect?.height || 0 };
