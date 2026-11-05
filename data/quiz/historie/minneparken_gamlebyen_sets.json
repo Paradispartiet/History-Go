@@ -1,0 +1,1337 @@
+{
+  "targetId": "minneparken_gamlebyen",
+  "categoryId": "historie",
+  "title": "Minneparken – ruiner, nærpark og byens historiske lag",
+  "sources": {
+    "byleks": "https://oslobyleksikon.no/side/Minneparken",
+    "kommune": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/",
+    "kommune_2024": "https://aktuelt.oslo.kommune.no/na-blir-det-mer-liv-i-middelalderbyen",
+    "molaug_nov2025": "https://www.middelalder.no/middelalderbyen-i-dag/middelalderbeltet/589-minneparken-og-hallvardskatedralen",
+    "molaug_sep2025": "https://www.middelalder.no/oslo-i-middelalderen/arkeologiske-funn/576-minneparken-og-hallvardskatedralen"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/minneparken_gamlebyen.json",
+    "context_artifact": "data/quiz/production_context/historie/minneparken_gamlebyen.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quizcards/historie/manifest.json",
+        "data/quiz/historie/ (målfilnavn)",
+        "data/quizcards/historie/ (målfilnavn)"
+      ],
+      "active_before": {
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "Ingen aktiv Minneparken-oppføring i de inspiserte manifestene; eksisterende quizReadiness er bare research, ikke publisert quiz.",
+        "Ingen quiz- eller QuizCard-registrering skal aktiveres før målrettet QA, Knowledge-synk og kildereview."
+      ],
+      "knowledge_migration": "Ingen dokumentert eksisterende aktiv Minneparken-quiz; generer og kontroller canonical Knowledge før manifestaktivering."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "confirmed": false,
+      "justification": "Foreløpig narrow 3×7: 21 separate påstander om middelalder, borgerpark, 1918–1932, senere inngrep og kulturminnevern. Første 14 er normale spørsmål, siste 7 fordyper kildekritikk og materialitet. Profilen må faglig vurderes før aktivisering; ikke fyll flere sett med gjentakelser."
+    },
+    "held_back_candidates": [
+      "Nåværende park-/sti-status i november 2026 uten fersk dokumentasjon.",
+      "Nøyaktig oppstartstidspunkt for veidekke eller fullt anleggsprosjekt utover kildenes årsangivelser.",
+      "Materialpåstander som gjør oppmurt apside til ubrutt originalmiddelaldermur.",
+      "Objects/Brands og historiske hendelser uten selvstendig canonical kontroll.",
+      "Teori-/Knowledge-koblinger uten verifisert full kontekstbygging."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "release_gate": "not_active_pending_knowledge_review_and_quizcard_runtime_QA"
+  },
+  "sets": [
+    {
+      "set_id": "historie_minneparken_gamlebyen_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Middelalderens kirkeområde",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_minneparken_quiz_01",
+        "claim_minneparken_quiz_02",
+        "claim_minneparken_quiz_03",
+        "claim_minneparken_quiz_04",
+        "claim_minneparken_quiz_05",
+        "claim_minneparken_quiz_06",
+        "claim_minneparken_quiz_07"
+      ],
+      "questions": [
+        {
+          "id": "minneparken_gamlebyen_quiz_01",
+          "quiz_id": "historie_minneparken_gamlebyen_set_1_q1",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvor ligger Minneparken?",
+          "options": [
+            "Ved Akershusstranda",
+            "Ved Majorstuen",
+            "Ved Oslo gate og Bispegata",
+            "Ved Sofienbergparken"
+          ],
+          "answer": "Ved Oslo gate og Bispegata",
+          "answerIndex": 2,
+          "knowledge": "Parken ligger i Gamlebyen der flere middelalderske kirkesteder inngikk i byens geistlige sentrum.",
+          "explanation": "Parken ligger i Gamlebyen der flere middelalderske kirkesteder inngikk i byens geistlige sentrum.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_01",
+          "claim_basis": "Plassering ved Oslo gate og Bispegata og middelalderens geistlige sentrum.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "Plassering ved Oslo gate og Bispegata og middelalderens geistlige sentrum.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_parken_ligger_i_gamlebye_15405ef805",
+          "knowledge_unit_ids": [
+            "ku_historie_parken_ligger_i_gamlebye_15405ef805"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_02",
+          "quiz_id": "historie_minneparken_gamlebyen_set_1_q2",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvilke bygningsruiner finnes blant annet i Minneparken?",
+          "options": [
+            "Hallvardskatedralen og Olavsklostret",
+            "Oslo rådhus og Slottet",
+            "Vikingskipshuset og Kon-Tiki",
+            "Gamle Aker kirke og Uranienborg kirke"
+          ],
+          "answer": "Hallvardskatedralen og Olavsklostret",
+          "answerIndex": 0,
+          "knowledge": "Ruinområdet rommer også andre kirkebygninger og gravplasser. Minneparken er ikke identisk med én enkelt ruin.",
+          "explanation": "Ruinområdet rommer også andre kirkebygninger og gravplasser. Minneparken er ikke identisk med én enkelt ruin.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "kommune"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_02",
+          "claim_basis": "Ruiner av Hallvardskatedralen, kirker og Olavsklostret, samt gravplasser.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_kommune",
+              "source_type": "official",
+              "title": "Oslo kommune – Minneparken",
+              "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/",
+              "claim_basis": "Ruiner av Hallvardskatedralen, kirker og Olavsklostret, samt gravplasser.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_ruinomradet_rommer_ogsa__40c93b0767",
+          "knowledge_unit_ids": [
+            "ku_historie_ruinomradet_rommer_ogsa__40c93b0767",
+            "ku_historie_minneparken_er_ikke_iden_f9934bdbbe"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_03",
+          "quiz_id": "historie_minneparken_gamlebyen_set_1_q3",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvilken funksjon hadde Hallvardskatedralen i middelalderens Oslo?",
+          "options": [
+            "Den var et rådhus",
+            "Den var et militærfort",
+            "Den var en handelsbod",
+            "Den var byens domkirke"
+          ],
+          "answer": "Den var byens domkirke",
+          "answerIndex": 3,
+          "knowledge": "Katedralen var sentral i det kirkelige Oslo. Kirkeruinene er historiske spor, ikke en kirke som fortsatt står intakt.",
+          "explanation": "Katedralen var sentral i det kirkelige Oslo. Kirkeruinene er historiske spor, ikke en kirke som fortsatt står intakt.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "kommune_2024"
+          ],
+          "source_urls": [
+            "https://aktuelt.oslo.kommune.no/na-blir-det-mer-liv-i-middelalderbyen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_03",
+          "claim_basis": "Hallvardskatedralen var domkirke i middelalderens Oslo.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_kommune_2024",
+              "source_type": "official",
+              "title": "Oslo kommune – Nå blir det mer liv i Middelalderbyen (2024)",
+              "url": "https://aktuelt.oslo.kommune.no/na-blir-det-mer-liv-i-middelalderbyen",
+              "claim_basis": "Hallvardskatedralen var domkirke i middelalderens Oslo.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_katedralen_var_sentral_i_73f60abad3",
+          "knowledge_unit_ids": [
+            "ku_historie_katedralen_var_sentral_i_73f60abad3",
+            "ku_historie_kirkeruinene_er_historis_6e2d965b3e"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_04",
+          "quiz_id": "historie_minneparken_gamlebyen_set_1_q4",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvilken munkeorden var knyttet til Olavsklostret på 1200-tallet?",
+          "options": [
+            "Benediktinerne",
+            "Dominikanerne",
+            "Cistercienserne",
+            "Fransiskanerne"
+          ],
+          "answer": "Dominikanerne",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon omtaler Olavsklostret som et dominikanerkloster fra 1200-tallet.",
+          "explanation": "Oslo byleksikon omtaler Olavsklostret som et dominikanerkloster fra 1200-tallet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_04",
+          "claim_basis": "Olavsklostret var et dominikanerkloster fra 1200-tallet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "Olavsklostret var et dominikanerkloster fra 1200-tallet.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_oslo_byleksikon_omtaler__f1cd2b0db9",
+          "knowledge_unit_ids": [
+            "ku_historie_oslo_byleksikon_omtaler__f1cd2b0db9"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_05",
+          "quiz_id": "historie_minneparken_gamlebyen_set_1_q5",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hva slags bygning var Korskirken nord for klosteret?",
+          "options": [
+            "Et tollhus",
+            "En militærkasern",
+            "En mindre sognekirke",
+            "Et middelaldersk rådhus"
+          ],
+          "answer": "En mindre sognekirke",
+          "answerIndex": 2,
+          "knowledge": "Korskirken beskrives som en mindre sognekirke fra 1300-tallet, og bidrar til å vise at området omfattet flere religiøse bygg.",
+          "explanation": "Korskirken beskrives som en mindre sognekirke fra 1300-tallet, og bidrar til å vise at området omfattet flere religiøse bygg.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_05",
+          "claim_basis": "Nord for Olavsklostret lå Korskirken, en sognekirke fra 1300-tallet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "Nord for Olavsklostret lå Korskirken, en sognekirke fra 1300-tallet.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_korskirken_beskrives_som_dbf1e8022e",
+          "knowledge_unit_ids": [
+            "ku_historie_korskirken_beskrives_som_dbf1e8022e"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_06",
+          "quiz_id": "historie_minneparken_gamlebyen_set_1_q6",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "I hvilket århundre ble Hallvardskatedralen oppført?",
+          "options": [
+            "1100-tallet",
+            "1400-tallet",
+            "1700-tallet",
+            "1900-tallet"
+          ],
+          "answer": "1100-tallet",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon plasserer katedralens oppføring tidlig på 1100-tallet. En ruinpark fra 1932 viser dermed rester av langt eldre bygninger.",
+          "explanation": "Oslo byleksikon plasserer katedralens oppføring tidlig på 1100-tallet. En ruinpark fra 1932 viser dermed rester av langt eldre bygninger.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_06",
+          "claim_basis": "St. Hallvardskatedralen ble oppført tidlig på 1100-tallet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "St. Hallvardskatedralen ble oppført tidlig på 1100-tallet.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_oslo_byleksikon_plassere_a9f65e9559",
+          "knowledge_unit_ids": [
+            "ku_historie_oslo_byleksikon_plassere_a9f65e9559",
+            "ku_historie_en_ruinpark_fra_1932_vis_761be710a6"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_07",
+          "quiz_id": "historie_minneparken_gamlebyen_set_1_q7",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvorfor bør Minneparken og Middelalderparken omtales som forskjellige parker?",
+          "options": [
+            "De er samme park, men har forskjellige navn i gamle kart",
+            "Minneparken er en privat hage utenfor Oslo sentrum",
+            "Middelalderparken er bare et annet navn på Olavsklostret",
+            "De er to ulike navngitte parkområder i Middelalderbyen"
+          ],
+          "answer": "De er to ulike navngitte parkområder i Middelalderbyen",
+          "answerIndex": 3,
+          "knowledge": "Minneparken kalles også Ruinparken, men må skilles fra Middelalderparken lenger sør i Middelalderbyen.",
+          "explanation": "Minneparken kalles også Ruinparken, men må skilles fra Middelalderparken lenger sør i Middelalderbyen.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "kommune_2024"
+          ],
+          "source_urls": [
+            "https://aktuelt.oslo.kommune.no/na-blir-det-mer-liv-i-middelalderbyen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_07",
+          "claim_basis": "Minneparken og Middelalderparken er to ulike navngitte parker i Gamlebyen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_kommune_2024",
+              "source_type": "official",
+              "title": "Oslo kommune – Nå blir det mer liv i Middelalderbyen (2024)",
+              "url": "https://aktuelt.oslo.kommune.no/na-blir-det-mer-liv-i-middelalderbyen",
+              "claim_basis": "Minneparken og Middelalderparken er to ulike navngitte parker i Gamlebyen.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_minneparken_kalles_ogsa__57d93c4008",
+          "knowledge_unit_ids": [
+            "ku_historie_minneparken_kalles_ogsa__57d93c4008"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_minneparken_gamlebyen_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "title": "Fra nærpark til ruinpark",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_minneparken_quiz_08",
+        "claim_minneparken_quiz_09",
+        "claim_minneparken_quiz_10",
+        "claim_minneparken_quiz_11",
+        "claim_minneparken_quiz_12",
+        "claim_minneparken_quiz_13",
+        "claim_minneparken_quiz_14"
+      ],
+      "questions": [
+        {
+          "id": "minneparken_gamlebyen_quiz_08",
+          "quiz_id": "historie_minneparken_gamlebyen_set_2_q1",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvorfor var beboerne skeptiske til bystyrets nye parkplan?",
+          "options": [
+            "De ville flytte middelalderruinene til Akershus",
+            "De mente at området bare skulle brukes som havn",
+            "De ville beholde en nærpark de selv hadde opprettet og støttet",
+            "De ønsket en ny motorvei gjennom Gamlebyen"
+          ],
+          "answer": "De ville beholde en nærpark de selv hadde opprettet og støttet",
+          "answerIndex": 2,
+          "knowledge": "Beboernes lokale park var en viktig grunn til at de var skeptiske til den nye ruinparkplanen.",
+          "explanation": "Beboernes lokale park var en viktig grunn til at de var skeptiske til den nye ruinparkplanen.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_08",
+          "claim_basis": "Beboerne i Gamlebyen hadde siden 1870-årene støttet en liten nærpark, og flere var skeptiske til minneparkplanen fordi de ønsket å beholde den.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "Beboerne i Gamlebyen hadde siden 1870-årene støttet en liten nærpark, og flere var skeptiske til minneparkplanen fordi de ønsket å beholde den.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_beboernes_lokale_park_va_84e3ba7616",
+          "knowledge_unit_ids": [
+            "ku_historie_beboernes_lokale_park_va_84e3ba7616"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_09",
+          "quiz_id": "historie_minneparken_gamlebyen_set_2_q2",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hva vedtok bystyret i 1918?",
+          "options": [
+            "Å bygge en ny domkirke",
+            "Å flytte Olavsklostret",
+            "Å åpne E18 over området",
+            "Å opprette Minneparken"
+          ],
+          "answer": "Å opprette Minneparken",
+          "answerIndex": 3,
+          "knowledge": "Vedtaket ble møtt med skepsis fra lokale beboere som ønsket å beholde parken de hadde vært med på å etablere.",
+          "explanation": "Vedtaket ble møtt med skepsis fra lokale beboere som ønsket å beholde parken de hadde vært med på å etablere.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_09",
+          "claim_basis": "Bystyret vedtok en minnepark i 1918.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "Bystyret vedtok en minnepark i 1918.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_vedtaket_ble_m_tt_med_sk_127133a4b3",
+          "knowledge_unit_ids": [
+            "ku_historie_vedtaket_ble_m_tt_med_sk_127133a4b3"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_10",
+          "quiz_id": "historie_minneparken_gamlebyen_set_2_q3",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvem utarbeidet parkplanen som ble godkjent i 1928?",
+          "options": [
+            "Gerhard Fischer",
+            "Harry Fett",
+            "Edvard Munch",
+            "Christian Krohg"
+          ],
+          "answer": "Gerhard Fischer",
+          "answerIndex": 0,
+          "knowledge": "Gerhard Fischer ledet arkeologiske undersøkelser og fikk sin plan for Minneparken godkjent i 1928.",
+          "explanation": "Gerhard Fischer ledet arkeologiske undersøkelser og fikk sin plan for Minneparken godkjent i 1928.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_10",
+          "claim_basis": "Gerhard Fischers parkplan ble godkjent i 1928 etter arkeologiske undersøkelser.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "Gerhard Fischers parkplan ble godkjent i 1928 etter arkeologiske undersøkelser.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_gerhard_fischer_ledet_ar_d652b1c03b",
+          "knowledge_unit_ids": [
+            "ku_historie_gerhard_fischer_ledet_ar_d652b1c03b"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_11",
+          "quiz_id": "historie_minneparken_gamlebyen_set_2_q4",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvem holdt tale ved Minneparkens åpning i 1932?",
+          "options": [
+            "Gerhard Fischer",
+            "Håkon VII",
+            "Harry Fett",
+            "Petter Molaug"
+          ],
+          "answer": "Harry Fett",
+          "answerIndex": 2,
+          "knowledge": "Riksantikvar Harry Fett holdt tale ved åpningen. Åpningen kom fire år etter godkjenningen av parkplanen.",
+          "explanation": "Riksantikvar Harry Fett holdt tale ved åpningen. Åpningen kom fire år etter godkjenningen av parkplanen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_11",
+          "claim_basis": "Minneparken åpnet høytidelig i 1932 med tale av riksantikvar Harry Fett.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "Minneparken åpnet høytidelig i 1932 med tale av riksantikvar Harry Fett.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_riksantikvar_harry_fett__0b7f5941f3",
+          "knowledge_unit_ids": [
+            "ku_historie_riksantikvar_harry_fett__0b7f5941f3",
+            "ku_historie_apningen_kom_fire_ar_ett_b1e30a05cb"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_12",
+          "quiz_id": "historie_minneparken_gamlebyen_set_2_q5",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hva ble ferdigstilt i forbindelse med byjubileet i 1950?",
+          "options": [
+            "Hallvardskatedralens middelalderbygg",
+            "Klosterhagen",
+            "E18-betonglokket",
+            "Oslo rådhuspark"
+          ],
+          "answer": "Klosterhagen",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon knytter ferdigstillingen av Klosterhagen til byjubileet i 1950, etter ruinparkens åpning i 1932.",
+          "explanation": "Oslo byleksikon knytter ferdigstillingen av Klosterhagen til byjubileet i 1950, etter ruinparkens åpning i 1932.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_12",
+          "claim_basis": "Klosterhagen ble ferdigstilt i forbindelse med byjubileet i 1950.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "Klosterhagen ble ferdigstilt i forbindelse med byjubileet i 1950.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_oslo_byleksikon_knytter__a7fb7faeee",
+          "knowledge_unit_ids": [
+            "ku_historie_oslo_byleksikon_knytter__a7fb7faeee"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_13",
+          "quiz_id": "historie_minneparken_gamlebyen_set_2_q6",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hva omtaler Oslo byleksikon som et tiltak i Minneparken i 1991?",
+          "options": [
+            "Ny istandsetting og utbedring",
+            "Oppføring av en ny domkirke",
+            "Åpning av jernbanetunnel under Oslofjorden",
+            "Opprettelse av middelalderklosteret"
+          ],
+          "answer": "Ny istandsetting og utbedring",
+          "answerIndex": 0,
+          "knowledge": "Minneparken har fått flere etapper av istandsetting; alle dagens synlige omgivelser stammer derfor ikke fra 1932.",
+          "explanation": "Minneparken har fått flere etapper av istandsetting; alle dagens synlige omgivelser stammer derfor ikke fra 1932.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Minneparken"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_13",
+          "claim_basis": "Minneparken hadde en ny istandsetting og utbedring i 1991.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_byleks",
+              "source_type": "reputable_secondary",
+              "title": "Oslo byleksikon – Minneparken",
+              "url": "https://oslobyleksikon.no/side/Minneparken",
+              "claim_basis": "Minneparken hadde en ny istandsetting og utbedring i 1991.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_minneparken_har_fatt_fle_67da341f86",
+          "knowledge_unit_ids": [
+            "ku_historie_minneparken_har_fatt_fle_67da341f86"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_14",
+          "quiz_id": "historie_minneparken_gamlebyen_set_2_q7",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvorfor var deler av ruinområdet berørt allerede før parken åpnet i 1932?",
+          "options": [
+            "En flyplass var anlagt over kirkeruinene",
+            "Et kjøpesenter lå på hele ruinområdet",
+            "Jernbanearbeider hadde skåret gjennom området",
+            "En idrettsbane var bygget over kirkegården"
+          ],
+          "answer": "Jernbanearbeider hadde skåret gjennom området",
+          "answerIndex": 2,
+          "knowledge": "Kommunen beskriver tidligere jernbanearbeider gjennom ruiner før Minneparken ble åpnet. Veibygging påvirket området i en senere fase.",
+          "explanation": "Kommunen beskriver tidligere jernbanearbeider gjennom ruiner før Minneparken ble åpnet. Veibygging påvirket området i en senere fase.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "kommune"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_14",
+          "claim_basis": "Jernbanearbeider hadde allerede skåret gjennom ruiner før parken åpnet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_kommune",
+              "source_type": "official",
+              "title": "Oslo kommune – Minneparken",
+              "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/",
+              "claim_basis": "Jernbanearbeider hadde allerede skåret gjennom ruiner før parken åpnet.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kommunen_beskriver_tidli_98647e2e34",
+          "knowledge_unit_ids": [
+            "ku_historie_kommunen_beskriver_tidli_98647e2e34",
+            "ku_historie_veibygging_pavirket_omra_08b26762c0"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_minneparken_gamlebyen_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "title": "Vern, spor og kilder",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_minneparken_quiz_15",
+        "claim_minneparken_quiz_16",
+        "claim_minneparken_quiz_17",
+        "claim_minneparken_quiz_18",
+        "claim_minneparken_quiz_19",
+        "claim_minneparken_quiz_20",
+        "claim_minneparken_quiz_21"
+      ],
+      "questions": [
+        {
+          "id": "minneparken_gamlebyen_quiz_15",
+          "quiz_id": "historie_minneparken_gamlebyen_set_3_q1",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvorfor ble det lagt betong over deler av katedralruinen på 1960-tallet?",
+          "options": [
+            "For å bygge et nytt kloster",
+            "For å fjerne spor etter katedralen",
+            "For å dyrke grønnsaker",
+            "For å beskytte ruinene mot E18-trafikken"
+          ],
+          "answer": "For å beskytte ruinene mot E18-trafikken",
+          "answerIndex": 3,
+          "knowledge": "Et firefelts veianlegg ble ført over deler av området. Dekket beskyttet murverk, men skjulte samtidig viktige historiske spor.",
+          "explanation": "Et firefelts veianlegg ble ført over deler av området. Dekket beskyttet murverk, men skjulte samtidig viktige historiske spor.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "kommune"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_15",
+          "claim_basis": "På 1960-tallet ble et betonglokk lagt over deler av Hallvardskatedralens ruiner for å beskytte dem under E18.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_kommune",
+              "source_type": "official",
+              "title": "Oslo kommune – Minneparken",
+              "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/",
+              "claim_basis": "På 1960-tallet ble et betonglokk lagt over deler av Hallvardskatedralens ruiner for å beskytte dem under E18.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_et_firefelts_veianlegg_b_bac1e87cdf",
+          "knowledge_unit_ids": [
+            "ku_historie_et_firefelts_veianlegg_b_bac1e87cdf",
+            "ku_historie_dekket_beskyttet_murverk_08595e952d"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_16",
+          "quiz_id": "historie_minneparken_gamlebyen_set_3_q2",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hva var ulempen med betonglokket for besøkende?",
+          "options": [
+            "Parken ble flyttet til Ekeberg",
+            "Deler av ruinene ble mindre synlige",
+            "Middelalderens bygninger ble ferdig restaurert",
+            "Det ble en ny stående domkirke"
+          ],
+          "answer": "Deler av ruinene ble mindre synlige",
+          "answerIndex": 1,
+          "knowledge": "Vern av fysisk materiale og muligheten til å se det er ikke alltid det samme. Minneparken viser spenningen mellom beskyttelse og formidling.",
+          "explanation": "Vern av fysisk materiale og muligheten til å se det er ikke alltid det samme. Minneparken viser spenningen mellom beskyttelse og formidling.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "kommune_2024"
+          ],
+          "source_urls": [
+            "https://aktuelt.oslo.kommune.no/na-blir-det-mer-liv-i-middelalderbyen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_16",
+          "claim_basis": "Betongdekket beskyttet murene, men gjorde samtidig deler av ruinene usynlige for publikum.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_kommune_2024",
+              "source_type": "official",
+              "title": "Oslo kommune – Nå blir det mer liv i Middelalderbyen (2024)",
+              "url": "https://aktuelt.oslo.kommune.no/na-blir-det-mer-liv-i-middelalderbyen",
+              "claim_basis": "Betongdekket beskyttet murene, men gjorde samtidig deler av ruinene usynlige for publikum.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_vern_av_fysisk_materiale_8622e22344",
+          "knowledge_unit_ids": [
+            "ku_historie_vern_av_fysisk_materiale_8622e22344",
+            "ku_historie_minneparken_viser_spenni_5ab4abdceb"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_17",
+          "quiz_id": "historie_minneparken_gamlebyen_set_3_q3",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hva skjedde med apsidemuren ved det romanske høykoret under arbeidene i 2024?",
+          "options": [
+            "Den ble flyttet til Akershus festning",
+            "Den ble revet uten dokumentasjon",
+            "Den ble murt opp på nytt",
+            "Den ble erstattet av en glasskuppel"
+          ],
+          "answer": "Den ble murt opp på nytt",
+          "answerIndex": 2,
+          "knowledge": "Petter Molaug skiller mellom frigjort eldre murverk og nyere oppmuring av apsiden. Synlige steinmurer kan derfor omfatte både originale og rekonstruerte deler.",
+          "explanation": "Petter Molaug skiller mellom frigjort eldre murverk og nyere oppmuring av apsiden. Synlige steinmurer kan derfor omfatte både originale og rekonstruerte deler.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "molaug_nov2025"
+          ],
+          "source_urls": [
+            "https://www.middelalder.no/middelalderbyen-i-dag/middelalderbeltet/589-minneparken-og-hallvardskatedralen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_17",
+          "claim_basis": "Betongdekket over sørmuren ble fjernet i 2024, og det romanske høykorets apsidemur ble murt opp på nytt.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_molaug_nov2025",
+              "source_type": "museum_or_heritage",
+              "title": "Middelalder-Oslo – Minneparken og Hallvardskatedralen (november 2025)",
+              "url": "https://www.middelalder.no/middelalderbyen-i-dag/middelalderbeltet/589-minneparken-og-hallvardskatedralen",
+              "claim_basis": "Betongdekket over sørmuren ble fjernet i 2024, og det romanske høykorets apsidemur ble murt opp på nytt.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_petter_molaug_skiller_me_948270de71",
+          "knowledge_unit_ids": [
+            "ku_historie_petter_molaug_skiller_me_948270de71",
+            "ku_historie_synlige_steinmurer_kan_d_b7e8b7f78a"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_18",
+          "quiz_id": "historie_minneparken_gamlebyen_set_3_q4",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hva manglet fortsatt ifølge en beskrivelse fra november 2025?",
+          "options": [
+            "Et fullført besøkssenter på hele den gamle kirketomten",
+            "En ny stående katedral på den opprinnelige grunnmuren",
+            "Jernbanespor gjennom kirkens restaurerte hovedskip",
+            "Gangsti og gressplen ved den tidligere veistrekningen"
+          ],
+          "answer": "Gangsti og gressplen ved den tidligere veistrekningen",
+          "answerIndex": 3,
+          "knowledge": "Observasjonen gjelder november 2025. Den er ikke dokumentasjon for at arbeidet fortsatt var uferdig på samme måte i november 2026.",
+          "explanation": "Observasjonen gjelder november 2025. Den er ikke dokumentasjon for at arbeidet fortsatt var uferdig på samme måte i november 2026.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "molaug_nov2025"
+          ],
+          "source_urls": [
+            "https://www.middelalder.no/middelalderbyen-i-dag/middelalderbeltet/589-minneparken-og-hallvardskatedralen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_18",
+          "claim_basis": "Per november 2025 var gangsti og gressplen ved den tidligere veistrekningen fortsatt uferdige; det sier ikke hva som er ferdig i november 2026.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_molaug_nov2025",
+              "source_type": "museum_or_heritage",
+              "title": "Middelalder-Oslo – Minneparken og Hallvardskatedralen (november 2025)",
+              "url": "https://www.middelalder.no/middelalderbyen-i-dag/middelalderbeltet/589-minneparken-og-hallvardskatedralen",
+              "claim_basis": "Per november 2025 var gangsti og gressplen ved den tidligere veistrekningen fortsatt uferdige; det sier ikke hva som er ferdig i november 2026.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_observasjonen_gjelder_no_9e71f08973",
+          "knowledge_unit_ids": [
+            "ku_historie_observasjonen_gjelder_no_9e71f08973",
+            "ku_historie_den_er_ikke_dokumentasjo_50a1ac9e04"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_19",
+          "quiz_id": "historie_minneparken_gamlebyen_set_3_q5",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvilke to kulturminnefaglige instanser omtaler Oslo kommune som involvert?",
+          "options": [
+            "Byantikvaren og NIKU",
+            "Stortinget og Sametinget",
+            "Meteorologisk institutt og Kartverket",
+            "Norges Bank og Riksrevisjonen"
+          ],
+          "answer": "Byantikvaren og NIKU",
+          "answerIndex": 0,
+          "knowledge": "Kommunen knytter arbeidene til både Byantikvaren og Norsk institutt for kulturminneforskning (NIKU), fordi ruiner og gravplasser krever kulturminnefaglig oppfølging.",
+          "explanation": "Kommunen knytter arbeidene til både Byantikvaren og Norsk institutt for kulturminneforskning (NIKU), fordi ruiner og gravplasser krever kulturminnefaglig oppfølging.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "kommune"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_19",
+          "claim_basis": "Byantikvaren og Norsk institutt for kulturminneforskning deltok i arbeidene med ruinområdet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_kommune",
+              "source_type": "official",
+              "title": "Oslo kommune – Minneparken",
+              "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/",
+              "claim_basis": "Byantikvaren og Norsk institutt for kulturminneforskning deltok i arbeidene med ruinområdet.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kommunen_knytter_arbeide_6cc89a6a20",
+          "knowledge_unit_ids": [
+            "ku_historie_kommunen_knytter_arbeide_6cc89a6a20"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_20",
+          "quiz_id": "historie_minneparken_gamlebyen_set_3_q6",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hvilket materialhensyn forklarer vinterdekket over den nyoppmurte apsiden i 2024–2025?",
+          "options": [
+            "For å åpne en jernbanestasjon",
+            "For å beskytte kalkmørtelen mot frost",
+            "For å få en permanent takterrasse",
+            "For å skjule et ferdig museum"
+          ],
+          "answer": "For å beskytte kalkmørtelen mot frost",
+          "answerIndex": 1,
+          "knowledge": "Middelalder-Oslo beskrev at presenningen ble fjernet i mai 2025 etter at frostfaren var over. Det sier noe om materialhensyn i restaureringsarbeid.",
+          "explanation": "Middelalder-Oslo beskrev at presenningen ble fjernet i mai 2025 etter at frostfaren var over. Det sier noe om materialhensyn i restaureringsarbeid.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "molaug_sep2025"
+          ],
+          "source_urls": [
+            "https://www.middelalder.no/oslo-i-middelalderen/arkeologiske-funn/576-minneparken-og-hallvardskatedralen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_20",
+          "claim_basis": "Kalkmørtelen i rekonstruert apside ble beskyttet mot frost med presenning fram til mai 2025.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_molaug_sep2025",
+              "source_type": "museum_or_heritage",
+              "title": "Middelalder-Oslo – Minneparken og Hallvardskatedralen (september 2025)",
+              "url": "https://www.middelalder.no/oslo-i-middelalderen/arkeologiske-funn/576-minneparken-og-hallvardskatedralen",
+              "claim_basis": "Kalkmørtelen i rekonstruert apside ble beskyttet mot frost med presenning fram til mai 2025.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_middelalder_oslo_beskrev_a5c2603e11",
+          "knowledge_unit_ids": [
+            "ku_historie_middelalder_oslo_beskrev_a5c2603e11",
+            "ku_historie_det_sier_noe_om_material_1cff17cb59"
+          ]
+        },
+        {
+          "id": "minneparken_gamlebyen_quiz_21",
+          "quiz_id": "historie_minneparken_gamlebyen_set_3_q7",
+          "categoryId": "historie",
+          "targetId": "minneparken_gamlebyen",
+          "placeId": "minneparken_gamlebyen",
+          "question_scope": "place",
+          "question": "Hva kan en omtale fra september 2025 fastslå om utformingen av murtoppene i november 2026?",
+          "options": [
+            "Bare at utformingen var uavklart i 2025; 2026 krever nyere dokumentasjon",
+            "At hele parkens tilrettelegging var fullført innen november 2026",
+            "At murens topp var ferdig utformet allerede før arbeidene i 2024",
+            "At en rapport fra september 2025 beviser dagens tilstand i 2026"
+          ],
+          "answer": "Bare at utformingen var uavklart i 2025; 2026 krever nyere dokumentasjon",
+          "answerIndex": 0,
+          "knowledge": "En datert kilde viser hva kilden visste og observerte da den ble skrevet. Kildekritikk gjør at en beskrivelse fra 2025 ikke uten videre blir en ferdigattest for 2026.",
+          "explanation": "En datert kilde viser hva kilden visste og observerte da den ble skrevet. Kildekritikk gjør at en beskrivelse fra 2025 ikke uten videre blir en ferdigattest for 2026.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "molaug_sep2025"
+          ],
+          "source_urls": [
+            "https://www.middelalder.no/oslo-i-middelalderen/arkeologiske-funn/576-minneparken-og-hallvardskatedralen"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_minneparken_quiz_21",
+          "claim_basis": "September 2025-omtalen beskrev fortsatt uavklart utforming av muren på toppen av apsiden og sørmuren.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "tags": [
+            "minneparken_gamlebyen",
+            "historie",
+            "source_review_20261103"
+          ],
+          "method_id": "met_kildekritikk",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "knut_kjeldstadli",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "knut_kjeldstadli",
+            "work": "Fortida er ikke hva den en gang var",
+            "why_it_helps": "Kildekritisk vurdering av når statusbeskrivelsen ble skrevet og hvor langt den rekker."
+          },
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ],
+          "sources": [
+            {
+              "source_id": "src_minneparken_molaug_sep2025",
+              "source_type": "museum_or_heritage",
+              "title": "Middelalder-Oslo – Minneparken og Hallvardskatedralen (september 2025)",
+              "url": "https://www.middelalder.no/oslo-i-middelalderen/arkeologiske-funn/576-minneparken-og-hallvardskatedralen",
+              "claim_basis": "September 2025-omtalen beskrev fortsatt uavklart utforming av muren på toppen av apsiden og sørmuren.",
+              "reviewed_at": "2026-11-03",
+              "review_status": "reviewed"
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_historie_en_datert_kilde_viser_hv_ce783a4a00",
+          "knowledge_unit_ids": [
+            "ku_historie_en_datert_kilde_viser_hv_ce783a4a00",
+            "ku_historie_kildekritikk_gj_r_at_en__fe378c49c4"
+          ]
+        }
+      ]
+    }
+  ]
+}

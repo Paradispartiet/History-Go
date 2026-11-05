@@ -24,6 +24,7 @@ type PlaceRow = JsonObject & {
   image?: unknown;
   cardImage?: unknown;
   frontImage?: unknown;
+  imageMeta?: unknown;
   hidden?: unknown;
   stub?: unknown;
   groundhopper?: unknown;
@@ -78,6 +79,7 @@ const LIGHT_FIELDS: LightField[] = [
   'image',
   'cardImage',
   'frontImage',
+  'imageMeta',
   'hidden',
   'stub',
   'groundhopper',
