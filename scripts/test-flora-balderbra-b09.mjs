@@ -40,4 +40,4 @@ assert.equal(approved.get(id)?.scientificName,latin);
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
 assert.notEqual(approved.get(id)?.src,approved.get("emne_flora_akervindel")?.src);
-console.log("Balderbrå #78: taxonomy, quiz, alpha WebP, exact Git hash and registry validated.");
+console.log("Balderbrå #79: taxonomy, quiz, alpha WebP, exact Git hash and registry validated.");
