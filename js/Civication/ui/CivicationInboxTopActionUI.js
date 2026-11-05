@@ -114,6 +114,113 @@
       .replace(/'/g, "&#039;");
   }
 
+  // The live Lillebekk dossier is a read-only view of the player's existing
+  // WorkWorld objects. It is not another mail, scene engine, or approval step.
+  const LILLEBEKK_REVIEW_TOPICS = [
+    {
+      title: "Plankart og areal",
+      positive: ["map_conflict_written_for_review", "green_passage_recommendation_logged", "early_map_conflict_documented"],
+      negative: ["map_conflict_not_verified", "area_compromise_unverified", "early_map_conflict_not_verified"],
+      next: "Kontroller kartavvik, arealfordeling og hjemmel før faglig anbefaling."
+    },
+    {
+      title: "Grøntdrag",
+      positive: ["green_corridor_draft_requirement_proposed", "early_green_corridor_requirement_proposed"],
+      negative: ["green_corridor_maintenance_only_unverified", "early_green_corridor_unsecured"],
+      next: "Avklar jorddybde, sammenheng, flomvei og forslag til bindende bestemmelse med fag og planjuss."
+    },
+    {
+      title: "Skolevei",
+      positive: ["school_route_pre_occupancy_condition_proposed", "school_route_explicit_assessment_proposed", "early_school_route_condition_proposed"],
+      negative: ["school_route_timing_unverified", "school_route_deferred_unsecured", "early_school_route_timing_unverified"],
+      next: "Dokumenter faktisk skolevei, vilkår og ansvar før innflytting, ikke bare før ferdigattest."
+    },
+    {
+      title: "Medvirkning",
+      positive: ["participation_comments_evaluated", "early_participation_evaluated"],
+      negative: ["participation_record_missing", "early_participation_record_missing"],
+      next: "Journalfør innspill, vurdering og hva som eventuelt endres i planforslaget."
+    },
+    {
+      title: "Overvann",
+      positive: ["stormwater_condition_proposed", "early_stormwater_condition_proposed"],
+      negative: ["stormwater_unsecured_in_plan", "early_stormwater_unsecured"],
+      next: "Be fagansvarlig kontrollere flomvei, nabokonsekvenser og rettslig sikring."
+    },
+    {
+      title: "Utbyggerkontakt",
+      positive: ["developer_formal_request_pending", "developer_signal_written_clarification_requested", "early_developer_formal_request_pending"],
+      negative: ["developer_informal_signal_to_correct", "developer_signal_unrecorded", "early_developer_signal_needs_correction", "early_developer_signal_unrecorded"],
+      next: "Journalfør signalene og presiser at rådgiveren ikke kan gi bindende forhåndstilsagn."
+    },
+    {
+      title: "Faglig risiko i saksframlegget",
+      positive: ["material_risks_stated_for_politics", "early_material_risks_visible"],
+      negative: ["material_risks_not_explicit", "early_material_risks_hidden"],
+      next: "Skill lovkrav, administrasjonens faglige vurdering og politisk handlingsrom."
+    }
+  ];
+
+  function lillebekkReviewModel() {
+    const active = window.CivicationState?.getActivePosition?.();
+    const activeIds = [active?.role_scope, active?.role_id, active?.role_key];
+    if (!activeIds.includes("by_radgiver_plan")) return null;
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.getWorkObject !== "function") return null;
+    const early = world.getWorkObject("by_radgiver_lillebekk_early_analysis_case_001");
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!early && !formal) return null;
+    const flags = new Set([...(early?.flags || []), ...(formal?.flags || [])]);
+    const topics = LILLEBEKK_REVIEW_TOPICS.map(function (topic) {
+      const documented = topic.positive.some(function (flag) { return flags.has(flag); });
+      const issue = topic.negative.some(function (flag) { return flags.has(flag); });
+      return {
+        title: topic.title,
+        status: documented && issue ? "Motstridende spor – avklar"
+          : issue ? "Åpent avvik" : documented ? "Faglig spor registrert" : "Ingen registrert vurdering",
+        documented,
+        issue,
+        next: topic.next
+      };
+    });
+    return {
+      phase: formal ? "Formell saksforberedelse" : "Tidlig saksarbeid",
+      topics,
+      documented: topics.filter(function (topic) { return topic.documented; }).length,
+      open: topics.filter(function (topic) { return topic.issue || !topic.documented; }).length,
+      approved: false
+    };
+  }
+
+  function lillebekkReviewHtml() {
+    const dossier = lillebekkReviewModel();
+    if (!dossier) return "";
+    return `
+      <section class="civi-inbox-channel-section civi-lillebekk-dossier" aria-label="Lillebekk saksoversikt">
+        <div class="civi-inbox-channel-head">
+          <div>
+            <h3>Lillebekk · saksoversikt</h3>
+            <p class="muted">${escapeHtml(dossier.phase)}. ${dossier.documented} av 7 temaer har et registrert faglig spor; ${dossier.open} trenger dokumentasjon eller avklaring.</p>
+          </div>
+        </div>
+        <details class="civi-inbox-history">
+          <summary>Se faglige vurderinger og åpne avvik</summary>
+          <div class="civi-inbox-history-list">
+            ${dossier.topics.map(function (topic) {
+              return `<article class="civi-inbox-card">
+                <div class="civi-inbox-card-head"><div class="civi-inbox-card-title-wrap">
+                  <h4>${escapeHtml(topic.title)}</h4>
+                  <p class="civi-inbox-sender">${escapeHtml(topic.status)}</p>
+                </div></div>
+                <div class="civi-inbox-body"><p>${escapeHtml(topic.next)}</p></div>
+              </article>`;
+            }).join("")}
+          </div>
+        </details>
+        <p class="muted">Dette er arbeidsnotater fra egne valg, ikke kontrollert planvedtak eller ledergodkjenning.</p>
+      </section>`;
+  }
+
   function isPending(item) {
     return isOpenItem(item);
   }
@@ -574,6 +681,7 @@
     const markup = `
       <div class="civi-inbox-sections" data-civi-inbox-sections="1">
         ${buildAnswerSummaryHtml()}
+        ${lillebekkReviewHtml()}
         ${renderInboxSection(
           "Jobbmail",
           "Arbeid, stilling, rolleprogresjon, arbeidsdag, konflikter, forfremmelse, stagnasjon og oppsigelse.",
@@ -691,6 +799,7 @@
     renderSections: renderInboxSections,
     getActionable: pendingActionItems,
     getMessages: visibleMessages,
-    splitChannels: splitInboxByMessageChannel
+    splitChannels: splitInboxByMessageChannel,
+    getLillebekkReviewModel: lillebekkReviewModel
   };
 })();
