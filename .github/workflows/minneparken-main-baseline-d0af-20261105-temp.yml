@@ -33,6 +33,7 @@ jobs:
         run: npm run audit:quiz-production-context
   grini-collections-baseline:
     if: false # Already tested in first diagnostic run; do not repeat
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -49,6 +50,7 @@ jobs:
         run: node scripts/verify-grini-collections-browser.mjs grini_fangeleir
   oslo-politikk-mobile-baseline:
     if: false # Already tested in first diagnostic run; do not repeat
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
