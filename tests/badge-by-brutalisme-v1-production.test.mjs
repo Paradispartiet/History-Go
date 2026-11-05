@@ -23,12 +23,13 @@ test('Brutalisme 4/10 exact original and EN ES PT FR variants are registered wit
   assert.deepEqual(rec.quality,{visualApproved:true,technicalApproved:true,registered:true});
   assert.equal(by.color,'#808080');assert.equal(by.secondaryColor,'#404040');
   assert.equal(by.sub.length,10);
-  assert.equal(Object.keys(by.subBadgeImages).length,7);
+  const infrastructureActive=read('data/badges/infrastruktur_candidate_v1.json').status==='integrated';
+  assert.equal(Object.keys(by.subBadgeImages).length,infrastructureActive?8:7);
   assert.equal(by.subBadgeImages.brutalisme,rec.sourceImage);
   assert.equal(by.subBadgeImages.klassisk_arkitektur,'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp');
   assert.equal(by.subBadgeImages.modernisme,'bilder/merker/by/undermerker/modernisme-brodert-v1.webp');
   assert.equal(by.subBadgeImages.funksjonalisme,'bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp');
-  for(const id of by.sub.slice(7)) assert.equal(by.subBadgeImages[id],undefined);
+  for(const id of by.sub.slice(infrastructureActive?8:7)) assert.equal(by.subBadgeImages[id],undefined);
   assert.equal(Object.keys(scene.subBadgeImages).length,7);
   assert.equal(Object.keys(film.subBadgeImages).length,12);
   const production=prod.families.by.assets.find(a=>a.id==='brutalisme');
@@ -37,7 +38,7 @@ test('Brutalisme 4/10 exact original and EN ES PT FR variants are registered wit
   assert.equal(production.selectedImage,rec.sourceImage);
   assert.equal(production.sha256,expected.nb);
   assert.equal(locales.status,'review_required_not_active');
-  assert.equal(locales.entries.length,56);
+  assert.equal(locales.entries.length,infrastructureActive?60:56);
   assert.equal(locales.skipped.some(x=>x.category==='by'&&x.id==='brutalisme'),false);
   for(const [locale,digest] of Object.entries(expected)){
     const v=rec.variants[locale];
