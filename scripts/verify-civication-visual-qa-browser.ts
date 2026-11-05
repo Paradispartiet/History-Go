@@ -65,6 +65,14 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       return 'svg';
     });
 
+    // The previous capture showed both system cards hiding most of the
+    // phone viewport. Compact default must be true in actual browser UI,
+    // not just in the source-level Node test.
+    const overlay = await page.evaluate(() =>
+      (globalThis as any).CivicationSystemMap?.getPresentationState?.() || null);
+    assert.ok(overlay?.hudMinimized && overlay?.panelMinimized,
+      'mobile map must start with system HUD and zone panel minimized');
+
     const captureMap = async (name: string) => {
       await page.waitForTimeout(300);
       await capture(name);
@@ -78,7 +86,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     });
     assert.ok(map.visible, 'map has a visible viewport on mobile');
 
-    const result: any = { viewport: { width: 390, height: 844 }, minDag, mapType, map, screenshots: [
+    const result: any = { viewport: { width: 390, height: 844 }, minDag, mapType, map, overlay, screenshots: [
       'min-dag-mobile-top.png', 'map-mobile-city.png', 'map-mobile-overview.png', 'map-mobile-close.png'
     ] };
 
