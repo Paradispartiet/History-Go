@@ -21,6 +21,12 @@ test('Tøyen trafo: two distinct archived technical Objects qualify, not buildin
   assert.match(o.imageMeta.representationLimits,/ikke|ingen|ukjent/i);
   assert.match(o.location,/ukjent/);
  }
+ assert.deepEqual(p.objects.map(o=>o.imageMeta.archivalId),['A-20138/Ua/0004/054','A-20138/Ua/0004/091']);
+ for(const o of p.objects){
+   const svg=fs.readFileSync(o.image,'utf8');
+   assert.match(svg,/<svg\b/);
+   assert.ok(!/<image\b/.test(svg),'Must not embed or trace archive photographs');
+ }
  assert.ok(!p.objects.some(o=>/vinduer|tarnhjelm/.test(o.id)));
 });
 test('Tøyen trafo: generated Place-open data retains People, Brands and new Objects',()=>{
