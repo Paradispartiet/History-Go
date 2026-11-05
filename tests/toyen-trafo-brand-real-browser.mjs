@@ -42,10 +42,18 @@ try{
    assert.deepEqual(state.map(x=>x.count),[2,2,2],label+' collection item counts');
    assert.ok(state.every(x=>x.loaded),label+' member media');
    assert.ok(state[2].src.includes('toyen_trafo_oslo_teatersenter_official_logo.webp'),label+' official OTS preview');
-   const geometry=await page.evaluate(()=>{const el=document.getElementById('pcBrandsIcon');return {rect:(()=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}})(),display:getComputedStyle(el).display,visibility:getComputedStyle(el).visibility,opacity:getComputedStyle(el).opacity,hidden:el.hidden,parent:el.parentElement?.className,ancestors:(()=>{let e=el;const out=[];while(e&&out.length<6){const st=getComputedStyle(e),rect=e.getBoundingClientRect();out.push({id:e.id,cls:e.className,hidden:e.hidden,display:st.display,visibility:st.visibility,width:rect.width,height:rect.height});e=e.parentElement}return out})()}});
-   console.log(label+': brand geometry '+JSON.stringify(geometry));
-   await page.screenshot({path:'artifacts/toyen-trafo-brands/'+label+'-before.png',fullPage:false});
-   await page.locator('#pcBrandsIcon').click({timeout:12000});
+   // Place Sheet Direct deliberately hides the original #pcBrandsIcon.
+   // Its visible, keyboard-accessible canonical action is the logo button
+   // at the end of the 'Om stedet' section (not the former grid token).
+   await page.waitForFunction(()=>{
+     const button=document.querySelector('.pc-round-gallery-brand-button');
+     const img=button?.querySelector('img');
+     return button instanceof HTMLButtonElement && img instanceof HTMLImageElement && img.complete && img.naturalWidth>0;
+   },null,{timeout:60000});
+   const brandButton=page.locator('.pc-round-gallery-brand-button');
+   const alt=await brandButton.locator('img').getAttribute('alt');
+   assert.ok((alt||'').toLowerCase().includes('oslo teatersenter'),label+' official brand alt');
+   await brandButton.click({timeout:15000});
    const popup=page.locator('.hg-popup.placecard-round-popup.visible');
    await popup.waitFor({state:'visible',timeout:20000});
    const content=await popup.innerText();
@@ -53,7 +61,7 @@ try{
    assert.match(content,/Unge Kunstneres Samfund/i,label+' missing source-backed UKS actor');
    assert.ok(errors.length===0,label+' runtime errors: '+errors.join(' / '));
    await page.screenshot({path:'artifacts/toyen-trafo-brands/'+label+'.png',fullPage:false});
-   console.log(label+': three approved preview collections, authentic OTS logo, two Brand identities in popup');
+   console.log(label+': configured People/Objects/Brands, official OTS logo displayed in About, two Brands in popup');
   }finally{await context.close()}
  }
 }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve))}
