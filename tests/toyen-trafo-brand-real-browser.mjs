@@ -42,6 +42,9 @@ try{
    assert.deepEqual(state.map(x=>x.count),[2,2,2],label+' collection item counts');
    assert.ok(state.every(x=>x.loaded),label+' member media');
    assert.ok(state[2].src.includes('toyen_trafo_oslo_teatersenter_official_logo.webp'),label+' official OTS preview');
+   const geometry=await page.evaluate(()=>{const el=document.getElementById('pcBrandsIcon');return {rect:(()=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}})(),display:getComputedStyle(el).display,visibility:getComputedStyle(el).visibility,opacity:getComputedStyle(el).opacity,hidden:el.hidden,parent:el.parentElement?.className,ancestors:(()=>{let e=el;const out=[];while(e&&out.length<6){const st=getComputedStyle(e),rect=e.getBoundingClientRect();out.push({id:e.id,cls:e.className,hidden:e.hidden,display:st.display,visibility:st.visibility,width:rect.width,height:rect.height});e=e.parentElement}return out})()}});
+   console.log(label+': brand geometry '+JSON.stringify(geometry));
+   await page.screenshot({path:'artifacts/toyen-trafo-brands/'+label+'-before.png',fullPage:false});
    await page.locator('#pcBrandsIcon').click({timeout:12000});
    const popup=page.locator('.hg-popup.placecard-round-popup.visible');
    await popup.waitFor({state:'visible',timeout:20000});
