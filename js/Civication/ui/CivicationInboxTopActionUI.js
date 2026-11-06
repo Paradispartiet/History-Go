@@ -1237,6 +1237,64 @@
     return html + '</details>';
   }
 
+
+  function lillebekkFagsvarHtml() {
+    const model = lillebekkFagsvarModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-fagsvar="1">' +
+      '<summary>Faglige svar fra trafikk, overvann og planjuss</summary>' +
+      '<p>Alle dokumentene nedenfor er forhåndsskrevne, fiktive spillbilag. De er foreløpige faglige svar, ikke målinger, verifiserte kontrollrapporter, faktisk sendt post eller planvedtak.</p>';
+    if (!model.intake) {
+      html += '<p>Elins tre merknader er besvart og et korrigert internt saksframlegg er journalført. Neste arbeidsoppgave er å gjennomgå de fiktive kollegasvarene.</p>' +
+        '<button class="civi-btn secondary" type="button" data-civi-fagsvar-intake="1">Åpne tre simulerte fagsvar</button>' +
+        '<p class="muted" role="status" data-civi-fagsvar-intake-error></p>';
+    } else {
+      html += '<p><strong>Faglig forsvarlige vurderinger:</strong> ' +
+        model.docs.filter(function (doc) { return doc.safe; }).length + ' av 3.</p>';
+      html += model.docs.map(function (doc) {
+        return '<section class="civi-inbox-body" data-civi-fagsvar-doc-id="' + escapeHtml(doc.id) + '">' +
+          '<h4>' + escapeHtml(doc.ref) + ' – ' + escapeHtml(doc.title) + '</h4>' +
+          '<p><strong>Avsender:</strong> ' + escapeHtml(doc.sender) +
+          ' · <strong>Dato:</strong> ' + escapeHtml(doc.date) + '</p>' +
+          '<p>' + escapeHtml(doc.content) + '</p>' +
+          '<p><strong>Kontrollbehov:</strong> ' + escapeHtml(doc.requirement) + '</p>' +
+          (doc.lastNote ? '<p><strong>Sist journalført:</strong> ' + escapeHtml(doc.lastNote) + '</p>' : '') +
+          '<label>Faglig konklusjon <select data-civi-fagsvar-action>' +
+            '<option value="' + escapeHtml(doc.safeId) + '"' +
+              (doc.lastOutcome === doc.safeId ? ' selected' : '') + '>' +
+              escapeHtml(doc.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(doc.unsafeId) + '"' +
+              (doc.lastOutcome === doc.unsafeId ? ' selected' : '') + '>' +
+              escapeHtml(doc.unsafeLabel) + '</option></select></label>' +
+          '<label>Begrunnelse og neste arbeidsoppgave <textarea rows="3" maxlength="650" data-civi-fagsvar-reason ' +
+            'placeholder="Hva viser svaret, hva mangler og hvilken fagfunksjon må følge opp?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-fagsvar-assess="1" data-doc-id="' +
+            escapeHtml(doc.id) + '">Journalfør faglig vurdering</button>' +
+          '<p class="muted" role="status" data-civi-fagsvar-assess-error></p>' +
+        '</section>';
+      }).join("");
+      if (model.latestNote) {
+        html += '<h4>Supplerende internt fagnotat' +
+          (model.current ? ' – gjeldende kildeversjoner' : ' – utdatert grunnlag') + '</h4>' +
+          '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+            escapeHtml(model.latestNote.note) + '</pre>';
+      }
+      if (model.ready) {
+        html += '<section class="civi-inbox-body" data-civi-fagsvar-followup-editor="1">' +
+          '<h4>Arbeidsfordeling etter faglige svar</h4>' +
+          '<p>Beskriv hvilke konkrete kontroller trafikkfag, overvann og planjuss må gjøre før en ny ledervurdering. Dette er et internt notat, ikke en utsendelse.</p>' +
+          '<label>Rådgiverens videre anbefaling <textarea rows="4" maxlength="850" data-civi-fagsvar-recommendation ' +
+            'placeholder="Angi ansvar, dokumentbehov og hva som fortsatt er uavklart"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-fagsvar-followup="1">Journalfør supplerende internt fagnotat</button>' +
+          '<p class="muted" role="status" data-civi-fagsvar-followup-error></p>' +
+        '</section>';
+      } else {
+        html += '<p>Et supplerende fagnotat krever tre faglig forsvarlige vurderinger. Å anta at en undersøkelse allerede er gjort, blir journalført som feilvurdering og må korrigeres.</p>';
+      }
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -1255,6 +1313,7 @@
         </details>` : ""}
         ${lillebekkSaksframleggHtml()}
         ${lillebekkLeaderReviewHtml()}
+        ${lillebekkFagsvarHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -1715,6 +1774,42 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-fagsvar-intake]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const result = recordLillebekkFagsvarIntake();
+        if (result.ok) renderInboxSections();
+        else {
+          const message = button.closest("[data-civi-lillebekk-fagsvar]")?.querySelector("[data-civi-fagsvar-intake-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-fagsvar-assess]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-fagsvar-doc-id]");
+        const result = recordLillebekkFagsvarAssessment(
+          String(button.getAttribute("data-doc-id") || ""),
+          card?.querySelector("[data-civi-fagsvar-action]")?.value || "",
+          card?.querySelector("[data-civi-fagsvar-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-fagsvar-assess-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-fagsvar-followup]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-fagsvar-followup-editor]");
+        const result = recordLillebekkFagsvarFollowup(
+          card?.querySelector("[data-civi-fagsvar-recommendation]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-fagsvar-followup-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-lillebekk-leader-return]").forEach(function (button) {
       button.addEventListener("click", function () {
         const result = recordLillebekkLeaderReturn();
@@ -1988,6 +2083,10 @@
     getLillebekkLeaderReviewModel: lillebekkLeaderReviewModel,
     recordLillebekkLeaderReturn,
     recordLillebekkLeaderResponse,
-    recordLillebekkCorrectedMemo
+    recordLillebekkCorrectedMemo,
+    getLillebekkFagsvarModel: lillebekkFagsvarModel,
+    recordLillebekkFagsvarIntake,
+    recordLillebekkFagsvarAssessment,
+    recordLillebekkFagsvarFollowup
   };
 })();
