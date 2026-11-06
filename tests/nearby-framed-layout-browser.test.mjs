@@ -139,10 +139,12 @@ try {
     assert.ok(tabMetrics.fontSize <= (width <= 520 ? 12.5 : 13.5),
       "Compact category text at " + width);
     await page.locator("#nearbyQuickSearch").fill("sted 3");
+    await page.waitForFunction(() => document.querySelector("#nearbySearchCount")?.textContent === "1 av 24 treff");
     assert.equal(await page.locator("#nearbyList > .nearby-item:visible").count(), 1,
       "Search filters the actual existing cards at " + width);
     assert.match(await page.locator("#nearbySearchCount").textContent(), /1 av 24 treff/);
     await page.locator("#nearbyQuickSearch").fill("");
+    await page.waitForFunction(() => [...document.querySelectorAll("#nearbyList > .nearby-item")].every(el => !el.hidden));
     await page.locator("#nearbyGuideToggle").click();
     assert.equal(await page.locator("#nearbyGuideToggle").getAttribute("aria-expanded"), "true");
     assert.equal(await page.locator("#nearbyGuidePanel").isVisible(), true);
