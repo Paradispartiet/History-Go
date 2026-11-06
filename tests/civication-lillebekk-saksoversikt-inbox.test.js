@@ -88,6 +88,24 @@ assert.equal(laterRole.model,null,
 assert.ok(!laterRole.markup.includes('Lillebekk · saksoversikt'));
 const roleViaId=preview({active:{role_id:'by_radgiver_plan'},records:{[formalId]:formal}});
 assert.ok(roleViaId.model);
+// The formal case is created with two unresolved facts even when no early work exists.
+// These must not disappear into the generic «Ingen registrert vurdering» label.
+const initialFormal=preview({records:{[formalId]:{
+ work_object_id:formalId,role_scope:'by_radgiver_plan',status:'open',
+ flags:['skolevei_ikke_dokumentert','politisk_grense_ikke_eksplisitt']
+}}});
+const initialTopics=new Map(initialFormal.model.topics.map(row=>[row.title,row]));
+assert.equal(initialTopics.get('Skolevei').status,'Åpent avvik');
+assert.equal(initialTopics.get('Faglig risiko i saksframlegget').status,'Åpent avvik');
+assert.equal(initialFormal.model.open,7);
+// If later work documents the subject while the old unresolved marker remains,
+// the player sees a conflict to check, not a falsely approved outcome.
+const documentedButNotReconciled=preview({records:{[formalId]:{
+ work_object_id:formalId,role_scope:'by_radgiver_plan',
+ flags:['skolevei_ikke_dokumentert','early_school_route_condition_proposed']
+}}});
+assert.equal(documentedButNotReconciled.model.topics.find(row=>row.title==='Skolevei').status,
+ 'Motstridende spor – avklar');
 const noData=preview({active:{role_scope:'by_radgiver_plan'},
  records:{[formalId]:{work_object_id:formalId,flags:[],status:'open'}}});
 assert.equal(noData.model.documented,0);
