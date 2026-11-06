@@ -15,7 +15,7 @@ assert.equal(a.existingQuizId,quiz);
 assert.equal(a.reviewStatus,"approved");
 assert.equal(a.approvedForPublication,true);
 assert.equal(a.gitBlobSha,"389ac8dc3a6e2a948695de1586f92ccee85c6ee4");
-assert.equal(a.sha256,"25149aa4298c21c4c0b4aa05f18e8e84d1f5b48572544f4c3c87241ac48e3d21");
+assert.equal(a.sha256,"25149aa4298c21c4c0b4aa05f18e8e84d1f5b48572544f4f3c87241ac48e3d21");
 const native=JSON.parse(read("data/natur/flora/fremmedarter.json")).find(x=>x.id===id);
 const runtime=JSON.parse(read("data/runtime/nature-all/flora-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]).find(x=>x.id===id);
 for(const x of [native,runtime]){
