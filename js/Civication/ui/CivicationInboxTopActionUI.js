@@ -997,13 +997,16 @@
         '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
         escapeHtml(model.latestDraft.note) + '</pre>';
     }
-    if (model.ready) {
+    const leaderPhase = lillebekkLeaderReviewModel();
+    if (model.ready && !leaderPhase?.returnEvent) {
       html += '<section class="civi-inbox-body" data-civi-lillebekk-draft-editor="1">' +
         '<h4>Administrativ anbefaling til planleder Elin</h4>' +
         '<p>Beskriv hva som må innhentes, hvem som skal kontrollere det og hvilket prosessvalg du anbefaler. Utkastet skal fortsatt vise alle åpne avvik.</p>' +
         '<label>Anbefaling <textarea rows="4" maxlength="750" data-civi-draft-recommendation placeholder="Anbefal videre faglig kontroll før saksframlegget går til ledergjennomgang …"></textarea></label>' +
         '<button class="civi-btn secondary" type="button" data-civi-lillebekk-draft="1">Journalfør internt saksframlegg</button>' +
         '<p class="muted" role="status" data-civi-lillebekk-draft-error></p></section>';
+    } else if (leaderPhase?.returnEvent) {
+      html += '<p>Utkastet er returnert i den simulerte ledergjennomgangen. Fortsett under Elins ledermerknader; ordinær journalføring er sperret.</p>';
     } else if (model.exhibitsReviewed) {
       html += '<p>Det interne saksframlegget kan først utarbeides når alle tre kildeavstemminger er faglig holdbare. Et valg som påstår at uverifiserte forhold er godkjent, må revideres.</p>';
     }
