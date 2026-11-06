@@ -41,10 +41,16 @@
     const mode = () => window.HGLeftPanelMode?.getActiveMode?.()
       || root.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode")
       || "nearby";
+    let lastMode = mode();
 
     function update() {
       scheduled = false;
       const activeMode = mode();
+      // A search belongs to its category; do not hide another tab's cards.
+      if (activeMode !== lastMode) {
+        input.value = "";
+        lastMode = activeMode;
+      }
       const list = document.getElementById(LIST_IDS[activeMode] || "nearbyList");
       const query = normalize(input.value);
       const noun = LABELS[activeMode] || "treff";
