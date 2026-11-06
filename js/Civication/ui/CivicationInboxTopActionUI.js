@@ -535,6 +535,11 @@
     if (!model?.ready) {
       return { ok: false, reason: "Alle tre bilag og alle tre faglig holdbare kildeavstemminger må være registrert." };
     }
+    // Once the simulated manager has returned a draft, the only permitted
+    // follow-up is the traceable corrected-draft workflow below.
+    if (lillebekkLeaderReviewModel()?.returnEvent) {
+      return { ok: false, reason: "Utkastet er returnert av Elin i spillsimuleringen. Bruk ledermerknadene og før et korrigert utkast." };
+    }
     const text = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0, 750);
     if (text.length < 70) {
       return { ok: false, reason: "Skriv en konkret administrativ anbefaling på minst 70 tegn." };
@@ -563,6 +568,195 @@
     } catch (error) {
       if (window.DEBUG) console.warn("[Civication] Saksframlegg", error);
       return { ok: false, reason: "Utkastet kunne ikke journalføres." };
+    }
+  }
+
+  // Authored, fictional manager return. No email is sent and no authority is granted.
+  const LILLEBEKK_LEADER_CHECKS = [
+    {
+      id: "skolevei", title: "Skolevei og tidspunkt for trygg adkomst",
+      refs: "LBK-MERK-01 + LBK-UTB-03",
+      feedback: "Elin: Du har gjengitt innspillet og utbyggers forslag, men ikke vist hva som må kontrolleres før første innflytting. Skille opplevd skolevei fra trafikkfaglig sikkerhet. Angi strekning, ansvarlig fagmiljø og tidspunkt for mulig rekkefølgekrav.",
+      needed: "trafikkfag",
+      task: "Be trafikkfaglig ansvarlig vurdere forbindelsen før innflytting; la avviket stå åpent til vurderingen foreligger."
+    },
+    {
+      id: "grontdrag", title: "Grøntdrag, flomvei og planbestemmelser",
+      refs: "LBK-FAG-02",
+      feedback: "Elin: Signes notat peker på manglende jorddybde, snitt og flomveikart. Vi kan ikke behandle et inntegnet grøntdrag som verifisert overvannskapasitet. Vis hvilken kontroll og hvilket eventuelt bestemmelsesforslag som må utarbeides.",
+      needed: "overvannsfag",
+      task: "Etterspør faglig snitt og vurdering av flomvei/jorddybde, og avklar mulig planbestemmelse med planjurist."
+    },
+    {
+      id: "utbygger", title: "Utbyggerkontakt og myndighetsgrense",
+      refs: "LBK-UTB-03",
+      feedback: "Elin: Utbygger ber om tidspunkt og forutsigbarhet, men kommunen må ikke gi forhåndstilsagn om planløsningen. Skill prosessvar fra juridisk og politisk avklaring, og få dokumentert hvem som følger opp.",
+      needed: "planjuss",
+      task: "Utarbeid et nøytralt prosessvar til utbygger for intern kontroll hos planjuss; ingen utsendelse eller forhåndsgodkjenning skjer her."
+    }
+  ];
+  const LILLEBEKK_LEADER_RESPONSES = [
+    { id: "trafikkfag", label: "Legg til konkret trafikkfaglig kontrolloppgave" },
+    { id: "overvannsfag", label: "Be om teknisk overvannsdokumentasjon" },
+    { id: "planjuss", label: "Avklar svar og krav med planjurist" },
+    { id: "antatt_avklart", label: "Behandle forholdet som allerede avklart" }
+  ];
+
+  function lillebekkLeaderReviewModel() {
+    const memo = lillebekkSaksframleggModel();
+    if (!memo) return null;
+    const formal = window.CivicationWorkWorld?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const returnEvent = history.find(function (event) {
+      return event.id === "lillebekk_leder_retur_v1";
+    }) || null;
+    const returnedDraftId = returnEvent?.choice_id || "";
+    const points = LILLEBEKK_LEADER_CHECKS.map(function (p) {
+      const prefix = `lillebekk_leder_svar_${p.id}_v`;
+      const records = history.filter(function (event) {
+        return String(event.id || "").startsWith(prefix);
+      });
+      const latest = records[records.length - 1] || null;
+      return { ...p, recordsCount: records.length, lastOutcome: latest?.outcome || "",
+        lastNote: latest?.note || "", safe: !!returnEvent && latest?.outcome === p.needed };
+    });
+    const corrected = !!returnEvent && !!memo.latestDraft &&
+      memo.latestDraft.id !== returnedDraftId &&
+      memo.latestDraft.outcome === "korrigert_internt_utkast_ikke_godkjent" &&
+      String(memo.latestDraft.note || "").includes(`Lederretur: ${returnEvent.id}`);
+    const canRevise = !!returnEvent && !corrected &&
+      memo.latestDraft?.id === returnedDraftId && memo.ready &&
+      points.every(function (point) { return point.safe; });
+    return {
+      memo, points, returnEvent, returnedDraftId, corrected, canRevise,
+      answeredCount: points.filter(function (point) { return point.safe; }).length,
+      canRequestReview: !returnEvent && memo.ready && memo.upToDate && !!memo.latestDraft
+    };
+  }
+
+  function recordLillebekkLeaderReturn() {
+    const review = lillebekkLeaderReviewModel();
+    if (!review?.canRequestReview) {
+      return { ok: false, reason: "Det kreves et gjeldende internt saksframlegg før simulert ledergjennomgang." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er ikke tilgjengelig." };
+    }
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    const draftId = review.memo.latestDraft.id;
+    const note = "SIMULERT INTERN LEDERRETUR fra Elin, knyttet til " + draftId +
+      ". Ikke en faktisk utsendelse, innhentet uttalelse eller godkjenning.\n" +
+      review.points.map(function (point, index) {
+        return `${index + 1}. ${point.title} (${point.refs}): ${point.feedback}`;
+      }).join("\n") +
+      "\nTre konkrete oppfølgingspunkter må dokumenteres i en ny versjon. Åpne avvik beholdes.";
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_leder_retur_v1",
+        scene_id: "lillebekk_ledergjennomgang",
+        choice_id: draftId,
+        outcome: "simulert_leder_returnert_ikke_godkjent",
+        at: new Date().toISOString(), note
+      });
+      return { ok: true, draftId };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lederretur", error);
+      return { ok: false, reason: "Lederreturen kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkLeaderResponse(pointId, action, explanation) {
+    const review = lillebekkLeaderReviewModel();
+    const point = review?.points.find(function (row) { return row.id === pointId; });
+    if (!review?.returnEvent || review.corrected ||
+        review.memo.latestDraft?.id !== review.returnedDraftId ||
+        !point || !LILLEBEKK_LEADER_RESPONSES.some(function (row) { return row.id === action; })) {
+      return { ok: false, reason: "Denne ledermerknaden er ikke åpen for svar." };
+    }
+    const reason = String(explanation || "").replace(/\s+/g, " ").trim().slice(0, 700);
+    if (reason.length < 65) {
+      return { ok: false, reason: "Beskriv konkret hva som må kontrolleres, hvem som har ansvaret, og hva som fortsatt er uavklart (minst 65 tegn)." };
+    }
+    const label = LILLEBEKK_LEADER_RESPONSES.find(function (row) { return row.id === action; }).label;
+    const note = `Svar til simulert ledermerknad om ${point.title}. Bilag: ${point.refs}. Planlagt oppfølging: ${label}. Konkret begrunnelse: ${reason}. Oppgaven er foreslått og ikke sendt, dokumentert som ferdig, vedtatt eller godkjent.`;
+    if (point.lastOutcome === action && point.lastNote === note) return { ok: true, alreadyLogged: true };
+    if (point.recordsCount >= 10 &&
+        !(point.lastOutcome !== point.needed && action === point.needed)) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd. Kun en faglig korrekt sluttkorrigering kan journalføres." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er ikke tilgjengelig." };
+    }
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: `lillebekk_leder_svar_${point.id}_v${point.recordsCount + 1}`,
+        scene_id: "lillebekk_ledergjennomgang",
+        choice_id: action,
+        at: new Date().toISOString(), outcome: action, note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Svar til ledermerknad", error);
+      return { ok: false, reason: "Ledermerknaden kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkCorrectedMemo(recommendation) {
+    const review = lillebekkLeaderReviewModel();
+    if (!review?.canRevise) {
+      return { ok: false, reason: "Svar faglig forsvarlig på alle tre ledermerknader før du fører en ny utkastversjon." };
+    }
+    const text = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0, 750);
+    if (text.length < 80) {
+      return { ok: false, reason: "Skriv en konkret administrativ anbefaling på minst 80 tegn." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er ikke tilgjengelig." };
+    }
+    const memo = review.memo;
+    if (memo.draftCount >= 10) return { ok: false, reason: "Utkastloggen er full." };
+    const base = lillebekkBuildSaksframlegg(memo, text);
+    const signatureLine = `Kildeversjoner: ${memo.signature}`;
+    if (!base.endsWith(signatureLine)) return { ok: false, reason: "Kildeversjonen kunne ikke kontrolleres." };
+    const appendix = [
+      "6. Oppfølging av simulert lederretur (ikke godkjenning)",
+      `Lederretur: ${review.returnEvent.id}`,
+      `Tidligere utkast: ${review.returnedDraftId}`,
+      ...review.points.map(function (point) {
+        return `- ${point.title}: ${point.lastNote}`;
+      }),
+      "Oppfølgingene er dokumenterte planlagte handlinger. Nye fagrapporter er ikke automatisk mottatt eller verifisert."
+    ].join("\n");
+    const note = base.slice(0, -signatureLine.length) + appendix + "\n" + signatureLine;
+    const latest = memo.latestDraft;
+    if (latest?.note === note) return { ok: true, alreadyLogged: true };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: `lillebekk_saksframlegg_utkast_v${memo.draftCount + 1}`,
+        scene_id: "lillebekk_ledergjennomgang",
+        choice_id: "korrigert_utkast_etter_simulert_lederretur",
+        at: new Date().toISOString(),
+        outcome: "korrigert_internt_utkast_ikke_godkjent", note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Korrigert saksframlegg", error);
+      return { ok: false, reason: "Korrigert utkast kunne ikke journalføres." };
     }
   }
 
