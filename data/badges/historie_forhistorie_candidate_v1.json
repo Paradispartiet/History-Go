@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "forhistorie",
   "label": "Forhistorie",
-  "status": "awaiting_original_artwork",
+  "status": "artwork_local_awaiting_binary_transfer",
   "sourceImage": "bilder/merker/historie/undermerker/forhistorie-brodert-v1.webp",
   "palette": {
     "primary": "#603E1E",
@@ -33,36 +33,47 @@
     "nb": {
       "heading": "FORHISTORIE",
       "footer": "HISTORIE",
-      "path": "bilder/merker/historie/undermerker/forhistorie-brodert-v1.webp"
+      "path": "bilder/merker/historie/undermerker/forhistorie-brodert-v1.webp",
+      "bytes": 550980,
+      "sha256": "a99acbd1743fe010d143f178cd300fbd88a37ee3a6b13bf5416feedd723cc768"
     },
     "en": {
       "heading": "PREHISTORY",
       "footer": "HISTORY",
-      "path": "bilder/merker/historie/locales/en/forhistorie.webp"
+      "path": "bilder/merker/historie/locales/en/forhistorie.webp",
+      "bytes": 518196,
+      "sha256": "14f1da2e4c2ecdc5f70eca42c8003082c18a025359770d45b581b8a5807c8a30"
     },
     "es": {
       "heading": "PREHISTORIA",
       "footer": "HISTORIA",
-      "path": "bilder/merker/historie/locales/es/forhistorie.webp"
+      "path": "bilder/merker/historie/locales/es/forhistorie.webp",
+      "bytes": 517640,
+      "sha256": "ef6a13b355ffc6bf8f2ddee96d9ffef3facec1d80086579b7d6ab816a78990dc"
     },
     "pt": {
       "heading": "PRÉ-HISTÓRIA",
       "footer": "HISTÓRIA",
-      "path": "bilder/merker/historie/locales/pt/forhistorie.webp"
+      "path": "bilder/merker/historie/locales/pt/forhistorie.webp",
+      "bytes": 518602,
+      "sha256": "a7d80032304a13580482dd504a367ffdebd8d0ec5097e1ebfb5fac2b85af99f3"
     },
     "fr": {
       "heading": "PRÉHISTOIRE",
       "footer": "HISTOIRE",
-      "path": "bilder/merker/historie/locales/fr/forhistorie.webp"
+      "path": "bilder/merker/historie/locales/fr/forhistorie.webp",
+      "bytes": 517996,
+      "sha256": "66b8ef5337334cd948d40863bbb386d631e1bb53b8fbcd68f996743aef869522"
     }
   },
   "quality": {
-    "artworkProduced": false,
+    "artworkProduced": true,
     "visualApproved": false,
     "binaryVerified": false,
-    "integrated": false
+    "integrated": false,
+    "technicalLocalVerified": true
   },
-  "activationRule": "Integrer først når ett komplett 1024px RGBA-illustrasjonsmotiv er visuelt godkjent, fem byteverifiserte WebP-er er lagret på variantstiene, og alle eksisterende aktive merker er bevart.",
+  "activationRule": "Before integration, upload exactly the five WebPs with the hashes and sizes recorded in variants, visually approve the standalone badge, activate NB only in data/badges/historie.json and retain EN/ES/PT/FR inactive; do not touch Bilder/merker/historie.PNG.",
   "seriesProgress": {
     "integrated": 0,
     "total": 14,
@@ -74,5 +85,20 @@
     "preserveExactOriginal": true,
     "role": "Approved visual reference for Historie sub-badges; do not replace, recolor, crop, edit or overwrite the existing parent badge",
     "styleGuidance": "Use the parent Historie badge's original embroidery texture, proportions, typographic treatment, category colors and edge treatment as the authoritative family reference; create distinct motifs for each sub-badge rather than copying the parent image."
+  },
+  "visualReview": {
+    "production": "Single independent illustrated prehistory embroidered badge and five localized caption variants",
+    "reference": "Existing historie.PNG badge retained unchanged",
+    "approved": false
+  },
+  "binaryTransfer": {
+    "verifiedInRepository": false,
+    "filesInLocalPackage": 5,
+    "sourceArchive": "forhistorie_fem_sprak_v1.zip",
+    "expectedDimensions": [
+      1024,
+      1024
+    ],
+    "expectedTransparency": true
   }
 }
