@@ -73,13 +73,18 @@ try{
      // Finish the historical sticky-hero check before resetting this *same*
      // scroll container. Instant scroll cancels an in-flight CSS smooth scroll,
      // and the two animation frames allow sticky/layout updates to settle.
-     await page.locator('#placeCard .pc-body').evaluate(async el=>{
-      const previous=el.style.scrollBehavior;
+     item.scrollReset=await page.locator('#placeCard .pc-body').evaluate(async el=>{
+      const card=document.querySelector('#placeCard');
+      const snapshot=()=>({scrollTop:el.scrollTop,pinned:card?.classList.contains('is-original-photo-pinned'),behavior:getComputedStyle(el).scrollBehavior,anchor:getComputedStyle(el).overflowAnchor});
+      const before=snapshot(),previous=el.style.scrollBehavior;
       el.style.scrollBehavior='auto';
       el.scrollTo({top:0,behavior:'instant'});
       el.dispatchEvent(new Event('scroll'));
+      const immediate=snapshot();
       await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+      const settled=snapshot();
       el.style.scrollBehavior=previous;
+      return {before,immediate,settled};
      });
     }
     // The historical photo test scrolls the same .pc-body used by QuizCard.
