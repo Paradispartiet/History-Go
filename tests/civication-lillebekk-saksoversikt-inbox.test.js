@@ -106,6 +106,18 @@ const documentedButNotReconciled=preview({records:{[formalId]:{
 }}});
 assert.equal(documentedButNotReconciled.model.topics.find(row=>row.title==='Skolevei').status,
  'Motstridende spor – avklar');
+// Real accepted job offers use CivicationState.setActivePosition({
+ // career_id, title, role_key, ...}) rather than the mail plan's role_scope.
+const acceptedPosition=preview({active:{
+ career_id:'by',title:'Arealplanlegger',role_key:'arealplanlegger'
+},records:{[formalId]:formal}});
+assert.ok(acceptedPosition.model,
+ 'Lillebekk is visible when the player actually accepts the Arealplanlegger job');
+assert.ok(acceptedPosition.markup.includes('Lillebekk · saksoversikt'));
+const differentPosition=preview({active:{
+ career_id:'by',title:'Arkitekt',role_key:'arkitekt'
+},records:{[formalId]:formal}});
+assert.equal(differentPosition.model,null);
 const noData=preview({active:{role_scope:'by_radgiver_plan'},
  records:{[formalId]:{work_object_id:formalId,flags:[],status:'open'}}});
 assert.equal(noData.model.documented,0);
