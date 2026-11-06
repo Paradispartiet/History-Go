@@ -807,7 +807,10 @@
         lastOutcome: latest?.outcome || "", lastNote: latest?.note || "",
         safe: !!intake && latest?.outcome === doc.safeId };
     });
-    const ready = !!intake && docs.every(function (doc) { return doc.safe; });
+    // A later unsafe change to the original document comparison must stop new
+    // follow-up notes, even if all three fictional expert replies were reviewed.
+    const ready = !!intake && leader.memo.ready &&
+      docs.every(function (doc) { return doc.safe; });
     const signature = [leader.memo.latestDraft?.id || "", leader.memo.signature]
       .concat(docs.map(function (doc) { return doc.lastId; })).join("|");
     const notes = history.filter(function (e) {
