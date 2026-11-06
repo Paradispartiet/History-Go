@@ -1,0 +1,70 @@
+/* Utforsk: compact search and optional guide inside the existing map drawer. */
+#nearbyListContainer .nearby-discovery-tools{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  width:100%;margin-top:0;min-height:34px;color:#fff;
+}
+#nearbyListContainer .nearby-quick-search{
+  display:flex;align-items:center;gap:7px;
+  flex:1 1 170px;max-width:360px;min-width:135px;
+  padding:6px 11px;border:1px solid rgba(255,255,255,.24);
+  background:rgba(255,255,255,.09);border-radius:999px;
+}
+#nearbyListContainer .nearby-quick-search:focus-within{
+  border-color:#f4c435;box-shadow:0 0 0 2px rgba(244,196,53,.14);
+}
+#nearbyQuickSearch{
+  width:100%;min-width:0;border:0;outline:0;box-shadow:none;
+  padding:0;background:transparent;color:#fff;font:inherit;font-size:14px;
+}
+#nearbyQuickSearch::placeholder{color:rgba(255,255,255,.67);}
+#nearbyGuideToggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:5px;border-radius:999px;padding:7px 12px;
+  border:1px solid rgba(244,196,53,.6);background:#252013;
+  color:#ffe085;font:inherit;font-size:13px;font-weight:750;cursor:pointer;
+}
+#nearbyGuideToggle[aria-expanded="true"]{background:#4e3c10;}
+#nearbyListContainer .nearby-discovery-status{
+  display:flex;align-items:center;gap:7px;flex:1 1 170px;
+  min-width:0;font-size:11px;color:rgba(255,255,255,.73);
+}
+#nearbyActiveFilter{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#nearbySearchCount{margin-left:auto;white-space:nowrap;}
+#nearbyGuidePanel{
+  border:1px solid rgba(244,196,53,.27);border-radius:14px;
+  background:rgba(35,31,22,.97);padding:10px 12px;color:#fff;
+}
+#nearbyGuidePanel[hidden]{display:none!important;}
+#nearbyGuidePanel .nearby-guide-heading{
+  font-weight:750;font-size:13px;margin:0 0 8px;color:#ffe085;
+}
+#nearbyGuidePanel .nearby-guide-actions{display:flex;gap:7px;flex-wrap:wrap;}
+#nearbyGuidePanel [data-hg-guide-action]{
+  border-radius:999px;padding:7px 10px;
+  border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.08);
+  color:#fff;font:inherit;font-size:12px;cursor:pointer;
+}
+#nearbyGuidePanel [data-hg-guide-action]:hover,
+#nearbyGuidePanel [data-hg-guide-action]:focus-visible{
+  border-color:#ffe085;outline:2px solid transparent;
+}
+#nearbyListContainer .nearby-strip > [hidden],
+#nearbyListContainer #leftEventsList > [hidden],
+#nearbyListContainer #leftSocialList > [hidden]{display:none!important;}
+/* Broken/empty photos retain the same card shape, with a useful visual fallback. */
+#nearbyListContainer .nearby-thumbWrap.hg-image-missing{
+  background:radial-gradient(circle at 20% 10%,#28475c,#111823 70%);
+}
+#nearbyListContainer .nearby-thumbWrap.hg-image-missing::before{
+  content:"🏛️";position:absolute;inset:0;display:grid;place-items:center;
+  font-size:38px;opacity:.65;pointer-events:none;
+}
+#nearbyListContainer .nearby-thumbWrap.hg-image-missing img.nearby-thumb{
+  display:none!important;
+}
+@media(max-width:600px){
+  #nearbyListContainer .nearby-discovery-tools{gap:6px;}
+  #nearbyListContainer .nearby-quick-search{flex:1 1 145px;max-width:none;}
+  #nearbyListContainer .nearby-discovery-status{flex:1 1 100%;font-size:11px;}
+  #nearbyGuideToggle{padding:7px 9px;}
+}
