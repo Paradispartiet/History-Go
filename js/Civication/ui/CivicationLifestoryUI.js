@@ -561,7 +561,8 @@
     if (shellStoryUnavailable() || dayAdvancePending || !state || !state.dagFerdig) return;
     dayAdvancePending = true;
     const previousState = state;
-    const previousDay = getShellDay() ?? Number(state.livsdag || state.dag);
+    const previousCalendarDay = getShellDay();
+    const previousStoryDay = Number(state.livsdag || state.dag);
     try {
       if (getShellDay() === null) {
         // Min dag fungerer fremdeles uavhengig på sider uten Civication-shell.
@@ -583,8 +584,13 @@
       // The summary's "Start neste dag" button is removed by the render.
       // Reveal the next narrative only after an actual canonical day change.
       // Never jump on a blocked transition or steal focus from map mode.
-      const nextDay = getShellDay() ?? Number(state?.livsdag || state?.dag);
-      if (nextDay > previousDay && !document.body.classList.contains("civi-mapmode")) {
+      const nextCalendarDay = getShellDay();
+      const nextStoryDay = Number(state?.livsdag || state?.dag);
+      const dayAdvanced = nextStoryDay > previousStoryDay
+        || (previousCalendarDay !== null && nextCalendarDay !== null
+          && nextCalendarDay > previousCalendarDay);
+      if (state === previousState && dayAdvanced
+        && !document.body.classList.contains("civi-mapmode")) {
         revealNextDay(getPanel(), keyboardActivated);
       }
     }
