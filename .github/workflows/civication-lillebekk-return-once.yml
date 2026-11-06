@@ -1,0 +1,40 @@
+name: Lillebekk return registry sync (one-shot)
+on:
+  push:
+    branches:
+      - civication/lillebekk-honest-return-20261106
+    paths:
+      - .github/workflows/civication-lillebekk-return-once.yml
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild exactly the Civication derived registers
+        run: |
+          node scripts/build-civication-scene-registry.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+          node scripts/build-civication-scene-registry.mjs --check
+          node tests/civication-lillebekk-return-evidence-integrity.test.js
+          node tests/civication-by-radgiver-approval-branching.test.js
+          node tests/civication-by-radgiver-lillebekk-evidence-handoff.test.js
+      - name: Commit derived data only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json data/Civication/roleWorldRolloutReadiness.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Sync derived Civication registers with truthful Lillebekk return"
+            git push origin HEAD:civication/lillebekk-honest-return-20261106
+          fi
