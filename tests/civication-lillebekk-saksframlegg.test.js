@@ -130,6 +130,24 @@ assert.equal(api.renderSections(),true);
 assert.ok(host.innerHTML.includes('Sist journalførte saksframlegg'));
 assert.ok(host.innerHTML.includes('gjeldende kildeversjoner'));
 
+// A positive earlier fagspor does not erase a newer missing-document assessment.
+world.addFlag(caseId,'early_map_conflict_documented',{
+ event_id:'lillebekk_memo_map_existing_fagspor',at:'2026-11-06T14:50:00Z'
+});
+assert.equal(api.recordLillebekkDocumentReceipt('plankart','J-2026-214',
+ 'Kommunens planteam','Datert kartutkast med byggegrenser og foreløpig tegnforklaring.').ok,true);
+assert.equal(api.recordLillebekkDocumentAssessment('plankart','mangelfull',
+ 'Kartutkastet mangler dokumentert versjonsdato og avklaring av byggegrense mot grøntdraget.').ok,true);
+model=api.getLillebekkSaksframleggModel();
+assert.equal(model.dossier.topics.find(x=>x.id==='plankart').status,'Faglig spor registrert');
+assert.equal(model.upToDate,false);
+assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,true);
+model=api.getLillebekkSaksframleggModel();
+assert.equal(model.draftCount,2);
+assert.ok(model.latestDraft.note.includes('Plankart og areal: Faglig spor registrert.'));
+assert.ok(model.latestDraft.note.includes('Kartutkastet mangler dokumentert versjonsdato'));
+assert.equal(model.upToDate,true);
+
 // New case evidence is part of the snapshot, not only authored comparison revisions.
 world.addFlag(caseId,'stormwater_unsecured_in_plan',{
  event_id:'lillebekk_memo_new_stormwater_issue',at:'2026-11-06T15:00:00Z'
@@ -154,7 +172,7 @@ model=api.getLillebekkSaksframleggModel();
 assert.equal(model.ready,true);
 assert.equal(model.upToDate,false,'a later assessment changes the source signature');
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,true);
-assert.equal(api.getLillebekkSaksframleggModel().draftCount,2);
+assert.equal(api.getLillebekkSaksframleggModel().draftCount,3);
 assert.equal(api.getLillebekkSaksframleggModel().upToDate,true);
 
 // All player text is escaped when shown in the read-only memo.
@@ -163,6 +181,23 @@ assert.equal(api.recordLillebekkSaksframlegg(unsafe).ok,true);
 api.renderSections();
 assert.ok(host.innerHTML.includes('&lt;img'));
 assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
+
+// Revision caps must not trap a role permanently in an unsafe assessment.
+for(let i=0;i<9;i++) {
+ assert.equal(api.recordLillebekkComparison('utbygger_myndighet','anta_avklart',
+  'Denne bevisst uforsvarlige konklusjonen er revisjon '+i+
+  ' og kan ikke brukes som formell avgjørelse for plansaken.').ok,true);
+}
+model=api.getLillebekkSaksframleggModel();
+assert.equal(model.checks.find(x=>x.id==='utbygger_myndighet').revisionCount,10);
+assert.equal(model.ready,false);
+assert.equal(api.recordLillebekkComparison('utbygger_myndighet','avklar_forst',
+ 'En full kildevurdering må vise at Ivars henvendelse ikke gir noen forhåndsgodkjenning.').ok,true);
+model=api.getLillebekkSaksframleggModel();
+assert.equal(model.checks.find(x=>x.id==='utbygger_myndighet').revisionCount,11);
+assert.equal(model.ready,true);
+assert.equal(api.recordLillebekkComparison('utbygger_myndighet','anta_avklart',
+ 'Ikke åpne for et nytt uforsvarlig standpunkt etter at sluttkorrigeringen er gjort.').ok,false);
 
 // Access and jurisdiction boundaries.
 activeRole={role_key:'butikkmedarbeider'};
