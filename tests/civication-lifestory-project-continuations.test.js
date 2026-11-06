@@ -120,7 +120,18 @@ for (const first of projects) for (const [index, past] of pasts.entries()) {
       if (!representativeEndings.some(s => s.tidligereValg.wa_c03_avslutning === final.tidligereValg.wa_c03_avslutning)) representativeEndings.push(final);
     }
   }
-  for (const firstFinal of representativeEndings) for (const second of descriptors.filter(n => n.etterFortsettelser?.includes(first.id) && (originalEndings.includes(firstFinal) || n.id === 'sideprosjekt_neste_steg'))) {
+  if (first.id === 'frilans_med_lea') {
+    for (const status of ['tilbud_sendt', 'venter_pa_svar', 'avslatt']) {
+      const final = finals.find(state => state.tidligereValg.c04_tekstoppfolging === status);
+      assert.ok(final, 'missing C04 handoff for ' + status);
+      if (!representativeEndings.some(state => state.tidligereValg.c04_tekstoppfolging === status)) {
+        representativeEndings.push(final);
+      }
+    }
+  }
+  const sameStoryFollowup = { sideprosjekt_med_lea: 'sideprosjekt_neste_steg', frilans_med_lea: 'frilans_neste_steg' }[first.id];
+  for (const firstFinal of representativeEndings) for (const second of descriptors.filter(n =>
+    n.etterFortsettelser?.includes(first.id) && (originalEndings.includes(firstFinal) || n.id === sameStoryFollowup))) {
     s = clone(firstFinal);
     const archive = clone(s.arkiv), priorChapter = clone(s.kapittelArkiv), priorEnding = E.resolveEnding(s, c);
     // A different primary role can take over at a completed chapter boundary.
@@ -135,12 +146,13 @@ for (const first of projects) for (const [index, past] of pasts.entries()) {
     assert.deepEqual(s.fortsettelser, [first.id, second.id]);
     assert.deepEqual(s.kapittelArkiv.slice(0, 1), priorChapter);
     assert.deepEqual(s.kapittelArkiv[1], { tittel: c.role.symposium.tittel, fraDag: 8, tilDag: 10, ending: priorEnding });
-    savedSecond = explore(s, nextContent, packs[second.id], now => {
+    const secondFinals = explore(s, nextContent, packs[second.id], now => {
       assert.deepEqual(now.arkiv.slice(0, archive.length), archive);
       assert.deepEqual(now.kapittelArkiv[0], priorChapter[0]);
       assert.deepEqual(now.kapittelArkiv[1].ending, priorEnding);
       assert.equal(now.meters.penger, old.meters.penger);
-    })[0];
+    });
+    if (originalEndings.includes(firstFinal)) savedSecond = secondFinals[0];
   }
 }
 // Mira's legacy one-id save also upgrades to the ordered chapter ledger.

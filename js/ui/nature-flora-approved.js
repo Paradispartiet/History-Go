@@ -5,6 +5,86 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_svalerot: Object.freeze({
+      scientificName: "Vincetoxicum hirundinaria",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/61_svalerot_v1.webp",
+      gitBlobSha: "f60778d725256fd3bb8d91f293f605d1a0781e72",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-svalerot-20261105.json"
+    }),
+    emne_flora_rosslyng: Object.freeze({
+      scientificName: "Calluna vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/60_rosslyng_v1.webp",
+      gitBlobSha: "ba6314781c3b81b6d775c05f1bffe109d0ab457b",
+      reviewedAt: "2026-11-05",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-rosslyng-20261105.json"
+    }),
+    emne_flora_rodtvetann: Object.freeze({
+      scientificName: "Lamium purpureum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/59_rodtvetann_v1.webp",
+      gitBlobSha: "9b28b062f2da609ef83eccbf59662401eb09eeec",
+      reviewedAt: "2026-11-05",
+      stage: "varblomstring",
+      evidence: "data/natur/flora/illustration-quality-rodtvetann-20261105.json"
+    }),
+    emne_flora_rodknapp: Object.freeze({
+      scientificName: "Knautia arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/58_rodknapp_v1.webp",
+      gitBlobSha: "e7f9f81c22c7a5abaafb972d75622602625bb737",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-rodknapp-20261105.json"
+    }),
+    emne_flora_balderbra: Object.freeze({
+      scientificName: "Tripleurospermum inodorum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/57_balderbra_v1.webp",
+      gitBlobSha: "ef76d51b2127e62c0df2a11ff65b70154c6c6001",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-balderbra-20261105.json"
+    }),
+    emne_flora_akervindel: Object.freeze({
+      scientificName: "Convolvulus arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/56_akervindel_v1.webp",
+      gitBlobSha: "914150925a8e8f59cbbbbc31660317f2ac783360",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-akervindel-20261105.json"
+    }),
+    emne_flora_akerveronika: Object.freeze({
+      scientificName: "Veronica arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/55_akerveronika_v1.webp",
+      gitBlobSha: "0f5502735919f07ba0e8eb863c004c2afb21553a",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-akerveronika-20261104.json"
+    }),
+    emne_flora_akerdylle: Object.freeze({
+      scientificName: "Sonchus arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/54_akerdylle_v1.webp",
+      gitBlobSha: "de93f9b14a7aa7a049f40b344e5284ddfbfd90f9",
+      reviewedAt: "2026-11-04",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-akerdylle-20261104.json"
+    }),
+    emne_flora_varpengeurt: Object.freeze({
+      scientificName: "Noccaea caerulescens",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/53_varpengeurt_v1.webp",
+      gitBlobSha: "949882e56dd3786be44bfe0323bf60dba15ea348",
+      reviewedAt: "2026-11-04",
+      stage: "varblomstring",
+      evidence: "data/natur/flora/illustration-quality-varpengeurt-20261104.json"
+    }),
+    emne_flora_varmure: Object.freeze({
+      scientificName: "Potentilla verna",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/52_varmure_v1.webp",
+      gitBlobSha: "b5c91c9233a2aea1eb42466eccd9d85e00bd4e3c",
+      reviewedAt: "2026-11-04",
+      stage: "var_og_forsommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-varmure-20261104.json"
+    }),
     emne_flora_varkaal: Object.freeze({
       scientificName: "Ficaria verna",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/51_varkaal_v1.webp",

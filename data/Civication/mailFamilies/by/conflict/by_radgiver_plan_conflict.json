@@ -49,25 +49,61 @@
           "choices": [
             {
               "id": "A",
-              "label": "Sett krav til bredde og sammenheng i grøntdraget",
-              "reply": "Jeg setter krav til bredde og sammenheng i grøntdraget i bestemmelsene.",
+              "label": "Anbefal krav til bredde og sammenheng for juridisk vurdering",
+              "reply": "Jeg begrunner en anbefaling om bredde og sammenheng, og sender foreslått bestemmelse til planjurist og plansjef for vurdering.",
               "effect": 1,
               "tags": [
                 "groentstruktur",
                 "langsiktighet"
               ],
-              "feedback": "Du sikrer en sammenhengende grøntstruktur, men strammer inn det utbygger kan bygge."
+              "feedback": "Grøntdragets funksjon er nå en dokumentert faglig anbefaling. Bestemmelsen er ikke vedtatt.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_areal_conflict_gront_001_A_early_decision",
+                    "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                    "to_status": "awaiting_review",
+                    "to_phase": "grontdrag_bredde_sammenheng_anbefalt",
+                    "note": "Forslag om bindende grøntdragsbredde og sammenheng er sendt til faglig og juridisk vurdering; kravet er ikke vedtatt."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_areal_conflict_gront_001_A_early_flag",
+                    "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                    "flag": "green_corridor_draft_requirement_proposed"
+                  }
+                ]
+              }
             },
             {
               "id": "B",
-              "label": "Godta fotavtrykket og sikre grøntdraget gjennom skjøtsel",
-              "reply": "Jeg godtar fotavtrykket og sikrer grøntdraget gjennom et skjøtselskrav.",
+              "label": "Foreslå skjøtsel som alternativ og dokumenter usikkerheten",
+              "reply": "Jeg foreslår skjøtsel som alternativ, men beskriver hvorfor det ennå ikke dokumenterer sammenheng, jorddybde eller flomvei.",
               "effect": 1,
               "tags": [
                 "boligbehov",
                 "gjennomfoering"
               ],
-              "feedback": "Du gir rom for boligene byen trenger, men den økologiske sammenhengen hviler på skjøtsel i ettertid."
+              "feedback": "Alternativet er registrert som uavklart og må prøves faglig og juridisk før det kan legges til grunn.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_areal_conflict_gront_001_B_early_decision",
+                    "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                    "to_status": "needs_review",
+                    "to_phase": "grontdrag_skjotselalternativ_uten_hjemmel",
+                    "note": "Skjøtselsalternativ er foreslått, men juridisk grunnlag og økologisk sammenheng er fortsatt uavklart."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_areal_conflict_gront_001_B_early_flag",
+                    "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                    "flag": "green_corridor_maintenance_only_unverified"
+                  }
+                ]
+              }
             }
           ],
           "next_bias": {
@@ -83,6 +119,50 @@
             ],
             "B": [
               "frist_for_utvalg"
+            ]
+          },
+          "work_context": {
+            "object_ids": [
+              "by_radgiver_lillebekk_early_analysis_case_001"
+            ],
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "priority": "high"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "upsert",
+                "event_id": "by_areal_conflict_gront_001_early_case_observed",
+                "work_object": {
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                  "kind": "planning_professional_review_case",
+                  "role_scope": "by_radgiver_plan",
+                  "institution_id": "oslo_kommune_planavdeling_001",
+                  "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                  "people_refs": [
+                    "elin_plansjef",
+                    "signe_byokolog",
+                    "ivar_utbygger",
+                    "nora_planjuss"
+                  ],
+                  "place_refs": [
+                    "lillebekk_kvartal"
+                  ],
+                  "knowledge_refs": [
+                    "plankart_og_bestemmelser",
+                    "skolevei_og_grontdrag",
+                    "planfaglig_myndighetsgrense"
+                  ],
+                  "open_questions": [
+                    "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                    "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                    "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                    "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                  ],
+                  "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                  "shared": false
+                }
+              }
             ]
           }
         },

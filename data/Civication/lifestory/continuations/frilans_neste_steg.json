@@ -246,6 +246,108 @@
       }
     },
     {
+      "id": "c04_foreningen_bestiller",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Begynn med det folk trenger å vite»",
+      "tekst": "Lea videresender en e-post fra styrelederen: «Ja til 1 200 kroner for invitasjonen og én korrekturrunde. Kan jeg få utkastet i morgen før tre? Skriv at samlingen er fredag. Folk må melde seg på innen onsdag.» Under e-posten ligger lenka til årets skjema. Lea tar forsida selv.",
+      "valg": [
+        {
+          "id": "registrer",
+          "tekst": "Lag en åpning som gir leseren dato og påmeldingsfrist",
+          "konsekvensTekst": "Du stryker første avsnitt om foreningen og begynner med fredag og fristen onsdag. Du lagrer teksten som utkast og setter av tid til lenkesjekk før klokka tre i morgen.",
+          "effekter": {
+            "flagg": {
+              "c04_bestilling": "bestilt",
+              "c04_frist": 12
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekstoppfolging": "tilbud_sendt"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_foreningen_har_ikke_svart",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Jeg tar teksten hvis jeg må»",
+      "tekst": "«Datoen er på plass,» skriver Lea. «Jeg har ikke fått klarsignal til å bestille. Hvis det drøyer, får jeg skrive de tre linjene selv.» Du har tid til å se på teksten senere, hvis det blir en jobb.",
+      "valg": [
+        {
+          "id": "hold_apen",
+          "tekst": "Svar at Lea kan komme tilbake med en bestilling",
+          "konsekvensTekst": "Du svarer: «Send meg et ord hvis dere bestemmer dere.» Du fortsetter med det du hadde planlagt.",
+          "effekter": {
+            "flagg": {
+              "c04_bestilling": "apen"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekstoppfolging": "venter_pa_svar"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "c04_invitasjon_leveranse",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 12,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lenka går til fjorårets skjema",
+      "tekst": "Klokka er snart tre. Utkastet sier fredag, men lenka i den gamle invitasjonsmalen åpner et stengt skjema fra i fjor. I styrelederens e-post ligger lenka til årets skjema. Du har en annen leveranse som også skal ut i ettermiddag.",
+      "valg": [
+        {
+          "id": "send",
+          "tekst": "Bruk årets lenke, sjekk at skjemaet tar imot svar, og send utkastet",
+          "konsekvensTekst": "Skjemaet viser fredag og tar imot svar. Du sender den rettede teksten med riktig lenke. Styrelederen har én korrekturrunde igjen.",
+          "effekter": {
+            "flagg": {
+              "c04_leveranse": "levert"
+            }
+          }
+        },
+        {
+          "id": "varsle",
+          "tekst": "Varsle nå og si hva som gjenstår før teksten kan sendes",
+          "konsekvensTekst": "Du forteller hvilken lenke som var feil, og viser til årets skjema i styrelederens e-post. Du foreslår å sende utkastet senere i dag og går tilbake til den andre leveransen.",
+          "effekter": {
+            "flagg": {
+              "c04_leveranse": "fristproblem_varslet"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_bestilling": "bestilt",
+          "c04_frist": 12
+        }
+      },
+      "avsender": "lea"
+    },
+    {
       "id": "d13_frilans_vurdering",
       "threadId": "frilans_etter_forste_kapittel",
       "dag": 13,
@@ -332,6 +434,66 @@
       "conditions": {
         "flagg": {
           "frilans_neste_valg": "avsta"
+        }
+      }
+    },
+    {
+      "id": "c04_kundesvar_godkjent",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Nå finner folk skjemaet»",
+      "tekst": "Styrelederen har prøvd lenka på mobilen. «Den virker. Vi sender invitasjonen slik den er. Lea legger også ut samme lenke på forsida.»",
+      "valg": [
+        {
+          "id": "arkiver",
+          "tekst": "Lagre den godkjente teksten og svaret fra styrelederen",
+          "konsekvensTekst": "Du legger den godkjente versjonen sammen med bestillingen. Foreningen har tatt teksten i bruk.",
+          "effekter": {
+            "flagg": {
+              "c04_sluttstatus": "godkjent"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_bestilling": "bestilt",
+          "c04_leveranse": "levert"
+        }
+      }
+    },
+    {
+      "id": "c04_kundesvar_avbestilt",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lea sendte tre linjer",
+      "tekst": "«Vi kunne ikke vente,» skriver styrelederen. «Lea tok fredag, fristen onsdag og lenka du fant. Det holdt.» Hun ber deg stoppe arbeidet og si hva du rakk å gjøre.",
+      "valg": [
+        {
+          "id": "arkiver",
+          "tekst": "Svar hva du rakk, og legg bort utkastet",
+          "konsekvensTekst": "Du forteller at du sjekket lenka og begynte på teksten. Lea har sendt sin versjon. Det blir ingen ny frist, og honoraret er fortsatt uavklart.",
+          "effekter": {
+            "flagg": {
+              "c04_sluttstatus": "avbestilt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_bestilling": "bestilt",
+          "c04_leveranse": "fristproblem_varslet"
         }
       }
     },

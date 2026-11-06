@@ -1,0 +1,136 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "toyen_trafo",
+  "category": "naeringsliv",
+  "status": "in_progress_not_vferdig",
+  "active_phase": "People, Objects, Brands og Næringslivs dokumenterte service-produksjon kilde- og bildeklare; sluttkontroll av samlet vFerdig gjenstår.",
+  "production_profile": "standard",
+  "profile_status": "four_source_and_image_ready_collections_pending_final_release_review",
+  "profile_reason": "Tøyen trafo dokumenterer industriell transformatorstasjon og senere kulturhus. To People, to arkivdokumenterte tekniske Objects og to selvstendige, kildeautentiske Brands-aktører er kvalifisert, uten dupliserte hovedsteder eller feilaktig UKS-leieforhold. Kategoriuttrykket Productions må avgjøres etter egen kildereview.",
+  "primary_badge": "naeringsliv",
+  "badge_routing": "Næringsliv → People, Objects, Brands, kategoriuttrykk. People, Objects og Brands er kilde- og visuelt kvalifiserte; Productions er ikke automatisk fyllkvote.",
+  "source_review": {
+    "status": "verified_archive_metadata_with_schematic_representation_limits",
+    "sources": [
+      "https://www.oslobilder.no/t%C3%B8yen",
+      "https://www.oslobilder.no/BAR/A-20138/Ua/0004/054",
+      "https://oslobilder.no/BAR/A-20138/Ua/0004/091",
+      "https://oslobyleksikon.no/side/T%C3%B8yen_transformatorstasjon",
+      "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/toyen-trafo/",
+      "https://trafokunstnerhus.no/historie/",
+      "https://osloteatersenter.no/ots/",
+      "https://www.uks.no/",
+      "https://www.uks.no/wp-content/uploads/2018/04/uks-logo-3.png",
+      "https://manuelraeder.com/project/uks/"
+    ],
+    "source_boundary": "1916 og 1918 er dateringer av fotografiske arkivposter, ikke dokumenterte installasjonsår. De historiske gjenstandenes fysiske bevaring og tekniske detaljform er ukjent. Visualiseringene er egne, skjematiske og synlig merket «Illustrasjon – ikke fotografi».",
+    "owner_review": "Tårnhjelm og vinduer er bygningsdetaljer, ikke Objects. Oslo teatersenter og UKS er separate Brands-aktører, ikke et duplikat av Place. Historiske tekniske gjenstander fra stedet eies av Objects."
+  },
+  "active_file_scope": "Materialisere reell, kildebelagt OTS prøvelokaleutleie i Place.productions med ærlig, original skjematisk WebP, kontrollere det fjerde PlaceCard-medlemmet og UI.",
+  "collection_ids": [
+    "people",
+    "objects",
+    "brands",
+    "productions"
+  ],
+  "collection_status": {
+    "people": "PASS – Thorvald Astrup og Kari Rolfsen, 12 kildekontrollerte biografipåstander, 2 originale synlig AI-merkede WebP-illustrasjoner; PlaceCard preview kontrollert i Chromium.",
+    "objects": "PASS – apparatpult 1916 (A-20138/Ua/0004/054) og transformatorkjerne 1918 (A-20138/Ua/0004/091), 2 originale illustrasjoner med dokumenterte tolkningsgrenser; popup og preview kontrollert 390/1440 px.",
+    "brands": "PASS CANDIDATE – Oslo teatersenter har offisielt pressemerke, og UKS har autentisk offisiell logo fra UKS' nettsted med dokumentert 2017–2018-identitet. Begge er moderne kildemerkede identiteter; UKS var initiativtaker til atelier, ikke fast leietaker.",
+    "category_expression": "PASS – selvstendig, stedsegen utleietjeneste: fem navngitte prøvelokaler dokumentert på offisiell OTS-bookingside, vist med original, tydelig skjematisk illustrasjon uten påstand om fotografisk form. Ingen fiktive forestillinger."
+  },
+  "browser_acceptance": {
+    "status": "PASS",
+    "url": "https://github.com/Paradispartiet/History-Go/actions/runs/41942555925",
+    "widths": [
+      390,
+      1440
+    ],
+    "test": "tests/toyen-trafo-objects-real-browser.mjs"
+  },
+  "existing_core": {
+    "quiz": "21 kilde- og Knowledge-lenkede spørsmål, 3 sett",
+    "quizcard": "10 spørsmål",
+    "stories": 1,
+    "leksikon": 1,
+    "language_entries": 6,
+    "lesespor": 4,
+    "fagverk": "curated v2 bevart"
+  },
+  "remaining_before_vferdig": [
+    "Endelig samlet PlaceCard-vurdering på mobil og desktop og QuizCard-flip",
+    "Review av universal core og publish-commit etter siste samlingsendring",
+    "Formell signert vFerdig-godkjenning etter sluttkontroll"
+  ],
+  "editorial_status": "not_vferdig_pending_release",
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "toyen_trafo",
+    "category": "naeringsliv",
+    "recorded_at": "2026-11-05T08:22:23.527Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "eacaec225d5a1c61e43ed6cbe9754bc007ecff3818dfd630940dd4f4870ba7f5"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "fbd5e39905942e116c1fef9e375253c54f93d292b82bac03379d011f38fe93c6"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/naeringsliv.json",
+        "sha256": "444b54b96b150895a82cf2b645bd19df1a35f87362c27ae669b81beddb64eb7d"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "productions"
+      ],
+      "category_expression": "productions",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  }
+}
