@@ -725,7 +725,9 @@
       return { ok: false, reason: "Saksloggen er ikke tilgjengelig." };
     }
     const memo = review.memo;
-    if (memo.draftCount >= 10) return { ok: false, reason: "Utkastloggen er full." };
+    // One additional version is reserved for the only permitted correction
+    // after Elin's simulated return. Ten ordinary drafts must not deadlock rework.
+    if (memo.draftCount >= 11) return { ok: false, reason: "Utkastloggen er full." };
     const base = lillebekkBuildSaksframlegg(memo, text);
     const signatureLine = `Kildeversjoner: ${memo.signature}`;
     if (!base.endsWith(signatureLine)) return { ok: false, reason: "Kildeversjonen kunne ikke kontrolleres." };
