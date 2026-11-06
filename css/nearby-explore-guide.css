@@ -62,6 +62,12 @@
 #nearbyListContainer .nearby-thumbWrap.hg-image-missing img.nearby-thumb{
   display:none!important;
 }
+/* Each existing category gets a meaningful picture fallback. */
+#nearbyListContainer #leftPeopleList .nearby-thumbWrap.hg-image-missing::before{content:"👤";}
+#nearbyListContainer #leftNatureList .nearby-thumbWrap.hg-image-missing::before{content:"🌿";}
+#nearbyListContainer #leftRoutesList .nearby-thumbWrap.hg-image-missing::before{content:"🥾";}
+#nearbyListContainer #leftBadgesList .nearby-thumbWrap.hg-image-missing::before{content:"🏅";}
+#nearbyListContainer .nearby-thumbWrap.hg-image-missing .nearby-thumb-icon{display:none!important;}
 @media(max-width:600px){
   #nearbyListContainer .nearby-discovery-tools{gap:6px;}
   #nearbyListContainer .nearby-quick-search{flex:1 1 145px;max-width:none;}
