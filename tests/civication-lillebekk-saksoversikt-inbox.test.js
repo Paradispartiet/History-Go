@@ -85,6 +85,13 @@ assert.ok(result.markup.includes('Kontrollgrunnlag som må etterspørres eller l
 assert.ok(result.markup.includes('Kontrollpunkt:'));
 assert.ok(result.markup.includes('Neste arbeidsoppgave:'));
 assert.ok(result.markup.includes('Faglig følge:'));
+assert.ok(result.markup.includes('Saksbilag til gjennomgang (3)'));
+assert.equal((result.markup.match(/data-exhibit-id=/g)||[]).length,3);
+assert.equal((result.markup.match(/data-civi-lillebekk-exhibit="1"/g)||[]).length,9);
+for(const ref of ['LBK-MERK-01','LBK-FAG-02','LBK-UTB-03']) {
+ assert.ok(result.markup.includes(ref), 'concrete fictional case exhibit is visible');
+}
+assert.ok(result.markup.includes('ikke et ekte kommunalt dokument'));
 assert.equal((result.markup.match(/data-civi-lillebekk-review="1"/g)||[]).length,14,
  'two legitimate revision notes per topic are available on a formal open case');
 assert.ok(result.markup.includes('Registrert faglig spor betyr ikke at et dokument er kontrollert'));
@@ -169,6 +176,30 @@ const liveCtx={
 vm.runInNewContext(source,liveCtx,{filename:'CivicationInboxTopActionUI.js'});
 const actions=liveCtx.window.CivicationInboxTopActionUI;
 assert.equal(actions.getLillebekkReviewModel().canRevise,true);
+const exhibits=actions.getLillebekkCaseExhibits(actions.getLillebekkReviewModel());
+assert.equal(exhibits.length,3);
+assert.ok(exhibits.every(e=>e.ref && e.sender && e.type && e.paragraphs.length>=2));
+assert.ok(exhibits.every(e=>e.choices.length===3));
+assert.equal(actions.recordLillebekkExhibitDecision('unknown-document','A').ok,false);
+assert.equal(actions.recordLillebekkExhibitDecision('hanne-skolevei-01','D').ok,false);
+assert.equal(actions.recordLillebekkExhibitDecision('hanne-skolevei-01','A').ok,true);
+assert.equal(actions.recordLillebekkExhibitDecision('hanne-skolevei-01','B').ok,false,
+ 'an exhibit cannot silently overwrite a previous professional decision');
+const hanneDecision=adapter.getWorkObject(formalId).history.find(
+ e=>e.id==='lillebekk_bilag_hanne-skolevei-01_valg_v1');
+assert.equal(hanneDecision.outcome,'skolevei_fagkontroll_bestilt_i_sak');
+assert.ok(hanneDecision.note.includes('Fiktivt spillbilag LBK-MERK-01'));
+assert.ok(hanneDecision.note.includes('ikke ekstern utsendelse'));
+assert.ok(adapter.getWorkObject(formalId).flags.includes('skolevei_ikke_dokumentert'),
+ 'a fictional case exhibit cannot close a missing-evidence flag');
+assert.equal(actions.getLillebekkCaseExhibits(actions.getLillebekkReviewModel())
+  .find(e=>e.ref==='LBK-MERK-01').decided,true);
+assert.equal(actions.recordLillebekkExhibitDecision('signe-grontdrag-01','C').ok,true);
+assert.equal(actions.recordLillebekkExhibitDecision('ivar-rekkefolge-01','B').ok,true);
+assert.equal(actions.getLillebekkCaseExhibits(actions.getLillebekkReviewModel())
+ .filter(e=>e.decided).length,3);
+assert.equal(adapter.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+
 assert.equal(actions.recordLillebekkReviewAction('skolevei','kontrollbehov').ok,true);
 let current=adapter.getWorkObject(formalId);
 assert.ok(current.flags.includes('skolevei_ikke_dokumentert'));
@@ -239,6 +270,8 @@ assert.equal((interactiveHost.innerHTML.match(/data-civi-lillebekk-receipt="1"/g
 assert.equal(actions.recordLillebekkReviewAction('unknown','forbehold').ok,false);
 assert.equal(actions.recordLillebekkReviewAction('skolevei','approve').ok,false);
 activeRole={role_key:'film_tv_produksjonsassistent'};
+assert.equal(actions.recordLillebekkExhibitDecision('signe-grontdrag-01','A').ok,false,
+ 'another role cannot rewrite an existing exhibit assessment');
 assert.equal(actions.recordLillebekkDocumentReceipt('grontdrag',
  'J-2026-55','Byøkolog Signe','En annen rapport skal føres i saken.').ok,false);
 assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','mangelfull',
@@ -249,6 +282,9 @@ activeRole={role_key:'arealplanlegger'};
 adapter.closeWorkObject(formalId,{event_id:'lillebekk_review_test_close',at:'2026-11-07T10:00:00Z',outcome:'closed_for_test'});
 assert.equal(actions.recordLillebekkReviewAction('grontdrag','kontrollbehov').ok,false,
  'closed cases cannot be changed by the revision UI');
+assert.equal(actions.getLillebekkCaseExhibits(actions.getLillebekkReviewModel()).length,0,
+ 'closed case has no active exhibit actions');
+assert.equal(actions.recordLillebekkExhibitDecision('ivar-rekkefolge-01','C').ok,false);
 assert.equal(actions.recordLillebekkDocumentReceipt('grontdrag',
  'J-2026-78','Byøkolog Signe','Forsøkt etterført bilag i lukket sak.').ok,false);
 assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','motstridende',
