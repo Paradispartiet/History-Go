@@ -517,7 +517,7 @@
           topic.reviewNeedLogged ? "Kontrollbehov er journalført." : "",
           topic.caveatLogged ? "Faglig forbehold er journalført." : ""
         ].filter(Boolean).join(" ");
-        return `- ${topic.title}: ${topic.status}. ${documentCaveat} ${journalCaveat} ${topic.next}`.replace(/\\s+/g, " ").trim();
+        return `- ${topic.title}: ${topic.status}. ${documentCaveat} ${journalCaveat} ${topic.next}`.replace(/\s+/g, " ").trim();
       }) : ["- Ingen åpne markører i dette uttrekket; originalbilag må likevel kontrolleres."]),
       "",
       "4. Administrativ anbefaling til planleder",
