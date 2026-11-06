@@ -6,6 +6,7 @@ import { spawn } from 'child_process';
 import { mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import verifyVisualQa from './verify-civication-visual-qa-browser.js';
+import verifyWebkitMobile from './verify-civication-webkit-mobile.js';
 
 const playwright = require('playwright');
 const origin = 'http://127.0.0.1:4174';
@@ -29,8 +30,16 @@ mkdirSync(outputDir, { recursive: true });
     }
     browser = await playwright.chromium.launch({ headless: true });
     report.views = await verifyVisualQa(browser, origin, outputDir);
+    console.log('Civication Chromium visual QA:', JSON.stringify(report.views));
+    await browser.close();
+    browser = null;
+
+    // WebKit has a different layout/focus engine. Validate Min dag and mobile
+    // map independently; this does not certify Safari on a physical iPhone.
+    browser = await playwright.webkit.launch({ headless: true });
+    report.webkit = await verifyWebkitMobile(browser, origin, outputDir);
+    console.log('Civication WebKit mobile QA:', JSON.stringify(report.webkit));
     report.status = 'passed';
-    console.log('Civication visual QA report:', JSON.stringify(report.views));
   } catch (error) {
     report.status = 'failed';
     report.error = String((error as Error)?.stack || error);
