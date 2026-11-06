@@ -135,15 +135,25 @@ try {
         const card = document.getElementById('placeCard');
         if (card?.dataset?.collectionMode !== 'place-card-collections-v2') return false;
         if (Number(card?.dataset?.collectionCount || 0) !== count) return false;
+        const editorial = card.classList.contains('is-unified-place')
+          && card.classList.contains('is-place-sheet-direct');
         return collections.every(({ iconId, id }) => {
           const el = document.getElementById(iconId);
           if (!(el instanceof HTMLElement)) return false;
           const rect = el.getBoundingClientRect();
-          return el.hidden !== true
-            && el.getAttribute('aria-hidden') !== 'true'
-            && rect.width > 0
-            && rect.height > 0
-            && el.dataset.collectionId === id;
+          if (el.hidden || el.getAttribute('aria-hidden') === 'true' || el.dataset.collectionId !== id) return false;
+          if (id === 'brands' && editorial) {
+            // The canonical Brands action remains in the old grid, while the
+            // visible, uncropped logo belongs at the end of the About section.
+            const gallery = card.querySelector('.pc-sheet-canonical-about [data-pc-round-gallery-brand="1"]');
+            const button = gallery?.querySelector('button');
+            const image = button?.querySelector('img');
+            const box = button?.getBoundingClientRect();
+            return getComputedStyle(el).display === 'none'
+              && box?.width > 0 && box?.height > 0
+              && image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
+          }
+          return rect.width > 0 && rect.height > 0;
         });
       },
       { count: expectedUiCollections.length, collections: expectedUiCollections },
@@ -192,13 +202,21 @@ try {
         inCollectionGrid: Boolean(el?.closest('.pc-icons-quad')),
         itemCount: Number(el?.dataset?.collectionItemCount || 0),
         previewLoaded: image instanceof HTMLImageElement ? image.complete && image.naturalWidth > 0 : false,
+        brandInEditorialAbout: id === 'brands' && Boolean(
+          document.querySelector('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button')?.getBoundingClientRect().width > 0
+        ),
+        brandSourceHiddenByEditorialLayout: id === 'brands' && getComputedStyle(el).display === 'none',
       };
     }), expectedUiCollections);
 
     const popupChecks = [];
     for (const expected of expectedUiCollections) {
       const before = await page.evaluate(() => window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0);
-      await page.locator(`#${expected.iconId}`).click();
+      // The visible About-section Brands button delegates to the canonical popup.
+      const action = expected.id === 'brands'
+        ? page.locator('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button')
+        : page.locator(`#${expected.iconId}`);
+      await action.click();
       await page.waitForFunction(
         (count) => (window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0) > count,
         before,
@@ -236,9 +254,12 @@ try {
     await page.evaluate(id=>window.showPlacePopup(window.PLACES.find(p=>p.id===id)),placeId);
     const sheet=page.locator('#placeCard [data-hg-place-sheet-shell]');
     await sheet.waitFor({state:'visible',timeout:30000});
+    // The section navigation is a direct child of PlaceCard, outside its scroll body.
+    const nav=page.locator('#placeCard > [data-hg-place-sheet-nav="1"]');
+    await nav.waitFor({state:'visible',timeout:30000});
     const tabChecks=[];
     for(const id of ['about','history','stories','news','reading','sources','language','learning']) {
-      const jump=sheet.locator('[data-hg-place-sheet-jump="'+id+'"]');
+      const jump=nav.locator('[data-hg-place-sheet-jump="'+id+'"]');
       await jump.waitFor({state:'visible',timeout:30000});
       // Sticky navigation and scrollIntoView can make pointer auto-scrolling
       // oscillate on narrow viewports; exercise the actual keyboard action.
@@ -247,11 +268,21 @@ try {
       await panel.waitFor({state:'visible',timeout:15000});
       await page.waitForFunction(sectionId=>{
         const section=document.querySelector('#placeCard [data-hg-place-sheet-section="'+sectionId+'"]');
-        const nav=document.querySelector('#placeCard [data-hg-place-sheet-nav]');
-        return section&&nav&&section.getBoundingClientRect().top>=nav.getBoundingClientRect().bottom-2;
+        const nav=document.querySelector('#placeCard > [data-hg-place-sheet-nav]');
+        const body=document.querySelector('#placeCard .pc-body');
+        if(!section||!nav||!body)return false;
+        const a=section.getBoundingClientRect(), n=nav.getBoundingClientRect(), b=body.getBoundingClientRect();
+        // Navigation is permanently at the BOTTOM of PlaceCard: verify the
+        // selected section starts in the visible reading pane ABOVE the nav.
+        return a.height>24 && n.height>0 && a.top>=b.top-2
+          && a.top<n.top-2 && a.bottom>b.top+24;
       },id,{timeout:15000}).catch(async error=>{
-        const geometry=await panel.evaluate(el=>({top:el.getBoundingClientRect().top,navBottom:document.querySelector('#placeCard [data-hg-place-sheet-nav]').getBoundingClientRect().bottom,scrollTop:document.querySelector('#placeCard .pc-body').scrollTop}));
-        throw new Error('Section start covered: '+id+' '+JSON.stringify(geometry),{cause:error});
+        const geometry=await panel.evaluate(el=>{
+          const r=x=>{const b=x?.getBoundingClientRect();return b?{top:b.top,bottom:b.bottom,height:b.height}:null};
+          const body=document.querySelector('#placeCard .pc-body');
+          return {section:r(el),nav:r(document.querySelector('#placeCard > [data-hg-place-sheet-nav]')),body:r(body),scrollTop:body?.scrollTop};
+        });
+        throw new Error('Selected section not visible above bottom navigation: '+id+' '+JSON.stringify(geometry),{cause:error});
       });
       if(id==='history') assert.match(await panel.innerText(),/1941|1942/);
       if(id==='stories') assert.match(await panel.innerText(),/Beskjeden om frihet/);
@@ -265,9 +296,9 @@ try {
       tabChecks.push({id,textLength:(await panel.innerText()).length});
       await page.screenshot({path:path.join(outDir,profile.name+'-section-'+id+'.png')});
     }
-    assert.equal(await sheet.locator('[data-hg-place-sheet-jump="before-after"]').isHidden(),true,'No invented before/after pair may be shown');
+    assert.equal(await nav.locator('[data-hg-place-sheet-jump="before-after"]').isHidden(),true,'No invented before/after pair may be shown');
     fs.writeFileSync(path.join(outDir,profile.name+'-tabs.json'),JSON.stringify(tabChecks,null,2));
-    await sheet.locator('[data-hg-place-sheet-jump="about"]').press('Enter');
+    await nav.locator('[data-hg-place-sheet-jump="about"]').press('Enter');
     const beforeFlipText = await page.locator('#pcQuizCardContent').textContent();
     await page.locator('#pcFrontCardFlip').click();
     await page.waitForFunction(
@@ -352,6 +383,8 @@ try {
           ? item.inTitleRow && !item.inCollectionGrid
           : item.inCollectionGrid && item.position === expectedUiCollections.filter(row => row.id !== 'people').findIndex(row => row.id === item.id))
       ),
+      brandEditorialPlacement: collectionState.find(item => item.id === 'brands')?.brandInEditorialAbout === true
+        && collectionState.find(item => item.id === 'brands')?.brandSourceHiddenByEditorialLayout === true,
       collectionItemsPresent: collectionState.every((item) => item.itemCount >= 1),
       collectionPreviewsLoaded: collectionState.every((item) => item.previewLoaded === true),
       collectionPopups: popupChecks.every((item) => item.hasContent && item.title.trim().length > 0),
