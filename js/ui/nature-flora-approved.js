@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_hagelupin: Object.freeze({
+      scientificName: "Lupinus polyphyllus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/63_hagelupin_v1.webp",
+      gitBlobSha: "389ac8dc3a6e2a948695de1586f92ccee85c6ee4",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_og_skolm",
+      evidence: "data/natur/flora/illustration-quality-hagelupin-20261106.json"
+    }),
     emne_flora_rynkerose: Object.freeze({
       scientificName: "Rosa rugosa",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/62_rynkerose_v1.webp",
