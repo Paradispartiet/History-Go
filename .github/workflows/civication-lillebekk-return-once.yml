@@ -26,6 +26,7 @@ jobs:
           node scripts/audit-civication-career-gameplay.mjs --write
           node scripts/audit-civication-role-world-rollout-readiness.mjs --write
           node scripts/build-civication-scene-registry.mjs --check
+          # Verify the branch with explicit WorkWorld state transitions.
           node tests/civication-lillebekk-return-evidence-integrity.test.js
           node tests/civication-by-radgiver-approval-branching.test.js
           node tests/civication-by-radgiver-lillebekk-evidence-handoff.test.js
