@@ -199,13 +199,103 @@ assert.equal(model.ready,true);
 assert.equal(api.recordLillebekkComparison('utbygger_myndighet','anta_avklart',
  'Ikke åpne for et nytt uforsvarlig standpunkt etter at sluttkorrigeringen er gjort.').ok,false);
 
+// Manager rework: Elin is a fictional authored role, not an external approver.
+assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,true,
+ 'fresh source snapshot must precede leader review');
+// Exhaust the ten ordinary draft versions before the manager return.
+// A returned review must still permit exactly one corrective draft.
+while (api.getLillebekkSaksframleggModel().draftCount < 10) {
+ const n=api.getLillebekkSaksframleggModel().draftCount+1;
+ assert.equal(api.recordLillebekkSaksframlegg(
+  recommendation+' Ytterligere intern gjennomgang av saksgrunnlaget i versjon '+n+'.').ok,true);
+}
+assert.equal(api.getLillebekkSaksframleggModel().draftCount,10);
+assert.equal(api.recordLillebekkSaksframlegg(recommendation+' Overskridelse av ordinær grense.').ok,false);
+let leader=api.getLillebekkLeaderReviewModel();
+assert.equal(leader.canRequestReview,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-lillebekk-leader-return="1"'));
+const returnedId=leader.memo.latestDraft.id;
+assert.equal(api.recordLillebekkLeaderReturn().ok,true);
+leader=api.getLillebekkLeaderReviewModel();
+assert.equal(leader.returnEvent?.choice_id,returnedId);
+assert.equal(leader.returnEvent?.outcome,'simulert_leder_returnert_ikke_godkjent');
+assert.ok(leader.returnEvent.note.includes('SIMULERT INTERN LEDERRETUR'));
+assert.equal(leader.points.length,3);
+assert.equal(new Set(leader.points.map(p=>p.needed)).size,3);
+assert.equal(api.recordLillebekkLeaderReturn().ok,false);
+assert.equal(api.recordLillebekkSaksframlegg(recommendation+' En omgåelse av ledermerknader.').ok,false);
+assert.equal(api.recordLillebekkCorrectedMemo(recommendation).ok,false);
+assert.equal(api.renderSections(),true);
+assert.equal((host.innerHTML.match(/data-civi-lillebekk-leader-response="1"/g)||[]).length,3);
+assert.ok(!host.innerHTML.includes('data-civi-lillebekk-draft="1"'),
+ 'the ordinary memo editor must not remain available after leader return');
+assert.ok(!host.innerHTML.includes('data-civi-lillebekk-revised-memo="1"'));
+
+const leaderReason='Fagansvarlig må vurdere de konkrete forholdene mot dokumentasjonen før videre saksbehandling. Ingen kommunal godkjenning er gitt.';
+assert.equal(api.recordLillebekkLeaderResponse('ukjent','trafikkfag',leaderReason).ok,false);
+assert.equal(api.recordLillebekkLeaderResponse('skolevei','godkjent',leaderReason).ok,false);
+assert.equal(api.recordLillebekkLeaderResponse('skolevei','trafikkfag','for kort').ok,false);
+assert.equal(api.recordLillebekkLeaderResponse('skolevei','antatt_avklart',leaderReason).ok,true);
+assert.equal(api.getLillebekkLeaderReviewModel().points.find(p=>p.id==='skolevei').safe,false);
+assert.equal(api.recordLillebekkLeaderResponse('skolevei','trafikkfag',leaderReason).ok,true);
+assert.equal(api.recordLillebekkLeaderResponse('skolevei','trafikkfag',' '+leaderReason+' ').alreadyLogged,true);
+assert.equal(world.getWorkObject(caseId).history.filter(e=>e.id.startsWith('lillebekk_leder_svar_skolevei_v')).length,2);
+assert.equal(api.recordLillebekkLeaderResponse('grontdrag','overvannsfag',leaderReason).ok,true);
+assert.equal(api.recordLillebekkLeaderResponse('utbygger','planjuss',leaderReason).ok,true);
+leader=api.getLillebekkLeaderReviewModel();
+assert.equal(leader.answeredCount,3);
+assert.equal(leader.canRevise,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-lillebekk-revised-memo="1"'));
+
+world.addFlag(caseId,'participation_record_missing',{
+ event_id:'lillebekk_memo_leader_new_participation_issue',at:'2026-11-06T16:00:00Z'
+});
+assert.equal(api.getLillebekkLeaderReviewModel().canRevise,true);
+assert.equal(api.getLillebekkLeaderReviewModel().memo.upToDate,false);
+const correctedRecommendation='Jeg anbefaler kontroll hos trafikkfag, overvannsfag og planjuss av de dokumenterte manglene før videre behandling. Medvirkningsprotokollen må også gjennomgås av ansvarlig saksbehandler.';
+assert.equal(api.recordLillebekkCorrectedMemo(correctedRecommendation).ok,true);
+leader=api.getLillebekkLeaderReviewModel();
+assert.equal(leader.corrected,true);
+assert.equal(leader.canRevise,false);
+assert.equal(leader.memo.upToDate,true);
+assert.equal(leader.memo.latestDraft.outcome,'korrigert_internt_utkast_ikke_godkjent');
+assert.equal(leader.memo.draftCount,11,
+ 'exactly one corrective version is available after ten regular drafts');
+assert.ok(leader.memo.latestDraft.note.includes('Lederretur: lillebekk_leder_retur_v1'));
+assert.ok(leader.memo.latestDraft.note.includes('Skolevei og tidspunkt for trygg adkomst'));
+assert.ok(leader.memo.latestDraft.note.includes('Grøntdrag, flomvei og planbestemmelser'));
+assert.ok(leader.memo.latestDraft.note.includes('Medvirkning'));
+for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
+ assert.ok(world.getWorkObject(caseId).flags.includes(flag));
+}
+assert.equal(world.getWorkObject(caseId).status,'open');
+assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+assert.equal(api.recordLillebekkCorrectedMemo(correctedRecommendation).ok,false);
+assert.equal(api.recordLillebekkLeaderReturn().ok,false);
+assert.equal(api.recordLillebekkSaksframlegg(correctedRecommendation).ok,false);
+saved=JSON.parse(JSON.stringify(saved));
+assert.equal(api.getLillebekkLeaderReviewModel().corrected,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('Korrigert saksframlegg journalført'));
+assert.ok(!host.innerHTML.includes('data-civi-lillebekk-revised-memo="1"'));
+
 // Access and jurisdiction boundaries.
 activeRole={role_key:'butikkmedarbeider'};
+assert.equal(api.getLillebekkLeaderReviewModel(),null);
+assert.equal(api.recordLillebekkLeaderReturn().ok,false);
+assert.equal(api.recordLillebekkLeaderResponse('skolevei','trafikkfag',leaderReason).ok,false);
+assert.equal(api.recordLillebekkCorrectedMemo(correctedRecommendation).ok,false);
 assert.equal(api.getLillebekkSaksframleggModel(),null);
 assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',reasons.skolevei_tidskrav).ok,false);
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,false);
 activeRole={role_key:'arealplanlegger'};
 world.closeWorkObject(caseId,{event_id:'lillebekk_memo_test_close',at:'2026-11-07T10:00:00Z',outcome:'closed_for_test'});
+assert.equal(api.getLillebekkLeaderReviewModel(),null);
+assert.equal(api.recordLillebekkLeaderReturn().ok,false);
+assert.equal(api.recordLillebekkLeaderResponse('skolevei','trafikkfag',leaderReason).ok,false);
+assert.equal(api.recordLillebekkCorrectedMemo(correctedRecommendation).ok,false);
 assert.equal(api.getLillebekkSaksframleggModel(),null);
 assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',reasons.skolevei_tidskrav).ok,false);
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,false);
