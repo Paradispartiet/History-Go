@@ -762,6 +762,170 @@
     }
   }
 
+
+  // Authored fictional replies: professional tasks, never completed expert reports.
+  const LILLEBEKK_FAGSVAR = [
+    {
+      id: "trafikk", ref: "LBK-TRAF-04", title: "Foreløpig trafikksvar om skolevei",
+      sender: "Kommunal trafikkrådgiver (fiktiv rolle)", date: "6. november 2026",
+      content: "Innspillet om skolebarn, varelevering og atkomst må undersøkes på den aktuelle strekningen. Det foreligger ikke oppmålt gangbredde, siktvurdering, befaring eller trafikktelling. Ivars forslag om ferdigattest sier heller ikke når trygg forbindelse må være etablert før innflytting.",
+      requirement: "Etterspør befaring, oppmåling, risikovurdering under anleggstid og tydelig tidspunkt og ansvar før innflytting.",
+      safeId: "bestill_trafikkontroll", safeLabel: "Journalfør oppgave til trafikkfag og behold sikkerhetsforbehold",
+      unsafeId: "fastsla_trygg_skolevei", unsafeLabel: "Konkluder med trygg skolevei uten kontroll"
+    },
+    {
+      id: "overvann", ref: "LBK-OV-05", title: "Foreløpig overvannsfaglig svar",
+      sender: "Overvannsfaglig rådgiver (fiktiv rolle)", date: "6. november 2026",
+      content: "Signes grøntfaglige notat beskriver mulige løsninger, men er ikke en dimensjonerende overvannsberegning. Terrengsnitt, flomveikart, jorddybde, infiltrasjon og virkninger for naboer er ikke dokumentert. Et tegnet grøntdrag bekrefter ikke hydraulisk kapasitet.",
+      requirement: "Etterspør etterprøvbare snitt og beregninger, flomveikart og planfaglig kontroll av bestemmelsesforslaget.",
+      safeId: "bestill_overvannsgrunnlag", safeLabel: "Journalfør behov for beregninger og faglig kontroll",
+      unsafeId: "fastsla_sikret_flomvei", unsafeLabel: "Registrer grøntdraget som godkjent flomvei"
+    },
+    {
+      id: "planjuss", ref: "LBK-JUS-06", title: "Foreløpig planjuridisk svar",
+      sender: "Planjurist (fiktiv rolle)", date: "6. november 2026",
+      content: "Ferdigattest er utbyggers forslag, ikke et kommunalt tilsagn. Et eventuelt rekkefølgekrav må formuleres presist, med ansvar, tidspunkt og faktisk plankart som grunnlag. Ingen konkret bestemmelse er lovlighetskontrollert her; beslutningsmyndighet følger ordinær plansak.",
+      requirement: "Utform et nøytralt prosessvar og send forslag til rekkefølgekrav til intern juridisk kontroll, uten forhåndstilsagn.",
+      safeId: "bestill_juridisk_kontroll", safeLabel: "Journalfør juridisk kontroll og nøytralt prosessvar",
+      unsafeId: "lov_utbygger_godkjenning", unsafeLabel: "Gi utbygger forhåndstilsagn om godkjenning"
+    }
+  ];
+
+  function lillebekkFagsvarModel() {
+    const leader = lillebekkLeaderReviewModel();
+    if (!leader?.corrected) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const intake = history.find(function (e) { return e.id === "lillebekk_fagsvar_spillmottak_v1"; }) || null;
+    const docs = LILLEBEKK_FAGSVAR.map(function (doc) {
+      const prefix = "lillebekk_fagsvar_" + doc.id + "_v";
+      const entries = history.filter(function (e) { return String(e.id || "").startsWith(prefix); });
+      const latest = entries[entries.length - 1] || null;
+      return { ...doc, revisionCount: entries.length, lastId: latest?.id || "",
+        lastOutcome: latest?.outcome || "", lastNote: latest?.note || "",
+        safe: !!intake && latest?.outcome === doc.safeId };
+    });
+    const ready = !!intake && docs.every(function (doc) { return doc.safe; });
+    const signature = [leader.memo.latestDraft?.id || "", leader.memo.signature]
+      .concat(docs.map(function (doc) { return doc.lastId; })).join("|");
+    const notes = history.filter(function (e) {
+      return String(e.id || "").startsWith("lillebekk_fagsvar_oppfolging_v");
+    });
+    const latestNote = notes[notes.length - 1] || null;
+    return { leader, intake, docs, ready, signature, notesCount: notes.length, latestNote,
+      current: !!latestNote && ready &&
+        String(latestNote.note || "").endsWith("Kildeversjoner: " + signature) };
+  }
+
+  function recordLillebekkFagsvarIntake() {
+    const model = lillebekkFagsvarModel();
+    if (!model || model.intake) return { ok: false, reason: "De fiktive fagsvarene er ikke åpne, eller allerede åpnet." };
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen mangler." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_fagsvar_spillmottak_v1", scene_id: "lillebekk_fagoppfolging",
+        choice_id: "apne_fiktive_interne_fagsvar", at: new Date().toISOString(),
+        outcome: "fiktive_fagsvar_klargjort_for_gjennomgang",
+        note: "Spilleren åpnet tre forhåndsskrevne og fiktive faglige svar: " +
+          LILLEBEKK_FAGSVAR.map(function (doc) { return doc.ref + " (" + doc.sender + ")"; }).join("; ") +
+          ". Ingen ekstern rapport er mottatt eller verifisert. Ingen godkjenning eller faktisk utsendelse."
+      });
+      return { ok: true };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Fiktivt fagsvarmottak", error);
+      return { ok: false, reason: "Mottaket kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkFagsvarAssessment(docId, choiceId, reasoning) {
+    const model = lillebekkFagsvarModel();
+    const doc = model?.docs.find(function (row) { return row.id === docId; });
+    if (!model?.intake || !doc || ![doc.safeId, doc.unsafeId].includes(choiceId)) {
+      return { ok: false, reason: "Åpne de tre fiktive faglige svarene og velg en gyldig vurdering." };
+    }
+    const reason = String(reasoning || "").replace(/\s+/g, " ").trim().slice(0, 650);
+    if (reason.length < 65) {
+      return { ok: false, reason: "Begrunn med minst 65 tegn hva som må kontrolleres, av hvem, og hva som fortsatt er uavklart." };
+    }
+    const label = choiceId === doc.safeId ? doc.safeLabel : doc.unsafeLabel;
+    const note = "Vurdering av fiktivt faglig svar " + doc.ref + " fra " + doc.sender +
+      ". Valg: " + label + ". Begrunnelse: " + reason + ". Kontrollbehov: " + doc.requirement +
+      " Dette journalfører ikke ferdig fagkontroll, ekstern verifikasjon eller vedtak.";
+    if (doc.lastOutcome === choiceId && doc.lastNote === note) return { ok: true, alreadyLogged: true };
+    if (doc.revisionCount >= 10 && !(doc.lastOutcome !== doc.safeId && choiceId === doc.safeId)) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd. Bare faglig forsvarlig sluttkorrigering er tillatt." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen mangler." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_fagsvar_" + doc.id + "_v" + (doc.revisionCount + 1),
+        scene_id: "lillebekk_fagoppfolging", choice_id: choiceId,
+        at: new Date().toISOString(), outcome: choiceId, note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Fagsvarvurdering", error);
+      return { ok: false, reason: "Vurderingen kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkFagsvarFollowup(recommendation) {
+    const model = lillebekkFagsvarModel();
+    if (!model?.ready) return { ok: false, reason: "Alle tre fagsvar må få forsvarlig vurdering først." };
+    const text = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0, 850);
+    if (text.length < 90) return { ok: false, reason: "Skriv minst 90 tegn om ansvar, dokumentbehov og uavklarte forhold." };
+    const unresolved = model.leader.memo.dossier.topics.filter(function (topic) {
+      return topic.issue || !topic.documented || topic.reviewNeedLogged || topic.caveatLogged ||
+        ["mangelfull", "motstridende", "fagkontroll"].includes(topic.assessmentOutcome);
+    });
+    const note = [
+      "LILLEBEKK – SUPPLERENDE INTERNT FAGNOTAT (IKKE GODKJENT)",
+      "Korrigert saksframlegg: " + model.leader.memo.latestDraft.id,
+      "Fiktive kollegasvar: faglige oppfølgingsbehov, ikke ferdige kontrollrapporter.",
+      "",
+      "1. Gjennomgåtte spillbilag",
+      ...model.docs.map(function (doc) { return "- " + doc.ref + ": " + doc.lastNote; }),
+      "",
+      "2. Uavklarte fagtemaer",
+      ...(unresolved.length ? unresolved.map(function (topic) {
+        return "- " + topic.title + ": " + topic.status + ". " + (topic.assessmentNote || topic.next);
+      }) : ["- Ingen åpne flagg i dette uttrekket; dokumentkontroll er fortsatt nødvendig."]),
+      "",
+      "3. Rådgiverens videre arbeidsfordeling",
+      text,
+      "",
+      "4. Myndighetsgrense",
+      "Fiktive svar er ikke verifiserte rapporter. Ingen saksflagg er lukket, ingen utbyggersvar er sendt og ingen leder- eller planvedtak er fattet.",
+      "Kildeversjoner: " + model.signature
+    ].join("\n");
+    if (model.latestNote?.note === note) return { ok: true, alreadyLogged: true };
+    if (model.notesCount >= 10) return { ok: false, reason: "Notatloggen er full." };
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen mangler." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_fagsvar_oppfolging_v" + (model.notesCount + 1),
+        scene_id: "lillebekk_fagoppfolging",
+        choice_id: "journalfor_supplerende_internt_fagnotat",
+        at: new Date().toISOString(), outcome: "supplerende_fagnotat_ikke_godkjent", note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Supplerende fagnotat", error);
+      return { ok: false, reason: "Fagnotatet kunne ikke journalføres." };
+    }
+  }
+
   function lillebekkReviewModel() {
     const active = window.CivicationState?.getActivePosition?.();
     // MailPlan uses by_radgiver_plan, while accepted job offers store the
