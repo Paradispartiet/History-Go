@@ -132,7 +132,7 @@
     {
       title: "Skolevei",
       positive: ["school_route_pre_occupancy_condition_proposed", "school_route_explicit_assessment_proposed", "early_school_route_condition_proposed"],
-      negative: ["school_route_timing_unverified", "school_route_deferred_unsecured", "early_school_route_timing_unverified"],
+      negative: ["school_route_timing_unverified", "school_route_deferred_unsecured", "early_school_route_timing_unverified", "skolevei_ikke_dokumentert"],
       next: "Dokumenter faktisk skolevei, vilkår og ansvar før innflytting, ikke bare før ferdigattest."
     },
     {
@@ -156,7 +156,7 @@
     {
       title: "Faglig risiko i saksframlegget",
       positive: ["material_risks_stated_for_politics", "early_material_risks_visible"],
-      negative: ["material_risks_not_explicit", "early_material_risks_hidden"],
+      negative: ["material_risks_not_explicit", "early_material_risks_hidden", "politisk_grense_ikke_eksplisitt"],
       next: "Skill lovkrav, administrasjonens faglige vurdering og politisk handlingsrom."
     }
   ];
