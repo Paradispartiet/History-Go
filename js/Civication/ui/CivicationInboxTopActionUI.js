@@ -1010,6 +1010,64 @@
     return html + '</details>';
   }
 
+  function lillebekkLeaderReviewHtml() {
+    const review = lillebekkLeaderReviewModel();
+    if (!review) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-leader-review="1">' +
+      '<summary>Elins ledergjennomgang av saksframlegget</summary>' +
+      '<p>Dette er en fiktiv, forhåndsskrevet ledergjennomgang i spillet, ikke en faktisk sendt sak eller kommunal godkjenning.</p>';
+    if (!review.returnEvent) {
+      if (!review.canRequestReview) {
+        html += '<p>Journalfør et oppdatert, internt saksframlegg etter bilagsavstemmingen før ledergjennomgangen kan åpnes.</p>';
+      } else {
+        html += '<p>Elin skal gjennomgå kildegrunnlaget, uavklarte frister og myndighetsgrenser. Tilbakemeldingen gjelder utkast ' +
+          escapeHtml(review.memo.latestDraft.id) + ' og gir ikke et vedtak.</p>' +
+          '<button class="civi-btn secondary" type="button" data-civi-lillebekk-leader-return="1">Åpne simulert ledergjennomgang</button>' +
+          '<p class="muted" role="status" data-civi-leader-error></p>';
+      }
+    } else {
+      html += '<p><strong>Returnert utkast:</strong> ' + escapeHtml(review.returnedDraftId) +
+        '. Elin ber om tre konkrete avklaringer. Det er ikke gitt noen godkjenning.</p>';
+      if (review.corrected) {
+        html += '<p><strong>Korrigert saksframlegg journalført.</strong> En ny ledervurdering er ikke foretatt; dokumentet er ikke godkjent eller sendt videre.</p>';
+      } else {
+        html += '<p><strong>Faglig forsvarlige svar:</strong> ' + review.answeredCount + ' av 3.</p>';
+        html += review.points.map(function (point) {
+          const choices = LILLEBEKK_LEADER_RESPONSES.map(function (row) {
+            return '<option value="' + escapeHtml(row.id) + '"' +
+              (row.id === point.lastOutcome ? ' selected' : '') + '>' +
+              escapeHtml(row.label) + '</option>';
+          }).join("");
+          return '<section class="civi-inbox-body" data-civi-leader-point-id="' + escapeHtml(point.id) + '">' +
+            '<h4>' + escapeHtml(point.title) + '</h4>' +
+            '<p><strong>Elins merknad:</strong> ' + escapeHtml(point.feedback) + '</p>' +
+            '<p><strong>Bilag som må brukes:</strong> ' + escapeHtml(point.refs) + '</p>' +
+            '<p><strong>Kontrolloppgave:</strong> ' + escapeHtml(point.task) + '</p>' +
+            (point.lastNote ? '<p><strong>Journalført svar:</strong> ' + escapeHtml(point.lastNote) + '</p>' : '') +
+            '<label>Faglig oppfølging <select data-civi-leader-action>' + choices + '</select></label>' +
+            '<label>Konkret svar til leder <textarea rows="3" maxlength="700" data-civi-leader-reason ' +
+              'placeholder="Beskriv konkret oppgave, ansvarlig fagfunksjon og fortsatt uavklart forhold"></textarea></label>' +
+            '<button class="civi-btn secondary" type="button" data-civi-lillebekk-leader-response="1" ' +
+              'data-point-id="' + escapeHtml(point.id) + '">Journalfør svar på ledermerknad</button>' +
+            '<p class="muted" role="status" data-civi-leader-point-error></p>' +
+          '</section>';
+        }).join("");
+        if (review.canRevise) {
+          html += '<section class="civi-inbox-body" data-civi-leader-revised-editor="1">' +
+            '<h4>Korrigert saksframlegg etter lederretur</h4>' +
+            '<p>Gi en ny anbefaling til planleder med åpne avvik. Svarene inngår som planlagt faglig oppfølging, ikke som bekreftede rapporter eller vedtak.</p>' +
+            '<label>Korrigert administrativ anbefaling <textarea rows="4" maxlength="750" data-civi-leader-revised-recommendation ' +
+              'placeholder="Anbefal hvem som må gjøre kontrollen før videre saksbehandling"></textarea></label>' +
+            '<button class="civi-btn secondary" type="button" data-civi-lillebekk-revised-memo="1">Journalfør korrigert internt saksframlegg</button>' +
+            '<p class="muted" role="status" data-civi-leader-revised-error></p></section>';
+        } else {
+          html += '<p>Et korrigert utkast kan først journalføres etter tre begrunnede, faglig forsvarlige svar. Ingen dokumenter er automatisk mottatt eller kontrollert.</p>';
+        }
+      }
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -1027,6 +1085,7 @@
           ${caseExhibits.map(lillebekkExhibitHtml).join("")}
         </details>` : ""}
         ${lillebekkSaksframleggHtml()}
+        ${lillebekkLeaderReviewHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -1487,6 +1546,42 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-lillebekk-leader-return]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const result = recordLillebekkLeaderReturn();
+        if (result.ok) renderInboxSections();
+        else {
+          const msg = button.closest("[data-civi-lillebekk-leader-review]")?.querySelector("[data-civi-leader-error]");
+          if (msg) msg.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-lillebekk-leader-response]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-leader-point-id]");
+        const result = recordLillebekkLeaderResponse(
+          String(button.getAttribute("data-point-id") || ""),
+          card?.querySelector("[data-civi-leader-action]")?.value || "",
+          card?.querySelector("[data-civi-leader-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const msg = card?.querySelector("[data-civi-leader-point-error]");
+          if (msg) msg.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-lillebekk-revised-memo]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-leader-revised-editor]");
+        const result = recordLillebekkCorrectedMemo(
+          card?.querySelector("[data-civi-leader-revised-recommendation]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const msg = card?.querySelector("[data-civi-leader-revised-error]");
+          if (msg) msg.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-lillebekk-crosscheck]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-lillebekk-check-id]");
@@ -1720,6 +1815,10 @@
     recordLillebekkExhibitDecision,
     getLillebekkSaksframleggModel: lillebekkSaksframleggModel,
     recordLillebekkComparison,
-    recordLillebekkSaksframlegg
+    recordLillebekkSaksframlegg,
+    getLillebekkLeaderReviewModel: lillebekkLeaderReviewModel,
+    recordLillebekkLeaderReturn,
+    recordLillebekkLeaderResponse,
+    recordLillebekkCorrectedMemo
   };
 })();
