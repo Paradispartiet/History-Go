@@ -366,8 +366,12 @@ assert.equal(fag.docs.every(d=>d.safe),true);
 assert.equal(fag.leader.memo.ready,false);
 assert.equal(fag.ready,false);
 assert.equal(fag.current,false);
-assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,false,
+const unsafeSourceFollowup=api.recordLillebekkFagsvarFollowup(fagRecommendation);
+assert.equal(unsafeSourceFollowup.ok,false,
  'unsafe earlier source assessment must block a newly journaled follow-up');
+assert.ok(unsafeSourceFollowup.reason.includes('opprinnelige kildeavstemmingen'));
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('Stopp i grunnlaget'));
 assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',
  'Skoleveien må undersøkes av trafikkfag, og tidspunkt og ansvar for trygg ferdsel før innflytting må avklares.').ok,true);
 assert.equal(api.getLillebekkFagsvarModel().ready,true);
