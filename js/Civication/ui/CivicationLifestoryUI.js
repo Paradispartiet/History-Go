@@ -557,10 +557,11 @@
     return accepted;
   }
 
-  async function onNextDay() {
+  async function onNextDay(keyboardActivated = false) {
     if (shellStoryUnavailable() || dayAdvancePending || !state || !state.dagFerdig) return;
     dayAdvancePending = true;
     const previousState = state;
+    const previousDay = getShellDay() ?? Number(state.livsdag || state.dag);
     try {
       if (getShellDay() === null) {
         // Min dag fungerer fremdeles uavhengig på sider uten Civication-shell.
@@ -579,6 +580,13 @@
     } finally {
       dayAdvancePending = false;
       render();
+      // The summary's "Start neste dag" button is removed by the render.
+      // Reveal the next narrative only after an actual canonical day change.
+      // Never jump on a blocked transition or steal focus from map mode.
+      const nextDay = getShellDay() ?? Number(state?.livsdag || state?.dag);
+      if (nextDay > previousDay && !document.body.classList.contains("civi-mapmode")) {
+        revealNextDay(getPanel(), keyboardActivated);
+      }
     }
   }
 
@@ -1324,6 +1332,21 @@
     return true;
   }
 
+  function revealNextDay(panel, keyboardActivated) {
+    // New scene, next-day summary or a deliberately paused day: each is
+    // preferable to the now-removed previous day's start button.
+    const destination = panel?.querySelector(".civi-lifestory-scene")
+      || panel?.querySelector(".civi-lifestory-summary");
+    if (!destination) return false;
+    if (keyboardActivated) {
+      const heading = destination.querySelector("h3") || destination;
+      heading.setAttribute("tabindex", "-1");
+      heading.focus({ preventScroll: true });
+    }
+    destination.scrollIntoView?.({ block: "start", behavior: "auto" });
+    return true;
+  }
+
   function bindDelegation(panel) {
     if (/** @type {any} */ (panel)._lifestoryBound) return;
     /** @type {any} */ (panel)._lifestoryBound = true;
@@ -1381,7 +1404,7 @@
         window.CivicationLifestoryActions?.perform?.({ type: "gaa_til_byen" });
         return;
       }
-      if (target.closest("[data-lifestory-next-day]")) { onNextDay(); return; }
+      if (target.closest("[data-lifestory-next-day]")) { onNextDay(event.detail === 0); return; }
       const continueBtn = target.closest("[data-lifestory-continue]");
       if (continueBtn) { onContinue(continueBtn.getAttribute("data-lifestory-continue") || ""); return; }
       if (target.closest("[data-lifestory-life-profile]")) {
