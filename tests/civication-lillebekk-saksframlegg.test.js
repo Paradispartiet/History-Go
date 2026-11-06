@@ -281,8 +281,111 @@ assert.equal(api.renderSections(),true);
 assert.ok(host.innerHTML.includes('Korrigert saksframlegg journalført'));
 assert.ok(!host.innerHTML.includes('data-civi-lillebekk-revised-memo="1"'));
 
+// Fictional professional replies after the manager's returned, corrected memo.
+const beforeFagsvar=api.getLillebekkFagsvarModel();
+assert.ok(beforeFagsvar?.leader.corrected,'the manager step is a prerequisite');
+assert.equal(beforeFagsvar.intake,null);
+assert.equal(beforeFagsvar.docs.length,3);
+assert.deepEqual(Array.from(beforeFagsvar.docs.map(d=>d.ref)),['LBK-TRAF-04','LBK-OV-05','LBK-JUS-06']);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-fagsvar-intake="1"'));
+assert.ok(!host.innerHTML.includes('data-civi-fagsvar-assess="1"'));
+assert.equal(api.recordLillebekkFagsvarFollowup('Et notat kan ikke journalføres før de tre faglige svarene er vurdert.').ok,false);
+assert.equal(api.recordLillebekkFagsvarAssessment('trafikk','bestill_trafikkontroll',
+ 'Skolevei må kontrolleres av fagansvarlig før noe kan konkluderes om sikkerhet.').ok,false);
+assert.equal(api.recordLillebekkFagsvarIntake().ok,true);
+assert.equal(api.recordLillebekkFagsvarIntake().ok,false);
+let fag=api.getLillebekkFagsvarModel();
+assert.equal(fag.intake.outcome,'fiktive_fagsvar_klargjort_for_gjennomgang');
+assert.ok(fag.intake.note.includes('Ingen ekstern rapport er mottatt'));
+assert.equal(api.renderSections(),true);
+assert.equal((host.innerHTML.match(/data-civi-fagsvar-assess="1"/g)||[]).length,3);
+for(const ref of ['LBK-TRAF-04','LBK-OV-05','LBK-JUS-06']) {
+ assert.ok(host.innerHTML.includes(ref));
+}
+assert.ok(host.innerHTML.includes('forhåndsskrevne, fiktive spillbilag'));
+assert.equal(api.recordLillebekkFagsvarAssessment('ukjent','bestill_trafikkontroll',
+ 'Det er uklart hvilket bilag dette skal knyttes til i den formelle plansaken.').ok,false);
+assert.equal(api.recordLillebekkFagsvarAssessment('trafikk','avklart',
+ 'Rådgiveren kan ikke uten videre godkjenne hele planen ut fra dette brevet.').ok,false);
+assert.equal(api.recordLillebekkFagsvarAssessment('trafikk','bestill_trafikkontroll','for kort').ok,false);
+
+const fagReason='Fagansvarlig må innhente datert og kontrollerbart grunnlag, oppgi videre arbeidsoppgave og holde de dokumenterte forholdene åpne før videre behandling.';
+assert.equal(api.recordLillebekkFagsvarAssessment('trafikk','fastsla_trygg_skolevei',fagReason).ok,true);
+assert.equal(api.getLillebekkFagsvarModel().docs.find(d=>d.id==='trafikk').safe,false);
+assert.equal(api.recordLillebekkFagsvarFollowup(
+ 'Jeg anbefaler kontroll av trafikk, overvann og planjuss før intern lederbehandling.').ok,false);
+assert.equal(api.recordLillebekkFagsvarAssessment('trafikk','bestill_trafikkontroll',fagReason).ok,true);
+assert.equal(api.recordLillebekkFagsvarAssessment('trafikk','bestill_trafikkontroll','  '+fagReason+'  ').alreadyLogged,true);
+assert.equal(world.getWorkObject(caseId).history.filter(e=>e.id.startsWith('lillebekk_fagsvar_trafikk_v')).length,2);
+assert.equal(api.recordLillebekkFagsvarAssessment('overvann','bestill_overvannsgrunnlag',fagReason).ok,true);
+assert.equal(api.recordLillebekkFagsvarAssessment('planjuss','bestill_juridisk_kontroll',fagReason).ok,true);
+fag=api.getLillebekkFagsvarModel();
+assert.equal(fag.ready,true);
+assert.equal(fag.docs.filter(d=>d.safe).length,3);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-fagsvar-followup="1"'));
+assert.equal(api.recordLillebekkFagsvarFollowup('Kort').ok,false);
+
+const fagRecommendation='Jeg anbefaler at trafikkfag undersøker ganglinje og tidspunkt før innflytting, at overvannsfag utarbeider flomveikart og snitt, og at planjuss vurderer utbyggers forslag før ny ledergjennomgang.';
+assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,true);
+fag=api.getLillebekkFagsvarModel();
+assert.equal(fag.current,true);
+assert.equal(fag.notesCount,1);
+assert.equal(fag.latestNote.outcome,'supplerende_fagnotat_ikke_godkjent');
+for(const keyword of ['LBK-TRAF-04','LBK-OV-05','LBK-JUS-06',
+ 'Skolevei','Overvann','Medvirkning','Kildeversjoner:','ikke verifiserte rapporter']) {
+ assert.ok(fag.latestNote.note.toLowerCase().includes(keyword.toLowerCase()),keyword);
+}
+assert.equal(api.recordLillebekkFagsvarFollowup('  '+fagRecommendation+'  ').alreadyLogged,true);
+assert.equal(api.getLillebekkFagsvarModel().notesCount,1);
+assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
+ assert.ok(world.getWorkObject(caseId).flags.includes(flag));
+}
+
+// New evidence makes a saved note stale; a fresh evaluation restores the trail.
+world.addFlag(caseId,'map_conflict_not_verified',{
+ event_id:'lillebekk_fagsvar_new_map_issue',at:'2026-11-06T18:00:00Z'
+});
+fag=api.getLillebekkFagsvarModel();
+assert.equal(fag.current,false);
+assert.equal(fag.ready,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('utdatert grunnlag'));
+assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,true);
+assert.equal(api.getLillebekkFagsvarModel().notesCount,2);
+assert.equal(api.getLillebekkFagsvarModel().current,true);
+saved=JSON.parse(JSON.stringify(saved));
+assert.equal(api.getLillebekkFagsvarModel().current,true,'professional reviews persist after reload');
+assert.equal(api.getLillebekkFagsvarModel().docs.filter(d=>d.safe).length,3);
+
+// Test escaping of the player's recommendation in the newly displayed read-only memo.
+const malicious='<img src=x onerror=alert(1)> Trafikkfag må kontrollere ganglinjen, overvannsfag må levere snitt og planjuss må gå gjennom rekkefølgebestemmelsene før videre behandling.';
+assert.equal(api.recordLillebekkFagsvarFollowup(malicious).ok,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('&lt;img'));
+assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
+
+// Correct an incorrect tenth assessment rather than permanently blocking the workflow.
+for(let i=0;i<9;i++){
+ assert.equal(api.recordLillebekkFagsvarAssessment('planjuss','lov_utbygger_godkjenning',
+ 'Dette er et bevisst feilvalg i revisjon '+i+'. Juridisk ansvarlig må kontrollere bestemmelsen; rettsvirkningen er ikke fastlagt.').ok,true);
+}
+fag=api.getLillebekkFagsvarModel();
+assert.equal(fag.docs.find(d=>d.id==='planjuss').revisionCount,10);
+assert.equal(fag.ready,false);
+assert.equal(api.recordLillebekkFagsvarAssessment('planjuss','bestill_juridisk_kontroll',fagReason).ok,true);
+assert.equal(api.getLillebekkFagsvarModel().docs.find(d=>d.id==='planjuss').revisionCount,11);
+assert.equal(api.getLillebekkFagsvarModel().ready,true);
+assert.equal(api.recordLillebekkFagsvarAssessment('planjuss','lov_utbygger_godkjenning',fagReason).ok,false);
+
 // Access and jurisdiction boundaries.
 activeRole={role_key:'butikkmedarbeider'};
+assert.equal(api.getLillebekkFagsvarModel(),null);
+assert.equal(api.recordLillebekkFagsvarIntake().ok,false);
+assert.equal(api.recordLillebekkFagsvarAssessment('trafikk','bestill_trafikkontroll',fagReason).ok,false);
+assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,false);
 assert.equal(api.getLillebekkLeaderReviewModel(),null);
 assert.equal(api.recordLillebekkLeaderReturn().ok,false);
 assert.equal(api.recordLillebekkLeaderResponse('skolevei','trafikkfag',leaderReason).ok,false);
@@ -292,6 +395,10 @@ assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',re
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,false);
 activeRole={role_key:'arealplanlegger'};
 world.closeWorkObject(caseId,{event_id:'lillebekk_memo_test_close',at:'2026-11-07T10:00:00Z',outcome:'closed_for_test'});
+assert.equal(api.getLillebekkFagsvarModel(),null);
+assert.equal(api.recordLillebekkFagsvarIntake().ok,false);
+assert.equal(api.recordLillebekkFagsvarAssessment('trafikk','bestill_trafikkontroll',fagReason).ok,false);
+assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,false);
 assert.equal(api.getLillebekkLeaderReviewModel(),null);
 assert.equal(api.recordLillebekkLeaderReturn().ok,false);
 assert.equal(api.recordLillebekkLeaderResponse('skolevei','trafikkfag',leaderReason).ok,false);
