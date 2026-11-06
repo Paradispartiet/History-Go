@@ -4214,6 +4214,16 @@
   function getSceneStats() {
     let rendererType = "none";
     if (renderer) rendererType = (renderer.capabilities && renderer.capabilities.isWebGL2) ? "webgl2" : "webgl";
+    // Three.js counters describe the most recently rendered frame on this
+    // device. They are diagnostics only, NOT a mobile FPS or GPU benchmark.
+    const info = renderer && renderer.info;
+    const rendererInfo = info ? {
+      calls: Number(info.render?.calls || 0),
+      triangles: Number(info.render?.triangles || 0),
+      geometries: Number(info.memory?.geometries || 0),
+      textures: Number(info.memory?.textures || 0),
+      pixelRatio: typeof renderer.getPixelRatio === "function" ? Number(renderer.getPixelRatio()) : null
+    } : null;
     return {
       placeMarkers: _stats.placeMarkers,
       visiblePlaceMiniatures: _stats.visiblePlaceMiniatures || 0,
@@ -4255,6 +4265,7 @@
       cameraBase: Object.assign({}, CAM_BASE),
       rendererType,
       renderer: rendererType,
+      rendererInfo,
       zoom: Number(zoom.toFixed(3)),
       active,
       fallback: !active
