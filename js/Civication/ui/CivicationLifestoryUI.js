@@ -1303,6 +1303,26 @@
     window.CivicationWaveAInboxBridge?.sync?.();
   }
 
+  // A choice replaces its own button with a consequence/new scene. On phones,
+  // keep the outcome in view; for keyboard/screen-reader activation also give
+  // focus a meaningful landing point instead of letting it fall to <body>.
+  // Navigation choices intentionally skip this: their destination owns focus.
+  function revealChoiceOutcome(panel, keyboardActivated) {
+    const outcome = panel.querySelector(".civi-lifestory-konsekvens")
+      || panel.querySelector(".civi-lifestory-scene")
+      || panel.querySelector(".civi-lifestory-summary");
+    if (!outcome) return false;
+    if (keyboardActivated) {
+      const focusTarget = outcome.querySelector(".civi-lifestory-section-label, h3") || outcome;
+      focusTarget.setAttribute("tabindex", "-1");
+      focusTarget.focus({ preventScroll: true });
+    }
+    if (typeof outcome.scrollIntoView === "function") {
+      outcome.scrollIntoView({ block: "start", behavior: "auto" });
+    }
+    return true;
+  }
+
   function bindDelegation(panel) {
     if (/** @type {any} */ (panel)._lifestoryBound) return;
     /** @type {any} */ (panel)._lifestoryBound = true;
@@ -1310,10 +1330,15 @@
       const target = /** @type {HTMLElement} */ (event.target);
       const choiceBtn = target.closest("[data-lifestory-choice]");
       if (choiceBtn) {
-        onChoose(
-          choiceBtn.getAttribute("data-lifestory-scene") || "",
-          choiceBtn.getAttribute("data-lifestory-choice") || ""
-        );
+        const sceneId = choiceBtn.getAttribute("data-lifestory-scene") || "";
+        const choiceId = choiceBtn.getAttribute("data-lifestory-choice") || "";
+        const scene = content?.scenes?.find((item) => item.id === sceneId);
+        const choice = scene?.valg?.find((item) => item.id === choiceId);
+        const staysInMinDag = !choice?.handling;
+        const accepted = onChoose(sceneId, choiceId);
+        if (accepted && staysInMinDag && !document.body.classList.contains("civi-mapmode")) {
+          revealChoiceOutcome(panel, event.detail === 0);
+        }
         return;
       }
       const threadBtn = target.closest("[data-wave-a-thread][data-wave-a-command]");
