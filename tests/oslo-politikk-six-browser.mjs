@@ -67,12 +67,29 @@ try{
      await page.waitForFunction(()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned'),null,{timeout:12000});
      await page.waitForFunction(()=>{const c=document.querySelector('#placeCard .pc-photo-caption'),shell=document.querySelector('#placeCard .pc-sheet-hero');if(!c||!shell)return false;const a=c.getBoundingClientRect(),b=shell.getBoundingClientRect();return a.width>0&&a.height>0&&a.top>=b.top&&a.bottom<=b.bottom&&a.top>=0&&a.bottom<=innerHeight;},null,{timeout:12000});
      await page.screenshot({path:path.join(out,id+'-'+label+'-historical-sticky.png')});
-     await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTop=0;el.dispatchEvent(new Event('scroll'));});
+     await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTo({top:0,behavior:'instant'});el.dispatchEvent(new Event('scroll'));});
     }
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card'),null,{timeout:35000});
+    // The historical photo test scrolls the same .pc-body used by QuizCard.
+    // Await a *real, hit-testable* card below the sticky hero before clicking:
+    // Playwright's own visibility check does not account for sticky overlays.
+    await page.waitForFunction(()=>{
+     const sheet=document.querySelector('#placeCard'),body=sheet?.querySelector('.pc-body');
+     const flip=sheet?.querySelector('#pcFrontCardFlip'),hero=sheet?.querySelector('.pc-sheet-hero');
+     const nav=sheet?.querySelector('.pc-sheet-section-nav');
+     if(!body||!flip||!hero)return false;
+     const card=flip.getBoundingClientRect(),hr=hero.getBoundingClientRect(),br=body.getBoundingClientRect();
+     const bottom=Math.min(br.bottom,nav?.getBoundingClientRect().top??br.bottom);
+     const x=card.left+card.width/2,y=card.top+card.height/2;
+     return body.scrollTop<=1 && card.width>0 && card.height>75 &&
+       card.top>=hr.bottom+8 && card.bottom<=bottom-8 &&
+       x>0 && x<innerWidth && y>0 && y<innerHeight &&
+       document.elementFromPoint(x,y)?.closest('#pcFrontCardFlip')===flip;
+    },null,{timeout:12000});
     const flip=page.locator('#pcFrontCardFlip'),rect=await flip.boundingBox();
     assert.ok(rect?.height>75,'QuizCard zero height');
-    await flip.click({position:{x:20,y:Math.max(24,rect.height-24)},timeout:12000});
+    // Genuine user click, not a JS-dispatched event or a forced click.
+    await flip.click({position:{x:rect.width/2,y:rect.height/2},timeout:12000});
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:12000});
     assert.ok((await page.locator('.pc-card-face-back').innerText()).length>50);
     await flip.scrollIntoViewIfNeeded();
@@ -108,10 +125,12 @@ try{
    }catch(e){
     item.problems.push('PlaceCard/QuizCard '+String(e).slice(0,300));
     item.quizFailure=await page.evaluate(()=>{
+     const sheet=document.querySelector('#placeCard'),body=sheet?.querySelector('.pc-body');
      const el=document.querySelector('#pcFrontCardFlip'),head=el?.querySelector('.pc-rendered-quiz-head'),inner=el?.querySelector('.pc-card-flip-inner');
      const rect=e=>{const r=e?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,left:r.left,width:r.width,height:r.height}:null;};
      const r=head?.getBoundingClientRect(),hit=r?document.elementFromPoint(r.left+r.width/2,r.top+5):null;
-     return {classes:el?.className,card:rect(el),head:rect(head),transform:inner?getComputedStyle(inner).transform:null,hit:hit?.outerHTML.slice(0,500)};
+     const c=el?.getBoundingClientRect(),centerHit=c?document.elementFromPoint(c.left+c.width/2,c.top+c.height/2):null;
+     return {classes:el?.className,scrollTop:body?.scrollTop,body:rect(body),hero:rect(sheet?.querySelector('.pc-sheet-hero')),nav:rect(sheet?.querySelector('.pc-sheet-section-nav')),card:rect(el),head:rect(head),transform:inner?getComputedStyle(inner).transform:null,hit:hit?.outerHTML.slice(0,500),centerHit:centerHit?.outerHTML.slice(0,500)};
     });
     await page.screenshot({path:path.join(out,id+'-'+label+'-failure.png')});
    }
