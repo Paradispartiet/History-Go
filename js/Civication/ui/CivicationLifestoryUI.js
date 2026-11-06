@@ -727,6 +727,7 @@
           + (status.measured ? status.score + " / 100" : "ikke målt Skills");
       return "<button class=\"civi-lifestory-choice\" type=\"button\" data-lifestory-scene=\"" + escapeHtml(scene.id) + "\""
         + " data-lifestory-choice=\"" + escapeHtml(valg.id) + "\""
+        + (valg.handling ? " data-lifestory-navigates=\"true\"" : "")
         + (status.available ? "" : " disabled aria-disabled=\"true\"") + ">"
         + "<span>" + escapeHtml(valg.tekst) + "</span>"
         + (valg.tone ? "<small>" + escapeHtml(valg.tone) + "</small>" : "")
