@@ -68,3 +68,27 @@
   #nearbyListContainer .nearby-discovery-status{flex:1 1 100%;font-size:11px;}
   #nearbyGuideToggle{padding:7px 9px;}
 }
+
+/* Utforsk category pills: preserve their colors, make the navigation compact. */
+#nearbyListContainer .nearby-tabs{
+  gap:5px;
+  margin-top:4px;
+}
+#nearbyListContainer .nearby-tab{
+  min-height:34px;
+  padding:7px 12px;
+  font-size:13px;
+  line-height:1.05;
+  font-weight:750;
+}
+@media(max-width:600px){
+  body.hg-app.hg-phone #nearbyListContainer .nearby-tabs{
+    gap:4px;
+    margin-top:3px;
+  }
+  body.hg-app.hg-phone #nearbyListContainer .nearby-tab{
+    min-height:32px;
+    padding:6px 9px;
+    font-size:12px;
+  }
+}
