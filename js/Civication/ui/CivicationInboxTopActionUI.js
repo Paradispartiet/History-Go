@@ -119,6 +119,8 @@
   const LILLEBEKK_REVIEW_TOPICS = [
     {
       title: "Plankart og areal",
+      id: "plankart",
+      control_owner: "Planteamet og planjurist Nora",
       document: "Datert plankart, tegnforklaring og kartversjon",
       check: "Sammenhold byggegrenser, arealformål og registrerte kartavvik.",
       positive: ["map_conflict_written_for_review", "green_passage_recommendation_logged", "early_map_conflict_documented"],
@@ -127,6 +129,8 @@
     },
     {
       title: "Grøntdrag",
+      id: "grontdrag",
+      control_owner: "Byøkolog Signe og planjurist Nora",
       document: "Grøntfaglig vurdering og forslag til planbestemmelse",
       check: "Kontroller sammenheng, jorddybde, flomvei og hva bestemmelsen faktisk sikrer.",
       positive: ["green_corridor_draft_requirement_proposed", "early_green_corridor_requirement_proposed"],
@@ -135,6 +139,8 @@
     },
     {
       title: "Skolevei",
+      id: "skolevei",
+      control_owner: "Trafikkfaglig ansvarlig og planleder Elin",
       document: "Trafikksikkerhetsvurdering og forslag til rekkefølgekrav",
       check: "Kontroller hvilken strekning som vurderes, hvem som utfører tiltak og når de må være gjennomført.",
       positive: ["school_route_pre_occupancy_condition_proposed", "school_route_explicit_assessment_proposed", "early_school_route_condition_proposed"],
@@ -143,6 +149,8 @@
     },
     {
       title: "Medvirkning",
+      id: "medvirkning",
+      control_owner: "Ansvarlig for medvirkningsprotokollen",
       document: "Merknadsoversikt og faglige svar på innspill",
       check: "Sammenhold hvert registrerte innspill med vurdering og eventuell endring i forslaget.",
       positive: ["participation_comments_evaluated", "early_participation_evaluated"],
@@ -151,6 +159,8 @@
     },
     {
       title: "Overvann",
+      id: "overvann",
+      control_owner: "Overvannsfaglig ansvarlig og planjurist Nora",
       document: "Overvannsnotat, flomveikart og forslag til sikring",
       check: "Kontroller avrenning, flomveier, nabovirkning og hva som er forankret i planen.",
       positive: ["stormwater_condition_proposed", "early_stormwater_condition_proposed"],
@@ -159,6 +169,8 @@
     },
     {
       title: "Utbyggerkontakt",
+      id: "utbyggerkontakt",
+      control_owner: "Planleder Elin og journalansvarlig",
       document: "Journalført møte- og korrespondanselogg",
       check: "Kontroller hva som er bedt om, hvem som svarte og at ingen har gitt forhåndstilsagn.",
       positive: ["developer_formal_request_pending", "developer_signal_written_clarification_requested", "early_developer_formal_request_pending"],
@@ -167,6 +179,8 @@
     },
     {
       title: "Faglig risiko i saksframlegget",
+      id: "risiko",
+      control_owner: "Planjurist Nora og planleder Elin",
       document: "Saksframlegg med risikovurdering og politiske alternativer",
       check: "Skill rettslig krav, faglig usikkerhet, administrativ anbefaling og politisk valg.",
       positive: ["material_risks_stated_for_politics", "early_material_risks_visible"],
@@ -190,11 +204,17 @@
     const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
     if (!early && !formal) return null;
     const flags = new Set([...(early?.flags || []), ...(formal?.flags || [])]);
+    const formalFlags = new Set(formal?.flags || []);
+    const canRevise = !!formal && formal.status !== "closed" && !formal.closed_at;
     const topics = LILLEBEKK_REVIEW_TOPICS.map(function (topic) {
       const documented = topic.positive.some(function (flag) { return flags.has(flag); });
       const issue = topic.negative.some(function (flag) { return flags.has(flag); });
       return {
+        id: topic.id,
         title: topic.title,
+        control_owner: topic.control_owner,
+        reviewNeedLogged: formalFlags.has(`lillebekk_revisjon_${topic.id}_kontrollbehov`),
+        caveatLogged: formalFlags.has(`lillebekk_revisjon_${topic.id}_forbehold`),
         status: documented && issue ? "Motstridende spor – avklar"
           : issue ? "Åpent avvik" : documented ? "Faglig spor registrert" : "Ingen registrert vurdering",
         documented,
@@ -209,11 +229,45 @@
     });
     return {
       phase: formal ? "Formell saksforberedelse" : "Tidlig saksarbeid",
+      canRevise,
       topics,
       documented: topics.filter(function (topic) { return topic.documented; }).length,
       open: topics.filter(function (topic) { return topic.issue || !topic.documented; }).length,
       approved: false
     };
+  }
+
+  // A player action logs a concrete work note, not receipt of a document or an approval.
+  // Use WorkWorld's existing idempotent flag/history mutation, never a parallel store.
+  function recordLillebekkReviewAction(topicId, actionId) {
+    const dossier = lillebekkReviewModel();
+    const topic = dossier?.topics?.find(function (item) { return item.id === topicId; });
+    if (!dossier?.canRevise || !topic || !["kontrollbehov", "forbehold"].includes(actionId)) {
+      return { ok: false, reason: "Saksrevisjonen er ikke tilgjengelig for denne rollen eller saken." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.addFlag !== "function") return { ok: false, reason: "Saksloggen er ikke tilgjengelig." };
+    const caseId = "by_radgiver_lillebekk_plan_case_001";
+    const live = world.getWorkObject(caseId);
+    if (!live || live.status === "closed" || live.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    const flag = `lillebekk_revisjon_${topic.id}_${actionId}`;
+    if ((live.flags || []).includes(flag)) return { ok: true, alreadyLogged: true };
+    const note = actionId === "kontrollbehov"
+      ? `Kontrollbehov registrert for ${topic.title}: etterspør eller les ${topic.document}. Faglig kontakt: ${topic.control_owner}. Dokumentet er ikke registrert mottatt eller verifisert.`
+      : `Forbehold registrert for ${topic.title}: ${topic.check} Uavklarte forhold skal synliggjøres i saksframlegget. Ingen ferdig saksframlegg eller godkjenning er registrert.`;
+    try {
+      world.addFlag(caseId, flag, {
+        event_id: `lillebekk_revisjon_${topic.id}_${actionId}_v1`,
+        scene_id: "lillebekk_revisjon_innboks",
+        choice_id: actionId,
+        at: new Date().toISOString(),
+        note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk-revisjon", error);
+      return { ok: false, reason: "Kontrollbehovet kunne ikke lagres." };
+    }
   }
 
   function lillebekkReviewHtml() {
@@ -238,15 +292,20 @@
                 </div></div>
                 <div class="civi-inbox-body">
                   <p><strong>Kontrollgrunnlag som må etterspørres eller leses:</strong> ${escapeHtml(topic.document)}</p>
+                  <p><strong>Faglig kontakt:</strong> ${escapeHtml(topic.control_owner)}</p>
                   <p><strong>Kontrollpunkt:</strong> ${escapeHtml(topic.check)}</p>
                   <p><strong>Neste arbeidsoppgave:</strong> ${escapeHtml(topic.next)}</p>
                   <p><strong>Faglig følge:</strong> ${escapeHtml(topic.consequence)}</p>
+                  ${dossier.canRevise ? `<div class="civi-inbox-card-actions" role="group" aria-label="Revisjonsarbeid: ${escapeHtml(topic.title)}">
+                    <button class="civi-btn secondary" type="button" data-civi-lillebekk-review="1" data-topic-id="${escapeHtml(topic.id)}" data-review-action="kontrollbehov" ${topic.reviewNeedLogged ? "disabled" : ""}>${topic.reviewNeedLogged ? "Kontrollbehov journalført" : "Journalfør kontrollbehov"}</button>
+                    <button class="civi-btn secondary" type="button" data-civi-lillebekk-review="1" data-topic-id="${escapeHtml(topic.id)}" data-review-action="forbehold" ${topic.caveatLogged ? "disabled" : ""}>${topic.caveatLogged ? "Forbehold journalført" : "Journalfør faglig forbehold"}</button>
+                  </div>` : ""}
                 </div>
               </article>`;
             }).join("")}
           </div>
         </details>
-        <p class="muted">Dette er en kontrolliste over aktuelle dokumenttyper, ikke bekreftede bilag. Registrert faglig spor betyr ikke at et dokument er kontrollert, og gir ikke planvedtak eller ledergodkjenning.</p>
+        <p class="muted">Dette er en kontrolliste over aktuelle dokumenttyper, ikke bekreftede bilag. Journalføring her registrerer bare kontrollbehov eller forbehold i saksloggen; ingen dokumenter sendes eller godkjennes automatisk. Registrert faglig spor betyr ikke at et dokument er kontrollert, og gir ikke planvedtak eller ledergodkjenning.</p>
       </section>`;
   }
 
@@ -680,6 +739,15 @@
   }
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-lillebekk-review]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (button.disabled) return;
+        const result = recordLillebekkReviewAction(
+          String(button.getAttribute("data-topic-id") || ""),
+          String(button.getAttribute("data-review-action") || ""));
+        if (result.ok) renderInboxSections();
+      });
+    });
     host.querySelectorAll("[data-civi-inbox-answer]").forEach(function (button) {
       button.addEventListener("click", function () {
         answerFromInbox(button);
@@ -829,6 +897,7 @@
     getActionable: pendingActionItems,
     getMessages: visibleMessages,
     splitChannels: splitInboxByMessageChannel,
-    getLillebekkReviewModel: lillebekkReviewModel
+    getLillebekkReviewModel: lillebekkReviewModel,
+    recordLillebekkReviewAction
   };
 })();
