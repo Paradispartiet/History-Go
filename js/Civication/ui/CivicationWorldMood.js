@@ -72,9 +72,13 @@
     if (!doc || !doc.body) return period;
     doc.body.setAttribute("data-civi-visual-period", period);
     const label = doc.querySelector?.(".civi-day-miniature-period");
-    if (label) label.textContent = ({ morning: "Morgen", day: "Dag", evening: "Kveld", night: "Natt" })[period] || "Morgen";
+    const periodText = ({ morning: "Morgen", day: "Dag", evening: "Kveld", night: "Natt" })[period] || "Morgen";
+    if (label && label.textContent !== periodText) label.textContent = periodText;
     const phaseLabel = doc.querySelector?.(".civi-day-miniature-phase");
-    if (phaseLabel) phaseLabel.textContent = "Fase: " + getPhaseLabel(phase);
+    const nextPhaseText = "Fase: " + getPhaseLabel(phase);
+    // The label is aria-live=polite. Avoid announcing the same phase again
+    // when unrelated shell/storage events request another synchronization.
+    if (phaseLabel && phaseLabel.textContent !== nextPhaseText) phaseLabel.textContent = nextPhaseText;
     if (period !== lastPeriod) {
       lastPeriod = period;
       if (typeof root.dispatchEvent === "function" && typeof root.CustomEvent === "function") {
