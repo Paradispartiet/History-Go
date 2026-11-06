@@ -519,17 +519,23 @@
     const live = world.getWorkObject(caseId);
     if (!live || live.status === "closed" || live.closed_at) return { ok: false, reason: "Saken er avsluttet." };
     const prefix = `lillebekk_dokument_${topic.id}_vurdering_`;
-    const revisionCount = (live.history || []).filter(function (item) {
+    const note = `Foreløpig vurdering av spilleroppgitt bilag for ${topic.title}: ${labels[outcome]}. Begrunnelse: ${reason}. Kildehenvisningen står i mottaksnotatet. Dette bekrefter ikke dokumentet, lukker ikke fagavvik og gir ingen myndighetsgodkjenning.`;
+    const revisions = (live.history || []).filter(function (item) {
       return String(item.id || "").startsWith(prefix);
-    }).length;
-    if (revisionCount >= 20) return { ok: false, reason: "Vurderingsloggen er full." };
+    });
+    const previous = revisions[revisions.length - 1];
+    // Duplicate submits (including normalized whitespace) must not consume a revision.
+    // A real change may still return to an earlier assessment after an intervening one.
+    if (previous?.outcome === outcome && previous?.note === note) {
+      return { ok: true, alreadyLogged: true };
+    }
+    if (revisions.length >= 20) return { ok: false, reason: "Vurderingsloggen er full." };
     try {
       world.appendWorkObjectHistory(caseId, {
-        event_id: `${prefix}${revisionCount + 1}`, scene_id: "lillebekk_revisjon_innboks",
-        choice_id: outcome, at: new Date().toISOString(), outcome,
-        note: `Foreløpig vurdering av spilleroppgitt bilag for ${topic.title}: ${labels[outcome]}. Begrunnelse: ${reason}. Kildehenvisningen står i mottaksnotatet. Dette bekrefter ikke dokumentet, lukker ikke fagavvik og gir ingen myndighetsgodkjenning.`
+        event_id: `${prefix}${revisions.length + 1}`, scene_id: "lillebekk_revisjon_innboks",
+        choice_id: outcome, at: new Date().toISOString(), outcome, note
       });
-      return { ok: true };
+      return { ok: true, alreadyLogged: false };
     } catch (error) {
       if (window.DEBUG) console.warn("[Civication] Lillebekk-vurdering", error);
       return { ok: false, reason: "Vurderingen kunne ikke journalføres." };
