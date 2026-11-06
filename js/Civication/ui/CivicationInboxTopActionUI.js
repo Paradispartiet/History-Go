@@ -206,13 +206,25 @@
     const flags = new Set([...(early?.flags || []), ...(formal?.flags || [])]);
     const formalFlags = new Set(formal?.flags || []);
     const canRevise = !!formal && formal.status !== "closed" && !formal.closed_at;
+    const formalHistory = Array.isArray(formal?.history) ? formal.history : [];
     const topics = LILLEBEKK_REVIEW_TOPICS.map(function (topic) {
       const documented = topic.positive.some(function (flag) { return flags.has(flag); });
       const issue = topic.negative.some(function (flag) { return flags.has(flag); });
+      const receipt = formalHistory.find(function (event) {
+        return event.id === `lillebekk_dokument_${topic.id}_oppgitt_mottak_v1`;
+      });
+      const reviews = formalHistory.filter(function (event) {
+        return String(event.id || "").startsWith(`lillebekk_dokument_${topic.id}_vurdering_`);
+      });
+      const latestReview = reviews[reviews.length - 1];
       return {
         id: topic.id,
         title: topic.title,
         control_owner: topic.control_owner,
+        receiptLogged: !!receipt,
+        receiptNote: receipt?.note || "",
+        assessmentNote: latestReview?.note || "",
+        assessmentOutcome: latestReview?.outcome || "",
         reviewNeedLogged: formalFlags.has(`lillebekk_revisjon_${topic.id}_kontrollbehov`),
         caveatLogged: formalFlags.has(`lillebekk_revisjon_${topic.id}_forbehold`),
         status: documented && issue ? "Motstridende spor – avklar"
@@ -267,6 +279,83 @@
     } catch (error) {
       if (window.DEBUG) console.warn("[Civication] Lillebekk-revisjon", error);
       return { ok: false, reason: "Kontrollbehovet kunne ikke lagres." };
+    }
+  }
+
+
+  // Player-supplied journal references are not evidence that a document was verified.
+  // Both steps use the existing WorkWorld history and keep all unresolved flags.
+  function recordLillebekkDocumentReceipt(topicId, journalRef, sender, description) {
+    const dossier = lillebekkReviewModel();
+    const topic = dossier?.topics?.find(function (item) { return item.id === topicId; });
+    const world = window.CivicationWorkWorld;
+    if (!dossier?.canRevise || !topic || typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Dokumentjournalen er ikke tilgjengelig." };
+    }
+    const clean = function (value, max) {
+      return String(value || "").replace(/\s+/g, " ").trim().slice(0, max);
+    };
+    const reference = clean(journalRef, 100);
+    const source = clean(sender, 120);
+    const summary = clean(description, 500);
+    if (reference.length < 5 || source.length < 4 || summary.length < 12) {
+      return { ok: false, reason: "Oppgi journalreferanse, avsender og en konkret beskrivelse." };
+    }
+    const caseId = "by_radgiver_lillebekk_plan_case_001";
+    const live = world.getWorkObject(caseId);
+    if (!live || live.status === "closed" || live.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    const eventId = `lillebekk_dokument_${topic.id}_oppgitt_mottak_v1`;
+    if ((live.history || []).some(function (event) { return event.id === eventId; })) {
+      return { ok: false, reason: "Det finnes allerede en registrering for dette fagområdet." };
+    }
+    try {
+      world.appendWorkObjectHistory(caseId, {
+        event_id: eventId, scene_id: "lillebekk_revisjon_innboks",
+        choice_id: "registrer_spilleroppgitt_mottak", at: new Date().toISOString(),
+        outcome: "spilleroppgitt_ikke_verifisert",
+        note: `Spilleroppgitt dokumentmottak for ${topic.title}. Dokumenttype: ${topic.document}. Journalreferanse: ${reference}. Avsender: ${source}. Beskrivelse: ${summary}. Kilde og innhold er ikke verifisert av systemet; åpne avvik er uendret.`
+      });
+      return { ok: true };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk-mottak", error);
+      return { ok: false, reason: "Mottaket kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkDocumentAssessment(topicId, outcome, reasoning) {
+    const dossier = lillebekkReviewModel();
+    const topic = dossier?.topics?.find(function (item) { return item.id === topicId; });
+    const world = window.CivicationWorkWorld;
+    const labels = {
+      mangelfull: "Mangler nødvendig grunnlag",
+      motstridende: "Motstridende opplysninger krever avklaring",
+      fagkontroll: "Oversend til ansvarlig fagkontroll"
+    };
+    const reason = String(reasoning || "").replace(/\s+/g, " ").trim().slice(0, 500);
+    if (!dossier?.canRevise || !topic?.receiptLogged ||
+        !Object.prototype.hasOwnProperty.call(labels, outcome) ||
+        typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Oppgitt mottak må journalføres før vurdering." };
+    }
+    if (reason.length < 20) return { ok: false, reason: "Skriv en faglig begrunnelse på minst 20 tegn." };
+    const caseId = "by_radgiver_lillebekk_plan_case_001";
+    const live = world.getWorkObject(caseId);
+    if (!live || live.status === "closed" || live.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    const prefix = `lillebekk_dokument_${topic.id}_vurdering_`;
+    const revisionCount = (live.history || []).filter(function (item) {
+      return String(item.id || "").startsWith(prefix);
+    }).length;
+    if (revisionCount >= 20) return { ok: false, reason: "Vurderingsloggen er full." };
+    try {
+      world.appendWorkObjectHistory(caseId, {
+        event_id: `${prefix}${revisionCount + 1}`, scene_id: "lillebekk_revisjon_innboks",
+        choice_id: outcome, at: new Date().toISOString(), outcome,
+        note: `Foreløpig vurdering av spilleroppgitt bilag for ${topic.title}: ${labels[outcome]}. Begrunnelse: ${reason}. Kildehenvisningen står i mottaksnotatet. Dette bekrefter ikke dokumentet, lukker ikke fagavvik og gir ingen myndighetsgodkjenning.`
+      });
+      return { ok: true };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk-vurdering", error);
+      return { ok: false, reason: "Vurderingen kunne ikke journalføres." };
     }
   }
 
