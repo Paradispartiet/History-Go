@@ -83,6 +83,16 @@ body.civi-app #civiLifestoryPanel .civi-lifestory-choice {
   background: linear-gradient(115deg, rgba(112, 137, 123, .075), rgba(25, 31, 34, .25) 60%);
   box-shadow: inset 0 1px 0 rgba(232, 238, 231, .025);
 }
+/* Available choices are the primary action in «Min dag». Make their text
+   clearly distinct from the subdued descriptive labels, without making
+   unavailable/skill-locked choices appear actionable. */
+body.civi-app #civiLifestoryPanel .civi-lifestory-choice:not(:disabled) {
+  color: #ecf3ee;
+}
+body.civi-app #civiLifestoryPanel .civi-lifestory-choice:not(:disabled) small {
+  color: #c1d2ca;
+}
+
 body.civi-app #civiLifestoryPanel .civi-lifestory-choice::before {
   content: "";
   position: absolute;
