@@ -67,14 +67,22 @@ try{
      await page.waitForFunction(()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned'),null,{timeout:12000});
      await page.waitForFunction(()=>{const c=document.querySelector('#placeCard .pc-photo-caption'),shell=document.querySelector('#placeCard .pc-sheet-hero');if(!c||!shell)return false;const a=c.getBoundingClientRect(),b=shell.getBoundingClientRect();return a.width>0&&a.height>0&&a.top>=b.top&&a.bottom<=b.bottom&&a.top>=0&&a.bottom<=innerHeight;},null,{timeout:12000});
      await page.screenshot({path:path.join(out,id+'-'+label+'-historical-sticky.png')});
-     await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTo({top:0,behavior:'instant'});el.dispatchEvent(new Event('scroll'));});
+     // The app's .pc-body has scroll-behavior:smooth. Cancel that only for
+     // this deterministic test reset; restore user-facing scroll behavior
+     // before the real click/visible-backside assertions.
+     await page.locator('#placeCard .pc-body').evaluate(el=>{
+      const previous=el.style.scrollBehavior;
+      el.style.scrollBehavior='auto';
+      el.scrollTop=0;
+      el.dispatchEvent(new Event('scroll'));
+      el.style.scrollBehavior=previous;
+     });
     }
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card'),null,{timeout:35000});
     // The historical photo test scrolls the same .pc-body used by QuizCard.
-    // Scroll the *real* body until the entire card is below the sticky hero
-    // and above bottom navigation. The sticky collapse can continue to move
-    // .pc-body after a one-time scrollTop=0, so correct the actual geometry
-    // on each animation frame; never bypass hit-testing or force the click.
+    // Do not repeatedly write scrollTop in this wait: CSS smooth scrolling
+    // would restart on each animation frame and keep the card under the hero.
+    // Require the actual rendered screen position and hit target to be safe.
     await page.waitForFunction(()=>{
      const sheet=document.querySelector('#placeCard'),body=sheet?.querySelector('.pc-body');
      const flip=sheet?.querySelector('#pcFrontCardFlip'),hero=sheet?.querySelector('.pc-sheet-hero');
@@ -83,17 +91,9 @@ try{
      const card=flip.getBoundingClientRect(),hr=hero.getBoundingClientRect(),br=body.getBoundingClientRect();
      const visibleTop=Math.max(br.top,hr.bottom)+12;
      const visibleBottom=Math.min(br.bottom,nav?.getBoundingClientRect().top??br.bottom)-8;
-     if(card.top<visibleTop-1){
-      body.scrollTo({top:Math.max(0,body.scrollTop+card.top-visibleTop),behavior:'instant'});
-      return false;
-     }
-     if(card.bottom>visibleBottom+1){
-      body.scrollTo({top:body.scrollTop+card.bottom-visibleBottom,behavior:'instant'});
-      return false;
-     }
      const x=card.left+card.width/2,y=card.top+card.height/2;
-     return card.width>0 && card.height>75 &&
-       card.top>=visibleTop-1 && card.bottom<=visibleBottom+1 &&
+     return body.scrollTop<=1 && card.width>0 && card.height>75 &&
+       card.top>=visibleTop && card.bottom<=visibleBottom &&
        x>0 && x<innerWidth && y>0 && y<innerHeight &&
        document.elementFromPoint(x,y)?.closest('#pcFrontCardFlip')===flip;
     },null,{timeout:12000});
