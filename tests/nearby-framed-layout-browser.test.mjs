@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { chromium } from "playwright";
+import { chromium, webkit } from "playwright";
 
 const root = process.cwd();
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -81,6 +81,7 @@ const server = http.createServer((request, response) => {
 await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const { port } = server.address();
 let browser;
+let safariBrowser;
 try {
   browser = await chromium.launch({ headless: true });
   for (const [width, height] of [[320, 700], [390, 844], [768, 1024], [1024, 900], [1440, 900]]) {
@@ -204,7 +205,34 @@ try {
     await page.close();
     console.log("Nearby layout OK at " + width + "x" + height);
   }
+
+  // WebKit is the rendering engine used by Safari on iPad/iPhone.
+  // Keep this focused on the changed Utforsk surfaces, not unrelated map behavior.
+  safariBrowser = await webkit.launch({ headless: true });
+  for (const [width, height] of [[390, 844], [768, 1024]]) {
+    const page = await safariBrowser.newPage({ viewport: { width, height } });
+    await page.goto("http://127.0.0.1:" + port + "/__audit__/nearby.html", { waitUntil: "load" });
+    await page.locator("#nearbyExploreToggle").click();
+    assert.equal(await page.locator("#nearbyListContainer .nearby-tab").count(), 5);
+    const sizes = await page.locator("#nearbyListContainer .nearby-tab").first().evaluate(el => ({
+      height: el.getBoundingClientRect().height,
+      fontSize: parseFloat(getComputedStyle(el).fontSize)
+    }));
+    assert.ok(sizes.height <= (width <= 520 ? 35 : 37), "Safari compact tabs at " + width);
+    assert.ok(sizes.fontSize <= (width <= 520 ? 12.5 : 13.5), "Safari compact text at " + width);
+    await page.locator("#nearbyQuickSearch").fill("sted 4");
+    await page.waitForFunction(() => document.querySelector("#nearbySearchCount")?.textContent === "1 av 24 treff");
+    assert.equal(await page.locator("#nearbyList > .nearby-item:visible").count(), 1,
+      "Safari visible search results at " + width);
+    await page.locator("#nearbyGuideToggle").click();
+    assert.equal(await page.locator("#nearbyGuidePanel").isVisible(), true);
+    const listHeight = await page.locator("#nearbyList").evaluate(el => el.getBoundingClientRect().height);
+    assert.ok(listHeight > 90, "Safari retains scrollable cards at " + width);
+    await page.close();
+    console.log("Utforsk Safari/WebKit OK at " + width + "x" + height);
+  }
 } finally {
+  await safariBrowser?.close();
   await browser?.close();
   await new Promise(resolve => server.close(resolve));
 }
