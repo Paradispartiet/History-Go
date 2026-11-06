@@ -192,13 +192,65 @@ const savedCopy=JSON.parse(JSON.stringify(saved));
 saved=savedCopy;
 assert.equal(actions.getLillebekkReviewModel().topics.find(t=>t.id==='skolevei').reviewNeedLogged,true,
  'review log remains visible after serialize/reload');
+
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','mangelfull','Ingen dokumentasjon mottatt ennå').ok,false,
+ 'a conclusion without a logged document is forbidden');
+assert.equal(actions.recordLillebekkDocumentReceipt('skolevei','x','y','kort').ok,false,
+ 'a receipt must carry a source reference, sender and content description');
+assert.equal(actions.recordLillebekkDocumentReceipt('skolevei',
+ 'JOURNAL-2026-104','Trafikkfaglig avdeling',
+ 'Utkast til strekning og planlagt rekkefølge for trygg skolevei.').ok,true);
+current=adapter.getWorkObject(formalId);
+const receipt=current.history.find(x=>x.id==='lillebekk_dokument_skolevei_oppgitt_mottak_v1');
+assert.equal(receipt?.outcome,'spilleroppgitt_ikke_verifisert');
+assert.ok(receipt.note.includes('JOURNAL-2026-104'));
+assert.ok(receipt.note.includes('Kilde og innhold er ikke verifisert'));
+assert.equal(actions.recordLillebekkDocumentReceipt('skolevei',
+ 'JOURNAL-2026-999','En annen avsender','Et annet påstått bilag har kommet').ok,false,
+ 'later entries may not silently overwrite the traceable receipt');
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','verified',
+ 'Jeg godkjenner hele planvedtaket automatisk').ok,false,
+ 'no option may certify a document or political approval');
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','fagkontroll','for kort').ok,false);
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','mangelfull',
+ 'Utkastet mangler avklaring av ansvarlig tiltakshaver og frist før innflytting.').ok,true);
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','fagkontroll',
+ 'Be planjurist og trafikkfaglig ansvarlig kontrollere rekkefølgekravets utforming.').ok,true);
+current=adapter.getWorkObject(formalId);
+const assessments=current.history.filter(x=>x.id.startsWith('lillebekk_dokument_skolevei_vurdering_'));
+assert.equal(assessments.length,2);
+assert.equal(assessments[0].outcome,'mangelfull');
+assert.equal(assessments[1].outcome,'fagkontroll');
+assert.ok(current.flags.includes('skolevei_ikke_dokumentert'),
+ 'player assessment cannot erase the original missing-evidence marker');
+assert.equal(current.status,'open');
+assert.equal(adapter.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+saved=JSON.parse(JSON.stringify(saved));
+const journalModel=actions.getLillebekkReviewModel();
+const schoolTopic=journalModel.topics.find(x=>x.id==='skolevei');
+assert.equal(schoolTopic.receiptLogged,true);
+assert.equal(schoolTopic.assessmentOutcome,'fagkontroll');
+assert.ok(schoolTopic.assessmentNote.includes('Oversend til ansvarlig fagkontroll'));
+assert.equal(actions.renderSections(),true);
+assert.ok(interactiveHost.innerHTML.includes('JOURNAL-2026-104'));
+assert.ok(interactiveHost.innerHTML.includes('data-civi-lillebekk-assess="1"'));
+assert.equal((interactiveHost.innerHTML.match(/data-civi-lillebekk-receipt="1"/g)||[]).length,6,
+ 'receipt is registered in exactly one of seven subject areas');
 assert.equal(actions.recordLillebekkReviewAction('unknown','forbehold').ok,false);
 assert.equal(actions.recordLillebekkReviewAction('skolevei','approve').ok,false);
 activeRole={role_key:'film_tv_produksjonsassistent'};
+assert.equal(actions.recordLillebekkDocumentReceipt('grontdrag',
+ 'J-2026-55','Byøkolog Signe','En annen rapport skal føres i saken.').ok,false);
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','mangelfull',
+ 'Utenforstående rolle skal ikke kunne kommentere denne saken.').ok,false);
 assert.equal(actions.recordLillebekkReviewAction('grontdrag','kontrollbehov').ok,false,
  'other roles cannot write to the Lillebekk case');
 activeRole={role_key:'arealplanlegger'};
 adapter.closeWorkObject(formalId,{event_id:'lillebekk_review_test_close',at:'2026-11-07T10:00:00Z',outcome:'closed_for_test'});
 assert.equal(actions.recordLillebekkReviewAction('grontdrag','kontrollbehov').ok,false,
  'closed cases cannot be changed by the revision UI');
+assert.equal(actions.recordLillebekkDocumentReceipt('grontdrag',
+ 'J-2026-78','Byøkolog Signe','Forsøkt etterført bilag i lukket sak.').ok,false);
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','motstridende',
+ 'Vurdering etter at saken ble avsluttet er ikke tillatt.').ok,false);
 console.log('Lillebekk saksoversikt: seven document controls and persistent bounded review decisions verified');
