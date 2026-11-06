@@ -14,6 +14,7 @@ on:
       - 'scripts/verify-civication-organic-player-browser.ts'
       - 'scripts/verify-civication-people-browser.cjs'
       - 'scripts/verify-civication-visual-qa-browser.ts'
+      - 'scripts/verify-civication-webkit-mobile.ts'
       - 'scripts/run-civication-visual-qa-browser.ts'
       - 'css/civi-miniature-world.css'
       - 'css/civi-world-mood.css'
@@ -57,8 +58,8 @@ jobs:
       - name: Audit Civication city map entries
         continue-on-error: true
         run: npm run audit:civication-city-map-entries
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Install Playwright Chromium and WebKit
+        run: npx playwright install --with-deps chromium webkit
       - name: Select PR browser acceptance depth
         id: coverage
         shell: bash
@@ -109,7 +110,7 @@ jobs:
             echo "Acceptance depth: ${CIVICATION_BROWSER_DEPTH}." >> "$GITHUB_STEP_SUMMARY"
           fi
           exit "${result}"
-      - name: Capture Min dag and map mobile QA
+      - name: Capture Min dag, WebKit, and map mobile QA
         shell: bash
         run: |
           set -o pipefail
