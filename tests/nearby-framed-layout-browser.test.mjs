@@ -28,6 +28,7 @@ const fixture = [
   '<link rel="stylesheet" href="/css/base.css">',
   '<link rel="stylesheet" href="/css/layout.css">',
   '<link rel="stylesheet" href="/css/nearby.css">',
+  '<link rel="stylesheet" href="/css/nearby-explore-guide.css">',
   '<link rel="stylesheet" href="/css/miniProfile.css">',
   '<link rel="stylesheet" href="/css/people.css">',
   '<link rel="stylesheet" href="/css/nature.css">',
@@ -39,6 +40,7 @@ const fixture = [
   nearbyMarkup,
   '<footer class="app-footer"></footer>',
   '<script src="/js/ui/nearby-drawer.js"></script>',
+  '<script src="/js/ui/nearby-explore-guide.js"></script>',
   '<script>',
   'document.body.classList.toggle("hg-phone", innerWidth <= 520);',
   'document.documentElement.style.setProperty("--hg-visual-footer-height", innerWidth <= 520 ? "60px" : "72px");',
@@ -66,6 +68,7 @@ const server = http.createServer((request, response) => {
     return;
   }
   if (!["/css/theme.css", "/css/base.css", "/css/layout.css", "/css/nearby.css",
+    "/css/nearby-explore-guide.css", "/js/ui/nearby-explore-guide.js",
     "/css/miniProfile.css", "/css/people.css", "/css/nature.css",
     "/js/ui/nearby-drawer.js"].includes(pathname)) {
     response.writeHead(404); response.end("not found"); return;
@@ -124,6 +127,26 @@ try {
       "Explore must start closed");
     await page.locator("#nearbyExploreToggle").click();
     assert.equal(await page.locator("#nearbyExploreToggle").getAttribute("aria-expanded"), "true");
+    // New toolbar must not push the classic drawer out of the map frame.
+    const categoryTabs = page.locator("#nearbyListContainer .nearby-tab");
+    assert.equal(await categoryTabs.count(), 5, "Keep the five original tabs at " + width);
+    const tabMetrics = await categoryTabs.first().evaluate(el => ({
+      height: el.getBoundingClientRect().height,
+      fontSize: Number.parseFloat(getComputedStyle(el).fontSize)
+    }));
+    assert.ok(tabMetrics.height <= (width <= 520 ? 35 : 37),
+      "Compact category tabs fit at " + width + ": " + JSON.stringify(tabMetrics));
+    assert.ok(tabMetrics.fontSize <= (width <= 520 ? 12.5 : 13.5),
+      "Compact category text at " + width);
+    await page.locator("#nearbyQuickSearch").fill("sted 3");
+    assert.equal(await page.locator("#nearbyList > .nearby-item:visible").count(), 1,
+      "Search filters the actual existing cards at " + width);
+    assert.match(await page.locator("#nearbySearchCount").textContent(), /1 av 24 treff/);
+    await page.locator("#nearbyQuickSearch").fill("");
+    await page.locator("#nearbyGuideToggle").click();
+    assert.equal(await page.locator("#nearbyGuideToggle").getAttribute("aria-expanded"), "true");
+    assert.equal(await page.locator("#nearbyGuidePanel").isVisible(), true);
+    await page.locator("#nearbyGuideToggle").click();
     const state = await page.evaluate(() => {
       const rect = element => {
         const { x, y, right, bottom, width, height } = element.getBoundingClientRect();
