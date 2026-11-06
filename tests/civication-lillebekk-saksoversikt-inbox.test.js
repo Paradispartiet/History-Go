@@ -187,7 +187,7 @@ assert.equal(actions.recordLillebekkExhibitDecision('hanne-skolevei-01','B').ok,
  'an exhibit cannot silently overwrite a previous professional decision');
 const hanneDecision=adapter.getWorkObject(formalId).history.find(
  e=>e.id==='lillebekk_bilag_hanne-skolevei-01_valg_v1');
-assert.equal(hanneDecision.outcome,'skolevei_fagkontroll_bestilt_i_sak');
+assert.equal(hanneDecision.outcome,'skolevei_fagkontroll_foreslatt_i_sak');
 assert.ok(hanneDecision.note.includes('Fiktivt spillbilag LBK-MERK-01'));
 assert.ok(hanneDecision.note.includes('ikke ekstern utsendelse'));
 assert.ok(adapter.getWorkObject(formalId).flags.includes('skolevei_ikke_dokumentert'),
