@@ -419,7 +419,15 @@
       };
     });
     const ready = exhibitsReviewed && checks.every(function (check) { return check.safe; });
-    const signature = checks.map(function (check) { return check.latestId; }).join("|");
+    // A memo snapshots both source assessments and the case's registered issues.
+    // New WorkWorld flags must make a saved draft stale even without changed exhibits.
+    const early = world?.getWorkObject?.("by_radgiver_lillebekk_early_analysis_case_001");
+    const flagSignature = [
+      "early:" + [...(early?.flags || [])].sort().join(","),
+      "formal:" + [...(formal.flags || [])].sort().join(",")
+    ].join("|");
+    const signature = checks.map(function (check) { return check.latestId; }).join("|") +
+      "|flags=" + flagSignature;
     const drafts = history.filter(function (event) {
       return String(event.id || "").startsWith("lillebekk_saksframlegg_utkast_v");
     });
