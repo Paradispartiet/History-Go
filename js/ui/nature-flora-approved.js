@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_kjempebjornkjeks: Object.freeze({
+      scientificName: "Heracleum mantegazzianum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/65_kjempebjornkjeks_v1.webp",
+      gitBlobSha: "1a22fff228e3e73d3d83d882e0be445b709c2519",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-kjempebjornkjeks-20261106.json"
+    }),
     emne_flora_skvallerkaal: Object.freeze({
       scientificName: "Aegopodium podagraria",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/64_skvallerkaal_v1.webp",
