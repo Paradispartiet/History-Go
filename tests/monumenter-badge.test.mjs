@@ -9,7 +9,8 @@ test('Monumenter og landemerker is ninth active By badge; earlier eight remain u
  const by=get('data/badges/by.json');
  const spec=get('data/badges/monumenter_candidate_v1.json');
  assert.deepEqual(by.sub.slice(0,9).at(-1),'monumenter_og_landemerker');
- assert.equal(Object.keys(by.subBadgeImages).length,9);
+ assert.ok(Object.keys(by.subBadgeImages).length>=9);
+ assert.deepEqual(Object.keys(by.subBadgeImages).slice(0,9),by.sub.slice(0,9));
  assert.equal(by.subBadgeImages.monumenter_og_landemerker,spec.sourceImage);
  assert.equal(spec.status,'integrated');
  assert.equal(spec.quality.visualApproved,true);
