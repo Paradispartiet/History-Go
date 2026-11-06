@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "forhistorie",
   "label": "Forhistorie",
-  "status": "artwork_local_awaiting_binary_transfer",
+  "status": "integrated",
   "sourceImage": "bilder/merker/historie/undermerker/forhistorie-brodert-v1.webp",
   "palette": {
     "primary": "#603E1E",
@@ -68,14 +68,14 @@
   },
   "quality": {
     "artworkProduced": true,
-    "visualApproved": false,
-    "binaryVerified": false,
-    "integrated": false,
+    "visualApproved": true,
+    "binaryVerified": true,
+    "integrated": true,
     "technicalLocalVerified": true
   },
-  "activationRule": "Before integration, upload exactly the five WebPs with the hashes and sizes recorded in variants, visually approve the standalone badge, activate NB only in data/badges/historie.json and retain EN/ES/PT/FR inactive; do not touch Bilder/merker/historie.PNG.",
+  "activationRule": "Norwegian original active as sole Historie underbadge; four verified translations remain inactive pending locale runtime. All future edits must preserve parent Historie badge.",
   "seriesProgress": {
-    "integrated": 0,
+    "integrated": 1,
     "total": 14,
     "next": "middelalder"
   },
@@ -89,16 +89,18 @@
   "visualReview": {
     "production": "Single independent illustrated prehistory embroidered badge and five localized caption variants",
     "reference": "Existing historie.PNG badge retained unchanged",
-    "approved": false
+    "approved": true,
+    "notes": "Standalone Forhistorie badge visually reviewed at 1024px and five-locale contact sheet. Central Stone Age scene and parent Historie asset preserved; language captions are isolated variants."
   },
   "binaryTransfer": {
-    "verifiedInRepository": false,
+    "verifiedInRepository": true,
     "filesInLocalPackage": 5,
     "sourceArchive": "forhistorie_fem_sprak_v1.zip",
     "expectedDimensions": [
       1024,
       1024
     ],
-    "expectedTransparency": true
+    "expectedTransparency": true,
+    "gitCommit": "e163c42f7b6bb533724a27d874bec58bdebd038b"
   }
 }
