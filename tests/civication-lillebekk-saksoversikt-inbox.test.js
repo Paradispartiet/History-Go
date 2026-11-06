@@ -70,7 +70,22 @@ assert.ok(result.markup.includes('Lillebekk · saksoversikt'));
 assert.ok(result.markup.includes('Se faglige vurderinger og åpne avvik'));
 assert.equal((result.markup.match(/class="civi-inbox-card"/g)||[]).length,7,
  'seven explicit areas, not generic extra mail');
-assert.ok(result.markup.includes('ikke kontrollert planvedtak eller ledergodkjenning'));
+assert.ok(result.markup.includes('ikke bekreftede bilag'));
+assert.ok(result.markup.includes('gir ikke planvedtak eller ledergodkjenning'));
+assert.equal(new Set(result.model.topics.map(row=>row.document)).size,7,
+ 'each discipline needs its own named document control');
+assert.ok(result.model.topics.every(row=>row.document && row.check && row.consequence));
+assert.equal(byTitle.get('Skolevei').document,
+ 'Trafikksikkerhetsvurdering og forslag til rekkefølgekrav');
+assert.ok(byTitle.get('Skolevei').check.includes('hvem som utfører tiltak'));
+assert.equal(byTitle.get('Grøntdrag').consequence,
+ 'Avviket må føres som uavklart i revisjonsgrunnlaget.');
+assert.ok(byTitle.get('Plankart og areal').consequence.includes('kontrolleres mot bilag'));
+assert.ok(result.markup.includes('Kontrollgrunnlag som må etterspørres eller leses:'));
+assert.ok(result.markup.includes('Kontrollpunkt:'));
+assert.ok(result.markup.includes('Neste arbeidsoppgave:'));
+assert.ok(result.markup.includes('Faglig følge:'));
+assert.ok(result.markup.includes('Registrert faglig spor betyr ikke at et dokument er kontrollert'));
 assert.ok(!result.markup.includes('Godkjent av Elin'));
 assert.ok(result.markup.indexOf('Lillebekk · saksoversikt')<
  result.markup.indexOf('Jobbmail'),'dossier appears before ordinary inbox history');
@@ -124,4 +139,6 @@ assert.equal(noData.model.documented,0);
 assert.equal(noData.model.open,7);
 assert.ok(noData.model.topics.every(row=>row.status==='Ingen registrert vurdering'));
 assert.ok(!noData.markup.includes('Faglig spor registrert'));
+assert.ok(noData.model.topics.every(row=>row.consequence.includes('Ingen registrert vurdering')),
+ 'missing case material cannot be passed off as checked');
 console.log('Lillebekk saksoversikt: 7 real topics, conflict/unknown states, role privacy and reload verified');
