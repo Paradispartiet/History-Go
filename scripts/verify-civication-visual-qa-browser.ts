@@ -54,6 +54,32 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     assert.ok(minDag.sceneVisible, 'Min dag has an active scene or shell story');
     await capture('min-dag-mobile-top.png');
 
+    // In the initial mobile viewport the last decision may be below the fold.
+    // Verify it is reachable through normal scrolling and that every button
+    // remains a sufficiently large, readable touch target (do not auto-choose).
+    const choiceSelector = '#civiLifestoryPanel .civi-lifestory-choice';
+    const choiceButtons = page.locator(choiceSelector);
+    const choiceCount = await choiceButtons.count();
+    assert.ok(choiceCount > 0, 'Min dag exposes at least one decision');
+    const choiceLayout = await page.evaluate(() => {
+      const doc = (globalThis as any).document;
+      const buttons = Array.from(doc.querySelectorAll('#civiLifestoryPanel .civi-lifestory-choice')) as any[];
+      return buttons.map(button => {
+        const rect = button.getBoundingClientRect();
+        const style = (globalThis as any).getComputedStyle(button);
+        return { width: rect.width, height: rect.height, left: rect.left, right: rect.right,
+          enabled: !button.disabled, color: style.color, label: button.textContent?.trim() || '' };
+      });
+    });
+    assert.equal(choiceLayout.length, choiceCount);
+    assert.ok(choiceLayout.some((c: any) => c.enabled), 'at least one Min dag choice is available');
+    assert.ok(choiceLayout.every((c: any) => c.width >= 100 && c.height >= 44
+      && c.left >= -1 && c.right <= 391), 'all choices fit the phone width and meet touch size');
+    const lastChoice = choiceButtons.last();
+    await lastChoice.scrollIntoViewIfNeeded();
+    assert.ok(await lastChoice.isVisible(), 'the final Min dag choice is reachable by scrolling');
+    await capture('min-dag-mobile-choices.png');
+
     await page.locator('#btnCiviMap').click();
     await page.waitForFunction(() => (globalThis as any).document.body.classList.contains('civi-mapmode'), null, { timeout: 15000 });
     await page.waitForTimeout(600);
@@ -111,8 +137,9 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     });
     assert.ok(map.visible, 'map has a visible viewport on mobile');
 
-    const result: any = { viewport: { width: 390, height: 844 }, minDag, mapType, map, overlay, obstruction, screenshots: [
-      'min-dag-mobile-top.png', 'map-mobile-city.png', 'map-mobile-overview.png', 'map-mobile-close.png'
+    const result: any = { viewport: { width: 390, height: 844 }, minDag, choiceLayout, mapType, map, overlay, obstruction, screenshots: [
+      'min-dag-mobile-top.png', 'min-dag-mobile-choices.png',
+      'map-mobile-city.png', 'map-mobile-overview.png', 'map-mobile-close.png'
     ] };
 
     if (mapType === 'webgl') {
