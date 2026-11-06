@@ -179,3 +179,15 @@ Playwright-artefakt fra en **senere avbrutt CI-kjøring** ga faktiske Chromium-b
 - **Testkjedesikkerhet:** visuelle skjermbilder er flyttet til en egen, avgrenset prosess *etter* den funksjonelle 21-dagers «Min dag»-gjennomgangen. Ytre grense er åtte minutter, slik at screenshot-problemer ikke stopper selve livshistorietesten.
 
 **Gjenstår:** ny CI på siste commit, nye skjermbilder som faktisk viser frigjort kartflate, inspeksjon av detaljgeometri mot nærbildet og reell ytelses-/Safari-test på enheten. PR er fortsatt draft og ikke publisert.
+
+## Resultat av ekte WebGL2-mobilbredde-test – 2026-11-06
+
+Første **fullførte** separate Chromium-kjøring på 390 × 844 px tok fire skjermbilder av `Min dag`, byvisning, «Hele Oslo» og nærvisning. Diagnostikk (`civication-browser-diagnostics`, GitHub Actions-run `42197343244`) viste:
+
+- **«Min dag»:** «Fase: Morgen», 90 × 64 illustrasjon uten header-overlapp, synlig NÅ-scene og tre valgmuligheter. Funksjonell 21-dagers nettleserakseptanse passerte 80 scener på samme commit.
+- **WebGL2:** Ekte aktiv renderer i Chromium, ingen Canvas-fallback; byzoom 1,72, nærzoom 2,56, «Hele Oslo»-knappen fungerte.
+- **Mobil HUD:** `hudMinimized=true` og `panelMinimized=true`, berøringsknapper 42 px, panelene opptok 7,3 % av kartflaten (krav under 20 %). Skjermbildene viser nå synlige bygninger, gater og mennesker bak kontrollene.
+- **LOD:** 158 miljøobjekter totalt; 107 ved byzoom, 158 ved nærzoom; 5 dørpartier og 2 fotgjengerfelt i scenestatistikken. Disse er faktiske WebGL-testresultater, ikke løfte om fotorealisme.
+- **Ytelsesgrunnlag:** `getSceneStats().rendererInfo` rapporterer nå sist rendret bildes tegnekall, trekanter, antall registrerte geometrier/teksturer og pixel ratio. Visuell QA lagrer dette etter by- og nærbildet. Verdiene er diagnostikk fra headless Chromium, ikke oppmålt FPS på fysisk mobil.
+
+**Åpne porter:** Test de nye telemetriendringene i CI; fysisk iPhone/Safari-visning, mobil-FPS og GPU-minne er ikke målt. To CI-kontroller for `place-open`-synkronisering gjelder generator-/naturdatadrift utenfor Civication og må løses før merge. PR beholdes som utkast, ikke produksjon.
