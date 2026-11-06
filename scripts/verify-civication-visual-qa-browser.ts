@@ -187,6 +187,47 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       assert.ok(result.cityRendererInfo && result.closeRendererInfo,
         'WebGL draw-call and memory telemetry is available for visual QA');
     }
+    // An isolated second page verifies the actual choice-to-consequence
+    // transition. Keep the original page's city/zoom screenshots unchanged,
+    // and never play a choice that navigates away from «Min dag».
+    const decisionPage = await context.newPage();
+    try {
+      decisionPage.on('pageerror', (error: Error) => pageErrors.push(error.message));
+      await decisionPage.goto(origin + '/Civication.html', { waitUntil: 'load', timeout: 90000 });
+      const localChoice = decisionPage.locator(
+        '#civiLifestoryPanel .civi-lifestory-choice:not(:disabled):not([data-lifestory-navigates])'
+      ).first();
+      await localChoice.waitFor({ state: 'visible', timeout: 90000 });
+      await localChoice.focus();
+      await localChoice.press('Enter');
+      await decisionPage.waitForFunction(() => {
+        const doc = (globalThis as any).document;
+        return !!doc.querySelector('#civiLifestoryPanel .civi-lifestory-konsekvens');
+      }, null, { timeout: 15000 });
+      const afterChoice = await decisionPage.evaluate(() => {
+        const doc = (globalThis as any).document;
+        const outcome = doc.querySelector('#civiLifestoryPanel .civi-lifestory-konsekvens');
+        const rect = outcome.getBoundingClientRect();
+        return {
+          text: outcome.textContent?.trim().slice(0, 180) || '',
+          focusInsideResult: outcome.contains(doc.activeElement),
+          resultTop: Math.round(rect.top),
+          viewportHeight: (globalThis as any).innerHeight,
+          selectedButtonGone: !doc.querySelector('#civiLifestoryPanel .civi-lifestory-choice:focus')
+        };
+      });
+      assert.ok(afterChoice.focusInsideResult,
+        'keyboard selection moves focus from replaced button to the consequence');
+      assert.ok(afterChoice.resultTop >= 0 && afterChoice.resultTop < afterChoice.viewportHeight,
+        'the decision consequence appears inside the phone viewport');
+      assert.ok(afterChoice.selectedButtonGone, 'the removed decision button is no longer focused');
+      await decisionPage.screenshot({ path: join(outputDir, 'min-dag-mobile-after-choice.png'),
+        fullPage: false, animations: 'disabled' });
+      result.afterChoice = afterChoice;
+      result.screenshots.push('min-dag-mobile-after-choice.png');
+    } finally {
+      await decisionPage.close();
+    }
     assert.deepEqual(pageErrors, [], 'no browser JavaScript errors during visual QA');
     // Headless WebGL may be unavailable in CI. Keep fallback evidence clearly
     // labeled rather than claiming a 3D/mobile approval on a Canvas screenshot.
