@@ -44,16 +44,18 @@ test("Utforsk search and guide work on current cards without replacing them", ()
   const toggle = new Element();
   const guide = new Element();
   const list = new Element();
+  const peopleList = new Element();
   guide.hidden = true;
   root.querySelector = (selector) => ({
     ".nearby-row2": row, ".nearby-tabs": tabs, ".nearby-controls": controls
   })[selector] || null;
   list.children = [new Element("Akerselva historisk rute"), new Element("Bislett stadion")];
+  peopleList.children = [new Element("Anna Rogstad"), new Element("Christian Krohg")];
 
   const ids = {
     nearbyListContainer: root, nearbyQuickSearch: input, nearbySearchCount: count,
     nearbyActiveFilter: summary, nearbyGuideToggle: toggle,
-    nearbyGuidePanel: guide, nearbyList: list
+    nearbyGuidePanel: guide, nearbyList: list, leftPeopleList: peopleList
   };
   const document = { readyState: "complete", getElementById: (id) => ids[id] || null };
 
@@ -89,6 +91,16 @@ test("Utforsk search and guide work on current cards without replacing them", ()
   assert.equal(list.children[1].hidden, true);
   assert.equal(count.textContent, "1 av 2 treff");
 
+  // Switching categories must not silently carry an unrelated search.
+  window.HGLeftPanelMode.setMode("people");
+  tabs.listeners.click();
+  assert.equal(input.value, "");
+  assert.equal(count.textContent, "2 folk");
+  assert.equal(peopleList.children[0].hidden, false);
+  assert.equal(peopleList.children[1].hidden, false);
+  window.HGLeftPanelMode.setMode("nearby");
+  tabs.listeners.click();
+
   toggle.listeners.click();
   assert.equal(guide.hidden, false);
   assert.equal(toggle.attributes["aria-expanded"], "true");
@@ -106,6 +118,12 @@ test("Utforsk search and guide work on current cards without replacing them", ()
 test("Utforsk tabs use compact responsive pills without changing category labels", () => {
   assert.match(compactCss, /#nearbyListContainer \.nearby-tab\s*\{[^}]*min-height:34px;[^}]*padding:7px 12px;[^}]*font-size:13px;/s);
   assert.match(compactCss, /body\.hg-app\.hg-phone #nearbyListContainer \.nearby-tab\s*\{[^}]*min-height:32px;[^}]*padding:6px 9px;[^}]*font-size:12px;/s);
+  for (const [container, icon] of [
+    ["leftPeopleList", "👤"], ["leftNatureList", "🌿"],
+    ["leftRoutesList", "🥾"], ["leftBadgesList", "🏅"]
+  ]) {
+    assert.ok(compactCss.includes("#nearbyListContainer #" + container + " .nearby-thumbWrap.hg-image-missing::before{content:\"" + icon + "\";}"));
+  }
   for (const label of ["Steder", "Folk", "Natur", "Ruter", "Merker"]) {
     assert.match(html, new RegExp(">" + label + "</button>"));
   }
