@@ -29,8 +29,6 @@ test("Tøyen trafo Place-open displays the correct Brands without changing other
   assert.deepEqual(payload.brands.map(row => row.id), actors.map(row => row.id));
   assert.deepEqual(payload.people.map(row => row.id), ["thorvald_astrup","kari_rolfsen"]);
   assert.equal(payload.stories.length, 1);
-  // A new sourced 2026 news entry accompanies the original history article.
-  // Assert exact IDs so the test still detects duplicate or unrelated content.
   assert.deepEqual(payload.leksikon.map(row => row.id), [
     "toyen_trafo_industri_til_kunstnerhus",
     "toyen_trafo_ots_oslo_fri_verkstedival_2026_12"

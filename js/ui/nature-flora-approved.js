@@ -5,6 +5,38 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_kanadagullris: Object.freeze({
+      scientificName: "Solidago canadensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/66_kanadagullris_v1.webp",
+      gitBlobSha: "738ff7e58c4011fc1c2c96bd75d7fd9322ff9d07",
+      reviewedAt: "2026-11-06",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-kanadagullris-20261106.json"
+    }),
+    emne_flora_kjempebjornkjeks: Object.freeze({
+      scientificName: "Heracleum mantegazzianum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/65_kjempebjornkjeks_v1.webp",
+      gitBlobSha: "1a22fff228e3e73d3d83d882e0be445b709c2519",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-kjempebjornkjeks-20261106.json"
+    }),
+    emne_flora_skvallerkaal: Object.freeze({
+      scientificName: "Aegopodium podagraria",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/64_skvallerkaal_v1.webp",
+      gitBlobSha: "27b6c73f26c53ed7c3840565605416b01480fad6",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_med_jordstengler",
+      evidence: "data/natur/flora/illustration-quality-skvallerkaal-20261106.json"
+    }),
+    emne_flora_hagelupin: Object.freeze({
+      scientificName: "Lupinus polyphyllus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/63_hagelupin_v1.webp",
+      gitBlobSha: "389ac8dc3a6e2a948695de1586f92ccee85c6ee4",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_og_skolm",
+      evidence: "data/natur/flora/illustration-quality-hagelupin-20261106.json"
+    }),
     emne_flora_rynkerose: Object.freeze({
       scientificName: "Rosa rugosa",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/62_rynkerose_v1.webp",

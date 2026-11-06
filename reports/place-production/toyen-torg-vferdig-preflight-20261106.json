@@ -1,0 +1,72 @@
+{
+  "schema": "history_go_place_vferdig_preflight_v1",
+  "place_id": "toyen_torg",
+  "date": "2026-11-06",
+  "status": "pending_final_attestation",
+  "reviewer": "History Go content QA (assistant-assisted; no independent human review claimed)",
+  "scope": "Preflight only: no published images, Place data, quiz, collections or runtime changed",
+  "prior_production": {
+    "pr": "https://github.com/Paradispartiet/History-Go/pull/5635",
+    "content_status": "complete",
+    "profile": "standard",
+    "historic_quality_gate": "29/30",
+    "collections": {
+      "people": 1,
+      "objects": 2,
+      "brands": 1,
+      "structures": 1
+    },
+    "quiz": {
+      "full_questions": 28,
+      "quizcard_questions": 10,
+      "quizcard_parity_pr": "https://github.com/Paradispartiet/History-Go/pull/6745"
+    },
+    "story": "episode_v1",
+    "fagverk": "curated_full",
+    "lesespor": 4,
+    "timeline": "five historical anchors",
+    "languages": "published as part of main production"
+  },
+  "photographic_provenance": {
+    "published_hero": "bilder/places/toyen_torg.webp",
+    "published_frontImage": "bilder/places/toyen_torg_front_portrait.webp",
+    "creator": "Damian Heinisch",
+    "credited_source": "https://grindaker.no/projects/toyen-torg/",
+    "repository_rights_basis": "official_project_site_editorial_reference",
+    "finding": "Photo attribution and project-site source are recorded, but neither demonstrates a reusable free license or explicit permission for the local WebP copies.",
+    "clearance_status": "not_independently_verified",
+    "historical_2006_photo": "https://commons.wikimedia.org/wiki/File:Toyen_senter.jpg",
+    "historic_2015_option": {
+      "source": "https://commons.wikimedia.org/wiki/File:S%C3%B8rligata_-_T%C3%B8yen_torg_I.jpg",
+      "creator": "Jan-Tore Egge",
+      "license": "CC BY-SA 4.0",
+      "date": "2015-06-30",
+      "limit": "Historical/pre-2018 photograph only; must not stand in for a post-redevelopment photo"
+    },
+    "disposition": "Retain unchanged in this documentation-only PR; require documented authorization or a licensed genuine post-2018 photograph before clearing this item. Do not fabricate documentary images."
+  },
+  "evidence": {
+    "completed_prs": [
+      "https://github.com/Paradispartiet/History-Go/pull/5635",
+      "https://github.com/Paradispartiet/History-Go/pull/6745",
+      "https://github.com/Paradispartiet/History-Go/pull/6751"
+    ],
+    "previously_reported_tests": "Tøyen torg completion 6/6 and quiz-card parity were reported at merge; this preflight does not rerun them.",
+    "current_mobile_desktop_acceptance": "not established by this preflight; require targeted real browser inspection of PlaceCard image, flip, collections and popup before final vFerdig",
+    "note": "No repository-wide CI success claimed."
+  },
+  "closeout_gates": [
+    {
+      "id": "post_2018_photo_rights",
+      "state": "OPEN",
+      "resolution": "Document permission for existing Damian Heinisch local copies OR replace with genuine locally stored post-2018 photo licensed for reuse, updating credits and derivatives."
+    },
+    {
+      "id": "final_placecard_visual_acceptance",
+      "state": "OPEN",
+      "resolution": "Run targeted browser review of Tøyen torg at one mobile and one desktop viewport only; check frontImage, flip, four collections and selected popups."
+    }
+  ],
+  "remaining_content_rebuild": "none_required",
+  "decision": "Not a formal vFerdig attestation; preserve content complete and do not falsely certify final rights or browser gates."
+}
