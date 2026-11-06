@@ -12,7 +12,12 @@ function setup(initialPhase = "morning") {
   const clock = { phase: initialPhase };
   const changes = [];
   const phaseText = { textContent: "" };
-  const exactPhaseText = { textContent: "" };
+  let exactPhaseValue = "";
+  let phaseAnnouncements = 0;
+  const exactPhaseText = {
+    get textContent() { return exactPhaseValue; },
+    set textContent(value) { exactPhaseValue = value; phaseAnnouncements++; }
+  };
   const browser = {
     CivicationCalendar: {
       getPhase: () => clock.phase,
@@ -31,7 +36,8 @@ function setup(initialPhase = "morning") {
     CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options.detail; } }
   };
   vm.runInNewContext(source, { window: browser });
-  return { browser, clock, listeners, attributes, changes, phaseText, exactPhaseText };
+  return { browser, clock, listeners, attributes, changes, phaseText, exactPhaseText,
+    getPhaseAnnouncements: () => phaseAnnouncements };
 }
 
 test("åtte kanoniske faser bruker fire dempede visuelle perioder", () => {
@@ -50,16 +56,23 @@ test("åtte kanoniske faser bruker fire dempede visuelle perioder", () => {
 });
 
 test("følger spillklokken, oppdaterer kun DOM og sender ett signal per overgang", () => {
-  const { browser, clock, listeners, attributes, changes, phaseText, exactPhaseText } = setup("morning");
+  const { browser, clock, listeners, attributes, changes, phaseText, exactPhaseText,
+    getPhaseAnnouncements } = setup("morning");
   assert.equal(attributes.get("data-civi-visual-period"), "morning");
   assert.equal(phaseText.textContent, "Morgen");
   assert.equal(exactPhaseText.textContent, "Fase: Morgen");
+  assert.equal(getPhaseAnnouncements(), 1);
+  // Repeated shell events must not re-announce the same aria-live phase.
+  browser.CivicationWorldMood.sync();
+  browser.CivicationWorldMood.sync();
+  assert.equal(getPhaseAnnouncements(), 1);
   assert.deepEqual(changes, ["morning"]);
   clock.phase = "lunch";
   listeners.get("civi:dayPhaseChanged")();
   assert.equal(attributes.get("data-civi-visual-period"), "day");
   assert.equal(phaseText.textContent, "Dag");
   assert.equal(exactPhaseText.textContent, "Fase: Lunsj");
+  assert.equal(getPhaseAnnouncements(), 2);
   assert.deepEqual(changes, ["morning", "day"]);
   clock.phase = "workday"; // same visual bucket: exact phase must still update
   browser.CivicationWorldMood.sync();
