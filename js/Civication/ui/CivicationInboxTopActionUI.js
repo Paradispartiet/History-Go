@@ -211,7 +211,7 @@
         "id": "A",
         "label": "Registrer innspillet som et åpent skoleveisforhold og be trafikkfaglig ansvarlig kontrollere forbindelsen.",
         "consequence": "Innspillet føres inn i beslutningsgrunnlaget, men trygg skolevei er fortsatt ikke dokumentert. Trafikkfaglig kontroll trengs.",
-        "outcome": "skolevei_fagkontroll_bestilt_i_sak"
+        "outcome": "skolevei_fagkontroll_foreslatt_i_sak"
       },
       {
         "id": "B",
@@ -247,7 +247,7 @@
         "id": "A",
         "label": "Be om snitt og dokumentasjon på jorddybde og flomvei, og la avviket stå åpent til faglig kontroll.",
         "consequence": "Et presist dokumentasjonskrav blir synlig; grøntdrag og overvann er ikke erklært kontrollert.",
-        "outcome": "grontdrag_dokumentasjon_etterspurt"
+        "outcome": "grontdrag_dokumentasjonsbehov_registrert"
       },
       {
         "id": "B",
@@ -259,7 +259,7 @@
         "id": "C",
         "label": "Be Nora og overvannsfaglig ansvarlig utforme et mulig bestemmelseskrav før oversendelse.",
         "consequence": "En juridisk og teknisk avklaring forberedes, men ingen bindende bestemmelse er vedtatt.",
-        "outcome": "grontdrag_bestemmelse_til_fagkontroll"
+        "outcome": "grontdrag_fagkontroll_foreslatt"
       }
     ]
   },
@@ -283,7 +283,7 @@
         "id": "A",
         "label": "Bekreft mottak, journalfør forskjellen mellom ferdigattest og innflytting og be om avklaring med planjuss og trafikkfag.",
         "consequence": "Forslagsstiller får en sporbar avklaringsoppgave; ingen forhåndsgodkjenning blir gitt.",
-        "outcome": "utbygger_formell_avklaring"
+        "outcome": "utbygger_behov_for_formell_avklaring"
       },
       {
         "id": "B",
