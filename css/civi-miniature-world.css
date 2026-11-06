@@ -112,6 +112,20 @@ body.civi-app #civiLifestoryPanel .civi-lifestory-choice:disabled::before {
   background: rgba(143, 169, 151, .18);
 }
 
+/* After selecting a story decision, its consequence becomes the next
+   reading location. Account for the fixed app header while scrolling there. */
+body.civi-app #civiLifestoryPanel .civi-lifestory-konsekvens,
+body.civi-app #civiLifestoryPanel .civi-lifestory-scene,
+body.civi-app #civiLifestoryPanel .civi-lifestory-summary {
+  scroll-margin-top: 86px;
+}
+body.civi-app #civiLifestoryPanel .civi-lifestory-section-label[tabindex="-1"]:focus-visible,
+body.civi-app #civiLifestoryPanel h3[tabindex="-1"]:focus-visible {
+  outline: 2px solid #b6d8c2;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 @media (max-width: 420px) {
   body.civi-app #civiLifestorySection .civi-day-miniature-header {
     gap: 7px;
