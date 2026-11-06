@@ -87,7 +87,7 @@
           sort[filters?.getSort?.()] || "Nærmest"
         ];
         if (filters?.getFavoritesOnly?.()) parts.push("Favoritter");
-        if (filters?.getActiveBadgeFilter?.() !== "all") parts.push("Merke-filter");
+        if ((filters?.getActiveBadgeFilter?.() || "all") !== "all") parts.push("Merke-filter");
         summary.textContent = parts.join(" · ");
       } else {
         summary.textContent = "";
