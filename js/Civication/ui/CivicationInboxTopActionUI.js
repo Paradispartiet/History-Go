@@ -119,42 +119,56 @@
   const LILLEBEKK_REVIEW_TOPICS = [
     {
       title: "Plankart og areal",
+      document: "Datert plankart, tegnforklaring og kartversjon",
+      check: "Sammenhold byggegrenser, arealformål og registrerte kartavvik.",
       positive: ["map_conflict_written_for_review", "green_passage_recommendation_logged", "early_map_conflict_documented"],
       negative: ["map_conflict_not_verified", "area_compromise_unverified", "early_map_conflict_not_verified"],
       next: "Kontroller kartavvik, arealfordeling og hjemmel før faglig anbefaling."
     },
     {
       title: "Grøntdrag",
+      document: "Grøntfaglig vurdering og forslag til planbestemmelse",
+      check: "Kontroller sammenheng, jorddybde, flomvei og hva bestemmelsen faktisk sikrer.",
       positive: ["green_corridor_draft_requirement_proposed", "early_green_corridor_requirement_proposed"],
       negative: ["green_corridor_maintenance_only_unverified", "early_green_corridor_unsecured"],
       next: "Avklar jorddybde, sammenheng, flomvei og forslag til bindende bestemmelse med fag og planjuss."
     },
     {
       title: "Skolevei",
+      document: "Trafikksikkerhetsvurdering og forslag til rekkefølgekrav",
+      check: "Kontroller hvilken strekning som vurderes, hvem som utfører tiltak og når de må være gjennomført.",
       positive: ["school_route_pre_occupancy_condition_proposed", "school_route_explicit_assessment_proposed", "early_school_route_condition_proposed"],
       negative: ["school_route_timing_unverified", "school_route_deferred_unsecured", "early_school_route_timing_unverified", "skolevei_ikke_dokumentert"],
       next: "Dokumenter faktisk skolevei, vilkår og ansvar før innflytting, ikke bare før ferdigattest."
     },
     {
       title: "Medvirkning",
+      document: "Merknadsoversikt og faglige svar på innspill",
+      check: "Sammenhold hvert registrerte innspill med vurdering og eventuell endring i forslaget.",
       positive: ["participation_comments_evaluated", "early_participation_evaluated"],
       negative: ["participation_record_missing", "early_participation_record_missing"],
       next: "Journalfør innspill, vurdering og hva som eventuelt endres i planforslaget."
     },
     {
       title: "Overvann",
+      document: "Overvannsnotat, flomveikart og forslag til sikring",
+      check: "Kontroller avrenning, flomveier, nabovirkning og hva som er forankret i planen.",
       positive: ["stormwater_condition_proposed", "early_stormwater_condition_proposed"],
       negative: ["stormwater_unsecured_in_plan", "early_stormwater_unsecured"],
       next: "Be fagansvarlig kontrollere flomvei, nabokonsekvenser og rettslig sikring."
     },
     {
       title: "Utbyggerkontakt",
+      document: "Journalført møte- og korrespondanselogg",
+      check: "Kontroller hva som er bedt om, hvem som svarte og at ingen har gitt forhåndstilsagn.",
       positive: ["developer_formal_request_pending", "developer_signal_written_clarification_requested", "early_developer_formal_request_pending"],
       negative: ["developer_informal_signal_to_correct", "developer_signal_unrecorded", "early_developer_signal_needs_correction", "early_developer_signal_unrecorded"],
       next: "Journalfør signalene og presiser at rådgiveren ikke kan gi bindende forhåndstilsagn."
     },
     {
       title: "Faglig risiko i saksframlegget",
+      document: "Saksframlegg med risikovurdering og politiske alternativer",
+      check: "Skill rettslig krav, faglig usikkerhet, administrativ anbefaling og politisk valg.",
       positive: ["material_risks_stated_for_politics", "early_material_risks_visible"],
       negative: ["material_risks_not_explicit", "early_material_risks_hidden", "politisk_grense_ikke_eksplisitt"],
       next: "Skill lovkrav, administrasjonens faglige vurdering og politisk handlingsrom."
@@ -185,7 +199,12 @@
           : issue ? "Åpent avvik" : documented ? "Faglig spor registrert" : "Ingen registrert vurdering",
         documented,
         issue,
-        next: topic.next
+        next: topic.next,
+        document: topic.document,
+        check: topic.check,
+        consequence: issue ? "Avviket må føres som uavklart i revisjonsgrunnlaget."
+          : documented ? "Registrert faglig spor må kontrolleres mot bilag før det brukes som dokumentert premiss."
+          : "Ingen registrert vurdering; ikke skriv at forholdet er avklart."
       };
     });
     return {
@@ -217,12 +236,17 @@
                   <h4>${escapeHtml(topic.title)}</h4>
                   <p class="civi-inbox-sender">${escapeHtml(topic.status)}</p>
                 </div></div>
-                <div class="civi-inbox-body"><p>${escapeHtml(topic.next)}</p></div>
+                <div class="civi-inbox-body">
+                  <p><strong>Kontrollgrunnlag som må etterspørres eller leses:</strong> ${escapeHtml(topic.document)}</p>
+                  <p><strong>Kontrollpunkt:</strong> ${escapeHtml(topic.check)}</p>
+                  <p><strong>Neste arbeidsoppgave:</strong> ${escapeHtml(topic.next)}</p>
+                  <p><strong>Faglig følge:</strong> ${escapeHtml(topic.consequence)}</p>
+                </div>
               </article>`;
             }).join("")}
           </div>
         </details>
-        <p class="muted">Dette er arbeidsnotater fra egne valg, ikke kontrollert planvedtak eller ledergodkjenning.</p>
+        <p class="muted">Dette er en kontrolliste over aktuelle dokumenttyper, ikke bekreftede bilag. Registrert faglig spor betyr ikke at et dokument er kontrollert, og gir ikke planvedtak eller ledergodkjenning.</p>
       </section>`;
   }
 
