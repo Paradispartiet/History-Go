@@ -219,6 +219,8 @@ assert.equal(api.recordLillebekkSaksframlegg(recommendation+' En omgåelse av le
 assert.equal(api.recordLillebekkCorrectedMemo(recommendation).ok,false);
 assert.equal(api.renderSections(),true);
 assert.equal((host.innerHTML.match(/data-civi-lillebekk-leader-response="1"/g)||[]).length,3);
+assert.ok(!host.innerHTML.includes('data-civi-lillebekk-draft="1"'),
+ 'the ordinary memo editor must not remain available after leader return');
 assert.ok(!host.innerHTML.includes('data-civi-lillebekk-revised-memo="1"'));
 
 const leaderReason='Fagansvarlig må vurdere de konkrete forholdene mot dokumentasjonen før videre saksbehandling. Ingen kommunal godkjenning er gitt.';
