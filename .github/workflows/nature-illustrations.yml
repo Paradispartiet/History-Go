@@ -18,6 +18,9 @@ on:
       - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
       - 'js/ui/nature-flora-approved.js'
+      - 'data/natur/flora/illustration-quality-skvallerkaal-20261106.json'
+      - 'scripts/test-flora-skvallerkaal-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/64_skvallerkaal_v1.webp'
       - 'data/natur/flora/illustration-quality-prikktvetann-20261102.json'
       - 'scripts/test-flora-prikktvetann-b09.mjs'
       - 'bilder/natur/flora/illustrasjonskandidater/b09/30_prikktvetann_v1.webp'
@@ -300,6 +303,7 @@ jobs:
       - run: node scripts/test-flora-varkaal-b09.mjs
       - run: node scripts/test-flora-varmure-b09.mjs
       - run: node scripts/test-flora-rodknapp-b09.mjs
+      - run: node scripts/test-flora-skvallerkaal-b09.mjs
       - run: node scripts/test-flora-hagelupin-b09.mjs
       - run: node scripts/test-flora-rynkerose-b09.mjs
       - run: node scripts/test-flora-svalerot-b09.mjs
@@ -327,7 +331,7 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install chromium
       - run: node scripts/test-flora-approved-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()

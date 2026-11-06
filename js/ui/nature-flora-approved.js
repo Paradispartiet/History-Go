@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_skvallerkaal: Object.freeze({
+      scientificName: "Aegopodium podagraria",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/64_skvallerkaal_v1.webp",
+      gitBlobSha: "27b6c73f26c53ed7c3840565605416b01480fad6",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_med_jordstengler",
+      evidence: "data/natur/flora/illustration-quality-skvallerkaal-20261106.json"
+    }),
     emne_flora_hagelupin: Object.freeze({
       scientificName: "Lupinus polyphyllus",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/63_hagelupin_v1.webp",
