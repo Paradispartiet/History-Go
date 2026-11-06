@@ -64,10 +64,13 @@ try{
     await page.screenshot({path:path.join(out,id+'-'+label+'-front.png')});
     if(places[id].frontImageMeta.historicalOnly){
      await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTo({top:240,behavior:'instant'});el.dispatchEvent(new Event('scroll'));});
+     item.phase='historical-pin';
      await page.waitForFunction(()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned'),null,{timeout:12000});
+     item.phase='historical-caption';
      await page.waitForFunction(()=>{const c=document.querySelector('#placeCard .pc-photo-caption'),shell=document.querySelector('#placeCard .pc-sheet-hero');if(!c||!shell)return false;const a=c.getBoundingClientRect(),b=shell.getBoundingClientRect();return a.width>0&&a.height>0&&a.top>=b.top&&a.bottom<=b.bottom&&a.top>=0&&a.bottom<=innerHeight;},null,{timeout:12000});
      await page.screenshot({path:path.join(out,id+'-'+label+'-historical-sticky.png')});
     }
+    item.phase='quiz-hydrate';
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card'),null,{timeout:35000});
     if(places[id].frontImageMeta.historicalOnly){
      // Finish the historical sticky-hero check before resetting this *same*
@@ -91,6 +94,7 @@ try{
     // Do not repeatedly write scrollTop in this wait: CSS smooth scrolling
     // would restart on each animation frame and keep the card under the hero.
     // Require the actual rendered screen position and hit target to be safe.
+    item.phase='quiz-viewport';
     await page.waitForFunction(()=>{
      const sheet=document.querySelector('#placeCard'),body=sheet?.querySelector('.pc-body');
      const flip=sheet?.querySelector('#pcFrontCardFlip'),hero=sheet?.querySelector('.pc-sheet-hero');
@@ -108,6 +112,7 @@ try{
     const flip=page.locator('#pcFrontCardFlip'),rect=await flip.boundingBox();
     assert.ok(rect?.height>75,'QuizCard zero height');
     // Genuine user click, not a JS-dispatched event or a forced click.
+    item.phase='quiz-click';
     await flip.click({position:{x:rect.width/2,y:rect.height/2},timeout:12000});
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:12000});
     assert.ok((await page.locator('.pc-card-face-back').innerText()).length>50);
@@ -149,7 +154,7 @@ try{
      const rect=e=>{const r=e?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,left:r.left,width:r.width,height:r.height}:null;};
      const r=head?.getBoundingClientRect(),hit=r?document.elementFromPoint(r.left+r.width/2,r.top+5):null;
      const c=el?.getBoundingClientRect(),centerHit=c?document.elementFromPoint(c.left+c.width/2,c.top+c.height/2):null;
-     return {classes:el?.className,scrollTop:body?.scrollTop,body:rect(body),hero:rect(sheet?.querySelector('.pc-sheet-hero')),nav:rect(sheet?.querySelector('.pc-sheet-section-nav')),card:rect(el),head:rect(head),transform:inner?getComputedStyle(inner).transform:null,hit:hit?.outerHTML.slice(0,500),centerHit:centerHit?.outerHTML.slice(0,500)};
+     return {classes:el?.className,pinned:sheet?.classList.contains('is-original-photo-pinned'),scrollTop:body?.scrollTop,body:rect(body),hero:rect(sheet?.querySelector('.pc-sheet-hero')),caption:rect(sheet?.querySelector('.pc-photo-caption')),nav:rect(sheet?.querySelector('.pc-sheet-section-nav')),card:rect(el),head:rect(head),transform:inner?getComputedStyle(inner).transform:null,hit:hit?.outerHTML.slice(0,500),centerHit:centerHit?.outerHTML.slice(0,500)};
     });
     await page.screenshot({path:path.join(out,id+'-'+label+'-failure.png')});
    }
