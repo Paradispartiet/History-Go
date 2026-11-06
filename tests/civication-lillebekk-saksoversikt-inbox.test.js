@@ -247,11 +247,26 @@ assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','mangelfull',
  'Utkastet mangler avklaring av ansvarlig tiltakshaver og frist før innflytting.').ok,true);
 assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','fagkontroll',
  'Be planjurist og trafikkfaglig ansvarlig kontrollere rekkefølgekravets utforming.').ok,true);
+const revisionCountBeforeRepeat=adapter.getWorkObject(formalId).history.length;
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','fagkontroll',
+ '  Be planjurist  og trafikkfaglig ansvarlig kontrollere rekkefølgekravets utforming.   ').alreadyLogged,true,
+ 'repeated submissions differing only in whitespace reuse the last assessment');
+assert.equal(adapter.getWorkObject(formalId).history.length,revisionCountBeforeRepeat,
+ 'no extra history event is created for a repeated assessment');
 current=adapter.getWorkObject(formalId);
-const assessments=current.history.filter(x=>x.id.startsWith('lillebekk_dokument_skolevei_vurdering_'));
+let assessments=current.history.filter(x=>x.id.startsWith('lillebekk_dokument_skolevei_vurdering_'));
 assert.equal(assessments.length,2);
 assert.equal(assessments[0].outcome,'mangelfull');
 assert.equal(assessments[1].outcome,'fagkontroll');
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','mangelfull',
+ 'Utkastet mangler avklaring av ansvarlig tiltakshaver og frist før innflytting.').alreadyLogged,false,
+ 'a deliberate change back to an earlier assessment is a real new revision');
+assessments=adapter.getWorkObject(formalId).history.filter(x=>x.id.startsWith('lillebekk_dokument_skolevei_vurdering_'));
+assert.equal(assessments.length,3);
+assert.equal(assessments[2].id,'lillebekk_dokument_skolevei_vurdering_3');
+assert.equal(actions.recordLillebekkDocumentAssessment('skolevei','mangelfull',
+ 'Utkastet mangler avklaring av ansvarlig tiltakshaver og frist før innflytting.').alreadyLogged,true);
+assert.equal(adapter.getWorkObject(formalId).history.filter(x=>x.id.startsWith('lillebekk_dokument_skolevei_vurdering_')).length,3);
 assert.ok(current.flags.includes('skolevei_ikke_dokumentert'),
  'player assessment cannot erase the original missing-evidence marker');
 assert.equal(current.status,'open');
@@ -260,8 +275,8 @@ saved=JSON.parse(JSON.stringify(saved));
 const journalModel=actions.getLillebekkReviewModel();
 const schoolTopic=journalModel.topics.find(x=>x.id==='skolevei');
 assert.equal(schoolTopic.receiptLogged,true);
-assert.equal(schoolTopic.assessmentOutcome,'fagkontroll');
-assert.ok(schoolTopic.assessmentNote.includes('Oversend til ansvarlig fagkontroll'));
+assert.equal(schoolTopic.assessmentOutcome,'mangelfull');
+assert.ok(schoolTopic.assessmentNote.includes('Mangler nødvendig grunnlag'));
 assert.equal(actions.renderSections(),true);
 assert.ok(interactiveHost.innerHTML.includes('JOURNAL-2026-104'));
 assert.ok(interactiveHost.innerHTML.includes('data-civi-lillebekk-assess="1"'));
