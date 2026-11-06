@@ -8,6 +8,9 @@ on:
       - 'bilder/merker/by/locales/*/infrastruktur.webp'
       - 'scripts/import-infrastruktur-assets-v1.py'
       - 'tests/infrastruktur-candidate.test.mjs'
+      - 'tests/monumenter-badge.test.mjs'
+      - 'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'
+      - 'bilder/merker/by/locales/*/monumenter_og_landemerker.webp'
       - 'tests/badge-embroidered-rollout-v1.test.mjs'
       - '.github/workflows/qa-embroidered-rollout.yml'
 permissions:
@@ -29,6 +32,7 @@ jobs:
           node --test tests/badge-embroidered-rollout-v1.test.mjs
           node --test tests/badge-embroidered-rollout-v2.test.mjs
           node --test tests/infrastruktur-candidate.test.mjs
+          node --test tests/monumenter-badge.test.mjs
       - name: Generate four-badge preview
         run: |
           python -m pip install -q pillow
