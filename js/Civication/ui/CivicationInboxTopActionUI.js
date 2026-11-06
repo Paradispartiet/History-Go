@@ -163,8 +163,13 @@
 
   function lillebekkReviewModel() {
     const active = window.CivicationState?.getActivePosition?.();
-    const activeIds = [active?.role_scope, active?.role_id, active?.role_key];
-    if (!activeIds.includes("by_radgiver_plan")) return null;
+    // MailPlan uses by_radgiver_plan, while accepted job offers store the
+    // position as role_key/title "arealplanlegger" in CivicationState.
+    const activeIds = [active?.role_scope, active?.role_id, active?.role_key, active?.title]
+      .map(function (value) { return String(value || "").trim().toLowerCase(); });
+    if (!activeIds.some(function (id) {
+      return ["by_radgiver_plan", "by_arealplanlegger", "arealplanlegger"].includes(id);
+    })) return null;
     const world = window.CivicationWorkWorld;
     if (typeof world?.getWorkObject !== "function") return null;
     const early = world.getWorkObject("by_radgiver_lillebekk_early_analysis_case_001");
