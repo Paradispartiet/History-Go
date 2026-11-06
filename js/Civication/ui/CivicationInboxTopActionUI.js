@@ -738,6 +738,54 @@
     return html;
   }
 
+
+  function lillebekkSaksframleggHtml() {
+    const model = lillebekkSaksframleggModel();
+    if (!model) return "";
+    const safeCount = model.checks.filter(function (check) { return check.safe; }).length;
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-saksframlegg="1">' +
+      '<summary>Bilagsavstemming og internt saksframlegg</summary>' +
+      '<p>Fiktiv plansak. Sammenlign dokumentenes påstander, vis usikkerhet og journalfør en begrunnet vurdering. Saksframlegget gir ikke myndighet til å godkjenne planen.</p>';
+    if (!model.exhibitsReviewed) {
+      html += '<p><strong>Første arbeidsoppgave:</strong> Behandle alle tre saksbilag i innboksen. Kildeavstemming krever at innspill, fagnotat og utbyggers henvendelse er gjennomgått.</p>';
+    } else {
+      html += '<p><strong>Faglig forsvarlige avstemminger:</strong> ' + safeCount + ' av 3. En overdrevet kildekonklusjon må korrigeres før saksframlegg kan journalføres.</p>';
+      html += model.checks.map(function (check) {
+        const references = check.refs.join(" + ");
+        return '<section class="civi-inbox-body" data-civi-lillebekk-check-id="' + escapeHtml(check.id) + '">' +
+          '<h4>' + escapeHtml(check.title) + '</h4>' +
+          '<p><strong>Saksbilag:</strong> ' + escapeHtml(references) + '</p>' +
+          '<p><strong>Hva kildene viser:</strong> ' + escapeHtml(check.fact) + '</p>' +
+          '<p><strong>Faglig følge:</strong> ' + escapeHtml(check.consequence) + '</p>' +
+          (check.latestNote ? '<p><strong>Sist journalført:</strong> ' + escapeHtml(check.latestNote) + '</p>' : '') +
+          '<label>Kildekonklusjon <select data-civi-crosscheck-outcome>' +
+            '<option value="avklar_forst"' + (check.latestOutcome === "avklar_forst" ? ' selected' : '') + '>' + escapeHtml(check.defensible) + '</option>' +
+            '<option value="anta_avklart"' + (check.latestOutcome === "anta_avklart" ? ' selected' : '') + '>' + escapeHtml(check.overclaim) + '</option>' +
+          '</select></label>' +
+          '<label>Din begrunnelse <textarea rows="3" maxlength="450" data-civi-crosscheck-reason placeholder="Sammenhold kildene og forklar hva som ennå mangler"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-lillebekk-crosscheck="1" data-check-id="' + escapeHtml(check.id) + '">Journalfør kildeavstemming</button>' +
+          '<p class="muted" role="status" data-civi-lillebekk-check-error></p>' +
+        '</section>';
+      }).join("");
+    }
+    if (model.latestDraft) {
+      html += '<h4>Sist journalførte saksframlegg' + (model.upToDate ? ' – gjeldende kildeversjoner' : ' – gjennomgå kildeversjoner på nytt') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestDraft.note) + '</pre>';
+    }
+    if (model.ready) {
+      html += '<section class="civi-inbox-body" data-civi-lillebekk-draft-editor="1">' +
+        '<h4>Administrativ anbefaling til planleder Elin</h4>' +
+        '<p>Beskriv hva som må innhentes, hvem som skal kontrollere det og hvilket prosessvalg du anbefaler. Utkastet skal fortsatt vise alle åpne avvik.</p>' +
+        '<label>Anbefaling <textarea rows="4" maxlength="750" data-civi-draft-recommendation placeholder="Anbefal videre faglig kontroll før saksframlegget går til ledergjennomgang …"></textarea></label>' +
+        '<button class="civi-btn secondary" type="button" data-civi-lillebekk-draft="1">Journalfør internt saksframlegg</button>' +
+        '<p class="muted" role="status" data-civi-lillebekk-draft-error></p></section>';
+    } else if (model.exhibitsReviewed) {
+      html += '<p>Det interne saksframlegget kan først utarbeides når alle tre kildeavstemminger er faglig holdbare. Et valg som påstår at uverifiserte forhold er godkjent, må revideres.</p>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -754,6 +802,7 @@
           <summary>Saksbilag til gjennomgang (${caseExhibits.length})</summary>
           ${caseExhibits.map(lillebekkExhibitHtml).join("")}
         </details>` : ""}
+        ${lillebekkSaksframleggHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -1214,6 +1263,32 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-lillebekk-crosscheck]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-lillebekk-check-id]");
+        const result = recordLillebekkComparison(
+          String(button.getAttribute("data-check-id") || ""),
+          card?.querySelector("[data-civi-crosscheck-outcome]")?.value || "",
+          card?.querySelector("[data-civi-crosscheck-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-lillebekk-check-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-lillebekk-draft]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-lillebekk-draft-editor]");
+        const result = recordLillebekkSaksframlegg(
+          card?.querySelector("[data-civi-draft-recommendation]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-lillebekk-draft-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-lillebekk-exhibit]").forEach(function (button) {
       button.addEventListener("click", function () {
         const result = recordLillebekkExhibitDecision(
@@ -1418,6 +1493,9 @@
     recordLillebekkDocumentReceipt,
     recordLillebekkDocumentAssessment,
     getLillebekkCaseExhibits: lillebekkExhibitsFor,
-    recordLillebekkExhibitDecision
+    recordLillebekkExhibitDecision,
+    getLillebekkSaksframleggModel: lillebekkSaksframleggModel,
+    recordLillebekkComparison,
+    recordLillebekkSaksframlegg
   };
 })();
