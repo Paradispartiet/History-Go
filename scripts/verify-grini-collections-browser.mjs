@@ -260,7 +260,24 @@ try {
     const tabChecks=[];
     for(const id of ['about','history','stories','news','reading','sources','language','learning']) {
       const jump=nav.locator('[data-hg-place-sheet-jump="'+id+'"]');
-      await jump.waitFor({state:'visible',timeout:30000});
+      await jump.waitFor({state:'visible',timeout:8000}).catch(async error => {
+        const state = await page.evaluate(section => {
+          const card = document.getElementById('placeCard');
+          const root = card?.querySelector('[data-hg-place-sheet-shell]');
+          const nav = card?.querySelector('[data-hg-place-sheet-nav]');
+          const owner = root?.querySelector('[data-hg-place-sheet-owner="'+section+'"]');
+          const sectionNode = root?.querySelector('[data-hg-place-sheet-section="'+section+'"]');
+          return {
+            section, cardClasses:card?.className, rootPlace:root?.dataset?.placeId,
+            nav:nav?.outerHTML.slice(0,2400), ownerText:owner?.textContent?.slice(0,500),
+            ownerHtml:owner?.outerHTML.slice(0,900), sectionHtml:sectionNode?.outerHTML.slice(0,1100),
+            navInsideSheet:!!root?.querySelector('[data-hg-place-sheet-nav]'),
+            sheetPlace:root?.dataset?.placeId, pageHash:location.hash,
+          };
+        }, id);
+        console.error('GRINI_SHEET_NAV_DIAGNOSTIC', JSON.stringify(state));
+        throw error;
+      });
       // Sticky navigation and scrollIntoView can make pointer auto-scrolling
       // oscillate on narrow viewports; exercise the actual keyboard action.
       await jump.press('Enter');
