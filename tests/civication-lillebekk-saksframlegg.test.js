@@ -270,11 +270,19 @@ assert.ok(!host.innerHTML.includes('data-civi-lillebekk-revised-memo="1"'));
 
 // Access and jurisdiction boundaries.
 activeRole={role_key:'butikkmedarbeider'};
+assert.equal(api.getLillebekkLeaderReviewModel(),null);
+assert.equal(api.recordLillebekkLeaderReturn().ok,false);
+assert.equal(api.recordLillebekkLeaderResponse('skolevei','trafikkfag',leaderReason).ok,false);
+assert.equal(api.recordLillebekkCorrectedMemo(correctedRecommendation).ok,false);
 assert.equal(api.getLillebekkSaksframleggModel(),null);
 assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',reasons.skolevei_tidskrav).ok,false);
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,false);
 activeRole={role_key:'arealplanlegger'};
 world.closeWorkObject(caseId,{event_id:'lillebekk_memo_test_close',at:'2026-11-07T10:00:00Z',outcome:'closed_for_test'});
+assert.equal(api.getLillebekkLeaderReviewModel(),null);
+assert.equal(api.recordLillebekkLeaderReturn().ok,false);
+assert.equal(api.recordLillebekkLeaderResponse('skolevei','trafikkfag',leaderReason).ok,false);
+assert.equal(api.recordLillebekkCorrectedMemo(correctedRecommendation).ok,false);
 assert.equal(api.getLillebekkSaksframleggModel(),null);
 assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',reasons.skolevei_tidskrav).ok,false);
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,false);
