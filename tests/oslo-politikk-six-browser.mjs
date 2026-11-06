@@ -63,22 +63,25 @@ try{
     if(places[id].frontImageMeta.historicalOnly)item.historicalYearVisible=view.text.includes('2008');
     await page.screenshot({path:path.join(out,id+'-'+label+'-front.png')});
     if(places[id].frontImageMeta.historicalOnly){
-     await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTop=240;el.dispatchEvent(new Event('scroll'));});
+     await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTo({top:240,behavior:'instant'});el.dispatchEvent(new Event('scroll'));});
      await page.waitForFunction(()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned'),null,{timeout:12000});
      await page.waitForFunction(()=>{const c=document.querySelector('#placeCard .pc-photo-caption'),shell=document.querySelector('#placeCard .pc-sheet-hero');if(!c||!shell)return false;const a=c.getBoundingClientRect(),b=shell.getBoundingClientRect();return a.width>0&&a.height>0&&a.top>=b.top&&a.bottom<=b.bottom&&a.top>=0&&a.bottom<=innerHeight;},null,{timeout:12000});
      await page.screenshot({path:path.join(out,id+'-'+label+'-historical-sticky.png')});
-     // The app's .pc-body has scroll-behavior:smooth. Cancel that only for
-     // this deterministic test reset; restore user-facing scroll behavior
-     // before the real click/visible-backside assertions.
-     await page.locator('#placeCard .pc-body').evaluate(el=>{
+    }
+    await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card'),null,{timeout:35000});
+    if(places[id].frontImageMeta.historicalOnly){
+     // Finish the historical sticky-hero check before resetting this *same*
+     // scroll container. Instant scroll cancels an in-flight CSS smooth scroll,
+     // and the two animation frames allow sticky/layout updates to settle.
+     await page.locator('#placeCard .pc-body').evaluate(async el=>{
       const previous=el.style.scrollBehavior;
       el.style.scrollBehavior='auto';
-      el.scrollTop=0;
+      el.scrollTo({top:0,behavior:'instant'});
       el.dispatchEvent(new Event('scroll'));
+      await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
       el.style.scrollBehavior=previous;
      });
     }
-    await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card'),null,{timeout:35000});
     // The historical photo test scrolls the same .pc-body used by QuizCard.
     // Do not repeatedly write scrollTop in this wait: CSS smooth scrolling
     // would restart on each animation frame and keep the card under the hero.
