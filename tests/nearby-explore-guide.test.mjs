@@ -5,6 +5,7 @@ import { runInNewContext } from "node:vm";
 
 const source = readFileSync(new URL("../js/ui/nearby-explore-guide.js", import.meta.url), "utf8");
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+const compactCss = readFileSync(new URL("../css/nearby-explore-guide.css", import.meta.url), "utf8");
 
 test("Utforsk enhancement preserves the canonical five categories", () => {
   for (const mode of ["nearby", "people", "nature", "routes", "badges"]) {
@@ -100,4 +101,12 @@ test("Utforsk search and guide work on current cards without replacing them", ()
   assert.equal(input.value, "");
   assert.equal(list.children[1].hidden, false);
   assert.equal(guide.hidden, true);
+});
+
+test("Utforsk tabs use compact responsive pills without changing category labels", () => {
+  assert.match(compactCss, /#nearbyListContainer \.nearby-tab\s*\{[^}]*min-height:34px;[^}]*padding:7px 12px;[^}]*font-size:13px;/s);
+  assert.match(compactCss, /body\.hg-app\.hg-phone #nearbyListContainer \.nearby-tab\s*\{[^}]*min-height:32px;[^}]*padding:6px 9px;[^}]*font-size:12px;/s);
+  for (const label of ["Steder", "Folk", "Natur", "Ruter", "Merker"]) {
+    assert.match(html, new RegExp(">" + label + "</button>"));
+  }
 });
