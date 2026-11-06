@@ -120,6 +120,12 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       assert.ok(result.city.microWorldObjects > 0, '3D miniature world was created');
     }
     await captureMap('map-mobile-city.png');
+    if (mapType === 'webgl') {
+      // Sample after the frame has been drawn; the earlier scene snapshot
+      // establishes state, while rendererInfo is last-frame telemetry.
+      result.cityRendererInfo = await page.evaluate(() =>
+        (globalThis as any).CivicationThreeMap.getSceneStats().rendererInfo);
+    }
 
     await page.evaluate(() => {
       const app = globalThis as any;
@@ -148,6 +154,12 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
         'more miniature objects are visible when zoomed in');
     }
     await captureMap('map-mobile-close.png');
+    if (mapType === 'webgl') {
+      result.closeRendererInfo = await page.evaluate(() =>
+        (globalThis as any).CivicationThreeMap.getSceneStats().rendererInfo);
+      assert.ok(result.cityRendererInfo && result.closeRendererInfo,
+        'WebGL draw-call and memory telemetry is available for visual QA');
+    }
     assert.deepEqual(pageErrors, [], 'no browser JavaScript errors during visual QA');
     // Headless WebGL may be unavailable in CI. Keep fallback evidence clearly
     // labeled rather than claiming a 3D/mobile approval on a Canvas screenshot.
