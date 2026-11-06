@@ -37,3 +37,12 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   color:#fff !important;
   text-shadow:0 2px 7px #000,0 0 13px rgba(0,0,0,.82);
 }
+
+/* The sticky hero changes height as .pc-body scrollTop changes. Chrome's
+   scroll anchoring can compensate for that height change by moving scrollTop
+   back underneath the hero, hiding the front QuizCard after scrolling up.
+   While this original hero is pinned, the scroller's own explicit position
+   must win. Do not change hit-testing, layout size or visible card content. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned > .pc-body {
+  overflow-anchor: none;
+}
