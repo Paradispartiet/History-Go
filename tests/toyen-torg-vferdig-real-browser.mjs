@@ -43,6 +43,8 @@ try{
      },null,{timeout:80000});
      const quizContent=await page.locator('#pcQuizCardContent').textContent();
      assert.match(quizContent,/Tøyen/i,label+' wrong QuizCard');
+     // Capture the unobstructed PlaceCard before any flip or collection popup.
+     await page.screenshot({path:'artifacts/toyen-torg-vferdig/'+label+'-front.png',fullPage:false});
      const card=page.locator('#pcFrontCardFlip');
      assert.equal(await card.evaluate(e=>e.classList.contains('is-flipped')),false);
      await card.scrollIntoViewIfNeeded();
