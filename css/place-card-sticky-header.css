@@ -46,3 +46,12 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
 body.hg-app #placeCard.is-place-sheet-direct > .pc-body {
   overflow-anchor: none;
 }
+
+/* The heading slides up when the original photo is cropped. Preserve the
+   dated historical-photo caption at its original screen position instead
+   of letting it disappear above the clipped sticky hero. The original
+   title, badges and photograph still use their existing crop geometry. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned
+  .pc-heading-hero.has-photo-source .pc-heading-content .pc-photo-caption {
+  transform: translateY(var(--pc-hero-collapse-offset, 0px));
+}
