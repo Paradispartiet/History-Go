@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"kjempebjornkjeks",label:"Kjempebjørnekjeks",term:"Kjempebjørnekjeks",path:"b09/65_kjempebjornkjeks_v1.webp"},
     {name:"skvallerkaal",label:"Skvallerkål",term:"Skvallerkål",path:"b09/64_skvallerkaal_v1.webp"},
     {name:"hagelupin",label:"Hagelupin",term:"Hagelupin",path:"b09/63_hagelupin_v1.webp"},
     {name:"rynkerose",label:"Rynkerose",term:"Rynkerose",path:"b09/62_rynkerose_v1.webp"},
