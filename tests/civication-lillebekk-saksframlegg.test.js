@@ -356,6 +356,26 @@ assert.ok(host.innerHTML.includes('utdatert grunnlag'));
 assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,true);
 assert.equal(api.getLillebekkFagsvarModel().notesCount,2);
 assert.equal(api.getLillebekkFagsvarModel().current,true);
+
+// A later unsafe document comparison invalidates the entire downstream
+// professional note even though all three expert replies remain safe.
+assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','anta_avklart',
+ 'Innspillet omtaler skoleveien, men det foreligger fortsatt ingen undersøkelse som dokumenterer trygg skolevei før innflytting.').ok,true);
+fag=api.getLillebekkFagsvarModel();
+assert.equal(fag.docs.every(d=>d.safe),true);
+assert.equal(fag.leader.memo.ready,false);
+assert.equal(fag.ready,false);
+assert.equal(fag.current,false);
+assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,false,
+ 'unsafe earlier source assessment must block a newly journaled follow-up');
+assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',
+ 'Skoleveien må undersøkes av trafikkfag, og tidspunkt og ansvar for trygg ferdsel før innflytting må avklares.').ok,true);
+assert.equal(api.getLillebekkFagsvarModel().ready,true);
+assert.equal(api.getLillebekkFagsvarModel().current,false,
+ 'returning to a sound comparison changes the source version');
+assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,true);
+assert.equal(api.getLillebekkFagsvarModel().notesCount,3);
+assert.equal(api.getLillebekkFagsvarModel().current,true);
 saved=JSON.parse(JSON.stringify(saved));
 assert.equal(api.getLillebekkFagsvarModel().current,true,'professional reviews persist after reload');
 assert.equal(api.getLillebekkFagsvarModel().docs.filter(d=>d.safe).length,3);
