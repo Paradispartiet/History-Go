@@ -426,8 +426,17 @@
       "early:" + [...(early?.flags || [])].sort().join(","),
       "formal:" + [...(formal.flags || [])].sort().join(",")
     ].join("|");
+    // The draft also uses topic-level document assessments. Their history revisions
+    // are part of the source signature, not only the three cross-document choices.
+    const topicSignature = dossier.topics.map(function (topic) {
+      const prefix = `lillebekk_dokument_${topic.id}_vurdering_`;
+      const assessments = history.filter(function (event) {
+        return String(event.id || "").startsWith(prefix);
+      });
+      return `${topic.id}:${assessments[assessments.length - 1]?.id || "ingen_vurdering"}`;
+    }).join("|");
     const signature = checks.map(function (check) { return check.latestId; }).join("|") +
-      "|flags=" + flagSignature;
+      "|flags=" + flagSignature + "|topic_reviews=" + topicSignature;
     const drafts = history.filter(function (event) {
       return String(event.id || "").startsWith("lillebekk_saksframlegg_utkast_v");
     });
@@ -459,7 +468,13 @@
     if (check.latestOutcome === outcome && check.latestNote === note) {
       return { ok: true, alreadyLogged: true };
     }
-    if (check.revisionCount >= 10) return { ok: false, reason: "Revisjonsgrensen er nådd." };
+    // A case must never be permanently stuck with an unsubstantiated conclusion.
+    // Permit the final safe correction after the normal revision cap, but not new
+    // speculative reversals once the record has been corrected.
+    if (check.revisionCount >= 10 &&
+        !(check.latestOutcome === "anta_avklart" && outcome === "avklar_forst")) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd. Kun korrigering av et udokumentert standpunkt er tillatt." };
+    }
     const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
     if (!formal || formal.status === "closed" || formal.closed_at) {
       return { ok: false, reason: "Saken er avsluttet." };
@@ -479,7 +494,8 @@
 
   function lillebekkBuildSaksframlegg(model, recommendation) {
     const unresolved = model.dossier.topics.filter(function (topic) {
-      return topic.issue || !topic.documented;
+      return topic.issue || !topic.documented || topic.reviewNeedLogged ||
+        topic.caveatLogged || ["mangelfull", "motstridende", "fagkontroll"].includes(topic.assessmentOutcome);
     });
     const lines = [
       "LILLEBEKK – INTERNT SAKSFRAMLEGG, UTKAST",
@@ -495,7 +511,13 @@
       "",
       "3. Uavklarte temaer i registrert sak",
       ...(unresolved.length ? unresolved.map(function (topic) {
-        return `- ${topic.title}: ${topic.status}. ${topic.next}`;
+        const documentCaveat = topic.assessmentNote
+          ? ` Siste dokumentvurdering: ${topic.assessmentNote}` : "";
+        const journalCaveat = [
+          topic.reviewNeedLogged ? "Kontrollbehov er journalført." : "",
+          topic.caveatLogged ? "Faglig forbehold er journalført." : ""
+        ].filter(Boolean).join(" ");
+        return `- ${topic.title}: ${topic.status}. ${documentCaveat} ${journalCaveat} ${topic.next}`.replace(/\\s+/g, " ").trim();
       }) : ["- Ingen åpne markører i dette uttrekket; originalbilag må likevel kontrolleres."]),
       "",
       "4. Administrativ anbefaling til planleder",
