@@ -130,6 +130,17 @@ assert.equal(api.renderSections(),true);
 assert.ok(host.innerHTML.includes('Sist journalførte saksframlegg'));
 assert.ok(host.innerHTML.includes('gjeldende kildeversjoner'));
 
+// New case evidence is part of the snapshot, not only authored comparison revisions.
+world.addFlag(caseId,'stormwater_unsecured_in_plan',{
+ event_id:'lillebekk_memo_new_stormwater_issue',at:'2026-11-06T15:00:00Z'
+});
+model=api.getLillebekkSaksframleggModel();
+assert.equal(model.upToDate,false,
+ 'newly registered stormwater issue must make a previous case memo stale');
+assert.ok(model.dossier.topics.find(x=>x.id==='overvann').issue);
+api.renderSections();
+assert.ok(host.innerHTML.includes('gjennomgå kildeversjoner på nytt'));
+
 // A real new opinion reopens the memo, even if the previous memo remains in case history.
 assert.equal(api.recordLillebekkComparison('grontdrag_overvann','anta_avklart',
  'Signe har skrevet et notat som jeg tidligere forvekslet med et prosjektert overvannsanlegg.').ok,true);
