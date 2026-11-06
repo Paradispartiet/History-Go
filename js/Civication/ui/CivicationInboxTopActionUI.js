@@ -359,6 +359,32 @@
     }
   }
 
+
+  function lillebekkDocumentHtml(topic) {
+    const topicAttr = ' data-topic-id="' + escapeHtml(topic.id) + '"';
+    let html = '<details class="civi-inbox-history"><summary>Dokumentmottak og faglig vurdering</summary>';
+    if (!topic.receiptLogged) {
+      html += '<p>Registrer bare bilag du har fått opplysninger om i spillet. Mottaket er spilleroppgitt, ikke verifisert.</p>';
+      html += '<label>Journalreferanse <input type="text" maxlength="100" data-civi-document-ref placeholder="Journalpost eller dokumentnummer"></label>';
+      html += '<label>Avsender <input type="text" maxlength="120" data-civi-document-sender placeholder="Fagavdeling eller avsender"></label>';
+      html += '<label>Dokumentbeskrivelse <textarea rows="3" maxlength="500" data-civi-document-description placeholder="Hvilket grunnlag har du faktisk fått?"></textarea></label>';
+      html += '<button class="civi-btn secondary" type="button" data-civi-lillebekk-receipt="1"' +
+        topicAttr + '>Journalfør spilleroppgitt mottak</button>';
+    } else {
+      html += '<p><strong>Journalført mottak (spilleroppgitt):</strong> ' + escapeHtml(topic.receiptNote) + '</p>';
+      if (topic.assessmentNote) html += '<p><strong>Siste foreløpige vurdering:</strong> ' + escapeHtml(topic.assessmentNote) + '</p>';
+      html += '<label>Faglig resultat <select data-civi-assessment-outcome>' +
+        '<option value="mangelfull">Mangler nødvendig grunnlag</option>' +
+        '<option value="motstridende">Motstridende opplysninger – avklar</option>' +
+        '<option value="fagkontroll">Oversend til fagkontroll</option></select></label>';
+      html += '<label>Begrunnelse <textarea rows="3" maxlength="500" data-civi-assessment-reason placeholder="Beskriv konkret hva som må kontrolleres"></textarea></label>';
+      html += '<button class="civi-btn secondary" type="button" data-civi-lillebekk-assess="1"' +
+        topicAttr + '>Journalfør foreløpig vurdering</button>';
+    }
+    html += '<p class="muted" data-civi-lillebekk-error role="status"></p></details>';
+    return html;
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -389,12 +415,13 @@
                     <button class="civi-btn secondary" type="button" data-civi-lillebekk-review="1" data-topic-id="${escapeHtml(topic.id)}" data-review-action="kontrollbehov" ${topic.reviewNeedLogged ? "disabled" : ""}>${topic.reviewNeedLogged ? "Kontrollbehov journalført" : "Journalfør kontrollbehov"}</button>
                     <button class="civi-btn secondary" type="button" data-civi-lillebekk-review="1" data-topic-id="${escapeHtml(topic.id)}" data-review-action="forbehold" ${topic.caveatLogged ? "disabled" : ""}>${topic.caveatLogged ? "Forbehold journalført" : "Journalfør faglig forbehold"}</button>
                   </div>` : ""}
+                  ${dossier.canRevise ? lillebekkDocumentHtml(topic) : ""}
                 </div>
               </article>`;
             }).join("")}
           </div>
         </details>
-        <p class="muted">Dette er en kontrolliste over aktuelle dokumenttyper, ikke bekreftede bilag. Journalføring her registrerer bare kontrollbehov eller forbehold i saksloggen; ingen dokumenter sendes eller godkjennes automatisk. Registrert faglig spor betyr ikke at et dokument er kontrollert, og gir ikke planvedtak eller ledergodkjenning.</p>
+        <p class="muted">Dette er en kontrolliste over aktuelle dokumenttyper, ikke bekreftede bilag. Kontrollbehov, spilleroppgitt dokumentmottak og foreløpig vurdering journalføres uten automatisk dokumentverifikasjon, utsendelse eller lukking av fagavvik. Registrert faglig spor betyr ikke at et dokument er kontrollert, og gir ikke planvedtak eller ledergodkjenning.</p>
       </section>`;
   }
 
@@ -827,7 +854,37 @@
       });
   }
 
+
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-lillebekk-receipt]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest(".civi-inbox-card");
+        const read = function (selector) { return card?.querySelector(selector)?.value || ""; };
+        const result = recordLillebekkDocumentReceipt(
+          String(button.getAttribute("data-topic-id") || ""),
+          read("[data-civi-document-ref]"), read("[data-civi-document-sender]"),
+          read("[data-civi-document-description]"));
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-lillebekk-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-lillebekk-assess]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest(".civi-inbox-card");
+        const result = recordLillebekkDocumentAssessment(
+          String(button.getAttribute("data-topic-id") || ""),
+          card?.querySelector("[data-civi-assessment-outcome]")?.value || "",
+          card?.querySelector("[data-civi-assessment-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-lillebekk-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-lillebekk-review]").forEach(function (button) {
       button.addEventListener("click", function () {
         if (button.disabled) return;
@@ -987,6 +1044,8 @@
     getMessages: visibleMessages,
     splitChannels: splitInboxByMessageChannel,
     getLillebekkReviewModel: lillebekkReviewModel,
-    recordLillebekkReviewAction
+    recordLillebekkReviewAction,
+    recordLillebekkDocumentReceipt,
+    recordLillebekkDocumentAssessment
   };
 })();
