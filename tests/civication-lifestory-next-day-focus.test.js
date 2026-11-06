@@ -16,11 +16,11 @@ assert.ok(beginNext > 0 && endNext > beginNext && beginFocus > 0 && endFocus > b
 const realFunctions = source.slice(beginNext, endNext) + "\n" + source.slice(beginFocus, endFocus);
 assert.match(source, /onNextDay\(event\.detail === 0\)/, "keyboard origin is passed from the next-day control");
 
-function setup({ shell = false, blocked = false, keyboard = false, mapMode = false,
+function setup({ shell = false, blocked = false, alreadyAdvanced = false, mapMode = false,
   hasScene = true } = {}) {
   const actions = { scroll: 0, focus: 0, renders: 0, saves: 0, dispatches: 0, lastFocusOptions: null, attrs: {} };
   const state = { dag: 3, livsdag: 3, dagFerdig: true };
-  let shellDay = 3;
+  let shellDay = alreadyAdvanced ? 4 : 3;
   const heading = {
     setAttribute(name, value) { actions.attrs[name] = value; },
     focus(options) { actions.focus++; actions.lastFocusOptions = options; }
@@ -57,7 +57,7 @@ function setup({ shell = false, blocked = false, keyboard = false, mapMode = fal
     syncSharedPrivateState() {},
     ensureShellDayAdvanced: async () => {
       if (blocked) return false;
-      shellDay++;
+      if (!alreadyAdvanced) shellDay++;
       return true;
     },
     syncToShellCalendar: () => {
@@ -108,6 +108,15 @@ test("canonical shell day transition reveals new scene exactly once", async () =
   assert.equal(state.livsdag, 4);
   assert.equal(actions.scroll, 1);
   assert.equal(actions.focus, 1);
+});
+
+
+test("already-advanced shell clock still focuses a newly synchronized story day", async () => {
+  const { api, state, actions } = setup({ shell: true, alreadyAdvanced: true });
+  await api.runNextDay(true);
+  assert.equal(state.livsdag, 4);
+  assert.equal(actions.focus, 1);
+  assert.equal(actions.scroll, 1);
 });
 
 test("do not steal focus or scroll when the map takes over", async () => {
