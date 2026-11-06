@@ -425,7 +425,7 @@
     });
     const latestDraft = drafts[drafts.length - 1] || null;
     const upToDate = !!latestDraft && ready &&
-      String(latestDraft.note || "").includes(`Kildeversjoner: ${signature}\n`);
+      String(latestDraft.note || "").endsWith(`Kildeversjoner: ${signature}`);
     return {
       dossier, exhibitsReviewed, exhibits, checks, ready, signature,
       latestDraft, draftCount: drafts.length, upToDate
