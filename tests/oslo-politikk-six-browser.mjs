@@ -71,18 +71,29 @@ try{
     }
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card'),null,{timeout:35000});
     // The historical photo test scrolls the same .pc-body used by QuizCard.
-    // Await a *real, hit-testable* card below the sticky hero before clicking:
-    // Playwright's own visibility check does not account for sticky overlays.
+    // Scroll the *real* body until the entire card is below the sticky hero
+    // and above bottom navigation. The sticky collapse can continue to move
+    // .pc-body after a one-time scrollTop=0, so correct the actual geometry
+    // on each animation frame; never bypass hit-testing or force the click.
     await page.waitForFunction(()=>{
      const sheet=document.querySelector('#placeCard'),body=sheet?.querySelector('.pc-body');
      const flip=sheet?.querySelector('#pcFrontCardFlip'),hero=sheet?.querySelector('.pc-sheet-hero');
      const nav=sheet?.querySelector('.pc-sheet-section-nav');
      if(!body||!flip||!hero)return false;
      const card=flip.getBoundingClientRect(),hr=hero.getBoundingClientRect(),br=body.getBoundingClientRect();
-     const bottom=Math.min(br.bottom,nav?.getBoundingClientRect().top??br.bottom);
+     const visibleTop=Math.max(br.top,hr.bottom)+12;
+     const visibleBottom=Math.min(br.bottom,nav?.getBoundingClientRect().top??br.bottom)-8;
+     if(card.top<visibleTop-1){
+      body.scrollTo({top:Math.max(0,body.scrollTop+card.top-visibleTop),behavior:'instant'});
+      return false;
+     }
+     if(card.bottom>visibleBottom+1){
+      body.scrollTo({top:body.scrollTop+card.bottom-visibleBottom,behavior:'instant'});
+      return false;
+     }
      const x=card.left+card.width/2,y=card.top+card.height/2;
-     return body.scrollTop<=1 && card.width>0 && card.height>75 &&
-       card.top>=hr.bottom+8 && card.bottom<=bottom-8 &&
+     return card.width>0 && card.height>75 &&
+       card.top>=visibleTop-1 && card.bottom<=visibleBottom+1 &&
        x>0 && x<innerWidth && y>0 && y<innerHeight &&
        document.elementFromPoint(x,y)?.closest('#pcFrontCardFlip')===flip;
     },null,{timeout:12000});
