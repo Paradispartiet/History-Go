@@ -1,0 +1,38 @@
+name: Tøyen trafo – visible Objects and Productions in Place Sheet
+on:
+  push:
+    branches: [fix/place-sheet-objects-productions-gallery-20261105]
+    paths:
+      - 'js/ui/place-card-round-gallery.js'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'tests/toyen-trafo-collection-gallery-real-browser.mjs'
+      - '.github/workflows/toyen-trafo-collection-gallery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: toyen-trafo-collection-gallery-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    name: Accessible visible actions for both content collections
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Validate actual visible Place Sheet direct gallery on mobile and desktop
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/toyen-trafo-collection-gallery-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toyen-trafo-collection-gallery-screens
+          path: artifacts/toyen-trafo-collection-gallery/
+          if-no-files-found: ignore

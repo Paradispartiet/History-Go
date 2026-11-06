@@ -609,7 +609,7 @@
       const id = compatibilityFourthId(place);
       const def = defFor(place, id);
       const html = s(document.getElementById("pcCategoryCollectionList")?.innerHTML) || '<div class="pc-empty">Ingen innhold ennå</div>';
-      global.showPlaceCardRoundPopup?.({ title:def?.label || "Samling", subtitle:s(place.name || place.title), html, place, kind:id });
+      global.showPlaceCardRoundPopup?.({ title:compatibilityFourthLabel(place) || def?.label || "Samling", subtitle:s(place.name || place.title), html, place, kind:id });
     };
     icon.addEventListener("click", open);
     icon.addEventListener("keydown", open);

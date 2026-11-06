@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_rynkerose: Object.freeze({
+      scientificName: "Rosa rugosa",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/62_rynkerose_v1.webp",
+      gitBlobSha: "b66382b7a76f60773eef79ad46b3ecb425c41b9b",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_og_nyper",
+      evidence: "data/natur/flora/illustration-quality-rynkerose-20261106.json"
+    }),
     emne_flora_svalerot: Object.freeze({
       scientificName: "Vincetoxicum hirundinaria",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/61_svalerot_v1.webp",
