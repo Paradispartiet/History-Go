@@ -882,6 +882,9 @@
 
   function recordLillebekkFagsvarFollowup(recommendation) {
     const model = lillebekkFagsvarModel();
+    if (model && !model.leader.memo.ready) {
+      return { ok: false, reason: "Den opprinnelige kildeavstemmingen er blitt uforsvarlig og må korrigeres før et nytt fagnotat." };
+    }
     if (!model?.ready) return { ok: false, reason: "Alle tre fagsvar må få forsvarlig vurdering først." };
     const text = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0, 850);
     if (text.length < 90) return { ok: false, reason: "Skriv minst 90 tegn om ansvar, dokumentbehov og uavklarte forhold." };
@@ -1292,7 +1295,9 @@
           '<p class="muted" role="status" data-civi-fagsvar-followup-error></p>' +
         '</section>';
       } else {
-        html += '<p>Et supplerende fagnotat krever tre faglig forsvarlige vurderinger. Å anta at en undersøkelse allerede er gjort, blir journalført som feilvurdering og må korrigeres.</p>';
+        html += model.docs.every(function (doc) { return doc.safe; }) && !model.leader.memo.ready
+          ? '<p><strong>Stopp i grunnlaget:</strong> En tidligere kildeavstemming er blitt uforsvarlig. Korriger vurderingen i bilagsavstemmingen før et supplerende fagnotat kan journalføres.</p>'
+          : '<p>Et supplerende fagnotat krever tre faglig forsvarlige vurderinger. Å anta at en undersøkelse allerede er gjort, blir journalført som feilvurdering og må korrigeres.</p>';
       }
     }
     return html + '</details>';
