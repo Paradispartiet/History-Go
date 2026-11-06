@@ -106,35 +106,6 @@
       }
     },
     {
-      "id": "c04_oppgjor_godkjent",
-      "threadId": "frilans_etter_valget",
-      "dag": 14,
-      "fase": "ettermiddag",
-      "visningstype": "melding",
-      "stedId": "hjem",
-      "tilgjengelighet": "start",
-      "prioritet": 8,
-      "tittel": "Finn riktig mottaker for fakturaen",
-      "tekst": "Styrelederen har sendt fakturaadressen og ber deg merke fakturaen «Vårsamling». Du finner den skriftlige bestillingen og godkjenningen av invitasjonsteksten. Beløpet er 1 200 kr.",
-      "valg": [
-        {
-          "id": "send",
-          "tekst": "Sjekk mottakeren, merk fakturaen og send den",
-          "konsekvensTekst": "Fakturaen på 1 200 kr er sendt til foreningen. Du har et utestående beløp å følge opp.",
-          "effekter": {
-            "flagg": {
-              "c04_oppgjor": "faktura_sendt"
-            }
-          }
-        }
-      ],
-      "conditions": {
-        "flagg": {
-          "c04_sluttstatus": "godkjent"
-        }
-      }
-    },
-    {
       "id": "c04_oppgjor_avbestilt",
       "threadId": "frilans_etter_valget",
       "dag": 14,
@@ -143,16 +114,26 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "Styrelederen spør hva som ble gjort",
-      "tekst": "Styrelederen ber om en kort oversikt før hun tar avbestillingen opp i styret. Tidsnotatet viser at du sjekket arrangementets detaljer og begynte på utkastet. Invitasjonen ble aldri levert.",
+      "tittel": "Skal du følge opp honoraret?",
+      "tekst": "Foreningen sendte Leas kortversjon. Styrelederen spør hvor mye du rakk før de avbestilte. Du har notert en halvtime på utkastet og lenkesjekken. En annen kunde venter på en rettelse i ettermiddag.",
       "valg": [
         {
           "id": "send",
-          "tekst": "Send arbeidsoversikten og be om skriftlig svar om honoraret",
-          "konsekvensTekst": "Styrelederen har fått oversikten. Beløpet må fortsatt avklares, og det ligger ingen ny leveranse i kalenderen.",
+          "tekst": "Send tidsnotatet og spør om de kan dekke halvtimen",
+          "konsekvensTekst": "Styrelederen får oversikten og tar spørsmålet med til styret. Dere har ennå ikke avtalt et beløp.",
           "effekter": {
             "flagg": {
               "c04_oppgjor": "honorar_til_avklaring"
+            }
+          }
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Svar at du lar honoraret ligge, og gjør den andre rettelsen",
+          "konsekvensTekst": "Du sier fra at du avslutter saken og sender rettelsen til den andre kunden i ettermiddag.",
+          "effekter": {
+            "flagg": {
+              "c04_oppgjor": "avsluttet_uten_krav"
             }
           }
         }

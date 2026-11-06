@@ -5,6 +5,102 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_parkslirekne: Object.freeze({
+      scientificName: "Reynoutria japonica",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/67_parkslirekne_v1.webp",
+      gitBlobSha: "8c33e23ca5587e0cc4db7ab889b762dc5abd9dad",
+      reviewedAt: "2026-11-06",
+      stage: "sensommerblomstring_med_jordstengler",
+      evidence: "data/natur/flora/illustration-quality-parkslirekne-20261106.json"
+    }),
+    emne_flora_kanadagullris: Object.freeze({
+      scientificName: "Solidago canadensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/66_kanadagullris_v1.webp",
+      gitBlobSha: "738ff7e58c4011fc1c2c96bd75d7fd9322ff9d07",
+      reviewedAt: "2026-11-06",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-kanadagullris-20261106.json"
+    }),
+    emne_flora_kjempebjornkjeks: Object.freeze({
+      scientificName: "Heracleum mantegazzianum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/65_kjempebjornkjeks_v1.webp",
+      gitBlobSha: "1a22fff228e3e73d3d83d882e0be445b709c2519",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-kjempebjornkjeks-20261106.json"
+    }),
+    emne_flora_skvallerkaal: Object.freeze({
+      scientificName: "Aegopodium podagraria",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/64_skvallerkaal_v1.webp",
+      gitBlobSha: "27b6c73f26c53ed7c3840565605416b01480fad6",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_med_jordstengler",
+      evidence: "data/natur/flora/illustration-quality-skvallerkaal-20261106.json"
+    }),
+    emne_flora_hagelupin: Object.freeze({
+      scientificName: "Lupinus polyphyllus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/63_hagelupin_v1.webp",
+      gitBlobSha: "389ac8dc3a6e2a948695de1586f92ccee85c6ee4",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_og_skolm",
+      evidence: "data/natur/flora/illustration-quality-hagelupin-20261106.json"
+    }),
+    emne_flora_rynkerose: Object.freeze({
+      scientificName: "Rosa rugosa",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/62_rynkerose_v1.webp",
+      gitBlobSha: "b66382b7a76f60773eef79ad46b3ecb425c41b9b",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_og_nyper",
+      evidence: "data/natur/flora/illustration-quality-rynkerose-20261106.json"
+    }),
+    emne_flora_svalerot: Object.freeze({
+      scientificName: "Vincetoxicum hirundinaria",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/61_svalerot_v1.webp",
+      gitBlobSha: "f60778d725256fd3bb8d91f293f605d1a0781e72",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-svalerot-20261105.json"
+    }),
+    emne_flora_rosslyng: Object.freeze({
+      scientificName: "Calluna vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/60_rosslyng_v1.webp",
+      gitBlobSha: "ba6314781c3b81b6d775c05f1bffe109d0ab457b",
+      reviewedAt: "2026-11-05",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-rosslyng-20261105.json"
+    }),
+    emne_flora_rodtvetann: Object.freeze({
+      scientificName: "Lamium purpureum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/59_rodtvetann_v1.webp",
+      gitBlobSha: "9b28b062f2da609ef83eccbf59662401eb09eeec",
+      reviewedAt: "2026-11-05",
+      stage: "varblomstring",
+      evidence: "data/natur/flora/illustration-quality-rodtvetann-20261105.json"
+    }),
+    emne_flora_rodknapp: Object.freeze({
+      scientificName: "Knautia arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/58_rodknapp_v1.webp",
+      gitBlobSha: "e7f9f81c22c7a5abaafb972d75622602625bb737",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-rodknapp-20261105.json"
+    }),
+    emne_flora_balderbra: Object.freeze({
+      scientificName: "Tripleurospermum inodorum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/57_balderbra_v1.webp",
+      gitBlobSha: "ef76d51b2127e62c0df2a11ff65b70154c6c6001",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-balderbra-20261105.json"
+    }),
+    emne_flora_akervindel: Object.freeze({
+      scientificName: "Convolvulus arvensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/56_akervindel_v1.webp",
+      gitBlobSha: "914150925a8e8f59cbbbbc31660317f2ac783360",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-akervindel-20261105.json"
+    }),
     emne_flora_akerveronika: Object.freeze({
       scientificName: "Veronica arvensis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/55_akerveronika_v1.webp",

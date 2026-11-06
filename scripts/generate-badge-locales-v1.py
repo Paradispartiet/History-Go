@@ -217,7 +217,7 @@ def main():
                 bottom=CATALOG['categoryLabels']['by'][['nb','en','es','pt','fr'].index(locale)].upper() if category=='by' else None
                 dst=ROOT/'bilder/merker'/category/'locales'/locale/f'{sub}.webp'
                 dst.parent.mkdir(parents=True,exist_ok=True)
-                if category=='by' and sub in ('brutalisme','byplanlegging'):
+                if category=='by' and sub in ('brutalisme','byplanlegging','infrastruktur'):
                     # Retain exact visually reviewed, previously rendered source artwork
                     # rather than trying to re-inpaint already signed-off titles.
                     pinned_file=f'{sub}_candidate_v1.json'

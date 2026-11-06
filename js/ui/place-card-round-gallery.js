@@ -11,6 +11,10 @@
   // Only other rounds are expanded into full-size editorial images.
   const rounds = [
     { id: "pcNatureIcon", section: "about", label: "Natur" },
+    // The canonical Objects and category collections remain source-owned,
+    // but Place Sheet Direct must expose them as real interactive previews.
+    { id: "pcCategoryCollectionIcon", section: "about", label: "Kategoriinnhold" },
+    { id: "pcObjectsIcon", section: "history", label: "Gjenstander" },
     { id: "pcWorksIcon", section: "history", label: "Verk" },
     { id: "pcFortellingerIcon", section: "stories", label: "Fortellinger" },
     { id: "pcForNaIcon", section: "before-after", label: "Før og nå" },
@@ -34,6 +38,15 @@
     const image = source.querySelector(":scope > img");
     if (!(image instanceof HTMLImageElement) || !image.getAttribute("src")
         || source.dataset.roundReady === "false") return null;
+    if (spec.id === "pcCategoryCollectionIcon") {
+      const placeId = String(card.dataset.currentPlaceId || "").trim();
+      const place = Array.isArray(window.PLACES)
+        ? window.PLACES.find(item => String(item?.id || "") === placeId)
+        : null;
+      const label = window.HGPlaceCardCollections?.getFourthLabel?.(place)
+        || spec.label;
+      return { source, image, spec: { ...spec, label } };
+    }
     return { source, image, spec };
   }
 

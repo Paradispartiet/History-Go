@@ -114,6 +114,754 @@
       .replace(/'/g, "&#039;");
   }
 
+  // The live Lillebekk dossier is a read-only view of the player's existing
+  // WorkWorld objects. It is not another mail, scene engine, or approval step.
+  const LILLEBEKK_REVIEW_TOPICS = [
+    {
+      title: "Plankart og areal",
+      id: "plankart",
+      control_owner: "Planteamet og planjurist Nora",
+      document: "Datert plankart, tegnforklaring og kartversjon",
+      check: "Sammenhold byggegrenser, arealformål og registrerte kartavvik.",
+      positive: ["map_conflict_written_for_review", "green_passage_recommendation_logged", "early_map_conflict_documented"],
+      negative: ["map_conflict_not_verified", "area_compromise_unverified", "early_map_conflict_not_verified"],
+      next: "Kontroller kartavvik, arealfordeling og hjemmel før faglig anbefaling."
+    },
+    {
+      title: "Grøntdrag",
+      id: "grontdrag",
+      control_owner: "Byøkolog Signe og planjurist Nora",
+      document: "Grøntfaglig vurdering og forslag til planbestemmelse",
+      check: "Kontroller sammenheng, jorddybde, flomvei og hva bestemmelsen faktisk sikrer.",
+      positive: ["green_corridor_draft_requirement_proposed", "early_green_corridor_requirement_proposed"],
+      negative: ["green_corridor_maintenance_only_unverified", "early_green_corridor_unsecured"],
+      next: "Avklar jorddybde, sammenheng, flomvei og forslag til bindende bestemmelse med fag og planjuss."
+    },
+    {
+      title: "Skolevei",
+      id: "skolevei",
+      control_owner: "Trafikkfaglig ansvarlig og planleder Elin",
+      document: "Trafikksikkerhetsvurdering og forslag til rekkefølgekrav",
+      check: "Kontroller hvilken strekning som vurderes, hvem som utfører tiltak og når de må være gjennomført.",
+      positive: ["school_route_pre_occupancy_condition_proposed", "school_route_explicit_assessment_proposed", "early_school_route_condition_proposed"],
+      negative: ["school_route_timing_unverified", "school_route_deferred_unsecured", "early_school_route_timing_unverified", "skolevei_ikke_dokumentert"],
+      next: "Dokumenter faktisk skolevei, vilkår og ansvar før innflytting, ikke bare før ferdigattest."
+    },
+    {
+      title: "Medvirkning",
+      id: "medvirkning",
+      control_owner: "Ansvarlig for medvirkningsprotokollen",
+      document: "Merknadsoversikt og faglige svar på innspill",
+      check: "Sammenhold hvert registrerte innspill med vurdering og eventuell endring i forslaget.",
+      positive: ["participation_comments_evaluated", "early_participation_evaluated"],
+      negative: ["participation_record_missing", "early_participation_record_missing"],
+      next: "Journalfør innspill, vurdering og hva som eventuelt endres i planforslaget."
+    },
+    {
+      title: "Overvann",
+      id: "overvann",
+      control_owner: "Overvannsfaglig ansvarlig og planjurist Nora",
+      document: "Overvannsnotat, flomveikart og forslag til sikring",
+      check: "Kontroller avrenning, flomveier, nabovirkning og hva som er forankret i planen.",
+      positive: ["stormwater_condition_proposed", "early_stormwater_condition_proposed"],
+      negative: ["stormwater_unsecured_in_plan", "early_stormwater_unsecured"],
+      next: "Be fagansvarlig kontrollere flomvei, nabokonsekvenser og rettslig sikring."
+    },
+    {
+      title: "Utbyggerkontakt",
+      id: "utbyggerkontakt",
+      control_owner: "Planleder Elin og journalansvarlig",
+      document: "Journalført møte- og korrespondanselogg",
+      check: "Kontroller hva som er bedt om, hvem som svarte og at ingen har gitt forhåndstilsagn.",
+      positive: ["developer_formal_request_pending", "developer_signal_written_clarification_requested", "early_developer_formal_request_pending"],
+      negative: ["developer_informal_signal_to_correct", "developer_signal_unrecorded", "early_developer_signal_needs_correction", "early_developer_signal_unrecorded"],
+      next: "Journalfør signalene og presiser at rådgiveren ikke kan gi bindende forhåndstilsagn."
+    },
+    {
+      title: "Faglig risiko i saksframlegget",
+      id: "risiko",
+      control_owner: "Planjurist Nora og planleder Elin",
+      document: "Saksframlegg med risikovurdering og politiske alternativer",
+      check: "Skill rettslig krav, faglig usikkerhet, administrativ anbefaling og politisk valg.",
+      positive: ["material_risks_stated_for_politics", "early_material_risks_visible"],
+      negative: ["material_risks_not_explicit", "early_material_risks_hidden", "politisk_grense_ikke_eksplisitt"],
+      next: "Skill lovkrav, administrasjonens faglige vurdering og politisk handlingsrom."
+    }
+  ];
+
+  // Authored *fictional* case exhibits, grounded in the existing Lillebekk cast.
+  // A document records an assertion by its sender, not an automatically proven fact.
+  const LILLEBEKK_CASE_EXHIBITS = [
+  {
+    "id": "hanne-skolevei-01",
+    "topic": "skolevei",
+    "ref": "LBK-MERK-01",
+    "date": "6. november 2026",
+    "type": "Innspill til planarbeidet",
+    "sender": "Hanne, beboer i Lillebekk",
+    "recipient": "Kommunens planteam",
+    "title": "Skolevei gjennom kvartalet",
+    "paragraphs": [
+      "«Barn bruker forbindelsen gjennom Lillebekk på vei til skolen. Gangarealet blir også brukt til adkomst og varelevering. Det er uklart for oss hvilken trygg forbindelse som skal være ferdig når boligene tas i bruk.»",
+      "Innspillet beskriver hverdagsbruk, men er ikke en trafikktelling eller en faglig kontroll av sikt, bredder og kryssing. Plankartet alene dokumenterer heller ikke hvordan forbindelsen sikres før første innflytting."
+    ],
+    "question": "Hva er en forsvarlig faglig oppfølging av innspillet?",
+    "choices": [
+      {
+        "id": "A",
+        "label": "Registrer innspillet som et åpent skoleveisforhold og be trafikkfaglig ansvarlig kontrollere forbindelsen.",
+        "consequence": "Innspillet føres inn i beslutningsgrunnlaget, men trygg skolevei er fortsatt ikke dokumentert. Trafikkfaglig kontroll trengs.",
+        "outcome": "skolevei_fagkontroll_foreslatt_i_sak"
+      },
+      {
+        "id": "B",
+        "label": "Ta innspillet inn i merknadsoversikten og utsett den konkrete kontrollen til høringen.",
+        "consequence": "Medvirkning blir sporbar, men risikoen for sent omarbeid øker; ingen skoleveisvurdering er ferdig.",
+        "outcome": "skolevei_vurdering_utsatt"
+      },
+      {
+        "id": "C",
+        "label": "Send ordlyden i et mulig rekkefølgekrav til Nora for juridisk vurdering før du anbefaler oversendelse.",
+        "consequence": "Juridisk avklaring forberedes, men det gir ennå ingen dokumentasjon på sikkerheten i selve strekningen.",
+        "outcome": "skolevei_rekkefolgekrav_til_juss"
+      }
+    ]
+  },
+  {
+    "id": "signe-grontdrag-01",
+    "topic": "grontdrag",
+    "ref": "LBK-FAG-02",
+    "date": "6. november 2026",
+    "type": "Internt fagnotat – utkast",
+    "sender": "Signe, byøkolog",
+    "recipient": "Planteamet og Nora, planjuss",
+    "title": "Grøntdrag og mulig flomvei",
+    "paragraphs": [
+      "«Skissen viser et sammenhengende grøntdrag, men dokumentene jeg har fått viser ikke hvordan jorddybde, vegetasjon og flomvei skal sikres der gangforbindelsen og ny bebyggelse møter grøntarealet.»",
+      "«Det er for tidlig å skrive at løsningen ivaretar overvann. Jeg anbefaler et koordinert snitt, overvannsfaglig avklaring og at eventuelle krav kan leses igjen i bestemmelsene.»",
+      "Notatet er en faglig vurdering av mangler i planmaterialet, ikke en måling av kapasitet eller godkjent prosjektering."
+    ],
+    "question": "Hva skal rådgiveren gjøre før grøntdraget brukes som et sikkert premiss i saksframlegget?",
+    "choices": [
+      {
+        "id": "A",
+        "label": "Be om snitt og dokumentasjon på jorddybde og flomvei, og la avviket stå åpent til faglig kontroll.",
+        "consequence": "Et presist dokumentasjonskrav blir synlig; grøntdrag og overvann er ikke erklært kontrollert.",
+        "outcome": "grontdrag_dokumentasjonsbehov_registrert"
+      },
+      {
+        "id": "B",
+        "label": "Beskriv grøntdraget som et mål i anbefalingen, med forbehold om videre prosjektering.",
+        "consequence": "Politisk intensjon blir synlig, men uavklarte faglige funksjoner må fortsatt stå på avvikslisten.",
+        "outcome": "grontdrag_faglig_forbehold"
+      },
+      {
+        "id": "C",
+        "label": "Be Nora og overvannsfaglig ansvarlig utforme et mulig bestemmelseskrav før oversendelse.",
+        "consequence": "En juridisk og teknisk avklaring forberedes, men ingen bindende bestemmelse er vedtatt.",
+        "outcome": "grontdrag_fagkontroll_foreslatt"
+      }
+    ]
+  },
+  {
+    "id": "ivar-rekkefolge-01",
+    "topic": "utbyggerkontakt",
+    "ref": "LBK-UTB-03",
+    "date": "6. november 2026",
+    "type": "E-post fra forslagsstiller",
+    "sender": "Ivar, representant for utbygger",
+    "recipient": "Planteamet",
+    "title": "Tidspunkt for opparbeidelse av gangforbindelse",
+    "paragraphs": [
+      "«Vi ønsker forutsigbarhet om fremdriften. I vårt utkast er opparbeidelse av gangforbindelsen knyttet til ferdigattest. Vi ber om tilbakemelding på om dette kan legges til grunn i den videre prosjekteringen.»",
+      "Spørsmålet er legitimt, men en administrativ tilbakemelding er ikke et politisk vedtak. Ferdigattest og faktisk første innflytting er heller ikke nødvendigvis samme tidspunkt.",
+      "E-posten dokumenterer utbyggers forslag og ønske om avklaring – ikke at løsningen oppfyller skoleveibehovet."
+    ],
+    "question": "Hvordan svarer du uten å love et planutfall eller skjule tidskonflikten?",
+    "choices": [
+      {
+        "id": "A",
+        "label": "Bekreft mottak, journalfør forskjellen mellom ferdigattest og innflytting og be om avklaring med planjuss og trafikkfag.",
+        "consequence": "Forslagsstiller får en sporbar avklaringsoppgave; ingen forhåndsgodkjenning blir gitt.",
+        "outcome": "utbygger_behov_for_formell_avklaring"
+      },
+      {
+        "id": "B",
+        "label": "Svar at forslaget vurderes i planprosessen, og avstå fra å uttale deg om tidspunktet nå.",
+        "consequence": "Myndighetsgrensen bevares, men en konkret tidskonflikt står fortsatt uløst i saksgrunnlaget.",
+        "outcome": "utbygger_tidskonflikt_utsatt"
+      },
+      {
+        "id": "C",
+        "label": "Be Elin om å ta stilling til hvordan forslaget skal behandles før du gir et formelt prosessvar.",
+        "consequence": "Du løfter prosessspørsmålet til plansjefen, ikke en beslutning om planens innhold.",
+        "outcome": "utbygger_ledersporsmal"
+      }
+    ]
+  }
+];
+
+  function lillebekkExhibitsFor(dossier) {
+    if (!dossier?.canRevise) return [];
+    const history = window.CivicationWorkWorld?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001")?.history || [];
+    return LILLEBEKK_CASE_EXHIBITS.map(function (exhibit) {
+      const saved = history.find(function (event) {
+        return event.id === `lillebekk_bilag_${exhibit.id}_valg_v1`;
+      });
+      return { ...exhibit, decided: !!saved, decisionNote: saved?.note || "",
+        selectedOutcome: saved?.outcome || "" };
+    });
+  }
+
+  function recordLillebekkExhibitDecision(documentId, choiceId) {
+    const dossier = lillebekkReviewModel();
+    if (!dossier?.canRevise) return { ok: false, reason: "Den formelle saken er ikke åpen." };
+    const doc = LILLEBEKK_CASE_EXHIBITS.find(function (item) { return item.id === documentId; });
+    const choice = doc?.choices?.find(function (item) { return item.id === choiceId; });
+    if (!doc || !choice) return { ok: false, reason: "Ukjent dokument eller valg." };
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const workId = "by_radgiver_lillebekk_plan_case_001";
+    const live = world.getWorkObject(workId);
+    if (!live || live.status === "closed" || live.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    const eventId = `lillebekk_bilag_${doc.id}_valg_v1`;
+    if ((live.history || []).some(function (event) { return event.id === eventId; })) {
+      return { ok: false, reason: "Dette bilaget er allerede behandlet; tidligere vurdering bevares." };
+    }
+    try {
+      world.appendWorkObjectHistory(workId, {
+        event_id: eventId,
+        at: new Date().toISOString(),
+        scene_id: "lillebekk_dokumentgjennomgang",
+        choice_id: choice.id,
+        outcome: choice.outcome,
+        note: `Fiktivt spillbilag ${doc.ref} (${doc.sender}). Valgt oppfølging: ${choice.label} Konsekvens: ${choice.consequence} Dette innebærer ikke ekstern utsendelse, verifisert dokumentasjon, lukking av avvik eller godkjent plan.`
+      });
+      return { ok: true, outcome: choice.outcome };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Kunne ikke journalføre bilagsvalg", error);
+      return { ok: false, reason: "Bilagsvalget kunne ikke lagres." };
+    }
+  }
+
+  function lillebekkExhibitHtml(doc) {
+    const body = doc.paragraphs.map(function (paragraph) {
+      return `<p>${escapeHtml(paragraph)}</p>`;
+    }).join("");
+    const options = doc.decided
+      ? `<p><strong>Journalført faglig oppfølging:</strong> ${escapeHtml(doc.decisionNote)}</p>`
+      : `<p><strong>Arbeidsspørsmål:</strong> ${escapeHtml(doc.question)}</p>` +
+        doc.choices.map(function (choice) {
+          return `<button class="civi-btn secondary" type="button" data-civi-lillebekk-exhibit="1" data-doc-id="${escapeHtml(doc.id)}" data-choice-id="${escapeHtml(choice.id)}">${escapeHtml(choice.label)}</button>`;
+        }).join("");
+    return `<details class="civi-inbox-history civi-lillebekk-exhibit" data-exhibit-id="${escapeHtml(doc.id)}">
+      <summary>${escapeHtml(doc.ref)} · ${escapeHtml(doc.title)}${doc.decided ? " · Journalført" : ""}</summary>
+      <p class="muted">Fiktivt spillbilag – ikke et ekte kommunalt dokument.</p>
+      <p><strong>Type:</strong> ${escapeHtml(doc.type)} · <strong>Dato:</strong> ${escapeHtml(doc.date)}</p>
+      <p><strong>Avsender:</strong> ${escapeHtml(doc.sender)}</p>
+      <p><strong>Mottaker:</strong> ${escapeHtml(doc.recipient)}</p>
+      ${body}
+      <div class="civi-inbox-card-actions">${options}</div>
+      <p class="muted" role="status" data-civi-lillebekk-exhibit-error></p>
+    </details>`;
+  }
+
+
+  // Comparison tasks are about the limits of three fictional documents.
+  // "Avklar" denotes a defensible recommendation, not completed verification.
+  const LILLEBEKK_BILAG_CHECKS = [
+    {
+      id: "skolevei_tidskrav",
+      title: "Skolevei: innflytting versus ferdigattest",
+      refs: ["LBK-MERK-01", "LBK-UTB-03"],
+      fact: "Hanne beskriver bruk av gangforbindelsen ved skolestart. Ivar ønsker opparbeidelse knyttet til ferdigattest. Dokumentene dokumenterer verken sikkerheten eller samsvar mellom fristene.",
+      defensible: "Krev trafikkfaglig vurdering av strekningen og avklar et eventuelt rekkefølgekrav før anbefaling.",
+      overclaim: "Skriv at gangforbindelsen allerede er trygg og tilstrekkelig sikret i planen.",
+      consequence: "Uten trafikkfaglig vurdering og avklart tidspunkt må skolevei stå som åpent forhold i saksframlegget."
+    },
+    {
+      id: "grontdrag_overvann",
+      title: "Grøntdrag: fagnotat versus sikret funksjon",
+      refs: ["LBK-FAG-02", "LBK-UTB-03"],
+      fact: "Signe etterlyser dokumentasjon på jorddybde, vegetasjon og flomvei. Ivars henvendelse gjelder ferdigstillelse av gangforbindelse og dokumenterer ikke overvannskapasitet.",
+      defensible: "Etterspør snitt og overvannsfaglig kontroll før grøntdraget omtales som teknisk sikret.",
+      overclaim: "Omtal grøntdraget som dokumentert flomvei fordi det er tegnet inn på kartet.",
+      consequence: "Fagnotatet er et grunnlag for nye undersøkelser, ikke en godkjent overvannsløsning."
+    },
+    {
+      id: "utbygger_myndighet",
+      title: "Utbyggerkontakt: faglig svar versus forhåndstilsagn",
+      refs: ["LBK-UTB-03", "LBK-MERK-01", "LBK-FAG-02"],
+      fact: "Ivar ber om prosessuell avklaring. Hannes skolevei og Signes flomvei er fortsatt faglig uavklarte. Kommunens rådgiver kan ikke love et planvedtak eller godkjenne utbyggers foreslåtte frist.",
+      defensible: "Journalfør prosessvar og løft frist, trafikk og overvann til riktig fag- og ledernivå uten forhåndstilsagn.",
+      overclaim: "Bekreft at utbyggers løsning kan legges til grunn som kommunalt godkjent.",
+      consequence: "Svar til utbygger er ikke vedtak. Planleder, planjuss og fagansvarlige må kunne etterprøve vurderingen."
+    }
+  ];
+
+  function lillebekkSaksframleggModel() {
+    const dossier = lillebekkReviewModel();
+    if (!dossier?.canRevise) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const exhibits = lillebekkExhibitsFor(dossier);
+    const exhibitsReviewed = exhibits.length === 3 && exhibits.every(function (doc) { return doc.decided; });
+    const checks = LILLEBEKK_BILAG_CHECKS.map(function (definition) {
+      const prefix = `lillebekk_kildeavstemming_${definition.id}_v`;
+      const matches = history.filter(function (event) { return String(event.id || "").startsWith(prefix); });
+      const latest = matches[matches.length - 1] || null;
+      return {
+        ...definition, latestId: latest?.id || "", latestNote: latest?.note || "",
+        latestOutcome: latest?.outcome || "", revisionCount: matches.length,
+        safe: latest?.outcome === "avklar_forst"
+      };
+    });
+    const ready = exhibitsReviewed && checks.every(function (check) { return check.safe; });
+    // A memo snapshots both source assessments and the case's registered issues.
+    // New WorkWorld flags must make a saved draft stale even without changed exhibits.
+    const early = world?.getWorkObject?.("by_radgiver_lillebekk_early_analysis_case_001");
+    const flagSignature = [
+      "early:" + [...(early?.flags || [])].sort().join(","),
+      "formal:" + [...(formal.flags || [])].sort().join(",")
+    ].join("|");
+    // The draft also uses topic-level document assessments. Their history revisions
+    // are part of the source signature, not only the three cross-document choices.
+    const topicSignature = dossier.topics.map(function (topic) {
+      const prefix = `lillebekk_dokument_${topic.id}_vurdering_`;
+      const assessments = history.filter(function (event) {
+        return String(event.id || "").startsWith(prefix);
+      });
+      return `${topic.id}:${assessments[assessments.length - 1]?.id || "ingen_vurdering"}`;
+    }).join("|");
+    const signature = checks.map(function (check) { return check.latestId; }).join("|") +
+      "|flags=" + flagSignature + "|topic_reviews=" + topicSignature;
+    const drafts = history.filter(function (event) {
+      return String(event.id || "").startsWith("lillebekk_saksframlegg_utkast_v");
+    });
+    const latestDraft = drafts[drafts.length - 1] || null;
+    const upToDate = !!latestDraft && ready &&
+      String(latestDraft.note || "").endsWith(`Kildeversjoner: ${signature}`);
+    return {
+      dossier, exhibitsReviewed, exhibits, checks, ready, signature,
+      latestDraft, draftCount: drafts.length, upToDate
+    };
+  }
+
+  function recordLillebekkComparison(checkId, outcome, reasoning) {
+    const model = lillebekkSaksframleggModel();
+    const check = model?.checks.find(function (item) { return item.id === checkId; });
+    const reason = String(reasoning || "").replace(/\s+/g, " ").trim().slice(0, 450);
+    if (!model?.exhibitsReviewed || !check || !["avklar_forst", "anta_avklart"].includes(outcome)) {
+      return { ok: false, reason: "Behandle alle tre bilag før du sammenstiller dem." };
+    }
+    if (reason.length < 35) {
+      return { ok: false, reason: "Begrunn med minst 35 tegn hva kildene faktisk viser og ikke viser." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    }
+    const label = outcome === "avklar_forst" ? check.defensible : check.overclaim;
+    const note = `Faglig kildeavstemming (${check.refs.join(" + ")}): ${check.title}. Kildegrunnlag: ${check.fact} Valgt vurdering: ${label} Begrunnelse: ${reason}. Faglig følge: ${check.consequence} Dette er vurdering av fiktivt spillmateriale, ikke verifisering eller vedtak.`;
+    if (check.latestOutcome === outcome && check.latestNote === note) {
+      return { ok: true, alreadyLogged: true };
+    }
+    // A case must never be permanently stuck with an unsubstantiated conclusion.
+    // Permit the final safe correction after the normal revision cap, but not new
+    // speculative reversals once the record has been corrected.
+    if (check.revisionCount >= 10 &&
+        !(check.latestOutcome === "anta_avklart" && outcome === "avklar_forst")) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd. Kun korrigering av et udokumentert standpunkt er tillatt." };
+    }
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: `lillebekk_kildeavstemming_${check.id}_v${check.revisionCount + 1}`,
+        scene_id: "lillebekk_saksframlegg", choice_id: outcome,
+        at: new Date().toISOString(), outcome, note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Kildeavstemming", error);
+      return { ok: false, reason: "Vurderingen kunne ikke journalføres." };
+    }
+  }
+
+  function lillebekkBuildSaksframlegg(model, recommendation) {
+    const unresolved = model.dossier.topics.filter(function (topic) {
+      return topic.issue || !topic.documented || topic.reviewNeedLogged ||
+        topic.caveatLogged || ["mangelfull", "motstridende", "fagkontroll"].includes(topic.assessmentOutcome);
+    });
+    const lines = [
+      "LILLEBEKK – INTERNT SAKSFRAMLEGG, UTKAST",
+      "Ikke godkjent. Ikke sendt til politisk behandling. Fiktivt spillmateriale.",
+      "",
+      "1. Dokumentgrunnlag",
+      "LBK-MERK-01: Hannes innspill om faktisk skolevei, uten trafikksikkerhetsmåling.",
+      "LBK-FAG-02: Signes foreløpige fagnotat; flomvei, jorddybde og planforankring er ikke kontrollert.",
+      "LBK-UTB-03: Ivars forslag om frist ved ferdigattest; dette er ikke et kommunalt tilsagn.",
+      "",
+      "2. Faglige avstemminger",
+      ...model.checks.map(function (check) { return `- ${check.title}: ${check.latestNote}`; }),
+      "",
+      "3. Uavklarte temaer i registrert sak",
+      ...(unresolved.length ? unresolved.map(function (topic) {
+        const documentCaveat = topic.assessmentNote
+          ? ` Siste dokumentvurdering: ${topic.assessmentNote}` : "";
+        const journalCaveat = [
+          topic.reviewNeedLogged ? "Kontrollbehov er journalført." : "",
+          topic.caveatLogged ? "Faglig forbehold er journalført." : ""
+        ].filter(Boolean).join(" ");
+        return `- ${topic.title}: ${topic.status}. ${documentCaveat} ${journalCaveat} ${topic.next}`.replace(/\s+/g, " ").trim();
+      }) : ["- Ingen åpne markører i dette uttrekket; originalbilag må likevel kontrolleres."]),
+      "",
+      "4. Administrativ anbefaling til planleder",
+      recommendation,
+      "",
+      "5. Myndighet og status",
+      "Rådgiverens faglige utkast er ikke et vedtak. Elin må gjennomgå videre saksbehandling; planjurist og fagansvarlige må kontrollere krav. Politiske organer tar eventuelle planbeslutninger.",
+      `Kildeversjoner: ${model.signature}`
+    ];
+    return lines.join("\n");
+  }
+
+  function recordLillebekkSaksframlegg(recommendation) {
+    const model = lillebekkSaksframleggModel();
+    if (!model?.ready) {
+      return { ok: false, reason: "Alle tre bilag og alle tre faglig holdbare kildeavstemminger må være registrert." };
+    }
+    const text = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0, 750);
+    if (text.length < 70) {
+      return { ok: false, reason: "Skriv en konkret administrativ anbefaling på minst 70 tegn." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    }
+    const note = lillebekkBuildSaksframlegg(model, text);
+    if (model.latestDraft?.note === note) {
+      return { ok: true, alreadyLogged: true };
+    }
+    if (model.draftCount >= 10) return { ok: false, reason: "Utkastloggen er full." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: `lillebekk_saksframlegg_utkast_v${model.draftCount + 1}`,
+        scene_id: "lillebekk_saksframlegg",
+        choice_id: "journalfor_internt_utkast",
+        at: new Date().toISOString(), outcome: "internt_utkast_ikke_godkjent", note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Saksframlegg", error);
+      return { ok: false, reason: "Utkastet kunne ikke journalføres." };
+    }
+  }
+
+  function lillebekkReviewModel() {
+    const active = window.CivicationState?.getActivePosition?.();
+    // MailPlan uses by_radgiver_plan, while accepted job offers store the
+    // position as role_key/title "arealplanlegger" in CivicationState.
+    const activeIds = [active?.role_scope, active?.role_id, active?.role_key, active?.title]
+      .map(function (value) { return String(value || "").trim().toLowerCase(); });
+    if (!activeIds.some(function (id) {
+      return ["by_radgiver_plan", "by_arealplanlegger", "arealplanlegger"].includes(id);
+    })) return null;
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.getWorkObject !== "function") return null;
+    const early = world.getWorkObject("by_radgiver_lillebekk_early_analysis_case_001");
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!early && !formal) return null;
+    const flags = new Set([...(early?.flags || []), ...(formal?.flags || [])]);
+    const formalFlags = new Set(formal?.flags || []);
+    const canRevise = !!formal && formal.status !== "closed" && !formal.closed_at;
+    const formalHistory = Array.isArray(formal?.history) ? formal.history : [];
+    const topics = LILLEBEKK_REVIEW_TOPICS.map(function (topic) {
+      const documented = topic.positive.some(function (flag) { return flags.has(flag); });
+      const issue = topic.negative.some(function (flag) { return flags.has(flag); });
+      const receipt = formalHistory.find(function (event) {
+        return event.id === `lillebekk_dokument_${topic.id}_oppgitt_mottak_v1`;
+      });
+      const reviews = formalHistory.filter(function (event) {
+        return String(event.id || "").startsWith(`lillebekk_dokument_${topic.id}_vurdering_`);
+      });
+      const latestReview = reviews[reviews.length - 1];
+      return {
+        id: topic.id,
+        title: topic.title,
+        control_owner: topic.control_owner,
+        receiptLogged: !!receipt,
+        receiptNote: receipt?.note || "",
+        assessmentNote: latestReview?.note || "",
+        assessmentOutcome: latestReview?.outcome || "",
+        reviewNeedLogged: formalFlags.has(`lillebekk_revisjon_${topic.id}_kontrollbehov`),
+        caveatLogged: formalFlags.has(`lillebekk_revisjon_${topic.id}_forbehold`),
+        status: documented && issue ? "Motstridende spor – avklar"
+          : issue ? "Åpent avvik" : documented ? "Faglig spor registrert" : "Ingen registrert vurdering",
+        documented,
+        issue,
+        next: topic.next,
+        document: topic.document,
+        check: topic.check,
+        consequence: issue ? "Avviket må føres som uavklart i revisjonsgrunnlaget."
+          : documented ? "Registrert faglig spor må kontrolleres mot bilag før det brukes som dokumentert premiss."
+          : "Ingen registrert vurdering; ikke skriv at forholdet er avklart."
+      };
+    });
+    return {
+      phase: formal ? "Formell saksforberedelse" : "Tidlig saksarbeid",
+      canRevise,
+      topics,
+      documented: topics.filter(function (topic) { return topic.documented; }).length,
+      open: topics.filter(function (topic) { return topic.issue || !topic.documented; }).length,
+      approved: false
+    };
+  }
+
+  // A player action logs a concrete work note, not receipt of a document or an approval.
+  // Use WorkWorld's existing idempotent flag/history mutation, never a parallel store.
+  function recordLillebekkReviewAction(topicId, actionId) {
+    const dossier = lillebekkReviewModel();
+    const topic = dossier?.topics?.find(function (item) { return item.id === topicId; });
+    if (!dossier?.canRevise || !topic || !["kontrollbehov", "forbehold"].includes(actionId)) {
+      return { ok: false, reason: "Saksrevisjonen er ikke tilgjengelig for denne rollen eller saken." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.addFlag !== "function") return { ok: false, reason: "Saksloggen er ikke tilgjengelig." };
+    const caseId = "by_radgiver_lillebekk_plan_case_001";
+    const live = world.getWorkObject(caseId);
+    if (!live || live.status === "closed" || live.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    const flag = `lillebekk_revisjon_${topic.id}_${actionId}`;
+    if ((live.flags || []).includes(flag)) return { ok: true, alreadyLogged: true };
+    const note = actionId === "kontrollbehov"
+      ? `Kontrollbehov registrert for ${topic.title}: etterspør eller les ${topic.document}. Faglig kontakt: ${topic.control_owner}. Dokumentet er ikke registrert mottatt eller verifisert.`
+      : `Forbehold registrert for ${topic.title}: ${topic.check} Uavklarte forhold skal synliggjøres i saksframlegget. Ingen ferdig saksframlegg eller godkjenning er registrert.`;
+    try {
+      world.addFlag(caseId, flag, {
+        event_id: `lillebekk_revisjon_${topic.id}_${actionId}_v1`,
+        scene_id: "lillebekk_revisjon_innboks",
+        choice_id: actionId,
+        at: new Date().toISOString(),
+        note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk-revisjon", error);
+      return { ok: false, reason: "Kontrollbehovet kunne ikke lagres." };
+    }
+  }
+
+
+  // Player-supplied journal references are not evidence that a document was verified.
+  // Both steps use the existing WorkWorld history and keep all unresolved flags.
+  function recordLillebekkDocumentReceipt(topicId, journalRef, sender, description) {
+    const dossier = lillebekkReviewModel();
+    const topic = dossier?.topics?.find(function (item) { return item.id === topicId; });
+    const world = window.CivicationWorkWorld;
+    if (!dossier?.canRevise || !topic || typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Dokumentjournalen er ikke tilgjengelig." };
+    }
+    const clean = function (value, max) {
+      return String(value || "").replace(/\s+/g, " ").trim().slice(0, max);
+    };
+    const reference = clean(journalRef, 100);
+    const source = clean(sender, 120);
+    const summary = clean(description, 500);
+    if (reference.length < 5 || source.length < 4 || summary.length < 12) {
+      return { ok: false, reason: "Oppgi journalreferanse, avsender og en konkret beskrivelse." };
+    }
+    const caseId = "by_radgiver_lillebekk_plan_case_001";
+    const live = world.getWorkObject(caseId);
+    if (!live || live.status === "closed" || live.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    const eventId = `lillebekk_dokument_${topic.id}_oppgitt_mottak_v1`;
+    if ((live.history || []).some(function (event) { return event.id === eventId; })) {
+      return { ok: false, reason: "Det finnes allerede en registrering for dette fagområdet." };
+    }
+    try {
+      world.appendWorkObjectHistory(caseId, {
+        event_id: eventId, scene_id: "lillebekk_revisjon_innboks",
+        choice_id: "registrer_spilleroppgitt_mottak", at: new Date().toISOString(),
+        outcome: "spilleroppgitt_ikke_verifisert",
+        note: `Spilleroppgitt dokumentmottak for ${topic.title}. Dokumenttype: ${topic.document}. Journalreferanse: ${reference}. Avsender: ${source}. Beskrivelse: ${summary}. Kilde og innhold er ikke verifisert av systemet; åpne avvik er uendret.`
+      });
+      return { ok: true };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk-mottak", error);
+      return { ok: false, reason: "Mottaket kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkDocumentAssessment(topicId, outcome, reasoning) {
+    const dossier = lillebekkReviewModel();
+    const topic = dossier?.topics?.find(function (item) { return item.id === topicId; });
+    const world = window.CivicationWorkWorld;
+    const labels = {
+      mangelfull: "Mangler nødvendig grunnlag",
+      motstridende: "Motstridende opplysninger krever avklaring",
+      fagkontroll: "Oversend til ansvarlig fagkontroll"
+    };
+    const reason = String(reasoning || "").replace(/\s+/g, " ").trim().slice(0, 500);
+    if (!dossier?.canRevise || !topic?.receiptLogged ||
+        !Object.prototype.hasOwnProperty.call(labels, outcome) ||
+        typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Oppgitt mottak må journalføres før vurdering." };
+    }
+    if (reason.length < 20) return { ok: false, reason: "Skriv en faglig begrunnelse på minst 20 tegn." };
+    const caseId = "by_radgiver_lillebekk_plan_case_001";
+    const live = world.getWorkObject(caseId);
+    if (!live || live.status === "closed" || live.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    const prefix = `lillebekk_dokument_${topic.id}_vurdering_`;
+    const note = `Foreløpig vurdering av spilleroppgitt bilag for ${topic.title}: ${labels[outcome]}. Begrunnelse: ${reason}. Kildehenvisningen står i mottaksnotatet. Dette bekrefter ikke dokumentet, lukker ikke fagavvik og gir ingen myndighetsgodkjenning.`;
+    const revisions = (live.history || []).filter(function (item) {
+      return String(item.id || "").startsWith(prefix);
+    });
+    const previous = revisions[revisions.length - 1];
+    // Duplicate submits (including normalized whitespace) must not consume a revision.
+    // A real change may still return to an earlier assessment after an intervening one.
+    if (previous?.outcome === outcome && previous?.note === note) {
+      return { ok: true, alreadyLogged: true };
+    }
+    if (revisions.length >= 20) return { ok: false, reason: "Vurderingsloggen er full." };
+    try {
+      world.appendWorkObjectHistory(caseId, {
+        event_id: `${prefix}${revisions.length + 1}`, scene_id: "lillebekk_revisjon_innboks",
+        choice_id: outcome, at: new Date().toISOString(), outcome, note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk-vurdering", error);
+      return { ok: false, reason: "Vurderingen kunne ikke journalføres." };
+    }
+  }
+
+
+  function lillebekkDocumentHtml(topic) {
+    const topicAttr = ' data-topic-id="' + escapeHtml(topic.id) + '"';
+    let html = '<details class="civi-inbox-history"><summary>Dokumentmottak og faglig vurdering</summary>';
+    if (!topic.receiptLogged) {
+      html += '<p>Registrer bare bilag du har fått opplysninger om i spillet. Mottaket er spilleroppgitt, ikke verifisert.</p>';
+      html += '<label>Journalreferanse <input type="text" maxlength="100" data-civi-document-ref placeholder="Journalpost eller dokumentnummer"></label>';
+      html += '<label>Avsender <input type="text" maxlength="120" data-civi-document-sender placeholder="Fagavdeling eller avsender"></label>';
+      html += '<label>Dokumentbeskrivelse <textarea rows="3" maxlength="500" data-civi-document-description placeholder="Hvilket grunnlag har du faktisk fått?"></textarea></label>';
+      html += '<button class="civi-btn secondary" type="button" data-civi-lillebekk-receipt="1"' +
+        topicAttr + '>Journalfør spilleroppgitt mottak</button>';
+    } else {
+      html += '<p><strong>Journalført mottak (spilleroppgitt):</strong> ' + escapeHtml(topic.receiptNote) + '</p>';
+      if (topic.assessmentNote) html += '<p><strong>Siste foreløpige vurdering:</strong> ' + escapeHtml(topic.assessmentNote) + '</p>';
+      html += '<label>Faglig resultat <select data-civi-assessment-outcome>' +
+        '<option value="mangelfull">Mangler nødvendig grunnlag</option>' +
+        '<option value="motstridende">Motstridende opplysninger – avklar</option>' +
+        '<option value="fagkontroll">Oversend til fagkontroll</option></select></label>';
+      html += '<label>Begrunnelse <textarea rows="3" maxlength="500" data-civi-assessment-reason placeholder="Beskriv konkret hva som må kontrolleres"></textarea></label>';
+      html += '<button class="civi-btn secondary" type="button" data-civi-lillebekk-assess="1"' +
+        topicAttr + '>Journalfør foreløpig vurdering</button>';
+    }
+    html += '<p class="muted" data-civi-lillebekk-error role="status"></p></details>';
+    return html;
+  }
+
+
+  function lillebekkSaksframleggHtml() {
+    const model = lillebekkSaksframleggModel();
+    if (!model) return "";
+    const safeCount = model.checks.filter(function (check) { return check.safe; }).length;
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-saksframlegg="1">' +
+      '<summary>Bilagsavstemming og internt saksframlegg</summary>' +
+      '<p>Fiktiv plansak. Sammenlign dokumentenes påstander, vis usikkerhet og journalfør en begrunnet vurdering. Saksframlegget gir ikke myndighet til å godkjenne planen.</p>';
+    if (!model.exhibitsReviewed) {
+      html += '<p><strong>Første arbeidsoppgave:</strong> Behandle alle tre saksbilag i innboksen. Kildeavstemming krever at innspill, fagnotat og utbyggers henvendelse er gjennomgått.</p>';
+    } else {
+      html += '<p><strong>Faglig forsvarlige avstemminger:</strong> ' + safeCount + ' av 3. En overdrevet kildekonklusjon må korrigeres før saksframlegg kan journalføres.</p>';
+      html += model.checks.map(function (check) {
+        const references = check.refs.join(" + ");
+        return '<section class="civi-inbox-body" data-civi-lillebekk-check-id="' + escapeHtml(check.id) + '">' +
+          '<h4>' + escapeHtml(check.title) + '</h4>' +
+          '<p><strong>Saksbilag:</strong> ' + escapeHtml(references) + '</p>' +
+          '<p><strong>Hva kildene viser:</strong> ' + escapeHtml(check.fact) + '</p>' +
+          '<p><strong>Faglig følge:</strong> ' + escapeHtml(check.consequence) + '</p>' +
+          (check.latestNote ? '<p><strong>Sist journalført:</strong> ' + escapeHtml(check.latestNote) + '</p>' : '') +
+          '<label>Kildekonklusjon <select data-civi-crosscheck-outcome>' +
+            '<option value="avklar_forst"' + (check.latestOutcome === "avklar_forst" ? ' selected' : '') + '>' + escapeHtml(check.defensible) + '</option>' +
+            '<option value="anta_avklart"' + (check.latestOutcome === "anta_avklart" ? ' selected' : '') + '>' + escapeHtml(check.overclaim) + '</option>' +
+          '</select></label>' +
+          '<label>Din begrunnelse <textarea rows="3" maxlength="450" data-civi-crosscheck-reason placeholder="Sammenhold kildene og forklar hva som ennå mangler"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-lillebekk-crosscheck="1" data-check-id="' + escapeHtml(check.id) + '">Journalfør kildeavstemming</button>' +
+          '<p class="muted" role="status" data-civi-lillebekk-check-error></p>' +
+        '</section>';
+      }).join("");
+    }
+    if (model.latestDraft) {
+      html += '<h4>Sist journalførte saksframlegg' + (model.upToDate ? ' – gjeldende kildeversjoner' : ' – gjennomgå kildeversjoner på nytt') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestDraft.note) + '</pre>';
+    }
+    if (model.ready) {
+      html += '<section class="civi-inbox-body" data-civi-lillebekk-draft-editor="1">' +
+        '<h4>Administrativ anbefaling til planleder Elin</h4>' +
+        '<p>Beskriv hva som må innhentes, hvem som skal kontrollere det og hvilket prosessvalg du anbefaler. Utkastet skal fortsatt vise alle åpne avvik.</p>' +
+        '<label>Anbefaling <textarea rows="4" maxlength="750" data-civi-draft-recommendation placeholder="Anbefal videre faglig kontroll før saksframlegget går til ledergjennomgang …"></textarea></label>' +
+        '<button class="civi-btn secondary" type="button" data-civi-lillebekk-draft="1">Journalfør internt saksframlegg</button>' +
+        '<p class="muted" role="status" data-civi-lillebekk-draft-error></p></section>';
+    } else if (model.exhibitsReviewed) {
+      html += '<p>Det interne saksframlegget kan først utarbeides når alle tre kildeavstemminger er faglig holdbare. Et valg som påstår at uverifiserte forhold er godkjent, må revideres.</p>';
+    }
+    return html + '</details>';
+  }
+
+  function lillebekkReviewHtml() {
+    const dossier = lillebekkReviewModel();
+    if (!dossier) return "";
+    const caseExhibits = lillebekkExhibitsFor(dossier);
+    return `
+      <section class="civi-inbox-channel-section civi-lillebekk-dossier" aria-label="Lillebekk saksoversikt">
+        <div class="civi-inbox-channel-head">
+          <div>
+            <h3>Lillebekk · saksoversikt</h3>
+            <p class="muted">${escapeHtml(dossier.phase)}. ${dossier.documented} av 7 temaer har et registrert faglig spor; ${dossier.open} trenger dokumentasjon eller avklaring.</p>
+          </div>
+        </div>
+        ${caseExhibits.length ? `<details class="civi-inbox-history" data-civi-lillebekk-documents="1">
+          <summary>Saksbilag til gjennomgang (${caseExhibits.length})</summary>
+          ${caseExhibits.map(lillebekkExhibitHtml).join("")}
+        </details>` : ""}
+        ${lillebekkSaksframleggHtml()}
+        <details class="civi-inbox-history">
+          <summary>Se faglige vurderinger og åpne avvik</summary>
+          <div class="civi-inbox-history-list">
+            ${dossier.topics.map(function (topic) {
+              return `<article class="civi-inbox-card">
+                <div class="civi-inbox-card-head"><div class="civi-inbox-card-title-wrap">
+                  <h4>${escapeHtml(topic.title)}</h4>
+                  <p class="civi-inbox-sender">${escapeHtml(topic.status)}</p>
+                </div></div>
+                <div class="civi-inbox-body">
+                  <p><strong>Kontrollgrunnlag som må etterspørres eller leses:</strong> ${escapeHtml(topic.document)}</p>
+                  <p><strong>Faglig kontakt:</strong> ${escapeHtml(topic.control_owner)}</p>
+                  <p><strong>Kontrollpunkt:</strong> ${escapeHtml(topic.check)}</p>
+                  <p><strong>Neste arbeidsoppgave:</strong> ${escapeHtml(topic.next)}</p>
+                  <p><strong>Faglig følge:</strong> ${escapeHtml(topic.consequence)}</p>
+                  ${dossier.canRevise ? `<div class="civi-inbox-card-actions" role="group" aria-label="Revisjonsarbeid: ${escapeHtml(topic.title)}">
+                    <button class="civi-btn secondary" type="button" data-civi-lillebekk-review="1" data-topic-id="${escapeHtml(topic.id)}" data-review-action="kontrollbehov" ${topic.reviewNeedLogged ? "disabled" : ""}>${topic.reviewNeedLogged ? "Kontrollbehov journalført" : "Journalfør kontrollbehov"}</button>
+                    <button class="civi-btn secondary" type="button" data-civi-lillebekk-review="1" data-topic-id="${escapeHtml(topic.id)}" data-review-action="forbehold" ${topic.caveatLogged ? "disabled" : ""}>${topic.caveatLogged ? "Forbehold journalført" : "Journalfør faglig forbehold"}</button>
+                  </div>` : ""}
+                  ${dossier.canRevise ? lillebekkDocumentHtml(topic) : ""}
+                </div>
+              </article>`;
+            }).join("")}
+          </div>
+        </details>
+        <p class="muted">Dette er en kontrolliste over aktuelle dokumenttyper, ikke bekreftede bilag. Kontrollbehov, spilleroppgitt dokumentmottak og foreløpig vurdering journalføres uten automatisk dokumentverifikasjon, utsendelse eller lukking av fagavvik. Registrert faglig spor betyr ikke at et dokument er kontrollert, og gir ikke planvedtak eller ledergodkjenning.</p>
+      </section>`;
+  }
+
   function isPending(item) {
     return isOpenItem(item);
   }
@@ -543,7 +1291,84 @@
       });
   }
 
+
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-lillebekk-crosscheck]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-lillebekk-check-id]");
+        const result = recordLillebekkComparison(
+          String(button.getAttribute("data-check-id") || ""),
+          card?.querySelector("[data-civi-crosscheck-outcome]")?.value || "",
+          card?.querySelector("[data-civi-crosscheck-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-lillebekk-check-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-lillebekk-draft]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-lillebekk-draft-editor]");
+        const result = recordLillebekkSaksframlegg(
+          card?.querySelector("[data-civi-draft-recommendation]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-lillebekk-draft-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-lillebekk-exhibit]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const result = recordLillebekkExhibitDecision(
+          String(button.getAttribute("data-doc-id") || ""),
+          String(button.getAttribute("data-choice-id") || ""));
+        if (result.ok) renderInboxSections();
+        else {
+          const message = button.closest(".civi-lillebekk-exhibit")?.querySelector("[data-civi-lillebekk-exhibit-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-lillebekk-receipt]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest(".civi-inbox-card");
+        const read = function (selector) { return card?.querySelector(selector)?.value || ""; };
+        const result = recordLillebekkDocumentReceipt(
+          String(button.getAttribute("data-topic-id") || ""),
+          read("[data-civi-document-ref]"), read("[data-civi-document-sender]"),
+          read("[data-civi-document-description]"));
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-lillebekk-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-lillebekk-assess]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest(".civi-inbox-card");
+        const result = recordLillebekkDocumentAssessment(
+          String(button.getAttribute("data-topic-id") || ""),
+          card?.querySelector("[data-civi-assessment-outcome]")?.value || "",
+          card?.querySelector("[data-civi-assessment-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-lillebekk-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-lillebekk-review]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (button.disabled) return;
+        const result = recordLillebekkReviewAction(
+          String(button.getAttribute("data-topic-id") || ""),
+          String(button.getAttribute("data-review-action") || ""));
+        if (result.ok) renderInboxSections();
+      });
+    });
     host.querySelectorAll("[data-civi-inbox-answer]").forEach(function (button) {
       button.addEventListener("click", function () {
         answerFromInbox(button);
@@ -574,6 +1399,7 @@
     const markup = `
       <div class="civi-inbox-sections" data-civi-inbox-sections="1">
         ${buildAnswerSummaryHtml()}
+        ${lillebekkReviewHtml()}
         ${renderInboxSection(
           "Jobbmail",
           "Arbeid, stilling, rolleprogresjon, arbeidsdag, konflikter, forfremmelse, stagnasjon og oppsigelse.",
@@ -691,6 +1517,15 @@
     renderSections: renderInboxSections,
     getActionable: pendingActionItems,
     getMessages: visibleMessages,
-    splitChannels: splitInboxByMessageChannel
+    splitChannels: splitInboxByMessageChannel,
+    getLillebekkReviewModel: lillebekkReviewModel,
+    recordLillebekkReviewAction,
+    recordLillebekkDocumentReceipt,
+    recordLillebekkDocumentAssessment,
+    getLillebekkCaseExhibits: lillebekkExhibitsFor,
+    recordLillebekkExhibitDecision,
+    getLillebekkSaksframleggModel: lillebekkSaksframleggModel,
+    recordLillebekkComparison,
+    recordLillebekkSaksframlegg
   };
 })();

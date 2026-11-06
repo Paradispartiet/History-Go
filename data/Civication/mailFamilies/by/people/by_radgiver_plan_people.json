@@ -56,18 +56,54 @@
                 "skriftlig_spor",
                 "ryddig_prosess"
               ],
-              "feedback": "Utbygger må vente på et formelt svar, men svaret tåler å bli lest av andre senere."
+              "feedback": "Utbygger må vente på et formelt svar, men svaret tåler å bli lest av andre senere.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_areal_people_utbygger_001_A_early_decision",
+                    "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "utbyggers_sporsmal_til_skriftlig_vurdering",
+                    "note": "Skriftlig forespørsel er bedt om før faglig svar; rådgiveren har ikke gitt forhåndstilsagn om høyde eller parkering."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_areal_people_utbygger_001_A_early_flag",
+                    "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                    "flag": "developer_formal_request_pending"
+                  }
+                ]
+              }
             },
             {
               "id": "B",
               "label": "Gi et muntlig signal nå og følg opp skriftlig",
-              "reply": "Jeg gir utbygger et muntlig signal nå og følger opp skriftlig etterpå.",
+              "reply": "Jeg gir et foreløpig, ikke-bindende faglig signal og sier uttrykkelig at høyde og parkering ikke er godkjent. Jeg følger opp skriftlig.",
               "effect": 1,
               "tags": [
                 "forutsigbarhet",
                 "arbeidsrelasjon"
               ],
-              "feedback": "Utbygger kan planlegge videre med en gang og du bygger arbeidsrelasjon, men signalet må følges opp skriftlig for å stå seg."
+              "feedback": "Utbygger får et foreløpig svar, men signalet må journalføres og kan ikke brukes som kommunalt forhåndstilsagn.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_areal_people_utbygger_001_B_early_decision",
+                    "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                    "to_status": "needs_review",
+                    "to_phase": "muntlig_utbyggersignal_krever_presisering",
+                    "note": "Et uformelt signal er gitt; det skal dokumenteres og presiseres at det ikke er kommunal godkjenning eller bindende vedtak."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_areal_people_utbygger_001_B_early_flag",
+                    "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                    "flag": "developer_informal_signal_to_correct"
+                  }
+                ]
+              }
             }
           ],
           "next_bias": {
@@ -83,6 +119,50 @@
             ],
             "B": [
               "frist_for_utvalg"
+            ]
+          },
+          "work_context": {
+            "object_ids": [
+              "by_radgiver_lillebekk_early_analysis_case_001"
+            ],
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "priority": "high"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "upsert",
+                "event_id": "by_areal_people_utbygger_001_early_case_observed",
+                "work_object": {
+                  "work_object_id": "by_radgiver_lillebekk_early_analysis_case_001",
+                  "kind": "planning_professional_review_case",
+                  "role_scope": "by_radgiver_plan",
+                  "institution_id": "oslo_kommune_planavdeling_001",
+                  "title": "Lillebekk: kartgrunnlag, arealkonflikt, utbyggerkontakt og grøntdrag",
+                  "people_refs": [
+                    "elin_plansjef",
+                    "signe_byokolog",
+                    "ivar_utbygger",
+                    "nora_planjuss"
+                  ],
+                  "place_refs": [
+                    "lillebekk_kvartal"
+                  ],
+                  "knowledge_refs": [
+                    "plankart_og_bestemmelser",
+                    "skolevei_og_grontdrag",
+                    "planfaglig_myndighetsgrense"
+                  ],
+                  "open_questions": [
+                    "Hva viser kartet og de gjeldende planbestemmelsene faktisk om grøntdrag, bolig og varelevering?",
+                    "Er grøntdraget teknisk gjennomførbart uten å miste jorddybde, flomvei og passasje?",
+                    "Er utbyggers muntlige forventning arkivført og tydelig ikke-bindende?",
+                    "Hvilken faglig anbefaling skal fremmes for plansjef og planjurist før eventuell administrativ godkjenning?"
+                  ],
+                  "confidentiality": "intern_planfaglig_saksbehandling_med_sporbare_aktorkontakter",
+                  "shared": false
+                }
+              }
             ]
           }
         },

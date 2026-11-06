@@ -177,9 +177,10 @@ for (const arc of arcs) for (const variant of arc.variants) {
     paths++;
   }
 }
-for (const [choice, status, response, delivery] of [
+for (const [choice, status, response, delivery, settlement] of [
   ['avgrens', 'tilbud_sendt', 'bestilt', 'send'],
-  ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle'],
+  ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle', 'send'],
+  ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle', 'avslutt'],
   ['avklar', 'venter_pa_svar', 'apen', null],
   ['avsla', 'avslatt', undefined, null]
 ]) {
@@ -205,9 +206,9 @@ for (const [choice, status, response, delivery] of [
   ({saved, content} = progress(saved, restore(clone(saved)), 13));
   assert.equal(saved.tidligereValg.c04_sluttstatus, {send:'godkjent', varsle:'avbestilt'}[delivery]);
   content = startChapter(saved, content, 'frilans_etter_neste_steg');
-  ({saved} = progress(saved, restore(clone(saved)), 14));
-  assert.equal(saved.tidligereValg.c04_oppgjor, {send:'faktura_sendt', varsle:'honorar_til_avklaring'}[delivery]);
-  assert.equal(saved.meters.penger, money, 'an invoice or an open fee is not a payment');
+  ({saved} = progress(saved, restore(clone(saved)), 14, {c04_oppgjor_avbestilt: settlement}));
+  assert.equal(saved.tidligereValg.c04_oppgjor, {send:'honorar_til_avklaring', avslutt:'avsluttet_uten_krav'}[settlement]);
+  assert.equal(saved.meters.penger, money, 'no payment has been agreed or received');
 }
 
 delete globalThis.CivicationLifePositions;

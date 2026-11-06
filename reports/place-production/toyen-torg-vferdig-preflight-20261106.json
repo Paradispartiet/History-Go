@@ -1,0 +1,121 @@
+{
+  "schema": "history_go_place_vferdig_preflight_v1",
+  "place_id": "toyen_torg",
+  "date": "2026-11-06",
+  "status": "pending_photo_rights_only",
+  "reviewer": "History Go content QA (assistant-assisted; no independent human review claimed)",
+  "scope": "Formal closeout evidence update only; existing content, images, quiz, collections and runtime unchanged",
+  "prior_production": {
+    "pr": "https://github.com/Paradispartiet/History-Go/pull/5635",
+    "content_status": "complete",
+    "profile": "standard",
+    "historic_quality_gate": "29/30",
+    "collections": {
+      "people": 1,
+      "objects": 2,
+      "brands": 1,
+      "structures": 1
+    },
+    "quiz": {
+      "full_questions": 28,
+      "quizcard_questions": 10,
+      "quizcard_parity_pr": "https://github.com/Paradispartiet/History-Go/pull/6745"
+    },
+    "story": "episode_v1",
+    "fagverk": "curated_full",
+    "lesespor": 4,
+    "timeline": "five historical anchors",
+    "languages": "published as part of main production"
+  },
+  "photographic_provenance": {
+    "published_hero": "bilder/places/toyen_torg.webp",
+    "published_frontImage": "bilder/places/toyen_torg_front_portrait.webp",
+    "creator": "Damian Heinisch",
+    "credited_source": "https://grindaker.no/projects/toyen-torg/",
+    "repository_rights_basis": "official_project_site_editorial_reference",
+    "finding": "Six locally hosted variants (Place, portrait, card, two Objects and Structures) derive from two Damian Heinisch images on Grindaker's official site; provenance and credit are recorded but written reuse permission or a broadly applicable license has not been established. This is one rights-clearance workstream spanning multiple image slots, not merely a hero image.",
+    "clearance_status": "not_independently_verified",
+    "historical_2006_photo": "https://commons.wikimedia.org/wiki/File:Toyen_senter.jpg",
+    "historic_2015_option": {
+      "source": "https://commons.wikimedia.org/wiki/File:S%C3%B8rligata_-_T%C3%B8yen_torg_I.jpg",
+      "creator": "Jan-Tore Egge",
+      "license": "CC BY-SA 4.0",
+      "date": "2015-06-30",
+      "limit": "Historical/pre-2018 photograph only; must not stand in for a post-redevelopment photo"
+    },
+    "disposition": "Retain unchanged by this report-only PR. Request documented permission covering History Go's six web-hosted derivatives of the two source photos (incl. crops/WebP), or obtain appropriately licensed genuine images and replace all affected derivatives with regenerated runtime.",
+    "affected_derived_files": [
+      "bilder/places/toyen_torg.webp",
+      "bilder/places/toyen_torg_front_portrait.webp",
+      "bilder/kort/places/toyen_torg.webp",
+      "bilder/kort/objects/toyen_torg_toyenteppene.webp",
+      "bilder/kort/objects/toyen_torg_lysmaster.webp",
+      "bilder/kort/structures/toyen_torg_toyensenteret.webp"
+    ],
+    "distinct_original_images": [
+      {
+        "assetUrl": "https://grindaker.no/assets/uploads/2021/03/Toyen-Torg_Damian-Heinisch_048-2048x1359.jpg",
+        "derivatives": 5
+      },
+      {
+        "assetUrl": "https://grindaker.no/assets/uploads/2020/10/Toyen-Torg_Damian-Heinisch_025-2048x1366.jpg",
+        "derivatives": 1
+      }
+    ],
+    "alternative_search": {
+      "commons_category": "https://commons.wikimedia.org/wiki/Category:T%C3%B8yen_torg",
+      "commons_result": "Available Tøyen torg Commons files predate 2018 renovation; unsuitable as an unqualified post-redevelopment photo.",
+      "visitoslo_guidance": "https://www.visitoslo.com/no/bransjeweb/innholdsbank",
+      "visitoslo_result": "VisitOSLO 'frie rettigheter' usage guidance explicitly ties free use to marketing Oslo as a travel destination; general History Go reuse not established.",
+      "rejected_candidate": "A 2023 article credits an older pre-renovation Tøyen square image CC BY 2.0; its later publication date is not the capture date.",
+      "decision": "Do not mislabel dated archive photos as current, or replace documentary photos with synthetic photorealism."
+    }
+  },
+  "evidence": {
+    "completed_prs": [
+      "https://github.com/Paradispartiet/History-Go/pull/5635",
+      "https://github.com/Paradispartiet/History-Go/pull/6745",
+      "https://github.com/Paradispartiet/History-Go/pull/6751"
+    ],
+    "previously_reported_tests": "Tøyen torg completion 6/6 and quiz-card parity were reported at merge; this preflight does not rerun them.",
+    "current_mobile_desktop_acceptance": {
+      "status": "PASS",
+      "browser": "real Chromium",
+      "viewports": [
+        "mobile 390×844 touch",
+        "desktop 1440×1000 keyboard/mouse"
+      ],
+      "pr": "https://github.com/Paradispartiet/History-Go/pull/7102",
+      "run": "https://github.com/Paradispartiet/History-Go/actions/runs/42226190842",
+      "assertions": "Front 900x1200, operational QuizCard flip/expand/Escape/return and keyboard on desktop, four populated canonical collections with loaded preview images, Objects and Structures popup content, no JS page errors"
+    },
+    "note": "No repository-wide CI success claimed.",
+    "visual_review": {
+      "status": "PASS",
+      "source_pr": "https://github.com/Paradispartiet/History-Go/pull/7105",
+      "run": "https://github.com/Paradispartiet/History-Go/actions/runs/42227089853",
+      "scope": "Unobstructed PlaceCard screenshot at 390px and 1440px and Objects / Structures popup screenshots manually inspected in this session",
+      "verdict": "Title, category, epoke, photo, controls and ingress visibly coherent and readable; popups have loaded previews and proper type hierarchy. No obvious blocking layout defect at tested viewports.",
+      "limitation": "Screenshots from Chromium; not a physical device or comprehensive accessibility audit"
+    }
+  },
+  "closeout_gates": [
+    {
+      "id": "photo_reuse_for_all_six_local_derivatives",
+      "state": "OPEN",
+      "resolution": "Obtain written reuse terms for two original Damian Heinisch photos and six hosted derivatives including cropping/WebP, or replace with authentic appropriately licensed media and verify generated indexes."
+    },
+    {
+      "id": "targeted_placecard_browser_acceptance",
+      "state": "PASS",
+      "resolution": "PR #7102, GitHub Actions run 42226190842; real Chromium mobile 390px and desktop 1440px, flip, four collections and two popups."
+    },
+    {
+      "id": "visual_front_and_popup_review",
+      "state": "PASS",
+      "resolution": "PR #7105, run 42227089853; screenshots inspected for unobstructed PlaceCard fronts and objects/structures popups at both viewports."
+    }
+  ],
+  "remaining_content_rebuild": "none_required",
+  "decision": "Content remains complete, targeted browser QA and visual review PASS. Do not issue formal vFerdig until photo rights covering all locally hosted third-party derivative images are established or remediated."
+}

@@ -1,0 +1,50 @@
+name: Tøyen trafo – official 2026 Oslo Fri news
+on:
+  push:
+    branches: [content/toyen-trafo-ots-news-20261106]
+    paths:
+      - 'data/leksikon/places/oslo/naeringsliv/leksikon_toyen_trafo_news_2026.json'
+      - 'data/leksikon/manifest.json'
+      - 'tests/toyen-trafo-ots-news-2026.test.mjs'
+      - 'tests/toyen-trafo-ots-news-real-browser.mjs'
+      - '.github/workflows/toyen-trafo-ots-news.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: toyen-trafo-ots-news-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    name: Verify factual dated news and visible Place Sheet link
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build updated canonical Place-open
+        run: npm run place-open:build
+      - name: Check the Tøyen trafo news and Place-open materialization
+        run: |
+          node --test tests/toyen-trafo-ots-news-2026.test.mjs
+          npm run place-open:check
+      - name: Test dated News section on mobile and desktop
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/toyen-trafo-ots-news-real-browser.mjs
+      - name: Commit generated runtime only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/place-open/toyen_trafo.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Tøyen trafo: materialize organizer-sourced dated 2026 News in Place-open"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
