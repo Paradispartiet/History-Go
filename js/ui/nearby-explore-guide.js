@@ -29,7 +29,7 @@
 
   function init() {
     const root = document.getElementById("nearbyListContainer");
-    const input = document.getElementById("nearbyQuickSearch");
+    const input = /** @type {HTMLInputElement | null} */ (document.getElementById("nearbyQuickSearch"));
     const count = document.getElementById("nearbySearchCount");
     const summary = document.getElementById("nearbyActiveFilter");
     const toggle = document.getElementById("nearbyGuideToggle");
@@ -63,6 +63,7 @@
       );
       let visible = 0;
       cards.forEach((card) => {
+        if (!(card instanceof HTMLElement)) return;
         const image = card.querySelector("img.nearby-thumb");
         if (image && !image.getAttribute("src")) {
           image.closest(".nearby-thumbWrap")?.classList.add("hg-image-missing");
