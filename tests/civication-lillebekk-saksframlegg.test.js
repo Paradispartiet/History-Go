@@ -202,6 +202,15 @@ assert.equal(api.recordLillebekkComparison('utbygger_myndighet','anta_avklart',
 // Manager rework: Elin is a fictional authored role, not an external approver.
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,true,
  'fresh source snapshot must precede leader review');
+// Exhaust the ten ordinary draft versions before the manager return.
+// A returned review must still permit exactly one corrective draft.
+while (api.getLillebekkSaksframleggModel().draftCount < 10) {
+ const n=api.getLillebekkSaksframleggModel().draftCount+1;
+ assert.equal(api.recordLillebekkSaksframlegg(
+  recommendation+' Ytterligere intern gjennomgang av saksgrunnlaget i versjon '+n+'.').ok,true);
+}
+assert.equal(api.getLillebekkSaksframleggModel().draftCount,10);
+assert.equal(api.recordLillebekkSaksframlegg(recommendation+' Overskridelse av ordinær grense.').ok,false);
 let leader=api.getLillebekkLeaderReviewModel();
 assert.equal(leader.canRequestReview,true);
 assert.equal(api.renderSections(),true);
@@ -252,6 +261,8 @@ assert.equal(leader.corrected,true);
 assert.equal(leader.canRevise,false);
 assert.equal(leader.memo.upToDate,true);
 assert.equal(leader.memo.latestDraft.outcome,'korrigert_internt_utkast_ikke_godkjent');
+assert.equal(leader.memo.draftCount,11,
+ 'exactly one corrective version is available after ten regular drafts');
 assert.ok(leader.memo.latestDraft.note.includes('Lederretur: lillebekk_leder_retur_v1'));
 assert.ok(leader.memo.latestDraft.note.includes('Skolevei og tidspunkt for trygg adkomst'));
 assert.ok(leader.memo.latestDraft.note.includes('Grøntdrag, flomvei og planbestemmelser'));
