@@ -524,6 +524,30 @@ assert.equal(api.renderSections(),true);
 assert.ok(host.innerHTML.includes('&lt;img'));
 assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
 
+// Ten protocol versions must not prevent a genuine later source correction.
+while (api.getLillebekkKontrollbilagModel().reportCount < 10) {
+ const count=api.getLillebekkKontrollbilagModel().reportCount+1;
+ assert.equal(api.recordLillebekkKontrollprotokoll(
+   kontrollRecommendation+' Videre intern arbeidsfordeling er presisert i notatversjon '+count+'.').ok,true);
+}
+assert.equal(api.getLillebekkKontrollbilagModel().reportCount,10);
+assert.equal(api.getLillebekkKontrollbilagModel().current,true);
+assert.equal(api.recordLillebekkKontrollprotokoll(
+ kontrollRecommendation+' Ubegrunnet omformulering uten ny kilde.').ok,false,
+ 'unchanged sources remain subject to the normal version limit');
+assert.equal(api.recordLillebekkKontrollFunn('ganglinje','krev_samordnet_skoleveikontroll',
+ 'Ny avstemming presiserer leveringsvindu og breddeforskjell ved punkt B; fagansvarlig trafikk må kontrollere framkommelighet.').ok,true);
+kontroll=api.getLillebekkKontrollbilagModel();
+assert.equal(kontroll.ready,true);
+assert.equal(kontroll.current,false);
+assert.equal(api.recordLillebekkKontrollprotokoll(kontrollRecommendation).ok,true,
+ 'new source revision must permit a version even after ten earlier protocols');
+assert.equal(api.getLillebekkKontrollbilagModel().reportCount,11);
+assert.equal(api.getLillebekkKontrollbilagModel().current,true);
+assert.equal(api.recordLillebekkKontrollprotokoll(
+ kontrollRecommendation+' Ny omformulering uten kildeendring.').ok,false);
+assert.equal(world.getWorkObject(caseId).status,'open');
+
 // Access and jurisdiction boundaries.
 activeRole={role_key:'butikkmedarbeider'};
 assert.equal(api.getLillebekkKontrollbilagModel(),null);
