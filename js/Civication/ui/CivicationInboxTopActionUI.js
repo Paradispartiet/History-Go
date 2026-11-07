@@ -1461,6 +1461,61 @@
     return html + '</details>';
   }
 
+
+  function lillebekkKontrollbilagHtml() {
+    const model = lillebekkKontrollbilagModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-kontrollbilag="1">' +
+      '<summary>Dokumentkontroll – skolevei, flomvei og rekkefølgekrav</summary>' +
+      '<p>Tre avgrensede, fiktive kontrollbilag. Tall og utdrag er laget for spillet; de beskriver ikke faktiske oppmålinger, juridiske vedtak eller verifiserte rapporter.</p>';
+    if (!model.sourcesCurrent) {
+      html += '<p><strong>Arbeidet er sperret:</strong> Tidligere kildeavstemming eller supplerende fagnotat er utdatert. Rett grunnlaget før kontrollbilagene kan behandles videre.</p>';
+    } else {
+      html += '<p><strong>Forsvarlige dokumentavstemminger:</strong> ' +
+        model.docs.filter(function (doc) { return doc.safe; }).length + ' av 3.</p>';
+      html += model.docs.map(function (doc) {
+        return '<section class="civi-inbox-body" data-civi-kontrollbilag-id="' + escapeHtml(doc.id) + '">' +
+          '<h4>' + escapeHtml(doc.ref) + ' – ' + escapeHtml(doc.title) + '</h4>' +
+          doc.evidence.map(function (item) {
+            return '<p><strong>' + escapeHtml(item.ref) + ' · ' + escapeHtml(item.label) + '</strong>: ' +
+              escapeHtml(item.text) + '</p>';
+          }).join("") +
+          '<p><strong>Hva må sammenholdes?</strong> ' + escapeHtml(doc.discrepancy) + '</p>' +
+          (doc.lastNote ? '<p><strong>Siste vurdering:</strong> ' + escapeHtml(doc.lastNote) + '</p>' : '') +
+          '<label>Rådgiverens konklusjon <select data-civi-kontrollbilag-action>' +
+            '<option value="' + escapeHtml(doc.safeId) + '"' +
+              (doc.lastOutcome === doc.safeId ? ' selected' : '') + '>' +
+              escapeHtml(doc.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(doc.unsafeId) + '"' +
+              (doc.lastOutcome === doc.unsafeId ? ' selected' : '') + '>' +
+              escapeHtml(doc.unsafeLabel) + '</option></select></label>' +
+          '<label>Begrunnelse <textarea rows="3" maxlength="650" data-civi-kontrollbilag-reason ' +
+            'placeholder="Beskriv hva de to dokumentene viser, motstriden og hvem som skal kontrollere"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-kontrollbilag-assess="1" ' +
+            'data-doc-id="' + escapeHtml(doc.id) + '">Journalfør dokumentavstemming</button>' +
+          '<p class="muted" role="status" data-civi-kontrollbilag-error></p>' +
+        '</section>';
+      }).join("");
+    }
+    if (model.latestReport) {
+      html += '<h4>Intern kontrollprotokoll' + (model.current ? ' – gjeldende bilag' : ' – tidligere versjon') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestReport.note) + '</pre>';
+    }
+    if (model.ready) {
+      html += '<section class="civi-inbox-body" data-civi-kontrollbilag-editor="1">' +
+        '<h4>Kontrollprotokoll til neste arbeidsrunde</h4>' +
+        '<p>Angi hvem som må kontrollere de tre avvikene og hva som skal leveres før en ny ledervurdering. Protokollen er ikke et vedtak.</p>' +
+        '<label>Anbefaling <textarea rows="4" maxlength="850" data-civi-kontrollbilag-recommendation ' +
+          'placeholder="Hvem skal måle gangareal, kontrollere flomvei og gjennomgå rekkefølgetekst?"></textarea></label>' +
+        '<button class="civi-btn secondary" type="button" data-civi-kontrollbilag-report="1">Journalfør intern kontrollprotokoll</button>' +
+        '<p class="muted" role="status" data-civi-kontrollbilag-report-error></p></section>';
+    } else if (model.sourcesCurrent) {
+      html += '<p>En kontrollprotokoll krever tre forsvarlige dokumentavstemminger. Feilaktige konklusjoner må korrigeres før videre journalføring.</p>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -1480,6 +1535,7 @@
         ${lillebekkSaksframleggHtml()}
         ${lillebekkLeaderReviewHtml()}
         ${lillebekkFagsvarHtml()}
+        ${lillebekkKontrollbilagHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -1940,6 +1996,32 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-kontrollbilag-assess]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-kontrollbilag-id]");
+        const result = recordLillebekkKontrollFunn(
+          String(button.getAttribute("data-doc-id") || ""),
+          card?.querySelector("[data-civi-kontrollbilag-action]")?.value || "",
+          card?.querySelector("[data-civi-kontrollbilag-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-kontrollbilag-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-kontrollbilag-report]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-kontrollbilag-editor]");
+        const result = recordLillebekkKontrollprotokoll(
+          card?.querySelector("[data-civi-kontrollbilag-recommendation]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-kontrollbilag-report-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-fagsvar-intake]").forEach(function (button) {
       button.addEventListener("click", function () {
         const result = recordLillebekkFagsvarIntake();
@@ -2253,6 +2335,9 @@
     getLillebekkFagsvarModel: lillebekkFagsvarModel,
     recordLillebekkFagsvarIntake,
     recordLillebekkFagsvarAssessment,
-    recordLillebekkFagsvarFollowup
+    recordLillebekkFagsvarFollowup,
+    getLillebekkKontrollbilagModel: lillebekkKontrollbilagModel,
+    recordLillebekkKontrollFunn,
+    recordLillebekkKontrollprotokoll
   };
 })();
