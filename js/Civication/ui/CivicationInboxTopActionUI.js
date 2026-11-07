@@ -1072,7 +1072,12 @@
       "Kildeversjoner: " + model.signature
     ].join("\n");
     if (model.latestReport?.note === note) return { ok: true, alreadyLogged: true };
-    if (model.reportCount >= 10) return { ok: false, reason: "Protokollens revisjonslogg er full." };
+    // Limit discretionary rewrites of an unchanged source snapshot, not the
+    // legally useful correction trail. A changed source must always be able
+    // to produce a new numbered protocol while retaining prior history.
+    if (model.reportCount >= 10 && model.current) {
+      return { ok: false, reason: "Uendret kildegrunnlag har nådd revisjonsgrensen. Ny protokoll krever endret og kontrollert grunnlag." };
+    }
     const world = window.CivicationWorkWorld;
     if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
     const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
