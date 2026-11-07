@@ -932,6 +932,164 @@
     }
   }
 
+
+  // A narrow document-control task following the three authored expert replies.
+  // All extracts are fictional materials for this game, not surveyed real-world facts.
+  const LILLEBEKK_KONTROLLBILAG = [
+    {
+      id: "ganglinje", ref: "LBK-KONT-07", title: "Skolevei – to planutdrag for samme ganglinje",
+      evidence: [
+        { ref: "LBK-SKISSE-07A", label: "Ganglinjeskisse, foreløpig", text: "Punkt B ved adkomst: inntegnet fri gangbredde 1,55 m i ordinær situasjon. Ingen befaring er dokumentert." },
+        { ref: "LBK-DRIFT-07B", label: "Utbyggers logistikkplan, utkast", text: "Punkt B: skissen viser om lag 0,85 m fri passasje ved varelevering, med foreslått aktivitet kl. 07.45–08.15. Ingen godkjent trafikkavviklingsplan er vedlagt." }
+      ],
+      discrepancy: "De to utkastene beskriver ulike tilgjengelige gangarealer på samme punkt. Skolebarn kan passere under den foreslåtte leveringstiden; dette er ikke vurdert trafikkfaglig.",
+      safeId: "krev_samordnet_skoleveikontroll", safeLabel: "Journalfør motstriden og bestill befaring, sikt- og leveringskontroll",
+      unsafeId: "regn_ganglinje_som_sikret", unsafeLabel: "Bruk 1,55 m-skissen som dokumentasjon på trygg skolevei",
+      next: "Trafikkfag må kontrollere punkt B, leveringsvinduet og midlertidig ganglinje før sikkerhet eller rekkefølgetidspunkt vurderes."
+    },
+    {
+      id: "flomvei", ref: "LBK-KONT-08", title: "Overvann – flomveipil mot terrengsnitt",
+      evidence: [
+        { ref: "LBK-KART-08A", label: "Forslag til plankart", text: "Flomveipil gjennom grøntdraget er tegnet mot øst. Kartutsnittet viser ikke kotegrunnlag ved lavpunktet." },
+        { ref: "LBK-SNITT-08B", label: "Foreløpig terrengsnitt A–A", text: "Ved de to endene står vest +6,20 og øst +6,80. Snittet oppgir ikke hindringer, kulvert eller hvordan vann ledes mot den høyere koteverdien i øst." }
+      ],
+      discrepancy: "Tegnet pil og oppgitt terrengsnitt støtter ikke hverandre uten ytterligere teknisk forklaring. Det er ikke grunnlag for å betegne flomveien som kontrollert.",
+      safeId: "krev_koter_og_flomveikontroll", safeLabel: "Registrer kart-/snittavviket og krev høyder og hydraulisk vurdering",
+      unsafeId: "godkjenn_føreslått_flomvei", unsafeLabel: "Anse flomveien sikret fordi pilen er tegnet inn",
+      next: "Overvannsfag må dokumentere retning, høyder, nabovirkning og eventuelle tiltak før planbestemmelsen kan kvalitetssikres."
+    },
+    {
+      id: "rekkefolge", ref: "LBK-KONT-09", title: "Planjuss – to ulike tidspunkt for gangforbindelsen",
+      evidence: [
+        { ref: "LBK-BEST-09A", label: "Utkast til planbestemmelse § 4.1", text: "Gangforbindelsen skal være opparbeidet før første bolig tas i bruk. Utkastet er ikke lovlighetskontrollert." },
+        { ref: "LBK-UTB-09B", label: "Utbyggers forslag til endret ordlyd", text: "Gangforbindelsen skal være opparbeidet senest ved ferdigattest for hele prosjektet. Forslaget er ikke et akseptert vilkår." }
+      ],
+      discrepancy: "De to formuleringene viser forskjellige utløsningspunkter. Et ønske fra utbygger endrer ikke automatisk planbestemmelsen.",
+      safeId: "krev_juridisk_versjonskontroll", safeLabel: "Sammenstill ordlyden og send rekkefølgeforslaget til intern juridisk kontroll",
+      unsafeId: "innvilg_ferdigattestfrist", unsafeLabel: "Legg utbyggers ferdigattestfrist til grunn som godkjent",
+      next: "Planjuss må kvalitetssikre konkret bestemmelsestekst opp mot faglige premisser og myndighetsnivå før eventuell behandling."
+    }
+  ];
+
+  function lillebekkKontrollbilagModel() {
+    const fag = lillebekkFagsvarModel();
+    if (!fag?.latestNote) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const docs = LILLEBEKK_KONTROLLBILAG.map(function (doc) {
+      const prefix = "lillebekk_kontrollbilag_" + doc.id + "_v";
+      const events = history.filter(function (e) { return String(e.id || "").startsWith(prefix); });
+      const latest = events[events.length - 1] || null;
+      return { ...doc, count: events.length, lastId: latest?.id || "",
+        lastOutcome: latest?.outcome || "", lastNote: latest?.note || "",
+        safe: latest?.outcome === doc.safeId };
+    });
+    const sourcesCurrent = !!fag.current && !!fag.ready;
+    const ready = sourcesCurrent && docs.every(function (doc) { return doc.safe; });
+    const signature = [fag.signature, fag.latestNote.id]
+      .concat(docs.map(function (doc) { return doc.lastId; })).join("|");
+    const reports = history.filter(function (e) {
+      return String(e.id || "").startsWith("lillebekk_kontrollprotokoll_v");
+    });
+    const latestReport = reports[reports.length - 1] || null;
+    return { fag, docs, sourcesCurrent, ready, signature, reportCount: reports.length,
+      latestReport, current: !!latestReport && ready &&
+        String(latestReport.note || "").endsWith("Kildeversjoner: " + signature) };
+  }
+
+  function recordLillebekkKontrollFunn(docId, choiceId, explanation) {
+    const model = lillebekkKontrollbilagModel();
+    const doc = model?.docs.find(function (item) { return item.id === docId; });
+    if (!model?.sourcesCurrent || !doc || ![doc.safeId, doc.unsafeId].includes(choiceId)) {
+      return { ok: false, reason: "Et gjeldende, supplerende fagnotat må foreligge før kontroll av disse bilagene." };
+    }
+    const reason = String(explanation || "").replace(/\s+/g, " ").trim().slice(0,650);
+    if (reason.length < 65) {
+      return { ok: false, reason: "Beskriv konkret forskjellen mellom bilagene, ansvarlig fagfunksjon og videre kontroll (minst 65 tegn)." };
+    }
+    const label = choiceId === doc.safeId ? doc.safeLabel : doc.unsafeLabel;
+    const note = "FIKTIV KONTROLLAVSTEMMING " + doc.ref + ": " + doc.title +
+      ". Bilag: " + doc.evidence.map(function (e) {
+        return e.ref + " (" + e.text + ")";
+      }).join(" mot ") + ". Motstrid eller dokumentmangel: " + doc.discrepancy +
+      " Spillerens valg: " + label + ". Begrunnelse: " + reason +
+      ". Neste reelle kontrollbehov: " + doc.next +
+      " Ingen befaring, beregning, juridisk kontroll eller godkjenning er automatisk utført.";
+    if (doc.lastOutcome === choiceId && doc.lastNote === note) return { ok: true, alreadyLogged: true };
+    if (doc.count >= 10 && !(doc.lastOutcome !== doc.safeId && choiceId === doc.safeId)) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd. Bare en faglig korrekt sluttkorrigering tillates." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_kontrollbilag_" + doc.id + "_v" + (doc.count+1),
+        scene_id: "lillebekk_kontrollbilag", choice_id: choiceId,
+        outcome: choiceId, note, at: new Date().toISOString()
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Kontrollbilag", error);
+      return { ok: false, reason: "Kontrollavstemmingen kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkKontrollprotokoll(recommendation) {
+    const model = lillebekkKontrollbilagModel();
+    if (!model?.sourcesCurrent) {
+      return { ok: false, reason: "Tidligere kildeavstemming og supplerende fagnotat må være gjeldende." };
+    }
+    if (!model.ready) {
+      return { ok: false, reason: "Avklar først alle tre motstridene på faglig forsvarlig måte." };
+    }
+    const text = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0,850);
+    if (text.length < 90) {
+      return { ok: false, reason: "Beskriv tre konkrete kontrolloppgaver og hvem som må utføre dem (minst 90 tegn)." };
+    }
+    const open = model.fag.leader.memo.dossier.topics.filter(function (topic) {
+      return topic.issue || !topic.documented || topic.reviewNeedLogged || topic.caveatLogged ||
+        ["mangelfull","motstridende","fagkontroll"].includes(topic.assessmentOutcome);
+    });
+    const note = [
+      "LILLEBEKK – INTERN KONTROLLPROTOKOLL (FIKTIVE BILAG, IKKE GODKJENT)",
+      "Grunnlag: " + model.fag.latestNote.id,
+      "1. Dokumentavstemminger",
+      ...model.docs.map(function (doc) {
+        return "- " + doc.ref + ": " + doc.lastNote;
+      }),
+      "2. Åpne temaer fra den opprinnelige plansaken",
+      ...(open.length ? open.map(function (topic) {
+        return "- " + topic.title + ": " + topic.status + ". " + (topic.assessmentNote || topic.next);
+      }) : ["- Ingen åpne markører i dette uttrekket; ny faglig verifikasjon må fremdeles skje."]),
+      "3. Rådgiverens anbefaling til neste kontrollrunde",
+      text,
+      "4. Status",
+      "Bare dokumentmotstrider i fiktivt materiale er sammenholdt. Ingen eksterne målinger er bekreftet, fagavvik lukket, plan godkjent eller svar sendt til utbygger.",
+      "Kildeversjoner: " + model.signature
+    ].join("\n");
+    if (model.latestReport?.note === note) return { ok: true, alreadyLogged: true };
+    if (model.reportCount >= 10) return { ok: false, reason: "Protokollens revisjonslogg er full." };
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_kontrollprotokoll_v" + (model.reportCount+1),
+        scene_id: "lillebekk_kontrollbilag", choice_id: "journalfor_intern_kontrollprotokoll",
+        outcome: "intern_kontrollprotokoll_ikke_godkjent", at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Kontrollprotokoll", error);
+      return { ok: false, reason: "Protokollen kunne ikke journalføres." };
+    }
+  }
+
   function lillebekkReviewModel() {
     const active = window.CivicationState?.getActivePosition?.();
     // MailPlan uses by_radgiver_plan, while accepted job offers store the
