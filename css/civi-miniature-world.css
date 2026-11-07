@@ -1,0 +1,138 @@
+/* Civication – sammenhengende, diskret miniatyrverden.
+   Dekorativ dagsstripe og dempet statusdesign; ingen endring i spillvalg. */
+body.civi-app {
+  --civi-mini-ink: #aebbb6;
+  --civi-mini-divider: rgba(171, 189, 182, .15);
+}
+
+body.civi-app #civiLifestorySection .civi-day-miniature-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+  min-height: 72px;
+  margin: 4px 0 13px;
+  padding: 0 4px 8px;
+  border-bottom: 1px solid var(--civi-mini-divider);
+}
+
+body.civi-app .civi-day-miniature-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  color: var(--civi-mini-ink);
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+body.civi-app .civi-day-miniature-period {
+  display: block;
+  color: #c6b8a7;
+  font-size: .83rem;
+  font-weight: 650;
+  letter-spacing: .06em;
+  text-transform: none;
+}
+
+/* Informativt fase-navn fra den kanoniske spillkalenderen; ikke enda et
+   ornament eller en ekstra døgnstripe. Lesbart også i smal mobilvisning. */
+body.civi-app .civi-day-miniature-phase {
+  display: block;
+  color: #aebcb7;
+  font-size: .69rem;
+  font-weight: 500;
+  letter-spacing: .025em;
+  line-height: 1.35;
+  text-transform: none;
+  white-space: normal;
+}
+
+body.civi-app .civi-day-miniature-art {
+  flex: 0 0 90px;
+  width: 90px;
+  height: 64px;
+  border-radius: 6px;
+  background-color: #263239;
+  background-image: url("../assets/civication/day-cycle-mini.svg");
+  background-repeat: no-repeat;
+  background-size: 400% 100%;
+  background-position: 0% 50%;
+  filter: saturate(.78);
+  box-shadow: 0 2px 11px rgba(0, 0, 0, .11);
+  overflow: hidden;
+}
+
+body.civi-app[data-civi-visual-period="day"] .civi-day-miniature-label .civi-day-miniature-period { color: #b4c5b4; }
+body.civi-app[data-civi-visual-period="evening"] .civi-day-miniature-label .civi-day-miniature-period { color: #c7b0a3; }
+body.civi-app[data-civi-visual-period="night"] .civi-day-miniature-label .civi-day-miniature-period { color: #aebacf; }
+body.civi-app[data-civi-visual-period="day"] .civi-day-miniature-art { background-position: 33.333% 50%; }
+body.civi-app[data-civi-visual-period="evening"] .civi-day-miniature-art { background-position: 66.667% 50%; }
+body.civi-app[data-civi-visual-period="night"] .civi-day-miniature-art { background-position: 100% 50%; }
+
+/* Mindre ramme-på-ramme: valgene forblir store berøringsmål.
+   Et lite, rolig sidemerke binder dem visuelt til den samme miniatyrverdenen. */
+body.civi-app #civiLifestoryPanel .civi-lifestory-choice {
+  position: relative;
+  padding-left: 19px;
+  border-color: rgba(161, 181, 172, .15);
+  background: linear-gradient(115deg, rgba(112, 137, 123, .075), rgba(25, 31, 34, .25) 60%);
+  box-shadow: inset 0 1px 0 rgba(232, 238, 231, .025);
+}
+/* Available choices are the primary action in «Min dag». Make their text
+   clearly distinct from the subdued descriptive labels, without making
+   unavailable/skill-locked choices appear actionable. */
+body.civi-app #civiLifestoryPanel .civi-lifestory-choice:not(:disabled) {
+  color: #ecf3ee;
+}
+body.civi-app #civiLifestoryPanel .civi-lifestory-choice:not(:disabled) small {
+  color: #c1d2ca;
+}
+
+body.civi-app #civiLifestoryPanel .civi-lifestory-choice::before {
+  content: "";
+  position: absolute;
+  top: 13px;
+  bottom: 13px;
+  left: 7px;
+  width: 2px;
+  border-radius: 8px;
+  background: rgba(143, 169, 151, .46);
+}
+body.civi-app #civiLifestoryPanel .civi-lifestory-choice:hover,
+body.civi-app #civiLifestoryPanel .civi-lifestory-choice:focus-visible {
+  border-color: rgba(162, 200, 175, .42);
+  background: linear-gradient(115deg, rgba(112, 137, 123, .13), rgba(25, 31, 34, .35) 60%);
+}
+body.civi-app #civiLifestoryPanel .civi-lifestory-choice:disabled::before {
+  background: rgba(143, 169, 151, .18);
+}
+
+/* After selecting a story decision, its consequence becomes the next
+   reading location. Account for the fixed app header while scrolling there. */
+body.civi-app #civiLifestoryPanel .civi-lifestory-konsekvens,
+body.civi-app #civiLifestoryPanel .civi-lifestory-scene,
+body.civi-app #civiLifestoryPanel .civi-lifestory-summary {
+  scroll-margin-top: 86px;
+}
+body.civi-app #civiLifestoryPanel .civi-lifestory-section-label[tabindex="-1"]:focus-visible,
+body.civi-app #civiLifestoryPanel h3[tabindex="-1"]:focus-visible {
+  outline: 2px solid #b6d8c2;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (max-width: 420px) {
+  body.civi-app #civiLifestorySection .civi-day-miniature-header {
+    gap: 7px;
+    min-height: 67px;
+  }
+  body.civi-app .civi-day-miniature-label { font-size: .6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.civi-app .civi-day-miniature-art { transition: none; }
+}

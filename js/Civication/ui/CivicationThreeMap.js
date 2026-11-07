@@ -77,7 +77,7 @@
   const MAX_TREES = 900;
 
   const VIEW = 15.9;         // ortografisk halv-høyde ved zoom = 1 (skalert med brettet)
-  const MIN_ZOOM = 0.5;      // mer utzoom (se hele det større brettet)
+  const MIN_ZOOM = 0.32;     // la et smalt mobilutsnitt vise hele modellbrettet ved oversikt
   const MAX_ZOOM = 11.0;     // mer innzoom (helt ned på enkeltsteder)
   const ZOOM_STEP = 1.22;
   const MAX_DPR = 2;
@@ -88,8 +88,24 @@
   // så landemerkene ikke klemmes/overlapper.
   const CAM_BASE = { x: 0.22, y: 24.75, z: 21.3 };
   const TILT = Math.atan2(CAM_BASE.y, CAM_BASE.z); // radianer
-  const START_ZOOM = 1.24;   // startutsnitt: fjord + sentrum + nord/vest-landemerker
+  // Kartflaten er allerede fullskjerm: byen trenger et nærmere startkamera.
+  // Større detaljer på mobil, med full zoom-ut og uendret pan/place-raycast.
+  const START_ZOOM = 1.56;
+  const MOBILE_START_ZOOM = 1.72;
+  function recommendedStartZoom(width) {
+    const w = Number(width);
+    return Number.isFinite(w) && w > 0 && w <= 640 ? MOBILE_START_ZOOM : START_ZOOM;
+  }
   const START_PAN = { x: 0.31, z: -0.44 };
+  function recommendedOverviewZoom(width, height) {
+    const w = Number(width), h = Number(height);
+    if (!Number.isFinite(w) || !Number.isFinite(h) || w <= 0 || h <= 0) return MIN_ZOOM;
+    // Et 34–35-enheters modellbrett, i en smal mobil-viewport, trenger lavere
+    // zoom enn en desktop. Ikke flytt eller endre selve koordinatene.
+    const fitWidth = 2 * VIEW * (w / h) / (MAP_W + 5);
+    const fitHeight = 2 * VIEW / (MAP_D + 5);
+    return clamp(Math.min(0.74, fitWidth, fitHeight), MIN_ZOOM, MAX_ZOOM);
+  }
 
   // Fargepalett – varm modellmaling, dyp fjord, dempet industri, grønn Marka.
   const PAL = {
@@ -144,10 +160,18 @@
   let host = null;
   let renderer = null;
   let scene = null;
+  let worldHemisphere = null;
+  let worldSun = null;
+  let worldFill = null;
   let camera = null;
   let raycaster = null;
   let placeGroup = null;
   let landmarkGroup = null;
+  let microWorldGroup = null;
+  let nearRoadGroup = null;
+  let nearBuildingGroup = null;
+  let microWorldSetPeriod = null;
+  let microWorldSetDetailVisible = null;
   let INVISIBLE_HIT_MAT = null;
 
   let W = 0, H = 0;
@@ -179,8 +203,8 @@
 
   const _stats = {
     placeMarkers: 0, instancedBuildings: 0, genericBuildings: 0, highRiseCount: 0,
-    trees: 0, landmarks: 0, roadSegments: 0, landmarkCountByType: {},
-    localObjects: 0, parkObjects: 0, waterfrontObjects: 0,
+    trees: 0, landmarks: 0, roadSegments: 0, nearRoadCrossings: 0, nearBuildingEntrances: 0, landmarkCountByType: {},
+    localObjects: 0, parkObjects: 0, waterfrontObjects: 0, microWorldObjects: 0, microWorldDrawGroups: 0, microWorldSkipped: 0, microWorldFineObjects: 0,
     visiblePlaceMiniatures: 0, placeMiniatureTypes: {}, hiddenDuplicateLandmarkPlaces: 0,
     placeLodLevel: null, culledPlaces: 0, nudgedPlaces: 0, clickableLandmarkPlaces: [],
     miniatureMeshTotal: 0, detailedMiniatures: 0, lowDetailMiniatures: 0
@@ -646,10 +670,41 @@
   const ROAD_MARKING = 0xd9cc9c;
   function addRoad(g, points, width, y, opts) {
     const o = opts || {};
+    // Kantstein/fortau leses først i nærvisningen. Ett bånd per hovedgate,
+    // uten egne markører eller flere oppdateringer per frame.
+    if (nearRoadGroup && o.marking) {
+      nearRoadGroup.add(extrudeShape(ribbonPolygon(points, width * 1.62), 0.010,
+        0xb5ab99, y - 0.012, { cast: false, receive: false }));
+    }
     g.add(buildRoadRibbon(points, width, o.color != null ? o.color : ROAD_ASPHALT, y));
     if (o.marking) {
       // Tynn (0.004 høy) stripe like over asfalttoppen (0.018).
       g.add(extrudeShape(ribbonPolygon(points, Math.max(0.0012, width * 0.14)), 0.004, ROAD_MARKING, y + 0.02, { cast: false, receive: false }));
+    }
+    // Et fåtall sebrastriper gir gatene skala ved tett zoom. Delte materialer
+    // og geometri per kryssing holder kostnaden lav på mobil.
+    if (nearRoadGroup && o.crossing && points.length >= 2) {
+      const i = Math.floor((points.length - 1) / 2);
+      const a = points[i], b = points[i + 1];
+      const dx = (b[0] - a[0]) * MAP_W, dz = (b[1] - a[1]) * MAP_D;
+      const len = Math.hypot(dx, dz);
+      if (len > 0.1) {
+        const ux = dx / len, uz = dz / len;
+        const cx = nx2x((a[0] + b[0]) / 2), cz = ny2z((a[1] + b[1]) / 2);
+        const widthWorld = Math.min(width * MAP_W * 0.7, 0.19);
+        const stripeWidth = Math.min(0.045, len / 18);
+        const stripeGap = stripeWidth * 1.8;
+        const stripeGeo = new THREE.BoxGeometry(stripeWidth, 0.004, widthWorld);
+        const stripeMat = toMat(0xe1d6c6);
+        for (let j = -2; j <= 2; j++) {
+          const stripe = new THREE.Mesh(stripeGeo, stripeMat);
+          stripe.position.set(cx + ux * j * stripeGap, y + 0.027, cz + uz * j * stripeGap);
+          stripe.rotation.y = -Math.atan2(uz, ux);
+          stripe.castShadow = false; stripe.receiveShadow = false;
+          nearRoadGroup.add(stripe);
+        }
+        _stats.nearRoadCrossings++;
+      }
     }
   }
 
@@ -658,6 +713,9 @@
     const g = new THREE.Group();
     const baseY = GROUND_Y + 0.04;
     _stats.roadSegments = 0;
+    _stats.nearRoadCrossings = 0;
+    nearRoadGroup = new THREE.Group();
+    nearRoadGroup.name = "CivicationNearRoadDetails";
 
     // Akerselva-korridoren – tydelig blå elv som renner nord–sør gjennom byen
     // og munner ut i fjorden. Bredere og litt mørkere enn før så den leser som elv.
@@ -683,13 +741,13 @@
     // nord for Pipervika-bukta (gikk før rett over vannet).
     addRoad(g,
       [[0.44, 0.60], [0.50, 0.585], [0.56, 0.595], [0.59, 0.635], [0.548, 0.652], [0.505, 0.640], [0.472, 0.620], [0.44, 0.622], [0.44, 0.60]],
-      0.010, baseY, { marking: true }
+      0.010, baseY, { marking: true, crossing: true }
     );
 
     // Ring 2 – større bue nord for sentrum.
     addRoad(g,
       [[0.28, 0.535], [0.38, 0.47], [0.50, 0.45], [0.62, 0.46], [0.70, 0.505]],
-      0.013, baseY, { marking: true }
+      0.013, baseY, { marking: true, crossing: true }
     );
 
     // E18 / havneakse langs fjorden vest–øst, i to synlige deler med
@@ -720,6 +778,8 @@
     addRoad(g, [[0.626, 0.518], [0.662, 0.552], [0.690, 0.562]], 0.008, baseY, { color: shade(ROAD_ASPHALT, 0.0) });
 
     scene.add(g);
+    nearRoadGroup.visible = false;
+    scene.add(nearRoadGroup);
   }
 
 
@@ -849,6 +909,35 @@
     scene.add(g);
   }
 
+  // Ekstra, ikke-klikkbare mikrodetaljer i håndvalgte parker, torg og langs kaia.
+  // Modulen skal aldri kunne stoppe 3D-kartet ved feil; ingen spilltilstand endres.
+  function buildMicroWorld() {
+    _stats.microWorldObjects = 0;
+    _stats.microWorldDrawGroups = 0;
+    _stats.microWorldSkipped = 0;
+    _stats.microWorldFineObjects = 0;
+    if (window.CIVICATION_MICROWORLD_ENABLED === false) return;
+    const kit = window.CivicationMapMicroWorld;
+    if (!kit || typeof kit.create !== "function") return;
+    try {
+      const result = kit.create({ THREE, nx2x, ny2z, groundY: GROUND_Y,
+        clearZones: LANDMARK_CLEAR_ZONES, showFine: zoom >= 2.1 });
+      if (result && result.group) {
+        microWorldGroup = result.group;
+        scene.add(microWorldGroup);
+        _stats.microWorldObjects = result.count || 0;
+        _stats.microWorldDrawGroups = result.drawGroups || 0;
+        _stats.microWorldSkipped = result.skipped || 0;
+        _stats.microWorldFineObjects = result.fineCount || 0;
+        microWorldSetDetailVisible = typeof result.setDetailVisible === "function" ? result.setDetailVisible : null;
+        microWorldSetPeriod = typeof result.setPeriod === "function" ? result.setPeriod : null;
+        if (microWorldSetPeriod) microWorldSetPeriod(activeVisualPeriod || "morning");
+      }
+    } catch (error) {
+      console.warn("[CivicationThreeMap] mikroliv feilet; kartet fortsetter:", error);
+    }
+  }
+
   // ---------------------------------------------------------------------------
   // Del 6 – Lys / atmosfære
   // ---------------------------------------------------------------------------
@@ -879,23 +968,50 @@
     pmrem.dispose();
   }
 
+  // Spillets fase styrer bare lyssettingen. Vi setter verdier ved fasebytte,
+  // ikke hver frame, og holder nattlys sterkt nok til lesbare stedskort/bygg.
+  const WORLD_LIGHTING = Object.freeze({
+    morning: { hemi: 0.63, sun: 1.19, fill: 0.36, sky: 0x101820, sunColor: 0xf3dfc7, x: -23, y: 21, z: 16 },
+    day:     { hemi: 0.66, sun: 1.36, fill: 0.36, sky: 0x0e141c, sunColor: 0xfff4e4, x: -19, y: 30, z: 16 },
+    evening: { hemi: 0.59, sun: 1.10, fill: 0.38, sky: 0x101723, sunColor: 0xe4c5b5, x: 16, y: 24, z: 14 },
+    night:   { hemi: 0.49, sun: 0.76, fill: 0.37, sky: 0x0d1520, sunColor: 0xc4d0dc, x: -19, y: 30, z: 16 }
+  });
+  let activeVisualPeriod = null;
+
+  function applyWorldMood() {
+    if (!scene || !worldSun || !worldHemisphere || !worldFill) return;
+    const requested = window.CivicationWorldMood?.getPeriod?.() || "morning";
+    const period = Object.prototype.hasOwnProperty.call(WORLD_LIGHTING, requested) ? requested : "morning";
+    if (period === activeVisualPeriod) return;
+    const mood = WORLD_LIGHTING[period];
+    worldHemisphere.intensity = mood.hemi;
+    worldSun.intensity = mood.sun;
+    worldSun.color.setHex(mood.sunColor);
+    worldSun.position.set(mood.x, mood.y, mood.z);
+    worldFill.intensity = mood.fill;
+    scene.background?.setHex?.(mood.sky);
+    scene.fog?.color?.setHex?.(mood.sky);
+    activeVisualPeriod = period;
+    if (microWorldSetPeriod) microWorldSetPeriod(period);
+    dirty = true;
+  }
+
   function buildLights() {
-    // Lysere, varmere dagslys så de ekte modellenes farger spretter, uten å
-    // blåse ut PBR-flatene. Himmel-/omgivelseslys løftet, sol varmere og
-    // sterkere, litt mer kjølig fill for dybde.
-    scene.add(new THREE.HemisphereLight(0xe2ecf5, 0x474d3c, 0.66));
-    const sun = new THREE.DirectionalLight(0xfff4e4, 1.36);
-    sun.position.set(-19, 30, 16); // konsekvent mykt lys oppe-til-venstre (skalert med brettet)
-    sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
-    const sc = sun.shadow.camera;
+    worldHemisphere = new THREE.HemisphereLight(0xe2ecf5, 0x474d3c, 0.66);
+    scene.add(worldHemisphere);
+    worldSun = new THREE.DirectionalLight(0xfff4e4, 1.36);
+    worldSun.position.set(-19, 30, 16);
+    worldSun.castShadow = true;
+    worldSun.shadow.mapSize.set(2048, 2048);
+    const sc = worldSun.shadow.camera;
     sc.left = -22; sc.right = 22; sc.top = 22; sc.bottom = -22; sc.near = 1; sc.far = 100;
-    sun.shadow.bias = -0.0004;
-    sun.shadow.normalBias = 0.5;
-    scene.add(sun);
-    const fill = new THREE.DirectionalLight(0xccdcee, 0.36);
-    fill.position.set(13, 11, -11);
-    scene.add(fill);
+    worldSun.shadow.bias = -0.0004;
+    worldSun.shadow.normalBias = 0.5;
+    scene.add(worldSun);
+    worldFill = new THREE.DirectionalLight(0xccdcee, 0.36);
+    worldFill.position.set(13, 11, -11);
+    scene.add(worldFill);
+    applyWorldMood();
   }
 
   // ---------------------------------------------------------------------------
@@ -1156,6 +1272,40 @@
       if (capMesh.instanceColor) capMesh.instanceColor.needsUpdate = true;
       scene.add(capMesh);
     }
+    // Ved nærzoom får et utvalg av de instansierte bygningene tydelige dører
+    // og overdekninger, uten å lage ett draw call per hus eller endre hitflater.
+    // Utsnittets eksisterende fasadetekstur står fortsatt for vinduene.
+    nearBuildingGroup = new THREE.Group();
+    nearBuildingGroup.name = "CivicationNearBuildingDetails";
+    const entrances = blocks.filter((b, i) => i % 3 === 0 && b.h >= 0.34).slice(0, 360);
+    if (entrances.length) {
+      const doors = new THREE.InstancedMesh(geo, toMat(0x3e4f59), entrances.length);
+      const canopies = new THREE.InstancedMesh(geo, toMat(0xbfae91), entrances.length);
+      entrances.forEach((b, i) => {
+        const doorH = Math.min(0.20, b.h * 0.33);
+        const doorW = Math.min(0.12, b.fw * 0.29);
+        const front = b.fd / 2 + 0.009;
+        q.setFromAxisAngle(up, b.rot);
+        pos.set(b.x + Math.sin(b.rot) * front, GROUND_Y + doorH / 2 + 0.005,
+          b.z + Math.cos(b.rot) * front);
+        scl.set(doorW, doorH, 0.016);
+        m.compose(pos, q, scl);
+        doors.setMatrixAt(i, m);
+        pos.set(b.x + Math.sin(b.rot) * (front + 0.022), GROUND_Y + doorH + 0.018,
+          b.z + Math.cos(b.rot) * (front + 0.022));
+        scl.set(doorW * 1.32, 0.024, 0.072);
+        m.compose(pos, q, scl);
+        canopies.setMatrixAt(i, m);
+      });
+      [doors, canopies].forEach((mesh) => {
+        mesh.instanceMatrix.needsUpdate = true;
+        mesh.castShadow = false; mesh.receiveShadow = false;
+        nearBuildingGroup.add(mesh);
+      });
+    }
+    nearBuildingGroup.visible = false;
+    scene.add(nearBuildingGroup);
+    _stats.nearBuildingEntrances = entrances.length;
     _stats.instancedBuildings = blocks.length;
     _stats.genericBuildings = blocks.length;
     // «Høyhus» i den generiske massen: skal nå være svært få (Oslo-profil).
@@ -3473,6 +3623,12 @@
     camera.position.set(CAM_BASE.x + panX, CAM_BASE.y, CAM_BASE.z + panZ);
     camera.lookAt(panX, 0, panZ);
     camera.updateProjectionMatrix();
+    // De minste figurene ville bare blitt visuell støy på full oversikt.
+    // Slå av hele gruppen ved laveste zoom; ingen ekstra opprettelse eller draw calls.
+    if (microWorldGroup) microWorldGroup.visible = zoom >= 0.95;
+    if (microWorldSetDetailVisible) microWorldSetDetailVisible(zoom >= 2.1);
+    if (nearBuildingGroup) nearBuildingGroup.visible = zoom >= 2.1;
+    if (nearRoadGroup) nearRoadGroup.visible = zoom >= 2.1;
     dirty = true;
     // Del B: zoom/pan/resize gikk alle gjennom updateCamera -> varsle kartlag
     // (CivicationCityLayer) så HTML-markører kan re-projiseres mot 3D-kameraet.
@@ -3739,22 +3895,63 @@
   // ---------------------------------------------------------------------------
   // Zoom / pan / klikk
   // ---------------------------------------------------------------------------
-  function setZoom(z) {
-    const nz = clamp(z, MIN_ZOOM, MAX_ZOOM);
-    if (Math.abs(nz - zoom) < 0.0005) return;
-    zoom = nz;
-    if (placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
-    updateCamera();
+  // Ortografisk kamera ser skrått ned på et XZ-brett. Den nøyaktige
+  // piksel→bakke-konverteringen tar hensyn til både tilt og svak yaw.
+  // Dermed ligger samme gate/benk under fingeren ved pinch og zoom med mus.
+  function groundOffsetForPixels(dx, dy, unitsPerPixel) {
+    const horizontal = Math.hypot(CAM_BASE.x, CAM_BASE.z);
+    const distance = Math.hypot(horizontal, CAM_BASE.y);
+    const rightX = CAM_BASE.z / horizontal;
+    const rightZ = -CAM_BASE.x / horizontal;
+    const downFactor = distance / CAM_BASE.y;
+    return {
+      x: unitsPerPixel * (dx * rightX + dy * -rightZ * downFactor),
+      z: unitsPerPixel * (dx * rightZ + dy * rightX * downFactor)
+    };
   }
+
+  function zoomAt(value, px, py) {
+    const nz = clamp(value, MIN_ZOOM, MAX_ZOOM);
+    if (!Number.isFinite(nz) || Math.abs(nz - zoom) < 0.0005) return;
+    // Pikselkoordinatet på bakkeplanet skal bli stående i ro under zoom.
+    if (W > 0 && H > 0) {
+      const anchorX = Number(px), anchorY = Number(py);
+      const dx = clamp(Number.isFinite(anchorX) ? anchorX : W / 2, 0, W) - W / 2;
+      const dy = clamp(Number.isFinite(anchorY) ? anchorY : H / 2, 0, H) - H / 2;
+      const oldUnit = (2 * VIEW) / (H * zoom);
+      const newUnit = (2 * VIEW) / (H * nz);
+      const displacement = groundOffsetForPixels(dx, dy, oldUnit - newUnit);
+      panX += displacement.x;
+      panZ += displacement.z;
+    }
+    zoom = nz;
+    // Oppdater kamera først: place-LOD og culling må bruke NYTT utsnitt.
+    updateCamera();
+    if (placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
+  }
+  function setZoom(z) { zoomAt(z, W / 2, H / 2); }
   function zoomIn() { setZoom(zoom * ZOOM_STEP); }
   function zoomOut() { setZoom(zoom / ZOOM_STEP); }
-  function reset() { zoom = START_ZOOM; panX = START_PAN.x; panZ = START_PAN.z; updateCamera(); }
+  function reset() {
+    zoom = recommendedStartZoom(W || host?.clientWidth || window.innerWidth);
+    panX = START_PAN.x; panZ = START_PAN.z;
+    updateCamera();
+    if (_lastLod && placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
+  }
+  function overview() {
+    zoom = recommendedOverviewZoom(W || host?.clientWidth || window.innerWidth,
+      H || host?.clientHeight || window.innerHeight);
+    panX = 0; panZ = 0;
+    updateCamera();
+    if (_lastLod && placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
+  }
   function getZoom() { return zoom; }
 
   function panBy(dxPx, dyPx) {
-    const unitsPerPx = (camera.right - camera.left) / (W * camera.zoom || 1);
-    panX -= dxPx * unitsPerPx;
-    panZ -= (dyPx * unitsPerPx) / Math.max(0.2, Math.cos(TILT)); // bakken trekker seg unna i dybden
+    if (!W || !H) return;
+    const offset = groundOffsetForPixels(dxPx, dyPx, (2 * VIEW) / (H * zoom));
+    panX -= offset.x;
+    panZ -= offset.z;
     updateCamera();
   }
 
@@ -3765,9 +3962,14 @@
     const r = host.getBoundingClientRect();
     return { px: clamp(e.clientX - r.left, 0, W), py: clamp(e.clientY - r.top, 0, H) };
   }
-  function pinchDist() {
+  function pinchState() {
     const pts = [...pointers.values()];
-    return Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) || 1;
+    const rect = host.getBoundingClientRect();
+    return {
+      dist: Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) || 1,
+      px: clamp((pts[0].x + pts[1].x) / 2 - rect.left, 0, W),
+      py: clamp((pts[0].y + pts[1].y) / 2 - rect.top, 0, H)
+    };
   }
   function ignoreTarget(t) {
     return !!(t && t.closest && t.closest(
@@ -3779,14 +3981,20 @@
     if (!active || !inMapMode() || ignoreTarget(e.target)) return;
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pointers.size === 1) { panPrev = { x: e.clientX, y: e.clientY }; downPt = { x: e.clientX, y: e.clientY }; moved = false; }
-    else if (pointers.size === 2) { panPrev = null; pinchPrev = pinchDist(); }
+    else if (pointers.size === 2) { panPrev = null; pinchPrev = pinchState(); }
   }
   function onPointerMove(e) {
     if (!pointers.has(e.pointerId)) return;
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pointers.size >= 2) {
-      const now = pinchDist();
-      if (pinchPrev) { e.preventDefault(); const r = now / pinchPrev; if (r && Number.isFinite(r)) setZoom(zoom * r); }
+      const now = pinchState();
+      if (pinchPrev) {
+        e.preventDefault();
+        const dx = now.px - pinchPrev.px, dy = now.py - pinchPrev.py;
+        if (dx || dy) panBy(dx, dy);
+        const ratio = now.dist / pinchPrev.dist;
+        if (Number.isFinite(ratio) && ratio > 0) zoomAt(zoom * ratio, now.px, now.py);
+      }
       pinchPrev = now; moved = true; return;
     }
     if (panPrev) {
@@ -3815,7 +4023,8 @@
   function onWheel(e) {
     if (!active || !inMapMode()) return;
     e.preventDefault();
-    setZoom(zoom * (e.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP));
+    const { px, py } = relPos(e);
+    zoomAt(zoom * (e.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP), px, py);
   }
   function openPlace(placeId) {
     if (placeId == null) return;
@@ -3866,11 +4075,13 @@
     box2.className = "civi-map-zoom-controls";
     box2.innerHTML =
       '<button type="button" class="civi-map-zoom-btn" data-three-zoom-in aria-label="Zoom inn">+</button>' +
-      '<button type="button" class="civi-map-zoom-btn" data-three-zoom-reset aria-label="Nullstill zoom">⤢</button>' +
+      '<button type="button" class="civi-map-zoom-btn" data-three-zoom-reset aria-label="Tilbake til byutsnitt">⤢</button>' +
+      '<button type="button" class="civi-map-zoom-btn civi-map-overview-btn" data-three-zoom-overview aria-label="Vis hele Oslo" title="Hele Oslo">Oslo</button>' +
       '<button type="button" class="civi-map-zoom-btn" data-three-zoom-out aria-label="Zoom ut">−</button>';
     box2.querySelector("[data-three-zoom-in]").addEventListener("click", (e) => { e.preventDefault(); zoomIn(); });
     box2.querySelector("[data-three-zoom-out]").addEventListener("click", (e) => { e.preventDefault(); zoomOut(); });
     box2.querySelector("[data-three-zoom-reset]").addEventListener("click", (e) => { e.preventDefault(); reset(); });
+    box2.querySelector("[data-three-zoom-overview]").addEventListener("click", (e) => { e.preventDefault(); overview(); });
     host.appendChild(box2);
   }
 
@@ -3880,6 +4091,8 @@
     window.addEventListener("pointermove", onPointerMove, { passive: false });
     window.addEventListener("pointerup", onPointerUp);
     window.addEventListener("pointercancel", onPointerUp);
+    window.addEventListener("civi:visualPeriodChanged", applyWorldMood);
+    window.addEventListener("civi:dayPhaseChanged", applyWorldMood);
     window.addEventListener("resize", resize);
     window.addEventListener("orientationchange", () => setTimeout(resize, 120));
     document.getElementById("btnCiviMap")?.addEventListener("click", () => setTimeout(() => { resize(); dirty = true; }, 30));
@@ -3958,9 +4171,10 @@
     buildCity();
     buildTrees();
     buildLocalObjects();
+    buildMicroWorld();
     buildLandmarks();
 
-    zoom = START_ZOOM;
+    zoom = recommendedStartZoom(host.clientWidth || window.innerWidth);
     panX = START_PAN.x;
     panZ = START_PAN.z;
 
@@ -4000,6 +4214,16 @@
   function getSceneStats() {
     let rendererType = "none";
     if (renderer) rendererType = (renderer.capabilities && renderer.capabilities.isWebGL2) ? "webgl2" : "webgl";
+    // Three.js counters describe the most recently rendered frame on this
+    // device. They are diagnostics only, NOT a mobile FPS or GPU benchmark.
+    const info = renderer && renderer.info;
+    const rendererInfo = info ? {
+      calls: Number(info.render?.calls || 0),
+      triangles: Number(info.render?.triangles || 0),
+      geometries: Number(info.memory?.geometries || 0),
+      textures: Number(info.memory?.textures || 0),
+      pixelRatio: typeof renderer.getPixelRatio === "function" ? Number(renderer.getPixelRatio()) : null
+    } : null;
     return {
       placeMarkers: _stats.placeMarkers,
       visiblePlaceMiniatures: _stats.visiblePlaceMiniatures || 0,
@@ -4015,22 +4239,33 @@
       nudgedPlaces: _stats.nudgedPlaces || 0,
       clickableLandmarkPlaces: (_stats.clickableLandmarkPlaces || []).map((x) => Object.assign({}, x)),
       genericBuildings: _stats.genericBuildings,
+      nearBuildingEntrances: _stats.nearBuildingEntrances,
+      nearRoadCrossings: _stats.nearRoadCrossings,
       instancedBuildings: _stats.instancedBuildings,
       highRiseCount: _stats.highRiseCount,
       trees: _stats.trees,
       localObjects: _stats.localObjects,
       parkObjects: _stats.parkObjects,
       waterfrontObjects: _stats.waterfrontObjects,
+      microWorldObjects: _stats.microWorldObjects,
+      microWorldDrawGroups: _stats.microWorldDrawGroups,
+      microWorldSkipped: _stats.microWorldSkipped,
+      microWorldFineObjects: _stats.microWorldFineObjects,
+      microWorldVisibleObjects: zoom < 0.95 ? 0 : _stats.microWorldObjects - (zoom < 2.1 ? _stats.microWorldFineObjects : 0),
+      visualPeriod: activeVisualPeriod,
       districtProfiles: Object.keys(DISTRICT_VISUAL_PROFILES).length,
       landmarks: _stats.landmarks,
       landmarkCountByType: Object.assign({}, _stats.landmarkCountByType),
       roadSegments: _stats.roadSegments,
       clearZones: LANDMARK_CLEAR_ZONES.map((z) => Object.assign({}, z)),
       clearZoneCount: LANDMARK_CLEAR_ZONES.length,
-      startZoom: START_ZOOM,
+      startZoom: recommendedStartZoom(W || host?.clientWidth || window.innerWidth),
+      overviewZoom: recommendedOverviewZoom(W || host?.clientWidth || window.innerWidth,
+        H || host?.clientHeight || window.innerHeight),
       cameraBase: Object.assign({}, CAM_BASE),
       rendererType,
       renderer: rendererType,
+      rendererInfo,
       zoom: Number(zoom.toFixed(3)),
       active,
       fallback: !active
@@ -4049,6 +4284,10 @@
     zoomIn,
     zoomOut,
     getZoom,
+    zoomAt,
+    overview,
+    recommendedOverviewZoom,
+    recommendedStartZoom,
     // Del A/B – stabilt projeksjons- og transform-API (speiler CanvasMap).
     projectWorldToScreen,
     projectNormalizedToScreen,

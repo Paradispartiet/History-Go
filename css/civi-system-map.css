@@ -361,15 +361,40 @@ body.civi-mapmode .civi-system-panel{
     width:calc(100vw - 20px);
   }
 
+  /* Minimized status must be a small control, not a second header
+     covering streets, buildings and people on the mobile map. */
   .civi-system-layer.is-hud-minimized .civi-system-hud{
     width:auto;
-    max-width:calc(100vw - 72px);
+    min-width:0;
+    max-width:calc(100vw - 88px);
+    padding:7px;
   }
 
+  .civi-system-layer.is-hud-minimized .civi-system-title{
+    gap:6px;
+  }
+
+  .civi-system-layer.is-hud-minimized .civi-system-title strong{
+    display:none;
+  }
+
+  /* Larger controls than the old 30px icon buttons on touch screens. */
+  .civi-system-control-btn{
+    min-width:42px;
+    width:42px;
+    height:42px;
+  }
+
+  .civi-system-layer.is-hud-minimized .civi-system-control-btn.is-text{
+    min-width:0;
+  }
+
+  /* Keep map close above the scene instead of overlapping the bottom-right
+     zoom/overview controls when the phone is in portrait orientation. */
   .civi-system-close{
-    top:auto;
+    top:62px;
     right:12px;
-    bottom:74px;
+    bottom:auto;
   }
 
   .civi-zone-node{
@@ -391,9 +416,13 @@ body.civi-mapmode .civi-system-panel{
   }
 
   .civi-system-panel.is-minimized{
-    left:auto;
-    right:10px;
+    left:10px;
+    right:auto;
+    bottom:126px;
     width:auto;
+    min-width:0;
+    max-width:calc(100vw - 76px);
+    padding:8px 10px;
   }
 
   .civi-system-access-grid{
