@@ -106,6 +106,45 @@
       }
     },
     {
+      "id": "c04_oppgjor_avbestilt",
+      "threadId": "frilans_etter_valget",
+      "dag": 14,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Skal du følge opp honoraret?",
+      "tekst": "Foreningen sendte Leas kortversjon. Styrelederen spør hvor mye du rakk før de avbestilte. Du har notert en halvtime på utkastet og lenkesjekken. En annen kunde venter på en rettelse i ettermiddag.",
+      "valg": [
+        {
+          "id": "send",
+          "tekst": "Send tidsnotatet og spør om de kan dekke halvtimen",
+          "konsekvensTekst": "Styrelederen får oversikten og tar spørsmålet med til styret. Dere har ennå ikke avtalt et beløp.",
+          "effekter": {
+            "flagg": {
+              "c04_oppgjor": "honorar_til_avklaring"
+            }
+          }
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Svar at du lar honoraret ligge, og gjør den andre rettelsen",
+          "konsekvensTekst": "Du sier fra at du avslutter saken og sender rettelsen til den andre kunden i ettermiddag.",
+          "effekter": {
+            "flagg": {
+              "c04_oppgjor": "avsluttet_uten_krav"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_sluttstatus": "avbestilt"
+        }
+      }
+    },
+    {
       "id": "d15_frilans_delt",
       "threadId": "frilans_etter_valget",
       "dag": 15,

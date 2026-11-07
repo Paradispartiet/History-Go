@@ -43,6 +43,8 @@ Maskinlesbare kildehenvisninger og kontroll mot faktisk runtime ligger i [filmTh
 - **Dag 8–9:** Spilleren kan skrive en prøveåpning og sende et avgrenset tilbud, vente på en bekreftet bestilling eller takke nei og gjøre ferdig den andre kundens rettelse. Oppfølgingen følger det lagrede valget.
 - **Dag 11–13:** Når styrelederen bestiller, får spilleren dato og påmeldingsfrist og finner lenka til årets skjema. Ved levering godkjenner styrelederen teksten etter å ha testet lenka på mobilen. Ved varslet forsinkelse sender Lea en kortversjon, og styrelederen trekker bestillingen. En ubesvart forespørsel gir ingen leveransefrist.
 
+**Dag 14 ved avbestilling:** Spilleren kan be om honorar for tiden som er brukt, eller avslutte saken og gjøre ferdig den andre kundens rettelse. En forespørsel om honorar står åpen til foreningen svarer. Ved godkjent levering avsluttes invitasjonsoppdraget på dag 13.
+
 Filmkoblingen ligger i hvordan små avbrytelser og kryssende forpliktelser preger en vanlig arbeidsdag. Scenene er spillbare i `frilans_med_lea.json` og `frilans_neste_steg.json`.
 
 
