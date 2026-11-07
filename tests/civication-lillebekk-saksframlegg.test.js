@@ -471,7 +471,7 @@ saved=JSON.parse(JSON.stringify(saved));
 assert.equal(api.getLillebekkKontrollbilagModel().current,true);
 
 // New issue changes the upstream note signature and temporarily blocks control.
-world.addFlag(caseId,'stormwater_unsecured_in_plan',{
+world.addFlag(caseId,'kontrollbilag_nytt_kotegrunnlag_mangler',{
  event_id:'lillebekk_kontrollbilag_new_stormwater_issue',at:'2026-11-07T11:00:00Z'
 });
 kontroll=api.getLillebekkKontrollbilagModel();
