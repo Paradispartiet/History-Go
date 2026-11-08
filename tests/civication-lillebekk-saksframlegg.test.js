@@ -703,8 +703,143 @@ assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation+
  ' Ingen ny kilde har kommet siden siste utkast.').ok,false);
 
 
+// Second, authored leader review after the updated source-bound decision basis.
+let nextLeader=api.getLillebekkNyLedervurderingModel();
+assert.ok(nextLeader);
+assert.equal(nextLeader.decision.current,true);
+assert.equal(nextLeader.latestReview,null);
+assert.equal(nextLeader.ready,false);
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',
+ 'Trafikkfag må dokumentere sikker adkomst før første bolig tas i bruk.').ok,false);
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(
+ 'Uavklarte forhold må følges opp av relevante kommunale fagmiljøer før videre behandling.').ok,false);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-leder2-review="1"'));
+assert.ok(!host.innerHTML.includes('data-civi-leder2-task-save="1"'));
+const newLeaderReason='Dokumentutdragene viser at skolevei er innsnevret ved varelevering, at avrenning og flomvei ikke er kontrollert, og at rekkefølgekravet må vurderes juridisk.';
+assert.equal(api.recordLillebekkNyLedervurdering('ukjent',newLeaderReason).ok,false);
+assert.equal(api.recordLillebekkNyLedervurdering('returner_for_supplering','for kort').ok,false);
+assert.equal(api.recordLillebekkNyLedervurdering('send_til_planvedtak',newLeaderReason).ok,true);
+nextLeader=api.getLillebekkNyLedervurderingModel();
+assert.equal(nextLeader.currentReview,true);
+assert.equal(nextLeader.accepted,false);
+assert.equal(nextLeader.latestReview.outcome,'simulert_leder_avvist_uforsvarlig_oversendelse');
+assert.ok(nextLeader.latestReview.note.includes('Anbefalingen avvises'));
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',newLeaderReason).ok,false);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('Elin har avvist direkte oversendelse'));
+assert.equal(api.recordLillebekkNyLedervurdering('returner_for_supplering',newLeaderReason).ok,true);
+nextLeader=api.getLillebekkNyLedervurderingModel();
+assert.equal(nextLeader.accepted,true);
+assert.equal(nextLeader.currentReview,true);
+assert.equal(nextLeader.latestReview.outcome,'simulert_leder_retur_for_supplering');
+assert.equal(nextLeader.tasks.length,3);
+assert.deepEqual(Array.from(nextLeader.tasks.map(t=>t.ref)),['LBK-RES-10','LBK-RES-11','LBK-RES-12']);
+assert.ok(nextLeader.latestReview.note.includes('Kildeversjoner:'));
+assert.equal(api.recordLillebekkNyLedervurdering('forbered_intern_sakspakke',newLeaderReason).ok,false);
+assert.equal(api.renderSections(),true);
+assert.equal((host.innerHTML.match(/data-civi-leder2-task-save="1"/g)||[]).length,3);
+assert.equal(api.recordLillebekkLeder2Oppgave('ukjent','ettersporr_trafikkgrunnlag',newLeaderReason).ok,false);
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','godkjent',newLeaderReason).ok,false);
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag','kort').ok,false);
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(newLeaderReason).ok,false);
+const taskReason='Den ansvarlige fagfunksjonen må skaffe datert, etterprøvbar dokumentasjon og vurdere de åpne avvikene før saken kan forberedes for formell behandling. Lederhendelse: lillebekk_ny_ledervurdering_v3; er bare brukerens fritekst og ikke en gyldig journalreferanse.';
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','lukk_skoleveiavvik',taskReason).ok,true);
+assert.equal(api.getLillebekkNyLedervurderingModel().tasks.find(t=>t.id==='trafikk').safe,false);
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',taskReason).ok,true);
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',' '+taskReason+' ').alreadyLogged,true);
+assert.equal(api.recordLillebekkLeder2Oppgave('overvann','ettersporr_beregning_og_hoyder',taskReason).ok,true);
+assert.equal(api.recordLillebekkLeder2Oppgave('planjuss','ettersporr_juridisk_kontroll',taskReason).ok,true);
+nextLeader=api.getLillebekkNyLedervurderingModel();
+assert.equal(nextLeader.ready,true);
+assert.equal(nextLeader.tasks.filter(t=>t.safe).length,3);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-leder2-report-save="1"'));
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat('Kort').ok,false);
+const leaderRecommendation='Trafikkfag får ansvar for befaring, sikt og revidert varelevering. Overvannsfag må levere beregning og høydesnitt. Planjuss skal vurdere rekkefølgekravet før Elin kan gå videre.';
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(leaderRecommendation).ok,true);
+nextLeader=api.getLillebekkNyLedervurderingModel();
+assert.equal(nextLeader.current,true);
+assert.equal(nextLeader.reportCount,1);
+assert.equal(nextLeader.latestReport.outcome,'intern_lederoppfolging_uten_godkjenning');
+for(const text of ['LBK-RES-10','LBK-RES-11','LBK-RES-12','Medvirkning','Skolevei','Grøntdrag','Kildeversjoner:']) {
+ assert.ok(nextLeader.latestReport.note.includes(text),'leader follow-up source '+text);
+}
+assert.ok(nextLeader.latestReport.note.includes('Ingen avvik er lukket'));
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(' '+leaderRecommendation+' ').alreadyLogged,true);
+assert.equal(world.getWorkObject(caseId).status,'open');
+assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
+ assert.ok(world.getWorkObject(caseId).flags.includes(flag));
+}
+saved=JSON.parse(JSON.stringify(saved));
+assert.equal(api.getLillebekkNyLedervurderingModel().current,true);
+
+// An old return may never govern changed evidence. A fresh decision basis
+// gets a new simulated manager review and three new source-bound tasks.
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje','registrer_kontrollbehov_for_ganglinje',
+ 'Fagansvarlig må oppdatere dokumentkontroll og presisere ganglinje, sikt og vareleveringsvinduer etter ny faglig vurdering.').ok,true);
+nextLeader=api.getLillebekkNyLedervurderingModel();
+assert.equal(nextLeader.decision.current,false);
+assert.equal(nextLeader.current,false);
+assert.equal(nextLeader.accepted,false);
+assert.equal(api.recordLillebekkNyLedervurdering('forbered_intern_sakspakke',newLeaderReason).ok,false);
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(leaderRecommendation).ok,false);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('Oppdatert beslutningsgrunnlag er ikke gjeldende'));
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation).ok,true);
+nextLeader=api.getLillebekkNyLedervurderingModel();
+assert.equal(nextLeader.decision.current,true);
+assert.equal(nextLeader.currentReview,false);
+assert.equal(nextLeader.accepted,false);
+assert.equal(nextLeader.ready,false);
+assert.equal(api.recordLillebekkNyLedervurdering('forbered_intern_sakspakke',newLeaderReason).ok,true);
+nextLeader=api.getLillebekkNyLedervurderingModel();
+assert.equal(nextLeader.currentReview,true);
+assert.equal(nextLeader.latestReview.outcome,'simulert_leder_intern_forberedelse_med_forbehold');
+assert.ok(nextLeader.latestReview.note.includes('intern oversikt over mangler'));
+assert.ok(!nextLeader.latestReview.note.includes('planvedtak er gitt'));
+assert.equal(nextLeader.accepted,true);
+assert.equal(nextLeader.tasks.some(t=>t.safe),false,
+ 'the new manager review cannot inherit previous source-bound tasks');
+assert.equal(nextLeader.current,false);
+assert.ok(nextLeader.tasks.every(t=>t.latestNote.includes('Lederhendelse: lillebekk_ny_ledervurdering_v3;')),
+ 'old notes intentionally contain a forged future reference in player-controlled reasoning');
+assert.ok(nextLeader.tasks.every(t=>!t.safe),
+ 'a forged leader reference anywhere outside the generated note prefix must not make old tasks safe');
+for(const [id,choice] of [['trafikk','ettersporr_trafikkgrunnlag'],['overvann','ettersporr_beregning_og_hoyder'],['planjuss','ettersporr_juridisk_kontroll']]) {
+ assert.equal(api.recordLillebekkLeder2Oppgave(id,choice,taskReason).ok,true);
+}
+assert.equal(api.getLillebekkNyLedervurderingModel().ready,true);
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(leaderRecommendation).ok,true);
+assert.equal(api.getLillebekkNyLedervurderingModel().reportCount,2);
+assert.equal(api.getLillebekkNyLedervurderingModel().current,true);
+
+// Even after ten wrong task revisions, a safe correction and later new-source
+// task record must be possible without dropping the original history.
+for(let i=0;i<8;i++){
+ assert.equal(api.recordLillebekkLeder2Oppgave('planjuss','lov_utbygger_ferdigattest',
+ 'Dette er bevisst feilvalg '+i+'. Bestemmelsen er ikke lovlighetskontrollert, og kommunens beslutningsmyndighet må respekteres.').ok,true);
+}
+nextLeader=api.getLillebekkNyLedervurderingModel();
+assert.equal(nextLeader.tasks.find(t=>t.id==='planjuss').count,10);
+assert.equal(nextLeader.ready,false);
+assert.equal(api.recordLillebekkLeder2Oppgave('planjuss','ettersporr_juridisk_kontroll',taskReason).ok,true);
+assert.equal(api.getLillebekkNyLedervurderingModel().tasks.find(t=>t.id==='planjuss').count,11);
+assert.equal(api.recordLillebekkLeder2Oppgave('planjuss','lov_utbygger_ferdigattest',taskReason).ok,false);
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(leaderRecommendation).ok,true);
+const maliciousLeader='<img src=x onerror=alert(1)> Trafikkfag må kontrollere skoleveien, overvannsfag må kontrollere flomveien, og planjuss må vurdere ordlyden før videre saksbehandling.';
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(maliciousLeader).ok,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('&lt;img'));
+assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
+
 // Access and jurisdiction boundaries.
 activeRole={role_key:'butikkmedarbeider'};
+assert.equal(api.getLillebekkNyLedervurderingModel(),null);
+assert.equal(api.recordLillebekkNyLedervurdering('returner_for_supplering',newLeaderReason).ok,false);
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',taskReason).ok,false);
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(leaderRecommendation).ok,false);
 assert.equal(api.getLillebekkKontrollresultatModel(),null);
 assert.equal(api.recordLillebekkResultatMottak().ok,false);
 assert.equal(api.recordLillebekkResultatvurdering('ganglinje','registrer_kontrollbehov_for_ganglinje',resultatReason).ok,false);
@@ -725,6 +860,10 @@ assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',re
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,false);
 activeRole={role_key:'arealplanlegger'};
 world.closeWorkObject(caseId,{event_id:'lillebekk_memo_test_close',at:'2026-11-07T10:00:00Z',outcome:'closed_for_test'});
+assert.equal(api.getLillebekkNyLedervurderingModel(),null);
+assert.equal(api.recordLillebekkNyLedervurdering('returner_for_supplering',newLeaderReason).ok,false);
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',taskReason).ok,false);
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(leaderRecommendation).ok,false);
 assert.equal(api.getLillebekkKontrollresultatModel(),null);
 assert.equal(api.recordLillebekkResultatMottak().ok,false);
 assert.equal(api.recordLillebekkResultatvurdering('ganglinje','registrer_kontrollbehov_for_ganglinje',resultatReason).ok,false);
