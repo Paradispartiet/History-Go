@@ -1742,6 +1742,67 @@
     return html + '</details>';
   }
 
+
+  function lillebekkKontrollresultatHtml() {
+    const model = lillebekkKontrollresultatModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-resultater="1">' +
+      '<summary>Kontrollresultater – dokumentfunn og ny anbefaling</summary>' +
+      '<p>Alle tre resultatarkene er laget for spilløvelsen. Oppgitte målinger, regneeksempler og juridiske merknader er ikke faktiske undersøkelser eller godkjenninger.</p>';
+    if (!model.sourcesCurrent) {
+      html += '<p><strong>Foreløpig sperret:</strong> Den tidligere kontrollprotokollen er utdatert. Oppdater kildeavstemming og protokoll før du vurderer nye resultatark.</p>';
+    } else if (!model.intake) {
+      html += '<p>Det interne dokumentgrunnlaget er kontrollert. Åpne de tre fiktive resultatarkene og undersøk hva opplysningene faktisk kan begrunne.</p>' +
+        '<button class="civi-btn secondary" type="button" data-civi-resultater-intake="1">Åpne tre fiktive resultatark</button>' +
+        '<p class="muted" role="status" data-civi-resultater-intake-error></p>';
+    } else {
+      html += '<p><strong>Faglig forsvarlige resultatvurderinger:</strong> ' +
+        model.docs.filter(function (doc) { return doc.safe; }).length + ' av 3.</p>';
+      html += model.docs.map(function (doc) {
+        return '<section class="civi-inbox-body" data-civi-resultat-id="' + escapeHtml(doc.id) + '">' +
+          '<h4>' + escapeHtml(doc.ref) + ' – ' + escapeHtml(doc.title) + '</h4>' +
+          '<p><strong>Fiktiv avsender:</strong> ' + escapeHtml(doc.sender) + '</p>' +
+          doc.findings.map(function (finding) {
+            return '<p>' + escapeHtml(finding) + '</p>';
+          }).join("") +
+          '<p><strong>Hva resultatet ikke beviser:</strong> ' + escapeHtml(doc.assessment) + '</p>' +
+          (doc.lastNote ? '<p><strong>Journalført vurdering:</strong> ' +
+            escapeHtml(doc.lastNote) + '</p>' : '') +
+          '<label>Faglig handling <select data-civi-resultat-choice>' +
+            '<option value="' + escapeHtml(doc.safeId) + '"' +
+              (doc.lastOutcome === doc.safeId ? ' selected' : '') + '>' +
+              escapeHtml(doc.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(doc.unsafeId) + '"' +
+              (doc.lastOutcome === doc.unsafeId ? ' selected' : '') + '>' +
+              escapeHtml(doc.unsafeLabel) + '</option></select></label>' +
+          '<label>Begrunnelse <textarea rows="3" maxlength="650" data-civi-resultat-reason ' +
+            'placeholder="Hvilke funn er dokumentert i spillet, hva er fortsatt usikkert, og hvem må følge opp?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-resultat-assess="1" ' +
+            'data-resultat-id="' + escapeHtml(doc.id) + '">Journalfør vurdering</button>' +
+          '<p class="muted" role="status" data-civi-resultat-error></p>' +
+        '</section>';
+      }).join("");
+    }
+    if (model.latestProposal) {
+      html += '<h4>Oppdatert beslutningsgrunnlag' +
+        (model.current ? ' – gjeldende kildeversjoner' : ' – utdatert grunnlag') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestProposal.note) + '</pre>';
+    }
+    if (model.ready) {
+      html += '<section class="civi-inbox-body" data-civi-beslutningsgrunnlag-editor="1">' +
+        '<h4>Administrativ anbefaling til planleder Elin</h4>' +
+        '<p>Sammenhold resultater, manglende faglig dokumentasjon og hvem som må gjøre videre kontroll. Dette lager bare et internt arbeidsgrunnlag.</p>' +
+        '<label>Anbefaling <textarea rows="4" maxlength="950" data-civi-beslutningsgrunnlag-reason ' +
+          'placeholder="Anbefal hvordan uavklarte ganglinje-, overvanns- og rekkefølgeforhold skal følges opp"></textarea></label>' +
+        '<button class="civi-btn secondary" type="button" data-civi-beslutningsgrunnlag-save="1">Journalfør oppdatert internt beslutningsgrunnlag</button>' +
+        '<p class="muted" role="status" data-civi-beslutningsgrunnlag-error></p></section>';
+    } else if (model.intake && model.sourcesCurrent) {
+      html += '<p>Et nytt beslutningsgrunnlag krever tre faglig forsvarlige resultatvurderinger. Feilkonklusjoner må korrigeres først.</p>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -1762,6 +1823,7 @@
         ${lillebekkLeaderReviewHtml()}
         ${lillebekkFagsvarHtml()}
         ${lillebekkKontrollbilagHtml()}
+        ${lillebekkKontrollresultatHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -2222,6 +2284,42 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-resultater-intake]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const result = recordLillebekkResultatMottak();
+        if (result.ok) renderInboxSections();
+        else {
+          const message = button.closest("[data-civi-lillebekk-resultater]")?.querySelector("[data-civi-resultater-intake-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-resultat-assess]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-resultat-id]");
+        const result = recordLillebekkResultatvurdering(
+          String(button.getAttribute("data-resultat-id") || ""),
+          card?.querySelector("[data-civi-resultat-choice]")?.value || "",
+          card?.querySelector("[data-civi-resultat-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-resultat-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-beslutningsgrunnlag-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-beslutningsgrunnlag-editor]");
+        const result = recordLillebekkBeslutningsgrunnlag(
+          card?.querySelector("[data-civi-beslutningsgrunnlag-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-beslutningsgrunnlag-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-kontrollbilag-assess]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-kontrollbilag-id]");
@@ -2564,6 +2662,10 @@
     recordLillebekkFagsvarFollowup,
     getLillebekkKontrollbilagModel: lillebekkKontrollbilagModel,
     recordLillebekkKontrollFunn,
-    recordLillebekkKontrollprotokoll
+    recordLillebekkKontrollprotokoll,
+    getLillebekkKontrollresultatModel: lillebekkKontrollresultatModel,
+    recordLillebekkResultatMottak,
+    recordLillebekkResultatvurdering,
+    recordLillebekkBeslutningsgrunnlag
   };
 })();
