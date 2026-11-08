@@ -2036,6 +2036,85 @@
     return html + '</details>';
   }
 
+
+  function lillebekkNyLedervurderingHtml() {
+    const model = lillebekkNyLedervurderingModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-leder2="1">' +
+      '<summary>Elin – ny ledervurdering etter kontrollresultatene</summary>' +
+      '<p>Dette er en forhåndsskrevet, fiktiv kommunal lederrespons i spillet. Rådgiveren gir anbefaling, mens Elins simulerte respons avgrenser hva som kan forberedes. Ingen faktisk lederbeslutning eller planvedtak sendes.</p>';
+    if (model.latestReview) {
+      html += '<p><strong>Sist journalført lederrespons' +
+        (model.currentReview ? ' – gjeldende' : ' – utdatert kildegrunnlag') +
+        ':</strong></p><pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestReview.note) + '</pre>';
+    }
+    if (!model.decision.current) {
+      html += '<p><strong>Stopp:</strong> Oppdatert beslutningsgrunnlag er ikke gjeldende. Korriger kontrollresultater, kildevurderinger og beslutningsgrunnlag før ledergjennomgang.</p>';
+    } else if (!model.accepted) {
+      if (model.currentReview) {
+        html += '<p><strong>Elin har avvist direkte oversendelse.</strong> Dokumentmanglene står åpne. Begrunn en ny forsvarlig administrativ anbefaling.</p>';
+      }
+      html += '<section class="civi-inbox-body" data-civi-leder2-editor="1">' +
+        '<h4>Rådgiverens forslag til Elin</h4>' +
+        '<p>Vurder de åpne kontrollbehovene. Intern saksforberedelse er noe annet enn formell oversendelse til politisk behandling.</p>' +
+        '<label>Administrativ anbefaling <select data-civi-leder2-choice>' +
+          LILLEBEKK_LEDER_2_CHOICES.map(function (choice) {
+            return '<option value="' + escapeHtml(choice.id) + '">' + escapeHtml(choice.label) + '</option>';
+          }).join("") + '</select></label>' +
+        '<label>Begrunnelse <textarea rows="3" maxlength="750" data-civi-leder2-reason ' +
+          'placeholder="Begrunn ut fra manglende sikkerhets-, overvanns- og juridisk dokumentasjon"></textarea></label>' +
+        '<button class="civi-btn secondary" type="button" data-civi-leder2-review="1">Journalfør anbefaling og simulert lederrespons</button>' +
+        '<p class="muted" role="status" data-civi-leder2-error></p></section>';
+    } else {
+      html += '<p><strong>Elins administrative oppfølging:</strong> ' +
+        (model.latestReview.outcome === "simulert_leder_retur_for_supplering"
+          ? 'Saken er returnert for konkret supplering.'
+          : 'Bare intern dokumentforberedelse er tillatt; ikke oversendelse til vedtak.') +
+        ' Ingen avvik er ferdig kontrollert eller lukket.</p>' +
+        '<p><strong>Forsvarlige oppfølgingsoppgaver:</strong> ' +
+        model.tasks.filter(function (task) { return task.safe; }).length + ' av 3.</p>';
+      html += model.tasks.map(function (task) {
+        return '<section class="civi-inbox-body" data-civi-leder2-task-id="' + escapeHtml(task.id) + '">' +
+          '<h4>' + escapeHtml(task.ref) + ' – ' + escapeHtml(task.title) + '</h4>' +
+          '<p><strong>Elins merknad:</strong> ' + escapeHtml(task.managerNote) + '</p>' +
+          '<p><strong>Nødvendig leveranse:</strong> ' + escapeHtml(task.action) + '</p>' +
+          (task.safe ? '<p><strong>Oppgave dokumentert i saksloggen.</strong> Ingen bestilling er sendt.</p>' : '') +
+          '<label>Oppfølgingshandling <select data-civi-leder2-task-choice>' +
+            '<option value="' + escapeHtml(task.safeId) + '"' +
+              (task.latestOutcome === task.safeId ? ' selected' : '') + '>' +
+              escapeHtml(task.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(task.unsafeId) + '"' +
+              (task.latestOutcome === task.unsafeId ? ' selected' : '') + '>' +
+              escapeHtml(task.unsafeLabel) + '</option></select></label>' +
+          '<label>Begrunnelse og fagansvar <textarea rows="3" maxlength="700" data-civi-leder2-task-reason ' +
+            'placeholder="Hva må leveres og hvem skal kontrollere før videre behandling?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-leder2-task-save="1" data-task-id="' +
+            escapeHtml(task.id) + '">Journalfør intern oppfølgingsoppgave</button>' +
+          '<p class="muted" role="status" data-civi-leder2-task-error></p>' +
+        '</section>';
+      }).join("");
+      if (model.latestReport) {
+        html += '<h4>Internt oppfølgingsnotat' +
+          (model.current ? ' – gjeldende' : ' – eldre versjon') +
+          '</h4><pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+          escapeHtml(model.latestReport.note) + '</pre>';
+      }
+      if (model.ready) {
+        html += '<section class="civi-inbox-body" data-civi-leder2-report-editor="1">' +
+          '<h4>Samlet oppfølgingsplan</h4>' +
+          '<p>Fordel faglige kontroller og dokumentleveranser. Notatet er internt, ikke en utsendelse eller et vedtak.</p>' +
+          '<label>Rådgiverens plan <textarea rows="4" maxlength="900" data-civi-leder2-report-reason ' +
+            'placeholder="Trafikkfag: ... Overvann: ... Planjuss: ..."></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-leder2-report-save="1">Journalfør intern oppfølgingsplan</button>' +
+          '<p class="muted" role="status" data-civi-leder2-report-error></p></section>';
+      } else {
+        html += '<p>Planen kan først journalføres når de tre faglige kontrolloppgavene er riktig formulert og begrunnet.</p>';
+      }
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -2057,6 +2136,7 @@
         ${lillebekkFagsvarHtml()}
         ${lillebekkKontrollbilagHtml()}
         ${lillebekkKontrollresultatHtml()}
+        ${lillebekkNyLedervurderingHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -2517,6 +2597,45 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-leder2-review]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-leder2-editor]");
+        const result = recordLillebekkNyLedervurdering(
+          card?.querySelector("[data-civi-leder2-choice]")?.value || "",
+          card?.querySelector("[data-civi-leder2-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-leder2-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-leder2-task-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-leder2-task-id]");
+        const result = recordLillebekkLeder2Oppgave(
+          String(button.getAttribute("data-task-id") || ""),
+          card?.querySelector("[data-civi-leder2-task-choice]")?.value || "",
+          card?.querySelector("[data-civi-leder2-task-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-leder2-task-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-leder2-report-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-leder2-report-editor]");
+        const result = recordLillebekkLeder2Oppfolgingsnotat(
+          card?.querySelector("[data-civi-leder2-report-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-leder2-report-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-resultater-intake]").forEach(function (button) {
       button.addEventListener("click", function () {
         const result = recordLillebekkResultatMottak();
@@ -2899,6 +3018,10 @@
     getLillebekkKontrollresultatModel: lillebekkKontrollresultatModel,
     recordLillebekkResultatMottak,
     recordLillebekkResultatvurdering,
-    recordLillebekkBeslutningsgrunnlag
+    recordLillebekkBeslutningsgrunnlag,
+    getLillebekkNyLedervurderingModel: lillebekkNyLedervurderingModel,
+    recordLillebekkNyLedervurdering,
+    recordLillebekkLeder2Oppgave,
+    recordLillebekkLeder2Oppfolgingsnotat
   };
 })();
