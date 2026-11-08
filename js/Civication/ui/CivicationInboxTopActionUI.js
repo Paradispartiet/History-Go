@@ -2315,6 +2315,57 @@
     return html + '</details>';
   }
 
+
+  function lillebekkSuppleringssvarHtml() {
+    const model = lillebekkSuppleringssvarModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-supplering="1">' +
+      '<summary>Suppleringssvar – dokumentkontroll og åpne restanser</summary>' +
+      '<p>Tre fiktive, forhåndsskrevne dokumentutdrag til spillet. Disse er ikke faktiske innkomne bilag eller bekreftede undersøkelser.</p>';
+    if (!model.sourceCurrent) {
+      html += '<p><strong>Sperret:</strong> Oppfølgingsnotatet etter Elins ledervurdering er ikke gjeldende. Oppdater det tidligere grunnlaget før suppleringen kan kontrolleres.</p>';
+    } else {
+      html += '<p><strong>Forsvarlig dokumentgjennomgang:</strong> ' +
+        model.docs.filter(function (doc) { return doc.safe; }).length + ' av 3.</p>';
+      html += model.docs.map(function (doc) {
+        return '<section class="civi-inbox-body" data-civi-supplering-id="' + escapeHtml(doc.id) + '">' +
+          '<h4>' + escapeHtml(doc.ref) + ' – ' + escapeHtml(doc.title) + '</h4>' +
+          '<p><strong>Fiktiv avsender:</strong> ' + escapeHtml(doc.sender) + '</p>' +
+          doc.document.map(function (text) { return '<p>' + escapeHtml(text) + '</p>'; }).join("") +
+          '<p><strong>Dette kan konkluderes:</strong> ' + escapeHtml(doc.verified) + '</p>' +
+          '<p><strong>Restanse:</strong> ' + escapeHtml(doc.followup) + '</p>' +
+          (doc.latestNote ? '<p><strong>Gjeldende journalspor:</strong> ' + escapeHtml(doc.latestNote) + '</p>' : '') +
+          '<label>Faglig dokumentbehandling <select data-civi-supplering-choice>' +
+            '<option value="' + escapeHtml(doc.safeId) + '"' +
+              (doc.latestOutcome === doc.safeId ? ' selected' : '') + '>' + escapeHtml(doc.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(doc.unsafeId) + '"' +
+              (doc.latestOutcome === doc.unsafeId ? ' selected' : '') + '>' + escapeHtml(doc.unsafeLabel) + '</option></select></label>' +
+          '<label>Begrunnelse <textarea rows="3" maxlength="720" data-civi-supplering-reason ' +
+            'placeholder="Hva har endret seg i bilaget, hva mangler fortsatt, og hvem skal kontrollere?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-supplering-save="1" data-doc-id="' +
+            escapeHtml(doc.id) + '">Journalfør intern dokumentvurdering</button>' +
+          '<p class="muted" role="status" data-civi-supplering-error></p></section>';
+      }).join("");
+    }
+    if (model.latestMatrix) {
+      html += '<h4>Intern restansematrise' + (model.current ? ' – gjeldende' : ' – utdatert') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestMatrix.note) + '</pre>';
+    }
+    if (model.ready) {
+      html += '<section class="civi-inbox-body" data-civi-supplering-matrix-editor="1">' +
+        '<h4>Samlet restanseliste til videre saksarbeid</h4>' +
+        '<p>Angi hvilke dokumenter som må rettes eller suppleres før ny intern ledervurdering. Listen lukker ingen fagavvik.</p>' +
+        '<label>Oppgavefordeling og dokumentkrav <textarea rows="4" maxlength="950" data-civi-supplering-matrix-reason ' +
+          'placeholder="Trafikk: ... Overvann: ... Planjuss: ..."></textarea></label>' +
+        '<button class="civi-btn secondary" type="button" data-civi-supplering-matrix-save="1">Journalfør intern restansematrise</button>' +
+        '<p class="muted" role="status" data-civi-supplering-matrix-error></p></section>';
+    } else if (model.sourceCurrent) {
+      html += '<p>En intern restansematrise krever forsvarlige vurderinger av alle tre dokumentutdragene. Feilaktige konklusjoner kan korrigeres.</p>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -2337,6 +2388,7 @@
         ${lillebekkKontrollbilagHtml()}
         ${lillebekkKontrollresultatHtml()}
         ${lillebekkNyLedervurderingHtml()}
+        ${lillebekkSuppleringssvarHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -2797,6 +2849,32 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-supplering-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-supplering-id]");
+        const result = recordLillebekkSuppleringsgjennomgang(
+          String(button.getAttribute("data-doc-id") || ""),
+          card?.querySelector("[data-civi-supplering-choice]")?.value || "",
+          card?.querySelector("[data-civi-supplering-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-supplering-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-supplering-matrix-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-supplering-matrix-editor]");
+        const result = recordLillebekkSuppleringsmatrise(
+          card?.querySelector("[data-civi-supplering-matrix-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-supplering-matrix-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-leder2-review]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-leder2-editor]");
@@ -3222,6 +3300,9 @@
     getLillebekkNyLedervurderingModel: lillebekkNyLedervurderingModel,
     recordLillebekkNyLedervurdering,
     recordLillebekkLeder2Oppgave,
-    recordLillebekkLeder2Oppfolgingsnotat
+    recordLillebekkLeder2Oppfolgingsnotat,
+    getLillebekkSuppleringssvarModel: lillebekkSuppleringssvarModel,
+    recordLillebekkSuppleringsgjennomgang,
+    recordLillebekkSuppleringsmatrise
   };
 })();
