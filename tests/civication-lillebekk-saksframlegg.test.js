@@ -743,7 +743,7 @@ assert.equal(api.recordLillebekkLeder2Oppgave('ukjent','ettersporr_trafikkgrunnl
 assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','godkjent',newLeaderReason).ok,false);
 assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag','kort').ok,false);
 assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(newLeaderReason).ok,false);
-const taskReason='Den ansvarlige fagfunksjonen må skaffe datert, etterprøvbar dokumentasjon og vurdere de åpne avvikene før saken kan forberedes for formell behandling.';
+const taskReason='Den ansvarlige fagfunksjonen må skaffe datert, etterprøvbar dokumentasjon og vurdere de åpne avvikene før saken kan forberedes for formell behandling. Lederhendelse: lillebekk_ny_ledervurdering_v3; er bare brukerens fritekst og ikke en gyldig journalreferanse.';
 assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','lukk_skoleveiavvik',taskReason).ok,true);
 assert.equal(api.getLillebekkNyLedervurderingModel().tasks.find(t=>t.id==='trafikk').safe,false);
 assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',taskReason).ok,true);
@@ -803,6 +803,10 @@ assert.equal(nextLeader.accepted,true);
 assert.equal(nextLeader.tasks.some(t=>t.safe),false,
  'the new manager review cannot inherit previous source-bound tasks');
 assert.equal(nextLeader.current,false);
+assert.ok(nextLeader.tasks.every(t=>t.latestNote.includes('Lederhendelse: lillebekk_ny_ledervurdering_v3;')),
+ 'old notes intentionally contain a forged future reference in player-controlled reasoning');
+assert.ok(nextLeader.tasks.every(t=>!t.safe),
+ 'a forged leader reference anywhere outside the generated note prefix must not make old tasks safe');
 for(const [id,choice] of [['trafikk','ettersporr_trafikkgrunnlag'],['overvann','ettersporr_beregning_og_hoyder'],['planjuss','ettersporr_juridisk_kontroll']]) {
  assert.equal(api.recordLillebekkLeder2Oppgave(id,choice,taskReason).ok,true);
 }
