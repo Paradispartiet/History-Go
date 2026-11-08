@@ -797,7 +797,8 @@ assert.equal(api.recordLillebekkNyLedervurdering('forbered_intern_sakspakke',new
 nextLeader=api.getLillebekkNyLedervurderingModel();
 assert.equal(nextLeader.currentReview,true);
 assert.equal(nextLeader.latestReview.outcome,'simulert_leder_intern_forberedelse_med_forbehold');
-assert.ok(nextLeader.latestReview.note.includes('Bare intern dokumentforberedelse'));
+assert.ok(nextLeader.latestReview.note.includes('intern oversikt over mangler'));
+assert.ok(!nextLeader.latestReview.note.includes('planvedtak er gitt'));
 assert.equal(nextLeader.accepted,true);
 assert.equal(nextLeader.tasks.some(t=>t.safe),false,
  'the new manager review cannot inherit previous source-bound tasks');
