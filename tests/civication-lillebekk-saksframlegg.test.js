@@ -834,8 +834,119 @@ assert.equal(api.renderSections(),true);
 assert.ok(host.innerHTML.includes('&lt;img'));
 assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
 
+// Realistic bounded review of the three fictional supplement responses.
+let supplements=api.getLillebekkSuppleringssvarModel();
+assert.ok(supplements,'a current leader follow-up note opens review of authored supplemental documents');
+assert.equal(supplements.sourceCurrent,true);
+assert.equal(supplements.ready,false);
+assert.equal(supplements.docs.length,3);
+assert.deepEqual(Array.from(supplements.docs.map(d=>d.ref)),['LBK-SUP-13','LBK-SUP-14','LBK-SUP-15']);
+assert.equal(supplements.latestMatrix,null);
+assert.equal(api.renderSections(),true);
+for(const fragment of ['LBK-SUP-13','LBK-SUP-14','LBK-SUP-15','4 meter','+6,80','+6,20',
+ '42 m³','26 m³','§ 4.1','fiktive, forhåndsskrevne']) {
+ assert.ok(host.innerHTML.includes(fragment),'present realistic fictional supplement '+fragment);
+}
+assert.equal((host.innerHTML.match(/data-civi-supplering-save="1"/g)||[]).length,3);
+assert.ok(!host.innerHTML.includes('data-civi-supplering-matrix-save="1"'));
+const supReason='Den reviderte skissen og teksten er bare et delvis svar. Fagansvarlig må kontrollere dokumenterbare forhold og levere nødvendige analyser før konklusjon.';
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('ukjent','returner_trafikk_med_konkret_mangelliste',supReason).ok,false);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','ukjent',supReason).ok,false);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','returner_trafikk_med_konkret_mangelliste','kort').ok,false);
+assert.equal(api.recordLillebekkSuppleringsmatrise('Ingen fagavvik kan ennå godkjennes på dette dokumentgrunnlaget.').ok,false);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','godkjenn_revidert_skolevei',supReason).ok,true);
+assert.equal(api.getLillebekkSuppleringssvarModel().docs.find(d=>d.id==='trafikk').safe,false);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','returner_trafikk_med_konkret_mangelliste',supReason).ok,true);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','returner_trafikk_med_konkret_mangelliste',' '+supReason+' ').alreadyLogged,true);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('overvann','registrer_delvis_retting_og_krev_hydraulikk',supReason).ok,true);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('planjuss','journalfor_utkast_med_juridiske_forbehold',supReason).ok,true);
+supplements=api.getLillebekkSuppleringssvarModel();
+assert.equal(supplements.ready,true);
+assert.equal(supplements.docs.filter(d=>d.safe).length,3);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-supplering-matrix-save="1"'));
+assert.equal(api.recordLillebekkSuppleringsmatrise('Kort').ok,false);
+const supPlan='Trafikkfag må kontrollere målsatt gangbredde, sikt og varelevering. Overvannsfag må dokumentere utløp, beregning og virkninger for vestre nabo. Planjuss må kontrollere plankart, rekkefølgeordlyd, ansvar og hjemmel.';
+assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,true);
+supplements=api.getLillebekkSuppleringssvarModel();
+assert.equal(supplements.current,true);
+assert.equal(supplements.matrixCount,1);
+assert.equal(supplements.latestMatrix.outcome,'intern_restanseliste_ikke_godkjent');
+for(const token of ['LBK-SUP-13','LBK-SUP-14','LBK-SUP-15','42 m³',
+ '4 meter','utløpskapasitet','Skolevei','Overvann','Grøntdrag','Medvirkning','Kildeversjoner:']) {
+ assert.ok(supplements.latestMatrix.note.includes(token),'traceable outstanding issue '+token);
+}
+assert.equal(api.recordLillebekkSuppleringsmatrise(' '+supPlan+' ').alreadyLogged,true);
+assert.equal(world.getWorkObject(caseId).status,'open');
+assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
+ assert.ok(world.getWorkObject(caseId).flags.includes(flag),'preserved legal/planning issue '+flag);
+}
+saved=JSON.parse(JSON.stringify(saved));
+assert.equal(api.getLillebekkSuppleringssvarModel().current,true);
+
+// An upstream source revision must invalidate the restanse matrix; the
+// original subject-matter reviews and their history are retained.
+assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',
+ 'Presisert bestilling for kontroll av skolevei og endret leveringsvindu. Trafikkfag må dokumentere fri bredde, sikt og trygghet før innflytting.').ok,true);
+supplements=api.getLillebekkSuppleringssvarModel();
+assert.equal(supplements.sourceCurrent,false);
+assert.equal(supplements.current,false);
+assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,false);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('overvann','registrer_delvis_retting_og_krev_hydraulikk',supReason).ok,false);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('Oppfølgingsnotatet etter Elins ledervurdering er ikke gjeldende'));
+assert.equal(api.recordLillebekkLeder2Oppfolgingsnotat(leaderRecommendation).ok,true);
+supplements=api.getLillebekkSuppleringssvarModel();
+assert.equal(supplements.sourceCurrent,true);
+assert.equal(supplements.ready,false);
+assert.equal(supplements.docs.every(d=>!d.safe),true,'old supplement decisions cannot silently carry to new leader memo');
+for(const [id,choice] of [['trafikk','returner_trafikk_med_konkret_mangelliste'],
+ ['overvann','registrer_delvis_retting_og_krev_hydraulikk'],
+ ['planjuss','journalfor_utkast_med_juridiske_forbehold']]) {
+ assert.equal(api.recordLillebekkSuppleringsgjennomgang(id,choice,supReason).ok,true);
+}
+assert.equal(api.getLillebekkSuppleringssvarModel().ready,true);
+assert.equal(api.getLillebekkSuppleringssvarModel().current,false);
+assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,true);
+assert.equal(api.getLillebekkSuppleringssvarModel().current,true);
+assert.equal(api.getLillebekkSuppleringssvarModel().matrixCount,2);
+
+// The latest documented assessment, rather than player text with an embedded
+// old note ID, decides whether a source is current.
+const fakeFuture='Oppfølgingsnotat: lillebekk_leder2_oppfolgingsnotat_v999; Dette er kun brukerfritekst.';
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('planjuss','journalfor_utkast_med_juridiske_forbehold',
+ supReason+' '+fakeFuture).ok,true);
+assert.equal(api.getLillebekkSuppleringssvarModel().ready,true);
+assert.equal(api.getLillebekkSuppleringssvarModel().current,false);
+assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,true);
+const supInjection='<img src=x onerror=alert(1)> Trafikkfag må utrede målsatt bredde og sikt, overvannsfag må beregne utløp og planjuss må kontrollere bestemmelsesutkastet før ny intern vurdering.';
+assert.equal(api.recordLillebekkSuppleringsmatrise(supInjection).ok,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('&lt;img'));
+assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
+
+// Ten discretionary matrix revisions may not block a source-driven correction.
+while(api.getLillebekkSuppleringssvarModel().matrixCount < 10) {
+ const n=api.getLillebekkSuppleringssvarModel().matrixCount+1;
+ assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan+
+ ' Intern oppfølging og dokumentkrav presiseres i arbeidsversjon '+n+'.').ok,true);
+}
+assert.equal(api.getLillebekkSuppleringssvarModel().matrixCount,10);
+assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan+
+ ' Ikke begrunnet omformulering uten kildeendring.').ok,false);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','returner_trafikk_med_konkret_mangelliste',
+ 'En ny faglig gjennomgang presiserer målsatt fri bredde og risiko ved avvikende varelevering, som fremdeles må kontrolleres av trafikkfag.').ok,true);
+assert.equal(api.getLillebekkSuppleringssvarModel().current,false);
+assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,true);
+assert.equal(api.getLillebekkSuppleringssvarModel().matrixCount,11);
+assert.equal(api.getLillebekkSuppleringssvarModel().current,true);
+
 // Access and jurisdiction boundaries.
 activeRole={role_key:'butikkmedarbeider'};
+assert.equal(api.getLillebekkSuppleringssvarModel(),null);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','returner_trafikk_med_konkret_mangelliste',supReason).ok,false);
+assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,false);
 assert.equal(api.getLillebekkNyLedervurderingModel(),null);
 assert.equal(api.recordLillebekkNyLedervurdering('returner_for_supplering',newLeaderReason).ok,false);
 assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',taskReason).ok,false);
@@ -860,6 +971,9 @@ assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',re
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,false);
 activeRole={role_key:'arealplanlegger'};
 world.closeWorkObject(caseId,{event_id:'lillebekk_memo_test_close',at:'2026-11-07T10:00:00Z',outcome:'closed_for_test'});
+assert.equal(api.getLillebekkSuppleringssvarModel(),null);
+assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','returner_trafikk_med_konkret_mangelliste',supReason).ok,false);
+assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,false);
 assert.equal(api.getLillebekkNyLedervurderingModel(),null);
 assert.equal(api.recordLillebekkNyLedervurdering('returner_for_supplering',newLeaderReason).ok,false);
 assert.equal(api.recordLillebekkLeder2Oppgave('trafikk','ettersporr_trafikkgrunnlag',taskReason).ok,false);
