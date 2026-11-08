@@ -315,13 +315,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "Lenka går til fjorårets skjema",
-      "tekst": "Klokka er snart tre. Utkastet sier fredag, men lenka i den gamle invitasjonsmalen åpner et stengt skjema fra i fjor. I styrelederens e-post ligger lenka til årets skjema. Du har en annen leveranse som også skal ut i ettermiddag.",
+      "tittel": "«Kan du ta forsida også?»",
+      "tekst": "Invitasjonen er klar. Du har byttet ut lenka fra i fjor og prøvd årets skjema. Så skriver Lea: «Styret vil ha teksten på forsida også. Der står fortsatt fjorårets program og to knapper med gamle lenker. Kan du gå gjennom hele sida før vi sender?» Det er tjue minutter til du har lovet å sende korrekturen til en annen kunde. Lea må trykke send før hun går.",
       "valg": [
         {
           "id": "send",
-          "tekst": "Bruk årets lenke, sjekk at skjemaet tar imot svar, og send utkastet",
-          "konsekvensTekst": "Skjemaet viser fredag og tar imot svar. Du sender den rettede teksten med riktig lenke. Styrelederen har én korrekturrunde igjen.",
+          "tekst": "«Invitasjonen er klar. Kan du ta forsida? Jeg sender deg riktig lenke.»",
+          "konsekvensTekst": "Du sender utkastet som avtalt, med fredag og riktig påmeldingslenke øverst. Lea svarer: «Greit. Jeg tar ned det gamle programmet før vi sender.»",
           "effekter": {
             "flagg": {
               "c04_leveranse": "levert"
@@ -330,8 +330,8 @@
         },
         {
           "id": "varsle",
-          "tekst": "Varsle nå og si hva som gjenstår før teksten kan sendes",
-          "konsekvensTekst": "Du forteller hvilken lenke som var feil, og viser til årets skjema i styrelederens e-post. Du foreslår å sende utkastet senere i dag og går tilbake til den andre leveransen.",
+          "tekst": "«Hvis invitasjonen og forsida må bli ferdige sammen, rekker jeg det ikke før du går.»",
+          "konsekvensTekst": "Du sender Lea datoen, påmeldingsfristen og lenka. «Da lager jeg en kortversjon av det,» svarer hun. Du går tilbake til korrekturen du har lovet den andre kunden.",
           "effekter": {
             "flagg": {
               "c04_leveranse": "fristproblem_varslet"
@@ -446,16 +446,27 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "«Nå finner folk skjemaet»",
-      "tekst": "Styrelederen har prøvd lenka på mobilen. «Den virker. Vi sender invitasjonen slik den er. Lea legger også ut samme lenke på forsida.»",
+      "tittel": "«Da lar vi den stå»",
+      "tekst": "Styrelederen har prøvd lenka på mobilen og godkjent teksten. Lea skriver: «Jeg tok ned programmet fra i fjor. Nå bruker vi invitasjonen som den er. Samme opplegg neste gang?»",
       "valg": [
         {
           "id": "arkiver",
-          "tekst": "Lagre den godkjente teksten og svaret fra styrelederen",
-          "konsekvensTekst": "Du legger den godkjente versjonen sammen med bestillingen. Foreningen har tatt teksten i bruk.",
+          "tekst": "«Gjerne. Send meg datoen og skjemaet når dere har dem.»",
+          "konsekvensTekst": "Lea vet hva hun kan sende deg neste gang. Denne invitasjonen er godkjent og tatt i bruk.",
           "effekter": {
             "flagg": {
               "c04_sluttstatus": "godkjent"
+            }
+          }
+        },
+        {
+          "id": "avklar_neste_gang",
+          "tekst": "«Ja. Skal jeg også ta forsida, må vi avtale det før jeg begynner.»",
+          "konsekvensTekst": "«Fair,» skriver Lea. «Jeg spurte litt seint denne gangen.» Hun sier at hun vil avklare forsida når hun ber om neste tekst.",
+          "effekter": {
+            "flagg": {
+              "c04_sluttstatus": "godkjent",
+              "c04_kundesvar_oppfolging": "avklar_neste_gang"
             }
           }
         }
@@ -476,16 +487,27 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "Lea sendte tre linjer",
-      "tekst": "«Vi kunne ikke vente,» skriver styrelederen. «Lea tok fredag, fristen onsdag og lenka du fant. Det holdt.» Hun ber deg stoppe arbeidet og si hva du rakk å gjøre.",
+      "tittel": "«Jeg sendte tre linjer»",
+      "tekst": "Lea skriver: «Jeg sendte tre linjer med fredag, fristen og lenka. Vi måtte få det ut før jeg gikk.» Styrelederen sier at de trekker bestillingen og ber deg stanse arbeidet.",
       "valg": [
         {
           "id": "arkiver",
-          "tekst": "Svar hva du rakk, og legg bort utkastet",
-          "konsekvensTekst": "Du forteller at du sjekket lenka og begynte på teksten. Lea har sendt sin versjon. Det blir ingen ny frist, og honoraret er fortsatt uavklart.",
+          "tekst": "«Skjønner. Da stopper jeg her. Jeg hadde begynt på teksten og sjekket lenka.»",
+          "konsekvensTekst": "Styrelederen får vite hvor langt du kom. Leas kortversjon er sendt, og honoraret er uavklart.",
           "effekter": {
             "flagg": {
               "c04_sluttstatus": "avbestilt"
+            }
+          }
+        },
+        {
+          "id": "send_faktaark",
+          "tekst": "«Greit. Jeg sender deg datoen, fristen og lenka samlet, så kan du bruke samme opplysninger på forsida.»",
+          "konsekvensTekst": "Lea får opplysningene samlet og tar forsida selv. Du stopper arbeidet med utkastet. Honoraret er uavklart.",
+          "effekter": {
+            "flagg": {
+              "c04_sluttstatus": "avbestilt",
+              "c04_kundesvar_oppfolging": "send_faktaark"
             }
           }
         }
