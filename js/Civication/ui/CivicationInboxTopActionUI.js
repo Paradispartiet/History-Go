@@ -1376,7 +1376,7 @@
         return String(event.id || "").startsWith(prefix);
       });
       const latest = events[events.length - 1] || null;
-      const belongs = accepted && String(latest?.note || "").includes(
+      const belongs = accepted && String(latest?.note || "").startsWith(
         "Lederhendelse: " + latestReview.id + ";");
       return { ...task, count: events.length, latestId: latest?.id || "",
         latestOutcome: latest?.outcome || "", latestNote: latest?.note || "",
@@ -1474,7 +1474,7 @@
     }
     // A fresh leader review requires new source-bound task records even when
     // earlier reviews exhausted the discretionary revision limit.
-    const belongsToCurrentReview = String(task.latestNote || "").includes(
+    const belongsToCurrentReview = String(task.latestNote || "").startsWith(
       "Lederhendelse: " + model.latestReview.id + ";");
     if (task.count >= 10 && belongsToCurrentReview &&
         !(task.latestOutcome !== task.safeId && actionId === task.safeId)) {
