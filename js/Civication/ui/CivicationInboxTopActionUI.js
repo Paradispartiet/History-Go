@@ -1558,6 +1558,197 @@
     }
   }
 
+
+  // Realistic-looking, authored case-exercise supplements, NOT actual incoming
+  // municipal documents. A review records unresolved deficiencies, not approval.
+  const LILLEBEKK_SUPPLERINGSBILAG = [
+    {
+      id: "trafikk", ref: "LBK-SUP-13", title: "Revidert rigg- og leveringsskisse – punkt B",
+      sender: "Utbyggers prosjekteringsgruppe (fiktivt spillbilag)",
+      document: [
+        "Revisjon B flytter losseplassen 4 meter nord for punkt B. Skissen tegner en separat gangstripe og foreslår levering utenom 07.30–09.00.",
+        "Tegningen mangler målsatt fri gangbredde mens av- og pålessing foregår. Den har ingen kontrollert siktanalyse, signert driftsplan eller beskrivelse av håndtering ved uforutsett levering."
+      ],
+      verified: "Skissen dokumenterer at utbygger har foreslått en annen plassering og et nytt leveringsvindu; den dokumenterer ikke sikker framkommelighet i anleggsperioden.",
+      safeId: "returner_trafikk_med_konkret_mangelliste",
+      safeLabel: "Returner skissen med krav om målsatt bredde, sikt og bindende driftsopplegg",
+      unsafeId: "godkjenn_revidert_skolevei",
+      unsafeLabel: "Legg trygg skolevei til grunn fordi leveringsplassen er flyttet",
+      followup: "Trafikkfag: be om målsatt situasjonsplan ved normal og avvikende levering, trafikksikkerhetsvurdering samt drifts- og kontrollansvar. Skoleveiavviket står åpent."
+    },
+    {
+      id: "overvann", ref: "LBK-SUP-14", title: "Nytt terrengsnitt og foreløpig overvannstabell",
+      sender: "Utbyggers VA-rådgiver (fiktivt spillbilag)",
+      document: [
+        "Nytt snitt viser fall fra øst +6,80 mot vest +6,20 og markerer et foreslått avskjærende utløp i vest. Tidligere flomveipil mot øst er fjernet fra dette utkastet.",
+        "Tabellen viser fortsatt 42 m³ tilrenning og 26 m³ fordrøyning i ett hypotetisk scenario. Utløpets kapasitet, forutsetninger for ekstremnedbør og konsekvenser for naboeiendommen i vest er ikke beregnet."
+      ],
+      verified: "Tegningsmotstriden er forsøkt rettet, men en pil og et snitt alene bekrefter ikke flomvei eller kapasitet. Differansen 16 m³ er fortsatt ikke en ferdig dimensjonering.",
+      safeId: "registrer_delvis_retting_og_krev_hydraulikk",
+      safeLabel: "Registrer revidert pil og snitt som delvis svar; krev beregning og nabovurdering",
+      unsafeId: "godkjenn_revidert_fordroyning",
+      unsafeLabel: "Lukk overvannsavviket fordi terrengsnittet er korrigert",
+      followup: "Overvannsfag: krev datert beregningsgrunnlag, dokumentert utløpskapasitet, flomveisanalysen og virkning for vestre nabo. Overvannsavviket står åpent."
+    },
+    {
+      id: "planjuss", ref: "LBK-SUP-15", title: "Merket bestemmelsesutkast – § 4.1",
+      sender: "Kommunal planjurist (fiktivt internt spillutkast)",
+      document: [
+        "Utkast B: «Før første bolig tas i bruk skal gangforbindelse vist i plankart være opparbeidet og tilgjengelig». Utbyggers forslag om ferdigattest for hele prosjektet er markert som ikke innarbeidet.",
+        "Planjuristen påpeker at gangforbindelsens endelige trasé, teknisk utforming og gjennomføringsansvar fortsatt må beskrives. Ordlyden er foreløpig og ikke ferdig juridisk kvalitetssikret eller godkjent."
+      ],
+      verified: "Versjonsforskjellen er synlig og kan journalføres internt. En formulering på utkaststadiet kan ikke erstatte faglig begrunnelse, juridisk sluttkontroll eller formelt vedtak.",
+      safeId: "journalfor_utkast_med_juridiske_forbehold",
+      safeLabel: "Legg utkast B til intern kontroll med tydelige premisser og restanser",
+      unsafeId: "send_bestemmelse_som_vedtatt",
+      unsafeLabel: "Send utkast B som vedtatt bestemmelse til utbygger",
+      followup: "Planjuss: kontroller hjemmel, presist plankart, tidspunkt, ansvar og forholdet til trafikksikkerhetskontrollen før saken kan behandles videre."
+    }
+  ];
+
+  function lillebekkSuppleringssvarModel() {
+    const ledelse = lillebekkNyLedervurderingModel();
+    if (!ledelse?.latestReport) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const source = ledelse.signature + "|" + ledelse.latestReport.id;
+    const docs = LILLEBEKK_SUPPLERINGSBILAG.map(function (doc) {
+      const prefix = "lillebekk_suppleringsgjennomgang_" + doc.id + "_v";
+      const matches = history.filter(function (event) {
+        return String(event.id || "").startsWith(prefix);
+      });
+      const latest = matches[matches.length - 1] || null;
+      const belongs = String(latest?.note || "").startsWith(
+        "Oppfølgingsnotat: " + ledelse.latestReport.id + ";");
+      return { ...doc, count: matches.length, latestId: latest?.id || "",
+        latestNote: latest?.note || "", latestOutcome: latest?.outcome || "",
+        safe: !!belongs && latest?.outcome === doc.safeId };
+    });
+    const sourceCurrent = !!ledelse.current && !!ledelse.ready;
+    const ready = sourceCurrent && docs.every(function (doc) { return doc.safe; });
+    const signature = [source].concat(docs.map(function (doc) { return doc.latestId; })).join("|");
+    const matrices = history.filter(function (event) {
+      return String(event.id || "").startsWith("lillebekk_suppleringsmatrise_v");
+    });
+    const latestMatrix = matrices[matrices.length - 1] || null;
+    return { ledelse, docs, source, sourceCurrent, ready, signature,
+      matrixCount: matrices.length, latestMatrix,
+      current: !!latestMatrix && ready &&
+        String(latestMatrix.note || "").endsWith("Kildeversjoner: " + signature) };
+  }
+
+  function recordLillebekkSuppleringsgjennomgang(docId, actionId, justification) {
+    const model = lillebekkSuppleringssvarModel();
+    const doc = model?.docs.find(function (item) { return item.id === docId; });
+    if (!model?.sourceCurrent || !doc || ![doc.safeId, doc.unsafeId].includes(actionId)) {
+      return { ok: false, reason: "Gjeldende oppfølgingsnotat etter Elins ledervurdering er nødvendig." };
+    }
+    const reason = String(justification || "").replace(/\s+/g, " ").trim().slice(0, 720);
+    if (reason.length < 60) {
+      return { ok: false, reason: "Begrunn hva bilaget faktisk svarer på og hva fagansvarlig fortsatt må dokumentere (minst 60 tegn)." };
+    }
+    const label = actionId === doc.safeId ? doc.safeLabel : doc.unsafeLabel;
+    const note = "Oppfølgingsnotat: " + model.ledelse.latestReport.id +
+      "; SIMULERT DOKUMENTKONTROLL " + doc.ref + " (" + doc.title + "). " +
+      "Bilagets opplysninger: " + doc.document.join(" ") +
+      " Dokumentgrense: " + doc.verified +
+      " Rådgiverens valg: " + label + ". Begrunnelse: " + reason +
+      ". Restanse: " + doc.followup +
+      " Dette er kun journalført intern vurdering av fiktivt materiale; ingen faktisk mottakskontroll eller godkjenning.";
+    if (doc.latestOutcome === actionId && doc.latestNote === note) {
+      return { ok: true, alreadyLogged: true };
+    }
+    // A new, source-bound manager work order can be reviewed regardless of
+    // older edits. Within the same work order permit a final safe correction.
+    const sameSource = String(doc.latestNote || "").startsWith(
+      "Oppfølgingsnotat: " + model.ledelse.latestReport.id + ";");
+    if (doc.count >= 10 && sameSource &&
+        !(doc.latestOutcome !== doc.safeId && actionId === doc.safeId)) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd. Kun sluttkorrigering av siste faglig uforsvarlige vurdering tillates." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    }
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_suppleringsgjennomgang_" + doc.id + "_v" + (doc.count + 1),
+        scene_id: "lillebekk_suppleringssvar", choice_id: actionId,
+        outcome: actionId, at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Suppleringsgjennomgang", error);
+      return { ok: false, reason: "Dokumentgjennomgangen kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkSuppleringsmatrise(recommendation) {
+    const model = lillebekkSuppleringssvarModel();
+    if (!model?.sourceCurrent) {
+      return { ok: false, reason: "Lederens gjeldende oppfølgingsnotat eller tidligere kildegrunnlag må korrigeres først." };
+    }
+    if (!model.ready) {
+      return { ok: false, reason: "Alle tre suppleringsbilag må gjennomgås uten å godkjenne mangelfullt materiale." };
+    }
+    const reason = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0, 950);
+    if (reason.length < 80) {
+      return { ok: false, reason: "Beskriv hvordan restansene fordeles og hvilke dokumenter som må tilbake før ny ledervurdering (minst 80 tegn)." };
+    }
+    const open = model.ledelse.decision.kontroll.fag.leader.memo.dossier.topics.filter(function (topic) {
+      return topic.issue || !topic.documented || topic.reviewNeedLogged || topic.caveatLogged ||
+        ["mangelfull", "motstridende", "fagkontroll"].includes(topic.assessmentOutcome);
+    });
+    const note = [
+      "LILLEBEKK – INTERN RESTANSEMATRISE ETTER SUPPLERING (IKKE GODKJENT)",
+      "Utgangspunkt: " + model.ledelse.latestReport.id,
+      "Dokumentene er fiktive og forhåndsskrevne til undervisning – ikke reelt mottatt eller faglig verifisert.",
+      "1. Kontrollert dokumentutdrag og restanse",
+      ...model.docs.map(function (doc) {
+        return "- " + doc.ref + ": " + doc.latestNote;
+      }),
+      "2. Fremdeles åpne forhold i plansaken",
+      ...(open.length ? open.map(function (topic) {
+        return "- " + topic.title + ": " + topic.status + ". " + (topic.assessmentNote || topic.next);
+      }) : ["- Ingen åpne temaer i dette uttrekket; ingen teknisk dokumentverifikasjon er utført."]),
+      "3. Konkret dokumentkrav og ansvar før ny ledervurdering",
+      reason,
+      "4. Avgrensning",
+      "Skisser, foreløpige beregninger og utkast gir ikke planvedtak eller dokumentert sikkerhet. Ingen dokumenter er faktisk sendt eller innhentet; ingen saksflagg er lukket.",
+      "Kildeversjoner: " + model.signature
+    ].join("\n");
+    if (model.latestMatrix?.note === note) return { ok: true, alreadyLogged: true };
+    if (model.matrixCount >= 10 && model.current) {
+      return { ok: false, reason: "Revisjonsgrense for uendret grunnlag. Oppdater et bilag før ytterligere utgave." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    }
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_suppleringsmatrise_v" + (model.matrixCount + 1),
+        scene_id: "lillebekk_suppleringssvar",
+        choice_id: "journalfor_intern_restanseliste",
+        outcome: "intern_restanseliste_ikke_godkjent", at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Restansematrise", error);
+      return { ok: false, reason: "Restansematrisen kunne ikke journalføres." };
+    }
+  }
+
   function lillebekkReviewModel() {
     const active = window.CivicationState?.getActivePosition?.();
     // MailPlan uses by_radgiver_plan, while accepted job offers store the
@@ -2124,6 +2315,57 @@
     return html + '</details>';
   }
 
+
+  function lillebekkSuppleringssvarHtml() {
+    const model = lillebekkSuppleringssvarModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-supplering="1">' +
+      '<summary>Suppleringssvar – dokumentkontroll og åpne restanser</summary>' +
+      '<p>Tre fiktive, forhåndsskrevne dokumentutdrag til spillet. Disse er ikke faktiske innkomne bilag eller bekreftede undersøkelser.</p>';
+    if (!model.sourceCurrent) {
+      html += '<p><strong>Sperret:</strong> Oppfølgingsnotatet etter Elins ledervurdering er ikke gjeldende. Oppdater det tidligere grunnlaget før suppleringen kan kontrolleres.</p>';
+    } else {
+      html += '<p><strong>Forsvarlig dokumentgjennomgang:</strong> ' +
+        model.docs.filter(function (doc) { return doc.safe; }).length + ' av 3.</p>';
+      html += model.docs.map(function (doc) {
+        return '<section class="civi-inbox-body" data-civi-supplering-id="' + escapeHtml(doc.id) + '">' +
+          '<h4>' + escapeHtml(doc.ref) + ' – ' + escapeHtml(doc.title) + '</h4>' +
+          '<p><strong>Fiktiv avsender:</strong> ' + escapeHtml(doc.sender) + '</p>' +
+          doc.document.map(function (text) { return '<p>' + escapeHtml(text) + '</p>'; }).join("") +
+          '<p><strong>Dette kan konkluderes:</strong> ' + escapeHtml(doc.verified) + '</p>' +
+          '<p><strong>Restanse:</strong> ' + escapeHtml(doc.followup) + '</p>' +
+          (doc.latestNote ? '<p><strong>Gjeldende journalspor:</strong> ' + escapeHtml(doc.latestNote) + '</p>' : '') +
+          '<label>Faglig dokumentbehandling <select data-civi-supplering-choice>' +
+            '<option value="' + escapeHtml(doc.safeId) + '"' +
+              (doc.latestOutcome === doc.safeId ? ' selected' : '') + '>' + escapeHtml(doc.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(doc.unsafeId) + '"' +
+              (doc.latestOutcome === doc.unsafeId ? ' selected' : '') + '>' + escapeHtml(doc.unsafeLabel) + '</option></select></label>' +
+          '<label>Begrunnelse <textarea rows="3" maxlength="720" data-civi-supplering-reason ' +
+            'placeholder="Hva har endret seg i bilaget, hva mangler fortsatt, og hvem skal kontrollere?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-supplering-save="1" data-doc-id="' +
+            escapeHtml(doc.id) + '">Journalfør intern dokumentvurdering</button>' +
+          '<p class="muted" role="status" data-civi-supplering-error></p></section>';
+      }).join("");
+    }
+    if (model.latestMatrix) {
+      html += '<h4>Intern restansematrise' + (model.current ? ' – gjeldende' : ' – utdatert') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestMatrix.note) + '</pre>';
+    }
+    if (model.ready) {
+      html += '<section class="civi-inbox-body" data-civi-supplering-matrix-editor="1">' +
+        '<h4>Samlet restanseliste til videre saksarbeid</h4>' +
+        '<p>Angi hvilke dokumenter som må rettes eller suppleres før ny intern ledervurdering. Listen lukker ingen fagavvik.</p>' +
+        '<label>Oppgavefordeling og dokumentkrav <textarea rows="4" maxlength="950" data-civi-supplering-matrix-reason ' +
+          'placeholder="Trafikk: ... Overvann: ... Planjuss: ..."></textarea></label>' +
+        '<button class="civi-btn secondary" type="button" data-civi-supplering-matrix-save="1">Journalfør intern restansematrise</button>' +
+        '<p class="muted" role="status" data-civi-supplering-matrix-error></p></section>';
+    } else if (model.sourceCurrent) {
+      html += '<p>En intern restansematrise krever forsvarlige vurderinger av alle tre dokumentutdragene. Feilaktige konklusjoner kan korrigeres.</p>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -2146,6 +2388,7 @@
         ${lillebekkKontrollbilagHtml()}
         ${lillebekkKontrollresultatHtml()}
         ${lillebekkNyLedervurderingHtml()}
+        ${lillebekkSuppleringssvarHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -2606,6 +2849,32 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-supplering-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-supplering-id]");
+        const result = recordLillebekkSuppleringsgjennomgang(
+          String(button.getAttribute("data-doc-id") || ""),
+          card?.querySelector("[data-civi-supplering-choice]")?.value || "",
+          card?.querySelector("[data-civi-supplering-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-supplering-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-supplering-matrix-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-supplering-matrix-editor]");
+        const result = recordLillebekkSuppleringsmatrise(
+          card?.querySelector("[data-civi-supplering-matrix-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-supplering-matrix-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-leder2-review]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-leder2-editor]");
@@ -3031,6 +3300,9 @@
     getLillebekkNyLedervurderingModel: lillebekkNyLedervurderingModel,
     recordLillebekkNyLedervurdering,
     recordLillebekkLeder2Oppgave,
-    recordLillebekkLeder2Oppfolgingsnotat
+    recordLillebekkLeder2Oppfolgingsnotat,
+    getLillebekkSuppleringssvarModel: lillebekkSuppleringssvarModel,
+    recordLillebekkSuppleringsgjennomgang,
+    recordLillebekkSuppleringsmatrise
   };
 })();
