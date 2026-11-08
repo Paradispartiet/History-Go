@@ -548,8 +548,167 @@ assert.equal(api.recordLillebekkKontrollprotokoll(
  kontrollRecommendation+' Ny omformulering uten kildeendring.').ok,false);
 assert.equal(world.getWorkObject(caseId).status,'open');
 
+// Author-created fictional check results: inspect limits, not simulated approvals.
+let resultater=api.getLillebekkKontrollresultatModel();
+assert.ok(resultater,'the verified internal protocol gates the next work phase');
+assert.equal(resultater.sourcesCurrent,true);
+assert.equal(resultater.intake,null);
+assert.equal(resultater.ready,false);
+assert.deepEqual(Array.from(resultater.docs.map(d=>d.ref)),
+ ['LBK-RES-10','LBK-RES-11','LBK-RES-12']);
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje',
+ 'registrer_kontrollbehov_for_ganglinje','Nødvendig oppmåling og kontroll mangler før en konklusjon om sikkerhet.').ok,false);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(
+ 'Skolevei og overvann må vurderes av relevante fagansvarlige før videre saksbehandling.').ok,false);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-resultater-intake="1"'));
+assert.ok(!host.innerHTML.includes('data-civi-resultat-assess="1"'));
+assert.equal(api.recordLillebekkResultatMottak().ok,true);
+assert.equal(api.recordLillebekkResultatMottak().ok,false);
+resultater=api.getLillebekkKontrollresultatModel();
+assert.equal(resultater.intake.outcome,'fiktive_kontrollresultater_apnet');
+assert.ok(resultater.intake.note.includes('Ingen faktisk oppmåling'));
+assert.equal(api.renderSections(),true);
+assert.equal((host.innerHTML.match(/data-civi-resultat-assess="1"/g)||[]).length,3);
+for(const fragment of ['0,90 m','1,50 m','07.55','42 m³','26 m³','16 m³',
+ 'første bolig tas i bruk','ferdigattest','LBK-RES-10','LBK-RES-11','LBK-RES-12']) {
+ assert.ok(host.innerHTML.includes(fragment),'fictional specific check findings: '+fragment);
+}
+assert.equal(api.recordLillebekkResultatvurdering('falsk','registrer_kontrollbehov_for_ganglinje',
+ 'Kildene må sammenstilles før råd gis til planleder, og dette bilaget finnes ikke.').ok,false);
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje','godkjent',
+ 'Fagansvarlig må først gjennomføre kontroll og sikre dokumentasjon for skoleveien.').ok,false);
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje',
+ 'registrer_kontrollbehov_for_ganglinje','for kort').ok,false);
+
+const resultatReason='Fagansvarlig må kontrollere forutsetninger og manglende dokumentasjon. Disse fiktive utsnittene er ikke nok til å konkludere at planen er trygg eller godkjent.';
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje',
+ 'godkjenn_ganglinje_paa_to_maalinger',resultatReason).ok,true);
+assert.equal(api.getLillebekkKontrollresultatModel().ready,false);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(
+ 'Jeg anbefaler ny trafikkfaglig kontroll, overvannsberegninger og planjuridisk kontroll før planleder vurderer videre behandling.').ok,false);
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje',
+ 'registrer_kontrollbehov_for_ganglinje',resultatReason).ok,true);
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje',
+ 'registrer_kontrollbehov_for_ganglinje',' '+resultatReason+' ').alreadyLogged,true);
+assert.equal(world.getWorkObject(caseId).history.filter(e=>e.id.startsWith('lillebekk_resultatvurdering_ganglinje_v')).length,2);
+assert.equal(api.recordLillebekkResultatvurdering('overvann',
+ 'krev_beregning_for_16m3_og_flomvei',resultatReason).ok,true);
+assert.equal(api.recordLillebekkResultatvurdering('planjuss',
+ 'returner_ordlyd_for_juridisk_kontroll',resultatReason).ok,true);
+resultater=api.getLillebekkKontrollresultatModel();
+assert.equal(resultater.ready,true);
+assert.equal(resultater.docs.filter(d=>d.safe).length,3);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-beslutningsgrunnlag-save="1"'));
+assert.equal(api.recordLillebekkBeslutningsgrunnlag('En kort anbefaling.').ok,false);
+const decisionRecommendation='Jeg anbefaler at planleder Elin returnerer ganglinje og leveringsplan for trafikkfaglig oppmåling, etterspør fullstendig overvannsberegning med flomveikart og ber planjuss vurdere bestemmelsens tidspunkt før ny intern behandling.';
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation).ok,true);
+resultater=api.getLillebekkKontrollresultatModel();
+assert.equal(resultater.current,true);
+assert.equal(resultater.proposalCount,1);
+assert.equal(resultater.latestProposal.outcome,'internt_beslutningsgrunnlag_ikke_godkjent');
+for(const token of ['LBK-RES-10','LBK-RES-11','LBK-RES-12',
+ '0,90 m','42 m³','16 m³','ferdigattest','Kildeversjoner:']) {
+ assert.ok(resultater.latestProposal.note.includes(token),'decision memo source '+token);
+}
+for(const unresolved of ['Skolevei','Overvann','Grøntdrag','Medvirkning']) {
+ assert.ok(resultater.latestProposal.note.includes(unresolved),'unresolved issue '+unresolved);
+}
+assert.ok(resultater.latestProposal.note.includes('Ingen kontroller er erklært utført'));
+assert.equal(api.recordLillebekkBeslutningsgrunnlag('  '+decisionRecommendation+'  ').alreadyLogged,true);
+assert.equal(api.getLillebekkKontrollresultatModel().proposalCount,1);
+assert.equal(world.getWorkObject(caseId).status,'open');
+assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
+ assert.ok(world.getWorkObject(caseId).flags.includes(flag));
+}
+saved=JSON.parse(JSON.stringify(saved));
+assert.equal(api.getLillebekkKontrollresultatModel().current,true);
+
+// An additional documented issue blocks the downstream result until all
+// upstream notes are refreshed, without deleting any earlier case history.
+world.addFlag(caseId,'lillebekk_stikkrenne_kontroll_ikke_gjennomfort',{
+ event_id:'lillebekk_resultat_test_new_undocumented_channel',at:'2026-11-08T06:00:00Z'
+});
+resultater=api.getLillebekkKontrollresultatModel();
+assert.equal(resultater.sourcesCurrent,false);
+assert.equal(resultater.current,false);
+assert.equal(api.recordLillebekkResultatvurdering('planjuss',
+ 'returner_ordlyd_for_juridisk_kontroll',resultatReason).ok,false);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation).ok,false);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('Den tidligere kontrollprotokollen er utdatert'));
+assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,true);
+assert.equal(api.recordLillebekkKontrollprotokoll(kontrollRecommendation).ok,true);
+resultater=api.getLillebekkKontrollresultatModel();
+assert.equal(resultater.sourcesCurrent,true);
+assert.equal(resultater.ready,true);
+assert.equal(resultater.current,false);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation).ok,true);
+assert.equal(api.getLillebekkKontrollresultatModel().proposalCount,2);
+assert.equal(api.getLillebekkKontrollresultatModel().current,true);
+
+// Earlier unsafe source choices also block a decision basis despite safe results.
+assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','anta_avklart',
+ 'Trafikkfag har ennå ikke kontrollert reell sikkerhet, men dette er et bevisst feilvalg for å teste sperren.').ok,true);
+assert.equal(api.getLillebekkKontrollresultatModel().sourcesCurrent,false);
+assert.equal(api.getLillebekkKontrollresultatModel().current,false);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation).ok,false);
+assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',
+ 'Trafikkfag må dokumentere ganglinje og tidspunkt før første bruk, da to fiktive målinger ikke er tilstrekkelig.').ok,true);
+assert.equal(api.recordLillebekkFagsvarFollowup(fagRecommendation).ok,true);
+assert.equal(api.recordLillebekkKontrollprotokoll(kontrollRecommendation).ok,true);
+assert.equal(api.getLillebekkKontrollresultatModel().current,false);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation).ok,true);
+assert.equal(api.getLillebekkKontrollresultatModel().current,true);
+
+// A wrong tenth revision can still be corrected, but not reversed again.
+for(let i=0;i<9;i++){
+ assert.equal(api.recordLillebekkResultatvurdering('overvann','godkjenn_magasin_paa_26m3',
+ 'Bevisst feilvalg nummer '+i+'. Regnearket har ikke beskrevet utløp, infiltrasjon, sikkerhetsmargin eller dokumenterte faglige premisser.').ok,true);
+}
+resultater=api.getLillebekkKontrollresultatModel();
+assert.equal(resultater.docs.find(d=>d.id==='overvann').revisionCount,10);
+assert.equal(resultater.ready,false);
+assert.equal(api.recordLillebekkResultatvurdering('overvann',
+ 'krev_beregning_for_16m3_og_flomvei',resultatReason).ok,true);
+assert.equal(api.getLillebekkKontrollresultatModel().docs.find(d=>d.id==='overvann').revisionCount,11);
+assert.equal(api.recordLillebekkResultatvurdering('overvann','godkjenn_magasin_paa_26m3',resultatReason).ok,false);
+
+// Player-authored content is escaped when rendered.
+const resultInjection='<img src=x onerror=alert(1)> Trafikkfag må kontrollere ganglinjen, overvannsfag må dokumentere differansen, og planjuss må vurdere rekkefølgekravet før videre saksbehandling.';
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(resultInjection).ok,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('&lt;img'));
+assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
+
+// Revisions remain possible after 10 proposals if new source evidence arrives.
+while(api.getLillebekkKontrollresultatModel().proposalCount < 10) {
+ const n=api.getLillebekkKontrollresultatModel().proposalCount+1;
+ assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation+
+ ' Oppfølging fra planleder føres som ny intern arbeidsversjon nummer '+n+'.').ok,true);
+}
+assert.equal(api.getLillebekkKontrollresultatModel().proposalCount,10);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation+
+ ' En ren omskriving som skal blokkeres uten kildeendring.').ok,false);
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje',
+ 'registrer_kontrollbehov_for_ganglinje',
+ 'Et revidert faglig notat krever oppmåling av ganglinjen ved varelevering og dokumentasjon av varighet, gangbredde og sikkerhet.').ok,true);
+assert.equal(api.getLillebekkKontrollresultatModel().current,false);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation).ok,true);
+assert.equal(api.getLillebekkKontrollresultatModel().proposalCount,11);
+assert.equal(api.getLillebekkKontrollresultatModel().current,true);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation+
+ ' Ingen ny kilde har kommet siden siste utkast.').ok,false);
+
+
 // Access and jurisdiction boundaries.
 activeRole={role_key:'butikkmedarbeider'};
+assert.equal(api.getLillebekkKontrollresultatModel(),null);
+assert.equal(api.recordLillebekkResultatMottak().ok,false);
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje','registrer_kontrollbehov_for_ganglinje',resultatReason).ok,false);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation).ok,false);
 assert.equal(api.getLillebekkKontrollbilagModel(),null);
 assert.equal(api.recordLillebekkKontrollFunn('ganglinje','krev_samordnet_skoleveikontroll',kontrollReason).ok,false);
 assert.equal(api.recordLillebekkKontrollprotokoll(kontrollRecommendation).ok,false);
@@ -566,6 +725,10 @@ assert.equal(api.recordLillebekkComparison('skolevei_tidskrav','avklar_forst',re
 assert.equal(api.recordLillebekkSaksframlegg(recommendation).ok,false);
 activeRole={role_key:'arealplanlegger'};
 world.closeWorkObject(caseId,{event_id:'lillebekk_memo_test_close',at:'2026-11-07T10:00:00Z',outcome:'closed_for_test'});
+assert.equal(api.getLillebekkKontrollresultatModel(),null);
+assert.equal(api.recordLillebekkResultatMottak().ok,false);
+assert.equal(api.recordLillebekkResultatvurdering('ganglinje','registrer_kontrollbehov_for_ganglinje',resultatReason).ok,false);
+assert.equal(api.recordLillebekkBeslutningsgrunnlag(decisionRecommendation).ok,false);
 assert.equal(api.getLillebekkKontrollbilagModel(),null);
 assert.equal(api.recordLillebekkKontrollFunn('ganglinje','krev_samordnet_skoleveikontroll',kontrollReason).ok,false);
 assert.equal(api.recordLillebekkKontrollprotokoll(kontrollRecommendation).ok,false);

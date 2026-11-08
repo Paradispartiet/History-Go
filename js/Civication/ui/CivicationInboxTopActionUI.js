@@ -1095,6 +1095,227 @@
     }
   }
 
+
+  // Fictional check results generated for this game. These are not actual
+  // field measurements, hydraulic models, signed reports, or legal decisions.
+  const LILLEBEKK_RESULTATBILAG = [
+    {
+      id: "ganglinje", ref: "LBK-RES-10",
+      title: "Observasjonsark – ganglinje ved punkt B",
+      sender: "Trafikkfaglig rådgiver (fiktivt kontrollutdrag)",
+      findings: [
+        "Utkast til registreringsark: fri passasje ved varelevering kl. 07.55 er oppgitt til 0,90 m. Etter varelevering kl. 09.20 er fri passasje oppgitt til 1,50 m.",
+        "Det tidligere skissegrunnlaget oppga om lag 0,85 m i leveringsvinduet og 1,55 m ellers. Registreringsarket gjelder kun to tidspunkter, uten dokumentert representativitet, siktmåling eller vurdering av sikkerhet for skolebarn."
+      ],
+      assessment: "Tallene underbygger at varelevering kan innsnevre passasjen, men to observasjoner kan ikke fastslå at skoleveien oppfyller krav til sikkerhet eller tilgjengelighet.",
+      safeId: "registrer_kontrollbehov_for_ganglinje",
+      safeLabel: "Registrer innsnevringen og krev revidert vareleverings- og ganglinjeløsning",
+      unsafeId: "godkjenn_ganglinje_paa_to_maalinger",
+      unsafeLabel: "Godkjenn skoleveien ut fra de to observasjonene",
+      action: "Trafikkfag må undersøke ganglinje, sikt, leveringstidspunkt og tiltak før første innflytting."
+    },
+    {
+      id: "overvann", ref: "LBK-RES-11",
+      title: "Foreløpig regneark – avrenning og fordrøyning",
+      sender: "Overvannsfaglig rådgiver (fiktivt regneutdrag)",
+      findings: [
+        "I et avgrenset, hypotetisk beregningsscenario står tilført vannvolum oppført som 42 m³ og tilgjengelig fordrøyningsvolum som 26 m³. Enkel differanse er 16 m³.",
+        "Regnearket angir ikke infiltrasjon, kontrollert utløp, dimensjoneringsgrunnlag eller virkning for naboeiendommer. Flomveipilen fra tidligere plankartutkast er ikke kontrollert mot høydegrunnlaget."
+      ],
+      assessment: "Den foreløpige differansen på 16 m³ er ikke i seg selv en ferdig hydraulisk dimensjonering eller et bevis for en bestemt flomfare. Metodikk og resterende vannhåndtering mangler.",
+      safeId: "krev_beregning_for_16m3_og_flomvei",
+      safeLabel: "Registrer differansen 16 m³ og krev full beregning, utløp og høydekontroll",
+      unsafeId: "godkjenn_magasin_paa_26m3",
+      unsafeLabel: "Godkjenn overvannsløsningen med 26 m³ magasin",
+      action: "Overvannsfag må dokumentere beregningspremisser, avrenningsvei, utløp og terreng før løsning eller planbestemmelse kan anses kontrollert."
+    },
+    {
+      id: "planjuss", ref: "LBK-RES-12",
+      title: "Juridisk merknadsark – tidspunkt for gangforbindelse",
+      sender: "Planjurist (fiktivt merknadsutdrag)",
+      findings: [
+        "Merknad 1: Plankartutkastets gangforbindelse har fortsatt uavklart trasé og dokumentert leveringskonflikt ved punkt B.",
+        "Merknad 2: Forslaget 'før første bolig tas i bruk' og utbyggers 'senest ved ferdigattest for hele prosjektet' er to forskjellige utløsningspunkter. Det foreligger ingen endelig vurdering av bestemmelsens ordlyd, hjemmel eller praktiske oppfølging."
+      ],
+      assessment: "Planjuss peker på et mulig behov for rekkefølgekrav, men har ikke godkjent noen formulering. Faglig begrunnelse, presist tidspunkt og myndighetsbehandling gjenstår.",
+      safeId: "returner_ordlyd_for_juridisk_kontroll",
+      safeLabel: "Send bestemmelsesutkast til intern kontroll sammen med trafikkpremissene",
+      unsafeId: "godta_utbyggers_frist_som_vedtatt",
+      unsafeLabel: "Behandle utbyggers ferdigattestfrist som vedtatt",
+      action: "Planjurist og planleder må kvalitetssikre forslag til bestemmelse etter at trafikkfag har dokumentert hva som må være etablert før bruk."
+    }
+  ];
+
+  function lillebekkKontrollresultatModel() {
+    const kontroll = lillebekkKontrollbilagModel();
+    if (!kontroll?.latestReport) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const intake = history.find(function (event) {
+      return event.id === "lillebekk_resultater_spillmottak_v1";
+    }) || null;
+    const docs = LILLEBEKK_RESULTATBILAG.map(function (doc) {
+      const prefix = "lillebekk_resultatvurdering_" + doc.id + "_v";
+      const matches = history.filter(function (event) {
+        return String(event.id || "").startsWith(prefix);
+      });
+      const latest = matches[matches.length - 1] || null;
+      return { ...doc, revisionCount: matches.length, lastId: latest?.id || "",
+        lastOutcome: latest?.outcome || "", lastNote: latest?.note || "",
+        safe: !!intake && latest?.outcome === doc.safeId };
+    });
+    const sourcesCurrent = !!kontroll.current && !!kontroll.ready;
+    const ready = sourcesCurrent && !!intake && docs.every(function (doc) { return doc.safe; });
+    const signature = [kontroll.signature, kontroll.latestReport.id]
+      .concat(docs.map(function (doc) { return doc.lastId; })).join("|");
+    const proposals = history.filter(function (event) {
+      return String(event.id || "").startsWith("lillebekk_beslutningsgrunnlag_v");
+    });
+    const latestProposal = proposals[proposals.length - 1] || null;
+    return { kontroll, intake, docs, sourcesCurrent, ready, signature,
+      proposalCount: proposals.length, latestProposal, current: !!latestProposal && ready &&
+        String(latestProposal.note || "").endsWith("Kildeversjoner: " + signature) };
+  }
+
+  function recordLillebekkResultatMottak() {
+    const model = lillebekkKontrollresultatModel();
+    if (!model?.sourcesCurrent || model.intake) {
+      return { ok: false, reason: "Kontrollprotokollen må være gjeldende og resultatene ikke tidligere åpnet." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er ikke tilgjengelig." };
+    }
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_resultater_spillmottak_v1",
+        scene_id: "lillebekk_kontrollresultater", choice_id: "apne_fiktive_resultater",
+        at: new Date().toISOString(), outcome: "fiktive_kontrollresultater_apnet",
+        note: "Spilleren åpnet tre fiktive, forhåndsskrevne kontrollutdrag (" +
+          LILLEBEKK_RESULTATBILAG.map(function (doc) { return doc.ref; }).join(", ") +
+          "). Ingen faktisk oppmåling, befaring, ingeniørberegning, juridisk uttalelse, utsendelse eller vedtak er gjennomført."
+      });
+      return { ok: true };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Resultatmottak", error);
+      return { ok: false, reason: "Mottaket kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkResultatvurdering(docId, choiceId, justification) {
+    const model = lillebekkKontrollresultatModel();
+    const doc = model?.docs.find(function (item) { return item.id === docId; });
+    if (!model?.sourcesCurrent || !model.intake || !doc ||
+        ![doc.safeId, doc.unsafeId].includes(choiceId)) {
+      return { ok: false, reason: "Åpne resultatutdragene med gjeldende kontrollprotokoll før vurdering." };
+    }
+    const reason = String(justification || "").replace(/\s+/g, " ").trim().slice(0, 650);
+    if (reason.length < 45) {
+      return { ok: false, reason: "Beskriv dokumentets begrensning, hva som faktisk er funnet og neste faglige kontroll." };
+    }
+    const label = choiceId === doc.safeId ? doc.safeLabel : doc.unsafeLabel;
+    const note = "FIKTIV FAGLIG RESULTATVURDERING " + doc.ref + ": " + doc.title + ". " +
+      doc.findings.join(" ") + " Begrensning: " + doc.assessment +
+      " Spillerens konklusjon: " + label + ". Begrunnelse: " + reason +
+      ". Åpen oppgave: " + doc.action +
+      " Dette verifiserer ingen faktisk kontroll, gir intet vedtak og lukker ingen fagavvik.";
+    if (doc.lastOutcome === choiceId && doc.lastNote === note) return { ok: true, alreadyLogged: true };
+    if (doc.revisionCount >= 10 && !(doc.lastOutcome !== doc.safeId && choiceId === doc.safeId)) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd. Bare forsvarlig korrigering av siste feilvurdering tillates." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er ikke tilgjengelig." };
+    }
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_resultatvurdering_" + doc.id + "_v" + (doc.revisionCount + 1),
+        scene_id: "lillebekk_kontrollresultater", choice_id: choiceId, outcome: choiceId,
+        at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Resultatvurdering", error);
+      return { ok: false, reason: "Resultatvurderingen kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkBeslutningsgrunnlag(recommendation) {
+    const model = lillebekkKontrollresultatModel();
+    if (!model?.sourcesCurrent) {
+      return { ok: false, reason: "Dokumentgrunnlaget er utdatert. Korriger tidligere kontrollprotokoll først." };
+    }
+    if (!model.ready) {
+      return { ok: false, reason: "Alle tre resultatbilag må vurderes forsvarlig før et oppdatert beslutningsgrunnlag." };
+    }
+    const text = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0, 950);
+    if (text.length < 70) {
+      return { ok: false, reason: "Beskriv konkret oppfølging, ansvar og beslutningen du anbefaler planleder." };
+    }
+    const open = model.kontroll.fag.leader.memo.dossier.topics.filter(function (topic) {
+      return topic.issue || !topic.documented || topic.reviewNeedLogged || topic.caveatLogged ||
+        ["mangelfull", "motstridende", "fagkontroll"].includes(topic.assessmentOutcome);
+    });
+    const note = [
+      "LILLEBEKK – OPPDATERT INTERNT BESLUTNINGSGRUNNLAG (IKKE VEDTAK)",
+      "Forrige kontrollprotokoll: " + model.kontroll.latestReport.id,
+      "Dokumenter: fiktive, metodisk begrensede spillutdrag – ikke faktisk verifiserte kontrollrapporter.",
+      "",
+      "1. Konkrete kontrollresultater og forbehold",
+      ...model.docs.map(function (doc) {
+        return "- " + doc.ref + " (" + doc.sender + "): " + doc.lastNote;
+      }),
+      "",
+      "2. Åpne temaer i den formelle plansaken",
+      ...(open.length ? open.map(function (topic) {
+        return "- " + topic.title + ": " + topic.status + ". " + (topic.assessmentNote || topic.next);
+      }) : ["- Ingen åpne markører i dette uttrekket. Ekstern verifikasjon er likevel ikke utført."]),
+      "",
+      "3. Rådgiverens anbefaling til planleder Elin",
+      text,
+      "",
+      "4. Myndighet og neste beslutning",
+      "Dette er et internt faglig arbeidsgrunnlag. Elin må avgjøre neste administrative steg etter dokumentkontroll. Ingen kontroller er erklært utført i virkeligheten, ingen avvik er lukket, og ingen politisk eller juridisk godkjenning er gitt.",
+      "Kildeversjoner: " + model.signature
+    ].join("\n");
+    if (model.latestProposal?.note === note) return { ok: true, alreadyLogged: true };
+    // Genuine changes to source evidence must remain amendable after the
+    // discretionary rewrite cap. All previous editions remain journaled.
+    if (model.proposalCount >= 10 && model.current) {
+      return { ok: false, reason: "Maksimalt antall frie omskrivinger med uendret kildegrunnlag er nådd." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") {
+      return { ok: false, reason: "Saksloggen er ikke tilgjengelig." };
+    }
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) {
+      return { ok: false, reason: "Saken er avsluttet." };
+    }
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_beslutningsgrunnlag_v" + (model.proposalCount + 1),
+        scene_id: "lillebekk_kontrollresultater",
+        choice_id: "journalfor_internt_beslutningsgrunnlag",
+        at: new Date().toISOString(), outcome: "internt_beslutningsgrunnlag_ikke_godkjent", note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Beslutningsgrunnlag", error);
+      return { ok: false, reason: "Beslutningsgrunnlaget kunne ikke journalføres." };
+    }
+  }
+
   function lillebekkReviewModel() {
     const active = window.CivicationState?.getActivePosition?.();
     // MailPlan uses by_radgiver_plan, while accepted job offers store the
@@ -1521,6 +1742,67 @@
     return html + '</details>';
   }
 
+
+  function lillebekkKontrollresultatHtml() {
+    const model = lillebekkKontrollresultatModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-resultater="1">' +
+      '<summary>Kontrollresultater – dokumentfunn og ny anbefaling</summary>' +
+      '<p>Alle tre resultatarkene er laget for spilløvelsen. Oppgitte målinger, regneeksempler og juridiske merknader er ikke faktiske undersøkelser eller godkjenninger.</p>';
+    if (!model.sourcesCurrent) {
+      html += '<p><strong>Foreløpig sperret:</strong> Den tidligere kontrollprotokollen er utdatert. Oppdater kildeavstemming og protokoll før du vurderer nye resultatark.</p>';
+    } else if (!model.intake) {
+      html += '<p>Det interne dokumentgrunnlaget er kontrollert. Åpne de tre fiktive resultatarkene og undersøk hva opplysningene faktisk kan begrunne.</p>' +
+        '<button class="civi-btn secondary" type="button" data-civi-resultater-intake="1">Åpne tre fiktive resultatark</button>' +
+        '<p class="muted" role="status" data-civi-resultater-intake-error></p>';
+    } else {
+      html += '<p><strong>Faglig forsvarlige resultatvurderinger:</strong> ' +
+        model.docs.filter(function (doc) { return doc.safe; }).length + ' av 3.</p>';
+      html += model.docs.map(function (doc) {
+        return '<section class="civi-inbox-body" data-civi-resultat-id="' + escapeHtml(doc.id) + '">' +
+          '<h4>' + escapeHtml(doc.ref) + ' – ' + escapeHtml(doc.title) + '</h4>' +
+          '<p><strong>Fiktiv avsender:</strong> ' + escapeHtml(doc.sender) + '</p>' +
+          doc.findings.map(function (finding) {
+            return '<p>' + escapeHtml(finding) + '</p>';
+          }).join("") +
+          '<p><strong>Hva resultatet ikke beviser:</strong> ' + escapeHtml(doc.assessment) + '</p>' +
+          (doc.lastNote ? '<p><strong>Journalført vurdering:</strong> ' +
+            escapeHtml(doc.lastNote) + '</p>' : '') +
+          '<label>Faglig handling <select data-civi-resultat-choice>' +
+            '<option value="' + escapeHtml(doc.safeId) + '"' +
+              (doc.lastOutcome === doc.safeId ? ' selected' : '') + '>' +
+              escapeHtml(doc.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(doc.unsafeId) + '"' +
+              (doc.lastOutcome === doc.unsafeId ? ' selected' : '') + '>' +
+              escapeHtml(doc.unsafeLabel) + '</option></select></label>' +
+          '<label>Begrunnelse <textarea rows="3" maxlength="650" data-civi-resultat-reason ' +
+            'placeholder="Hvilke funn er dokumentert i spillet, hva er fortsatt usikkert, og hvem må følge opp?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-resultat-assess="1" ' +
+            'data-resultat-id="' + escapeHtml(doc.id) + '">Journalfør vurdering</button>' +
+          '<p class="muted" role="status" data-civi-resultat-error></p>' +
+        '</section>';
+      }).join("");
+    }
+    if (model.latestProposal) {
+      html += '<h4>Oppdatert beslutningsgrunnlag' +
+        (model.current ? ' – gjeldende kildeversjoner' : ' – utdatert grunnlag') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestProposal.note) + '</pre>';
+    }
+    if (model.ready) {
+      html += '<section class="civi-inbox-body" data-civi-beslutningsgrunnlag-editor="1">' +
+        '<h4>Administrativ anbefaling til planleder Elin</h4>' +
+        '<p>Sammenhold resultater, manglende faglig dokumentasjon og hvem som må gjøre videre kontroll. Dette lager bare et internt arbeidsgrunnlag.</p>' +
+        '<label>Anbefaling <textarea rows="4" maxlength="950" data-civi-beslutningsgrunnlag-reason ' +
+          'placeholder="Anbefal hvordan uavklarte ganglinje-, overvanns- og rekkefølgeforhold skal følges opp"></textarea></label>' +
+        '<button class="civi-btn secondary" type="button" data-civi-beslutningsgrunnlag-save="1">Journalfør oppdatert internt beslutningsgrunnlag</button>' +
+        '<p class="muted" role="status" data-civi-beslutningsgrunnlag-error></p></section>';
+    } else if (model.intake && model.sourcesCurrent) {
+      html += '<p>Et nytt beslutningsgrunnlag krever tre faglig forsvarlige resultatvurderinger. Feilkonklusjoner må korrigeres først.</p>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -1541,6 +1823,7 @@
         ${lillebekkLeaderReviewHtml()}
         ${lillebekkFagsvarHtml()}
         ${lillebekkKontrollbilagHtml()}
+        ${lillebekkKontrollresultatHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -2001,6 +2284,42 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-resultater-intake]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const result = recordLillebekkResultatMottak();
+        if (result.ok) renderInboxSections();
+        else {
+          const message = button.closest("[data-civi-lillebekk-resultater]")?.querySelector("[data-civi-resultater-intake-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-resultat-assess]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-resultat-id]");
+        const result = recordLillebekkResultatvurdering(
+          String(button.getAttribute("data-resultat-id") || ""),
+          card?.querySelector("[data-civi-resultat-choice]")?.value || "",
+          card?.querySelector("[data-civi-resultat-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-resultat-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-beslutningsgrunnlag-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-beslutningsgrunnlag-editor]");
+        const result = recordLillebekkBeslutningsgrunnlag(
+          card?.querySelector("[data-civi-beslutningsgrunnlag-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-beslutningsgrunnlag-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-kontrollbilag-assess]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-kontrollbilag-id]");
@@ -2343,6 +2662,10 @@
     recordLillebekkFagsvarFollowup,
     getLillebekkKontrollbilagModel: lillebekkKontrollbilagModel,
     recordLillebekkKontrollFunn,
-    recordLillebekkKontrollprotokoll
+    recordLillebekkKontrollprotokoll,
+    getLillebekkKontrollresultatModel: lillebekkKontrollresultatModel,
+    recordLillebekkResultatMottak,
+    recordLillebekkResultatvurdering,
+    recordLillebekkBeslutningsgrunnlag
   };
 })();
