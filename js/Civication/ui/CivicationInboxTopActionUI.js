@@ -1425,7 +1425,11 @@
       "Kildeversjoner: " + reviewSource
     ].join("\n");
     if (model.latestReview?.note === note) return { ok: true, alreadyLogged: true };
-    if (model.reviewsCount >= 10 && model.currentReview) {
+    // An unsafe tenth recommendation must not permanently prevent its
+    // correction; a new source version may always receive a new review.
+    if (model.reviewsCount >= 10 && model.currentReview &&
+        !(model.latestReview?.outcome === "simulert_leder_avvist_uforsvarlig_oversendelse" &&
+          choice.id !== "send_til_planvedtak")) {
       return { ok: false, reason: "Gjeldende kildeversjon tillater ikke flere frie omskrivinger. Oppdater dokumentgrunnlaget." };
     }
     const world = window.CivicationWorkWorld;
@@ -1468,7 +1472,12 @@
     if (task.latestOutcome === actionId && task.latestNote === note) {
       return { ok: true, alreadyLogged: true };
     }
-    if (task.count >= 10 && !(task.latestOutcome !== task.safeId && actionId === task.safeId)) {
+    // A fresh leader review requires new source-bound task records even when
+    // earlier reviews exhausted the discretionary revision limit.
+    const belongsToCurrentReview = String(task.latestNote || "").includes(
+      "Lederhendelse: " + model.latestReview.id + ";");
+    if (task.count >= 10 && belongsToCurrentReview &&
+        !(task.latestOutcome !== task.safeId && actionId === task.safeId)) {
       return { ok: false, reason: "Revisjonsgrensen er nådd. Bare faglig korrekt sluttkorrigering er tillatt." };
     }
     const world = window.CivicationWorkWorld;
